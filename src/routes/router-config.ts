@@ -24,6 +24,7 @@ const routerConfig = [
   {
     path: "/",
     children: [],
+    // Not lazy as loaded when a user first hits the site
     component: Home,
     exact: true,
   },
