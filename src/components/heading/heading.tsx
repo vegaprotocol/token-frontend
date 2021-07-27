@@ -1,7 +1,7 @@
 import "./heading.scss";
 
 import React from "react";
-import vegaWhite from "../images/vega_white.png";
+import vegaWhite from "../../images/vega_white.png";
 import { Link, useRouteMatch } from "react-router-dom";
 
 export interface HeadingProps {
