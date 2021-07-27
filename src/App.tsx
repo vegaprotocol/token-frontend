@@ -2,7 +2,7 @@ import React from "react";
 import "./App.scss";
 import { Heading } from "./components/heading";
 import { AppRouter } from "./routes";
-import { BrowserRouter as Router, useRouteMatch } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   const pubkey = "0x" + "0".repeat(40);
@@ -15,6 +15,7 @@ function App() {
           connected={true}
           loading={false}
           connect={() => console.log("connect")}
+          balance={"123"}
         />
         <AppRouter />
       </Router>

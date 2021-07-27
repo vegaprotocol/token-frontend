@@ -1,119 +1,96 @@
-// TODO scope
+@import "../../styles/colors";
 
-.Header {
+.heading {
   background-image: url("../../images/banner.png");
   height: 500px;
   background-repeat: no-repeat;
   background-size: 100% auto;
   width: 100%;
-}
 
-.Header .Title {
-  font-family: NeuePixelGrotesk;
-  font-size: 88px;
-  padding-top: 200px;
-}
+  &__nav {
+    padding: 20px;
+  }
 
-.Header .Logo {
-  width: 60px;
-  cursor: pointer;
-}
+  &__title {
+    font-family: NeuePixelGrotesk;
+    font-size: 88px;
+    padding-top: 250px;
 
-.Nav {
-  padding: 20px;
-}
+    &-container {
+      margin: 0 auto;
+      width: 1300px;
+    }
+  }
 
-.Inner {
-  margin: 0 auto;
-  width: 1300px;
-}
+  &__logo {
+    width: 60px;
+    &-container {
+      float: left;
+    }
+  }
 
-.Left {
-  float: left;
-}
+  button {
+    background-color: $black;
+    padding: 10px 20px;
+    color: $white;
+    font-size: 20px;
+    cursor: pointer;
+    display: inline-block;
 
-.Right {
-  float: right;
-  text-align: right;
-}
+    &:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+  }
 
-.Clear {
-  clear: both;
-}
+  &__wallet-container {
+    float: right;
+    text-align: right;
+  }
 
-.UserAddress a {
-  color: rgba(255, 255, 255, 0.7);
-  text-decoration: none;
-}
+  &__error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 3px;
+  }
 
-.UserAddress a:hover {
-  color: #ffffff;
-}
+  &__wallet {
+    background-color: $white;
+    border: 2px solid $black;
+    padding: 10px 0px;
+    color: $black;
+    font-size: 14px;
+    margin-right: 20px;
+    a {
+      color: $black;
+    }
 
-.Button {
-  background-color: #000000;
-  padding: 10px 20px;
-  color: #ffffff;
-  font-size: 20px;
-  cursor: pointer;
-  display: inline-block;
-}
+    a:hover {
+      text-decoration: none;
+    }
+  }
 
-.Button:hover {
-  background: rgba(0, 0, 0, 0.7);
-}
+  &__wallet-balance {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 13px;
 
-.MetaMaskError {
-  color: #721c24;
-  background-color: #f8d7da;
-  border-color: #f5c6cb;
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 3px;
-}
+    &-amount {
+      margin-right: 10px;
+    }
+  }
 
-.WithdrawError {
-  color: #721c24;
-  background-color: #f8d7da;
-  border-color: #f5c6cb;
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 3px;
-}
+  &__wallet-label {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 13px;
+  }
 
-.WithdrawSuccess {
-  background-color: #fff3cd;
-  color: #856404;
-  border: 1px solid #ffeeba;
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 3px;
-}
-
-.WithdrawPanel a {
-  color: #000000;
-}
-
-.WithdrawPanel a:hover {
-  text-decoration: none;
-}
-
-.WithdrawPanel {
-  background-color: #ffffff;
-  border: 2px solid #000000;
-  padding: 10px 0px;
-  color: #000000;
-  font-size: 14px;
-  margin-right: 20px;
-}
-
-.WithdrawTitle {
-  text-transform: uppercase;
-  font-weight: bold;
-  margin-left: 10px;
-  font-size: 13px;
-}
-
-.WithdrawLabel {
-  margin-right: 10px;
+  &__wallet-value {
+    margin: 10px;
+  }
 }

@@ -10,6 +10,7 @@ export interface HeadingProps {
   loading: boolean;
   pubkey: any;
   connect: () => void;
+  balance: string;
 }
 
 export const Heading = ({
@@ -18,31 +19,31 @@ export const Heading = ({
   loading,
   pubkey,
   connect,
+  balance,
 }: HeadingProps) => {
-  const balance = "123";
   const isHome = useRouteMatch({ path: "/", exact: true });
-  console.log(isHome);
+
   return (
-    <div className="Header">
-      <div className="Nav">
-        <div className="Left">
+    <div className="heading">
+      <div className="heading__nav">
+        <div className="heading__logo-container">
           <Link to="/">
-            <img alt="Vega" src={vegaWhite} className="Logo" />
+            <img alt="Vega" src={vegaWhite} className="heading__logo" />
           </Link>
         </div>
-        <div className="Right">
+        <div className="heading__wallet-container">
           {!error && !connected && !loading ? (
             <div className="Button" onClick={connect}>
               Connect
             </div>
           ) : null}
           {error && !loading ? (
-            <div className="MetaMaskError">{error}</div>
+            <div className="heading__error">{error}</div>
           ) : null}
           {connected && !loading ? (
-            <div className="WithdrawPanel Left">
-              <span className="WithdrawTitle">Account: </span>
-              <span className="WithdrawLabel">
+            <div className="heading__wallet">
+              <span className="heading__wallet-label">Account: </span>
+              <span className="heading__wallet-value">
                 <a
                   rel="noreferrer"
                   target="_blank"
@@ -53,16 +54,15 @@ export const Heading = ({
                     pubkey.slice(pubkey.length - 4, pubkey.length)}
                 </a>
               </span>
-              <span className="WithdrawTitle">Vesting Balance: </span>
-              <span className="WithdrawLabel">{balance} VEGA</span>
+              <span className="heading__wallet-label">Vesting Balance: </span>
+              <span className="heading__wallet-value">{balance} VEGA</span>
             </div>
           ) : null}
         </div>
-        <div className="Clear"></div>
       </div>
-      <div className="Inner">
+      <div className="heading__title-container">
         {isHome ? (
-          <div className="Title">
+          <div className="heading__title">
             VEGA
             <br />
             VESTING
