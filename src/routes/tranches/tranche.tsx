@@ -34,9 +34,9 @@ export const Tranche = () => {
   const getAbbreviatedNumber = (num: number) => {
     return Number(num.toFixed()).toLocaleString();
   };
-  const withdraw = async () => {
-    console.log("noop");
-  };
+  //   const withdraw = async () => {
+  //     console.log("noop");
+  //   };
   const currentTranche = getTranche();
   if (!currentTranche || tranches.length > 0) {
     return <div className="Inner">Invalid tranche!</div>;

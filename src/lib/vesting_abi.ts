@@ -1,4 +1,4 @@
-const vestingBbi = [
+const vestingAbi = [
   {
     inputs: [
       {
@@ -606,4 +606,4 @@ const vestingBbi = [
   },
 ];
 
-export default vestingBbi;
+export default vestingAbi;
