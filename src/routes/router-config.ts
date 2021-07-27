@@ -1,8 +1,23 @@
 import React from "react";
 
-const LazyTranches = React.lazy(() => import("./tranches"));
-const LazyClaim = React.lazy(() => import("./claim"));
-const LazyRedemption = React.lazy(() => import("./redemption"));
+const LazyTranches = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "route-tranches", webpackPrefetch: true */ "./tranches"
+    )
+);
+const LazyClaim = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "route-claim", webpackPrefetch: true */ "./claim"
+    )
+);
+const LazyRedemption = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "route-redemption", webpackPrefetch: true */ "./redemption"
+    )
+);
 
 const routerConfig = [
   {
