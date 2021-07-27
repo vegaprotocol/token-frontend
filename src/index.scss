@@ -1,0 +1,11 @@
+@import "./styles/colors";
+@import "./styles/fonts";
+
+html,
+body {
+  font-family: $font-main;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  width: 100%;
+}
