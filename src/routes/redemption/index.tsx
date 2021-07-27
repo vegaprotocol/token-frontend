@@ -1,5 +1,7 @@
 import React from "react";
 
-export const RedemptionRouter = () => {
+const RedemptionRouter = () => {
   return <div>Redemption</div>;
 };
+
+export default RedemptionRouter;

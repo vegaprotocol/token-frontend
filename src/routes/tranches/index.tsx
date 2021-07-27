@@ -1,5 +1,7 @@
 import React from "react";
 
-export const TrancheRouter = () => {
+const TrancheRouter = () => {
   return <div>Tranches</div>;
 };
+
+export default TrancheRouter;

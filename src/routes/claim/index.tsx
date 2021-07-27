@@ -1,5 +1,7 @@
 import React from "react";
 
-export const ClaimRouter = () => {
+const ClaimRouter = () => {
   return <div>Claim</div>;
 };
+
+export default ClaimRouter;
