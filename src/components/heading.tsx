@@ -2,12 +2,14 @@ import "./heading.scss";
 
 import React from "react";
 import vegaWhite from "../images/vega_white.png";
+import { Link, useRouteMatch } from "react-router-dom";
 
 export interface HeadingProps {
   error: string | null;
   connected: boolean;
   loading: boolean;
   pubkey: any;
+  connect: () => void;
 }
 
 export const Heading = ({
@@ -15,25 +17,22 @@ export const Heading = ({
   connected,
   loading,
   pubkey,
+  connect,
 }: HeadingProps) => {
   const balance = "123";
+  const isHome = useRouteMatch({ path: "/", exact: true });
+  console.log(isHome);
   return (
     <div className="Header">
       <div className="Nav">
         <div className="Left">
-          <img
-            alt="Vega"
-            src={vegaWhite}
-            // onClick={() => (window.top.location = "/")} TODO logo should redirect to
-            className="Logo"
-          />
+          <Link to="/">
+            <img alt="Vega" src={vegaWhite} className="Logo" />
+          </Link>
         </div>
         <div className="Right">
           {!error && !connected && !loading ? (
-            <div
-              className="Button"
-              // onClick={() => connect()}
-            >
+            <div className="Button" onClick={connect}>
               Connect
             </div>
           ) : null}
@@ -62,7 +61,7 @@ export const Heading = ({
         <div className="Clear"></div>
       </div>
       <div className="Inner">
-        {true ? ( // TODO test if we on home
+        {isHome ? (
           <div className="Title">
             VEGA
             <br />
