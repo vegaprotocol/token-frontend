@@ -1,4 +1,5 @@
 import React from "react";
+import Home from "./home";
 
 const LazyTranches = React.lazy(
   () =>
@@ -20,6 +21,12 @@ const LazyRedemption = React.lazy(
 );
 
 const routerConfig = [
+  {
+    path: "/",
+    children: [],
+    component: Home,
+    exact: true,
+  },
   {
     path: "/tranches",
     children: [],
