@@ -6,7 +6,6 @@ import moment from "moment";
 
 export const Tranche = () => {
   const { trancheId } = useParams() as any;
-  console.log(trancheId);
   const getTranche = () => {
     const matches = tranches.filter(
       (tranche) => parseInt(tranche.tranche_id) === parseInt(trancheId)
@@ -38,7 +37,8 @@ export const Tranche = () => {
   //     console.log("noop");
   //   };
   const currentTranche = getTranche();
-  if (!currentTranche || tranches.length > 0) {
+
+  if (!currentTranche || !tranches.length) {
     return <div className="Inner">Invalid tranche!</div>;
   } else if (tranches.length > 0) {
     let locked_percentage = Math.round(
