@@ -1,24 +1,10 @@
 import React from "react";
 import { Loading } from "../../components/loading";
 import moment from "moment";
-import VegaWeb3 from "../../lib/vega-web3";
-import type { Tranche } from "../../lib/vega-web3-types";
-import { EthereumChainIds } from "../../lib/vega-web3-utils";
 import { Link } from "react-router-dom";
+import { Tranche } from "../../lib/vega-web3-types";
 
-export const Tranches = () => {
-  const [tranches, setTranches] = React.useState<Tranche[]>([]);
-
-  React.useEffect(() => {
-    async function getTranches() {
-      const vega = new VegaWeb3(EthereumChainIds.Mainnet);
-      const res = await vega.getAllTranches();
-      setTranches(res);
-    }
-
-    getTranches();
-  }, []);
-
+export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
   const getTrancheDates = (tranche_start: Date, tranche_end: Date) => {
     if (tranche_start.getTime() === tranche_end.getTime()) {
       return (
