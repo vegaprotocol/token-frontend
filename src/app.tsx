@@ -1,5 +1,6 @@
 import React from "react";
 
+import "./i18n";
 import "./app.scss";
 import { Heading } from "./components/heading";
 import { AppRouter } from "./routes";
