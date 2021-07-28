@@ -1,19 +1,22 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { DefaultTemplate } from "../../components/page-templates/default";
+import { useSearchParams } from "../../hooks/use-search-params";
 // import VegaWeb3 from "../../lib/vega-web3";
 // import { EthereumChainIds } from "../../lib/vega-web3-utils";
 import { ClaimError } from "./claim-error";
+import { claimReducer, initialClaimState } from "./claim-reducer";
 import { ConnectedClaim } from "./connected";
 
 const ClaimRouter = () => {
   const { t } = useTranslation();
+  const params = useSearchParams();
+  const [state, dispatch] = React.useReducer(claimReducer, initialClaimState);
 
-  React.useCallback(() => {
-    async function getTranches() {}
-
-    getTranches();
-  }, []);
+  React.useEffect(() => {
+    console.log(params);
+    dispatch({ type: "SET_DATA_FROM_URL", data: params });
+  }, [params]);
 
   const [connecting, setConnecting] = React.useState<boolean>(false);
   const [connected, setConnected] = React.useState<boolean>(false);
