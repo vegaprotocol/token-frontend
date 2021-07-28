@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import { Loading } from "../../components/loading";
 import type { Tranche as TrancheType } from "../../lib/vega-web3-types";
 import { Link } from "react-router-dom";
-import { getTrancheDates } from './tranche-dates'
+import { TrancheDates } from './tranche-dates'
 
 export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
   const { trancheId } = useParams() as any;
@@ -46,10 +46,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
               </Link>
               <div className="TrancheTitle">Tranche #{trancheId}</div>
               <div className="TrancheDates">
-                {getTrancheDates(
-                  currentTranche.tranche_start,
-                  currentTranche.tranche_end
-                )}
+                <TrancheDates start={currentTranche.tranche_start} end={currentTranche.tranche_end} />
               </div>
             </div>
             {/* <div className="Right">
