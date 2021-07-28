@@ -12,7 +12,7 @@ export interface HeadingProps {
   pubkey: any;
   connect: () => void;
   balance: string;
-  title?: React.ReactNode | string;
+  title: React.ReactNode | string;
 }
 
 export const Heading = ({
@@ -21,13 +21,7 @@ export const Heading = ({
   loading,
   // pubkey,
   connect,
-  title = (
-    <>
-      VEGA
-      <br />
-      Vesting
-    </>
-  ),
+  title,
 }: HeadingProps) => {
   const { t } = useTranslation();
 
