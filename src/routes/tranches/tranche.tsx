@@ -50,8 +50,20 @@ export const Tranche = () => {
   //     console.log("noop");
   //   };
   const currentTranche = getTranche();
-
-  if (!currentTranche || !tranches.length) {
+  if (tranches.length === 0) {
+    return (
+      <div
+        style={{
+          margin: "0 auto",
+          marginTop: 40 + "px",
+          marginBottom: 60 + "px",
+          textAlign: "center",
+        }}
+      >
+        <Loading />
+      </div>
+    );
+  } else if (!currentTranche) {
     return <div className="Inner">Invalid tranche!</div>;
   } else if (tranches.length > 0) {
     let locked_percentage = Math.round(
