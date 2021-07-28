@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { DefaultTemplate } from "../../components/page-templates/default";
 // import VegaWeb3 from "../../lib/vega-web3";
 // import { EthereumChainIds } from "../../lib/vega-web3-utils";
 import { ClaimError } from "./claim-error";
@@ -36,21 +37,35 @@ const ClaimRouter = () => {
       setConnecting(false);
     }
   }, []);
+
+  let pageContent = null;
+
   if (error) {
-    return <ClaimError />;
+    pageContent = <ClaimError />;
   } else if (connected) {
-    return <ConnectedClaim />;
+    pageContent = <ConnectedClaim />;
+  } else {
+    pageContent = (
+      <DefaultTemplate>
+        <section>
+          <p>
+            {t(
+              "You will need to connect to an ethereum wallet to pay the gas and claim tokens"
+            )}
+          </p>
+          {connecting ? (
+            <div>{t("Please check wallet")}</div>
+          ) : (
+            <button onClick={() => connect()}>
+              {t("Connect to an Ethereum wallet")}
+            </button>
+          )}
+        </section>
+      </DefaultTemplate>
+    );
   }
-  return (
-    <section>
-      <p>{t("You will need to connect to an ethereum wallet to pay the gas and claim tokens")}</p>
-      {connecting ? (
-        <div>{t("Please check wallet")}</div>
-      ) : (
-        <button onClick={() => connect()}>{t("Connect to an Ethereum wallet")}</button>
-      )}
-    </section>
-  );
+
+  return <DefaultTemplate>{pageContent}</DefaultTemplate>;
 };
 
 export default ClaimRouter;
