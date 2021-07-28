@@ -1,10 +1,23 @@
 import React from "react";
 import { useParams } from "react-router";
 import { Loading } from "../../components/loading";
-import tranches from "./tranchData.json";
 import moment from "moment";
+import VegaWeb3 from "../../lib/vega-web3";
+import { EthereumChainIds } from "../../lib/vega-web3-utils";
+import type { Tranche as TrancheType } from "../../lib/vega-web3-types";
 
 export const Tranche = () => {
+  const [tranches, setTranches] = React.useState<TrancheType[]>([]);
+
+  React.useEffect(() => {
+    async function getTranches() {
+      const vega = new VegaWeb3(EthereumChainIds.Mainnet);
+      const res = await vega.getAllTranches();
+      setTranches(res);
+    }
+
+    getTranches();
+  }, []);
   const { trancheId } = useParams() as any;
   const getTranche = () => {
     const matches = tranches.filter(
@@ -13,7 +26,7 @@ export const Tranche = () => {
     if (matches.length === 0) return null;
     return matches[0];
   };
-  const getTrancheDates = (tranche_start: string, tranche_end: string) => {
+  const getTrancheDates = (tranche_start: Date, tranche_end: Date) => {
     if (new Date(tranche_start).getTime() === new Date(tranche_end).getTime()) {
       return (
         <span>
