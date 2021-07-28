@@ -8,3 +8,8 @@ $font-mono: "Roboto Mono", monospace;
 .font-mono {
   font-family: $font-mono;
 }
+
+@font-face {
+  font-family: NeuePixelGrotesk;
+  src: url(./NeuePixelGrotesk-Regular.woff);
+}
