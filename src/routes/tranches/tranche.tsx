@@ -1,9 +1,9 @@
 import React from "react";
 import { useParams } from "react-router";
 import { Loading } from "../../components/loading";
-import moment from "moment";
 import type { Tranche as TrancheType } from "../../lib/vega-web3-types";
 import { Link } from "react-router-dom";
+import { getTrancheDates } from './tranche-dates'
 
 export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
   const { trancheId } = useParams() as any;
@@ -14,24 +14,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
     if (matches.length === 0) return null;
     return matches[0];
   };
-  const getTrancheDates = (tranche_start: Date, tranche_end: Date) => {
-    if (new Date(tranche_start).getTime() === new Date(tranche_end).getTime()) {
-      return (
-        <span>
-          Fully vested on{" "}
-          {moment(new Date(tranche_start).getTime()).format("MMM D, YYYY")}
-        </span>
-      );
-    }
-    return (
-      <span>
-        Vesting from{" "}
-        {moment(new Date(tranche_start).getTime()).format("MMM D, YYYY")} to{" "}
-        {moment(new Date(tranche_end).getTime()).format("MMM D, YYYY")}
-      </span>
-    );
-  };
-  const getAbbreviatedNumber = (num: number) => {
+ const getAbbreviatedNumber = (num: number) => {
     return Number(num.toFixed()).toLocaleString();
   };
   //   const withdraw = async () => {
