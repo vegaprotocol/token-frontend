@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { Loading } from "../../components/loading";
 import moment from "moment";
 import type { Tranche as TrancheType } from "../../lib/vega-web3-types";
+import { Link } from "react-router-dom";
 
 export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
   const { trancheId } = useParams() as any;
@@ -57,12 +58,9 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
         <div className="TrancheDetails">
           <div>
             <div className="Left">
-              {/* <div
-                className="GoBack"
-                // onClick={() => (window.top.location = "/")} // TODO add router link
-              >
-                <img alt="Go back" src={back} height={12} /> Back
-              </div> */}
+              <Link to="/tranches" className="GoBack">
+                &lt; Back
+              </Link>
               <div className="TrancheTitle">Tranche #{trancheId}</div>
               <div className="TrancheDates">
                 {getTrancheDates(
