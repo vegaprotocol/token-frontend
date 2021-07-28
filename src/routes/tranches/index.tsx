@@ -6,8 +6,10 @@ import VegaWeb3 from "../../lib/vega-web3";
 import type { Tranche as TrancheType } from "../../lib/vega-web3-types";
 import { EthereumChainIds } from "../../lib/vega-web3-utils";
 import { DefaultTemplate } from "../../components/page-templates/default";
+import { useTranslation } from "react-i18next";
 
 const TrancheRouter = () => {
+  const { t } = useTranslation();
   const [tranches, setTranches] = React.useState<TrancheType[]>([]);
 
   React.useEffect(() => {
@@ -20,7 +22,7 @@ const TrancheRouter = () => {
     getTranches();
   }, []);
   return (
-    <DefaultTemplate>
+    <DefaultTemplate title={t("pageTitleTranches")}>
       <Switch>
         <Route path="/tranches" exact>
           <Tranches tranches={tranches} />

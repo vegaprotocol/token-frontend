@@ -46,26 +46,26 @@ const ClaimRouter = () => {
     pageContent = <ConnectedClaim />;
   } else {
     pageContent = (
-      <DefaultTemplate>
-        <section>
-          <p>
-            {t(
-              "You will need to connect to an ethereum wallet to pay the gas and claim tokens"
-            )}
-          </p>
-          {connecting ? (
-            <div>{t("Please check wallet")}</div>
-          ) : (
-            <button onClick={() => connect()}>
-              {t("Connect to an Ethereum wallet")}
-            </button>
+      <section>
+        <p>
+          {t(
+            "You will need to connect to an ethereum wallet to pay the gas and claim tokens"
           )}
-        </section>
-      </DefaultTemplate>
+        </p>
+        {connecting ? (
+          <div>{t("Please check wallet")}</div>
+        ) : (
+          <button onClick={() => connect()}>
+            {t("Connect to an Ethereum wallet")}
+          </button>
+        )}
+      </section>
     );
   }
 
-  return <DefaultTemplate>{pageContent}</DefaultTemplate>;
+  return (
+    <DefaultTemplate title={t("pageTitleClaim")}>{pageContent}</DefaultTemplate>
+  );
 };
 
 export default ClaimRouter;

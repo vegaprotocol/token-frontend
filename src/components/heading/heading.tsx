@@ -12,6 +12,7 @@ export interface HeadingProps {
   pubkey: any;
   connect: () => void;
   balance: string;
+  title?: React.ReactNode | string;
 }
 
 export const Heading = ({
@@ -20,10 +21,15 @@ export const Heading = ({
   loading,
   // pubkey,
   connect,
-}: // balance,
-HeadingProps) => {
-  const isHome = true; //useRouteMatch({ path: "/", exact: true });
-  const { t } = useTranslation()
+  title = (
+    <>
+      VEGA
+      <br />
+      Vesting
+    </>
+  ),
+}: HeadingProps) => {
+  const { t } = useTranslation();
 
   return (
     <header className="heading">
@@ -63,13 +69,7 @@ HeadingProps) => {
         </div>
       </div>
       <div className="heading__title-container">
-        {isHome ? (
-          <div className="heading__title">
-            VEGA
-            <br />
-            {t("Vesting")} 
-          </div>
-        ) : null}
+        <div className="heading__title">{title}</div>
       </div>
     </header>
   );
