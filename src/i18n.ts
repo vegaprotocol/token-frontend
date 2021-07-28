@@ -48,7 +48,10 @@ i18n
 
           step2Title: "Step 2 - Reveal your claim.",
           step2Body: "You’ll need to wait at least one block after step 1 before making step 2. This sends a message to the chain that reveals your claim.",
-          step2Note: "You must complete step 1 first."
+          step2Note: "You must complete step 1 first.",
+
+          claim: "This code ({code}) entitles {user} to {amount} Vega tokens from {tranceName} of the vesting contract. Meaning tokens will be locked until {unlockDate}, then they will gradually become unlocked - block by block - until {trancheEndDate} when they are fully unlocked and sellable.",
+          showRedeem: "You'll be able to redeem your unlocked tokens at token.vega.xyz/redemption"
         }
       }
     },
