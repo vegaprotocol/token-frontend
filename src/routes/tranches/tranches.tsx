@@ -2,7 +2,7 @@ import React from "react";
 import { Loading } from "../../components/loading";
 import { Link } from "react-router-dom";
 import { Tranche } from "../../lib/vega-web3-types";
-import { TrancheDates } from './tranche-dates';
+import { TrancheDates } from "./tranche-dates";
 import { useTranslation } from "react-i18next";
 
 export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
@@ -49,15 +49,18 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                     to={`/tranches/${tranche.tranche_id}`}
                     className="TrancheLink"
                   >
-                    <span className="TrancheTitle">{t('Tranche')}</span>
+                    <span className="TrancheTitle">{t("Tranche")}</span>
                     <span className="TrancheID">#{tranche.tranche_id}</span>
                   </Link>
                   <span className="TrancheDates">
-                    <TrancheDates start={tranche.tranche_start} end={tranche.tranche_end} />
+                    <TrancheDates
+                      start={tranche.tranche_start}
+                      end={tranche.tranche_end}
+                    />
                   </span>
                 </div>
                 <div className="Right">
-                  <span className="ProgressTitle">{t('Locked')}</span>
+                  <span className="ProgressTitle">{t("Locked")}</span>
                   <span className="ProgressBarHolder">
                     <div className="ProgressBar">
                       <div

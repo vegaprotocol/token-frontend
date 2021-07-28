@@ -5,6 +5,7 @@ import { Tranches } from "./tranches";
 import VegaWeb3 from "../../lib/vega-web3";
 import type { Tranche as TrancheType } from "../../lib/vega-web3-types";
 import { EthereumChainIds } from "../../lib/vega-web3-utils";
+import { DefaultTemplate } from "../../components/page-templates/default";
 
 const TrancheRouter = () => {
   const [tranches, setTranches] = React.useState<TrancheType[]>([]);
@@ -19,14 +20,16 @@ const TrancheRouter = () => {
     getTranches();
   }, []);
   return (
-    <Switch>
-      <Route path="/tranches" exact>
-        <Tranches tranches={tranches} />
-      </Route>
-      <Route path="/tranches/:trancheId">
-        <Tranche tranches={tranches} />
-      </Route>
-    </Switch>
+    <DefaultTemplate>
+      <Switch>
+        <Route path="/tranches" exact>
+          <Tranches tranches={tranches} />
+        </Route>
+        <Route path="/tranches/:trancheId">
+          <Tranche tranches={tranches} />
+        </Route>
+      </Switch>
+    </DefaultTemplate>
   );
 };
 
