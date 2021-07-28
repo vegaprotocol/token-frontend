@@ -38,18 +38,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
   //   };
   const currentTranche = getTranche();
   if (tranches.length === 0) {
-    return (
-      <div
-        style={{
-          margin: "0 auto",
-          marginTop: 40 + "px",
-          marginBottom: 60 + "px",
-          textAlign: "center",
-        }}
-      >
-        <Loading />
-      </div>
-    );
+    return <Loading />;
   } else if (!currentTranche) {
     return <div className="Inner">Invalid tranche!</div>;
   } else if (tranches.length > 0) {

@@ -35,18 +35,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
   };
 
   if (tranches.length === 0) {
-    return (
-      <div
-        style={{
-          margin: "0 auto",
-          marginTop: 40 + "px",
-          marginBottom: 60 + "px",
-          textAlign: "center",
-        }}
-      >
-        <Loading />
-      </div>
-    );
+    return <Loading />;
   }
 
   return (
