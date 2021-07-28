@@ -17,10 +17,10 @@ export const Heading = ({
   error,
   connected,
   loading,
-  pubkey,
+  // pubkey,
   connect,
-  balance,
-}: HeadingProps) => {
+}: // balance,
+HeadingProps) => {
   const isHome = useRouteMatch({ path: "/", exact: true });
 
   return (
@@ -40,7 +40,7 @@ export const Heading = ({
           {error && !loading ? (
             <div className="heading__error">{error}</div>
           ) : null}
-          {connected && !loading ? (
+          {/* {connected && !loading ? (
             <div className="heading__wallet">
               <span className="heading__wallet-label">Account: </span>
               <span className="heading__wallet-value">
@@ -57,7 +57,7 @@ export const Heading = ({
               <span className="heading__wallet-label">Vesting Balance: </span>
               <span className="heading__wallet-value">{balance} VEGA</span>
             </div>
-          ) : null}
+          ) : null} */}
         </div>
       </div>
       <div className="heading__title-container">
