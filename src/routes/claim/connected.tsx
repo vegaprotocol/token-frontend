@@ -14,14 +14,17 @@ export const ConnectedClaim = () => {
   return (
     <section>
       <p>
-        This code ({code}) entiles{" "}
-        {pubkey ? <strong>{pubkey}</strong> : <strong>the holder</strong>} to{" "}
-        {amount} Vega tokens from {trancheName} of the vesting contract. Meaning
-        tokens will be locked until {unlockDate}, Then they will gradually
-        become unlocked, block by block, until {trancheEndDate} when they are
-        fully unlocked/sellable.{" "}
+        {t('claim', {
+          user: pubkey ? pubkey : 'the holder',
+          code,
+          amount,
+          trancheName,
+          unlockDate,
+          trancheEndDate
+        })}
+
         {showRedeem
-          ? "You’ll be able to redeem your unlocked tokens at token.vega.xyz/redemption"
+          ? t('showRedeem')
           : null}
       </p>
       <div
