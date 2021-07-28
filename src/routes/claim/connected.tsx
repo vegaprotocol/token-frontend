@@ -10,7 +10,7 @@ export const ConnectedClaim = () => {
   return (
     <section>
       <p>
-        This code ({code}) entiles{" "}
+        This code ({code}) entitles{" "}
         {pubkey ? <strong>{pubkey}</strong> : <strong>the holder</strong>} to
         200 Vega tokens from {trancheName} of the vesting contract. Meaning
         tokens will be locked until {unlockDate}, Then they will gradually

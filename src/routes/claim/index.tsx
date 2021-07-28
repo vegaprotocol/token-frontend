@@ -8,7 +8,7 @@ const ClaimRouter = () => {
   React.useEffect(() => {
     async function getTranches() {
       const vega = new VegaWeb3(EthereumChainIds.Mainnet);
-      const res = await vega.getAllTranches();
+      await vega.getAllTranches();
     }
 
     getTranches();

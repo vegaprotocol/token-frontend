@@ -1,18 +1,17 @@
 import "./notice.scss";
-import { Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 import React from "react";
 
 export const Notice = ({ vestingAddress }: { vestingAddress: string }) => {
+  const { t } = useTranslation()
   return (
     <div className="notice">
       <p>
-        <Trans i18nKey="projectDescription">
-          This web page reads...
-        </Trans>
+        {t("projectDescription")}
       </p>
       <p>
-        <Trans>The contract is deployed at the following address</Trans>:{" "}
+        {t("The contract is deployed at the following address")}
         <a
           rel="noreferrer"
           target="_blank"
