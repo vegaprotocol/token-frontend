@@ -1,7 +1,9 @@
 import React from "react";
 import { Loading } from "../../components/loading";
 import moment from "moment";
-import VegaWeb3, { EthereumChainIds, Tranche } from "../../lib/vega-web3";
+import VegaWeb3 from "../../lib/vega-web3";
+import type { Tranche } from "../../lib/vega-web3-types";
+import { EthereumChainIds } from "../../lib/vega-web3-utils";
 
 export const Tranches = () => {
   const [tranches, setTranches] = React.useState<Tranche[]>([])

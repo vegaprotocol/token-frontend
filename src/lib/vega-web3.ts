@@ -2,30 +2,10 @@ import Web3 from "web3";
 import vestingAbi from "./vesting_abi.json";
 import type { Contract, EventData } from "web3-eth-contract";
 import _ from "lodash";
+import { EthereumChainId, EthereumChainIds } from "./vega-web3-utils";
+import type { Tranche } from "./vega-web3-types";
 
-export type EthereumChainId = "0x1" | "0x3" | "0x4" | "0x5" | "0x2a";
-export type EthereumChainName =
-  | "Mainnet"
-  | "Ropsten"
-  | "Rinkeby"
-  | "Goerli"
-  | "Kovan";
 
-export const EthereumChainNames: Record<EthereumChainId, EthereumChainName> = {
-  "0x1": "Mainnet",
-  "0x3": "Ropsten",
-  "0x4": "Rinkeby",
-  "0x5": "Goerli",
-  "0x2a": "Kovan",
-};
-
-export const EthereumChainIds: Record<EthereumChainName, EthereumChainId> = {
-  Mainnet: "0x1",
-  Ropsten: "0x3",
-  Rinkeby: "0x4",
-  Goerli: "0x5",
-  Kovan: "0x2a",
-};
 
 export interface ContractAddress {
   vestingAddress: string;
@@ -38,18 +18,6 @@ export const Addresses = {
     vegaTokenAddress: "0xcB84d72e61e383767C4DFEb2d8ff7f4FB89abc6e",
   },
 };
-
-export interface Tranche {
-  tranche_id: string
-  tranche_start: Date
-  tranche_end: Date
-  total_added: number
-  total_removed: number
-  locked_amount: number
-  deposits: Array<any>
-  withdrawals: Array<any>
-  users: Array<any>
-}
 
 class VegaWeb3 {
   private chainId: EthereumChainId;
