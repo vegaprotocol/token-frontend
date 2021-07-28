@@ -1,18 +1,17 @@
 import "./notice.scss";
+import { useTranslation } from "react-i18next";
 
 import React from "react";
 
 export const Notice = ({ vestingAddress }: { vestingAddress: string }) => {
+  const { t } = useTranslation()
   return (
     <div className="notice">
       <p>
-        This web page reads directly from the vesting smart contract implemented
-        by the Vega project team. The vesting smart is responsible for holding
-        tokens whilst they are locked, and managing the distribution of tokens
-        to their owners according to pre-defined vesting terms.
+        {t("projectDescription")}
       </p>
       <p>
-        The contract is deployed at the following address:{" "}
+        {t("The contract is deployed at the following address")}
         <a
           rel="noreferrer"
           target="_blank"

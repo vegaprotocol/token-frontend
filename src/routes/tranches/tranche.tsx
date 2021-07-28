@@ -4,9 +4,13 @@ import { Loading } from "../../components/loading";
 import type { Tranche as TrancheType } from "../../lib/vega-web3-types";
 import { Link } from "react-router-dom";
 import { TrancheDates } from './tranche-dates'
+import { useTranslation } from "react-i18next";
 
 export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
+  const { t } = useTranslation()
+
   const { trancheId } = useParams() as any;
+
   const getTranche = () => {
     const matches = tranches.filter(
       (tranche) => parseInt(tranche.tranche_id) === parseInt(trancheId)
@@ -14,17 +18,20 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
     if (matches.length === 0) return null;
     return matches[0];
   };
+
  const getAbbreviatedNumber = (num: number) => {
     return Number(num.toFixed()).toLocaleString();
   };
   //   const withdraw = async () => {
   //     console.log("noop");
   //   };
+
   const currentTranche = getTranche();
+
   if (tranches.length === 0) {
     return <Loading />;
   } else if (!currentTranche) {
-    return <div className="Inner">Invalid tranche!</div>;
+    return <div className="Inner">{t("Invalid tranche!")}</div>;
   } else if (tranches.length > 0) {
     let locked_percentage = Math.round(
       (currentTranche.locked_amount / currentTranche.total_added) * 100
@@ -42,9 +49,9 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
           <div>
             <div className="Left">
               <Link to="/tranches" className="GoBack">
-                &lt; Back
+                &lt; {t("Back")} 
               </Link>
-              <div className="TrancheTitle">Tranche #{trancheId}</div>
+              <div className="TrancheTitle">{t('Tranche')} #{trancheId}</div>
               <div className="TrancheDates">
                 <TrancheDates start={currentTranche.tranche_start} end={currentTranche.tranche_end} />
               </div>
@@ -52,7 +59,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
             {/* <div className="Right">
               {props.connected && !processing && !withdrawSuccessful ? (
                 <div className="WhiteButton" onClick={() => withdraw()}>
-                  Withdraw
+                  {t("Withdraw")}
                 </div>
               ) : null}
               {processing ? (
@@ -60,7 +67,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
               ) : null}
               {withdrawSuccessful ? (
                 <div className="WithdrawSuccess">
-                  VEGA was successfully withdrawn to your wallet
+                  {t("VEGA was successfully withdrawn to your wallet")}
                 </div>
               ) : null}
               {withdrawError ? (
@@ -72,7 +79,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
           <div className="ProgressBarsHolder">
             <div className="Left">
               <span className="Square"></span>
-              <span className="SquareText">Locked</span>
+              <span className="SquareText">{t("Locked")}</span>
               <div className="ProgressRow">
                 <span className="ProgressBarHolder">
                   <div className="ProgressBar">
@@ -93,7 +100,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
             </div>
             <div className="Right">
               <span className="Square"></span>
-              <span className="SquareText">Redeemed</span>
+              <span className="SquareText">{t("Redeemed")}</span>
               <div className="ProgressRow">
                 <span className="ProgressBarHolder">
                   <div className="ProgressBar">
@@ -109,7 +116,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
               </span>
               <span className="ProgressAmountSmall">
                 {" "}
-                of ({getAbbreviatedNumber(currentTranche.total_added)})
+                {t("of")} ({getAbbreviatedNumber(currentTranche.total_added)})
               </span>
             </div>
             <div className="Clear"></div>
@@ -131,7 +138,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
                   <div className="Right">
                     {user.total_tokens.toLocaleString()} VEGA{" "}
                     <span className="UserRedeemed">
-                      {getAbbreviatedNumber(user.withdrawn_tokens)} redeemed
+                      {getAbbreviatedNumber(user.withdrawn_tokens)} {t("Redeemed").toLowerCase()}
                     </span>
                   </div>
                   <div className="Clear"></div>

@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import { useTranslation } from 'react-i18next'
 
 interface TrancheDatesParams {
   start: Date
@@ -6,22 +7,24 @@ interface TrancheDatesParams {
 }
 
 export const TrancheDates = ({ start, end }: TrancheDatesParams) => {
+  const { t } = useTranslation()
   const startDate = new Date(start).getTime()  
   const endDate = new Date(end).getTime()  
 
-  let prefix, dates = ''
-
   if (start === end) {
-    prefix = 'Fully vested on'
-    dates = format(startDate, "MMM d, yyyy")
+    return (
+      <span>
+        {t("Fully vested on")}
+        {format(startDate, "MMM d, yyyy")}
+      </span>
+    )
   } else {
-    prefix = 'Vesting from'
-    dates = `${format(startDate, "MMM d, yyyy")} to ${format(endDate, "MMM d, yyyy")}` 
-  }
-  return (
-    <span>
-      {prefix}{" "}
-      {dates}
-    </span>
-  );
+    return (<span>
+      {t("Vesting from")}{" "}
+      {format(startDate, "MMM d, yyyy")}{" "}
+      {t("to")}{" "}
+      {" "}
+      {format(endDate, "MMM d, yyyy")}
+    </span>)
+  } 
 };

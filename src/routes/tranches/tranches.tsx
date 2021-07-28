@@ -3,8 +3,11 @@ import { Loading } from "../../components/loading";
 import { Link } from "react-router-dom";
 import { Tranche } from "../../lib/vega-web3-types";
 import { TrancheDates } from './tranche-dates';
+import { useTranslation } from "react-i18next";
 
 export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
+  const { t } = useTranslation();
+
   const getAbbreviatedNumber = (num: number) => {
     if (num < 1000) {
       return Number(num.toFixed()).toLocaleString();
@@ -46,7 +49,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                     to={`/tranches/${tranche.tranche_id}`}
                     className="TrancheLink"
                   >
-                    <span className="TrancheTitle">Tranche</span>
+                    <span className="TrancheTitle">{t('Tranche')}</span>
                     <span className="TrancheID">#{tranche.tranche_id}</span>
                   </Link>
                   <span className="TrancheDates">
@@ -54,7 +57,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                   </span>
                 </div>
                 <div className="Right">
-                  <span className="ProgressTitle">Locked</span>
+                  <span className="ProgressTitle">{t('Locked')}</span>
                   <span className="ProgressBarHolder">
                     <div className="ProgressBar">
                       <div
@@ -67,7 +70,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                     ({getAbbreviatedNumber(tranche.locked_amount)} of{" "}
                     {getAbbreviatedNumber(tranche.total_added)})
                   </span>
-                  <span className="ProgressTitle">Redeemed</span>
+                  <span className="ProgressTitle">{t("Redeemed")}</span>
                   <span className="ProgressBarHolder">
                     <div className="ProgressBar">
                       <div
@@ -77,7 +80,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                     </div>
                   </span>
                   <span className="ProgressNumbers">
-                    ({getAbbreviatedNumber(tranche.total_removed)} of{" "}
+                    ({getAbbreviatedNumber(tranche.total_removed)} {t("of")}{" "}
                     {getAbbreviatedNumber(tranche.total_added)})
                   </span>
                 </div>

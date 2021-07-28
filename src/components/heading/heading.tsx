@@ -3,6 +3,7 @@ import "./heading.scss";
 import React from "react";
 import vegaWhite from "../../images/vega_white.png";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export interface HeadingProps {
   error: string | null;
@@ -22,6 +23,7 @@ export const Heading = ({
 }: // balance,
 HeadingProps) => {
   const isHome = true; //useRouteMatch({ path: "/", exact: true });
+  const { t } = useTranslation()
 
   return (
     <header className="heading">
@@ -34,7 +36,7 @@ HeadingProps) => {
         <div className="heading__wallet-container">
           {!error && !connected && !loading ? (
             <div className="Button" onClick={connect}>
-              Connect
+              {t("Connect")}
             </div>
           ) : null}
           {error && !loading ? (
@@ -65,7 +67,7 @@ HeadingProps) => {
           <div className="heading__title">
             VEGA
             <br />
-            VESTING
+            {t("Vesting")} 
           </div>
         ) : null}
       </div>
