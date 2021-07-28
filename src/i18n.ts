@@ -10,6 +10,8 @@ i18n
     resources: {
       en: {
         translations: {
+          "Home": "Home",
+
           "Vesting": "Vesting",
           "Connect": "Connect",
           "of": "of",
