@@ -1,10 +1,13 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import VegaWeb3 from "../../lib/vega-web3";
 import { EthereumChainIds } from "../../lib/vega-web3-utils";
 import { ClaimError } from "./claim-error";
 import { ConnectedClaim } from "./connected";
 
 const ClaimRouter = () => {
+  const { t } = useTranslation();
+
   React.useEffect(() => {
     async function getTranches() {
       const vega = new VegaWeb3(EthereumChainIds.Mainnet);
@@ -37,14 +40,11 @@ const ClaimRouter = () => {
   }
   return (
     <section>
-      <p>
-        You will need to connect to an ethereum wallet to pay the gas and claim
-        Tokens.
-      </p>
+      <p>{t("You will need to connect to an ethereum wallet to pay the gas and claim tokens")}</p>
       {connecting ? (
-        <div>Please check wallet</div>
+        <div>{t("Please check wallet")}</div>
       ) : (
-        <button onClick={() => connect()}>Connect to an Ethereum wallet</button>
+        <button onClick={() => connect()}>{t("Connect to an Ethereum wallet")}</button>
       )}
     </section>
   );

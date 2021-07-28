@@ -28,7 +28,11 @@ i18n
 
           "Something doesn't look right": "Something doesn't look right",
           "If you have been given a link please double check and try again": "If you have been given a link please double check and try again",
-          
+
+          "You will need to connect to an ethereum wallet to pay the gas and claim tokens": "You will need to connect to an ethereum wallet to pay the gas and claim tokens.",
+          "Please check wallet": "Please check wallet",
+          "Connect to an Ethereum wallet": "Connect to an Ethereum wallet",
+
           projectDescription: "This web page reads directly from the vesting smart contract implemented by the Vega project team. The vesting smart is responsible for holding tokens whilst they are locked, and managing the distribution of tokens to their owners according to pre-defined vesting terms.",
           "The contract is deployed at the following address": "The contract is deployed at the following address:",
 
