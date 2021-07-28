@@ -1,28 +1,10 @@
 import React from "react";
 import { Loading } from "../../components/loading";
-import moment from "moment";
 import { Link } from "react-router-dom";
 import { Tranche } from "../../lib/vega-web3-types";
+import { TrancheDates } from './tranche-dates';
 
 export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
-  const getTrancheDates = (tranche_start: Date, tranche_end: Date) => {
-    if (tranche_start.getTime() === tranche_end.getTime()) {
-      return (
-        <span>
-          Fully vested on{" "}
-          {moment(new Date(tranche_start).getTime()).format("MMM D, YYYY")}
-        </span>
-      );
-    }
-    return (
-      <span>
-        Vesting from{" "}
-        {moment(new Date(tranche_start).getTime()).format("MMM D, YYYY")} to{" "}
-        {moment(new Date(tranche_end).getTime()).format("MMM D, YYYY")}
-      </span>
-    );
-  };
-
   const getAbbreviatedNumber = (num: number) => {
     if (num < 1000) {
       return Number(num.toFixed()).toLocaleString();
@@ -68,10 +50,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                     <span className="TrancheID">#{tranche.tranche_id}</span>
                   </Link>
                   <span className="TrancheDates">
-                    {getTrancheDates(
-                      tranche.tranche_start,
-                      tranche.tranche_end
-                    )}
+                    <TrancheDates start={tranche.tranche_start} end={tranche.tranche_end} />
                   </span>
                 </div>
                 <div className="Right">
