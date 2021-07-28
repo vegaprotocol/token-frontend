@@ -15,13 +15,16 @@ const ConnectedClaim = () => {
   const showRedeem = false; // TODO needs to be false until we build this
   const trancheEndDate = "June 5 2023";
   const unlockDate = "5th March 2022";
+  const pubkey = "0x" + "0".repeat(40);
   return (
     <section>
       <p>
-        This code ({code}) entiles the holder to 200 Vega tokens from{" "}
-        {trancheName} of the vesting contract. Meaning tokens will be locked
-        until {unlockDate}, Then they will gradually become unlocked, block by
-        block, until {trancheEndDate} when they are fully unlocked/sellable.{" "}
+        This code ({code}) entiles{" "}
+        {pubkey ? <strong>{pubkey}</strong> : <strong>the holder</strong>} to
+        200 Vega tokens from {trancheName} of the vesting contract. Meaning
+        tokens will be locked until {unlockDate}, Then they will gradually
+        become unlocked, block by block, until {trancheEndDate} when they are
+        fully unlocked/sellable.{" "}
         {showRedeem
           ? "You’ll be able to redeem your unlocked tokens at token.vega.xyz/redemption"
           : null}
