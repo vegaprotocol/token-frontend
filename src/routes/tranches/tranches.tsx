@@ -1,11 +1,23 @@
 import React from "react";
 import { Loading } from "../../components/loading";
 import moment from "moment";
-import tranches from "./tranchData.json";
+import VegaWeb3, { EthereumChainIds, Tranche } from "../../lib/vega-web3";
 
 export const Tranches = () => {
-  const getTrancheDates = (tranche_start: string, tranche_end: string) => {
-    if (new Date(tranche_start).getTime() === new Date(tranche_end).getTime()) {
+  const [tranches, setTranches] = React.useState<Tranche[]>([])
+
+  React.useEffect(() => {
+    async function getTranches() {
+      const vega = new VegaWeb3(EthereumChainIds.Mainnet);
+      const res = await vega.getAllTranches();
+      setTranches(res)
+    };
+
+    getTranches();
+  }, []);
+
+  const getTrancheDates = (tranche_start: Date, tranche_end: Date) => {
+    if (tranche_start.getTime() === tranche_end.getTime()) {
       return (
         <span>
           Fully vested on{" "}
@@ -32,6 +44,7 @@ export const Tranches = () => {
     }
     return Number((num / 1000000000).toFixed()).toLocaleString() + "B";
   };
+
   if (tranches.length === 0) {
     return (
       <div
@@ -46,6 +59,7 @@ export const Tranches = () => {
       </div>
     );
   }
+
   return (
     <div className="App">
       <div className="Inner">

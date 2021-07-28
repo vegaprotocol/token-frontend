@@ -39,6 +39,18 @@ export const Addresses = {
   },
 };
 
+export interface Tranche {
+  tranche_id: string
+  tranche_start: Date
+  tranche_end: Date
+  total_added: number
+  total_removed: number
+  locked_amount: number
+  deposits: Array<any>
+  withdrawals: Array<any>
+  users: Array<any>
+}
+
 class VegaWeb3 {
   private chainId: EthereumChainId;
   private vestingInstance: Contract;
@@ -199,7 +211,7 @@ class VegaWeb3 {
     return updated_tranches;
   }
 
-  async getAllTranches() {
+  async getAllTranches(): Promise<Tranche[]> {
     const events = await this.vestingInstance.getPastEvents("allEvents", {
       fromBlock: 0,
       toBlock: "latest",
