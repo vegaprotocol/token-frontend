@@ -21,7 +21,7 @@ export const Heading = ({
   connect,
 }: // balance,
 HeadingProps) => {
-  const isHome = useRouteMatch({ path: "/", exact: true });
+  const isHome = true; //useRouteMatch({ path: "/tranches", exact: true });
 
   return (
     <header className="heading">
