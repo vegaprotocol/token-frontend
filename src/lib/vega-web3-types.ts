@@ -44,4 +44,5 @@ export interface TrancheUser {
 export enum TrancheEvents {
   Created = "Tranche_Created",
   BalanceAdded = "Tranche_Balance_Added",
+  BalanceRemoved = "Tranche_Balance_Removed",
 }
