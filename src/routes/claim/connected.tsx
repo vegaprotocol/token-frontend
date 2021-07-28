@@ -7,12 +7,13 @@ export const ConnectedClaim = () => {
   const trancheEndDate = "June 5 2023";
   const unlockDate = "5th March 2022";
   const pubkey = "0x" + "0".repeat(40);
+  const amount = 200;
   return (
     <section>
       <p>
         This code ({code}) entiles{" "}
-        {pubkey ? <strong>{pubkey}</strong> : <strong>the holder</strong>} to
-        200 Vega tokens from {trancheName} of the vesting contract. Meaning
+        {pubkey ? <strong>{pubkey}</strong> : <strong>the holder</strong>} to{" "}
+        {amount} Vega tokens from {trancheName} of the vesting contract. Meaning
         tokens will be locked until {unlockDate}, Then they will gradually
         become unlocked, block by block, until {trancheEndDate} when they are
         fully unlocked/sellable.{" "}
@@ -44,7 +45,7 @@ export const ConnectedClaim = () => {
             </fieldset>
             <fieldset>
               <input type="checkbox"></input>
-              <label>I accept the terms and Conditions</label>
+              <label>I accept the terms and conditions</label>
             </fieldset>
             <button>Continue</button>
           </form>
