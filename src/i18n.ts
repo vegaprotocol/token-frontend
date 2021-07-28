@@ -13,12 +13,17 @@ i18n
           "Vesting": "Vesting",
           "Connect": "Connect",
           "of": "of",
+          "to": "to",
+
           "Tranche": "Tranche",
           "Invalid tranche!": "Invalid tranche!",
           "Redeemed": "Redeemed",
           "Locked": "Locked",
           "Back": "Back",
           "Continue": "Continue",
+          "Withdraw": "Withdraw",
+
+          "VEGA was successfully withdrawn to your wallet": "VEGA was successfully withdrawn to your wallet",
 
           "Please select your country": "Please select your country",
           "I accept the Terms and Conditions": "I accept the Terms and Conditions",

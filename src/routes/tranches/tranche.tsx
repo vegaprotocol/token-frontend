@@ -59,7 +59,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
             {/* <div className="Right">
               {props.connected && !processing && !withdrawSuccessful ? (
                 <div className="WhiteButton" onClick={() => withdraw()}>
-                  Withdraw
+                  {t("Withdraw")}
                 </div>
               ) : null}
               {processing ? (
@@ -67,7 +67,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
               ) : null}
               {withdrawSuccessful ? (
                 <div className="WithdrawSuccess">
-                  VEGA was successfully withdrawn to your wallet
+                  {t("VEGA was successfully withdrawn to your wallet")}
                 </div>
               ) : null}
               {withdrawError ? (

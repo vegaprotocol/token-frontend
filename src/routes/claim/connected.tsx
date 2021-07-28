@@ -34,9 +34,7 @@ export const ConnectedClaim = () => {
       >
         <div style={{ padding: 15, borderRight: "1px solid white" }}>
           <h1>{t("step1Title")}</h1>
-          <p>
-
-          </p>
+          <p>{t("step1Body")}</p>
           <form>
             <fieldset>
               <select>
