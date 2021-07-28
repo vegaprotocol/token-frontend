@@ -24,7 +24,7 @@ export const Heading = ({
   const isHome = useRouteMatch({ path: "/", exact: true });
 
   return (
-    <div className="heading">
+    <header className="heading">
       <div className="heading__nav">
         <div className="heading__logo-container">
           <Link to="/">
@@ -69,6 +69,6 @@ export const Heading = ({
           </div>
         ) : null}
       </div>
-    </div>
+    </header>
   );
 };

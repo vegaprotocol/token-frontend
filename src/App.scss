@@ -1,0 +1,14 @@
+.app-wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100%;
+
+  main {
+    padding: 20px;
+  }
+
+  footer {
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+}

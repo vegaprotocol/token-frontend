@@ -23,6 +23,7 @@ const LazyRedemption = React.lazy(
 const routerConfig = [
   {
     path: "/",
+    name: 'Home',
     children: [],
     // Not lazy as loaded when a user first hits the site
     component: Home,
@@ -30,16 +31,19 @@ const routerConfig = [
   },
   {
     path: "/tranches",
+    name: 'Tranches',
     children: [],
     component: LazyTranches,
   },
   {
     path: "/claim",
+    name: 'Claim',
     children: [],
     component: LazyClaim,
   },
   {
     path: "/redemption",
+    name: 'Redemption',
     children: [],
     component: LazyRedemption,
   },
