@@ -1,6 +1,9 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export const ConnectedClaim = () => {
+  const { t } = useTranslation();
+
   const code = "0xf780...d296Cb";
   const trancheName = "tranch 2";
   const showRedeem = false; // TODO needs to be false until we build this
@@ -30,32 +33,28 @@ export const ConnectedClaim = () => {
         }}
       >
         <div style={{ padding: 15, borderRight: "1px solid white" }}>
-          <h1>Step 1 - Commit your claim.</h1>
+          <h1>{t("step1Title")}</h1>
           <p>
-            This posts your claim to the Ethereum chain in an way where it can
-            not be used by another address
+
           </p>
           <form>
             <fieldset>
               <select>
-                <option>Please select your country</option>
+                <option>{t("Please select your country")}</option>
                 <option>Earth</option>
               </select>
             </fieldset>
             <fieldset>
               <input type="checkbox"></input>
-              <label>I accept the terms and Conditions</label>
+              <label>{t("I accept the Terms and Conditions")}</label>
             </fieldset>
-            <button>Continue</button>
+            <button>{t("Continue")}</button>
           </form>
         </div>
         <div style={{ padding: 15 }}>
-          <h1>Step 2 - Reveal your claim.</h1>
-          <p>
-            You’ll need to wait at least one block after step 1 before making
-            step 2. This sends a message to the chain that reveals your claim.
-          </p>
-          <p>You must complete step 1 first.</p>
+          <h1>{t("step2Title")}</h1>
+          <p>{t("step2body")}</p>
+          <p>{t("step2note")}</p>
         </div>
       </div>
     </section>
