@@ -7,11 +7,13 @@ export const AppRouter = () => {
   return (
     <Switch>
       <React.Suspense fallback={<Loading />}>
-        {routerConfig.map(({ path, component: Component, exact = false }) => (
-          <Route key={path} path={path} exact={exact}>
-            <Component />
-          </Route>
-        ))}
+        {routerConfig.map(
+          ({ path, component: Component, exact = false, name }) => (
+            <Route key={name} path={path} exact={exact}>
+              <Component />
+            </Route>
+          )
+        )}
       </React.Suspense>
     </Switch>
   );

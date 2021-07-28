@@ -90,7 +90,11 @@ body,
 }
 
 .TrancheLink {
-  cursor: pointer;
+  color: $white;
+  text-decoration: none;
+  span {
+    text-decoration: none;
+  }
 }
 
 .TrancheLink:hover {

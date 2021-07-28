@@ -4,16 +4,17 @@ import moment from "moment";
 import VegaWeb3 from "../../lib/vega-web3";
 import type { Tranche } from "../../lib/vega-web3-types";
 import { EthereumChainIds } from "../../lib/vega-web3-utils";
+import { Link } from "react-router-dom";
 
 export const Tranches = () => {
-  const [tranches, setTranches] = React.useState<Tranche[]>([])
+  const [tranches, setTranches] = React.useState<Tranche[]>([]);
 
   React.useEffect(() => {
     async function getTranches() {
       const vega = new VegaWeb3(EthereumChainIds.Mainnet);
       const res = await vega.getAllTranches();
-      setTranches(res)
-    };
+      setTranches(res);
+    }
 
     getTranches();
   }, []);
@@ -84,13 +85,13 @@ export const Tranches = () => {
             return (
               <div className="TableRow" key={i}>
                 <div className="Left">
-                  <span
+                  <Link
+                    to={`/tranches/${tranche.tranche_id}`}
                     className="TrancheLink"
-                    // onClick={() => goToTranche(tranche.tranche_id)} TODO use router link here
                   >
                     <span className="TrancheTitle">Tranche</span>
                     <span className="TrancheID">#{tranche.tranche_id}</span>
-                  </span>
+                  </Link>
                   <span className="TrancheDates">
                     {getTrancheDates(
                       tranche.tranche_start,
