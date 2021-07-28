@@ -3,9 +3,7 @@ import vestingAbi from "./vesting_abi.json";
 import type { Contract, EventData } from "web3-eth-contract";
 import _ from "lodash";
 import { EthereumChainId, EthereumChainIds } from "./vega-web3-utils";
-import type { Tranche, TrancheUser } from "./vega-web3-types";
-
-
+import { Tranche, TrancheEvents, TrancheUser } from "./vega-web3-types";
 
 export interface ContractAddress {
   vestingAddress: string;
@@ -24,7 +22,6 @@ class VegaWeb3 {
   private vestingInstance: Contract;
   public web3: Web3;
   public currentAccount: string | null = null;
-  private eventListeners = [];
   private provider: any;
 
   constructor(chainId: EthereumChainId) {
@@ -43,7 +40,7 @@ class VegaWeb3 {
       // @ts-ignore
       vestingAbi,
       contractsAddresses.vestingAddress
-    )
+    );
   }
 
   async getBalanceAllTranches(account: string): Promise<any> {
@@ -55,9 +52,7 @@ class VegaWeb3 {
   private createUserTransactions(events: EventData[]) {
     return events.map((event) => {
       return {
-        amount: parseFloat(
-          this.web3.utils.fromWei(event.returnValues.amount)
-        ),
+        amount: parseFloat(this.web3.utils.fromWei(event.returnValues.amount)),
         user: event.returnValues.user,
         tranche_id: event.returnValues.tranche_id,
         tx: event.transactionHash,
@@ -83,7 +78,7 @@ class VegaWeb3 {
       const total_tokens = _.sumBy(deposits, "amount");
       const withdrawn_tokens = _.sumBy(withdrawals, "amount");
       const remaining_tokens = total_tokens - withdrawn_tokens;
-      
+
       return {
         address,
         deposits,
@@ -96,12 +91,18 @@ class VegaWeb3 {
   }
 
   private sumFromEvents(events: EventData[]) {
-    const amounts = events.map(e => parseFloat(this.web3.utils.fromWei(e.returnValues.amount)))
-    return _.sum(amounts)
+    const amounts = events.map((e) =>
+      parseFloat(this.web3.utils.fromWei(e.returnValues.amount))
+    );
+    return _.sum(amounts);
   }
 
-  private getLockedAmount(totalAdded: number, cliffStart: number, trancheDuration: number) {
-    let amount = 0
+  private getLockedAmount(
+    totalAdded: number,
+    cliffStart: number,
+    trancheDuration: number
+  ) {
+    let amount = 0;
     const ts = Math.round(new Date().getTime() / 1000);
     const tranche_progress = (ts - cliffStart) / trancheDuration;
 
@@ -110,16 +111,14 @@ class VegaWeb3 {
     } else if (tranche_progress < 1) {
       amount = totalAdded * (1 - tranche_progress);
     }
-    
-    return amount
+
+    return amount;
   }
 
   private createTransactions(events: EventData[]) {
     return events.map((event) => {
       return {
-        amount: parseFloat(
-          this.web3.utils.fromWei(event.returnValues.amount)
-        ),
+        amount: parseFloat(this.web3.utils.fromWei(event.returnValues.amount)),
         user: event.returnValues.user,
         tx: event.transactionHash,
       };
@@ -128,15 +127,19 @@ class VegaWeb3 {
 
   private getTranchesFromHistory(events: EventData[]): Tranche[] {
     return events
-      .filter((event) => event.event === "Tranche_Created")
-      .map(event => {
-        const tranche_id = event.returnValues.tranche_id
+      .filter((event) => event.event === TrancheEvents.Created)
+      .map((event) => {
+        const tranche_id = event.returnValues.tranche_id;
         const balanceAddedEvents = events.filter(
-          e => e.event === 'Tranche_Balance_Added' && e.returnValues.tranche_id === tranche_id
-        )
+          (e) =>
+            e.event === TrancheEvents.BalanceAdded &&
+            e.returnValues.tranche_id === tranche_id
+        );
         const balanceRemovedEvents = events.filter(
-          e => e.event === 'Tranche_Balance_Added' && e.returnValues.tranche_id === tranche_id
-        )
+          (e) =>
+            e.event === TrancheEvents.BalanceAdded &&
+            e.returnValues.tranche_id === tranche_id
+        );
 
         // get tranche start and end dates
         const tranche_duration = parseInt(event.returnValues.duration);
@@ -145,24 +148,32 @@ class VegaWeb3 {
         const tranche_end = new Date((cliff_start + tranche_duration) * 1000);
 
         // get added and removed values
-        const total_added = this.sumFromEvents(balanceAddedEvents)
-        const total_removed = this.sumFromEvents(balanceRemovedEvents)
+        const total_added = this.sumFromEvents(balanceAddedEvents);
+        const total_removed = this.sumFromEvents(balanceRemovedEvents);
 
         // get locked amount
-        const locked_amount = this.getLockedAmount(total_added, cliff_start, tranche_duration)
+        const locked_amount = this.getLockedAmount(
+          total_added,
+          cliff_start,
+          tranche_duration
+        );
 
         // get all deposits and withdrawals
-        const deposits = this.createTransactions(balanceAddedEvents)
-        const withdrawals = this.createTransactions(balanceRemovedEvents)
+        const deposits = this.createTransactions(balanceAddedEvents);
+        const withdrawals = this.createTransactions(balanceRemovedEvents);
 
         // get all users
         const uniqueAddresses = _.uniq(
-          balanceAddedEvents.map(event => event.returnValues.user)
+          balanceAddedEvents.map((event) => event.returnValues.user)
         );
-        const users = this.getUsersInTranche(balanceAddedEvents, balanceRemovedEvents, uniqueAddresses)
+        const users = this.getUsersInTranche(
+          balanceAddedEvents,
+          balanceRemovedEvents,
+          uniqueAddresses
+        );
 
         return {
-          tranche_id, 
+          tranche_id,
           tranche_start,
           tranche_end,
           total_added,
@@ -170,8 +181,8 @@ class VegaWeb3 {
           locked_amount,
           deposits,
           withdrawals,
-          users
-        }
+          users,
+        };
       });
   }
 
