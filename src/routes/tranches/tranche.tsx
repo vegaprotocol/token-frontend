@@ -137,9 +137,9 @@ export const Tranche = () => {
           </div>
           <div className="TrancheUsers">
             <div className="TrancheUsersHeader">Users</div>
-            {currentTranche.users.map((user) => {
+            {currentTranche.users.map((user, i) => {
               return (
-                <div className="TrancheUserRow">
+                <div className="TrancheUserRow" key={i}>
                   <div className="Left UserAddress">
                     <a
                       rel="noreferrer"
