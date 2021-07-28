@@ -2,7 +2,7 @@ import "./heading.scss";
 
 import React from "react";
 import vegaWhite from "../../images/vega_white.png";
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export interface HeadingProps {
   error: string | null;
@@ -21,7 +21,7 @@ export const Heading = ({
   connect,
 }: // balance,
 HeadingProps) => {
-  const isHome = true; //useRouteMatch({ path: "/tranches", exact: true });
+  const isHome = true; //useRouteMatch({ path: "/", exact: true });
 
   return (
     <header className="heading">
