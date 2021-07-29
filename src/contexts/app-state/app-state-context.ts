@@ -7,13 +7,19 @@ export interface AppState {
   error: Error | null;
   connecting: boolean;
   chainId: EthereumChainId | null;
+  balance: null | string;
 }
 
 export type AppStateAction =
   | { type: "PROVIDER_DETECTED" }
   | { type: "CONNECT" }
   | { type: "DISCONNECT" }
-  | { type: "CONNECT_SUCCESS"; address: string; chainId: EthereumChainId }
+  | {
+      type: "CONNECT_SUCCESS";
+      address: string;
+      chainId: EthereumChainId;
+      balance: string | null;
+    }
   | { type: "CONNECT_FAIL"; error: Error }
   | { type: "ACCOUNTS_CHANGED"; address: string }
   | { type: "CHAIN_CHANGED"; chainId: EthereumChainId };

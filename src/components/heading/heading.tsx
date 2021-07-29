@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useConnect } from "../../hooks/use-connect";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import { useVegaWeb3 } from "../../hooks/use-vega-web3";
-import { EthereumChainIds } from "../../lib/vega-web3-utils";
 
 export interface HeadingProps {
   title: React.ReactNode | string;
@@ -15,25 +13,9 @@ export interface HeadingProps {
 
 const ConnectedKey = () => {
   const { t } = useTranslation();
-  const [balance, setBalance] = React.useState<string | null>(null);
-  const [loading, setLoading] = React.useState<boolean>(false);
   const connect = useConnect();
-  const vega = useVegaWeb3(EthereumChainIds.Mainnet);
-  const getBalances = React.useCallback(async () => {
-    setLoading(true);
-    try {
-      const res = await vega.getUserBalanceAllTranches();
-      setBalance(res);
-    } finally {
-      setLoading(false);
-    }
-  }, [vega]);
-  const connectWithBalance = React.useCallback(async () => {
-    await connect();
-    await getBalances();
-  }, [connect, getBalances]);
   const { appState } = useAppState();
-  const { connecting, address, error } = appState;
+  const { connecting, address, error, balance } = appState;
 
   if (error) {
     return <div className="heading__error">{t("Something went wrong")}</div>;
@@ -41,11 +23,9 @@ const ConnectedKey = () => {
     return (
       <div className="heading__wallet">{t("Awaiting action in wallet...")}</div>
     );
-  } else if (loading) {
-    return <div className="heading__wallet">{t("Loading")}</div>;
   } else if (!address) {
     return (
-      <button className="Button" onClick={connectWithBalance}>
+      <button className="Button" onClick={connect}>
         {t("Connect")}
       </button>
     );

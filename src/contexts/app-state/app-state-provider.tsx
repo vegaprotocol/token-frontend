@@ -13,6 +13,7 @@ const initialAppState: AppState = {
   connecting: false,
   chainId: null,
   error: null,
+  balance: null,
 };
 
 function appStateReducer(state: AppState, action: AppStateAction) {
@@ -33,6 +34,7 @@ function appStateReducer(state: AppState, action: AppStateAction) {
         ...state,
         address: action.address,
         chainId: action.chainId,
+        balance: action.balance,
         connecting: false,
       };
     case "CONNECT_FAIL":
