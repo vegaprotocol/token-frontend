@@ -25,7 +25,7 @@ export const ConnectedClaim = ({ state, commitClaim }: ConnectedClaimProps) => {
   }
   const shortCode =
     code.slice(0, 6) + "..." + code.slice(code.length - 4, code.length);
-  console.log(currentTranche);
+
   return (
     <section>
       <p>
