@@ -47,8 +47,8 @@ export const ConnectedClaim = ({ state, commitClaim }: ConnectedClaimProps) => {
         </div>
         <div style={{ padding: 15 }}>
           <h1>{t("step2Title")}</h1>
-          <p>{t("step2body")}</p>
-          <p>{t("step2note")}</p>
+          <p>{t("step2Body")}</p>
+          <p>{t("step2Note")}</p>
         </div>
       </div>
     </section>
