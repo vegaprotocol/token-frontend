@@ -13,7 +13,7 @@ export const ConnectedClaim = ({ state, commitClaim }: ConnectedClaimProps) => {
   const { t } = useTranslation();
   const { appState } = useAppState();
   const { address, tranches } = appState;
-  const showRedeem = false; // TODO needs to be false until we build this
+  const showRedeem = ["1", "true"].includes(process.env.REACT_APP_REDEEM_LIVE!);
   const code = state.code!;
   const currentTranche = React.useMemo(() => {
     return tranches.find(
