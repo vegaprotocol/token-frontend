@@ -67,6 +67,9 @@ i18n
             "This code ({code}) entitles {user} to {amount} Vega tokens from {tranceName} of the vesting contract. Meaning tokens will be locked until {unlockDate}, then they will gradually become unlocked - block by block - until {trancheEndDate} when they are fully unlocked and sellable.",
           showRedeem:
             "You'll be able to redeem your unlocked tokens at token.vega.xyz/redemption",
+
+          invalidWeb3Browser:
+            "Please a compatitble browser or install Metamask",
         },
       },
     },

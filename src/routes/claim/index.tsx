@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { DefaultTemplate } from "../../components/page-templates/default";
 import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useConnect } from "../../hooks/use-connect";
 import { useSearchParams } from "../../hooks/use-search-params";
 import { useVegaWeb3 } from "../../hooks/use-vega-web3";
 import { EthereumChainIds } from "../../lib/vega-web3-utils";
@@ -15,8 +16,9 @@ const ClaimRouter = () => {
   const { t } = useTranslation();
   const params = useSearchParams();
   const vega = useVegaWeb3(EthereumChainIds.Mainnet);
-  const [appState, dispatchAppState] = useAppState();
+  const { appState } = useAppState();
   const [state, dispatch] = React.useReducer(claimReducer, initialClaimState);
+  const connect = useConnect();
 
   // TODO: check this when url is finalized, values will be used for claim and reveal
   React.useEffect(() => {
@@ -39,24 +41,6 @@ const ClaimRouter = () => {
       });
   }, [vega]);
 
-  const connect = React.useCallback(async () => {
-    try {
-      dispatchAppState({ type: "CONNECT" });
-
-      // const vega = new VegaWeb3(EthereumChainIds.Mainnet);
-      // // @ts-ignore
-      // if (!window.ethereum) {
-      //   throw new Error("Could not find Ethereum provider");
-      // }
-      // await vega.web3.eth.net.isListening();
-      // await vega.web3.eth.requestAccounts();
-      dispatchAppState({ type: "CONNECT_SUCCESS", address: "0x123" });
-    } catch (e) {
-      dispatchAppState({ type: "CONNECT_FAIL", error: e });
-    } finally {
-    }
-  }, [dispatchAppState]);
-
   let pageContent = null;
 
   if (state.error) {
@@ -71,10 +55,12 @@ const ClaimRouter = () => {
             "You will need to connect to an ethereum wallet to pay the gas and claim tokens"
           )}
         </p>
-        {appState.connecting ? (
+        {!appState.hasProvider ? (
+          <div>{t("invalidWeb3Browser")}</div>
+        ) : appState.connecting ? (
           <div>{t("Please check wallet")}</div>
         ) : (
-          <button onClick={() => connect()}>
+          <button onClick={connect}>
             {t("Connect to an Ethereum wallet")}
           </button>
         )}
