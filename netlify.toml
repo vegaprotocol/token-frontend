@@ -1,11 +1,12 @@
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/index.html"
   to = "/blocked.html"
   status = 403
   force = true
   conditions = {Country = ["US", "CN", "CA", "MM", "CU", "IR", "KP", "SY", "BD", "BO", "SD", "EC", "EG", "KG", "MA", "NA"]}
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
