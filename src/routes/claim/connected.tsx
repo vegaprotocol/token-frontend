@@ -40,7 +40,7 @@ export const ConnectedClaim = ({ state, commitClaim }: ConnectedClaimProps) => {
           paddingTop: 15,
         }}
       >
-        <div style={{ padding: 15, borderRight: "1px solid white" }}>
+        <div style={{ padding: 15 }}>
           <h1>{t("step1Title")}</h1>
           <p>{t("step1Body")}</p>
           <ClaimForm state={state} onSubmit={() => commitClaim()} />
