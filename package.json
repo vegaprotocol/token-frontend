@@ -33,6 +33,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:mock": "REACT_APP_MOCKED=1 yarn start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

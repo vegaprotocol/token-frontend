@@ -3,7 +3,14 @@ import vestingAbi from "./vesting_abi.json";
 import type { Contract, EventData } from "web3-eth-contract";
 import _ from "lodash";
 import { EthereumChainId, EthereumChainIds } from "./vega-web3-utils";
-import { Tranche, TrancheEvents, TrancheUser } from "./vega-web3-types";
+import {
+  IVegaWeb3,
+  Tranche,
+  TrancheEvents,
+  TrancheUser,
+} from "./vega-web3-types";
+import { MockPromiEvent } from "./__mocks__/vega-web3";
+import { PromiEvent } from "web3-core";
 
 export interface ContractAddress {
   vestingAddress: string;
@@ -21,7 +28,7 @@ export const Addresses = {
   },
 };
 
-class VegaWeb3 {
+class VegaWeb3 implements IVegaWeb3 {
   public chainId: EthereumChainId;
   private vestingInstance: Contract;
   public web3: Web3;
@@ -47,11 +54,15 @@ class VegaWeb3 {
     );
   }
 
-  async getBalanceAllTranches(account: string): Promise<any> {
+  async getUserBalanceAllTranches(account: string): Promise<string> {
     return this.vestingInstance.methods.user_total_all_tranches(account).call();
   }
 
   async getTotalTokens() {}
+
+  async validateCode() {
+    return Promise.resolve(true);
+  }
 
   private createUserTransactions(events: EventData[]) {
     return events.map((event) => {
@@ -197,6 +208,28 @@ class VegaWeb3 {
     return this.getTranchesFromHistory(events);
   }
 
+  commitClaim(): PromiEvent<any> {
+    const promiEvent = new MockPromiEvent();
+
+    // start tx on next tick so that UI can update
+    setTimeout(() => {
+      const confirm = window.confirm("[TEST]: Confirm transaction");
+
+      if (confirm) {
+        promiEvent.trigger("transactionHash", "0xTEST_HASH");
+
+        setTimeout(() => {
+          promiEvent.trigger("receipt", { receipt: true });
+        }, 1000);
+      } else {
+        promiEvent.trigger("error", new Error("user rejected"));
+      }
+    }, 0);
+
+    // @ts-ignore
+    return promiEvent;
+  }
+
   async getUserBalancesPerTranche() {}
 
   async redeem() {}
@@ -204,43 +237,6 @@ class VegaWeb3 {
   async commitCode() {}
 
   async revealCode() {}
-
-  // async connectToEthWallet(): Promise<string> {
-  //   // @ts-ignore
-  //   if (!window.ethereum) {
-  //     throw new Error("Could not find Ethereum provider");
-  //   }
-  //   const accounts = await this.web3.eth.requestAccounts();
-  //   if (!accounts.length) {
-  //     throw new Error("Could not find account");
-  //   }
-  //   this.currentAccount = accounts[0];
-  //   this.provider.on(
-  //     "connected",
-  //     (connectInfo: { chainId: EthereumChainId }) => {
-  //       this.connected = true;
-  //       this.chainId = connectInfo?.chainId;
-  //     }
-  //   );
-  //   this.provider.on("disconnect", () => {
-  //     this.connected = false;
-  //   });
-
-  //   this.provider.on("accountsChanged", (accounts: string[]) => {
-  //     if (accounts.length) {
-  //       this.currentAccount = accounts[0];
-  //     } else {
-  //       this.currentAccount = null;
-  //     }
-  //   });
-
-  //   this.provider.on("chainChanged", (chainId: EthereumChainId) => {});
-  //   return accounts[0];
-  // }
-
-  // off() {
-  //   // TODO
-  // }
 }
 
 export default VegaWeb3;

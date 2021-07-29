@@ -18,9 +18,9 @@ export interface ClaimState {
   // From URL
   denomination: number | null; // amount
   target: string | null; // ETH address
-  tranche_id: number | null;
+  trancheId: number | null;
   expiry: number | null; // timestamp in seconds
-  signature: string | null;
+  code: string | null;
   nonce: number | null;
 
   // generic
@@ -38,9 +38,9 @@ export const initialClaimState: ClaimState = {
 
   denomination: null,
   target: null,
-  tranche_id: null,
+  trancheId: null,
   expiry: null,
-  signature: null,
+  code: null,
   nonce: null,
 
   // generic
@@ -52,10 +52,10 @@ export type ClaimAction =
       type: "SET_DATA_FROM_URL";
       data: {
         denomination: string;
-        target: string;
-        tranche_id: string;
+        target?: string;
+        trancheId: string;
         expiry: string;
-        signature: string;
+        code: string;
         nonce: string;
       };
     }
@@ -82,19 +82,30 @@ export type ClaimAction =
 export function claimReducer(state: ClaimState, action: ClaimAction) {
   switch (action.type) {
     case "SET_DATA_FROM_URL":
-      return {
-        ...state,
-        denomination: action.data.denomination
-          ? Number(action.data.denomination)
-          : null,
-        target: action.data.target ?? null,
-        tranche_id: action.data.tranche_id
-          ? Number(action.data.tranche_id)
-          : null,
-        expirty: action.data.expiry ? Number(action.data.expiry) : null,
-        signature: action.data.signature ?? null,
-        nonce: action.data.signature ? Number(action.data.signature) : null,
-      };
+      // We need all of these otherwise the code is invalid
+      if (
+        // Do not need target as keys can be for the holder only
+        !action.data.denomination ||
+        !action.data.trancheId ||
+        !action.data.expiry ||
+        !action.data.code ||
+        !action.data.nonce
+      ) {
+        return {
+          ...state,
+          error: new Error("Invalid code"),
+        };
+      } else {
+        return {
+          ...state,
+          denomination: Number(action.data.denomination),
+          target: action.data.target ?? null,
+          trancheId: Number(action.data.trancheId),
+          expirty: Number(action.data.expiry),
+          code: action.data.code,
+          nonce: Number(action.data.code),
+        };
+      }
     case "CLAIM_TX_REQUESTED":
       return {
         ...state,

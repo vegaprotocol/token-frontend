@@ -34,8 +34,6 @@ i18n
             "VEGA was successfully withdrawn to your wallet",
 
           "Please select your country": "Please select your country",
-          "I accept the Terms and Conditions":
-            "I accept the Terms and Conditions",
 
           "Fully vested on": "Fully vested on",
           "Vesting from": "Vesting from",
@@ -71,11 +69,13 @@ i18n
           invalidWeb3Browser:
             "Please a compatitble browser or install Metamask",
           "Vesting Balance": "Vesting Balance",
-          Vega: "Vega",
+          VEGA: "VEGA",
           Account: "Account",
           Loading: "Loading",
           "Awaiting action in wallet...": "Awaiting action in wallet...",
           "Something went wrong": "Something went wrong",
+          Warning:
+            "Warning: You can use your connected key to claim the Tokens but it will credit {{target}} instead of {{address}}.",
         },
       },
     },

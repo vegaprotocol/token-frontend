@@ -1,9 +1,9 @@
-import type { Tranche } from "../vega-web3-types";
+import type { ITokenParams, IVegaWeb3, Tranche } from "../vega-web3-types";
 import { EthereumChainId } from "../vega-web3-utils";
 import { generateTranches } from "./generate-tranche";
 import { PromiEvent } from "web3-core";
 
-class VegaWeb3 {
+class VegaWeb3 implements IVegaWeb3 {
   public chainId: EthereumChainId;
 
   constructor(chainId: EthereumChainId) {
@@ -16,6 +16,17 @@ class VegaWeb3 {
 
   async getUserBalanceAllTranches() {
     return Promise.resolve("123");
+  }
+
+  async validateCode({
+    nonce,
+    trancheId,
+    expiry,
+    target,
+    denomination,
+    code,
+  }: ITokenParams) {
+    return Promise.resolve(true);
   }
 
   commitClaim(): PromiEvent<any> {
@@ -41,7 +52,7 @@ class VegaWeb3 {
   }
 }
 
-class MockPromiEvent {
+export class MockPromiEvent {
   events: { [event: string]: Array<Function> } = {};
 
   on(event: string, callback: Function) {

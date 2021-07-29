@@ -6,8 +6,6 @@ import { useConnect } from "../../hooks/use-connect";
 import { useSearchParams } from "../../hooks/use-search-params";
 import { useVegaWeb3 } from "../../hooks/use-vega-web3";
 import { EthereumChainIds } from "../../lib/vega-web3-utils";
-// import VegaWeb3 from "../../lib/vega-web3";
-// import { EthereumChainIds } from "../../lib/vega-web3-utils";
 import { ClaimError } from "./claim-error";
 import { claimReducer, initialClaimState } from "./claim-reducer";
 import { ConnectedClaim } from "./connected";
@@ -19,16 +17,41 @@ const ClaimRouter = () => {
   const { appState } = useAppState();
   const [state, dispatch] = React.useReducer(claimReducer, initialClaimState);
   const connect = useConnect();
-
-  // TODO: check this when url is finalized, values will be used for claim and reveal
   React.useEffect(() => {
-    dispatch({ type: "SET_DATA_FROM_URL", data: params });
-  }, [params]);
+    const run = async () => {
+      const valid = await vega.validateCode({
+        nonce: params.n,
+        trancheId: params.t,
+        expiry: params.ex,
+        target: params.targ,
+        denomination: params.d,
+        code: params.r,
+      });
+      if (!valid) {
+        dispatch({
+          type: "ERROR",
+          error: new Error("Invalid code"),
+        });
+      } else {
+        dispatch({
+          type: "SET_DATA_FROM_URL",
+          data: {
+            nonce: params.n,
+            trancheId: params.t,
+            expiry: params.ex,
+            target: params.targ,
+            denomination: params.d,
+            code: params.r,
+          },
+        });
+      }
+    };
+    run();
+  }, [params, vega]);
 
   const commitClaim = React.useCallback(async () => {
     dispatch({ type: "CLAIM_TX_REQUESTED" });
     const promi = vega.commitClaim();
-    console.log(promi);
     promi
       .on("transactionHash", (hash: string) => {
         dispatch({ type: "CLAIM_TX_SUBMITTED", txHash: hash });
