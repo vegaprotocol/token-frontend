@@ -7,7 +7,7 @@
     "cypress:open:local": "CYPRESS_ENV=localhost npm run cypress:open",
     "cypress:open:prod": "CYPRESS_ENV=production npm run cypress:open",
     "cypress:open": "cypress open",
-    "cypress:run":"cypress run",
+    "cypress:run": "cypress run",
     "test:local": "CYPRESS_ENV=localhost npm run test",
     "test:prod": "CYPRESS_ENV=production npm run test",
     "test": "cypress run --env TAGS='@e2e-test' --spec 'cypress/integration/**/*.feature'",
@@ -25,9 +25,7 @@
     "fs-extra": "^9.0.1",
     "glob": "^7.1.6"
   },
-  "devDependencies": {
-
-  },
+  "devDependencies": {},
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true
   }
