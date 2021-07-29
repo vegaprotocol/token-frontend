@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { useAppState } from "../../contexts/app-state/app-state-context";
 import { ClaimState, TxState } from "./claim-reducer";
 
 interface ConnectedClaimProps {
@@ -9,6 +10,8 @@ interface ConnectedClaimProps {
 
 export const ConnectedClaim = ({ state, commitClaim }: ConnectedClaimProps) => {
   const { t } = useTranslation();
+  const { appState } = useAppState();
+  const { address } = appState;
   const showRedeem = false; // TODO needs to be false until we build this
   const trancheEndDate = "June 5 2023";
   const unlockDate = "5th March 2022";
@@ -29,6 +32,12 @@ export const ConnectedClaim = ({ state, commitClaim }: ConnectedClaimProps) => {
 
         {showRedeem ? t("showRedeem") : null}
       </p>
+      {state.target && state.target !== address && (
+        <p>
+          Warning: You can use your connected key to claim the Tokens but it
+          will credit {state.target} instead of {address}
+        </p>
+      )}
       <div
         style={{
           display: "grid",
