@@ -12,6 +12,7 @@ const initialAppState: AppState = {
   address: null,
   connecting: false,
   chainId: null,
+  error: null,
 };
 
 function appStateReducer(state: AppState, action: AppStateAction) {
@@ -24,6 +25,7 @@ function appStateReducer(state: AppState, action: AppStateAction) {
     case "CONNECT":
       return {
         ...state,
+        error: null,
         connecting: true,
       };
     case "CONNECT_SUCCESS":
@@ -36,12 +38,14 @@ function appStateReducer(state: AppState, action: AppStateAction) {
     case "CONNECT_FAIL":
       return {
         ...state,
+        error: action.error,
         address: null,
         connecting: false,
       };
     case "DISCONNECT":
       return {
         ...state,
+        error: null,
         address: null,
       };
     case "ACCOUNTS_CHANGED": {
@@ -63,6 +67,7 @@ function appStateReducer(state: AppState, action: AppStateAction) {
 
 export function AppStateProvider({ children }: AppStateProviderProps) {
   const provider = React.useRef<any>();
+
   const [state, dispatch] = React.useReducer(appStateReducer, initialAppState);
 
   // Detect provider

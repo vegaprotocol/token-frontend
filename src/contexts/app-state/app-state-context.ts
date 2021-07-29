@@ -4,6 +4,7 @@ import { EthereumChainId } from "../../lib/vega-web3-utils";
 export interface AppState {
   hasProvider: boolean;
   address: string | null;
+  error: Error | null;
   connecting: boolean;
   chainId: EthereumChainId | null;
 }

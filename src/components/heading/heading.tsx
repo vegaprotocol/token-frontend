@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useConnect } from "../../hooks/use-connect";
 import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useVegaWeb3 } from "../../hooks/use-vega-web3";
+import { EthereumChainIds } from "../../lib/vega-web3-utils";
 
 export interface HeadingProps {
   error: string | null;
@@ -19,23 +21,35 @@ export interface HeadingProps {
 
 const ConnectedKey = () => {
   const { t } = useTranslation();
-  // const [balance, setBalance] = React.useState<string | null>(null);
-  const [error, setError] = React.useState<boolean>(false);
-  // const [loading, setLoading] = React.useState<boolean>(false);
+  const [balance, setBalance] = React.useState<string | null>(null);
+  const [loading, setLoading] = React.useState<boolean>(false);
   const connect = useConnect();
+  const vega = useVegaWeb3(EthereumChainIds.Mainnet);
+  const getBalances = React.useCallback(async () => {
+    setLoading(true);
+    try {
+      const res = await vega.getUserBalanceAllTranches();
+      setBalance(res);
+    } catch {
+    } finally {
+      // setLoading(true);
+    }
+  }, [vega]);
   const { appState } = useAppState();
-  const { connecting, address } = appState;
-  if (connecting) {
-    return <div>Loading</div>;
+  const { connecting, address, error } = appState;
+  console.log(error);
+  if (error) {
+    return <div className="heading__error">Something went wrong</div>;
+  } else if (connecting) {
+    return <div className="heading__wallet">Awaiting action in wallet...</div>;
+  } else if (loading) {
+    return <div className="heading__wallet">Loading</div>;
   } else if (!address) {
     return (
       <button className="Button" onClick={connect}>
         {t("Connect")}
       </button>
     );
-  } else if (error) {
-    // TODO change this message
-    return <div className="heading__error">{error}</div>;
   } else {
     return (
       <div className="heading__wallet">
@@ -51,8 +65,8 @@ const ConnectedKey = () => {
               address.slice(address.length - 4, address.length)}
           </a>
         </span>
-        {/* <span className="heading__wallet-label">Vesting Balance: </span> */}
-        {/* <span className="heading__wallet-value">{balance} VEGA</span> */}
+        <span className="heading__wallet-label">Vesting Balance: </span>
+        <span className="heading__wallet-value">{balance} VEGA</span>
       </div>
     );
   }
