@@ -88,10 +88,10 @@ const ClaimForm = ({
   state: ClaimState;
   onSubmit: () => void;
 }) => {
-  const [isValidCountry, setIsValidCountry] = React.useState(false)
+  const [isValidCountry, setIsValidCountry] = React.useState(false);
   const countryValidator = (isValid: boolean) => {
-    setIsValidCountry(isValid)
-  }
+    setIsValidCountry(isValid);
+  };
   const { t } = useTranslation();
 
   if (state.claimTxState === TxState.Error) {
@@ -125,9 +125,9 @@ const ClaimForm = ({
       }}
     >
       <fieldset>
-        <CountrySelector setIsValidCountry={countryValidator}/>
+        <CountrySelector setIsValidCountry={countryValidator} />
       </fieldset>
-      <button>{t("Continue")}</button>
+      <button disabled={!isValidCountry}>{t("Continue")}</button>
     </form>
   );
 };
