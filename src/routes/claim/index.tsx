@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { DefaultTemplate } from "../../components/page-templates/default";
+import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useSearchParams } from "../../hooks/use-search-params";
 import { useVegaWeb3 } from "../../hooks/use-vega-web3";
 import { EthereumChainIds } from "../../lib/vega-web3-utils";
@@ -11,11 +12,13 @@ import { claimReducer, initialClaimState } from "./claim-reducer";
 import { ConnectedClaim } from "./connected";
 
 const ClaimRouter = () => {
-  const vega = useVegaWeb3(EthereumChainIds.Mainnet);
   const { t } = useTranslation();
   const params = useSearchParams();
+  const vega = useVegaWeb3(EthereumChainIds.Mainnet);
+  const [appState, dispatchAppState] = useAppState();
   const [state, dispatch] = React.useReducer(claimReducer, initialClaimState);
 
+  // TODO: check this when url is finalized, values will be used for claim and reveal
   React.useEffect(() => {
     dispatch({ type: "SET_DATA_FROM_URL", data: params });
   }, [params]);
@@ -38,7 +41,7 @@ const ClaimRouter = () => {
 
   const connect = React.useCallback(async () => {
     try {
-      dispatch({ type: "CONNECT" });
+      dispatchAppState({ type: "CONNECT" });
 
       // const vega = new VegaWeb3(EthereumChainIds.Mainnet);
       // // @ts-ignore
@@ -47,18 +50,18 @@ const ClaimRouter = () => {
       // }
       // await vega.web3.eth.net.isListening();
       // await vega.web3.eth.requestAccounts();
-      dispatch({ type: "CONNECTED", address: "0x123" });
+      dispatchAppState({ type: "CONNECT_SUCCESS", address: "0x123" });
     } catch (e) {
-      dispatch({ type: "ERROR", error: e });
+      dispatchAppState({ type: "CONNECT_FAIL", error: e });
     } finally {
     }
-  }, []);
+  }, [dispatchAppState]);
 
   let pageContent = null;
 
   if (state.error) {
     pageContent = <ClaimError />;
-  } else if (state.address) {
+  } else if (appState.address) {
     pageContent = <ConnectedClaim state={state} commitClaim={commitClaim} />;
   } else {
     pageContent = (
@@ -68,7 +71,7 @@ const ClaimRouter = () => {
             "You will need to connect to an ethereum wallet to pay the gas and claim tokens"
           )}
         </p>
-        {state.connecting ? (
+        {appState.connecting ? (
           <div>{t("Please check wallet")}</div>
         ) : (
           <button onClick={() => connect()}>

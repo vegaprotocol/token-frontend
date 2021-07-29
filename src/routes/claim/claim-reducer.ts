@@ -7,10 +7,6 @@ export enum TxState {
 }
 
 export interface ClaimState {
-  // metamask
-  connecting: boolean;
-  address: string | null;
-
   // claim form state
   claimTxState: TxState;
   claimTxData: {
@@ -32,9 +28,6 @@ export interface ClaimState {
 }
 
 export const initialClaimState: ClaimState = {
-  connecting: false,
-  address: null,
-
   // claim tx
   claimTxState: TxState.Default,
   claimTxData: {
@@ -65,13 +58,6 @@ export type ClaimAction =
         signature: string;
         nonce: string;
       };
-    }
-  | {
-      type: "CONNECT";
-    }
-  | {
-      type: "CONNECTED";
-      address: string;
     }
   | {
       type: "CLAIM_TX_REQUESTED";
@@ -108,17 +94,6 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
         expirty: action.data.expiry ? Number(action.data.expiry) : null,
         signature: action.data.signature ?? null,
         nonce: action.data.signature ? Number(action.data.signature) : null,
-      };
-    case "CONNECT":
-      return {
-        ...state,
-        connecting: true,
-      };
-    case "CONNECTED":
-      return {
-        ...state,
-        connecting: false,
-        address: action.address,
       };
     case "CLAIM_TX_REQUESTED":
       return {
