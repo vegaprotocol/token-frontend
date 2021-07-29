@@ -58,7 +58,7 @@
   &__wallet {
     background-color: $white;
     border: 2px solid $black;
-    padding: 10px 0px;
+    padding: 10px;
     color: $black;
     font-size: 14px;
     margin-right: 20px;
@@ -74,7 +74,6 @@
   &__wallet-balance {
     text-transform: uppercase;
     font-weight: bold;
-    margin-left: 10px;
     font-size: 13px;
 
     &-amount {
@@ -85,7 +84,6 @@
   &__wallet-label {
     text-transform: uppercase;
     font-weight: bold;
-    margin-left: 10px;
     font-size: 13px;
   }
 

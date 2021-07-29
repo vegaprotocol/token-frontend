@@ -18,7 +18,7 @@ i18n
           pageTitleTranches: "View tranches",
 
           Vesting: "Vesting",
-          Connect: "Connect",
+          Connect: "Connect to see your VEGA balance",
           of: "of",
           to: "to",
 
@@ -64,12 +64,18 @@ i18n
           step2Note: "You must complete step 1 first.",
 
           claim:
-            "This code ({code}) entitles {user} to {amount} Vega tokens from {tranceName} of the vesting contract. Meaning tokens will be locked until {unlockDate}, then they will gradually become unlocked - block by block - until {trancheEndDate} when they are fully unlocked and sellable.",
+            "This code ({{code}}) entitles {{user}} to {{amount}} Vega tokens from {{trancheName}} of the vesting contract. Meaning tokens will be locked until {{unlockDate}}, then they will gradually become unlocked - block by block - until {{trancheEndDate}} when they are fully unlocked and sellable.",
           showRedeem:
             "You'll be able to redeem your unlocked tokens at token.vega.xyz/redemption",
 
           invalidWeb3Browser:
             "Please a compatitble browser or install Metamask",
+          "Vesting Balance": "Vesting Balance",
+          Vega: "Vega",
+          Account: "Account",
+          Loading: "Loading",
+          "Awaiting action in wallet...": "Awaiting action in wallet...",
+          "Something went wrong": "Something went wrong",
         },
       },
     },
