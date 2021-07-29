@@ -100,7 +100,7 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
           ...state,
           denomination: Number(action.data.denomination),
           target: action.data.target ?? null,
-          tranche_id: Number(action.data.trancheId),
+          trancheId: Number(action.data.trancheId),
           expirty: Number(action.data.expiry),
           code: action.data.code,
           nonce: Number(action.data.code),

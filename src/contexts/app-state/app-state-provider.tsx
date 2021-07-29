@@ -1,6 +1,7 @@
 import detectEthereumProvider from "@metamask/detect-provider";
 import React from "react";
-import { EthereumChainId } from "../../lib/vega-web3-utils";
+import { useVegaWeb3 } from "../../hooks/use-vega-web3";
+import { EthereumChainId, EthereumChainIds } from "../../lib/vega-web3-utils";
 import { AppState, AppStateContext, AppStateAction } from "./app-state-context";
 
 interface AppStateProviderProps {
@@ -14,6 +15,7 @@ const initialAppState: AppState = {
   chainId: null,
   error: null,
   balance: null,
+  tranches: [],
 };
 
 function appStateReducer(state: AppState, action: AppStateAction) {
@@ -62,6 +64,12 @@ function appStateReducer(state: AppState, action: AppStateAction) {
         chainId: action.chainId,
       };
     }
+    case "SET_TRANCHES": {
+      return {
+        ...state,
+        tranches: action.tranches,
+      };
+    }
     default:
       return state;
   }
@@ -69,9 +77,16 @@ function appStateReducer(state: AppState, action: AppStateAction) {
 
 export function AppStateProvider({ children }: AppStateProviderProps) {
   const provider = React.useRef<any>();
+  const vega = useVegaWeb3(EthereumChainIds.Mainnet);
 
   const [state, dispatch] = React.useReducer(appStateReducer, initialAppState);
-
+  React.useEffect(() => {
+    const run = async () => {
+      const tranches = await vega.getAllTranches();
+      dispatch({ type: "SET_TRANCHES", tranches });
+    };
+    run();
+  }, [vega]);
   // Detect provider
   React.useEffect(() => {
     detectEthereumProvider().then((res) => {

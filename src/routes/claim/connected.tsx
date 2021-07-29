@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useAppState } from "../../contexts/app-state/app-state-context";
@@ -11,13 +12,20 @@ interface ConnectedClaimProps {
 export const ConnectedClaim = ({ state, commitClaim }: ConnectedClaimProps) => {
   const { t } = useTranslation();
   const { appState } = useAppState();
-  const { address } = appState;
+  const { address, tranches } = appState;
   const showRedeem = false; // TODO needs to be false until we build this
-  const trancheEndDate = "June 5 2023";
-  const unlockDate = "5th March 2022";
   const code = state.code!;
+  const currentTranche = React.useMemo(() => {
+    return tranches.find(
+      ({ tranche_id }) => Number(tranche_id) === state.trancheId
+    );
+  }, [state.trancheId, tranches]);
+  if (!currentTranche) {
+    throw new Error("Could not find tranche");
+  }
   const shortCode =
     code.slice(0, 6) + "..." + code.slice(code.length - 4, code.length);
+  console.log(currentTranche);
   return (
     <section>
       <p>
@@ -25,11 +33,16 @@ export const ConnectedClaim = ({ state, commitClaim }: ConnectedClaimProps) => {
           user: state.target ? state.target : "the holder",
           code: shortCode,
           amount: state.denomination,
-          trancheName: state.trancheId, // TODO pull tanche name from id
-          unlockDate,
-          trancheEndDate,
+          trancheName: state.trancheId,
+          unlockDate: format(
+            new Date(currentTranche.tranche_end).getTime(),
+            "MMM d, yyyy"
+          ),
+          trancheEndDate: format(
+            new Date(currentTranche.tranche_start).getTime(),
+            "MMM d, yyyy"
+          ),
         })}
-
         {showRedeem ? t("showRedeem") : null}
       </p>
       {state.target && state.target !== address && (
