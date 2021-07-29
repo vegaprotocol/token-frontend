@@ -1,4 +1,4 @@
-import { format, isEqual } from "date-fns";
+import { format } from "date-fns";
 import { useTranslation } from "react-i18next";
 
 interface TrancheDatesParams {
