@@ -4,7 +4,7 @@ import { generateTranches } from "./generate-tranche";
 import { PromiEvent } from "web3-core";
 
 class VegaWeb3 {
-  private chainId: EthereumChainId;
+  public chainId: EthereumChainId;
 
   constructor(chainId: EthereumChainId) {
     this.chainId = chainId;

@@ -1,14 +1,17 @@
+import { useVegaWeb3 } from "../../hooks/use-vega-web3";
+import { Addresses } from "../../lib/vega-web3";
+import { EthereumChainIds } from "../../lib/vega-web3-utils";
 import { Heading } from "../heading";
 import { Notice } from "../notice";
 
-const vestingAddress = "0x23d1bFE8fA50a167816fBD79D7932577c06011f4";
-
-interface DefaultTemplateProps {
+export interface DefaultTemplateProps {
   children: React.ReactNode;
   title?: React.ReactNode | string;
 }
 
 export function DefaultTemplate({ children, title }: DefaultTemplateProps) {
+  const vega = useVegaWeb3(EthereumChainIds.Mainnet);
+  const { vestingAddress } = Addresses[vega.chainId];
   return (
     <div className="app-wrapper">
       <Heading title={title} />

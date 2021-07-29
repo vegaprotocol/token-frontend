@@ -22,7 +22,7 @@ export const Addresses = {
 };
 
 class VegaWeb3 {
-  private chainId: EthereumChainId;
+  public chainId: EthereumChainId;
   private vestingInstance: Contract;
   public web3: Web3;
   public currentAccount: string | null = null;
