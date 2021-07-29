@@ -1,6 +1,5 @@
 import detectEthereumProvider from "@metamask/detect-provider";
 import React from "react";
-import { EventEmitter } from "stream";
 import { useVegaWeb3 } from "../../hooks/use-vega-web3";
 import { EthereumChainId, EthereumChainIds } from "../../lib/vega-web3-utils";
 import { AppState, AppStateContext, AppStateAction } from "./app-state-context";
