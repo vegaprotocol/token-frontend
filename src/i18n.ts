@@ -75,7 +75,7 @@ i18n
           "Awaiting action in wallet...": "Awaiting action in wallet...",
           "Something went wrong": "Something went wrong",
           Warning:
-            "Warning: You can use your connected key to claim the Tokens but it will credit {{target}} instead of {{address}}",
+            "Warning: You can use your connected key to claim the Tokens but it will credit {{target}} instead of {{address}}.",
         },
       },
     },
