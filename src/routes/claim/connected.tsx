@@ -35,7 +35,7 @@ export const ConnectedClaim = ({ state, commitClaim }: ConnectedClaimProps) => {
       {state.target && state.target !== address && (
         <p>
           Warning: You can use your connected key to claim the Tokens but it
-          will credit {state.target} instead of {address}
+          will credit {state.target} instead of {address}.
         </p>
       )}
       <div
