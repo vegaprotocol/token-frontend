@@ -52,10 +52,10 @@ export type ClaimAction =
       type: "SET_DATA_FROM_URL";
       data: {
         denomination: string;
-        target: string;
-        tranche_id: string;
+        target?: string;
+        trancheId: string;
         expiry: string;
-        signature: string;
+        code: string;
         nonce: string;
       };
     }
@@ -82,19 +82,33 @@ export type ClaimAction =
 export function claimReducer(state: ClaimState, action: ClaimAction) {
   switch (action.type) {
     case "SET_DATA_FROM_URL":
-      return {
-        ...state,
-        denomination: action.data.denomination
-          ? Number(action.data.denomination)
-          : null,
-        target: action.data.target ?? null,
-        tranche_id: action.data.tranche_id
-          ? Number(action.data.tranche_id)
-          : null,
-        expirty: action.data.expiry ? Number(action.data.expiry) : null,
-        signature: action.data.signature ?? null,
-        nonce: action.data.signature ? Number(action.data.signature) : null,
-      };
+      // We need all of these otherwise the code is invalid
+      if (
+        !action.data.denomination ||
+        !action.data.trancheId ||
+        !action.data.expiry ||
+        !action.data.code ||
+        !action.data.nonce
+      ) {
+        return {
+          ...state,
+          error: new Error("Invalid code"),
+        };
+      } else {
+        return {
+          ...state,
+          denomination: action.data.denomination
+            ? Number(action.data.denomination)
+            : null,
+          target: action.data.target ?? null,
+          tranche_id: action.data.trancheId
+            ? Number(action.data.trancheId)
+            : null,
+          expirty: action.data.expiry ? Number(action.data.expiry) : null,
+          signature: action.data.code ?? null,
+          nonce: action.data.code ? Number(action.data.code) : null,
+        };
+      }
     case "CLAIM_TX_REQUESTED":
       return {
         ...state,
