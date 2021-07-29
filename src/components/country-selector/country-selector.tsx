@@ -1,11 +1,11 @@
 import React from "react";
 import { countryData } from "./countryData";
 
-export interface CountriesProps {
+export interface CountrySelectorProps {
     setIsValidCountry: (isValid: boolean) => void
 }
 
-export const Countries = ({setIsValidCountry}: CountriesProps) => {    
+export const CountrySelector = ({setIsValidCountry}: CountrySelectorProps) => {    
     const onSelectedCountry = (selectedCountryCode: string) => {
         const selectedCountry = countryData.filter(country => (country.code === selectedCountryCode))[0]
         setIsValidCountry(selectedCountry.isValid)

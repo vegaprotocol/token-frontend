@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Countries } from "../../components/countries";
+import { CountrySelector } from "../../components/country-selector";
 import { ClaimState, TxState } from "./claim-reducer";
 
 interface ConnectedClaimProps {
@@ -100,7 +100,7 @@ const ClaimForm = ({
       }}
     >
       <fieldset>
-        <Countries setIsValidCountry={countryValidator}/>
+        <CountrySelector setIsValidCountry={countryValidator}/>
       </fieldset>
       <fieldset>
         <input type="checkbox"></input>
