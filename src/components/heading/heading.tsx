@@ -10,12 +10,6 @@ import { useVegaWeb3 } from "../../hooks/use-vega-web3";
 import { EthereumChainIds } from "../../lib/vega-web3-utils";
 
 export interface HeadingProps {
-  error: string | null;
-  connected: boolean;
-  loading: boolean;
-  pubkey: any;
-  connect: () => void;
-  balance: string;
   title: React.ReactNode | string;
 }
 
@@ -79,14 +73,7 @@ const ConnectedKey = () => {
   }
 };
 
-export const Heading = ({
-  error,
-  connected,
-  loading,
-  // pubkey,
-  // connect,
-  title,
-}: HeadingProps) => {
+export const Heading = ({ title }: HeadingProps) => {
   return (
     <header className="heading">
       <div className="heading__nav">

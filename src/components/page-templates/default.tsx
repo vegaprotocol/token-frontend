@@ -1,7 +1,6 @@
 import { Heading } from "../heading";
 import { Notice } from "../notice";
 
-const pubkey = "0x" + "0".repeat(40);
 const vestingAddress = "0x23d1bFE8fA50a167816fBD79D7932577c06011f4";
 
 interface DefaultTemplateProps {
@@ -12,15 +11,7 @@ interface DefaultTemplateProps {
 export function DefaultTemplate({ children, title }: DefaultTemplateProps) {
   return (
     <div className="app-wrapper">
-      <Heading
-        pubkey={pubkey}
-        error={null}
-        connected={true}
-        loading={false}
-        connect={() => console.log("connect")}
-        balance={"123"}
-        title={title}
-      />
+      <Heading title={title} />
       <main>{children}</main>
       <footer>
         <Notice vestingAddress={vestingAddress} />
