@@ -14,6 +14,10 @@ class VegaWeb3 {
     return Promise.resolve(generateTranches(10));
   }
 
+  async getUserBalanceAllTranches() {
+    return Promise.resolve("123");
+  }
+
   commitClaim(): PromiEvent<any> {
     const promiEvent = new MockPromiEvent();
 
