@@ -34,8 +34,6 @@ i18n
             "VEGA was successfully withdrawn to your wallet",
 
           "Please select your country": "Please select your country",
-          "I accept the Terms and Conditions":
-            "I accept the Terms and Conditions",
 
           "Fully vested on": "Fully vested on",
           "Vesting from": "Vesting from",

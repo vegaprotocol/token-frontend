@@ -100,10 +100,6 @@ const ClaimForm = ({
           <option>Earth</option>
         </select>
       </fieldset>
-      <fieldset>
-        <input type="checkbox"></input>
-        <label>{t("I accept the Terms and Conditions")}</label>
-      </fieldset>
       <button>{t("Continue")}</button>
     </form>
   );
