@@ -1,6 +1,6 @@
 import React from "react";
 import { EthereumChainId } from "../../lib/vega-web3-utils";
-
+import type { Tranche } from "../../lib/vega-web3-types";
 export interface AppState {
   hasProvider: boolean;
   address: string | null;
@@ -8,6 +8,7 @@ export interface AppState {
   connecting: boolean;
   chainId: EthereumChainId | null;
   balance: null | string;
+  tranches: Tranche[];
 }
 
 export type AppStateAction =
@@ -22,7 +23,8 @@ export type AppStateAction =
     }
   | { type: "CONNECT_FAIL"; error: Error }
   | { type: "ACCOUNTS_CHANGED"; address: string }
-  | { type: "CHAIN_CHANGED"; chainId: EthereumChainId };
+  | { type: "CHAIN_CHANGED"; chainId: EthereumChainId }
+  | { type: "SET_TRANCHES"; tranches: Tranche[] };
 
 type AppStateContextShape = {
   appState: AppState;

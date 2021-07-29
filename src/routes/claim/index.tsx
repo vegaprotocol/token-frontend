@@ -18,6 +18,7 @@ const ClaimRouter = () => {
   const [state, dispatch] = React.useReducer(claimReducer, initialClaimState);
   const connect = useConnect();
   React.useEffect(() => {
+    // TODO validate code on ETH chain in some way
     dispatch({
       type: "SET_DATA_FROM_URL",
       data: {
