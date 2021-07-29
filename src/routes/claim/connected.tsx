@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { CountrySelector } from "../../components/country-selector";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { ClaimState, TxState } from "./claim-reducer";
 
@@ -87,6 +88,10 @@ const ClaimForm = ({
   state: ClaimState;
   onSubmit: () => void;
 }) => {
+  const [isValidCountry, setIsValidCountry] = React.useState(false);
+  const countryValidator = (isValid: boolean) => {
+    setIsValidCountry(isValid);
+  };
   const { t } = useTranslation();
 
   if (state.claimTxState === TxState.Error) {
@@ -120,12 +125,9 @@ const ClaimForm = ({
       }}
     >
       <fieldset>
-        <select>
-          <option>{t("Please select your country")}</option>
-          <option>Earth</option>
-        </select>
+        <CountrySelector setIsValidCountry={countryValidator} />
       </fieldset>
-      <button>{t("Continue")}</button>
+      <button disabled={!isValidCountry}>{t("Continue")}</button>
     </form>
   );
 };
