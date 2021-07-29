@@ -204,43 +204,6 @@ class VegaWeb3 {
   async commitCode() {}
 
   async revealCode() {}
-
-  // async connectToEthWallet(): Promise<string> {
-  //   // @ts-ignore
-  //   if (!window.ethereum) {
-  //     throw new Error("Could not find Ethereum provider");
-  //   }
-  //   const accounts = await this.web3.eth.requestAccounts();
-  //   if (!accounts.length) {
-  //     throw new Error("Could not find account");
-  //   }
-  //   this.currentAccount = accounts[0];
-  //   this.provider.on(
-  //     "connected",
-  //     (connectInfo: { chainId: EthereumChainId }) => {
-  //       this.connected = true;
-  //       this.chainId = connectInfo?.chainId;
-  //     }
-  //   );
-  //   this.provider.on("disconnect", () => {
-  //     this.connected = false;
-  //   });
-
-  //   this.provider.on("accountsChanged", (accounts: string[]) => {
-  //     if (accounts.length) {
-  //       this.currentAccount = accounts[0];
-  //     } else {
-  //       this.currentAccount = null;
-  //     }
-  //   });
-
-  //   this.provider.on("chainChanged", (chainId: EthereumChainId) => {});
-  //   return accounts[0];
-  // }
-
-  // off() {
-  //   // TODO
-  // }
 }
 
 export default VegaWeb3;
