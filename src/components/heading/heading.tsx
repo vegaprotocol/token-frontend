@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useConnect } from "../../hooks/use-connect";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import { EthereumChainIds } from "../../lib/vega-web3-utils";
-import { useVegaWeb3 } from "../../hooks/use-vega-web3";
 
 export interface HeadingProps {
   error: string | null;
@@ -31,9 +29,9 @@ const ConnectedKey = () => {
     return <div>Loading</div>;
   } else if (!address) {
     return (
-      <div className="Button" onClick={connect}>
+      <button className="Button" onClick={connect}>
         {t("Connect")}
-      </div>
+      </button>
     );
   } else if (error) {
     // TODO change this message
