@@ -9,22 +9,20 @@ interface ConnectedClaimProps {
 
 export const ConnectedClaim = ({ state, commitClaim }: ConnectedClaimProps) => {
   const { t } = useTranslation();
-
-  const code = "0xf780...d296Cb";
-  const trancheName = "tranch 2";
   const showRedeem = false; // TODO needs to be false until we build this
   const trancheEndDate = "June 5 2023";
   const unlockDate = "5th March 2022";
-  const pubkey = "0x" + "0".repeat(40);
-  const amount = 200;
+  const code = state.code!;
+  const shortCode =
+    code.slice(0, 6) + "..." + code.slice(code.length - 4, code.length);
   return (
     <section>
       <p>
         {t("claim", {
-          user: pubkey ? pubkey : "the holder",
-          code,
-          amount,
-          trancheName,
+          user: state.target ? state.target : "the holder",
+          code: shortCode,
+          amount: state.denomination,
+          trancheName: state.trancheId, // TODO pull tanche name from id
           unlockDate,
           trancheEndDate,
         })}

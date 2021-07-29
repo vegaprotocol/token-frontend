@@ -6,8 +6,6 @@ import { useConnect } from "../../hooks/use-connect";
 import { useSearchParams } from "../../hooks/use-search-params";
 import { useVegaWeb3 } from "../../hooks/use-vega-web3";
 import { EthereumChainIds } from "../../lib/vega-web3-utils";
-// import VegaWeb3 from "../../lib/vega-web3";
-// import { EthereumChainIds } from "../../lib/vega-web3-utils";
 import { ClaimError } from "./claim-error";
 import { claimReducer, initialClaimState } from "./claim-reducer";
 import { ConnectedClaim } from "./connected";
@@ -36,7 +34,6 @@ const ClaimRouter = () => {
   const commitClaim = React.useCallback(async () => {
     dispatch({ type: "CLAIM_TX_REQUESTED" });
     const promi = vega.commitClaim();
-    console.log(promi);
     promi
       .on("transactionHash", (hash: string) => {
         dispatch({ type: "CLAIM_TX_SUBMITTED", txHash: hash });

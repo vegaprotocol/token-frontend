@@ -18,9 +18,9 @@ export interface ClaimState {
   // From URL
   denomination: number | null; // amount
   target: string | null; // ETH address
-  tranche_id: number | null;
+  trancheId: number | null;
   expiry: number | null; // timestamp in seconds
-  signature: string | null;
+  code: string | null;
   nonce: number | null;
 
   // generic
@@ -38,9 +38,9 @@ export const initialClaimState: ClaimState = {
 
   denomination: null,
   target: null,
-  tranche_id: null,
+  trancheId: null,
   expiry: null,
-  signature: null,
+  code: null,
   nonce: null,
 
   // generic
@@ -84,6 +84,7 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
     case "SET_DATA_FROM_URL":
       // We need all of these otherwise the code is invalid
       if (
+        // Do not need target as keys can be for the holder only
         !action.data.denomination ||
         !action.data.trancheId ||
         !action.data.expiry ||
@@ -97,16 +98,12 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
       } else {
         return {
           ...state,
-          denomination: action.data.denomination
-            ? Number(action.data.denomination)
-            : null,
+          denomination: Number(action.data.denomination),
           target: action.data.target ?? null,
-          tranche_id: action.data.trancheId
-            ? Number(action.data.trancheId)
-            : null,
-          expirty: action.data.expiry ? Number(action.data.expiry) : null,
-          signature: action.data.code ?? null,
-          nonce: action.data.code ? Number(action.data.code) : null,
+          tranche_id: Number(action.data.trancheId),
+          expirty: Number(action.data.expiry),
+          code: action.data.code,
+          nonce: Number(action.data.code),
         };
       }
     case "CLAIM_TX_REQUESTED":
