@@ -3,13 +3,13 @@ import { useParams } from "react-router";
 import { Loading } from "../../components/loading";
 import type { Tranche as TrancheType } from "../../lib/vega-web3-types";
 import { Link } from "react-router-dom";
-import { TrancheDates } from './tranche-dates'
+import { TrancheDates } from "./tranche-dates";
 import { useTranslation } from "react-i18next";
 
 export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
-  const { trancheId } = useParams() as any;
+  const { trancheId } = useParams<{ trancheId: string }>();
 
   const getTranche = () => {
     const matches = tranches.filter(
@@ -19,7 +19,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
     return matches[0];
   };
 
- const getAbbreviatedNumber = (num: number) => {
+  const getAbbreviatedNumber = (num: number) => {
     return Number(num.toFixed()).toLocaleString();
   };
   //   const withdraw = async () => {
@@ -49,11 +49,16 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
           <div>
             <div className="Left">
               <Link to="/tranches" className="GoBack">
-                &lt; {t("Back")} 
+                &lt; {t("Back")}
               </Link>
-              <div className="TrancheTitle">{t('Tranche')} #{trancheId}</div>
+              <div className="TrancheTitle">
+                {t("Tranche")} #{trancheId}
+              </div>
               <div className="TrancheDates">
-                <TrancheDates start={currentTranche.tranche_start} end={currentTranche.tranche_end} />
+                <TrancheDates
+                  start={currentTranche.tranche_start}
+                  end={currentTranche.tranche_end}
+                />
               </div>
             </div>
             {/* <div className="Right">
@@ -138,7 +143,8 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
                   <div className="Right">
                     {user.total_tokens.toLocaleString()} VEGA{" "}
                     <span className="UserRedeemed">
-                      {getAbbreviatedNumber(user.withdrawn_tokens)} {t("Redeemed").toLowerCase()}
+                      {getAbbreviatedNumber(user.withdrawn_tokens)}{" "}
+                      {t("Redeemed").toLowerCase()}
                     </span>
                   </div>
                   <div className="Clear"></div>
