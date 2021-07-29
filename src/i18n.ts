@@ -18,7 +18,7 @@ i18n
           pageTitleTranches: "View tranches",
 
           Vesting: "Vesting",
-          Connect: "Connect",
+          Connect: "Connect to see your VEGA balance",
           of: "of",
           to: "to",
 
