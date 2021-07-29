@@ -141,7 +141,7 @@ class VegaWeb3 {
         );
         const balanceRemovedEvents = events.filter(
           (e) =>
-            e.event === TrancheEvents.BalanceAdded &&
+            e.event === TrancheEvents.BalanceRemoved &&
             e.returnValues.tranche_id === tranche_id
         );
 
@@ -154,7 +154,6 @@ class VegaWeb3 {
         // get added and removed values
         const total_added = this.sumFromEvents(balanceAddedEvents);
         const total_removed = this.sumFromEvents(balanceRemovedEvents);
-
         // get locked amount
         const locked_amount = this.getLockedAmount(
           total_added,
