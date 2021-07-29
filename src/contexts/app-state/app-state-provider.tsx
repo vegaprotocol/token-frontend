@@ -1,5 +1,6 @@
 import detectEthereumProvider from "@metamask/detect-provider";
 import React from "react";
+import { EventEmitter } from "stream";
 import { useVegaWeb3 } from "../../hooks/use-vega-web3";
 import { EthereumChainId, EthereumChainIds } from "../../lib/vega-web3-utils";
 import { AppState, AppStateContext, AppStateAction } from "./app-state-context";
@@ -78,6 +79,7 @@ function appStateReducer(state: AppState, action: AppStateAction) {
 export function AppStateProvider({ children }: AppStateProviderProps) {
   const provider = React.useRef<any>();
   const vega = useVegaWeb3(EthereumChainIds.Mainnet);
+  const useMocks = ["1", "true"].includes(process.env.REACT_APP_MOCKED!);
 
   const [state, dispatch] = React.useReducer(appStateReducer, initialAppState);
   React.useEffect(() => {
@@ -89,13 +91,20 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
   }, [vega]);
   // Detect provider
   React.useEffect(() => {
-    detectEthereumProvider().then((res) => {
-      if (res !== null) {
-        provider.current = res;
-        dispatch({ type: "PROVIDER_DETECTED" });
-      }
-    });
-  }, []);
+    if (useMocks) {
+      provider.current = {
+        on() {},
+      };
+      dispatch({ type: "PROVIDER_DETECTED" });
+    } else {
+      detectEthereumProvider().then((res) => {
+        if (res !== null) {
+          provider.current = res;
+          dispatch({ type: "PROVIDER_DETECTED" });
+        }
+      });
+    }
+  }, [useMocks]);
 
   // Bind listeners for account change
   React.useEffect(() => {
