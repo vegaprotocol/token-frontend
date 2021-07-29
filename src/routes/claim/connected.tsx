@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { Countries } from "../../components/countries";
 import { ClaimState, TxState } from "./claim-reducer";
 
 interface ConnectedClaimProps {
@@ -62,6 +63,10 @@ const ClaimForm = ({
   state: ClaimState;
   onSubmit: () => void;
 }) => {
+  const [isValidCountry, setIsValidCountry] = React.useState(false)
+  const countryValidator = (isValid: boolean) => {
+    setIsValidCountry(isValid)
+  }
   const { t } = useTranslation();
 
   if (state.claimTxState === TxState.Error) {
@@ -95,16 +100,13 @@ const ClaimForm = ({
       }}
     >
       <fieldset>
-        <select>
-          <option>{t("Please select your country")}</option>
-          <option>Earth</option>
-        </select>
+        <Countries setIsValidCountry={countryValidator}/>
       </fieldset>
       <fieldset>
         <input type="checkbox"></input>
         <label>{t("I accept the Terms and Conditions")}</label>
       </fieldset>
-      <button>{t("Continue")}</button>
+      <button disabled={!isValidCountry}>{t("Continue")}</button>
     </form>
   );
 };
