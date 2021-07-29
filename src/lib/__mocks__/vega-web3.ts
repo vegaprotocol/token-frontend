@@ -4,7 +4,7 @@ import { generateTranches } from "./generate-tranche";
 import { PromiEvent } from "web3-core";
 
 class VegaWeb3 {
-  private chainId: EthereumChainId;
+  public chainId: EthereumChainId;
 
   constructor(chainId: EthereumChainId) {
     this.chainId = chainId;
@@ -12,6 +12,10 @@ class VegaWeb3 {
 
   async getAllTranches(): Promise<Tranche[]> {
     return Promise.resolve(generateTranches(10));
+  }
+
+  async getUserBalanceAllTranches() {
+    return Promise.resolve("123");
   }
 
   commitClaim(): PromiEvent<any> {

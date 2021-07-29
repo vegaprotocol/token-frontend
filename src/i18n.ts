@@ -18,7 +18,7 @@ i18n
           pageTitleTranches: "View tranches",
 
           Vesting: "Vesting",
-          Connect: "Connect",
+          Connect: "Connect to see your VEGA balance",
           of: "of",
           to: "to",
 
@@ -70,6 +70,12 @@ i18n
 
           invalidWeb3Browser:
             "Please a compatitble browser or install Metamask",
+          "Vesting Balance": "Vesting Balance",
+          Vega: "Vega",
+          Account: "Account",
+          Loading: "Loading",
+          "Awaiting action in wallet...": "Awaiting action in wallet...",
+          "Something went wrong": "Something went wrong",
         },
       },
     },
