@@ -40,13 +40,15 @@ const ConnectedKey = () => {
   }, [connect, getBalances]);
   const { appState } = useAppState();
   const { connecting, address, error } = appState;
-  console.log(error);
+
   if (error) {
-    return <div className="heading__error">Something went wrong</div>;
+    return <div className="heading__error">{t("Something went wrong")}</div>;
   } else if (connecting) {
-    return <div className="heading__wallet">Awaiting action in wallet...</div>;
+    return (
+      <div className="heading__wallet">{t("Awaiting action in wallet...")}</div>
+    );
   } else if (loading) {
-    return <div className="heading__wallet">Loading</div>;
+    return <div className="heading__wallet">{t("Loading")}</div>;
   } else if (!address) {
     return (
       <button className="Button" onClick={connectWithBalance}>
@@ -56,7 +58,7 @@ const ConnectedKey = () => {
   } else {
     return (
       <div className="heading__wallet">
-        <span className="heading__wallet-label">Account: </span>
+        <span className="heading__wallet-label">{t("Account")}: </span>
         <span className="heading__wallet-value">
           <a
             rel="noreferrer"
@@ -68,8 +70,10 @@ const ConnectedKey = () => {
               address.slice(address.length - 4, address.length)}
           </a>
         </span>
-        <span className="heading__wallet-label">Vesting Balance: </span>
-        <span className="heading__wallet-value">{balance} VEGA</span>
+        <span className="heading__wallet-label">{t("Vesting Balance")}: </span>
+        <span className="heading__wallet-value">
+          {balance} {t("VEGA")}
+        </span>
       </div>
     );
   }
