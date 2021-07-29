@@ -1,26 +1,44 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { DefaultTemplate } from "../../components/page-templates/default";
+import { useSearchParams } from "../../hooks/use-search-params";
+import { useVegaWeb3 } from "../../hooks/use-vega-web3";
+import { EthereumChainIds } from "../../lib/vega-web3-utils";
 // import VegaWeb3 from "../../lib/vega-web3";
 // import { EthereumChainIds } from "../../lib/vega-web3-utils";
 import { ClaimError } from "./claim-error";
+import { claimReducer, initialClaimState } from "./claim-reducer";
 import { ConnectedClaim } from "./connected";
 
 const ClaimRouter = () => {
+  const vega = useVegaWeb3(EthereumChainIds.Mainnet);
   const { t } = useTranslation();
+  const params = useSearchParams();
+  const [state, dispatch] = React.useReducer(claimReducer, initialClaimState);
 
-  React.useCallback(() => {
-    async function getTranches() {}
+  React.useEffect(() => {
+    dispatch({ type: "SET_DATA_FROM_URL", data: params });
+  }, [params]);
 
-    getTranches();
-  }, []);
+  const commitClaim = React.useCallback(async () => {
+    dispatch({ type: "CLAIM_TX_REQUESTED" });
+    const promi = vega.commitClaim();
+    console.log(promi);
+    promi
+      .on("transactionHash", (hash: string) => {
+        dispatch({ type: "CLAIM_TX_SUBMITTED", txHash: hash });
+      })
+      .on("receipt", (receipt: any) => {
+        dispatch({ type: "CLAIM_TX_COMPLETE", receipt });
+      })
+      .on("error", (err) => {
+        dispatch({ type: "CLAIM_TX_ERROR", error: err });
+      });
+  }, [vega]);
 
-  const [connecting, setConnecting] = React.useState<boolean>(false);
-  const [connected, setConnected] = React.useState<boolean>(false);
-  const [error, setError] = React.useState<boolean>(true);
   const connect = React.useCallback(async () => {
     try {
-      setConnecting(true);
+      dispatch({ type: "CONNECT" });
 
       // const vega = new VegaWeb3(EthereumChainIds.Mainnet);
       // // @ts-ignore
@@ -29,21 +47,19 @@ const ClaimRouter = () => {
       // }
       // await vega.web3.eth.net.isListening();
       // await vega.web3.eth.requestAccounts();
-      setConnected(true);
+      dispatch({ type: "CONNECTED", address: "0x123" });
     } catch (e) {
-      console.log(e);
-      setError(true);
+      dispatch({ type: "ERROR", error: e });
     } finally {
-      setConnecting(false);
     }
   }, []);
 
   let pageContent = null;
 
-  if (error) {
+  if (state.error) {
     pageContent = <ClaimError />;
-  } else if (connected) {
-    pageContent = <ConnectedClaim />;
+  } else if (state.address) {
+    pageContent = <ConnectedClaim state={state} commitClaim={commitClaim} />;
   } else {
     pageContent = (
       <section>
@@ -52,7 +68,7 @@ const ClaimRouter = () => {
             "You will need to connect to an ethereum wallet to pay the gas and claim tokens"
           )}
         </p>
-        {connecting ? (
+        {state.connecting ? (
           <div>{t("Please check wallet")}</div>
         ) : (
           <button onClick={() => connect()}>
