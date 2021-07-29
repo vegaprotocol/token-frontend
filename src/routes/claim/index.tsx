@@ -18,19 +18,36 @@ const ClaimRouter = () => {
   const [state, dispatch] = React.useReducer(claimReducer, initialClaimState);
   const connect = useConnect();
   React.useEffect(() => {
-    // TODO validate code on ETH chain in some way
-    dispatch({
-      type: "SET_DATA_FROM_URL",
-      data: {
+    const run = async () => {
+      const valid = await vega.validateCode({
         nonce: params.n,
         trancheId: params.t,
         expiry: params.ex,
         target: params.targ,
         denomination: params.d,
         code: params.r,
-      },
-    });
-  }, [params]);
+      });
+      if (!valid) {
+        dispatch({
+          type: "ERROR",
+          error: new Error("Invalid code"),
+        });
+      } else {
+        dispatch({
+          type: "SET_DATA_FROM_URL",
+          data: {
+            nonce: params.n,
+            trancheId: params.t,
+            expiry: params.ex,
+            target: params.targ,
+            denomination: params.d,
+            code: params.r,
+          },
+        });
+      }
+    };
+    run();
+  }, [params, vega]);
 
   const commitClaim = React.useCallback(async () => {
     dispatch({ type: "CLAIM_TX_REQUESTED" });

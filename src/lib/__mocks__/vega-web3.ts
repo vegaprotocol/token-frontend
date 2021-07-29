@@ -18,6 +18,24 @@ class VegaWeb3 {
     return Promise.resolve("123");
   }
 
+  async validateCode({
+    nonce,
+    trancheId,
+    expiry,
+    target,
+    denomination,
+    code,
+  }: {
+    nonce: string;
+    trancheId: string;
+    expiry: string;
+    target?: string;
+    denomination: string;
+    code: string;
+  }) {
+    return Promise.resolve(true);
+  }
+
   commitClaim(): PromiEvent<any> {
     const promiEvent = new MockPromiEvent();
 
