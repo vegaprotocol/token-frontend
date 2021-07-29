@@ -1,6 +1,6 @@
 /** DO NOT MODIFY - this is hashed and kept in the contract so it CANNOT be modified */
 
-export default [
+const COUNTRIES = [
   { name: "Select your country", isValid: false, code: "", id: 0 },
   { name: "Afghanistan", isValid: true, code: "AF", id: 1 },
   { name: "Åland Islands", isValid: true, code: "AX", id: 2 },
@@ -296,3 +296,5 @@ export default [
   { name: "Zambia", isValid: true, code: "ZM", id: 242 },
   { name: "Zimbabwe", isValid: true, code: "ZW", id: 243 },
 ];
+
+export default COUNTRIES;
