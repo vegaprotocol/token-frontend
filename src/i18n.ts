@@ -69,7 +69,7 @@ i18n
           invalidWeb3Browser:
             "Please a compatitble browser or install Metamask",
           "Vesting Balance": "Vesting Balance",
-          Vega: "Vega",
+          VEGA: "VEGA",
           Account: "Account",
           Loading: "Loading",
           "Awaiting action in wallet...": "Awaiting action in wallet...",
