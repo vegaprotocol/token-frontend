@@ -30,11 +30,14 @@ const ConnectedKey = () => {
     try {
       const res = await vega.getUserBalanceAllTranches();
       setBalance(res);
-    } catch {
     } finally {
-      // setLoading(true);
+      setLoading(false);
     }
   }, [vega]);
+  const connectWithBalance = React.useCallback(async () => {
+    await connect();
+    await getBalances();
+  }, [connect, getBalances]);
   const { appState } = useAppState();
   const { connecting, address, error } = appState;
   console.log(error);
@@ -46,7 +49,7 @@ const ConnectedKey = () => {
     return <div className="heading__wallet">Loading</div>;
   } else if (!address) {
     return (
-      <button className="Button" onClick={connect}>
+      <button className="Button" onClick={connectWithBalance}>
         {t("Connect")}
       </button>
     );
