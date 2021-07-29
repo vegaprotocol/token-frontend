@@ -19,10 +19,18 @@ const ClaimRouter = () => {
   const { appState } = useAppState();
   const [state, dispatch] = React.useReducer(claimReducer, initialClaimState);
   const connect = useConnect();
-
-  // TODO: check this when url is finalized, values will be used for claim and reveal
   React.useEffect(() => {
-    dispatch({ type: "SET_DATA_FROM_URL", data: params });
+    dispatch({
+      type: "SET_DATA_FROM_URL",
+      data: {
+        nonce: params.n,
+        trancheId: params.t,
+        expiry: params.ex,
+        target: params.targ,
+        denomination: params.d,
+        code: params.r,
+      },
+    });
   }, [params]);
 
   const commitClaim = React.useCallback(async () => {
