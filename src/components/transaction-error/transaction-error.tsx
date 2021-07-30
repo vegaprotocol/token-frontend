@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 export interface TransactionErrorProps {
   error: Error | null;
   hash: string | null;
-  onActionClick?: () => void;
+  onActionClick: () => void;
 }
 
 export const TransactionError = ({
@@ -34,9 +34,7 @@ export const TransactionError = ({
           {t("View on Etherscan (Opens in a new tab)")}
         </a>
       ) : null}
-      <button onClick={() => (onActionClick ? onActionClick() : null)}>
-        {t("Try again")}
-      </button>
+      <button onClick={() => onActionClick()}>{t("Try again")}</button>
     </div>
   );
 };

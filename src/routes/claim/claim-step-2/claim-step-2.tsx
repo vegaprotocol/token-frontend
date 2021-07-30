@@ -36,6 +36,7 @@ export const ClaimStep2 = ({
   if (state.revealTxState === TxState.Error) {
     content = (
       <TransactionError
+        onActionClick={() => dispatch({ type: "REVEAL_TX_RESET" })}
         error={state.revealTxData.error}
         hash={state.revealTxData.hash}
       />

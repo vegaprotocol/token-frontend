@@ -113,6 +113,11 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
       return {
         ...state,
         claimTxState: TxState.Default,
+        claimTxData: {
+          hash: null,
+          receipt: null,
+          error: null,
+        },
       };
     case "CLAIM_TX_REQUESTED":
       return {

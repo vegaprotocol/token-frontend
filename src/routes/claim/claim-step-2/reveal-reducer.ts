@@ -49,7 +49,8 @@ export type RevealAction =
   | {
       type: "ERROR";
       error: Error;
-    };
+    }
+  | { type: "REVEAL_TX_RESET" };
 
 export function revealReducer(state: RevealState, action: RevealAction) {
   switch (action.type) {
@@ -91,6 +92,17 @@ export function revealReducer(state: RevealState, action: RevealAction) {
         ...state,
         error: action.error,
       };
+    case "REVEAL_TX_RESET": {
+      return {
+        ...state,
+        revealTxState: TxState.Default,
+        revealTxData: {
+          hash: null,
+          receipt: null,
+          error: null,
+        },
+      };
+    }
     default:
       return state;
   }
