@@ -37,7 +37,7 @@ const en = {
       "If you have been given a link please double check and try again",
 
     "You will need to connect to an ethereum wallet to pay the gas and claim tokens":
-      "You will need to connect to an ethereum wallet to pay the gas and claim tokens.",
+      "To claim tokens you will need to connect an ethereum wallet with ETH to pay for gas. It may be easier to connect to the wallet that you wish your tokens to be sent to.",
     "Please check wallet": "Please check wallet",
     "Connect to an Ethereum wallet": "Connect to an Ethereum wallet",
 
@@ -69,8 +69,8 @@ const en = {
     "Something went wrong": "Something went wrong",
     "Try again": "Try again",
     Warning: "Warning",
-    " You can use your connected key to claim the Tokens but it will credit {{target}} instead of {{address}}":
-      " You can use your connected key to claim the Tokens but it will credit {{target}} instead of {{address}}.",
+    "You can use your connected key to claim the Tokens but it will credit {{target}} instead of {{address}}":
+      "You can use your connected key to claim the Tokens but it will credit {{target}} instead of {{address}}.",
     Complete: "Complete",
     "View on Etherscan (opens in a new tab)":
       "View on Etherscan (opens in a new tab)",
