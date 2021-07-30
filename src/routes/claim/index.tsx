@@ -90,7 +90,10 @@ const ClaimRouter = () => {
         ) : appState.connecting ? (
           <TransactionConfirm />
         ) : (
-          <button onClick={connect}>
+          <button
+            onClick={connect}
+            style={{ backgroundColor: "#074EE8", color: "white" }}
+          >
             {t("Connect to an Ethereum wallet")}
           </button>
         )}

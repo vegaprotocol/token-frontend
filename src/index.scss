@@ -4,20 +4,19 @@
 
 button {
   width: 100%;
-  color: white;
-  background-color: #074ee8;
+  color: black;
+  background-color: white;
   border: 0;
   border-radius: 2px;
   padding: 12px;
 
   &:disabled {
-    background-color: white;
-    color: #074ee8;
+    background-color: #c2c2c2;
+    color: #767676;
   }
 
   &:hover:not(:disabled) {
     cursor: pointer;
-    background-color: rgba(7, 78, 232, 0.75);
   }
 }
 
