@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { ClaimForm } from "./claim-form";
 import { ClaimAction, ClaimState } from "./claim-form/claim-reducer";
+import { ClaimState, TxState } from "./claim-form/claim-reducer";
 import { ClaimStep2 } from "./claim-step-2";
 
 interface ConnectedClaimProps {
@@ -71,7 +72,11 @@ export const ConnectedClaim = ({ state, commitClaim, dispatch }: ConnectedClaimP
           <ClaimForm state={state} onSubmit={() => commitClaim()} dispatch={dispatch} />
         </div>
         {/* If targeted we do not need to commit reveal, as there is no change of front running the mem pool */}
-        {state.target && <ClaimStep2 step1Completed={true} />}
+        {state.target && (
+          <ClaimStep2
+            step1Completed={state.claimTxState === TxState.Complete}
+          />
+        )}
       </div>
     </section>
   );
