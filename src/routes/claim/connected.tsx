@@ -77,6 +77,7 @@ export const ConnectedClaim = ({ state, commitClaim, dispatch }: ConnectedClaimP
             </div>
             <ClaimStep2
               step1Completed={state.claimTxState === TxState.Complete}
+              amount={state.denomination}
             />
           </>
         )}
