@@ -10,7 +10,7 @@ const en = {
     pageTitleClaim: "Claim tokens",
     pageTitleRedemption: "Redeem tokens",
     pageTitleTranches: "View tranches",
-
+    pageTitle404: "Page not found",
     Vesting: "Vesting",
     Connect: "Connect to see your VEGA balance",
     of: "of",
@@ -94,6 +94,8 @@ const en = {
       "Tokens in this tranche are fully unlocked. You can redeem tokens once they have been claimed.",
     "Tokens in this tranche are fully unlocked":
       "Tokens in this tranche are fully unlocked",
+    "This page can not be found, please check the URL and try again.":
+      "This page can not be found, please check the URL and try again.",
   },
 };
 
