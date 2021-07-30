@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { DefaultTemplate } from "../../components/page-templates/default";
+import { TransactionConfirm } from "../../components/transaction-confirm";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useConnect } from "../../hooks/use-connect";
 import { useSearchParams } from "../../hooks/use-search-params";
@@ -69,7 +70,13 @@ const ClaimRouter = () => {
   if (state.error) {
     pageContent = <ClaimError />;
   } else if (appState.address) {
-    pageContent = <ConnectedClaim state={state} commitClaim={commitClaim} dispatch={dispatch} />;
+    pageContent = (
+      <ConnectedClaim
+        state={state}
+        commitClaim={commitClaim}
+        dispatch={dispatch}
+      />
+    );
   } else {
     pageContent = (
       <section>
@@ -81,7 +88,7 @@ const ClaimRouter = () => {
         {!appState.hasProvider ? (
           <div>{t("invalidWeb3Browser")}</div>
         ) : appState.connecting ? (
-          <div>{t("Please check wallet")}</div>
+          <TransactionConfirm />
         ) : (
           <button onClick={connect}>
             {t("Connect to an Ethereum wallet")}

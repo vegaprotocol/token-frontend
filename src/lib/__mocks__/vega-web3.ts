@@ -56,7 +56,6 @@ export class MockPromiEvent {
   events: { [event: string]: Array<Function> } = {};
 
   on(event: string, callback: Function) {
-    console.log(event);
     if (this.events[event]) {
       this.events[event].push(callback);
     } else {
