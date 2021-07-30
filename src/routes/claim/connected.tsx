@@ -61,7 +61,6 @@ export const ConnectedClaim = ({ state, commitClaim, dispatch }: ConnectedClaimP
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-          height: 200,
           borderTop: "1px solid white",
           paddingTop: 15,
         }}
