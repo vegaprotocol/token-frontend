@@ -1,9 +1,10 @@
 import { format } from "date-fns";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { CountrySelector } from "../../components/country-selector";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import { ClaimState, TxState } from "./claim-reducer";
+import { ClaimForm } from "./claim-form";
+import { ClaimState } from "./claim-form/claim-reducer";
+import { ClaimStep2 } from "./claim-step-2";
 
 interface ConnectedClaimProps {
   state: ClaimState;
@@ -69,65 +70,8 @@ export const ConnectedClaim = ({ state, commitClaim }: ConnectedClaimProps) => {
           <ClaimForm state={state} onSubmit={() => commitClaim()} />
         </div>
         {/* If targeted we do not need to commit reveal, as there is no change of front running the mem pool */}
-        {state.target && (
-          <div data-testid="claim-step-2" style={{ padding: 15 }}>
-            <h1>{t("step2Title")}</h1>
-            <p>{t("step2Body")}</p>
-            <p>{t("step2Note")}</p>
-          </div>
-        )}
+        {state.target && <ClaimStep2 step1Completed={true} />}
       </div>
     </section>
-  );
-};
-
-const ClaimForm = ({
-  state,
-  onSubmit,
-}: {
-  state: ClaimState;
-  onSubmit: () => void;
-}) => {
-  const [isValidCountry, setIsValidCountry] = React.useState(false);
-  const countryValidator = (isValid: boolean) => {
-    setIsValidCountry(isValid);
-  };
-  const { t } = useTranslation();
-
-  if (state.claimTxState === TxState.Error) {
-    return <div>{state.claimTxData.error?.message || "Unknown error"}</div>;
-  }
-
-  if (state.claimTxState === TxState.Pending) {
-    return (
-      <div>
-        Transaction in progress.{" "}
-        <a href={`https://etherscan.io/tx/${state.claimTxData.hash}`}>
-          View on Etherscan
-        </a>
-      </div>
-    );
-  }
-
-  if (state.claimTxState === TxState.Requested) {
-    return <div>Please confirm transaction in your connected wallet</div>;
-  }
-
-  if (state.claimTxState === TxState.Complete) {
-    return <div>Complete</div>;
-  }
-
-  return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        onSubmit();
-      }}
-    >
-      <fieldset>
-        <CountrySelector setIsValidCountry={countryValidator} />
-      </fieldset>
-      <button disabled={!isValidCountry}>{t("Continue")}</button>
-    </form>
   );
 };
