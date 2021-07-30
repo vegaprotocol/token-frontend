@@ -8,8 +8,8 @@ export enum TxState {
 
 export interface RevealState {
   // claim form state
-  claimTxState: TxState;
-  claimTxData: {
+  revealTxState: TxState;
+  revealTxData: {
     hash: string | null;
     receipt: object | null;
     error: Error | null;
@@ -20,8 +20,8 @@ export interface RevealState {
 
 export const initialClaimState: RevealState = {
   // claim tx
-  claimTxState: TxState.Default,
-  claimTxData: {
+  revealTxState: TxState.Default,
+  revealTxData: {
     hash: null,
     receipt: null,
     error: null,
@@ -63,7 +63,7 @@ export function revealReducer(state: RevealState, action: RevealAction) {
         ...state,
         claimTxState: TxState.Pending,
         claimTxData: {
-          ...state.claimTxData,
+          ...state.revealTxData,
           hash: action.txHash,
         },
       };
@@ -73,7 +73,7 @@ export function revealReducer(state: RevealState, action: RevealAction) {
         ...state,
         claimTxState: TxState.Complete,
         claimTxData: {
-          ...state.claimTxData,
+          ...state.revealTxData,
           receipt: action.receipt,
         },
       };
@@ -82,7 +82,7 @@ export function revealReducer(state: RevealState, action: RevealAction) {
         ...state,
         claimTxState: TxState.Error,
         claimTxData: {
-          ...state.claimTxData,
+          ...state.revealTxData,
           error: action.error,
         },
       };

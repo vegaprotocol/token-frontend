@@ -27,13 +27,13 @@ export const ClaimStep2 = ({ step1Completed }: { step1Completed: boolean }) => {
       });
   }, [vega]);
   let content = null;
-  if (state.claimTxState === TxState.Error) {
-    content = <TransactionError error={state.claimTxData.error} />;
-  } else if (state.claimTxState === TxState.Pending) {
-    content = <TransactionsInProgress hash={state.claimTxData.hash} />;
-  } else if (state.claimTxState === TxState.Requested) {
+  if (state.revealTxState === TxState.Error) {
+    content = <TransactionError error={state.revealTxData.error} />;
+  } else if (state.revealTxState === TxState.Pending) {
+    content = <TransactionsInProgress hash={state.revealTxData.hash} />;
+  } else if (state.revealTxState === TxState.Requested) {
     content = <TransactionConfirm />;
-  } else if (state.claimTxState === TxState.Complete) {
+  } else if (state.revealTxState === TxState.Complete) {
     content = <TransactionComplete />;
   } else {
     content = (
