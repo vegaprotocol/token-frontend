@@ -23,7 +23,7 @@ export function useConnect() {
 
       let accounts: string[];
       if (useMocks) {
-        const confirm = window.confirm("Connet");
+        const confirm = window.confirm("Connect");
         if (confirm) {
           accounts = [mockAddress];
         } else {

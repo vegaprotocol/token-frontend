@@ -60,6 +60,9 @@ export type ClaimAction =
       };
     }
   | {
+      type: "CLAIM_TX_RESET";
+    }
+  | {
       type: "CLAIM_TX_REQUESTED";
     }
   | {
@@ -106,6 +109,11 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
           nonce: Number(action.data.code),
         };
       }
+    case "CLAIM_TX_RESET":
+      return {
+        ...state,
+        claimTxState: TxState.Default,
+      };
     case "CLAIM_TX_REQUESTED":
       return {
         ...state,

@@ -5,13 +5,15 @@ import { TransactionComplete } from "../../../components/transaction-complete";
 import { TransactionConfirm } from "../../../components/transaction-confirm";
 import { TransactionError } from "../../../components/transaction-error";
 import { TransactionsInProgress } from "../../../components/transaction-in-progress";
-import { ClaimState, TxState } from "./claim-reducer";
+import { ClaimAction, ClaimState, TxState } from "./claim-reducer";
 
 export const ClaimForm = ({
   state,
+  dispatch,
   onSubmit,
 }: {
   state: ClaimState;
+  dispatch: (action: ClaimAction) => void;
   onSubmit: () => void;
 }) => {
   const [isValidCountry, setIsValidCountry] = React.useState(false);
@@ -21,7 +23,11 @@ export const ClaimForm = ({
   const { t } = useTranslation();
 
   if (state.claimTxState === TxState.Error) {
-    return <TransactionError error={state.claimTxData.error} />;
+    return <TransactionError
+      error={state.claimTxData.error}
+      hash={state.claimTxData.hash}
+      onActionClick={() => dispatch({type: "CLAIM_TX_RESET"})}
+    />
   }
 
   if (state.claimTxState === TxState.Pending) {

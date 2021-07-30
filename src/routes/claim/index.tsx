@@ -69,7 +69,7 @@ const ClaimRouter = () => {
   if (state.error) {
     pageContent = <ClaimError />;
   } else if (appState.address) {
-    pageContent = <ConnectedClaim state={state} commitClaim={commitClaim} />;
+    pageContent = <ConnectedClaim state={state} commitClaim={commitClaim} dispatch={dispatch} />;
   } else {
     pageContent = (
       <section>
