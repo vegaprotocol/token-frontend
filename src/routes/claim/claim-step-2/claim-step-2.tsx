@@ -52,7 +52,7 @@ export const ClaimStep2 = ({
     <div data-testid="claim-step-2" style={{ padding: 15 }}>
       <h1>{t("step2Title")}</h1>
       <p>{t("step2Body")}</p>
-      {!step1Completed && <p>{t("step2Note")}</p>}
+      {!step1Completed && <p style={{ color: "#767676" }}>{t("step2Note")}</p>}
       {content}
     </div>
   );
