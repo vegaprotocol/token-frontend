@@ -1,5 +1,9 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { TransactionComplete } from "../../../components/transaction-complete";
+import { TransactionConfirm } from "../../../components/transaction-confirm";
+import { TransactionError } from "../../../components/transaction-error";
+import { TransactionsInProgress } from "../../../components/transaction-in-progress";
 import { useVegaWeb3 } from "../../../hooks/use-vega-web3";
 import { EthereumChainIds } from "../../../lib/vega-web3-utils";
 import { initialClaimState, revealReducer, TxState } from "./reveal-reducer";
@@ -24,20 +28,13 @@ export const ClaimStep2 = ({ step1Completed }: { step1Completed: boolean }) => {
   }, [vega]);
   let content = null;
   if (state.claimTxState === TxState.Error) {
-    content = <div>{state.claimTxData.error?.message || "Unknown error"}</div>;
+    content = <TransactionError error={state.claimTxData.error} />;
   } else if (state.claimTxState === TxState.Pending) {
-    content = (
-      <div>
-        Transaction in progress.{" "}
-        <a href={`https://etherscan.io/tx/${state.claimTxData.hash}`}>
-          View on Etherscan
-        </a>
-      </div>
-    );
+    content = <TransactionsInProgress hash={state.claimTxData.hash} />;
   } else if (state.claimTxState === TxState.Requested) {
-    content = <div>Please confirm transaction in your connected wallet</div>;
+    content = <TransactionConfirm />;
   } else if (state.claimTxState === TxState.Complete) {
-    content = <div>Complete</div>;
+    content = <TransactionComplete />;
   } else {
     content = (
       <button disabled={!step1Completed} onClick={() => commitReveal()}>

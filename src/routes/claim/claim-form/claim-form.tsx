@@ -1,6 +1,10 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { CountrySelector } from "../../../components/country-selector";
+import { TransactionComplete } from "../../../components/transaction-complete";
+import { TransactionConfirm } from "../../../components/transaction-confirm";
+import { TransactionError } from "../../../components/transaction-error";
+import { TransactionsInProgress } from "../../../components/transaction-in-progress";
 import { ClaimState, TxState } from "./claim-reducer";
 
 export const ClaimForm = ({
@@ -17,26 +21,19 @@ export const ClaimForm = ({
   const { t } = useTranslation();
 
   if (state.claimTxState === TxState.Error) {
-    return <div>{state.claimTxData.error?.message || "Unknown error"}</div>;
+    return <TransactionError error={state.claimTxData.error} />;
   }
 
   if (state.claimTxState === TxState.Pending) {
-    return (
-      <div>
-        Transaction in progress.{" "}
-        <a href={`https://etherscan.io/tx/${state.claimTxData.hash}`}>
-          View on Etherscan
-        </a>
-      </div>
-    );
+    return <TransactionsInProgress hash={state.claimTxData.hash} />;
   }
 
   if (state.claimTxState === TxState.Requested) {
-    return <div>Please confirm transaction in your connected wallet</div>;
+    return <TransactionConfirm />;
   }
 
   if (state.claimTxState === TxState.Complete) {
-    return <div>Complete</div>;
+    return <TransactionComplete />;
   }
 
   return (
