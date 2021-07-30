@@ -19,7 +19,7 @@ export const TransactionError = ({
       style={{
         display: "flex",
         flexDirection: "column",
-        backgroundColor: "gray",
+        backgroundColor: "#484848",
         padding: "10px",
         textAlign: "center",
       }}
