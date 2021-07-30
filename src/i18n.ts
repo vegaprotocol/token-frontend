@@ -79,6 +79,8 @@ const en = {
     "Awaiting action in Ethereum wallet (e.g. metamask)":
       "Awaiting action in Ethereum wallet (e.g. metamask)",
     "Claim {amount} Vega": "Claim {{amount}} Vega",
+    "Sorry. It is not possible to claim tokens in your country or region.":
+      "Sorry. It is not possible to claim tokens in your country or region.",
   },
 };
 
