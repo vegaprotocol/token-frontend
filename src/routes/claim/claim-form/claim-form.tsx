@@ -27,11 +27,13 @@ export const ClaimForm = ({
   const { t } = useTranslation();
 
   if (state.claimTxState === TxState.Error) {
-    return <TransactionError
-      error={state.claimTxData.error}
-      hash={state.claimTxData.hash}
-      onActionClick={() => dispatch({type: "CLAIM_TX_RESET"})}
-    />
+    return (
+      <TransactionError
+        error={state.claimTxData.error}
+        hash={state.claimTxData.hash}
+        onActionClick={() => dispatch({ type: "CLAIM_TX_RESET" })}
+      />
+    );
   }
 
   if (state.claimTxState === TxState.Pending) {
@@ -57,7 +59,9 @@ export const ClaimForm = ({
         <CountrySelector setCountry={setCountry} />
         {country && !country.isValid && country.id !== 0 && (
           <div style={{ color: "#ED1515", marginBottom: 20 }}>
-            Sorry. It is not possible to claim tokens in your country or region.
+            {t(
+              "Sorry. It is not possible to claim tokens in your country or region."
+            )}
           </div>
         )}
       </fieldset>
