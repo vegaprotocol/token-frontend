@@ -8,7 +8,13 @@ import { useVegaWeb3 } from "../../../hooks/use-vega-web3";
 import { EthereumChainIds } from "../../../lib/vega-web3-utils";
 import { initialClaimState, revealReducer, TxState } from "./reveal-reducer";
 
-export const ClaimStep2 = ({ step1Completed }: { step1Completed: boolean }) => {
+export const ClaimStep2 = ({
+  step1Completed,
+  amount,
+}: {
+  step1Completed: boolean;
+  amount: number | null;
+}) => {
   const { t } = useTranslation();
   const [state, dispatch] = React.useReducer(revealReducer, initialClaimState);
   const vega = useVegaWeb3(EthereumChainIds.Mainnet);
@@ -38,7 +44,7 @@ export const ClaimStep2 = ({ step1Completed }: { step1Completed: boolean }) => {
   } else {
     content = (
       <button disabled={!step1Completed} onClick={() => commitReveal()}>
-        Reveal
+        Claim {amount} Vega
       </button>
     );
   }
