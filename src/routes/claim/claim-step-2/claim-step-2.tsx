@@ -44,7 +44,7 @@ export const ClaimStep2 = ({
   } else {
     content = (
       <button disabled={!step1Completed} onClick={() => commitReveal()}>
-        Claim {amount} Vega
+        {t("Claim {amount} Vega", { amount })}
       </button>
     );
   }
