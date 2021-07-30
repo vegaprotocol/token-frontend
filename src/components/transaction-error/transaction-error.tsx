@@ -1,23 +1,14 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { ClaimAction } from "../../routes/claim/claim-form/claim-reducer";
 
 export interface TransactionErrorProps {
   error: Error | null,
   hash: string | null,
-  dispatch?: (action: ClaimAction) => void
+  onActionClick?: () => void
 }
 
-export const TransactionError = ({ error, hash, dispatch }: TransactionErrorProps) => {
+export const TransactionError = ({ error, hash, onActionClick }: TransactionErrorProps) => {
   const { t } = useTranslation()
-
-  const onTryAgain = () => {
-    if (dispatch) {
-      dispatch({
-        type: "CLAIM_TX_RESET"
-      });
-    }
-  }
 
   return (
     <div style={{
@@ -41,7 +32,7 @@ export const TransactionError = ({ error, hash, dispatch }: TransactionErrorProp
           :
           null
         }
-    <button onClick={() => onTryAgain()}>{t("Try again")}</button>
+    <button onClick={() => onActionClick ? onActionClick() : null}>{t("Try again")}</button>
   </div>
   )
 };

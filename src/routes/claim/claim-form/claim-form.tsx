@@ -23,7 +23,11 @@ export const ClaimForm = ({
   const { t } = useTranslation();
 
   if (state.claimTxState === TxState.Error) {
-    return <TransactionError error={state.claimTxData.error} hash={state.claimTxData.hash} dispatch={dispatch}/>;
+    return <TransactionError
+      error={state.claimTxData.error}
+      hash={state.claimTxData.hash}
+      onActionClick={() => dispatch({type: "CLAIM_TX_RESET"})}
+    />
   }
 
   if (state.claimTxState === TxState.Pending) {
