@@ -1,3 +1,9 @@
+import "./transaction-confirm.scss";
+
 export const TransactionConfirm = () => {
-  return <div>Please confirm transaction in your connected wallet</div>;
+  return (
+    <div className="transaction-confirm">
+      Awaiting action in Ethereum wallet (e.g. metamask)
+    </div>
+  );
 };
