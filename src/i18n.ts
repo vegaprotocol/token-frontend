@@ -96,6 +96,8 @@ const en = {
       "Tokens in this tranche are fully unlocked",
     "This page can not be found, please check the URL and try again.":
       "This page can not be found, please check the URL and try again.",
+    "Service unavailable": "Service unavailable",
+    "This service is not available in your country": "This service is not available in your country"
   },
 };
 

@@ -10,6 +10,8 @@ import { EthereumChainIds } from "../../lib/vega-web3-utils";
 import { ClaimError } from "./claim-error";
 import { claimReducer, initialClaimState } from "./claim-form/claim-reducer";
 import { ConnectedClaim } from "./connected";
+import { ClaimRestricted } from "./claim-restricted";
+import { isRestricted } from "./lib/is-restricted";
 
 const ClaimRouter = () => {
   const { t } = useTranslation();
@@ -65,9 +67,11 @@ const ClaimRouter = () => {
       });
   }, [vega]);
 
-  let pageContent = null;
+  let pageContent;
 
-  if (state.error) {
+  if (isRestricted()) {
+    pageContent = <ClaimRestricted />;
+  } else if (state.error) {
     pageContent = <ClaimError />;
   } else if (appState.address) {
     pageContent = (
