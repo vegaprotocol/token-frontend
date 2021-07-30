@@ -24,11 +24,7 @@ const ConnectedKey = () => {
       <div className="heading__wallet">{t("Awaiting action in wallet...")}</div>
     );
   } else if (!address) {
-    return (
-      <button className="Button" onClick={connect}>
-        {t("Connect")}
-      </button>
-    );
+    return <button onClick={connect}>{t("Connect")}</button>;
   } else {
     return (
       <div className="heading__wallet">
