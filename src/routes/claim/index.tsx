@@ -11,26 +11,7 @@ import { ClaimError } from "./claim-error";
 import { claimReducer, initialClaimState } from "./claim-form/claim-reducer";
 import { ConnectedClaim } from "./connected";
 import { ClaimRestricted } from "./claim-restricted";
-
-/**
- * Detects the geo restriction cookie
- */
-function isRestricted(): boolean {
-  const name = "restricted";
-  let cookieValue;
-  if (document.cookie && document.cookie !== "") {
-    let cookies = document.cookie.split(";");
-    for (let i = 0; i < cookies.length; i++) {
-      let cookie = cookies[i].trim();
-      if (cookie.substring(0, name.length + 1) === (name + "=")) {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
-    }
-  }
-
-  return cookieValue === "true";
-}
+import { isRestricted } from "./lib/is-restricted";
 
 const ClaimRouter = () => {
   const { t } = useTranslation();
@@ -86,7 +67,7 @@ const ClaimRouter = () => {
       });
   }, [vega]);
 
-  let pageContent = null;
+  let pageContent;
 
   if (isRestricted()) {
     pageContent = <ClaimRestricted />;
