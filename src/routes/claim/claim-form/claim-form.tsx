@@ -43,7 +43,7 @@ export const ClaimForm = ({
   }
 
   if (state.claimTxState === TxState.Complete) {
-    return <TransactionComplete />;
+    return <TransactionComplete hash={state.claimTxData.hash} />;
   }
 
   return (
