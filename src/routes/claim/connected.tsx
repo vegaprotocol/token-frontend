@@ -54,10 +54,14 @@ export const ConnectedClaim = ({
       </p>
       {state.target && state.target !== address && (
         <p>
-          {t("Warning", {
-            address,
-            target: state.target,
-          })}
+          <span style={{ color: "#ED1515" }}>{t("Warning")}: </span>
+          {t(
+            "You can use your connected key to claim the Tokens but it will credit {{target}} instead of {{address}}",
+            {
+              address,
+              target: state.target,
+            }
+          )}
         </p>
       )}
       <div
