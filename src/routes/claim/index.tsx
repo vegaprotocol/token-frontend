@@ -7,7 +7,7 @@ import { useSearchParams } from "../../hooks/use-search-params";
 import { useVegaWeb3 } from "../../hooks/use-vega-web3";
 import { EthereumChainIds } from "../../lib/vega-web3-utils";
 import { ClaimError } from "./claim-error";
-import { claimReducer, initialClaimState } from "./claim-reducer";
+import { claimReducer, initialClaimState } from "./claim-form/claim-reducer";
 import { ConnectedClaim } from "./connected";
 
 const ClaimRouter = () => {
