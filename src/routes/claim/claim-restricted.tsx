@@ -1,12 +1,12 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-export const ClaimError = () => {
+export const ClaimRestricted = () => {
   const { t } = useTranslation()
   return (
     <section>
-      <h1>{t("Something doesn't look right")}</h1>
-      <p>{t("If you have been given a link please double check and try again")}</p>
+      <h1>{t("Service unavailable")}</h1>
+      <p>{t("This service is not available in your country")}</p>
     </section>
   );
 };
