@@ -77,7 +77,10 @@ export const ConnectedClaim = ({
           />
         ) : (
           <>
-            <div data-testid="claim-step-1" style={{ padding: 15 }}>
+            <div
+              data-testid="claim-step-1"
+              style={{ padding: 15, display: "flex", flexDirection: "column" }}
+            >
               <h1>{t("step1Title")}</h1>
               <p>{t("step1Body")}</p>
               <ClaimForm
