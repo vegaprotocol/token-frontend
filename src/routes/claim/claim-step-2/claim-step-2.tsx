@@ -34,7 +34,7 @@ export const ClaimStep2 = ({ step1Completed }: { step1Completed: boolean }) => {
   } else if (state.revealTxState === TxState.Requested) {
     content = <TransactionConfirm />;
   } else if (state.revealTxState === TxState.Complete) {
-    content = <TransactionComplete />;
+    content = <TransactionComplete hash={state.revealTxData.hash} />;
   } else {
     content = (
       <button disabled={!step1Completed} onClick={() => commitReveal()}>

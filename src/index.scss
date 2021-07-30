@@ -16,6 +16,7 @@ button {
   }
 
   &:hover:not(:disabled) {
+    cursor: pointer;
     background-color: rgba(7, 78, 232, 0.5);
   }
 }
