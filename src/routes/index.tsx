@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { Loading } from "../components/loading";
+import { NotFound } from "./404";
 import routerConfig from "./router-config";
 
 export const AppRouter = () => {
@@ -14,6 +15,7 @@ export const AppRouter = () => {
             </Route>
           )
         )}
+        <Route component={NotFound} />
       </React.Suspense>
     </Switch>
   );
