@@ -75,41 +75,42 @@ export const ConnectedClaim = ({
         {t("claim2", {
           expiry: "12/12/12", // TODO correct date.
         })}
-        {noneRedeemable && (
-          <p>
-            {t("tranche description", {
-              unlockDate,
-              trancheEndDate,
-            })}{" "}
-            {showRedeem && t("none redeemable")}
-          </p>
-        )}
-        {partiallyRedeemable && (
-          <p>
-            {t("tranche description", {
-              unlockDate,
-              trancheEndDate,
-            })}{" "}
-            {showRedeem && t("partially redeemable")}
-          </p>
-        )}
-        {fullyRedeemable && (
-          <p>
-            {t("Tokens in this tranche are fully unlocked.")}
-            {showRedeem && t("fully redeemable")}
-          </p>
-        )}
       </p>
+      {noneRedeemable && (
+        <p>
+          {t("tranche description", {
+            unlockDate,
+            trancheEndDate,
+          })}{" "}
+          {showRedeem && t("none redeemable")}
+        </p>
+      )}
+      {partiallyRedeemable && (
+        <p>
+          {t("tranche description", {
+            unlockDate,
+            trancheEndDate,
+          })}{" "}
+          {showRedeem && t("partially redeemable")}
+        </p>
+      )}
+      {fullyRedeemable && (
+        <p>
+          {t("Tokens in this tranche are fully unlocked.")}
+          {showRedeem && t("fully redeemable")}
+        </p>
+      )}
       {state.target && state.target !== address && (
         <p>
           <span style={{ color: "#ED1515" }}>{t("Warning")}: </span>
-          {t(
-            "You can use your connected key to claim the Tokens but it will credit {{target}} instead of {{address}}",
-            {
+          <Trans
+            i18nKey="You can use your connected key to claim the Tokens but it will credit {{target}} instead of {{address}}"
+            values={{
               address,
               target: state.target,
-            }
-          )}
+            }}
+            components={{ bold: <strong /> }}
+          />
         </p>
       )}
       <div

@@ -61,7 +61,7 @@ const en = {
     showRedeem:
       "You'll be able to redeem your unlocked tokens at token.vega.xyz/redemption",
 
-    invalidWeb3Browser: "Please a compatitble browser or install Metamask",
+    invalidWeb3Browser: "Please a compatible browser or install Metamask",
     "Vesting Balance": "Vesting Balance",
     VEGA: "VEGA",
     Account: "Account",
@@ -71,7 +71,7 @@ const en = {
     "Try again": "Try again",
     Warning: "Warning",
     "You can use your connected key to claim the Tokens but it will credit {{target}} instead of {{address}}":
-      "You can use your connected key to claim the Tokens but it will credit {{target}} instead of {{address}}.",
+      "You are connected to a different wallet to the one this claim is valid for. You can continue with the connected wallet but <bold>{{target}}</bold> will be credited.",
     Complete: "Complete",
     "View on Etherscan (opens in a new tab)":
       "View on Etherscan (opens in a new tab)",
