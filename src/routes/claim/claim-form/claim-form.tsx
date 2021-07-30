@@ -7,6 +7,13 @@ import { TransactionError } from "../../../components/transaction-error";
 import { TransactionsInProgress } from "../../../components/transaction-in-progress";
 import { ClaimAction, ClaimState, TxState } from "./claim-reducer";
 
+export interface ICountry {
+  name: string;
+  isValid: boolean;
+  code: string;
+  id: number;
+}
+
 export const ClaimForm = ({
   state,
   dispatch,
@@ -16,10 +23,7 @@ export const ClaimForm = ({
   dispatch: (action: ClaimAction) => void;
   onSubmit: () => void;
 }) => {
-  const [isValidCountry, setIsValidCountry] = React.useState(false);
-  const countryValidator = (isValid: boolean) => {
-    setIsValidCountry(isValid);
-  };
+  const [country, setCountry] = React.useState<ICountry | null>(null);
   const { t } = useTranslation();
 
   if (state.claimTxState === TxState.Error) {
@@ -50,9 +54,14 @@ export const ClaimForm = ({
       }}
     >
       <fieldset>
-        <CountrySelector setIsValidCountry={countryValidator} />
+        <CountrySelector setCountry={setCountry} />
+        {country && !country.isValid && country.id !== 0 && (
+          <div style={{ color: "#ED1515", marginBottom: 20 }}>
+            Sorry. It is not possible to claim tokens in your country or region.
+          </div>
+        )}
       </fieldset>
-      <button disabled={!isValidCountry}>{t("Continue")}</button>
+      <button disabled={!country?.isValid}>{t("Continue")}</button>
     </form>
   );
 };

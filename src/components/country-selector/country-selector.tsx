@@ -2,19 +2,18 @@ import "./country-selector.scss";
 
 import React from "react";
 import countryData from "./country-data";
+import { ICountry } from "../../routes/claim/claim-form/claim-form";
 
 export interface CountrySelectorProps {
-  setIsValidCountry: (isValid: boolean) => void;
+  setCountry: (country: ICountry) => void;
 }
 
-export const CountrySelector = ({
-  setIsValidCountry,
-}: CountrySelectorProps) => {
+export const CountrySelector = ({ setCountry }: CountrySelectorProps) => {
   const onSelectedCountry = (selectedCountryCode: string) => {
     const selectedCountry = countryData.filter(
       (country) => country.code === selectedCountryCode
     )[0];
-    setIsValidCountry(selectedCountry.isValid);
+    setCountry(selectedCountry);
   };
 
   return (
