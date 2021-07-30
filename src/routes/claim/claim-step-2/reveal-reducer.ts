@@ -56,13 +56,13 @@ export function revealReducer(state: RevealState, action: RevealAction) {
     case "REVEAL_TX_REQUESTED":
       return {
         ...state,
-        claimTxState: TxState.Requested,
+        revealTxState: TxState.Requested,
       };
     case "REVEAL_TX_SUBMITTED": {
       return {
         ...state,
-        claimTxState: TxState.Pending,
-        claimTxData: {
+        revealTxState: TxState.Pending,
+        revealTxData: {
           ...state.revealTxData,
           hash: action.txHash,
         },
@@ -71,8 +71,8 @@ export function revealReducer(state: RevealState, action: RevealAction) {
     case "REVEAL_TX_COMPLETE":
       return {
         ...state,
-        claimTxState: TxState.Complete,
-        claimTxData: {
+        revealTxState: TxState.Complete,
+        revealTxData: {
           ...state.revealTxData,
           receipt: action.receipt,
         },
@@ -80,8 +80,8 @@ export function revealReducer(state: RevealState, action: RevealAction) {
     case "REVEAL_TX_ERROR":
       return {
         ...state,
-        claimTxState: TxState.Error,
-        claimTxData: {
+        revealTxState: TxState.Error,
+        revealTxData: {
           ...state.revealTxData,
           error: action.error,
         },
