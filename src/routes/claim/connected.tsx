@@ -65,16 +65,20 @@ export const ConnectedClaim = ({ state, commitClaim, dispatch }: ConnectedClaimP
           paddingTop: 15,
         }}
       >
-        <div data-testid="claim-step-1" style={{ padding: 15 }}>
-          <h1>{t("step1Title")}</h1>
-          <p>{t("step1Body")}</p>
-          <ClaimForm state={state} onSubmit={() => commitClaim()} dispatch={dispatch} />
-        </div>
         {/* If targeted we do not need to commit reveal, as there is no change of front running the mem pool */}
-        {state.target && (
-          <ClaimStep2
-            step1Completed={state.claimTxState === TxState.Complete}
-          />
+        {state.target ? (
+          <ClaimForm state={state} onSubmit={() => commitClaim()} />
+        ) : (
+          <>
+            <div data-testid="claim-step-1" style={{ padding: 15 }}>
+              <h1>{t("step1Title")}</h1>
+              <p>{t("step1Body")}</p>
+              <ClaimForm state={state} onSubmit={() => commitClaim()} />
+            </div>
+            <ClaimStep2
+              step1Completed={state.claimTxState === TxState.Complete}
+            />
+          </>
         )}
       </div>
     </section>
