@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { ClaimForm } from "./claim-form";
 import { ClaimAction, ClaimState, TxState } from "./claim-form/claim-reducer";
@@ -32,32 +33,72 @@ export const ConnectedClaim = ({
   }
   const shortCode =
     code.slice(0, 6) + "..." + code.slice(code.length - 4, code.length);
-
+  const unlockDate = format(
+    new Date(currentTranche.tranche_end).getTime(),
+    "MMM d, yyyy"
+  );
+  const trancheEndDate = format(
+    new Date(currentTranche.tranche_start).getTime(),
+    "MMM d, yyyy"
+  );
+  const fullyRedeemable =
+    new Date().getTime() > new Date(currentTranche.tranche_end).getTime();
+  const partiallyRedeemable =
+    !fullyRedeemable &&
+    new Date().getTime() > new Date(currentTranche.tranche_start).getTime();
+  const noneRedeemable = !fullyRedeemable && !partiallyRedeemable;
   return (
     <section>
-      {
-        <p>
-          {t("Connected to Ethereum key {address}", {
-            address: appState.address,
-          })}
-        </p>
-      }
       <p>
-        {t("claim", {
-          user: state.target ? state.target : "the holder",
-          code: shortCode,
-          amount: state.denomination,
-          trancheName: state.trancheId,
-          unlockDate: format(
-            new Date(currentTranche.tranche_end).getTime(),
-            "MMM d, yyyy"
-          ),
-          trancheEndDate: format(
-            new Date(currentTranche.tranche_start).getTime(),
-            "MMM d, yyyy"
-          ),
+        <Trans
+          i18nKey="Connected to Ethereum key {address}"
+          values={{ address: appState.address }}
+          components={{ bold: <strong /> }}
+        />
+      </p>
+      <p>
+        <Trans
+          i18nKey="claim1"
+          values={{
+            user: state.target ? state.target : "the holder",
+            code: shortCode,
+            amount: state.denomination,
+          }}
+          components={{ bold: <strong /> }}
+        />
+        <Link
+          to={`/tranches/${currentTranche.tranche_id}`}
+          style={{ color: "#edff22" }}
+        >
+          {t("Tranche")} {currentTranche.tranche_id}
+        </Link>{" "}
+        {t("claim2", {
+          expiry: "12/12/12", // TODO correct date.
         })}
-        {showRedeem ? t("showRedeem") : null}
+        {noneRedeemable && (
+          <p>
+            {t("tranche description", {
+              unlockDate,
+              trancheEndDate,
+            })}{" "}
+            {showRedeem && t("none redeemable")}
+          </p>
+        )}
+        {partiallyRedeemable && (
+          <p>
+            {t("tranche description", {
+              unlockDate,
+              trancheEndDate,
+            })}{" "}
+            {showRedeem && t("partially redeemable")}
+          </p>
+        )}
+        {fullyRedeemable && (
+          <p>
+            {t("Tokens in this tranche are fully unlocked.")}
+            {showRedeem && t("fully redeemable")}
+          </p>
+        )}
       </p>
       {state.target && state.target !== address && (
         <p>

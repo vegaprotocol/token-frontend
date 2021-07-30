@@ -55,8 +55,9 @@ const en = {
       "You’ll need to wait at least one block after step 1 before making step 2. This sends a message to the chain that reveals your claim.",
     step2Note: "You must complete step 1 first.",
 
-    claim:
-      "This code ({{code}}) entitles {{user}} to {{amount}} Vega tokens from {{trancheName}} of the vesting contract. Meaning tokens will be locked until {{unlockDate}}, then they will gradually become unlocked - block by block - until {{trancheEndDate}} when they are fully unlocked and sellable.",
+    claim1:
+      "This code ({{code}}) entitles <bold>{{user}}</bold> to <bold>20 Vega</bold> tokens from ",
+    claim2: "of the vesting contract. It expires on {{expiry}}.",
     showRedeem:
       "You'll be able to redeem your unlocked tokens at token.vega.xyz/redemption",
 
@@ -82,7 +83,17 @@ const en = {
     "Sorry. It is not possible to claim tokens in your country or region.":
       "Sorry. It is not possible to claim tokens in your country or region.",
     "Connected to Ethereum key {address}":
-      "Connected to Ethereum key {{address}}. You can change your connected key in your wallet provider e.g. Meta Mask.",
+      "Connected to Ethereum key <bold>{{address}}</bold>. You can change your connected key in your wallet provider e.g. Meta Mask.",
+    "tranche description":
+      "Tokens in this tranche began to unlock on the {{unlockDate}} and continue to unlock, block by block, until {{trancheEndDate}} when all tokens are unlocked.",
+    "none redeemable":
+      "You’ll be able to redeem tokens once they have been claimed and vested.",
+    "partially redeemable":
+      "You’ll be able to redeem some tokens once they have been claimed.",
+    "fully redeemable":
+      "Tokens in this tranche are fully unlocked. You can redeem tokens once they have been claimed.",
+    "Tokens in this tranche are fully unlocked":
+      "Tokens in this tranche are fully unlocked",
   },
 };
 
