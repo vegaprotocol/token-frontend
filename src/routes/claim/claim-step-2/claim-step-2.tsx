@@ -34,7 +34,12 @@ export const ClaimStep2 = ({
   }, [vega]);
   let content = null;
   if (state.revealTxState === TxState.Error) {
-    content = <TransactionError error={state.revealTxData.error} hash={state.revealTxData.hash} />;
+    content = (
+      <TransactionError
+        error={state.revealTxData.error}
+        hash={state.revealTxData.hash}
+      />
+    );
   } else if (state.revealTxState === TxState.Pending) {
     content = <TransactionsInProgress hash={state.revealTxData.hash} />;
   } else if (state.revealTxState === TxState.Requested) {
@@ -49,7 +54,10 @@ export const ClaimStep2 = ({
     );
   }
   return (
-    <div data-testid="claim-step-2" style={{ padding: 15 }}>
+    <div
+      data-testid="claim-step-2"
+      style={{ padding: 15, display: "flex", flexDirection: "column" }}
+    >
       <h1>{t("step2Title")}</h1>
       <p>{t("step2Body")}</p>
       {step1Completed ? (
