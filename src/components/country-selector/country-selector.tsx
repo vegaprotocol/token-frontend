@@ -1,3 +1,5 @@
+import "./country-selector.scss";
+
 import React from "react";
 import countryData from "./country-data";
 
@@ -16,7 +18,10 @@ export const CountrySelector = ({
   };
 
   return (
-    <select onChange={(value) => onSelectedCountry(value.currentTarget.value)}>
+    <select
+      className="country-selector"
+      onChange={(value) => onSelectedCountry(value.currentTarget.value)}
+    >
       {countryData.map((country) => (
         <option key={country.code} value={country.code}>
           {country.name}
