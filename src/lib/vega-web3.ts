@@ -222,7 +222,7 @@ class VegaWeb3 implements IVegaWeb3 {
           promiEvent.trigger("receipt", { receipt: true });
         }, 1000);
       } else {
-        promiEvent.trigger("error", new Error("user rejected"));
+        promiEvent.trigger("error", new Error("Something went wrong"));
       }
     }, 0);
 

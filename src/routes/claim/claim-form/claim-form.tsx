@@ -21,7 +21,7 @@ export const ClaimForm = ({
   const { t } = useTranslation();
 
   if (state.claimTxState === TxState.Error) {
-    return <TransactionError error={state.claimTxData.error} />;
+    return <TransactionError error={state.claimTxData.error} hash={state.claimTxData.hash} />;
   }
 
   if (state.claimTxState === TxState.Pending) {

@@ -28,7 +28,7 @@ export const ClaimStep2 = ({ step1Completed }: { step1Completed: boolean }) => {
   }, [vega]);
   let content = null;
   if (state.revealTxState === TxState.Error) {
-    content = <TransactionError error={state.revealTxData.error} />;
+    content = <TransactionError error={state.revealTxData.error} hash={state.revealTxData.hash}/>;
   } else if (state.revealTxState === TxState.Pending) {
     content = <TransactionsInProgress hash={state.revealTxData.hash} />;
   } else if (state.revealTxState === TxState.Requested) {
