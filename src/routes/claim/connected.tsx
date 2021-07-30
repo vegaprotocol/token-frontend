@@ -35,6 +35,13 @@ export const ConnectedClaim = ({
 
   return (
     <section>
+      {
+        <p>
+          {t("Connected to Ethereum key {address}", {
+            address: appState.address,
+          })}
+        </p>
+      }
       <p>
         {t("claim", {
           user: state.target ? state.target : "the holder",

@@ -81,6 +81,8 @@ const en = {
     "Claim {amount} Vega": "Claim {{amount}} Vega",
     "Sorry. It is not possible to claim tokens in your country or region.":
       "Sorry. It is not possible to claim tokens in your country or region.",
+    "Connected to Ethereum key {address}":
+      "Connected to Ethereum key {{address}}. You can change your connected key in your wallet provider e.g. Meta Mask.",
   },
 };
 
