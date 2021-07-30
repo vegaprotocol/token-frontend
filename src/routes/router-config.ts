@@ -19,7 +19,6 @@ const LazyRedemption = React.lazy(
       /* webpackChunkName: "route-redemption", webpackPrefetch: true */ "./redemption"
     )
 );
-
 const routerConfig = [
   {
     path: "/",

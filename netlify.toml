@@ -7,13 +7,6 @@
 
 [[redirects]]
   from = "/*"
-  to = "/redirect.html"
-  status = 301
-  force = true
-  conditions = {Country = ["US", "CN", "CA", "MM", "CU", "IR", "KP", "SY", "BD", "BO", "SD", "EC", "EG", "KG", "MA", "NA"]}
-
-[[redirects]]
-  from = "/*"
   to = "/index.html"
   status = 200
 
