@@ -5,7 +5,7 @@ import { TransactionComplete } from "../../../components/transaction-complete";
 import { TransactionConfirm } from "../../../components/transaction-confirm";
 import { TransactionError } from "../../../components/transaction-error";
 import { TransactionsInProgress } from "../../../components/transaction-in-progress";
-import { EthereumChainIds } from "../../../lib/vega-web3-utils";
+import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { ClaimAction, ClaimState, TxState } from "./claim-reducer";
 
 export interface ICountry {
@@ -26,14 +26,17 @@ export const ClaimForm = ({
 }) => {
   const [country, setCountry] = React.useState<ICountry | null>(null);
   const { t } = useTranslation();
-
+  const {
+    appState: { chainId },
+  } = useAppState();
+  console.log(chainId);
   if (state.claimTxState === TxState.Error) {
     return (
       <TransactionError
         error={state.claimTxData.error}
         hash={state.claimTxData.hash}
         onActionClick={() => dispatch({ type: "CLAIM_TX_RESET" })}
-        chainId={EthereumChainIds.Mainnet}
+        chainId={chainId!}
       />
     );
   }
@@ -42,7 +45,7 @@ export const ClaimForm = ({
     return (
       <TransactionsInProgress
         hash={state.claimTxData.hash!}
-        chainId={EthereumChainIds.Mainnet}
+        chainId={chainId!}
       />
     );
   }
@@ -53,10 +56,7 @@ export const ClaimForm = ({
 
   if (state.claimTxState === TxState.Complete) {
     return (
-      <TransactionComplete
-        hash={state.claimTxData.hash!}
-        chainId={EthereumChainIds.Mainnet}
-      />
+      <TransactionComplete hash={state.claimTxData.hash!} chainId={chainId!} />
     );
   }
 

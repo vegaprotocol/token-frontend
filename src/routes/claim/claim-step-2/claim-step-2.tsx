@@ -11,7 +11,6 @@ import Web3 from "web3";
 import VegaClaim from "../../../lib/vega-claim";
 import { ClaimState } from "../claim-form/claim-reducer";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
-import { EthereumChainIds } from "../../../lib/vega-web3-utils";
 
 export const ClaimStep2 = ({
   step1Completed,
@@ -25,6 +24,7 @@ export const ClaimStep2 = ({
   const { t } = useTranslation();
   const [state, dispatch] = React.useReducer(revealReducer, initialClaimState);
   const { appState } = useAppState();
+  const { chainId, address } = appState;
   const commitReveal = React.useCallback(async () => {
     dispatch({ type: "REVEAL_TX_REQUESTED" });
     const provider = (await detectEthereumProvider()) as any;
@@ -42,7 +42,7 @@ export const ClaimStep2 = ({
         nonce: claimState.nonce!,
         country: "GB",
         targeted: !!claimState.target,
-        account: appState.address!,
+        account: address!,
       })
       .on("transactionHash", (hash: string) => {
         dispatch({ type: "REVEAL_TX_SUBMITTED", txHash: hash });
@@ -54,7 +54,7 @@ export const ClaimStep2 = ({
         dispatch({ type: "REVEAL_TX_ERROR", error: err });
       });
   }, [
-    appState.address,
+    address,
     claimState.code,
     claimState.denomination,
     claimState.expiry,
@@ -69,24 +69,21 @@ export const ClaimStep2 = ({
         onActionClick={() => dispatch({ type: "REVEAL_TX_RESET" })}
         error={state.revealTxData.error}
         hash={state.revealTxData.hash}
-        chainId={EthereumChainIds.Mainnet}
+        chainId={chainId!}
       />
     );
   } else if (state.revealTxState === TxState.Pending) {
     content = (
       <TransactionsInProgress
         hash={state.revealTxData.hash!}
-        chainId={EthereumChainIds.Mainnet}
+        chainId={chainId!}
       />
     );
   } else if (state.revealTxState === TxState.Requested) {
     content = <TransactionConfirm />;
   } else if (state.revealTxState === TxState.Complete) {
     content = (
-      <TransactionComplete
-        hash={state.revealTxData.hash!}
-        chainId={EthereumChainIds.Mainnet}
-      />
+      <TransactionComplete hash={state.revealTxData.hash!} chainId={chainId!} />
     );
   } else {
     content = (
