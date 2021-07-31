@@ -21,13 +21,13 @@ export default class VegaClaim {
   private web3: Web3;
   private contract: Contract;
 
-  constructor (web3: Web3, claimAddress: string) {
+  constructor(web3: Web3, claimAddress: string) {
     this.web3 = web3;
     this.contract = new this.web3.eth.Contract(
       // @ts-ignore
       claimAbi,
       claimAddress
-    )
+    );
   }
 
   /**
@@ -38,7 +38,7 @@ export default class VegaClaim {
    * @return {Promise<boolean>}
    */
   async commit(claimCode: string, account: string): Promise<boolean> {
-    const hash = this.deriveCommitment(claimCode, account)
+    const hash = this.deriveCommitment(claimCode, account);
 
     return await this.contract.methods.commit_untargeted_code(hash).send();
   }
@@ -57,7 +57,7 @@ export default class VegaClaim {
     nonce,
     country,
     targeted,
-    account
+    account,
   }: {
     claimCode: string;
     denomination: BN;
@@ -68,14 +68,16 @@ export default class VegaClaim {
     targeted: boolean;
     account: string;
   }): Promise<void> {
-    return await this.contract.methods[targeted ? 'redeem_targeted' : 'redeem_untargeted_code'](
+    return await this.contract.methods[
+      targeted ? "redeem_targeted" : "redeem_untargeted_code"
+    ](
       claimCode,
       denomination,
       trancheId,
       expiry,
       nonce,
       Web3.utils.asciiToHex(country)
-    ).send()
+    ).send();
   }
 
   /**
@@ -91,7 +93,7 @@ export default class VegaClaim {
     claimCode,
     nonce,
     expiry,
-    account
+    account,
   }: {
     claimCode: string;
     nonce: string;
@@ -99,13 +101,20 @@ export default class VegaClaim {
     account: string;
   }): Promise<boolean> {
     // We can only know for sure if this account performed the commitment
-    if (await this.isCommitted({ claimCode, account }) === true) return false
-
+    if ((await this.isCommitted({ claimCode, account })) === true) return false;
+    console.log(1);
     // Expiry rules from the contract. expiry === 0 means that it will never expire
-    if (expiry > 0 && expiry > (await this.web3.eth.getBlock("latest")).timestamp) return false
+    if (
+      expiry > 0 &&
+      expiry > (await this.web3.eth.getBlock("latest")).timestamp
+    )
+      return false;
+    console.log(2);
 
     // nonces are stored in a map once used
-    if (await this.contract.methods.nonces(nonce).call() === true) return false
+    if ((await this.contract.methods.nonces(nonce).call()) === true)
+      return false;
+    console.log(3);
 
     return true;
   }
@@ -114,7 +123,13 @@ export default class VegaClaim {
    * Check if this code was already committed to by this account
    * @return {Promise<boolean>}
    */
-  async isCommitted({ claimCode, account }: { claimCode: string; account: string }): Promise<boolean> {
+  async isCommitted({
+    claimCode,
+    account,
+  }: {
+    claimCode: string;
+    account: string;
+  }): Promise<boolean> {
     const hash = this.deriveCommitment(claimCode, account);
 
     return await this.contract.methods.commits(hash).call();
@@ -126,7 +141,9 @@ export default class VegaClaim {
    * @return {Promise<boolean>}
    */
   async isCountryBlocked(country: string): Promise<boolean> {
-    return this.contract.methods.blocked_countries(Web3.utils.asciiToHex(country)).call();
+    return this.contract.methods
+      .blocked_countries(Web3.utils.asciiToHex(country))
+      .call();
   }
 
   /**
@@ -137,8 +154,8 @@ export default class VegaClaim {
    */
   deriveCommitment(claimCode: string, account: string): string {
     return this.web3.utils.soliditySha3Raw(
-      { type: 'bytes', value: claimCode },
-      { type: 'address', value: account }
+      { type: "bytes", value: claimCode },
+      { type: "address", value: account }
     );
   }
 }

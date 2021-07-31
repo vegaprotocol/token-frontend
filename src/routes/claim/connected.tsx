@@ -1,10 +1,13 @@
+import detectEthereumProvider from "@metamask/detect-provider";
 import { format } from "date-fns";
 import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import Web3 from "web3";
+import { Loading } from "../../components/loading";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import { useSearchParams } from "../../hooks/use-search-params";
 import { useVegaWeb3 } from "../../hooks/use-vega-web3";
+import VegaClaim from "../../lib/vega-claim";
 import { EthereumChainIds } from "../../lib/vega-web3-utils";
 import { ClaimForm } from "./claim-form";
 import { ClaimAction, ClaimState, TxState } from "./claim-form/claim-reducer";
@@ -21,22 +24,44 @@ export const ConnectedClaim = ({
   commitClaim,
   dispatch,
 }: ConnectedClaimProps) => {
+  const [loading, setLoading] = React.useState<boolean>(true);
   const { t } = useTranslation();
   const vega = useVegaWeb3(EthereumChainIds.Mainnet);
   const { appState } = useAppState();
   const { address, tranches } = appState;
   const showRedeem = ["1", "true"].includes(process.env.REACT_APP_REDEEM_LIVE!);
   const code = state.code!;
+
   React.useEffect(() => {
     const run = async () => {
+      const provider = (await detectEthereumProvider()) as any;
+      const web3 = new Web3(provider);
+      const claim = new VegaClaim(
+        web3,
+        "0xAf5dC1772714b2F4fae3b65eb83100f1Ea677b21"
+      );
       const { nonce, expiry, code } = state;
       const account = appState.address!;
-      const valid = await vega.claim.isClaimValid({
-        nonce: nonce!,
-        claimCode: code!,
-        expiry: expiry!,
-        account,
-      });
+      let valid = false;
+      try {
+        console.log({
+          nonce: nonce!,
+          claimCode: code!,
+          expiry: expiry!,
+          account,
+        });
+        valid = await claim.isClaimValid({
+          nonce: nonce!,
+          claimCode: code!,
+          expiry: expiry!,
+          account,
+        });
+      } catch (e) {
+        // TOOD should this report to sentry?
+        console.log(e);
+      } finally {
+        setLoading(false);
+      }
 
       if (!valid) {
         dispatch({
@@ -52,6 +77,9 @@ export const ConnectedClaim = ({
       ({ tranche_id }) => Number(tranche_id) === state.trancheId
     );
   }, [state.trancheId, tranches]);
+  if (loading) {
+    return <Loading />;
+  }
   if (!currentTranche) {
     throw new Error("Could not find tranche");
   }
