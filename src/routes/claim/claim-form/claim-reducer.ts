@@ -106,7 +106,7 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
           trancheId: Number(action.data.trancheId),
           expiry: Number(action.data.expiry),
           code: action.data.code,
-          nonce: action.data.code,
+          nonce: action.data.nonce,
         };
       }
     case "CLAIM_TX_RESET":
