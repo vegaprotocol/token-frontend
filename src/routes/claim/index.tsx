@@ -10,6 +10,8 @@ import { claimReducer, initialClaimState } from "./claim-form/claim-reducer";
 import { ConnectedClaim } from "./connected";
 import { ClaimRestricted } from "./claim-restricted";
 import { isRestricted } from "./lib/is-restricted";
+import { WrongChain } from "./wrong-chain";
+import { EthereumChainId } from "../../lib/vega-web3-utils";
 
 const ClaimRouter = () => {
   const { t } = useTranslation();
@@ -35,6 +37,16 @@ const ClaimRouter = () => {
 
   if (isRestricted()) {
     pageContent = <ClaimRestricted />;
+  } else if (
+    appState.chainId &&
+    appState.chainId !== process.env.REACT_APP_CHAIN
+  ) {
+    pageContent = (
+      <WrongChain
+        currentChainId={appState.chainId!}
+        desiredChainId={process.env.REACT_APP_CHAIN as EthereumChainId}
+      />
+    );
   } else if (state.error) {
     pageContent = <ClaimError />;
   } else if (appState.address && state.code) {
