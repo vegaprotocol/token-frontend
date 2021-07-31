@@ -41,7 +41,6 @@ class VegaWeb3 implements IVegaWeb3 {
   constructor(chainId: EthereumChainId) {
     this.chainId = chainId;
     const contractsAddresses = Addresses[chainId];
-    console.log(chainId, contractsAddresses.vestingAddress);
     if (!contractsAddresses) {
       throw new Error(" Could not find contract addresses for network");
     }
