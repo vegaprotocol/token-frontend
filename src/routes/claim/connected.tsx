@@ -44,12 +44,6 @@ export const ConnectedClaim = ({
       const account = appState.address!;
       let valid = false;
       try {
-        console.log({
-          nonce: nonce!,
-          claimCode: code!,
-          expiry: expiry!,
-          account,
-        });
         valid = await claim.isClaimValid({
           nonce: nonce!,
           claimCode: code!,
@@ -59,6 +53,10 @@ export const ConnectedClaim = ({
       } catch (e) {
         // TOOD should this report to sentry?
         console.log(e);
+        dispatch({
+          type: "ERROR",
+          error: e,
+        });
       } finally {
         setLoading(false);
       }
