@@ -56,9 +56,57 @@ const ClaimRouter = () => {
         dispatch({ type: "CLAIM_TX_COMPLETE", receipt });
       })
       .once("error", (err: Error) => {
+        console.log(err);
         dispatch({ type: "CLAIM_TX_ERROR", error: err });
       });
   }, [appState.address, state.code]);
+  const claimTargeted = React.useCallback(async () => {
+    dispatch({ type: "CLAIM_TX_REQUESTED" });
+    const provider = (await detectEthereumProvider()) as any;
+    const web3 = new Web3(provider);
+    const claim = new VegaClaim(
+      web3,
+      "0xAf5dC1772714b2F4fae3b65eb83100f1Ea677b21"
+    );
+    console.log({
+      claimCode: state.code!,
+      denomination: state.denomination!,
+      trancheId: state.trancheId!,
+      expiry: state.expiry!,
+      nonce: state.nonce!,
+      country: "GB",
+      targeted: true,
+      account: appState.address!,
+    });
+    claim
+      .claim({
+        claimCode: state.code!,
+        denomination: state.denomination!,
+        trancheId: state.trancheId!,
+        expiry: state.expiry!,
+        nonce: state.nonce!,
+        country: "GB",
+        targeted: true,
+        account: appState.address!,
+      })
+      .once("transactionHash", (hash: string) => {
+        dispatch({ type: "CLAIM_TX_SUBMITTED", txHash: hash });
+      })
+      .once("receipt", (receipt: any) => {
+        dispatch({ type: "CLAIM_TX_COMPLETE", receipt });
+      })
+      .once("error", (err: Error) => {
+        console.log(err);
+        dispatch({ type: "CLAIM_TX_ERROR", error: err });
+      });
+  }, [
+    appState.address,
+    state.code,
+    state.denomination,
+    state.expiry,
+    state.nonce,
+    state.trancheId,
+  ]);
 
   let pageContent;
 
@@ -70,7 +118,7 @@ const ClaimRouter = () => {
     pageContent = (
       <ConnectedClaim
         state={state}
-        commitClaim={commitClaim}
+        commitClaim={state.target ? claimTargeted : commitClaim}
         dispatch={dispatch}
       />
     );

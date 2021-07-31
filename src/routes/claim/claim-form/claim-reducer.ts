@@ -1,3 +1,5 @@
+import BN from "bn.js";
+
 export enum TxState {
   Default,
   Requested,
@@ -16,7 +18,7 @@ export interface ClaimState {
   };
 
   // From URL
-  denomination: number | null; // amount
+  denomination: BN | null; // amount
   target: string | null; // ETH address
   trancheId: number | null;
   expiry: number | null; // timestamp in seconds
@@ -101,7 +103,7 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
       } else {
         return {
           ...state,
-          denomination: Number(action.data.denomination),
+          denomination: new BN(action.data.denomination),
           target: action.data.target ?? null,
           trancheId: Number(action.data.trancheId),
           expiry: Number(action.data.expiry),

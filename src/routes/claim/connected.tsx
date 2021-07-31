@@ -33,6 +33,7 @@ export const ConnectedClaim = ({
   const code = state.code!;
 
   React.useEffect(() => {
+    /** Validate code */
     const run = async () => {
       const provider = (await detectEthereumProvider()) as any;
       const web3 = new Web3(provider);
@@ -70,6 +71,7 @@ export const ConnectedClaim = ({
     };
     run();
   }, [appState.address, dispatch, state, vega]);
+
   const currentTranche = React.useMemo(() => {
     return tranches.find(
       ({ tranche_id }) => Number(tranche_id) === state.trancheId
