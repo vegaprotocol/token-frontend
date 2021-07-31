@@ -7,13 +7,14 @@ import { TransactionsInProgress } from "../../../components/transaction-in-progr
 import { useVegaWeb3 } from "../../../hooks/use-vega-web3";
 import { EthereumChainIds } from "../../../lib/vega-web3-utils";
 import { initialClaimState, revealReducer, TxState } from "./reveal-reducer";
+import BN from "bn.js";
 
 export const ClaimStep2 = ({
   step1Completed,
   amount,
 }: {
   step1Completed: boolean;
-  amount: number | null;
+  amount: BN | null;
 }) => {
   const { t } = useTranslation();
   const [state, dispatch] = React.useReducer(revealReducer, initialClaimState);

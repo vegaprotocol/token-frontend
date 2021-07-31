@@ -75,16 +75,26 @@ export default class VegaClaim {
     targeted: boolean;
     account: string;
   }): PromiEvent {
-    return this.contract.methods[
-      targeted ? "redeem_targeted" : "redeem_untargeted_code"
-    ](
+    console.log({
       claimCode,
       denomination,
       trancheId,
       expiry,
       nonce,
+      country,
+      targeted,
+      account,
+    });
+    return this.contract.methods[
+      targeted ? "redeem_targeted" : "redeem_untargeted_code"
+    ](
+      claimCode,
+      denomination.toString(),
+      trancheId,
+      expiry,
+      nonce,
       Web3.utils.asciiToHex(country)
-    ).send();
+    ).send({ from: account });
   }
 
   /**
@@ -108,6 +118,8 @@ export default class VegaClaim {
     account: string;
   }): Promise<boolean> {
     // We can only know for sure if this account performed the commitment
+
+    // TODO remove this from this check, so we can check if the user is in an intermediate state
     if ((await this.isCommitted({ claimCode, account })) === true) return false;
 
     // Expiry rules from the contract. expiry === 0 means that it will never expire
