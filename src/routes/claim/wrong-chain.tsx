@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { EthereumChainId, EthereumChainNames } from "../../lib/vega-web3-utils";
 
 export const WrongChain = ({
@@ -7,11 +8,14 @@ export const WrongChain = ({
   currentChainId: EthereumChainId;
   desiredChainId: EthereumChainId;
 }) => {
+  const { t } = useTranslation();
   return (
     <div>
-      <h1>Looks like you are on {EthereumChainNames[currentChainId]}</h1>
+      <h1>
+        {t("Wrong network", { chain: EthereumChainNames[currentChainId] })}
+      </h1>
       <p>
-        This app is only configured for {EthereumChainNames[desiredChainId]}
+        {t("Desired network", { chain: EthereumChainNames[desiredChainId] })}
       </p>
     </div>
   );
