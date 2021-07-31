@@ -7,6 +7,7 @@ const mockAddress = "0x" + "0".repeat(0);
 
 export function useConnect() {
   const { appState, appDispatch, provider } = useAppState();
+  // TODO make this env var
   const vega = useVegaWeb3(EthereumChainIds.Mainnet);
   const useMocks = ["1", "true"].includes(process.env.REACT_APP_MOCKED!);
   const connect = React.useCallback(async () => {
@@ -35,11 +36,12 @@ export function useConnect() {
         });
       }
       const balance = await vega.getUserBalanceAllTranches(accounts[0]);
+      const chainId = await provider.request({ method: "eth_chainId" });
 
       appDispatch({
         type: "CONNECT_SUCCESS",
         address: accounts[0],
-        chainId: vega.chainId,
+        chainId,
         balance,
       });
     } catch (e) {
