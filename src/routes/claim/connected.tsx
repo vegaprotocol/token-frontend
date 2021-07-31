@@ -9,21 +9,16 @@ import { useAppState } from "../../contexts/app-state/app-state-context";
 import VegaClaim from "../../lib/vega-claim";
 import { ClaimForm } from "./claim-form";
 import { ClaimAction, ClaimState, TxState } from "./claim-form/claim-reducer";
+import { ClaimStep1 } from "./claim-step-1";
 import { ClaimStep2 } from "./claim-step-2";
+import { TargetedClaim } from "./targeted-claim";
 
 interface ConnectedClaimProps {
   state: ClaimState;
   dispatch: (action: ClaimAction) => void;
-  commitClaim: () => void;
-  claim: () => void;
 }
 
-export const ConnectedClaim = ({
-  state,
-  commitClaim,
-  dispatch,
-  claim,
-}: ConnectedClaimProps) => {
+export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
   const [loading, setLoading] = React.useState<boolean>(true);
   const { t } = useTranslation();
   const { appState } = useAppState();
@@ -178,30 +173,10 @@ export const ConnectedClaim = ({
       >
         {/* If targeted we do not need to commit reveal, as there is no change of front running the mem pool */}
         {state.target ? (
-          <ClaimForm
-            state={state}
-            onSubmit={() => claim()}
-            dispatch={dispatch}
-          />
+          <TargetedClaim state={state} dispatch={dispatch} />
         ) : (
           <>
-            <div
-              data-testid="claim-step-1"
-              style={{
-                padding: 15,
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between ",
-              }}
-            >
-              <h1>{t("step1Title")}</h1>
-              <p>{t("step1Body")}</p>
-              <ClaimForm
-                state={state}
-                onSubmit={() => commitClaim()}
-                dispatch={dispatch}
-              />
-            </div>
+            <ClaimStep1 state={state} dispatch={dispatch} />
             <ClaimStep2
               claimState={state}
               step1Completed={state.claimTxState === TxState.Complete}
