@@ -68,16 +68,6 @@ const ClaimRouter = () => {
       web3,
       "0xAf5dC1772714b2F4fae3b65eb83100f1Ea677b21"
     );
-    console.log({
-      claimCode: state.code!,
-      denomination: state.denomination!,
-      trancheId: state.trancheId!,
-      expiry: state.expiry!,
-      nonce: state.nonce!,
-      country: "GB",
-      targeted: true,
-      account: appState.address!,
-    });
     claim
       .claim({
         claimCode: state.code!,
