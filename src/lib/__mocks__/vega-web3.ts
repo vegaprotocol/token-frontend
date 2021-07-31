@@ -2,12 +2,16 @@ import type { ITokenParams, IVegaWeb3, Tranche } from "../vega-web3-types";
 import { EthereumChainId } from "../vega-web3-utils";
 import { generateTranches } from "./generate-tranche";
 import { PromiEvent } from "web3-core";
+import VegaClaim from "../vega-claim";
 
 class VegaWeb3 implements IVegaWeb3 {
   public chainId: EthereumChainId;
+  public claim: VegaClaim;
 
   constructor(chainId: EthereumChainId) {
     this.chainId = chainId;
+    // TODO fix this mock
+    this.claim = {} as any;
   }
 
   async getAllTranches(): Promise<Tranche[]> {

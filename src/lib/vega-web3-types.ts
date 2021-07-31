@@ -1,5 +1,6 @@
 import { EthereumChainId } from "./vega-web3-utils";
 import { PromiEvent } from "web3-core";
+import VegaClaim from "./vega-claim";
 
 export interface Tranche {
   tranche_id: string;
@@ -60,6 +61,7 @@ export interface ITokenParams {
 }
 
 export interface IVegaWeb3 {
+  claim: VegaClaim;
   chainId: EthereumChainId;
   getAllTranches(): Promise<Tranche[]>;
   getUserBalanceAllTranches(account: string): Promise<string>;

@@ -11,6 +11,7 @@ import {
 } from "./vega-web3-types";
 import { MockPromiEvent } from "./__mocks__/vega-web3";
 import { PromiEvent } from "web3-core";
+import VegaClaim from "./vega-claim";
 
 export interface ContractAddress {
   vestingAddress: string;
@@ -29,24 +30,29 @@ export const Addresses = {
 };
 
 class VegaWeb3 implements IVegaWeb3 {
-  public chainId: EthereumChainId;
+  private provider: any;
   private vestingInstance: Contract;
+
+  public chainId: EthereumChainId;
   public web3: Web3;
   public currentAccount: string | null = null;
-  private provider: any;
+  public claim: VegaClaim;
 
   constructor(chainId: EthereumChainId) {
     this.chainId = chainId;
     const contractsAddresses = Addresses[chainId];
-
+    console.log(chainId, contractsAddresses.vestingAddress);
     if (!contractsAddresses) {
       throw new Error(" Could not find contract addresses for network");
     }
-
     this.provider = new Web3.providers.HttpProvider(
       "https://mainnet.infura.io/v3/5aff9e61ad844bcf982d0d0c3f1d29f1"
     );
     this.web3 = new Web3(this.provider);
+    this.claim = new VegaClaim(
+      this.web3,
+      "0xAf5dC1772714b2F4fae3b65eb83100f1Ea677b21"
+    );
     this.vestingInstance = new this.web3.eth.Contract(
       // @ts-ignore
       vestingAbi,
