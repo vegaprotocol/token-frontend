@@ -12,6 +12,9 @@ import { claimReducer, initialClaimState } from "./claim-form/claim-reducer";
 import { ConnectedClaim } from "./connected";
 import { ClaimRestricted } from "./claim-restricted";
 import { isRestricted } from "./lib/is-restricted";
+import detectEthereumProvider from "@metamask/detect-provider";
+import Web3 from "web3";
+import VegaClaim from "../../lib/vega-claim";
 
 const ClaimRouter = () => {
   const { t } = useTranslation();
@@ -38,18 +41,24 @@ const ClaimRouter = () => {
   }, [dispatch, params, vega]);
   const commitClaim = React.useCallback(async () => {
     dispatch({ type: "CLAIM_TX_REQUESTED" });
-    const promi = vega.commitClaim();
-    promi
-      .on("transactionHash", (hash: string) => {
+    const provider = (await detectEthereumProvider()) as any;
+    const web3 = new Web3(provider);
+    const claim = new VegaClaim(
+      web3,
+      "0xAf5dC1772714b2F4fae3b65eb83100f1Ea677b21"
+    );
+    claim
+      .commit(state.code!, appState.address!)
+      .once("transactionHash", (hash: string) => {
         dispatch({ type: "CLAIM_TX_SUBMITTED", txHash: hash });
       })
-      .on("receipt", (receipt: any) => {
+      .once("receipt", (receipt: any) => {
         dispatch({ type: "CLAIM_TX_COMPLETE", receipt });
       })
-      .on("error", (err) => {
+      .once("error", (err: Error) => {
         dispatch({ type: "CLAIM_TX_ERROR", error: err });
       });
-  }, [vega]);
+  }, [appState.address, state.code]);
 
   let pageContent;
 

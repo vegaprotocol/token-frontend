@@ -12,7 +12,6 @@ import {
 import { MockPromiEvent } from "./__mocks__/vega-web3";
 import { PromiEvent } from "web3-core";
 import VegaClaim from "./vega-claim";
-import detectEthereumProvider from "@metamask/detect-provider";
 
 export interface ContractAddress {
   vestingAddress: string;

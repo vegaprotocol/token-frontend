@@ -3,6 +3,11 @@ import type BN from "bn.js";
 import type { Contract } from "web3-eth-contract";
 import claimAbi from "./claim_abi.json";
 
+type PromiEvent = typeof Promise & {
+  on: (event: string, listener: (...args: any[]) => void) => PromiEvent;
+  once: (event: string, listener: (...args: any[]) => void) => PromiEvent;
+};
+
 /**
  * Example:
  * ```
@@ -37,10 +42,12 @@ export default class VegaClaim {
    * otherwise the action is pointless
    * @return {Promise<boolean>}
    */
-  async commit(claimCode: string, account: string): Promise<boolean> {
+  commit(claimCode: string, account: string): PromiEvent {
     const hash = this.deriveCommitment(claimCode, account);
 
-    return await this.contract.methods.commit_untargeted_code(hash).send();
+    return this.contract.methods
+      .commit_untargeted_code(hash)
+      .send({ from: account });
   }
 
   /**
@@ -49,7 +56,7 @@ export default class VegaClaim {
    * was performed and mined beforehand
    * @return {Promise<boolean>}
    */
-  public async claim({
+  public claim({
     claimCode,
     denomination,
     trancheId,
@@ -67,8 +74,8 @@ export default class VegaClaim {
     country: string;
     targeted: boolean;
     account: string;
-  }): Promise<void> {
-    return await this.contract.methods[
+  }): PromiEvent {
+    return this.contract.methods[
       targeted ? "redeem_targeted" : "redeem_untargeted_code"
     ](
       claimCode,
@@ -102,19 +109,17 @@ export default class VegaClaim {
   }): Promise<boolean> {
     // We can only know for sure if this account performed the commitment
     if ((await this.isCommitted({ claimCode, account })) === true) return false;
-    console.log(1);
+
     // Expiry rules from the contract. expiry === 0 means that it will never expire
     if (
       expiry > 0 &&
       expiry > (await this.web3.eth.getBlock("latest")).timestamp
     )
       return false;
-    console.log(2);
 
     // nonces are stored in a map once used
     if ((await this.contract.methods.nonces(nonce).call()) === true)
       return false;
-    console.log(3);
 
     return true;
   }
