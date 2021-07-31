@@ -21,7 +21,7 @@ export interface ClaimState {
   trancheId: number | null;
   expiry: number | null; // timestamp in seconds
   code: string | null;
-  nonce: number | null;
+  nonce: string | null;
 
   // generic
   error: Error | null;
@@ -106,7 +106,7 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
           trancheId: Number(action.data.trancheId),
           expirty: Number(action.data.expiry),
           code: action.data.code,
-          nonce: Number(action.data.code),
+          nonce: action.data.code,
         };
       }
     case "CLAIM_TX_RESET":

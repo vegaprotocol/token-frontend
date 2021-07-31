@@ -22,36 +22,20 @@ const ClaimRouter = () => {
   const connect = useConnect();
   React.useEffect(() => {
     const run = async () => {
-      const valid = await vega.validateCode({
-        nonce: params.n,
-        trancheId: params.t,
-        expiry: params.ex,
-        target: params.targ,
-        denomination: params.d,
-        code: params.r,
+      dispatch({
+        type: "SET_DATA_FROM_URL",
+        data: {
+          nonce: params.n,
+          trancheId: params.t,
+          expiry: params.ex,
+          target: params.targ,
+          denomination: params.d,
+          code: params.r,
+        },
       });
-      if (!valid) {
-        dispatch({
-          type: "ERROR",
-          error: new Error("Invalid code"),
-        });
-      } else {
-        dispatch({
-          type: "SET_DATA_FROM_URL",
-          data: {
-            nonce: params.n,
-            trancheId: params.t,
-            expiry: params.ex,
-            target: params.targ,
-            denomination: params.d,
-            code: params.r,
-          },
-        });
-      }
     };
     run();
-  }, [params, vega]);
-
+  }, [dispatch, params, vega]);
   const commitClaim = React.useCallback(async () => {
     dispatch({ type: "CLAIM_TX_REQUESTED" });
     const promi = vega.commitClaim();

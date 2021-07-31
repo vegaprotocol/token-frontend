@@ -3,6 +3,9 @@ import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useSearchParams } from "../../hooks/use-search-params";
+import { useVegaWeb3 } from "../../hooks/use-vega-web3";
+import { EthereumChainIds } from "../../lib/vega-web3-utils";
 import { ClaimForm } from "./claim-form";
 import { ClaimAction, ClaimState, TxState } from "./claim-form/claim-reducer";
 import { ClaimStep2 } from "./claim-step-2";
@@ -19,10 +22,31 @@ export const ConnectedClaim = ({
   dispatch,
 }: ConnectedClaimProps) => {
   const { t } = useTranslation();
+  const vega = useVegaWeb3(EthereumChainIds.Mainnet);
   const { appState } = useAppState();
   const { address, tranches } = appState;
   const showRedeem = ["1", "true"].includes(process.env.REACT_APP_REDEEM_LIVE!);
   const code = state.code!;
+  React.useEffect(() => {
+    const run = async () => {
+      const { nonce, expiry, code } = state;
+      const account = appState.address!;
+      const valid = await vega.claim.isClaimValid({
+        nonce: nonce!,
+        claimCode: code!,
+        expiry: expiry!,
+        account,
+      });
+
+      if (!valid) {
+        dispatch({
+          type: "ERROR",
+          error: new Error("Invalid code"),
+        });
+      }
+    };
+    run();
+  }, [appState.address, dispatch, state, vega]);
   const currentTranche = React.useMemo(() => {
     return tranches.find(
       ({ tranche_id }) => Number(tranche_id) === state.trancheId
