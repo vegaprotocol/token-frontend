@@ -5,8 +5,6 @@ import { TransactionConfirm } from "../../components/transaction-confirm";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useConnect } from "../../hooks/use-connect";
 import { useSearchParams } from "../../hooks/use-search-params";
-import { useVegaWeb3 } from "../../hooks/use-vega-web3";
-import { EthereumChainIds } from "../../lib/vega-web3-utils";
 import { ClaimError } from "./claim-error";
 import { claimReducer, initialClaimState } from "./claim-form/claim-reducer";
 import { ConnectedClaim } from "./connected";
@@ -16,26 +14,22 @@ import { isRestricted } from "./lib/is-restricted";
 const ClaimRouter = () => {
   const { t } = useTranslation();
   const params = useSearchParams();
-  const vega = useVegaWeb3(EthereumChainIds.Mainnet);
   const { appState } = useAppState();
   const [state, dispatch] = React.useReducer(claimReducer, initialClaimState);
   const connect = useConnect();
   React.useEffect(() => {
-    const run = async () => {
-      dispatch({
-        type: "SET_DATA_FROM_URL",
-        data: {
-          nonce: params.n,
-          trancheId: params.t,
-          expiry: params.ex,
-          target: params.targ,
-          denomination: params.d,
-          code: params.r,
-        },
-      });
-    };
-    run();
-  }, [dispatch, params, vega]);
+    dispatch({
+      type: "SET_DATA_FROM_URL",
+      data: {
+        nonce: params.n,
+        trancheId: params.t,
+        expiry: params.ex,
+        target: params.targ,
+        denomination: params.d,
+        code: params.r,
+      },
+    });
+  }, [dispatch, params]);
 
   let pageContent;
 
