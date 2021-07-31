@@ -45,7 +45,7 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
           account,
         });
       } catch (e) {
-        // TOOD should this report to sentry?
+        // TODO should this report to sentry?
         console.log(e);
         dispatch({
           type: "ERROR",
