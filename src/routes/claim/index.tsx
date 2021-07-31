@@ -60,7 +60,7 @@ const ClaimRouter = () => {
         dispatch({ type: "CLAIM_TX_ERROR", error: err });
       });
   }, [appState.address, state.code]);
-  const claimTargeted = React.useCallback(async () => {
+  const claim = React.useCallback(async () => {
     dispatch({ type: "CLAIM_TX_REQUESTED" });
     const provider = (await detectEthereumProvider()) as any;
     const web3 = new Web3(provider);
@@ -76,7 +76,7 @@ const ClaimRouter = () => {
         expiry: state.expiry!,
         nonce: state.nonce!,
         country: "GB",
-        targeted: true,
+        targeted: !!state.target,
         account: appState.address!,
       })
       .once("transactionHash", (hash: string) => {
@@ -95,6 +95,7 @@ const ClaimRouter = () => {
     state.denomination,
     state.expiry,
     state.nonce,
+    state.target,
     state.trancheId,
   ]);
 
@@ -108,7 +109,8 @@ const ClaimRouter = () => {
     pageContent = (
       <ConnectedClaim
         state={state}
-        commitClaim={state.target ? claimTargeted : commitClaim}
+        commitClaim={commitClaim}
+        claim={claim}
         dispatch={dispatch}
       />
     );

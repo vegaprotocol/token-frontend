@@ -4,25 +4,45 @@ import { TransactionComplete } from "../../../components/transaction-complete";
 import { TransactionConfirm } from "../../../components/transaction-confirm";
 import { TransactionError } from "../../../components/transaction-error";
 import { TransactionsInProgress } from "../../../components/transaction-in-progress";
-import { useVegaWeb3 } from "../../../hooks/use-vega-web3";
-import { EthereumChainIds } from "../../../lib/vega-web3-utils";
 import { initialClaimState, revealReducer, TxState } from "./reveal-reducer";
 import BN from "bn.js";
+import detectEthereumProvider from "@metamask/detect-provider";
+import Web3 from "web3";
+import VegaClaim from "../../../lib/vega-claim";
+import { ClaimState } from "../claim-form/claim-reducer";
+import { useAppState } from "../../../contexts/app-state/app-state-context";
 
 export const ClaimStep2 = ({
   step1Completed,
   amount,
+  claimState,
 }: {
   step1Completed: boolean;
   amount: BN | null;
+  claimState: ClaimState;
 }) => {
   const { t } = useTranslation();
   const [state, dispatch] = React.useReducer(revealReducer, initialClaimState);
-  const vega = useVegaWeb3(EthereumChainIds.Mainnet);
+  const { appState } = useAppState();
   const commitReveal = React.useCallback(async () => {
     dispatch({ type: "REVEAL_TX_REQUESTED" });
-    const promi = vega.commitClaim(); // TODO change this to reveal
-    promi
+    const provider = (await detectEthereumProvider()) as any;
+    const web3 = new Web3(provider);
+    const claim = new VegaClaim(
+      web3,
+      "0xAf5dC1772714b2F4fae3b65eb83100f1Ea677b21"
+    );
+    claim
+      .claim({
+        claimCode: claimState.code!,
+        denomination: claimState.denomination!,
+        trancheId: claimState.trancheId!,
+        expiry: claimState.expiry!,
+        nonce: claimState.nonce!,
+        country: "GB",
+        targeted: !!claimState.target,
+        account: appState.address!,
+      })
       .on("transactionHash", (hash: string) => {
         dispatch({ type: "REVEAL_TX_SUBMITTED", txHash: hash });
       })
@@ -32,7 +52,15 @@ export const ClaimStep2 = ({
       .on("error", (err: Error) => {
         dispatch({ type: "REVEAL_TX_ERROR", error: err });
       });
-  }, [vega]);
+  }, [
+    appState.address,
+    claimState.code,
+    claimState.denomination,
+    claimState.expiry,
+    claimState.nonce,
+    claimState.target,
+    claimState.trancheId,
+  ]);
   let content = null;
   if (state.revealTxState === TxState.Error) {
     content = (

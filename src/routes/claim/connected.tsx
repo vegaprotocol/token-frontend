@@ -15,12 +15,14 @@ interface ConnectedClaimProps {
   state: ClaimState;
   dispatch: (action: ClaimAction) => void;
   commitClaim: () => void;
+  claim: () => void;
 }
 
 export const ConnectedClaim = ({
   state,
   commitClaim,
   dispatch,
+  claim,
 }: ConnectedClaimProps) => {
   const [loading, setLoading] = React.useState<boolean>(true);
   const { t } = useTranslation();
@@ -178,7 +180,7 @@ export const ConnectedClaim = ({
         {state.target ? (
           <ClaimForm
             state={state}
-            onSubmit={() => commitClaim()}
+            onSubmit={() => claim()}
             dispatch={dispatch}
           />
         ) : (
@@ -201,6 +203,7 @@ export const ConnectedClaim = ({
               />
             </div>
             <ClaimStep2
+              claimState={state}
               step1Completed={state.claimTxState === TxState.Complete}
               amount={state.denomination}
             />
