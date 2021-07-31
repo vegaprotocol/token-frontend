@@ -1,4 +1,5 @@
 import React from "react";
+import { NotFound } from "./404";
 import Home from "./home";
 
 const LazyTranches = React.lazy(
@@ -23,7 +24,7 @@ const LazyRedemption = React.lazy(
 const routerConfig = [
   {
     path: "/",
-    name: 'Home',
+    name: "Home",
     children: [],
     // Not lazy as loaded when a user first hits the site
     component: Home,
@@ -31,21 +32,27 @@ const routerConfig = [
   },
   {
     path: "/tranches",
-    name: 'Tranches',
+    name: "Tranches",
     children: [],
     component: LazyTranches,
   },
   {
     path: "/claim",
-    name: 'Claim',
+    name: "Claim",
     children: [],
     component: LazyClaim,
   },
   {
     path: "/redemption",
-    name: 'Redemption',
+    name: "Redemption",
     children: [],
     component: LazyRedemption,
+  },
+  {
+    path: "/*",
+    name: "NotFound",
+    children: [],
+    component: NotFound,
   },
 ];
 
