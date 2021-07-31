@@ -37,9 +37,9 @@ const ClaimRouter = () => {
     pageContent = <ClaimRestricted />;
   } else if (state.error) {
     pageContent = <ClaimError />;
-  } else if (appState.address) {
+  } else if (appState.address && state.code) {
     pageContent = <ConnectedClaim state={state} dispatch={dispatch} />;
-  } else {
+  } else if (!appState.address) {
     pageContent = (
       <section>
         <p>
