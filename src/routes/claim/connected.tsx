@@ -6,9 +6,7 @@ import { Link } from "react-router-dom";
 import Web3 from "web3";
 import { Loading } from "../../components/loading";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import { useVegaWeb3 } from "../../hooks/use-vega-web3";
 import VegaClaim from "../../lib/vega-claim";
-import { EthereumChainIds } from "../../lib/vega-web3-utils";
 import { ClaimForm } from "./claim-form";
 import { ClaimAction, ClaimState, TxState } from "./claim-form/claim-reducer";
 import { ClaimStep2 } from "./claim-step-2";
@@ -26,7 +24,6 @@ export const ConnectedClaim = ({
 }: ConnectedClaimProps) => {
   const [loading, setLoading] = React.useState<boolean>(true);
   const { t } = useTranslation();
-  const vega = useVegaWeb3(EthereumChainIds.Mainnet);
   const { appState } = useAppState();
   const { address, tranches } = appState;
   const showRedeem = ["1", "true"].includes(process.env.REACT_APP_REDEEM_LIVE!);
@@ -70,7 +67,11 @@ export const ConnectedClaim = ({
       }
     };
     run();
-  }, [appState.address, dispatch, state, vega]);
+    // HACK
+    // Force only running once
+    // TODO fix this
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const currentTranche = React.useMemo(() => {
     return tranches.find(
