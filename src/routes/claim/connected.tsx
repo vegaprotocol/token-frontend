@@ -7,7 +7,6 @@ import Web3 from "web3";
 import { Loading } from "../../components/loading";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import VegaClaim from "../../lib/vega-claim";
-import { ClaimForm } from "./claim-form";
 import { ClaimAction, ClaimState, TxState } from "./claim-form/claim-reducer";
 import { ClaimStep1 } from "./claim-step-1";
 import { ClaimStep2 } from "./claim-step-2";
