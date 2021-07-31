@@ -11,6 +11,7 @@ import Web3 from "web3";
 import VegaClaim from "../../../lib/vega-claim";
 import { ClaimState } from "../claim-form/claim-reducer";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
+import { EthereumChainIds } from "../../../lib/vega-web3-utils";
 
 export const ClaimStep2 = ({
   step1Completed,
@@ -68,14 +69,25 @@ export const ClaimStep2 = ({
         onActionClick={() => dispatch({ type: "REVEAL_TX_RESET" })}
         error={state.revealTxData.error}
         hash={state.revealTxData.hash}
+        chainId={EthereumChainIds.Mainnet}
       />
     );
   } else if (state.revealTxState === TxState.Pending) {
-    content = <TransactionsInProgress hash={state.revealTxData.hash} />;
+    content = (
+      <TransactionsInProgress
+        hash={state.revealTxData.hash!}
+        chainId={EthereumChainIds.Mainnet}
+      />
+    );
   } else if (state.revealTxState === TxState.Requested) {
     content = <TransactionConfirm />;
   } else if (state.revealTxState === TxState.Complete) {
-    content = <TransactionComplete hash={state.revealTxData.hash} />;
+    content = (
+      <TransactionComplete
+        hash={state.revealTxData.hash!}
+        chainId={EthereumChainIds.Mainnet}
+      />
+    );
   } else {
     content = (
       <button disabled={!step1Completed} onClick={() => commitReveal()}>

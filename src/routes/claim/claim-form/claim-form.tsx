@@ -5,6 +5,7 @@ import { TransactionComplete } from "../../../components/transaction-complete";
 import { TransactionConfirm } from "../../../components/transaction-confirm";
 import { TransactionError } from "../../../components/transaction-error";
 import { TransactionsInProgress } from "../../../components/transaction-in-progress";
+import { EthereumChainIds } from "../../../lib/vega-web3-utils";
 import { ClaimAction, ClaimState, TxState } from "./claim-reducer";
 
 export interface ICountry {
@@ -32,12 +33,18 @@ export const ClaimForm = ({
         error={state.claimTxData.error}
         hash={state.claimTxData.hash}
         onActionClick={() => dispatch({ type: "CLAIM_TX_RESET" })}
+        chainId={EthereumChainIds.Mainnet}
       />
     );
   }
 
   if (state.claimTxState === TxState.Pending) {
-    return <TransactionsInProgress hash={state.claimTxData.hash} />;
+    return (
+      <TransactionsInProgress
+        hash={state.claimTxData.hash!}
+        chainId={EthereumChainIds.Mainnet}
+      />
+    );
   }
 
   if (state.claimTxState === TxState.Requested) {
@@ -45,7 +52,12 @@ export const ClaimForm = ({
   }
 
   if (state.claimTxState === TxState.Complete) {
-    return <TransactionComplete hash={state.claimTxData.hash} />;
+    return (
+      <TransactionComplete
+        hash={state.claimTxData.hash!}
+        chainId={EthereumChainIds.Mainnet}
+      />
+    );
   }
 
   return (
