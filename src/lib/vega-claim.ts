@@ -75,16 +75,6 @@ export default class VegaClaim {
     targeted: boolean;
     account: string;
   }): PromiEvent {
-    console.log({
-      claimCode,
-      denomination,
-      trancheId,
-      expiry,
-      nonce,
-      country,
-      targeted,
-      account,
-    });
     return this.contract.methods[
       targeted ? "redeem_targeted" : "redeem_untargeted_code"
     ](

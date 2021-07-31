@@ -29,7 +29,6 @@ export const ClaimForm = ({
   const {
     appState: { chainId },
   } = useAppState();
-  console.log(chainId);
   if (state.claimTxState === TxState.Error) {
     return (
       <TransactionError
