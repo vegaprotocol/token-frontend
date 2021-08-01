@@ -4,13 +4,9 @@ import BN from "bn.js";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import React from "react";
 import Web3 from "web3";
-import detectEthereumProvider from "@metamask/detect-provider";
 import VegaClaim from "../../../lib/vega-claim";
-import {
-  initialState,
-  transactionReducer,
-  TxState,
-} from "../transaction-reducer";
+import { TxState } from "../transaction-reducer";
+import { useTransaction } from "../../../hooks/use-transaction";
 
 interface UntargetedClaimProps {
   claimCode: string;
@@ -35,75 +31,32 @@ export const UntargetedClaim = ({
   account,
   committed,
 }: UntargetedClaimProps) => {
-  const [revealState, revealDispatch] = React.useReducer(
-    transactionReducer,
-    initialState
-  );
-  const [commitState, commitDispatch] = React.useReducer(
-    transactionReducer,
-    initialState
-  );
-  const { appState } = useAppState();
-  const { address } = appState;
-  const commitClaim = React.useCallback(async () => {
-    commitDispatch({ type: "TX_REQUESTED" });
-    const provider = (await detectEthereumProvider()) as any;
+  const { appState, provider } = useAppState();
+  const claim = React.useMemo(() => {
     const web3 = new Web3(provider);
-    const claim = new VegaClaim(
-      web3,
-      "0xAf5dC1772714b2F4fae3b65eb83100f1Ea677b21"
-    );
-    claim
-      .commit(claimCode, appState.address!)
-      .once("transactionHash", (hash: string) => {
-        commitDispatch({ type: "TX_SUBMITTED", txHash: hash });
-      })
-      .once("receipt", (receipt: any) => {
-        commitDispatch({ type: "TX_COMPLETE", receipt });
-      })
-      .once("error", (err: Error) => {
-        console.log(err);
-        commitDispatch({ type: "TX_ERROR", error: err });
-      });
-  }, [claimCode, appState.address]);
-  const commitReveal = React.useCallback(async () => {
-    revealDispatch({ type: "TX_REQUESTED" });
-    const provider = (await detectEthereumProvider()) as any;
-    const web3 = new Web3(provider);
-    const claim = new VegaClaim(
-      web3,
-      "0xAf5dC1772714b2F4fae3b65eb83100f1Ea677b21"
-    );
-    claim
-      .claim({
-        claimCode,
-        denomination,
-        trancheId,
-        expiry,
-        nonce,
-        country,
-        targeted,
-        account: address!,
-      })
-      .on("transactionHash", (hash: string) => {
-        revealDispatch({ type: "TX_SUBMITTED", txHash: hash });
-      })
-      .on("receipt", (receipt: any) => {
-        revealDispatch({ type: "TX_COMPLETE", receipt });
-      })
-      .on("error", (err: Error) => {
-        revealDispatch({ type: "TX_ERROR", error: err });
-      });
-  }, [
-    address,
-    claimCode,
-    country,
-    denomination,
-    expiry,
-    nonce,
-    targeted,
-    trancheId,
-  ]);
+    return new VegaClaim(web3, "0xAf5dC1772714b2F4fae3b65eb83100f1Ea677b21");
+  }, [provider]);
+  const {
+    state: commitState,
+    dispatch: commitDispatch,
+    perform: commitClaim,
+  } = useTransaction(() => claim.commit(claimCode, appState.address!));
+  const {
+    state: revealState,
+    dispatch: revealDispatch,
+    perform: commitReveal,
+  } = useTransaction(() =>
+    claim.claim({
+      claimCode,
+      denomination,
+      trancheId,
+      expiry,
+      nonce,
+      country,
+      targeted,
+      account,
+    })
+  );
   return (
     <>
       <ClaimStep1

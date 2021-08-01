@@ -3,7 +3,7 @@ import type BN from "bn.js";
 import type { Contract } from "web3-eth-contract";
 import claimAbi from "./claim_abi.json";
 
-type PromiEvent = typeof Promise & {
+export type PromiEvent = typeof Promise & {
   on: (event: string, listener: (...args: any[]) => void) => PromiEvent;
   once: (event: string, listener: (...args: any[]) => void) => PromiEvent;
 };
