@@ -5,67 +5,29 @@ import { TransactionConfirm } from "../../../components/transaction-confirm";
 import { TransactionError } from "../../../components/transaction-error";
 import { TransactionsInProgress } from "../../../components/transaction-in-progress";
 import BN from "bn.js";
-import detectEthereumProvider from "@metamask/detect-provider";
-import Web3 from "web3";
-import VegaClaim from "../../../lib/vega-claim";
-import { ClaimState } from "../claim-reducer";
-import { useAppState } from "../../../contexts/app-state/app-state-context";
 import {
-  initialState,
-  transactionReducer,
+  TransactionAction,
+  TransactionState,
   TxState,
 } from "../transaction-reducer";
+import { useAppState } from "../../../contexts/app-state/app-state-context";
 
 export const ClaimStep2 = ({
   step1Completed,
   amount,
-  claimState,
+  state,
+  dispatch,
+  onSubmit,
 }: {
   step1Completed: boolean;
-  amount: BN | null;
-  claimState: ClaimState;
+  amount: BN;
+  state: TransactionState;
+  dispatch: (action: TransactionAction) => void;
+  onSubmit: () => void;
 }) => {
-  const { t } = useTranslation();
-  const [state, dispatch] = React.useReducer(transactionReducer, initialState);
   const { appState } = useAppState();
-  const { chainId, address } = appState;
-  const commitReveal = React.useCallback(async () => {
-    dispatch({ type: "TX_REQUESTED" });
-    const provider = (await detectEthereumProvider()) as any;
-    const web3 = new Web3(provider);
-    const claim = new VegaClaim(
-      web3,
-      "0xAf5dC1772714b2F4fae3b65eb83100f1Ea677b21"
-    );
-    claim
-      .claim({
-        claimCode: claimState.code!,
-        denomination: claimState.denomination!,
-        trancheId: claimState.trancheId!,
-        expiry: claimState.expiry!,
-        nonce: claimState.nonce!,
-        country: "GB",
-        targeted: !!claimState.target,
-        account: address!,
-      })
-      .on("transactionHash", (hash: string) => {
-        dispatch({ type: "TX_SUBMITTED", txHash: hash });
-      })
-      .on("receipt", (receipt: any) => {
-        dispatch({ type: "TX_COMPLETE", receipt });
-      })
-      .on("error", (err: Error) => {
-        dispatch({ type: "TX_ERROR", error: err });
-      });
-  }, [
-    address,
-    claimState.code,
-    claimState.denomination,
-    claimState.expiry,
-    claimState.nonce,
-    claimState.target,
-    claimState.trancheId,
-  ]);
+  const { chainId } = appState;
+  const { t } = useTranslation();
   let content = null;
   if (state.txState === TxState.Error) {
     content = (
@@ -88,7 +50,7 @@ export const ClaimStep2 = ({
     );
   } else {
     content = (
-      <button disabled={!step1Completed} onClick={() => commitReveal()}>
+      <button disabled={!step1Completed} onClick={onSubmit}>
         {t("Claim {amount} Vega", { amount })}
       </button>
     );
