@@ -103,6 +103,8 @@ const en = {
     "Desired network": "This app is only configured for  {{chain}}",
     "This code ({code}) has expired and cannot be used to claim tokens":
       "This code ({{code}}) has expired and cannot be used to claim tokens.",
+    "Looks like that code has already been used.":
+      "Looks like that code has already been used.",
   },
 };
 

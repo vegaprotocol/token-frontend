@@ -1,7 +1,8 @@
-import { Trans } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { LockedBanner } from "./locked-banner";
 
 export const CodeUsed = ({ address }: { address: string | null }) => {
+  const { t } = useTranslation();
   return (
     <div>
       <p>
@@ -11,7 +12,7 @@ export const CodeUsed = ({ address }: { address: string | null }) => {
           components={{ bold: <strong /> }}
         />
       </p>
-      <p>Looks like that code has already been used.</p>
+      <p>{t("Looks like that code has already been used.")}</p>
       <LockedBanner />
     </div>
   );
