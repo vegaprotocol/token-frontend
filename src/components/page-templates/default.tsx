@@ -34,7 +34,7 @@ export function DefaultTemplate({ children, title }: DefaultTemplateProps) {
         desiredChainId={appState.appChainId}
       />
     );
-  } else if (!appState.tranches.length || !appState.hasProvider) {
+  } else if (!appState.tranches.length) {
     content = <Loading />;
   } else {
     content = children;
