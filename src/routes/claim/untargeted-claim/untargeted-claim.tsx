@@ -7,6 +7,7 @@ import Web3 from "web3";
 import VegaClaim from "../../../lib/vega-claim";
 import { TxState } from "../transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
+import { LockedBanner } from "../locked-banner";
 
 interface UntargetedClaimProps {
   claimCode: string;
@@ -57,7 +58,10 @@ export const UntargetedClaim = ({
       account,
     })
   );
-  return (
+  return revealState.txState === TxState.Complete &&
+    (commitState.txState === TxState.Complete || committed) ? (
+    <LockedBanner />
+  ) : (
     <>
       <ClaimStep1
         state={commitState}
