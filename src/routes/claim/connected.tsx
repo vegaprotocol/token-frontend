@@ -7,12 +7,11 @@ import Web3 from "web3";
 import { Loading } from "../../components/loading";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import VegaClaim from "../../lib/vega-claim";
-import { ClaimAction, ClaimState, TxState } from "./claim-form/claim-reducer";
-import { ClaimStep1 } from "./claim-step-1";
-import { ClaimStep2 } from "./claim-step-2";
+import { ClaimAction, ClaimState } from "./claim-reducer";
 import { CodeUsed } from "./code-used";
 import { Expired } from "./expired";
 import { TargetedClaim } from "./targeted-claim";
+import { UntargetedClaim } from "./untargeted-claim";
 
 interface ConnectedClaimProps {
   state: ClaimState;
@@ -182,22 +181,28 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
       >
         {/* If targeted we do not need to commit reveal, as there is no change of front running the mem pool */}
         {state.target ? (
-          <TargetedClaim state={state} dispatch={dispatch} />
+          <TargetedClaim
+            claimCode={state.code!}
+            denomination={state.denomination!}
+            expiry={state.expiry!}
+            nonce={state.nonce!}
+            trancheId={state.trancheId!}
+            country={"GB"} // TODO
+            targeted={!!state.target}
+            account={appState.address!}
+          />
         ) : (
-          <>
-            <ClaimStep1
-              state={state}
-              dispatch={dispatch}
-              completed={committed}
-            />
-            <ClaimStep2
-              claimState={state}
-              step1Completed={
-                state.claimTxState === TxState.Complete || committed
-              }
-              amount={state.denomination}
-            />
-          </>
+          <UntargetedClaim
+            claimCode={state.code!}
+            denomination={state.denomination!}
+            expiry={state.expiry!}
+            nonce={state.nonce!}
+            trancheId={state.trancheId!}
+            country={"GB"} // TODO
+            targeted={!!state.target}
+            account={appState.address!}
+            committed={committed}
+          />
         )}
       </div>
     </section>

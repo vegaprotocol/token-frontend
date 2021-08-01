@@ -6,7 +6,11 @@ import { TransactionConfirm } from "../../../components/transaction-confirm";
 import { TransactionError } from "../../../components/transaction-error";
 import { TransactionsInProgress } from "../../../components/transaction-in-progress";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
-import { ClaimAction, ClaimState, TxState } from "./claim-reducer";
+import {
+  TransactionAction,
+  TransactionState,
+  TxState,
+} from "../transaction-reducer";
 
 export interface ICountry {
   name: string;
@@ -21,8 +25,8 @@ export const ClaimForm = ({
   onSubmit,
   completed,
 }: {
-  state: ClaimState;
-  dispatch: (action: ClaimAction) => void;
+  state: TransactionState;
+  dispatch: (action: TransactionAction) => void;
   onSubmit: () => void;
   completed: boolean;
 }) => {
@@ -31,34 +35,31 @@ export const ClaimForm = ({
   const {
     appState: { chainId },
   } = useAppState();
-  if (state.claimTxState === TxState.Error) {
+  if (state.txState === TxState.Error) {
     return (
       <TransactionError
-        error={state.claimTxData.error}
-        hash={state.claimTxData.hash}
-        onActionClick={() => dispatch({ type: "CLAIM_TX_RESET" })}
+        error={state.txData.error}
+        hash={state.txData.hash}
+        onActionClick={() => dispatch({ type: "TX_RESET" })}
         chainId={chainId!}
       />
     );
   }
 
-  if (state.claimTxState === TxState.Pending) {
+  if (state.txState === TxState.Pending) {
     return (
-      <TransactionsInProgress
-        hash={state.claimTxData.hash!}
-        chainId={chainId!}
-      />
+      <TransactionsInProgress hash={state.txData.hash!} chainId={chainId!} />
     );
   }
 
-  if (state.claimTxState === TxState.Requested) {
+  if (state.txState === TxState.Requested) {
     return <TransactionConfirm />;
   }
 
-  if (state.claimTxState === TxState.Complete || completed) {
+  if (state.txState === TxState.Complete || completed) {
     return (
       <TransactionComplete
-        hash={state.claimTxData.hash!}
+        hash={state.txData.hash!}
         chainId={chainId!}
         showLink={!completed}
       />

@@ -1,20 +1,36 @@
 import detectEthereumProvider from "@metamask/detect-provider";
 import React from "react";
 import Web3 from "web3";
-import { useAppState } from "../../../contexts/app-state/app-state-context";
 import VegaClaim from "../../../lib/vega-claim";
 import { ClaimForm } from "../claim-form";
-import { ClaimAction, ClaimState } from "../claim-form/claim-reducer";
+import { initialState, transactionReducer } from "../transaction-reducer";
+import BN from "bn.js";
 
 interface TargetedClaimProps {
-  state: ClaimState;
-  dispatch: (action: ClaimAction) => void;
+  claimCode: string;
+  denomination: BN;
+  trancheId: number;
+  expiry: number;
+  nonce: string;
+  country: string;
+  targeted: boolean;
+  account: string;
 }
 
-export const TargetedClaim = ({ state, dispatch }: TargetedClaimProps) => {
-  const { appState } = useAppState();
+export const TargetedClaim = ({
+  claimCode,
+  denomination,
+  trancheId,
+  expiry,
+  nonce,
+  country,
+  targeted,
+  account,
+}: TargetedClaimProps) => {
+  const [state, dispatch] = React.useReducer(transactionReducer, initialState);
+
   const claim = React.useCallback(async () => {
-    dispatch({ type: "CLAIM_TX_REQUESTED" });
+    dispatch({ type: "TX_REQUESTED" });
     const provider = (await detectEthereumProvider()) as any;
     const web3 = new Web3(provider);
     const claim = new VegaClaim(
@@ -23,34 +39,34 @@ export const TargetedClaim = ({ state, dispatch }: TargetedClaimProps) => {
     );
     claim
       .claim({
-        claimCode: state.code!,
-        denomination: state.denomination!,
-        trancheId: state.trancheId!,
-        expiry: state.expiry!,
-        nonce: state.nonce!,
-        country: "GB",
-        targeted: !!state.target,
-        account: appState.address!,
+        claimCode,
+        denomination,
+        trancheId,
+        expiry,
+        nonce,
+        country,
+        targeted,
+        account,
       })
       .once("transactionHash", (hash: string) => {
-        dispatch({ type: "CLAIM_TX_SUBMITTED", txHash: hash });
+        dispatch({ type: "TX_SUBMITTED", txHash: hash });
       })
       .once("receipt", (receipt: any) => {
-        dispatch({ type: "CLAIM_TX_COMPLETE", receipt });
+        dispatch({ type: "TX_COMPLETE", receipt });
       })
       .once("error", (err: Error) => {
         console.log(err);
-        dispatch({ type: "CLAIM_TX_ERROR", error: err });
+        dispatch({ type: "TX_ERROR", error: err });
       });
   }, [
-    appState.address,
-    dispatch,
-    state.code,
-    state.denomination,
-    state.expiry,
-    state.nonce,
-    state.target,
-    state.trancheId,
+    account,
+    claimCode,
+    country,
+    denomination,
+    expiry,
+    nonce,
+    targeted,
+    trancheId,
   ]);
   return (
     <ClaimForm

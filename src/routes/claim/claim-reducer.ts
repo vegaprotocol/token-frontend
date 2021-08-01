@@ -9,14 +9,6 @@ export enum TxState {
 }
 
 export interface ClaimState {
-  // claim form state
-  claimTxState: TxState;
-  claimTxData: {
-    hash: string | null;
-    receipt: object | null;
-    error: Error | null;
-  };
-
   // From URL
   denomination: BN | null; // amount
   target: string | null; // ETH address
@@ -30,14 +22,6 @@ export interface ClaimState {
 }
 
 export const initialClaimState: ClaimState = {
-  // claim tx
-  claimTxState: TxState.Default,
-  claimTxData: {
-    hash: null,
-    receipt: null,
-    error: null,
-  },
-
   denomination: null,
   target: null,
   trancheId: null,
@@ -60,24 +44,6 @@ export type ClaimAction =
         code: string;
         nonce: string;
       };
-    }
-  | {
-      type: "CLAIM_TX_RESET";
-    }
-  | {
-      type: "CLAIM_TX_REQUESTED";
-    }
-  | {
-      type: "CLAIM_TX_SUBMITTED";
-      txHash: string;
-    }
-  | {
-      type: "CLAIM_TX_COMPLETE";
-      receipt: any;
-    }
-  | {
-      type: "CLAIM_TX_ERROR";
-      error: Error;
     }
   | {
       type: "ERROR";
@@ -111,49 +77,6 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
           nonce: action.data.nonce,
         };
       }
-    case "CLAIM_TX_RESET":
-      return {
-        ...state,
-        claimTxState: TxState.Default,
-        claimTxData: {
-          hash: null,
-          receipt: null,
-          error: null,
-        },
-      };
-    case "CLAIM_TX_REQUESTED":
-      return {
-        ...state,
-        claimTxState: TxState.Requested,
-      };
-    case "CLAIM_TX_SUBMITTED": {
-      return {
-        ...state,
-        claimTxState: TxState.Pending,
-        claimTxData: {
-          ...state.claimTxData,
-          hash: action.txHash,
-        },
-      };
-    }
-    case "CLAIM_TX_COMPLETE":
-      return {
-        ...state,
-        claimTxState: TxState.Complete,
-        claimTxData: {
-          ...state.claimTxData,
-          receipt: action.receipt,
-        },
-      };
-    case "CLAIM_TX_ERROR":
-      return {
-        ...state,
-        claimTxState: TxState.Error,
-        claimTxData: {
-          ...state.claimTxData,
-          error: action.error,
-        },
-      };
     case "ERROR":
       return {
         ...state,
