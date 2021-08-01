@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { EthereumChainId, EthereumChainNames } from "../../lib/web3-utils";
+import { EthereumChainId, EthereumChainNames } from "../lib/web3-utils";
 
 export const WrongChain = ({
   currentChainId,

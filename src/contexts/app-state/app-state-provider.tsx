@@ -12,6 +12,7 @@ const initialAppState: AppState = {
   address: null,
   connecting: false,
   chainId: null,
+  appChainId: process.env.REACT_APP_CHAIN as EthereumChainId,
   error: null,
   balance: null,
   tranches: [],
