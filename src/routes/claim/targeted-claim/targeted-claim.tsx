@@ -1,13 +1,10 @@
-import React from "react";
-import Web3 from "web3";
-import VegaClaim from "../../../lib/vega-web3/vega-claim";
 import { ClaimForm } from "../claim-form";
 import BN from "bn.js";
 import { useTransaction } from "../../../hooks/use-transaction";
-import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { TxState } from "../transaction-reducer";
 import { LockedBanner } from "../locked-banner";
 import { useValidateCountry } from "../hooks";
+import { useVegaClaim } from "../../../hooks/use-vega-claim";
 
 interface TargetedClaimProps {
   claimCode: string;
@@ -29,11 +26,7 @@ export const TargetedClaim = ({
   account,
 }: TargetedClaimProps) => {
   const params = useValidateCountry();
-  const { provider } = useAppState();
-  const claim = React.useMemo(() => {
-    const web3 = new Web3(provider);
-    return new VegaClaim(web3, "0xAf5dC1772714b2F4fae3b65eb83100f1Ea677b21");
-  }, [provider]);
+  const claim = useVegaClaim();
   const {
     state,
     dispatch,
