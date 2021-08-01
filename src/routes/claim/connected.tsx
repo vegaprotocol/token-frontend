@@ -115,7 +115,9 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
           {t("Tranche")} {currentTranche.tranche_id}
         </Link>{" "}
         {t("claim2", {
-          expiry: "12/12/12", // TODO correct date.
+          expiry: state.expiry
+            ? t("never")
+            : format(state.expiry!, "dd/MM/yyyy"),
         })}
       </p>
       {noneRedeemable && (
