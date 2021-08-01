@@ -86,7 +86,16 @@ export const Heading = ({ title }: HeadingProps) => {
               }}
             >
               {Object.entries(EthereumChainIds).map(([name, val]) => (
-                <option key={val} value={val}>
+                <option
+                  key={val}
+                  value={val}
+                  disabled={
+                    ![
+                      EthereumChainIds.Ropsten,
+                      EthereumChainIds.Mainnet,
+                    ].includes(val)
+                  }
+                >
                   {name}
                 </option>
               ))}
