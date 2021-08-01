@@ -1,6 +1,5 @@
 import detectEthereumProvider from "@metamask/detect-provider";
 import React from "react";
-import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { EthereumChainId } from "../../lib/web3-utils";
 import { AppState, AppStateContext, AppStateAction } from "./app-state-context";
 
@@ -77,17 +76,9 @@ function appStateReducer(state: AppState, action: AppStateAction) {
 
 export function AppStateProvider({ children }: AppStateProviderProps) {
   const provider = React.useRef<any>();
-  const vega = useVegaVesting();
   const useMocks = ["1", "true"].includes(process.env.REACT_APP_MOCKED!);
-
   const [state, dispatch] = React.useReducer(appStateReducer, initialAppState);
-  React.useEffect(() => {
-    const run = async () => {
-      const tranches = await vega.getAllTranches();
-      dispatch({ type: "SET_TRANCHES", tranches });
-    };
-    run();
-  }, [vega]);
+
   // Detect provider
   React.useEffect(() => {
     if (useMocks) {
