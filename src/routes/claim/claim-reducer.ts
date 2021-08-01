@@ -1,4 +1,5 @@
 import BN from "bn.js";
+
 export interface ClaimState {
   // From URL
   denomination: BN | null; // amount
