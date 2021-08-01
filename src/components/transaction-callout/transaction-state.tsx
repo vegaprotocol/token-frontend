@@ -35,7 +35,13 @@ export const TransactionCallout = ({
   } else if (state.txState === TxState.Requested) {
     return <TransactionConfirm />;
   } else if (state.txState === TxState.Complete || complete) {
-    return <TransactionComplete hash={state.txData.hash!} chainId={chainId} />;
+    return (
+      <TransactionComplete
+        hash={state.txData.hash!}
+        chainId={chainId}
+        showLink={!complete}
+      />
+    );
   }
   return null;
 };
