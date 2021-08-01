@@ -101,6 +101,8 @@ const en = {
       "This service is not available in your country",
     "Wrong network": "Looks like you are on {{chain}}",
     "Desired network": "This app is only configured for  {{chain}}",
+    "This code ({code}) has expired and cannot be used to claim tokens":
+      "This code ({{code}}) has expired and cannot be used to claim tokens.",
   },
 };
 

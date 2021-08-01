@@ -1,4 +1,4 @@
-import { Trans } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 export const Expired = ({
   address,
@@ -7,6 +7,7 @@ export const Expired = ({
   address: string | null;
   code: string;
 }) => {
+  const { t } = useTranslation();
   return (
     <div>
       <p>
@@ -16,7 +17,12 @@ export const Expired = ({
           components={{ bold: <strong /> }}
         />
       </p>
-      <p>This code ({code}) has expired and cannot be used to claim tokens.</p>
+      <p>
+        {t(
+          "This code ({code}) has expired and cannot be used to claim tokens.",
+          { code }
+        )}
+      </p>
     </div>
   );
 };
