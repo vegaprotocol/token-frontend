@@ -36,22 +36,28 @@ const ConnectedKey = () => {
   } else {
     return (
       <div className="heading__wallet">
-        <span className="heading__wallet-label">{t("Account")}: </span>
-        <span className="heading__wallet-value">
-          <a
-            rel="noreferrer"
-            target="_blank"
-            href={"https://etherscan.io/address/" + address}
-          >
-            {address.slice(0, 6) +
-              "..." +
-              address.slice(address.length - 4, address.length)}
-          </a>
-        </span>
-        <span className="heading__wallet-label">{t("Vesting Balance")}: </span>
-        <span className="heading__wallet-value">
-          {balance} {t("VEGA")}
-        </span>
+        <div>
+          <span className="heading__wallet-label">{t("Account")}: </span>
+          <span className="heading__wallet-value">
+            <a
+              rel="noreferrer"
+              target="_blank"
+              href={"https://etherscan.io/address/" + address}
+            >
+              {address.slice(0, 6) +
+                "..." +
+                address.slice(address.length - 4, address.length)}
+            </a>
+          </span>
+        </div>
+        <div>
+          <span className="heading__wallet-label">
+            {t("Vesting Balance")}:{" "}
+          </span>
+          <span className="heading__wallet-value">
+            {balance} {t("VEGA")}
+          </span>
+        </div>
       </div>
     );
   }
