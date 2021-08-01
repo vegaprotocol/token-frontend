@@ -1,9 +1,4 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
-import { TransactionComplete } from "../../../components/transaction-complete";
-import { TransactionConfirm } from "../../../components/transaction-confirm";
-import { TransactionError } from "../../../components/transaction-error";
-import { TransactionsInProgress } from "../../../components/transaction-in-progress";
 import BN from "bn.js";
 import {
   TransactionAction,
@@ -11,6 +6,7 @@ import {
   TxState,
 } from "../transaction-reducer";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
+import { TransactionCallout } from "../../../components/transaction-callout";
 
 export const ClaimStep2 = ({
   step1Completed,
@@ -29,24 +25,14 @@ export const ClaimStep2 = ({
   const { chainId } = appState;
   const { t } = useTranslation();
   let content = null;
-  if (state.txState === TxState.Error) {
+  if (state.txState !== TxState.Default) {
     content = (
-      <TransactionError
-        onActionClick={() => dispatch({ type: "TX_RESET" })}
-        error={state.txData.error}
-        hash={state.txData.hash}
+      <TransactionCallout
         chainId={chainId!}
+        state={state}
+        reset={() => dispatch({ type: "TX_RESET" })}
+        complete={false}
       />
-    );
-  } else if (state.txState === TxState.Pending) {
-    content = (
-      <TransactionsInProgress hash={state.txData.hash!} chainId={chainId!} />
-    );
-  } else if (state.txState === TxState.Requested) {
-    content = <TransactionConfirm />;
-  } else if (state.txState === TxState.Complete) {
-    content = (
-      <TransactionComplete hash={state.txData.hash!} chainId={chainId!} />
     );
   } else {
     content = (

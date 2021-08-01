@@ -1,10 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { CountrySelector } from "../../../components/country-selector";
-import { TransactionComplete } from "../../../components/transaction-complete";
-import { TransactionConfirm } from "../../../components/transaction-confirm";
-import { TransactionError } from "../../../components/transaction-error";
-import { TransactionsInProgress } from "../../../components/transaction-in-progress";
+import { TransactionCallout } from "../../../components/transaction-callout";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import {
   TransactionAction,
@@ -35,33 +32,13 @@ export const ClaimForm = ({
   const {
     appState: { chainId },
   } = useAppState();
-  if (state.txState === TxState.Error) {
+  if (state.txState !== TxState.Default || completed) {
     return (
-      <TransactionError
-        error={state.txData.error}
-        hash={state.txData.hash}
-        onActionClick={() => dispatch({ type: "TX_RESET" })}
+      <TransactionCallout
         chainId={chainId!}
-      />
-    );
-  }
-
-  if (state.txState === TxState.Pending) {
-    return (
-      <TransactionsInProgress hash={state.txData.hash!} chainId={chainId!} />
-    );
-  }
-
-  if (state.txState === TxState.Requested) {
-    return <TransactionConfirm />;
-  }
-
-  if (state.txState === TxState.Complete || completed) {
-    return (
-      <TransactionComplete
-        hash={state.txData.hash!}
-        chainId={chainId!}
-        showLink={!completed}
+        state={state}
+        reset={() => dispatch({ type: "TX_RESET" })}
+        complete={completed}
       />
     );
   }
