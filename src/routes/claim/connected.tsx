@@ -10,6 +10,8 @@ import VegaClaim from "../../lib/vega-claim";
 import { ClaimAction, ClaimState, TxState } from "./claim-form/claim-reducer";
 import { ClaimStep1 } from "./claim-step-1";
 import { ClaimStep2 } from "./claim-step-2";
+import { CodeUsed } from "./code-used";
+import { Expired } from "./expired";
 import { TargetedClaim } from "./targeted-claim";
 
 interface ConnectedClaimProps {
@@ -19,12 +21,16 @@ interface ConnectedClaimProps {
 
 export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
   const [loading, setLoading] = React.useState<boolean>(true);
+  const [committed, setCommitted] = React.useState<boolean>(false);
+  const [expired, setExpired] = React.useState<boolean>(false);
+  const [used, setUsed] = React.useState<boolean>(false);
   const { t } = useTranslation();
   const { appState } = useAppState();
   const { address, tranches } = appState;
   const showRedeem = ["1", "true"].includes(process.env.REACT_APP_REDEEM_LIVE!);
   const code = state.code!;
-
+  const shortCode =
+    code.slice(0, 6) + "..." + code.slice(code.length - 4, code.length);
   React.useEffect(() => {
     /** Validate code */
     const run = async () => {
@@ -34,16 +40,24 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
         web3,
         "0xAf5dC1772714b2F4fae3b65eb83100f1Ea677b21"
       );
+
       const { nonce, expiry, code } = state;
       const account = appState.address!;
-      let valid = false;
       try {
-        valid = await claim.isClaimValid({
-          nonce: nonce!,
-          claimCode: code!,
-          expiry: expiry!,
-          account,
-        });
+        const [committed, expired, used] = await Promise.all([
+          claim.isCommitted({
+            claimCode: code!,
+            account,
+          }),
+          claim.isExpired(expiry!),
+          claim.isUsed(nonce!),
+        ]);
+        setCommitted(committed);
+        setExpired(expired);
+        setUsed(used);
+        const hash = claim.deriveCommitment(code!, account);
+        console.log(committed);
+        console.log(hash);
       } catch (e) {
         // TODO should this report to sentry?
         console.log(e);
@@ -53,13 +67,6 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
         });
       } finally {
         setLoading(false);
-      }
-
-      if (!valid) {
-        dispatch({
-          type: "ERROR",
-          error: new Error("Invalid code"),
-        });
       }
     };
     run();
@@ -76,12 +83,15 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
   }, [state.trancheId, tranches]);
   if (loading) {
     return <Loading />;
+  } else if (used) {
+    return <CodeUsed address={appState.address} />;
+  } else if (expired) {
+    return <Expired address={appState.address} code={shortCode} />;
   }
   if (!currentTranche) {
     throw new Error("Could not find tranche");
   }
-  const shortCode =
-    code.slice(0, 6) + "..." + code.slice(code.length - 4, code.length);
+
   const unlockDate = format(
     new Date(currentTranche.tranche_end).getTime(),
     "MMM d, yyyy"
@@ -175,10 +185,16 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
           <TargetedClaim state={state} dispatch={dispatch} />
         ) : (
           <>
-            <ClaimStep1 state={state} dispatch={dispatch} />
+            <ClaimStep1
+              state={state}
+              dispatch={dispatch}
+              completed={committed}
+            />
             <ClaimStep2
               claimState={state}
-              step1Completed={state.claimTxState === TxState.Complete}
+              step1Completed={
+                state.claimTxState === TxState.Complete || committed
+              }
               amount={state.denomination}
             />
           </>

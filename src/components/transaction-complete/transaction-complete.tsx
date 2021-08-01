@@ -6,17 +6,21 @@ import "./transaction-complete.scss";
 export const TransactionComplete = ({
   hash,
   chainId,
+  showLink = true,
 }: {
   hash: string;
   chainId: EthereumChainId;
+  showLink?: boolean;
 }) => {
   const { t } = useTranslation();
   return (
     <div className="transaction-complete">
       {t("Complete")}
-      <div>
-        <EtherscanLink hash={hash} chainId={chainId} />
-      </div>
+      {showLink && (
+        <div>
+          <EtherscanLink hash={hash} chainId={chainId} />
+        </div>
+      )}
     </div>
   );
 };
