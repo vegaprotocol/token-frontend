@@ -10,8 +10,6 @@ import { claimReducer, initialClaimState } from "./claim-reducer";
 import { ConnectedClaim } from "./connected";
 import { ClaimRestricted } from "./claim-restricted";
 import { isRestricted } from "./lib/is-restricted";
-import { WrongChain } from "./wrong-chain";
-import { EthereumChainId } from "../../lib/web3-utils";
 
 const ClaimRouter = () => {
   const { t } = useTranslation();
@@ -32,7 +30,6 @@ const ClaimRouter = () => {
       },
     });
   }, [dispatch, params]);
-
   let pageContent;
 
   if (isRestricted()) {
