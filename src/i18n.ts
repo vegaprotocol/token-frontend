@@ -111,6 +111,7 @@ const en = {
       "Add the Vega vesting token to your wallet to track how much you Vega you have in the vesting contract.",
     "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.":
       "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
+    never: "never",
   },
 };
 
