@@ -98,7 +98,6 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
           provider.current
             .request({ method: "eth_chainId" })
             .then((chainId: string) => {
-              console.log(chainId);
               dispatch({
                 type: "PROVIDER_DETECTED",
                 chainId: chainId as EthereumChainId,
