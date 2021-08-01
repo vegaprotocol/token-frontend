@@ -5,6 +5,8 @@ import { ClaimForm } from "../claim-form";
 import BN from "bn.js";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
+import { TxState } from "../transaction-reducer";
+import { LockedBanner } from "../locked-banner";
 
 interface TargetedClaimProps {
   claimCode: string;
@@ -49,7 +51,9 @@ export const TargetedClaim = ({
     })
   );
 
-  return (
+  return state.txState === TxState.Complete ? (
+    <LockedBanner />
+  ) : (
     <ClaimForm
       completed={false}
       state={state}
