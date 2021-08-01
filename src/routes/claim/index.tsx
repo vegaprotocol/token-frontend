@@ -37,17 +37,19 @@ const ClaimRouter = () => {
 
   if (isRestricted()) {
     pageContent = <ClaimRestricted />;
-  } else if (
-    appState.chainId &&
-    appState.chainId !== process.env.REACT_APP_CHAIN
-  ) {
-    pageContent = (
-      <WrongChain
-        currentChainId={appState.chainId!}
-        desiredChainId={process.env.REACT_APP_CHAIN as EthereumChainId}
-      />
-    );
-  } else if (state.error) {
+  }
+  // else if (
+  //   appState.chainId &&
+  //   appState.chainId !== process.env.REACT_APP_CHAIN
+  // ) {
+  //   pageContent = (
+  //     <WrongChain
+  //       currentChainId={appState.chainId!}
+  //       desiredChainId={process.env.REACT_APP_CHAIN as EthereumChainId}
+  //     />
+  //   );
+  // }
+  else if (state.error) {
     pageContent = <ClaimError />;
   } else if (appState.address && state.code) {
     pageContent = <ConnectedClaim state={state} dispatch={dispatch} />;

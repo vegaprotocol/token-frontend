@@ -105,6 +105,12 @@ const en = {
       "This code ({{code}}) has expired and cannot be used to claim tokens.",
     "Looks like that code has already been used.":
       "Looks like that code has already been used.",
+    "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.":
+      "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.",
+    "Add the Vega vesting token to your wallet to track how much you Vega you have in the vesting contract.":
+      "Add the Vega vesting token to your wallet to track how much you Vega you have in the vesting contract.",
+    "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.":
+      "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
   },
 };
 
