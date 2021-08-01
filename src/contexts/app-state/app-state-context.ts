@@ -13,7 +13,7 @@ export interface AppState {
 }
 
 export type AppStateAction =
-  | { type: "PROVIDER_DETECTED" }
+  | { type: "PROVIDER_DETECTED"; chainId: EthereumChainId }
   | { type: "CONNECT" }
   | { type: "DISCONNECT" }
   | {

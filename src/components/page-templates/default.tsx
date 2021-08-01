@@ -15,14 +15,17 @@ export interface DefaultTemplateProps {
 export function DefaultTemplate({ children, title }: DefaultTemplateProps) {
   const vesting = useVegaVesting();
   const { appState, appDispatch } = useAppState();
-  const { vestingAddress } = Addresses[appState.appChainId];
+  const { vestingAddress } = React.useMemo(
+    () => Addresses[appState.appChainId],
+    [appState.appChainId]
+  );
   React.useEffect(() => {
     const run = async () => {
       const tranches = await vesting.getAllTranches();
       appDispatch({ type: "SET_TRANCHES", tranches });
     };
     run();
-  }, [appDispatch, vesting]);
+  }, [appDispatch, vesting, appState.chainId]);
   let content;
   if (appState.chainId && appState.chainId !== appState.appChainId) {
     content = (
