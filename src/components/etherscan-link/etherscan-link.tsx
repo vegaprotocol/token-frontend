@@ -1,7 +1,7 @@
 import "./etherscan-link.scss";
 
 import { useTranslation } from "react-i18next";
-import { EthereumChainId } from "../../lib/vega-web3-utils";
+import { EthereumChainId } from "../../lib/web3-utils";
 
 export const etherscanUrls: Record<EthereumChainId, string> = {
   "0x1": "https://etherscan.io",

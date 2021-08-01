@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { EthereumChainId } from "../../lib/vega-web3-utils";
+import { EthereumChainId } from "../../lib/web3-utils";
 import { EtherscanLink } from "../etherscan-link";
 
 export interface TransactionErrorProps {

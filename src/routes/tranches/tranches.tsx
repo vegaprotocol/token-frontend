@@ -1,7 +1,7 @@
 import React from "react";
 import { Loading } from "../../components/loading";
 import { Link } from "react-router-dom";
-import { Tranche } from "../../lib/vega-web3-types";
+import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { TrancheDates } from "./tranche-dates";
 import { useTranslation } from "react-i18next";
 

@@ -1,8 +1,12 @@
-import type { ITokenParams, IVegaWeb3, Tranche } from "../vega-web3-types";
-import { EthereumChainId } from "../vega-web3-utils";
+import type {
+  ITokenParams,
+  IVegaWeb3,
+  Tranche,
+} from "../vega-web3/vega-web3-types";
+import { EthereumChainId } from "../web3-utils";
 import { generateTranches } from "./generate-tranche";
 import { PromiEvent } from "web3-core";
-import VegaClaim from "../vega-claim";
+import VegaClaim from "../vega-web3/vega-claim";
 
 class VegaWeb3 implements IVegaWeb3 {
   public chainId: EthereumChainId;

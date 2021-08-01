@@ -4,7 +4,7 @@ import BN from "bn.js";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import React from "react";
 import Web3 from "web3";
-import VegaClaim from "../../../lib/vega-claim";
+import VegaClaim from "../../../lib/vega-web3/vega-claim";
 import { TxState } from "../transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { LockedBanner } from "../locked-banner";

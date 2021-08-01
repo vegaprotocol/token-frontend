@@ -1,10 +1,10 @@
-import { Tranches } from './tranches'
-import { render, screen } from '@testing-library/react'
-import {Tranche} from "../../lib/vega-web3-types";
-import {addDays, subDays} from "date-fns";
-import {MemoryRouter} from "react-router-dom";
+import { Tranches } from "./tranches";
+import { render, screen } from "@testing-library/react";
+import { Tranche } from "../../lib/vega-web3/vega-web3-types";
+import { addDays, subDays } from "date-fns";
+import { MemoryRouter } from "react-router-dom";
 
-jest.mock('react-i18next', () => ({
+jest.mock("react-i18next", () => ({
   // this mock makes sure any components using the translate hook can use it without a warning being shown
   useTranslation: () => {
     return {
@@ -16,9 +16,9 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
-jest.mock('../../lib/vega-web3')
+jest.mock("../../lib/vega-web3");
 
-function mockTranche(): Tranche{
+function mockTranche(): Tranche {
   return {
     tranche_id: Math.random().toString(),
     tranche_start: subDays(Date.now(), 1),
@@ -28,16 +28,18 @@ function mockTranche(): Tranche{
     locked_amount: Math.random(),
     deposits: [],
     withdrawals: [],
-    users: []
-  }
+    users: [],
+  };
 }
 
-test('renders tranches', async () => {
-  const tranches: Tranche[] = [mockTranche()]
+test("renders tranches", async () => {
+  const tranches: Tranche[] = [mockTranche()];
 
-  render(<MemoryRouter>
-    <Tranches tranches={tranches} />
-  </MemoryRouter>)
+  render(
+    <MemoryRouter>
+      <Tranches tranches={tranches} />
+    </MemoryRouter>
+  );
 
-  expect(await screen.findByText(/tranches/i)).toBeInTheDocument()
-})
+  expect(await screen.findByText(/tranches/i)).toBeInTheDocument();
+});

@@ -1,6 +1,6 @@
 import React from "react";
 import { useAppState } from "../contexts/app-state/app-state-context";
-import { EthereumChainId, EthereumChainNames } from "../lib/vega-web3-utils";
+import { EthereumChainId, EthereumChainNames } from "../lib/web3-utils";
 import { useVegaWeb3 } from "./use-vega-web3";
 
 const mockAddress = "0x" + "0".repeat(0);

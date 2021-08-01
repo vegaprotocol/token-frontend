@@ -1,6 +1,6 @@
 import React from "react";
 import Web3 from "web3";
-import VegaClaim from "../../../lib/vega-claim";
+import VegaClaim from "../../../lib/vega-web3/vega-claim";
 import { ClaimForm } from "../claim-form";
 import BN from "bn.js";
 import { useTransaction } from "../../../hooks/use-transaction";

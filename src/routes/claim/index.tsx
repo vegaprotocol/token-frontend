@@ -11,7 +11,7 @@ import { ConnectedClaim } from "./connected";
 import { ClaimRestricted } from "./claim-restricted";
 import { isRestricted } from "./lib/is-restricted";
 import { WrongChain } from "./wrong-chain";
-import { EthereumChainId } from "../../lib/vega-web3-utils";
+import { EthereumChainId } from "../../lib/web3-utils";
 
 const ClaimRouter = () => {
   const { t } = useTranslation();

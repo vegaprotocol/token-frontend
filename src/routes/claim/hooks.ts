@@ -1,7 +1,7 @@
 import React from "react";
 import Web3 from "web3";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import VegaClaim from "../../lib/vega-claim";
+import VegaClaim from "../../lib/vega-web3/vega-claim";
 import { ICountry } from "./claim-form/claim-form";
 
 export const useValidateCountry = () => {
