@@ -1,6 +1,6 @@
 import detectEthereumProvider from "@metamask/detect-provider";
 import React from "react";
-import { EthereumChainId } from "../../lib/web3-utils";
+import { EthereumChainId, EthereumChainIds } from "../../lib/web3-utils";
 import { AppState, AppStateContext, AppStateAction } from "./app-state-context";
 
 interface AppStateProviderProps {
@@ -24,6 +24,7 @@ function appStateReducer(state: AppState, action: AppStateAction) {
       return {
         ...state,
         hasProvider: true,
+        chainId: action.chainId,
       };
     case "CONNECT":
       return {
@@ -86,12 +87,23 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
       provider.current = {
         on() {},
       };
-      dispatch({ type: "PROVIDER_DETECTED" });
+      dispatch({
+        type: "PROVIDER_DETECTED",
+        chainId: EthereumChainIds.Ropsten,
+      });
     } else {
       detectEthereumProvider().then((res) => {
         if (res !== null) {
           provider.current = res;
-          dispatch({ type: "PROVIDER_DETECTED" });
+          provider.current
+            .request({ method: "eth_chainId" })
+            .then((chainId: string) => {
+              console.log(chainId);
+              dispatch({
+                type: "PROVIDER_DETECTED",
+                chainId: chainId as EthereumChainId,
+              });
+            });
         }
       });
     }
