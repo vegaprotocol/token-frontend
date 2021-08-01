@@ -25,7 +25,7 @@ export function DefaultTemplate({ children, title }: DefaultTemplateProps) {
       appDispatch({ type: "SET_TRANCHES", tranches });
     };
     run();
-  }, [appDispatch, vesting, appState.chainId]);
+  }, [appDispatch, vesting]);
   let content;
   if (appState.chainId && appState.chainId !== appState.appChainId) {
     content = (

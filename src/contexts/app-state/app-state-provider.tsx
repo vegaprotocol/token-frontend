@@ -20,6 +20,11 @@ const initialAppState: AppState = {
 
 function appStateReducer(state: AppState, action: AppStateAction) {
   switch (action.type) {
+    case "APP_CHAIN_ CHANGED":
+      return {
+        ...state,
+        appChainId: action.newChainId,
+      };
     case "PROVIDER_DETECTED":
       return {
         ...state,

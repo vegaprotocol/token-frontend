@@ -15,6 +15,5 @@ export function useVegaVesting() {
     const web3 = new Web3(provider);
     return new VegaVesting(web3, Addresses[appChainId].vestingAddress);
   }, [appChainId, provider]);
-  const ref = React.useRef(vesting);
-  return ref.current;
+  return vesting;
 }
