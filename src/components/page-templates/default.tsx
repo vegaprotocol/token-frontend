@@ -1,7 +1,7 @@
 import React from "react";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
-import { Addresses, EthereumChainId } from "../../lib/web3-utils";
+import { Addresses } from "../../lib/web3-utils";
 import { WrongChain } from "../wrong-chain";
 import { Heading } from "../heading";
 import { Loading } from "../loading";
@@ -15,8 +15,7 @@ export interface DefaultTemplateProps {
 export function DefaultTemplate({ children, title }: DefaultTemplateProps) {
   const vesting = useVegaVesting();
   const { appState, appDispatch } = useAppState();
-  const chainId = process.env.REACT_APP_CHAIN as EthereumChainId;
-  const { vestingAddress } = Addresses[chainId];
+  const { vestingAddress } = Addresses[appState.appChainId];
   React.useEffect(() => {
     const run = async () => {
       const tranches = await vesting.getAllTranches();
