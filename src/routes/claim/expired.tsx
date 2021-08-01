@@ -19,9 +19,10 @@ export const Expired = ({
       </p>
       <p>
         {t(
-          "This code ({code}) has expired and cannot be used to claim tokens.",
+          "This code ({code}) has expired and cannot be used to claim tokens",
           { code }
         )}
+        .
       </p>
     </div>
   );
