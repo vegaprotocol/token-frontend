@@ -30,7 +30,6 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
   const shortCode =
     code.slice(0, 6) + "..." + code.slice(code.length - 4, code.length);
   React.useEffect(() => {
-    /** Validate code */
     const run = async () => {
       const { nonce, expiry, code } = state;
       const account = appState.address!;
