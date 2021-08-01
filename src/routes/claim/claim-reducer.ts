@@ -1,13 +1,4 @@
 import BN from "bn.js";
-
-export enum TxState {
-  Default,
-  Requested,
-  Pending,
-  Complete,
-  Error,
-}
-
 export interface ClaimState {
   // From URL
   denomination: BN | null; // amount
