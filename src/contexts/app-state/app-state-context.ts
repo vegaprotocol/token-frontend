@@ -25,7 +25,8 @@ export type AppStateAction =
   | { type: "CONNECT_FAIL"; error: Error }
   | { type: "ACCOUNTS_CHANGED"; address: string }
   | { type: "CHAIN_CHANGED"; chainId: EthereumChainId }
-  | { type: "SET_TRANCHES"; tranches: Tranche[] };
+  | { type: "SET_TRANCHES"; tranches: Tranche[] }
+  | { type: "APP_CHAIN_ CHANGED"; newChainId: EthereumChainId };
 
 type AppStateContextShape = {
   appState: AppState;

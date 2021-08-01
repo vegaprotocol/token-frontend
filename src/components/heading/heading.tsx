@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useConnect } from "../../hooks/use-connect";
 import { useAppState } from "../../contexts/app-state/app-state-context";
+import { EthereumChainId, EthereumChainIds } from "../../lib/web3-utils";
 
 export interface HeadingProps {
   title: React.ReactNode | string;
@@ -57,6 +58,10 @@ const ConnectedKey = () => {
 };
 
 export const Heading = ({ title }: HeadingProps) => {
+  const {
+    appState: { appChainId },
+    appDispatch,
+  } = useAppState();
   return (
     <header className="heading">
       <div className="heading__nav">
@@ -67,6 +72,26 @@ export const Heading = ({ title }: HeadingProps) => {
         </div>
         <div className="heading__wallet-container">
           <ConnectedKey />
+          {["1", "true"].includes(
+            process.env.REACT_APP_SHOW_NETWORK_SWITCHER || ""
+          ) && (
+            <select
+              value={appChainId}
+              style={{ padding: 4 }}
+              onChange={(e) => {
+                appDispatch({
+                  type: "APP_CHAIN_ CHANGED",
+                  newChainId: e.target.value as EthereumChainId,
+                });
+              }}
+            >
+              {Object.entries(EthereumChainIds).map(([name, val]) => (
+                <option key={val} value={val}>
+                  {name}
+                </option>
+              ))}
+            </select>
+          )}
         </div>
       </div>
       <div className="heading__title-container">
