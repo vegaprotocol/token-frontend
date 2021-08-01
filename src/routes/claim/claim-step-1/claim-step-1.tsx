@@ -10,9 +10,10 @@ import { ClaimAction, ClaimState } from "../claim-form/claim-reducer";
 interface ClaimStep2 {
   state: ClaimState;
   dispatch: (action: ClaimAction) => void;
+  completed: boolean;
 }
 
-export const ClaimStep1 = ({ state, dispatch }: ClaimStep2) => {
+export const ClaimStep1 = ({ state, dispatch, completed }: ClaimStep2) => {
   const { t } = useTranslation();
   const { appState } = useAppState();
   const commitClaim = React.useCallback(async () => {
@@ -49,6 +50,7 @@ export const ClaimStep1 = ({ state, dispatch }: ClaimStep2) => {
       <h1>{t("step1Title")}</h1>
       <p>{t("step1Body")}</p>
       <ClaimForm
+        completed={completed}
         state={state}
         onSubmit={() => commitClaim()}
         dispatch={dispatch}

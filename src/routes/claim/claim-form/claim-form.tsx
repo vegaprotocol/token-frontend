@@ -19,10 +19,12 @@ export const ClaimForm = ({
   state,
   dispatch,
   onSubmit,
+  completed,
 }: {
   state: ClaimState;
   dispatch: (action: ClaimAction) => void;
   onSubmit: () => void;
+  completed: boolean;
 }) => {
   const [country, setCountry] = React.useState<ICountry | null>(null);
   const { t } = useTranslation();
@@ -53,9 +55,13 @@ export const ClaimForm = ({
     return <TransactionConfirm />;
   }
 
-  if (state.claimTxState === TxState.Complete) {
+  if (state.claimTxState === TxState.Complete || completed) {
     return (
-      <TransactionComplete hash={state.claimTxData.hash!} chainId={chainId!} />
+      <TransactionComplete
+        hash={state.claimTxData.hash!}
+        chainId={chainId!}
+        showLink={!completed}
+      />
     );
   }
 

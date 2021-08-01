@@ -7,7 +7,6 @@ const mockAddress = "0x" + "0".repeat(0);
 
 export function useConnect() {
   const { appState, appDispatch, provider } = useAppState();
-  // TODO make this env var
   const appConfigChainId = process.env.REACT_APP_CHAIN as EthereumChainId;
   if (!EthereumChainNames[appConfigChainId]) {
     throw new Error("Could not find chain ID from environment");

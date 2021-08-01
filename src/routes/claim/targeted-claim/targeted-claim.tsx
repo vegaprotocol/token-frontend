@@ -53,6 +53,11 @@ export const TargetedClaim = ({ state, dispatch }: TargetedClaimProps) => {
     state.trancheId,
   ]);
   return (
-    <ClaimForm state={state} onSubmit={() => claim()} dispatch={dispatch} />
+    <ClaimForm
+      completed={false}
+      state={state}
+      onSubmit={() => claim()}
+      dispatch={dispatch}
+    />
   );
 };

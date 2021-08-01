@@ -88,45 +88,6 @@ export default class VegaClaim {
   }
 
   /**
-   * Sanity checks whether a claim code is still valid.
-   * Checks:
-   *   1. Did this account already commit to this code (we cannot know if someone else did)
-   *   2. Did the code expire, iff it has an expiry
-   *   3. Has the nonce already been used
-   *
-   * @return {Promise<boolean>}
-   */
-  async isClaimValid({
-    claimCode,
-    nonce,
-    expiry,
-    account,
-  }: {
-    claimCode: string;
-    nonce: string;
-    expiry: number;
-    account: string;
-  }): Promise<boolean> {
-    // We can only know for sure if this account performed the commitment
-
-    // TODO remove this from this check, so we can check if the user is in an intermediate state
-    if ((await this.isCommitted({ claimCode, account })) === true) return false;
-
-    // Expiry rules from the contract. expiry === 0 means that it will never expire
-    if (
-      expiry > 0 &&
-      expiry > (await this.web3.eth.getBlock("latest")).timestamp
-    )
-      return false;
-
-    // nonces are stored in a map once used
-    if ((await this.contract.methods.nonces(nonce).call()) === true)
-      return false;
-
-    return true;
-  }
-
-  /**
    * Check if this code was already committed to by this account
    * @return {Promise<boolean>}
    */
@@ -140,6 +101,26 @@ export default class VegaClaim {
     const hash = this.deriveCommitment(claimCode, account);
 
     return await this.contract.methods.commits(hash).call();
+  }
+
+  /**
+   * Checks if a code is passed its' expiry date
+   * @param expiry Expiry of the code
+   * @returns Promise<boolean>
+   */
+  async isExpired(expiry: number): Promise<boolean> {
+    return (
+      expiry > 0 && expiry > (await this.web3.eth.getBlock("latest")).timestamp
+    );
+  }
+
+  /**
+   * Utility method to check if the nonce has already been used. If it has the code has already been claimed.
+   * @param nonce The nonce of the code
+   * @return {string}
+   */
+  isUsed(nonce: string): Promise<boolean> {
+    return this.contract.methods.nonces(nonce).call();
   }
 
   /**
