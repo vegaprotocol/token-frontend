@@ -1,6 +1,4 @@
-import { useVegaWeb3 } from "../../hooks/use-vega-web3";
-import { Addresses } from "../../lib/vega-web3";
-import { EthereumChainIds } from "../../lib/web3-utils";
+import { Addresses, EthereumChainId } from "../../lib/web3-utils";
 import { Heading } from "../heading";
 import { Notice } from "../notice";
 
@@ -10,8 +8,8 @@ export interface DefaultTemplateProps {
 }
 
 export function DefaultTemplate({ children, title }: DefaultTemplateProps) {
-  const vega = useVegaWeb3(EthereumChainIds.Mainnet);
-  const { vestingAddress } = Addresses[vega.chainId];
+  const chainId = process.env.REACT_APP_CHAIN as EthereumChainId;
+  const { vestingAddress } = Addresses[chainId];
   return (
     <div className="app-wrapper">
       <Heading title={title} />
