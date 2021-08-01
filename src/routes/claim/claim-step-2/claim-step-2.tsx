@@ -4,13 +4,17 @@ import { TransactionComplete } from "../../../components/transaction-complete";
 import { TransactionConfirm } from "../../../components/transaction-confirm";
 import { TransactionError } from "../../../components/transaction-error";
 import { TransactionsInProgress } from "../../../components/transaction-in-progress";
-import { initialClaimState, revealReducer, TxState } from "./reveal-reducer";
 import BN from "bn.js";
 import detectEthereumProvider from "@metamask/detect-provider";
 import Web3 from "web3";
 import VegaClaim from "../../../lib/vega-claim";
-import { ClaimState } from "../claim-form/claim-reducer";
+import { ClaimState } from "../claim-reducer";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
+import {
+  initialState,
+  transactionReducer,
+  TxState,
+} from "../transaction-reducer";
 
 export const ClaimStep2 = ({
   step1Completed,
@@ -22,11 +26,11 @@ export const ClaimStep2 = ({
   claimState: ClaimState;
 }) => {
   const { t } = useTranslation();
-  const [state, dispatch] = React.useReducer(revealReducer, initialClaimState);
+  const [state, dispatch] = React.useReducer(transactionReducer, initialState);
   const { appState } = useAppState();
   const { chainId, address } = appState;
   const commitReveal = React.useCallback(async () => {
-    dispatch({ type: "REVEAL_TX_REQUESTED" });
+    dispatch({ type: "TX_REQUESTED" });
     const provider = (await detectEthereumProvider()) as any;
     const web3 = new Web3(provider);
     const claim = new VegaClaim(
@@ -45,13 +49,13 @@ export const ClaimStep2 = ({
         account: address!,
       })
       .on("transactionHash", (hash: string) => {
-        dispatch({ type: "REVEAL_TX_SUBMITTED", txHash: hash });
+        dispatch({ type: "TX_SUBMITTED", txHash: hash });
       })
       .on("receipt", (receipt: any) => {
-        dispatch({ type: "REVEAL_TX_COMPLETE", receipt });
+        dispatch({ type: "TX_COMPLETE", receipt });
       })
       .on("error", (err: Error) => {
-        dispatch({ type: "REVEAL_TX_ERROR", error: err });
+        dispatch({ type: "TX_ERROR", error: err });
       });
   }, [
     address,
@@ -63,27 +67,24 @@ export const ClaimStep2 = ({
     claimState.trancheId,
   ]);
   let content = null;
-  if (state.revealTxState === TxState.Error) {
+  if (state.txState === TxState.Error) {
     content = (
       <TransactionError
-        onActionClick={() => dispatch({ type: "REVEAL_TX_RESET" })}
-        error={state.revealTxData.error}
-        hash={state.revealTxData.hash}
+        onActionClick={() => dispatch({ type: "TX_RESET" })}
+        error={state.txData.error}
+        hash={state.txData.hash}
         chainId={chainId!}
       />
     );
-  } else if (state.revealTxState === TxState.Pending) {
+  } else if (state.txState === TxState.Pending) {
     content = (
-      <TransactionsInProgress
-        hash={state.revealTxData.hash!}
-        chainId={chainId!}
-      />
+      <TransactionsInProgress hash={state.txData.hash!} chainId={chainId!} />
     );
-  } else if (state.revealTxState === TxState.Requested) {
+  } else if (state.txState === TxState.Requested) {
     content = <TransactionConfirm />;
-  } else if (state.revealTxState === TxState.Complete) {
+  } else if (state.txState === TxState.Complete) {
     content = (
-      <TransactionComplete hash={state.revealTxData.hash!} chainId={chainId!} />
+      <TransactionComplete hash={state.txData.hash!} chainId={chainId!} />
     );
   } else {
     content = (

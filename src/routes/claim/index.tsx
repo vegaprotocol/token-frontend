@@ -6,7 +6,7 @@ import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useConnect } from "../../hooks/use-connect";
 import { useSearchParams } from "../../hooks/use-search-params";
 import { ClaimError } from "./claim-error";
-import { claimReducer, initialClaimState } from "./claim-form/claim-reducer";
+import { claimReducer, initialClaimState } from "./claim-reducer";
 import { ConnectedClaim } from "./connected";
 import { ClaimRestricted } from "./claim-restricted";
 import { isRestricted } from "./lib/is-restricted";
