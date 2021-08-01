@@ -1,6 +1,6 @@
 import { useVegaWeb3 } from "../../hooks/use-vega-web3";
 import { Addresses } from "../../lib/vega-web3";
-import { EthereumChainIds } from "../../lib/vega-web3-utils";
+import { EthereumChainIds } from "../../lib/web3-utils";
 import { Heading } from "../heading";
 import { Notice } from "../notice";
 

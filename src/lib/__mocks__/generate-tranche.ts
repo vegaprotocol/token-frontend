@@ -1,4 +1,4 @@
-import type { Tranche } from "../vega-web3-types";
+import type { Tranche } from "../vega-web3/vega-web3-types";
 
 export function generateTranche(id: string | number): Tranche {
   return {
@@ -10,10 +10,10 @@ export function generateTranche(id: string | number): Tranche {
     locked_amount: 0,
     deposits: [],
     withdrawals: [],
-    users: []
-  }
+    users: [],
+  };
 }
 
 export function generateTranches(count = 1) {
-  return new Array(count).fill(null).map((_, i) => generateTranche(i))
+  return new Array(count).fill(null).map((_, i) => generateTranche(i));
 }

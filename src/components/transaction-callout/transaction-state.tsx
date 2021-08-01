@@ -1,4 +1,4 @@
-import { EthereumChainId } from "../../lib/vega-web3-utils";
+import { EthereumChainId } from "../../lib/web3-utils";
 import {
   TransactionState,
   TxState,

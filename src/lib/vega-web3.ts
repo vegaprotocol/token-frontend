@@ -1,17 +1,17 @@
 import Web3 from "web3";
-import vestingAbi from "./vesting_abi.json";
+import vestingAbi from "./abis/vesting_abi.json";
 import type { Contract, EventData } from "web3-eth-contract";
 import _ from "lodash";
-import { EthereumChainId, EthereumChainIds } from "./vega-web3-utils";
+import { EthereumChainId, EthereumChainIds } from "./web3-utils";
 import {
   IVegaWeb3,
   Tranche,
   TrancheEvents,
   TrancheUser,
-} from "./vega-web3-types";
+} from "./vega-web3/vega-web3-types";
 import { MockPromiEvent } from "./__mocks__/vega-web3";
 import { PromiEvent } from "web3-core";
-import VegaClaim from "./vega-claim";
+import VegaClaim from "./vega-web3/vega-claim";
 
 export interface ContractAddress {
   vestingAddress: string;

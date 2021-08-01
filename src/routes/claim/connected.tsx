@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Web3 from "web3";
 import { Loading } from "../../components/loading";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import VegaClaim from "../../lib/vega-claim";
+import VegaClaim from "../../lib/vega-web3/vega-claim";
 import { ClaimAction, ClaimState } from "./claim-reducer";
 import { CodeUsed } from "./code-used";
 import { Expired } from "./expired";
