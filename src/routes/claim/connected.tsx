@@ -54,9 +54,6 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
         setCommitted(committed);
         setExpired(expired);
         setUsed(used);
-        const hash = claim.deriveCommitment(code!, account);
-        console.log(committed);
-        console.log(hash);
       } catch (e) {
         // TODO should this report to sentry?
         console.log(e);
@@ -69,11 +66,7 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
       }
     };
     run();
-    // HACK
-    // Force only running once
-    // TODO fix this
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [appState.address, dispatch, state]);
 
   const currentTranche = React.useMemo(() => {
     return tranches.find(
