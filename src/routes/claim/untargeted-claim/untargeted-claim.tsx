@@ -9,6 +9,7 @@ import { TxState } from "../transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { LockedBanner } from "../locked-banner";
 import { useValidateCountry } from "../hooks";
+import { useVegaClaim } from "../../../hooks/use-vega-claim";
 
 interface UntargetedClaimProps {
   claimCode: string;
@@ -32,11 +33,9 @@ export const UntargetedClaim = ({
   committed,
 }: UntargetedClaimProps) => {
   const params = useValidateCountry();
-  const { appState, provider } = useAppState();
-  const claim = React.useMemo(() => {
-    const web3 = new Web3(provider);
-    return new VegaClaim(web3, "0xAf5dC1772714b2F4fae3b65eb83100f1Ea677b21");
-  }, [provider]);
+  const { appState } = useAppState();
+  const claim = useVegaClaim();
+
   const {
     state: commitState,
     dispatch: commitDispatch,

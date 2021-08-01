@@ -1,12 +1,10 @@
-import detectEthereumProvider from "@metamask/detect-provider";
 import { format } from "date-fns";
 import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import Web3 from "web3";
 import { Loading } from "../../components/loading";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import VegaClaim from "../../lib/vega-web3/vega-claim";
+import { useVegaClaim } from "../../hooks/use-vega-claim";
 import { ClaimAction, ClaimState } from "./claim-reducer";
 import { CodeUsed } from "./code-used";
 import { Expired } from "./expired";
@@ -25,6 +23,7 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
   const [used, setUsed] = React.useState<boolean>(false);
   const { t } = useTranslation();
   const { appState } = useAppState();
+  const claim = useVegaClaim();
   const { address, tranches } = appState;
   const showRedeem = ["1", "true"].includes(process.env.REACT_APP_REDEEM_LIVE!);
   const code = state.code!;
@@ -33,13 +32,6 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
   React.useEffect(() => {
     /** Validate code */
     const run = async () => {
-      const provider = (await detectEthereumProvider()) as any;
-      const web3 = new Web3(provider);
-      const claim = new VegaClaim(
-        web3,
-        "0xAf5dC1772714b2F4fae3b65eb83100f1Ea677b21"
-      );
-
       const { nonce, expiry, code } = state;
       const account = appState.address!;
       try {
@@ -66,7 +58,7 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
       }
     };
     run();
-  }, [appState.address, dispatch, state]);
+  }, [appState.address, claim, dispatch, state]);
 
   const currentTranche = React.useMemo(() => {
     return tranches.find(
