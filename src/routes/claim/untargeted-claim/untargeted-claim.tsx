@@ -8,6 +8,7 @@ import VegaClaim from "../../../lib/vega-claim";
 import { TxState } from "../transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { LockedBanner } from "../locked-banner";
+import { useValidateCountry } from "../hooks";
 
 interface UntargetedClaimProps {
   claimCode: string;
@@ -15,7 +16,6 @@ interface UntargetedClaimProps {
   trancheId: number;
   expiry: number;
   nonce: string;
-  country: string;
   targeted: boolean;
   account: string;
   committed: boolean;
@@ -27,11 +27,11 @@ export const UntargetedClaim = ({
   trancheId,
   expiry,
   nonce,
-  country,
   targeted,
   account,
   committed,
 }: UntargetedClaimProps) => {
+  const params = useValidateCountry();
   const { appState, provider } = useAppState();
   const claim = React.useMemo(() => {
     const web3 = new Web3(provider);
@@ -53,7 +53,7 @@ export const UntargetedClaim = ({
       trancheId,
       expiry,
       nonce,
-      country,
+      country: params.country!.code,
       targeted,
       account,
     })
@@ -64,6 +64,7 @@ export const UntargetedClaim = ({
   ) : (
     <>
       <ClaimStep1
+        {...params}
         state={commitState}
         dispatch={commitDispatch}
         completed={committed}

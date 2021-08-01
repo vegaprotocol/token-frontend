@@ -180,7 +180,6 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
             expiry={state.expiry!}
             nonce={state.nonce!}
             trancheId={state.trancheId!}
-            country={"GB"} // TODO
             targeted={!!state.target}
             account={appState.address!}
           />
@@ -191,7 +190,6 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
             expiry={state.expiry!}
             nonce={state.nonce!}
             trancheId={state.trancheId!}
-            country={"GB"} // TODO
             targeted={!!state.target}
             account={appState.address!}
             committed={committed}
