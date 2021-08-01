@@ -1,10 +1,14 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { Loading } from "../components/loading";
+import { useAppState } from "../contexts/app-state/app-state-context";
 import routerConfig from "./router-config";
 
 export const AppRouter = () => {
-  return (
+  const {
+    appState: { hasProvider },
+  } = useAppState();
+  return hasProvider ? (
     <React.Suspense fallback={<Loading />}>
       <Switch>
         {routerConfig.map(
@@ -14,5 +18,7 @@ export const AppRouter = () => {
         )}
       </Switch>
     </React.Suspense>
+  ) : (
+    <Loading />
   );
 };
