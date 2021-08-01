@@ -5,7 +5,9 @@ import {
   transactionReducer,
 } from "../routes/claim/transaction-reducer";
 
-export const useTransaction = (performTransaction: () => PromiEvent) => {
+export const useTransaction = (
+  performTransaction: (...args: any[]) => PromiEvent
+) => {
   const [state, dispatch] = React.useReducer(transactionReducer, initialState);
   const perform = React.useCallback(async () => {
     dispatch({ type: "TX_REQUESTED" });

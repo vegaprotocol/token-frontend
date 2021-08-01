@@ -7,6 +7,7 @@ import { useTransaction } from "../../../hooks/use-transaction";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { TxState } from "../transaction-reducer";
 import { LockedBanner } from "../locked-banner";
+import { useValidateCountry } from "../hooks";
 
 interface TargetedClaimProps {
   claimCode: string;
@@ -14,7 +15,6 @@ interface TargetedClaimProps {
   trancheId: number;
   expiry: number;
   nonce: string;
-  country: string;
   targeted: boolean;
   account: string;
 }
@@ -25,10 +25,10 @@ export const TargetedClaim = ({
   trancheId,
   expiry,
   nonce,
-  country,
   targeted,
   account,
 }: TargetedClaimProps) => {
+  const params = useValidateCountry();
   const { provider } = useAppState();
   const claim = React.useMemo(() => {
     const web3 = new Web3(provider);
@@ -45,7 +45,7 @@ export const TargetedClaim = ({
       trancheId,
       expiry,
       nonce,
-      country,
+      country: params.country!.code,
       targeted,
       account,
     })
@@ -55,6 +55,7 @@ export const TargetedClaim = ({
     <LockedBanner />
   ) : (
     <ClaimForm
+      {...params}
       completed={false}
       state={state}
       onSubmit={claimTargeted}

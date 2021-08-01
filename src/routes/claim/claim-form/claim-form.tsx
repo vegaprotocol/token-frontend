@@ -21,40 +21,20 @@ export const ClaimForm = ({
   dispatch,
   onSubmit,
   completed,
+  country,
+  isValid,
+  checkCountry,
+  loading,
 }: {
   state: TransactionState;
   dispatch: (action: TransactionAction) => void;
-  onSubmit: () => void;
+  onSubmit: (country: ICountry) => void;
   completed: boolean;
+  country: ICountry | null;
+  isValid: boolean;
+  checkCountry: (country: ICountry) => void;
+  loading: boolean;
 }) => {
-  const [country, setCountry] = React.useState<ICountry | null>(null);
-  const [isValid, setIsValid] = React.useState<boolean>(false);
-  const [loading, setLoading] = React.useState<boolean>(false);
-  const { provider } = useAppState();
-  const claim = React.useMemo(() => {
-    const web3 = new Web3(provider);
-    return new VegaClaim(web3, "0xAf5dC1772714b2F4fae3b65eb83100f1Ea677b21");
-  }, [provider]);
-  const checkCountry = React.useCallback(
-    async (country: ICountry) => {
-      if (country.code === "") {
-        setIsValid(false);
-      } else {
-        setLoading(true);
-        try {
-          const blocked = await claim.isCountryBlocked(country.code);
-          setIsValid(!blocked);
-        } catch (e) {
-          console.log(e);
-          setIsValid(false);
-        } finally {
-          setLoading(false);
-        }
-      }
-      setCountry(country);
-    },
-    [claim]
-  );
   const { t } = useTranslation();
   const {
     appState: { chainId },
@@ -74,7 +54,7 @@ export const ClaimForm = ({
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        onSubmit();
+        onSubmit(country!);
       }}
     >
       <fieldset>
