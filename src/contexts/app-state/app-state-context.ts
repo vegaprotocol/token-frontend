@@ -9,6 +9,7 @@ export interface AppState {
   chainId: EthereumChainId | null;
   balance: null | string;
   tranches: Tranche[];
+  appChainId: EthereumChainId;
 }
 
 export type AppStateAction =

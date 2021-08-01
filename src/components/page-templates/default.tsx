@@ -2,6 +2,7 @@ import React from "react";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { Addresses, EthereumChainId } from "../../lib/web3-utils";
+import { WrongChain } from "../wrong-chain";
 import { Heading } from "../heading";
 import { Loading } from "../loading";
 import { Notice } from "../notice";
@@ -23,10 +24,23 @@ export function DefaultTemplate({ children, title }: DefaultTemplateProps) {
     };
     run();
   }, [appDispatch, vesting]);
+  let content;
+  if (appState.chainId && appState.chainId !== appState.appChainId) {
+    content = (
+      <WrongChain
+        currentChainId={appState.chainId!}
+        desiredChainId={appState.appChainId}
+      />
+    );
+  } else if (!appState.tranches.length) {
+    content = <Loading />;
+  } else {
+    content = children;
+  }
   return (
     <div className="app-wrapper">
       <Heading title={title} />
-      <main>{appState.tranches.length ? children : <Loading />}</main>
+      <main>{content}</main>
       <footer>
         <Notice vestingAddress={vestingAddress} />
       </footer>
