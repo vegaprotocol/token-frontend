@@ -1,7 +1,7 @@
 import React from "react";
 import { useAppState } from "../contexts/app-state/app-state-context";
 import { EthereumChainId, EthereumChainNames } from "../lib/web3-utils";
-import { useVegaWeb3 } from "./use-vega-web3";
+import { useVegaVesting } from "./use-vega-vesting";
 
 const mockAddress = "0x" + "0".repeat(0);
 
@@ -11,7 +11,7 @@ export function useConnect() {
   if (!EthereumChainNames[appConfigChainId]) {
     throw new Error("Could not find chain ID from environment");
   }
-  const vega = useVegaWeb3(appConfigChainId);
+  const vega = useVegaVesting();
   const useMocks = ["1", "true"].includes(process.env.REACT_APP_MOCKED!);
   const connect = React.useCallback(async () => {
     try {

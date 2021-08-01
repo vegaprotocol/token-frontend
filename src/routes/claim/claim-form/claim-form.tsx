@@ -1,10 +1,8 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
-import Web3 from "web3";
 import { CountrySelector } from "../../../components/country-selector";
 import { TransactionCallout } from "../../../components/transaction-callout";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
-import VegaClaim from "../../../lib/vega-web3/vega-claim";
+
 import {
   TransactionAction,
   TransactionState,
