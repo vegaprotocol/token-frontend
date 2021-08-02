@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import { CountrySelector } from "../../../components/country-selector";
 import { TransactionCallout } from "../../../components/transaction-callout";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 
@@ -19,18 +18,14 @@ export const ClaimForm = ({
   dispatch,
   onSubmit,
   completed,
-  country,
   isValid,
-  checkCountry,
   loading,
 }: {
   state: TransactionState;
   dispatch: (action: TransactionAction) => void;
-  onSubmit: (country: ICountry) => void;
+  onSubmit: () => void;
   completed: boolean;
-  country: ICountry | null;
   isValid: boolean;
-  checkCountry: (country: ICountry) => void;
   loading: boolean;
 }) => {
   const { t } = useTranslation();
@@ -52,19 +47,9 @@ export const ClaimForm = ({
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        onSubmit(country!);
+        onSubmit();
       }}
     >
-      <fieldset>
-        <CountrySelector setCountry={checkCountry} />
-        {!isValid && country?.code && (
-          <div style={{ color: "#ED1515", marginBottom: 20 }}>
-            {t(
-              "Sorry. It is not possible to claim tokens in your country or region."
-            )}
-          </div>
-        )}
-      </fieldset>
       <button disabled={!isValid || loading}>
         {loading ? t("Loading") : t("Continue")}
       </button>

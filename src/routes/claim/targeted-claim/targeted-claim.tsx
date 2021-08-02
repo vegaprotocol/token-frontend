@@ -3,7 +3,6 @@ import BN from "bn.js";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { TxState } from "../transaction-reducer";
 import { LockedBanner } from "../locked-banner";
-import { useValidateCountry } from "../hooks";
 import { useVegaClaim } from "../../../hooks/use-vega-claim";
 
 interface TargetedClaimProps {
@@ -14,6 +13,9 @@ interface TargetedClaimProps {
   nonce: string;
   targeted: boolean;
   account: string;
+  country: string | null | undefined;
+  isValid: boolean;
+  loading: boolean;
 }
 
 export const TargetedClaim = ({
@@ -24,8 +26,10 @@ export const TargetedClaim = ({
   nonce,
   targeted,
   account,
+  isValid,
+  loading,
+  country,
 }: TargetedClaimProps) => {
-  const params = useValidateCountry();
   const claim = useVegaClaim();
   const {
     state,
@@ -38,7 +42,7 @@ export const TargetedClaim = ({
       trancheId,
       expiry,
       nonce,
-      country: params.country!.code,
+      country: country!,
       targeted,
       account,
     })
@@ -48,7 +52,8 @@ export const TargetedClaim = ({
     <LockedBanner />
   ) : (
     <ClaimForm
-      {...params}
+      isValid={isValid}
+      loading={loading}
       completed={false}
       state={state}
       onSubmit={claimTargeted}
