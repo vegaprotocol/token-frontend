@@ -6,7 +6,7 @@ import { CountrySelector } from "../../components/country-selector";
 import { Loading } from "../../components/loading";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useVegaClaim } from "../../hooks/use-vega-claim";
-import { ClaimAction, ClaimState } from "./claim-reducer";
+import { ClaimAction, ClaimState, ClaimStatus } from "./claim-reducer";
 import { CodeUsed } from "./code-used";
 import { Expired } from "./expired";
 import { useValidateCountry } from "./hooks";
@@ -42,7 +42,7 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
           claim.isExpired(state.expiry!),
           claim.isUsed(state.nonce!),
         ]);
-        dispatch({ type: "SET_CLAIM_STATE", committed, expired, used });
+        dispatch({ type: "SET_CLAIM_STATUS", committed, expired, used });
       } catch (e) {
         Sentry.captureEvent(e);
         dispatch({
@@ -64,9 +64,9 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
 
   if (state.loading) {
     return <Loading />;
-  } else if (state.used) {
+  } else if (state.claimStatus === ClaimStatus.Used) {
     return <CodeUsed address={appState.address} />;
-  } else if (state.expired) {
+  } else if (state.claimStatus === ClaimStatus.Expired) {
     return <Expired address={appState.address} code={shortCode} />;
   }
   if (!currentTranche) {
@@ -201,7 +201,7 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
             trancheId={state.trancheId!}
             targeted={!!state.target}
             account={appState.address!}
-            committed={state.committed}
+            committed={state.claimStatus === ClaimStatus.Committed}
           />
         )}
       </div>
