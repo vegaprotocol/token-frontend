@@ -14,9 +14,6 @@ export interface TransactionState {
     receipt: object | null;
     error: Error | null;
   };
-
-  // generic
-  error: Error | null;
 }
 
 export const initialState: TransactionState = {
@@ -27,9 +24,6 @@ export const initialState: TransactionState = {
     receipt: null,
     error: null,
   },
-
-  // generic
-  error: null,
 };
 
 export type TransactionAction =

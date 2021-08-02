@@ -1,9 +1,11 @@
+import React from "react";
 import { ClaimForm } from "../claim-form";
 import BN from "bn.js";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { TxState } from "../transaction-reducer";
 import { LockedBanner } from "../locked-banner";
 import { useVegaClaim } from "../../../hooks/use-vega-claim";
+import { ClaimAction, ClaimStatus } from "../claim-reducer";
 
 interface TargetedClaimProps {
   claimCode: string;
@@ -16,6 +18,7 @@ interface TargetedClaimProps {
   country: string | null | undefined;
   isValid: boolean;
   loading: boolean;
+  dispatch: React.Dispatch<ClaimAction>;
 }
 
 export const TargetedClaim = ({
@@ -29,11 +32,12 @@ export const TargetedClaim = ({
   isValid,
   loading,
   country,
+  dispatch,
 }: TargetedClaimProps) => {
   const claim = useVegaClaim();
   const {
-    state,
-    dispatch,
+    state: txState,
+    dispatch: txDispatch,
     perform: claimTargeted,
   } = useTransaction(() =>
     claim.claim({
@@ -48,16 +52,22 @@ export const TargetedClaim = ({
     })
   );
 
-  return state.txState === TxState.Complete ? (
+  React.useEffect(() => {
+    if (txState.txState === TxState.Complete) {
+      dispatch({ type: "SET_CLAIM_STATUS", status: ClaimStatus.Committed });
+    }
+  }, [txState.txState, dispatch]);
+
+  return txState.txState === TxState.Complete ? (
     <LockedBanner />
   ) : (
     <ClaimForm
       isValid={isValid}
       loading={loading}
       completed={false}
-      state={state}
+      state={txState}
       onSubmit={claimTargeted}
-      dispatch={dispatch}
+      dispatch={txDispatch}
     />
   );
 };
