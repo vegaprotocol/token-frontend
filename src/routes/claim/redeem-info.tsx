@@ -1,12 +1,14 @@
 import React from "react";
 import { format } from "date-fns";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
+import { useTranslation } from "react-i18next";
 
 interface RedeemInfoProps {
   tranche: Tranche;
 }
 
 export const RedeemInfo = ({ tranche }: RedeemInfoProps) => {
+  const { t } = useTranslation();
   const showRedeem = ["1", "true"].includes(process.env.REACT_APP_REDEEM_LIVE!);
   const unlockDate = format(
     new Date(tranche.tranche_end).getTime(),
