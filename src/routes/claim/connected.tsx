@@ -80,11 +80,11 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
 
   const unlockDate = format(
     new Date(currentTranche.tranche_end).getTime(),
-    "MMM d, yyyy"
+    "d MMM yyyy"
   );
   const trancheEndDate = format(
     new Date(currentTranche.tranche_start).getTime(),
-    "MMM d, yyyy"
+    "d MMM yyyy"
   );
   const fullyRedeemable =
     new Date().getTime() > new Date(currentTranche.tranche_end).getTime();

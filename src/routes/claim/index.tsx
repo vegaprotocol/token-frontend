@@ -43,7 +43,7 @@ const ClaimRouter = () => {
       <section>
         <p>
           {t(
-            "You will need to connect to an ethereum wallet to pay the gas and claim tokens"
+            "Use the Ethereum wallet you want to send your tokens to. You'll also need enough Ethereum to pay gas."
           )}
         </p>
         {!appState.hasProvider ? (

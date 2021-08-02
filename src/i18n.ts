@@ -7,11 +7,11 @@ const en = {
     Home: "Home",
 
     // Page titles
-    pageTitleClaim: "Claim tokens",
+    pageTitleClaim: "CLAIM VEGA TOKENS",
     pageTitleRedemption: "Redeem tokens",
-    pageTitleTranches: "View tranches",
+    pageTitleTranches: "VESTING TRANCHES",
     pageTitle404: "Page not found",
-    Vesting: "Vesting",
+    Vesting: "VESTING VEGA TOKENS",
     Connect: "Connect to see your VEGA balance",
     of: "of",
     to: "to",
@@ -46,32 +46,30 @@ const en = {
     "The contract is deployed at the following address":
       "The contract is deployed at the following address:",
 
-    step1Title: "Step 1 - Commit your claim.",
+    step1Title: "Step 1 - Link your claim to your address",
     step1Body:
-      "This posts your claim to the Ethereum chain in an way where it can not be used by another address",
+      "This links your claim to a specific ethereum address to prevent it being used by another person",
 
-    step2Title: "Step 2 - Reveal your claim.",
-    step2Body:
-      "You’ll need to wait at least one block after step 1 before making step 2. This sends a message to the chain that reveals your claim.",
+    step2Title: "Step 2 - Claim tokens",
     step2Note: "You must complete step 1 first.",
 
     claim1:
       "This code ({{code}}) entitles <bold>{{user}}</bold> to <bold>20 Vega</bold> tokens from ",
-    claim2: "of the vesting contract. It expires on {{expiry}}.",
+    claim2: "of the vesting contract. The code expires on {{expiry}}.",
     showRedeem:
       "You'll be able to redeem your unlocked tokens at token.vega.xyz/redemption",
 
-    invalidWeb3Browser: "Please a compatible browser or install Metamask",
+    invalidWeb3Browser: "You need a web3 capable browser to use this site",
     "Vesting Balance": "Vesting Balance",
     VEGA: "VEGA",
     Account: "Account",
     Loading: "Loading...",
-    "Awaiting action in wallet...": "Awaiting action in wallet...",
+    "Awaiting action in wallet...": "Awaiting action in Ethereum wallet (e.g. metamask)",
     "Something went wrong": "Something went wrong",
     "Try again": "Try again",
     Warning: "Warning",
     "You can use your connected key to claim the Tokens but it will credit {{target}} instead of {{address}}":
-      "You are connected to a different wallet to the one this claim is valid for. You can continue with the connected wallet but <bold>{{target}}</bold> will be credited.",
+      "The address you are connected to is not the address the claim is tied to. You can continue with the connected wallet but <bold>{{target}}</bold> will be credited.",
     Complete: "Complete",
     "View on Etherscan (opens in a new tab)":
       "View on Etherscan (opens in a new tab)",
@@ -79,11 +77,11 @@ const en = {
     "Unknown error": "Unknown error",
     "Awaiting action in Ethereum wallet (e.g. metamask)":
       "Awaiting action in Ethereum wallet (e.g. metamask)",
-    "Claim {amount} Vega": "Claim {{amount}} Vega",
+    "Claim {amount} Vega": "Claim {{amount}} VEGA",
     "Sorry. It is not possible to claim tokens in your country or region.":
-      "Sorry. It is not possible to claim tokens in your country or region.",
+      "It is not possible to claim tokens in your country or region.",
     "Connected to Ethereum key {address}":
-      "Connected to Ethereum key <bold>{{address}}</bold>. You can change your connected key in your wallet provider e.g. Meta Mask.",
+      "Connected to Ethereum key <bold>{{address}}</bold>. You can change your connected key in your wallet provider e.g. Metamask.",
     "tranche description":
       "Tokens in this tranche began to unlock on the {{unlockDate}} and continue to unlock, block by block, until {{trancheEndDate}} when all tokens are unlocked.",
     "none redeemable":
