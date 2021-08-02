@@ -13,6 +13,7 @@ import { useValidateCountry } from "./hooks";
 import { TargetedClaim } from "./targeted-claim";
 import { UntargetedClaim } from "./untargeted-claim";
 import * as Sentry from "@sentry/react";
+import { RedeemInfo } from "./redeem-info";
 
 interface ConnectedClaimProps {
   state: ClaimState;
@@ -25,7 +26,6 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
   const { appState } = useAppState();
   const claim = useVegaClaim();
   const { address, tranches } = appState;
-  const showRedeem = ["1", "true"].includes(process.env.REACT_APP_REDEEM_LIVE!);
   const code = state.code!;
   const shortCode =
     code.slice(0, 6) + "..." + code.slice(code.length - 4, code.length);
@@ -73,20 +73,6 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
     throw new Error("Could not find tranche");
   }
 
-  const unlockDate = format(
-    new Date(currentTranche.tranche_end).getTime(),
-    "MMM d, yyyy"
-  );
-  const trancheEndDate = format(
-    new Date(currentTranche.tranche_start).getTime(),
-    "MMM d, yyyy"
-  );
-  const fullyRedeemable =
-    new Date().getTime() > new Date(currentTranche.tranche_end).getTime();
-  const partiallyRedeemable =
-    !fullyRedeemable &&
-    new Date().getTime() > new Date(currentTranche.tranche_start).getTime();
-  const noneRedeemable = !fullyRedeemable && !partiallyRedeemable;
   return (
     <section>
       <p>
@@ -118,30 +104,7 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
             : format(state.expiry!, "dd/MM/yyyy"),
         })}
       </p>
-      {noneRedeemable && (
-        <p>
-          {t("tranche description", {
-            unlockDate,
-            trancheEndDate,
-          })}{" "}
-          {showRedeem && t("none redeemable")}
-        </p>
-      )}
-      {partiallyRedeemable && (
-        <p>
-          {t("tranche description", {
-            unlockDate,
-            trancheEndDate,
-          })}{" "}
-          {showRedeem && t("partially redeemable")}
-        </p>
-      )}
-      {fullyRedeemable && (
-        <p>
-          {t("Tokens in this tranche are fully unlocked.")}
-          {showRedeem && t("fully redeemable")}
-        </p>
-      )}
+      <RedeemInfo tranche={currentTranche} />
       {state.target &&
         address &&
         state.target.toLowerCase() !== address.toLowerCase() && (
