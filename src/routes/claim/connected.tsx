@@ -147,19 +147,21 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
           {showRedeem && t("fully redeemable")}
         </p>
       )}
-      {state.target && state.target !== address && (
-        <p>
-          <span style={{ color: "#ED1515" }}>{t("Warning")}: </span>
-          <Trans
-            i18nKey="You can use your connected key to claim the Tokens but it will credit {{target}} instead of {{address}}"
-            values={{
-              address,
-              target: state.target,
-            }}
-            components={{ bold: <strong /> }}
-          />
-        </p>
-      )}
+      {state.target &&
+        address &&
+        state.target.toLowerCase() !== address.toLowerCase() && (
+          <p>
+            <span style={{ color: "#ED1515" }}>{t("Warning")}: </span>
+            <Trans
+              i18nKey="You can use your connected key to claim the Tokens but it will credit {{target}} instead of {{address}}"
+              values={{
+                address,
+                target: state.target,
+              }}
+              components={{ bold: <strong /> }}
+            />
+          </p>
+        )}
       <fieldset>
         <CountrySelector setCountry={countryState.checkCountry} />
         {!countryState.isValid && countryState.country?.code && (
