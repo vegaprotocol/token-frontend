@@ -21,7 +21,6 @@ interface ConnectedClaimProps {
 
 export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
   const countryState = useValidateCountry();
-
   const { t } = useTranslation();
   const { appState } = useAppState();
   const claim = useVegaClaim();
@@ -44,9 +43,7 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
           claim.isExpired(expiry!),
           claim.isUsed(nonce!),
         ]);
-        dispatch({ type: "SET_COMMITTED", committed });
-        dispatch({ type: "SET_EXPIRED", expired });
-        dispatch({ type: "SET_USED", used });
+        dispatch({ type: "SET_CLAIM_STATE", committed, expired, used });
       } catch (e) {
         Sentry.captureEvent(e);
         dispatch({
