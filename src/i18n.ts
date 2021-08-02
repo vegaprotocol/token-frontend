@@ -65,7 +65,7 @@ const en = {
     "Vesting Balance": "Vesting Balance",
     VEGA: "VEGA",
     Account: "Account",
-    Loading: "Loading",
+    Loading: "Loading...",
     "Awaiting action in wallet...": "Awaiting action in wallet...",
     "Something went wrong": "Something went wrong",
     "Try again": "Try again",

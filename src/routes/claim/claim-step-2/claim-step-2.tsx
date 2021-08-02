@@ -44,7 +44,7 @@ export const ClaimStep2 = ({
         disabled={!step1Completed || !isValid || loading}
         onClick={onSubmit}
       >
-        {loading ? t("loading") : t("Claim {amount} Vega", { amount })}
+        {loading ? t("Loading") : t("Claim {amount} Vega", { amount })}
       </button>
     );
   }
