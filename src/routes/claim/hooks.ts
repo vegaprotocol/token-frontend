@@ -1,6 +1,7 @@
 import React from "react";
 import { useVegaClaim } from "../../hooks/use-vega-claim";
 import { ICountry } from "./claim-form/claim-form";
+import * as Sentry from "@sentry/react";
 
 export const useValidateCountry = () => {
   const [country, setCountry] = React.useState<ICountry | null>(null);
@@ -18,7 +19,7 @@ export const useValidateCountry = () => {
           const blocked = await claim.isCountryBlocked(country.code);
           setIsValid(!blocked);
         } catch (e) {
-          console.log(e);
+          Sentry.captureEvent(e);
           setIsValid(false);
         } finally {
           setLoading(false);
