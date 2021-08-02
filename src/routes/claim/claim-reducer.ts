@@ -46,20 +46,14 @@ export type ClaimAction =
       };
     }
   | {
+      type: "SET_CLAIM_STATE";
+      committed: boolean;
+      expired: boolean;
+      used: boolean;
+    }
+  | {
       type: "SET_LOADING";
       loading: boolean;
-    }
-  | {
-      type: "SET_COMMITTED";
-      committed: boolean;
-    }
-  | {
-      type: "SET_EXPIRED";
-      expired: boolean;
-    }
-  | {
-      type: "SET_USED";
-      used: boolean;
     }
   | {
       type: "ERROR";
@@ -93,25 +87,17 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
           nonce: action.data.nonce,
         };
       }
+    case "SET_CLAIM_STATE":
+      return {
+        ...state,
+        committed: action.committed,
+        expired: action.expired,
+        used: action.used,
+      };
     case "SET_LOADING":
       return {
         ...state,
         loading: action.loading,
-      };
-    case "SET_COMMITTED":
-      return {
-        ...state,
-        committed: action.committed,
-      };
-    case "SET_EXPIRED":
-      return {
-        ...state,
-        expired: action.expired,
-      };
-    case "SET_USED":
-      return {
-        ...state,
-        used: action.used,
       };
     case "ERROR":
       return {
