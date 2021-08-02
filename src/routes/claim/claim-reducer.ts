@@ -1,5 +1,12 @@
 import BN from "bn.js";
 
+export enum ClaimStatus {
+  Ready,
+  Committed,
+  Expired,
+  Used,
+}
+
 export interface ClaimState {
   // From URL
   denomination: BN | null; // amount
@@ -11,10 +18,8 @@ export interface ClaimState {
 
   // generic
   loading: boolean;
-  committed: boolean;
-  expired: boolean;
-  used: boolean;
   error: Error | null;
+  claimStatus: ClaimStatus;
 }
 
 export const initialClaimState: ClaimState = {
@@ -27,10 +32,8 @@ export const initialClaimState: ClaimState = {
 
   // generic
   loading: true,
-  committed: false,
-  expired: false,
-  used: false,
   error: null,
+  claimStatus: ClaimStatus.Ready,
 };
 
 export type ClaimAction =
@@ -46,7 +49,7 @@ export type ClaimAction =
       };
     }
   | {
-      type: "SET_CLAIM_STATE";
+      type: "SET_CLAIM_STATUS";
       committed: boolean;
       expired: boolean;
       used: boolean;
@@ -87,12 +90,20 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
           nonce: action.data.nonce,
         };
       }
-    case "SET_CLAIM_STATE":
+    case "SET_CLAIM_STATUS":
+      let status = ClaimStatus.Ready;
+
+      if (action.committed) {
+        status = ClaimStatus.Committed;
+      } else if (action.used) {
+        status = ClaimStatus.Used;
+      } else if (action.expired) {
+        status = ClaimStatus.Expired;
+      }
+
       return {
         ...state,
-        committed: action.committed,
-        expired: action.expired,
-        used: action.used,
+        claimStatus: status,
       };
     case "SET_LOADING":
       return {
