@@ -12,6 +12,7 @@ import { Expired } from "./expired";
 import { useValidateCountry } from "./hooks";
 import { TargetedClaim } from "./targeted-claim";
 import { UntargetedClaim } from "./untargeted-claim";
+import * as Sentry from "@sentry/react";
 
 interface ConnectedClaimProps {
   state: ClaimState;
@@ -49,8 +50,7 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
         setExpired(expired);
         setUsed(used);
       } catch (e) {
-        // TODO should this report to sentry?
-        console.log(e);
+        Sentry.captureEvent(e);
         dispatch({
           type: "ERROR",
           error: e,

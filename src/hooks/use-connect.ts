@@ -2,6 +2,7 @@ import React from "react";
 import { useAppState } from "../contexts/app-state/app-state-context";
 import { EthereumChainId, EthereumChainNames } from "../lib/web3-utils";
 import { useVegaVesting } from "./use-vega-vesting";
+import * as Sentry from "@sentry/react";
 
 const mockAddress = "0x" + "0".repeat(0);
 
@@ -48,7 +49,7 @@ export function useConnect() {
         balance,
       });
     } catch (e) {
-      console.log(e);
+      Sentry.captureEvent(e);
       appDispatch({ type: "CONNECT_FAIL", error: e });
     }
   }, [appDispatch, appState.hasProvider, provider, useMocks, vega]);
