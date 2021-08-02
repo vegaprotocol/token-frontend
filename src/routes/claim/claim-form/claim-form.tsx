@@ -68,7 +68,7 @@ export const ClaimForm = ({
           )}
         </div>
       )}
-      <button disabled={!isValid || loading}>
+      <button disabled={!isValid || loading} type="submit">
         {loading ? t("Loading") : t("Continue")}
       </button>
     </form>

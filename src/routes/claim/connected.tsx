@@ -12,6 +12,8 @@ import { TargetedClaim } from "./targeted-claim";
 import { UntargetedClaim } from "./untargeted-claim";
 import * as Sentry from "@sentry/react";
 import { RedeemInfo } from "./redeem-info";
+import { TargetAddressMismatch } from "./target-address-mismatch";
+import { Colors } from "../../colors";
 
 interface ConnectedClaimProps {
   state: ClaimState;
@@ -20,21 +22,21 @@ interface ConnectedClaimProps {
 
 export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
   const { t } = useTranslation();
-  const { appState } = useAppState();
+  const {
+    appState: { address, tranches },
+  } = useAppState();
   const claim = useVegaClaim();
-  const { address, tranches } = appState;
   const code = state.code!;
   const shortCode =
     code.slice(0, 6) + "..." + code.slice(code.length - 4, code.length);
 
   React.useEffect(() => {
     const run = async () => {
-      const account = appState.address!;
       try {
         const [committed, expired, used] = await Promise.all([
           claim.isCommitted({
             claimCode: code,
-            account,
+            account: address!,
           }),
           claim.isExpired(state.expiry!),
           claim.isUsed(state.nonce!),
@@ -56,7 +58,7 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
       }
     };
     run();
-  }, [appState.address, claim, dispatch, state.nonce, state.expiry, code]);
+  }, [address, claim, dispatch, state.nonce, state.expiry, code]);
 
   const currentTranche = React.useMemo(() => {
     return tranches.find(
@@ -67,10 +69,22 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
   if (state.loading) {
     return <Loading />;
   } else if (state.claimStatus === ClaimStatus.Used) {
-    return <CodeUsed address={appState.address} />;
+    return <CodeUsed address={address} />;
   } else if (state.claimStatus === ClaimStatus.Expired) {
-    return <Expired address={appState.address} code={shortCode} />;
+    return <Expired address={address} code={shortCode} />;
+  } else if (
+    state.target &&
+    address &&
+    state.target.toLowerCase() !== address.toLowerCase()
+  ) {
+    return (
+      <TargetAddressMismatch
+        connectedAddress={address}
+        expectedAddress={state.target}
+      />
+    );
   }
+
   if (!currentTranche) {
     throw new Error("Could not find tranche");
   }
@@ -80,7 +94,7 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
       <p>
         <Trans
           i18nKey="Connected to Ethereum key {address}"
-          values={{ address: appState.address }}
+          values={{ address }}
           components={{ bold: <strong /> }}
         />
       </p>
@@ -110,21 +124,16 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
         />
       </p>
       <RedeemInfo tranche={currentTranche} />
-      {state.target &&
-        address &&
-        state.target.toLowerCase() !== address.toLowerCase() && (
-          <p>
-            <span style={{ color: "#ED1515" }}>{t("Warning")}: </span>
-            <Trans
-              i18nKey="You can use your connected key to claim the Tokens but it will credit {{target}} instead of {{address}}"
-              values={{
-                address,
-                target: state.target,
-              }}
-              components={{ bold: <strong /> }}
-            />
-          </p>
+      <fieldset>
+        <CountrySelector setCountry={countryState.checkCountry} />
+        {!countryState.isValid && countryState.country?.code && (
+          <div style={{ color: Colors.RED, marginBottom: 20 }}>
+            {t(
+              "Sorry. It is not possible to claim tokens in your country or region."
+            )}
+          </div>
         )}
+      </fieldset>
       <div
         style={{
           display: "grid",
@@ -142,9 +151,7 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
             nonce={state.nonce!}
             trancheId={state.trancheId!}
             targeted={!!state.target}
-            account={appState.address!}
-            state={state}
-            dispatch={dispatch}
+            account={address!}
           />
         ) : (
           <UntargetedClaim
@@ -154,7 +161,7 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
             nonce={state.nonce!}
             trancheId={state.trancheId!}
             targeted={!!state.target}
-            account={appState.address!}
+            account={address!}
             committed={state.claimStatus === ClaimStatus.Committed}
             state={state}
             dispatch={dispatch}

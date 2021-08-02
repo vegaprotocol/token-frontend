@@ -70,9 +70,6 @@ const en = {
     "Awaiting action in wallet...": "Awaiting action in wallet...",
     "Something went wrong": "Something went wrong",
     "Try again": "Try again",
-    Warning: "Warning",
-    "You can use your connected key to claim the Tokens but it will credit {{target}} instead of {{address}}":
-      "You are connected to a different wallet to the one this claim is valid for. You can continue with the connected wallet but <bold>{{target}}</bold> will be credited.",
     Complete: "Complete",
     "View on Etherscan (opens in a new tab)":
       "View on Etherscan (opens in a new tab)",
@@ -112,6 +109,11 @@ const en = {
       "Add the Vega vesting token to your wallet to track how much you Vega you have in the vesting contract.",
     "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.":
       "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
+
+    // Address mismatch
+    connectedAddress: "Connected to Ethereum key {{address}}.",
+    addressMismatch:
+      "<red>Error:</red> The address you are connected to is <bold>not</bold> the address the claim is valid for. To claim these tokens please connect with <bold>{{target}}</bold>.",
   },
 };
 
