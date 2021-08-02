@@ -22,7 +22,6 @@ export const Expired = ({
           "This code ({code}) has expired and cannot be used to claim tokens",
           { code }
         )}
-        .
       </p>
     </div>
   );
