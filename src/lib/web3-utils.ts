@@ -33,6 +33,6 @@ export const Addresses = {
     vestingAddress: "0x08C06ECDCf9b8f45e3cF1ec29B82eFd0171341D9",
     vegaTokenAddress: "0x16480156222D4525f02F0F2BdF8A45A23bd26431",
     claimAddress: "0xAf5dC1772714b2F4fae3b65eb83100f1Ea677b21",
-    lockedAddress: "",
+    lockedAddress: "0x1b7192491bf89d616676032656b2c7a55fd08e4c",
   },
 };
