@@ -110,7 +110,7 @@ export default class VegaClaim {
    */
   async isExpired(expiry: number): Promise<boolean> {
     return (
-      expiry > 0 && expiry > (await this.web3.eth.getBlock("latest")).timestamp
+      expiry > 0 && expiry < (await this.web3.eth.getBlock("latest")).timestamp
     );
   }
 
@@ -143,9 +143,11 @@ export default class VegaClaim {
   deriveCommitment(claimCode: string, account: string): string {
     // FIXME: Consider direct soliditySha3Raw if the contract changes encoding
     // @ts-ignore
-    return this.web3.utils.sha3Raw(this.web3.eth.abi.encodeParameters(
-      ['bytes', 'address'],
-      [claimCode, account]
-    ));
+    return this.web3.utils.sha3Raw(
+      this.web3.eth.abi.encodeParameters(
+        ["bytes", "address"],
+        [claimCode, account]
+      )
+    );
   }
 }
