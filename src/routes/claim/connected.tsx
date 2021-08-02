@@ -21,10 +21,7 @@ interface ConnectedClaimProps {
 
 export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
   const countryState = useValidateCountry();
-  const [loading, setLoading] = React.useState<boolean>(true);
-  const [committed, setCommitted] = React.useState<boolean>(false);
-  const [expired, setExpired] = React.useState<boolean>(false);
-  const [used, setUsed] = React.useState<boolean>(false);
+
   const { t } = useTranslation();
   const { appState } = useAppState();
   const claim = useVegaClaim();
@@ -33,6 +30,7 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
   const code = state.code!;
   const shortCode =
     code.slice(0, 6) + "..." + code.slice(code.length - 4, code.length);
+
   React.useEffect(() => {
     const run = async () => {
       const { nonce, expiry, code } = state;
@@ -46,9 +44,9 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
           claim.isExpired(expiry!),
           claim.isUsed(nonce!),
         ]);
-        setCommitted(committed);
-        setExpired(expired);
-        setUsed(used);
+        dispatch({ type: "SET_COMMITTED", committed });
+        dispatch({ type: "SET_EXPIRED", expired });
+        dispatch({ type: "SET_USED", used });
       } catch (e) {
         Sentry.captureEvent(e);
         dispatch({
@@ -56,7 +54,7 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
           error: e,
         });
       } finally {
-        setLoading(false);
+        dispatch({ type: "SET_LOADING", loading: false });
       }
     };
     run();
@@ -67,11 +65,12 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
       ({ tranche_id }) => Number(tranche_id) === state.trancheId
     );
   }, [state.trancheId, tranches]);
-  if (loading) {
+
+  if (state.loading) {
     return <Loading />;
-  } else if (used) {
+  } else if (state.used) {
     return <CodeUsed address={appState.address} />;
-  } else if (expired) {
+  } else if (state.expired) {
     return <Expired address={appState.address} code={shortCode} />;
   }
   if (!currentTranche) {
@@ -206,7 +205,7 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
             trancheId={state.trancheId!}
             targeted={!!state.target}
             account={appState.address!}
-            committed={committed}
+            committed={state.committed}
           />
         )}
       </div>

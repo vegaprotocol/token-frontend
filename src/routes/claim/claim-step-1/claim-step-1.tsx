@@ -27,7 +27,7 @@ export const ClaimStep1 = ({
         padding: 15,
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between ",
+        justifyContent: "space-between",
       }}
     >
       <h1>{t("step1Title")}</h1>
