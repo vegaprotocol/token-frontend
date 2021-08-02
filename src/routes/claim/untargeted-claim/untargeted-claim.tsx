@@ -17,6 +17,9 @@ interface UntargetedClaimProps {
   targeted: boolean;
   account: string;
   committed: boolean;
+  country: string | null | undefined;
+  isValid: boolean;
+  loading: boolean;
 }
 
 export const UntargetedClaim = ({
@@ -28,8 +31,10 @@ export const UntargetedClaim = ({
   targeted,
   account,
   committed,
+  country,
+  loading,
+  isValid,
 }: UntargetedClaimProps) => {
-  const params = useValidateCountry();
   const { appState } = useAppState();
   const claim = useVegaClaim();
 
@@ -49,7 +54,7 @@ export const UntargetedClaim = ({
       trancheId,
       expiry,
       nonce,
-      country: params.country!.code,
+      country: country!,
       targeted,
       account,
     })
@@ -60,13 +65,16 @@ export const UntargetedClaim = ({
   ) : (
     <>
       <ClaimStep1
-        {...params}
+        isValid={isValid}
+        loading={loading}
         state={commitState}
         dispatch={commitDispatch}
         completed={committed}
         onSubmit={commitClaim}
       />
       <ClaimStep2
+        isValid={isValid}
+        loading={loading}
         dispatch={revealDispatch}
         amount={denomination}
         onSubmit={commitReveal}

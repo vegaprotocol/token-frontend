@@ -14,12 +14,16 @@ export const ClaimStep2 = ({
   state,
   dispatch,
   onSubmit,
+  isValid,
+  loading,
 }: {
   step1Completed: boolean;
   amount: BN;
   state: TransactionState;
   dispatch: (action: TransactionAction) => void;
   onSubmit: () => void;
+  isValid: boolean;
+  loading: boolean;
 }) => {
   const { appState } = useAppState();
   const { chainId } = appState;
@@ -36,8 +40,11 @@ export const ClaimStep2 = ({
     );
   } else {
     content = (
-      <button disabled={!step1Completed} onClick={onSubmit}>
-        {t("Claim {amount} Vega", { amount })}
+      <button
+        disabled={!step1Completed || !isValid || loading}
+        onClick={onSubmit}
+      >
+        {loading ? t("loading") : t("Claim {amount} Vega", { amount })}
       </button>
     );
   }

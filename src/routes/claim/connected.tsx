@@ -2,12 +2,14 @@ import { format } from "date-fns";
 import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { CountrySelector } from "../../components/country-selector";
 import { Loading } from "../../components/loading";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useVegaClaim } from "../../hooks/use-vega-claim";
 import { ClaimAction, ClaimState } from "./claim-reducer";
 import { CodeUsed } from "./code-used";
 import { Expired } from "./expired";
+import { useValidateCountry } from "./hooks";
 import { TargetedClaim } from "./targeted-claim";
 import { UntargetedClaim } from "./untargeted-claim";
 
@@ -17,6 +19,7 @@ interface ConnectedClaimProps {
 }
 
 export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
+  const countryState = useValidateCountry();
   const [loading, setLoading] = React.useState<boolean>(true);
   const [committed, setCommitted] = React.useState<boolean>(false);
   const [expired, setExpired] = React.useState<boolean>(false);
@@ -157,6 +160,16 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
           />
         </p>
       )}
+      <fieldset>
+        <CountrySelector setCountry={countryState.checkCountry} />
+        {!countryState.isValid && countryState.country?.code && (
+          <div style={{ color: "#ED1515", marginBottom: 20 }}>
+            {t(
+              "Sorry. It is not possible to claim tokens in your country or region."
+            )}
+          </div>
+        )}
+      </fieldset>
       <div
         style={{
           display: "grid",
@@ -168,6 +181,9 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
         {/* If targeted we do not need to commit reveal, as there is no change of front running the mem pool */}
         {state.target ? (
           <TargetedClaim
+            isValid={countryState.isValid}
+            loading={countryState.loading}
+            country={countryState.country?.code}
             claimCode={state.code!}
             denomination={state.denomination!}
             expiry={state.expiry!}
@@ -178,6 +194,9 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
           />
         ) : (
           <UntargetedClaim
+            isValid={countryState.isValid}
+            loading={countryState.loading}
+            country={countryState.country?.code}
             claimCode={state.code!}
             denomination={state.denomination!}
             expiry={state.expiry!}
