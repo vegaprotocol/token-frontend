@@ -1,3 +1,4 @@
+import React from "react";
 import { ClaimStep1 } from "../claim-step-1";
 import { ClaimStep2 } from "../claim-step-2";
 import BN from "bn.js";
@@ -6,6 +7,7 @@ import { TxState } from "../transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { LockedBanner } from "../locked-banner";
 import { useVegaClaim } from "../../../hooks/use-vega-claim";
+import { ClaimAction, ClaimStatus } from "../claim-reducer";
 
 interface UntargetedClaimProps {
   claimCode: string;
@@ -19,6 +21,7 @@ interface UntargetedClaimProps {
   country: string | null | undefined;
   isValid: boolean;
   loading: boolean;
+  dispatch: React.Dispatch<ClaimAction>;
 }
 
 export const UntargetedClaim = ({
@@ -33,6 +36,7 @@ export const UntargetedClaim = ({
   country,
   loading,
   isValid,
+  dispatch,
 }: UntargetedClaimProps) => {
   const { appState } = useAppState();
   const claim = useVegaClaim();
@@ -58,10 +62,21 @@ export const UntargetedClaim = ({
       account,
     })
   );
-  return revealState.txState === TxState.Complete &&
-    (commitState.txState === TxState.Complete || committed) ? (
-    <LockedBanner />
-  ) : (
+
+  React.useEffect(() => {
+    if (revealState.txState === TxState.Complete) {
+      dispatch({ type: "SET_CLAIM_STATUS", status: ClaimStatus.Committed });
+    }
+  }, [revealState.txState, dispatch]);
+
+  if (
+    revealState.txState === TxState.Complete &&
+    (commitState.txState === TxState.Complete || committed)
+  ) {
+    return <LockedBanner />;
+  }
+
+  return (
     <>
       <ClaimStep1
         isValid={isValid}

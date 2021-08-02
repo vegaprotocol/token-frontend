@@ -76,6 +76,12 @@ function appStateReducer(state: AppState, action: AppStateAction) {
         tranches: action.tranches,
       };
     }
+    case "SET_BALANCE": {
+      return {
+        ...state,
+        balance: action.balance,
+      };
+    }
     default:
       return state;
   }

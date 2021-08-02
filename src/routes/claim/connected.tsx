@@ -17,7 +17,7 @@ import { RedeemInfo } from "./redeem-info";
 
 interface ConnectedClaimProps {
   state: ClaimState;
-  dispatch: (action: ClaimAction) => void;
+  dispatch: React.Dispatch<ClaimAction>;
 }
 
 export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
@@ -42,7 +42,12 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
           claim.isExpired(state.expiry!),
           claim.isUsed(state.nonce!),
         ]);
-        dispatch({ type: "SET_CLAIM_STATUS", committed, expired, used });
+        dispatch({
+          type: "SET_INITIAL_CLAIM_STATUS",
+          committed,
+          expired,
+          used,
+        });
       } catch (e) {
         Sentry.captureEvent(e);
         dispatch({
@@ -154,6 +159,7 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
             trancheId={state.trancheId!}
             targeted={!!state.target}
             account={appState.address!}
+            dispatch={dispatch}
           />
         ) : (
           <UntargetedClaim
@@ -168,6 +174,7 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
             targeted={!!state.target}
             account={appState.address!}
             committed={state.claimStatus === ClaimStatus.Committed}
+            dispatch={dispatch}
           />
         )}
       </div>

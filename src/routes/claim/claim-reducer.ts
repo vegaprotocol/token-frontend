@@ -49,10 +49,14 @@ export type ClaimAction =
       };
     }
   | {
-      type: "SET_CLAIM_STATUS";
+      type: "SET_INITIAL_CLAIM_STATUS";
       committed: boolean;
       expired: boolean;
       used: boolean;
+    }
+  | {
+      type: "SET_CLAIM_STATUS";
+      status: ClaimStatus;
     }
   | {
       type: "SET_LOADING";
@@ -90,7 +94,7 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
           nonce: action.data.nonce,
         };
       }
-    case "SET_CLAIM_STATUS":
+    case "SET_INITIAL_CLAIM_STATUS":
       let status = ClaimStatus.Ready;
 
       if (action.committed) {
@@ -104,6 +108,11 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
       return {
         ...state,
         claimStatus: status,
+      };
+    case "SET_CLAIM_STATUS":
+      return {
+        ...state,
+        claimStatus: action.status,
       };
     case "SET_LOADING":
       return {
