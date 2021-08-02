@@ -5,7 +5,6 @@ import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { TxState } from "../transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { LockedBanner } from "../locked-banner";
-import { useValidateCountry } from "../hooks";
 import { useVegaClaim } from "../../../hooks/use-vega-claim";
 
 interface UntargetedClaimProps {
