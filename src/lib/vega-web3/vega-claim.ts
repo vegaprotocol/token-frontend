@@ -141,9 +141,11 @@ export default class VegaClaim {
    * @return {string}
    */
   deriveCommitment(claimCode: string, account: string): string {
-    return this.web3.utils.soliditySha3Raw(
-      { type: "bytes", value: claimCode },
-      { type: "address", value: account }
-    );
+    // FIXME: Consider direct soliditySha3Raw if the contract changes encoding
+    // @ts-ignore
+    return this.web3.utils.sha3Raw(this.web3.eth.abi.encodeParameters(
+      ['bytes', 'address'],
+      [claimCode, account]
+    ));
   }
 }
