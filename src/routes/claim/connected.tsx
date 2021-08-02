@@ -32,16 +32,15 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
 
   React.useEffect(() => {
     const run = async () => {
-      const { nonce, expiry, code } = state;
       const account = appState.address!;
       try {
         const [committed, expired, used] = await Promise.all([
           claim.isCommitted({
-            claimCode: code!,
+            claimCode: code,
             account,
           }),
-          claim.isExpired(expiry!),
-          claim.isUsed(nonce!),
+          claim.isExpired(state.expiry!),
+          claim.isUsed(state.nonce!),
         ]);
         dispatch({ type: "SET_CLAIM_STATE", committed, expired, used });
       } catch (e) {
@@ -55,7 +54,7 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
       }
     };
     run();
-  }, [appState.address, claim, dispatch, state]);
+  }, [appState.address, claim, dispatch, state.nonce, state.expiry, code]);
 
   const currentTranche = React.useMemo(() => {
     return tranches.find(
