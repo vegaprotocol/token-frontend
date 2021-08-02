@@ -1,9 +1,13 @@
 import { useTranslation } from "react-i18next";
+import { useAppState } from "../../contexts/app-state/app-state-context";
+import { Addresses } from "../../lib/web3-utils";
 
 export const LockedBanner = () => {
   const { t } = useTranslation();
-  /* TODO get the address for the locked vega contract */
-  const lockedContractAddress = "0xufb8y3bv8wur4uhr";
+  const {
+    appState: { appChainId },
+  } = useAppState();
+  const lockedContractAddress = Addresses[appChainId].lockedAddress;
   return (
     <div style={{ padding: 20, border: "1px solid white" }}>
       <p>
