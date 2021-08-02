@@ -14,7 +14,7 @@ REACT_APP_CHAIN=0x3
 REACT_APP_SHOW_NETWORK_SWITCHER=1
 ```
 
-Start:
+Starting the app:
 `yarn start`
 
 # Configuration
