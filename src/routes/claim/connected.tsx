@@ -84,25 +84,28 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
       </p>
       <p>
         <Trans
-          i18nKey="claim1"
+          i18nKey="claim"
           values={{
             user: state.target ? state.target : "the holder",
             code: shortCode,
             amount: state.denomination,
+            linkText: `${t("Tranche")} ${currentTranche.tranche_id}`,
+            expiry: state.expiry
+              ? t("claimExpiry", {
+                  date: format(state.expiry * 1000, "dd/MM/yyyy"),
+                })
+              : t("claimNoExpiry"),
           }}
-          components={{ bold: <strong /> }}
+          components={{
+            bold: <strong />,
+            trancheLink: (
+              <Link
+                to={`/tranches/${currentTranche.tranche_id}`}
+                style={{ color: "#edff22" }}
+              />
+            ),
+          }}
         />
-        <Link
-          to={`/tranches/${currentTranche.tranche_id}`}
-          style={{ color: "#edff22" }}
-        >
-          {t("Tranche")} {currentTranche.tranche_id}
-        </Link>{" "}
-        {t("claim2", {
-          expiry: state.expiry
-            ? t("never")
-            : format(state.expiry!, "dd/MM/yyyy"),
-        })}
       </p>
       <RedeemInfo tranche={currentTranche} />
       {state.target &&

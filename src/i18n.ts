@@ -55,9 +55,10 @@ const en = {
       "You’ll need to wait at least one block after step 1 before making step 2. This sends a message to the chain that reveals your claim.",
     step2Note: "You must complete step 1 first.",
 
-    claim1:
-      "This code ({{code}}) entitles <bold>{{user}}</bold> to <bold>20 Vega</bold> tokens from ",
-    claim2: "of the vesting contract. It expires on {{expiry}}.",
+    claim:
+      "This code ({{code}}) entitles <bold>{{user}}</bold> to <bold>{{amount}} Vega</bold> tokens from <trancheLink>{{linkText}}</trancheLink> of the vesting contract. {{expiry}}.",
+    claimExpiry: "It expires on {{date}}",
+    claimNoExpiry: "It has no expiry date",
     showRedeem:
       "You'll be able to redeem your unlocked tokens at token.vega.xyz/redemption",
 
@@ -111,7 +112,6 @@ const en = {
       "Add the Vega vesting token to your wallet to track how much you Vega you have in the vesting contract.",
     "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.":
       "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
-    never: "never",
   },
 };
 
