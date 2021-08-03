@@ -17,6 +17,7 @@ const en = {
     to: "to",
 
     Tranche: "Tranche",
+    Tranches: "Tranches",
     "Invalid tranche!": "Invalid tranche!",
     Redeemed: "Redeemed",
     Locked: "Locked",
