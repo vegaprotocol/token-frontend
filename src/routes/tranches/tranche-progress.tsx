@@ -1,0 +1,50 @@
+import { useTranslation } from "react-i18next";
+import { Colors } from "../../colors";
+import { getAbbreviatedNumber } from "../../lib/abbreviate-number";
+import { ProgressBar } from "./progress-bar";
+
+interface TrancheProgressProps {
+  locked: number;
+  totalRemoved: number;
+  totalAdded: number;
+}
+
+export const TrancheProgress = ({
+  locked,
+  totalRemoved,
+  totalAdded,
+}: TrancheProgressProps) => {
+  const { t } = useTranslation();
+  const lockedPercentage =
+    totalAdded === 0 ? 0 : Math.round((locked / totalAdded) * 100);
+  const removedPercentage =
+    totalAdded === 0 ? 0 : Math.round((totalRemoved / totalAdded) * 100);
+
+  return (
+    <div className="tranches__progress">
+      <div className="tranches__progress-item">
+        <span className="tranches__progress-title">{t("Locked")}</span>
+        <ProgressBar
+          width={220}
+          color={Colors.PINK}
+          percentage={lockedPercentage}
+        />
+        <span className="tranches__progress-numbers">
+          ({getAbbreviatedNumber(locked)} of {getAbbreviatedNumber(totalAdded)})
+        </span>
+      </div>
+      <div className="tranches__progress-item">
+        <span className="tranches__progress-title">{t("Redeemed")}</span>
+        <ProgressBar
+          width={220}
+          color={Colors.GREEN}
+          percentage={removedPercentage}
+        />
+        <span className="tranches__progress-numbers">
+          ({getAbbreviatedNumber(totalRemoved)} {t("of")}{" "}
+          {getAbbreviatedNumber(totalAdded)})
+        </span>
+      </div>
+    </div>
+  );
+};

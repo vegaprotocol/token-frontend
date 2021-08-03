@@ -22,10 +22,6 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
   const getAbbreviatedNumber = (num: number) => {
     return Number(num.toFixed()).toLocaleString();
   };
-  //   const withdraw = async () => {
-  //     console.log("noop");
-  //   };
-
   const currentTranche = getTranche();
 
   if (tranches.length === 0) {
