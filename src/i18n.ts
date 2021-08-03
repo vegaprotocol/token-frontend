@@ -54,7 +54,7 @@ const en = {
     step2Note: "You must complete step 1 first.",
 
     claim:
-      "This code ({{code}}) entitles <bold>{{user}}</bold> to <bold>{{amount}} Vega</bold> tokens from <trancheLink>{{linkText}}</trancheLink> of the vesting contract. {{expiry}}.",
+      "This code ({{code}}) entitles <bold>{{user}}</bold> to <bold>{{amount}} VEGA</bold> tokens from <trancheLink>{{linkText}}</trancheLink> of the vesting contract. {{expiry}}.",
     claimExpiry: "The code expires on {{date}}",
     claimNoExpiry: "It has no expiry date",
     showRedeem:
@@ -65,7 +65,8 @@ const en = {
     VEGA: "VEGA",
     Account: "Account",
     Loading: "Loading...",
-    "Awaiting action in wallet...": "Awaiting action in Ethereum wallet (e.g. metamask)",
+    "Awaiting action in wallet...":
+      "Awaiting action in Ethereum wallet (e.g. metamask)",
     "Something went wrong": "Something went wrong",
     "Try again": "Try again",
     Complete: "Complete",
