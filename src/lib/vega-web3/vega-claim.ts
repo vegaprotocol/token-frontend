@@ -42,12 +42,20 @@ export default class VegaClaim {
    * otherwise the action is pointless
    * @return {Promise<boolean>}
    */
-  commit(claimCode: string, account: string): PromiEvent {
+  public commit(claimCode: string, account: string): PromiEvent {
     const hash = this.deriveCommitment(claimCode, account);
 
     return this.contract.methods
       .commit_untargeted_code(hash)
       .send({ from: account });
+  }
+
+  public checkCommit(claimCode: string, account: string): Promise<any> {
+    const hash = this.deriveCommitment(claimCode, account);
+
+    return this.contract.methods
+      .commit_untargeted_code(hash)
+      .call({ from: account });
   }
 
   /**
@@ -87,6 +95,37 @@ export default class VegaClaim {
     ).send({ from: account });
   }
 
+  public checkClaim({
+    claimCode,
+    denomination,
+    trancheId,
+    expiry,
+    nonce,
+    country,
+    targeted,
+    account,
+  }: {
+    claimCode: string;
+    denomination: BN;
+    trancheId: number;
+    expiry: number;
+    nonce: string;
+    country: string;
+    targeted: boolean;
+    account: string;
+  }): Promise<any> {
+    return this.contract.methods[
+      targeted ? "redeem_targeted" : "redeem_untargeted_code"
+    ](
+      claimCode,
+      denomination.toString(),
+      trancheId,
+      expiry,
+      nonce,
+      Web3.utils.asciiToHex(country)
+    ).call({ from: account });
+  }
+
   /**
    * Check if this code was already committed to by this account
    * @return {Promise<boolean>}
@@ -110,7 +149,7 @@ export default class VegaClaim {
    */
   async isExpired(expiry: number): Promise<boolean> {
     return (
-      expiry > 0 && expiry < (await this.web3.eth.getBlock("latest")).timestamp
+      expiry > 0 && expiry > (await this.web3.eth.getBlock("latest")).timestamp
     );
   }
 

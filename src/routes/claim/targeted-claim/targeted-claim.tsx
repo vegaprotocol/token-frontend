@@ -33,22 +33,24 @@ export const TargetedClaim = ({
   loading,
   isValid,
 }: TargetedClaimProps) => {
+  const claimArgs = {
+    claimCode,
+    denomination,
+    trancheId,
+    expiry,
+    nonce,
+    country: state.countryCode!,
+    targeted,
+    account,
+  };
   const claim = useVegaClaim();
   const {
     state: txState,
     dispatch: txDispatch,
     perform: claimTargeted,
-  } = useTransaction(() =>
-    claim.claim({
-      claimCode,
-      denomination,
-      trancheId,
-      expiry,
-      nonce,
-      country: state.countryCode!,
-      targeted,
-      account,
-    })
+  } = useTransaction(
+    () => claim.claim(claimArgs as any),
+    () => claim.checkClaim(claimArgs as any)
   );
 
   React.useEffect(() => {
