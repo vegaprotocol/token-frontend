@@ -10,16 +10,11 @@ export const LockedBanner = () => {
   const lockedContractAddress = Addresses[appChainId].lockedAddress;
   return (
     <div style={{ padding: 20, border: "1px solid white" }}>
-      <p>
+      <h3>
         {t(
           "Keep track of locked tokens in your wallet with the VEGA (VESTING) token."
         )}
-      </p>
-      <p>
-        {t(
-          "Add the Vega vesting token to your wallet to track how much you Vega you have in the vesting contract."
-        )}
-      </p>
+      </h3>
       <p>
         {t(
           "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",

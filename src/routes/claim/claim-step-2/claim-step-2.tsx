@@ -59,7 +59,6 @@ export const ClaimStep2 = ({
       }}
     >
       <h1>{t("step2Title")}</h1>
-      <p>{t("step2Body")}</p>
       {step1Completed ? (
         content
       ) : (

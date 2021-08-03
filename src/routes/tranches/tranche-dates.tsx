@@ -15,14 +15,14 @@ export const TrancheDates = ({ start, end }: TrancheDatesParams) => {
     return (
       <span>
         {t("Fully vested on")}
-        {format(startDate, "MMM d, yyyy")}
+        {format(startDate, "d MMM yyyy")}
       </span>
     );
   } else {
     return (
       <span>
-        {t("Vesting from")} {format(startDate, "MMM d, yyyy")} {t("to")}{" "}
-        {format(endDate, "MMM d, yyyy")}
+        {t("Vesting from")} {format(startDate, "d MMM yyyy")} {t("to")}{" "}
+        {format(endDate, "d MMM yyyy")}
       </span>
     );
   }

@@ -93,7 +93,6 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
   if (!currentTranche) {
     throw new Error("Could not find tranche");
   }
-
   return (
     <section>
       <p>

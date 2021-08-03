@@ -7,11 +7,11 @@ const en = {
     Home: "Home",
 
     // Page titles
-    pageTitleClaim: "Claim tokens",
+    pageTitleClaim: "CLAIM VEGA TOKENS",
     pageTitleRedemption: "Redeem tokens",
-    pageTitleTranches: "View tranches",
+    pageTitleTranches: "VESTING TRANCHES",
     pageTitle404: "Page not found",
-    Vesting: "Vesting",
+    Vesting: "VESTING VEGA TOKENS",
     Connect: "Connect to see your VEGA balance",
     of: "of",
     to: "to",
@@ -46,28 +46,27 @@ const en = {
     "The contract is deployed at the following address":
       "The contract is deployed at the following address:",
 
-    step1Title: "Step 1 - Commit your claim.",
+    step1Title: "Step 1 - Link your claim to your address",
     step1Body:
-      "This posts your claim to the Ethereum chain in an way where it can not be used by another address",
+      "This links your claim to a specific ethereum address to prevent it being used by another person",
 
-    step2Title: "Step 2 - Reveal your claim.",
-    step2Body:
-      "You’ll need to wait at least one block after step 1 before making step 2. This sends a message to the chain that reveals your claim.",
+    step2Title: "Step 2 - Claim tokens",
     step2Note: "You must complete step 1 first.",
 
     claim:
-      "This code ({{code}}) entitles <bold>{{user}}</bold> to <bold>{{amount}} Vega</bold> tokens from <trancheLink>{{linkText}}</trancheLink> of the vesting contract. {{expiry}}.",
-    claimExpiry: "It expires on {{date}}",
+      "This code ({{code}}) entitles <bold>{{user}}</bold> to <bold>{{amount}} VEGA</bold> tokens from <trancheLink>{{linkText}}</trancheLink> of the vesting contract. {{expiry}}.",
+    claimExpiry: "The code expires on {{date}}",
     claimNoExpiry: "It has no expiry date",
     showRedeem:
       "You'll be able to redeem your unlocked tokens at token.vega.xyz/redemption",
 
-    invalidWeb3Browser: "Please a compatible browser or install Metamask",
+    invalidWeb3Browser: "You need a web3 capable browser to use this site",
     "Vesting Balance": "Vesting Balance",
     VEGA: "VEGA",
     Account: "Account",
     Loading: "Loading...",
-    "Awaiting action in wallet...": "Awaiting action in wallet...",
+    "Awaiting action in wallet...":
+      "Awaiting action in Ethereum wallet (e.g. metamask)",
     "Something went wrong": "Something went wrong",
     "Try again": "Try again",
     Complete: "Complete",
@@ -77,21 +76,21 @@ const en = {
     "Unknown error": "Unknown error",
     "Awaiting action in Ethereum wallet (e.g. metamask)":
       "Awaiting action in Ethereum wallet (e.g. metamask)",
-    "Claim {amount} Vega": "Claim {{amount}} Vega",
+    "Claim {amount} Vega": "Claim {{amount}} VEGA",
     "Sorry. It is not possible to claim tokens in your country or region.":
-      "Sorry. It is not possible to claim tokens in your country or region.",
+      "It is not possible to claim tokens in your country or region.",
     "Connected to Ethereum key {address}":
-      "Connected to Ethereum key <bold>{{address}}</bold>. You can change your connected key in your wallet provider e.g. Meta Mask.",
+      "Connected to Ethereum key <bold>{{address}}</bold>.",
     "tranche description":
-      "Tokens in this tranche began to unlock on the {{unlockDate}} and continue to unlock, block by block, until {{trancheEndDate}} when all tokens are unlocked.",
+      "Tokens in this tranche unlock on {{unlockDate}} and continue to unlock gradually until {{trancheEndDate}} when all tokens are unlocked.",
     "none redeemable":
-      "You’ll be able to redeem tokens once they have been claimed and vested.",
+      "Tokens in this tranche unlock on {{unlockDate}} and continue to unlock gradually until {{trancheEndDate}} when all tokens are unlocked.",
     "partially redeemable":
-      "You’ll be able to redeem some tokens once they have been claimed.",
+      "Tokens in this tranche began to unlock on {{unlockDate}} and will continue to unlock gradually until {{trancheEndDate}} when all tokens are unlocked.",
     "fully redeemable":
-      "Tokens in this tranche are fully unlocked. You can redeem tokens once they have been claimed.",
+      "Tokens in this tranche have fully unlocked and can be redeemed once claimed.",
     "Tokens in this tranche are fully unlocked":
-      "Tokens in this tranche are fully unlocked",
+      "Tokens in this tranche have fully unlocked and can be redeemed once claimed.",
     "This page can not be found, please check the URL and try again.":
       "This page can not be found, please check the URL and try again.",
     "Service unavailable": "Service unavailable",
@@ -104,13 +103,11 @@ const en = {
     "Looks like that code has already been used.":
       "Looks like that code has already been used.",
     "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.":
-      "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.",
+      "Keep track of locked tokens in your wallet with the VEGA (LOCKED) token.",
     "Add the Vega vesting token to your wallet to track how much you Vega you have in the vesting contract.":
       "Add the Vega vesting token to your wallet to track how much you Vega you have in the vesting contract.",
     "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.":
-      "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
-
-    // Address mismatch
+      "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
     connectedAddress: "Connected to Ethereum key {{address}}.",
     addressMismatch:
       "<red>Error:</red> The address you are connected to is <bold>not</bold> the address the claim is valid for. To claim these tokens please connect with <bold>{{target}}</bold>.",
