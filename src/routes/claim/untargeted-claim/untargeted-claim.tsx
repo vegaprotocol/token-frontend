@@ -20,6 +20,8 @@ interface UntargetedClaimProps {
   committed: boolean;
   state: ClaimState;
   dispatch: React.Dispatch<ClaimAction>;
+  loading: boolean;
+  isValid: boolean;
 }
 
 export const UntargetedClaim = ({
@@ -33,6 +35,8 @@ export const UntargetedClaim = ({
   committed,
   state,
   dispatch,
+  loading,
+  isValid,
 }: UntargetedClaimProps) => {
   const { appState } = useAppState();
   const claim = useVegaClaim();
@@ -75,13 +79,16 @@ export const UntargetedClaim = ({
   return (
     <>
       <ClaimStep1
+        loading={loading}
+        isValid={isValid}
         txState={commitState}
         txDispatch={commitDispatch}
         completed={committed}
         onSubmit={commitClaim}
-        dispatch={dispatch}
       />
       <ClaimStep2
+        loading={loading}
+        isValid={isValid}
         txState={revealState}
         txDispatch={revealDispatch}
         amount={denomination}

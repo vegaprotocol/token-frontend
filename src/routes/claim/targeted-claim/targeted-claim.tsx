@@ -17,6 +17,8 @@ interface TargetedClaimProps {
   account: string;
   state: ClaimState;
   dispatch: React.Dispatch<ClaimAction>;
+  isValid: boolean;
+  loading: boolean;
 }
 
 export const TargetedClaim = ({
@@ -29,6 +31,8 @@ export const TargetedClaim = ({
   account,
   state,
   dispatch,
+  loading,
+  isValid,
 }: TargetedClaimProps) => {
   const claim = useVegaClaim();
   const {
@@ -50,7 +54,7 @@ export const TargetedClaim = ({
 
   React.useEffect(() => {
     if (txState.txState === TxState.Complete) {
-      dispatch({ type: "SET_CLAIM_STATUS", status: ClaimStatus.Committed });
+      dispatch({ type: "SET_CLAIM_STATUS", status: ClaimStatus.Used });
     }
   }, [txState.txState, dispatch]);
 
@@ -62,7 +66,8 @@ export const TargetedClaim = ({
       txState={txState}
       onSubmit={claimTargeted}
       txDispatch={txDispatch}
-      dispatch={dispatch}
+      isValid={isValid}
+      loading={loading}
     />
   );
 };

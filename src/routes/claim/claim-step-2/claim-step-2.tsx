@@ -14,12 +14,16 @@ export const ClaimStep2 = ({
   txState,
   txDispatch,
   onSubmit,
+  loading,
+  isValid,
 }: {
   step1Completed: boolean;
   amount: BN;
   txState: TransactionState;
   txDispatch: React.Dispatch<TransactionAction>;
   onSubmit: () => void;
+  loading: boolean;
+  isValid: boolean;
 }) => {
   const { appState } = useAppState();
   const { chainId } = appState;
@@ -36,7 +40,10 @@ export const ClaimStep2 = ({
     );
   } else {
     content = (
-      <button disabled={!step1Completed} onClick={onSubmit}>
+      <button
+        disabled={!step1Completed || loading || !isValid}
+        onClick={onSubmit}
+      >
         {t("Claim {amount} Vega", { amount })}
       </button>
     );

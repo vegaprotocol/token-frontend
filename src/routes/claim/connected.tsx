@@ -13,6 +13,9 @@ import { UntargetedClaim } from "./untargeted-claim";
 import * as Sentry from "@sentry/react";
 import { RedeemInfo } from "./redeem-info";
 import { TargetAddressMismatch } from "./target-address-mismatch";
+import { CountrySelector } from "../../components/country-selector";
+import { useValidateCountry } from "./hooks";
+import { Colors } from "../../colors";
 
 interface ConnectedClaimProps {
   state: ClaimState;
@@ -21,6 +24,7 @@ interface ConnectedClaimProps {
 
 export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
   const { t } = useTranslation();
+  const { country, checkCountry, isValid, loading } = useValidateCountry();
   const {
     appState: { address, tranches },
   } = useAppState();
@@ -123,6 +127,16 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
         />
       </p>
       <RedeemInfo tranche={currentTranche} />
+      <fieldset>
+        <CountrySelector setCountry={checkCountry} />
+        {!isValid && country?.code && (
+          <div style={{ color: Colors.RED, marginBottom: 20 }}>
+            {t(
+              "Sorry. It is not possible to claim tokens in your country or region."
+            )}
+          </div>
+        )}
+      </fieldset>
       <div
         style={{
           display: "grid",
@@ -143,6 +157,8 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
             account={address!}
             state={state}
             dispatch={dispatch}
+            isValid={isValid}
+            loading={loading}
           />
         ) : (
           <UntargetedClaim
@@ -156,6 +172,8 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
             committed={state.claimStatus === ClaimStatus.Committed}
             state={state}
             dispatch={dispatch}
+            isValid={isValid}
+            loading={loading}
           />
         )}
       </div>

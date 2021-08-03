@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import { ClaimForm } from "../claim-form";
-import { ClaimAction } from "../claim-reducer";
 import { TransactionAction, TransactionState } from "../transaction-reducer";
 
 interface ClaimStep2 {
@@ -8,7 +7,8 @@ interface ClaimStep2 {
   txDispatch: React.Dispatch<TransactionAction>;
   completed: boolean;
   onSubmit: () => void;
-  dispatch: React.Dispatch<ClaimAction>;
+  loading: boolean;
+  isValid: boolean;
 }
 
 export const ClaimStep1 = ({
@@ -16,7 +16,8 @@ export const ClaimStep1 = ({
   txDispatch,
   completed,
   onSubmit,
-  dispatch,
+  loading,
+  isValid,
 }: ClaimStep2) => {
   const { t } = useTranslation();
   return (
@@ -32,11 +33,12 @@ export const ClaimStep1 = ({
       <h1>{t("step1Title")}</h1>
       <p>{t("step1Body")}</p>
       <ClaimForm
+        isValid={isValid}
+        loading={loading}
         txState={txState}
         txDispatch={txDispatch}
         completed={completed}
         onSubmit={onSubmit}
-        dispatch={dispatch}
       />
     </div>
   );
