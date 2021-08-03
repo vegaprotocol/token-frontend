@@ -5,7 +5,7 @@ import { useTransaction } from "../../../hooks/use-transaction";
 import { TxState } from "../transaction-reducer";
 import { LockedBanner } from "../locked-banner";
 import { useVegaClaim } from "../../../hooks/use-vega-claim";
-import { ClaimAction, ClaimStatus } from "../claim-reducer";
+import { ClaimAction, ClaimState, ClaimStatus } from "../claim-reducer";
 
 interface TargetedClaimProps {
   claimCode: string;
@@ -15,9 +15,7 @@ interface TargetedClaimProps {
   nonce: string;
   targeted: boolean;
   account: string;
-  country: string | null | undefined;
-  isValid: boolean;
-  loading: boolean;
+  state: ClaimState;
   dispatch: React.Dispatch<ClaimAction>;
 }
 
@@ -29,9 +27,7 @@ export const TargetedClaim = ({
   nonce,
   targeted,
   account,
-  isValid,
-  loading,
-  country,
+  state,
   dispatch,
 }: TargetedClaimProps) => {
   const claim = useVegaClaim();
@@ -46,7 +42,7 @@ export const TargetedClaim = ({
       trancheId,
       expiry,
       nonce,
-      country: country!,
+      country: state.countryCode!,
       targeted,
       account,
     })
@@ -62,12 +58,11 @@ export const TargetedClaim = ({
     <LockedBanner />
   ) : (
     <ClaimForm
-      isValid={isValid}
-      loading={loading}
       completed={false}
-      state={txState}
+      txState={txState}
       onSubmit={claimTargeted}
-      dispatch={txDispatch}
+      txDispatch={txDispatch}
+      dispatch={dispatch}
     />
   );
 };

@@ -15,8 +15,7 @@ export interface ClaimState {
   expiry: number | null; // timestamp in seconds
   code: string | null;
   nonce: string | null;
-
-  // generic
+  countryCode: string | null;
   loading: boolean;
   error: Error | null;
   claimStatus: ClaimStatus;
@@ -29,8 +28,7 @@ export const initialClaimState: ClaimState = {
   expiry: null,
   code: null,
   nonce: null,
-
-  // generic
+  countryCode: null,
   loading: true,
   error: null,
   claimStatus: ClaimStatus.Ready,
@@ -61,6 +59,10 @@ export type ClaimAction =
   | {
       type: "SET_LOADING";
       loading: boolean;
+    }
+  | {
+      type: "SET_COUNTRY";
+      countryCode: string;
     }
   | {
       type: "ERROR";
@@ -113,6 +115,11 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
       return {
         ...state,
         claimStatus: action.status,
+      };
+    case "SET_COUNTRY":
+      return {
+        ...state,
+        countryCode: action.countryCode,
       };
     case "SET_LOADING":
       return {

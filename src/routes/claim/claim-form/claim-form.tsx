@@ -1,6 +1,10 @@
+import React from "react";
 import { useTranslation } from "react-i18next";
+import { CountrySelector } from "../../../components/country-selector";
 import { TransactionCallout } from "../../../components/transaction-callout";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
+import { ClaimAction } from "../claim-reducer";
+import { useValidateCountry } from "../hooks";
 
 import {
   TransactionAction,
@@ -14,30 +18,36 @@ export interface ICountry {
 }
 
 export const ClaimForm = ({
-  state,
   dispatch,
+  txState,
+  txDispatch,
   onSubmit,
   completed,
-  isValid,
-  loading,
 }: {
-  state: TransactionState;
-  dispatch: (action: TransactionAction) => void;
+  dispatch: React.Dispatch<ClaimAction>;
+  txState: TransactionState;
+  txDispatch: React.Dispatch<TransactionAction>;
   onSubmit: () => void;
   completed: boolean;
-  isValid: boolean;
-  loading: boolean;
 }) => {
   const { t } = useTranslation();
   const {
     appState: { chainId },
   } = useAppState();
-  if (state.txState !== TxState.Default || completed) {
+  const { country, checkCountry, isValid, loading } = useValidateCountry();
+
+  React.useEffect(() => {
+    if (country) {
+      dispatch({ type: "SET_COUNTRY", countryCode: country.code });
+    }
+  }, [country, dispatch]);
+
+  if (txState.txState !== TxState.Default || completed) {
     return (
       <TransactionCallout
         chainId={chainId!}
-        state={state}
-        reset={() => dispatch({ type: "TX_RESET" })}
+        state={txState}
+        reset={() => txDispatch({ type: "TX_RESET" })}
         complete={completed}
       />
     );
@@ -50,6 +60,14 @@ export const ClaimForm = ({
         onSubmit();
       }}
     >
+      <CountrySelector setCountry={checkCountry} />
+      {!isValid && country?.code && (
+        <div style={{ color: "#ED1515", marginBottom: 20 }}>
+          {t(
+            "Sorry. It is not possible to claim tokens in your country or region."
+          )}
+        </div>
+      )}
       <button disabled={!isValid || loading}>
         {loading ? t("Loading") : t("Continue")}
       </button>
