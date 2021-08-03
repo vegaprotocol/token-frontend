@@ -13,7 +13,7 @@ describe("Claim", () => {
   it("Renders connect button if code looks reasonable", () => {
     cy.visit(targetedClaimLink);
     cy.contains(
-      "You will need to connect to an ethereum wallet to pay the gas and claim tokens."
+      "You will need to connect to an ethereum wallet to pay the gas and claim tokens"
     );
     cy.contains("Connect to an Ethereum wallet");
   });
@@ -22,7 +22,7 @@ describe("Claim", () => {
 describe("Targeted code", () => {
   it("After connecting it renders form", () => {
     cy.visit(targetedClaimLink);
-    cy.get("button").contains("Connect to an Ethereum wallet").click();
+    cy.contains("Connect to an Ethereum wallet").click();
     cy.get("[data-testid='claim-step-1']").should("exist");
     cy.get("[data-testid='claim-step-2']").should("exist");
   });
@@ -31,7 +31,7 @@ describe("Targeted code", () => {
 describe("Untargeted code", () => {
   it("After connecting it renders form", () => {
     cy.visit(unTargetedClaimLink);
-    cy.get("button").contains("Connect to an Ethereum wallet").click();
+    cy.contains("Connect to an Ethereum wallet").click();
     cy.get("[data-testid='claim-step-1']").should("exist");
     cy.get("[data-testid='claim-step-2']").should("not.exist");
   });
