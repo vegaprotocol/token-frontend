@@ -54,7 +54,7 @@ const en = {
     step2Note: "You must complete step 1 first.",
 
     claim1:
-      "This code ({{code}}) entitles <bold>{{user}}</bold> to <bold>20 Vega</bold> tokens from ",
+      "This code ({{code}}) entitles <bold>{{user}}</bold> to <bold>{{amount}} VEGA</bold> tokens from ",
     claim2: "of the vesting contract. The code expires on {{expiry}}.",
     showRedeem:
       "You'll be able to redeem your unlocked tokens at token.vega.xyz/redemption",
@@ -67,9 +67,9 @@ const en = {
     "Awaiting action in wallet...": "Awaiting action in Ethereum wallet (e.g. metamask)",
     "Something went wrong": "Something went wrong",
     "Try again": "Try again",
-    Warning: "Warning",
+    Warning: "Error",
     "You can use your connected key to claim the Tokens but it will credit {{target}} instead of {{address}}":
-      "The address you are connected to is not the address the claim is tied to. You can continue with the connected wallet but <bold>{{target}}</bold> will be credited.",
+      "The address you are connected to is not the address the claim is valid for. To claim these tokens please connect with {{target}}.",
     Complete: "Complete",
     "View on Etherscan (opens in a new tab)":
       "View on Etherscan (opens in a new tab)",
@@ -81,17 +81,17 @@ const en = {
     "Sorry. It is not possible to claim tokens in your country or region.":
       "It is not possible to claim tokens in your country or region.",
     "Connected to Ethereum key {address}":
-      "Connected to Ethereum key <bold>{{address}}</bold>. You can change your connected key in your wallet provider e.g. Metamask.",
+      "Connected to Ethereum key <bold>{{address}}</bold>.",
     "tranche description":
-      "Tokens in this tranche began to unlock on the {{unlockDate}} and continue to unlock, block by block, until {{trancheEndDate}} when all tokens are unlocked.",
+      "Tokens in this tranche unlock on {{unlockDate}} and continue to unlock gradually until {{trancheEndDate}} when all tokens are unlocked.",
     "none redeemable":
-      "You’ll be able to redeem tokens once they have been claimed and vested.",
+      "Tokens in this tranche unlock on {{unlockDate}} and continue to unlock gradually until {{trancheEndDate}} when all tokens are unlocked.",
     "partially redeemable":
-      "You’ll be able to redeem some tokens once they have been claimed.",
+      "Tokens in this tranche began to unlock on {{unlockDate}} and will continue to unlock gradually until {{trancheEndDate}} when all tokens are unlocked.",
     "fully redeemable":
-      "Tokens in this tranche are fully unlocked. You can redeem tokens once they have been claimed.",
+      "Tokens in this tranche have fully unlocked and can be redeemed once claimed.",
     "Tokens in this tranche are fully unlocked":
-      "Tokens in this tranche are fully unlocked",
+      "Tokens in this tranche have fully unlocked and can be redeemed once claimed.",
     "This page can not be found, please check the URL and try again.":
       "This page can not be found, please check the URL and try again.",
     "Service unavailable": "Service unavailable",
