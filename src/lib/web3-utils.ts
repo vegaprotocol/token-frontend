@@ -1,3 +1,6 @@
+import type BN from "bn.js";
+import { Tranche } from "./vega-web3/vega-web3-types";
+
 export type EthereumChainId = "0x1" | "0x3" | "0x4" | "0x5" | "0x2a";
 export type EthereumChainName =
   | "Mainnet"
@@ -36,3 +39,47 @@ export const Addresses = {
     lockedAddress: "0x1b7192491bf89d616676032656b2c7a55fd08e4c",
   },
 };
+
+export type PromiEvent = typeof Promise & {
+  on: (event: string, listener: (...args: any[]) => void) => PromiEvent;
+  once: (event: string, listener: (...args: any[]) => void) => PromiEvent;
+};
+
+export interface IVegaVesting {
+  getUserBalanceAllTranches(account: string): Promise<string>;
+  getAllTranches(): Promise<Tranche[]>;
+}
+
+export interface IVegaClaim {
+  commit(claimCode: string, account: string): PromiEvent;
+  claim({
+    claimCode,
+    denomination,
+    trancheId,
+    expiry,
+    nonce,
+    country,
+    targeted,
+    account,
+  }: {
+    claimCode: string;
+    denomination: BN;
+    trancheId: number;
+    expiry: number;
+    nonce: string;
+    country: string;
+    targeted: boolean;
+    account: string;
+  }): PromiEvent;
+  isCommitted({
+    claimCode,
+    account,
+  }: {
+    claimCode: string;
+    account: string;
+  }): Promise<boolean>;
+
+  isExpired(expiry: number): Promise<boolean>;
+  isUsed(nonce: string): Promise<boolean>;
+  isCountryBlocked(country: string): Promise<boolean>;
+}

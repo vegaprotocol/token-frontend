@@ -2,11 +2,7 @@ import Web3 from "web3";
 import type BN from "bn.js";
 import type { Contract } from "web3-eth-contract";
 import claimAbi from "../abis/claim_abi.json";
-
-export type PromiEvent = typeof Promise & {
-  on: (event: string, listener: (...args: any[]) => void) => PromiEvent;
-  once: (event: string, listener: (...args: any[]) => void) => PromiEvent;
-};
+import { IVegaClaim, PromiEvent } from "../web3-utils";
 
 /**
  * Example:
@@ -22,7 +18,7 @@ export type PromiEvent = typeof Promise & {
  * contract.isClaimValid({ claimCode: "0x...", expiry: 0, nonce: "0x00", account: "0x00" })
  * ```
  */
-export default class VegaClaim {
+export default class VegaClaim implements IVegaClaim {
   private web3: Web3;
   private contract: Contract;
 

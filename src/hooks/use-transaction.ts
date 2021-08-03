@@ -1,5 +1,5 @@
 import React from "react";
-import type { PromiEvent } from "../lib/vega-web3/vega-claim";
+import { PromiEvent } from "../lib/web3-utils";
 import {
   initialState,
   transactionReducer,
