@@ -29,6 +29,7 @@ export const useValidateCountry = () => {
     },
     [claim]
   );
+
   return {
     country,
     isValid,

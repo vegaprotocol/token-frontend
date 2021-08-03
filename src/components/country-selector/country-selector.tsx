@@ -17,15 +17,17 @@ export const CountrySelector = ({ setCountry }: CountrySelectorProps) => {
   };
 
   return (
-    <select
-      className="country-selector"
-      onChange={(value) => onSelectedCountry(value.currentTarget.value)}
-    >
-      {countryData.map((country) => (
-        <option key={country.code} value={country.code}>
-          {country.name}
-        </option>
-      ))}
-    </select>
+    <div>
+      <select
+        className="country-selector"
+        onChange={(value) => onSelectedCountry(value.currentTarget.value)}
+      >
+        {countryData.map((country) => (
+          <option key={country.code} value={country.code}>
+            {country.name}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 };

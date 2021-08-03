@@ -7,7 +7,7 @@ import { TxState } from "../transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { LockedBanner } from "../locked-banner";
 import { useVegaClaim } from "../../../hooks/use-vega-claim";
-import { ClaimAction, ClaimStatus } from "../claim-reducer";
+import { ClaimAction, ClaimState, ClaimStatus } from "../claim-reducer";
 
 interface UntargetedClaimProps {
   claimCode: string;
@@ -18,9 +18,7 @@ interface UntargetedClaimProps {
   targeted: boolean;
   account: string;
   committed: boolean;
-  country: string | null | undefined;
-  isValid: boolean;
-  loading: boolean;
+  state: ClaimState;
   dispatch: React.Dispatch<ClaimAction>;
 }
 
@@ -33,9 +31,7 @@ export const UntargetedClaim = ({
   targeted,
   account,
   committed,
-  country,
-  loading,
-  isValid,
+  state,
   dispatch,
 }: UntargetedClaimProps) => {
   const { appState } = useAppState();
@@ -57,7 +53,7 @@ export const UntargetedClaim = ({
       trancheId,
       expiry,
       nonce,
-      country: country!,
+      country: state.countryCode!,
       targeted,
       account,
     })
@@ -79,20 +75,17 @@ export const UntargetedClaim = ({
   return (
     <>
       <ClaimStep1
-        isValid={isValid}
-        loading={loading}
-        state={commitState}
-        dispatch={commitDispatch}
+        txState={commitState}
+        txDispatch={commitDispatch}
         completed={committed}
         onSubmit={commitClaim}
+        dispatch={dispatch}
       />
       <ClaimStep2
-        isValid={isValid}
-        loading={loading}
-        dispatch={revealDispatch}
+        txState={revealState}
+        txDispatch={revealDispatch}
         amount={denomination}
         onSubmit={commitReveal}
-        state={revealState}
         step1Completed={committed || commitState.txState === TxState.Complete}
       />
     </>

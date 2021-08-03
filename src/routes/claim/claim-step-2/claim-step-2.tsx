@@ -11,40 +11,33 @@ import { TransactionCallout } from "../../../components/transaction-callout";
 export const ClaimStep2 = ({
   step1Completed,
   amount,
-  state,
-  dispatch,
+  txState,
+  txDispatch,
   onSubmit,
-  isValid,
-  loading,
 }: {
   step1Completed: boolean;
   amount: BN;
-  state: TransactionState;
-  dispatch: (action: TransactionAction) => void;
+  txState: TransactionState;
+  txDispatch: React.Dispatch<TransactionAction>;
   onSubmit: () => void;
-  isValid: boolean;
-  loading: boolean;
 }) => {
   const { appState } = useAppState();
   const { chainId } = appState;
   const { t } = useTranslation();
   let content = null;
-  if (state.txState !== TxState.Default) {
+  if (txState.txState !== TxState.Default) {
     content = (
       <TransactionCallout
         chainId={chainId!}
-        state={state}
-        reset={() => dispatch({ type: "TX_RESET" })}
+        state={txState}
+        reset={() => txDispatch({ type: "TX_RESET" })}
         complete={false}
       />
     );
   } else {
     content = (
-      <button
-        disabled={!step1Completed || !isValid || loading}
-        onClick={onSubmit}
-      >
-        {loading ? t("Loading") : t("Claim {amount} Vega", { amount })}
+      <button disabled={!step1Completed} onClick={onSubmit}>
+        {t("Claim {amount} Vega", { amount })}
       </button>
     );
   }
