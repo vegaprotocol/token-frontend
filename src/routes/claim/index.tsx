@@ -7,12 +7,12 @@ import { useConnect } from "../../hooks/use-connect";
 import { useSearchParams } from "../../hooks/use-search-params";
 import { ClaimError } from "./claim-error";
 import { claimReducer, ClaimStatus, initialClaimState } from "./claim-reducer";
-import { ConnectedClaim } from "./connected";
+import { ClaimFlow } from "./claim-flow";
 import { ClaimRestricted } from "./claim-restricted";
 import { isRestricted } from "./lib/is-restricted";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
 
-const ClaimRouter = () => {
+const Claim = () => {
   const { t } = useTranslation();
   const params = useSearchParams();
   const { appState, appDispatch } = useAppState();
@@ -50,7 +50,7 @@ const ClaimRouter = () => {
   } else if (state.error) {
     pageContent = <ClaimError />;
   } else if (appState.address && state.code) {
-    pageContent = <ConnectedClaim state={state} dispatch={dispatch} />;
+    pageContent = <ClaimFlow state={state} dispatch={dispatch} />;
   } else if (!appState.address) {
     pageContent = (
       <section>
@@ -80,4 +80,4 @@ const ClaimRouter = () => {
   );
 };
 
-export default ClaimRouter;
+export default Claim;

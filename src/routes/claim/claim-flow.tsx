@@ -18,12 +18,12 @@ import { useValidateCountry } from "./hooks";
 import { Colors } from "../../colors";
 import { LockedBanner } from "./locked-banner";
 
-interface ConnectedClaimProps {
+interface ClaimFlowProps {
   state: ClaimState;
   dispatch: React.Dispatch<ClaimAction>;
 }
 
-export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
+export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
   const { t } = useTranslation();
   const { country, checkCountry, isValid, loading } =
     useValidateCountry(dispatch);
