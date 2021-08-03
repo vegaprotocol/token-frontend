@@ -16,6 +16,7 @@ import { TargetAddressMismatch } from "./target-address-mismatch";
 import { CountrySelector } from "../../components/country-selector";
 import { useValidateCountry } from "./hooks";
 import { Colors } from "../../colors";
+import { LockedBanner } from "./locked-banner";
 
 interface ConnectedClaimProps {
   state: ClaimState;
@@ -127,56 +128,63 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
         />
       </p>
       <RedeemInfo tranche={currentTranche} />
-      <fieldset>
-        <CountrySelector setCountry={checkCountry} />
-        {!isValid && country?.code && (
-          <div style={{ color: Colors.RED, marginBottom: 20 }}>
-            {t(
-              "Sorry. It is not possible to claim tokens in your country or region."
+
+      {state.claimStatus === ClaimStatus.Finished ? (
+        <LockedBanner />
+      ) : (
+        <>
+          <fieldset>
+            <CountrySelector setCountry={checkCountry} />
+            {!isValid && country?.code && (
+              <div style={{ color: Colors.RED, marginBottom: 20 }}>
+                {t(
+                  "Sorry. It is not possible to claim tokens in your country or region."
+                )}
+              </div>
+            )}
+          </fieldset>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+              borderTop: "1px solid white",
+              paddingTop: 15,
+            }}
+          >
+            {/* If targeted we do not need to commit reveal, as there is no change of front running the mem pool */}
+            {state.target ? (
+              <TargetedClaim
+                claimCode={state.code!}
+                denomination={state.denomination!}
+                expiry={state.expiry!}
+                nonce={state.nonce!}
+                trancheId={state.trancheId!}
+                targeted={!!state.target}
+                account={address!}
+                state={state}
+                dispatch={dispatch}
+                isValid={isValid}
+                loading={loading}
+              />
+            ) : (
+              <UntargetedClaim
+                claimCode={state.code!}
+                denomination={state.denomination!}
+                expiry={state.expiry!}
+                nonce={state.nonce!}
+                trancheId={state.trancheId!}
+                targeted={!!state.target}
+                account={address!}
+                committed={state.claimStatus === ClaimStatus.Committed}
+                state={state}
+                dispatch={dispatch}
+                isValid={isValid}
+                loading={loading}
+              />
             )}
           </div>
-        )}
-      </fieldset>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-          borderTop: "1px solid white",
-          paddingTop: 15,
-        }}
-      >
-        {/* If targeted we do not need to commit reveal, as there is no change of front running the mem pool */}
-        {state.target ? (
-          <TargetedClaim
-            claimCode={state.code!}
-            denomination={state.denomination!}
-            expiry={state.expiry!}
-            nonce={state.nonce!}
-            trancheId={state.trancheId!}
-            targeted={!!state.target}
-            account={address!}
-            state={state}
-            dispatch={dispatch}
-            isValid={isValid}
-            loading={loading}
-          />
-        ) : (
-          <UntargetedClaim
-            claimCode={state.code!}
-            denomination={state.denomination!}
-            expiry={state.expiry!}
-            nonce={state.nonce!}
-            trancheId={state.trancheId!}
-            targeted={!!state.target}
-            account={address!}
-            committed={state.claimStatus === ClaimStatus.Committed}
-            state={state}
-            dispatch={dispatch}
-            isValid={isValid}
-            loading={loading}
-          />
-        )}
-      </div>
+        </>
+      )}
     </section>
   );
 };
