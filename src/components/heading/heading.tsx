@@ -110,7 +110,7 @@ export const Heading = ({ title }: HeadingProps) => {
         </div>
       </div>
       <div className="heading__title-container">
-        <div className="heading__title">{title}</div>
+        <h1 className="heading__title">{title}</h1>
       </div>
     </header>
   );

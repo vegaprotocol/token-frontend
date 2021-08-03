@@ -1,5 +1,13 @@
 import BN from "bn.js";
 
+export enum ClaimStatus {
+  Ready,
+  Committed,
+  Expired,
+  Used,
+  Finished,
+}
+
 export interface ClaimState {
   // From URL
   denomination: BN | null; // amount
@@ -8,9 +16,10 @@ export interface ClaimState {
   expiry: number | null; // timestamp in seconds
   code: string | null;
   nonce: string | null;
-
-  // generic
+  countryCode: string | null;
+  loading: boolean;
   error: Error | null;
+  claimStatus: ClaimStatus;
 }
 
 export const initialClaimState: ClaimState = {
@@ -20,9 +29,10 @@ export const initialClaimState: ClaimState = {
   expiry: null,
   code: null,
   nonce: null,
-
-  // generic
+  countryCode: null,
+  loading: true,
   error: null,
+  claimStatus: ClaimStatus.Ready,
 };
 
 export type ClaimAction =
@@ -36,6 +46,24 @@ export type ClaimAction =
         code: string;
         nonce: string;
       };
+    }
+  | {
+      type: "SET_INITIAL_CLAIM_STATUS";
+      committed: boolean;
+      expired: boolean;
+      used: boolean;
+    }
+  | {
+      type: "SET_CLAIM_STATUS";
+      status: ClaimStatus;
+    }
+  | {
+      type: "SET_LOADING";
+      loading: boolean;
+    }
+  | {
+      type: "SET_COUNTRY";
+      countryCode: string;
     }
   | {
       type: "ERROR";
@@ -69,6 +97,36 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
           nonce: action.data.nonce,
         };
       }
+    case "SET_INITIAL_CLAIM_STATUS":
+      let status = ClaimStatus.Ready;
+
+      if (action.committed) {
+        status = ClaimStatus.Committed;
+      } else if (action.used) {
+        status = ClaimStatus.Used;
+      } else if (action.expired) {
+        status = ClaimStatus.Expired;
+      }
+
+      return {
+        ...state,
+        claimStatus: status,
+      };
+    case "SET_CLAIM_STATUS":
+      return {
+        ...state,
+        claimStatus: action.status,
+      };
+    case "SET_COUNTRY":
+      return {
+        ...state,
+        countryCode: action.countryCode,
+      };
+    case "SET_LOADING":
+      return {
+        ...state,
+        loading: action.loading,
+      };
     case "ERROR":
       return {
         ...state,

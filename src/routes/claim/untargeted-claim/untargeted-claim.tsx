@@ -1,11 +1,12 @@
+import React from "react";
 import { ClaimStep1 } from "../claim-step-1";
 import { ClaimStep2 } from "../claim-step-2";
 import BN from "bn.js";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { TxState } from "../transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
-import { LockedBanner } from "../locked-banner";
 import { useVegaClaim } from "../../../hooks/use-vega-claim";
+import { ClaimAction, ClaimState, ClaimStatus } from "../claim-reducer";
 
 interface UntargetedClaimProps {
   claimCode: string;
@@ -16,9 +17,10 @@ interface UntargetedClaimProps {
   targeted: boolean;
   account: string;
   committed: boolean;
-  country: string | null | undefined;
-  isValid: boolean;
+  state: ClaimState;
+  dispatch: React.Dispatch<ClaimAction>;
   loading: boolean;
+  isValid: boolean;
 }
 
 export const UntargetedClaim = ({
@@ -30,7 +32,8 @@ export const UntargetedClaim = ({
   targeted,
   account,
   committed,
-  country,
+  state,
+  dispatch,
   loading,
   isValid,
 }: UntargetedClaimProps) => {
@@ -53,31 +56,35 @@ export const UntargetedClaim = ({
       trancheId,
       expiry,
       nonce,
-      country: country!,
+      country: state.countryCode!,
       targeted,
       account,
     })
   );
-  return revealState.txState === TxState.Complete &&
-    (commitState.txState === TxState.Complete || committed) ? (
-    <LockedBanner />
-  ) : (
+
+  React.useEffect(() => {
+    if (revealState.txState === TxState.Complete) {
+      dispatch({ type: "SET_CLAIM_STATUS", status: ClaimStatus.Finished });
+    }
+  }, [revealState.txState, dispatch]);
+
+  return (
     <>
       <ClaimStep1
-        isValid={isValid}
         loading={loading}
-        state={commitState}
-        dispatch={commitDispatch}
+        isValid={isValid}
+        txState={commitState}
+        txDispatch={commitDispatch}
         completed={committed}
         onSubmit={commitClaim}
       />
       <ClaimStep2
-        isValid={isValid}
         loading={loading}
-        dispatch={revealDispatch}
+        isValid={isValid}
+        txState={revealState}
+        txDispatch={revealDispatch}
         amount={denomination}
         onSubmit={commitReveal}
-        state={revealState}
         step1Completed={committed || commitState.txState === TxState.Complete}
       />
     </>

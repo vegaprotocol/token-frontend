@@ -1,3 +1,4 @@
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { TransactionCallout } from "../../../components/transaction-callout";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
@@ -14,15 +15,15 @@ export interface ICountry {
 }
 
 export const ClaimForm = ({
-  state,
-  dispatch,
+  txState,
+  txDispatch,
   onSubmit,
   completed,
   isValid,
   loading,
 }: {
-  state: TransactionState;
-  dispatch: (action: TransactionAction) => void;
+  txState: TransactionState;
+  txDispatch: React.Dispatch<TransactionAction>;
   onSubmit: () => void;
   completed: boolean;
   isValid: boolean;
@@ -32,12 +33,13 @@ export const ClaimForm = ({
   const {
     appState: { chainId },
   } = useAppState();
-  if (state.txState !== TxState.Default || completed) {
+
+  if (txState.txState !== TxState.Default || completed) {
     return (
       <TransactionCallout
         chainId={chainId!}
-        state={state}
-        reset={() => dispatch({ type: "TX_RESET" })}
+        state={txState}
+        reset={() => txDispatch({ type: "TX_RESET" })}
         complete={completed}
       />
     );
@@ -50,7 +52,7 @@ export const ClaimForm = ({
         onSubmit();
       }}
     >
-      <button disabled={!isValid || loading}>
+      <button disabled={!isValid || loading} type="submit">
         {loading ? t("Loading") : t("Continue")}
       </button>
     </form>

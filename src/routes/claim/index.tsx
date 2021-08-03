@@ -6,17 +6,20 @@ import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useConnect } from "../../hooks/use-connect";
 import { useSearchParams } from "../../hooks/use-search-params";
 import { ClaimError } from "./claim-error";
-import { claimReducer, initialClaimState } from "./claim-reducer";
+import { claimReducer, ClaimStatus, initialClaimState } from "./claim-reducer";
 import { ConnectedClaim } from "./connected";
 import { ClaimRestricted } from "./claim-restricted";
 import { isRestricted } from "./lib/is-restricted";
+import { useVegaVesting } from "../../hooks/use-vega-vesting";
 
 const ClaimRouter = () => {
   const { t } = useTranslation();
   const params = useSearchParams();
-  const { appState } = useAppState();
+  const { appState, appDispatch } = useAppState();
+  const vesting = useVegaVesting();
   const [state, dispatch] = React.useReducer(claimReducer, initialClaimState);
   const connect = useConnect();
+
   React.useEffect(() => {
     dispatch({
       type: "SET_DATA_FROM_URL",
@@ -30,6 +33,16 @@ const ClaimRouter = () => {
       },
     });
   }, [dispatch, params]);
+
+  // If the claim has been committed refetch the new VEGA balance
+  React.useEffect(() => {
+    if (state.claimStatus === ClaimStatus.Committed && appState.address) {
+      vesting
+        .getUserBalanceAllTranches(appState.address)
+        .then((balance) => appDispatch({ type: "SET_BALANCE", balance }));
+    }
+  }, [vesting, state.claimStatus, appState.address, appDispatch]);
+
   let pageContent;
 
   if (isRestricted()) {

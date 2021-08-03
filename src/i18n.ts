@@ -53,9 +53,10 @@ const en = {
     step2Title: "Step 2 - Claim tokens",
     step2Note: "You must complete step 1 first.",
 
-    claim1:
-      "This code ({{code}}) entitles <bold>{{user}}</bold> to <bold>{{amount}} VEGA</bold> tokens from ",
-    claim2: "of the vesting contract. The code expires on {{expiry}}.",
+    claim:
+      "This code ({{code}}) entitles <bold>{{user}}</bold> to <bold>{{amount}} Vega</bold> tokens from <trancheLink>{{linkText}}</trancheLink> of the vesting contract. {{expiry}}.",
+    claimExpiry: "The code expires on {{date}}",
+    claimNoExpiry: "It has no expiry date",
     showRedeem:
       "You'll be able to redeem your unlocked tokens at token.vega.xyz/redemption",
 
@@ -67,9 +68,6 @@ const en = {
     "Awaiting action in wallet...": "Awaiting action in Ethereum wallet (e.g. metamask)",
     "Something went wrong": "Something went wrong",
     "Try again": "Try again",
-    Warning: "Error",
-    "You can use your connected key to claim the Tokens but it will credit {{target}} instead of {{address}}":
-      "The address you are connected to is not the address the claim is valid for. To claim these tokens please connect with {{target}}.",
     Complete: "Complete",
     "View on Etherscan (opens in a new tab)":
       "View on Etherscan (opens in a new tab)",
@@ -109,7 +107,9 @@ const en = {
       "Add the Vega vesting token to your wallet to track how much you Vega you have in the vesting contract.",
     "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.":
       "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
-    never: "never",
+    connectedAddress: "Connected to Ethereum key {{address}}.",
+    addressMismatch:
+      "<red>Error:</red> The address you are connected to is <bold>not</bold> the address the claim is valid for. To claim these tokens please connect with <bold>{{target}}</bold>.",
   },
 };
 
