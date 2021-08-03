@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { DefaultTemplate } from "../../components/page-templates/default";
 
-export const NotFound = () => {
+const NotFound = () => {
   const { t } = useTranslation();
   return (
     <DefaultTemplate title={t("pageTitle404")}>
@@ -11,3 +11,5 @@ export const NotFound = () => {
     </DefaultTemplate>
   );
 };
+
+export default NotFound;

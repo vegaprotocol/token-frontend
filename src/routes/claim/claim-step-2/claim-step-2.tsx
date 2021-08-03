@@ -4,7 +4,7 @@ import {
   TransactionAction,
   TransactionState,
   TxState,
-} from "../transaction-reducer";
+} from "../../../hooks/transaction-reducer";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { TransactionCallout } from "../../../components/transaction-callout";
 

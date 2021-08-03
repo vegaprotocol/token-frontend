@@ -1,9 +1,6 @@
 import React from "react";
 import type { PromiEvent } from "../lib/vega-web3/vega-claim";
-import {
-  initialState,
-  transactionReducer,
-} from "../routes/claim/transaction-reducer";
+import { initialState, transactionReducer } from "./transaction-reducer";
 
 export const useTransaction = (
   performTransaction: (...args: any[]) => PromiEvent

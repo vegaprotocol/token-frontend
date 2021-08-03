@@ -2,7 +2,7 @@ import React from "react";
 import { ClaimForm } from "../claim-form";
 import BN from "bn.js";
 import { useTransaction } from "../../../hooks/use-transaction";
-import { TxState } from "../transaction-reducer";
+import { TxState } from "../../../hooks/transaction-reducer";
 import { useVegaClaim } from "../../../hooks/use-vega-claim";
 import { ClaimAction, ClaimState, ClaimStatus } from "../claim-reducer";
 

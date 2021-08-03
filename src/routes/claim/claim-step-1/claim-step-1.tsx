@@ -1,6 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { ClaimForm } from "../claim-form";
-import { TransactionAction, TransactionState } from "../transaction-reducer";
+import {
+  TransactionAction,
+  TransactionState,
+} from "../../../hooks/transaction-reducer";
 
 interface ClaimStep2 {
   txState: TransactionState;

@@ -3,7 +3,7 @@ import { ClaimStep1 } from "../claim-step-1";
 import { ClaimStep2 } from "../claim-step-2";
 import BN from "bn.js";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
-import { TxState } from "../transaction-reducer";
+import { TxState } from "../../../hooks/transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { useVegaClaim } from "../../../hooks/use-vega-claim";
 import { ClaimAction, ClaimState, ClaimStatus } from "../claim-reducer";

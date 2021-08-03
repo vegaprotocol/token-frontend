@@ -1,5 +1,5 @@
 import React from "react";
-import { NotFound } from "./404";
+import NotFound from "./not-found";
 import Home from "./home";
 
 const LazyTranches = React.lazy(

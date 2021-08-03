@@ -7,7 +7,7 @@ import {
   TransactionAction,
   TransactionState,
   TxState,
-} from "../transaction-reducer";
+} from "../../../hooks/transaction-reducer";
 
 export interface ICountry {
   name: string;

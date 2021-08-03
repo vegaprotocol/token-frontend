@@ -1,8 +1,5 @@
 import { EthereumChainId } from "../../lib/web3-utils";
-import {
-  TransactionState,
-  TxState,
-} from "../../routes/claim/transaction-reducer";
+import { TransactionState, TxState } from "../../hooks/transaction-reducer";
 import { TransactionComplete } from "../transaction-complete";
 import { TransactionConfirm } from "../transaction-confirm";
 import { TransactionError } from "../transaction-error";
