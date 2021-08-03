@@ -25,7 +25,8 @@ interface ConnectedClaimProps {
 
 export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
   const { t } = useTranslation();
-  const { country, checkCountry, isValid, loading } = useValidateCountry();
+  const { country, checkCountry, isValid, loading } =
+    useValidateCountry(dispatch);
   const {
     appState: { address, tranches },
   } = useAppState();
