@@ -13,7 +13,6 @@ import { UntargetedClaim } from "./untargeted-claim";
 import * as Sentry from "@sentry/react";
 import { RedeemInfo } from "./redeem-info";
 import { TargetAddressMismatch } from "./target-address-mismatch";
-import { Colors } from "../../colors";
 
 interface ConnectedClaimProps {
   state: ClaimState;
@@ -124,16 +123,6 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
         />
       </p>
       <RedeemInfo tranche={currentTranche} />
-      <fieldset>
-        <CountrySelector setCountry={countryState.checkCountry} />
-        {!countryState.isValid && countryState.country?.code && (
-          <div style={{ color: Colors.RED, marginBottom: 20 }}>
-            {t(
-              "Sorry. It is not possible to claim tokens in your country or region."
-            )}
-          </div>
-        )}
-      </fieldset>
       <div
         style={{
           display: "grid",
@@ -152,6 +141,8 @@ export const ConnectedClaim = ({ state, dispatch }: ConnectedClaimProps) => {
             trancheId={state.trancheId!}
             targeted={!!state.target}
             account={address!}
+            state={state}
+            dispatch={dispatch}
           />
         ) : (
           <UntargetedClaim
