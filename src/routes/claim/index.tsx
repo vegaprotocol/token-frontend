@@ -36,7 +36,7 @@ const ClaimRouter = () => {
 
   // If the claim has been committed refetch the new VEGA balance
   React.useEffect(() => {
-    if (state.claimStatus === ClaimStatus.Committed && appState.address) {
+    if (state.claimStatus === ClaimStatus.Finished && appState.address) {
       vesting
         .getUserBalanceAllTranches(appState.address)
         .then((balance) => appDispatch({ type: "SET_BALANCE", balance }));
