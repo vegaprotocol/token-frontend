@@ -44,22 +44,27 @@ export const UntargetedClaim = ({
     state: commitState,
     dispatch: commitDispatch,
     perform: commitClaim,
-  } = useTransaction(() => claim.commit(claimCode, appState.address!));
+  } = useTransaction(
+    () => claim.commit(claimCode, appState.address!),
+    () => claim.checkCommit(claimCode, appState.address!)
+  );
+  const claimArgs = {
+    claimCode,
+    denomination,
+    trancheId,
+    expiry,
+    nonce,
+    country: state.countryCode!,
+    targeted,
+    account,
+  };
   const {
     state: revealState,
     dispatch: revealDispatch,
     perform: commitReveal,
-  } = useTransaction(() =>
-    claim.claim({
-      claimCode,
-      denomination,
-      trancheId,
-      expiry,
-      nonce,
-      country: state.countryCode!,
-      targeted,
-      account,
-    })
+  } = useTransaction(
+    () => claim.claim(claimArgs),
+    () => claim.checkClaim(claimArgs)
   );
 
   React.useEffect(() => {
