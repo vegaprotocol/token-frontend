@@ -5,6 +5,7 @@ export enum ClaimStatus {
   Committed,
   Expired,
   Used,
+  Finished,
 }
 
 export interface ClaimState {

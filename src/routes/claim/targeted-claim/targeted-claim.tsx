@@ -3,7 +3,6 @@ import { ClaimForm } from "../claim-form";
 import BN from "bn.js";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { TxState } from "../transaction-reducer";
-import { LockedBanner } from "../locked-banner";
 import { useVegaClaim } from "../../../hooks/use-vega-claim";
 import { ClaimAction, ClaimState, ClaimStatus } from "../claim-reducer";
 
@@ -54,13 +53,11 @@ export const TargetedClaim = ({
 
   React.useEffect(() => {
     if (txState.txState === TxState.Complete) {
-      dispatch({ type: "SET_CLAIM_STATUS", status: ClaimStatus.Used });
+      dispatch({ type: "SET_CLAIM_STATUS", status: ClaimStatus.Finished });
     }
   }, [txState.txState, dispatch]);
 
-  return txState.txState === TxState.Complete ? (
-    <LockedBanner />
-  ) : (
+  return (
     <ClaimForm
       completed={false}
       txState={txState}

@@ -5,7 +5,6 @@ import BN from "bn.js";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { TxState } from "../transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
-import { LockedBanner } from "../locked-banner";
 import { useVegaClaim } from "../../../hooks/use-vega-claim";
 import { ClaimAction, ClaimState, ClaimStatus } from "../claim-reducer";
 
@@ -65,16 +64,9 @@ export const UntargetedClaim = ({
 
   React.useEffect(() => {
     if (revealState.txState === TxState.Complete) {
-      dispatch({ type: "SET_CLAIM_STATUS", status: ClaimStatus.Committed });
+      dispatch({ type: "SET_CLAIM_STATUS", status: ClaimStatus.Finished });
     }
   }, [revealState.txState, dispatch]);
-
-  if (
-    revealState.txState === TxState.Complete &&
-    (commitState.txState === TxState.Complete || committed)
-  ) {
-    return <LockedBanner />;
-  }
 
   return (
     <>
