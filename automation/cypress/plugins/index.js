@@ -7,10 +7,13 @@
 // You can read more here:
 // https://on.cypress.io/plugins-guide
 // ***********************************************************
-const { cypressConfigResolver } = require('../config/cypress-config-resolver');
-const cucumber = require('cypress-cucumber-preprocessor').default;
+const { cypressConfigResolver } = require("../config/cypress-config-resolver");
+// const pluginExecuteCommand = require("./plugin-execute-command");
+const cucumber = require("cypress-cucumber-preprocessor").default;
 
 module.exports = (on, config) => {
-  on('file:preprocessor', cucumber());
-  return cypressConfigResolver();
+  require("@cypress/code-coverage/task")(on, config);
+  on("file:preprocessor", cucumber());
+
+  return cypressConfigResolver(config);
 };

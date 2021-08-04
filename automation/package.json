@@ -23,9 +23,9 @@
     "cypress": "^6.0.1",
     "cypress-cucumber-preprocessor": "^4.0.0",
     "fs-extra": "^9.0.1",
-    "glob": "^7.1.6"
+    "glob": "^7.1.6",
+    "@cypress/code-coverage": "^3.9.10"
   },
-  "devDependencies": {},
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": false
   }
