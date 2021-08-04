@@ -3,9 +3,14 @@ import {
   ProviderStatus,
   useAppState,
 } from "../contexts/app-state/app-state-context";
-import { EthereumChainId, EthereumChainNames } from "../lib/web3-utils";
+import {
+  EthereumChainId,
+  EthereumChainIds,
+  EthereumChainNames,
+} from "../lib/web3-utils";
 import { useVegaVesting } from "./use-vega-vesting";
 import * as Sentry from "@sentry/react";
+import BigNumber from "bignumber.js";
 
 const mockAddress = "0x" + "0".repeat(0);
 
@@ -30,26 +35,28 @@ export function useConnect() {
       }
 
       let accounts: string[];
+      let chainId: EthereumChainId;
       if (useMocks) {
-        const confirm = window.confirm("Connect");
+        const confirm = true; // TOOD
         if (confirm) {
           accounts = [mockAddress];
         } else {
           throw new Error("Connection rejected");
         }
+        chainId = EthereumChainIds.Ropsten;
       } else {
         accounts = await provider.request({
           method: "eth_requestAccounts",
         });
+        chainId = await provider.request({ method: "eth_chainId" });
       }
       const balance = await vega.getUserBalanceAllTranches(accounts[0]);
-      const chainId = await provider.request({ method: "eth_chainId" });
 
       appDispatch({
         type: "CONNECT_SUCCESS",
         address: accounts[0],
         chainId,
-        balance,
+        balance: new BigNumber(balance),
       });
     } catch (e) {
       Sentry.captureEvent(e);
