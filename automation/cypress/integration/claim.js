@@ -57,6 +57,24 @@ describe("Targeted code", () => {
     cy.visit(link);
     cy.contains("Connect to an Ethereum wallet").click();
     cy.get("[data-testid='targeted-claim']").should("exist");
+    cy.get("button").should("be.disabled");
+  });
+  it("Enables button once the user has selected a permitted country", () => {
+    const link = generateCodeLink({
+      code: "code",
+      amount: 1,
+      tranche: 1,
+      nonce: "f00",
+      target: "0x" + "0".repeat(0),
+      expiry: 0,
+    });
+    mock(cy);
+    cy.visit(link);
+    cy.contains("Connect to an Ethereum wallet").click();
+    cy.get("[data-testid='targeted-claim']").should("exist");
+    cy.get("[data-testid='country-selector']").select("United Kingdom");
+    cy.contains("Continue").click();
+    cy.get("[data-testid='transaction-in-progress'").should("exist");
   });
 });
 
