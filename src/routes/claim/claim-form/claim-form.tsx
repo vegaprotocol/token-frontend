@@ -47,7 +47,7 @@ export const ClaimForm = ({
   }
 
   const disabled = !isValid || loading;
-  const onClick = () => {
+  const onContinue = () => {
     setShowError(disabled)
     if (!disabled) {
       onSubmit();
@@ -57,7 +57,7 @@ export const ClaimForm = ({
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <button
-        onClick={onClick}
+        onClick={onContinue}
         style={
           disabled
             ? {
@@ -70,11 +70,9 @@ export const ClaimForm = ({
       >
         {loading ? t("Loading") : t("Continue")}
       </button>
-      {
-        showError ? 
-          <p style={{ color: "red" }}>{t("You must select a valid country")}</p>
-        : null
-      }
+      {showError ? (
+        <p style={{ color: "red" }}>{t("You must select a valid country")}</p>
+      ) : null}
     </div>
   );
 };
