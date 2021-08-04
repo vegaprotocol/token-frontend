@@ -36,7 +36,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:mock": "REACT_APP_MOCKED=1 yarn start",
+    "start:mock": "REACT_APP_MOCKED=1 react-scripts -r @cypress/instrument-cra start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -60,6 +60,11 @@
     ]
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.171"
+    "@cypress/instrument-cra": "^1.4.0",
+    "@types/lodash": "^4.14.171",
+    "add": "^2.0.6",
+    "istanbul-lib-coverage": "^3.0.0",
+    "nyc": "^15.1.0",
+    "yarn": "^1.22.11"
   }
 }
