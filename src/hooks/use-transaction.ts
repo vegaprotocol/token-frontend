@@ -1,10 +1,12 @@
 import React from "react";
 import type { PromiEvent } from "../lib/vega-web3/vega-claim";
 import { initialState, transactionReducer } from "./transaction-reducer";
+import { useTranslation } from "react-i18next";
 
 export const useTransaction = (
   performTransaction: (...args: any[]) => PromiEvent
 ) => {
+  const { t } = useTranslation();
   const [state, dispatch] = React.useReducer(transactionReducer, initialState);
   const perform = React.useCallback(async () => {
     dispatch({ type: "TX_REQUESTED" });
@@ -16,9 +18,12 @@ export const useTransaction = (
         dispatch({ type: "TX_COMPLETE", receipt });
       })
       .on("error", (err: Error) => {
-        dispatch({ type: "TX_ERROR", error: err });
+        const errorSubstitutions = {
+          "Transaction has been reverted by the EVM": t("Something went wrong"),
+        };
+        dispatch({ type: "TX_ERROR", error: err, errorSubstitutions });
       });
-  }, [performTransaction, dispatch]);
+  }, [performTransaction, dispatch, t]);
   return {
     state,
     dispatch,

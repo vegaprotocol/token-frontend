@@ -26,6 +26,20 @@ export const initialState: TransactionState = {
   },
 };
 
+const substituteErrorMessage = (
+  errMessage: string,
+  errorSubstitutions: any
+): Error => {
+  let newErrorMessage = errMessage;
+
+  Object.keys(errorSubstitutions).forEach((errorSubstitutionKey) => {
+    if (errMessage.includes(errorSubstitutionKey)) {
+      newErrorMessage = errorSubstitutions[errorSubstitutionKey];
+    }
+  });
+  return new Error(newErrorMessage);
+};
+
 export type TransactionAction =
   | {
       type: "TX_RESET";
@@ -44,6 +58,7 @@ export type TransactionAction =
   | {
       type: "TX_ERROR";
       error: Error;
+      errorSubstitutions: Object;
     }
   | {
       type: "ERROR";
@@ -95,7 +110,7 @@ export function transactionReducer(
         txState: TxState.Error,
         txData: {
           ...state.txData,
-          error: action.error,
+          error: substituteErrorMessage(action.error.message, action.errorSubstitutions),
         },
       };
     case "ERROR":
