@@ -6,8 +6,6 @@ export const getAbbreviatedNumber = (num: BigNumber) => {
     return Number(num.toFixed()).toLocaleString();
   } else if (number < 1000000) {
     return Number((number / 1000).toFixed()).toLocaleString() + "K";
-  } else if (number < 1000000000) {
-    return Number((number / 1000000).toFixed()).toLocaleString() + "M";
   }
-  return Number((number / 1000000000).toFixed()).toLocaleString() + "B";
+  return Number((number / 1000000).toFixed()).toLocaleString() + "M";
 };
