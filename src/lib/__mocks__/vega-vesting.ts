@@ -10,9 +10,8 @@ class MockedVesting implements IVegaVesting {
     return await res.json();
   }
 
-  async getUserBalanceAllTranches(account: string): Promise<string> {
-    const balance = await this.performFetch(`balance`);
-    return Promise.resolve(balance);
+  getUserBalanceAllTranches(account: string): Promise<string> {
+    return this.performFetch(`balance`);
   }
   getAllTranches(): Promise<Tranche[]> {
     // TODO populate with events
