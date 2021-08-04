@@ -55,7 +55,7 @@ const ConnectedKey = () => {
             {t("Vesting Balance")}:{" "}
           </span>
           <span className="heading__wallet-value">
-            {balance} {t("VEGA")}
+            {balance?.toString()} {t("VEGA")}
           </span>
         </div>
       </div>
