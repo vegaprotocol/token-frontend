@@ -1,3 +1,4 @@
+import React from "react";
 import { useTranslation } from "react-i18next";
 import BN from "bn.js";
 import {
@@ -25,6 +26,7 @@ export const ClaimStep2 = ({
   loading: boolean;
   isValid: boolean;
 }) => {
+  const [showError, setShowError] = React.useState(false);
   const { appState } = useAppState();
   const { chainId } = appState;
   const { t } = useTranslation();
@@ -39,13 +41,33 @@ export const ClaimStep2 = ({
       />
     );
   } else {
+    const onContinue = () => {
+      setShowError(disabled);
+      if (!disabled) {
+        onSubmit();
+      }
+    };
+    const disabled = !step1Completed || loading || !isValid;
     content = (
-      <button
-        disabled={!step1Completed || loading || !isValid}
-        onClick={onSubmit}
-      >
-        {t("Claim {amount} Vega", { amount })}
-      </button>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <button
+          style={
+            disabled
+              ? {
+                  cursor: "not-allowed",
+                  backgroundColor: "#c2c2c2",
+                  color: "#767676",
+                }
+              : {}
+          }
+          onClick={onContinue}
+        >
+          {t("Claim {amount} Vega", { amount })}
+        </button>
+        {showError ? (
+          <p style={{ color: "red" }}>{t("You must select a valid country")}</p>
+        ) : null}
+      </div>
     );
   }
   return (
