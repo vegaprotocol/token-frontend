@@ -1,3 +1,4 @@
+import BigNumber from "bignumber.js";
 import type BN from "bn.js";
 import { Tranche } from "./vega-web3/vega-web3-types";
 
@@ -69,7 +70,7 @@ export interface IVegaClaim {
     account,
   }: {
     claimCode: string;
-    denomination: BN;
+    denomination: BigNumber;
     trancheId: number;
     expiry: number;
     nonce: string;
@@ -77,6 +78,25 @@ export interface IVegaClaim {
     targeted: boolean;
     account: string;
   }): PromiEvent;
+  checkClaim({
+    claimCode,
+    denomination,
+    trancheId,
+    expiry,
+    nonce,
+    country,
+    targeted,
+    account,
+  }: {
+    claimCode: string;
+    denomination: BigNumber;
+    trancheId: number;
+    expiry: number;
+    nonce: string;
+    country: string;
+    targeted: boolean;
+    account: string;
+  }): Promise<any>;
   isCommitted({
     claimCode,
     account,
