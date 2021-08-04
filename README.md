@@ -19,7 +19,7 @@ Starting the app:
 
 # Configuration
 
-There are a few different configration options offered for this app:
+There are a few different configuration options offered for this app:
 
 ## REACT_APP_SENTRY_DSN
 
@@ -29,7 +29,7 @@ The sentry DNS to report to. Should be off in dev but set in live
 
 ## REACT_APP_REDEEM_LIVE
 
-We have not built the redeem pages at the time of writitng. This turns off all calls to action about the redeem pages.
+We have not built the redeem pages at the time of writing. This turns off all calls to action about the redeem pages.
 
 ## REACT_APP_CHAIN
 
@@ -37,7 +37,7 @@ The desired chain for the app to work on. Should be mainnet for live, but ropste
 
 ## REACT_APP_SHOW_NETWORK_SWITCHER
 
-Allows you to change the above dynamically in the application. Useful for testing, should be on fopr preview deploys/dev but should be for live.
+Allows you to change the above dynamically in the application. Useful for testing, should be on for preview deploys/dev but should be for live.
 
 ## Example configs:
 
