@@ -1,5 +1,4 @@
 import Web3 from "web3";
-import type BN from "bn.js";
 import type { Contract } from "web3-eth-contract";
 import claimAbi from "../abis/claim_abi.json";
 import { BigNumber } from "../bignumber";
