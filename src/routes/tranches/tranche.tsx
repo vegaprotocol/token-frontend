@@ -10,6 +10,7 @@ import { BulletHeader } from "./bullet-header";
 import { ProgressBar } from "./progress-bar";
 import { Colors } from "../../colors";
 import { BigNumber } from "../../lib/bignumber";
+import { getAbbreviatedNumber } from "../../lib/abbreviate-number";
 
 export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
   const { t } = useTranslation();
@@ -20,10 +21,6 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
     );
   }, [trancheId, tranches]);
 
-  const getAbbreviatedNumber = (num: BigNumber) => {
-    return num.toString();
-  };
-  console.log(tranche);
   if (tranches.length === 0) {
     return <Loading />;
   }
@@ -95,10 +92,9 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
                   {user.address}
                 </a>
                 <div className="tranche__user-info">
-                  <span>{getAbbreviatedNumber(user.total_tokens)} VEGA</span>
+                  <span>{user.total_tokens.toString()} VEGA</span>
                   <span>
-                    {getAbbreviatedNumber(user.withdrawn_tokens)}{" "}
-                    {t("Redeemed")}
+                    {user.withdrawn_tokens.toString()} {t("Redeemed")}
                   </span>
                 </div>
               </li>
