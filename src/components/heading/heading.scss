@@ -2,10 +2,8 @@
 
 .heading {
   background-image: url("../../images/banner.png");
-  height: 500px;
   background-repeat: no-repeat;
   background-size: 100% auto;
-  max-width: 100%;
 
   &__nav {
     padding: 20px;
@@ -15,8 +13,9 @@
     font-family: NeuePixelGrotesk;
     font-weight: 500;
     font-size: 88px;
-    padding: 250px 20px 20px 20px;
+    padding: 19% 20px 20px 20px;
     margin: 0;
+    max-width: 80%;
 
     &-container {
       margin: 0 auto;
