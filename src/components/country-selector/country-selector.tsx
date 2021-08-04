@@ -19,6 +19,7 @@ export const CountrySelector = ({ setCountry }: CountrySelectorProps) => {
   return (
     <div>
       <select
+        data-testid="country-selector"
         className="country-selector"
         onChange={(value) => onSelectedCountry(value.currentTarget.value)}
       >

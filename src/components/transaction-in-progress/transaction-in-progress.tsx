@@ -12,7 +12,10 @@ export const TransactionsInProgress = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <div className="transaction-in-progress">
+    <div
+      data-testid="transaction-in-progress"
+      className="transaction-in-progress"
+    >
       {t("Transaction in progress")}
       <div>
         <EtherscanLink hash={hash} chainId={chainId} />
