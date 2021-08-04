@@ -9,20 +9,21 @@ import { useTranslation } from "react-i18next";
 import { BulletHeader } from "./bullet-header";
 import { ProgressBar } from "./progress-bar";
 import { Colors } from "../../colors";
+import { BigNumber } from "../../lib/bignumber";
 
 export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
   const { t } = useTranslation();
   const { trancheId } = useParams<{ trancheId: string }>();
-  const tranche = React.useMemo(() => {
+  const tranche = React.useMemo<TrancheType | undefined>(() => {
     return tranches.find(
       (tranche) => parseInt(tranche.tranche_id) === parseInt(trancheId)
     );
   }, [trancheId, tranches]);
 
-  const getAbbreviatedNumber = (num: number) => {
-    return Number(num.toFixed()).toLocaleString();
+  const getAbbreviatedNumber = (num: BigNumber) => {
+    return Number(num.toNumber()).toLocaleString();
   };
-
+  console.log(tranche);
   if (tranches.length === 0) {
     return <Loading />;
   }
@@ -32,15 +33,15 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
   }
 
   if (tranches.length > 0) {
-    let locked_percentage = Math.round(
-      (tranche.locked_amount / tranche.total_added) * 100
-    );
-    let removed_percentage = Math.round(
-      (tranche.total_removed / tranche.total_added) * 100
-    );
-    if (tranche.total_added === 0) {
-      locked_percentage = 0;
-      removed_percentage = 0;
+    let locked_percentage = tranche.locked_amount
+      .div(tranche.total_added)
+      .times(100);
+    let removed_percentage = tranche.total_removed
+      .div(tranche.total_added)
+      .times(100);
+    if (tranche.total_added.toNumber() === 0) {
+      locked_percentage = new BigNumber(0);
+      removed_percentage = new BigNumber(0);
     }
     return (
       <>
@@ -57,7 +58,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
           <h3 className="tranche__progress-title">{t("Locked")}</h3>
           <div className="tranche__progress-info">
             <ProgressBar
-              percentage={locked_percentage}
+              percentage={locked_percentage.toNumber()}
               width={300}
               color={Colors.PINK}
             />
@@ -71,7 +72,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
           <h3 className="tranche__progress-title">{t("Redeemed")}</h3>
           <div className="tranche__progress-info">
             <ProgressBar
-              percentage={removed_percentage}
+              percentage={removed_percentage.toNumber()}
               width={300}
               color={Colors.PINK}
             />
@@ -94,7 +95,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
                   {user.address}
                 </a>
                 <div className="tranche__user-info">
-                  <span>{user.total_tokens.toLocaleString()} VEGA</span>
+                  <span>{getAbbreviatedNumber(user.total_tokens)} VEGA</span>
                   <span>
                     {getAbbreviatedNumber(user.withdrawn_tokens)}{" "}
                     {t("Redeemed")}

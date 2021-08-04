@@ -1,12 +1,13 @@
 import { useTranslation } from "react-i18next";
 import { Colors } from "../../colors";
 import { getAbbreviatedNumber } from "../../lib/abbreviate-number";
+import { BigNumber } from "../../lib/bignumber";
 import { ProgressBar } from "./progress-bar";
 
 interface TrancheProgressProps {
-  locked: number;
-  totalRemoved: number;
-  totalAdded: number;
+  locked: BigNumber;
+  totalRemoved: BigNumber;
+  totalAdded: BigNumber;
 }
 
 export const TrancheProgress = ({
@@ -15,10 +16,12 @@ export const TrancheProgress = ({
   totalAdded,
 }: TrancheProgressProps) => {
   const { t } = useTranslation();
-  const lockedPercentage =
-    totalAdded === 0 ? 0 : Math.round((locked / totalAdded) * 100);
-  const removedPercentage =
-    totalAdded === 0 ? 0 : Math.round((totalRemoved / totalAdded) * 100);
+  const lockedPercentage = totalAdded.isZero()
+    ? 0
+    : Math.round(locked.div(totalAdded).times(100).toNumber());
+  const removedPercentage = totalAdded.isZero()
+    ? 0
+    : Math.round(totalRemoved.div(totalAdded).times(100).toNumber());
 
   return (
     <div className="tranches__progress">

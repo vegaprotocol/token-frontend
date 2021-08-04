@@ -17,6 +17,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.8",
+    "bignumber.js": "^9.0.1",
     "date-fns": "^2.23.0",
     "i18next": "^20.3.5",
     "i18next-browser-languagedetector": "^6.1.2",

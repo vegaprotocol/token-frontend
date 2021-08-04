@@ -1,10 +1,13 @@
-export const getAbbreviatedNumber = (num: number) => {
-  if (num < 1000) {
+import { BigNumber } from "./bignumber";
+
+export const getAbbreviatedNumber = (num: BigNumber) => {
+  const number = num.toNumber();
+  if (number < 1000) {
     return Number(num.toFixed()).toLocaleString();
-  } else if (num < 1000000) {
-    return Number((num / 1000).toFixed()).toLocaleString() + "K";
-  } else if (num < 1000000000) {
-    return Number((num / 1000000).toFixed()).toLocaleString() + "M";
+  } else if (number < 1000000) {
+    return Number((number / 1000).toFixed()).toLocaleString() + "K";
+  } else if (number < 1000000000) {
+    return Number((number / 1000000).toFixed()).toLocaleString() + "M";
   }
-  return Number((num / 1000000000).toFixed()).toLocaleString() + "B";
+  return Number((number / 1000000000).toFixed()).toLocaleString() + "B";
 };
