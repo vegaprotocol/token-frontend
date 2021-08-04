@@ -21,7 +21,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
   }, [trancheId, tranches]);
 
   const getAbbreviatedNumber = (num: BigNumber) => {
-    return Number(num.toNumber()).toLocaleString();
+    return num.toString();
   };
   console.log(tranche);
   if (tranches.length === 0) {
