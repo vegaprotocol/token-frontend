@@ -56,15 +56,16 @@ export const TargetedClaim = ({
       dispatch({ type: "SET_CLAIM_STATUS", status: ClaimStatus.Finished });
     }
   }, [txState.txState, dispatch]);
-
   return (
-    <ClaimForm
-      completed={false}
-      txState={txState}
-      onSubmit={claimTargeted}
-      txDispatch={txDispatch}
-      isValid={isValid}
-      loading={loading}
-    />
+    <section data-testid="targeted-claim">
+      <ClaimForm
+        completed={false}
+        txState={txState}
+        onSubmit={claimTargeted}
+        txDispatch={txDispatch}
+        isValid={isValid}
+        loading={loading}
+      />
+    </section>
   );
 };

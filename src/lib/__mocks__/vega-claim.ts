@@ -2,9 +2,17 @@ import { IVegaClaim, PromiEvent } from "../web3-utils";
 
 const BASE_URL = "mocks/claim";
 class MockedVegaClaim implements IVegaClaim {
-  private async performFetch(url: string) {
-    const res = await fetch(`${BASE_URL}/${url}`);
-    return await res.json();
+  private async performFetch(url: string, data?: any) {
+    if (data) {
+      const res = await fetch(`${BASE_URL}/${url}`, {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+      return res.json();
+    } else {
+      const res = await fetch(`${BASE_URL}/${url}`);
+      return res.json();
+    }
   }
 
   commit(claimCode: string, account: string): PromiEvent {
@@ -48,7 +56,7 @@ class MockedVegaClaim implements IVegaClaim {
     return this.performFetch("used");
   }
   isCountryBlocked(country: string): Promise<boolean> {
-    return this.performFetch("blocked");
+    return this.performFetch("blocked", country);
   }
 }
 
