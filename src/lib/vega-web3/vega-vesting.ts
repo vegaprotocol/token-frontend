@@ -2,9 +2,8 @@ import Web3 from "web3";
 import type { Contract, EventData } from "web3-eth-contract";
 import vestingAbi from "../abis/vesting_abi.json";
 import { Tranche, TrancheEvents, TrancheUser } from "./vega-web3-types";
-import sumBy from "lodash/sumBy";
-import sum from "lodash/sum";
 import uniq from "lodash/uniq";
+import { BigNumber } from "../bignumber";
 
 export default class VegaVesting {
   private web3: Web3;
@@ -34,7 +33,9 @@ export default class VegaVesting {
   private createUserTransactions(events: EventData[]) {
     return events.map((event) => {
       return {
-        amount: parseFloat(this.web3.utils.fromWei(event.returnValues.amount)),
+        amount: new BigNumber(
+          this.web3.utils.fromWei(event.returnValues.amount)
+        ),
         user: event.returnValues.user,
         tranche_id: event.returnValues.tranche_id,
         tx: event.transactionHash,
@@ -56,10 +57,15 @@ export default class VegaVesting {
       );
       const deposits = this.createUserTransactions(userDeposits);
       const withdrawals = this.createUserTransactions(userWithdraws);
-
-      const total_tokens = sumBy(deposits, "amount");
-      const withdrawn_tokens = sumBy(withdrawals, "amount");
-      const remaining_tokens = total_tokens - withdrawn_tokens;
+      const total_tokens = deposits.reduce(
+        (pre, cur) => pre.plus(cur.amount),
+        new BigNumber(0)
+      );
+      const withdrawn_tokens = withdrawals.reduce(
+        (pre, cur) => pre.plus(cur.amount),
+        new BigNumber(0)
+      );
+      const remaining_tokens = total_tokens.minus(withdrawn_tokens);
 
       return {
         address,
@@ -73,25 +79,26 @@ export default class VegaVesting {
   }
 
   private sumFromEvents(events: EventData[]) {
-    const amounts = events.map((e) =>
-      parseFloat(this.web3.utils.fromWei(e.returnValues.amount))
+    const amounts = events.map(
+      (e) => new BigNumber(this.web3.utils.fromWei(e.returnValues.amount))
     );
-    return sum(amounts);
+    // Start with a 0 so if there are none there is no NaN
+    return BigNumber.sum.apply(null, [new BigNumber(0), ...amounts]);
   }
 
   private getLockedAmount(
-    totalAdded: number,
+    totalAdded: BigNumber,
     cliffStart: number,
     trancheDuration: number
   ) {
-    let amount = 0;
+    let amount = new BigNumber(0);
     const ts = Math.round(new Date().getTime() / 1000);
     const tranche_progress = (ts - cliffStart) / trancheDuration;
 
     if (tranche_progress < 0) {
       amount = totalAdded;
     } else if (tranche_progress < 1) {
-      amount = totalAdded * (1 - tranche_progress);
+      amount = totalAdded.times(1 - tranche_progress);
     }
 
     return amount;
@@ -100,7 +107,9 @@ export default class VegaVesting {
   private createTransactions(events: EventData[]) {
     return events.map((event) => {
       return {
-        amount: parseFloat(this.web3.utils.fromWei(event.returnValues.amount)),
+        amount: new BigNumber(
+          this.web3.utils.fromWei(event.returnValues.amount)
+        ),
         user: event.returnValues.user,
         tx: event.transactionHash,
       };

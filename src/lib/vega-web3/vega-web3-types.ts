@@ -1,27 +1,28 @@
 import { EthereumChainId } from "../web3-utils";
 import { PromiEvent } from "web3-core";
 import VegaClaim from "./vega-claim";
+import { BigNumber } from "../bignumber";
 
 export interface Tranche {
   tranche_id: string;
   tranche_start: Date;
   tranche_end: Date;
-  total_added: number;
-  total_removed: number;
-  locked_amount: number;
+  total_added: BigNumber;
+  total_removed: BigNumber;
+  locked_amount: BigNumber;
   deposits: Array<TrancheDeposit>;
   withdrawals: Array<TrancheWithdrawal>;
   users: Array<any>;
 }
 
 export interface TrancheDeposit {
-  amount: number;
+  amount: BigNumber;
   user: string;
   tx: string;
 }
 
 export interface TrancheWithdrawal {
-  amount: number;
+  amount: BigNumber;
   user: string;
   tx: string;
 }
@@ -29,20 +30,20 @@ export interface TrancheWithdrawal {
 export interface TrancheUser {
   address: string;
   deposits: Array<{
-    amount: number;
+    amount: BigNumber;
     user: string;
     tx: string;
     tranche_id: string;
   }>;
   withdrawals: Array<{
-    amount: number;
+    amount: BigNumber;
     user: string;
     tx: string;
     tranche_id: string;
   }>;
-  total_tokens: number;
-  withdrawn_tokens: number;
-  remaining_tokens: number;
+  total_tokens: BigNumber;
+  withdrawn_tokens: BigNumber;
+  remaining_tokens: BigNumber;
 }
 
 export enum TrancheEvents {
