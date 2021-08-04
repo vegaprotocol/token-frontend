@@ -11,11 +11,11 @@ export const RedeemInfo = ({ tranche }: RedeemInfoProps) => {
   const { t } = useTranslation();
   const showRedeem = ["1", "true"].includes(process.env.REACT_APP_REDEEM_LIVE!);
   const unlockDate = format(
-    new Date(tranche.tranche_end).getTime(),
+    new Date(tranche.tranche_start).getTime(),
     "MMM d, yyyy"
   );
   const trancheEndDate = format(
-    new Date(tranche.tranche_start).getTime(),
+    new Date(tranche.tranche_end).getTime(),
     "MMM d, yyyy"
   );
   const fullyRedeemable =
