@@ -4,10 +4,8 @@ import { Link } from "react-router-dom";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { TrancheDates } from "./tranche-dates";
 import { useTranslation } from "react-i18next";
-import { Colors } from "../../colors";
-import { ProgressBar } from "./progress-bar";
-import { getAbbreviatedNumber } from "../../lib/abbreviate-number";
 import { TrancheProgress } from "./tranche-progress";
+import { BulletHeader } from "./bullet-header";
 
 export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
   const { t } = useTranslation();
@@ -18,7 +16,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
 
   return (
     <>
-      <h2 className="tranches__title">{t("Tranches")}</h2>
+      <BulletHeader tag="h2">{t("Tranches")}</BulletHeader>
       <ul className="tranches__list">
         {tranches.map((tranche, i) => {
           return (

@@ -1,0 +1,20 @@
+@import "../../styles/colors";
+
+.bullet-header {
+  font-size: 16px;
+  border-top: 1px solid $white;
+  border-bottom: 1px solid $white;
+  padding: 5px 0 40px 0;
+  text-transform: uppercase;
+  font-weight: 300;
+  margin: 30px 0 0 0;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 10px;
+    background-color: $white;
+  }
+}

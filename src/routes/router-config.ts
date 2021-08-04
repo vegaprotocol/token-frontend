@@ -48,7 +48,7 @@ const routerConfig = [
     component: LazyRedemption,
   },
   {
-    path: "/*",
+    path: "/not-found",
     name: "NotFound",
     children: [],
     component: NotFound,
