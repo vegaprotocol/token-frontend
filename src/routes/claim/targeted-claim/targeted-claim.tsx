@@ -2,7 +2,7 @@ import React from "react";
 import { ClaimForm } from "../claim-form";
 import BN from "bn.js";
 import { useTransaction } from "../../../hooks/use-transaction";
-import { TxState } from "../../../hooks/transaction-reducer";
+import { TxStatus } from "../../../hooks/transaction-reducer";
 import { useVegaClaim } from "../../../hooks/use-vega-claim";
 import { ClaimAction, ClaimState, ClaimStatus } from "../claim-reducer";
 
@@ -52,7 +52,7 @@ export const TargetedClaim = ({
   );
 
   React.useEffect(() => {
-    if (txState.txState === TxState.Complete) {
+    if (txState.txState === TxStatus.Complete) {
       dispatch({ type: "SET_CLAIM_STATUS", status: ClaimStatus.Finished });
     }
   }, [txState.txState, dispatch]);

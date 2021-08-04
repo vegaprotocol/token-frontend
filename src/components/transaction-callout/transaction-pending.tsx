@@ -1,9 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { EthereumChainId } from "../../lib/web3-utils";
 import { EtherscanLink } from "../etherscan-link";
-import "./transaction-in-progress.scss";
 
-export const TransactionsInProgress = ({
+export const TransactionPending = ({
   hash,
   chainId,
 }: {
@@ -12,11 +11,11 @@ export const TransactionsInProgress = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <div className="transaction-in-progress">
-      {t("Transaction in progress")}
-      <div>
+    <>
+      <p>{t("Transaction in progress")}</p>
+      <p>
         <EtherscanLink hash={hash} chainId={chainId} />
-      </div>
-    </div>
+      </p>
+    </>
   );
 };

@@ -3,7 +3,7 @@ import { ClaimStep1 } from "../claim-step-1";
 import { ClaimStep2 } from "../claim-step-2";
 import BN from "bn.js";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
-import { TxState } from "../../../hooks/transaction-reducer";
+import { TxStatus } from "../../../hooks/transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { useVegaClaim } from "../../../hooks/use-vega-claim";
 import { ClaimAction, ClaimState, ClaimStatus } from "../claim-reducer";
@@ -63,7 +63,7 @@ export const UntargetedClaim = ({
   );
 
   React.useEffect(() => {
-    if (revealState.txState === TxState.Complete) {
+    if (revealState.txState === TxStatus.Complete) {
       dispatch({ type: "SET_CLAIM_STATUS", status: ClaimStatus.Finished });
     }
   }, [revealState.txState, dispatch]);
@@ -85,7 +85,7 @@ export const UntargetedClaim = ({
         txDispatch={revealDispatch}
         amount={denomination}
         onSubmit={commitReveal}
-        step1Completed={committed || commitState.txState === TxState.Complete}
+        step1Completed={committed || commitState.txState === TxStatus.Complete}
       />
     </>
   );

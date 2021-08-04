@@ -6,7 +6,7 @@ import { useAppState } from "../../../contexts/app-state/app-state-context";
 import {
   TransactionAction,
   TransactionState,
-  TxState,
+  TxStatus,
 } from "../../../hooks/transaction-reducer";
 
 export interface ICountry {
@@ -34,7 +34,7 @@ export const ClaimForm = ({
     appState: { chainId },
   } = useAppState();
 
-  if (txState.txState !== TxState.Default || completed) {
+  if (txState.txState !== TxStatus.Default || completed) {
     return (
       <TransactionCallout
         chainId={chainId!}

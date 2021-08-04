@@ -1,4 +1,4 @@
-export enum TxState {
+export enum TxStatus {
   Default,
   Requested,
   Pending,
@@ -8,7 +8,7 @@ export enum TxState {
 
 export interface TransactionState {
   // claim form state
-  txState: TxState;
+  txState: TxStatus;
   txData: {
     hash: string | null;
     receipt: object | null;
@@ -19,12 +19,12 @@ export interface TransactionState {
 
 export const initialState: TransactionState = {
   // claim tx
-  txState: TxState.Default,
+  txState: TxStatus.Default,
   txData: {
     hash: null,
     receipt: null,
     error: null,
-    userFacingError: null
+    userFacingError: null,
   },
 };
 
@@ -75,7 +75,7 @@ export function transactionReducer(
     case "TX_RESET":
       return {
         ...state,
-        txState: TxState.Default,
+        txState: TxStatus.Default,
         txData: {
           hash: null,
           receipt: null,
@@ -85,12 +85,12 @@ export function transactionReducer(
     case "TX_REQUESTED":
       return {
         ...state,
-        txState: TxState.Requested,
+        txState: TxStatus.Requested,
       };
     case "TX_SUBMITTED": {
       return {
         ...state,
-        txState: TxState.Pending,
+        txState: TxStatus.Pending,
         txData: {
           ...state.txData,
           hash: action.txHash,
@@ -100,7 +100,7 @@ export function transactionReducer(
     case "TX_COMPLETE":
       return {
         ...state,
-        txState: TxState.Complete,
+        txState: TxStatus.Complete,
         txData: {
           ...state.txData,
           receipt: action.receipt,
@@ -109,7 +109,7 @@ export function transactionReducer(
     case "TX_ERROR":
       return {
         ...state,
-        txState: TxState.Error,
+        txState: TxStatus.Error,
         txData: {
           ...state.txData,
           userFacingError: substituteErrorMessage(

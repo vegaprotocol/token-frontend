@@ -3,7 +3,7 @@ import BN from "bn.js";
 import {
   TransactionAction,
   TransactionState,
-  TxState,
+  TxStatus,
 } from "../../../hooks/transaction-reducer";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { TransactionCallout } from "../../../components/transaction-callout";
@@ -29,7 +29,7 @@ export const ClaimStep2 = ({
   const { chainId } = appState;
   const { t } = useTranslation();
   let content = null;
-  if (txState.txState !== TxState.Default) {
+  if (txState.txState !== TxStatus.Default) {
     content = (
       <TransactionCallout
         chainId={chainId!}

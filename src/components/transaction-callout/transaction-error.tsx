@@ -19,18 +19,14 @@ export const TransactionError = ({
   const { t } = useTranslation();
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        backgroundColor: "#484848",
-        padding: "10px",
-        textAlign: "center",
-      }}
-    >
-      <h1>{error ? error.message : t("Something went wrong")}</h1>
-      {hash ? <EtherscanLink hash={hash} chainId={chainId} /> : null}
+    <>
+      <p>{error ? error.message : t("Something went wrong")}</p>
+      {hash ? (
+        <p>
+          <EtherscanLink hash={hash} chainId={chainId} />
+        </p>
+      ) : null}
       <button onClick={() => onActionClick()}>{t("Try again")}</button>
-    </div>
+    </>
   );
 };
