@@ -1,16 +1,16 @@
 import React from "react";
 import { ClaimStep1 } from "../claim-step-1";
 import { ClaimStep2 } from "../claim-step-2";
-import BN from "bn.js";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { TxState } from "../../../hooks/transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { useVegaClaim } from "../../../hooks/use-vega-claim";
 import { ClaimAction, ClaimState, ClaimStatus } from "../claim-reducer";
+import { BigNumber } from "../../../lib/bignumber";
 
 interface UntargetedClaimProps {
   claimCode: string;
-  denomination: BN;
+  denomination: BigNumber;
   trancheId: number;
   expiry: number;
   nonce: string;

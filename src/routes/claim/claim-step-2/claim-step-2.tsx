@@ -1,6 +1,5 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import BN from "bn.js";
 import {
   TransactionAction,
   TransactionState,
@@ -9,6 +8,7 @@ import {
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { TransactionCallout } from "../../../components/transaction-callout";
 import { ContinueButton } from "../../../components/continue-button/continue-button";
+import { BigNumber } from "../../../lib/bignumber";
 
 export const ClaimStep2 = ({
   step1Completed,
@@ -17,10 +17,10 @@ export const ClaimStep2 = ({
   txDispatch,
   onSubmit,
   loading,
-  isValid
+  isValid,
 }: {
   step1Completed: boolean;
-  amount: BN;
+  amount: BigNumber;
   txState: TransactionState;
   txDispatch: React.Dispatch<TransactionAction>;
   onSubmit: () => void;
