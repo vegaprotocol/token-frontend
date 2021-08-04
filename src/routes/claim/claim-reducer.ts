@@ -1,4 +1,5 @@
-import BN from "bn.js";
+import Web3 from "web3";
+import { BigNumber } from "../../lib/bignumber";
 
 export enum ClaimStatus {
   Ready,
@@ -10,7 +11,7 @@ export enum ClaimStatus {
 
 export interface ClaimState {
   // From URL
-  denomination: BN | null; // amount
+  denomination: BigNumber | null; // amount
   target: string | null; // ETH address
   trancheId: number | null;
   expiry: number | null; // timestamp in seconds
@@ -89,7 +90,9 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
       } else {
         return {
           ...state,
-          denomination: new BN(action.data.denomination),
+          denomination: new BigNumber(
+            Web3.utils.fromWei(action.data.denomination)
+          ),
           target: action.data.target ?? null,
           trancheId: Number(action.data.trancheId),
           expiry: Number(action.data.expiry),

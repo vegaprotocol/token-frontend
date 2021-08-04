@@ -2,6 +2,7 @@ import Web3 from "web3";
 import type BN from "bn.js";
 import type { Contract } from "web3-eth-contract";
 import claimAbi from "../abis/claim_abi.json";
+import { BigNumber } from "../bignumber";
 
 export type PromiEvent = typeof Promise & {
   on: (event: string, listener: (...args: any[]) => void) => PromiEvent;
@@ -75,7 +76,7 @@ export default class VegaClaim {
     account,
   }: {
     claimCode: string;
-    denomination: BN;
+    denomination: BigNumber;
     trancheId: number;
     expiry: number;
     nonce: string;
@@ -83,11 +84,12 @@ export default class VegaClaim {
     targeted: boolean;
     account: string;
   }): PromiEvent {
+    const weiDenomonation = Web3.utils.toWei(denomination.toString());
     return this.contract.methods[
       targeted ? "redeem_targeted" : "redeem_untargeted_code"
     ](
       claimCode,
-      denomination.toString(),
+      weiDenomonation,
       trancheId,
       expiry,
       nonce,
