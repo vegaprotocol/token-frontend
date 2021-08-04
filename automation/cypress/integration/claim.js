@@ -1,13 +1,6 @@
-const generateTargetedCodeLink = ({
-  code,
-  amount,
-  tranche,
-  nonce,
-  target,
-  expiry,
-}) => {
+const generateCodeLink = ({ code, amount, tranche, nonce, target, expiry }) => {
   return `/claim/?r=${code}&d=${amount}&t=${tranche}&n=${nonce}&ex=${expiry}${
-    target && `&targ=${target}`
+    target ? `&targ=${target}` : ""
   }`;
 };
 
@@ -34,7 +27,7 @@ describe("Claim", () => {
   });
 
   it("Renders connect button if code looks reasonable", () => {
-    const link = generateTargetedCodeLink({
+    const link = generateCodeLink({
       code: "code",
       amount: 1,
       tranche: 1,
@@ -52,7 +45,7 @@ describe("Claim", () => {
 
 describe("Targeted code", () => {
   it("After connecting it renders form if the code is valid", () => {
-    const link = generateTargetedCodeLink({
+    const link = generateCodeLink({
       code: "code",
       amount: 1,
       tranche: 1,
@@ -69,7 +62,7 @@ describe("Targeted code", () => {
 
 describe("Untargeted code", () => {
   it("After connecting it renders form", () => {
-    const link = generateTargetedCodeLink({
+    const link = generateCodeLink({
       code: "code",
       amount: 1,
       tranche: 1,
