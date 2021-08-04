@@ -1,13 +1,15 @@
 import React from "react";
 import { EthereumChainId } from "../../lib/web3-utils";
 import type { Tranche } from "../../lib/vega-web3/vega-web3-types";
+import { BigNumber } from "../../lib/bignumber";
+
 export interface AppState {
   hasProvider: boolean;
   address: string | null;
   error: Error | null;
   connecting: boolean;
   chainId: EthereumChainId | null;
-  balance: null | string;
+  balance: null | BigNumber;
   tranches: Tranche[];
   appChainId: EthereumChainId;
 }
@@ -20,14 +22,14 @@ export type AppStateAction =
       type: "CONNECT_SUCCESS";
       address: string;
       chainId: EthereumChainId;
-      balance: string | null;
+      balance: BigNumber | null;
     }
   | { type: "CONNECT_FAIL"; error: Error }
   | { type: "ACCOUNTS_CHANGED"; address: string }
   | { type: "CHAIN_CHANGED"; chainId: EthereumChainId }
   | { type: "SET_TRANCHES"; tranches: Tranche[] }
   | { type: "APP_CHAIN_ CHANGED"; newChainId: EthereumChainId }
-  | { type: "SET_BALANCE"; balance: string };
+  | { type: "SET_BALANCE"; balance: BigNumber };
 
 type AppStateContextShape = {
   appState: AppState;

@@ -18,8 +18,11 @@ export default class VegaVesting {
     );
   }
 
-  async getUserBalanceAllTranches(account: string): Promise<string> {
-    return this.contract.methods.user_total_all_tranches(account).call();
+  async getUserBalanceAllTranches(account: string): Promise<BigNumber> {
+    const amount = await this.contract.methods
+      .user_total_all_tranches(account)
+      .call();
+    return new BigNumber(this.web3.utils.fromWei(amount));
   }
 
   async getAllTranches(): Promise<Tranche[]> {
