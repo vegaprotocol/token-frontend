@@ -2,6 +2,33 @@
 @import "./styles/fonts";
 @import "./styles/reset";
 
+html,
+body,
+#root {
+  background-color: $black;
+  color: $white;
+  font-family: $font-main;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// TYPOGRAPHY
+p {
+  word-break: break-word;
+}
+
+a {
+  text-decoration: underline;
+  color: $white;
+
+  &:hover {
+    color: $vega-yellow3;
+  }
+}
+
+// BUTTONS
 button {
   width: 100%;
   color: black;
@@ -18,235 +45,4 @@ button {
   &:hover:not(:disabled) {
     cursor: pointer;
   }
-}
-
-p {
-  word-break: break-word;
-}
-
-html,
-body,
-#root {
-  background-color: $black;
-  color: $white;
-  font-family: $font-main;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-}
-
-// Legacy stuff to bring into line with SCSS
-.Left {
-  float: left;
-}
-
-.Right {
-  float: right;
-  text-align: right;
-}
-
-.Clear {
-  clear: both;
-}
-
-.WhiteButton {
-  background-color: #ffffff;
-  padding: 10px 20px;
-  color: #000000;
-  font-size: 20px;
-  cursor: pointer;
-  display: inline-block;
-}
-
-.WhiteButton:hover {
-  background: rgba(255, 255, 255, 0.7);
-}
-
-.TableHeading {
-  border-top: 1px solid #ffffff;
-  border-bottom: 1px solid #ffffff;
-  margin-top: 20px;
-  padding-top: 5px;
-  padding-bottom: 40px;
-}
-
-.Square {
-  width: 12px;
-  height: 12px;
-  background-color: #ffffff;
-  display: inline-block;
-  margin-left: 1px;
-}
-
-.SquareText {
-  text-transform: uppercase;
-  margin-left: 10px;
-}
-
-.TableRow {
-  border-bottom: 1px solid #ffffff;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-.TableRow .TrancheTitle {
-  background-color: #ffffff;
-  color: #000000;
-  text-transform: uppercase;
-  padding: 2px 4px;
-  margin-right: 15px;
-  font-size: 14px;
-}
-
-.TableRow .TrancheID {
-  margin-right: 15px;
-}
-
-.TableRow .TrancheDates {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.TrancheLink {
-  color: $white;
-  text-decoration: none;
-  span {
-    text-decoration: none;
-  }
-}
-
-.TrancheLink:hover {
-  color: #00f780;
-}
-
-.TrancheLink:hover .TrancheTitle {
-  background-color: #00f780;
-}
-
-.ProgressBarHolder {
-  display: inline-block;
-}
-
-.ProgressBar {
-  width: 220px;
-  background-color: rgba(255, 255, 255, 0.3);
-  margin-left: 20px;
-  border-radius: 3px;
-}
-
-.ProgressIndicatorPink {
-  background-color: #ff077f;
-  height: 6px;
-  border-radius: 3px;
-}
-
-.ProgressIndicatorGreen {
-  background-color: #00f780;
-  height: 6px;
-  border-radius: 3px;
-}
-
-.ProgressTitle {
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: bold;
-  opacity: 0.7;
-  position: relative;
-  top: 2px;
-  margin-left: 10px;
-}
-
-.ProgressNumbers {
-  font-size: 12px;
-  opacity: 0.7;
-  position: relative;
-  top: 2px;
-  margin-left: 10px;
-  width: 100px;
-  display: inline-block;
-}
-
-.Inner {
-  margin: 0 auto;
-}
-
-.GoBack {
-  font-size: 16px;
-  margin-right: 5px;
-  color: $white;
-}
-
-.TrancheDetailsHolder {
-  position: relative;
-  top: -125px;
-}
-
-.TrancheDetails .TrancheTitle {
-  font-size: 38px;
-  text-transform: uppercase;
-  margin-top: 30px;
-}
-
-.TrancheDetails .TrancheDates {
-  color: rgba(255, 255, 255, 0.7);
-  margin-top: 45px;
-  font-size: 14px;
-  text-transform: uppercase;
-}
-
-.TrancheDetails .ProgressBar {
-  margin-left: 0;
-  width: 600px;
-}
-
-.TrancheDetails .ProgressBarsHolder {
-  padding-top: 20px;
-}
-
-.TrancheDetails .ProgressRow {
-  margin-bottom: 10px;
-}
-
-.TrancheDetails .ProgressAmount {
-  font-size: 24px;
-}
-
-.TrancheDetails .ProgressAmountSmall {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.TrancheUsers {
-  margin-top: 40px;
-  border-top: 1px solid #ffffff;
-}
-
-.TrancheUsersHeader {
-  margin-top: 10px;
-  padding-bottom: 30px;
-  border-bottom: 1px solid #ffffff;
-  text-transform: uppercase;
-  font-size: 24px;
-}
-
-.TrancheUserRow {
-  margin-top: 15px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #ffffff;
-}
-
-.TrancheUserRow .UserAddress {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.TrancheUserRow .UserRedeemed {
-  color: rgba(255, 255, 255, 0.7);
-  width: 180px;
-  display: inline-block;
-  text-align: right;
-  font-size: 14px;
-}
-
-.UserAddress a {
-  color: rgba(255, 255, 255, 0.7);
-  text-decoration: none;
 }
