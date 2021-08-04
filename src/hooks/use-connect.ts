@@ -1,6 +1,10 @@
 import React from "react";
 import { useAppState } from "../contexts/app-state/app-state-context";
-import { EthereumChainId, EthereumChainNames } from "../lib/web3-utils";
+import {
+  EthereumChainId,
+  EthereumChainIds,
+  EthereumChainNames,
+} from "../lib/web3-utils";
 import { useVegaVesting } from "./use-vega-vesting";
 import * as Sentry from "@sentry/react";
 
@@ -27,20 +31,22 @@ export function useConnect() {
       }
 
       let accounts: string[];
+      let chainId: EthereumChainId;
       if (useMocks) {
-        const confirm = window.confirm("Connect");
+        const confirm = true; // TOOD
         if (confirm) {
           accounts = [mockAddress];
         } else {
           throw new Error("Connection rejected");
         }
+        chainId = EthereumChainIds.Ropsten;
       } else {
         accounts = await provider.request({
           method: "eth_requestAccounts",
         });
+        chainId = await provider.request({ method: "eth_chainId" });
       }
       const balance = await vega.getUserBalanceAllTranches(accounts[0]);
-      const chainId = await provider.request({ method: "eth_chainId" });
 
       appDispatch({
         type: "CONNECT_SUCCESS",
