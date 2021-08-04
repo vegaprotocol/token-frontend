@@ -1,6 +1,12 @@
 import { IVegaClaim, PromiEvent } from "../web3-utils";
 
+const BASE_URL = "mocks/claim";
 class MockedVegaClaim implements IVegaClaim {
+  private async performFetch(url: string) {
+    const res = await fetch(`${BASE_URL}/${url}`);
+    return await res.json();
+  }
+
   commit(claimCode: string, account: string): PromiEvent {
     throw new Error("Method not implemented.");
   }
@@ -25,6 +31,7 @@ class MockedVegaClaim implements IVegaClaim {
   }): PromiEvent {
     throw new Error("Method not implemented.");
   }
+
   isCommitted({
     claimCode,
     account,
@@ -32,16 +39,16 @@ class MockedVegaClaim implements IVegaClaim {
     claimCode: string;
     account: string;
   }): Promise<boolean> {
-    throw new Error("Method not implemented.");
+    return this.performFetch("committed");
   }
   isExpired(expiry: number): Promise<boolean> {
-    throw new Error("Method not implemented.");
+    return this.performFetch("expired");
   }
   isUsed(nonce: string): Promise<boolean> {
-    throw new Error("Method not implemented.");
+    return this.performFetch("used");
   }
   isCountryBlocked(country: string): Promise<boolean> {
-    throw new Error("Method not implemented.");
+    return this.performFetch("blocked");
   }
 }
 
