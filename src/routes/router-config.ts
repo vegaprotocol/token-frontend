@@ -48,9 +48,9 @@ const routerConfig = [
     component: LazyRedemption,
   },
   {
-    path: "/not-found",
     name: "NotFound",
     children: [],
+    // Not lazy as loaded when a user first hits the site
     component: NotFound,
   },
 ];
