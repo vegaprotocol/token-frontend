@@ -20,7 +20,7 @@ export const TransactionCallout = ({
     return (
       <TransactionError
         onActionClick={reset}
-        error={state.txData.error}
+        error={state.txData.userFacingError || state.txData.error}
         hash={state.txData.hash}
         chainId={chainId}
       />

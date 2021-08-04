@@ -18,8 +18,10 @@ export const useTransaction = (
         dispatch({ type: "TX_COMPLETE", receipt });
       })
       .on("error", (err: Error) => {
+        const defaultMessage = t("Something went wrong");
         const errorSubstitutions = {
-          "Transaction has been reverted by the EVM": t("Something went wrong"),
+          unknown: defaultMessage,
+          "Transaction has been reverted by the EVM": defaultMessage,
         };
         dispatch({ type: "TX_ERROR", error: err, errorSubstitutions });
       });

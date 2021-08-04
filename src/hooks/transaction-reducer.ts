@@ -13,6 +13,7 @@ export interface TransactionState {
     hash: string | null;
     receipt: object | null;
     error: Error | null;
+    userFacingError?: Error | null;
   };
 }
 
@@ -23,14 +24,15 @@ export const initialState: TransactionState = {
     hash: null,
     receipt: null,
     error: null,
+    userFacingError: null
   },
 };
 
 const substituteErrorMessage = (
   errMessage: string,
-  errorSubstitutions: any
+  errorSubstitutions: { [errMessage: string]: string }
 ): Error => {
-  let newErrorMessage = errMessage;
+  let newErrorMessage = errorSubstitutions.unknown;
 
   Object.keys(errorSubstitutions).forEach((errorSubstitutionKey) => {
     if (errMessage.includes(errorSubstitutionKey)) {
@@ -58,7 +60,7 @@ export type TransactionAction =
   | {
       type: "TX_ERROR";
       error: Error;
-      errorSubstitutions: Object;
+      errorSubstitutions: { [errMessage: string]: string };
     }
   | {
       type: "ERROR";
@@ -110,7 +112,11 @@ export function transactionReducer(
         txState: TxState.Error,
         txData: {
           ...state.txData,
-          error: substituteErrorMessage(action.error.message, action.errorSubstitutions),
+          userFacingError: substituteErrorMessage(
+            action.error.message,
+            action.errorSubstitutions
+          ),
+          error: action.error,
         },
       };
     case "ERROR":
