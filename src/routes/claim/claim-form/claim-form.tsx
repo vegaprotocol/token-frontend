@@ -29,6 +29,7 @@ export const ClaimForm = ({
   isValid: boolean;
   loading: boolean;
 }) => {
+  const [showError, setShowError] = React.useState(false)
   const { t } = useTranslation();
   const {
     appState: { chainId },
@@ -45,16 +46,35 @@ export const ClaimForm = ({
     );
   }
 
+  const disabled = !isValid || loading;
+  const onClick = () => {
+    setShowError(disabled)
+    if (!disabled) {
+      onSubmit();
+    }
+  };
+
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        onSubmit();
-      }}
-    >
-      <button disabled={!isValid || loading} type="submit">
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <button
+        onClick={onClick}
+        style={
+          disabled
+            ? {
+                cursor: "not-allowed",
+                backgroundColor: "#c2c2c2",
+                color: "#767676",
+              }
+            : {}
+        }
+      >
         {loading ? t("Loading") : t("Continue")}
       </button>
-    </form>
+      {
+        showError ? 
+          <p style={{ color: "red" }}>{t("You must select a valid country")}</p>
+        : null
+      }
+    </div>
   );
 };
