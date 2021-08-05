@@ -67,10 +67,7 @@ const Claim = () => {
         ) : appState.connecting ? (
           <TransactionConfirm />
         ) : (
-          <button
-            onClick={connect}
-            style={{ backgroundColor: "#074EE8", color: "white" }}
-          >
+          <button onClick={connect}>
             {t("Connect to an Ethereum wallet")}
           </button>
         )}
