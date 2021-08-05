@@ -3,7 +3,7 @@
   to = "/blocked/"
   status = 403
   force = true
-  conditions = {Country = ["US", "CN", "CA", "MM", "CU", "IR", "KP", "SY", "BD", "BO", "SD", "EC", "EG", "KG", "MA", "NA"]}
+  conditions = {Country = [ "AS", "BD", "BO", "CA", "CN", "RC", "CU", "EC", "EG", "GU", "KP", "KG", "MA", "MM", "NA", "MP", "PR", "SS", "SD", "SY", "UM", "US", "VI" ]}
 
 [[redirects]]
   from = "/*"
