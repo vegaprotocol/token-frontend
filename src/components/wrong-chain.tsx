@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { EthereumChainId, EthereumChainNames } from "../lib/web3-utils";
+import { Callout } from "./callout";
 
 export const WrongChain = ({
   currentChainId,
@@ -10,13 +11,13 @@ export const WrongChain = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <div>
-      <h1>
-        {t("Wrong network", { chain: EthereumChainNames[currentChainId] })}
-      </h1>
+    <Callout
+      title={t("Wrong network", { chain: EthereumChainNames[currentChainId] })}
+      intent="error"
+    >
       <p>
         {t("Desired network", { chain: EthereumChainNames[desiredChainId] })}
       </p>
-    </div>
+    </Callout>
   );
 };
