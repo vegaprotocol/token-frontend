@@ -8,10 +8,16 @@ export interface AppState {
   address: string | null;
   error: Error | null;
   connecting: boolean;
-  chainId: EthereumChainId | null;
+  chainId: EthereumChainId;
   balance: null | BigNumber;
   tranches: Tranche[];
   appChainId: EthereumChainId;
+  contractAddresses: {
+    vestingAddress: string;
+    vegaTokenAddress: string;
+    claimAddress: string;
+    lockedAddress: string;
+  };
 }
 
 export type AppStateAction =

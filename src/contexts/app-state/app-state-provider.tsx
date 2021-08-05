@@ -1,6 +1,10 @@
 import detectEthereumProvider from "@metamask/detect-provider";
 import React from "react";
-import { EthereumChainId, EthereumChainIds } from "../../lib/web3-utils";
+import {
+  Addresses,
+  EthereumChainId,
+  EthereumChainIds,
+} from "../../lib/web3-utils";
 import { AppState, AppStateContext, AppStateAction } from "./app-state-context";
 
 interface AppStateProviderProps {
@@ -16,6 +20,7 @@ const initialAppState: AppState = {
   error: null,
   balance: null,
   tranches: [],
+  contractAddresses: Addresses[process.env.REACT_APP_CHAIN as EthereumChainId],
 };
 
 function appStateReducer(state: AppState, action: AppStateAction) {
