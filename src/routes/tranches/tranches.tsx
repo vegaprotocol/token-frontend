@@ -1,18 +1,14 @@
 import "./tranches.scss";
-import { Loading } from "../../components/loading";
 import { Link } from "react-router-dom";
-import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { TrancheDates } from "./tranche-dates";
 import { useTranslation } from "react-i18next";
 import { TrancheProgress } from "./tranche-progress";
 import { BulletHeader } from "./bullet-header";
+import { useTranches } from "../../hooks/use-tranches";
 
-export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
+export const Tranches = () => {
   const { t } = useTranslation();
-
-  if (tranches.length === 0) {
-    return <Loading />;
-  }
+  const tranches = useTranches();
 
   return (
     <>

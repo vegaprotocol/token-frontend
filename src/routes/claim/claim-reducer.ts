@@ -72,6 +72,7 @@ export type ClaimAction =
     };
 
 export function claimReducer(state: ClaimState, action: ClaimAction) {
+  console.log(action);
   switch (action.type) {
     case "SET_DATA_FROM_URL":
       // We need all of these otherwise the code is invalid

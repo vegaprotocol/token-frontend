@@ -1,9 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { DefaultTemplate } from "../../components/page-templates/default";
-import { TransactionConfirm } from "../../components/transaction-confirm";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import { useConnect } from "../../hooks/use-connect";
 import { useSearchParams } from "../../hooks/use-search-params";
 import { ClaimError } from "./claim-error";
 import { claimReducer, ClaimStatus, initialClaimState } from "./claim-reducer";
@@ -11,6 +9,7 @@ import { ClaimFlow } from "./claim-flow";
 import { ClaimRestricted } from "./claim-restricted";
 import { isRestricted } from "./lib/is-restricted";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
+import { Web3Container } from "../../components/web3-container";
 
 const Claim = () => {
   const { t } = useTranslation();
@@ -18,7 +17,6 @@ const Claim = () => {
   const { appState, appDispatch } = useAppState();
   const vesting = useVegaVesting();
   const [state, dispatch] = React.useReducer(claimReducer, initialClaimState);
-  const connect = useConnect();
 
   React.useEffect(() => {
     dispatch({
@@ -54,29 +52,12 @@ const Claim = () => {
     pageContent = <ClaimError />;
   } else if (appState.address && state.code) {
     pageContent = <ClaimFlow state={state} dispatch={dispatch} />;
-  } else if (!appState.address) {
-    pageContent = (
-      <section>
-        <p>
-          {t(
-            "Use the Ethereum wallet you want to send your tokens to. You'll also need enough Ethereum to pay gas."
-          )}
-        </p>
-        {!appState.hasProvider ? (
-          <div>{t("invalidWeb3Browser")}</div>
-        ) : appState.connecting ? (
-          <TransactionConfirm />
-        ) : (
-          <button onClick={connect}>
-            {t("Connect to an Ethereum wallet")}
-          </button>
-        )}
-      </section>
-    );
   }
 
   return (
-    <DefaultTemplate title={t("pageTitleClaim")}>{pageContent}</DefaultTemplate>
+    <DefaultTemplate title={t("pageTitleClaim")}>
+      <Web3Container>{pageContent}</Web3Container>
+    </DefaultTemplate>
   );
 };
 

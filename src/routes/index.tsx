@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { Loading } from "../components/loading";
+import { SplashLoader } from "../components/splash-loader";
+import { SplashScreen } from "../components/splash-screen";
 import { useAppState } from "../contexts/app-state/app-state-context";
 import routerConfig from "./router-config";
 
@@ -8,8 +9,15 @@ export const AppRouter = () => {
   const {
     appState: { hasProvider },
   } = useAppState();
+
+  const splashLoading = (
+    <SplashScreen>
+      <SplashLoader />
+    </SplashScreen>
+  );
+
   return hasProvider ? (
-    <React.Suspense fallback={<Loading />}>
+    <React.Suspense fallback={splashLoading}>
       <Switch>
         {routerConfig.map(
           ({ path, component: Component, exact = false, name }) => (
@@ -19,6 +27,6 @@ export const AppRouter = () => {
       </Switch>
     </React.Suspense>
   ) : (
-    <Loading />
+    splashLoading
   );
 };
