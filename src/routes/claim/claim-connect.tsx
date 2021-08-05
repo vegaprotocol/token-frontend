@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { TransactionConfirm } from "../../components/transaction-confirm";
+import { Callout } from "../../components/callout";
 import { WrongChain } from "../../components/wrong-chain";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useConnect } from "../../hooks/use-connect";
@@ -19,7 +19,9 @@ export const ClaimConnect = ({ children }: { children?: React.ReactNode }) => {
   }
 
   if (appState.connecting) {
-    <TransactionConfirm />;
+    <Callout>
+      {t("Awaiting action in Ethereum wallet (e.g. metamask)")}
+    </Callout>;
   }
 
   if (!appState.address) {

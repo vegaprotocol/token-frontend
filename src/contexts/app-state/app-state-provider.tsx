@@ -1,18 +1,25 @@
 import detectEthereumProvider from "@metamask/detect-provider";
 import React from "react";
+import { SplashLoader } from "../../components/splash-loader";
+import { SplashScreen } from "../../components/splash-screen";
 import {
   Addresses,
   EthereumChainId,
   EthereumChainIds,
 } from "../../lib/web3-utils";
-import { AppState, AppStateContext, AppStateAction } from "./app-state-context";
+import {
+  AppState,
+  AppStateContext,
+  AppStateAction,
+  ProviderStatus,
+} from "./app-state-context";
 
 interface AppStateProviderProps {
   children: React.ReactNode;
 }
 
 const initialAppState: AppState = {
-  hasProvider: false,
+  providerStatus: ProviderStatus.Pending,
   address: null,
   connecting: false,
   chainId: null,
@@ -34,8 +41,13 @@ function appStateReducer(state: AppState, action: AppStateAction) {
     case "PROVIDER_DETECTED":
       return {
         ...state,
-        hasProvider: true,
+        providerStatus: ProviderStatus.Ready,
         chainId: action.chainId,
+      };
+    case "PROVIDER_NOT_DETECTED":
+      return {
+        ...state,
+        providerStatus: ProviderStatus.None,
       };
     case "CONNECT":
       return {
@@ -120,6 +132,8 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
                 chainId: chainId as EthereumChainId,
               });
             });
+        } else {
+          dispatch({ type: "PROVIDER_NOT_DETECTED" });
         }
       });
     }
@@ -127,7 +141,7 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
 
   // Bind listeners for account change
   React.useEffect(() => {
-    if (state.hasProvider) {
+    if (state.providerStatus === ProviderStatus.Ready) {
       provider.current.on("accountsChanged", (accounts: string[]) => {
         if (accounts.length) {
           dispatch({ type: "ACCOUNTS_CHANGED", address: accounts[0] });
@@ -139,7 +153,15 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
         dispatch({ type: "CHAIN_CHANGED", chainId });
       });
     }
-  }, [state.hasProvider]);
+  }, [state.providerStatus]);
+
+  if (state.providerStatus === ProviderStatus.Pending) {
+    return (
+      <SplashScreen>
+        <SplashLoader />
+      </SplashScreen>
+    );
+  }
 
   return (
     <AppStateContext.Provider

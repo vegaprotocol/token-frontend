@@ -16,7 +16,7 @@ export const Callout = ({
     <div className={className}>
       {icon && <div>{icon}</div>}
       <div>
-        <h3 className="callout__title">{title}</h3>
+        {title && <h3 className="callout__title">{title}</h3>}
         {children}
       </div>
     </div>

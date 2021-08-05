@@ -3,8 +3,14 @@ import { EthereumChainId } from "../../lib/web3-utils";
 import type { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { BigNumber } from "../../lib/bignumber";
 
+export enum ProviderStatus {
+  Pending,
+  Ready,
+  None,
+}
+
 export interface AppState {
-  hasProvider: boolean;
+  providerStatus: ProviderStatus;
   address: string | null;
   error: Error | null;
   connecting: boolean;
@@ -22,6 +28,7 @@ export interface AppState {
 
 export type AppStateAction =
   | { type: "PROVIDER_DETECTED"; chainId: EthereumChainId }
+  | { type: "PROVIDER_NOT_DETECTED" }
   | { type: "CONNECT" }
   | { type: "DISCONNECT" }
   | {
