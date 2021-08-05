@@ -5,8 +5,8 @@
   gap: 10px;
   margin: 15px 0;
   padding: 14px;
-  background-color: $gray5;
-  color: $black;
+  border: 1px solid $white;
+  box-shadow: 3px 3px 0px $white;
 
   p {
     margin: 0 0 10px 0;
@@ -16,20 +16,16 @@
     }
   }
 
-  a {
-    color: $black;
-  }
-
   // VARIATIONS
   &--error {
-    background-color: $vega-red3;
+    box-shadow: 5px 5px 0px $vega-red3;
   }
 
   &--success {
-    background-color: $vega-green3;
+    box-shadow: 5px 5px 0px $vega-green3;
   }
 
   &--warn {
-    background-color: $vega-yellow3;
+    box-shadow: 5px 5px 0px $vega-yellow3;
   }
 }
