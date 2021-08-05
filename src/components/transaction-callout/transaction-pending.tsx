@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { EthereumChainId } from "../../lib/web3-utils";
 import { Callout } from "../callout";
 import { EtherscanLink } from "../etherscan-link";
+import { Loader } from "../loader";
 
 export const TransactionPending = ({
   hash,
@@ -12,7 +13,7 @@ export const TransactionPending = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <Callout>
+    <Callout icon={<Loader />}>
       <p>{t("Transaction in progress")}</p>
       <p>
         <EtherscanLink hash={hash} chainId={chainId} />
