@@ -1,9 +1,9 @@
 import { BigNumber } from "../bignumber";
 import type { Tranche } from "../vega-web3/vega-web3-types";
 
-export function generateTranche(id: string | number): Tranche {
+export function generateTranche(id: number): Tranche {
   return {
-    tranche_id: id.toString(),
+    tranche_id: id,
     tranche_start: new Date(),
     tranche_end: new Date(),
     total_added: new BigNumber(0),

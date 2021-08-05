@@ -17,6 +17,9 @@ import { CountrySelector } from "../../components/country-selector";
 import { useValidateCountry } from "./hooks";
 import { Colors } from "../../colors";
 import { LockedBanner } from "./locked-banner";
+import { useTranche } from "../../hooks/use-tranches";
+import { TrancheNotFound } from "./tranche-not-found";
+import { Verifying } from "./verifying";
 
 interface ClaimFlowProps {
   state: ClaimState;
@@ -27,9 +30,12 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
   const { t } = useTranslation();
   const { country, checkCountry, isValid, loading } =
     useValidateCountry(dispatch);
+
   const {
-    appState: { address, tranches },
+    appState: { address },
   } = useAppState();
+
+  const currentTranche = useTranche(state.trancheId);
   const claim = useVegaClaim();
   const code = state.code!;
   const shortCode =
@@ -37,6 +43,7 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
 
   React.useEffect(() => {
     const run = async () => {
+      dispatch({ type: "SET_LOADING", loading: true });
       try {
         const [committed, expired, used] = await Promise.all([
           claim.isCommitted({
@@ -65,14 +72,10 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
     run();
   }, [address, claim, dispatch, state.nonce, state.expiry, code]);
 
-  const currentTranche = React.useMemo(() => {
-    return tranches.find(
-      ({ tranche_id }) => Number(tranche_id) === state.trancheId
-    );
-  }, [state.trancheId, tranches]);
-
-  if (state.loading) {
-    return <Loading />;
+  if (!currentTranche) {
+    return <TrancheNotFound />;
+  } else if (state.loading) {
+    return <Verifying />;
   } else if (state.claimStatus === ClaimStatus.Used) {
     return <CodeUsed address={address} />;
   } else if (state.claimStatus === ClaimStatus.Expired) {
@@ -88,10 +91,6 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
         expectedAddress={state.target}
       />
     );
-  }
-
-  if (!currentTranche) {
-    throw new Error("Could not find tranche");
   }
 
   return (

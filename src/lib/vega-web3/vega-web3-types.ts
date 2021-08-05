@@ -4,7 +4,7 @@ import VegaClaim from "./vega-claim";
 import { BigNumber } from "../bignumber";
 
 export interface Tranche {
-  tranche_id: string;
+  tranche_id: number;
   tranche_start: Date;
   tranche_end: Date;
   total_added: BigNumber;

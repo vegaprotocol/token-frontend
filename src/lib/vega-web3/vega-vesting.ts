@@ -123,7 +123,7 @@ export default class VegaVesting {
     return events
       .filter((event) => event.event === TrancheEvents.Created)
       .map((event) => {
-        const tranche_id = event.returnValues.tranche_id;
+        const tranche_id = parseInt(event.returnValues.tranche_id);
         const balanceAddedEvents = events.filter(
           (e) =>
             e.event === TrancheEvents.BalanceAdded &&
