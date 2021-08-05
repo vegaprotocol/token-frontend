@@ -1,0 +1,17 @@
+@import "../../styles/colors";
+
+.callout {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+  padding: 14px;
+  background-color: $gray1;
+
+  p {
+    margin: 0 0 10px 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

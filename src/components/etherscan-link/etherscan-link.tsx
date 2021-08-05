@@ -1,5 +1,3 @@
-import "./etherscan-link.scss";
-
 import { useTranslation } from "react-i18next";
 import { EthereumChainId } from "../../lib/web3-utils";
 

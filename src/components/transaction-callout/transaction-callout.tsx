@@ -1,9 +1,10 @@
 import { EthereumChainId } from "../../lib/web3-utils";
 import { TransactionState, TxState } from "../../hooks/transaction-reducer";
-import { TransactionComplete } from "../transaction-complete";
-import { TransactionConfirm } from "../transaction-confirm";
-import { TransactionError } from "../transaction-error";
-import { TransactionsInProgress } from "../transaction-in-progress";
+import { TransactionError } from "./transaction-error";
+import { TransactionPending } from "./transaction-pending";
+import { TransactionConfirm } from "./transaction-confirm";
+import { TransactionComplete } from "./transaction-complete";
+import { Callout } from "../callout";
 
 export const TransactionCallout = ({
   state,
@@ -16,8 +17,10 @@ export const TransactionCallout = ({
   chainId: EthereumChainId;
   complete: boolean;
 }) => {
+  let child = null;
+
   if (state.txState === TxState.Error) {
-    return (
+    child = (
       <TransactionError
         onActionClick={reset}
         error={state.txData.userFacingError || state.txData.error}
@@ -26,13 +29,11 @@ export const TransactionCallout = ({
       />
     );
   } else if (state.txState === TxState.Pending) {
-    return (
-      <TransactionsInProgress hash={state.txData.hash!} chainId={chainId} />
-    );
+    child = <TransactionPending hash={state.txData.hash!} chainId={chainId} />;
   } else if (state.txState === TxState.Requested) {
-    return <TransactionConfirm />;
+    child = <TransactionConfirm />;
   } else if (state.txState === TxState.Complete || complete) {
-    return (
+    child = (
       <TransactionComplete
         hash={state.txData.hash!}
         chainId={chainId}
@@ -40,5 +41,6 @@ export const TransactionCallout = ({
       />
     );
   }
-  return null;
+
+  return <Callout>{child}</Callout>;
 };
