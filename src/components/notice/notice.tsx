@@ -1,16 +1,10 @@
 import "./notice.scss";
 import { useTranslation } from "react-i18next";
-import React from "react";
-import { Addresses } from "../../lib/web3-utils";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 
 export const Notice = () => {
   const { t } = useTranslation();
   const { appState } = useAppState();
-  const { vestingAddress } = React.useMemo(
-    () => Addresses[appState.appChainId],
-    [appState.appChainId]
-  );
   return (
     <div className="notice">
       <p>{t("projectDescription")}</p>
@@ -19,9 +13,12 @@ export const Notice = () => {
         <a
           rel="noreferrer"
           target="_blank"
-          href={"https://etherscan.io/address/" + vestingAddress}
+          href={
+            "https://etherscan.io/address/" +
+            appState.contractAddresses.vestingAddress
+          }
         >
-          {vestingAddress}
+          {appState.contractAddresses.vestingAddress}
         </a>
       </p>
     </div>

@@ -1,13 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import { Addresses } from "../../lib/web3-utils";
 
 export const LockedBanner = () => {
   const { t } = useTranslation();
   const {
-    appState: { appChainId },
+    appState: { contractAddresses },
   } = useAppState();
-  const lockedContractAddress = Addresses[appChainId].lockedAddress;
   return (
     <div style={{ padding: 20, border: "1px solid white" }}>
       <h3>
@@ -19,7 +17,7 @@ export const LockedBanner = () => {
         {t(
           "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
           {
-            address: lockedContractAddress,
+            address: contractAddresses.lockedAddress,
           }
         )}
       </p>
