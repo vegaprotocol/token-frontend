@@ -1,5 +1,4 @@
 import React from "react";
-import "./continue-button.scss";
 
 import { useTranslation } from "react-i18next";
 import { Colors } from "../../colors";
@@ -21,20 +20,18 @@ export const ContinueButton = ({
 }: ContinueButtonProps) => {
   const [showError, setShowError] = React.useState(false);
   const { t } = useTranslation();
-
   const disabled = !isValid || loading;
+
   const onContinue = () => {
     setShowError(disabled);
     if (!disabled) {
       onSubmit();
     }
   };
+
   return (
     <div className="continue-button__container">
-      <button
-        onClick={onContinue}
-        className={disabled ? "continue-button__disabled" : ""}
-      >
+      <button onClick={onContinue} className={disabled ? "disabled" : ""}>
         {loading ? t("Loading") : continueText}
       </button>
       {showError && !isValid ? (

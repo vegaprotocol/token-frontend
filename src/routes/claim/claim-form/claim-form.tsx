@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { ContinueButton } from "../../../components/continue-button/continue-button";
+import { ContinueButton } from "../../../components/continue-button";
 import { TransactionCallout } from "../../../components/transaction-callout";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 
@@ -21,7 +21,7 @@ export const ClaimForm = ({
   onSubmit,
   completed,
   isValid,
-  loading
+  loading,
 }: {
   txState: TransactionState;
   txDispatch: React.Dispatch<TransactionAction>;
