@@ -10,6 +10,7 @@ import { ClaimRestricted } from "./claim-restricted";
 import { isRestricted } from "./lib/is-restricted";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { Web3Container } from "../../components/web3-container";
+import { ClaimConnect } from "./claim-connect";
 
 const Claim = () => {
   const { t } = useTranslation();
@@ -48,6 +49,8 @@ const Claim = () => {
 
   if (isRestricted()) {
     pageContent = <ClaimRestricted />;
+  } else if (!appState.address) {
+    pageContent = <ClaimConnect />;
   } else if (state.error) {
     pageContent = <ClaimError />;
   } else if (appState.address && state.code) {
@@ -55,9 +58,11 @@ const Claim = () => {
   }
 
   return (
-    <DefaultTemplate title={t("pageTitleClaim")}>
-      <Web3Container>{pageContent}</Web3Container>
-    </DefaultTemplate>
+    <Web3Container>
+      <DefaultTemplate title={t("pageTitleClaim")}>
+        {pageContent}
+      </DefaultTemplate>
+    </Web3Container>
   );
 };
 
