@@ -5,8 +5,6 @@ import { useTransaction } from "../../../hooks/use-transaction";
 import { TxState } from "../../../hooks/transaction-reducer";
 import { useVegaClaim } from "../../../hooks/use-vega-claim";
 import { ClaimAction, ClaimState, ClaimStatus } from "../claim-reducer";
-import { useAppState } from "../../../contexts/app-state/app-state-context";
-import { useVegaVesting } from "../../../hooks/use-vega-vesting";
 
 interface TargetedClaimProps {
   claimCode: string;
