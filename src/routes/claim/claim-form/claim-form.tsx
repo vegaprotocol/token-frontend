@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { ContinueButton } from "../../../components/continue-button/continue-button";
 import { TransactionCallout } from "../../../components/transaction-callout";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 
@@ -20,7 +21,7 @@ export const ClaimForm = ({
   onSubmit,
   completed,
   isValid,
-  loading,
+  loading
 }: {
   txState: TransactionState;
   txDispatch: React.Dispatch<TransactionAction>;
@@ -29,7 +30,6 @@ export const ClaimForm = ({
   isValid: boolean;
   loading: boolean;
 }) => {
-  const [showError, setShowError] = React.useState(false)
   const { t } = useTranslation();
   const {
     appState: { chainId },
@@ -46,33 +46,13 @@ export const ClaimForm = ({
     );
   }
 
-  const disabled = !isValid || loading;
-  const onContinue = () => {
-    setShowError(disabled)
-    if (!disabled) {
-      onSubmit();
-    }
-  };
-
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <button
-        onClick={onContinue}
-        style={
-          disabled
-            ? {
-                cursor: "not-allowed",
-                backgroundColor: "#c2c2c2",
-                color: "#767676",
-              }
-            : {}
-        }
-      >
-        {loading ? t("Loading") : t("Continue")}
-      </button>
-      {showError ? (
-        <p style={{ color: "red" }}>{t("You must select a valid country")}</p>
-      ) : null}
-    </div>
+    <ContinueButton
+      isValid={isValid}
+      loading={loading}
+      onSubmit={onSubmit}
+      continueText={t("Continue")}
+      errorText={t("You must select a valid country")}
+    />
   );
 };

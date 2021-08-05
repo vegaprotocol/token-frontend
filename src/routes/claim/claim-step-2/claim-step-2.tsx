@@ -8,6 +8,7 @@ import {
 } from "../../../hooks/transaction-reducer";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { TransactionCallout } from "../../../components/transaction-callout";
+import { ContinueButton } from "../../../components/continue-button/continue-button";
 
 export const ClaimStep2 = ({
   step1Completed,
@@ -16,7 +17,7 @@ export const ClaimStep2 = ({
   txDispatch,
   onSubmit,
   loading,
-  isValid,
+  isValid
 }: {
   step1Completed: boolean;
   amount: BN;
@@ -26,7 +27,6 @@ export const ClaimStep2 = ({
   loading: boolean;
   isValid: boolean;
 }) => {
-  const [showError, setShowError] = React.useState(false);
   const { appState } = useAppState();
   const { chainId } = appState;
   const { t } = useTranslation();
@@ -41,33 +41,14 @@ export const ClaimStep2 = ({
       />
     );
   } else {
-    const onContinue = () => {
-      setShowError(disabled);
-      if (!disabled) {
-        onSubmit();
-      }
-    };
-    const disabled = !step1Completed || loading || !isValid;
     content = (
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <button
-          style={
-            disabled
-              ? {
-                  cursor: "not-allowed",
-                  backgroundColor: "#c2c2c2",
-                  color: "#767676",
-                }
-              : {}
-          }
-          onClick={onContinue}
-        >
-          {t("Claim {amount} Vega", { amount })}
-        </button>
-        {showError ? (
-          <p style={{ color: "red" }}>{t("You must select a valid country")}</p>
-        ) : null}
-      </div>
+      <ContinueButton
+        isValid={step1Completed && isValid}
+        loading={loading}
+        onSubmit={onSubmit}
+        continueText={t("Claim {amount} Vega", { amount })}
+        errorText={t("You must select a valid country")}
+      />
     );
   }
   return (
