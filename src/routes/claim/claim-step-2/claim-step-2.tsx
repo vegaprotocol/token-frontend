@@ -7,7 +7,7 @@ import {
 } from "../../../hooks/transaction-reducer";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { TransactionCallout } from "../../../components/transaction-callout";
-import { ContinueButton } from "../../../components/continue-button/continue-button";
+import { ContinueButton } from "../../../components/continue-button";
 import { BigNumber } from "../../../lib/bignumber";
 
 export const ClaimStep2 = ({

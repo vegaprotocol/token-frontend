@@ -37,9 +37,11 @@ button {
   border-radius: 2px;
   padding: 12px;
 
-  &:disabled {
+  &:disabled,
+  &.disabled {
     background-color: #c2c2c2;
     color: #767676;
+    cursor: not-allowed;
   }
 
   &:hover:not(:disabled) {
