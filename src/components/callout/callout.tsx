@@ -2,10 +2,12 @@ import "./callout.scss";
 
 export const Callout = ({
   children,
+  title,
   intent,
   icon,
 }: {
   children: React.ReactNode;
+  title?: string;
   intent?: "success" | "error" | "warn";
   icon?: React.ReactNode;
 }) => {
@@ -13,7 +15,10 @@ export const Callout = ({
   return (
     <div className={className}>
       {icon && <div>{icon}</div>}
-      <div>{children}</div>
+      <div>
+        <h3 className="callout__title">{title}</h3>
+        {children}
+      </div>
     </div>
   );
 };
