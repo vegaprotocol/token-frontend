@@ -40,6 +40,9 @@ const Claim = () => {
       vesting
         .getUserBalanceAllTranches(appState.address)
         .then((balance) => appDispatch({ type: "SET_BALANCE", balance }));
+      vesting.getAllTranches().then((tranches) => {
+        appDispatch({ type: "SET_TRANCHES", tranches });
+      });
     }
   }, [vesting, state.claimStatus, appState.address, appDispatch]);
 
