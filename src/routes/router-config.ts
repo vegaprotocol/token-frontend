@@ -1,6 +1,7 @@
 import React from "react";
 import NotFound from "./not-found";
 import Home from "./home";
+import NoProvider from "./no-provider";
 
 const LazyTranches = React.lazy(
   () =>
@@ -46,6 +47,12 @@ const routerConfig = [
     name: "Redemption",
     children: [],
     component: LazyRedemption,
+  },
+  {
+    path: "/no-provider",
+    name: "NoProvider",
+    children: [],
+    component: NoProvider,
   },
   {
     name: "NotFound",
