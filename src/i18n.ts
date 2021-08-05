@@ -112,7 +112,8 @@ const en = {
     connectedAddress: "Connected to Ethereum key {{address}}.",
     addressMismatch:
       "<red>Error:</red> The address you are connected to is <bold>not</bold> the address the claim is valid for. To claim these tokens please connect with <bold>{{target}}</bold>.",
-    "You must select a valid country": "You must select a valid country",
+    "Select your country or region of current residence":
+      "Select your country or region of current residence",
   },
 };
 
