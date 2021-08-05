@@ -8,7 +8,7 @@ export interface AppState {
   address: string | null;
   error: Error | null;
   connecting: boolean;
-  chainId: EthereumChainId;
+  chainId: EthereumChainId | null;
   balance: null | BigNumber;
   tranches: Tranche[];
   appChainId: EthereumChainId;
