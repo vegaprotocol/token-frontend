@@ -107,7 +107,7 @@ export default class VegaClaim {
     account,
   }: {
     claimCode: string;
-    denomination: BN;
+    denomination: BigNumber;
     trancheId: number;
     expiry: number;
     nonce: string;
