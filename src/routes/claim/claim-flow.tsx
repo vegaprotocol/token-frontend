@@ -2,7 +2,6 @@ import { format } from "date-fns";
 import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { Loading } from "../../components/loading";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useVegaClaim } from "../../hooks/use-vega-claim";
 import { ClaimAction, ClaimState, ClaimStatus } from "./claim-reducer";
