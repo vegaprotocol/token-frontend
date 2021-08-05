@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { EthereumChainId } from "../../lib/web3-utils";
+import { Callout } from "../callout";
 import { EtherscanLink } from "../etherscan-link";
 
 export interface TransactionErrorProps {
@@ -18,7 +19,7 @@ export const TransactionError = ({
   const { t } = useTranslation();
 
   return (
-    <>
+    <Callout intent="error">
       <p>{error ? error.message : t("Something went wrong")}</p>
       {hash ? (
         <p>
@@ -26,6 +27,6 @@ export const TransactionError = ({
         </p>
       ) : null}
       <button onClick={() => onActionClick()}>{t("Try again")}</button>
-    </>
+    </Callout>
   );
 };

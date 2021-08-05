@@ -5,7 +5,8 @@
   gap: 10px;
   margin: 15px 0;
   padding: 14px;
-  background-color: $gray1;
+  background-color: $gray4;
+  color: $black;
 
   p {
     margin: 0 0 10px 0;
@@ -13,5 +14,22 @@
     &:last-child {
       margin-bottom: 0;
     }
+  }
+
+  a {
+    color: $black;
+  }
+
+  // VARIATIONS
+  &--error {
+    background-color: $vega-red3;
+  }
+
+  &--success {
+    background-color: $vega-green3;
+  }
+
+  &--warn {
+    background-color: $vega-yellow3;
   }
 }
