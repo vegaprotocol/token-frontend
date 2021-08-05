@@ -1,5 +1,3 @@
-/** DO NOT MODIFY - this is hashed and kept in the contract so it CANNOT be modified */
-
 const COUNTRIES = [
   { name: "Select your country", code: "" },
   {
