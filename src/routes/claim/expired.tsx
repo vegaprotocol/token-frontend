@@ -1,4 +1,6 @@
 import { Trans, useTranslation } from "react-i18next";
+import { Callout } from "../../components/callout";
+import { Error } from "../../components/icons";
 
 export const Expired = ({
   address,
@@ -9,7 +11,7 @@ export const Expired = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <div>
+    <>
       <p>
         <Trans
           i18nKey="Connected to Ethereum key {address}"
@@ -17,12 +19,14 @@ export const Expired = ({
           components={{ bold: <strong /> }}
         />
       </p>
-      <p>
-        {t(
-          "This code ({code}) has expired and cannot be used to claim tokens",
-          { code }
-        )}
-      </p>
-    </div>
+      <Callout intent="error" icon={<Error />}>
+        <p>
+          {t(
+            "This code ({code}) has expired and cannot be used to claim tokens",
+            { code }
+          )}
+        </p>
+      </Callout>
+    </>
   );
 };
