@@ -83,13 +83,13 @@ const en = {
     "Connected to Ethereum key {address}":
       "Connected to Ethereum key <bold>{{address}}</bold>.",
     "tranche description":
-      "Tokens in this tranche unlock on {{unlockDate}} and continue to unlock gradually until {{trancheEndDate}} when all tokens are unlocked.",
+      "Tokens in this tranche unlock on {{unlockDate}} and continue to unlock gradually until {{trancheEndDate}} when all tokens are unlocked. Come back to token.vega.xyz to redeem your tokens once they begin to unlock.",
     "none redeemable":
-      "Tokens in this tranche unlock on {{unlockDate}} and continue to unlock gradually until {{trancheEndDate}} when all tokens are unlocked.",
+      "Tokens in this tranche unlock on {{unlockDate}} and continue to unlock gradually until {{trancheEndDate}} when all tokens are unlocked. Come back to token.vega.xyz to redeem your tokens once they begin to unlock.",
     "partially redeemable":
-      "Tokens in this tranche began to unlock on {{unlockDate}} and will continue to unlock gradually until {{trancheEndDate}} when all tokens are unlocked.",
+      "Tokens in this tranche began to unlock on {{unlockDate}} and will continue to unlock gradually until {{trancheEndDate}} when all tokens are unlocked. A redeem function will exist at token.vega.xyz in the near future",
     "fully redeemable":
-      "Tokens in this tranche have fully unlocked and can be redeemed once claimed.",
+      "Tokens in this tranche have fully unlocked and can be redeemed once claimed. A redeem function will exist at token.vega.xyz in the near future",
     "Tokens in this tranche are fully unlocked":
       "Tokens in this tranche have fully unlocked and can be redeemed once claimed.",
     "This page can not be found, please check the URL and try again.":
