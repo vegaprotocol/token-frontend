@@ -34,7 +34,7 @@ export type AppStateAction =
   | { type: "ACCOUNTS_CHANGED"; address: string }
   | { type: "CHAIN_CHANGED"; chainId: EthereumChainId }
   | { type: "SET_TRANCHES"; tranches: Tranche[] }
-  | { type: "APP_CHAIN_ CHANGED"; newChainId: EthereumChainId }
+  | { type: "APP_CHAIN_CHANGED"; newChainId: EthereumChainId }
   | { type: "SET_BALANCE"; balance: BigNumber };
 
 type AppStateContextShape = {
