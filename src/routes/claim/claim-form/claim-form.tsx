@@ -1,6 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { ContinueButton } from "../../../components/continue-button";
+import { CountrySelector } from "../../../components/country-selector";
+import { FormGroup } from "../../../components/form-group";
 import { TransactionCallout } from "../../../components/transaction-callout";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 
@@ -47,12 +49,31 @@ export const ClaimForm = ({
   }
 
   return (
-    <ContinueButton
-      isValid={isValid}
-      loading={loading}
-      onSubmit={onSubmit}
-      continueText={t("Continue")}
-      errorText={t("You must select a valid country")}
-    />
+    <form>
+      <FormGroup
+        label={t("Select your country or region of current residence")}
+        labelFor="country-selector"
+        // TODO: Re add
+        // errorText={
+        //   !isValid && country?.code
+        //     ? t(
+        //         "Sorry. It is not possible to claim tokens in your country or region."
+        //       )
+        //     : undefined
+        // }
+      >
+        <CountrySelector
+          // setCountry={checkCountry}
+          setCountry={() => console.log("TODO: fix")}
+        />
+      </FormGroup>
+      <ContinueButton
+        isValid={isValid}
+        loading={loading}
+        onSubmit={onSubmit}
+        continueText={t("Continue")}
+        errorText={t("You must select a valid country")}
+      />
+    </form>
   );
 };

@@ -12,13 +12,11 @@ import { UntargetedClaim } from "./untargeted-claim";
 import * as Sentry from "@sentry/react";
 import { ClaimInfo } from "./claim-info";
 import { TargetAddressMismatch } from "./target-address-mismatch";
-import { CountrySelector } from "../../components/country-selector";
 import { useValidateCountry } from "./hooks";
 import { LockedBanner } from "./locked-banner";
 import { useTranche } from "../../hooks/use-tranches";
 import { TrancheNotFound } from "./tranche-not-found";
 import { Verifying } from "./verifying";
-import { FormGroup } from "../../components/form-group";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { Callout } from "../../components/callout";
 import { Tick } from "../../components/icons";
@@ -75,13 +73,39 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
 
   if (!currentTranche) {
     return <TrancheNotFound />;
-  } else if (state.loading) {
+  }
+
+  if (state.loading) {
     return <Verifying />;
-  } else if (state.claimStatus === ClaimStatus.Used) {
+  }
+
+  if (state.claimStatus === ClaimStatus.Used) {
     return <CodeUsed address={address} />;
-  } else if (state.claimStatus === ClaimStatus.Expired) {
+  }
+
+  if (state.claimStatus === ClaimStatus.Expired) {
     return <Expired address={address} code={shortCode} />;
-  } else if (
+  }
+
+  if (state.claimStatus === ClaimStatus.Finished) {
+    return (
+      <>
+        <Callout intent="success" title="Claim complete" icon={<Tick />}>
+          <p>
+            Ethereum address {address} now has a vested right to{" "}
+            {balance?.toString()} VEGA tokens from{" "}
+            <Link to={`/tranches/${currentTranche.tranche_id}`}>
+              tranche {currentTranche.tranche_id}
+            </Link>{" "}
+            of the vesting contract.
+          </p>
+        </Callout>
+        <LockedBanner />
+      </>
+    );
+  }
+
+  if (
     state.target &&
     address &&
     state.target.toLowerCase() !== address.toLowerCase()
@@ -96,110 +120,73 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
 
   return (
     <section>
-      <p>
-        <Trans
-          i18nKey="Connected to Ethereum key {address}"
-          values={{ address }}
-          components={{ bold: <strong /> }}
-        />
-      </p>
-      {state.claimStatus === ClaimStatus.Finished && (
-        <Callout intent="success" title="Claim complete" icon={<Tick />}>
-          <p>
-            Ethereum address {address} now has a vested right to{" "}
-            {balance?.toString()} VEGA tokens from{" "}
-            <Link to={`/tranches/${currentTranche.tranche_id}`}>
-              tranche {currentTranche.tranche_id}
-            </Link>{" "}
-            of the vesting contract.
-          </p>
-        </Callout>
-      )}
-      <p>
-        <Trans
-          i18nKey="claim"
-          values={{
-            user: state.target ? state.target : "the holder",
-            code: shortCode,
-            amount: state.denomination,
-            linkText: `${t("Tranche")} ${currentTranche.tranche_id}`,
-            expiry: state.expiry
-              ? t("claimExpiry", {
-                  date: format(state.expiry * 1000, "dd/MM/yyyy"),
-                })
-              : t("claimNoExpiry"),
-          }}
-          components={{
-            bold: <strong />,
-            trancheLink: (
-              <Link
-                to={`/tranches/${currentTranche.tranche_id}`}
-                style={{ color: "#edff22" }}
-              />
-            ),
-          }}
-        />
-      </p>
-      <ClaimInfo tranche={currentTranche} />
-
-      {state.claimStatus === ClaimStatus.Finished ? (
-        <LockedBanner />
-      ) : (
-        <>
-          <FormGroup
-            label={t("Select your country or region of current residence")}
-            labelFor="country-selector"
-            errorText={
-              !isValid && country?.code
-                ? t(
-                    "Sorry. It is not possible to claim tokens in your country or region."
-                  )
-                : undefined
-            }
-          >
-            <CountrySelector setCountry={checkCountry} />
-          </FormGroup>
-          <div
-            style={{
-              display: "grid",
-              gap: 30,
-              gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+      <div style={{ maxWidth: 600 }}>
+        <p>
+          <Trans
+            i18nKey="claim"
+            values={{
+              user: state.target ? truncateMiddle(state.target) : "the holder",
+              code: shortCode,
+              amount: state.denomination,
+              linkText: `${t("Tranche")} ${currentTranche.tranche_id}`,
+              expiry: state.expiry
+                ? t("claimExpiry", {
+                    date: format(state.expiry * 1000, "dd/MM/yyyy"),
+                  })
+                : t("claimNoExpiry"),
             }}
-          >
-            {/* If targeted we do not need to commit reveal, as there is no change of front running the mem pool */}
-            {state.target ? (
-              <TargetedClaim
-                claimCode={state.code!}
-                denomination={state.denomination!}
-                expiry={state.expiry!}
-                nonce={state.nonce!}
-                trancheId={state.trancheId!}
-                targeted={!!state.target}
-                account={address!}
-                state={state}
-                dispatch={dispatch}
-                isValid={isValid}
-                loading={loading}
-              />
-            ) : (
-              <UntargetedClaim
-                claimCode={state.code!}
-                denomination={state.denomination!}
-                expiry={state.expiry!}
-                nonce={state.nonce!}
-                trancheId={state.trancheId!}
-                targeted={!!state.target}
-                account={address!}
-                committed={state.claimStatus === ClaimStatus.Committed}
-                state={state}
-                dispatch={dispatch}
-                isValid={isValid}
-                loading={loading}
-              />
-            )}
-          </div>
-        </>
-      )}
+            components={{
+              bold: <strong />,
+              trancheLink: (
+                <Link
+                  to={`/tranches/${currentTranche.tranche_id}`}
+                  style={{ color: "#edff22" }}
+                />
+              ),
+            }}
+          />
+        </p>
+        <ClaimInfo tranche={currentTranche} />
+      </div>
+      <div
+        style={{
+          display: "grid",
+          gap: 30,
+          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+        }}
+      >
+        {/* If targeted we do not need to commit reveal, as there is no change of front running the mem pool */}
+        {state.target ? (
+          <TargetedClaim
+            claimCode={state.code!}
+            denomination={state.denomination!}
+            expiry={state.expiry!}
+            nonce={state.nonce!}
+            trancheId={state.trancheId!}
+            targeted={!!state.target}
+            account={address!}
+            state={state}
+            dispatch={dispatch}
+            isValid={isValid}
+            loading={loading}
+          />
+        ) : (
+          <UntargetedClaim
+            claimCode={state.code!}
+            denomination={state.denomination!}
+            expiry={state.expiry!}
+            nonce={state.nonce!}
+            trancheId={state.trancheId!}
+            targeted={!!state.target}
+            account={address!}
+            committed={state.claimStatus === ClaimStatus.Committed}
+            state={state}
+            dispatch={dispatch}
+            isValid={isValid}
+            loading={loading}
+          />
+        )}
+      </div>
     </section>
   );
 };
