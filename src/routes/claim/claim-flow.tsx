@@ -19,6 +19,7 @@ import { useTranche } from "../../hooks/use-tranches";
 import { TrancheNotFound } from "./tranche-not-found";
 import { Verifying } from "./verifying";
 import { FormGroup } from "../../components/form-group";
+import { truncateAddress } from "../../lib/truncate-address";
 
 interface ClaimFlowProps {
   state: ClaimState;
@@ -37,8 +38,7 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
   const currentTranche = useTranche(state.trancheId);
   const claim = useVegaClaim();
   const code = state.code!;
-  const shortCode =
-    code.slice(0, 6) + "..." + code.slice(code.length - 4, code.length);
+  const shortCode = truncateAddress(code);
 
   React.useEffect(() => {
     const run = async () => {
