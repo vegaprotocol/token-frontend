@@ -12,7 +12,6 @@ import { UntargetedClaim } from "./untargeted-claim";
 import * as Sentry from "@sentry/react";
 import { ClaimInfo } from "./claim-info";
 import { TargetAddressMismatch } from "./target-address-mismatch";
-import { useValidateCountry } from "./hooks";
 import { LockedBanner } from "./locked-banner";
 import { useTranche } from "../../hooks/use-tranches";
 import { TrancheNotFound } from "./tranche-not-found";
@@ -20,6 +19,7 @@ import { Verifying } from "./verifying";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { Callout } from "../../components/callout";
 import { Tick } from "../../components/icons";
+import { Complete } from "./complete";
 
 interface ClaimFlowProps {
   state: ClaimState;
@@ -28,9 +28,6 @@ interface ClaimFlowProps {
 
 export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
   const { t } = useTranslation();
-  const { country, checkCountry, isValid, loading } =
-    useValidateCountry(dispatch);
-
   const {
     appState: { address, balance },
   } = useAppState();
@@ -89,19 +86,11 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
 
   if (state.claimStatus === ClaimStatus.Finished) {
     return (
-      <>
-        <Callout intent="success" title="Claim complete" icon={<Tick />}>
-          <p>
-            Ethereum address {address} now has a vested right to{" "}
-            {balance?.toString()} VEGA tokens from{" "}
-            <Link to={`/tranches/${currentTranche.tranche_id}`}>
-              tranche {currentTranche.tranche_id}
-            </Link>{" "}
-            of the vesting contract.
-          </p>
-        </Callout>
-        <LockedBanner />
-      </>
+      <Complete
+        address={address!}
+        balance={balance!}
+        trancheId={currentTranche.tranche_id}
+      />
     );
   }
 
@@ -148,45 +137,33 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
         </p>
         <ClaimInfo tranche={currentTranche} />
       </div>
-      <div
-        style={{
-          display: "grid",
-          gap: 30,
-          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-        }}
-      >
-        {/* If targeted we do not need to commit reveal, as there is no change of front running the mem pool */}
-        {state.target ? (
-          <TargetedClaim
-            claimCode={state.code!}
-            denomination={state.denomination!}
-            expiry={state.expiry!}
-            nonce={state.nonce!}
-            trancheId={state.trancheId!}
-            targeted={!!state.target}
-            account={address!}
-            state={state}
-            dispatch={dispatch}
-            isValid={isValid}
-            loading={loading}
-          />
-        ) : (
-          <UntargetedClaim
-            claimCode={state.code!}
-            denomination={state.denomination!}
-            expiry={state.expiry!}
-            nonce={state.nonce!}
-            trancheId={state.trancheId!}
-            targeted={!!state.target}
-            account={address!}
-            committed={state.claimStatus === ClaimStatus.Committed}
-            state={state}
-            dispatch={dispatch}
-            isValid={isValid}
-            loading={loading}
-          />
-        )}
-      </div>
+      {/* If targeted we do not need to commit reveal, as there is no change of front running the mem pool */}
+      {state.target ? (
+        <TargetedClaim
+          claimCode={state.code!}
+          denomination={state.denomination!}
+          expiry={state.expiry!}
+          nonce={state.nonce!}
+          trancheId={state.trancheId!}
+          targeted={!!state.target}
+          account={address!}
+          state={state}
+          dispatch={dispatch}
+        />
+      ) : (
+        <UntargetedClaim
+          claimCode={state.code!}
+          denomination={state.denomination!}
+          expiry={state.expiry!}
+          nonce={state.nonce!}
+          trancheId={state.trancheId!}
+          targeted={!!state.target}
+          account={address!}
+          committed={state.claimStatus === ClaimStatus.Committed}
+          state={state}
+          dispatch={dispatch}
+        />
+      )}
     </section>
   );
 };

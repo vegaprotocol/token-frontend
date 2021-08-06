@@ -7,21 +7,17 @@ import { Tick } from "../icons";
 export const TransactionComplete = ({
   hash,
   chainId,
-  showLink = true,
 }: {
   hash: string;
   chainId: EthereumChainId;
-  showLink?: boolean;
 }) => {
   const { t } = useTranslation();
   return (
     <Callout icon={<Tick />} intent="success">
       <p>{t("Complete")}</p>
-      {showLink && (
-        <p>
-          <EtherscanLink hash={hash} chainId={chainId} />
-        </p>
-      )}
+      <p>
+        <EtherscanLink hash={hash} chainId={chainId} />
+      </p>
     </Callout>
   );
 };

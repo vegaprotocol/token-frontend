@@ -1,3 +1,5 @@
+@import "../../styles/colors";
+
 .loading {
   display: flex;
   flex-direction: column;
@@ -20,5 +22,6 @@
 
   &__text {
     font-size: 20px;
+    color: $white;
   }
 }

@@ -31,11 +31,17 @@ export const ContinueButton = ({
 
   return (
     <div className="continue-button__container">
-      <button onClick={onContinue} className={disabled ? "disabled" : ""}>
+      <button
+        type="submit"
+        onClick={onContinue}
+        className={disabled ? "disabled" : ""}
+      >
         {loading ? t("Loading") : continueText}
       </button>
       {showError && !isValid ? (
-        <p style={{ color: Colors.RED }}>{errorText}</p>
+        <div style={{ fontSize: 14, color: Colors.RED, marginTop: 8 }}>
+          {errorText}
+        </div>
       ) : null}
     </div>
   );

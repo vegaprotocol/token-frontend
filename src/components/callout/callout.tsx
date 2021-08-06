@@ -14,7 +14,7 @@ export const Callout = ({
   const className = ["callout", intent ? `callout--${intent}` : ""].join(" ");
   return (
     <div className={className}>
-      {icon && <div>{icon}</div>}
+      {icon && <div className="callout__icon">{icon}</div>}
       <div>
         {title && <h3 className="callout__title">{title}</h3>}
         {children}

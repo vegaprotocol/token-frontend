@@ -1,10 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { ContinueButton } from "../../../components/continue-button";
-import { CountrySelector } from "../../../components/country-selector";
-import { FormGroup } from "../../../components/form-group";
 import { TransactionCallout } from "../../../components/transaction-callout";
-import { useAppState } from "../../../contexts/app-state/app-state-context";
 
 import {
   TransactionAction,
@@ -21,59 +18,33 @@ export const ClaimForm = ({
   txState,
   txDispatch,
   onSubmit,
-  completed,
   isValid,
   loading,
 }: {
   txState: TransactionState;
   txDispatch: React.Dispatch<TransactionAction>;
   onSubmit: () => void;
-  completed: boolean;
   isValid: boolean;
   loading: boolean;
 }) => {
   const { t } = useTranslation();
-  const {
-    appState: { chainId },
-  } = useAppState();
 
-  if (txState.txState !== TxState.Default || completed) {
+  if (txState.txState !== TxState.Default) {
     return (
       <TransactionCallout
-        chainId={chainId!}
         state={txState}
         reset={() => txDispatch({ type: "TX_RESET" })}
-        complete={completed}
       />
     );
   }
 
   return (
-    <form>
-      <FormGroup
-        label={t("Select your country or region of current residence")}
-        labelFor="country-selector"
-        // TODO: Re add
-        // errorText={
-        //   !isValid && country?.code
-        //     ? t(
-        //         "Sorry. It is not possible to claim tokens in your country or region."
-        //       )
-        //     : undefined
-        // }
-      >
-        <CountrySelector
-          // setCountry={checkCountry}
-          setCountry={() => console.log("TODO: fix")}
-        />
-      </FormGroup>
-      <ContinueButton
-        isValid={isValid}
-        loading={loading}
-        onSubmit={onSubmit}
-        continueText={t("Continue")}
-        errorText={t("You must select a valid country")}
-      />
-    </form>
+    <ContinueButton
+      isValid={isValid}
+      loading={loading}
+      onSubmit={onSubmit}
+      continueText={t("Continue")}
+      errorText={t("You must select a valid country")}
+    />
   );
 };

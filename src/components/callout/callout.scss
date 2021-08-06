@@ -3,7 +3,7 @@
 .callout {
   display: flex;
   gap: 10px;
-  margin: 15px 0;
+  margin: 20px 0;
   padding: 14px;
   border: 1px solid $white;
   box-shadow: 3px 3px 0px $white;
@@ -29,7 +29,18 @@
     box-shadow: 5px 5px 0px $vega-yellow3;
   }
 
+  &__title,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 15px;
+  }
+
   &__title {
-    margin: 0 0 15px 0;
+    margin-top: 0;
+  }
+
+  &__icon {
+    color: $white;
   }
 }

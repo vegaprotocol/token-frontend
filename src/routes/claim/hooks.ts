@@ -30,6 +30,7 @@ export const useValidateCountry = (dispatch: React.Dispatch<ClaimAction>) => {
     },
     [claim]
   );
+
   React.useEffect(() => {
     if (country) {
       dispatch({ type: "SET_COUNTRY", countryCode: country.code });
