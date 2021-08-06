@@ -79,7 +79,9 @@ export const UntargetedClaim = ({
 
   return (
     <div style={{ maxWidth: 480 }}>
-      <BulletHeader tag="h2">{t("countryTitle")}</BulletHeader>
+      <BulletHeader tag="h2">
+        {t("Step")} 1. {t("Select country")}
+      </BulletHeader>
       <FormGroup
         label={t("Select your country or region of current residence")}
         labelFor="country-selector"
@@ -93,7 +95,9 @@ export const UntargetedClaim = ({
       >
         <CountrySelector setCountry={checkCountry} />
       </FormGroup>
-      <BulletHeader tag="h2">{t("commitTitle")}</BulletHeader>
+      <BulletHeader tag="h2">
+        {t("Step")} 2. {t("commitTitle")}
+      </BulletHeader>
       {isValid && country?.code ? (
         <ClaimStep1
           loading={loading}
@@ -104,9 +108,11 @@ export const UntargetedClaim = ({
           onSubmit={commitClaim}
         />
       ) : (
-        <p className="text-muted">You must select a country first.</p>
+        <p className="text-muted">{t("selectCountryPrompt")}</p>
       )}
-      <BulletHeader tag="h2">{t("claimTitle")}</BulletHeader>
+      <BulletHeader tag="h2">
+        {t("Step")} 3. {t("Claim tokens")}
+      </BulletHeader>
       {committed || commitState.txState === TxState.Complete ? (
         <ClaimStep2
           loading={loading}
@@ -118,7 +124,7 @@ export const UntargetedClaim = ({
           step1Completed={committed || commitState.txState === TxState.Complete}
         />
       ) : (
-        <p className="text-muted">{t("claimNote")}</p>
+        <p className="text-muted">{t("claimNotReady")}</p>
       )}
     </div>
   );

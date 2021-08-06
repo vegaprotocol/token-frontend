@@ -33,7 +33,6 @@ export const ClaimStep2 = ({
       <TransactionCallout
         state={txState}
         reset={() => txDispatch({ type: "TX_RESET" })}
-        // complete={false}
       />
     );
   }

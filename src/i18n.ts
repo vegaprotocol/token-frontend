@@ -24,6 +24,7 @@ const en = {
     Back: "Back",
     Continue: "Continue",
     Withdraw: "Withdraw",
+    Step: "Step",
 
     "VEGA was successfully withdrawn to your wallet":
       "VEGA was successfully withdrawn to your wallet",
@@ -47,14 +48,15 @@ const en = {
     "The contract is deployed at the following address":
       "The contract is deployed at the following address:",
 
-    countryTitle: "Step 1. Select country of residence",
+    "Select country": "Select country of residence",
 
-    commitTitle: "Step 2. Link claim to your address",
+    commitTitle: "Link claim to your address",
     commitBody:
       "This links your claim to a specific ethereum address to prevent it being used by another person",
+    selectCountryPrompt: "You must select a country first.",
 
-    claimTitle: "Step 3. Claim tokens",
-    claimNote: "You must complete step 1 first.",
+    "Claim tokens": "Claim tokens",
+    claimNotReady: "You must complete step 2 first.",
 
     claim:
       "This code ({{code}}) entitles <bold>{{user}}</bold> to <bold>{{amount}} VEGA</bold> tokens from <trancheLink>{{linkText}}</trancheLink> of the vesting contract. {{expiry}}.",

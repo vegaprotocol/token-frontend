@@ -9,6 +9,7 @@ import { CountrySelector } from "../../../components/country-selector";
 import { useTranslation } from "react-i18next";
 import { useValidateCountry } from "../hooks";
 import { ClaimForm } from "../claim-form";
+import { BulletHeader } from "../../tranches/bullet-header";
 
 interface TargetedClaimProps {
   claimCode: string;
@@ -63,7 +64,10 @@ export const TargetedClaim = ({
   }, [txState.txState, dispatch]);
 
   return (
-    <form onSubmit={(e) => e.preventDefault()} style={{ maxWidth: 600 }}>
+    <div style={{ maxWidth: 480 }}>
+      <BulletHeader tag="h2">
+        {t("Step")} 1. {t("Select country")}
+      </BulletHeader>
       <FormGroup
         label={t("Select your country or region of current residence")}
         labelFor="country-selector"
@@ -77,13 +81,20 @@ export const TargetedClaim = ({
       >
         <CountrySelector setCountry={checkCountry} />
       </FormGroup>
-      <ClaimForm
-        isValid={isValid}
-        loading={loading}
-        txState={txState}
-        txDispatch={txDispatch}
-        onSubmit={claimTargeted}
-      />
-    </form>
+      <BulletHeader tag="h2">
+        {t("Step")} 2. {t("Claim tokens")}
+      </BulletHeader>
+      {isValid && country?.code ? (
+        <ClaimForm
+          isValid={isValid}
+          loading={loading}
+          txState={txState}
+          txDispatch={txDispatch}
+          onSubmit={claimTargeted}
+        />
+      ) : (
+        <p className="text-muted">{t("selectCountryPrompt")}</p>
+      )}
+    </div>
   );
 };
