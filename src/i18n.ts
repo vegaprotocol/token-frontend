@@ -114,6 +114,10 @@ const en = {
       "<red>Error:</red> The address you are connected to is <bold>not</bold> the address the claim is valid for. To claim these tokens please connect with <bold>{{target}}</bold>.",
     "Select your country or region of current residence":
       "Select your country or region of current residence",
+    "Use the Ethereum wallet you want to send your tokens to. You'll also need enough Ethereum to pay gas.":
+      "Use the Ethereum wallet you want to send your tokens to. You'll also need enough Ethereum to pay gas.",
+    "Tranche not found": "Tranche not found",
+    "You must select a valid country": "You must select a valid country",
   },
 };
 
