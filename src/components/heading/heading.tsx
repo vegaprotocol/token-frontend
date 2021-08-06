@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useConnect } from "../../hooks/use-connect";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { EthereumChainId, EthereumChainIds } from "../../lib/web3-utils";
-import { truncateAddress } from "../../lib/truncate-address";
+import { truncateMiddle } from "../../lib/truncate-middle";
 
 export interface HeadingProps {
   title: React.ReactNode | string;
@@ -38,7 +38,7 @@ const ConnectedKey = () => {
               target="_blank"
               href={"https://etherscan.io/address/" + address}
             >
-              {truncateAddress(address)}
+              {truncateMiddle(address)}
             </a>
           </span>
         </div>
