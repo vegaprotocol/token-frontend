@@ -118,6 +118,8 @@ const en = {
       "Use the Ethereum wallet you want to send your tokens to. You'll also need enough Ethereum to pay gas.",
     "Tranche not found": "Tranche not found",
     "You must select a valid country": "You must select a valid country",
+    "Verifying your claim": "Verifying your claim",
+    Users: "Users",
   },
 };
 

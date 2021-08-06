@@ -72,7 +72,7 @@ export const Tranche = () => {
           </span>
         </div>
       </div>
-      <BulletHeader tag="h2">Users</BulletHeader>
+      <BulletHeader tag="h2">{t("Users")}</BulletHeader>
       <ul className="tranche__user-list">
         {tranche.users.map((user, i) => {
           return (
