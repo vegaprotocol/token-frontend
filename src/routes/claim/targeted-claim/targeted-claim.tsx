@@ -6,9 +6,7 @@ import { ClaimAction, ClaimState, ClaimStatus } from "../claim-reducer";
 import { BigNumber } from "../../../lib/bignumber";
 import { FormGroup } from "../../../components/form-group";
 import { CountrySelector } from "../../../components/country-selector";
-import { ContinueButton } from "../../../components/continue-button";
 import { useTranslation } from "react-i18next";
-import { TransactionCallout } from "../../../components/transaction-callout";
 import { useValidateCountry } from "../hooks";
 import { ClaimForm } from "../claim-form";
 
