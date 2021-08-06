@@ -103,16 +103,18 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
           components={{ bold: <strong /> }}
         />
       </p>
-      <Callout intent="success" title="Claim complete" icon={<Tick />}>
-        <p>
-          Ethereum address {address} now has a vested right to{" "}
-          {balance?.toString()} VEGA tokens from{" "}
-          <Link to={`/tranches/${currentTranche.tranche_id}`}>
-            tranche {currentTranche.tranche_id}
-          </Link>{" "}
-          of the vesting contract.
-        </p>
-      </Callout>
+      {state.claimStatus === ClaimStatus.Finished && (
+        <Callout intent="success" title="Claim complete" icon={<Tick />}>
+          <p>
+            Ethereum address {address} now has a vested right to{" "}
+            {balance?.toString()} VEGA tokens from{" "}
+            <Link to={`/tranches/${currentTranche.tranche_id}`}>
+              tranche {currentTranche.tranche_id}
+            </Link>{" "}
+            of the vesting contract.
+          </p>
+        </Callout>
+      )}
       <p>
         <Trans
           i18nKey="claim"
