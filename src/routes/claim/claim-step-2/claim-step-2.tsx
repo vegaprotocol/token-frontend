@@ -5,7 +5,6 @@ import {
   TransactionState,
   TxState,
 } from "../../../hooks/transaction-reducer";
-import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { TransactionCallout } from "../../../components/transaction-callout";
 import { ContinueButton } from "../../../components/continue-button";
 import { BigNumber } from "../../../lib/bignumber";
@@ -27,17 +26,14 @@ export const ClaimStep2 = ({
   loading: boolean;
   isValid: boolean;
 }) => {
-  const { appState } = useAppState();
-  const { chainId } = appState;
   const { t } = useTranslation();
   let content = null;
   if (txState.txState !== TxState.Default) {
     content = (
       <TransactionCallout
-        chainId={chainId!}
         state={txState}
         reset={() => txDispatch({ type: "TX_RESET" })}
-        complete={false}
+        // complete={false}
       />
     );
   } else {
@@ -53,7 +49,7 @@ export const ClaimStep2 = ({
   }
   return (
     <div data-testid="claim-step-2">
-      <h1>{t("step2Title")}</h1>
+      <h2>{t("step2Title")}</h2>
       {step1Completed ? (
         content
       ) : (

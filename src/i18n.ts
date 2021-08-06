@@ -60,6 +60,10 @@ const en = {
     claimNoExpiry: "It has no expiry date",
     showRedeem:
       "You'll be able to redeem your unlocked tokens at token.vega.xyz/redemption",
+    codeUsed: "Code already used",
+    codeUsedText:
+      "Looks like that code has already been used for address {{address}}",
+    codeExpired: "Code expired",
 
     invalidWeb3Browser: "You need a web3 capable browser to use this site",
     "Vesting Balance": "Vesting Balance",

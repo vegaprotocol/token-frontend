@@ -7,6 +7,10 @@ import { useTransaction } from "../../../hooks/use-transaction";
 import { useVegaClaim } from "../../../hooks/use-vega-claim";
 import { ClaimAction, ClaimState, ClaimStatus } from "../claim-reducer";
 import { BigNumber } from "../../../lib/bignumber";
+import { FormGroup } from "../../../components/form-group";
+import { useTranslation } from "react-i18next";
+import { useValidateCountry } from "../hooks";
+import { CountrySelector } from "../../../components/country-selector";
 
 interface UntargetedClaimProps {
   claimCode: string;
@@ -19,8 +23,6 @@ interface UntargetedClaimProps {
   committed: boolean;
   state: ClaimState;
   dispatch: React.Dispatch<ClaimAction>;
-  loading: boolean;
-  isValid: boolean;
 }
 
 export const UntargetedClaim = ({
@@ -34,8 +36,6 @@ export const UntargetedClaim = ({
   committed,
   state,
   dispatch,
-  loading,
-  isValid,
 }: UntargetedClaimProps) => {
   const { appState } = useAppState();
   const claim = useVegaClaim();
@@ -66,6 +66,9 @@ export const UntargetedClaim = ({
     () => claim.claim(claimArgs),
     () => claim.checkClaim(claimArgs)
   );
+  const { t } = useTranslation();
+  const { country, checkCountry, isValid, loading } =
+    useValidateCountry(dispatch);
 
   React.useEffect(() => {
     if (revealState.txState === TxState.Complete) {
@@ -74,24 +77,50 @@ export const UntargetedClaim = ({
   }, [revealState.txState, dispatch]);
 
   return (
-    <>
-      <ClaimStep1
-        loading={loading}
-        isValid={isValid}
-        txState={commitState}
-        txDispatch={commitDispatch}
-        completed={committed}
-        onSubmit={commitClaim}
-      />
-      <ClaimStep2
-        loading={loading}
-        isValid={isValid}
-        txState={revealState}
-        txDispatch={revealDispatch}
-        amount={denomination}
-        onSubmit={commitReveal}
-        step1Completed={committed || commitState.txState === TxState.Complete}
-      />
-    </>
+    <div
+      style={{
+        display: "grid",
+        gap: "0 20px",
+        gridTemplateRows: "min-content min-content",
+        gridTemplateColumns: "1fr 1fr",
+      }}
+    >
+      <div>
+        <FormGroup
+          label={t("Select your country or region of current residence")}
+          labelFor="country-selector"
+          errorText={
+            !isValid && country?.code
+              ? t(
+                  "Sorry. It is not possible to claim tokens in your country or region."
+                )
+              : undefined
+          }
+        >
+          <CountrySelector setCountry={checkCountry} />
+        </FormGroup>
+      </div>
+      <div style={{ gridRow: "2/3" }}>
+        <ClaimStep1
+          loading={loading}
+          isValid={isValid}
+          txState={commitState}
+          txDispatch={commitDispatch}
+          completed={committed}
+          onSubmit={commitClaim}
+        />
+      </div>
+      <div style={{ gridRow: "2/3" }}>
+        <ClaimStep2
+          loading={loading}
+          isValid={isValid}
+          txState={revealState}
+          txDispatch={revealDispatch}
+          amount={denomination}
+          onSubmit={commitReveal}
+          step1Completed={committed || commitState.txState === TxState.Complete}
+        />
+      </div>
+    </div>
   );
 };

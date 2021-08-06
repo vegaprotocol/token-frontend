@@ -1,23 +1,34 @@
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { Callout } from "../../components/callout";
 import { Error } from "../../components/icons";
-import { LockedBanner } from "./locked-banner";
+import { useAppState } from "../../contexts/app-state/app-state-context";
+import { truncateMiddle } from "../../lib/truncate-middle";
 
 export const CodeUsed = ({ address }: { address: string | null }) => {
   const { t } = useTranslation();
+  const {
+    appState: { contractAddresses },
+  } = useAppState();
   return (
-    <>
+    <Callout intent="error" icon={<Error />} title={t("codeUsed")}>
       <p>
-        <Trans
-          i18nKey="Connected to Ethereum key {address}"
-          values={{ address }}
-          components={{ bold: <strong /> }}
-        />
+        {t("codeUsedText", {
+          address: truncateMiddle(address!),
+        })}
       </p>
-      <Callout intent="error" icon={<Error />}>
-        <p>{t("Looks like that code has already been used.")}</p>
-      </Callout>
-      <LockedBanner />
-    </>
+      <h4>
+        {t(
+          "Keep track of locked tokens in your wallet with the VEGA (VESTING) token."
+        )}
+      </h4>
+      <p>
+        {t(
+          "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
+          {
+            address: contractAddresses.lockedAddress,
+          }
+        )}
+      </p>
+    </Callout>
   );
 };
