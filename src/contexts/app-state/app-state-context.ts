@@ -5,6 +5,7 @@ import { BigNumber } from "../../lib/bignumber";
 
 export interface AppState {
   hasProvider: boolean;
+  providerLoading: boolean;
   address: string | null;
   error: Error | null;
   connecting: boolean;
@@ -22,6 +23,7 @@ export interface AppState {
 
 export type AppStateAction =
   | { type: "PROVIDER_DETECTED"; chainId: EthereumChainId }
+  | { type: "PROVIDER_LOADING"; loading: boolean }
   | { type: "CONNECT" }
   | { type: "DISCONNECT" }
   | {

@@ -13,6 +13,7 @@ interface AppStateProviderProps {
 
 const initialAppState: AppState = {
   hasProvider: false,
+  providerLoading: false,
   address: null,
   connecting: false,
   chainId: null,
@@ -36,6 +37,11 @@ function appStateReducer(state: AppState, action: AppStateAction) {
         ...state,
         hasProvider: true,
         chainId: action.chainId,
+      };
+    case "PROVIDER_LOADING":
+      return {
+        ...state,
+        providerLoading: action.loading,
       };
     case "CONNECT":
       return {
@@ -109,19 +115,30 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
         chainId: EthereumChainIds.Ropsten,
       });
     } else {
-      detectEthereumProvider().then((res) => {
-        if (res !== null) {
-          provider.current = res;
-          provider.current
-            .request({ method: "eth_chainId" })
-            .then((chainId: string) => {
-              dispatch({
-                type: "PROVIDER_DETECTED",
-                chainId: chainId as EthereumChainId,
-              });
-            });
-        }
+      dispatch({
+        type: "PROVIDER_LOADING",
+        loading: true,
       });
+      detectEthereumProvider()
+        .then((res) => {
+          if (res !== null) {
+            provider.current = res;
+            return provider.current
+              .request({ method: "eth_chainId" })
+              .then((chainId: string) => {
+                dispatch({
+                  type: "PROVIDER_DETECTED",
+                  chainId: chainId as EthereumChainId,
+                });
+              });
+          }
+        })
+        .finally(() => {
+          dispatch({
+            type: "PROVIDER_LOADING",
+            loading: false,
+          });
+        });
     }
   }, [useMocks]);
 
