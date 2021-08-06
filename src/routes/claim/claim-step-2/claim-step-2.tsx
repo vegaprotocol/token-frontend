@@ -27,17 +27,19 @@ export const ClaimStep2 = ({
   isValid: boolean;
 }) => {
   const { t } = useTranslation();
-  let content = null;
+
   if (txState.txState !== TxState.Default) {
-    content = (
+    return (
       <TransactionCallout
         state={txState}
         reset={() => txDispatch({ type: "TX_RESET" })}
         // complete={false}
       />
     );
-  } else {
-    content = (
+  }
+
+  return (
+    <div data-testid="claim-step-2">
       <ContinueButton
         isValid={step1Completed && isValid}
         loading={loading}
@@ -45,15 +47,6 @@ export const ClaimStep2 = ({
         continueText={t("Claim {amount} Vega", { amount })}
         errorText={t("You must select a valid country")}
       />
-    );
-  }
-  return (
-    <div data-testid="claim-step-2">
-      {step1Completed ? (
-        content
-      ) : (
-        <p style={{ color: "#767676" }}>{t("claimNote")}</p>
-      )}
     </div>
   );
 };

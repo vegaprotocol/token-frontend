@@ -94,24 +94,32 @@ export const UntargetedClaim = ({
         <CountrySelector setCountry={checkCountry} />
       </FormGroup>
       <BulletHeader tag="h2">{t("commitTitle")}</BulletHeader>
-      <ClaimStep1
-        loading={loading}
-        isValid={isValid}
-        txState={commitState}
-        txDispatch={commitDispatch}
-        completed={committed}
-        onSubmit={commitClaim}
-      />
+      {isValid && country?.code ? (
+        <ClaimStep1
+          loading={loading}
+          isValid={isValid}
+          txState={commitState}
+          txDispatch={commitDispatch}
+          completed={committed}
+          onSubmit={commitClaim}
+        />
+      ) : (
+        <p className="text-muted">You must select a country first.</p>
+      )}
       <BulletHeader tag="h2">{t("claimTitle")}</BulletHeader>
-      <ClaimStep2
-        loading={loading}
-        isValid={isValid}
-        txState={revealState}
-        txDispatch={revealDispatch}
-        amount={denomination}
-        onSubmit={commitReveal}
-        step1Completed={committed || commitState.txState === TxState.Complete}
-      />
+      {committed || commitState.txState === TxState.Complete ? (
+        <ClaimStep2
+          loading={loading}
+          isValid={isValid}
+          txState={revealState}
+          txDispatch={revealDispatch}
+          amount={denomination}
+          onSubmit={commitReveal}
+          step1Completed={committed || commitState.txState === TxState.Complete}
+        />
+      ) : (
+        <p className="text-muted">{t("claimNote")}</p>
+      )}
     </div>
   );
 };
