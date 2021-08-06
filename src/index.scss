@@ -33,6 +33,7 @@ h6 {
 p {
   word-break: break-word;
   line-height: 1.4;
+  margin: 0 0 15px 0;
 }
 
 a {
@@ -62,6 +63,10 @@ button {
     opacity: 0.6;
     cursor: not-allowed;
   }
+
+  &.fill {
+    width: 100%;
+  }
 }
 
 // FORM ELEMENTS
@@ -72,4 +77,37 @@ input {
   border-radius: 2px;
   background-color: #3f3f3f;
   color: white;
+}
+
+// TABLES
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  tr {
+    border-bottom: 1px solid $white;
+
+    &:first-child {
+      border-top: 1px solid $white;
+    }
+  }
+
+  th,
+  td {
+    vertical-align: top;
+    padding: 5px;
+  }
+
+  th {
+    text-align: left;
+    font-weight: 500;
+    color: $white;
+    text-transform: uppercase;
+  }
+
+  td {
+    color: $text-color;
+    text-align: right;
+  }
 }

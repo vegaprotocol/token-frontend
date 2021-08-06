@@ -29,13 +29,11 @@ export const ContinueButton = ({
     }
   };
 
+  const buttonClasses = [disabled ? "disabled" : "", "fill"].join(" ");
+
   return (
     <div className="continue-button__container">
-      <button
-        type="submit"
-        onClick={onContinue}
-        className={disabled ? "disabled" : ""}
-      >
+      <button type="submit" onClick={onContinue} className={buttonClasses}>
         {loading ? t("Loading") : continueText}
       </button>
       {showError && !isValid ? (

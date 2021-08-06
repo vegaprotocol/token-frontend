@@ -49,11 +49,10 @@ export const ClaimStep2 = ({
   }
   return (
     <div data-testid="claim-step-2">
-      <h2>{t("step2Title")}</h2>
       {step1Completed ? (
         content
       ) : (
-        <p style={{ color: "#767676" }}>{t("step2Note")}</p>
+        <p style={{ color: "#767676" }}>{t("claimNote")}</p>
       )}
     </div>
   );
