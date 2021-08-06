@@ -80,8 +80,6 @@ const en = {
     "Claim {amount} Vega": "Claim {{amount}} VEGA",
     "Sorry. It is not possible to claim tokens in your country or region.":
       "It is not possible to claim tokens in your country or region.",
-    "Connected to Ethereum key {address}":
-      "Connected to Ethereum key <bold>{{address}}</bold>.",
     "tranche description":
       "Tokens in this tranche unlock on {{unlockDate}} and continue to unlock gradually until {{trancheEndDate}} when all tokens are unlocked. Come back to token.vega.xyz to redeem your tokens once they begin to unlock.",
     "none redeemable":

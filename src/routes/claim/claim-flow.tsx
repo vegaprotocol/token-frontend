@@ -10,7 +10,7 @@ import { Expired } from "./expired";
 import { TargetedClaim } from "./targeted-claim";
 import { UntargetedClaim } from "./untargeted-claim";
 import * as Sentry from "@sentry/react";
-import { RedeemInfo } from "./redeem-info";
+import { ClaimInfo } from "./claim-info";
 import { TargetAddressMismatch } from "./target-address-mismatch";
 import { CountrySelector } from "../../components/country-selector";
 import { useValidateCountry } from "./hooks";
@@ -140,7 +140,7 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
           }}
         />
       </p>
-      <RedeemInfo tranche={currentTranche} />
+      <ClaimInfo tranche={currentTranche} />
 
       {state.claimStatus === ClaimStatus.Finished ? (
         <LockedBanner />
@@ -164,8 +164,6 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
               display: "grid",
               gap: 30,
               gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-              borderTop: "1px solid white",
-              paddingTop: 15,
             }}
           >
             {/* If targeted we do not need to commit reveal, as there is no change of front running the mem pool */}
