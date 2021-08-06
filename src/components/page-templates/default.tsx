@@ -1,5 +1,8 @@
 import React from "react";
-import { useAppState } from "../../contexts/app-state/app-state-context";
+import {
+  ProviderStatus,
+  useAppState,
+} from "../../contexts/app-state/app-state-context";
 import { Heading } from "../heading";
 import { Notice } from "../notice";
 import { WrongChain } from "../wrong-chain";
@@ -12,7 +15,10 @@ export interface DefaultTemplateProps {
 export function DefaultTemplate({ children, title }: DefaultTemplateProps) {
   const { appState } = useAppState();
   let splash = null;
-  if (appState.chainId !== appState.appChainId) {
+  if (
+    appState.providerStatus === ProviderStatus.Ready &&
+    appState.chainId !== appState.appChainId
+  ) {
     splash = (
       <WrongChain
         currentChainId={appState.chainId!}
