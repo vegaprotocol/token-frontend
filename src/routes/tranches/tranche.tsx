@@ -9,13 +9,18 @@ import { ProgressBar } from "./progress-bar";
 import { Colors } from "../../colors";
 import { BigNumber } from "../../lib/bignumber";
 import { getAbbreviatedNumber } from "../../lib/abbreviate-number";
-import { useTranche } from "../../hooks/use-tranches";
+import { useTranche, useTranches } from "../../hooks/use-tranches";
+import { SplashLoader } from "../../components/splash-loader";
 
 export const Tranche = () => {
   const { t } = useTranslation();
   const { trancheId } = useParams<{ trancheId: string }>();
+  const tranches = useTranches();
   const tranche = useTranche(parseInt(trancheId));
 
+  if (!tranches.length) {
+    return <SplashLoader />;
+  }
   if (!tranche) {
     return <Redirect to="/not-found" />;
   }

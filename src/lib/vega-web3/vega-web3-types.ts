@@ -33,13 +33,13 @@ export interface TrancheUser {
     amount: BigNumber;
     user: string;
     tx: string;
-    tranche_id: string;
+    tranche_id: number;
   }>;
   withdrawals: Array<{
     amount: BigNumber;
     user: string;
     tx: string;
-    tranche_id: string;
+    tranche_id: number;
   }>;
   total_tokens: BigNumber;
   withdrawn_tokens: BigNumber;

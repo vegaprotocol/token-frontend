@@ -40,7 +40,7 @@ export default class VegaVesting {
           this.web3.utils.fromWei(event.returnValues.amount)
         ),
         user: event.returnValues.user,
-        tranche_id: event.returnValues.tranche_id,
+        tranche_id: parseInt(event.returnValues.tranche_id),
         tx: event.transactionHash,
       };
     });
@@ -166,7 +166,7 @@ export default class VegaVesting {
         );
 
         return {
-          tranche_id,
+          tranche_id: parseInt(tranche_id),
           tranche_start,
           tranche_end,
           total_added,
