@@ -29,6 +29,7 @@ function appStateReducer(state: AppState, action: AppStateAction) {
       return {
         ...state,
         appChainId: action.newChainId,
+        contractAddresses: Addresses[action.newChainId],
       };
     case "PROVIDER_DETECTED":
       return {
