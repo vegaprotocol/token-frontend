@@ -145,6 +145,7 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
           <div
             style={{
               display: "grid",
+              gap: 30,
               gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
               borderTop: "1px solid white",
               paddingTop: 15,
