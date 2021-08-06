@@ -86,7 +86,7 @@ export const Heading = ({ title }: HeadingProps) => {
               style={{ padding: 4 }}
               onChange={(e) => {
                 appDispatch({
-                  type: "APP_CHAIN_ CHANGED",
+                  type: "APP_CHAIN_CHANGED",
                   newChainId: e.target.value as EthereumChainId,
                 });
               }}
