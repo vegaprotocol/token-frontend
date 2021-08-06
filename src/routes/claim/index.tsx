@@ -11,6 +11,7 @@ import { isRestricted } from "./lib/is-restricted";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { Web3Container } from "../../components/web3-container";
 import { ClaimConnect } from "./claim-connect";
+import { TrancheContainer } from "../../components/tranche-container";
 
 const Claim = () => {
   const { t } = useTranslation();
@@ -59,9 +60,11 @@ const Claim = () => {
 
   return (
     <Web3Container>
-      <DefaultTemplate title={t("pageTitleClaim")}>
-        {pageContent}
-      </DefaultTemplate>
+      <TrancheContainer>
+        <DefaultTemplate title={t("pageTitleClaim")}>
+          {pageContent}
+        </DefaultTemplate>
+      </TrancheContainer>
     </Web3Container>
   );
 };
