@@ -53,3 +53,13 @@ button {
     cursor: not-allowed;
   }
 }
+
+// FORM ELEMENTS
+select,
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 2px;
+  background-color: #3f3f3f;
+  color: white;
+}

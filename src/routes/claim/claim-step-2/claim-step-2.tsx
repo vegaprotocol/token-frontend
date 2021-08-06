@@ -52,15 +52,7 @@ export const ClaimStep2 = ({
     );
   }
   return (
-    <div
-      data-testid="claim-step-2"
-      style={{
-        padding: 15,
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between ",
-      }}
-    >
+    <div data-testid="claim-step-2">
       <h1>{t("step2Title")}</h1>
       {step1Completed ? (
         content

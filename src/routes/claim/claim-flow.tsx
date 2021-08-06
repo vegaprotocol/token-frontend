@@ -14,11 +14,11 @@ import { RedeemInfo } from "./redeem-info";
 import { TargetAddressMismatch } from "./target-address-mismatch";
 import { CountrySelector } from "../../components/country-selector";
 import { useValidateCountry } from "./hooks";
-import { Colors } from "../../colors";
 import { LockedBanner } from "./locked-banner";
 import { useTranche } from "../../hooks/use-tranches";
 import { TrancheNotFound } from "./tranche-not-found";
 import { Verifying } from "./verifying";
+import { FormGroup } from "../../components/form-group";
 
 interface ClaimFlowProps {
   state: ClaimState;
@@ -132,19 +132,23 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
         <LockedBanner />
       ) : (
         <>
-          <fieldset>
+          <FormGroup
+            label={t("Select your country or region of current residence")}
+            labelFor="country-selector"
+            errorText={
+              !isValid && country?.code
+                ? t(
+                    "Sorry. It is not possible to claim tokens in your country or region."
+                  )
+                : undefined
+            }
+          >
             <CountrySelector setCountry={checkCountry} />
-            {!isValid && country?.code && (
-              <div style={{ color: Colors.RED, marginBottom: 20 }}>
-                {t(
-                  "Sorry. It is not possible to claim tokens in your country or region."
-                )}
-              </div>
-            )}
-          </fieldset>
+          </FormGroup>
           <div
             style={{
               display: "grid",
+              gap: 30,
               gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
               borderTop: "1px solid white",
               paddingTop: 15,
