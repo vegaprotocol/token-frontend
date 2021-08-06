@@ -47,11 +47,11 @@ const en = {
     "The contract is deployed at the following address":
       "The contract is deployed at the following address:",
 
-    step1Title: "Step 1 - Link your claim to your address",
+    step1Title: "Step 1. Link claim to your address",
     step1Body:
       "This links your claim to a specific ethereum address to prevent it being used by another person",
 
-    step2Title: "Step 2 - Claim tokens",
+    step2Title: "Step 2. Claim tokens",
     step2Note: "You must complete step 1 first.",
 
     claim:
