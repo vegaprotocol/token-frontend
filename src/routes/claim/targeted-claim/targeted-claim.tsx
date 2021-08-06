@@ -49,8 +49,8 @@ export const TargetedClaim = ({
     dispatch: txDispatch,
     perform: claimTargeted,
   } = useTransaction(
-    () => claim.claim(claimArgs as any),
-    () => claim.checkClaim(claimArgs as any)
+    () => claim.claim(claimArgs),
+    () => claim.checkClaim(claimArgs)
   );
 
   React.useEffect(() => {

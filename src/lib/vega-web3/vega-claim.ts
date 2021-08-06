@@ -115,11 +115,12 @@ export default class VegaClaim {
     targeted: boolean;
     account: string;
   }): Promise<any> {
+    const weiDenomonation = Web3.utils.toWei(denomination.toString());
     return this.contract.methods[
       targeted ? "redeem_targeted" : "redeem_untargeted_code"
     ](
       claimCode,
-      denomination.toString(),
+      weiDenomonation,
       trancheId,
       expiry,
       nonce,

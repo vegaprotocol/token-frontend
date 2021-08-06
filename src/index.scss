@@ -2,6 +2,12 @@
 @import "./styles/fonts";
 @import "./styles/reset";
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html,
 body,
 #root {
@@ -30,12 +36,16 @@ a {
 
 // BUTTONS
 button {
-  color: $white;
-  background-color: #074ee8;
+  color: $black;
+  background-color: $white;
   border: 0;
-  border-radius: 2px;
-  padding: 12px;
+  border-radius: 4px;
+  padding: 12px 32px;
   cursor: pointer;
+
+  &:hover {
+    background-color: $light-gray3;
+  }
 
   &:disabled,
   &.disabled {

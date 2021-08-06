@@ -1,7 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { EthereumChainId } from "../../lib/web3-utils";
+import { Callout } from "../callout";
 import { EtherscanLink } from "../etherscan-link";
-import "./transaction-complete.scss";
+import { Tick } from "../icons";
 
 export const TransactionComplete = ({
   hash,
@@ -14,13 +15,13 @@ export const TransactionComplete = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <div className="transaction-complete">
-      {t("Complete")}
+    <Callout icon={<Tick />} intent="success">
+      <p>{t("Complete")}</p>
       {showLink && (
-        <div>
+        <p>
           <EtherscanLink hash={hash} chainId={chainId} />
-        </div>
+        </p>
       )}
-    </div>
+    </Callout>
   );
 };

@@ -1,9 +1,9 @@
 import { EthereumChainId } from "../../lib/web3-utils";
 import { TransactionState, TxState } from "../../hooks/transaction-reducer";
-import { TransactionComplete } from "../transaction-complete";
-import { TransactionConfirm } from "../transaction-confirm";
-import { TransactionError } from "../transaction-error";
-import { TransactionsInProgress } from "../transaction-in-progress";
+import { TransactionError } from "./transaction-error";
+import { TransactionPending } from "./transaction-pending";
+import { TransactionRequested } from "./transaction-requested";
+import { TransactionComplete } from "./transaction-complete";
 
 export const TransactionCallout = ({
   state,
@@ -26,11 +26,9 @@ export const TransactionCallout = ({
       />
     );
   } else if (state.txState === TxState.Pending) {
-    return (
-      <TransactionsInProgress hash={state.txData.hash!} chainId={chainId} />
-    );
+    return <TransactionPending hash={state.txData.hash!} chainId={chainId} />;
   } else if (state.txState === TxState.Requested) {
-    return <TransactionConfirm />;
+    return <TransactionRequested />;
   } else if (state.txState === TxState.Complete || complete) {
     return (
       <TransactionComplete

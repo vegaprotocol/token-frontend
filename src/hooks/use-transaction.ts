@@ -37,6 +37,7 @@ export const useTransaction = (
         })
         .on("error", (err: Error) => handleError(err));
     } catch (err) {
+      console.log(err);
       handleError(err);
     }
   }, [performTransaction, checkTransaction, dispatch, handleError]);

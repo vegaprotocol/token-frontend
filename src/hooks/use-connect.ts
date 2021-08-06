@@ -1,5 +1,8 @@
 import React from "react";
-import { useAppState } from "../contexts/app-state/app-state-context";
+import {
+  ProviderStatus,
+  useAppState,
+} from "../contexts/app-state/app-state-context";
 import { EthereumChainId, EthereumChainNames } from "../lib/web3-utils";
 import { useVegaVesting } from "./use-vega-vesting";
 import * as Sentry from "@sentry/react";
@@ -18,7 +21,7 @@ export function useConnect() {
     try {
       appDispatch({ type: "CONNECT" });
 
-      if (!appState.hasProvider) {
+      if (appState.providerStatus === ProviderStatus.None) {
         appDispatch({
           type: "CONNECT_FAIL",
           error: new Error("No provider"),
@@ -52,7 +55,7 @@ export function useConnect() {
       Sentry.captureEvent(e);
       appDispatch({ type: "CONNECT_FAIL", error: e });
     }
-  }, [appDispatch, appState.hasProvider, provider, useMocks, vega]);
+  }, [appDispatch, appState.providerStatus, provider, useMocks, vega]);
 
   return connect;
 }
