@@ -64,15 +64,6 @@ export const TargetedClaim = ({
     }
   }, [txState.txState, dispatch]);
 
-  if (txState.txState !== TxState.Default) {
-    return (
-      <TransactionCallout
-        state={txState}
-        reset={() => txDispatch({ type: "TX_RESET" })}
-      />
-    );
-  }
-
   return (
     <form onSubmit={(e) => e.preventDefault()} style={{ maxWidth: 600 }}>
       <FormGroup
