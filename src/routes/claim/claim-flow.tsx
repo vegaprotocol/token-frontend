@@ -12,13 +12,10 @@ import { UntargetedClaim } from "./untargeted-claim";
 import * as Sentry from "@sentry/react";
 import { ClaimInfo } from "./claim-info";
 import { TargetAddressMismatch } from "./target-address-mismatch";
-import { LockedBanner } from "./locked-banner";
 import { useTranche } from "../../hooks/use-tranches";
 import { TrancheNotFound } from "./tranche-not-found";
 import { Verifying } from "./verifying";
 import { truncateMiddle } from "../../lib/truncate-middle";
-import { Callout } from "../../components/callout";
-import { Tick } from "../../components/icons";
 import { Complete } from "./complete";
 
 interface ClaimFlowProps {
