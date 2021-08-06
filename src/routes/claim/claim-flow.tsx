@@ -20,6 +20,8 @@ import { TrancheNotFound } from "./tranche-not-found";
 import { Verifying } from "./verifying";
 import { FormGroup } from "../../components/form-group";
 import { truncateMiddle } from "../../lib/truncate-middle";
+import { Callout } from "../../components/callout";
+import { Tick } from "../../components/icons";
 
 interface ClaimFlowProps {
   state: ClaimState;
@@ -32,7 +34,7 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
     useValidateCountry(dispatch);
 
   const {
-    appState: { address },
+    appState: { address, balance },
   } = useAppState();
 
   const currentTranche = useTranche(state.trancheId);
@@ -101,6 +103,16 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
           components={{ bold: <strong /> }}
         />
       </p>
+      <Callout intent="success" title="Claim complete" icon={<Tick />}>
+        <p>
+          Ethereum address {address} now has a vested right to{" "}
+          {balance?.toString()} VEGA tokens from{" "}
+          <Link to={`/tranches/${currentTranche.tranche_id}`}>
+            tranche {currentTranche.tranche_id}
+          </Link>{" "}
+          of the vesting contract.
+        </p>
+      </Callout>
       <p>
         <Trans
           i18nKey="claim"
