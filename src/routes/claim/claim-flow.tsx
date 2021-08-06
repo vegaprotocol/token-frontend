@@ -1,3 +1,4 @@
+import "./claim-flow.scss";
 import { format } from "date-fns";
 import React from "react";
 import { Trans, useTranslation } from "react-i18next";
@@ -105,62 +106,93 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
   }
 
   return (
-    <section>
-      <div style={{ maxWidth: 600 }}>
-        <p>
-          <Trans
-            i18nKey="claim"
-            values={{
-              user: state.target ? truncateMiddle(state.target) : "the holder",
-              code: shortCode,
-              amount: state.denomination,
-              linkText: `${t("Tranche")} ${currentTranche.tranche_id}`,
-              expiry: state.expiry
-                ? t("claimExpiry", {
-                    date: format(state.expiry * 1000, "dd/MM/yyyy"),
-                  })
-                : t("claimNoExpiry"),
-            }}
-            components={{
-              bold: <strong />,
-              trancheLink: (
-                <Link
-                  to={`/tranches/${currentTranche.tranche_id}`}
-                  style={{ color: "#edff22" }}
-                />
-              ),
-            }}
+    <>
+      <section>
+        <div className="claim-flow__grid">
+          <div>
+            <p>
+              <Trans
+                i18nKey="claim"
+                values={{
+                  user: state.target
+                    ? truncateMiddle(state.target)
+                    : "the holder",
+                  code: shortCode,
+                  amount: state.denomination,
+                  linkText: `${t("Tranche")} ${currentTranche.tranche_id}`,
+                  expiry: state.expiry
+                    ? t("claimExpiry", {
+                        date: format(state.expiry * 1000, "dd/MM/yyyy"),
+                      })
+                    : t("claimNoExpiry"),
+                }}
+                components={{
+                  bold: <strong />,
+                  trancheLink: (
+                    <Link to={`/tranches/${currentTranche.tranche_id}`} />
+                  ),
+                }}
+              />
+            </p>
+            <ClaimInfo tranche={currentTranche} />
+          </div>
+          <div>
+            <table>
+              <tbody>
+                <tr>
+                  <th>Ethereum address</th>
+                  <td>{truncateMiddle(address!)}</td>
+                </tr>
+                <tr>
+                  <th>Amount</th>
+                  <td>{state.denomination?.toString()}</td>
+                </tr>
+                <tr>
+                  <th>Claim expires</th>
+                  <td>
+                    {state.expiry
+                      ? format(state.expiry * 1000, "dd/MM/yyyy")
+                      : "No expiry"}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Unlocks</th>
+                  <td>{format(currentTranche.tranche_start, "dd/MM/yyyyy")}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section>
+        {/* If targeted we do not need to commit reveal, as there is no change of front running the mem pool */}
+        {state.target ? (
+          <TargetedClaim
+            claimCode={state.code!}
+            denomination={state.denomination!}
+            expiry={state.expiry!}
+            nonce={state.nonce!}
+            trancheId={state.trancheId!}
+            targeted={!!state.target}
+            account={address!}
+            state={state}
+            dispatch={dispatch}
           />
-        </p>
-        <ClaimInfo tranche={currentTranche} />
-      </div>
-      {/* If targeted we do not need to commit reveal, as there is no change of front running the mem pool */}
-      {state.target ? (
-        <TargetedClaim
-          claimCode={state.code!}
-          denomination={state.denomination!}
-          expiry={state.expiry!}
-          nonce={state.nonce!}
-          trancheId={state.trancheId!}
-          targeted={!!state.target}
-          account={address!}
-          state={state}
-          dispatch={dispatch}
-        />
-      ) : (
-        <UntargetedClaim
-          claimCode={state.code!}
-          denomination={state.denomination!}
-          expiry={state.expiry!}
-          nonce={state.nonce!}
-          trancheId={state.trancheId!}
-          targeted={!!state.target}
-          account={address!}
-          committed={state.claimStatus === ClaimStatus.Committed}
-          state={state}
-          dispatch={dispatch}
-        />
-      )}
-    </section>
+        ) : (
+          <UntargetedClaim
+            claimCode={state.code!}
+            denomination={state.denomination!}
+            expiry={state.expiry!}
+            nonce={state.nonce!}
+            trancheId={state.trancheId!}
+            targeted={!!state.target}
+            account={address!}
+            committed={state.claimStatus === ClaimStatus.Committed}
+            state={state}
+            dispatch={dispatch}
+          />
+        )}
+      </section>
+    </>
   );
 };

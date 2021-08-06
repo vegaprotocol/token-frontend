@@ -47,12 +47,14 @@ const en = {
     "The contract is deployed at the following address":
       "The contract is deployed at the following address:",
 
-    step1Title: "Step 1. Link claim to your address",
-    step1Body:
+    countryTitle: "Step 1. Select country of residence",
+
+    commitTitle: "Step 2. Link claim to your address",
+    commitBody:
       "This links your claim to a specific ethereum address to prevent it being used by another person",
 
-    step2Title: "Step 2. Claim tokens",
-    step2Note: "You must complete step 1 first.",
+    claimTitle: "Step 3. Claim tokens",
+    claimNote: "You must complete step 1 first.",
 
     claim:
       "This code ({{code}}) entitles <bold>{{user}}</bold> to <bold>{{amount}} VEGA</bold> tokens from <trancheLink>{{linkText}}</trancheLink> of the vesting contract. {{expiry}}.",

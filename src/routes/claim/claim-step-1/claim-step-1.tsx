@@ -27,14 +27,13 @@ export const ClaimStep1 = ({
   const { t } = useTranslation();
   return (
     <div data-testid="claim-step-1">
-      <h2>{t("step1Title")}</h2>
       {completed ? (
         <Callout intent="success" title={t("Complete")} icon={<Tick />}>
           <p>You have already committed your claim</p>
         </Callout>
       ) : (
         <>
-          <p>{t("step1Body")}</p>
+          <p>{t("commitBody")}</p>
           <ClaimForm
             isValid={isValid}
             loading={loading}
