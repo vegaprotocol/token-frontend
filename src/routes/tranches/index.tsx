@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { Tranche } from "./tranche";
 import { Tranches } from "./tranches";
