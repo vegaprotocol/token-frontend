@@ -170,9 +170,10 @@ export default class VegaClaim {
    * @return {Promise<boolean>}
    */
   async isCountryBlocked(country: string): Promise<boolean> {
-    return this.contract.methods
-      .blocked_countries(Web3.utils.asciiToHex(country))
+    const isAllowed = await this.contract.methods
+      .allowed_countries(Web3.utils.asciiToHex(country))
       .call();
+    return !isAllowed;
   }
 
   /**
