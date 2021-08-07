@@ -107,6 +107,8 @@ export const UntargetedClaim = ({
           completed={committed}
           onSubmit={commitClaim}
         />
+      ) : loading ? (
+        <p className="text-muted">{t("verifyingCountryPrompt")}</p>
       ) : (
         <p className="text-muted">{t("selectCountryPrompt")}</p>
       )}

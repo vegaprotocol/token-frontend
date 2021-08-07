@@ -54,6 +54,7 @@ const en = {
     commitBody:
       "This links your claim to a specific ethereum address to prevent it being used by another person",
     selectCountryPrompt: "You must select a country first.",
+    verifyingCountryPrompt: "Verifying country...",
 
     "Claim tokens": "Claim tokens",
     claimNotReady: "You must complete step 2 first.",
