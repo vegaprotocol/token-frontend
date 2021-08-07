@@ -9,7 +9,7 @@ import { WrongChain } from "../wrong-chain";
 
 export interface DefaultTemplateProps {
   children: React.ReactNode;
-  title?: React.ReactNode | string;
+  title: string;
 }
 
 export function DefaultTemplate({ children, title }: DefaultTemplateProps) {

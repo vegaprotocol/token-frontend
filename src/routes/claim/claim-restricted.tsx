@@ -1,8 +1,7 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
 
 export const ClaimRestricted = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   return (
     <section>
       <h1>{t("Service unavailable")}</h1>

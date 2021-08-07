@@ -8,9 +8,10 @@ import { useConnect } from "../../hooks/use-connect";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { EthereumChainId, EthereumChainIds } from "../../lib/web3-utils";
 import { truncateMiddle } from "../../lib/truncate-middle";
+import { PixelatedText } from "../pixelated-text";
 
 export interface HeadingProps {
-  title: React.ReactNode | string;
+  title: string;
 }
 
 const ConnectedKey = () => {
@@ -102,7 +103,9 @@ export const Heading = ({ title }: HeadingProps) => {
         </div>
       </div>
       <div className="heading__title-container">
-        <h1 className="heading__title">{title}</h1>
+        <h1 className="heading__title">
+          <PixelatedText text={title} />
+        </h1>
       </div>
     </header>
   );
