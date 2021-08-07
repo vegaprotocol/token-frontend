@@ -13,31 +13,35 @@ export const Tranches = () => {
   return (
     <>
       <BulletHeader tag="h2">{t("Tranches")}</BulletHeader>
-      <ul className="tranches__list">
-        {tranches.map((tranche, i) => {
-          return (
-            <li className="tranches__list-item" key={i}>
-              <div className="tranches__item-title">
-                <Link
-                  to={`/tranches/${tranche.tranche_id}`}
-                  className="tranches__link"
-                >
-                  <span>{t("Tranche")}</span>#{tranche.tranche_id}
-                </Link>
-                <TrancheDates
-                  start={tranche.tranche_start}
-                  end={tranche.tranche_end}
+      {tranches?.length ? (
+        <ul className="tranches__list">
+          {tranches.map((tranche, i) => {
+            return (
+              <li className="tranches__list-item" key={i}>
+                <div className="tranches__item-title">
+                  <Link
+                    to={`/tranches/${tranche.tranche_id}`}
+                    className="tranches__link"
+                  >
+                    <span>{t("Tranche")}</span>#{tranche.tranche_id}
+                  </Link>
+                  <TrancheDates
+                    start={tranche.tranche_start}
+                    end={tranche.tranche_end}
+                  />
+                </div>
+                <TrancheProgress
+                  locked={tranche.locked_amount}
+                  totalRemoved={tranche.total_removed}
+                  totalAdded={tranche.total_added}
                 />
-              </div>
-              <TrancheProgress
-                locked={tranche.locked_amount}
-                totalRemoved={tranche.total_removed}
-                totalAdded={tranche.total_added}
-              />
-            </li>
-          );
-        })}
-      </ul>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p>{t("No tranches")}</p>
+      )}
     </>
   );
 };
