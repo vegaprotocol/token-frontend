@@ -7,8 +7,11 @@ export const PixelatedText = ({
 }) => {
   return (
     <>
-      {text.split("").map((char) => (
-        <span className={Math.random() > threshold ? "text-pixelated" : ""}>
+      {text.split("").map((char, i) => (
+        <span
+          key={i}
+          className={Math.random() > threshold ? "text-pixelated" : ""}
+        >
           {char}
         </span>
       ))}
