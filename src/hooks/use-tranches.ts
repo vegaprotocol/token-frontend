@@ -12,7 +12,7 @@ export function useTranches() {
 export function useTranche(id: number | null) {
   const tranches = useTranches();
   const tranche = React.useMemo(() => {
-    if (!id) return;
+    if (!id || !tranches) return;
     return tranches.find((tranche) => tranche.tranche_id === id);
   }, [id, tranches]);
 

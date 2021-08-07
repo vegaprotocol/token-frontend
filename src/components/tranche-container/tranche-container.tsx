@@ -17,10 +17,11 @@ export const TrancheContainer = ({
       const tranches = await vesting.getAllTranches();
       appDispatch({ type: "SET_TRANCHES", tranches });
     };
+
     run();
   }, [appDispatch, vesting]);
 
-  if (!appState.tranches.length) {
+  if (!appState.tranches) {
     return (
       <SplashScreen>
         <SplashLoader />

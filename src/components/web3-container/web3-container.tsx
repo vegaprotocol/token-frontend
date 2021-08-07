@@ -7,6 +7,7 @@ import {
 
 export const Web3Container = ({ children }: { children?: React.ReactNode }) => {
   const { appState } = useAppState();
+
   if (appState.providerStatus === ProviderStatus.None) {
     return <Redirect to="/no-provider" />;
   }
