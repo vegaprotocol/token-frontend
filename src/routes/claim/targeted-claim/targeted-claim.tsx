@@ -59,7 +59,9 @@ export const TargetedClaim = ({
 
   React.useEffect(() => {
     if (txState.txState === TxState.Complete) {
-      dispatch({ type: "SET_CLAIM_STATUS", status: ClaimStatus.Finished });
+      setTimeout(() => {
+        dispatch({ type: "SET_CLAIM_STATUS", status: ClaimStatus.Finished });
+      }, 2000);
     }
   }, [txState.txState, dispatch]);
 

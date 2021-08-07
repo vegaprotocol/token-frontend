@@ -10,7 +10,7 @@ export const CodeUsed = ({ address }: { address: string | null }) => {
     appState: { contractAddresses },
   } = useAppState();
   return (
-    <Callout intent="error" icon={<Error />} title={t("codeUsed")}>
+    <Callout intent="warn" icon={<Error />} title={t("codeUsed")}>
       <p>
         {t("codeUsedText", {
           address: truncateMiddle(address!),

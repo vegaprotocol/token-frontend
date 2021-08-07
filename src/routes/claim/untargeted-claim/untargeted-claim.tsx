@@ -73,7 +73,9 @@ export const UntargetedClaim = ({
 
   React.useEffect(() => {
     if (revealState.txState === TxState.Complete) {
-      dispatch({ type: "SET_CLAIM_STATUS", status: ClaimStatus.Finished });
+      setTimeout(() => {
+        dispatch({ type: "SET_CLAIM_STATUS", status: ClaimStatus.Finished });
+      }, 2000);
     }
   }, [revealState.txState, dispatch]);
 
