@@ -26,7 +26,7 @@ export const Addresses = {
   [EthereumChainIds.Mainnet]: {
     vestingAddress: "0x23d1bFE8fA50a167816fBD79D7932577c06011f4",
     vegaTokenAddress: "0xcB84d72e61e383767C4DFEb2d8ff7f4FB89abc6e",
-    claimAddress: "",
+    claimAddress: "0xd1Bdf85dB6Af63f45211dB95928d938abCc52dC8",
     lockedAddress: "0x78344c7305d73a7a0ac3c94cd9960f4449a1814e",
   },
   [EthereumChainIds.Ropsten]: {
