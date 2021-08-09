@@ -31,8 +31,8 @@ const en = {
 
     "Please select your country": "Please select your country",
 
-    "Fully vested on": "Fully vested on",
-    "Vesting from": "Vesting from",
+    "Fully vested on": "Fully vested on {{date}}",
+    "Vesting from": "Vesting from {{fromDate}} to {{endDate}}",
 
     "Something doesn't look right": "Something doesn't look right",
     "If you have been given a link please double check and try again":
@@ -47,17 +47,12 @@ const en = {
       "This web page reads directly from the vesting smart contract implemented by the Vega project team. The vesting smart is responsible for holding tokens whilst they are locked, and managing the distribution of tokens to their owners according to pre-defined vesting terms.",
     "The contract is deployed at the following address":
       "The contract is deployed at the following address:",
-      
-    "Connected Ethereum address":
-      "Connected Ethereum address",
-    "Amount of VEGA":
-      "Amount of VEGA",
-    "Claim expires":
-      "Claim expires",
-    "Starts unlocking":
-      "Unlocking starts",
-    "Fully unlocked":
-      "Fully unlocked",
+
+    "Connected Ethereum address": "Connected Ethereum address",
+    "Amount of VEGA": "Amount of VEGA",
+    "Claim expires": "Claim expires",
+    "Starts unlocking": "Unlocking starts",
+    "Fully unlocked": "Fully unlocked",
 
     "Select country": "Select country of residence",
 
