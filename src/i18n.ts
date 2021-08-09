@@ -47,10 +47,21 @@ const en = {
       "This web page reads directly from the vesting smart contract implemented by the Vega project team. The vesting smart is responsible for holding tokens whilst they are locked, and managing the distribution of tokens to their owners according to pre-defined vesting terms.",
     "The contract is deployed at the following address":
       "The contract is deployed at the following address:",
+      
+    "Connected Ethereum address":
+      "Connected Ethereum address",
+    "Amount of VEGA":
+      "Amount of VEGA",
+    "Claim expires":
+      "Claim expires",
+    "Starts unlocking":
+      "Unlocking starts",
+    "Fully unlocked":
+      "Fully unlocked",
 
     "Select country": "Select country of residence",
 
-    commitTitle: "Link claim to your address",
+    commitTitle: "Link claim to your Ethereum address",
     commitBody:
       "This links your claim to a specific ethereum address to prevent it being used by another person",
     selectCountryPrompt: "You must select a country first.",

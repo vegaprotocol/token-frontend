@@ -140,15 +140,15 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
             <table>
               <tbody>
                 <tr>
-                  <th>Ethereum address</th>
+                  <th>{t("Connected Ethereum address")}</th>
                   <td>{truncateMiddle(address!)}</td>
                 </tr>
                 <tr>
-                  <th>Amount</th>
+                  <th>{t("Amount of VEGA")}</th>
                   <td>{state.denomination?.toString()}</td>
                 </tr>
                 <tr>
-                  <th>Claim expires</th>
+                  <th>{t("Claim expires")}</th>
                   <td>
                     {state.expiry
                       ? format(state.expiry * 1000, "dd/MM/yyyy")
@@ -156,8 +156,12 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
                   </td>
                 </tr>
                 <tr>
-                  <th>Unlocks</th>
+                  <th>{t("Starts unlocking")}</th>
                   <td>{format(currentTranche.tranche_start, "dd/MM/yyyyy")}</td>
+                </tr>
+                <tr>
+                  <th>{t("Fully unlocked")}</th>
+                  <td>{format(currentTranche.tranche_end, "dd/MM/yyyyy")}</td>
                 </tr>
               </tbody>
             </table>
