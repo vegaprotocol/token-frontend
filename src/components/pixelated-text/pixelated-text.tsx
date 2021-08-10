@@ -9,7 +9,6 @@ export const PixelatedText = ({
 }) => {
   // useMemo so it doesn't re-randomize the text on every render
   const chars = React.useMemo(() => {
-    console.log("update spans");
     return text.split("").map((char, i) => (
       <span
         key={i}

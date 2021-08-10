@@ -11,6 +11,7 @@ const en = {
     pageTitleRedemption: "Redeem tokens",
     pageTitleTranches: "VESTING TRANCHES",
     pageTitle404: "Page not found",
+    pageTitleInvalidCountry: "Invalid country",
     Vesting: "VESTING VEGA TOKENS",
     Connect: "Connect to see your VEGA balance",
     of: "of",

@@ -15,16 +15,12 @@ export const ClaimStep2 = ({
   txState,
   txDispatch,
   onSubmit,
-  loading,
-  isValid,
 }: {
   step1Completed: boolean;
   amount: BigNumber;
   txState: TransactionState;
   txDispatch: React.Dispatch<TransactionAction>;
   onSubmit: () => void;
-  loading: boolean;
-  isValid: boolean;
 }) => {
   const { t } = useTranslation();
 
@@ -40,11 +36,8 @@ export const ClaimStep2 = ({
   return (
     <div data-testid="claim-step-2">
       <ContinueButton
-        isValid={step1Completed && isValid}
-        loading={loading}
         onSubmit={onSubmit}
         continueText={t("Claim {amount} Vega", { amount })}
-        errorText={t("You must select a valid country")}
       />
     </div>
   );

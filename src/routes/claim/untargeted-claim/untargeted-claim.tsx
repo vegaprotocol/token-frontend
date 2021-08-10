@@ -11,7 +11,6 @@ import { BulletHeader } from "../../tranches/bullet-header";
 import { ClaimAction, ClaimState, ClaimStatus } from "../claim-reducer";
 import { ClaimStep1 } from "../claim-step-1";
 import { ClaimStep2 } from "../claim-step-2";
-import { useValidateCountry } from "../hooks";
 
 interface UntargetedClaimProps {
   claimCode: string;
@@ -68,8 +67,6 @@ export const UntargetedClaim = ({
     () => claim.checkClaim(claimArgs)
   );
   const { t } = useTranslation();
-  const { country, checkCountry, isValid, loading } =
-    useValidateCountry(dispatch);
 
   React.useEffect(() => {
     if (revealState.txState === TxState.Complete) {
@@ -87,30 +84,24 @@ export const UntargetedClaim = ({
       <FormGroup
         label={t("Select your country or region of current residence")}
         labelFor="country-selector"
-        errorText={
-          !isValid && country?.code
-            ? t(
-                "Sorry. It is not possible to claim tokens in your country or region."
-              )
-            : undefined
-        }
       >
-        <CountrySelector setCountry={checkCountry} />
+        <CountrySelector
+          onSelectCountry={(countryCode) =>
+            dispatch({ type: "SET_COUNTRY", countryCode })
+          }
+        />
       </FormGroup>
       <BulletHeader tag="h2">
         {t("Step")} 2. {t("commitTitle")}
       </BulletHeader>
-      {isValid && country?.code ? (
+      {state.countryCode ? (
         <ClaimStep1
-          loading={loading}
-          isValid={isValid}
+          countryCode={state.countryCode}
           txState={commitState}
           txDispatch={commitDispatch}
           completed={committed}
           onSubmit={commitClaim}
         />
-      ) : loading ? (
-        <p className="text-muted">{t("verifyingCountryPrompt")}</p>
       ) : (
         <p className="text-muted">{t("selectCountryPrompt")}</p>
       )}
@@ -119,8 +110,6 @@ export const UntargetedClaim = ({
       </BulletHeader>
       {committed || commitState.txState === TxState.Complete ? (
         <ClaimStep2
-          loading={loading}
-          isValid={isValid}
           txState={revealState}
           txDispatch={revealDispatch}
           amount={denomination}
