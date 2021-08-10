@@ -12,7 +12,6 @@ const TrancheRouter = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
   const { t } = useTranslation();
   const match = useRouteMatch();
-  console.log(match);
 
   return (
     <TrancheContainer>
