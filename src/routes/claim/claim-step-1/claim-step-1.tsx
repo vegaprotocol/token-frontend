@@ -8,21 +8,19 @@ import { Callout } from "../../../components/callout";
 import { Tick } from "../../../components/icons";
 
 interface ClaimStep2 {
+  countryCode: string;
   txState: TransactionState;
   txDispatch: React.Dispatch<TransactionAction>;
   completed: boolean;
   onSubmit: () => void;
-  loading: boolean;
-  isValid: boolean;
 }
 
 export const ClaimStep1 = ({
+  countryCode,
   txState,
   txDispatch,
   completed,
   onSubmit,
-  loading,
-  isValid,
 }: ClaimStep2) => {
   const { t } = useTranslation();
   return (
@@ -35,8 +33,7 @@ export const ClaimStep1 = ({
         <>
           <p>{t("commitBody")}</p>
           <ClaimForm
-            isValid={isValid}
-            loading={loading}
+            countryCode={countryCode}
             txState={txState}
             txDispatch={txDispatch}
             onSubmit={onSubmit}

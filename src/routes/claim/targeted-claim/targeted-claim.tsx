@@ -7,7 +7,6 @@ import { BigNumber } from "../../../lib/bignumber";
 import { FormGroup } from "../../../components/form-group";
 import { CountrySelector } from "../../../components/country-selector";
 import { useTranslation } from "react-i18next";
-import { useValidateCountry } from "../hooks";
 import { ClaimForm } from "../claim-form";
 import { BulletHeader } from "../../tranches/bullet-header";
 
@@ -54,8 +53,6 @@ export const TargetedClaim = ({
     () => claim.claim(claimArgs),
     () => claim.checkClaim(claimArgs)
   );
-  const { country, checkCountry, isValid, loading } =
-    useValidateCountry(dispatch);
 
   React.useEffect(() => {
     if (txState.txState === TxState.Complete) {
@@ -73,23 +70,19 @@ export const TargetedClaim = ({
       <FormGroup
         label={t("Select your country or region of current residence")}
         labelFor="country-selector"
-        errorText={
-          !isValid && country?.code
-            ? t(
-                "Sorry. It is not possible to claim tokens in your country or region."
-              )
-            : undefined
-        }
       >
-        <CountrySelector setCountry={checkCountry} />
+        <CountrySelector
+          onSelectCountry={(countryCode) =>
+            dispatch({ type: "SET_COUNTRY", countryCode })
+          }
+        />
       </FormGroup>
       <BulletHeader tag="h2">
         {t("Step")} 2. {t("Claim tokens")}
       </BulletHeader>
-      {isValid && country?.code ? (
+      {state.countryCode ? (
         <ClaimForm
-          isValid={isValid}
-          loading={loading}
+          countryCode={state.countryCode}
           txState={txState}
           txDispatch={txDispatch}
           onSubmit={claimTargeted}
