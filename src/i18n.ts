@@ -11,7 +11,7 @@ const en = {
     pageTitleRedemption: "Redeem tokens",
     pageTitleTranches: "VESTING TRANCHES",
     pageTitle404: "Page not found",
-    pageTitleInvalidCountry: "Invalid country",
+    pageTitleInvalidCountry: "Invalid country / region",
     Vesting: "VESTING VEGA TOKENS",
     Connect: "Connect to see your VEGA balance",
     of: "of",
@@ -55,13 +55,13 @@ const en = {
     "Starts unlocking": "Unlocking starts",
     "Fully unlocked": "Fully unlocked",
 
-    "Select country": "Select country of residence",
+    "Select country": "Select country/region of residence",
 
     commitTitle: "Link claim to your Ethereum address",
     commitBody:
       "This links your claim to a specific ethereum address to prevent it being used by another person",
-    selectCountryPrompt: "You must select a country first.",
-    verifyingCountryPrompt: "Verifying country...",
+    selectCountryPrompt: "You must select a country/region first.",
+    verifyingCountryPrompt: "Verifying country/region...",
 
     "Claim tokens": "Claim tokens",
     claimNotReady: "You must complete step 2 first.",
@@ -110,7 +110,7 @@ const en = {
       "This page can not be found, please check the URL and try again.",
     "Service unavailable": "Service unavailable",
     "This service is not available in your country":
-      "This service is not available in your country",
+      "This service is not available in your country/region",
     "Wrong network": "Looks like you are on {{chain}}",
     "Desired network": "This app is only configured for  {{chain}}",
     "This code ({code}) has expired and cannot be used to claim tokens":
@@ -131,7 +131,7 @@ const en = {
     "Use the Ethereum wallet you want to send your tokens to. You'll also need enough Ethereum to pay gas.":
       "Use the Ethereum wallet you want to send your tokens to. You'll also need enough Ethereum to pay gas.",
     "Tranche not found": "Tranche not found",
-    "You must select a valid country": "You must select a valid country",
+    "You must select a valid country": "You must select a valid country/region",
     "Verifying your claim": "Verifying your claim",
     Users: "Users",
   },
