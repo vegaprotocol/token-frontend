@@ -2,7 +2,7 @@ import React from "react";
 import NotFound from "./not-found";
 import Home from "./home";
 import NoProvider from "./no-provider";
-import InvalidCountry from "./invalid-country";
+import NotPermitted from "./not-permitted";
 
 const LazyTranches = React.lazy(
   () =>
@@ -50,10 +50,10 @@ const routerConfig = [
     component: LazyRedemption,
   },
   {
-    path: "/invalid-country",
-    name: "InvalidCountry",
+    path: "/not-permitted",
+    name: "Not permitted",
     children: [],
-    component: InvalidCountry,
+    component: NotPermitted,
   },
   {
     path: "/no-provider",
