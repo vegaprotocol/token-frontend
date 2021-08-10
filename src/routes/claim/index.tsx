@@ -1,10 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { DefaultTemplate } from "../../components/page-templates/default";
-import {
-  ProviderStatus,
-  useAppState,
-} from "../../contexts/app-state/app-state-context";
+import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useSearchParams } from "../../hooks/use-search-params";
 import { ClaimError } from "./claim-error";
 import { claimReducer, ClaimStatus, initialClaimState } from "./claim-reducer";
@@ -15,7 +12,6 @@ import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { Web3Container } from "../../components/web3-container";
 import { ClaimConnect } from "./claim-connect";
 import { TrancheContainer } from "../../components/tranche-container";
-import { WrongChain } from "../../components/wrong-chain";
 import { RouteChildProps } from "..";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 
@@ -57,16 +53,6 @@ const Claim = ({ name }: RouteChildProps) => {
 
   if (isRestricted()) {
     pageContent = <ClaimRestricted />;
-  } else if (
-    appState.providerStatus === ProviderStatus.Ready &&
-    appState.chainId !== appState.appChainId
-  ) {
-    pageContent = (
-      <WrongChain
-        currentChainId={appState.chainId!}
-        desiredChainId={appState.appChainId}
-      />
-    );
   } else if (!appState.address) {
     pageContent = <ClaimConnect />;
   } else if (state.error) {
@@ -75,13 +61,11 @@ const Claim = ({ name }: RouteChildProps) => {
     pageContent = <ClaimFlow state={state} dispatch={dispatch} />;
   }
   return (
-    <Web3Container>
-      <TrancheContainer>
-        <DefaultTemplate title={t("pageTitleClaim")}>
-          {pageContent}
-        </DefaultTemplate>
-      </TrancheContainer>
-    </Web3Container>
+    <TrancheContainer>
+      <DefaultTemplate title={t("pageTitleClaim")}>
+        <Web3Container>{pageContent}</Web3Container>
+      </DefaultTemplate>
+    </TrancheContainer>
   );
 };
 

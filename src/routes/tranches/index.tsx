@@ -13,9 +13,9 @@ const TrancheRouter = ({ name }: RouteChildProps) => {
   const { t } = useTranslation();
 
   return (
-    <Web3Container>
-      <TrancheContainer>
-        <DefaultTemplate title={t("pageTitleTranches")}>
+    <TrancheContainer>
+      <DefaultTemplate title={t("pageTitleTranches")}>
+        <Web3Container>
           <Switch>
             <Route path="/tranches" exact>
               <Tranches />
@@ -24,9 +24,9 @@ const TrancheRouter = ({ name }: RouteChildProps) => {
               <Tranche />
             </Route>
           </Switch>
-        </DefaultTemplate>
-      </TrancheContainer>
-    </Web3Container>
+        </Web3Container>
+      </DefaultTemplate>
+    </TrancheContainer>
   );
 };
 

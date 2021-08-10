@@ -8,7 +8,7 @@ export function useVegaVesting() {
     provider,
     appState: { contractAddresses },
   } = useAppState();
-  // TODO make mocks work again
+  // TODO: make mocks work again
   // const useMocks = ["1", "true"].includes(process.env.REACT_APP_MOCKED!);
   const vesting = React.useMemo(() => {
     const web3 = new Web3(provider);
