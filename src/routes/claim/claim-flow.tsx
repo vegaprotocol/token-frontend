@@ -88,6 +88,8 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
         address={address!}
         balance={balance!}
         trancheId={currentTranche.tranche_id}
+        commitTxHash={state.commitTxHash}
+        claimTxHash={state.claimTxHash}
       />
     );
   }

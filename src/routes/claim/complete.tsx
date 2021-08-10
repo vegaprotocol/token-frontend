@@ -2,21 +2,27 @@ import BigNumber from "bignumber.js";
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Callout } from "../../components/callout";
+import { EtherscanLink } from "../../components/etherscan-link";
 import { Tick } from "../../components/icons";
 import { useAppState } from "../../contexts/app-state/app-state-context";
+import { truncateMiddle } from "../../lib/truncate-middle";
 
 export const Complete = ({
   address,
   balance,
   trancheId,
+  commitTxHash,
+  claimTxHash,
 }: {
   address: string;
   balance: BigNumber;
   trancheId: number;
+  commitTxHash: string | null;
+  claimTxHash: string | null;
 }) => {
   const { t } = useTranslation();
   const {
-    appState: { contractAddresses },
+    appState: { contractAddresses, chainId },
   } = useAppState();
   return (
     <>
@@ -34,6 +40,26 @@ export const Complete = ({
             }}
           />
         </p>
+        {commitTxHash && (
+          <p style={{ margin: 0 }}>
+            {t("Link transaction")}:{" "}
+            <EtherscanLink
+              chainId={chainId!}
+              hash={commitTxHash}
+              text={truncateMiddle(commitTxHash)}
+            />
+          </p>
+        )}
+        {claimTxHash && (
+          <p>
+            {t("Claim transaction")}:{" "}
+            <EtherscanLink
+              chainId={chainId!}
+              hash={claimTxHash}
+              text={truncateMiddle(claimTxHash)}
+            />
+          </p>
+        )}
         <h4>
           {t(
             "Keep track of locked tokens in your wallet with the VEGA (VESTING) token."

@@ -55,6 +55,15 @@ export const TargetedClaim = ({
   );
 
   React.useEffect(() => {
+    if (txState.txData.hash) {
+      dispatch({
+        type: "SET_CLAIM_TX_HASH",
+        claimTxHash: txState.txData.hash,
+      });
+    }
+  }, [txState.txData.hash, dispatch]);
+
+  React.useEffect(() => {
     if (txState.txState === TxState.Complete) {
       setTimeout(() => {
         dispatch({ type: "SET_CLAIM_STATUS", status: ClaimStatus.Finished });

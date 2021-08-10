@@ -12,11 +12,14 @@ export const etherscanUrls: Record<EthereumChainId, string> = {
 export const EtherscanLink = ({
   chainId,
   hash,
+  text,
 }: {
   chainId: EthereumChainId;
   hash: string;
+  text?: string;
 }) => {
   const { t } = useTranslation();
+  text = text ? text : t("View on Etherscan (opens in a new tab)");
 
   return (
     <a
@@ -25,7 +28,7 @@ export const EtherscanLink = ({
       rel="noreferrer"
       href={`${etherscanUrls[chainId]}/tx/${hash}`}
     >
-      {t("View on Etherscan (opens in a new tab)")}
+      {text}
     </a>
   );
 };

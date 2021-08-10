@@ -139,6 +139,8 @@ const en = {
     claimComplete: "Claim complete",
     claimCompleteMessage:
       "Ethereum address {{address}} now has a vested right to {{balance}} VEGA tokens from <trancheLink>{{trancheLinkText}}</trancheLink> of the vesting contract.",
+    "Link transaction": "Link transaction",
+    "Claim transaction": "Claim transaction",
     "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.":
       "Keep track of locked tokens in your wallet with the VEGA (LOCKED) token.",
     "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.":
