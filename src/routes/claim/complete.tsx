@@ -5,7 +5,6 @@ import { Callout } from "../../components/callout";
 import { EtherscanLink } from "../../components/etherscan-link";
 import { Tick } from "../../components/icons";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import { truncateMiddle } from "../../lib/truncate-middle";
 
 export const Complete = ({
   address,
@@ -46,7 +45,7 @@ export const Complete = ({
             <EtherscanLink
               chainId={chainId!}
               hash={commitTxHash}
-              text={truncateMiddle(commitTxHash)}
+              text={commitTxHash}
             />
           </p>
         )}
@@ -56,7 +55,7 @@ export const Complete = ({
             <EtherscanLink
               chainId={chainId!}
               hash={claimTxHash}
-              text={truncateMiddle(claimTxHash)}
+              text={claimTxHash}
             />
           </p>
         )}
