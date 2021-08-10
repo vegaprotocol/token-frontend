@@ -6,7 +6,6 @@ import {
   TxState,
 } from "../../../hooks/transaction-reducer";
 import { TransactionCallout } from "../../../components/transaction-callout";
-import { ContinueButton } from "../../../components/continue-button";
 import { BigNumber } from "../../../lib/bignumber";
 
 export const ClaimStep2 = ({
@@ -35,10 +34,9 @@ export const ClaimStep2 = ({
 
   return (
     <div data-testid="claim-step-2">
-      <ContinueButton
-        onSubmit={onSubmit}
-        continueText={t("Claim {amount} Vega", { amount })}
-      />
+      <button type="submit" onClick={onSubmit} className="fill">
+        {t("Claim {amount} Vega", { amount })}
+      </button>
     </div>
   );
 };
