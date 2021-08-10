@@ -116,12 +116,10 @@ const en = {
       "This code ({{code}}) has expired and cannot be used to claim tokens.",
     "Looks like that code has already been used.":
       "Looks like that code has already been used.",
-    "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.":
-      "Keep track of locked tokens in your wallet with the VEGA (LOCKED) token.",
+
     "Add the Vega vesting token to your wallet to track how much you Vega you have in the vesting contract.":
       "Add the Vega vesting token to your wallet to track how much you Vega you have in the vesting contract.",
-    "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.":
-      "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
+
     connectedAddress: "Connected to Ethereum key {{address}}.",
     addressMismatch:
       "<red>Error:</red> The address you are connected to is <bold>not</bold> the address the claim is valid for. To claim these tokens please connect with <bold>{{target}}</bold>.",
@@ -133,6 +131,15 @@ const en = {
     "You must select a valid country": "You must select a valid country",
     "Verifying your claim": "Verifying your claim",
     Users: "Users",
+
+    // Claim success callout
+    claimComplete: "Claim complete",
+    claimCompleteMessage:
+      "Ethereum address {{address}} now has a vested right to {{balance}} VEGA tokens from <trancheLink>{{trancheLinkText}}</trancheLink> of the vesting contract.",
+    "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.":
+      "Keep track of locked tokens in your wallet with the VEGA (LOCKED) token.",
+    "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.":
+      "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
   },
 };
 

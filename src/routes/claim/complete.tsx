@@ -1,5 +1,5 @@
 import BigNumber from "bignumber.js";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Callout } from "../../components/callout";
 import { Tick } from "../../components/icons";
@@ -22,10 +22,17 @@ export const Complete = ({
     <>
       <Callout intent="success" title="Claim complete" icon={<Tick />}>
         <p>
-          Ethereum address {address} now has a vested right to{" "}
-          {balance.toString()} VEGA tokens from{" "}
-          <Link to={`/tranches/${trancheId}`}>tranche {trancheId}</Link> of the
-          vesting contract.
+          <Trans
+            i18nKey="claimCompleteMessage"
+            values={{
+              address,
+              balance: balance.toString(),
+              trancheLinkText: `tranche ${trancheId}`,
+            }}
+            components={{
+              trancheLink: <Link to={`/tranches/${trancheId}`} />,
+            }}
+          />
         </p>
         <h4>
           {t(
