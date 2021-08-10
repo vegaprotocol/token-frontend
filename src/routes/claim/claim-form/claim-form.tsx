@@ -55,7 +55,7 @@ export const ClaimForm = ({
   }, [claim, countryCode, onSubmit]);
 
   if (countryCheck === CountryCheck.Blocked) {
-    return <Redirect to="/invalid-country" />;
+    return <Redirect to="/not-permitted" />;
   }
 
   if (txState.txState !== TxState.Default) {
