@@ -5,8 +5,11 @@ import { DefaultTemplate } from "../../components/page-templates/default";
 import { useTranslation } from "react-i18next";
 import { Web3Container } from "../../components/web3-container";
 import { TrancheContainer } from "../../components/tranche-container";
+import { useDocumentTitle } from "../../hooks/use-document-title";
+import { RouteChildProps } from "..";
 
-const TrancheRouter = () => {
+const TrancheRouter = ({ name }: RouteChildProps) => {
+  useDocumentTitle(name);
   const { t } = useTranslation();
 
   return (

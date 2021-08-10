@@ -1,12 +1,15 @@
 import { useTranslation } from "react-i18next";
 import { Redirect } from "react-router-dom";
+import { RouteChildProps } from "..";
 import { DefaultTemplate } from "../../components/page-templates/default";
 import {
   ProviderStatus,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
+import { useDocumentTitle } from "../../hooks/use-document-title";
 
-const NoProvider = () => {
+const NoProvider = ({ name }: RouteChildProps) => {
+  useDocumentTitle(name);
   const { t } = useTranslation();
   const {
     appState: { providerStatus },
