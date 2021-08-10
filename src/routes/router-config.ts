@@ -3,6 +3,15 @@ import NotFound from "./not-found";
 import Home from "./home";
 import NotPermitted from "./not-permitted";
 
+export const Routes = {
+  HOME: "/",
+  TRANCHES: "/tranches",
+  CLAIM: "/claim",
+  REDEMPTION: "/redemption",
+  NOT_PERMITTED: "/not-permitted",
+  NOT_FOUND: "/not-found",
+};
+
 const LazyTranches = React.lazy(
   () =>
     import(
@@ -23,7 +32,7 @@ const LazyRedemption = React.lazy(
 );
 const routerConfig = [
   {
-    path: "/",
+    path: Routes.HOME,
     name: "Home",
     children: [],
     // Not lazy as loaded when a user first hits the site
@@ -31,25 +40,25 @@ const routerConfig = [
     exact: true,
   },
   {
-    path: "/tranches",
+    path: Routes.TRANCHES,
     name: "Tranches",
     children: [],
     component: LazyTranches,
   },
   {
-    path: "/claim",
+    path: Routes.CLAIM,
     name: "Claim",
     children: [],
     component: LazyClaim,
   },
   {
-    path: "/redemption",
+    path: Routes.REDEMPTION,
     name: "Redemption",
     children: [],
     component: LazyRedemption,
   },
   {
-    path: "/not-permitted",
+    path: Routes.NOT_PERMITTED,
     name: "Not permitted",
     children: [],
     component: NotPermitted,
