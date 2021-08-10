@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import { Redirect } from "react-router-dom";
 import { TrancheDates } from "./tranche-dates";
 import { useTranslation } from "react-i18next";
-import { BulletHeader } from "./bullet-header";
+import { BulletHeader } from "../../components/bullet-header";
 import { ProgressBar } from "./progress-bar";
 import { Colors } from "../../colors";
 import { BigNumber } from "../../lib/bignumber";

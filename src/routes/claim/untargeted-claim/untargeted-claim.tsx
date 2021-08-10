@@ -7,7 +7,7 @@ import { TxState } from "../../../hooks/transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { useVegaClaim } from "../../../hooks/use-vega-claim";
 import { BigNumber } from "../../../lib/bignumber";
-import { BulletHeader } from "../../tranches/bullet-header";
+import { BulletHeader } from "../../../components/bullet-header";
 import { ClaimAction, ClaimState, ClaimStatus } from "../claim-reducer";
 import { ClaimStep1 } from "../claim-step-1";
 import { ClaimStep2 } from "../claim-step-2";

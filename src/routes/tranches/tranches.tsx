@@ -1,13 +1,14 @@
 import "./tranches.scss";
-import { Link } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 import { TrancheDates } from "./tranche-dates";
 import { useTranslation } from "react-i18next";
 import { TrancheProgress } from "./tranche-progress";
-import { BulletHeader } from "./bullet-header";
+import { BulletHeader } from "../../components/bullet-header";
 import { useTranches } from "../../hooks/use-tranches";
 
 export const Tranches = () => {
   const { t } = useTranslation();
+  const match = useRouteMatch();
   const tranches = useTranches();
 
   return (
@@ -20,7 +21,7 @@ export const Tranches = () => {
               <li className="tranches__list-item" key={i}>
                 <div className="tranches__item-title">
                   <Link
-                    to={`/tranches/${tranche.tranche_id}`}
+                    to={`${match.url}/${tranche.tranche_id}`}
                     className="tranches__link"
                   >
                     <span>{t("Tranche")}</span>#{tranche.tranche_id}

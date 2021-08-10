@@ -8,7 +8,7 @@ import { FormGroup } from "../../../components/form-group";
 import { CountrySelector } from "../../../components/country-selector";
 import { useTranslation } from "react-i18next";
 import { ClaimForm } from "../claim-form";
-import { BulletHeader } from "../../tranches/bullet-header";
+import { BulletHeader } from "../../../components/bullet-header";
 
 interface TargetedClaimProps {
   claimCode: string;
