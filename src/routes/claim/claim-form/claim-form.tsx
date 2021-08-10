@@ -10,6 +10,7 @@ import {
 } from "../../../hooks/transaction-reducer";
 import { useVegaClaim } from "../../../hooks/use-vega-claim";
 import { Redirect } from "react-router";
+import { Routes } from "../../router-config";
 
 export interface ICountry {
   name: string;
@@ -55,7 +56,7 @@ export const ClaimForm = ({
   }, [claim, countryCode, onSubmit]);
 
   if (countryCheck === CountryCheck.Blocked) {
-    return <Redirect to="/not-permitted" />;
+    return <Redirect to={Routes.NOT_PERMITTED} />;
   }
 
   if (txState.txState !== TxState.Default) {

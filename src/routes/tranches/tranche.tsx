@@ -10,6 +10,7 @@ import { Colors } from "../../colors";
 import { BigNumber } from "../../lib/bignumber";
 import { getAbbreviatedNumber } from "../../lib/abbreviate-number";
 import { useTranche } from "../../hooks/use-tranches";
+import { Routes } from "../router-config";
 
 export const Tranche = () => {
   const { t } = useTranslation();
@@ -17,7 +18,7 @@ export const Tranche = () => {
   const tranche = useTranche(parseInt(trancheId));
 
   if (!tranche) {
-    return <Redirect to="/not-found" />;
+    return <Redirect to={Routes.NOT_FOUND} />;
   }
 
   let locked_percentage = tranche.locked_amount

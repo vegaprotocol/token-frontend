@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { Tranche } from "./tranche";
 import { Tranches } from "./tranches";
 import { DefaultTemplate } from "../../components/page-templates/default";
@@ -11,16 +11,18 @@ import { RouteChildProps } from "..";
 const TrancheRouter = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
   const { t } = useTranslation();
+  const match = useRouteMatch();
+  console.log(match);
 
   return (
     <TrancheContainer>
       <DefaultTemplate title={t("pageTitleTranches")}>
         <Web3Container>
           <Switch>
-            <Route path="/tranches" exact>
+            <Route path={match.path} exact>
               <Tranches />
             </Route>
-            <Route path="/tranches/:trancheId">
+            <Route path={`${match.path}/:trancheId`}>
               <Tranche />
             </Route>
           </Switch>
