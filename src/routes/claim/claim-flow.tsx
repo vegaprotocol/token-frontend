@@ -157,11 +157,11 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
                 </tr>
                 <tr>
                   <th>{t("Starts unlocking")}</th>
-                  <td>{format(currentTranche.tranche_start, "dd/MM/yyyyy")}</td>
+                  <td>{format(currentTranche.tranche_start, "dd/MM/yyyy")}</td>
                 </tr>
                 <tr>
                   <th>{t("Fully unlocked")}</th>
-                  <td>{format(currentTranche.tranche_end, "dd/MM/yyyyy")}</td>
+                  <td>{format(currentTranche.tranche_end, "dd/MM/yyyy")}</td>
                 </tr>
               </tbody>
             </table>
