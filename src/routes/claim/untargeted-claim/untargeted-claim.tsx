@@ -72,6 +72,24 @@ export const UntargetedClaim = ({
     useValidateCountry(dispatch);
 
   React.useEffect(() => {
+    if (commitState.txData.hash) {
+      dispatch({
+        type: "SET_COMMIT_TX_HASH",
+        commitTxHash: commitState.txData.hash,
+      });
+    }
+  }, [commitState.txData.hash, dispatch]);
+
+  React.useEffect(() => {
+    if (revealState.txData.hash) {
+      dispatch({
+        type: "SET_CLAIM_TX_HASH",
+        claimTxHash: revealState.txData.hash,
+      });
+    }
+  }, [revealState.txData.hash, dispatch]);
+
+  React.useEffect(() => {
     if (revealState.txState === TxState.Complete) {
       setTimeout(() => {
         dispatch({ type: "SET_CLAIM_STATUS", status: ClaimStatus.Finished });

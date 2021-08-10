@@ -21,6 +21,8 @@ export interface ClaimState {
   loading: boolean;
   error: Error | null;
   claimStatus: ClaimStatus;
+  commitTxHash: string | null;
+  claimTxHash: string | null;
 }
 
 export const initialClaimState: ClaimState = {
@@ -34,6 +36,8 @@ export const initialClaimState: ClaimState = {
   loading: true,
   error: null,
   claimStatus: ClaimStatus.Ready,
+  commitTxHash: null,
+  claimTxHash: null,
 };
 
 export type ClaimAction =
@@ -65,6 +69,14 @@ export type ClaimAction =
   | {
       type: "SET_COUNTRY";
       countryCode: string;
+    }
+  | {
+      type: "SET_COMMIT_TX_HASH";
+      commitTxHash: string;
+    }
+  | {
+      type: "SET_CLAIM_TX_HASH";
+      claimTxHash: string;
     }
   | {
       type: "ERROR";
@@ -129,6 +141,16 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
       return {
         ...state,
         loading: action.loading,
+      };
+    case "SET_COMMIT_TX_HASH":
+      return {
+        ...state,
+        commitTxHash: action.commitTxHash,
+      };
+    case "SET_CLAIM_TX_HASH":
+      return {
+        ...state,
+        claimTxHash: action.claimTxHash,
       };
     case "ERROR":
       return {

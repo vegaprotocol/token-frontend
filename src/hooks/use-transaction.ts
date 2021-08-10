@@ -41,6 +41,7 @@ export const useTransaction = (
       handleError(err);
     }
   }, [performTransaction, checkTransaction, dispatch, handleError]);
+
   return {
     state,
     dispatch,
