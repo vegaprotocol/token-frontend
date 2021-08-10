@@ -16,8 +16,11 @@ import { Web3Container } from "../../components/web3-container";
 import { ClaimConnect } from "./claim-connect";
 import { TrancheContainer } from "../../components/tranche-container";
 import { WrongChain } from "../../components/wrong-chain";
+import { RouteChildProps } from "..";
+import { useDocumentTitle } from "../../hooks/use-document-title";
 
-const Claim = () => {
+const Claim = ({ name }: RouteChildProps) => {
+  useDocumentTitle(name);
   const { t } = useTranslation();
   const params = useSearchParams();
   const { appState, appDispatch } = useAppState();
