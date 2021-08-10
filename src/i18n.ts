@@ -8,10 +8,10 @@ const en = {
 
     // Page titles
     pageTitleClaim: "CLAIM VEGA TOKENS",
-    pageTitleRedemption: "Redeem tokens",
+    pageTitleRedemption: "REDEEM TOKENS",
     pageTitleTranches: "VESTING TRANCHES",
-    pageTitle404: "Page not found",
-    pageTitleInvalidCountry: "Can not claim in your country / region",
+    pageTitle404: "PAGE NOT FOUND",
+    pageTitleInvalidCountry: "CAN NOT CLAIM IN YOUR COUNTRY OR REGION",
     Vesting: "VESTING VEGA TOKENS",
     Connect: "Connect to see your VEGA balance",
     of: "of",
