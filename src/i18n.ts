@@ -11,7 +11,7 @@ const en = {
     pageTitleRedemption: "Redeem tokens",
     pageTitleTranches: "VESTING TRANCHES",
     pageTitle404: "Page not found",
-    pageTitleInvalidCountry: "Invalid country / region",
+    pageTitleInvalidCountry: "Can not claim in your country / region",
     Vesting: "VESTING VEGA TOKENS",
     Connect: "Connect to see your VEGA balance",
     of: "of",
@@ -56,6 +56,8 @@ const en = {
     "Fully unlocked": "Fully unlocked",
 
     "Select country": "Select country/region of residence",
+    "You cannot claim VEGA tokens if you reside in that country":
+      "It is not possible to claim VEGA tokens if you reside in that country or region",
 
     commitTitle: "Link claim to your Ethereum address",
     commitBody:
