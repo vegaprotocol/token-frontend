@@ -21,7 +21,7 @@ export const Tranches = () => {
               <li className="tranches__list-item" key={i}>
                 <div className="tranches__item-title">
                   <Link
-                    to={`${match.url}/${tranche.tranche_id}`}
+                    to={`${match.path}/${tranche.tranche_id}`}
                     className="tranches__link"
                   >
                     <span>{t("Tranche")}</span>#{tranche.tranche_id}
