@@ -134,6 +134,7 @@ const en = {
     "You must select a valid country": "You must select a valid country/region",
     "Verifying your claim": "Verifying your claim",
     Users: "Users",
+    "No users": "No users",
 
     // Claim success callout
     claimComplete: "Claim complete",

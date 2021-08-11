@@ -69,27 +69,31 @@ export const Tranche = () => {
         </div>
       </div>
       <BulletHeader tag="h2">{t("Users")}</BulletHeader>
-      <ul className="tranche__user-list">
-        {tranche.users.map((user, i) => {
-          return (
-            <li className="tranche__user-item" key={i}>
-              <a
-                rel="noreferrer"
-                target="_blank"
-                href={"https://etherscan.io/address/" + user.address}
-              >
-                {user.address}
-              </a>
-              <div className="tranche__user-info">
-                <span>{user.total_tokens.toString()} VEGA</span>
-                <span>
-                  {user.withdrawn_tokens.toString()} {t("Redeemed")}
-                </span>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+      {tranche.users.length ? (
+        <ul className="tranche__user-list">
+          {tranche.users.map((user, i) => {
+            return (
+              <li className="tranche__user-item" key={i}>
+                <a
+                  rel="noreferrer"
+                  target="_blank"
+                  href={"https://etherscan.io/address/" + user.address}
+                >
+                  {user.address}
+                </a>
+                <div className="tranche__user-info">
+                  <span>{user.total_tokens.toString()} VEGA</span>
+                  <span>
+                    {user.withdrawn_tokens.toString()} {t("Redeemed")}
+                  </span>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p>{t("No users")}</p>
+      )}
     </>
   );
 };
