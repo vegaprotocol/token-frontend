@@ -14,9 +14,9 @@ const TrancheRouter = ({ name }: RouteChildProps) => {
   const match = useRouteMatch();
 
   return (
-    <TrancheContainer>
-      <DefaultTemplate title={t("pageTitleTranches")}>
-        <Web3Container>
+    <DefaultTemplate title={t("pageTitleTranches")}>
+      <Web3Container>
+        <TrancheContainer>
           <Switch>
             <Route path={match.path} exact>
               <Tranches />
@@ -25,9 +25,9 @@ const TrancheRouter = ({ name }: RouteChildProps) => {
               <Tranche />
             </Route>
           </Switch>
-        </Web3Container>
-      </DefaultTemplate>
-    </TrancheContainer>
+        </TrancheContainer>
+      </Web3Container>
+    </DefaultTemplate>
   );
 };
 

@@ -10,7 +10,16 @@ import { Error } from "../icons";
 
 export const Web3Container = ({ children }: { children?: React.ReactNode }) => {
   const { t } = useTranslation();
+
   const { appState } = useAppState();
+
+  if (appState.providerStatus === ProviderStatus.None) {
+    return (
+      <Callout title={t("Cannot connect")} intent="error" icon={<Error />}>
+        <p>{t("invalidWeb3Browser")}</p>
+      </Callout>
+    );
+  }
 
   if (appState.appChainId !== appState.chainId) {
     return (
@@ -26,14 +35,6 @@ export const Web3Container = ({ children }: { children?: React.ReactNode }) => {
             chain: EthereumChainNames[appState.appChainId],
           })}
         </p>
-      </Callout>
-    );
-  }
-
-  if (appState.providerStatus === ProviderStatus.None) {
-    return (
-      <Callout title={t("Cannot connect")} intent="error" icon={<Error />}>
-        <p>{t("invalidWeb3Browser")}</p>
       </Callout>
     );
   }

@@ -13,14 +13,18 @@
 
   &__title {
     font-weight: 500;
-    font-size: 88px;
     padding: 8% 20px 20px 20px;
+    font-size: 30px;
     margin: 0;
     max-width: 80%;
     text-transform: uppercase;
 
     &-container {
       margin: 0 auto;
+    }
+
+    @media (min-width: 960px) {
+      font-size: 88px;
     }
   }
 
