@@ -11,6 +11,7 @@ import {
 import { useVegaVesting } from "./use-vega-vesting";
 import * as Sentry from "@sentry/react";
 import BigNumber from "bignumber.js";
+import { Flags } from "../flags";
 
 const mockAddress = "0x" + "0".repeat(0);
 
@@ -21,7 +22,6 @@ export function useConnect() {
     throw new Error("Could not find chain ID from environment");
   }
   const vega = useVegaVesting();
-  const useMocks = ["1", "true"].includes(process.env.REACT_APP_MOCKED!);
   const connect = React.useCallback(async () => {
     try {
       appDispatch({ type: "CONNECT" });
@@ -36,7 +36,7 @@ export function useConnect() {
 
       let accounts: string[];
       let chainId: EthereumChainId;
-      if (useMocks) {
+      if (Flags.MOCK) {
         const confirm = true; // TOOD
         if (confirm) {
           accounts = [mockAddress];
@@ -62,7 +62,7 @@ export function useConnect() {
       Sentry.captureEvent(e);
       appDispatch({ type: "CONNECT_FAIL", error: e });
     }
-  }, [appDispatch, appState.providerStatus, provider, useMocks, vega]);
+  }, [appDispatch, appState.providerStatus, provider, vega]);
 
   return connect;
 }
