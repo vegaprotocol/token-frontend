@@ -1,14 +1,13 @@
 import type { EventData } from "web3-eth-contract";
 import { Tranche, TrancheEvents, TrancheUser } from "./vega-web3-types";
-import sumBy from "lodash/sumBy";
-import sum from "lodash/sum";
 import uniq from "lodash/uniq";
 import Web3 from "web3";
+import BigNumber from "bignumber.js";
 
 export function createUserTransactions(events: EventData[]) {
   return events.map((event) => {
     return {
-      amount: parseFloat(Web3.utils.fromWei(event.returnValues.amount)),
+      amount: new BigNumber(Web3.utils.fromWei(event.returnValues.amount)),
       user: event.returnValues.user,
       tranche_id: event.returnValues.tranche_id,
       tx: event.transactionHash,
@@ -31,9 +30,15 @@ export function getUsersInTranche(
     const deposits = createUserTransactions(userDeposits);
     const withdrawals = createUserTransactions(userWithdraws);
 
-    const total_tokens = sumBy(deposits, "amount");
-    const withdrawn_tokens = sumBy(withdrawals, "amount");
-    const remaining_tokens = total_tokens - withdrawn_tokens;
+    const total_tokens = BigNumber.sum.apply(
+      null,
+      deposits.map((d) => d.amount)
+    );
+    const withdrawn_tokens = BigNumber.sum.apply(
+      null,
+      withdrawals.map((w) => w.amount)
+    );
+    const remaining_tokens = total_tokens.minus(withdrawn_tokens);
 
     return {
       address,
@@ -47,25 +52,31 @@ export function getUsersInTranche(
 }
 
 export function sumFromEvents(events: EventData[]) {
-  const amounts = events.map((e) =>
-    parseFloat(Web3.utils.fromWei(e.returnValues.amount))
+  // BigNumber.sum with an empty array will return NaN so early return with 0 here
+  if (!events.length) {
+    return new BigNumber(0);
+  }
+
+  const amounts = events.map(
+    (e) => new BigNumber(Web3.utils.fromWei(e.returnValues.amount))
   );
-  return sum(amounts);
+
+  return BigNumber.sum.apply(null, amounts);
 }
 
 export function getLockedAmount(
-  totalAdded: number,
+  totalAdded: BigNumber,
   cliffStart: number,
   trancheDuration: number
 ) {
-  let amount = 0;
+  let amount = new BigNumber(0);
   const ts = Math.round(new Date().getTime() / 1000);
   const tranche_progress = (ts - cliffStart) / trancheDuration;
 
   if (tranche_progress < 0) {
     amount = totalAdded;
   } else if (tranche_progress < 1) {
-    amount = totalAdded * (1 - tranche_progress);
+    amount = totalAdded.times(1 - tranche_progress);
   }
 
   return amount;
@@ -74,7 +85,7 @@ export function getLockedAmount(
 export function createTransactions(events: EventData[]) {
   return events.map((event) => {
     return {
-      amount: parseFloat(Web3.utils.fromWei(event.returnValues.amount)),
+      amount: new BigNumber(Web3.utils.fromWei(event.returnValues.amount)),
       user: event.returnValues.user,
       tx: event.transactionHash,
     };
@@ -106,6 +117,7 @@ export function getTranchesFromHistory(events: EventData[]): Tranche[] {
       // get added and removed values
       const total_added = sumFromEvents(balanceAddedEvents);
       const total_removed = sumFromEvents(balanceRemovedEvents);
+
       // get locked amount
       const locked_amount = getLockedAmount(
         total_added,

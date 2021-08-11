@@ -1,5 +1,4 @@
 import BigNumber from "bignumber.js";
-import type BN from "bn.js";
 import { Tranche } from "./vega-web3/vega-web3-types";
 
 export type EthereumChainId = "0x1" | "0x3" | "0x4" | "0x5" | "0x2a";
@@ -53,12 +52,15 @@ export type PromiEvent = typeof Promise & {
 };
 
 export interface IVegaVesting {
-  getUserBalanceAllTranches(account: string): Promise<string>;
+  getUserBalanceAllTranches(account: string): Promise<BigNumber>;
   getAllTranches(): Promise<Tranche[]>;
 }
 
 export interface IVegaClaim {
   commit(claimCode: string, account: string): PromiEvent;
+
+  checkCommit(claimCode: string, account: string): Promise<any>;
+
   claim({
     claimCode,
     denomination,
@@ -78,6 +80,7 @@ export interface IVegaClaim {
     targeted: boolean;
     account: string;
   }): PromiEvent;
+
   checkClaim({
     claimCode,
     denomination,
