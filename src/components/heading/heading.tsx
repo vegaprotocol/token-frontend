@@ -8,6 +8,7 @@ import { useAppState } from "../../contexts/app-state/app-state-context";
 import { EthereumChainId, EthereumChainIds } from "../../lib/web3-utils";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { PixelatedText } from "../pixelated-text";
+import { Flags } from "../../flags";
 
 export interface HeadingProps {
   title: string;
@@ -70,9 +71,7 @@ export const Heading = ({ title }: HeadingProps) => {
         </div>
         <div className="heading__wallet-container">
           <ConnectedKey />
-          {["1", "true"].includes(
-            process.env.REACT_APP_SHOW_NETWORK_SWITCHER || ""
-          ) && (
+          {Flags.SHOW_NETWORK_SWITCHER && (
             <select
               value={appChainId}
               style={{ padding: 4 }}

@@ -3,6 +3,7 @@ import React from "react";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { addDecimal } from "../../lib/decimals";
+import { Flags } from "../../flags";
 import {
   Addresses,
   Decimals,
@@ -116,12 +117,11 @@ function appStateReducer(state: AppState, action: AppStateAction) {
 
 export function AppStateProvider({ children }: AppStateProviderProps) {
   const provider = React.useRef<any>();
-  const useMocks = ["1", "true"].includes(process.env.REACT_APP_MOCKED!);
   const [state, dispatch] = React.useReducer(appStateReducer, initialAppState);
 
   // Detect provider
   React.useEffect(() => {
-    if (useMocks) {
+    if (Flags.MOCK) {
       provider.current = {
         on() {},
       };
@@ -146,7 +146,7 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
         }
       });
     }
-  }, [useMocks]);
+  }, []);
 
   // Bind listeners for account change
   React.useEffect(() => {
