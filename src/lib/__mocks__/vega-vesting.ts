@@ -17,7 +17,17 @@ class MockedVesting implements IVegaVesting {
   getAllTranches(): Promise<Tranche[]> {
     // TODO populate with events
     // @ts-ignore
-    return Promise.resolve(trancheData);
+    return Promise.resolve(
+      trancheData.map((t) => ({
+        ...t,
+        tranche_id: Number(t.tranche_id),
+        trance_start: new Date(t.tranche_start),
+        trance_end: new Date(t.tranche_end),
+        total_added: new BigNumber(t.total_added),
+        total_removed: new BigNumber(t.total_removed),
+        locked_amount: new BigNumber(t.locked_amount),
+      }))
+    );
   }
 }
 
