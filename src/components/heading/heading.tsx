@@ -71,7 +71,7 @@ export const Heading = ({ title }: HeadingProps) => {
         </div>
         <div className="heading__wallet-container">
           <ConnectedKey />
-          {["1", "true"].includes(
+          {/* {["1", "true"].includes(
             process.env.REACT_APP_SHOW_NETWORK_SWITCHER || ""
           ) && (
             <select
@@ -99,7 +99,7 @@ export const Heading = ({ title }: HeadingProps) => {
                 </option>
               ))}
             </select>
-          )}
+          )} */}
         </div>
       </div>
       <div className="heading__title-container">

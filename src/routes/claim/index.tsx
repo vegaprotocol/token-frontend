@@ -61,11 +61,11 @@ const Claim = ({ name }: RouteChildProps) => {
     pageContent = <ClaimFlow state={state} dispatch={dispatch} />;
   }
   return (
-    <TrancheContainer>
-      <DefaultTemplate title={t("pageTitleClaim")}>
-        <Web3Container>{pageContent}</Web3Container>
-      </DefaultTemplate>
-    </TrancheContainer>
+    <DefaultTemplate title={t("pageTitleClaim")}>
+      <Web3Container>
+        <TrancheContainer>{pageContent}</TrancheContainer>
+      </Web3Container>
+    </DefaultTemplate>
   );
 };
 
