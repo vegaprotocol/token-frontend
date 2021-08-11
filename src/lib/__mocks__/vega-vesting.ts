@@ -1,3 +1,4 @@
+import BigNumber from "bignumber.js";
 import { Tranche } from "../vega-web3/vega-web3-types";
 import { IVegaVesting } from "../web3-utils";
 import trancheData from "./tranche-data.json";
@@ -10,7 +11,7 @@ class MockedVesting implements IVegaVesting {
     return await res.json();
   }
 
-  getUserBalanceAllTranches(account: string): Promise<string> {
+  getUserBalanceAllTranches(account: string): Promise<BigNumber> {
     return this.performFetch(`balance`);
   }
   getAllTranches(): Promise<Tranche[]> {

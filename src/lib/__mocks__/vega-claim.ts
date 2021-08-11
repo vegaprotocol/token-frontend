@@ -1,3 +1,4 @@
+import BigNumber from "bignumber.js";
 import { IVegaClaim, PromiEvent } from "../web3-utils";
 
 const BASE_URL = "mocks/claim";
@@ -18,6 +19,11 @@ class MockedVegaClaim implements IVegaClaim {
   commit(claimCode: string, account: string): PromiEvent {
     throw new Error("Method not implemented.");
   }
+
+  checkCommit(claimCode: string, account: string): Promise<any> {
+    throw new Error("Method not implemented.");
+  }
+
   claim({
     claimCode,
     denomination,
@@ -29,7 +35,7 @@ class MockedVegaClaim implements IVegaClaim {
     account,
   }: {
     claimCode: string;
-    denomination: import("bn.js");
+    denomination: BigNumber;
     trancheId: number;
     expiry: number;
     nonce: string;
@@ -37,6 +43,28 @@ class MockedVegaClaim implements IVegaClaim {
     targeted: boolean;
     account: string;
   }): PromiEvent {
+    throw new Error("Method not implemented.");
+  }
+
+  checkClaim({
+    claimCode,
+    denomination,
+    trancheId,
+    expiry,
+    nonce,
+    country,
+    targeted,
+    account,
+  }: {
+    claimCode: string;
+    denomination: BigNumber;
+    trancheId: number;
+    expiry: number;
+    nonce: string;
+    country: string;
+    targeted: boolean;
+    account: string;
+  }): Promise<any> {
     throw new Error("Method not implemented.");
   }
 
