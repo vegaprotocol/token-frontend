@@ -8,6 +8,7 @@
   "dependencies": {
     "@blueprintjs/core": "^3.47.0",
     "@blueprintjs/select": "^3.16.6",
+    "@craco/craco": "^6.2.0",
     "@metamask/detect-provider": "^1.2.0",
     "@sentry/react": "^6.10.0",
     "@sentry/tracing": "^6.10.0",
@@ -35,10 +36,10 @@
     "web3": "^1.4.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "start:mock": "REACT_APP_MOCKED=1 react-scripts -r @cypress/instrument-cra start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "start:mock": "REACT_APP_MOCKED=1 craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

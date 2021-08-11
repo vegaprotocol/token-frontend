@@ -12,8 +12,10 @@ class MockedVesting implements IVegaVesting {
   }
 
   getUserBalanceAllTranches(account: string): Promise<BigNumber> {
-    return this.performFetch(`balance`);
+    return Promise.resolve(new BigNumber(100000));
+    // return this.performFetch(`balance`);
   }
+
   getAllTranches(): Promise<Tranche[]> {
     // TODO populate with events
     // @ts-ignore
