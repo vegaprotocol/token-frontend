@@ -71,8 +71,7 @@ export const TargetedClaim = ({
     }
   }, [txState.txState, dispatch]);
   return (
-<<<<<<< HEAD
-    <div style={{ maxWidth: 480 }}>
+    <div style={{ maxWidth: 480 }} data-testid="targeted-claim">
       <BulletHeader tag="h2">
         {t("Step")} 1. {t("Select country")}
       </BulletHeader>
@@ -101,17 +100,5 @@ export const TargetedClaim = ({
         <p className="text-muted">{t("selectCountryPrompt")}</p>
       )}
     </div>
-=======
-    <section data-testid="targeted-claim">
-      <ClaimForm
-        completed={false}
-        txState={txState}
-        onSubmit={claimTargeted}
-        txDispatch={txDispatch}
-        isValid={isValid}
-        loading={loading}
-      />
-    </section>
->>>>>>> gets all existing tests working
   );
 };
