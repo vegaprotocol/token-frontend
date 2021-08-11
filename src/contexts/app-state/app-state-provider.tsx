@@ -1,4 +1,3 @@
-import detectEthereumProvider from "@metamask/detect-provider";
 import React from "react";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
@@ -16,6 +15,8 @@ import {
   AppStateAction,
   ProviderStatus,
 } from "./app-state-context";
+// @ts-ignore
+import detectEthereumProvider from "DETECT_PROVIDER_PATH/detect-provider";
 
 interface AppStateProviderProps {
   children: React.ReactNode;
@@ -121,31 +122,21 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
 
   // Detect provider
   React.useEffect(() => {
-    if (Flags.MOCK) {
-      provider.current = {
-        on() {},
-      };
-      dispatch({
-        type: "PROVIDER_DETECTED",
-        chainId: EthereumChainIds.Ropsten,
-      });
-    } else {
-      detectEthereumProvider().then((res) => {
-        if (res !== null) {
-          provider.current = res;
-          provider.current
-            .request({ method: "eth_chainId" })
-            .then((chainId: string) => {
-              dispatch({
-                type: "PROVIDER_DETECTED",
-                chainId: chainId as EthereumChainId,
-              });
+    detectEthereumProvider().then((res: any) => {
+      if (res !== null) {
+        provider.current = res;
+        provider.current
+          .request({ method: "eth_chainId" })
+          .then((chainId: string) => {
+            dispatch({
+              type: "PROVIDER_DETECTED",
+              chainId: chainId as EthereumChainId,
             });
-        } else {
-          dispatch({ type: "PROVIDER_NOT_DETECTED" });
-        }
-      });
-    }
+          });
+      } else {
+        dispatch({ type: "PROVIDER_NOT_DETECTED" });
+      }
+    });
   }, []);
 
   // Bind listeners for account change

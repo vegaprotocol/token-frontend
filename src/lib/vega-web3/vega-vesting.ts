@@ -1,5 +1,6 @@
 import BigNumber from "bignumber.js";
 import Web3 from "web3";
+import { AbiItem } from "web3-utils";
 import type { Contract } from "web3-eth-contract";
 import vestingAbi from "../abis/vesting_abi.json";
 import { IVegaVesting } from "../web3-utils";
@@ -15,8 +16,7 @@ export default class VegaVesting implements IVegaVesting {
     this.decimals = decimals;
     this.web3 = web3;
     this.contract = new this.web3.eth.Contract(
-      // @ts-ignore
-      vestingAbi,
+      vestingAbi as AbiItem[],
       vestingAddress
     );
   }
