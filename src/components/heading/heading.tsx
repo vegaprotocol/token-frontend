@@ -1,28 +1,65 @@
 import "./heading.scss";
 
-import React from "react";
 import vegaWhite from "../../images/vega_white.png";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useConnect } from "../../hooks/use-connect";
+import { useAppState } from "../../contexts/app-state/app-state-context";
+import { EthereumChainId, EthereumChainIds } from "../../lib/web3-utils";
+import { truncateMiddle } from "../../lib/truncate-middle";
+import { PixelatedText } from "../pixelated-text";
 
 export interface HeadingProps {
-  error: string | null;
-  connected: boolean;
-  loading: boolean;
-  pubkey: any;
-  connect: () => void;
-  balance: string;
+  title: string;
 }
 
-export const Heading = ({
-  error,
-  connected,
-  loading,
-  // pubkey,
-  connect,
-}: // balance,
-HeadingProps) => {
-  const isHome = true; //useRouteMatch({ path: "/", exact: true });
+const ConnectedKey = () => {
+  const { t } = useTranslation();
+  const connect = useConnect();
+  const { appState } = useAppState();
+  const { connecting, address, error, balance } = appState;
 
+  if (error) {
+    return <div className="heading__error">{t("Something went wrong")}</div>;
+  } else if (connecting) {
+    return (
+      <div className="heading__wallet">{t("Awaiting action in wallet...")}</div>
+    );
+  } else if (!address) {
+    return <button onClick={connect}>{t("Connect")}</button>;
+  } else {
+    return (
+      <div className="heading__wallet">
+        <div>
+          <span className="heading__wallet-label">{t("Account")}: </span>
+          <span className="heading__wallet-value">
+            <a
+              rel="noreferrer"
+              target="_blank"
+              href={"https://etherscan.io/address/" + address}
+            >
+              {truncateMiddle(address)}
+            </a>
+          </span>
+        </div>
+        <div>
+          <span className="heading__wallet-label">
+            {t("Vesting Balance")}:{" "}
+          </span>
+          <span className="heading__wallet-value">
+            {balance?.toString()} {t("VEGA")}
+          </span>
+        </div>
+      </div>
+    );
+  }
+};
+
+export const Heading = ({ title }: HeadingProps) => {
+  const {
+    appState: { appChainId },
+    appDispatch,
+  } = useAppState();
   return (
     <header className="heading">
       <div className="heading__nav">
@@ -32,42 +69,42 @@ HeadingProps) => {
           </Link>
         </div>
         <div className="heading__wallet-container">
-          {!error && !connected && !loading ? (
-            <div className="Button" onClick={connect}>
-              Connect
-            </div>
-          ) : null}
-          {error && !loading ? (
-            <div className="heading__error">{error}</div>
-          ) : null}
-          {/* {connected && !loading ? (
-            <div className="heading__wallet">
-              <span className="heading__wallet-label">Account: </span>
-              <span className="heading__wallet-value">
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  href={"https://etherscan.io/address/" + pubkey}
+          <ConnectedKey />
+          {["1", "true"].includes(
+            process.env.REACT_APP_SHOW_NETWORK_SWITCHER || ""
+          ) && (
+            <select
+              value={appChainId}
+              style={{ padding: 4 }}
+              onChange={(e) => {
+                appDispatch({
+                  type: "APP_CHAIN_CHANGED",
+                  newChainId: e.target.value as EthereumChainId,
+                });
+              }}
+            >
+              {Object.entries(EthereumChainIds).map(([name, val]) => (
+                <option
+                  key={val}
+                  value={val}
+                  disabled={
+                    ![
+                      EthereumChainIds.Ropsten,
+                      EthereumChainIds.Mainnet,
+                    ].includes(val)
+                  }
                 >
-                  {pubkey.slice(0, 6) +
-                    "[...]" +
-                    pubkey.slice(pubkey.length - 4, pubkey.length)}
-                </a>
-              </span>
-              <span className="heading__wallet-label">Vesting Balance: </span>
-              <span className="heading__wallet-value">{balance} VEGA</span>
-            </div>
-          ) : null} */}
+                  {name}
+                </option>
+              ))}
+            </select>
+          )}
         </div>
       </div>
       <div className="heading__title-container">
-        {isHome ? (
-          <div className="heading__title">
-            VEGA
-            <br />
-            VESTING
-          </div>
-        ) : null}
+        <h1 className="heading__title">
+          <PixelatedText text={title} />
+        </h1>
       </div>
     </header>
   );

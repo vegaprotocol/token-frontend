@@ -1,92 +1,48 @@
-import React from "react";
-import { Loading } from "../../components/loading";
-import { Link } from "react-router-dom";
-import { Tranche } from "../../lib/vega-web3-types";
-import { TrancheDates } from './tranche-dates';
+import "./tranches.scss";
+import { Link, useRouteMatch } from "react-router-dom";
+import { TrancheDates } from "./tranche-dates";
+import { useTranslation } from "react-i18next";
+import { TrancheProgress } from "./tranche-progress";
+import { BulletHeader } from "../../components/bullet-header";
+import { useTranches } from "../../hooks/use-tranches";
 
-export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
-  const getAbbreviatedNumber = (num: number) => {
-    if (num < 1000) {
-      return Number(num.toFixed()).toLocaleString();
-    } else if (num < 1000000) {
-      return Number((num / 1000).toFixed()).toLocaleString() + "K";
-    } else if (num < 1000000000) {
-      return Number((num / 1000000).toFixed()).toLocaleString() + "M";
-    }
-    return Number((num / 1000000000).toFixed()).toLocaleString() + "B";
-  };
-
-  if (tranches.length === 0) {
-    return <Loading />;
-  }
+export const Tranches = () => {
+  const { t } = useTranslation();
+  const match = useRouteMatch();
+  const tranches = useTranches();
 
   return (
-    <div className="App">
-      <div className="Inner">
-        <div style={{ paddingBottom: 60 + "px" }}>
-          <div className="TableHeading">
-            <span className="Square"></span>
-            <span className="SquareText">Tranches</span>
-          </div>
+    <>
+      <BulletHeader tag="h2">{t("Tranches")}</BulletHeader>
+      {tranches?.length ? (
+        <ul className="tranches__list">
           {tranches.map((tranche, i) => {
-            let locked_percentage = Math.round(
-              (tranche.locked_amount / tranche.total_added) * 100
-            );
-            let removed_percentage = Math.round(
-              (tranche.total_removed / tranche.total_added) * 100
-            );
-            if (tranche.total_added === 0) {
-              locked_percentage = 0;
-              removed_percentage = 0;
-            }
             return (
-              <div className="TableRow" key={i}>
-                <div className="Left">
+              <li className="tranches__list-item" key={i}>
+                <div className="tranches__item-title">
                   <Link
-                    to={`/tranches/${tranche.tranche_id}`}
-                    className="TrancheLink"
+                    to={`${match.path}/${tranche.tranche_id}`}
+                    className="tranches__link"
                   >
-                    <span className="TrancheTitle">Tranche</span>
-                    <span className="TrancheID">#{tranche.tranche_id}</span>
+                    <span>{t("Tranche")}</span>#{tranche.tranche_id}
                   </Link>
-                  <span className="TrancheDates">
-                    <TrancheDates start={tranche.tranche_start} end={tranche.tranche_end} />
-                  </span>
+                  <TrancheDates
+                    start={tranche.tranche_start}
+                    end={tranche.tranche_end}
+                  />
                 </div>
-                <div className="Right">
-                  <span className="ProgressTitle">Locked</span>
-                  <span className="ProgressBarHolder">
-                    <div className="ProgressBar">
-                      <div
-                        style={{ width: locked_percentage + "%" }}
-                        className="ProgressIndicatorPink"
-                      ></div>
-                    </div>
-                  </span>
-                  <span className="ProgressNumbers">
-                    ({getAbbreviatedNumber(tranche.locked_amount)} of{" "}
-                    {getAbbreviatedNumber(tranche.total_added)})
-                  </span>
-                  <span className="ProgressTitle">Redeemed</span>
-                  <span className="ProgressBarHolder">
-                    <div className="ProgressBar">
-                      <div
-                        style={{ width: removed_percentage + "%" }}
-                        className="ProgressIndicatorGreen"
-                      ></div>
-                    </div>
-                  </span>
-                  <span className="ProgressNumbers">
-                    ({getAbbreviatedNumber(tranche.total_removed)} of{" "}
-                    {getAbbreviatedNumber(tranche.total_added)})
-                  </span>
-                </div>
-                <div className="Clear"></div>
-              </div>
+                <TrancheProgress
+                  locked={tranche.locked_amount}
+                  totalRemoved={tranche.total_removed}
+                  totalAdded={tranche.total_added}
+                />
+              </li>
             );
           })}
-        </div>
-      </div>
-    </div>
+        </ul>
+      ) : (
+        <p>{t("No tranches")}</p>
+      )}
+    </>
   );
 };

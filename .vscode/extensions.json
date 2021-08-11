@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "graphql.vscode-graphql",
+    "esbenp.prettier-vscode",
+    "stylelint.vscode-stylelint",
+    "eamodio.gitlens"
+  ]
+}

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <p>This page is unavailable in your region</p>
+    <script>
+      var date = new Date();
+      date.setTime(date.getTime() + 30 * 24 * 60 * 60 * 1000);
+
+      var expires = "expires=" + date.toUTCString();
+      document.cookie = "restricted=true; " + expires + "; path=/";
+    </script>
+  </body>
+</html>

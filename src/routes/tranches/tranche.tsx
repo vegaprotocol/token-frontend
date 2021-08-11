@@ -1,158 +1,95 @@
+import "./tranche.scss";
 import React from "react";
 import { useParams } from "react-router";
-import { Loading } from "../../components/loading";
-import type { Tranche as TrancheType } from "../../lib/vega-web3-types";
-import { Link } from "react-router-dom";
-import { TrancheDates } from './tranche-dates'
+import { Redirect } from "react-router-dom";
+import { TrancheDates } from "./tranche-dates";
+import { useTranslation } from "react-i18next";
+import { BulletHeader } from "../../components/bullet-header";
+import { ProgressBar } from "./progress-bar";
+import { Colors } from "../../colors";
+import { BigNumber } from "../../lib/bignumber";
+import { getAbbreviatedNumber } from "../../lib/abbreviate-number";
+import { useTranche } from "../../hooks/use-tranches";
+import { Routes } from "../router-config";
 
-export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
-  const { trancheId } = useParams() as any;
-  const getTranche = () => {
-    const matches = tranches.filter(
-      (tranche) => parseInt(tranche.tranche_id) === parseInt(trancheId)
-    );
-    if (matches.length === 0) return null;
-    return matches[0];
-  };
- const getAbbreviatedNumber = (num: number) => {
-    return Number(num.toFixed()).toLocaleString();
-  };
-  //   const withdraw = async () => {
-  //     console.log("noop");
-  //   };
-  const currentTranche = getTranche();
-  if (tranches.length === 0) {
-    return <Loading />;
-  } else if (!currentTranche) {
-    return <div className="Inner">Invalid tranche!</div>;
-  } else if (tranches.length > 0) {
-    let locked_percentage = Math.round(
-      (currentTranche.locked_amount / currentTranche.total_added) * 100
-    );
-    let removed_percentage = Math.round(
-      (currentTranche.total_removed / currentTranche.total_added) * 100
-    );
-    if (currentTranche.total_added === 0) {
-      locked_percentage = 0;
-      removed_percentage = 0;
-    }
-    return (
-      <div className="Inner">
-        <div className="TrancheDetails">
-          <div>
-            <div className="Left">
-              <Link to="/tranches" className="GoBack">
-                &lt; Back
-              </Link>
-              <div className="TrancheTitle">Tranche #{trancheId}</div>
-              <div className="TrancheDates">
-                <TrancheDates start={currentTranche.tranche_start} end={currentTranche.tranche_end} />
-              </div>
-            </div>
-            {/* <div className="Right">
-              {props.connected && !processing && !withdrawSuccessful ? (
-                <div className="WhiteButton" onClick={() => withdraw()}>
-                  Withdraw
-                </div>
-              ) : null}
-              {processing ? (
-                <ClipLoader color="#FFFFFF" loading={processing} size={25} />
-              ) : null}
-              {withdrawSuccessful ? (
-                <div className="WithdrawSuccess">
-                  VEGA was successfully withdrawn to your wallet
-                </div>
-              ) : null}
-              {withdrawError ? (
-                <div className="WithdrawError">{withdrawError}</div>
-              ) : null}
-            </div> */}
-            <div className="Clear"></div>
-          </div>
-          <div className="ProgressBarsHolder">
-            <div className="Left">
-              <span className="Square"></span>
-              <span className="SquareText">Locked</span>
-              <div className="ProgressRow">
-                <span className="ProgressBarHolder">
-                  <div className="ProgressBar">
-                    <div
-                      style={{ width: locked_percentage + "%" }}
-                      className="ProgressIndicatorPink"
-                    ></div>
-                  </div>
-                </span>
-              </div>
-              <span className="ProgressAmount">
-                {getAbbreviatedNumber(currentTranche.locked_amount)}
-              </span>
-              <span className="ProgressAmountSmall">
-                {" "}
-                of ({getAbbreviatedNumber(currentTranche.total_added)})
-              </span>
-            </div>
-            <div className="Right">
-              <span className="Square"></span>
-              <span className="SquareText">Redeemed</span>
-              <div className="ProgressRow">
-                <span className="ProgressBarHolder">
-                  <div className="ProgressBar">
-                    <div
-                      style={{ width: removed_percentage + "%" }}
-                      className="ProgressIndicatorGreen"
-                    ></div>
-                  </div>
-                </span>
-              </div>
-              <span className="ProgressAmount">
-                {getAbbreviatedNumber(currentTranche.total_removed)}
-              </span>
-              <span className="ProgressAmountSmall">
-                {" "}
-                of ({getAbbreviatedNumber(currentTranche.total_added)})
-              </span>
-            </div>
-            <div className="Clear"></div>
-          </div>
-          <div className="TrancheUsers">
-            <div className="TrancheUsersHeader">Users</div>
-            {currentTranche.users.map((user, i) => {
-              return (
-                <div className="TrancheUserRow" key={i}>
-                  <div className="Left UserAddress">
-                    <a
-                      rel="noreferrer"
-                      target="_blank"
-                      href={"https://etherscan.io/address/" + user.address}
-                    >
-                      {user.address}
-                    </a>
-                  </div>
-                  <div className="Right">
-                    {user.total_tokens.toLocaleString()} VEGA{" "}
-                    <span className="UserRedeemed">
-                      {getAbbreviatedNumber(user.withdrawn_tokens)} redeemed
-                    </span>
-                  </div>
-                  <div className="Clear"></div>
-                </div>
-              );
-            })}
-          </div>
+export const Tranche = () => {
+  const { t } = useTranslation();
+  const { trancheId } = useParams<{ trancheId: string }>();
+  const tranche = useTranche(parseInt(trancheId));
+
+  if (!tranche) {
+    return <Redirect to={Routes.NOT_FOUND} />;
+  }
+
+  let locked_percentage = tranche.locked_amount
+    .div(tranche.total_added)
+    .times(100);
+  let removed_percentage = tranche.total_removed
+    .div(tranche.total_added)
+    .times(100);
+  if (tranche.total_added.toNumber() === 0) {
+    locked_percentage = new BigNumber(0);
+    removed_percentage = new BigNumber(0);
+  }
+
+  return (
+    <>
+      <BulletHeader tag="h2">
+        {t("Tranche")} #{trancheId}
+      </BulletHeader>
+      <div style={{ marginTop: 20 }}>
+        <TrancheDates start={tranche.tranche_start} end={tranche.tranche_end} />
+      </div>
+      <div>
+        <h3 className="tranche__progress-title">{t("Locked")}</h3>
+        <div className="tranche__progress-info">
+          <ProgressBar
+            percentage={locked_percentage.toNumber()}
+            width={300}
+            color={Colors.PINK}
+          />
+          <span>
+            {getAbbreviatedNumber(tranche.locked_amount)} of (
+            {getAbbreviatedNumber(tranche.total_added)})
+          </span>
         </div>
       </div>
-    );
-  } else {
-    return (
-      <div
-        style={{
-          margin: "0 auto",
-          marginTop: 160 + "px",
-          textAlign: "center",
-        }}
-      >
-        <Loading />
+      <div>
+        <h3 className="tranche__progress-title">{t("Redeemed")}</h3>
+        <div className="tranche__progress-info">
+          <ProgressBar
+            percentage={removed_percentage.toNumber()}
+            width={300}
+            color={Colors.PINK}
+          />
+          <span>
+            {getAbbreviatedNumber(tranche.total_removed)} of (
+            {getAbbreviatedNumber(tranche.total_added)})
+          </span>
+        </div>
       </div>
-    );
-  }
+      <BulletHeader tag="h2">{t("Users")}</BulletHeader>
+      <ul className="tranche__user-list">
+        {tranche.users.map((user, i) => {
+          return (
+            <li className="tranche__user-item" key={i}>
+              <a
+                rel="noreferrer"
+                target="_blank"
+                href={"https://etherscan.io/address/" + user.address}
+              >
+                {user.address}
+              </a>
+              <div className="tranche__user-info">
+                <span>{user.total_tokens.toString()} VEGA</span>
+                <span>
+                  {user.withdrawn_tokens.toString()} {t("Redeemed")}
+                </span>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </>
+  );
 };

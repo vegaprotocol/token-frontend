@@ -1,0 +1,51 @@
+@import "../../styles/colors";
+
+.tranche {
+  &__progress-title {
+    color: $gray3;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 10px 0 3px 0;
+  }
+
+  &__progress-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: $gray3;
+    font-size: 12px;
+  }
+
+  &__user-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  &__user-item {
+    padding: 20px 0;
+    border-bottom: 1px solid $white;
+
+    @media (min-width: 960px) {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
+  }
+
+  &__user-info {
+    margin-top: 7px;
+
+    @media (min-width: 960px) {
+      margin-top: 0;
+    }
+
+    > span {
+      margin-right: 15px;
+
+      @media (min-width: 960px) {
+        margin-left: 15px;
+      }
+    }
+  }
+}

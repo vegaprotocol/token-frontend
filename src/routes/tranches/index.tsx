@@ -1,32 +1,33 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { Tranche } from "./tranche";
 import { Tranches } from "./tranches";
-import VegaWeb3 from "../../lib/vega-web3";
-import type { Tranche as TrancheType } from "../../lib/vega-web3-types";
-import { EthereumChainIds } from "../../lib/vega-web3-utils";
+import { DefaultTemplate } from "../../components/page-templates/default";
+import { useTranslation } from "react-i18next";
+import { Web3Container } from "../../components/web3-container";
+import { TrancheContainer } from "../../components/tranche-container";
+import { useDocumentTitle } from "../../hooks/use-document-title";
+import { RouteChildProps } from "..";
 
-const TrancheRouter = () => {
-  const [tranches, setTranches] = React.useState<TrancheType[]>([]);
+const TrancheRouter = ({ name }: RouteChildProps) => {
+  useDocumentTitle(name);
+  const { t } = useTranslation();
+  const match = useRouteMatch();
 
-  React.useEffect(() => {
-    async function getTranches() {
-      const vega = new VegaWeb3(EthereumChainIds.Mainnet);
-      const res = await vega.getAllTranches();
-      setTranches(res);
-    }
-
-    getTranches();
-  }, []);
   return (
-    <Switch>
-      <Route path="/tranches" exact>
-        <Tranches tranches={tranches} />
-      </Route>
-      <Route path="/tranches/:trancheId">
-        <Tranche tranches={tranches} />
-      </Route>
-    </Switch>
+    <DefaultTemplate title={t("pageTitleTranches")}>
+      <Web3Container>
+        <TrancheContainer>
+          <Switch>
+            <Route path={match.path} exact>
+              <Tranches />
+            </Route>
+            <Route path={`${match.path}/:trancheId`}>
+              <Tranche />
+            </Route>
+          </Switch>
+        </TrancheContainer>
+      </Web3Container>
+    </DefaultTemplate>
   );
 };
 
