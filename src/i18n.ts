@@ -45,7 +45,7 @@ const en = {
     "Connect to an Ethereum wallet": "Connect to an Ethereum wallet",
 
     projectDescription:
-      "This web page reads directly from the vesting smart contract implemented by the Vega project team. The vesting smart is responsible for holding tokens whilst they are locked, and managing the distribution of tokens to their owners according to pre-defined vesting terms.",
+      "This web page reads directly from the vesting smart contract implemented by the Vega project team. The vesting smart contract is responsible for holding tokens whilst they are locked, and managing the distribution of tokens to their owners according to pre-defined vesting terms.",
     "The contract is deployed at the following address":
       "The contract is deployed at the following address:",
 
