@@ -27,7 +27,7 @@ interface ClaimFlowProps {
 export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
   const { t } = useTranslation();
   const {
-    appState: { address, balance },
+    appState: { address, balanceFormatted },
   } = useAppState();
 
   const currentTranche = useTranche(state.trancheId);
@@ -86,7 +86,7 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
     return (
       <Complete
         address={address!}
-        balance={balance!}
+        balanceFormatted={balanceFormatted}
         trancheId={currentTranche.tranche_id}
         commitTxHash={state.commitTxHash}
         claimTxHash={state.claimTxHash}
@@ -120,7 +120,7 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
                     ? truncateMiddle(state.target)
                     : "the holder",
                   code: shortCode,
-                  amount: state.denomination,
+                  amount: state.denominationFormatted,
                   linkText: `${t("Tranche")} ${currentTranche.tranche_id}`,
                   expiry: state.expiry
                     ? t("claimExpiry", {
@@ -147,7 +147,7 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
                 </tr>
                 <tr>
                   <th>{t("Amount of VEGA")}</th>
-                  <td>{state.denomination?.toString()}</td>
+                  <td>{state.denominationFormatted}</td>
                 </tr>
                 <tr>
                   <th>{t("Claim expires")}</th>
@@ -188,6 +188,7 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
           <UntargetedClaim
             claimCode={state.code!}
             denomination={state.denomination!}
+            denominationFormatted={state.denominationFormatted}
             expiry={state.expiry!}
             nonce={state.nonce!}
             trancheId={state.trancheId!}

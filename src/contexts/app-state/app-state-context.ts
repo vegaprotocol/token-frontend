@@ -16,6 +16,7 @@ export interface AppState {
   connecting: boolean;
   chainId: EthereumChainId | null;
   balance: null | BigNumber;
+  balanceFormatted: string;
   tranches: Tranche[] | null;
   appChainId: EthereumChainId;
   contractAddresses: {

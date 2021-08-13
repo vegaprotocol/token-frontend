@@ -17,7 +17,7 @@ const ConnectedKey = () => {
   const { t } = useTranslation();
   const connect = useConnect();
   const { appState } = useAppState();
-  const { connecting, address, error, balance } = appState;
+  const { connecting, address, error, balanceFormatted } = appState;
 
   if (error) {
     return <div className="heading__error">{t("Something went wrong")}</div>;
@@ -47,7 +47,7 @@ const ConnectedKey = () => {
             {t("Vesting Balance")}:{" "}
           </span>
           <span className="heading__wallet-value">
-            {balance?.toString()} {t("VEGA")}
+            {balanceFormatted} {t("VEGA")}
           </span>
         </div>
       </div>

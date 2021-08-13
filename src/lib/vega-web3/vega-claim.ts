@@ -83,12 +83,11 @@ export default class VegaClaim {
     targeted: boolean;
     account: string;
   }): PromiEvent {
-    const weiDenomonation = Web3.utils.toWei(denomination.toString());
     return this.contract.methods[
       targeted ? "redeem_targeted" : "redeem_untargeted_code"
     ](
       claimCode,
-      weiDenomonation,
+      denomination.toString(),
       trancheId,
       expiry,
       nonce,
@@ -115,12 +114,11 @@ export default class VegaClaim {
     targeted: boolean;
     account: string;
   }): Promise<any> {
-    const weiDenomonation = Web3.utils.toWei(denomination.toString());
     return this.contract.methods[
       targeted ? "redeem_targeted" : "redeem_untargeted_code"
     ](
       claimCode,
-      weiDenomonation,
+      denomination.toString(),
       trancheId,
       expiry,
       nonce,

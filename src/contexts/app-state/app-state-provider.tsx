@@ -2,6 +2,7 @@ import detectEthereumProvider from "@metamask/detect-provider";
 import React from "react";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
+import { addDecimal } from "../../lib/decimals";
 import {
   Addresses,
   EthereumChainId,
@@ -26,6 +27,7 @@ const initialAppState: AppState = {
   appChainId: process.env.REACT_APP_CHAIN as EthereumChainId,
   error: null,
   balance: null,
+  balanceFormatted: "",
   tranches: null,
   contractAddresses: Addresses[process.env.REACT_APP_CHAIN as EthereumChainId],
 };
@@ -61,6 +63,7 @@ function appStateReducer(state: AppState, action: AppStateAction) {
         address: action.address,
         chainId: action.chainId,
         balance: action.balance,
+        balanceFormatted: action.balance ? addDecimal(action.balance) : "",
         connecting: false,
       };
     case "CONNECT_FAIL":
@@ -98,6 +101,7 @@ function appStateReducer(state: AppState, action: AppStateAction) {
       return {
         ...state,
         balance: action.balance,
+        balanceFormatted: action.balance ? addDecimal(action.balance) : "",
       };
     }
     default:
