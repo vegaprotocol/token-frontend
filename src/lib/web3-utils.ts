@@ -30,9 +30,9 @@ export const Addresses = {
     lockedAddress: "0x78344c7305d73a7a0ac3c94cd9960f4449a1814e",
   },
   [EthereumChainIds.Ropsten]: {
-    vestingAddress: "0x08C06ECDCf9b8f45e3cF1ec29B82eFd0171341D9",
+    vestingAddress: "0xfc9Ad8fE9E0b168999Ee7547797BC39D55d607AA",
     vegaTokenAddress: "0x16480156222D4525f02F0F2BdF8A45A23bd26431",
-    claimAddress: "0xfecF0c3cf90d8d06013F2950c07C3484FA894B4E",
+    claimAddress: "0x695eD7f6AcA81201d1D92107f120579CaAe2E5F2",
     lockedAddress: "0x1b7192491bf89d616676032656b2c7a55fd08e4c",
   },
 };
