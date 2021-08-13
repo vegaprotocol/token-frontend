@@ -31,8 +31,9 @@ export const Addresses = {
   },
   [EthereumChainIds.Ropsten]: {
     vestingAddress: "0xfc9Ad8fE9E0b168999Ee7547797BC39D55d607AA",
-    vegaTokenAddress: "0x16480156222D4525f02F0F2BdF8A45A23bd26431",
+    vegaTokenAddress: "0xFa521aDcc11925266A518CdE33386FcD9cF2A4A6",
     claimAddress: "0x695eD7f6AcA81201d1D92107f120579CaAe2E5F2",
+    // TODO: This will need updating once Emil has redployed the proxy
     lockedAddress: "0x1b7192491bf89d616676032656b2c7a55fd08e4c",
   },
 };
