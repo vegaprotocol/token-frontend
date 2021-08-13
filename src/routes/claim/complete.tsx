@@ -1,4 +1,3 @@
-import BigNumber from "bignumber.js";
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Callout } from "../../components/callout";
