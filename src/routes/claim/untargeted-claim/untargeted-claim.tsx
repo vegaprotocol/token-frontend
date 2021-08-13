@@ -15,6 +15,7 @@ import { ClaimStep2 } from "../claim-step-2";
 interface UntargetedClaimProps {
   claimCode: string;
   denomination: BigNumber;
+  denominationFormatted: string;
   trancheId: number;
   expiry: number;
   nonce: string;
@@ -28,6 +29,7 @@ interface UntargetedClaimProps {
 export const UntargetedClaim = ({
   claimCode,
   denomination,
+  denominationFormatted,
   trancheId,
   expiry,
   nonce,
@@ -130,9 +132,8 @@ export const UntargetedClaim = ({
         <ClaimStep2
           txState={revealState}
           txDispatch={revealDispatch}
-          amount={denomination}
+          amount={denominationFormatted}
           onSubmit={commitReveal}
-          step1Completed={committed || commitState.txState === TxState.Complete}
         />
       ) : (
         <p className="text-muted">{t("claimNotReady")}</p>

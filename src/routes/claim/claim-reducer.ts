@@ -1,5 +1,5 @@
-import Web3 from "web3";
 import { BigNumber } from "../../lib/bignumber";
+import { addDecimal } from "../../lib/decimals";
 
 export enum ClaimStatus {
   Ready,
@@ -12,6 +12,7 @@ export enum ClaimStatus {
 export interface ClaimState {
   // From URL
   denomination: BigNumber | null; // amount
+  denominationFormatted: string; // amount formatted with decimal places
   target: string | null; // ETH address
   trancheId: number | null;
   expiry: number | null; // timestamp in seconds
@@ -27,6 +28,7 @@ export interface ClaimState {
 
 export const initialClaimState: ClaimState = {
   denomination: null,
+  denominationFormatted: "",
   target: null,
   trancheId: null,
   expiry: null,
@@ -100,11 +102,11 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
           error: new Error("Invalid code"),
         };
       } else {
+        const denomination = new BigNumber(action.data.denomination);
         return {
           ...state,
-          denomination: new BigNumber(
-            Web3.utils.fromWei(action.data.denomination)
-          ),
+          denomination,
+          denominationFormatted: addDecimal(denomination),
           target: action.data.target ?? null,
           trancheId: Number(action.data.trancheId),
           expiry: Number(action.data.expiry),
