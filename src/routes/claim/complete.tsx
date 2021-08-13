@@ -8,13 +8,13 @@ import { useAppState } from "../../contexts/app-state/app-state-context";
 
 export const Complete = ({
   address,
-  balance,
+  balanceFormatted,
   trancheId,
   commitTxHash,
   claimTxHash,
 }: {
   address: string;
-  balance: BigNumber;
+  balanceFormatted: string;
   trancheId: number;
   commitTxHash: string | null;
   claimTxHash: string | null;
@@ -31,7 +31,7 @@ export const Complete = ({
             i18nKey="claimCompleteMessage"
             values={{
               address,
-              balance: balance.toString(),
+              balance: balanceFormatted,
               trancheLinkText: `tranche ${trancheId}`,
             }}
             components={{

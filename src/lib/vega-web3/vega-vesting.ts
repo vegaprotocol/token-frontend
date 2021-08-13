@@ -22,7 +22,7 @@ export default class VegaVesting {
     const amount = await this.contract.methods
       .user_total_all_tranches(account)
       .call();
-    return new BigNumber(this.web3.utils.fromWei(amount));
+    return new BigNumber(amount);
   }
 
   async getAllTranches(): Promise<Tranche[]> {
@@ -36,9 +36,7 @@ export default class VegaVesting {
   private createUserTransactions(events: EventData[]) {
     return events.map((event) => {
       return {
-        amount: new BigNumber(
-          this.web3.utils.fromWei(event.returnValues.amount)
-        ),
+        amount: new BigNumber(event.returnValues.amount),
         user: event.returnValues.user,
         tranche_id: parseInt(event.returnValues.tranche_id),
         tx: event.transactionHash,
@@ -82,9 +80,7 @@ export default class VegaVesting {
   }
 
   private sumFromEvents(events: EventData[]) {
-    const amounts = events.map(
-      (e) => new BigNumber(this.web3.utils.fromWei(e.returnValues.amount))
-    );
+    const amounts = events.map((e) => new BigNumber(e.returnValues.amount));
     // Start with a 0 so if there are none there is no NaN
     return BigNumber.sum.apply(null, [new BigNumber(0), ...amounts]);
   }
@@ -110,9 +106,7 @@ export default class VegaVesting {
   private createTransactions(events: EventData[]) {
     return events.map((event) => {
       return {
-        amount: new BigNumber(
-          this.web3.utils.fromWei(event.returnValues.amount)
-        ),
+        amount: new BigNumber(event.returnValues.amount),
         user: event.returnValues.user,
         tx: event.transactionHash,
       };

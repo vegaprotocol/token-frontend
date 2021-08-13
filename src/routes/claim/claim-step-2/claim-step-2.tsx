@@ -6,17 +6,14 @@ import {
   TxState,
 } from "../../../hooks/transaction-reducer";
 import { TransactionCallout } from "../../../components/transaction-callout";
-import { BigNumber } from "../../../lib/bignumber";
 
 export const ClaimStep2 = ({
-  step1Completed,
   amount,
   txState,
   txDispatch,
   onSubmit,
 }: {
-  step1Completed: boolean;
-  amount: BigNumber;
+  amount: string;
   txState: TransactionState;
   txDispatch: React.Dispatch<TransactionAction>;
   onSubmit: () => void;

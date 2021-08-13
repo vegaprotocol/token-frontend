@@ -37,3 +37,8 @@ export const Addresses = {
     lockedAddress: "0x1b7192491bf89d616676032656b2c7a55fd08e4c",
   },
 };
+
+export const Decimals = {
+  [EthereumChainIds.Mainnet]: 18,
+  [EthereumChainIds.Ropsten]: 5,
+};
