@@ -52,6 +52,7 @@ export const CountrySelector = ({
       popoverProps={{ minimal: true }}
       noResults={<MenuItem disabled={true} text="No results." />}
       itemPredicate={filterCountry}
+      fill={true}
     />
   );
 };
