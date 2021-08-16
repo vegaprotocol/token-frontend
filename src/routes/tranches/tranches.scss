@@ -19,8 +19,14 @@
     }
   }
 
+  &__button-link {
+    color: $vega-yellow3;
+    background-color: transparent !important;
+  }
+
   &__item-title {
     margin-bottom: 10px;
+    display: flex;
 
     @media (min-width: 960px) {
       margin-bottom: 0;
