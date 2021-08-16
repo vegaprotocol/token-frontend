@@ -1,5 +1,4 @@
 const COUNTRIES = [
-  { name: "Select your country", code: "" },
   {
     name: "Afghanistan",
     code: "AF",
