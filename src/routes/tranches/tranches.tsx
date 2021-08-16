@@ -38,9 +38,9 @@ export const Tranches = () => {
                     </Link>
                     {isTestingTranche(tranche) ? (
                       <Callout>
-                        This tranche was used to perform integration testing
-                        only prior to token launch and no tokens will enter the
-                        supply before 3rd Sep 2021.
+                        {t(
+                          "This tranche was used to perform integration testing only prior to token launch and no tokens will enter the supply before 3rd Sep 2021."
+                        )}
                       </Callout>
                     ) : (
                       <TrancheDates
@@ -68,8 +68,14 @@ export const Tranches = () => {
           onClick={() => setShowAll(!showAll)}
         >
           {showAll
-            ? `Showing tranches with <${trancheMinimum} VEGA, click to hide these tranches`
-            : `Not showing tranches with <${trancheMinimum} VEGA, click to show all tranches`}
+            ? t(
+                "Showing tranches with <{{trancheMinimum}} VEGA, click to hide these tranches",
+                { trancheMinimum }
+              )
+            : t(
+                "Not showing tranches with <{{trancheMinimum}} VEGA, click to show all tranches",
+                { trancheMinimum }
+              )}
         </button>
       </section>
     </>
