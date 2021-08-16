@@ -37,8 +37,8 @@ You can find a list of config files here , or you can create a new one . Always 
 
 ## Folder structure 
 Feature File : Cypress > Integration > .feature at the root of integration folder
-Steps : Cypress > Integration > [Folder ] > x.step.js
-Page Objects : cypress > pages
+Steps : Cypress > Support > step_definitions
+Page Objects : cypress > support > pages
 
 NOTE: The way that the cucumber-preprocessor package resolves the path between feature and step is that you must create a folder that shares the same name as the feature , within that folder you put in your steps 
 
@@ -47,7 +47,7 @@ example :
 
 
 ### Page-Objects 
-Page objects are located in the cypress > pages > x.page.js
+Page objects are located in the cypress > support > pages > x.page.js
 
 examples
 ```
