@@ -14,6 +14,7 @@ import { ClaimConnect } from "./claim-connect";
 import { TrancheContainer } from "../../components/tranche-container";
 import { RouteChildProps } from "..";
 import { useDocumentTitle } from "../../hooks/use-document-title";
+import { Decimals } from "../../lib/web3-utils";
 
 const Claim = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
@@ -26,6 +27,7 @@ const Claim = ({ name }: RouteChildProps) => {
   React.useEffect(() => {
     dispatch({
       type: "SET_DATA_FROM_URL",
+      decimals: Decimals[appState.chainId!],
       data: {
         nonce: params.n,
         trancheId: params.t,
@@ -35,7 +37,7 @@ const Claim = ({ name }: RouteChildProps) => {
         code: params.r,
       },
     });
-  }, [dispatch, params]);
+  }, [appState.chainId, dispatch, params]);
 
   // If the claim has been committed refetch the new VEGA balance
   React.useEffect(() => {

@@ -45,6 +45,7 @@ export const initialClaimState: ClaimState = {
 export type ClaimAction =
   | {
       type: "SET_DATA_FROM_URL";
+      decimals: number;
       data: {
         denomination: string;
         target?: string;
@@ -106,7 +107,7 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
         return {
           ...state,
           denomination,
-          denominationFormatted: addDecimal(denomination),
+          denominationFormatted: addDecimal(denomination, action.decimals),
           target: action.data.target ?? null,
           trancheId: Number(action.data.trancheId),
           expiry: Number(action.data.expiry),
