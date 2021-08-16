@@ -3,8 +3,7 @@ const webpack = require("webpack");
 module.exports = function () {
   const isMock = ["1", "true"].includes(process.env.REACT_APP_MOCKED);
   const detectProviderPath = isMock ? "../../__mocks__/@metamask" : "@metamask";
-  const vegaVesting = isMock ? "vega-web3/__mocks__" : "vega-vesting";
-  const vegaClaim = isMock ? "vega-web3/__mocks__" : "vega-claim";
+  const vegaWeb3Path = isMock ? "vega-web3/__mocks__" : "vega-web3";
 
   return {
     webpack: {
@@ -19,20 +18,11 @@ module.exports = function () {
           }
         ),
         new webpack.NormalModuleReplacementPlugin(
-          /(.*)VEGA_VESTING(\.*)/,
+          /(.*)VEGA_WEB3(\.*)/,
           function (resource) {
             resource.request = resource.request.replace(
-              /VEGA_VESTING/,
-              `${vegaVesting}`
-            );
-          }
-        ),
-        new webpack.NormalModuleReplacementPlugin(
-          /(.*)VEGA_CLAIM(\.*)/,
-          function (resource) {
-            resource.request = resource.request.replace(
-              /VEGA_CLAIM/,
-              `${vegaClaim}`
+              /VEGA_WEB3/,
+              `${vegaWeb3Path}`
             );
           }
         ),
