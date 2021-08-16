@@ -109,6 +109,8 @@ const en = {
   connectedAddress: "Connected to Ethereum key {{address}}.",
   addressMismatch:
     "<red>Error:</red> The address you are connected to is <bold>not</bold> the address the claim is valid for. To claim these tokens please connect with <bold>{{target}}</bold>.",
+  "Use the Ethereum wallet you want to send your tokens to. You'll also need enough Ethereum to pay gas.":
+    "Use the Ethereum wallet you want to send your tokens to. You'll also need enough Ethereum to pay gas.",
 };
 
 export default en;

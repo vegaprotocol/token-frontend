@@ -18,14 +18,6 @@ const mock = (cy) => {
 };
 
 describe("Claim", () => {
-  it("Renders error heading and error subheading", () => {
-    cy.visit("/claim");
-    cy.contains("Something doesn't look right");
-    cy.contains(
-      "If you have been given a link please double check and try again"
-    );
-  });
-
   it("Renders connect button if code looks reasonable", () => {
     const link = generateCodeLink({
       code: "code",
@@ -36,10 +28,19 @@ describe("Claim", () => {
       expiry: 0,
     });
     cy.visit(link);
+    cy.contains("Connect to an Ethereum wallet");
     cy.contains(
       "You will need to connect to an ethereum wallet to pay the gas and claim tokens"
     );
-    cy.contains("Connect to an Ethereum wallet");
+  });
+
+  it("Renders error heading and error subheading if code is not enough", () => {
+    cy.visit("/claim");
+    cy.contains("Connect to an Ethereum wallet").click();
+    cy.contains("Something doesn't look right");
+    cy.contains(
+      "If you have been given a link please double check and try again"
+    );
   });
 });
 
