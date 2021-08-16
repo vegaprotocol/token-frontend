@@ -106,7 +106,7 @@ const en = {
       "Tokens in this tranche began to unlock on {{unlockDate}} and will continue to unlock gradually until {{trancheEndDate}} when all tokens are unlocked. A redeem function will exist at token.vega.xyz in the near future",
     "fully redeemable":
       "Tokens in this tranche have fully unlocked and can be redeemed once claimed. A redeem function will exist at token.vega.xyz in the near future",
-    "Tokens in this tranche are fully unlocked":
+    "Tokens in this tranche are fully unlocked.":
       "Tokens in this tranche have fully unlocked and can be redeemed once claimed.",
     "This page can not be found, please check the URL and try again.":
       "This page can not be found, please check the URL and try again.",

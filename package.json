@@ -6,6 +6,8 @@
     "node": ">=14.15.0"
   },
   "dependencies": {
+    "@blueprintjs/core": "^3.47.0",
+    "@blueprintjs/select": "^3.16.6",
     "@metamask/detect-provider": "^1.2.0",
     "@sentry/react": "^6.10.0",
     "@sentry/tracing": "^6.10.0",

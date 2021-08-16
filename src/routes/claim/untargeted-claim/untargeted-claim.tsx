@@ -106,6 +106,7 @@ export const UntargetedClaim = ({
         labelFor="country-selector"
       >
         <CountrySelector
+          code={state.countryCode}
           onSelectCountry={(countryCode) =>
             dispatch({ type: "SET_COUNTRY", countryCode })
           }
