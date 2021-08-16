@@ -2,7 +2,7 @@ import React from "react";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { addDecimal } from "../../lib/decimals";
-import { Flags } from "../../flags";
+import { Addresses, EthereumChainId } from "../../lib/web3-utils";
 import {
   Addresses,
   Decimals,

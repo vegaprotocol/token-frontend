@@ -1,5 +1,5 @@
 import BigNumber from "bignumber.js";
-import { IVegaClaim, PromiEvent } from "../web3-utils";
+import { IVegaClaim, PromiEvent } from "../../web3-utils";
 
 const BASE_URL = "mocks/claim";
 class MockedVegaClaim implements IVegaClaim {

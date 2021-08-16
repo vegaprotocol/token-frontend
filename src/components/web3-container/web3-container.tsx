@@ -10,6 +10,7 @@ import { Error } from "../icons";
 
 export const Web3Container = ({ children }: { children?: React.ReactNode }) => {
   const { t } = useTranslation();
+
   const { appState } = useAppState();
 
   if (appState.providerStatus === ProviderStatus.None) {

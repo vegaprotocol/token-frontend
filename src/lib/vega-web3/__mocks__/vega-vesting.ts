@@ -1,7 +1,7 @@
 import BigNumber from "bignumber.js";
-import { Tranche } from "../vega-web3/vega-web3-types";
-import { IVegaVesting } from "../web3-utils";
-import trancheData from "./tranche-data.json";
+import { Tranche } from "../vega-web3-types";
+import { IVegaVesting } from "../../web3-utils";
+import trancheData from "../../__mocks__/tranche-data.json";
 
 const BASE_URL = "mocks/vesting";
 
@@ -12,6 +12,7 @@ class MockedVesting implements IVegaVesting {
   }
 
   getUserBalanceAllTranches(account: string): Promise<BigNumber> {
+    console.log("here");
     return Promise.resolve(new BigNumber(100000));
     // return this.performFetch(`balance`);
   }
