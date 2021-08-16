@@ -22,7 +22,6 @@ export const TrancheProgress = ({
   const removedPercentage = totalAdded.isZero()
     ? 0
     : Math.round(totalRemoved.div(totalAdded).times(100).toNumber());
-
   return (
     <div className="tranches__progress">
       <div className="tranches__progress-item">
