@@ -9,8 +9,10 @@ import { addDecimal } from "../decimals";
 export default class VegaVesting {
   private web3: Web3;
   private contract: Contract;
+  private decimals: number;
 
-  constructor(web3: Web3, vestingAddress: string) {
+  constructor(web3: Web3, vestingAddress: string, decimals: number) {
+    this.decimals = decimals;
     this.web3 = web3;
     this.contract = new this.web3.eth.Contract(
       // @ts-ignore
@@ -38,7 +40,7 @@ export default class VegaVesting {
     return events.map((event) => {
       return {
         amount: new BigNumber(
-          addDecimal(new BigNumber(event.returnValues.amount))
+          addDecimal(new BigNumber(event.returnValues.amount), this.decimals)
         ),
         user: event.returnValues.user,
         tranche_id: parseInt(event.returnValues.tranche_id),
@@ -84,7 +86,10 @@ export default class VegaVesting {
 
   private sumFromEvents(events: EventData[]) {
     const amounts = events.map(
-      (e) => new BigNumber(addDecimal(new BigNumber(e.returnValues.amount)))
+      (e) =>
+        new BigNumber(
+          addDecimal(new BigNumber(e.returnValues.amount), this.decimals)
+        )
     );
     // Start with a 0 so if there are none there is no NaN
     return BigNumber.sum.apply(null, [new BigNumber(0), ...amounts]);
@@ -112,7 +117,7 @@ export default class VegaVesting {
     return events.map((event) => {
       return {
         amount: new BigNumber(
-          addDecimal(new BigNumber(event.returnValues.amount))
+          addDecimal(new BigNumber(event.returnValues.amount), this.decimals)
         ),
         user: event.returnValues.user,
         tx: event.transactionHash,
