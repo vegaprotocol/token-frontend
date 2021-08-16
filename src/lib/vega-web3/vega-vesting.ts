@@ -4,6 +4,7 @@ import vestingAbi from "../abis/vesting_abi.json";
 import { Tranche, TrancheEvents, TrancheUser } from "./vega-web3-types";
 import uniq from "lodash/uniq";
 import { BigNumber } from "../bignumber";
+import { addDecimal } from "../decimals";
 
 export default class VegaVesting {
   private web3: Web3;
@@ -36,7 +37,9 @@ export default class VegaVesting {
   private createUserTransactions(events: EventData[]) {
     return events.map((event) => {
       return {
-        amount: new BigNumber(event.returnValues.amount),
+        amount: new BigNumber(
+          addDecimal(new BigNumber(event.returnValues.amount))
+        ),
         user: event.returnValues.user,
         tranche_id: parseInt(event.returnValues.tranche_id),
         tx: event.transactionHash,
@@ -80,7 +83,9 @@ export default class VegaVesting {
   }
 
   private sumFromEvents(events: EventData[]) {
-    const amounts = events.map((e) => new BigNumber(e.returnValues.amount));
+    const amounts = events.map(
+      (e) => new BigNumber(addDecimal(new BigNumber(e.returnValues.amount)))
+    );
     // Start with a 0 so if there are none there is no NaN
     return BigNumber.sum.apply(null, [new BigNumber(0), ...amounts]);
   }
@@ -106,7 +111,9 @@ export default class VegaVesting {
   private createTransactions(events: EventData[]) {
     return events.map((event) => {
       return {
-        amount: new BigNumber(event.returnValues.amount),
+        amount: new BigNumber(
+          addDecimal(new BigNumber(event.returnValues.amount))
+        ),
         user: event.returnValues.user,
         tx: event.transactionHash,
       };
