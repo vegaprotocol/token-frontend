@@ -5,6 +5,7 @@ import { SplashScreen } from "../../components/splash-screen";
 import { addDecimal } from "../../lib/decimals";
 import {
   Addresses,
+  Decimals,
   EthereumChainId,
   EthereumChainIds,
 } from "../../lib/web3-utils";
@@ -63,7 +64,9 @@ function appStateReducer(state: AppState, action: AppStateAction) {
         address: action.address,
         chainId: action.chainId,
         balance: action.balance,
-        balanceFormatted: action.balance ? addDecimal(action.balance) : "",
+        balanceFormatted: action.balance
+          ? addDecimal(action.balance, Decimals[action.chainId])
+          : "",
         connecting: false,
       };
     case "CONNECT_FAIL":
@@ -101,7 +104,9 @@ function appStateReducer(state: AppState, action: AppStateAction) {
       return {
         ...state,
         balance: action.balance,
-        balanceFormatted: action.balance ? addDecimal(action.balance) : "",
+        balanceFormatted: action.balance
+          ? addDecimal(action.balance, Decimals[state.chainId!])
+          : "",
       };
     }
     default:
