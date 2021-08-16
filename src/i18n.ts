@@ -146,6 +146,13 @@ const en = {
       "Keep track of locked tokens in your wallet with the VEGA (LOCKED) token.",
     "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.":
       "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
+    "This tranche was used to perform integration testing only prior to token launch and no tokens will enter the supply before 3rd Sep 2021.":
+      "This tranche was used to perform integration testing only prior to token launch and no tokens will enter the supply before 3rd Sep 2021.",
+    "Showing tranches with <{{trancheMinimum}} VEGA, click to hide these tranches":
+      "Showing tranches with <{{trancheMinimum}} VEGA, click to hide these tranches",
+    "Not showing tranches with <{{trancheMinimum}} VEGA, click to show all tranches":
+      "Not showing tranches with <{{trancheMinimum}} VEGA, click to show all tranches",
+    "the holder": "the holder",
   },
 };
 
