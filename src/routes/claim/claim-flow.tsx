@@ -118,7 +118,8 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
                 values={{
                   user: state.target
                     ? truncateMiddle(state.target)
-                    : "the holder",
+                    : // TODO translate
+                      "the holder",
                   code: shortCode,
                   amount: state.denominationFormatted,
                   linkText: `${t("Tranche")} ${currentTranche.tranche_id}`,
