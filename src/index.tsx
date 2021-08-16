@@ -8,7 +8,7 @@ import { Integrations } from "@sentry/tracing";
 import App from "./app";
 import reportWebVitals from "./reportWebVitals";
 
-const dsn = process.env.REACT_APP_SENTRY_DSN || false
+const dsn = process.env.REACT_APP_SENTRY_DSN || false;
 
 if (dsn) {
   Sentry.init({
@@ -18,12 +18,7 @@ if (dsn) {
   });
 }
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+ReactDOM.render(<App />, document.getElementById("root"));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
