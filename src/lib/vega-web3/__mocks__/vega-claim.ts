@@ -78,7 +78,7 @@ class MockedVegaClaim implements IVegaClaim {
     return this.performFetch("committed");
   }
   isExpired(expiry: number): Promise<boolean> {
-    return this.performFetch("expired");
+    return this.performFetch("expired", { expiry });
   }
   isUsed(nonce: string): Promise<boolean> {
     return this.performFetch("used");

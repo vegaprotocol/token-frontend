@@ -1,28 +1,29 @@
+import _ from "lodash";
+
 const generateCodeLink = ({ code, amount, tranche, nonce, target, expiry }) => {
   return `/claim/?r=${code}&d=${amount}&t=${tranche}&n=${nonce}&ex=${expiry}${
     target ? `&targ=${target}` : ""
   }`;
 };
 
-const mock = (
-  cy,
-  // TODO deep merge default with anything passed in
-  options = {
-    provider: {
-      accounts: ["0x0000000000000000000000000000000000000000"],
-      chain: "0x3",
-    },
-    vesting: {
-      balance: "123",
-    },
-    claim: {
-      committed: false,
-      used: false,
-      expired: false,
-      blockedCountries: ["US"],
-    },
-  }
-) => {
+const defaultMockOptions = {
+  provider: {
+    accounts: ["0x0000000000000000000000000000000000000000"],
+    chain: "0x3",
+  },
+  vesting: {
+    balance: "123",
+  },
+  claim: {
+    committed: false,
+    used: false,
+    expired: false,
+    blockedCountries: ["US"],
+  },
+};
+
+const mock = (cy, options = {}) => {
+  options = _.merge(defaultMockOptions, options);
   // PROVIDER
   cy.intercept(
     "GET",
@@ -162,7 +163,7 @@ describe("Claim", () => {
       tranche: 10000000,
       nonce: "f00",
       target: "0x" + "0".repeat(40),
-      expiry: 1,
+      expiry: 0,
     });
     mock(cy);
     // When I visit the claim page
@@ -170,6 +171,37 @@ describe("Claim", () => {
     cy.contains("Connect to an Ethereum wallet").click();
     // I see the correct error state
     cy.contains("Tranche not found").should("exist");
+  });
+
+  it("Renders error state state if code has already been used ", () => {
+    // As a user
+    // Given my address is "0x" + "0".repeat(40)
+    // Given a code { code, 1, 1, f00, "0x" + "0".repeat(40), 0}
+    const link = generateCodeLink({
+      code: "code",
+      amount: 1,
+      tranche: 1,
+      nonce: "f00",
+      target: "0x" + "0".repeat(40),
+      expiry: 0,
+    });
+    mock(cy, {
+      claim: {
+        used: true,
+      },
+    });
+    // When I visit the claim page
+    cy.visit(link);
+    cy.contains("Connect to an Ethereum wallet").click();
+    // I see the correct error state
+    cy.contains("codeUsed").should("exist");
+    cy.contains("codeUsedText").should("exist");
+    cy.contains(
+      "Keep track of locked tokens in your wallet with the VEGA (VESTING) token."
+    ).should("exist");
+    cy.contains(
+      "The token address is 0x1b7192491bf89d616676032656b2c7a55fd08e4c. Hit the add token button in your ERC20 wallet and enter this address."
+    ).should("exist");
   });
 });
 
