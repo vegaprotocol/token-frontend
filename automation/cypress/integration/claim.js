@@ -428,7 +428,9 @@ describe("Untargeted code", () => {
 describe("Targeted code", () => {
   afterEach((done) => {
     return cy.window().then((win) => {
-      win.promiManager.clearAllListeners();
+      if (win.promiManager && win.promiManager.clearAllListeners) {
+        win.promiManager.clearAllListeners();
+      }
       done();
     });
   });
