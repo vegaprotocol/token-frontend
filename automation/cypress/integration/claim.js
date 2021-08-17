@@ -41,6 +41,7 @@ const mock = (
     "mocks/vesting/balance",
     JSON.stringify(options.vesting.balance)
   );
+  cy.intercept("GET", "mocks/vesting/events", { fixture: "events.json" });
 
   // CLAIM
   cy.intercept(
@@ -48,11 +49,12 @@ const mock = (
     "mocks/claim/committed",
     JSON.stringify(options.claim.committed)
   );
-  cy.intercept(
-    "GET",
-    "mocks/claim/expired",
-    JSON.stringify(options.claim.expired)
-  );
+  cy.intercept("POST", "mocks/claim/expired", (req) => {
+    const { expiry } = JSON.parse(req.body);
+    req.reply(
+      JSON.stringify(expiry !== 0 && expiry < new Date().getTime() / 1000)
+    );
+  });
   cy.intercept("GET", "mocks/claim/used", JSON.stringify(options.claim.used));
   cy.intercept("POST", "mocks/claim/blocked", (req) => {
     const country = JSON.parse(req.body);
@@ -122,6 +124,29 @@ describe("Claim", () => {
     ).should("exist");
     cy.contains(
       "Error: The address you are connected to is not the address the claim is valid for. To claim these tokens please connect with 0x1111111111111111111111111111111111111."
+    ).should("exist");
+  });
+
+  it("Renders error state if code is expired", () => {
+    // As a user
+    // Given my address is "0x" + "0".repeat(40)
+    // Given a code { code, 1, 1, f00, "0x" + "0".repeat(40), 0}
+    const link = generateCodeLink({
+      code: "code",
+      amount: 1,
+      tranche: 1,
+      nonce: "f00",
+      target: "0x" + "0".repeat(40),
+      expiry: 1,
+    });
+    mock(cy);
+    // When I visit the claim page
+    cy.visit(link);
+    cy.contains("Connect to an Ethereum wallet").click();
+    // I see the correct error state
+    cy.contains("codeExpired").should("exist");
+    cy.contains(
+      "This code (code…code) has expired and cannot be used to claim tokens."
     ).should("exist");
   });
 });
