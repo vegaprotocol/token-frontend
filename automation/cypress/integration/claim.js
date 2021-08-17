@@ -318,34 +318,86 @@ describe("Untargeted code", () => {
     );
   });
 
-  // it("Allows user to do an untargeted claim", () => {
-  //   // As a user
-  //   // Given a code { code, 1, 1, f00, "0x" + "0".repeat(40), 0}
-  //   const link = generateCodeLink({
-  //     code: "code",
-  //     amount: 1,
-  //     tranche: 1,
-  //     nonce: "f00",
-  //     expiry: 0,
-  //   });
-  //   mock(cy);
-  //   // When I visit the claim page
-  //   cy.visit(link);
-  //   // And I connect my wallet
-  //   cy.contains("Connect to an Ethereum wallet").click();
-  //   // And I select a permitted country
-  //   cy.get("[data-testid='country-selector']").select("Afghanistan");
-  //   // And I click continue
-  //   cy.contains("Continue").click();
-  //   // Then I see the in progress state
-  //   cy.contains("Awaiting action in Ethereum wallet (e.g. metamask)").should(
-  //     "exist"
-  //   );
-  //   // When I permit the transaction
-  //   sendChainResponse(cy, "commit", "transactionHash", "hash").then(() => {
-  //     return sendChainResponse(cy, "commit", "receipt", {});
-  //   });
-  // });
+  it("Allows user to do an untargeted claim", () => {
+    // As a user
+    // Given a code { code, 1, 1, f00, "0x" + "0".repeat(40), 0}
+    const link = generateCodeLink({
+      code: "code",
+      amount: 1,
+      tranche: 1,
+      nonce: "f00",
+      expiry: 0,
+    });
+    mock(cy);
+    // When I visit the claim page
+    cy.visit(link);
+    // And I connect my wallet
+    cy.contains("Connect to an Ethereum wallet").click();
+    // And I select a permitted country
+    cy.get("[data-testid='country-selector']").select("Afghanistan");
+    // And I click continue
+    cy.contains("Continue").click();
+    // Then I see the in progress state
+    cy.contains("Awaiting action in Ethereum wallet (e.g. metamask)").should(
+      "exist"
+    );
+    // When I permit the transaction
+    sendChainResponse(cy, "commit", "transactionHash", "hash").then(() => {
+      // Then I see transaction in progress and link
+      cy.contains("Transaction in progress").should("exist");
+      cy.contains("View on Etherscan (opens in a new tab)")
+        .should("have.attr", "href")
+        .and("match", /ropsten.etherscan.io\/tx\/hash/);
+      // When the transaction is complete
+      return sendChainResponse(cy, "commit", "receipt").then(() => {
+        // Then the transaction callout shows complete and link
+        cy.contains("Complete").should("exist");
+        cy.get("[data-testid='claim-step-1']")
+          .contains("View on Etherscan (opens in a new tab)")
+          .should("have.attr", "href")
+          .and("match", /ropsten.etherscan.io\/tx\/hash/);
+        // When I click the claim button
+        cy.contains("Claim 0.00001 Vega").click();
+        // Then I see the in progress state
+        cy.contains(
+          "Awaiting action in Ethereum wallet (e.g. metamask)"
+        ).should("exist");
+        // When the chain gives back a transaction hash
+        sendChainResponse(cy, "claim", "transactionHash", "hash2").then(() => {
+          // Then I see the in progress callout
+          cy.contains("Transaction in progress").should("exist");
+          cy.get("[data-testid='claim-step-2']")
+            .contains("View on Etherscan (opens in a new tab)")
+            .should("have.attr", "href")
+            .and("match", /ropsten.etherscan.io\/tx\/hash2/);
+          // When the chain confirms the transaction
+          sendChainResponse(cy, "claim", "receipt").then(() => {
+            // Then i see the complete callout
+            cy.contains("Complete").should("exist");
+            cy.contains("View on Etherscan (opens in a new tab)");
+
+            // THen the finished state is rendered
+            cy.contains("Claim complete").should("exist");
+            cy.contains("claimCompleteMessage").should("exist");
+            cy.contains("Link transaction:").should("exist");
+            cy.contains("Claim transaction:").should("exist");
+            cy.contains("hash")
+              .should("have.attr", "href")
+              .and("match", /ropsten.etherscan.io\/tx\/hash/);
+            cy.contains("hash2")
+              .should("have.attr", "href")
+              .and("match", /ropsten.etherscan.io\/tx\/hash2/);
+            cy.contains(
+              "Keep track of locked tokens in your wallet with the VEGA (VESTING) token."
+            ).should("exist");
+            cy.contains(
+              "The token address is 0x1b7192491bf89d616676032656b2c7a55fd08e4c. Hit the add token button in your ERC20 wallet and enter this address."
+            ).should("exist");
+          });
+        });
+      });
+    });
+  });
 });
 
 // describe("Targeted code", () => {

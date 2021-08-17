@@ -22,10 +22,12 @@ export const ClaimStep2 = ({
 
   if (txState.txState !== TxState.Default) {
     return (
-      <TransactionCallout
-        state={txState}
-        reset={() => txDispatch({ type: "TX_RESET" })}
-      />
+      <div data-testid="claim-step-2">
+        <TransactionCallout
+          state={txState}
+          reset={() => txDispatch({ type: "TX_RESET" })}
+        />
+      </div>
     );
   }
 

@@ -45,7 +45,7 @@ class MockedVegaClaim implements IVegaClaim {
     targeted: boolean;
     account: string;
   }): PromiEvent {
-    throw new Error("Method not implemented.");
+    return promiEventFactory(uuidv4(), "claim");
   }
 
   checkClaim({
