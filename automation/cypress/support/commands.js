@@ -139,8 +139,8 @@ const en = {
 //
 
 Cypress.Commands.overwrite("contains", (originalFn, selector, str, ...rest) => {
-  if (!en[str]) {
-    throw Error("Could not find translations for string:", str);
-  }
-  return originalFn(selector, en[str], ...rest);
+  // if (!en[str]) {
+  //   throw Error("Could not find translations for string:", str);
+  // }
+  return originalFn(selector, en[str] || str, ...rest);
 });
