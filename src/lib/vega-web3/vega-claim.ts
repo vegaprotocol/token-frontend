@@ -149,7 +149,7 @@ export default class VegaClaim {
    */
   async isExpired(expiry: number): Promise<boolean> {
     return (
-      expiry > 0 && expiry > (await this.web3.eth.getBlock("latest")).timestamp
+      expiry > 0 && expiry < (await this.web3.eth.getBlock("latest")).timestamp
     );
   }
 
