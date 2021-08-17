@@ -28,6 +28,9 @@
     "lodash": "^4.17.21"
   },
   "cypress-cucumber-preprocessor": {
-    "nonGlobalStepDefinitions": false
+    "nonGlobalStepDefinitions": true
+  },
+  "devDependencies": {
+    "eslint-plugin-cypress": "^2.11.3"
   }
 }
