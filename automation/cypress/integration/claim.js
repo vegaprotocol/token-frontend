@@ -216,7 +216,7 @@ describe("Claim", () => {
 
 describe("Untargeted code", () => {
   afterEach((done) => {
-    return cy.window().then((win) => {
+    cy.window().then((win) => {
       if (win.promiManager && win.promiManager.clearAllListeners) {
         win.promiManager.clearAllListeners();
       }
@@ -427,7 +427,7 @@ describe("Untargeted code", () => {
 
 describe("Targeted code", () => {
   afterEach((done) => {
-    return cy.window().then((win) => {
+    cy.window().then((win) => {
       if (win.promiManager && win.promiManager.clearAllListeners) {
         win.promiManager.clearAllListeners();
       }
