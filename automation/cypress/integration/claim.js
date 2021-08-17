@@ -234,7 +234,43 @@ describe("Claim", () => {
     ).should("exist");
     cy.url().should("include", "not-permitted");
   });
+
+  it("Renders wrong chain state", () => {
+    // As a user
+    // Given a code { code, 1, 1, f00, "0x" + "0".repeat(40), 0}
+    const link = generateCodeLink({
+      code: "code",
+      amount: 1,
+      tranche: 1,
+      nonce: "f00",
+      expiry: 0,
+    });
+    mock(cy, { provider: { chain: "0x1" } });
+    // When I visit the claim page
+    cy.visit(link);
+    // I see wrong chain
+    cy.contains("Looks like you are on Mainnet").should("exist");
+    cy.contains("This app is only configured for Ropsten").should("exist");
+  });
 });
+
+// describe("Untargeted code", () => {
+//   it("Allows user to do an untargeted claim", () => {
+//     const link = generateCodeLink({
+//       code: "code",
+//       amount: 1,
+//       tranche: 1,
+//       nonce: "f00",
+//       expiry: 0,
+//     });
+//     mock(cy);
+//     cy.visit(link);
+//     cy.contains("Connect to an Ethereum wallet").click();
+//     cy.get("[data-testid='country-selector']").select("Afghanistan");
+//     cy.contains("Continue").click();
+//     cy.contains("asd").should("exist");
+//   });
+// });
 
 // describe("Targeted code", () => {
 //   it("After connecting it renders form if the code is valid", () => {
@@ -272,24 +308,5 @@ describe("Claim", () => {
 //     cy.get("[data-testid='country-selector']").select("United Kingdom");
 //     cy.contains("Continue").click();
 //     cy.get("[data-testid='transaction-in-progress'").should("exist");
-//   });
-// });
-
-// describe("Untargeted code", () => {
-//   it("Allows user to do an untargeted claim", () => {
-//     const link = generateCodeLink({
-//       code: "code",
-//       amount: 1,
-//       tranche: 1,
-//       nonce: "f00",
-//       expiry: 0,
-//     });
-//     mock(cy);
-//     cy.visit(link);
-//     cy.contains("Connect to an Ethereum wallet").click();
-//     cy.get("[data-testid='country-selector']").select(
-//       "United States of America (the)"
-//     );
-//     cy.contains("Continue").click();
 //   });
 // });
