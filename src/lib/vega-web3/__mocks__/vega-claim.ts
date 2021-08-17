@@ -1,5 +1,6 @@
 import BigNumber from "bignumber.js";
 import { IVegaClaim, PromiEvent } from "../../web3-utils";
+import { promiEventFactory, uuidv4 } from "./promi-manager";
 
 const BASE_URL = "mocks/claim";
 class MockedVegaClaim implements IVegaClaim {
@@ -17,11 +18,12 @@ class MockedVegaClaim implements IVegaClaim {
   }
 
   commit(claimCode: string, account: string): PromiEvent {
-    throw new Error("Method not implemented.");
+    return promiEventFactory(uuidv4(), "commit");
   }
 
   checkCommit(claimCode: string, account: string): Promise<any> {
-    throw new Error("Method not implemented.");
+    // TODO add test for if check fails
+    return Promise.resolve(true);
   }
 
   claim({
@@ -65,7 +67,7 @@ class MockedVegaClaim implements IVegaClaim {
     targeted: boolean;
     account: string;
   }): Promise<any> {
-    throw new Error("Method not implemented.");
+    return Promise.resolve(true);
   }
 
   isCommitted({
