@@ -4,30 +4,58 @@ const generateCodeLink = ({ code, amount, tranche, nonce, target, expiry }) => {
   }`;
 };
 
-const mock = (cy) => {
+const mock = (
+  cy,
+  options = {
+    provider: {
+      accounts: ["0x0000000000000000000000000000000000000000"],
+      chain: "0x3",
+    },
+    vesting: {
+      balance: "123",
+    },
+    claim: {
+      committed: false,
+      used: false,
+      expired: false,
+      blockedCountries: ["US"],
+    },
+  }
+) => {
   // PROVIDER
   cy.intercept(
     "GET",
     "mocks/detect-provider/accounts",
-    JSON.stringify({ accounts: ["0x0000000000000000000000000000000000000000"] })
+    JSON.stringify({ accounts: options.provider.accounts })
   );
   cy.intercept(
     "GET",
     "mocks/detect-provider/chain",
-    JSON.stringify({ chain: "0x3" })
+    JSON.stringify({ chain: options.provider.chain })
   );
 
   // VESTING
-  cy.intercept("GET", "mocks/vesting/balance", "123");
+  cy.intercept(
+    "GET",
+    "mocks/vesting/balance",
+    JSON.stringify(options.vesting.balance)
+  );
 
   // CLAIM
-  const blockedCountries = ["US"];
-  cy.intercept("GET", "mocks/claim/committed", "false");
-  cy.intercept("GET", "mocks/claim/expired", "false");
-  cy.intercept("GET", "mocks/claim/used", "false");
+  cy.intercept(
+    "GET",
+    "mocks/claim/committed",
+    JSON.stringify(options.claim.committed)
+  );
+  cy.intercept(
+    "GET",
+    "mocks/claim/expired",
+    JSON.stringify(options.claim.expired)
+  );
+  cy.intercept("GET", "mocks/claim/used", JSON.stringify(options.claim.used));
   cy.intercept("POST", "mocks/claim/blocked", (req) => {
     const country = JSON.parse(req.body);
-    const blocked = blockedCountries.includes(country);
+    const blocked = options.claim.blockedCountries.includes(country);
     req.reply(blocked.toString());
   });
 };
