@@ -22,10 +22,10 @@ export default function detectEthereumProvider(): Promise<any> {
     async request(obj: any) {
       switch (obj.method) {
         case "eth_requestAccounts":
-          const { address } = await this.performFetch<{ address: string }>(
-            "address"
+          const { accounts } = await this.performFetch<{ accounts: string[] }>(
+            "accounts"
           );
-          return address;
+          return accounts;
         case "eth_chainId":
           const { chain } = await this.performFetch<{ chain: string }>("chain");
           return chain;
