@@ -6,6 +6,7 @@ const generateCodeLink = ({ code, amount, tranche, nonce, target, expiry }) => {
 
 const mock = (
   cy,
+  // TODO deep merge default with anything passed in
   options = {
     provider: {
       accounts: ["0x0000000000000000000000000000000000000000"],
