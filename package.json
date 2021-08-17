@@ -37,7 +37,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "start:mock": "REACT_APP_MOCKED=1 craco start",
+    "start:mock": "REACT_APP_MOCKED=1 craco -r @cypress/instrument-cra start",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
