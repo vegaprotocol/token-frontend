@@ -8,8 +8,6 @@ import { useVegaVesting } from "./use-vega-vesting";
 import * as Sentry from "@sentry/react";
 import BigNumber from "bignumber.js";
 
-// const mockAddress = "0x" + "0".repeat(0);
-
 export function useConnect() {
   const { appState, appDispatch, provider } = useAppState();
   const appConfigChainId = process.env.REACT_APP_CHAIN as EthereumChainId;

@@ -8,8 +8,8 @@ const mock = (cy) => {
   // PROVIDER
   cy.intercept(
     "GET",
-    "mocks/detect-provider/address",
-    JSON.stringify({ address: ["0x0000000000000000000000000000000000000000"] })
+    "mocks/detect-provider/accounts",
+    JSON.stringify({ accounts: ["0x0000000000000000000000000000000000000000"] })
   );
   cy.intercept(
     "GET",
