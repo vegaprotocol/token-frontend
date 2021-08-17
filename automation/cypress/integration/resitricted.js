@@ -12,4 +12,16 @@ describe("Restricted", () => {
       "exist"
     );
   });
+  it("Hanldes other cookies fine", () => {
+    // Given a link with no information
+    mock(cy);
+    cy.setCookie("random", "true");
+    cy.setCookie("restricted", "true");
+    // When visiting claim page
+    cy.visit("/claim");
+    cy.contains("Service unavailable").should("exist");
+    cy.contains("This service is not available in your country").should(
+      "exist"
+    );
+  });
 });
