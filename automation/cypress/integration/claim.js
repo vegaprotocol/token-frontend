@@ -9,7 +9,7 @@ const mock = (cy) => {
   cy.intercept(
     "GET",
     "mocks/detect-provider/address",
-    JSON.stringify({ address: "0x0000000000000000000000000000000000000000" })
+    JSON.stringify({ address: ["0x0000000000000000000000000000000000000000"] })
   );
   cy.intercept(
     "GET",
@@ -37,7 +37,7 @@ describe("Claim", () => {
     // As a user
     mock(cy);
     // Given a link with no information
-    // When visting the claim page
+    // When visiting the claim page
     cy.visit("/claim");
     // When I try to connect
     cy.contains("Connect to an Ethereum wallet").click();
