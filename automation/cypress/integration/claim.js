@@ -23,24 +23,24 @@ const defaultMockOptions = {
 };
 
 const mock = (cy, options = {}) => {
-  options = _.merge(defaultMockOptions, options);
+  const mergedOptions = _.merge({}, defaultMockOptions, options);
   // PROVIDER
   cy.intercept(
     "GET",
     "mocks/detect-provider/accounts",
-    JSON.stringify({ accounts: options.provider.accounts })
+    JSON.stringify({ accounts: mergedOptions.provider.accounts })
   );
   cy.intercept(
     "GET",
     "mocks/detect-provider/chain",
-    JSON.stringify({ chain: options.provider.chain })
+    JSON.stringify({ chain: mergedOptions.provider.chain })
   );
 
   // VESTING
   cy.intercept(
     "GET",
     "mocks/vesting/balance",
-    JSON.stringify(options.vesting.balance)
+    JSON.stringify(mergedOptions.vesting.balance)
   );
   cy.intercept("GET", "mocks/vesting/events", { fixture: "events.json" });
 
@@ -48,7 +48,7 @@ const mock = (cy, options = {}) => {
   cy.intercept(
     "GET",
     "mocks/claim/committed",
-    JSON.stringify(options.claim.committed)
+    JSON.stringify(mergedOptions.claim.committed)
   );
   cy.intercept("POST", "mocks/claim/expired", (req) => {
     const { expiry } = JSON.parse(req.body);
@@ -56,10 +56,14 @@ const mock = (cy, options = {}) => {
       JSON.stringify(expiry !== 0 && expiry < new Date().getTime() / 1000)
     );
   });
-  cy.intercept("GET", "mocks/claim/used", JSON.stringify(options.claim.used));
+  cy.intercept(
+    "GET",
+    "mocks/claim/used",
+    JSON.stringify(mergedOptions.claim.used)
+  );
   cy.intercept("POST", "mocks/claim/blocked", (req) => {
     const country = JSON.parse(req.body);
-    const blocked = options.claim.blockedCountries.includes(country);
+    const blocked = mergedOptions.claim.blockedCountries.includes(country);
     req.reply(blocked.toString());
   });
 };
@@ -131,7 +135,6 @@ describe("Claim", () => {
 
   it("Renders error state if code is expired", () => {
     // As a user
-    // Given my address is "0x" + "0".repeat(40)
     // Given a code { code, 1, 1, f00, "0x" + "0".repeat(40), 0}
     const link = generateCodeLink({
       code: "code",
@@ -155,7 +158,6 @@ describe("Claim", () => {
 
   it("Renders error state state if tranche cannot be found ", () => {
     // As a user
-    // Given my address is "0x" + "0".repeat(40)
     // Given a code { code, 1, 10000000, f00, "0x" + "0".repeat(40), 0}
     const link = generateCodeLink({
       code: "code",
@@ -168,6 +170,7 @@ describe("Claim", () => {
     mock(cy);
     // When I visit the claim page
     cy.visit(link);
+    // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // I see the correct error state
     cy.contains("Tranche not found").should("exist");
@@ -175,7 +178,6 @@ describe("Claim", () => {
 
   it("Renders error state state if code has already been used ", () => {
     // As a user
-    // Given my address is "0x" + "0".repeat(40)
     // Given a code { code, 1, 1, f00, "0x" + "0".repeat(40), 0}
     const link = generateCodeLink({
       code: "code",
@@ -192,6 +194,7 @@ describe("Claim", () => {
     });
     // When I visit the claim page
     cy.visit(link);
+    // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // I see the correct error state
     cy.contains("codeUsed").should("exist");
@@ -202,6 +205,34 @@ describe("Claim", () => {
     cy.contains(
       "The token address is 0x1b7192491bf89d616676032656b2c7a55fd08e4c. Hit the add token button in your ERC20 wallet and enter this address."
     ).should("exist");
+  });
+
+  it("Renders error state if the country is blocked", () => {
+    // As a user
+    // Given a code { code, 1, 1, f00, "0x" + "0".repeat(40), 0}
+    const link = generateCodeLink({
+      code: "code",
+      amount: 1,
+      tranche: 1,
+      nonce: "f00",
+      expiry: 0,
+    });
+    mock(cy, { claim: { blockedCountries: ["US"] } });
+    // When I visit the claim page
+    cy.visit(link);
+    // And I connect my wallet
+    cy.contains("Connect to an Ethereum wallet").click();
+    // And I select a blocked country
+    cy.get("[data-testid='country-selector']").select(
+      "United States of America (the)"
+    );
+    // When I click continue
+    cy.contains("Continue").click();
+    // I am redirected to the not permitted page
+    cy.contains(
+      "You cannot claim VEGA tokens if you reside in that country"
+    ).should("exist");
+    cy.url().should("include", "not-permitted");
   });
 });
 
@@ -245,7 +276,7 @@ describe("Claim", () => {
 // });
 
 // describe("Untargeted code", () => {
-//   it("After connecting it renders form", () => {
+//   it("Allows user to do an untargeted claim", () => {
 //     const link = generateCodeLink({
 //       code: "code",
 //       amount: 1,
@@ -256,7 +287,9 @@ describe("Claim", () => {
 //     mock(cy);
 //     cy.visit(link);
 //     cy.contains("Connect to an Ethereum wallet").click();
-//     cy.get("[data-testid='claim-step-1']").should("exist");
-//     cy.get("[data-testid='claim-step-2']").should("exist");
+//     cy.get("[data-testid='country-selector']").select(
+//       "United States of America (the)"
+//     );
+//     cy.contains("Continue").click();
 //   });
 // });
