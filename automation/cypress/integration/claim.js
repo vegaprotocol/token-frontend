@@ -173,6 +173,7 @@ describe("Claim", () => {
       amount: 1,
       tranche: 1,
       nonce: "f00",
+      target: "0x" + "0".repeat(40),
       expiry: 0,
     });
     mock(cy, { claim: { blockedCountries: ["US"] } });
@@ -201,6 +202,7 @@ describe("Claim", () => {
       amount: 1,
       tranche: 1,
       nonce: "f00",
+      target: "0x" + "0".repeat(40),
       expiry: 0,
     });
     mock(cy, { provider: { chain: "0x1" } });
@@ -394,41 +396,103 @@ describe("Untargeted code", () => {
   });
 });
 
-// describe("Targeted code", () => {
-//   it("After connecting it renders form if the code is valid", () => {
-//     const address = "0x0000000000000000000000000000000000000000";
-//     const link = generateCodeLink({
-//       code: "code",
-//       amount: 1,
-//       tranche: 1,
-//       nonce: "f00",
-//       target: address,
-//       expiry: 0,
-//     });
-//     console.log(link);
-//     mock(cy);
-//     cy.visit(link);
-//     cy.contains("Connect to an Ethereum wallet").click();
-//     cy.get("[data-testid='targeted-claim']").should("exist");
-//     cy.get("button").should("be.disabled");
-//   });
+describe("Targeted code", () => {
+  afterEach((done) => {
+    return cy.window().then((win) => {
+      win.promiManager.clearAllListeners();
+      done();
+    });
+  });
 
-//   it("Enables button once the user has selected a permitted country", () => {
-//     const address = "0x" + "0".repeat(0);
-//     const link = generateCodeLink({
-//       code: "code",
-//       amount: 1,
-//       tranche: 1,
-//       nonce: "f00",
-//       target: address,
-//       expiry: 0,
-//     });
-//     mock(cy);
-//     cy.visit(link);
-//     cy.contains("Connect to an Ethereum wallet").click();
-//     cy.get("[data-testid='targeted-claim']").should("exist");
-//     cy.get("[data-testid='country-selector']").select("United Kingdom");
-//     cy.contains("Continue").click();
-//     cy.get("[data-testid='transaction-in-progress'").should("exist");
-//   });
-// });
+  it("Renders error state if the transaction is rejected in step 1", () => {
+    // As a user
+    // Given a code { code, 1, 1, f00, "0x" + "0".repeat(40), 0}
+    const link = generateCodeLink({
+      code: "code",
+      amount: 1,
+      tranche: 1,
+      nonce: "f00",
+      target: "0x" + "0".repeat(40),
+      expiry: 0,
+    });
+    mock(cy);
+    // When I visit the claim page
+    cy.visit(link);
+    // And I connect my wallet
+    cy.contains("Connect to an Ethereum wallet").click();
+    // And I select a permitted country
+    cy.get("[data-testid='country-selector']").select("Afghanistan");
+    // And I click continue
+    cy.contains("Continue").click();
+    // Then I see the in progress state
+    cy.contains("Awaiting action in Ethereum wallet (e.g. metamask)").should(
+      "exist"
+    );
+    // When the transaction errors
+    sendChainResponse(cy, "claim", "error", new Error("some error")).then(
+      () => {
+        // Then I see the error callout state
+        cy.contains("Something went wrong").should("exist");
+        cy.contains("Try again").should("exist");
+        // When I click try again
+        cy.contains("Try again").click();
+        // Then the form resets
+        cy.contains("Continue").should("exist");
+      }
+    );
+  });
+
+  it("Renders error state if the transaction is rejected in step 1", () => {
+    // As a user
+    // Given a code { code, 1, 1, f00, "0x" + "0".repeat(40), 0}
+    const link = generateCodeLink({
+      code: "code",
+      amount: 1,
+      tranche: 1,
+      nonce: "f00",
+      target: "0x" + "0".repeat(40),
+      expiry: 0,
+    });
+    mock(cy);
+    // When I visit the claim page
+    cy.visit(link);
+    // And I connect my wallet
+    cy.contains("Connect to an Ethereum wallet").click();
+    // And I select a permitted country
+    cy.get("[data-testid='country-selector']").select("Afghanistan");
+    // And I click continue
+    cy.contains("Continue").click();
+    // Then I see the in progress state
+    cy.contains("Awaiting action in Ethereum wallet (e.g. metamask)").should(
+      "exist"
+    );
+    // When the transaction errors
+    sendChainResponse(cy, "claim", "transactionHash", "hash").then(() => {
+      // Then I see the transaction pending callout state
+      cy.contains("Transaction in progress").should("exist");
+      cy.contains("View on Etherscan (opens in a new tab)")
+        .should("have.attr", "href")
+        .and("match", /ropsten.etherscan.io\/tx\/hash/);
+      // WHen the chin confirms the tx
+      sendChainResponse(cy, "claim", "receipt", "hash").then(() => {
+        // Then i see the complete callout
+        cy.contains("Complete").should("exist");
+        cy.contains("View on Etherscan (opens in a new tab)");
+
+        // THen it renders completed state
+        cy.contains("Claim complete").should("exist");
+        cy.contains("claimCompleteMessage").should("exist");
+        cy.contains("Claim transaction:").should("exist");
+        cy.contains("hash")
+          .should("have.attr", "href")
+          .and("match", /ropsten.etherscan.io\/tx\/hash/);
+        cy.contains(
+          "Keep track of locked tokens in your wallet with the VEGA (VESTING) token."
+        ).should("exist");
+        cy.contains(
+          "The token address is 0x1b7192491bf89d616676032656b2c7a55fd08e4c. Hit the add token button in your ERC20 wallet and enter this address."
+        ).should("exist");
+      });
+    });
+  });
+});
