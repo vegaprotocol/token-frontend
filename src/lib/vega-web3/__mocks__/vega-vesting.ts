@@ -1,9 +1,9 @@
 import BigNumber from "bignumber.js";
 import { Tranche } from "../vega-web3-types";
 import { IVegaVesting } from "../../web3-utils";
-import trancheData from "../../__mocks__/tranche-data.json";
+import { getTranchesFromHistory } from "../tranche-helpers";
 
-const BASE_URL = "mocks/vesting";
+const BASE_URL = "../mocks/vesting";
 
 class MockedVesting implements IVegaVesting {
   private async performFetch(url: string) {
@@ -11,26 +11,14 @@ class MockedVesting implements IVegaVesting {
     return await res.json();
   }
 
-  getUserBalanceAllTranches(account: string): Promise<BigNumber> {
-    console.log("here");
-    return Promise.resolve(new BigNumber(100000));
-    // return this.performFetch(`balance`);
+  async getUserBalanceAllTranches(account: string): Promise<BigNumber> {
+    const balance = await this.performFetch("balance");
+    return new BigNumber(balance);
   }
 
-  getAllTranches(): Promise<Tranche[]> {
-    // TODO populate with events
-    // @ts-ignore
-    return Promise.resolve(
-      trancheData.map((t) => ({
-        ...t,
-        tranche_id: Number(t.tranche_id),
-        trance_start: new Date(t.tranche_start),
-        trance_end: new Date(t.tranche_end),
-        total_added: new BigNumber(t.total_added),
-        total_removed: new BigNumber(t.total_removed),
-        locked_amount: new BigNumber(t.locked_amount),
-      }))
-    );
+  async getAllTranches(): Promise<Tranche[]> {
+    const events = await this.performFetch("events");
+    return getTranchesFromHistory(events);
   }
 }
 
