@@ -217,7 +217,9 @@ describe("Claim", () => {
 describe("Untargeted code", () => {
   afterEach((done) => {
     return cy.window().then((win) => {
-      win.promiManager.clearAllListeners();
+      if (win.promiManager && win.promiManager.clearAllListeners) {
+        win.promiManager.clearAllListeners();
+      }
       done();
     });
   });
@@ -310,6 +312,33 @@ describe("Untargeted code", () => {
         });
       });
     });
+  });
+
+  it("Detects if the clam is committed but not used", () => {
+    // As a user
+    // Given a code { code, 1, 1, f00, "0x" + "0".repeat(40), 0}
+    const link = generateCodeLink({
+      code: "code",
+      amount: 1,
+      tranche: 1,
+      nonce: "f00",
+      expiry: 0,
+    });
+    mock(cy, {
+      claim: {
+        committed: true,
+      },
+    });
+    // When I visit the claim page
+    cy.visit(link);
+    // And I connect my wallet
+    cy.contains("Connect to an Ethereum wallet").click();
+    // And I select a permitted country
+    cy.get("[data-testid='country-selector']").select("Afghanistan");
+    // Then it renders completed state
+    cy.contains("Complete").should("exist");
+    cy.contains("You have already committed your claim").should("exist");
+    cy.contains("Claim 0.00001 Vega").should("exist");
   });
 
   it("Allows user to do an untargeted claim", () => {
