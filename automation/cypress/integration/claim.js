@@ -117,6 +117,7 @@ describe("Claim", () => {
     mock(cy);
     // When I visit the claim page
     cy.visit(link);
+    // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // I see the correct error state
     cy.contains(
@@ -142,12 +143,33 @@ describe("Claim", () => {
     mock(cy);
     // When I visit the claim page
     cy.visit(link);
+    // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // I see the correct error state
     cy.contains("codeExpired").should("exist");
     cy.contains(
       "This code (code…code) has expired and cannot be used to claim tokens."
     ).should("exist");
+  });
+
+  it("Renders error state state if tranche cannot be found ", () => {
+    // As a user
+    // Given my address is "0x" + "0".repeat(40)
+    // Given a code { code, 1, 10000000, f00, "0x" + "0".repeat(40), 0}
+    const link = generateCodeLink({
+      code: "code",
+      amount: 1,
+      tranche: 10000000,
+      nonce: "f00",
+      target: "0x" + "0".repeat(40),
+      expiry: 1,
+    });
+    mock(cy);
+    // When I visit the claim page
+    cy.visit(link);
+    cy.contains("Connect to an Ethereum wallet").click();
+    // I see the correct error state
+    cy.contains("Tranche not found").should("exist");
   });
 });
 
