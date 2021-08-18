@@ -63,7 +63,7 @@ const VegaWalletConnected = ({
   return vegaKeys.length ? (
     <div>
       <div
-        onClick={() => setExpanded(true)}
+        onClick={() => setExpanded((curr) => !curr)}
         style={{ display: "flex", justifyContent: "space-between" }}
       >
         {currVegaKey ? (
