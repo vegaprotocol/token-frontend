@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { RouteChildProps } from "..";
-import { DefaultTemplate } from "../../components/page-templates/default";
+import { TemplateDefault } from "../../components/page-templates/template-default";
 import { TrancheContainer } from "../../components/tranche-container";
 import { Web3Container } from "../../components/web3-container";
 import { useDocumentTitle } from "../../hooks/use-document-title";
@@ -11,7 +11,7 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
   const { t } = useTranslation();
 
   return (
-    <DefaultTemplate title={t("pageTitleRedemption")}>
+    <TemplateDefault title={t("pageTitleRedemption")}>
       <Web3Container>
         {(address) => (
           <TrancheContainer>
@@ -21,7 +21,7 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
           </TrancheContainer>
         )}
       </Web3Container>
-    </DefaultTemplate>
+    </TemplateDefault>
   );
 };
 
