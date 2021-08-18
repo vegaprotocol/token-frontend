@@ -6,7 +6,7 @@ import { Notice } from "../notice";
 export interface TemplateSidebarProps {
   title: string;
   children: React.ReactNode;
-  sidebar: React.ReactNode;
+  sidebar: React.ReactChildren;
 }
 
 export function TemplateSidebar({
@@ -18,7 +18,13 @@ export function TemplateSidebar({
     <div className="template-sidebar">
       <Heading title={title} />
       <main>{children}</main>
-      <aside>{sidebar}</aside>
+      <aside>
+        {/* TODO: whats the best way to do the below, appeasing typescript
+         // @ts-ignore */}
+        {sidebar.map((Component, i) => (
+          <section key={i}>{<Component />}</section>
+        ))}
+      </aside>
       <footer>
         <Notice />
       </footer>
