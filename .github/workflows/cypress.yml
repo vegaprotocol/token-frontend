@@ -17,10 +17,7 @@ jobs:
 
       - name: Start server in the background
         run: REACT_APP_REDEEM_LIVE=0 REACT_APP_CHAIN=0x3 REACT_APP_SHOW_NETWORK_SWITCHER=1 yarn start:mock &
-        env:
-          REACT_APP_REDEEM_LIVE: 0
-          REACT_APP_CHAIN: 0x3
-          REACT_APP_SHOW_NETWORK_SWITCHER: 1
+
       # Install yarn automation/ dependencies, cache them correctly
       # and run all Cypress tests
       - name: Cypress run
