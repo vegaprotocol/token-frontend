@@ -3,7 +3,7 @@ Feature: Tranches
   
   Scenario: Go to Tranches page
     Given I am on the tranches page
-    Then I can see the header title is 'VESTING TRANCHES'
+    Then I can see the header title is 'Vesting tranches'
 
 
 
