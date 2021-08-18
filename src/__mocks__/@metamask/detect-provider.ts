@@ -1,4 +1,4 @@
-const BASE_URL = "../mocks/detect-provider";
+const BASE_URL = "http://localhost:3000/mocks/detect-provider";
 
 export default function detectEthereumProvider(): Promise<any> {
   class MockedProvider {

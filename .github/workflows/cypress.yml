@@ -11,10 +11,12 @@ jobs:
 
       - name: Start server in the background
         run: yarn start:mock &
-      - name: Sleep for 60 seconds to allow for build time
+
+      - name: Sleep for 60 seconds to allow for build time (TODO use ping in action)
         run: sleep 60s
         shell: bash
-      # Install NPM dependencies, cache them correctly
+
+      # Install yarn automation/ dependencies, cache them correctly
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v2
