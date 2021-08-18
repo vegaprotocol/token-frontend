@@ -21,30 +21,30 @@ export const mock = (cy, options = {}) => {
   // PROVIDER
   cy.intercept(
     "GET",
-    "mocks/detect-provider/accounts",
+    "/mocks/detect-provider/accounts",
     JSON.stringify({ accounts: mergedOptions.provider.accounts })
   );
   cy.intercept(
     "GET",
-    "mocks/detect-provider/chain",
+    "/mocks/detect-provider/chain",
     JSON.stringify({ chain: mergedOptions.provider.chain })
   );
 
   // VESTING
   cy.intercept(
     "GET",
-    "mocks/vesting/balance",
+    "/mocks/vesting/balance",
     JSON.stringify(mergedOptions.vesting.balance)
   );
-  cy.intercept("GET", "mocks/vesting/events", { fixture: "events.json" });
+  cy.intercept("GET", "/mocks/vesting/events", { fixture: "events.json" });
 
   // CLAIM
   cy.intercept(
     "GET",
-    "mocks/claim/committed",
+    "/mocks/claim/committed",
     JSON.stringify(mergedOptions.claim.committed)
   );
-  cy.intercept("POST", "mocks/claim/expired", (req) => {
+  cy.intercept("POST", "/mocks/claim/expired", (req) => {
     const { expiry } = JSON.parse(req.body);
     req.reply(
       JSON.stringify(expiry !== 0 && expiry < new Date().getTime() / 1000)
@@ -52,10 +52,10 @@ export const mock = (cy, options = {}) => {
   });
   cy.intercept(
     "GET",
-    "mocks/claim/used",
+    "/mocks/claim/used",
     JSON.stringify(mergedOptions.claim.used)
   );
-  cy.intercept("POST", "mocks/claim/blocked", (req) => {
+  cy.intercept("POST", "/mocks/claim/blocked", (req) => {
     const country = JSON.parse(req.body);
     const blocked = mergedOptions.claim.blockedCountries.includes(country);
     req.reply(blocked.toString());
