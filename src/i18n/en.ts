@@ -3,7 +3,7 @@ const en = {
 
   // Page titles
   pageTitleClaim: "Claim Vega tokens",
-  pageTitleRedemption: "Redeem tokens",
+  pageTitleRedemption: "CHECK AND REDEEM",
   pageTitleTranches: "Vesting tranches",
   pageTitleStaking: "Stake your VEGA",
   pageTitle404: "Page not found",
