@@ -10,7 +10,7 @@ jobs:
   cypress-run:
     name: Cypress run
     runs-on: ubuntu-latest
-    container: cypress/browsers:14.15.0-chrome87-ff82
+    container: cypress/browsers:node14.17.0-chrome91-ff89
     strategy:
       fail-fast: false
       matrix:
