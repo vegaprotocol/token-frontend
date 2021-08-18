@@ -20,6 +20,14 @@
   aside {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
+
+    section {
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 
   footer {

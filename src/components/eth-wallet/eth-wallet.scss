@@ -1,0 +1,39 @@
+@import "../../styles/colors";
+
+.eth-wallet {
+  background-color: $white;
+  padding: 10px;
+  color: $black;
+  font-size: 14px;
+
+  &__connect {
+    appearance: none;
+    padding: 0;
+    background-color: transparent;
+    text-decoration: underline;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0 5px;
+  }
+
+  &__label {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 13px;
+  }
+
+  a {
+    color: $black;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+}
