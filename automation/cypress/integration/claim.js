@@ -36,7 +36,7 @@ describe("Claim", () => {
     // When I try to connect
     cy.contains("Connect to an Ethereum wallet").click();
     // I see an error state
-    cy.contains("asd");
+    cy.contains("Something doesn't look right");
     cy.contains(
       "If you have been given a link please double check and try again"
     );
