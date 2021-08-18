@@ -26,6 +26,7 @@ const initialAppState: AppState = {
   balanceFormatted: "",
   tranches: null,
   contractAddresses: Addresses[process.env.REACT_APP_CHAIN as EthereumChainId],
+  vegaKeys: null,
 };
 
 function appStateReducer(state: AppState, action: AppStateAction): AppState {
@@ -96,6 +97,12 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
       return {
         ...state,
         balanceFormatted: action.balance?.toString() || "",
+      };
+    }
+    case AppStateActionType.VEGA_WALLET_CONNECT: {
+      return {
+        ...state,
+        vegaKeys: action.keys,
       };
     }
   }
