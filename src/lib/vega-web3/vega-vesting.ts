@@ -33,6 +33,6 @@ export default class VegaVesting implements IVegaVesting {
       fromBlock: 0,
       toBlock: "latest",
     });
-    return getTranchesFromHistory(events);
+    return getTranchesFromHistory(events, this.decimals);
   }
 }
