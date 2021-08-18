@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
-import { Callout } from "../../components/callout";
+import { Callout } from "../callout";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useConnect } from "../../hooks/use-connect";
 
-export const ClaimConnect = ({ children }: { children?: React.ReactNode }) => {
+export const Connect = ({ children }: { children?: React.ReactNode }) => {
   const { t } = useTranslation();
   const { appState } = useAppState();
   const connect = useConnect();
