@@ -10,7 +10,7 @@ import { ClaimRestricted } from "./claim-restricted";
 import { isRestricted } from "./lib/is-restricted";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { Web3Container } from "../../components/web3-container";
-import { ClaimConnect } from "./claim-connect";
+import { Connect } from "../../components/connect";
 import { TrancheContainer } from "../../components/tranche-container";
 import { RouteChildProps } from "..";
 import { useDocumentTitle } from "../../hooks/use-document-title";
@@ -56,7 +56,7 @@ const Claim = ({ name }: RouteChildProps) => {
   if (isRestricted()) {
     pageContent = <ClaimRestricted />;
   } else if (!appState.address) {
-    pageContent = <ClaimConnect />;
+    pageContent = <Connect />;
   } else if (state.error) {
     pageContent = <ClaimError />;
   } else if (appState.address && state.code) {
