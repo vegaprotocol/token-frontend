@@ -3,6 +3,7 @@ const BASE_URL = "../mocks/detect-provider";
 export default function detectEthereumProvider(): Promise<any> {
   class MockedProvider {
     private async performFetch<T>(url: string, data?: any): Promise<T> {
+      console.log(`${BASE_URL}/${url}`);
       if (data) {
         const res = await fetch(`${BASE_URL}/${url}`, {
           method: "POST",
