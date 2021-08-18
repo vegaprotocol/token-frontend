@@ -182,9 +182,8 @@ describe("Claim", () => {
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // And I select a blocked country
-    cy.get("[data-testid='country-selector']").select(
-      "United States of America (the)"
-    );
+    cy.get("[data-testid='country-selector'] input").click();
+    cy.get("[data-testid='US']").click();
     // When I click continue
     cy.contains("Continue").click();
     // I am redirected to the not permitted page
@@ -215,12 +214,11 @@ describe("Claim", () => {
 });
 
 describe("Untargeted code", () => {
-  afterEach((done) => {
+  afterEach(() => {
     cy.window().then((win) => {
       if (win.promiManager && win.promiManager.clearAllListeners) {
         win.promiManager.clearAllListeners();
       }
-      done();
     });
   });
 
@@ -240,7 +238,8 @@ describe("Untargeted code", () => {
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // And I select a permitted country
-    cy.get("[data-testid='country-selector']").select("Afghanistan");
+    cy.get("[data-testid='country-selector'] input").click();
+    cy.get("[data-testid='AF']").click();
     // And I click continue
     cy.contains("Continue").click();
     // Then I see the in progress state
@@ -277,7 +276,8 @@ describe("Untargeted code", () => {
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // And I select a permitted country
-    cy.get("[data-testid='country-selector']").select("Afghanistan");
+    cy.get("[data-testid='country-selector'] input").click();
+    cy.get("[data-testid='AF']").click();
     // And I click continue
     cy.contains("Continue").click();
     // Then I see the in progress state
@@ -334,7 +334,8 @@ describe("Untargeted code", () => {
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // And I select a permitted country
-    cy.get("[data-testid='country-selector']").select("Afghanistan");
+    cy.get("[data-testid='country-selector'] input").click();
+    cy.get("[data-testid='AF']").click();
     // Then it renders completed state
     cy.contains("Complete").should("exist");
     cy.contains("You have already committed your claim").should("exist");
@@ -357,7 +358,8 @@ describe("Untargeted code", () => {
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // And I select a permitted country
-    cy.get("[data-testid='country-selector']").select("Afghanistan");
+    cy.get("[data-testid='country-selector'] input").click();
+    cy.get("[data-testid='AF']").click();
     // And I click continue
     cy.contains("Continue").click();
     // Then I see the in progress state
@@ -426,12 +428,11 @@ describe("Untargeted code", () => {
 });
 
 describe("Targeted code", () => {
-  afterEach((done) => {
+  afterEach(() => {
     cy.window().then((win) => {
       if (win.promiManager && win.promiManager.clearAllListeners) {
         win.promiManager.clearAllListeners();
       }
-      done();
     });
   });
 
@@ -452,7 +453,8 @@ describe("Targeted code", () => {
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // And I select a permitted country
-    cy.get("[data-testid='country-selector']").select("Afghanistan");
+    cy.get("[data-testid='country-selector'] input").click();
+    cy.get("[data-testid='AF']").click();
     // And I click continue
     cy.contains("Continue").click();
     // Then I see the in progress state
@@ -490,7 +492,8 @@ describe("Targeted code", () => {
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // And I select a permitted country
-    cy.get("[data-testid='country-selector']").select("Afghanistan");
+    cy.get("[data-testid='country-selector'] input").click();
+    cy.get("[data-testid='AF']").click();
     // And I click continue
     cy.contains("Continue").click();
     // Then I see the in progress state

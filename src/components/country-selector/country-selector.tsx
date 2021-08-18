@@ -33,26 +33,31 @@ export const CountrySelector = ({
   code,
 }: CountrySelectorProps) => {
   return (
-    <CountrySuggest
-      selectedItem={countryData.find((c) => c.code === code) || countryData[0]}
-      items={countryData}
-      itemRenderer={(item, { handleClick, modifiers }) => (
-        <MenuItem
-          key={item.code}
-          text={item.name}
-          active={modifiers.active}
-          disabled={modifiers.disabled}
-          onClick={handleClick}
-        />
-      )}
-      onItemSelect={(item) => {
-        onSelectCountry(item.code);
-      }}
-      inputValueRenderer={(item) => item.name}
-      popoverProps={{ minimal: true }}
-      noResults={<MenuItem disabled={true} text="No results." />}
-      itemPredicate={filterCountry}
-      fill={true}
-    />
+    <div data-testid="country-selector">
+      <CountrySuggest
+        selectedItem={
+          countryData.find((c) => c.code === code) || countryData[0]
+        }
+        items={countryData}
+        itemRenderer={(item, { handleClick, modifiers }) => (
+          <MenuItem
+            data-testid={item.code}
+            key={item.code}
+            text={item.name}
+            active={modifiers.active}
+            disabled={modifiers.disabled}
+            onClick={handleClick}
+          />
+        )}
+        onItemSelect={(item) => {
+          onSelectCountry(item.code);
+        }}
+        inputValueRenderer={(item) => item.name}
+        popoverProps={{ minimal: true }}
+        noResults={<MenuItem disabled={true} text="No results." />}
+        itemPredicate={filterCountry}
+        fill={true}
+      />
+    </div>
   );
 };
