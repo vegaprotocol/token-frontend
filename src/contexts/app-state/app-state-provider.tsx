@@ -27,6 +27,7 @@ const initialAppState: AppState = {
   tranches: null,
   contractAddresses: Addresses[process.env.REACT_APP_CHAIN as EthereumChainId],
   vegaKeys: null,
+  currVegaKey: null,
 };
 
 function appStateReducer(state: AppState, action: AppStateAction): AppState {
@@ -103,6 +104,7 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
       return {
         ...state,
         vegaKeys: action.keys,
+        currVegaKey: action.keys.length ? action.keys[0] : null,
       };
     }
   }

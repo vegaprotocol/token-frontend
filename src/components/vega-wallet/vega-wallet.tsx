@@ -2,49 +2,95 @@ import React from "react";
 import { FormGroup, Intent, Overlay } from "@blueprintjs/core";
 import "./vega-wallet.scss";
 import { useForm } from "react-hook-form";
-import { useAppState } from "../../contexts/app-state/app-state-context";
+import {
+  useAppState,
+  VegaKey,
+} from "../../contexts/app-state/app-state-context";
 import { truncateMiddle } from "../../lib/truncate-middle";
 
 export const VegaWallet = () => {
   const { appState } = useAppState();
+
+  return (
+    <div className="vega-wallet">
+      {!appState.vegaKeys ? (
+        <VegaWalletNotConnected />
+      ) : (
+        <VegaWalletConnected
+          currVegaKey={appState.currVegaKey}
+          vegaKeys={appState.vegaKeys}
+        />
+      )}
+    </div>
+  );
+};
+
+const VegaWalletNotConnected = () => {
   const [overlayOpen, setOverlayOpen] = React.useState(false);
 
-  let content = null;
+  return (
+    <>
+      <button
+        onClick={() => setOverlayOpen(true)}
+        className="vega-wallet__connect"
+        type="button"
+      >
+        Connect vega wallet
+      </button>
+      <Overlay
+        isOpen={overlayOpen}
+        onClose={() => setOverlayOpen(false)}
+        transitionDuration={0}
+      >
+        <div className="vega-wallet__overlay">
+          <VegaWalletForm />
+        </div>
+      </Overlay>
+    </>
+  );
+};
 
-  if (!appState.vegaKeys) {
-    content = (
-      <>
-        <button
-          onClick={() => setOverlayOpen(true)}
-          className="vega-wallet__connect"
-          type="button"
-        >
-          Connect vega wallet
-        </button>
-        <Overlay
-          isOpen={overlayOpen}
-          onClose={() => setOverlayOpen(false)}
-          transitionDuration={0}
-        >
-          <div className="vega-wallet__overlay">
-            <VegaWalletForm />
-          </div>
-        </Overlay>
-      </>
-    );
-  } else if (!appState.vegaKeys.length) {
-    content = <div>No keys</div>;
-  } else {
-    content = (
-      <ul>
-        {appState.vegaKeys.map((k) => (
-          <li key={k.pub}>{truncateMiddle(k.pub)}</li>
-        ))}
-      </ul>
-    );
-  }
+interface VegaWalletConnectedProps {
+  currVegaKey: VegaKey | null;
+  vegaKeys: VegaKey[];
+}
 
-  return <div className="vega-wallet">{content}</div>;
+const VegaWalletConnected = ({
+  currVegaKey,
+  vegaKeys,
+}: VegaWalletConnectedProps) => {
+  const [expanded, setExpanded] = React.useState(false);
+  return vegaKeys.length ? (
+    <div>
+      <div
+        onClick={() => setExpanded(true)}
+        style={{ display: "flex", justifyContent: "space-between" }}
+      >
+        {currVegaKey ? (
+          <>
+            <span>Vega key</span>
+            <span>{truncateMiddle(currVegaKey.pub)}</span>
+          </>
+        ) : (
+          <span>No key selected</span>
+        )}
+      </div>
+      {expanded ? (
+        <ul className="vega-wallet__key-list">
+          {vegaKeys.map((k) => (
+            <li key={k.pub}>{truncateMiddle(k.pub)}</li>
+          ))}
+        </ul>
+      ) : (
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <span>Not staked</span>
+          <span>0.00</span>
+        </div>
+      )}
+    </div>
+  ) : (
+    <div>No keys</div>
+  );
 };
 
 interface FormFields {

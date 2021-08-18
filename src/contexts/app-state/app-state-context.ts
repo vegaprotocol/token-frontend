@@ -31,6 +31,7 @@ export interface AppState {
     lockedAddress: string;
   };
   vegaKeys: VegaKey[] | null;
+  currVegaKey: VegaKey | null;
 }
 
 export enum AppStateActionType {
