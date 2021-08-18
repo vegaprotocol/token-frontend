@@ -11,17 +11,16 @@ jobs:
     name: Cypress run
     runs-on: ubuntu-latest
     container: cypress/browsers:node14.17.0-chrome91-ff89
+    if: ${{ github.event.label.name == 'readyTest' }}
     strategy:
       fail-fast: false
       matrix:
         containers: [1, 2]
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Install root dependencies
         run: yarn install
-
       - name: Start server in the background
         run: REACT_APP_REDEEM_LIVE=0 REACT_APP_CHAIN=0x3 REACT_APP_SHOW_NETWORK_SWITCHER=1 yarn start:mock &
         env:
