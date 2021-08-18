@@ -9,10 +9,8 @@ on:
 jobs:
   cypress-run:
     name: Cypress run
-    runs-on: ubuntu-20.04
     runs-on: ubuntu-latest
     container: cypress/browsers:node12.18.3-chrome87-ff82
-    needs: [prepare]
     if: ${{ github.event.label.name == 'readyTest' }}
     strategy:
       fail-fast: false
