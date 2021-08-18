@@ -108,7 +108,7 @@ describe("Claim", () => {
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // I see the correct error state
-    cy.contains("codeExpired").should("exist");
+    cy.contains("Code expired").should("exist");
     cy.contains(
       "This code (code…code) has expired and cannot be used to claim tokens."
     ).should("exist");
@@ -155,13 +155,15 @@ describe("Claim", () => {
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // I see the correct error state
-    cy.contains("codeUsed").should("exist");
-    cy.contains("codeUsedText").should("exist");
+    cy.contains("Code already used").should("exist");
     cy.contains(
-      "Keep track of locked tokens in your wallet with the VEGA (VESTING) token."
+      "Looks like that code has already been used for address 0x0000…0000"
     ).should("exist");
     cy.contains(
-      "The token address is 0x1b7192491bf89d616676032656b2c7a55fd08e4c. Hit the add token button in your ERC20 wallet and enter this address."
+      "Keep track of locked tokens in your wallet with the VEGA (LOCKED) token."
+    ).should("exist");
+    cy.contains(
+      "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is 0x1b7192491bf89d616676032656b2c7a55fd08e4c. Hit the add token button in your ERC20 wallet and enter this address."
     ).should("exist");
   });
 
@@ -188,7 +190,7 @@ describe("Claim", () => {
     cy.contains("Continue").click();
     // I am redirected to the not permitted page
     cy.contains(
-      "You cannot claim VEGA tokens if you reside in that country"
+      "It is not possible to claim VEGA tokens if you reside in that country or region"
     ).should("exist");
     cy.url().should("include", "not-permitted");
   });
@@ -294,7 +296,7 @@ describe("Untargeted code", () => {
       // When the transaction is complete
       return sendChainResponse(cy, "commit", "receipt").then(() => {
         // When I click the claim button
-        cy.contains("Claim 0.00001 Vega").click();
+        cy.contains("Claim 0.00001 VEGA").click();
         // When the chain throws an error
         return sendChainResponse(
           cy,
@@ -308,7 +310,7 @@ describe("Untargeted code", () => {
           // When I click try again
           cy.contains("Try again").click();
           // Then the form resets
-          cy.contains("Claim 0.00001 Vega").should("exist");
+          cy.contains("Claim 0.00001 VEGA").should("exist");
         });
       });
     });
@@ -339,7 +341,7 @@ describe("Untargeted code", () => {
     // Then it renders completed state
     cy.contains("Complete").should("exist");
     cy.contains("You have already committed your claim").should("exist");
-    cy.contains("Claim 0.00001 Vega").should("exist");
+    cy.contains("Claim 0.00001 VEGA").should("exist");
   });
 
   it("Allows user to do an untargeted claim", () => {
@@ -382,7 +384,7 @@ describe("Untargeted code", () => {
           .should("have.attr", "href")
           .and("match", /ropsten.etherscan.io\/tx\/hash/);
         // When I click the claim button
-        cy.contains("Claim 0.00001 Vega").click();
+        cy.contains("Claim 0.00001 VEGA").click();
         // Then I see the in progress state
         cy.contains(
           "Awaiting action in Ethereum wallet (e.g. metamask)"
@@ -404,7 +406,9 @@ describe("Untargeted code", () => {
 
               // THen the finished state is rendered
               cy.contains("Claim complete").should("exist");
-              cy.contains("claimCompleteMessage").should("exist");
+              cy.contains(
+                "Ethereum address 0x0000000000000000000000000000000000000000 now has a vested right to 0.00123 VEGA tokens from tranche 1 of the vesting contract."
+              ).should("exist");
               cy.contains("Link transaction:").should("exist");
               cy.contains("Claim transaction:").should("exist");
               cy.contains("hash")
@@ -414,10 +418,10 @@ describe("Untargeted code", () => {
                 .should("have.attr", "href")
                 .and("match", /ropsten.etherscan.io\/tx\/hash2/);
               cy.contains(
-                "Keep track of locked tokens in your wallet with the VEGA (VESTING) token."
+                "eep track of locked tokens in your wallet with the VEGA (LOCKED) token."
               ).should("exist");
               cy.contains(
-                "The token address is 0x1b7192491bf89d616676032656b2c7a55fd08e4c. Hit the add token button in your ERC20 wallet and enter this address."
+                "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is 0x1b7192491bf89d616676032656b2c7a55fd08e4c. Hit the add token button in your ERC20 wallet and enter this address."
               ).should("exist");
             });
           }
@@ -475,7 +479,7 @@ describe("Targeted code", () => {
     );
   });
 
-  it("Renders error state if the transaction is rejected in step 1", () => {
+  it("Allows uer to do a targeted claim", () => {
     // As a user
     // Given a code { code, 1, 1, f00, "0x" + "0".repeat(40), 0}
     const link = generateCodeLink({
@@ -515,16 +519,18 @@ describe("Targeted code", () => {
 
         // THen it renders completed state
         cy.contains("Claim complete").should("exist");
-        cy.contains("claimCompleteMessage").should("exist");
+        cy.contains(
+          "Ethereum address 0x0000000000000000000000000000000000000000 now has a vested right to 0.00123 VEGA tokens from tranche 1 of the vesting contract."
+        ).should("exist");
         cy.contains("Claim transaction:").should("exist");
         cy.contains("hash")
           .should("have.attr", "href")
           .and("match", /ropsten.etherscan.io\/tx\/hash/);
         cy.contains(
-          "Keep track of locked tokens in your wallet with the VEGA (VESTING) token."
+          "Keep track of locked tokens in your wallet with the VEGA (LOCKED) token."
         ).should("exist");
         cy.contains(
-          "The token address is 0x1b7192491bf89d616676032656b2c7a55fd08e4c. Hit the add token button in your ERC20 wallet and enter this address."
+          "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is 0x1b7192491bf89d616676032656b2c7a55fd08e4c. Hit the add token button in your ERC20 wallet and enter this address."
         ).should("exist");
       });
     });
