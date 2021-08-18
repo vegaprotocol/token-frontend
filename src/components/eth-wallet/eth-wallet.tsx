@@ -22,8 +22,6 @@ const ConnectedKey = () => {
   const { appState } = useAppState();
   const { connecting, address, error, balanceFormatted } = appState;
 
-  console.log(error);
-
   if (error) {
     return <div>{t("Something went wrong")}</div>;
   }
@@ -41,7 +39,7 @@ const ConnectedKey = () => {
   }
 
   return (
-    <div>
+    <>
       <div className="eth-wallet__row">
         <span className="eth-wallet__label">{t("Account")}: </span>
         <span className="eth-wallet__value">
@@ -60,7 +58,7 @@ const ConnectedKey = () => {
           {balanceFormatted} {t("VEGA")}
         </span>
       </div>
-    </div>
+    </>
   );
 };
 
