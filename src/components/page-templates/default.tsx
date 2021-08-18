@@ -1,3 +1,4 @@
+import "./default.scss";
 import React from "react";
 import { Heading } from "../heading";
 import { Notice } from "../notice";
@@ -12,6 +13,7 @@ export function DefaultTemplate({ children, title }: DefaultTemplateProps) {
     <div className="app-wrapper">
       <Heading title={title} />
       <main>{children}</main>
+      <aside>The aside content</aside>
       <footer>
         <Notice />
       </footer>
