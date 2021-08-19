@@ -3,8 +3,8 @@ import { mock } from "../common/mock";
 const newMock = () => {};
 
 describe("Redemption", () => {
-  it.only("Renders loading state while data is loading", () => {
-    // As a user=
+  it("Renders loading state while data is loading", () => {
+    // As a user
     cy.intercept("/mocks/vesting/tranches/*/balance", (req) => {
       req.reply({
         statusCode: 200,
@@ -33,12 +33,11 @@ describe("Redemption", () => {
     cy.intercept("/mocks/vesting/tranches/*/balance", (req) => {
       req.reply({
         statusCode: 500,
-        delay: 100, // milliseconds
       });
     });
     mock(cy, {
       provider: {
-        accounts: ["0x" + "0".repeat(40)],
+        accounts: ["0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD"],
       },
       vesting: {
         balance: "50",
@@ -46,8 +45,18 @@ describe("Redemption", () => {
     });
     // When visiting redemption
     cy.visit("/redemption");
+    // When I connect to my wallet
+    cy.contains("Connect to an Ethereum wallet").click();
     // Then I see a loading state
     cy.get("[data-testid='redemption-error']").should("exist");
+    cy.get("[data-testid='redemption-error']").should(
+      "contain.text",
+      "Something went wrong"
+    );
+    cy.get("[data-testid='redemption-error']").should(
+      "contain.text",
+      "We couldn't seem to load your data."
+    );
   });
 
   it("Renders empty state if the user has no tokens in no tranches", () => {
@@ -72,6 +81,13 @@ describe("Redemption", () => {
   });
 
   it("Renders check and redeem page content", () => {
+    cy.intercept("/mocks/vesting/tranches/*/balance", (req) => {
+      req.reply({
+        statusCode: 200,
+        delay: 10, // Add delay to ensure loading state
+        body: {},
+      });
+    });
     // As a user
     mock(cy, {
       provider: {
