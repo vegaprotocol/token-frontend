@@ -57,7 +57,17 @@ export const VegaWallet = () => {
 };
 
 const VegaWalletNotConnected = () => {
+  const { appState } = useAppState();
   const [overlayOpen, setOverlayOpen] = React.useState(false);
+
+  if (!appState.vegaWalletStatus) {
+    return (
+      <div>
+        Looks like the Vega wallet service isnt running. Please start it and
+        refresh
+      </div>
+    );
+  }
 
   return (
     <>
@@ -144,7 +154,7 @@ interface FormFields {
 }
 
 const VegaWalletForm = () => {
-  const { appState, appDispatch } = useAppState();
+  const { appDispatch } = useAppState();
   const [loading, setLoading] = React.useState(false);
   const {
     register,
@@ -181,15 +191,6 @@ const VegaWalletForm = () => {
 
     appDispatch({ type: "VEGA_WALLET_INIT", keys });
     setLoading(false);
-  }
-
-  if (!appState.vegaWalletStatus) {
-    return (
-      <p>
-        Looks like the wallet at {vegaWalletService.url} isnt running. Please
-        start the service and refresh the page.
-      </p>
-    );
   }
 
   return (
