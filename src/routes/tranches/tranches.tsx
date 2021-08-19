@@ -12,7 +12,6 @@ import { Callout } from "../../components/callout";
 const trancheMinimum = 1;
 
 const isTestingTranche = (t: Tranche) =>
-  !t.total_added.isEqualTo(0) &&
   t.total_added.isLessThanOrEqualTo(trancheMinimum);
 
 export const Tranches = () => {
