@@ -21,6 +21,16 @@ export default class VegaVesting implements IVegaVesting {
     );
   }
 
+  userTrancheBalance(address: string, tranche: number): Promise<BigNumber> {
+    throw new Error("Method not implemented.");
+  }
+  userTrancheVested(address: string, tranche: number): Promise<BigNumber> {
+    throw new Error("Method not implemented.");
+  }
+  userStakedBalance(address: string, vegaAddress: string): Promise<BigNumber> {
+    throw new Error("Method not implemented.");
+  }
+
   async getUserBalanceAllTranches(account: string): Promise<BigNumber> {
     const amount = await this.contract.methods
       .user_total_all_tranches(account)

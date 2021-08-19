@@ -13,9 +13,30 @@ class MockedVesting implements IVegaVesting {
     this.decimals = decimals;
   }
 
-  private async performFetch(url: string) {
-    const res = await fetch(`${BASE_URL}/${url}`);
-    return await res.json();
+  private async performFetch(url: string, data?: any) {
+    if (data) {
+      const res = await fetch(`${BASE_URL}/${url}`, {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+      return res.json();
+    } else {
+      const res = await fetch(`${BASE_URL}/${url}`);
+      return res.json();
+    }
+  }
+
+  async userTrancheBalance(
+    address: string,
+    tranche: number
+  ): Promise<BigNumber> {
+    throw new Error("Method not implemented.");
+  }
+  userTrancheVested(address: string, tranche: number): Promise<BigNumber> {
+    throw new Error("Method not implemented.");
+  }
+  userStakedBalance(address: string, vegaAddress: string): Promise<BigNumber> {
+    throw new Error("Method not implemented.");
   }
 
   async getUserBalanceAllTranches(account: string): Promise<BigNumber> {
