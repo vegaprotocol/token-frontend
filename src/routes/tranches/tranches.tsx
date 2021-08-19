@@ -11,6 +11,10 @@ import { Callout } from "../../components/callout";
 
 const trancheMinimum = 1;
 
+const isTestingTranche = (t: Tranche) =>
+  !t.total_added.isEqualTo(0) &&
+  t.total_added.isLessThanOrEqualTo(trancheMinimum);
+
 const shouldShowTranche = (t: Tranche) =>
   !t.total_added.isLessThanOrEqualTo(trancheMinimum);
 
@@ -35,7 +39,7 @@ export const Tranches = () => {
                   >
                     <span>{t("Tranche")}</span>#{tranche.tranche_id}
                   </Link>
-                  {!shouldShowTranche(tranche) ? (
+                  {isTestingTranche(tranche) ? (
                     <Callout>
                       {t(
                         "This tranche was used to perform integration testing only prior to token launch and no tokens will enter the supply before 3rd Sep 2021."
