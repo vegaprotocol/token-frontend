@@ -22,6 +22,10 @@
   &__button-link {
     color: $vega-yellow3;
     background-color: transparent !important;
+
+    :focus {
+      border: none !important;
+    }
   }
 
   &__item-title {
