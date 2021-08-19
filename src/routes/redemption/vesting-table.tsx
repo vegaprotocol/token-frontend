@@ -32,19 +32,19 @@ export const VestingTable = ({ vested, locked, staked }: VestingTableProps) => {
       <KeyValueTable numerical={true}>
         <KeyValueTableRow className="vesting-table__top-solid-border">
           <th>{t("Vesting VEGA")}</th>
-          <td style={{ textAlign: "right" }}>{total.toString()}</td>
+          <td>{total.toString()}</td>
         </KeyValueTableRow>
         <KeyValueTableRow className="vesting-table__no-borders">
           <th>{t("Locked")}</th>
-          <td style={{ textAlign: "right" }}>{locked.toString()}</td>
+          <td>{locked.toString()}</td>
         </KeyValueTableRow>
         <KeyValueTableRow className="vesting-table__no-borders">
           <th>{t("Unlocked")}</th>
-          <td style={{ textAlign: "right" }}>{vested.toString()}</td>
+          <td>{vested.toString()}</td>
         </KeyValueTableRow>
         <KeyValueTableRow className="vesting-table__top-dashed-border">
           <th>{t("Staked")}</th>
-          <td style={{ textAlign: "right" }}>{staked.toString()}</td>
+          <td>{staked.toString()}</td>
         </KeyValueTableRow>
       </KeyValueTable>
       <div className="vesting-table__progress-bar">

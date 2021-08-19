@@ -162,7 +162,7 @@ describe("Redemption", () => {
     // TODO needs to be implemented
     cy.get("[data-testid='redemption-staked-tokens']").should(
       "have.text",
-      "0 are staked."
+      "0.0002 are staked."
     );
     cy.get("[data-testid='redemption-page-description']").should(
       "have.text",
