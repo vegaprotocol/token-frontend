@@ -1,0 +1,41 @@
+@import "../../styles/colors";
+
+.vesting-table {
+  &__no-borders {
+    border: none !important;
+    border-bottom: none !important;
+  }
+
+  &__top-solid-border {
+    border-top: 1px solid $white !important;
+    border-bottom: none !important;
+  }
+
+  &__top-dashed-border {
+    border-top: 1px dashed $white !important;
+  }
+
+  &__progress-bar {
+    display: flex;
+
+    &--locked {
+      background-color: $vega-pink;
+      height: 16px;
+    }
+
+    &--vested {
+      background-color: $vega-green;
+      height: 16px;
+    }
+
+    &--staked {
+      background-color: $vega-yellow4;
+      height: 4px;
+    }
+
+    &--overlay {
+      position: relative;
+      top: -4px;
+    }
+  }
+}

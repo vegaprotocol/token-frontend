@@ -1,6 +1,7 @@
 import "./redemption-information.scss";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { RedemptionState } from "./redemption-reducer";
+import { VestingTable } from "./vesting-table";
 
 export const RedemptionInformation = ({
   state,
@@ -10,7 +11,12 @@ export const RedemptionInformation = ({
   const {
     appState: { address, balanceFormatted },
   } = useAppState();
-  const { userTranches } = state;
+  const {
+    userTranches,
+    totalVestedBalance,
+    totalLockedBalance,
+    stakedBalance,
+  } = state;
   if (!userTranches.length) {
     return (
       <section data-testid="redemption-page">
@@ -29,13 +35,13 @@ export const RedemptionInformation = ({
         tranches of the vesting contract.
       </div>
       <div data-testid="redemption-unlocked-tokens">
-        A total of {state.totalVestedBalance.toString()} Unlocked Vega tokens.
+        A total of {totalVestedBalance.toString()} Unlocked Vega tokens.
       </div>
       <div data-testid="redemption-locked-tokens">
-        A total of {state.totalLockedBalance.toString()} Locked Vega tokens.
+        A total of {totalLockedBalance.toString()} Locked Vega tokens.
       </div>
       <div data-testid="redemption-staked-tokens">
-        {state.stakedBalance.toString()} are staked.
+        {stakedBalance.toString()} are staked.
       </div>
       <div data-testid="redemption-page-description">
         <strong>Use this page to redeem any unlocked VEGA tokens</strong>
@@ -45,6 +51,11 @@ export const RedemptionInformation = ({
         tranche. However, it will only work if all the amount you are redeeming
         would not reduce the amount you have staked while vesting.
       </div>
+      <VestingTable
+        staked={stakedBalance}
+        locked={totalLockedBalance}
+        vested={totalVestedBalance}
+      />
     </section>
   );
 };

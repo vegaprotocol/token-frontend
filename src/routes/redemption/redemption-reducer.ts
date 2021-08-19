@@ -23,7 +23,7 @@ export const initialRedemptionState: RedemptionState = {
   loading: false,
   totalVestedBalance: new BigNumber(0),
   totalLockedBalance: new BigNumber(0),
-  stakedBalance: new BigNumber(0),
+  stakedBalance: new BigNumber(0.0002),
   balances: [],
 };
 
