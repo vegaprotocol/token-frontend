@@ -1,7 +1,9 @@
 .template-sidebar {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  grid-template-columns: 1fr 400px;
+  @media (min-width: 960px) {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr 400px;
+  }
   min-height: 100%;
   max-width: 1020px;
   margin: auto;
@@ -18,6 +20,7 @@
   }
 
   aside {
+    padding: 20px;
     grid-column: 2 / 3;
     grid-row: 2 / 3;
 
