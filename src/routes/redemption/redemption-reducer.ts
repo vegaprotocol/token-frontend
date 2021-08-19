@@ -78,7 +78,5 @@ export function redemptionReducer(
         ...state,
         error: action.error,
       };
-    default:
-      return state;
   }
 }
