@@ -172,6 +172,91 @@ describe("Redemption", () => {
     );
   });
 
+  it("Renders table with all vesting information", () => {
+    // As a user with balances
+    const balances = {
+      1: {
+        locked: 40,
+        vested: 20,
+      },
+      2: {
+        locked: 10,
+        vested: 20,
+      },
+    };
+    newMock(balances);
+    mock(cy, {
+      provider: {
+        accounts: ["0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD"],
+      },
+      vesting: {
+        balance: "90",
+      },
+    });
+    // When visiting redemption
+    cy.visit("/redemption");
+    // When I connect to my wallet
+    cy.contains("Connect to an Ethereum wallet").click();
+
+    // Then I see staked information in the table
+    cy.get("[data-testid='vesting-table']").should("exist");
+    cy.get("[data-testid='vesting-table-total'] th").should(
+      "have.text",
+      "Vesting VEGA"
+    );
+    cy.get("[data-testid='vesting-table-total'] td").should(
+      "have.text",
+      "0.0009"
+    );
+
+    cy.get("[data-testid='vesting-table-locked'] th").should(
+      "have.text",
+      "Locked"
+    );
+    cy.get("[data-testid='vesting-table-locked'] td").should(
+      "have.text",
+      "0.0005"
+    );
+
+    cy.get("[data-testid='vesting-table-unlocked'] th").should(
+      "have.text",
+      "Unlocked"
+    );
+    cy.get("[data-testid='vesting-table-unlocked'] td").should(
+      "have.text",
+      "0.0004"
+    );
+
+    cy.get("[data-testid='vesting-table-staked'] th").should(
+      "have.text",
+      "Staked"
+    );
+    cy.get("[data-testid='vesting-table-staked'] td").should(
+      "have.text",
+      "0.0002"
+    );
+    // And renders a bar
+    cy.get(".vesting-table__progress-bar")
+      .invoke("outerWidth")
+      .then((val) => {
+        cy.get(".vesting-table__progress-bar--locked")
+          .invoke("outerWidth")
+          // δ of 1
+          .should("gt", Math.floor((val * 0.005) / 0.009))
+          .should("lt", Math.ceil((val * 0.005) / 0.009));
+        cy.get(".vesting-table__progress-bar--vested")
+          .invoke("outerWidth")
+          // δ of 1
+          .should("gt", Math.floor((val * 0.004) / 0.009))
+          .should("lt", Math.ceil((val * 0.004) / 0.009));
+        cy.get(".vesting-table__progress-bar--staked")
+          .invoke("outerWidth")
+          // δ of 1
+          .should("gt", Math.floor((val * 0.002) / 0.009))
+          .should("lt", Math.ceil((val * 0.002) / 0.009));
+      });
+  });
+
   it("Renders correct data for single tranche", () => {});
   it("Renders correct data for multiple tranche", () => {});
 });

@@ -33,9 +33,9 @@
       height: 4px;
     }
 
-    &--overlay {
-      position: relative;
-      top: -4px;
+    &--small {
+      height: 4px;
+      margin-top: 4px;
     }
   }
 }
