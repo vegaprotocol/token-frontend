@@ -1,11 +1,20 @@
 import { mock } from "../common/mock";
 
+const newMock = () => {};
+
 describe("Redemption", () => {
-  it("Renders loading state while data is loading", () => {
-    // As a user
+  it.only("Renders loading state while data is loading", () => {
+    // As a user=
+    cy.intercept("/mocks/vesting/tranches/*/balance", (req) => {
+      req.reply({
+        statusCode: 200,
+        delay: 10, // Add delay to ensure loading state
+        body: {},
+      });
+    });
     mock(cy, {
       provider: {
-        accounts: ["0x" + "0".repeat(40)],
+        accounts: ["0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD"],
       },
       vesting: {
         balance: "50",
@@ -13,12 +22,20 @@ describe("Redemption", () => {
     });
     // When visiting redemption
     cy.visit("/redemption");
+    // When I connect to my wallet
+    cy.contains("Connect to an Ethereum wallet").click();
     // Then I see a loading state
     cy.get("[data-testid='splash-loader']").should("exist");
   });
 
   it("Renders error state if data loading goes sideways", () => {
     // As a user
+    cy.intercept("/mocks/vesting/tranches/*/balance", (req) => {
+      req.reply({
+        statusCode: 500,
+        delay: 100, // milliseconds
+      });
+    });
     mock(cy, {
       provider: {
         accounts: ["0x" + "0".repeat(40)],

@@ -19,9 +19,19 @@ class MockedVesting implements IVegaVesting {
         method: "POST",
         body: JSON.stringify(data),
       });
+      if (res.status !== 200) {
+        throw new Error(
+          "Endpoint sent non 200 status code. Usually this means that a mock has chosen to send a 500 back"
+        );
+      }
       return res.json();
     } else {
       const res = await fetch(`${BASE_URL}/${url}`);
+      if (res.status !== 200) {
+        throw new Error(
+          "Endpoint sent non 200 status code. Usually this means that a mock has chosen to send a 500 back"
+        );
+      }
       return res.json();
     }
   }
@@ -30,6 +40,10 @@ class MockedVesting implements IVegaVesting {
     address: string,
     tranche: number
   ): Promise<BigNumber> {
+    const balance = await this.performFetch(`tranches/${tranche}/balance`, {
+      address,
+    });
+    console.log(balance);
     return new BigNumber(0);
     throw new Error("Method not implemented.");
   }
