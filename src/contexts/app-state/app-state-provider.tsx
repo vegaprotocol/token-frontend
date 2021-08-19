@@ -101,7 +101,12 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         balanceFormatted: action.balance?.toString() || "",
       };
     }
-    case AppStateActionType.VEGA_WALLET_CONNECT: {
+
+    case AppStateActionType.VEGA_WALLET_INIT: {
+      if (!action.keys) {
+        return { ...state, vegaWalletStatus: true };
+      }
+
       const vegaKeys = action.keys.map((k) => {
         const alias = k.meta?.find((m) => m.key === "alias");
         return {
@@ -114,6 +119,7 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         ...state,
         vegaKeys,
         currVegaKey: vegaKeys.length ? vegaKeys[0] : null,
+        vegaWalletStatus: true,
       };
     }
     case AppStateActionType.VEGA_WALLET_SET_KEY: {
@@ -121,6 +127,19 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
       return {
         ...state,
         currVegaKey: action.key,
+      };
+    }
+    case AppStateActionType.VEGA_WALLET_DOWN: {
+      return {
+        ...state,
+        vegaWalletStatus: false,
+      };
+    }
+    case AppStateActionType.VEGA_WALLET_DISCONNECT: {
+      return {
+        ...state,
+        currVegaKey: null,
+        vegaKeys: null,
       };
     }
   }
