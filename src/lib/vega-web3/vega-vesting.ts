@@ -21,10 +21,16 @@ export default class VegaVesting implements IVegaVesting {
     );
   }
 
-  userTrancheBalance(address: string, tranche: number): Promise<BigNumber> {
+  userTrancheLockedBalance(
+    address: string,
+    tranche: number
+  ): Promise<BigNumber> {
     throw new Error("Method not implemented.");
   }
-  userTrancheVested(address: string, tranche: number): Promise<BigNumber> {
+  userTrancheVestedBalance(
+    address: string,
+    tranche: number
+  ): Promise<BigNumber> {
     throw new Error("Method not implemented.");
   }
   userStakedBalance(address: string, vegaAddress: string): Promise<BigNumber> {
