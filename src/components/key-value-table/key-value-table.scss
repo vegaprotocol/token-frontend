@@ -1,0 +1,59 @@
+@import '../../styles/colors';
+@import '../../styles/fonts';
+
+$ns: 'key-value-table';
+
+.#{$ns}__header,
+.#{$ns}__footer {
+  margin: 10px 0 5px;
+}
+
+.#{$ns}__header {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 7px;
+}
+
+.#{$ns} {
+  margin-bottom: 10px;
+  table-layout: fixed;
+
+  th,
+  td {
+    padding: 0 0 3px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  tr:hover {
+    background-color: $row-hover-background-color;
+  }
+
+  th {
+    color: $text-color-deemphasise;
+    font-weight: 500;
+    overflow: hidden;
+    text-align: left;
+    word-break: break-all;
+  }
+
+  td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .bp3-tag {
+    margin: 0 5px 5px 0;
+  }
+
+  &.#{$ns}--numerical {
+    td {
+      font-family: $font-mono;
+    }
+
+    td button {
+      font-family: $font-main;
+    }
+  }
+}
