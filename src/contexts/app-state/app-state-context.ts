@@ -15,6 +15,11 @@ export interface VegaKey {
   tainted: boolean;
   meta: Array<{ key: string; value: string }>;
 }
+
+export interface VegaKeyWithAlias extends VegaKey {
+  alias: string;
+}
+
 export interface AppState {
   providerStatus: ProviderStatus;
   address: string | null;
@@ -30,8 +35,8 @@ export interface AppState {
     claimAddress: string;
     lockedAddress: string;
   };
-  vegaKeys: VegaKey[] | null;
-  currVegaKey: VegaKey | null;
+  vegaKeys: VegaKeyWithAlias[] | null;
+  currVegaKey: VegaKeyWithAlias | null;
 }
 
 export enum AppStateActionType {
@@ -47,6 +52,7 @@ export enum AppStateActionType {
   APP_CHAIN_CHANGED,
   SET_BALANCE,
   VEGA_WALLET_CONNECT,
+  VEGA_WALLET_SET_KEY,
 }
 
 export type AppStateAction =
@@ -69,7 +75,8 @@ export type AppStateAction =
       newChainId: EthereumChainId;
     }
   | { type: AppStateActionType.SET_BALANCE; balance: BigNumber }
-  | { type: AppStateActionType.VEGA_WALLET_CONNECT; keys: VegaKey[] };
+  | { type: AppStateActionType.VEGA_WALLET_CONNECT; keys: VegaKey[] }
+  | { type: AppStateActionType.VEGA_WALLET_SET_KEY; key: VegaKeyWithAlias };
 
 type AppStateContextShape = {
   appState: AppState;

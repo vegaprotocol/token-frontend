@@ -1,4 +1,5 @@
 @import "../../styles/colors";
+@import "../../styles/fonts";
 
 .vega-wallet {
   background-color: $white;
@@ -21,6 +22,18 @@
     list-style: none;
     margin: 0;
     padding: 0;
+
+    > li {
+      text-align: right;
+      font-family: $font-mono;
+      cursor: pointer;
+      text-decoration: underline;
+      color: $text-color-deemphasise;
+
+      &:hover {
+        color: $black;
+      }
+    }
   }
 
   &__overlay {
@@ -29,7 +42,21 @@
     margin: 10vh 0;
     top: 0;
     width: 400px;
-    background: $dark-gray5;
+    background: $dark-gray1;
     padding: 20px;
+  }
+
+  &__key {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border-bottom: 1px solid $black;
+    padding-bottom: 3px;
+    margin-bottom: 5px;
+  }
+
+  &__curr-key {
+    font-family: $font-mono;
   }
 }
