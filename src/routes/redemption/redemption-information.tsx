@@ -29,10 +29,10 @@ export const RedemptionInformation = ({
         tranches of the vesting contract.
       </div>
       <div data-testid="redemption-unlocked-tokens">
-        A total of {state.unlockedBalance.toString()} Unlocked Vega tokens.
+        A total of {state.totalVestedBalance.toString()} Unlocked Vega tokens.
       </div>
       <div data-testid="redemption-locked-tokens">
-        A total of {state.lockedBalance.toString()} Locked Vega tokens.
+        A total of {state.totalLockedBalance.toString()} Locked Vega tokens.
       </div>
       <div data-testid="redemption-staked-tokens">
         {state.stakedBalance.toString()} are staked.

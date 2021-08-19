@@ -1,22 +1,30 @@
 import { BigNumber } from "../../lib/bignumber";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 
+export interface TrancheBalance {
+  id: number;
+  locked: BigNumber;
+  vested: BigNumber;
+}
+
 export interface RedemptionState {
   error: Error | null;
   userTranches: Tranche[];
   loading: boolean;
-  unlockedBalance: BigNumber;
-  lockedBalance: BigNumber;
+  totalVestedBalance: BigNumber;
+  totalLockedBalance: BigNumber;
   stakedBalance: BigNumber;
+  balances: TrancheBalance[];
 }
 
 export const initialRedemptionState: RedemptionState = {
   error: null,
   userTranches: [],
-  loading: true,
-  unlockedBalance: new BigNumber(0),
-  lockedBalance: new BigNumber(0),
+  loading: false,
+  totalVestedBalance: new BigNumber(0),
+  totalLockedBalance: new BigNumber(0),
   stakedBalance: new BigNumber(0),
+  balances: [],
 };
 
 export type RedemptionAction =
@@ -31,6 +39,10 @@ export type RedemptionAction =
   | {
       type: "SET_LOADING";
       loading: boolean;
+    }
+  | {
+      type: "SET_USER_BALANCES";
+      balances: TrancheBalance[];
     };
 
 export function redemptionReducer(
@@ -38,6 +50,19 @@ export function redemptionReducer(
   action: RedemptionAction
 ) {
   switch (action.type) {
+    case "SET_USER_BALANCES":
+      return {
+        ...state,
+        totalVestedBalance: BigNumber.sum.apply(null, [
+          new BigNumber(0),
+          ...action.balances.map((b) => b.vested),
+        ]),
+        totalLockedBalance: BigNumber.sum.apply(null, [
+          new BigNumber(0),
+          ...action.balances.map((b) => b.locked),
+        ]),
+        balances: action.balances,
+      };
     case "SET_LOADING":
       return {
         ...state,

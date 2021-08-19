@@ -8,6 +8,7 @@ import { TrancheContainer } from "../../components/tranche-container";
 import { Web3Container } from "../../components/web3-container";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useDocumentTitle } from "../../hooks/use-document-title";
+import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { RedemptionInformation } from "./redemption-information";
 import {
   initialRedemptionState,
@@ -15,6 +16,7 @@ import {
 } from "./redemption-reducer";
 
 const RedemptionRouter = ({ name }: RouteChildProps) => {
+  const vesting = useVegaVesting();
   const {
     appState: { address, tranches },
   } = useAppState();
@@ -26,31 +28,54 @@ const RedemptionRouter = ({ name }: RouteChildProps) => {
     initialRedemptionState
   );
   React.useEffect(() => {
-    dispatch({
-      type: "SET_LOADING",
-      loading: true,
-    });
-    try {
-      const userTranches =
-        tranches?.filter((t) =>
-          t.users.some(({ address: a }) => a === address)
-        ) || [];
-      dispatch({
-        type: "SET_USER_TRANCHES",
-        userTranches,
-      });
-    } catch (e) {
-      dispatch({
-        type: "ERROR",
-        error: e,
-      });
-    } finally {
-      dispatch({
-        type: "SET_LOADING",
-        loading: false,
-      });
-    }
-  }, [address, tranches]);
+    const run = async () => {
+      // Don't do anything until the user has connected
+      if (address) {
+        dispatch({
+          type: "SET_LOADING",
+          loading: true,
+        });
+        try {
+          const userTranches =
+            tranches?.filter((t) =>
+              t.users.some(({ address: a }) => a === address)
+            ) || [];
+          dispatch({
+            type: "SET_USER_TRANCHES",
+            userTranches,
+          });
+          // TODO need to get the user staked balance here as well
+          const promises = userTranches.map(async (t) => {
+            const [locked, vested] = await Promise.all([
+              vesting.userTrancheBalance(address, t.tranche_id),
+              vesting.userTrancheVested(address, t.tranche_id),
+            ]);
+            return {
+              id: t.tranche_id,
+              locked,
+              vested,
+            };
+          });
+          const balances = await Promise.all(promises);
+          dispatch({
+            type: "SET_USER_BALANCES",
+            balances,
+          });
+        } catch (e) {
+          dispatch({
+            type: "ERROR",
+            error: e,
+          });
+        } finally {
+          dispatch({
+            type: "SET_LOADING",
+            loading: false,
+          });
+        }
+      }
+    };
+    run();
+  }, [address, tranches, vesting]);
   let pageContent = null;
   if (state.loading) {
     pageContent = <SplashLoader />;
