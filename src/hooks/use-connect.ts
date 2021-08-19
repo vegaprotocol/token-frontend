@@ -6,7 +6,7 @@ import {
 import { EthereumChainId, EthereumChainNames } from "../lib/web3-utils";
 import { useVegaVesting } from "./use-vega-vesting";
 import * as Sentry from "@sentry/react";
-import BigNumber from "bignumber.js";
+import { BigNumber } from "../lib/bignumber";
 
 export function useConnect() {
   const { appState, appDispatch, provider } = useAppState();

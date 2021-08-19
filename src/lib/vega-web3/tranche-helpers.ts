@@ -1,7 +1,7 @@
 import type { EventData } from "web3-eth-contract";
 import { Tranche, TrancheEvents, TrancheUser } from "./vega-web3-types";
 import uniq from "lodash/uniq";
-import BigNumber from "bignumber.js";
+import { BigNumber } from "../../lib/bignumber";
 import { addDecimal } from "../decimals";
 
 export function createUserTransactions(events: EventData[], decimals: number) {
