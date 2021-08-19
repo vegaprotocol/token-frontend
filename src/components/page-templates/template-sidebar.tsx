@@ -58,7 +58,7 @@ export function TemplateSidebar({
             onClose={() => setDrawerOpen(false)}
             size="80%"
           >
-            <div>
+            <div className="template-sidebar__drawer">
               {/* @ts-ignore */}
               {sidebar.map((Component, i) => (
                 <section key={i}>{Component}</section>

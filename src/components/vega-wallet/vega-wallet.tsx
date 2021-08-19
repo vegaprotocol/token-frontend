@@ -9,6 +9,7 @@ import {
 import { vegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
 
 export const VegaWallet = () => {
+  const [expanded, setExpanded] = React.useState(false);
   const { appState, appDispatch } = useAppState();
 
   React.useEffect(() => {
@@ -27,12 +28,28 @@ export const VegaWallet = () => {
 
   return (
     <div className="vega-wallet">
+      <div
+        onClick={() => setExpanded((curr) => !curr)}
+        className="vega-wallet__key"
+        title="Click to change key"
+      >
+        <span style={{ textTransform: "uppercase" }}>Vega key</span>
+        {appState.currVegaKey && (
+          <>
+            <span className="vega-wallet__curr-key">
+              {appState.currVegaKey.alias} {appState.currVegaKey.pubShort}
+            </span>
+          </>
+        )}
+      </div>
       {!appState.vegaKeys ? (
         <VegaWalletNotConnected />
       ) : (
         <VegaWalletConnected
           currVegaKey={appState.currVegaKey}
           vegaKeys={appState.vegaKeys}
+          expanded={expanded}
+          setExpanded={setExpanded}
         />
       )}
     </div>
@@ -67,15 +84,18 @@ const VegaWalletNotConnected = () => {
 interface VegaWalletConnectedProps {
   currVegaKey: VegaKeyExtended | null;
   vegaKeys: VegaKeyExtended[];
+  expanded: boolean;
+  setExpanded: (e: boolean) => void;
 }
 
 const VegaWalletConnected = ({
   currVegaKey,
   vegaKeys,
+  expanded,
+  setExpanded,
 }: VegaWalletConnectedProps) => {
   const { appDispatch } = useAppState();
   const [disconnectText, setDisconnectText] = React.useState("Disconnect");
-  const [expanded, setExpanded] = React.useState(false);
 
   async function handleDisconnect() {
     setDisconnectText("Disconnecting...");
@@ -85,22 +105,6 @@ const VegaWalletConnected = ({
 
   return vegaKeys.length ? (
     <>
-      <div
-        onClick={() => setExpanded((curr) => !curr)}
-        className="vega-wallet__key"
-        title="Click to change key"
-      >
-        {currVegaKey ? (
-          <>
-            <span style={{ textTransform: "uppercase" }}>Vega key</span>
-            <span className="vega-wallet__curr-key">
-              {currVegaKey.alias} {currVegaKey.pubShort}
-            </span>
-          </>
-        ) : (
-          <span>No key selected</span>
-        )}
-      </div>
       {expanded && vegaKeys.length > 1 ? (
         <div>
           <ul className="vega-wallet__key-list">

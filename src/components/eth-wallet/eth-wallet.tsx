@@ -8,11 +8,32 @@ import { useConnect } from "../../hooks/use-connect";
 import { truncateMiddle } from "../../lib/truncate-middle";
 
 export const EthWallet = () => {
+  const { t } = useTranslation();
   const { appState } = useAppState();
+
+  let content = null;
+
+  if (appState.providerStatus === ProviderStatus.Pending) {
+    content = <div>Checking for provider</div>;
+  } else if (appState.providerStatus === ProviderStatus.None) {
+    content = <div>{t("invalidWeb3Browser")}</div>;
+  } else {
+    content = <ConnectedKey />;
+  }
 
   return (
     <div className="eth-wallet">
-      {appState.providerStatus === ProviderStatus.Ready && <ConnectedKey />}
+      <div className="vega-wallet__key" title="Click to change key">
+        <span style={{ textTransform: "uppercase" }}>Ethereum key</span>
+        {appState.address && (
+          <>
+            <span className="vega-wallet__curr-key">
+              {truncateMiddle(appState.address)}
+            </span>
+          </>
+        )}
+      </div>
+      {content}
     </div>
   );
 };
@@ -41,10 +62,6 @@ const ConnectedKey = () => {
 
   return (
     <>
-      <div className="vega-wallet__key">
-        <span style={{ textTransform: "uppercase" }}>Ethereum key</span>
-        <span className="vega-wallet__curr-key">{truncateMiddle(address)}</span>
-      </div>
       <div className="eth-wallet__row">
         <span>{t("Locked")}</span>
         <span>
@@ -61,34 +78,3 @@ const ConnectedKey = () => {
     </>
   );
 };
-
-// export const NetworkSwitcher = () => {
-//   const {
-//     appState: { appChainId },
-//     appDispatch,
-//   } = useAppState();
-//   return (
-//     <select
-//       value={appChainId}
-//       style={{ padding: 4 }}
-//       onChange={(e) => {
-//         appDispatch({
-//           type: "APP_CHAIN_CHANGED",
-//           newChainId: e.target.value as EthereumChainId,
-//         });
-//       }}
-//     >
-//       {Object.entries(EthereumChainIds).map(([name, val]) => (
-//         <option
-//           key={val}
-//           value={val}
-//           disabled={
-//             ![EthereumChainIds.Ropsten, EthereumChainIds.Mainnet].includes(val)
-//           }
-//         >
-//           {name}
-//         </option>
-//       ))}
-//     </select>
-//   );
-// };
