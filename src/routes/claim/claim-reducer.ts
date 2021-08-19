@@ -160,7 +160,5 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
         ...state,
         error: action.error,
       };
-    default:
-      return state;
   }
 }
