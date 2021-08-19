@@ -101,10 +101,24 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
       };
     }
     case AppStateActionType.VEGA_WALLET_CONNECT: {
+      const vegaKeys = action.keys.map((k) => {
+        const alias = k.meta?.find((m) => m.key === "alias");
+        return {
+          ...k,
+          alias: alias?.value || "No alias",
+        };
+      });
       return {
         ...state,
-        vegaKeys: action.keys,
-        currVegaKey: action.keys.length ? action.keys[0] : null,
+        vegaKeys,
+        currVegaKey: vegaKeys.length ? vegaKeys[0] : null,
+      };
+    }
+    case AppStateActionType.VEGA_WALLET_SET_KEY: {
+      console.log(action);
+      return {
+        ...state,
+        currVegaKey: action.key,
       };
     }
   }

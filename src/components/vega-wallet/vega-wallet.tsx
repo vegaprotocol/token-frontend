@@ -5,11 +5,13 @@ import { useForm } from "react-hook-form";
 import {
   useAppState,
   VegaKey,
+  VegaKeyWithAlias,
 } from "../../contexts/app-state/app-state-context";
 import { truncateMiddle } from "../../lib/truncate-middle";
 
 export const VegaWallet = () => {
   const { appState, appDispatch } = useAppState();
+  console.log(appState.currVegaKey);
 
   React.useEffect(() => {
     async function run(url: string, token: string) {
@@ -72,43 +74,54 @@ const VegaWalletNotConnected = () => {
 };
 
 interface VegaWalletConnectedProps {
-  currVegaKey: VegaKey | null;
-  vegaKeys: VegaKey[];
+  currVegaKey: VegaKeyWithAlias | null;
+  vegaKeys: VegaKeyWithAlias[];
 }
 
 const VegaWalletConnected = ({
   currVegaKey,
   vegaKeys,
 }: VegaWalletConnectedProps) => {
+  const { appDispatch } = useAppState();
   const [expanded, setExpanded] = React.useState(false);
   return vegaKeys.length ? (
-    <div>
+    <>
       <div
         onClick={() => setExpanded((curr) => !curr)}
-        style={{ display: "flex", justifyContent: "space-between" }}
+        className="vega-wallet__key"
+        title="Click to change key"
       >
         {currVegaKey ? (
           <>
             <span>Vega key</span>
-            <span>{truncateMiddle(currVegaKey.pub)}</span>
+            <span className="vega-wallet__curr-key">
+              {currVegaKey.alias} {truncateMiddle(currVegaKey.pub)}{" "}
+            </span>
           </>
         ) : (
           <span>No key selected</span>
         )}
       </div>
-      {expanded ? (
+      {expanded && vegaKeys.length > 1 ? (
         <ul className="vega-wallet__key-list">
-          {vegaKeys.map((k) => (
-            <li key={k.pub}>{truncateMiddle(k.pub)}</li>
-          ))}
+          {vegaKeys
+            .filter((k) => currVegaKey && currVegaKey.pub !== k.pub)
+            .map((k) => (
+              <li
+                key={k.pub}
+                onClick={() => {
+                  appDispatch({ type: "VEGA_WALLET_SET_KEY", key: k });
+                  setExpanded(false);
+                }}
+              >
+                {k.alias} {truncateMiddle(k.pub)}
+              </li>
+            ))}
         </ul>
       ) : (
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <span>Not staked</span>
-          <span>0.00</span>
-        </div>
+        <div>Stake info</div>
       )}
-    </div>
+    </>
   ) : (
     <div>No keys</div>
   );
