@@ -16,8 +16,9 @@ export interface VegaKey {
   meta: Array<{ key: string; value: string }>;
 }
 
-export interface VegaKeyWithAlias extends VegaKey {
+export interface VegaKeyExtended extends VegaKey {
   alias: string;
+  pubShort: string;
 }
 
 export interface AppState {
@@ -35,8 +36,8 @@ export interface AppState {
     claimAddress: string;
     lockedAddress: string;
   };
-  vegaKeys: VegaKeyWithAlias[] | null;
-  currVegaKey: VegaKeyWithAlias | null;
+  vegaKeys: VegaKeyExtended[] | null;
+  currVegaKey: VegaKeyExtended | null;
 }
 
 export enum AppStateActionType {
@@ -76,7 +77,7 @@ export type AppStateAction =
     }
   | { type: AppStateActionType.SET_BALANCE; balance: BigNumber }
   | { type: AppStateActionType.VEGA_WALLET_CONNECT; keys: VegaKey[] }
-  | { type: AppStateActionType.VEGA_WALLET_SET_KEY; key: VegaKeyWithAlias };
+  | { type: AppStateActionType.VEGA_WALLET_SET_KEY; key: VegaKeyExtended };
 
 type AppStateContextShape = {
   appState: AppState;
