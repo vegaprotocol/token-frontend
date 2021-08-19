@@ -1,7 +1,7 @@
-@import '../../styles/colors';
-@import '../../styles/fonts';
+@import "../../styles/colors";
+@import "../../styles/fonts";
 
-$ns: 'key-value-table';
+$ns: "key-value-table";
 
 .#{$ns}__header,
 .#{$ns}__footer {
@@ -15,32 +15,36 @@ $ns: 'key-value-table';
 }
 
 .#{$ns} {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
   margin-bottom: 10px;
   table-layout: fixed;
 
-  th,
-  td {
-    padding: 0 0 3px;
-    text-align: left;
-    vertical-align: top;
+  tr {
+    border-bottom: 1px solid $white;
+
+    &:first-child {
+      border-top: 1px solid $white;
+    }
   }
 
-  tr:hover {
-    background-color: $row-hover-background-color;
+  th,
+  td {
+    vertical-align: top;
+    padding: 5px;
   }
 
   th {
-    color: $text-color-deemphasise;
-    font-weight: 500;
-    overflow: hidden;
     text-align: left;
-    word-break: break-all;
+    font-weight: 500;
+    color: $white;
+    text-transform: uppercase;
   }
 
   td {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    color: $text-color;
+    text-align: right;
   }
 
   .bp3-tag {

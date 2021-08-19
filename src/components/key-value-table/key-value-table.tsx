@@ -6,18 +6,20 @@ export interface KeyValueTableProps {
   title?: string;
   numerical?: boolean; // makes all values monospace
   children: React.ReactNode;
+  className?: string;
 }
 
 export const KeyValueTable = ({
   title,
   numerical,
   children,
+  className,
 }: KeyValueTableProps) => {
   return (
     <React.Fragment>
       {title && <h3 className="key-value-table__header">{title}</h3>}
       <table
-        className={`key-value-table ${
+        className={`key-value-table ${className ? className : ""} ${
           numerical ? "key-value-table--numerical" : ""
         }`}
       >
@@ -29,15 +31,15 @@ export const KeyValueTable = ({
 
 export interface KeyValueTableRowProps {
   children: [React.ReactNode, React.ReactNode];
-  classNames: string;
+  className?: string;
 }
 
 export const KeyValueTableRow = ({
   children,
-  classNames,
+  className,
 }: KeyValueTableRowProps) => {
   return (
-    <tr className={`key-value-table__row ${classNames ? classNames : ""}`}>
+    <tr className={`key-value-table__row ${className ? className : ""}`}>
       {children[0]}
       {children[1]}
     </tr>
