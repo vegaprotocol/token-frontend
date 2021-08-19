@@ -15,7 +15,7 @@ const RedemptionRouter = ({ name }: RouteChildProps) => {
   const { t } = useTranslation();
   let pageContent = appState.address ? <RedemptionInformation /> : <Connect />;
   return (
-    <DefaultTemplate title={t("pageTitleClaim")}>
+    <DefaultTemplate title={t("pageTitleRedemption")}>
       <Web3Container>
         <TrancheContainer>{pageContent}</TrancheContainer>
       </Web3Container>
