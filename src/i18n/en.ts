@@ -146,7 +146,7 @@ const en = {
   "Showing tranches with <{{trancheMinimum}} VEGA, click to hide these tranches":
     "Showing tranches with <{{trancheMinimum}} VEGA, click to hide these tranches",
   "Not showing tranches with <{{trancheMinimum}} VEGA, click to show all tranches":
-    "Not showing tranches with <{{trancheMinimum}} VEGA, click to show all tranches",
+    "Not showing tranches with <={{trancheMinimum}} VEGA, click to show all tranches",
   "the holder": "the holder",
 };
 
