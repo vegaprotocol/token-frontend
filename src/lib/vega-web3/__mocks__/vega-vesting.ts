@@ -30,12 +30,21 @@ class MockedVesting implements IVegaVesting {
     address: string,
     tranche: number
   ): Promise<BigNumber> {
+    return new BigNumber(0);
     throw new Error("Method not implemented.");
   }
-  userTrancheVested(address: string, tranche: number): Promise<BigNumber> {
+  async userTrancheVested(
+    address: string,
+    tranche: number
+  ): Promise<BigNumber> {
+    return new BigNumber(0);
     throw new Error("Method not implemented.");
   }
-  userStakedBalance(address: string, vegaAddress: string): Promise<BigNumber> {
+  async userStakedBalance(
+    address: string,
+    vegaAddress: string
+  ): Promise<BigNumber> {
+    return new BigNumber(0);
     throw new Error("Method not implemented.");
   }
 
