@@ -2,11 +2,11 @@ import "./key-value-table.scss";
 
 import * as React from "react";
 
-export interface KeyValueTableProps {
+export interface KeyValueTableProps
+  extends React.HTMLAttributes<HTMLTableElement> {
   title?: string;
   numerical?: boolean; // makes all values monospace
   children: React.ReactNode;
-  className?: string;
 }
 
 export const KeyValueTable = ({
@@ -14,11 +14,13 @@ export const KeyValueTable = ({
   numerical,
   children,
   className,
+  ...rest
 }: KeyValueTableProps) => {
   return (
     <React.Fragment>
       {title && <h3 className="key-value-table__header">{title}</h3>}
       <table
+        {...rest}
         className={`key-value-table ${className ? className : ""} ${
           numerical ? "key-value-table--numerical" : ""
         }`}
@@ -29,7 +31,8 @@ export const KeyValueTable = ({
   );
 };
 
-export interface KeyValueTableRowProps {
+export interface KeyValueTableRowProps
+  extends React.HTMLAttributes<HTMLTableRowElement> {
   children: [React.ReactNode, React.ReactNode];
   className?: string;
 }
@@ -37,9 +40,13 @@ export interface KeyValueTableRowProps {
 export const KeyValueTableRow = ({
   children,
   className,
+  ...rest
 }: KeyValueTableRowProps) => {
   return (
-    <tr className={`key-value-table__row ${className ? className : ""}`}>
+    <tr
+      {...rest}
+      className={`key-value-table__row ${className ? className : ""}`}
+    >
       {children[0]}
       {children[1]}
     </tr>
