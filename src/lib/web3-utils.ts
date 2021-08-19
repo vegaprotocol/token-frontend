@@ -54,8 +54,14 @@ export type PromiEvent = typeof Promise & {
 export interface IVegaVesting {
   getUserBalanceAllTranches(account: string): Promise<BigNumber>;
   getAllTranches(): Promise<Tranche[]>;
-  userTrancheBalance(address: string, tranche: number): Promise<BigNumber>;
-  userTrancheVested(address: string, tranche: number): Promise<BigNumber>;
+  userTrancheLockedBalance(
+    address: string,
+    tranche: number
+  ): Promise<BigNumber>;
+  userTrancheVestedBalance(
+    address: string,
+    tranche: number
+  ): Promise<BigNumber>;
   userStakedBalance(address: string, vegaAddress: string): Promise<BigNumber>;
 }
 
