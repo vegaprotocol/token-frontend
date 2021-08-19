@@ -16,7 +16,6 @@ const newMock = (balances, overrides = {}) => {
     const trancheId = req.url.match(/tranches\/(\d*)\/balance/)[1];
     req.reply({
       statusCode: 200,
-      delay: 10, // Add delay to ensure loading state
       body: balances[trancheId].locked,
     });
   };
@@ -24,7 +23,6 @@ const newMock = (balances, overrides = {}) => {
     const trancheId = req.url.match(/tranches\/(\d*)\/balance/)[1];
     req.reply({
       statusCode: 200,
-      delay: 10, // Add delay to ensure loading state
       body: balances[trancheId].vested,
     });
   };
