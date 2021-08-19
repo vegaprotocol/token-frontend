@@ -1,4 +1,4 @@
-import React from "react";
+import "./redemption-information.scss";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { RedemptionState } from "./redemption-reducer";
 
@@ -23,7 +23,7 @@ export const RedemptionInformation = ({
   }
 
   return (
-    <section data-testid="redemption-page">
+    <section className="redemption-information" data-testid="redemption-page">
       <div data-testid="redemption-description">
         {address} has {balanceFormatted} VEGA tokens in {userTranches.length}{" "}
         tranches of the vesting contract.
