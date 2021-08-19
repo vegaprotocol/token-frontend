@@ -5,6 +5,7 @@ import {
 } from "../../components/key-value-table";
 import { BigNumber } from "../../lib/bignumber";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export interface VestingTableProps {
   vested: BigNumber;
@@ -13,6 +14,7 @@ export interface VestingTableProps {
 }
 
 export const VestingTable = ({ vested, locked, staked }: VestingTableProps) => {
+  const { t } = useTranslation();
   const total = React.useMemo(() => {
     return vested.plus(locked);
   }, [locked, vested]);
@@ -29,19 +31,19 @@ export const VestingTable = ({ vested, locked, staked }: VestingTableProps) => {
     <section className="vesting-table">
       <KeyValueTable numerical={true}>
         <KeyValueTableRow className="vesting-table__top-solid-border">
-          <th>Vesting VEGA</th>
+          <th>{t("Vesting VEGA")}</th>
           <td style={{ textAlign: "right" }}>{total.toString()}</td>
         </KeyValueTableRow>
         <KeyValueTableRow className="vesting-table__no-borders">
-          <th>Locked</th>
+          <th>{t("Locked")}</th>
           <td style={{ textAlign: "right" }}>{locked.toString()}</td>
         </KeyValueTableRow>
         <KeyValueTableRow className="vesting-table__no-borders">
-          <th>Unlocked</th>
+          <th>{t("Unlocked")}</th>
           <td style={{ textAlign: "right" }}>{vested.toString()}</td>
         </KeyValueTableRow>
         <KeyValueTableRow className="vesting-table__top-dashed-border">
-          <th>Staked</th>
+          <th>{t("Staked")}</th>
           <td style={{ textAlign: "right" }}>{staked.toString()}</td>
         </KeyValueTableRow>
       </KeyValueTable>

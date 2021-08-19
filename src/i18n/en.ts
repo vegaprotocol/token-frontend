@@ -22,6 +22,8 @@ const en = {
   Continue: "Continue",
   Withdraw: "Withdraw",
   Step: "Step",
+  Unlocked: "Unlocked",
+  Staked: "Staked",
 
   "VEGA was successfully withdrawn to your wallet":
     "VEGA was successfully withdrawn to your wallet",
@@ -150,6 +152,7 @@ const en = {
     "Not showing tranches with <={{trancheMinimum}} VEGA, click to show all tranches",
   "the holder": "the holder",
   "We couldn't seem to load your data.": "We couldn't seem to load your data.",
+  "Vesting VEGA": "Vesting VEGA",
 };
 
 export default en;
