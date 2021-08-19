@@ -65,7 +65,6 @@ class MockedVesting implements IVegaVesting {
     address: string,
     vegaAddress: string
   ): Promise<BigNumber> {
-    return new BigNumber(0);
     throw new Error("Method not implemented.");
   }
 
