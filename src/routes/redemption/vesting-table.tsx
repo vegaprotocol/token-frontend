@@ -28,21 +28,33 @@ export const VestingTable = ({ vested, locked, staked }: VestingTableProps) => {
     return staked.div(total).times(100);
   }, [total, staked]);
   return (
-    <section className="vesting-table">
+    <section data-testid="vesting-table" className="vesting-table">
       <KeyValueTable numerical={true}>
-        <KeyValueTableRow className="vesting-table__top-solid-border">
+        <KeyValueTableRow
+          data-testid="vesting-table-total"
+          className="vesting-table__top-solid-border"
+        >
           <th>{t("Vesting VEGA")}</th>
           <td>{total.toString()}</td>
         </KeyValueTableRow>
-        <KeyValueTableRow className="vesting-table__no-borders">
+        <KeyValueTableRow
+          data-testid="vesting-table-locked"
+          className="vesting-table__no-borders"
+        >
           <th>{t("Locked")}</th>
           <td>{locked.toString()}</td>
         </KeyValueTableRow>
-        <KeyValueTableRow className="vesting-table__no-borders">
+        <KeyValueTableRow
+          data-testid="vesting-table-unlocked"
+          className="vesting-table__no-borders"
+        >
           <th>{t("Unlocked")}</th>
           <td>{vested.toString()}</td>
         </KeyValueTableRow>
-        <KeyValueTableRow className="vesting-table__top-dashed-border">
+        <KeyValueTableRow
+          data-testid="vesting-table-staked"
+          className="vesting-table__top-dashed-border"
+        >
           <th>{t("Staked")}</th>
           <td>{staked.toString()}</td>
         </KeyValueTableRow>
@@ -57,7 +69,7 @@ export const VestingTable = ({ vested, locked, staked }: VestingTableProps) => {
           style={{ flex: vestedPercentage.toNumber() }}
         ></div>
       </div>
-      <div className="vesting-table__progress-bar vesting-table__progress-bar--overlay">
+      <div className="vesting-table__progress-bar vesting-table__progress-bar--small">
         <div
           className="vesting-table__progress-bar--staked"
           style={{ flex: stakedPercentage.toNumber() }}
