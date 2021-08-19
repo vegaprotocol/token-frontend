@@ -1,16 +1,16 @@
+import React from "react";
 import { useAppState } from "../../contexts/app-state/app-state-context";
+import { RedemptionState } from "./redemption-reducer";
 
-export const RedemptionInformation = () => {
+export const RedemptionInformation = ({
+  state,
+}: {
+  state: RedemptionState;
+}) => {
   const {
-    appState: { address, balanceFormatted, tranches },
+    appState: { address, balanceFormatted },
   } = useAppState();
-  const unlockedBalance = 0.0005;
-  const lockedBalance = 0.0005;
-  const stakedBalance = 0.0005;
-  const userTranches =
-    tranches?.filter((t) => t.users.some(({ address: a }) => a === address)) ||
-    [];
-
+  const { userTranches } = state;
   if (!userTranches.length) {
     return (
       <section data-testid="redemption-page">
@@ -21,6 +21,7 @@ export const RedemptionInformation = () => {
       </section>
     );
   }
+
   return (
     <section data-testid="redemption-page">
       <div data-testid="redemption-description">
@@ -28,13 +29,13 @@ export const RedemptionInformation = () => {
         tranches of the vesting contract.
       </div>
       <div data-testid="redemption-unlocked-tokens">
-        A total of {unlockedBalance} Unlocked Vega tokens.
+        A total of {state.unlockedBalance.toString()} Unlocked Vega tokens.
       </div>
       <div data-testid="redemption-locked-tokens">
-        A total of {lockedBalance} Locked Vega tokens.
+        A total of {state.lockedBalance.toString()} Locked Vega tokens.
       </div>
       <div data-testid="redemption-staked-tokens">
-        {stakedBalance} are staked.
+        {state.stakedBalance.toString()} are staked.
       </div>
       <div data-testid="redemption-page-description">
         <strong>Use this page to redeem any unlocked VEGA tokens</strong>
