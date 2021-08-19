@@ -11,15 +11,15 @@ import { Callout } from "../../components/callout";
 
 const trancheMinimum = 1;
 
-const isTestingTranche = (t: Tranche) =>
-  t.total_added.isLessThanOrEqualTo(trancheMinimum);
+const shouldShowTranche = (t: Tranche) =>
+  !t.total_added.isLessThanOrEqualTo(trancheMinimum);
 
 export const Tranches = () => {
   const [showAll, setShowAll] = React.useState<boolean>(false);
   const { t } = useTranslation();
   const match = useRouteMatch();
   const tranches = useTranches();
-  const filteredTranches = tranches?.filter((t) => !isTestingTranche(t)) || [];
+  const filteredTranches = tranches?.filter(shouldShowTranche) || [];
   return (
     <>
       <BulletHeader tag="h2">{t("Tranches")}</BulletHeader>
@@ -35,7 +35,7 @@ export const Tranches = () => {
                   >
                     <span>{t("Tranche")}</span>#{tranche.tranche_id}
                   </Link>
-                  {isTestingTranche(tranche) ? (
+                  {!shouldShowTranche(tranche) ? (
                     <Callout>
                       {t(
                         "This tranche was used to perform integration testing only prior to token launch and no tokens will enter the supply before 3rd Sep 2021."
