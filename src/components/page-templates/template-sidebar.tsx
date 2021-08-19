@@ -3,6 +3,7 @@ import React from "react";
 import { Heading } from "../heading";
 import { Notice } from "../notice";
 import { Drawer } from "@blueprintjs/core";
+import debounce from "lodash/debounce";
 
 export interface TemplateSidebarProps {
   title: string;
@@ -15,8 +16,21 @@ export function TemplateSidebar({
   children,
   sidebar,
 }: TemplateSidebarProps) {
-  const isDesktop = window.innerWidth > 960;
+  const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const isDesktop = windowWidth > 960;
+
+  React.useEffect(() => {
+    const handleResizeDebounced = debounce(() => {
+      setWindowWidth(window.innerWidth);
+    }, 300);
+
+    window.addEventListener("resize", handleResizeDebounced);
+
+    return () => {
+      window.removeEventListener("resize", handleResizeDebounced);
+    };
+  }, []);
 
   return (
     <div className="template-sidebar">
