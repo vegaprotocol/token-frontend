@@ -344,7 +344,7 @@ describe("Untargeted code", () => {
     cy.contains("Claim 0.00001 VEGA").should("exist");
   });
 
-  it("Allows user to do an untargeted claim", () => {
+  it.skip("Allows user to do an untargeted claim", () => {
     // As a user
     // Given a code { code, 1, 1, f00, "0x" + "0".repeat(40), 0}
     const link = generateCodeLink({
