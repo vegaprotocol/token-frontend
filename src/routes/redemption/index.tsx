@@ -9,6 +9,7 @@ import { Web3Container } from "../../components/web3-container";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
+import { RedemptionError } from "./redemption-error";
 import { RedemptionInformation } from "./redemption-information";
 import {
   initialRedemptionState,
@@ -80,7 +81,7 @@ const RedemptionRouter = ({ name }: RouteChildProps) => {
   if (state.loading) {
     pageContent = <SplashLoader />;
   } else if (state.error) {
-    throw new Error("Implement this dexter you dumbass");
+    pageContent = <RedemptionError />;
   } else if (!appState.address) {
     pageContent = <Connect />;
   } else {
