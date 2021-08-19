@@ -3,6 +3,7 @@ import { Tranche } from "../vega-web3-types";
 import { IVegaVesting } from "../../web3-utils";
 import { getTranchesFromHistory } from "../tranche-helpers";
 import Web3 from "web3";
+import { addDecimal } from "../../decimals";
 
 const BASE_URL = "../mocks/vesting";
 
@@ -40,19 +41,25 @@ class MockedVesting implements IVegaVesting {
     address: string,
     tranche: number
   ): Promise<BigNumber> {
-    const balance = await this.performFetch(`tranches/${tranche}/balance`, {
-      address,
-    });
-    console.log(balance);
-    return new BigNumber(0);
-    throw new Error("Method not implemented.");
+    const balance = await this.performFetch(
+      `tranches/${tranche}/balance/locked`,
+      {
+        address,
+      }
+    );
+    return new BigNumber(addDecimal(new BigNumber(balance), this.decimals));
   }
   async userTrancheVestedBalance(
     address: string,
     tranche: number
   ): Promise<BigNumber> {
-    return new BigNumber(0);
-    throw new Error("Method not implemented.");
+    const balance = await this.performFetch(
+      `tranches/${tranche}/balance/vested`,
+      {
+        address,
+      }
+    );
+    return new BigNumber(addDecimal(new BigNumber(balance), this.decimals));
   }
   async userStakedBalance(
     address: string,

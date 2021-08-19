@@ -1,16 +1,54 @@
 import { mock } from "../common/mock";
 
-const newMock = () => {};
+const balances = {
+  1: {
+    locked: 40,
+    vested: 20,
+  },
+  2: {
+    locked: 10,
+    vested: 20,
+  },
+};
+
+const newMock = (balances, overrides = {}) => {
+  const lockedHandler = (req) => {
+    const trancheId = req.url.match(/tranches\/(\d*)\/balance/)[1];
+    req.reply({
+      statusCode: 200,
+      delay: 10, // Add delay to ensure loading state
+      body: balances[trancheId].locked,
+    });
+  };
+  const vestedHandler = (req) => {
+    const trancheId = req.url.match(/tranches\/(\d*)\/balance/)[1];
+    req.reply({
+      statusCode: 200,
+      delay: 10, // Add delay to ensure loading state
+      body: balances[trancheId].vested,
+    });
+  };
+  cy.intercept(
+    "/mocks/vesting/tranches/*/balance/locked",
+    overrides["/mocks/vesting/tranches/*/balance/locked"] || lockedHandler
+  );
+  cy.intercept(
+    "/mocks/vesting/tranches/*/balance/vested",
+    overrides["/mocks/vesting/tranches/*/balance/vested"] || vestedHandler
+  );
+};
 
 describe("Redemption", () => {
   it("Renders loading state while data is loading", () => {
     // As a user
-    cy.intercept("/mocks/vesting/tranches/*/balance", (req) => {
-      req.reply({
-        statusCode: 200,
-        delay: 10, // Add delay to ensure loading state
-        body: {},
-      });
+    newMock(balances, {
+      "/mocks/vesting/tranches/*/balance/locked": (req) => {
+        req.reply({
+          statusCode: 200,
+          delay: 10, // Add delay to ensure loading state
+          body: "1",
+        });
+      },
     });
     mock(cy, {
       provider: {
@@ -30,10 +68,12 @@ describe("Redemption", () => {
 
   it("Renders error state if data loading goes sideways", () => {
     // As a user
-    cy.intercept("/mocks/vesting/tranches/*/balance", (req) => {
-      req.reply({
-        statusCode: 500,
-      });
+    newMock(balances, {
+      "/mocks/vesting/tranches/*/balance/locked": (req) => {
+        req.reply({
+          statusCode: 500,
+        });
+      },
     });
     mock(cy, {
       provider: {
@@ -81,20 +121,24 @@ describe("Redemption", () => {
   });
 
   it("Renders check and redeem page content", () => {
-    cy.intercept("/mocks/vesting/tranches/*/balance", (req) => {
-      req.reply({
-        statusCode: 200,
-        delay: 10, // Add delay to ensure loading state
-        body: {},
-      });
-    });
-    // As a user
+    // As a user with balances:
+    const balances = {
+      1: {
+        locked: 40,
+        vested: 20,
+      },
+      2: {
+        locked: 10,
+        vested: 20,
+      },
+    };
+    newMock(balances);
     mock(cy, {
       provider: {
         accounts: ["0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD"],
       },
       vesting: {
-        balance: "50",
+        balance: "90",
       },
     });
     // When visiting redemption
@@ -105,19 +149,20 @@ describe("Redemption", () => {
     // Then I see redemption information
     cy.get("[data-testid='redemption-description']").should(
       "have.text",
-      "0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD has 0.00050 VEGA tokens in 2 tranches of the vesting contract."
+      "0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD has 0.00090 VEGA tokens in 2 tranches of the vesting contract."
     );
     cy.get("[data-testid='redemption-unlocked-tokens']").should(
       "have.text",
-      "A total of 0.0005 Unlocked Vega tokens."
+      "A total of 0.0004 Unlocked Vega tokens."
     );
     cy.get("[data-testid='redemption-locked-tokens']").should(
       "have.text",
       "A total of 0.0005 Locked Vega tokens."
     );
+    // TODO needs to be implemented
     cy.get("[data-testid='redemption-staked-tokens']").should(
       "have.text",
-      "0.0005 are staked."
+      "0 are staked."
     );
     cy.get("[data-testid='redemption-page-description']").should(
       "have.text",
@@ -129,7 +174,6 @@ describe("Redemption", () => {
     );
   });
 
-  it("If the user has no tokens it renders an empty state", () => {
-    // TODO
-  });
+  it("Renders correct data for single tranche", () => {});
+  it("Renders correct data for multiple tranche", () => {});
 });
