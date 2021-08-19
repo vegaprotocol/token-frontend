@@ -11,6 +11,7 @@ import {
 } from "./app-state-context";
 // @ts-ignore
 import detectEthereumProvider from "DETECT_PROVIDER_PATH/detect-provider";
+import { truncateMiddle } from "../../lib/truncate-middle";
 
 interface AppStateProviderProps {
   children: React.ReactNode;
@@ -106,6 +107,7 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         return {
           ...k,
           alias: alias?.value || "No alias",
+          pubShort: truncateMiddle(k.pub),
         };
       });
       return {

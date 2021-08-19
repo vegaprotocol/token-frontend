@@ -4,10 +4,8 @@ import "./vega-wallet.scss";
 import { useForm } from "react-hook-form";
 import {
   useAppState,
-  VegaKey,
-  VegaKeyWithAlias,
+  VegaKeyExtended,
 } from "../../contexts/app-state/app-state-context";
-import { truncateMiddle } from "../../lib/truncate-middle";
 
 export const VegaWallet = () => {
   const { appState, appDispatch } = useAppState();
@@ -74,8 +72,8 @@ const VegaWalletNotConnected = () => {
 };
 
 interface VegaWalletConnectedProps {
-  currVegaKey: VegaKeyWithAlias | null;
-  vegaKeys: VegaKeyWithAlias[];
+  currVegaKey: VegaKeyExtended | null;
+  vegaKeys: VegaKeyExtended[];
 }
 
 const VegaWalletConnected = ({
@@ -95,7 +93,7 @@ const VegaWalletConnected = ({
           <>
             <span>Vega key</span>
             <span className="vega-wallet__curr-key">
-              {currVegaKey.alias} {truncateMiddle(currVegaKey.pub)}{" "}
+              {currVegaKey.alias} {currVegaKey.pubShort}
             </span>
           </>
         ) : (
@@ -114,7 +112,7 @@ const VegaWalletConnected = ({
                   setExpanded(false);
                 }}
               >
-                {k.alias} {truncateMiddle(k.pub)}
+                {k.alias} {k.pubShort}
               </li>
             ))}
         </ul>
