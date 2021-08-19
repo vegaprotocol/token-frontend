@@ -1,11 +1,11 @@
 import { mock } from "../common/mock";
 
 describe("Redemption", () => {
-  it("Renders check and redeem page content", () => {
+  it("Renders empty state if the user has no tokens in no tranches", () => {
     // As a user
     mock(cy, {
       provider: {
-        accounts: ["0x1234567890123456789012345678901234567890"],
+        accounts: ["0x" + "0".repeat(40)],
       },
       vesting: {
         balance: "50",
@@ -13,12 +13,30 @@ describe("Redemption", () => {
     });
     // When visiting redemption
     cy.visit("/redemption");
+    // When I connect to my wallet
+    cy.contains("Connect to an Ethereum wallet").click();
+    // Then I see an empty state
+  });
+
+  it("Renders check and redeem page content", () => {
+    // As a user
+    mock(cy, {
+      provider: {
+        accounts: ["0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD"],
+      },
+      vesting: {
+        balance: "50",
+      },
+    });
+    // When visiting redemption
+    cy.visit("/redemption");
+    // When I connect to my wallet
     cy.contains("Connect to an Ethereum wallet").click();
 
     // Then I see redemption information
     cy.get("[data-testid='redemption-description']").should(
       "have.text",
-      "0x1234567890123456789012345678901234567890 has 0.00050 VEGA tokens in 2 tranches of the vesting contract."
+      "0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD has 0.00050 VEGA tokens in 2 tranches of the vesting contract."
     );
     cy.get("[data-testid='redemption-unlocked-tokens']").should(
       "have.text",
