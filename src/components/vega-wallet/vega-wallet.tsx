@@ -6,30 +6,23 @@ import {
   useAppState,
   VegaKeyExtended,
 } from "../../contexts/app-state/app-state-context";
+import { vegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
 
 export const VegaWallet = () => {
   const { appState, appDispatch } = useAppState();
-  console.log(appState.currVegaKey);
 
   React.useEffect(() => {
-    async function run(url: string, token: string) {
-      try {
-        const keysRes = await fetch(`${url}/keys`, {
-          headers: { authorization: `Bearer ${token}` },
-        });
-        const keysJson = await keysRes.json();
-        appDispatch({ type: "VEGA_WALLET_CONNECT", keys: keysJson.keys });
-      } catch (err) {
-        console.log(err);
+    async function run() {
+      const isUp = await vegaWalletService.getStatus();
+      if (isUp) {
+        const [, keys] = await vegaWalletService.getKeys();
+        appDispatch({ type: "VEGA_WALLET_INIT", keys });
+      } else {
+        appDispatch({ type: "VEGA_WALLET_DOWN" });
       }
     }
 
-    const token = localStorage.getItem("vega_wallet_token");
-    const url = localStorage.getItem("vega_wallet_url");
-
-    if (url && token) {
-      run(url, token);
-    }
+    run();
   }, [appDispatch]);
 
   return (
@@ -81,7 +74,15 @@ const VegaWalletConnected = ({
   vegaKeys,
 }: VegaWalletConnectedProps) => {
   const { appDispatch } = useAppState();
+  const [disconnectText, setDisconnectText] = React.useState("Disconnect");
   const [expanded, setExpanded] = React.useState(false);
+
+  async function handleDisconnect() {
+    setDisconnectText("Disconnecting...");
+    await vegaWalletService.revokeToken();
+    appDispatch({ type: "VEGA_WALLET_DISCONNECT" });
+  }
+
   return vegaKeys.length ? (
     <>
       <div
@@ -101,21 +102,24 @@ const VegaWalletConnected = ({
         )}
       </div>
       {expanded && vegaKeys.length > 1 ? (
-        <ul className="vega-wallet__key-list">
-          {vegaKeys
-            .filter((k) => currVegaKey && currVegaKey.pub !== k.pub)
-            .map((k) => (
-              <li
-                key={k.pub}
-                onClick={() => {
-                  appDispatch({ type: "VEGA_WALLET_SET_KEY", key: k });
-                  setExpanded(false);
-                }}
-              >
-                {k.alias} {k.pubShort}
-              </li>
-            ))}
-        </ul>
+        <div>
+          <ul className="vega-wallet__key-list">
+            {vegaKeys
+              .filter((k) => currVegaKey && currVegaKey.pub !== k.pub)
+              .map((k) => (
+                <li
+                  key={k.pub}
+                  onClick={() => {
+                    appDispatch({ type: "VEGA_WALLET_SET_KEY", key: k });
+                    setExpanded(false);
+                  }}
+                >
+                  {k.alias} {k.pubShort}
+                </li>
+              ))}
+          </ul>
+          <div onClick={handleDisconnect}>{disconnectText}</div>
+        </div>
       ) : (
         <div className="vega-wallet__row">
           <span>Staked</span>
@@ -136,49 +140,52 @@ interface FormFields {
 }
 
 const VegaWalletForm = () => {
-  const { appDispatch } = useAppState();
+  const { appState, appDispatch } = useAppState();
   const [loading, setLoading] = React.useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm<FormFields>({
     defaultValues: {
-      url: "http://localhost:1789/api/v1",
+      url: vegaWalletService.url,
     },
   });
 
   async function onSubmit(fields: FormFields) {
     setLoading(true);
 
-    try {
-      const tokenRes = await fetch(`${fields.url}/auth/token`, {
-        method: "post",
-        body: JSON.stringify({
-          wallet: fields.wallet,
-          passphrase: fields.passphrase,
-        }),
-      });
-      const tokenJson = await tokenRes.json();
+    const [tokenErr] = await vegaWalletService.getToken({
+      wallet: fields.wallet,
+      passphrase: fields.passphrase,
+    });
 
-      if (tokenJson.hasOwnProperty("token")) {
-        localStorage.setItem("vega_wallet_token", tokenJson.token);
-      } else {
-        throw new Error("Get token failed");
-      }
-
-      // get keys
-      const keysRes = await fetch(`${fields.url}/keys`, {
-        headers: { authorization: `Bearer ${tokenJson.token}` },
-      });
-      const keysJson = await keysRes.json();
-      localStorage.setItem("vega_wallet_url", fields.url);
-      appDispatch({ type: "VEGA_WALLET_CONNECT", keys: keysJson.keys });
-    } catch (err) {
-      console.log(err);
-    } finally {
+    if (tokenErr) {
+      setError("passphrase", { message: tokenErr });
       setLoading(false);
+      return;
     }
+
+    const [keysErr, keys] = await vegaWalletService.getKeys();
+
+    if (keysErr) {
+      setError("passphrase", { message: keysErr });
+      setLoading(false);
+      return;
+    }
+
+    appDispatch({ type: "VEGA_WALLET_INIT", keys });
+    setLoading(false);
+  }
+
+  if (!appState.vegaWalletStatus) {
+    return (
+      <p>
+        Looks like the wallet at {vegaWalletService.url} isnt running. Please
+        start the service and refresh the page.
+      </p>
+    );
   }
 
   return (
