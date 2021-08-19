@@ -45,7 +45,7 @@ describe("Redemption", () => {
       "/mocks/vesting/tranches/*/balance/locked": (req) => {
         req.reply({
           statusCode: 200,
-          delay: 10, // Add delay to ensure loading state
+          delay: 100, // Add delay to ensure loading state
           body: "1",
         });
       },
