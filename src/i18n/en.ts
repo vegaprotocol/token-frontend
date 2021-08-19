@@ -148,6 +148,7 @@ const en = {
   "Not showing tranches with <{{trancheMinimum}} VEGA, click to show all tranches":
     "Not showing tranches with <={{trancheMinimum}} VEGA, click to show all tranches",
   "the holder": "the holder",
+  "We couldn't seem to load your data.": "We couldn't seem to load your data.",
 };
 
 export default en;
