@@ -9,7 +9,28 @@ import {
 import { truncateMiddle } from "../../lib/truncate-middle";
 
 export const VegaWallet = () => {
-  const { appState } = useAppState();
+  const { appState, appDispatch } = useAppState();
+
+  React.useEffect(() => {
+    async function run(url: string, token: string) {
+      try {
+        const keysRes = await fetch(`${url}/keys`, {
+          headers: { authorization: `Bearer ${token}` },
+        });
+        const keysJson = await keysRes.json();
+        appDispatch({ type: "VEGA_WALLET_CONNECT", keys: keysJson.keys });
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    const token = localStorage.getItem("vega_wallet_token");
+    const url = localStorage.getItem("vega_wallet_url");
+
+    if (url && token) {
+      run(url, token);
+    }
+  }, [appDispatch]);
 
   return (
     <div className="vega-wallet">
@@ -136,6 +157,7 @@ const VegaWalletForm = () => {
         headers: { authorization: `Bearer ${tokenJson.token}` },
       });
       const keysJson = await keysRes.json();
+      localStorage.setItem("vega_wallet_url", fields.url);
       appDispatch({ type: "VEGA_WALLET_CONNECT", keys: keysJson.keys });
     } catch (err) {
       console.log(err);
