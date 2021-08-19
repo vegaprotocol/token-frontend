@@ -1,6 +1,38 @@
 import { mock } from "../common/mock";
 
 describe("Redemption", () => {
+  it("Renders loading state while data is loading", () => {
+    // As a user
+    mock(cy, {
+      provider: {
+        accounts: ["0x" + "0".repeat(40)],
+      },
+      vesting: {
+        balance: "50",
+      },
+    });
+    // When visiting redemption
+    cy.visit("/redemption");
+    // Then I see a loading state
+    cy.get("[data-testid='splash-loader']").should("exist");
+  });
+
+  it("Renders error state if data loading goes sideways", () => {
+    // As a user
+    mock(cy, {
+      provider: {
+        accounts: ["0x" + "0".repeat(40)],
+      },
+      vesting: {
+        balance: "50",
+      },
+    });
+    // When visiting redemption
+    cy.visit("/redemption");
+    // Then I see a loading state
+    cy.get("[data-testid='redemption-error']").should("exist");
+  });
+
   it("Renders empty state if the user has no tokens in no tranches", () => {
     // As a user
     mock(cy, {
@@ -16,6 +48,10 @@ describe("Redemption", () => {
     // When I connect to my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // Then I see an empty state
+    cy.get("[data-testid='redemption-no-balance']").should(
+      "have.text",
+      "You do not have any vesting VEGA tokens. Switch to another Ethereum key to check what can be redeemed."
+    );
   });
 
   it("Renders check and redeem page content", () => {
