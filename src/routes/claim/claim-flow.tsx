@@ -18,6 +18,10 @@ import { TrancheNotFound } from "./tranche-not-found";
 import { Verifying } from "./verifying";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { Complete } from "./complete";
+import {
+  KeyValueTable,
+  KeyValueTableRow,
+} from "../../components/key-value-table";
 
 interface ClaimFlowProps {
   state: ClaimState;
@@ -139,34 +143,32 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
             <ClaimInfo tranche={currentTranche} />
           </div>
           <div>
-            <table>
-              <tbody>
-                <tr>
-                  <th>{t("Connected Ethereum address")}</th>
-                  <td>{truncateMiddle(address!)}</td>
-                </tr>
-                <tr>
-                  <th>{t("Amount of VEGA")}</th>
-                  <td>{state.denominationFormatted}</td>
-                </tr>
-                <tr>
-                  <th>{t("Claim expires")}</th>
-                  <td>
-                    {state.expiry
-                      ? format(state.expiry * 1000, "dd/MM/yyyy")
-                      : "No expiry"}
-                  </td>
-                </tr>
-                <tr>
-                  <th>{t("Starts unlocking")}</th>
-                  <td>{format(currentTranche.tranche_start, "dd/MM/yyyy")}</td>
-                </tr>
-                <tr>
-                  <th>{t("Fully unlocked")}</th>
-                  <td>{format(currentTranche.tranche_end, "dd/MM/yyyy")}</td>
-                </tr>
-              </tbody>
-            </table>
+            <KeyValueTable>
+              <KeyValueTableRow>
+                <th>{t("Connected Ethereum address")}</th>
+                <td>{truncateMiddle(address!)}</td>
+              </KeyValueTableRow>
+              <KeyValueTableRow>
+                <th>{t("Amount of VEGA")}</th>
+                <td>{state.denominationFormatted}</td>
+              </KeyValueTableRow>
+              <KeyValueTableRow>
+                <th>{t("Claim expires")}</th>
+                <td>
+                  {state.expiry
+                    ? format(state.expiry * 1000, "dd/MM/yyyy")
+                    : "No expiry"}
+                </td>
+              </KeyValueTableRow>
+              <KeyValueTableRow>
+                <th>{t("Starts unlocking")}</th>
+                <td>{format(currentTranche.tranche_start, "dd/MM/yyyy")}</td>
+              </KeyValueTableRow>
+              <KeyValueTableRow>
+                <th>{t("Fully unlocked")}</th>
+                <td>{format(currentTranche.tranche_end, "dd/MM/yyyy")}</td>
+              </KeyValueTableRow>
+            </KeyValueTable>
           </div>
         </div>
       </section>
