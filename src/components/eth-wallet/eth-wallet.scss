@@ -1,4 +1,5 @@
 @import "../../styles/colors";
+@import "../../styles/fonts";
 
 .eth-wallet {
   background-color: $white;
@@ -21,19 +22,12 @@
     display: flex;
     justify-content: space-between;
     gap: 0 5px;
-  }
-
-  &__label {
+    color: $text-color-deemphasise;
+    font-size: 12px;
     text-transform: uppercase;
-    font-weight: bold;
-    font-size: 13px;
-  }
 
-  a {
-    color: $black;
-  }
-
-  a:hover {
-    text-decoration: none;
+    span:last-child {
+      font-family: $font-mono;
+    }
   }
 }

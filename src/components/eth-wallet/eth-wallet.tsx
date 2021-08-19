@@ -9,6 +9,7 @@ import { truncateMiddle } from "../../lib/truncate-middle";
 
 export const EthWallet = () => {
   const { appState } = useAppState();
+
   return (
     <div className="eth-wallet">
       {appState.providerStatus === ProviderStatus.Ready && <ConnectedKey />}
@@ -40,22 +41,21 @@ const ConnectedKey = () => {
 
   return (
     <>
+      <div className="vega-wallet__key">
+        <span style={{ textTransform: "uppercase" }}>Ethereum key</span>
+        <span className="vega-wallet__curr-key">{truncateMiddle(address)}</span>
+      </div>
       <div className="eth-wallet__row">
-        <span className="eth-wallet__label">{t("Account")}: </span>
-        <span className="eth-wallet__value">
-          <a
-            rel="noreferrer"
-            target="_blank"
-            href={"https://etherscan.io/address/" + address}
-          >
-            {truncateMiddle(address)}
-          </a>
+        <span>{t("Locked")}</span>
+        <span>
+          {balanceFormatted} {t("VEGA")}
         </span>
       </div>
       <div className="eth-wallet__row">
-        <span className="eth-wallet__label">{t("Vesting Balance")}: </span>
-        <span className="eth-wallet__value">
-          {balanceFormatted} {t("VEGA")}
+        <span>{t("Unlocked")}</span>
+        <span>
+          {/* TODO: get this valie */}
+          0.00
         </span>
       </div>
     </>

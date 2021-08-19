@@ -59,4 +59,17 @@
   &__curr-key {
     font-family: $font-mono;
   }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0 5px;
+    color: $text-color-deemphasise;
+    font-size: 12px;
+    text-transform: uppercase;
+
+    span:last-child {
+      font-family: $font-mono;
+    }
+  }
 }

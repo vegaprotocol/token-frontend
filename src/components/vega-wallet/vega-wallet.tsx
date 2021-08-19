@@ -91,7 +91,7 @@ const VegaWalletConnected = ({
       >
         {currVegaKey ? (
           <>
-            <span>Vega key</span>
+            <span style={{ textTransform: "uppercase" }}>Vega key</span>
             <span className="vega-wallet__curr-key">
               {currVegaKey.alias} {currVegaKey.pubShort}
             </span>
@@ -117,7 +117,11 @@ const VegaWalletConnected = ({
             ))}
         </ul>
       ) : (
-        <div>Stake info</div>
+        <div className="vega-wallet__row">
+          <span>Staked</span>
+          {/* TODO: get value */}
+          <span>0.00</span>
+        </div>
       )}
     </>
   ) : (
