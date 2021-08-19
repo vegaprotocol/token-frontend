@@ -1,4 +1,4 @@
-import BigNumber from "bignumber.js";
+import { BigNumber } from "../../../lib/bignumber";
 import { Tranche } from "../vega-web3-types";
 import { IVegaVesting } from "../../web3-utils";
 import { getTranchesFromHistory } from "../tranche-helpers";

@@ -1,4 +1,4 @@
-import BigNumber from "bignumber.js";
+import { BigNumber } from "../lib/bignumber";
 import { Tranche } from "./vega-web3/vega-web3-types";
 
 export type EthereumChainId = "0x1" | "0x3" | "0x4" | "0x5" | "0x2a";

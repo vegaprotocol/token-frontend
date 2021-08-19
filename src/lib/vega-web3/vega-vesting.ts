@@ -1,4 +1,4 @@
-import BigNumber from "bignumber.js";
+import { BigNumber } from "../../lib/bignumber";
 import Web3 from "web3";
 import { AbiItem } from "web3-utils";
 import type { Contract } from "web3-eth-contract";
