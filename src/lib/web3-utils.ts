@@ -55,10 +55,7 @@ export interface IVegaVesting {
   getUserBalanceAllTranches(address: string): Promise<BigNumber>;
   getLien(address: string): Promise<BigNumber>;
   getAllTranches(): Promise<Tranche[]>;
-  userTrancheLockedBalance(
-    address: string,
-    tranche: number
-  ): Promise<BigNumber>;
+  userTrancheTotalBalance(address: string, tranche: number): Promise<BigNumber>;
   userTrancheVestedBalance(
     address: string,
     tranche: number
