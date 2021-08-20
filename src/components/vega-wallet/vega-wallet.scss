@@ -15,7 +15,7 @@
 
   &__key-list {
     list-style: none;
-    margin: 0;
+    margin: 0 0 5px 0;
     padding: 0;
 
     > li {
@@ -39,5 +39,11 @@
     width: 400px;
     background: $dark-gray1;
     padding: 20px;
+  }
+
+  &__expanded-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-end;
   }
 }
