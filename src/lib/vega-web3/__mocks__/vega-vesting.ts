@@ -66,12 +66,6 @@ class MockedVesting implements IVegaVesting {
     );
     return new BigNumber(addDecimal(new BigNumber(balance), this.decimals));
   }
-  async userStakedBalance(
-    address: string,
-    vegaAddress: string
-  ): Promise<BigNumber> {
-    throw new Error("Method not implemented.");
-  }
 
   async getUserBalanceAllTranches(account: string): Promise<BigNumber> {
     const balance = await this.performFetch("balance");
