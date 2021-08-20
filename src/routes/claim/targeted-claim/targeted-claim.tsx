@@ -11,25 +11,25 @@ import { ClaimForm } from "../claim-form";
 import { BulletHeader } from "../../../components/bullet-header";
 
 interface TargetedClaimProps {
+  address: string;
   claimCode: string;
   denomination: BigNumber;
   trancheId: number;
   expiry: number;
   nonce: string;
   targeted: boolean;
-  account: string;
   state: ClaimState;
   dispatch: React.Dispatch<ClaimAction>;
 }
 
 export const TargetedClaim = ({
+  address,
   claimCode,
   denomination,
   trancheId,
   expiry,
   nonce,
   targeted,
-  account,
   state,
   dispatch,
 }: TargetedClaimProps) => {
@@ -42,7 +42,7 @@ export const TargetedClaim = ({
     nonce,
     country: state.countryCode!,
     targeted,
-    account,
+    account: address,
   };
   const claim = useVegaClaim();
   const {
