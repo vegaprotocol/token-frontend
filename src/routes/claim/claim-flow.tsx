@@ -13,7 +13,6 @@ import { UntargetedClaim } from "./untargeted-claim";
 import * as Sentry from "@sentry/react";
 import { ClaimInfo } from "./claim-info";
 import { TargetAddressMismatch } from "./target-address-mismatch";
-import { useTranche } from "../../hooks/use-tranches";
 import { TrancheNotFound } from "./tranche-not-found";
 import { Verifying } from "./verifying";
 import { truncateMiddle } from "../../lib/truncate-middle";
@@ -22,19 +21,28 @@ import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../components/key-value-table";
+import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 
 interface ClaimFlowProps {
   state: ClaimState;
   dispatch: React.Dispatch<ClaimAction>;
+  address: string;
+  tranches: Tranche[];
 }
 
-export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
+export const ClaimFlow = ({
+  state,
+  dispatch,
+  address,
+  tranches,
+}: ClaimFlowProps) => {
   const { t } = useTranslation();
   const {
-    appState: { address, balanceFormatted },
+    appState: { balanceFormatted },
   } = useAppState();
-
-  const currentTranche = useTranche(state.trancheId);
+  const currentTranche = tranches.find(
+    (tranche) => tranche.tranche_id === state.trancheId
+  );
   const claim = useVegaClaim();
   const code = state.code!;
   const shortCode = truncateMiddle(code);
@@ -46,7 +54,7 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
         const [committed, expired, used] = await Promise.all([
           claim.isCommitted({
             claimCode: code,
-            account: address!,
+            account: address,
           }),
           claim.isExpired(state.expiry!),
           claim.isUsed(state.nonce!),
@@ -89,7 +97,7 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
   if (state.claimStatus === ClaimStatus.Finished) {
     return (
       <Complete
-        address={address!}
+        address={address}
         balanceFormatted={balanceFormatted}
         trancheId={currentTranche.tranche_id}
         commitTxHash={state.commitTxHash}
@@ -98,11 +106,7 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
     );
   }
 
-  if (
-    state.target &&
-    address &&
-    state.target.toLowerCase() !== address.toLowerCase()
-  ) {
+  if (state.target && state.target.toLowerCase() !== address.toLowerCase()) {
     return (
       <TargetAddressMismatch
         connectedAddress={address}
@@ -146,7 +150,7 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
             <KeyValueTable>
               <KeyValueTableRow>
                 <th>{t("Connected Ethereum address")}</th>
-                <td>{truncateMiddle(address!)}</td>
+                <td>{truncateMiddle(address)}</td>
               </KeyValueTableRow>
               <KeyValueTableRow>
                 <th>{t("Amount of VEGA")}</th>
@@ -182,7 +186,7 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
             nonce={state.nonce!}
             trancheId={state.trancheId!}
             targeted={!!state.target}
-            account={address!}
+            account={address}
             state={state}
             dispatch={dispatch}
           />
@@ -195,7 +199,7 @@ export const ClaimFlow = ({ state, dispatch }: ClaimFlowProps) => {
             nonce={state.nonce!}
             trancheId={state.trancheId!}
             targeted={!!state.target}
-            account={address!}
+            account={address}
             committed={state.claimStatus === ClaimStatus.Committed}
             state={state}
             dispatch={dispatch}
