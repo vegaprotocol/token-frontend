@@ -26,8 +26,9 @@ export const RedemptionInformation = ({
     return (
       <section data-testid="redemption-page">
         <div data-testid="redemption-no-balance">
-          You do not have any vesting VEGA tokens. Switch to another Ethereum
-          key to check what can be redeemed.
+          {t(
+            "You do not have any vesting VEGA tokens. Switch to another Ethereum key to check what can be redeemed."
+          )}
         </div>
       </section>
     );

@@ -172,6 +172,8 @@ const en = {
     "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.",
   "Stake your Locked VEGA tokens!": "Stake your Locked VEGA tokens!",
   "Find out more about Staking.": "Find out more about Staking.",
+  "You do not have any vesting VEGA tokens. Switch to another Ethereum key to check what can be redeemed.":
+    "You do not have any vesting VEGA tokens. Switch to another Ethereum key to check what can be redeemed.",
 };
 
 export default en;
