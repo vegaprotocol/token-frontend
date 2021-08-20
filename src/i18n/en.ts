@@ -156,6 +156,8 @@ const en = {
     "All the tokens in this tranche are locked and can not be redeemed yet.",
   "Redeem unlocked VEGA from tranche {{id}}":
     "Redeem unlocked VEGA from tranche {{id}}",
+  "You must reduce your staked vesting tokens by at least {{amount}} to redeem from this tranche. Manage your stake or just dissociate your tokens.":
+    "You must reduce your staked vesting tokens by at least {{amount}} to redeem from this tranche. Manage your stake or just dissociate your tokens.",
 };
 
 export default en;
