@@ -7,6 +7,7 @@ const defaultMockOptions = {
   },
   vesting: {
     balance: "123",
+    tranches: { fixture: "events.json" },
   },
   claim: {
     committed: false,
@@ -36,7 +37,7 @@ export const mock = (cy, options = {}) => {
     "/mocks/vesting/balance",
     JSON.stringify(mergedOptions.vesting.balance)
   );
-  cy.intercept("GET", "/mocks/vesting/events", { fixture: "events.json" });
+  cy.intercept("GET", "/mocks/vesting/events", mergedOptions.vesting.tranches);
 
   // CLAIM
   cy.intercept(
