@@ -70,7 +70,6 @@ export const RedemptionInformation = ({
           {t("Stake your Locked VEGA tokens!")}
         </h1>
         <p className="redemption-information__callout-body">
-          {/* TODO! Find out about this */}
           {t("Find out more about Staking.")}
         </p>
       </VegaCallout>

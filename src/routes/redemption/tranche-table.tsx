@@ -23,7 +23,7 @@ export const TrancheTable = ({
   vested,
 }: TrancheTableProps) => {
   const { t } = useTranslation();
-  console.log(tranche);
+
   // TODO duplicated, should this be a hook?
   const userTrancheInformation = tranche.users.find(
     ({ address: a }) => a.toLowerCase() === address.toLowerCase()

@@ -43,6 +43,7 @@ export type RedemptionAction =
   | {
       type: "SET_USER_BALANCES";
       balances: TrancheBalance[];
+      lien: BigNumber;
     };
 
 export function redemptionReducer(
@@ -62,6 +63,7 @@ export function redemptionReducer(
           ...action.balances.map((b) => b.locked),
         ]),
         balances: action.balances,
+        lien: action.lien,
       };
     case "SET_LOADING":
       return {
