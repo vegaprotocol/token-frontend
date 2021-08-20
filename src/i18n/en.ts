@@ -153,6 +153,10 @@ const en = {
   "the holder": "the holder",
   "We couldn't seem to load your data.": "We couldn't seem to load your data.",
   "Vesting VEGA": "Vesting VEGA",
+  "All the tokens in this tranche are locked and can not be redeemed yet.":
+    "All the tokens in this tranche are locked and can not be redeemed yet.",
+  "Redeem unlocked VEGA from tranche {{id}}":
+    "Redeem unlocked VEGA from tranche {{id}}",
 };
 
 export default en;
