@@ -2,11 +2,11 @@ import { mock } from "../common/mock";
 
 const balances = {
   1: {
-    locked: 40,
+    locked: 60,
     vested: 20,
   },
   2: {
-    locked: 10,
+    locked: 30,
     vested: 20,
   },
   lien: 5,
@@ -148,7 +148,7 @@ describe("Redemption", () => {
     // Then I see redemption information
     cy.get("[data-testid='redemption-description']").should(
       "have.text",
-      "0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD has 0.00090 VEGA tokens in 2 tranches of the vesting contract."
+      "0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD has 0.0009 VEGA tokens in 2 tranches of the vesting contract."
     );
     cy.get("[data-testid='redemption-unlocked-tokens']").should(
       "have.text",
@@ -277,7 +277,7 @@ describe("Redemption", () => {
     // As a user with balances
     const balances = {
       1: {
-        locked: 40,
+        locked: 90,
         vested: 20,
       },
       lien: 5,
@@ -305,7 +305,7 @@ describe("Redemption", () => {
     );
     cy.get("[data-testid='tranche-table-total'] td").should(
       "have.text",
-      "0.0006"
+      "0.0009"
     );
 
     cy.get("[data-testid='tranche-table-start'] th").should(
@@ -332,7 +332,7 @@ describe("Redemption", () => {
     );
     cy.get("[data-testid='tranche-table-locked'] td").should(
       "have.text",
-      "0.0004"
+      "0.0007"
     );
 
     cy.get("[data-testid='tranche-table-unlocked'] th").should(
@@ -460,7 +460,7 @@ describe("Redemption", () => {
     // As a user with balances
     newMock({
       1: {
-        locked: 40,
+        locked: 90,
         vested: 20,
       },
       lien: 0,
@@ -487,7 +487,7 @@ describe("Redemption", () => {
   it("Renders message if user needs to reduce their stake to redeem", () => {
     newMock({
       1: {
-        locked: 40,
+        locked: 90,
         vested: 20,
       },
       lien: 50,

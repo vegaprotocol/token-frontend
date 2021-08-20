@@ -69,7 +69,7 @@ class MockedVesting implements IVegaVesting {
 
   async getUserBalanceAllTranches(account: string): Promise<BigNumber> {
     const balance = await this.performFetch("balance");
-    return new BigNumber(balance);
+    return new BigNumber(addDecimal(new BigNumber(balance), this.decimals));
   }
 
   async getAllTranches(): Promise<Tranche[]> {
