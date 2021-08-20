@@ -9,7 +9,14 @@ import { EthereumChainNames } from "../../lib/web3-utils";
 import { Callout } from "../callout";
 import { Error } from "../icons";
 
-export const Web3Container = ({ children }: { children?: React.ReactNode }) => {
+export const Web3Container = ({
+  children,
+  addressRequired = false,
+}: {
+  children: React.ReactNode;
+  /* require connecting to metamask and having address to render children */
+  addressRequired?: boolean;
+}) => {
   const { t } = useTranslation();
   const { appState } = useAppState();
   const connect = useConnect();
@@ -40,7 +47,7 @@ export const Web3Container = ({ children }: { children?: React.ReactNode }) => {
     );
   }
 
-  if (appState.connecting) {
+  if (addressRequired && appState.connecting) {
     return (
       <Callout>
         {t("Awaiting action in Ethereum wallet (e.g. metamask)")}
@@ -48,7 +55,7 @@ export const Web3Container = ({ children }: { children?: React.ReactNode }) => {
     );
   }
 
-  if (!appState.address) {
+  if (addressRequired && !appState.address) {
     return (
       <>
         <p>

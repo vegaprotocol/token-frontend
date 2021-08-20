@@ -12,7 +12,7 @@ const ClaimIndex = ({ name }: RouteChildProps) => {
 
   return (
     <DefaultTemplate title={t("pageTitleClaim")}>
-      <Web3Container>
+      <Web3Container addressRequired={true}>
         <TrancheContainer>
           <Claim />
         </TrancheContainer>
