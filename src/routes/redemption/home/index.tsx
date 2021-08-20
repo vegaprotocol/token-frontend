@@ -10,7 +10,7 @@ import {
   initialRedemptionState,
 } from "./redemption-reducer";
 
-export const RedemptionHome = () => {
+export const Home = () => {
   const vesting = useVegaVesting();
   const {
     appState: { address, tranches },

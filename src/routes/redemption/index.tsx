@@ -6,7 +6,7 @@ import { DefaultTemplate } from "../../components/page-templates/default";
 import { TrancheContainer } from "../../components/tranche-container";
 import { Web3Container } from "../../components/web3-container";
 import { useDocumentTitle } from "../../hooks/use-document-title";
-import { RedemptionHome } from "./home";
+import { Home } from "./home";
 
 const RedemptionRouter = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
@@ -18,7 +18,7 @@ const RedemptionRouter = ({ name }: RouteChildProps) => {
         <TrancheContainer>
           <Switch>
             <Route exact path="/redemption">
-              <RedemptionHome />
+              <Home />
             </Route>
             <Route path="/redemption/:id">Test</Route>
           </Switch>
