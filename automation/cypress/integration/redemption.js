@@ -398,7 +398,26 @@ describe("Redemption", () => {
       .should("have.text", "0.0002");
   });
 
-  it("Renders message if tranche has not started vesting", () => {});
+  it("Renders message if tranche has not started vesting", () => {
+    newMock(balances);
+    mock(cy, {
+      provider: {
+        accounts: ["0xb89A165EA8b619c14312dB316BaAa80D2a98B493"],
+      },
+      vesting: {
+        balance: "90",
+        tranches: { fixture: "future-tranche.json" },
+      },
+    });
+    // When visiting redemption
+    cy.visit("/redemption");
+    // When I connect to my wallet
+    cy.contains("Connect to an Ethereum wallet").click();
+    cy.get("[data-testid='tranche-table-footer']").should(
+      "have.text",
+      "All the tokens in this tranche are locked and can not be redeemed yet."
+    );
+  });
   it("Renders message if suer needs to reduce their stake to redeem", () => {});
   it("Renders redeem button if the user can redeem", () => {});
 });
