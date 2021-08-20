@@ -1,7 +1,7 @@
 import React from "react";
 import { SplashLoader } from "../../components/splash-loader";
-import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
+import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { RedemptionError } from "./redemption-error";
 import { RedemptionInformation } from "./redemption-information";
 import {
@@ -9,11 +9,14 @@ import {
   redemptionReducer,
 } from "./redemption-reducer";
 
-const RedemptionRouter = () => {
+const RedemptionRouter = ({
+  address,
+  tranches,
+}: {
+  address: string;
+  tranches: Tranche[];
+}) => {
   const vesting = useVegaVesting();
-  const {
-    appState: { address, tranches },
-  } = useAppState();
   const [state, dispatch] = React.useReducer(
     redemptionReducer,
     initialRedemptionState
@@ -21,7 +24,7 @@ const RedemptionRouter = () => {
   React.useEffect(() => {
     const run = async () => {
       // Don't do anything until the user has connected
-      if (address && tranches) {
+      if (tranches) {
         dispatch({
           type: "SET_LOADING",
           loading: true,

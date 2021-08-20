@@ -8,8 +8,15 @@ import { ClaimRestricted } from "./claim-restricted";
 import { isRestricted } from "./lib/is-restricted";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { Decimals } from "../../lib/web3-utils";
+import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 
-const Claim = () => {
+const Claim = ({
+  address,
+  tranches,
+}: {
+  address: string;
+  tranches: Tranche[];
+}) => {
   const params = useSearchParams();
   const { appState, appDispatch } = useAppState();
   const vesting = useVegaVesting();
@@ -32,15 +39,15 @@ const Claim = () => {
 
   // If the claim has been committed refetch the new VEGA balance
   React.useEffect(() => {
-    if (state.claimStatus === ClaimStatus.Finished && appState.address) {
+    if (state.claimStatus === ClaimStatus.Finished && address) {
       vesting
-        .getUserBalanceAllTranches(appState.address)
+        .getUserBalanceAllTranches(address)
         .then((balance) => appDispatch({ type: "SET_BALANCE", balance }));
       vesting.getAllTranches().then((tranches) => {
         appDispatch({ type: "SET_TRANCHES", tranches });
       });
     }
-  }, [vesting, state.claimStatus, appState.address, appDispatch]);
+  }, [vesting, state.claimStatus, address, appDispatch]);
 
   if (isRestricted()) {
     return <ClaimRestricted />;
@@ -51,7 +58,14 @@ const Claim = () => {
   }
 
   if (state.code) {
-    return <ClaimFlow state={state} dispatch={dispatch} />;
+    return (
+      <ClaimFlow
+        state={state}
+        dispatch={dispatch}
+        address={address}
+        tranches={tranches}
+      />
+    );
   }
 
   return null;

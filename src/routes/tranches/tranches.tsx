@@ -4,7 +4,6 @@ import { TrancheDates } from "./tranche-dates";
 import { useTranslation } from "react-i18next";
 import { TrancheProgress } from "./tranche-progress";
 import { BulletHeader } from "../../components/bullet-header";
-import { useTranches } from "../../hooks/use-tranches";
 import React from "react";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { Callout } from "../../components/callout";
@@ -18,12 +17,12 @@ const isTestingTranche = (t: Tranche) =>
 const shouldShowTranche = (t: Tranche) =>
   !t.total_added.isLessThanOrEqualTo(trancheMinimum);
 
-export const Tranches = () => {
+export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
   const [showAll, setShowAll] = React.useState<boolean>(false);
   const { t } = useTranslation();
   const match = useRouteMatch();
-  const tranches = useTranches();
   const filteredTranches = tranches?.filter(shouldShowTranche) || [];
+
   return (
     <>
       <BulletHeader tag="h2">{t("Tranches")}</BulletHeader>

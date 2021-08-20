@@ -11,11 +11,9 @@ import { Error } from "../icons";
 
 export const Web3Container = ({
   children,
-  addressRequired = false,
 }: {
-  children: React.ReactNode;
-  /* require connecting to metamask and having address to render children */
-  addressRequired?: boolean;
+  /* if children is a function we can ensure you have address before rendering */
+  children: React.ReactNode | ((address: string) => JSX.Element);
 }) => {
   const { t } = useTranslation();
   const { appState } = useAppState();
@@ -47,7 +45,11 @@ export const Web3Container = ({
     );
   }
 
-  if (addressRequired && appState.connecting) {
+  if (typeof children !== "function") {
+    return children;
+  }
+
+  if (appState.connecting) {
     return (
       <Callout>
         {t("Awaiting action in Ethereum wallet (e.g. metamask)")}
@@ -55,7 +57,7 @@ export const Web3Container = ({
     );
   }
 
-  if (addressRequired && !appState.address) {
+  if (!appState.address) {
     return (
       <>
         <p>
@@ -68,5 +70,5 @@ export const Web3Container = ({
     );
   }
 
-  return <>{children}</>;
+  return children(appState.address);
 };

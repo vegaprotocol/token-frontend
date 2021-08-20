@@ -17,14 +17,16 @@ const TrancheRouter = ({ name }: RouteChildProps) => {
     <DefaultTemplate title={t("pageTitleTranches")}>
       <Web3Container>
         <TrancheContainer>
-          <Switch>
-            <Route path={match.path} exact>
-              <Tranches />
-            </Route>
-            <Route path={`${match.path}/:trancheId`}>
-              <Tranche />
-            </Route>
-          </Switch>
+          {(tranches) => (
+            <Switch>
+              <Route path={match.path} exact>
+                <Tranches tranches={tranches} />
+              </Route>
+              <Route path={`${match.path}/:trancheId`}>
+                <Tranche tranches={tranches} />
+              </Route>
+            </Switch>
+          )}
         </TrancheContainer>
       </Web3Container>
     </DefaultTemplate>
