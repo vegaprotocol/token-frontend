@@ -6,6 +6,7 @@ import vestingAbi from "../abis/vesting_abi.json";
 import { IVegaVesting } from "../web3-utils";
 import { getTranchesFromHistory } from "./tranche-helpers";
 import { Tranche } from "./vega-web3-types";
+import { addDecimal } from "../decimals";
 
 export default class VegaVesting implements IVegaVesting {
   private web3: Web3;
@@ -20,8 +21,10 @@ export default class VegaVesting implements IVegaVesting {
       vestingAddress
     );
   }
-  getLien(address: string): Promise<BigNumber> {
-    throw new Error("Method not implemented.");
+
+  async getLien(address: string): Promise<BigNumber> {
+    const { lien } = await this.contract.methods.user_stats(address).call();
+    return new BigNumber(addDecimal(new BigNumber(lien), this.decimals));
   }
 
   async userTrancheLockedBalance(
@@ -31,7 +34,7 @@ export default class VegaVesting implements IVegaVesting {
     const amount = await this.contract.methods
       .get_tranche_balance(address, tranche)
       .call();
-    return new BigNumber(amount);
+    return new BigNumber(addDecimal(new BigNumber(amount), this.decimals));
   }
 
   async userTrancheVestedBalance(
@@ -41,14 +44,14 @@ export default class VegaVesting implements IVegaVesting {
     const amount = await this.contract.methods
       .get_vested_for_tranche(address, tranche)
       .call();
-    return new BigNumber(amount);
+    return new BigNumber(addDecimal(new BigNumber(amount), this.decimals));
   }
 
   async getUserBalanceAllTranches(account: string): Promise<BigNumber> {
     const amount = await this.contract.methods
       .user_total_all_tranches(account)
       .call();
-    return new BigNumber(amount);
+    return new BigNumber(addDecimal(new BigNumber(amount), this.decimals));
   }
 
   async getAllTranches(): Promise<Tranche[]> {

@@ -1,8 +1,7 @@
 import React from "react";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
-import { addDecimal } from "../../lib/decimals";
-import { Addresses, Decimals, EthereumChainId } from "../../lib/web3-utils";
+import { Addresses, EthereumChainId } from "../../lib/web3-utils";
 import {
   AppState,
   AppStateContext,
@@ -23,7 +22,6 @@ const initialAppState: AppState = {
   chainId: null,
   appChainId: process.env.REACT_APP_CHAIN as EthereumChainId,
   error: null,
-  balance: null,
   balanceFormatted: "",
   tranches: null,
   contractAddresses: Addresses[process.env.REACT_APP_CHAIN as EthereumChainId],
@@ -60,9 +58,7 @@ function appStateReducer(state: AppState, action: AppStateAction) {
         address: action.address,
         chainId: action.chainId,
         balance: action.balance,
-        balanceFormatted: action.balance
-          ? addDecimal(action.balance, Decimals[action.chainId])
-          : "",
+        balanceFormatted: action.balance?.toString() || "",
         connecting: false,
       };
     case "CONNECT_FAIL":
@@ -100,9 +96,7 @@ function appStateReducer(state: AppState, action: AppStateAction) {
       return {
         ...state,
         balance: action.balance,
-        balanceFormatted: action.balance
-          ? addDecimal(action.balance, Decimals[state.chainId!])
-          : "",
+        balanceFormatted: action.balance?.toString() || "",
       };
     }
     default:
