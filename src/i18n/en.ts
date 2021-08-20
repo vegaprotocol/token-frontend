@@ -180,6 +180,7 @@ const en = {
   Connect: "Connect to see your VEGA balance",
 
   // Vega wallet
+  viewKeys: "View keys",
   vegaKey: "Vega key",
   noService:
     "Looks like the Vega wallet service isn't running. Please start it and refresh the page",
