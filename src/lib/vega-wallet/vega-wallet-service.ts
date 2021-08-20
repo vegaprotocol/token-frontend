@@ -10,7 +10,7 @@ const Endpoints = {
 
 const Errors = {
   NO_TOKEN: "No token",
-  SERVICE_UNAVAILABLE: "Service unavailable",
+  SERVICE_UNAVAILABLE: "Wallet service unavailable",
   SESSION_EXPIRED: "Session expired",
   INVALID_CREDENTIALS: "Invalid credentials",
 };

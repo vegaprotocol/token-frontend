@@ -9,7 +9,6 @@ const en = {
   pageTitle404: "Page not found",
   pageTitleNotPermitted: "Can not proceed!",
   Vesting: "VESTING VEGA TOKENS",
-  Connect: "Connect to see your VEGA balance",
   of: "of",
   to: "to",
 
@@ -82,8 +81,6 @@ const en = {
   VEGA: "VEGA",
   Account: "Account",
   Loading: "Loading...",
-  "Awaiting action in wallet...":
-    "Awaiting action in Ethereum wallet (e.g. metamask)",
   "Something went wrong": "Something went wrong",
   "Try again": "Try again",
   Complete: "Complete",
@@ -174,6 +171,31 @@ const en = {
   "Find out more about Staking.": "Find out more about Staking.",
   "You do not have any vesting VEGA tokens. Switch to another Ethereum key to check what can be redeemed.":
     "You do not have any vesting VEGA tokens. Switch to another Ethereum key to check what can be redeemed.",
+
+  // Ethereum wallet
+  ethereumKey: "Ethereum key",
+  checkingForProvider: "Checking for provider",
+  "Awaiting action in wallet...":
+    "Awaiting action in Ethereum wallet (e.g. metamask)",
+  Connect: "Connect to see your VEGA balance",
+
+  // Vega wallet
+  vegaKey: "Vega key",
+  noService:
+    "Looks like the Vega wallet service isn't running. Please start it and refresh the page",
+  connectVegaWallet: "Connect to VEGA wallet",
+  disconnect: "Disconnect",
+  awaitingDisconnect: "Disconnecting...",
+  urlLabel: "Wallet location",
+  walletLabel: "Wallet",
+  passphraseLabel: "Passphrase",
+  vegaWalletConnect: "Connect",
+  vegaWalletConnecting: "Connecting...",
+  "No token": "No token",
+  "Wallet service unavailable": "Wallet service not running",
+  "Session expired": "Session expired",
+  "Invalid credentials": "Wallet or passphrase incorrect",
+  noKeys: "No keys",
 };
 
 export default en;
