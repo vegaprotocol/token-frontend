@@ -73,7 +73,7 @@ export const TrancheTable = ({
           <td>{vested.toString()}</td>
         </KeyValueTableRow>
       </KeyValueTable>
-      <div className="tranche-table__footer">
+      <div className="tranche-table__footer" data-testid="tranche-table-footer">
         {trancheFullyLocked && (
           <div>
             {t(
