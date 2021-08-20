@@ -131,6 +131,9 @@ const en = {
   Users: "Users",
   "No users": "No users",
 
+  // Validation
+  required: "Required",
+
   // Claim success callout
   claimComplete: "Claim complete",
   claimCompleteMessage:

@@ -8,6 +8,7 @@ import {
   AppStateAction,
   ProviderStatus,
   AppStateActionType,
+  VegaWalletStatus,
 } from "./app-state-context";
 // @ts-ignore
 import detectEthereumProvider from "DETECT_PROVIDER_PATH/detect-provider";
@@ -27,6 +28,7 @@ const initialAppState: AppState = {
   balanceFormatted: "",
   tranches: null,
   contractAddresses: Addresses[process.env.REACT_APP_CHAIN as EthereumChainId],
+  vegaWalletStatus: VegaWalletStatus.Pending,
   vegaKeys: null,
   currVegaKey: null,
 };
@@ -104,7 +106,7 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
 
     case AppStateActionType.VEGA_WALLET_INIT: {
       if (!action.keys) {
-        return { ...state, vegaWalletStatus: true };
+        return { ...state, vegaWalletStatus: VegaWalletStatus.Ready };
       }
 
       const vegaKeys = action.keys.map((k) => {
@@ -119,11 +121,10 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         ...state,
         vegaKeys,
         currVegaKey: vegaKeys.length ? vegaKeys[0] : null,
-        vegaWalletStatus: true,
+        vegaWalletStatus: VegaWalletStatus.Ready,
       };
     }
     case AppStateActionType.VEGA_WALLET_SET_KEY: {
-      console.log(action);
       return {
         ...state,
         currVegaKey: action.key,
@@ -132,7 +133,7 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
     case AppStateActionType.VEGA_WALLET_DOWN: {
       return {
         ...state,
-        vegaWalletStatus: false,
+        vegaWalletStatus: VegaWalletStatus.None,
       };
     }
     case AppStateActionType.VEGA_WALLET_DISCONNECT: {

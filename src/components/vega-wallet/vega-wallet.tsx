@@ -1,10 +1,11 @@
 import React from "react";
-import { FormGroup, Intent, Overlay } from "@blueprintjs/core";
+import { FormGroup, Intent } from "@blueprintjs/core";
 import "./vega-wallet.scss";
 import { useForm } from "react-hook-form";
 import {
   useAppState,
   VegaKeyExtended,
+  VegaWalletStatus,
 } from "../../contexts/app-state/app-state-context";
 import { vegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
 import {
@@ -36,6 +37,17 @@ export const VegaWallet = () => {
     run();
   }, [appDispatch]);
 
+  const child = !appState.vegaKeys ? (
+    <VegaWalletNotConnected />
+  ) : (
+    <VegaWalletConnected
+      currVegaKey={appState.currVegaKey}
+      vegaKeys={appState.vegaKeys}
+      expanded={expanded}
+      setExpanded={setExpanded}
+    />
+  );
+
   return (
     <WalletCard>
       <WalletCardHeader onClick={() => setExpanded((curr) => !curr)}>
@@ -48,16 +60,7 @@ export const VegaWallet = () => {
           </>
         )}
       </WalletCardHeader>
-      {!appState.vegaKeys ? (
-        <VegaWalletNotConnected />
-      ) : (
-        <VegaWalletConnected
-          currVegaKey={appState.currVegaKey}
-          vegaKeys={appState.vegaKeys}
-          expanded={expanded}
-          setExpanded={setExpanded}
-        />
-      )}
+      {appState.vegaWalletStatus !== VegaWalletStatus.Pending && child}
     </WalletCard>
   );
 };
@@ -65,9 +68,9 @@ export const VegaWallet = () => {
 const VegaWalletNotConnected = () => {
   const { t } = useTranslation();
   const { appState } = useAppState();
-  const [overlayOpen, setOverlayOpen] = React.useState(false);
+  const [formOpen, setFormOpen] = React.useState(false);
 
-  if (!appState.vegaWalletStatus) {
+  if (appState.vegaWalletStatus === VegaWalletStatus.None) {
     return (
       <WalletCardContent>
         <div>{t("noService")}</div>
@@ -77,11 +80,11 @@ const VegaWalletNotConnected = () => {
 
   return (
     <WalletCardContent>
-      {overlayOpen ? (
-        <VegaWalletForm cancel={() => setOverlayOpen(false)} />
+      {formOpen ? (
+        <VegaWalletForm cancel={() => setFormOpen(false)} />
       ) : (
         <button
-          onClick={() => setOverlayOpen(true)}
+          onClick={() => setFormOpen(true)}
           className="vega-wallet__connect"
           type="button"
         >
@@ -202,6 +205,8 @@ const VegaWalletForm = ({ cancel }: VegaWalletFormProps) => {
     setLoading(false);
   }
 
+  const required = t("required");
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="vega-wallet__form">
       <FormGroup
@@ -210,7 +215,7 @@ const VegaWalletForm = ({ cancel }: VegaWalletFormProps) => {
         intent={errors.url?.message ? Intent.DANGER : Intent.NONE}
         helperText={errors.url?.message}
       >
-        <input {...register("url", { required: "Required" })} type="text" />
+        <input {...register("url", { required })} type="text" />
       </FormGroup>
       <FormGroup
         label={t("walletLabel")}
@@ -218,7 +223,7 @@ const VegaWalletForm = ({ cancel }: VegaWalletFormProps) => {
         intent={errors.wallet?.message ? Intent.DANGER : Intent.NONE}
         helperText={errors.wallet?.message}
       >
-        <input {...register("wallet", { required: "Required" })} type="text" />
+        <input {...register("wallet", { required })} type="text" />
       </FormGroup>
       <FormGroup
         label={t("passphraseLabel")}
@@ -226,10 +231,7 @@ const VegaWalletForm = ({ cancel }: VegaWalletFormProps) => {
         intent={errors.passphrase?.message ? Intent.DANGER : Intent.NONE}
         helperText={errors.passphrase?.message}
       >
-        <input
-          {...register("passphrase", { required: "Required" })}
-          type="password"
-        />
+        <input {...register("passphrase", { required })} type="password" />
       </FormGroup>
       <div className="vega-wallet__form-buttons">
         <button
