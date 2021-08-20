@@ -4,20 +4,20 @@ import { Heading } from "../heading";
 import { Notice } from "../notice";
 import { Drawer } from "@blueprintjs/core";
 import debounce from "lodash/debounce";
-import { useTranslation } from "react-i18next";
 
 export interface TemplateSidebarProps {
   title: string;
   children: React.ReactNode;
   sidebar: React.ReactNode;
+  sidebarButtonText: string;
 }
 
 export function TemplateSidebar({
   title,
   children,
   sidebar,
+  sidebarButtonText,
 }: TemplateSidebarProps) {
-  const { t } = useTranslation();
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const isDesktop = windowWidth > 960;
@@ -54,7 +54,7 @@ export function TemplateSidebar({
             onClick={() => setDrawerOpen(true)}
             style={{ position: "fixed", top: 20, right: 20 }}
           >
-            {t("viewKeys")}
+            {sidebarButtonText}
           </button>
           <Drawer
             isOpen={drawerOpen}
