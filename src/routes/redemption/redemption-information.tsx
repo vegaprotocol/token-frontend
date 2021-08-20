@@ -3,12 +3,14 @@ import { useAppState } from "../../contexts/app-state/app-state-context";
 import { RedemptionState } from "./redemption-reducer";
 import { VestingTable } from "./vesting-table";
 import { TrancheTable } from "./tranche-table";
+import { useTranslation } from "react-i18next";
 
 export const RedemptionInformation = ({
   state,
 }: {
   state: RedemptionState;
 }) => {
+  const { t } = useTranslation();
   const {
     appState: { address, balanceFormatted },
   } = useAppState();
@@ -33,25 +35,37 @@ export const RedemptionInformation = ({
   return (
     <section className="redemption-information" data-testid="redemption-page">
       <div data-testid="redemption-description">
-        {address} has {balanceFormatted} VEGA tokens in {userTranches.length}{" "}
-        tranches of the vesting contract.
+        {t(
+          "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.",
+          {
+            address,
+            balance: balanceFormatted,
+            tranches: userTranches.length,
+          }
+        )}
       </div>
       <div data-testid="redemption-unlocked-tokens">
-        A total of {totalVestedBalance.toString()} Unlocked Vega tokens.
+        {t("A total of {{amount}} Unlocked Vega tokens.", {
+          amount: totalVestedBalance.toString(),
+        })}
       </div>
       <div data-testid="redemption-locked-tokens">
-        A total of {totalLockedBalance.toString()} Locked Vega tokens.
+        {t("A total of {{amount}} Locked Vega tokens.", {
+          amount: totalLockedBalance.toString(),
+        })}
       </div>
       <div data-testid="redemption-staked-tokens">
-        {stakedBalance.toString()} are staked.
+        {t("{{stakedBalance}} are staked.", {
+          stakedBalance: stakedBalance.toString(),
+        })}
       </div>
       <div data-testid="redemption-page-description">
-        <strong>Use this page to redeem any unlocked VEGA tokens</strong>
+        <strong>{t("Use this page to redeem any unlocked VEGA tokens")}</strong>
       </div>
       <div data-testid="redemption-note">
-        Note: The redeem function attempts to redeem all unlocked tokens from a
-        tranche. However, it will only work if all the amount you are redeeming
-        would not reduce the amount you have staked while vesting.
+        {t(
+          "Note: The redeem function attempts to redeem all unlocked tokens from a tranche. However, it will only work if all the amount you are redeeming would not reduce the amount you have staked while vesting."
+        )}
       </div>
       <VestingTable
         staked={stakedBalance}
