@@ -48,6 +48,7 @@ export function TemplateSidebar({
         <>
           <button
             type="button"
+            className="template-sidebar__drawer-button"
             onClick={() => setDrawerOpen(true)}
             style={{ position: "fixed", top: 20, right: 20 }}
           >
@@ -56,7 +57,7 @@ export function TemplateSidebar({
           <Drawer
             isOpen={drawerOpen}
             onClose={() => setDrawerOpen(false)}
-            size="80%"
+            size="90%"
           >
             <div className="template-sidebar__drawer">
               {/* @ts-ignore */}
