@@ -490,7 +490,7 @@ describe("Redemption", () => {
         locked: 90,
         vested: 20,
       },
-      lien: 50,
+      lien: 80,
     });
     mock(cy, {
       provider: {
