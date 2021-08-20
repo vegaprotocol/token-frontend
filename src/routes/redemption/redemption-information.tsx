@@ -82,13 +82,11 @@ export const RedemptionInformation = ({
       />
       {userTranches
         .filter((tr) => {
+          const balance = balances.find(
+            ({ id }) => id.toString() === tr.tranche_id.toString()
+          )!;
           return (
-            balances
-              .find(({ id }) => id.toString() === tr.tranche_id.toString())!
-              .vested.isGreaterThan(0) ||
-            balances
-              .find(({ id }) => id.toString() === tr.tranche_id.toString())!
-              .locked.isGreaterThan(0)
+            balance.locked.isGreaterThan(0) || balance.vested.isGreaterThan(0)
           );
         })
         .map((tr) => (
