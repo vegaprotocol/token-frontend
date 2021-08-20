@@ -120,16 +120,6 @@ describe("Redemption", () => {
 
   it("Renders check and redeem page content", () => {
     // As a user with balances:
-    const balances = {
-      1: {
-        locked: 40,
-        vested: 20,
-      },
-      2: {
-        locked: 10,
-        vested: 20,
-      },
-    };
     newMock(balances);
     mock(cy, {
       provider: {
@@ -174,16 +164,6 @@ describe("Redemption", () => {
 
   it("Renders table with all vesting information", () => {
     // As a user with balances
-    const balances = {
-      1: {
-        locked: 40,
-        vested: 20,
-      },
-      2: {
-        locked: 10,
-        vested: 20,
-      },
-    };
     newMock(balances);
     mock(cy, {
       provider: {
@@ -330,16 +310,6 @@ describe("Redemption", () => {
 
   it("Renders correct data for multiple tranche", () => {
     // As a user with balances
-    const balances = {
-      1: {
-        locked: 40,
-        vested: 20,
-      },
-      2: {
-        locked: 20,
-        vested: 40,
-      },
-    };
     newMock(balances);
     mock(cy, {
       provider: {
@@ -418,14 +388,14 @@ describe("Redemption", () => {
       .should("have.text", "Locked");
     cy.get("[data-testid='tranche-table-locked'] td")
       .eq(1)
-      .should("have.text", "0.0002");
+      .should("have.text", "0.0001");
 
     cy.get("[data-testid='tranche-table-unlocked'] th")
       .eq(1)
       .should("have.text", "Unlocked");
     cy.get("[data-testid='tranche-table-unlocked'] td")
       .eq(1)
-      .should("have.text", "0.0004");
+      .should("have.text", "0.0002");
   });
 
   it("Renders message if tranche has not started vesting", () => {});
