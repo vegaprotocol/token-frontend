@@ -154,7 +154,7 @@ describe("Redemption", () => {
     );
     cy.get("[data-testid='redemption-page-description']").should(
       "have.text",
-      "Use this page to redeem any unlocked VEGA tokens"
+      "Use this page to redeem any unlocked VEGA tokens."
     );
     cy.get("[data-testid='redemption-note']").should(
       "have.text",
