@@ -534,6 +534,6 @@ describe("Redemption", () => {
     // When I
     cy.contains("Redeem unlocked VEGA from tranche 1").click();
     // Then I am redirected to a new page
-    cy.url().contains(/redemption\/1/);
+    cy.url().should("include", "redemption/1");
   });
 });
