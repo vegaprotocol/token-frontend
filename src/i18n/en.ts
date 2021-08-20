@@ -168,8 +168,8 @@ const en = {
     "A total of {{amount}} Locked Vega tokens.",
   "A total of {{amount}} Unlocked Vega tokens.":
     "A total of {{amount}} Unlocked Vega tokens.",
-  "{{address}} has {{balanceFormatted}} VEGA tokens in {{tranches}} tranches of the vesting contract.":
-    "{{address}} has {{balanceFormatted}} VEGA tokens in {{tranches}} tranches of the vesting contract.",
+  "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.":
+    "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.",
 };
 
 export default en;
