@@ -3,6 +3,13 @@
 .tranche-table {
   margin-top: 30px;
 
+  &__label {
+    display: inline-block;
+    background-color: $white;
+    color: $black;
+    padding: 3px;
+  }
+
   &__no-borders {
     border: none !important;
     border-bottom: none !important;
