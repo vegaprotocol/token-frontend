@@ -6,7 +6,12 @@ import {
 } from "../../contexts/app-state/app-state-context";
 import { useConnect } from "../../hooks/use-connect";
 import { truncateMiddle } from "../../lib/truncate-middle";
-import { WalletCard, WalletCardHeader, WalletCardRow } from "../wallet-card";
+import {
+  WalletCard,
+  WalletCardContent,
+  WalletCardHeader,
+  WalletCardRow,
+} from "../wallet-card";
 
 export const EthWallet = () => {
   const { t } = useTranslation();
@@ -15,7 +20,7 @@ export const EthWallet = () => {
   let content = null;
 
   if (appState.providerStatus === ProviderStatus.Pending) {
-    content = <div>Checking for provider</div>;
+    content = <div>{t("checkingForProvider")}</div>;
   } else if (appState.providerStatus === ProviderStatus.None) {
     content = <div>{t("invalidWeb3Browser")}</div>;
   } else {
@@ -25,7 +30,7 @@ export const EthWallet = () => {
   return (
     <WalletCard>
       <WalletCardHeader>
-        <span style={{ textTransform: "uppercase" }}>Ethereum key</span>
+        <span>{t("ethereumKey")}</span>
         {appState.address && (
           <>
             <span className="vega-wallet__curr-key">
@@ -34,7 +39,7 @@ export const EthWallet = () => {
           </>
         )}
       </WalletCardHeader>
-      {content}
+      <WalletCardContent>{content}</WalletCardContent>
     </WalletCard>
   );
 };
@@ -62,20 +67,11 @@ const ConnectedKey = () => {
   }
 
   return (
-    <>
-      <WalletCardRow>
-        <span>{t("Locked")}</span>
-        <span>
-          {balanceFormatted} {t("VEGA")}
-        </span>
-      </WalletCardRow>
-      <WalletCardRow>
-        <span>{t("Unlocked")}</span>
-        <span>
-          {/* TODO: get this valie */}
-          0.00
-        </span>
-      </WalletCardRow>
-    </>
+    <WalletCardRow>
+      <span>{t("Locked")}</span>
+      <span>
+        {balanceFormatted} {t("VEGA")}
+      </span>
+    </WalletCardRow>
   );
 };

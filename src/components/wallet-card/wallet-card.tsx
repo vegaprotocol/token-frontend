@@ -17,11 +17,23 @@ export const WalletCardHeader = ({
   children,
   onClick,
 }: WalletCardHeaderProps) => {
+  const className = [
+    "wallet-card__header",
+    onClick ? "wallet-card__header--expandable" : "",
+  ].join(" ");
   return (
-    <div onClick={onClick} className="wallet-card__header">
+    <div onClick={onClick} className={className}>
       {children}
     </div>
   );
+};
+
+interface WalletCardContentProps {
+  children: React.ReactNode;
+}
+
+export const WalletCardContent = ({ children }: WalletCardContentProps) => {
+  return <div className="wallet-card__content">{children}</div>;
 };
 
 interface WalletCardRowProps {
