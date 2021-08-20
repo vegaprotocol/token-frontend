@@ -36,9 +36,10 @@ export const TrancheTable = ({
           data-testid="tranche-table-total"
           className="tranche-table__no-borders"
         >
-          {/* TODO Use tranche label */}
           <th>
-            {t("Tranche")} {tranche.tranche_id}
+            <span className="tranche-table__label">
+              {t("Tranche")} {tranche.tranche_id}
+            </span>
           </th>
           <td>{total.toString()}</td>
         </KeyValueTableRow>
