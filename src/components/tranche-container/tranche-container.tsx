@@ -1,13 +1,14 @@
 import React from "react";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
+import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { SplashLoader } from "../splash-loader";
 import { SplashScreen } from "../splash-screen";
 
 export const TrancheContainer = ({
   children,
 }: {
-  children: React.ReactNode;
+  children: (tranches: Tranche[]) => JSX.Element;
 }) => {
   const vesting = useVegaVesting();
   const { appState, appDispatch } = useAppState();
@@ -29,5 +30,5 @@ export const TrancheContainer = ({
     );
   }
 
-  return <>{children}</>;
+  return children(appState.tranches);
 };
