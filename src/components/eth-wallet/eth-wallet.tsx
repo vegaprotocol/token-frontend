@@ -6,6 +6,7 @@ import {
 } from "../../contexts/app-state/app-state-context";
 import { useConnect } from "../../hooks/use-connect";
 import { truncateMiddle } from "../../lib/truncate-middle";
+import { WalletCard, WalletCardHeader, WalletCardRow } from "../wallet-card";
 
 export const EthWallet = () => {
   const { t } = useTranslation();
@@ -22,8 +23,8 @@ export const EthWallet = () => {
   }
 
   return (
-    <div className="eth-wallet">
-      <div className="vega-wallet__key" title="Click to change key">
+    <WalletCard>
+      <WalletCardHeader>
         <span style={{ textTransform: "uppercase" }}>Ethereum key</span>
         {appState.address && (
           <>
@@ -32,9 +33,9 @@ export const EthWallet = () => {
             </span>
           </>
         )}
-      </div>
+      </WalletCardHeader>
       {content}
-    </div>
+    </WalletCard>
   );
 };
 
@@ -62,19 +63,19 @@ const ConnectedKey = () => {
 
   return (
     <>
-      <div className="eth-wallet__row">
+      <WalletCardRow>
         <span>{t("Locked")}</span>
         <span>
           {balanceFormatted} {t("VEGA")}
         </span>
-      </div>
-      <div className="eth-wallet__row">
+      </WalletCardRow>
+      <WalletCardRow>
         <span>{t("Unlocked")}</span>
         <span>
           {/* TODO: get this valie */}
           0.00
         </span>
-      </div>
+      </WalletCardRow>
     </>
   );
 };

@@ -2,11 +2,6 @@
 @import "../../styles/fonts";
 
 .vega-wallet {
-  background-color: $white;
-  padding: 10px;
-  color: $black;
-  font-size: 14px;
-
   &__connect {
     appearance: none;
     padding: 0;
@@ -44,32 +39,5 @@
     width: 400px;
     background: $dark-gray1;
     padding: 20px;
-  }
-
-  &__key {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    border-bottom: 1px solid $black;
-    padding-bottom: 3px;
-    margin-bottom: 5px;
-  }
-
-  &__curr-key {
-    font-family: $font-mono;
-  }
-
-  &__row {
-    display: flex;
-    justify-content: space-between;
-    gap: 0 5px;
-    color: $text-color-deemphasise;
-    font-size: 12px;
-    text-transform: uppercase;
-
-    span:last-child {
-      font-family: $font-mono;
-    }
   }
 }

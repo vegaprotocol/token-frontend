@@ -7,6 +7,7 @@ import {
   VegaKeyExtended,
 } from "../../contexts/app-state/app-state-context";
 import { vegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
+import { WalletCard, WalletCardHeader, WalletCardRow } from "../wallet-card";
 
 export const VegaWallet = () => {
   const [expanded, setExpanded] = React.useState(false);
@@ -27,13 +28,9 @@ export const VegaWallet = () => {
   }, [appDispatch]);
 
   return (
-    <div className="vega-wallet">
-      <div
-        onClick={() => setExpanded((curr) => !curr)}
-        className="vega-wallet__key"
-        title="Click to change key"
-      >
-        <span style={{ textTransform: "uppercase" }}>Vega key</span>
+    <WalletCard>
+      <WalletCardHeader onClick={() => setExpanded((curr) => !curr)}>
+        <span>Vega key</span>
         {appState.currVegaKey && (
           <>
             <span className="vega-wallet__curr-key">
@@ -41,7 +38,7 @@ export const VegaWallet = () => {
             </span>
           </>
         )}
-      </div>
+      </WalletCardHeader>
       {!appState.vegaKeys ? (
         <VegaWalletNotConnected />
       ) : (
@@ -52,7 +49,7 @@ export const VegaWallet = () => {
           setExpanded={setExpanded}
         />
       )}
-    </div>
+    </WalletCard>
   );
 };
 
@@ -135,11 +132,11 @@ const VegaWalletConnected = ({
           <div onClick={handleDisconnect}>{disconnectText}</div>
         </div>
       ) : (
-        <div className="vega-wallet__row">
+        <WalletCardRow>
           <span>Staked</span>
           {/* TODO: get value */}
           <span>0.00</span>
-        </div>
+        </WalletCardRow>
       )}
     </>
   ) : (
