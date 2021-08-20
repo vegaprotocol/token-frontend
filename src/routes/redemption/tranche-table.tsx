@@ -30,7 +30,7 @@ export const TrancheTable = ({
     tranche.tranche_start.getTime() > new Date().getTime();
   const unstaked = total.minus(lien);
   const reduceAmount = vested.minus(unstaked);
-  const redeemable = lien.minus(vested).isLessThan(0);
+  const redeemable = reduceAmount.isLessThan(0);
 
   return (
     <section data-testid="tranche-table" className="tranche-table">
