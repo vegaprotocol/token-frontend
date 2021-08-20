@@ -13,8 +13,8 @@ export interface RedemptionState {
   loading: boolean;
   totalVestedBalance: BigNumber;
   totalLockedBalance: BigNumber;
-  stakedBalance: BigNumber;
   balances: TrancheBalance[];
+  lien: BigNumber;
 }
 
 export const initialRedemptionState: RedemptionState = {
@@ -23,7 +23,7 @@ export const initialRedemptionState: RedemptionState = {
   loading: false,
   totalVestedBalance: new BigNumber(0),
   totalLockedBalance: new BigNumber(0),
-  stakedBalance: new BigNumber(0.0002),
+  lien: new BigNumber(0),
   balances: [],
 };
 

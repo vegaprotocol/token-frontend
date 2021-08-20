@@ -19,7 +19,7 @@ export const RedemptionInformation = ({
     userTranches,
     totalVestedBalance,
     totalLockedBalance,
-    stakedBalance,
+    lien,
     balances,
   } = state;
   if (!userTranches.length) {
@@ -57,7 +57,7 @@ export const RedemptionInformation = ({
       </div>
       <div data-testid="redemption-staked-tokens">
         {t("{{stakedBalance}} are staked.", {
-          stakedBalance: stakedBalance.toString(),
+          stakedBalance: lien.toString(),
         })}
       </div>
       <div data-testid="redemption-page-description">
@@ -75,7 +75,7 @@ export const RedemptionInformation = ({
       </VegaCallout>
       <div data-testid="redemption-note">{t("redemptionExplain")}</div>
       <VestingTable
-        staked={stakedBalance}
+        staked={lien}
         locked={totalLockedBalance}
         vested={totalVestedBalance}
       />
