@@ -94,7 +94,7 @@ const RedemptionRouter = ({ name }: RouteChildProps) => {
     pageContent = <RedemptionError />;
   } else if (!address) {
     pageContent = <Connect />;
-  } else if (address) {
+  } else {
     pageContent = (
       <Switch>
         <Route exact path="/redemption">
