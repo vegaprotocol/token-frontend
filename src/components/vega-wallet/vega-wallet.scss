@@ -31,16 +31,6 @@
     }
   }
 
-  &__overlay {
-    position: absolute;
-    left: calc(50vw - 200px);
-    margin: 10vh 0;
-    top: 0;
-    width: 400px;
-    background: $dark-gray1;
-    padding: 20px;
-  }
-
   &__expanded-container {
     display: flex;
     flex-flow: column nowrap;
