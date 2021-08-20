@@ -264,15 +264,11 @@ describe("Redemption", () => {
         locked: 40,
         vested: 20,
       },
-      2: {
-        locked: 10,
-        vested: 20,
-      },
     };
     newMock(balances);
     mock(cy, {
       provider: {
-        accounts: ["0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD"],
+        accounts: ["0xb89A165EA8b619c14312dB316BaAa80D2a98B493"],
       },
       vesting: {
         balance: "90",
@@ -283,7 +279,7 @@ describe("Redemption", () => {
     // When I connect to my wallet
     cy.contains("Connect to an Ethereum wallet").click();
 
-    // Then I see staked information in the table
+    // Then I see tranche information in the table
     cy.get("[data-testid='tranche-table']").should("exist");
 
     cy.get("[data-testid='tranche-table-total'] th").should(
@@ -292,7 +288,7 @@ describe("Redemption", () => {
     );
     cy.get("[data-testid='tranche-table-total'] td").should(
       "have.text",
-      "0.0001"
+      "10000"
     );
 
     cy.get("[data-testid='tranche-table-start'] th").should(
@@ -319,7 +315,7 @@ describe("Redemption", () => {
     );
     cy.get("[data-testid='tranche-table-locked'] td").should(
       "have.text",
-      "0.0001"
+      "0.0004"
     );
 
     cy.get("[data-testid='tranche-table-unlocked'] th").should(

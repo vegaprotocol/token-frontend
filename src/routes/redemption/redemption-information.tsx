@@ -61,8 +61,16 @@ export const RedemptionInformation = ({
       <TrancheTable
         tranche={userTranches[0]}
         address={address!}
-        locked={balances[userTranches[0].tranche_id].locked}
-        vested={balances[userTranches[0].tranche_id].vested}
+        locked={
+          balances.find(
+            ({ id }) => id.toString() === userTranches[0].tranche_id.toString()
+          )!.locked
+        }
+        vested={
+          balances.find(
+            ({ id }) => id.toString() === userTranches[0].tranche_id.toString()
+          )!.vested
+        }
       />
     </section>
   );
