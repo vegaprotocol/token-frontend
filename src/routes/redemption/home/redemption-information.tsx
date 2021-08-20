@@ -1,16 +1,18 @@
 import "./redemption-information.scss";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
-import { RedemptionState } from "./redemption-reducer";
+import { RedemptionState } from "../redemption-reducer";
 import { VestingTable } from "./vesting-table";
-import { TrancheTable } from "./tranche-table";
+import { TrancheTable } from "../tranche-table";
 import { useTranslation } from "react-i18next";
 import { VegaCallout } from "../../../components/vega-callout";
+import { useHistory } from "react-router-dom";
 
 export const RedemptionInformation = ({
   state,
 }: {
   state: RedemptionState;
 }) => {
+  const history = useHistory();
   const { t } = useTranslation();
   const {
     appState: { address, balanceFormatted },
@@ -93,7 +95,6 @@ export const RedemptionInformation = ({
           <TrancheTable
             key={tr.tranche_id}
             tranche={tr}
-            address={address!}
             lien={lien}
             locked={
               balances.find(
@@ -105,6 +106,7 @@ export const RedemptionInformation = ({
                 ({ id }) => id.toString() === tr.tranche_id.toString()
               )!.vested
             }
+            onClick={() => history.push(`/redemption/${tr.tranche_id}`)}
           />
         ))}
     </section>

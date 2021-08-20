@@ -3,7 +3,7 @@ import Web3 from "web3";
 import { AbiItem } from "web3-utils";
 import type { Contract } from "web3-eth-contract";
 import vestingAbi from "../abis/vesting_abi.json";
-import { IVegaVesting } from "../web3-utils";
+import { IVegaVesting, PromiEvent } from "../web3-utils";
 import { getTranchesFromHistory } from "./tranche-helpers";
 import { Tranche } from "./vega-web3-types";
 import { addDecimal } from "../decimals";
@@ -60,5 +60,11 @@ export default class VegaVesting implements IVegaVesting {
       toBlock: "latest",
     });
     return getTranchesFromHistory(events, this.decimals);
+  }
+
+  withdrawFromTranche(account: string, trancheId: number): PromiEvent {
+    return this.contract.methods
+      .withdraw_from_tranche(trancheId)
+      .call({ from: account });
   }
 }

@@ -1,5 +1,5 @@
-import { BigNumber } from "../../../lib/bignumber";
-import { Tranche } from "../../../lib/vega-web3/vega-web3-types";
+import { BigNumber } from "../../lib/bignumber";
+import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 
 export interface TrancheBalance {
   id: number;

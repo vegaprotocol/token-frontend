@@ -60,6 +60,7 @@ export interface IVegaVesting {
     address: string,
     tranche: number
   ): Promise<BigNumber>;
+  withdrawFromTranche(account: string, trancheId: number): PromiEvent;
 }
 
 export interface IVegaClaim {

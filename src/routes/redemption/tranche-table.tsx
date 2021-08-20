@@ -4,25 +4,25 @@ import { useTranslation } from "react-i18next";
 import {
   KeyValueTable,
   KeyValueTableRow,
-} from "../../../components/key-value-table";
-import { BigNumber } from "../../../lib/bignumber";
-import { Tranche } from "../../../lib/vega-web3/vega-web3-types";
+} from "../../components/key-value-table";
+import { BigNumber } from "../../lib/bignumber";
+import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { format } from "date-fns";
 
 export interface TrancheTableProps {
   tranche: Tranche;
-  address: string;
   locked: BigNumber;
   vested: BigNumber;
   lien: BigNumber;
+  onClick: () => void;
 }
 
 export const TrancheTable = ({
   tranche,
-  address,
   locked,
   vested,
   lien,
+  onClick,
 }: TrancheTableProps) => {
   const { t } = useTranslation();
   const total = vested.plus(locked);
@@ -30,7 +30,7 @@ export const TrancheTable = ({
     tranche.tranche_start.getTime() > new Date().getTime();
   const unstaked = total.minus(lien);
   const reduceAmount = vested.minus(unstaked);
-  const redeemable = reduceAmount.isLessThan(0);
+  const redeemable = reduceAmount.isLessThanOrEqualTo(0);
 
   return (
     <section data-testid="tranche-table" className="tranche-table">
@@ -89,7 +89,7 @@ export const TrancheTable = ({
           </div>
         )}
         {!trancheFullyLocked && redeemable && (
-          <button>
+          <button onClick={onClick}>
             {t("Redeem unlocked VEGA from tranche {{id}}", {
               id: tranche.tranche_id,
             })}
