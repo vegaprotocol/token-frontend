@@ -9,11 +9,17 @@ export enum ProviderStatus {
   None,
 }
 
+export enum VegaWalletStatus {
+  Pending,
+  Ready,
+  None,
+}
+
 export interface VegaKey {
   pub: string;
   algo: string;
   tainted: boolean;
-  meta: Array<{ key: string; value: string }>;
+  meta: Array<{ key: string; value: string }> | null;
 }
 
 export interface VegaKeyExtended extends VegaKey {
@@ -36,7 +42,7 @@ export interface AppState {
     claimAddress: string;
     lockedAddress: string;
   };
-  vegaWalletStatus: boolean;
+  vegaWalletStatus: VegaWalletStatus;
   vegaKeys: VegaKeyExtended[] | null;
   currVegaKey: VegaKeyExtended | null;
 }
