@@ -2,6 +2,7 @@ import "./redemption-information.scss";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { RedemptionState } from "./redemption-reducer";
 import { VestingTable } from "./vesting-table";
+import { TrancheTable } from "./tranche-table";
 
 export const RedemptionInformation = ({
   state,
@@ -16,6 +17,7 @@ export const RedemptionInformation = ({
     totalVestedBalance,
     totalLockedBalance,
     stakedBalance,
+    balances,
   } = state;
   if (!userTranches.length) {
     return (
@@ -55,6 +57,12 @@ export const RedemptionInformation = ({
         staked={stakedBalance}
         locked={totalLockedBalance}
         vested={totalVestedBalance}
+      />
+      <TrancheTable
+        tranche={userTranches[0]}
+        address={address!}
+        locked={balances[userTranches[0].tranche_id].locked}
+        vested={balances[userTranches[0].tranche_id].vested}
       />
     </section>
   );

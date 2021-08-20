@@ -257,6 +257,80 @@ describe("Redemption", () => {
       });
   });
 
-  it("Renders correct data for single tranche", () => {});
+  it.only("Renders correct data for single tranche", () => {
+    // As a user with balances
+    const balances = {
+      1: {
+        locked: 40,
+        vested: 20,
+      },
+      2: {
+        locked: 10,
+        vested: 20,
+      },
+    };
+    newMock(balances);
+    mock(cy, {
+      provider: {
+        accounts: ["0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD"],
+      },
+      vesting: {
+        balance: "90",
+      },
+    });
+    // When visiting redemption
+    cy.visit("/redemption");
+    // When I connect to my wallet
+    cy.contains("Connect to an Ethereum wallet").click();
+
+    // Then I see staked information in the table
+    cy.get("[data-testid='tranche-table']").should("exist");
+
+    cy.get("[data-testid='tranche-table-total'] th").should(
+      "have.text",
+      "Tranche 1"
+    );
+    cy.get("[data-testid='tranche-table-total'] td").should(
+      "have.text",
+      "0.0001"
+    );
+
+    cy.get("[data-testid='tranche-table-start'] th").should(
+      "have.text",
+      "Unlocking starts"
+    );
+    cy.get("[data-testid='tranche-table-start'] td").should(
+      "have.text",
+      "12/08/2021"
+    );
+
+    cy.get("[data-testid='tranche-table-finish'] th").should(
+      "have.text",
+      "Fully unlocked"
+    );
+    cy.get("[data-testid='tranche-table-finish'] td").should(
+      "have.text",
+      "12/08/2021"
+    );
+
+    cy.get("[data-testid='tranche-table-locked'] th").should(
+      "have.text",
+      "Locked"
+    );
+    cy.get("[data-testid='tranche-table-locked'] td").should(
+      "have.text",
+      "0.0001"
+    );
+
+    cy.get("[data-testid='tranche-table-unlocked'] th").should(
+      "have.text",
+      "Unlocked"
+    );
+    cy.get("[data-testid='tranche-table-unlocked'] td").should(
+      "have.text",
+      "0.0002"
+    );
+  });
+
   it("Renders correct data for multiple tranche", () => {});
 });

@@ -39,7 +39,9 @@ const RedemptionRouter = ({ name }: RouteChildProps) => {
         try {
           const userTranches =
             tranches?.filter((t) =>
-              t.users.some(({ address: a }) => a === address)
+              t.users.some(
+                ({ address: a }) => a.toLowerCase() === address.toLowerCase()
+              )
             ) || [];
           dispatch({
             type: "SET_USER_TRANCHES",
