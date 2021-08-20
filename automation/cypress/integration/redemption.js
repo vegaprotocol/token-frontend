@@ -1,4 +1,4 @@
-import { mock } from "../common/mock";
+import { mock, newMock } from "../common/mock";
 
 const balances = {
   1: {
@@ -10,41 +10,6 @@ const balances = {
     vested: 20,
   },
   lien: 5,
-};
-
-const newMock = (balances, overrides = {}) => {
-  const lockedHandler = (req) => {
-    const trancheId = req.url.match(/tranches\/(\d*)\/balance/)[1];
-    req.reply({
-      statusCode: 200,
-      body: balances[trancheId].locked,
-    });
-  };
-  const vestedHandler = (req) => {
-    const trancheId = req.url.match(/tranches\/(\d*)\/balance/)[1];
-    req.reply({
-      statusCode: 200,
-      body: balances[trancheId].vested,
-    });
-  };
-  const lienHandler = (req) => {
-    req.reply({
-      statusCode: 200,
-      body: JSON.stringify(balances.lien),
-    });
-  };
-  cy.intercept(
-    "/mocks/vesting/tranches/*/balance/locked",
-    overrides["/mocks/vesting/tranches/*/balance/locked"] || lockedHandler
-  );
-  cy.intercept(
-    "/mocks/vesting/tranches/*/balance/vested",
-    overrides["/mocks/vesting/tranches/*/balance/vested"] || vestedHandler
-  );
-  cy.intercept(
-    "/mocks/vesting/balance/lien",
-    overrides["/mocks/vesting/balance/lien"] || lienHandler
-  );
 };
 
 describe("Redemption", () => {
@@ -531,7 +496,7 @@ describe("Redemption", () => {
     cy.visit("/redemption");
     // When I connect to my wallet
     cy.contains("Connect to an Ethereum wallet").click();
-    // When I
+    // When I redeem the value
     cy.contains("Redeem unlocked VEGA from tranche 1").click();
     // Then I am redirected to a new page
     cy.url().should("include", "redemption/1");
