@@ -63,7 +63,6 @@ export interface IVegaVesting {
     address: string,
     tranche: number
   ): Promise<BigNumber>;
-  userStakedBalance(address: string, vegaAddress: string): Promise<BigNumber>;
 }
 
 export interface IVegaClaim {
