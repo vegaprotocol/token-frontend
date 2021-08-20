@@ -44,9 +44,13 @@ const RedemptionRouter = ({ name }: RouteChildProps) => {
               ({ address: a }) => a.toLowerCase() === address.toLowerCase()
             )
           );
+          const filterUserTranches = userTranches.filter(
+            ({ total_added, total_removed }) =>
+              !total_added.isEqualTo(total_removed)
+          );
           dispatch({
             type: "SET_USER_TRANCHES",
-            userTranches,
+            userTranches: filterUserTranches,
           });
           const getLien = vesting.getLien(address);
           const promises = userTranches.map(async (t) => {

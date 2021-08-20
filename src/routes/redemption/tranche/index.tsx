@@ -29,7 +29,7 @@ export const RedeemFromTranche = ({ state }: { state: RedemptionState }) => {
     () => vesting.checkWithdrawFromTranche(address!, numberId)
   );
 
-  if (!tranche) {
+  if (!tranche || tranche.total_removed.isEqualTo(tranche.total_added)) {
     return (
       <section data-testid="redemption-page">
         <div data-testid="redemption-no-balance">
