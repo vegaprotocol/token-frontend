@@ -31,18 +31,17 @@ const RedemptionRouter = ({ name }: RouteChildProps) => {
   React.useEffect(() => {
     const run = async () => {
       // Don't do anything until the user has connected
-      if (address) {
+      if (address && tranches) {
         dispatch({
           type: "SET_LOADING",
           loading: true,
         });
         try {
-          const userTranches =
-            tranches?.filter((t) =>
-              t.users.some(
-                ({ address: a }) => a.toLowerCase() === address.toLowerCase()
-              )
-            ) || [];
+          const userTranches = tranches.filter((t) =>
+            t.users.some(
+              ({ address: a }) => a.toLowerCase() === address.toLowerCase()
+            )
+          );
           dispatch({
             type: "SET_USER_TRANCHES",
             userTranches,
