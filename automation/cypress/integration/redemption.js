@@ -333,4 +333,8 @@ describe("Redemption", () => {
   });
 
   it("Renders correct data for multiple tranche", () => {});
+
+  it("Renders message if tranche has not started vesting", () => {});
+  it("Renders message if suer needs to reduce their stake to redeem", () => {});
+  it("Renders redeem button if the user can redeem", () => {});
 });
