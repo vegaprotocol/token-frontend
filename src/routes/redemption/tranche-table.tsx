@@ -29,6 +29,10 @@ export const TrancheTable = ({
     ({ address: a }) => a.toLowerCase() === address.toLowerCase()
   );
   const total = userTrancheInformation.total_tokens;
+  const trancheFullyLocked =
+    tranche.tranche_start.getTime() > new Date().getTime();
+  const reduceStakeAmount = 1;
+  const redeemable = reduceStakeAmount < 0;
   return (
     <section data-testid="tranche-table" className="tranche-table">
       <KeyValueTable numerical={true}>
@@ -69,6 +73,30 @@ export const TrancheTable = ({
           <td>{vested.toString()}</td>
         </KeyValueTableRow>
       </KeyValueTable>
+      <div className="tranche-table__footer">
+        {trancheFullyLocked && (
+          <div>
+            {t(
+              "All the tokens in this tranche are locked and can not be redeemed yet."
+            )}
+          </div>
+        )}
+        {!trancheFullyLocked && !redeemable && (
+          <div>
+            {t(
+              "You must reduce your staked vesting tokens by at least {{amount}} to redeem from this tranche. Manage your stake or just dissociate your tokens.",
+              { amount: reduceStakeAmount }
+            )}
+          </div>
+        )}
+        {!trancheFullyLocked && redeemable && (
+          <button>
+            {t("Redeem unlocked VEGA from tranche {{id}}", {
+              id: tranche.tranche_id,
+            })}
+          </button>
+        )}
+      </div>
     </section>
   );
 };
