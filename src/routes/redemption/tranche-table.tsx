@@ -14,6 +14,7 @@ export interface TrancheTableProps {
   address: string;
   locked: BigNumber;
   vested: BigNumber;
+  lien: BigNumber;
 }
 
 export const TrancheTable = ({
@@ -21,18 +22,15 @@ export const TrancheTable = ({
   address,
   locked,
   vested,
+  lien,
 }: TrancheTableProps) => {
   const { t } = useTranslation();
-
-  // TODO duplicated, should this be a hook?
-  const userTrancheInformation = tranche.users.find(
-    ({ address: a }) => a.toLowerCase() === address.toLowerCase()
-  );
-  const total = userTrancheInformation.total_tokens;
+  const total = vested.plus(locked);
   const trancheFullyLocked =
     tranche.tranche_start.getTime() > new Date().getTime();
-  const reduceStakeAmount = 1;
-  const redeemable = reduceStakeAmount < 0;
+  const unstaked = total.minus(lien);
+  const reduceAmount = vested.minus(unstaked);
+  const redeemable = lien.minus(vested).isLessThan(0);
   return (
     <section data-testid="tranche-table" className="tranche-table">
       <KeyValueTable numerical={true}>
@@ -85,7 +83,7 @@ export const TrancheTable = ({
           <div>
             {t(
               "You must reduce your staked vesting tokens by at least {{amount}} to redeem from this tranche. Manage your stake or just dissociate your tokens.",
-              { amount: reduceStakeAmount }
+              { amount: reduceAmount }
             )}
           </div>
         )}

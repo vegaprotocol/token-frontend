@@ -84,6 +84,7 @@ export const RedemptionInformation = ({
           key={tr.tranche_id}
           tranche={tr}
           address={address!}
+          lien={lien}
           locked={
             balances.find(
               ({ id }) => id.toString() === tr.tranche_id.toString()

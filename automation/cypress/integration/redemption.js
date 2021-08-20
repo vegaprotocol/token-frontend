@@ -305,7 +305,7 @@ describe("Redemption", () => {
     );
     cy.get("[data-testid='tranche-table-total'] td").should(
       "have.text",
-      "10000"
+      "0.0006"
     );
 
     cy.get("[data-testid='tranche-table-start'] th").should(
@@ -369,7 +369,7 @@ describe("Redemption", () => {
       .should("have.text", "Tranche 1");
     cy.get("[data-testid='tranche-table-total'] td")
       .eq(0)
-      .should("have.text", "0.0001");
+      .should("have.text", "0.0006");
 
     cy.get("[data-testid='tranche-table-start'] th")
       .eq(0)
@@ -404,7 +404,7 @@ describe("Redemption", () => {
       .should("have.text", "Tranche 2");
     cy.get("[data-testid='tranche-table-total'] td")
       .eq(1)
-      .should("have.text", "0.00009");
+      .should("have.text", "0.0003");
 
     cy.get("[data-testid='tranche-table-start'] th")
       .eq(1)
@@ -455,6 +455,59 @@ describe("Redemption", () => {
       "All the tokens in this tranche are locked and can not be redeemed yet."
     );
   });
-  it("Renders message if suer needs to reduce their stake to redeem", () => {});
-  it("Renders redeem button if the user can redeem", () => {});
+
+  it("Renders redeem button if the user can redeem", () => {
+    // As a user with balances
+    newMock({
+      1: {
+        locked: 40,
+        vested: 20,
+      },
+      lien: 0,
+    });
+    mock(cy, {
+      provider: {
+        accounts: ["0xb89A165EA8b619c14312dB316BaAa80D2a98B493"],
+      },
+      vesting: {
+        balance: "90",
+      },
+    });
+    // When visiting redemption
+    cy.visit("/redemption");
+    // When I connect to my wallet
+    cy.contains("Connect to an Ethereum wallet").click();
+    // Then I see a message saying
+    cy.get("[data-testid='tranche-table-footer']").should(
+      "have.text",
+      "Redeem unlocked VEGA from tranche 1"
+    );
+  });
+
+  it("Renders message if user needs to reduce their stake to redeem", () => {
+    newMock({
+      1: {
+        locked: 40,
+        vested: 20,
+      },
+      lien: 50,
+    });
+    mock(cy, {
+      provider: {
+        accounts: ["0xb89A165EA8b619c14312dB316BaAa80D2a98B493"],
+      },
+      vesting: {
+        balance: "90",
+      },
+    });
+    // When visiting redemption
+    cy.visit("/redemption");
+    // When I connect to my wallet
+    cy.contains("Connect to an Ethereum wallet").click();
+    // Then I see a message saying
+    cy.get("[data-testid='tranche-table-footer']").should(
+      "have.text",
+      "You must reduce your staked vesting tokens by at least 0.0001 to redeem from this tranche. Manage your stake or just dissociate your tokens."
+    );
+  });
 });
