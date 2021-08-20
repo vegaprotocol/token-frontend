@@ -41,16 +41,24 @@
   }
 }
 
-.template-sidebar__drawer {
-  padding: 20px;
-  height: 100%;
+.template-sidebar {
+  &__drawer-button {
+    position: fixed;
+    top: 20;
+    right: 20;
+  }
 
-  section {
-    margin-bottom: 20px;
-    border: 1px solid $black;
+  &__drawer {
+    padding: 15px;
+    height: 100%;
 
-    &:last-child {
-      margin-bottom: 0;
+    section {
+      margin-bottom: 15px;
+      border: 1px solid $black;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 }

@@ -77,22 +77,17 @@ const VegaWalletNotConnected = () => {
 
   return (
     <WalletCardContent>
-      <button
-        onClick={() => setOverlayOpen(true)}
-        className="vega-wallet__connect"
-        type="button"
-      >
-        {t("connectVegaWallet")}
-      </button>
-      <Overlay
-        isOpen={overlayOpen}
-        onClose={() => setOverlayOpen(false)}
-        transitionDuration={0}
-      >
-        <div className="vega-wallet__overlay">
-          <VegaWalletForm />
-        </div>
-      </Overlay>
+      {overlayOpen ? (
+        <VegaWalletForm cancel={() => setOverlayOpen(false)} />
+      ) : (
+        <button
+          onClick={() => setOverlayOpen(true)}
+          className="vega-wallet__connect"
+          type="button"
+        >
+          {t("connectVegaWallet")}
+        </button>
+      )}
     </WalletCardContent>
   );
 };
@@ -162,7 +157,11 @@ interface FormFields {
   passphrase: string;
 }
 
-const VegaWalletForm = () => {
+interface VegaWalletFormProps {
+  cancel: () => void;
+}
+
+const VegaWalletForm = ({ cancel }: VegaWalletFormProps) => {
   const { t } = useTranslation();
   const { appDispatch } = useAppState();
   const [loading, setLoading] = React.useState(false);
@@ -204,7 +203,7 @@ const VegaWalletForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="vega-wallet__form">
       <FormGroup
         label={t("urlLabel")}
         labelFor="url"
@@ -232,9 +231,22 @@ const VegaWalletForm = () => {
           type="password"
         />
       </FormGroup>
-      <button type="submit" className="fill" disabled={loading}>
-        {loading ? t("vegaWalletConnecting") : t("vegaWalletConnect")}
-      </button>
+      <div className="vega-wallet__form-buttons">
+        <button
+          type="submit"
+          disabled={loading}
+          className="vega-wallet__form-submit"
+        >
+          {loading ? t("vegaWalletConnecting") : t("vegaWalletConnect")}
+        </button>
+        <button
+          onClick={cancel}
+          type="button"
+          className="vega-wallet__form-cancel"
+        >
+          Cancel
+        </button>
+      </div>
     </form>
   );
 };
