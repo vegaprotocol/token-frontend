@@ -510,4 +510,30 @@ describe("Redemption", () => {
       "You must reduce your staked vesting tokens by at least 0.0001 to redeem from this tranche. Manage your stake or just dissociate your tokens."
     );
   });
+
+  it("Renders message if user needs to reduce their stake to redeem", () => {
+    newMock({
+      1: {
+        locked: 90,
+        vested: 20,
+      },
+      lien: 0,
+    });
+    mock(cy, {
+      provider: {
+        accounts: ["0xb89A165EA8b619c14312dB316BaAa80D2a98B493"],
+      },
+      vesting: {
+        balance: "90",
+      },
+    });
+    // When visiting redemption
+    cy.visit("/redemption");
+    // When I connect to my wallet
+    cy.contains("Connect to an Ethereum wallet").click();
+    // When I
+    cy.contains("Redeem unlocked VEGA from tranche 1").click();
+    // Then I am redirected to a new page
+    cy.url().contains(/redemption\/1/);
+  });
 });
