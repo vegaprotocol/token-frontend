@@ -42,6 +42,10 @@ class MockedVesting implements IVegaVesting {
     return promiEventFactory(uuidv4(), "withdraw-from-tranche");
   }
 
+  checkWithdrawFromTranche(account: string, trancheId: number): Promise<any> {
+    return Promise.resolve(true);
+  }
+
   async getLien(address: string): Promise<BigNumber> {
     const balance = await this.performFetch(`balance/lien`);
     return new BigNumber(addDecimal(new BigNumber(balance), this.decimals));

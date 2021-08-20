@@ -24,7 +24,10 @@ export const RedeemFromTranche = ({ state }: { state: RedemptionState }) => {
     state: txState,
     perform,
     dispatch: txDispatch,
-  } = useTransaction(() => vesting.withdrawFromTranche(address!, numberId));
+  } = useTransaction(
+    () => vesting.withdrawFromTranche(address!, numberId),
+    () => vesting.checkWithdrawFromTranche(address!, numberId)
+  );
 
   if (!tranche) {
     return (

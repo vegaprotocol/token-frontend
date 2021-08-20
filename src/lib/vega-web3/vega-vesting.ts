@@ -67,4 +67,10 @@ export default class VegaVesting implements IVegaVesting {
       .withdraw_from_tranche(trancheId)
       .send({ from: account });
   }
+
+  checkWithdrawFromTranche(account: string, trancheId: number): Promise<any> {
+    return this.contract.methods
+      .withdraw_from_tranche(trancheId)
+      .call({ from: account });
+  }
 }
