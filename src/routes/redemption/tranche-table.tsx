@@ -31,6 +31,7 @@ export const TrancheTable = ({
   const unstaked = total.minus(lien);
   const reduceAmount = vested.minus(unstaked);
   const redeemable = lien.minus(vested).isLessThan(0);
+
   return (
     <section data-testid="tranche-table" className="tranche-table">
       <KeyValueTable numerical={true}>

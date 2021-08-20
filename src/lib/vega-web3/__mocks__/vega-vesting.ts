@@ -42,7 +42,7 @@ class MockedVesting implements IVegaVesting {
     return new BigNumber(addDecimal(new BigNumber(balance), this.decimals));
   }
 
-  async userTrancheLockedBalance(
+  async userTrancheTotalBalance(
     address: string,
     tranche: number
   ): Promise<BigNumber> {

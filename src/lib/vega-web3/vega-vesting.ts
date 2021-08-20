@@ -27,7 +27,7 @@ export default class VegaVesting implements IVegaVesting {
     return new BigNumber(addDecimal(new BigNumber(lien), this.decimals));
   }
 
-  async userTrancheLockedBalance(
+  async userTrancheTotalBalance(
     address: string,
     tranche: number
   ): Promise<BigNumber> {

@@ -48,13 +48,13 @@ const RedemptionRouter = ({ name }: RouteChildProps) => {
           });
           const getLien = vesting.getLien(address);
           const promises = userTranches.map(async (t) => {
-            const [locked, vested] = await Promise.all([
-              vesting.userTrancheLockedBalance(address, t.tranche_id),
+            const [total, vested] = await Promise.all([
+              vesting.userTrancheTotalBalance(address, t.tranche_id),
               vesting.userTrancheVestedBalance(address, t.tranche_id),
             ]);
             return {
               id: t.tranche_id,
-              locked,
+              locked: total.minus(vested),
               vested,
             };
           });

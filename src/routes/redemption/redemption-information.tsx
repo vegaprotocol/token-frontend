@@ -80,24 +80,35 @@ export const RedemptionInformation = ({
         locked={totalLockedBalance}
         vested={totalVestedBalance}
       />
-      {userTranches.map((tr) => (
-        <TrancheTable
-          key={tr.tranche_id}
-          tranche={tr}
-          address={address!}
-          lien={lien}
-          locked={
-            balances.find(
-              ({ id }) => id.toString() === tr.tranche_id.toString()
-            )!.locked
-          }
-          vested={
-            balances.find(
-              ({ id }) => id.toString() === tr.tranche_id.toString()
-            )!.vested
-          }
-        />
-      ))}
+      {userTranches
+        .filter((tr) => {
+          return (
+            balances
+              .find(({ id }) => id.toString() === tr.tranche_id.toString())!
+              .vested.isGreaterThan(0) ||
+            balances
+              .find(({ id }) => id.toString() === tr.tranche_id.toString())!
+              .locked.isGreaterThan(0)
+          );
+        })
+        .map((tr) => (
+          <TrancheTable
+            key={tr.tranche_id}
+            tranche={tr}
+            address={address!}
+            lien={lien}
+            locked={
+              balances.find(
+                ({ id }) => id.toString() === tr.tranche_id.toString()
+              )!.locked
+            }
+            vested={
+              balances.find(
+                ({ id }) => id.toString() === tr.tranche_id.toString()
+              )!.vested
+            }
+          />
+        ))}
     </section>
   );
 };
