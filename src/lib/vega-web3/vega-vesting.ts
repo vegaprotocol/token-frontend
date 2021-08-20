@@ -65,6 +65,6 @@ export default class VegaVesting implements IVegaVesting {
   withdrawFromTranche(account: string, trancheId: number): PromiEvent {
     return this.contract.methods
       .withdraw_from_tranche(trancheId)
-      .call({ from: account });
+      .send({ from: account });
   }
 }
