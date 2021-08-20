@@ -1,4 +1,4 @@
-import { mock, newMock } from "../common/mock";
+import { mock, newMock, sendChainResponse } from "../common/mock";
 
 const balances = {
   1: {
@@ -12,27 +12,7 @@ const balances = {
   lien: 5,
 };
 
-const sendChainResponse = (cy, chainCommand, eventResponse, data) => {
-  return cy.window().then((win) => {
-    const commitEvents = win.promiManager.promiEvents.filter(
-      ({ name }) => name === chainCommand
-    );
-    if (commitEvents.length !== 1) {
-      throw new Error(
-        `Too many or not enough ${chainCommand} promi events found. Found:`,
-        commitEvents
-      );
-    }
-    win.dispatchEvent(
-      new CustomEvent(`${eventResponse}-mock`, {
-        detail: { data, id: commitEvents[0].id },
-      })
-    );
-    return win;
-  });
-};
-
-describe.only("Redemption through tranche", () => {
+describe("Redemption through tranche", () => {
   it("Renders tranche table", () => {
     newMock(balances);
     mock(cy, {
@@ -111,6 +91,42 @@ describe.only("Redemption through tranche", () => {
     // When click try again
     cy.contains("Try again").click();
 
+    // Then the form is reset
     cy.get("[data-testid='tranche-table']").should("exist");
+  });
+
+  it("Renders in progress and completed states", () => {
+    newMock(balances);
+    mock(cy, {
+      provider: {
+        accounts: ["0xb89A165EA8b619c14312dB316BaAa80D2a98B493"],
+      },
+      vesting: {
+        balance: "90",
+      },
+    });
+    // When visiting redemption
+    cy.visit("/redemption/1");
+    // When I connect to my wallet
+    cy.contains("Connect to an Ethereum wallet").click();
+    // When I redeem the value
+    cy.contains("Redeem unlocked VEGA from tranche 1").click();
+
+    sendChainResponse(cy, "withdraw-from-tranche", "transactionHash", "hash");
+    cy.get("[data-testid='callout'] p:first").should(
+      "have.text",
+      "Transaction in progress"
+    );
+    cy.get("[data-testid='callout'] a")
+      .should("have.text", "View on Etherscan (opens in a new tab)")
+      .should("have.attr", "href")
+      .and("match", /ropsten.etherscan.io\/tx\/hash/);
+
+    sendChainResponse(cy, "withdraw-from-tranche", "receipt", "hash");
+    cy.get("[data-testid='callout'] p:first").should("have.text", "Complete");
+    cy.get("[data-testid='callout'] a")
+      .should("have.text", "View on Etherscan (opens in a new tab)")
+      .should("have.attr", "href")
+      .and("match", /ropsten.etherscan.io\/tx\/hash/);
   });
 });

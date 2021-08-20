@@ -97,3 +97,23 @@ export const newMock = (balances, overrides = {}) => {
     overrides["/mocks/vesting/balance/lien"] || lienHandler
   );
 };
+
+export const sendChainResponse = (cy, chainCommand, eventResponse, data) => {
+  return cy.window().then((win) => {
+    const commitEvents = win.promiManager.promiEvents.filter(
+      ({ name }) => name === chainCommand
+    );
+    if (commitEvents.length !== 1) {
+      throw new Error(
+        `Too many or not enough ${chainCommand} promi events found. Found:`,
+        commitEvents
+      );
+    }
+    win.dispatchEvent(
+      new CustomEvent(`${eventResponse}-mock`, {
+        detail: { data, id: commitEvents[0].id },
+      })
+    );
+    return win;
+  });
+};
