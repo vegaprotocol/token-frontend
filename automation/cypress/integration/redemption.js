@@ -1,4 +1,4 @@
-import { mock, newMock } from "../common/mock";
+import { mock, mockVesting } from "../common/mock";
 
 const balances = {
   1: {
@@ -15,7 +15,7 @@ const balances = {
 describe("Redemption", () => {
   it("Renders loading state while data is loading", () => {
     // As a user
-    newMock(balances, {
+    mockVesting(balances, {
       "/mocks/vesting/tranches/*/balance/locked": (req) => {
         req.reply({
           statusCode: 200,
@@ -42,7 +42,7 @@ describe("Redemption", () => {
 
   it("Renders error state if data loading goes sideways", () => {
     // As a user
-    newMock(balances, {
+    mockVesting(balances, {
       "/mocks/vesting/tranches/*/balance/locked": (req) => {
         req.reply({
           statusCode: 500,
@@ -96,7 +96,7 @@ describe("Redemption", () => {
 
   it("Renders check and redeem page content", () => {
     // As a user with balances:
-    newMock(balances);
+    mockVesting(balances);
     mock(cy, {
       provider: {
         accounts: ["0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD"],
@@ -140,7 +140,7 @@ describe("Redemption", () => {
 
   it("Renders callout", () => {
     // As a user with balances:
-    newMock(balances);
+    mockVesting(balances);
     mock(cy, {
       provider: {
         accounts: ["0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD"],
@@ -165,7 +165,7 @@ describe("Redemption", () => {
 
   it("Renders table with all vesting information", () => {
     // As a user with balances
-    newMock(balances);
+    mockVesting(balances);
     mock(cy, {
       provider: {
         accounts: ["0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD"],
@@ -247,7 +247,7 @@ describe("Redemption", () => {
       },
       lien: 5,
     };
-    newMock(balances);
+    mockVesting(balances);
     mock(cy, {
       provider: {
         accounts: ["0xb89A165EA8b619c14312dB316BaAa80D2a98B493"],
@@ -312,7 +312,7 @@ describe("Redemption", () => {
 
   it("Renders correct data for multiple tranche", () => {
     // As a user with balances
-    newMock(balances);
+    mockVesting(balances);
     mock(cy, {
       provider: {
         accounts: ["0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD"],
@@ -401,7 +401,7 @@ describe("Redemption", () => {
   });
 
   it("Renders message if tranche has not started vesting", () => {
-    newMock(balances);
+    mockVesting(balances);
     mock(cy, {
       provider: {
         accounts: ["0xb89A165EA8b619c14312dB316BaAa80D2a98B493"],
@@ -423,7 +423,7 @@ describe("Redemption", () => {
 
   it("Renders redeem button if the user can redeem", () => {
     // As a user with balances
-    newMock({
+    mockVesting({
       1: {
         locked: 90,
         vested: 20,
@@ -450,7 +450,7 @@ describe("Redemption", () => {
   });
 
   it("Renders message if user needs to reduce their stake to redeem", () => {
-    newMock({
+    mockVesting({
       1: {
         locked: 90,
         vested: 20,
@@ -477,7 +477,7 @@ describe("Redemption", () => {
   });
 
   it("Renders message if user needs to reduce their stake to redeem", () => {
-    newMock({
+    mockVesting({
       1: {
         locked: 90,
         vested: 20,

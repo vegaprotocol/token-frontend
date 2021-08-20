@@ -1,4 +1,4 @@
-import { mock, newMock, sendChainResponse } from "../common/mock";
+import { mock, mockVesting, sendChainResponse } from "../common/mock";
 
 const balances = {
   1: {
@@ -14,7 +14,7 @@ const balances = {
 
 describe("Redemption through tranche", () => {
   it("Renders tranche table", () => {
-    newMock(balances);
+    mockVesting(balances);
     mock(cy, {
       provider: {
         accounts: ["0xb89A165EA8b619c14312dB316BaAa80D2a98B493"],
@@ -65,7 +65,7 @@ describe("Redemption through tranche", () => {
   });
 
   it("Renders error state is the transaction is rejected", () => {
-    newMock(balances);
+    mockVesting(balances);
     mock(cy, {
       provider: {
         accounts: ["0xb89A165EA8b619c14312dB316BaAa80D2a98B493"],
@@ -96,7 +96,7 @@ describe("Redemption through tranche", () => {
   });
 
   it("Renders in progress and completed states", () => {
-    newMock(balances);
+    mockVesting(balances);
     mock(cy, {
       provider: {
         accounts: ["0xb89A165EA8b619c14312dB316BaAa80D2a98B493"],

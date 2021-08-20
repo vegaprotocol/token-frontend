@@ -63,7 +63,7 @@ export const mock = (cy, options = {}) => {
   });
 };
 
-export const newMock = (balances, overrides = {}) => {
+export const mockVesting = (balances, overrides = {}) => {
   const lockedHandler = (req) => {
     const trancheId = req.url.match(/tranches\/(\d*)\/balance/)[1];
     req.reply({
