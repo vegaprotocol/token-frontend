@@ -8,12 +8,14 @@ import { Callout } from "../../components/callout";
 
 export const RedemptionInformation = ({
   state,
+  address,
 }: {
   state: RedemptionState;
+  address: string;
 }) => {
   const { t } = useTranslation();
   const {
-    appState: { address, balanceFormatted },
+    appState: { balanceFormatted },
   } = useAppState();
   const {
     userTranches,

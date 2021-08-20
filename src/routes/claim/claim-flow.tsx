@@ -180,18 +180,19 @@ export const ClaimFlow = ({
         {/* If targeted we do not need to commit reveal, as there is no change of front running the mem pool */}
         {state.target ? (
           <TargetedClaim
+            address={address}
             claimCode={state.code!}
             denomination={state.denomination!}
             expiry={state.expiry!}
             nonce={state.nonce!}
             trancheId={state.trancheId!}
             targeted={!!state.target}
-            account={address}
             state={state}
             dispatch={dispatch}
           />
         ) : (
           <UntargetedClaim
+            address={address}
             claimCode={state.code!}
             denomination={state.denomination!}
             denominationFormatted={state.denominationFormatted}
@@ -199,7 +200,6 @@ export const ClaimFlow = ({
             nonce={state.nonce!}
             trancheId={state.trancheId!}
             targeted={!!state.target}
-            account={address}
             committed={state.claimStatus === ClaimStatus.Committed}
             state={state}
             dispatch={dispatch}

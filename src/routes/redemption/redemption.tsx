@@ -79,7 +79,7 @@ const RedemptionRouter = ({
     return <RedemptionError />;
   }
 
-  return <RedemptionInformation state={state} />;
+  return <RedemptionInformation state={state} address={address} />;
 };
 
 export default RedemptionRouter;
