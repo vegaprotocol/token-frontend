@@ -9,6 +9,7 @@ const balances = {
     locked: 10,
     vested: 20,
   },
+  lien: 5,
 };
 
 const newMock = (balances, overrides = {}) => {
@@ -26,6 +27,12 @@ const newMock = (balances, overrides = {}) => {
       body: balances[trancheId].vested,
     });
   };
+  const lienHandler = (req) => {
+    req.reply({
+      statusCode: 200,
+      body: JSON.stringify(balances.lien),
+    });
+  };
   cy.intercept(
     "/mocks/vesting/tranches/*/balance/locked",
     overrides["/mocks/vesting/tranches/*/balance/locked"] || lockedHandler
@@ -33,6 +40,10 @@ const newMock = (balances, overrides = {}) => {
   cy.intercept(
     "/mocks/vesting/tranches/*/balance/vested",
     overrides["/mocks/vesting/tranches/*/balance/vested"] || vestedHandler
+  );
+  cy.intercept(
+    "/mocks/vesting/balance/lien",
+    overrides["/mocks/vesting/balance/lien"] || lienHandler
   );
 };
 
@@ -269,6 +280,7 @@ describe("Redemption", () => {
         locked: 40,
         vested: 20,
       },
+      lien: 5,
     };
     newMock(balances);
     mock(cy, {

@@ -20,6 +20,9 @@ export default class VegaVesting implements IVegaVesting {
       vestingAddress
     );
   }
+  getLien(address: string): Promise<BigNumber> {
+    throw new Error("Method not implemented.");
+  }
 
   userTrancheLockedBalance(
     address: string,

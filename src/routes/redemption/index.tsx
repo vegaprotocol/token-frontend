@@ -47,6 +47,7 @@ const RedemptionRouter = ({ name }: RouteChildProps) => {
             type: "SET_USER_TRANCHES",
             userTranches,
           });
+          const getLien = vesting.getLien(address);
           // TODO need to get the user staked balance here as well
           const promises = userTranches.map(async (t) => {
             const [locked, vested] = await Promise.all([
@@ -60,9 +61,11 @@ const RedemptionRouter = ({ name }: RouteChildProps) => {
             };
           });
           const balances = await Promise.all(promises);
+          const lien = await getLien;
           dispatch({
             type: "SET_USER_BALANCES",
             balances,
+            lien,
           });
         } catch (e) {
           dispatch({

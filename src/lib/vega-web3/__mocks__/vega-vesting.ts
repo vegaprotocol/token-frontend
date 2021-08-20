@@ -37,6 +37,11 @@ class MockedVesting implements IVegaVesting {
     }
   }
 
+  async getLien(address: string): Promise<BigNumber> {
+    const balance = await this.performFetch(`balance/lien`);
+    return new BigNumber(addDecimal(new BigNumber(balance), this.decimals));
+  }
+
   async userTrancheLockedBalance(
     address: string,
     tranche: number
