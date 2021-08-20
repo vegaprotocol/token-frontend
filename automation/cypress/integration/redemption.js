@@ -162,6 +162,31 @@ describe("Redemption", () => {
     );
   });
 
+  it("Renders callout", () => {
+    // As a user with balances:
+    newMock(balances);
+    mock(cy, {
+      provider: {
+        accounts: ["0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD"],
+      },
+      vesting: {
+        balance: "90",
+      },
+    });
+    // When visiting redemption
+    cy.visit("/redemption");
+    // When I connect to my wallet
+    cy.contains("Connect to an Ethereum wallet").click();
+    cy.get("[data-testid='vega-callout'] h1").should(
+      "have.text",
+      "Stake your Locked VEGA tokens!"
+    );
+    cy.get("[data-testid='vega-callout'] p").should(
+      "have.text",
+      "Find out more about Staking."
+    );
+  });
+
   it("Renders table with all vesting information", () => {
     // As a user with balances
     newMock(balances);
