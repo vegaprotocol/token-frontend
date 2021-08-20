@@ -2,7 +2,6 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { CountrySelector } from "../../../components/country-selector";
 import { FormGroup } from "../../../components/form-group";
-import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { TxState } from "../../../hooks/transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { useVegaClaim } from "../../../hooks/use-vega-claim";
@@ -13,6 +12,7 @@ import { ClaimStep1 } from "../claim-step-1";
 import { ClaimStep2 } from "../claim-step-2";
 
 interface UntargetedClaimProps {
+  address: string;
   claimCode: string;
   denomination: BigNumber;
   denominationFormatted: string;
@@ -20,13 +20,13 @@ interface UntargetedClaimProps {
   expiry: number;
   nonce: string;
   targeted: boolean;
-  account: string;
   committed: boolean;
   state: ClaimState;
   dispatch: React.Dispatch<ClaimAction>;
 }
 
 export const UntargetedClaim = ({
+  address,
   claimCode,
   denomination,
   denominationFormatted,
@@ -34,12 +34,10 @@ export const UntargetedClaim = ({
   expiry,
   nonce,
   targeted,
-  account,
   committed,
   state,
   dispatch,
 }: UntargetedClaimProps) => {
-  const { appState } = useAppState();
   const claim = useVegaClaim();
 
   const {
@@ -47,8 +45,8 @@ export const UntargetedClaim = ({
     dispatch: commitDispatch,
     perform: commitClaim,
   } = useTransaction(
-    () => claim.commit(claimCode, appState.address!),
-    () => claim.checkCommit(claimCode, appState.address!)
+    () => claim.commit(claimCode, address),
+    () => claim.checkCommit(claimCode, address)
   );
   const claimArgs = {
     claimCode,
@@ -58,7 +56,7 @@ export const UntargetedClaim = ({
     nonce,
     country: state.countryCode!,
     targeted,
-    account,
+    account: address,
   };
   const {
     state: revealState,
