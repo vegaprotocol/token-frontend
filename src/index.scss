@@ -86,6 +86,13 @@ button {
   &.fill {
     width: 100%;
   }
+
+  &.button-link {
+    display: inline;
+    appearance: none;
+    padding: 0;
+    text-decoration: underline;
+  }
 }
 
 // FORM ELEMENTS

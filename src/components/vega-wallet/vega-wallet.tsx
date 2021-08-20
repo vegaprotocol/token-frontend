@@ -113,7 +113,7 @@ const VegaWalletConnected = ({
   return vegaKeys.length ? (
     <>
       {expanded && vegaKeys.length > 1 ? (
-        <div>
+        <div className="vega-wallet__expanded-container">
           <ul className="vega-wallet__key-list">
             {vegaKeys
               .filter((k) => currVegaKey && currVegaKey.pub !== k.pub)
@@ -129,7 +129,13 @@ const VegaWalletConnected = ({
                 </li>
               ))}
           </ul>
-          <div onClick={handleDisconnect}>{disconnectText}</div>
+          <button
+            className="button-link"
+            onClick={handleDisconnect}
+            type="button"
+          >
+            {disconnectText}
+          </button>
         </div>
       ) : (
         <WalletCardRow>
