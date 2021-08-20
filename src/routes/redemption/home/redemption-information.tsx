@@ -1,10 +1,10 @@
 import "./redemption-information.scss";
-import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { RedemptionState } from "./redemption-reducer";
 import { VestingTable } from "./vesting-table";
 import { TrancheTable } from "./tranche-table";
 import { useTranslation } from "react-i18next";
-import { VegaCallout } from "../../components/vega-callout";
+import { VegaCallout } from "../../../components/vega-callout";
 
 export const RedemptionInformation = ({
   state,

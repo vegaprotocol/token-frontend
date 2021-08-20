@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { Callout } from "../../components/callout";
-import { Error as ErrorIcon } from "../../components/icons";
+import { Callout } from "../../../components/callout";
+import { Error as ErrorIcon } from "../../../components/icons";
 
 export const RedemptionError = () => {
   const { t } = useTranslation();

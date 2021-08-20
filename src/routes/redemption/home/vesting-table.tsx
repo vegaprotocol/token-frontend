@@ -2,8 +2,8 @@ import "./vesting-table.scss";
 import {
   KeyValueTable,
   KeyValueTableRow,
-} from "../../components/key-value-table";
-import { BigNumber } from "../../lib/bignumber";
+} from "../../../components/key-value-table";
+import { BigNumber } from "../../../lib/bignumber";
 import React from "react";
 import { useTranslation } from "react-i18next";
 

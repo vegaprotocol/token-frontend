@@ -4,9 +4,9 @@ import { useTranslation } from "react-i18next";
 import {
   KeyValueTable,
   KeyValueTableRow,
-} from "../../components/key-value-table";
-import { BigNumber } from "../../lib/bignumber";
-import { Tranche } from "../../lib/vega-web3/vega-web3-types";
+} from "../../../components/key-value-table";
+import { BigNumber } from "../../../lib/bignumber";
+import { Tranche } from "../../../lib/vega-web3/vega-web3-types";
 import { format } from "date-fns";
 
 export interface TrancheTableProps {
