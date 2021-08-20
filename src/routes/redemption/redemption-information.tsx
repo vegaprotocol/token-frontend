@@ -64,11 +64,7 @@ export const RedemptionInformation = ({
           {t("Use this page to redeem any unlocked VEGA tokens.")}
         </strong>
       </div>
-      <div data-testid="redemption-note">
-        {t(
-          "Note: The redeem function attempts to redeem all unlocked tokens from a tranche. However, it will only work if all the amount you are redeeming would not reduce the amount you have staked while vesting."
-        )}
-      </div>
+      <div data-testid="redemption-note">{t("redemptionExplain")}</div>
       <VestingTable
         staked={stakedBalance}
         locked={totalLockedBalance}

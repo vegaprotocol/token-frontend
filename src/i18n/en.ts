@@ -158,7 +158,7 @@ const en = {
     "Redeem unlocked VEGA from tranche {{id}}",
   "You must reduce your staked vesting tokens by at least {{amount}} to redeem from this tranche. Manage your stake or just dissociate your tokens.":
     "You must reduce your staked vesting tokens by at least {{amount}} to redeem from this tranche. Manage your stake or just dissociate your tokens.",
-  "Note: The redeem function attempts to redeem all unlocked tokens from a tranche. However, it will only work if all the amount you are redeeming would not reduce the amount you have staked while vesting.":
+  redemptionExplain:
     "Note: The redeem function attempts to redeem all unlocked tokens from a tranche. However, it will only work if all the amount you are redeeming would not reduce the amount you have staked while vesting.",
   "Use this page to redeem any unlocked VEGA tokens.":
     "Use this page to redeem any unlocked VEGA tokens.",
