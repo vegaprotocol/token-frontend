@@ -12,7 +12,7 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
 
   return (
     <DefaultTemplate title={t("pageTitleRedemption")}>
-      <Web3Container>
+      <Web3Container addressRequired={true}>
         <TrancheContainer>
           <RedemptionRouter />
         </TrancheContainer>
