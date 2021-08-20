@@ -60,7 +60,9 @@ export const RedemptionInformation = ({
         })}
       </div>
       <div data-testid="redemption-page-description">
-        <strong>{t("Use this page to redeem any unlocked VEGA tokens")}</strong>
+        <strong>
+          {t("Use this page to redeem any unlocked VEGA tokens.")}
+        </strong>
       </div>
       <div data-testid="redemption-note">
         {t(
