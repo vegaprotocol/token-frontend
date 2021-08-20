@@ -89,6 +89,7 @@ const RedemptionRouter = ({ name }: RouteChildProps) => {
   } else {
     pageContent = <RedemptionInformation state={state} />;
   }
+
   return (
     <DefaultTemplate title={t("pageTitleRedemption")}>
       <Web3Container>

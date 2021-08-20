@@ -257,7 +257,7 @@ describe("Redemption", () => {
       });
   });
 
-  it.only("Renders correct data for single tranche", () => {
+  it("Renders correct data for single tranche", () => {
     // As a user with balances
     const balances = {
       1: {
@@ -328,7 +328,105 @@ describe("Redemption", () => {
     );
   });
 
-  it("Renders correct data for multiple tranche", () => {});
+  it("Renders correct data for multiple tranche", () => {
+    // As a user with balances
+    const balances = {
+      1: {
+        locked: 40,
+        vested: 20,
+      },
+      2: {
+        locked: 20,
+        vested: 40,
+      },
+    };
+    newMock(balances);
+    mock(cy, {
+      provider: {
+        accounts: ["0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD"],
+      },
+      vesting: {
+        balance: "90",
+      },
+    });
+    // When visiting redemption
+    cy.visit("/redemption");
+    // When I connect to my wallet
+    cy.contains("Connect to an Ethereum wallet").click();
+
+    // Then I see tranche information in the table
+    cy.get("[data-testid='tranche-table']").should("have.length", 2);
+
+    cy.get("[data-testid='tranche-table-total'] th")
+      .eq(0)
+      .should("have.text", "Tranche 1");
+    cy.get("[data-testid='tranche-table-total'] td")
+      .eq(0)
+      .should("have.text", "0.0001");
+
+    cy.get("[data-testid='tranche-table-start'] th")
+      .eq(0)
+      .should("have.text", "Unlocking starts");
+    cy.get("[data-testid='tranche-table-start'] td")
+      .eq(0)
+      .should("have.text", "12/08/2021");
+
+    cy.get("[data-testid='tranche-table-finish'] th")
+      .eq(0)
+      .should("have.text", "Fully unlocked");
+    cy.get("[data-testid='tranche-table-finish'] td")
+      .eq(0)
+      .should("have.text", "12/08/2021");
+
+    cy.get("[data-testid='tranche-table-locked'] th")
+      .eq(0)
+      .should("have.text", "Locked");
+    cy.get("[data-testid='tranche-table-locked'] td")
+      .eq(0)
+      .should("have.text", "0.0004");
+
+    cy.get("[data-testid='tranche-table-unlocked'] th")
+      .eq(0)
+      .should("have.text", "Unlocked");
+    cy.get("[data-testid='tranche-table-unlocked'] td")
+      .eq(0)
+      .should("have.text", "0.0002");
+
+    cy.get("[data-testid='tranche-table-total'] th")
+      .eq(1)
+      .should("have.text", "Tranche 2");
+    cy.get("[data-testid='tranche-table-total'] td")
+      .eq(1)
+      .should("have.text", "0.00009");
+
+    cy.get("[data-testid='tranche-table-start'] th")
+      .eq(1)
+      .should("have.text", "Unlocking starts");
+    cy.get("[data-testid='tranche-table-start'] td")
+      .eq(1)
+      .should("have.text", "12/08/2021");
+
+    cy.get("[data-testid='tranche-table-finish'] th")
+      .eq(1)
+      .should("have.text", "Fully unlocked");
+    cy.get("[data-testid='tranche-table-finish'] td")
+      .eq(1)
+      .should("have.text", "19/08/2021");
+
+    cy.get("[data-testid='tranche-table-locked'] th")
+      .eq(1)
+      .should("have.text", "Locked");
+    cy.get("[data-testid='tranche-table-locked'] td")
+      .eq(1)
+      .should("have.text", "0.0002");
+
+    cy.get("[data-testid='tranche-table-unlocked'] th")
+      .eq(1)
+      .should("have.text", "Unlocked");
+    cy.get("[data-testid='tranche-table-unlocked'] td")
+      .eq(1)
+      .should("have.text", "0.0004");
+  });
 
   it("Renders message if tranche has not started vesting", () => {});
   it("Renders message if suer needs to reduce their stake to redeem", () => {});
