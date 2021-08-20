@@ -161,7 +161,7 @@ describe("Redemption", () => {
     // TODO needs to be implemented
     cy.get("[data-testid='redemption-staked-tokens']").should(
       "have.text",
-      "0.0002 are staked."
+      "0.00005 are staked."
     );
     cy.get("[data-testid='redemption-page-description']").should(
       "have.text",
@@ -249,7 +249,7 @@ describe("Redemption", () => {
     );
     cy.get("[data-testid='vesting-table-staked'] td").should(
       "have.text",
-      "0.0002"
+      "0.00005"
     );
     // And renders a bar
     cy.get(".vesting-table__progress-bar")
@@ -268,8 +268,8 @@ describe("Redemption", () => {
         cy.get(".vesting-table__progress-bar--staked")
           .invoke("outerWidth")
           // δ of 1
-          .should("gt", Math.floor((val * 0.002) / 0.009))
-          .should("lt", Math.ceil((val * 0.002) / 0.009));
+          .should("gt", Math.floor((val * 0.0005) / 0.009))
+          .should("lt", Math.ceil((val * 0.0005) / 0.009));
       });
   });
 
