@@ -9,6 +9,7 @@ import * as Sentry from "@sentry/react";
 import { BigNumber } from "../lib/bignumber";
 
 export function useConnect() {
+  const connectTimer = React.useRef<any>();
   const { appState, appDispatch, provider } = useAppState();
   const appConfigChainId = process.env.REACT_APP_CHAIN as EthereumChainId;
   if (!EthereumChainNames[appConfigChainId]) {
@@ -16,9 +17,19 @@ export function useConnect() {
   }
   const vega = useVegaVesting();
   const connect = React.useCallback(async () => {
+    let connected = false;
+
+    // only show set connecting state if some time has passed to
+    // avoid UI flickering if you have already permitted the website
+    // to connect to metamask
+    connectTimer.current = setTimeout(() => {
+      if (!connected) {
+        appDispatch({ type: "CONNECT" });
+      }
+    }, 300);
+
     try {
       appDispatch({ type: "CONNECT" });
-
       if (appState.providerStatus === ProviderStatus.None) {
         appDispatch({
           type: "CONNECT_FAIL",
@@ -33,6 +44,7 @@ export function useConnect() {
       const chainId = await provider.request({ method: "eth_chainId" });
       const balance = await vega.getUserBalanceAllTranches(accounts[0]);
 
+      connected = true;
       appDispatch({
         type: "CONNECT_SUCCESS",
         address: accounts[0],
@@ -44,6 +56,14 @@ export function useConnect() {
       appDispatch({ type: "CONNECT_FAIL", error: e });
     }
   }, [appDispatch, appState.providerStatus, provider, vega]);
+
+  React.useEffect(() => {
+    return () => {
+      if (connectTimer.current) {
+        clearTimeout(connectTimer.current);
+      }
+    };
+  }, []);
 
   return connect;
 }
