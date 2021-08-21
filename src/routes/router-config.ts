@@ -7,6 +7,7 @@ export const Routes = {
   HOME: "/",
   TRANCHES: "/tranches",
   CLAIM: "/claim",
+  STAKING: "/staking",
   REDEMPTION: "/redemption",
   NOT_PERMITTED: "/not-permitted",
   NOT_FOUND: "/not-found",
@@ -30,6 +31,12 @@ const LazyRedemption = React.lazy(
       /* webpackChunkName: "route-redemption", webpackPrefetch: true */ "./redemption"
     )
 );
+const LazyStaking = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "route-staking", webpackPrefetch: true */ "./staking"
+    )
+);
 const routerConfig = [
   {
     path: Routes.HOME,
@@ -50,6 +57,11 @@ const routerConfig = [
     name: "Claim",
     children: [],
     component: LazyClaim,
+  },
+  {
+    path: Routes.STAKING,
+    name: "Staking",
+    component: LazyStaking,
   },
   {
     path: Routes.REDEMPTION,
