@@ -66,13 +66,8 @@ export const RedemptionInformation = ({
           {t("Use this page to redeem any unlocked VEGA tokens.")}
         </strong>
       </div>
-      <Callout>
-        <h1 className="redemption-information__callout-header">
-          {t("Stake your Locked VEGA tokens!")}
-        </h1>
-        <p className="redemption-information__callout-body">
-          {t("Find out more about Staking.")}
-        </p>
+      <Callout title={t("Stake your Locked VEGA tokens!")}>
+        <p>{t("Find out more about Staking.")}</p>
       </Callout>
       <div data-testid="redemption-note">{t("redemptionExplain")}</div>
       <VestingTable
