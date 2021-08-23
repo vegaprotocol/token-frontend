@@ -4,7 +4,7 @@ import { RedemptionState } from "./redemption-reducer";
 import { VestingTable } from "./vesting-table";
 import { TrancheTable } from "./tranche-table";
 import { useTranslation } from "react-i18next";
-import { VegaCallout } from "../../components/vega-callout";
+import { Callout } from "../../components/callout";
 
 export const RedemptionInformation = ({
   state,
@@ -66,14 +66,14 @@ export const RedemptionInformation = ({
           {t("Use this page to redeem any unlocked VEGA tokens.")}
         </strong>
       </div>
-      <VegaCallout>
+      <Callout>
         <h1 className="redemption-information__callout-header">
           {t("Stake your Locked VEGA tokens!")}
         </h1>
         <p className="redemption-information__callout-body">
           {t("Find out more about Staking.")}
         </p>
-      </VegaCallout>
+      </Callout>
       <div data-testid="redemption-note">{t("redemptionExplain")}</div>
       <VestingTable
         staked={lien}
