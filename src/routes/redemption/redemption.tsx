@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { SplashLoader } from "../../components/splash-loader";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
@@ -19,6 +19,7 @@ const RedemptionRouter = ({
   address: string;
   tranches: Tranche[];
 }) => {
+  const match = useRouteMatch();
   const vesting = useVegaVesting();
   const [state, dispatch] = React.useReducer(
     redemptionReducer,
@@ -84,10 +85,10 @@ const RedemptionRouter = ({
 
   return (
     <Switch>
-      <Route exact path="/redemption">
+      <Route exact path={`${match.path}`}>
         <RedemptionInformation state={state} address={address} />
       </Route>
-      <Route path="/redemption/:id">
+      <Route path={`${match.path}/:id`}>
         <RedeemFromTranche state={state} />
       </Route>
     </Switch>
