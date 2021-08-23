@@ -12,19 +12,19 @@ const ClaimIndex = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
   const { t } = useTranslation();
 
-  if (isRestricted()) {
-    return <ClaimRestricted />;
-  }
-
   return (
     <TemplateDefault title={t("pageTitleClaim")}>
-      <Web3Container>
-        {(address) => (
-          <TrancheContainer>
-            {(tranches) => <Claim address={address} tranches={tranches} />}
-          </TrancheContainer>
-        )}
-      </Web3Container>
+      {isRestricted() ? (
+        <ClaimRestricted />
+      ) : (
+        <Web3Container>
+          {(address) => (
+            <TrancheContainer>
+              {(tranches) => <Claim address={address} tranches={tranches} />}
+            </TrancheContainer>
+          )}
+        </Web3Container>
+      )}
     </TemplateDefault>
   );
 };
