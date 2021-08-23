@@ -35,12 +35,6 @@ const initialAppState: AppState = {
 
 function appStateReducer(state: AppState, action: AppStateAction): AppState {
   switch (action.type) {
-    case AppStateActionType.APP_CHAIN_CHANGED:
-      return {
-        ...state,
-        appChainId: action.newChainId,
-        contractAddresses: Addresses[action.newChainId],
-      };
     case AppStateActionType.PROVIDER_DETECTED:
       return {
         ...state,
