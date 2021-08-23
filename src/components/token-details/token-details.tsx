@@ -8,6 +8,7 @@ import {useAppState} from "../../contexts/app-state/app-state-context";
 import {TokenDetailsTotal} from "./token-details-total";
 import {EtherscanLink} from "../etherscan-link";
 import {TokenDetailsStaked} from "./token-details-staked";
+import {TokenDetailsCirculating} from "./token-details-circulating";
 
 export const TokenDetails = () => {
   const { t } = useTranslation();
@@ -30,7 +31,7 @@ export const TokenDetails = () => {
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Circulating supply")}</th>
-        <td>...</td>
+        <TokenDetailsCirculating />
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Staked on Vega")}</th>
