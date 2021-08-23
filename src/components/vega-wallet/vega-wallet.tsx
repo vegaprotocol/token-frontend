@@ -3,6 +3,7 @@ import { FormGroup, Intent } from "@blueprintjs/core";
 import "./vega-wallet.scss";
 import { useForm } from "react-hook-form";
 import {
+  AppStateActionType,
   useAppState,
   VegaKeyExtended,
   VegaWalletStatus,
@@ -28,9 +29,9 @@ export const VegaWallet = () => {
         // out. Keys will be null and clearing the token is handled by the
         // vegaWalletServices.
         const [, keys] = await vegaWalletService.getKeys();
-        appDispatch({ type: "VEGA_WALLET_INIT", keys });
+        appDispatch({ type: AppStateActionType.VEGA_WALLET_INIT, keys });
       } else {
-        appDispatch({ type: "VEGA_WALLET_DOWN" });
+        appDispatch({ type: AppStateActionType.VEGA_WALLET_DOWN });
       }
     }
 
@@ -115,7 +116,7 @@ const VegaWalletConnected = ({
   async function handleDisconnect() {
     setDisconnecting(true);
     await vegaWalletService.revokeToken();
-    appDispatch({ type: "VEGA_WALLET_DISCONNECT" });
+    appDispatch({ type: AppStateActionType.VEGA_WALLET_DISCONNECT });
   }
 
   return vegaKeys.length ? (
@@ -130,7 +131,10 @@ const VegaWalletConnected = ({
                   <li
                     key={k.pub}
                     onClick={() => {
-                      appDispatch({ type: "VEGA_WALLET_SET_KEY", key: k });
+                      appDispatch({
+                        type: AppStateActionType.VEGA_WALLET_SET_KEY,
+                        key: k,
+                      });
                       setExpanded(false);
                     }}
                   >
@@ -201,7 +205,7 @@ const VegaWalletForm = ({ cancel }: VegaWalletFormProps) => {
       return;
     }
 
-    appDispatch({ type: "VEGA_WALLET_INIT", keys });
+    appDispatch({ type: AppStateActionType.VEGA_WALLET_INIT, keys });
     setLoading(false);
   }
 
