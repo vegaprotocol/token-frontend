@@ -35,10 +35,7 @@ export const TrancheTable = ({
   return (
     <section data-testid="tranche-table" className="tranche-table">
       <KeyValueTable numerical={true}>
-        <KeyValueTableRow
-          data-testid="tranche-table-total"
-          className="tranche-table__no-borders"
-        >
+        <KeyValueTableRow data-testid="tranche-table-total">
           <th>
             <span className="tranche-table__label">
               {t("Tranche")} {tranche.tranche_id}
@@ -46,24 +43,15 @@ export const TrancheTable = ({
           </th>
           <td>{total.toString()}</td>
         </KeyValueTableRow>
-        <KeyValueTableRow
-          data-testid="tranche-table-start"
-          className="tranche-table__top-solid-border"
-        >
+        <KeyValueTableRow data-testid="tranche-table-start">
           <th>{t("Starts unlocking")}</th>
           <td>{format(tranche.tranche_start, "dd/MM/yyyy")}</td>
         </KeyValueTableRow>
-        <KeyValueTableRow
-          data-testid="tranche-table-finish"
-          className="tranche-table__no-borders"
-        >
+        <KeyValueTableRow data-testid="tranche-table-finish">
           <th>{t("Fully unlocked")}</th>
           <td>{format(tranche.tranche_end, "dd/MM/yyyy")}</td>
         </KeyValueTableRow>
-        <KeyValueTableRow
-          data-testid="tranche-table-locked"
-          className="tranche-table__top-solid-border"
-        >
+        <KeyValueTableRow data-testid="tranche-table-locked">
           <th>{t("Locked")}</th>
           <td>{locked.toString()}</td>
         </KeyValueTableRow>

@@ -37,30 +37,21 @@ export const VestingTable = ({ vested, locked, staked }: VestingTableProps) => {
           <th>{t("Vesting VEGA")}</th>
           <td>{total.toString()}</td>
         </KeyValueTableRow>
-        <KeyValueTableRow
-          data-testid="vesting-table-locked"
-          className="vesting-table__no-borders"
-        >
+        <KeyValueTableRow data-testid="vesting-table-locked">
           <th>
             <div className="vesting-table__indicator-square vesting-table__indicator-square--locked"></div>
             {t("Locked")}
           </th>
           <td>{locked.toString()}</td>
         </KeyValueTableRow>
-        <KeyValueTableRow
-          data-testid="vesting-table-unlocked"
-          className="vesting-table__no-borders"
-        >
+        <KeyValueTableRow data-testid="vesting-table-unlocked">
           <th>
             <div className="vesting-table__indicator-square vesting-table__indicator-square--unlocked"></div>
             {t("Unlocked")}
           </th>
           <td>{vested.toString()}</td>
         </KeyValueTableRow>
-        <KeyValueTableRow
-          data-testid="vesting-table-staked"
-          className="vesting-table__top-dashed-border"
-        >
+        <KeyValueTableRow data-testid="vesting-table-staked">
           <th>
             <div className="vesting-table__indicator-square vesting-table__indicator-square--staked"></div>
             {t("Staked")}
