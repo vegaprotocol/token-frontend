@@ -203,6 +203,8 @@ const en = {
   "Invalid credentials": "Wallet or passphrase incorrect",
   noKeys: "No keys",
   "Stake VEGA tokens": "Stake VEGA tokens",
+  "Tranche breakdown": "Tranche breakdown",
+  "Across all tranches": "Across all tranches",
 };
 
 export default en;
