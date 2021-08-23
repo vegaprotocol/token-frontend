@@ -43,6 +43,17 @@ export const Addresses = {
   },
 };
 
+export const TotalSupply = {
+  [EthereumChainIds.Mainnet]: {
+    totalSupply: new BigNumber("64,999,721"),
+    totalSupplyFormatted: "64,999,721",
+  },
+  [EthereumChainIds.Ropsten]: {
+    totalSupply: new BigNumber("64,999,723"),
+    totalSupplyFormatted: "64,999,723",
+  },
+}
+
 export const Decimals = {
   [EthereumChainIds.Mainnet]: 18,
   [EthereumChainIds.Ropsten]: 5,

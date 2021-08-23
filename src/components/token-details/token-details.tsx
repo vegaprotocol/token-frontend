@@ -6,6 +6,7 @@ import { KeyValueTable, KeyValueTableRow } from "../key-value-table";
 import { useTranslation } from "react-i18next";
 import {useAppState} from "../../contexts/app-state/app-state-context";
 import {TokenDetailsTotal} from "./token-details-total";
+import {EtherscanLink} from "../etherscan-link";
 
 export const TokenDetails = () => {
   const { t } = useTranslation();
@@ -16,11 +17,11 @@ export const TokenDetails = () => {
     <KeyValueTable className={"token-details"}>
       <KeyValueTableRow>
         <th>{t("Token address")}</th>
-        <td>{appState.contractAddresses.vegaTokenAddress}</td>
+        <td><EtherscanLink chainId={appState.chainId || "0x1"} hash={appState.contractAddresses.vegaTokenAddress} text={appState.contractAddresses.vegaTokenAddress} /></td>
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Token contract")}</th>
-        <td>{appState.contractAddresses.vestingAddress}</td>
+        <td><EtherscanLink chainId={appState.chainId || "0x1"} hash={appState.contractAddresses.vestingAddress} text={appState.contractAddresses.vestingAddress} /></td>
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Total supply")}</th>
