@@ -170,8 +170,10 @@ const en = {
     "A total of {{amount}} Unlocked Vega tokens.",
   "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.":
     "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.",
-  "Stake your Locked VEGA tokens!": "Stake your Locked VEGA tokens!",
-  "Find out more about Staking.": "Find out more about Staking.",
+  "Stake your Locked VEGA tokens!":
+    "You can stake your VEGA tokens even while locked.",
+  "Find out more about Staking.":
+    "Use your Vega tokens to stake a validator, earn rewards and participate in governance of the Vega network.",
   "You do not have any vesting VEGA tokens. Switch to another Ethereum key to check what can be redeemed.":
     "You do not have any vesting VEGA tokens. Switch to another Ethereum key to check what can be redeemed.",
 
@@ -200,6 +202,7 @@ const en = {
   "Session expired": "Session expired",
   "Invalid credentials": "Wallet or passphrase incorrect",
   noKeys: "No keys",
+  "Stake VEGA tokens": "Stake VEGA tokens",
 };
 
 export default en;
