@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import {useAppState} from "../../contexts/app-state/app-state-context";
 import {TokenDetailsTotal} from "./token-details-total";
 import {EtherscanLink} from "../etherscan-link";
+import {TokenDetailsStaked} from "./token-details-staked";
 
 export const TokenDetails = () => {
   const { t } = useTranslation();
@@ -33,7 +34,7 @@ export const TokenDetails = () => {
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Staked on Vega")}</th>
-        <td>...</td>
+        <TokenDetailsStaked />
       </KeyValueTableRow>
     </KeyValueTable>)
 }

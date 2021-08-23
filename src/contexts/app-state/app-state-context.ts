@@ -38,11 +38,14 @@ export interface AppState {
   appChainId: EthereumChainId;
   totalSupply: BigNumber | null;
   totalSupplyFormatted: string;
+  totalStaked: BigNumber | null;
+  totalStakedFormatted: string;
   contractAddresses: {
     vestingAddress: string;
     vegaTokenAddress: string;
     claimAddress: string;
     lockedAddress: string;
+    stakingBridge: string;
   };
   vegaWalletStatus: VegaWalletStatus;
   vegaKeys: VegaKeyExtended[] | null;
