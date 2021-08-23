@@ -1,7 +1,7 @@
 import React from "react";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
-import { Addresses, EthereumChainId, TotalSupply } from "../../lib/web3-utils";
+import { Addresses, EthereumChainId } from "../../lib/web3-utils";
 import {
   AppState,
   AppStateContext,
@@ -13,12 +13,11 @@ import {
 // @ts-ignore
 import detectEthereumProvider from "DETECT_PROVIDER_PATH/detect-provider";
 import { truncateMiddle } from "../../lib/truncate-middle";
+import { addDecimal } from "../../lib/decimals";
 
 interface AppStateProviderProps {
   children: React.ReactNode;
 }
-
-const supply = TotalSupply[process.env.REACT_APP_CHAIN as EthereumChainId];
 
 const initialAppState: AppState = {
   providerStatus: ProviderStatus.Pending,
@@ -35,7 +34,9 @@ const initialAppState: AppState = {
   currVegaKey: null,
   totalStaked: null,
   totalStakedFormatted: "0",
-  ...supply,
+  decimals: 0,
+  totalSupply: null,
+  totalSupplyFormatted: "",
 };
 
 function appStateReducer(state: AppState, action: AppStateAction): AppState {
@@ -139,6 +140,14 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         ...state,
         currVegaKey: null,
         vegaKeys: null,
+      };
+    }
+    case AppStateActionType.SET_TOKEN: {
+      return {
+        ...state,
+        decimals: action.decimals,
+        totalSupply: action.totalSupply,
+        totalSupplyFormatted: addDecimal(action.totalSupply, action.decimals),
       };
     }
   }
