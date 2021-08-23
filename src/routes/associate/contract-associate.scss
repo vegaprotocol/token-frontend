@@ -1,0 +1,12 @@
+.associate {
+  &__input {
+    flex: 1;
+  }
+
+  &__use-maximum {
+    margin: 0 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

@@ -247,6 +247,21 @@ const en = {
   "STAKE SHARE": "STAKE SHARE",
   "OWN STAKE (THIS EPOCH)": "OWN STAKE (THIS EPOCH)",
   "NOMINATED (THIS EPOCH)": "NOMINATED (THIS EPOCH)",
+  "Use maximum": "Use maximum",
+  "How much would you like to associate?":
+    "How much would you like to associate?",
+  "VEGA Tokens": "VEGA Tokens",
+  "Connected Vega key": "Connected Vega key",
+  "What Vega wallet/key is going to control your stake?":
+    "What Vega wallet/key is going to control your stake?",
+  "Where would you like to stake from?": "Where would you like to stake from?",
+  "You can associate tokens while they are held in the vesting contract, when they unlock you will need to dissociate them before they can be redeemed.":
+    "You can associate tokens while they are held in the vesting contract, when they unlock you will need to dissociate them before they can be redeemed.",
+  "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes.":
+    "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes.",
+  "Associate VEGA Tokens with key": "Associate VEGA Tokens with key",
+  "Vesting contract": "Vesting contract",
+  Wallet: "Wallet",
 };
 
 export default en;
