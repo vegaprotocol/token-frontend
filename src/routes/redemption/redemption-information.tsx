@@ -1,11 +1,12 @@
 import "./redemption-information.scss";
-import { useAppState } from "../../../contexts/app-state/app-state-context";
-import { RedemptionState } from "../redemption-reducer";
+import { useAppState } from "../../contexts/app-state/app-state-context";
+import { RedemptionState } from "./redemption-reducer";
 import { VestingTable } from "./vesting-table";
-import { TrancheTable } from "../tranche-table";
+import { TrancheTable } from "./tranche-table";
 import { useTranslation } from "react-i18next";
-import { Callout } from "../../../components/callout";
-import { useHistory } from "react-router-dom";
+import { Callout } from "../../components/callout";
+import { HandUp } from "../../components/icons";
+import { Link } from "react-router-dom";
 
 export const RedemptionInformation = ({
   state,
@@ -14,7 +15,6 @@ export const RedemptionInformation = ({
   state: RedemptionState;
   address: string;
 }) => {
-  const history = useHistory();
   const { t } = useTranslation();
   const {
     appState: { balanceFormatted },
@@ -70,9 +70,6 @@ export const RedemptionInformation = ({
           {t("Use this page to redeem any unlocked VEGA tokens.")}
         </strong>
       </p>
-      <Callout title={t("Stake your Locked VEGA tokens!")}>
-        <p>{t("Find out more about Staking.")}</p>
-      </Callout>
       <p data-testid="redemption-note">{t("redemptionExplain")}</p>
       <VestingTable
         staked={lien}
@@ -92,6 +89,7 @@ export const RedemptionInformation = ({
           <TrancheTable
             key={tr.tranche_id}
             tranche={tr}
+            address={address!}
             lien={lien}
             locked={
               balances.find(
@@ -103,9 +101,16 @@ export const RedemptionInformation = ({
                 ({ id }) => id.toString() === tr.tranche_id.toString()
               )!.vested
             }
-            onClick={() => history.push(`/redemption/${tr.tranche_id}`)}
           />
         ))}
+      <Callout
+        title={t("Stake your Locked VEGA tokens!")}
+        icon={<HandUp />}
+        intent="warn"
+      >
+        <p>{t("Find out more about Staking.")}</p>
+        <Link to="/staking">{t("Stake VEGA tokens")}</Link>
+      </Callout>
     </section>
   );
 };
