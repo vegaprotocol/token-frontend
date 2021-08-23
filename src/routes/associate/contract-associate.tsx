@@ -3,8 +3,10 @@ import { Button, FormGroup, InputGroup, Intent, Tag } from "@blueprintjs/core";
 import { useTranslation } from "react-i18next";
 import { Colors } from "../../colors";
 import { Callout } from "../../components/callout";
+import React from "react";
 
 export const ContractAssociate = () => {
+  const [amount, setAmount] = React.useState<string | undefined>("");
   const { t } = useTranslation();
   const inputName = "amount";
   const vegaKey =
@@ -38,11 +40,12 @@ export const ContractAssociate = () => {
             className="contract-associate__input"
             name={inputName}
             id={inputName}
-            onChange={(e) => console.log(e)}
-            value={"123"}
+            onChange={(e) => setAmount(e.target.value)}
+            value={amount}
             intent={Intent.NONE}
             rightElement={<Tag minimal={true}>{t("VEGA Tokens")}</Tag>}
             autoComplete="off"
+            type="number"
           />
           <a
             data-testid="associate-amount-use-maximum"
