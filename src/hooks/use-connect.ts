@@ -25,7 +25,7 @@ export function useConnect() {
     // to connect to metamask
     connectTimer.current = setTimeout(() => {
       if (!connected) {
-        appDispatch({ type: "CONNECT" });
+        appDispatch({ type: AppStateActionType.CONNECT });
       }
     }, 300);
 
