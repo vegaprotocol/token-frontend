@@ -24,7 +24,7 @@ export const initialState: TransactionState = {
     hash: null,
     receipt: null,
     error: null,
-    userFacingError: null
+    userFacingError: null,
   },
 };
 
@@ -42,37 +42,41 @@ const substituteErrorMessage = (
   return new Error(newErrorMessage);
 };
 
+export enum TransactionActionType {
+  TX_RESET,
+  TX_REQUESTED,
+  TX_SUBMITTED,
+  TX_COMPLETE,
+  TX_ERROR,
+}
+
 export type TransactionAction =
   | {
-      type: "TX_RESET";
+      type: TransactionActionType.TX_RESET;
     }
   | {
-      type: "TX_REQUESTED";
+      type: TransactionActionType.TX_REQUESTED;
     }
   | {
-      type: "TX_SUBMITTED";
+      type: TransactionActionType.TX_SUBMITTED;
       txHash: string;
     }
   | {
-      type: "TX_COMPLETE";
+      type: TransactionActionType.TX_COMPLETE;
       receipt: any;
     }
   | {
-      type: "TX_ERROR";
+      type: TransactionActionType.TX_ERROR;
       error: Error;
       errorSubstitutions: { [errMessage: string]: string };
-    }
-  | {
-      type: "ERROR";
-      error: Error;
     };
 
 export function transactionReducer(
   state: TransactionState,
   action: TransactionAction
-) {
+): TransactionState {
   switch (action.type) {
-    case "TX_RESET":
+    case TransactionActionType.TX_RESET:
       return {
         ...state,
         txState: TxState.Default,
@@ -82,12 +86,12 @@ export function transactionReducer(
           error: null,
         },
       };
-    case "TX_REQUESTED":
+    case TransactionActionType.TX_REQUESTED:
       return {
         ...state,
         txState: TxState.Requested,
       };
-    case "TX_SUBMITTED": {
+    case TransactionActionType.TX_SUBMITTED: {
       return {
         ...state,
         txState: TxState.Pending,
@@ -97,7 +101,7 @@ export function transactionReducer(
         },
       };
     }
-    case "TX_COMPLETE":
+    case TransactionActionType.TX_COMPLETE:
       return {
         ...state,
         txState: TxState.Complete,
@@ -106,7 +110,7 @@ export function transactionReducer(
           receipt: action.receipt,
         },
       };
-    case "TX_ERROR":
+    case TransactionActionType.TX_ERROR:
       return {
         ...state,
         txState: TxState.Error,
@@ -119,12 +123,5 @@ export function transactionReducer(
           error: action.error,
         },
       };
-    case "ERROR":
-      return {
-        ...state,
-        error: action.error,
-      };
-    default:
-      return state;
   }
 }
