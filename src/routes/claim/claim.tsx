@@ -5,7 +5,12 @@ import {
 } from "../../contexts/app-state/app-state-context";
 import { useSearchParams } from "../../hooks/use-search-params";
 import { ClaimError } from "./claim-error";
-import { claimReducer, ClaimStatus, initialClaimState } from "./claim-reducer";
+import {
+  ClaimActionType,
+  claimReducer,
+  ClaimStatus,
+  initialClaimState,
+} from "./claim-reducer";
 import { ClaimFlow } from "./claim-flow";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { Decimals } from "../../lib/web3-utils";
@@ -25,7 +30,7 @@ const Claim = ({
 
   React.useEffect(() => {
     dispatch({
-      type: "SET_DATA_FROM_URL",
+      type: ClaimActionType.SET_DATA_FROM_URL,
       decimals: Decimals[appState.chainId!],
       data: {
         nonce: params.n,

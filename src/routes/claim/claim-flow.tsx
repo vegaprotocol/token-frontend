@@ -5,7 +5,12 @@ import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useVegaClaim } from "../../hooks/use-vega-claim";
-import { ClaimAction, ClaimState, ClaimStatus } from "./claim-reducer";
+import {
+  ClaimAction,
+  ClaimActionType,
+  ClaimState,
+  ClaimStatus,
+} from "./claim-reducer";
 import { CodeUsed } from "./code-used";
 import { Expired } from "./expired";
 import { TargetedClaim } from "./targeted-claim";
@@ -49,7 +54,7 @@ export const ClaimFlow = ({
 
   React.useEffect(() => {
     const run = async () => {
-      dispatch({ type: "SET_LOADING", loading: true });
+      dispatch({ type: ClaimActionType.SET_LOADING, loading: true });
       try {
         const [committed, expired, used] = await Promise.all([
           claim.isCommitted({
@@ -60,7 +65,7 @@ export const ClaimFlow = ({
           claim.isUsed(state.nonce!),
         ]);
         dispatch({
-          type: "SET_INITIAL_CLAIM_STATUS",
+          type: ClaimActionType.SET_INITIAL_CLAIM_STATUS,
           committed,
           expired,
           used,
@@ -68,11 +73,11 @@ export const ClaimFlow = ({
       } catch (e) {
         Sentry.captureEvent(e);
         dispatch({
-          type: "ERROR",
+          type: ClaimActionType.ERROR,
           error: e,
         });
       } finally {
-        dispatch({ type: "SET_LOADING", loading: false });
+        dispatch({ type: ClaimActionType.SET_LOADING, loading: false });
       }
     };
     run();
