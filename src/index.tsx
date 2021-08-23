@@ -10,6 +10,7 @@ import reportWebVitals from "./reportWebVitals";
 
 const dsn = process.env.REACT_APP_SENTRY_DSN || false;
 
+/* istanbul ignore next */
 if (dsn) {
   Sentry.init({
     dsn,
