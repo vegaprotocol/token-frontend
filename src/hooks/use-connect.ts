@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  AppStateActionType,
   ProviderStatus,
   useAppState,
 } from "../contexts/app-state/app-state-context";
@@ -29,10 +30,11 @@ export function useConnect() {
     }, 300);
 
     try {
-      appDispatch({ type: "CONNECT" });
+      appDispatch({ type: AppStateActionType.CONNECT });
+
       if (appState.providerStatus === ProviderStatus.None) {
         appDispatch({
-          type: "CONNECT_FAIL",
+          type: AppStateActionType.CONNECT_FAIL,
           error: new Error("No provider"),
         });
         return;
@@ -46,14 +48,14 @@ export function useConnect() {
 
       connected = true;
       appDispatch({
-        type: "CONNECT_SUCCESS",
+        type: AppStateActionType.CONNECT_SUCCESS,
         address: accounts[0],
         chainId,
         balance: new BigNumber(balance),
       });
     } catch (e) {
       Sentry.captureEvent(e);
-      appDispatch({ type: "CONNECT_FAIL", error: e });
+      appDispatch({ type: AppStateActionType.CONNECT_FAIL, error: e });
     }
   }, [appDispatch, appState.providerStatus, provider, vega]);
 

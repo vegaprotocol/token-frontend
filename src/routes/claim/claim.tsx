@@ -1,5 +1,8 @@
 import React from "react";
-import { useAppState } from "../../contexts/app-state/app-state-context";
+import {
+  AppStateActionType,
+  useAppState,
+} from "../../contexts/app-state/app-state-context";
 import { useSearchParams } from "../../hooks/use-search-params";
 import { ClaimError } from "./claim-error";
 import { claimReducer, ClaimStatus, initialClaimState } from "./claim-reducer";
@@ -40,9 +43,11 @@ const Claim = ({
     if (state.claimStatus === ClaimStatus.Finished && address) {
       vesting
         .getUserBalanceAllTranches(address)
-        .then((balance) => appDispatch({ type: "SET_BALANCE", balance }));
+        .then((balance) =>
+          appDispatch({ type: AppStateActionType.SET_BALANCE, balance })
+        );
       vesting.getAllTranches().then((tranches) => {
-        appDispatch({ type: "SET_TRANCHES", tranches });
+        appDispatch({ type: AppStateActionType.SET_TRANCHES, tranches });
       });
     }
   }, [vesting, state.claimStatus, address, appDispatch]);
