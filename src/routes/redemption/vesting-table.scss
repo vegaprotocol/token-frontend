@@ -1,6 +1,25 @@
 @import "../../styles/colors";
 
 .vesting-table {
+  &__indicator-square {
+    height: 12px;
+    width: 12px;
+    display: inline-block;
+    margin-right: 6px;
+
+    &--staked {
+      background-color: $vega-yellow4;
+    }
+
+    &--locked {
+      background-color: $vega-pink;
+    }
+
+    &--unlocked {
+      background-color: $vega-green;
+    }
+  }
+
   &__no-borders {
     border: none !important;
     border-bottom: none !important;
