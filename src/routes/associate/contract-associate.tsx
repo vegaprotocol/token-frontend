@@ -8,11 +8,15 @@ import React from "react";
 export const ContractAssociate = () => {
   const [amount, setAmount] = React.useState<string | undefined>("");
   const { t } = useTranslation();
+  const maximum = "123";
+  const useMaximum = React.useCallback(() => {
+    setAmount(maximum);
+  }, [setAmount, maximum]);
   const inputName = "amount";
   const vegaKey =
     "65ea371c556f5648640c243dd30cf7374b5501ffe3dc8603476f723dd636656e";
   return (
-    <section data-testid="contract-associate">
+    <section className="contract-associate" data-testid="contract-associate">
       <Callout>
         {t(
           "You can associate tokens while they are held in the vesting contract, when they unlock you will need to dissociate them before they can be redeemed."
@@ -48,6 +52,7 @@ export const ContractAssociate = () => {
             type="number"
           />
           <a
+            onClick={useMaximum}
             data-testid="associate-amount-use-maximum"
             className="contract-associate__use-maximum"
           >
@@ -55,7 +60,7 @@ export const ContractAssociate = () => {
           </a>
         </div>
       </FormGroup>
-      <Button data-testid="associate-button" fill={true}>
+      <Button data-testid="associate-button" fill={true} disabled={!amount}>
         {t("Associate VEGA Tokens with key")}
       </Button>
     </section>
