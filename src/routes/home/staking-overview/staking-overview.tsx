@@ -8,7 +8,6 @@ export const StakingOverview = () => {
 
   // TODO: Fetch values
   const nodeCount = 13;
-  // NOTE: This depends on an effect called in AppDetails which is bad, but they're only on the same page
   const sharedStake = appState.totalStakedFormatted;
 
   return (<p>

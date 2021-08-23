@@ -1,38 +1,21 @@
 import "./token-details.scss";
 
-import React from "react";
-
 import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
 import { useTranslation } from "react-i18next";
-import {
-  AppStateActionType,
-  useAppState,
-} from "../../../contexts/app-state/app-state-context";
+import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { TokenDetailsTotal } from "./token-details-total";
 import { EtherscanLink } from "../../../components/etherscan-link";
 import { TokenDetailsStaked } from "./token-details-staked";
 import { TokenDetailsCirculating } from "./token-details-circulating";
-import { useVegaVesting } from "../../../hooks/use-vega-vesting";
 import { Decimals } from "../../../lib/web3-utils";
 
 export const TokenDetails = () => {
   const { t } = useTranslation();
 
-  const { appState, appDispatch } = useAppState();
-
-  const vesting = useVegaVesting();
-
-  React.useEffect(() => {
-    const run = async () => {
-      const tranches = await vesting.getAllTranches();
-      appDispatch({ type: "SET_TRANCHES", tranches });
-    };
-
-    run();
-  }, [appDispatch, vesting]);
+  const { appState } = useAppState();
 
   const decimals = Decimals[appState.chainId!];
 
