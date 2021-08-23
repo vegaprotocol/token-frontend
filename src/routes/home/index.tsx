@@ -3,8 +3,8 @@ import "./home.scss";
 import { useTranslation } from "react-i18next";
 import { RouteChildProps } from "..";
 import { useDocumentTitle } from "../../hooks/use-document-title";
-import { TokenDetails } from "../../components/token-details";
-import { StakingOverview } from "../../components/staking-overview";
+import { TokenDetails } from "./token-details";
+import { StakingOverview } from "./staking-overview";
 import { Link } from "react-router-dom";
 import { TemplateDefault } from "../../components/page-templates/template-default";
 
