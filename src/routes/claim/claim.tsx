@@ -4,8 +4,6 @@ import { useSearchParams } from "../../hooks/use-search-params";
 import { ClaimError } from "./claim-error";
 import { claimReducer, ClaimStatus, initialClaimState } from "./claim-reducer";
 import { ClaimFlow } from "./claim-flow";
-import { ClaimRestricted } from "./claim-restricted";
-import { isRestricted } from "./lib/is-restricted";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { Decimals } from "../../lib/web3-utils";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
@@ -48,10 +46,6 @@ const Claim = ({
       });
     }
   }, [vesting, state.claimStatus, address, appDispatch]);
-
-  if (isRestricted()) {
-    return <ClaimRestricted />;
-  }
 
   if (state.error) {
     return <ClaimError />;
