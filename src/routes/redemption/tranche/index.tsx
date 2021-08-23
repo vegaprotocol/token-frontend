@@ -2,7 +2,10 @@ import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { TransactionCallout } from "../../../components/transaction-callout";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
-import { TxState } from "../../../hooks/transaction-reducer";
+import {
+  TransactionActionType,
+  TxState,
+} from "../../../hooks/transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { useVegaVesting } from "../../../hooks/use-vega-vesting";
 import { RedemptionState } from "../redemption-reducer";
@@ -46,7 +49,7 @@ export const RedeemFromTranche = ({ state }: { state: RedemptionState }) => {
       {txState.txState !== TxState.Default ? (
         <TransactionCallout
           state={txState}
-          reset={() => txDispatch({ type: "TX_RESET" })}
+          reset={() => txDispatch({ type: TransactionActionType.TX_RESET })}
         />
       ) : (
         <TrancheTable
