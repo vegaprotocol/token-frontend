@@ -6,13 +6,32 @@ import { useDocumentTitle } from "../../hooks/use-document-title";
 import { TokenDetails } from "./token-details";
 import { StakingOverview } from "./staking-overview";
 import { Link } from "react-router-dom";
+import React from "react";
+import {
+  AppStateActionType,
+  ProviderStatus,
+  useAppState,
+} from "../../contexts/app-state/app-state-context";
+import { Callout } from "../../components/callout";
+import { Error } from "../../components/icons";
+import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { TemplateDefault } from "../../components/page-templates/template-default";
 
 const Home = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
 
   const { t } = useTranslation();
-  const { appState } = useAppState();
+  const { appState, appDispatch } = useAppState();
+  const vesting = useVegaVesting();
+
+  React.useEffect(() => {
+    const run = async () => {
+      const tranches = await vesting.getAllTranches();
+      appDispatch({ type: AppStateActionType.SET_TRANCHES, tranches });
+    };
+
+    run();
+  }, [appDispatch, vesting]);
 
   if (appState.providerStatus === ProviderStatus.None) {
     return (
