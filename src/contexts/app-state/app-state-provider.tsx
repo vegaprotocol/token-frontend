@@ -1,7 +1,7 @@
 import React from "react";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
-import { Addresses, EthereumChainId } from "../../lib/web3-utils";
+import { Addresses, EthereumChainId, TotalSupply } from "../../lib/web3-utils";
 import {
   AppState,
   AppStateContext,
@@ -17,6 +17,8 @@ import { truncateMiddle } from "../../lib/truncate-middle";
 interface AppStateProviderProps {
   children: React.ReactNode;
 }
+
+const supply = TotalSupply[process.env.REACT_APP_CHAIN as EthereumChainId];
 
 const initialAppState: AppState = {
   providerStatus: ProviderStatus.Pending,
