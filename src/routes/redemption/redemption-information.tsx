@@ -36,7 +36,7 @@ export const RedemptionInformation = ({
 
   return (
     <section className="redemption-information" data-testid="redemption-page">
-      <div data-testid="redemption-description">
+      <p data-testid="redemption-description">
         {t(
           "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.",
           {
@@ -45,31 +45,31 @@ export const RedemptionInformation = ({
             tranches: userTranches.length,
           }
         )}
-      </div>
-      <div data-testid="redemption-unlocked-tokens">
+      </p>
+      <p data-testid="redemption-unlocked-tokens">
         {t("A total of {{amount}} Unlocked Vega tokens.", {
           amount: totalVestedBalance.toString(),
         })}
-      </div>
-      <div data-testid="redemption-locked-tokens">
+      </p>
+      <p data-testid="redemption-locked-tokens">
         {t("A total of {{amount}} Locked Vega tokens.", {
           amount: totalLockedBalance.toString(),
         })}
-      </div>
-      <div data-testid="redemption-staked-tokens">
+      </p>
+      <p data-testid="redemption-staked-tokens">
         {t("{{stakedBalance}} are staked.", {
           stakedBalance: lien.toString(),
         })}
-      </div>
-      <div data-testid="redemption-page-description">
+      </p>
+      <p data-testid="redemption-page-description">
         <strong>
           {t("Use this page to redeem any unlocked VEGA tokens.")}
         </strong>
-      </div>
+      </p>
       <Callout title={t("Stake your Locked VEGA tokens!")}>
         <p>{t("Find out more about Staking.")}</p>
       </Callout>
-      <div data-testid="redemption-note">{t("redemptionExplain")}</div>
+      <p data-testid="redemption-note">{t("redemptionExplain")}</p>
       <VestingTable
         staked={lien}
         locked={totalLockedBalance}
