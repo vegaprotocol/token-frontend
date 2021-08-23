@@ -1,7 +1,7 @@
 import React from "react";
-import { BigNumber } from "../../lib/bignumber"
-import { addDecimal } from "../../lib/decimals";
-import { Tranche } from "../../lib/vega-web3/vega-web3-types";
+import { BigNumber } from "../../../lib/bignumber"
+import { addDecimal } from "../../../lib/decimals";
+import { Tranche } from "../../../lib/vega-web3/vega-web3-types";
 
 /**
  * Add together the reedeemed tokens from all tranches

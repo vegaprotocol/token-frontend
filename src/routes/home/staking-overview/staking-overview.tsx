@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useAppState } from "../../../contexts/app-state/app-state-context";
 
 export const StakingOverview = () => {
   const { t } = useTranslation();
