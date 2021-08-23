@@ -10,7 +10,9 @@ import { TemplateDefault } from "../../components/page-templates/template-defaul
 
 const Home = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
+
   const { t } = useTranslation();
+
   return (
     <TemplateDefault title={t("pageTitleHome")}>
       <h2>{t("The Vega Token")}</h2>
