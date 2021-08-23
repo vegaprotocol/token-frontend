@@ -3,10 +3,10 @@ import Web3 from "web3";
 import { AbiItem } from "web3-utils";
 import type { Contract } from "web3-eth-contract";
 import stakingAbi from "../abis/staking_abi.json";
-import { PromiEvent } from "../web3-utils";
+import { IVegaStaking, PromiEvent } from "../web3-utils";
 import { addDecimal } from "../decimals";
 
-export default class StakingAbi {
+export default class StakingAbi implements IVegaStaking {
   private web3: Web3;
   private contract: Contract;
   private decimals: number;
