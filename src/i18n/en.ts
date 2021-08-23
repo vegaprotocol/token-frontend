@@ -2,6 +2,7 @@ const en = {
   Home: "Home",
 
   // Page titles
+  pageTitleHome: "Home",
   pageTitleClaim: "Claim Vega tokens",
   pageTitleRedemption: "CHECK AND REDEEM",
   pageTitleTranches: "Vesting tranches",
@@ -205,6 +206,22 @@ const en = {
   "Stake VEGA tokens": "Stake VEGA tokens",
   "Tranche breakdown": "Tranche breakdown",
   "Across all tranches": "Across all tranches",
+  // Homepage
+  "The Vega Token": "The Vega Token",
+  // Duplicate title -> should probably use sections, lazily de-duping by changing the key
+  "Token Vesting": "Vesting",
+  Governance: "Governance",
+  Staking: "Staking",
+  "Once tokens have unlocked they can be redeemed to the Ethereum wallet that owns them":
+    "Once tokens have unlocked they can be redeemed to the Ethereum wallet that owns them.",
+  "Tokens are held in different Tranches. Each tranche has its own schedule for how long the tokens are locked.":
+    "Tokens are held in different Tranches. Each tranche has its own schedule for how long the tokens are locked",
+  "Most VEGA tokens are held in a vesting contract. This means that they cannot be transferred between wallets until their vesting term is complete":
+    "Most VEGA tokens are held in a vesting contract. This means that they cannot be transferred between wallets until their vesting term is complete.",
+  "Token holders can propose changes to the Vega network":
+    "Token holders can propose changes to the Vega network.",
+  "Token holders can nominate their tokens to a validator and are rewarded a proportion of the fees accumulated for infrastructure":
+    "Token holders can nominate their tokens to a validator and are rewarded a proportion of the fees accumulated for infrastructure.",
 };
 
 export default en;
