@@ -12,6 +12,15 @@ const Home = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
 
   const { t } = useTranslation();
+  const { appState } = useAppState();
+
+  if (appState.providerStatus === ProviderStatus.None) {
+    return (
+      <Callout title={t("Cannot connect")} intent="error" icon={<Error />}>
+        <p>{t("invalidWeb3Browser")}</p>
+      </Callout>
+    );
+  }
 
   return (
     <TemplateDefault title={t("pageTitleHome")}>
