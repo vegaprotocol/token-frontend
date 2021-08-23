@@ -1,29 +1,9 @@
-import { mock } from "../common/mock";
+import { mock, sendChainResponse } from "../common/mock";
 
 const generateCodeLink = ({ code, amount, tranche, nonce, target, expiry }) => {
   return `/claim/?r=${code}&d=${amount}&t=${tranche}&n=${nonce}&ex=${expiry}${
     target ? `&targ=${target}` : ""
   }`;
-};
-
-const sendChainResponse = (cy, chainCommand, eventResponse, data) => {
-  return cy.window().then((win) => {
-    const commitEvents = win.promiManager.promiEvents.filter(
-      ({ name }) => name === chainCommand
-    );
-    if (commitEvents.length !== 1) {
-      throw new Error(
-        `Too many or not enough ${chainCommand} promi events found. Found:`,
-        commitEvents
-      );
-    }
-    win.dispatchEvent(
-      new CustomEvent(`${eventResponse}-mock`, {
-        detail: { data, id: commitEvents[0].id },
-      })
-    );
-    return win;
-  });
 };
 
 describe("Claim", () => {

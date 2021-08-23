@@ -1,9 +1,10 @@
 import { BigNumber } from "../../../lib/bignumber";
 import { Tranche } from "../vega-web3-types";
-import { IVegaVesting } from "../../web3-utils";
+import { IVegaVesting, PromiEvent } from "../../web3-utils";
 import { getTranchesFromHistory } from "../tranche-helpers";
 import Web3 from "web3";
 import { addDecimal } from "../../decimals";
+import { promiEventFactory, uuidv4 } from "./promi-manager";
 
 const BASE_URL = "../mocks/vesting";
 
@@ -35,6 +36,14 @@ class MockedVesting implements IVegaVesting {
       }
       return res.json();
     }
+  }
+
+  withdrawFromTranche(account: string, trancheId: number): PromiEvent {
+    return promiEventFactory(uuidv4(), "withdraw-from-tranche");
+  }
+
+  checkWithdrawFromTranche(account: string, trancheId: number): Promise<any> {
+    return Promise.resolve(true);
   }
 
   async getLien(address: string): Promise<BigNumber> {

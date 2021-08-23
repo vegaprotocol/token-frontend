@@ -62,3 +62,58 @@ export const mock = (cy, options = {}) => {
     req.reply(blocked.toString());
   });
 };
+
+export const mockVesting = (balances, overrides = {}) => {
+  const lockedHandler = (req) => {
+    const trancheId = req.url.match(/tranches\/(\d*)\/balance/)[1];
+    req.reply({
+      statusCode: 200,
+      body: balances[trancheId].locked,
+    });
+  };
+  const vestedHandler = (req) => {
+    const trancheId = req.url.match(/tranches\/(\d*)\/balance/)[1];
+    req.reply({
+      statusCode: 200,
+      body: balances[trancheId].vested,
+    });
+  };
+  const lienHandler = (req) => {
+    req.reply({
+      statusCode: 200,
+      body: JSON.stringify(balances.lien),
+    });
+  };
+  cy.intercept(
+    "/mocks/vesting/tranches/*/balance/locked",
+    overrides["/mocks/vesting/tranches/*/balance/locked"] || lockedHandler
+  );
+  cy.intercept(
+    "/mocks/vesting/tranches/*/balance/vested",
+    overrides["/mocks/vesting/tranches/*/balance/vested"] || vestedHandler
+  );
+  cy.intercept(
+    "/mocks/vesting/balance/lien",
+    overrides["/mocks/vesting/balance/lien"] || lienHandler
+  );
+};
+
+export const sendChainResponse = (cy, chainCommand, eventResponse, data) => {
+  return cy.window().then((win) => {
+    const commitEvents = win.promiManager.promiEvents.filter(
+      ({ name }) => name === chainCommand
+    );
+    if (commitEvents.length !== 1) {
+      throw new Error(
+        `Too many or not enough ${chainCommand} promi events found. Found:`,
+        commitEvents
+      );
+    }
+    win.dispatchEvent(
+      new CustomEvent(`${eventResponse}-mock`, {
+        detail: { data, id: commitEvents[0].id },
+      })
+    );
+    return win;
+  });
+};
