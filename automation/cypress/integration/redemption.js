@@ -155,11 +155,11 @@ describe("Redemption", () => {
     cy.contains("Connect to an Ethereum wallet").click();
     cy.get("[data-testid='callout'] h3").should(
       "have.text",
-      "Stake your Locked VEGA tokens!"
+      "You can stake your VEGA tokens even while locked."
     );
     cy.get("[data-testid='callout'] p").should(
       "have.text",
-      "Find out more about Staking."
+      "Use your Vega tokens to stake a validator, earn rewards and participate in governance of the Vega network."
     );
   });
 

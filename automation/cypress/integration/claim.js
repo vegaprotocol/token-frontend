@@ -143,7 +143,7 @@ describe("Claim", () => {
       "Keep track of locked tokens in your wallet with the VEGA (LOCKED) token."
     ).should("exist");
     cy.contains(
-      "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is 0x1b7192491bf89d616676032656b2c7a55fd08e4c. Hit the add token button in your ERC20 wallet and enter this address."
+      "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is 0x0356782bfb61cf0b0463746bc6fe8766aacae8f0. Hit the add token button in your ERC20 wallet and enter this address."
     ).should("exist");
   });
 
@@ -401,7 +401,7 @@ describe("Untargeted code", () => {
                 "eep track of locked tokens in your wallet with the VEGA (LOCKED) token."
               ).should("exist");
               cy.contains(
-                "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is 0x1b7192491bf89d616676032656b2c7a55fd08e4c. Hit the add token button in your ERC20 wallet and enter this address."
+                "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is 0x0356782bfb61cf0b0463746bc6fe8766aacae8f0. Hit the add token button in your ERC20 wallet and enter this address."
               ).should("exist");
             });
           }
@@ -510,7 +510,7 @@ describe("Targeted code", () => {
           "Keep track of locked tokens in your wallet with the VEGA (LOCKED) token."
         ).should("exist");
         cy.contains(
-          "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is 0x1b7192491bf89d616676032656b2c7a55fd08e4c. Hit the add token button in your ERC20 wallet and enter this address."
+          "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is 0x0356782bfb61cf0b0463746bc6fe8766aacae8f0. Hit the add token button in your ERC20 wallet and enter this address."
         ).should("exist");
       });
     });
