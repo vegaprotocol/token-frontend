@@ -1,14 +1,16 @@
 import React from "react";
+import { Route, Switch } from "react-router-dom";
 import { SplashLoader } from "../../components/splash-loader";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
+import { RedemptionInformation } from "./home/redemption-information";
 import { RedemptionError } from "./redemption-error";
-import { RedemptionInformation } from "./redemption-information";
 import {
   initialRedemptionState,
   RedemptionActionType,
   redemptionReducer,
 } from "./redemption-reducer";
+import { RedeemFromTranche } from "./tranche";
 
 const RedemptionRouter = ({
   address,
@@ -80,7 +82,16 @@ const RedemptionRouter = ({
     return <RedemptionError />;
   }
 
-  return <RedemptionInformation state={state} address={address} />;
+  return (
+    <Switch>
+      <Route exact path="/redemption">
+        <RedemptionInformation state={state} address={address} />
+      </Route>
+      <Route path="/redemption/:id">
+        <RedeemFromTranche state={state} />
+      </Route>
+    </Switch>
+  );
 };
 
 export default RedemptionRouter;

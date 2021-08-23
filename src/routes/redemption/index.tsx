@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import { Route, Switch } from "react-router-dom";
 import { RouteChildProps } from "..";
 import { DefaultTemplate } from "../../components/page-templates/default";
 import { TrancheContainer } from "../../components/tranche-container";
