@@ -78,7 +78,7 @@ const Home = ({ name }: RouteChildProps) => {
         )}
       </p>
 
-      <StakingOverview />
+      <StakingOverview totalStakedFormatted={appState.totalStakedFormatted} />
 
       <p>
         <Link to={"/staking"}>{t("Read about staking on Vega")}</Link>
