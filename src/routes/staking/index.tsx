@@ -1,7 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { RouteChildProps } from "..";
-import { TemplateDefault } from "../../components/page-templates/template-default";
+import { EthWallet } from "../../components/eth-wallet";
+import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
+import { VegaWallet } from "../../components/vega-wallet";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { Staking } from "./staking";
 import { StakingNode } from "./staking-node";
@@ -11,7 +13,11 @@ const RedemptionRouter = ({ name }: RouteChildProps) => {
   const { t } = useTranslation();
   const match = useRouteMatch();
   return (
-    <TemplateDefault title={t("pageTitleStaking")}>
+    <TemplateSidebar
+      title={t("pageTitleStaking")}
+      sidebarButtonText={t("viewKeys")}
+      sidebar={[<EthWallet />, <VegaWallet />]}
+    >
       <Switch>
         <Route path={`${match.path}/:node`}>
           <StakingNode />
@@ -20,7 +26,7 @@ const RedemptionRouter = ({ name }: RouteChildProps) => {
           <Staking />
         </Route>
       </Switch>
-    </TemplateDefault>
+    </TemplateSidebar>
   );
 };
 
