@@ -118,5 +118,3 @@ export class VegaWalletService {
     localStorage.removeItem("vega_wallet_token");
   }
 }
-
-export const vegaWalletService = new VegaWalletService();

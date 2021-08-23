@@ -8,27 +8,29 @@ import {
   VegaKeyExtended,
   VegaWalletStatus,
 } from "../../contexts/app-state/app-state-context";
-import { vegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
 import {
   WalletCard,
   WalletCardContent,
   WalletCardHeader,
 } from "../wallet-card";
 import { useTranslation } from "react-i18next";
+import { useVegaWallet } from "../../hooks/use-vega-wallet";
+import { VegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
 
 export const VegaWallet = () => {
   const { t } = useTranslation();
+  const vegaWallet = useVegaWallet();
   const [expanded, setExpanded] = React.useState(false);
   const { appState, appDispatch } = useAppState();
 
   React.useEffect(() => {
     async function run() {
-      const isUp = await vegaWalletService.getStatus();
+      const isUp = await vegaWallet.getStatus();
       if (isUp) {
         // dont handle error here, if get key fails just 'log' the user
         // out. Keys will be null and clearing the token is handled by the
         // vegaWalletServices.
-        const [, keys] = await vegaWalletService.getKeys();
+        const [, keys] = await vegaWallet.getKeys();
         appDispatch({ type: AppStateActionType.VEGA_WALLET_INIT, keys });
       } else {
         appDispatch({ type: AppStateActionType.VEGA_WALLET_DOWN });
@@ -36,12 +38,13 @@ export const VegaWallet = () => {
     }
 
     run();
-  }, [appDispatch]);
+  }, [appDispatch, vegaWallet]);
 
   const child = !appState.vegaKeys ? (
-    <VegaWalletNotConnected />
+    <VegaWalletNotConnected vegaWallet={vegaWallet} />
   ) : (
     <VegaWalletConnected
+      vegaWallet={vegaWallet}
       currVegaKey={appState.currVegaKey}
       vegaKeys={appState.vegaKeys}
       expanded={expanded}
@@ -66,7 +69,13 @@ export const VegaWallet = () => {
   );
 };
 
-const VegaWalletNotConnected = () => {
+interface VegaWalletNotConnectedProps {
+  vegaWallet: VegaWalletService;
+}
+
+const VegaWalletNotConnected = ({
+  vegaWallet,
+}: VegaWalletNotConnectedProps) => {
   const { t } = useTranslation();
   const { appState } = useAppState();
   const [formOpen, setFormOpen] = React.useState(false);
@@ -82,7 +91,10 @@ const VegaWalletNotConnected = () => {
   return (
     <WalletCardContent>
       {formOpen ? (
-        <VegaWalletForm cancel={() => setFormOpen(false)} />
+        <VegaWalletForm
+          vegaWallet={vegaWallet}
+          cancel={() => setFormOpen(false)}
+        />
       ) : (
         <button
           onClick={() => setFormOpen(true)}
@@ -97,6 +109,7 @@ const VegaWalletNotConnected = () => {
 };
 
 interface VegaWalletConnectedProps {
+  vegaWallet: VegaWalletService;
   currVegaKey: VegaKeyExtended | null;
   vegaKeys: VegaKeyExtended[];
   expanded: boolean;
@@ -104,6 +117,7 @@ interface VegaWalletConnectedProps {
 }
 
 const VegaWalletConnected = ({
+  vegaWallet,
   currVegaKey,
   vegaKeys,
   expanded,
@@ -115,7 +129,7 @@ const VegaWalletConnected = ({
 
   async function handleDisconnect() {
     setDisconnecting(true);
-    await vegaWalletService.revokeToken();
+    await vegaWallet.revokeToken();
     appDispatch({ type: AppStateActionType.VEGA_WALLET_DISCONNECT });
   }
 
@@ -165,10 +179,11 @@ interface FormFields {
 }
 
 interface VegaWalletFormProps {
+  vegaWallet: VegaWalletService;
   cancel: () => void;
 }
 
-const VegaWalletForm = ({ cancel }: VegaWalletFormProps) => {
+const VegaWalletForm = ({ vegaWallet, cancel }: VegaWalletFormProps) => {
   const { t } = useTranslation();
   const { appDispatch } = useAppState();
   const [loading, setLoading] = React.useState(false);
@@ -179,14 +194,14 @@ const VegaWalletForm = ({ cancel }: VegaWalletFormProps) => {
     setError,
   } = useForm<FormFields>({
     defaultValues: {
-      url: vegaWalletService.url,
+      url: vegaWallet.url,
     },
   });
 
   async function onSubmit(fields: FormFields) {
     setLoading(true);
 
-    const [tokenErr] = await vegaWalletService.getToken({
+    const [tokenErr] = await vegaWallet.getToken({
       wallet: fields.wallet,
       passphrase: fields.passphrase,
     });
@@ -197,7 +212,7 @@ const VegaWalletForm = ({ cancel }: VegaWalletFormProps) => {
       return;
     }
 
-    const [keysErr, keys] = await vegaWalletService.getKeys();
+    const [keysErr, keys] = await vegaWallet.getKeys();
 
     if (keysErr) {
       setError("passphrase", { message: t(keysErr) });
