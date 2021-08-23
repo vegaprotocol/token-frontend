@@ -1,4 +1,4 @@
-import { mock } from "../common/mock";
+import { mock, mockVesting } from "../common/mock";
 
 const balances = {
   1: {
@@ -12,45 +12,10 @@ const balances = {
   lien: 5,
 };
 
-const newMock = (balances, overrides = {}) => {
-  const lockedHandler = (req) => {
-    const trancheId = req.url.match(/tranches\/(\d*)\/balance/)[1];
-    req.reply({
-      statusCode: 200,
-      body: balances[trancheId].locked,
-    });
-  };
-  const vestedHandler = (req) => {
-    const trancheId = req.url.match(/tranches\/(\d*)\/balance/)[1];
-    req.reply({
-      statusCode: 200,
-      body: balances[trancheId].vested,
-    });
-  };
-  const lienHandler = (req) => {
-    req.reply({
-      statusCode: 200,
-      body: JSON.stringify(balances.lien),
-    });
-  };
-  cy.intercept(
-    "/mocks/vesting/tranches/*/balance/locked",
-    overrides["/mocks/vesting/tranches/*/balance/locked"] || lockedHandler
-  );
-  cy.intercept(
-    "/mocks/vesting/tranches/*/balance/vested",
-    overrides["/mocks/vesting/tranches/*/balance/vested"] || vestedHandler
-  );
-  cy.intercept(
-    "/mocks/vesting/balance/lien",
-    overrides["/mocks/vesting/balance/lien"] || lienHandler
-  );
-};
-
 describe("Redemption", () => {
   it("Renders loading state while data is loading", () => {
     // As a user
-    newMock(balances, {
+    mockVesting(balances, {
       "/mocks/vesting/tranches/*/balance/locked": (req) => {
         req.reply({
           statusCode: 200,
@@ -77,7 +42,7 @@ describe("Redemption", () => {
 
   it("Renders error state if data loading goes sideways", () => {
     // As a user
-    newMock(balances, {
+    mockVesting(balances, {
       "/mocks/vesting/tranches/*/balance/locked": (req) => {
         req.reply({
           statusCode: 500,
@@ -131,7 +96,7 @@ describe("Redemption", () => {
 
   it("Renders check and redeem page content", () => {
     // As a user with balances:
-    newMock(balances);
+    mockVesting(balances);
     mock(cy, {
       provider: {
         accounts: ["0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD"],
@@ -175,7 +140,7 @@ describe("Redemption", () => {
 
   it("Renders callout", () => {
     // As a user with balances:
-    newMock(balances);
+    mockVesting(balances);
     mock(cy, {
       provider: {
         accounts: ["0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD"],
@@ -200,7 +165,7 @@ describe("Redemption", () => {
 
   it("Renders table with all vesting information", () => {
     // As a user with balances
-    newMock(balances);
+    mockVesting(balances);
     mock(cy, {
       provider: {
         accounts: ["0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD"],
@@ -282,7 +247,7 @@ describe("Redemption", () => {
       },
       lien: 5,
     };
-    newMock(balances);
+    mockVesting(balances);
     mock(cy, {
       provider: {
         accounts: ["0xb89A165EA8b619c14312dB316BaAa80D2a98B493"],
@@ -347,7 +312,7 @@ describe("Redemption", () => {
 
   it("Renders correct data for multiple tranche", () => {
     // As a user with balances
-    newMock(balances);
+    mockVesting(balances);
     mock(cy, {
       provider: {
         accounts: ["0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD"],
@@ -436,7 +401,7 @@ describe("Redemption", () => {
   });
 
   it("Renders message if tranche has not started vesting", () => {
-    newMock(balances);
+    mockVesting(balances);
     mock(cy, {
       provider: {
         accounts: ["0xb89A165EA8b619c14312dB316BaAa80D2a98B493"],
@@ -458,7 +423,7 @@ describe("Redemption", () => {
 
   it("Renders redeem button if the user can redeem", () => {
     // As a user with balances
-    newMock({
+    mockVesting({
       1: {
         locked: 90,
         vested: 20,
@@ -485,7 +450,7 @@ describe("Redemption", () => {
   });
 
   it("Renders message if user needs to reduce their stake to redeem", () => {
-    newMock({
+    mockVesting({
       1: {
         locked: 90,
         vested: 20,
@@ -509,5 +474,31 @@ describe("Redemption", () => {
       "have.text",
       "You must reduce your staked vesting tokens by at least 0.0001 to redeem from this tranche. Manage your stake or just dissociate your tokens."
     );
+  });
+
+  it("Renders message if user needs to reduce their stake to redeem", () => {
+    mockVesting({
+      1: {
+        locked: 90,
+        vested: 20,
+      },
+      lien: 0,
+    });
+    mock(cy, {
+      provider: {
+        accounts: ["0xb89A165EA8b619c14312dB316BaAa80D2a98B493"],
+      },
+      vesting: {
+        balance: "90",
+      },
+    });
+    // When visiting redemption
+    cy.visit("/redemption");
+    // When I connect to my wallet
+    cy.contains("Connect to an Ethereum wallet").click();
+    // When I redeem the value
+    cy.contains("Redeem unlocked VEGA from tranche 1").click();
+    // Then I am redirected to a new page
+    cy.url().should("include", "redemption/1");
   });
 });
