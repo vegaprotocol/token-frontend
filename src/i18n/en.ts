@@ -4,6 +4,7 @@ const en = {
   // Page titles
   pageTitleHome: "Vega Tokens",
   pageTitleClaim: "Claim Vega tokens",
+  pageTitleAssociate: "Associate VEGA tokens with VEGA Key",
   pageTitleRedemption: "CHECK AND REDEEM",
   pageTitleTranches: "Vesting tranches",
   pageTitleStaking: "Stake your VEGA",
