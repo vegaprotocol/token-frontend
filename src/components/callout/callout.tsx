@@ -13,7 +13,7 @@ export const Callout = ({
 }) => {
   const className = ["callout", intent ? `callout--${intent}` : ""].join(" ");
   return (
-    <div className={className}>
+    <div className={className} data-testid="callout">
       {icon && <div className="callout__icon">{icon}</div>}
       <div>
         {title && <h3 className="callout__title">{title}</h3>}

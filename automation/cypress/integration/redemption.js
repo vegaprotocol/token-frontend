@@ -188,11 +188,11 @@ describe("Redemption", () => {
     cy.visit("/redemption");
     // When I connect to my wallet
     cy.contains("Connect to an Ethereum wallet").click();
-    cy.get("[data-testid='vega-callout'] h1").should(
+    cy.get("[data-testid='callout'] h3").should(
       "have.text",
       "Stake your Locked VEGA tokens!"
     );
-    cy.get("[data-testid='vega-callout'] p").should(
+    cy.get("[data-testid='callout'] p").should(
       "have.text",
       "Find out more about Staking."
     );
