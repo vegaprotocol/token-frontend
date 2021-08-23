@@ -9,11 +9,26 @@ import {TokenDetailsTotal} from "./token-details-total";
 import {EtherscanLink} from "../etherscan-link";
 import {TokenDetailsStaked} from "./token-details-staked";
 import {TokenDetailsCirculating} from "./token-details-circulating";
+import {useVegaVesting} from "../../hooks/use-vega-vesting";
+import {Decimals} from "../../lib/web3-utils";
 
 export const TokenDetails = () => {
   const { t } = useTranslation();
 
-  const { appState } = useAppState();
+  const { appState, appDispatch } = useAppState();
+
+  const vesting = useVegaVesting()
+
+  React.useEffect(() => {
+    const run = async () => {
+      const tranches = await vesting.getAllTranches();
+      appDispatch({ type: "SET_TRANCHES", tranches });
+    };
+
+    run();
+  }, [appDispatch, vesting]);
+
+  const decimals = Decimals[appState.chainId!]
 
   return (
     <KeyValueTable className={"token-details"}>
@@ -31,7 +46,7 @@ export const TokenDetails = () => {
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Circulating supply")}</th>
-        <TokenDetailsCirculating />
+        <TokenDetailsCirculating tranches={appState.tranches} decimals={decimals} />
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Staked on Vega")}</th>

@@ -1,16 +1,32 @@
 import React from "react";
-import {useAppState} from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber"
-import {Decimals} from "../../lib/web3-utils";
-import {addDecimal} from "../../lib/decimals";
+import { addDecimal } from "../../lib/decimals";
+import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 
-export const TokenDetailsCirculating = () => {
-  const { appState } = useAppState()
-  const decimals = Decimals[appState.chainId!]
-
+/**
+ * Add together the reedeemed tokens from all tranches
+ *
+ * @param tranches All of the tranches to sum
+ * @param decimals decimal places for the formatted result
+ * @return Total redeemed vouchers, formatted as a string
+ */
+export function sumRedeemedTokens(tranches: Tranche[] | null, decimals: number): string {
   let totalCirculating: BigNumber = new BigNumber(0);
 
-  appState.tranches?.forEach( tranche => totalCirculating = totalCirculating.plus(tranche.total_removed))
+  tranches?.forEach( tranche => totalCirculating = totalCirculating.plus(tranche.total_removed))
 
-  return (<td>{addDecimal(totalCirculating, decimals)}</td>);
+  return addDecimal(totalCirculating, decimals)
+}
+
+/**
+ * Renders a table cell containing the total circulating number of Vega tokens, which is the
+ * sum of all redeemed tokens across all tranches
+ *
+ * @param tranches An array of all of the tranches
+ * @param decimals Decimal places for this token
+ * @constructor
+ */
+export const TokenDetailsCirculating = ({ tranches, decimals }: { tranches: Tranche[] | null, decimals: number}) => {
+  const totalCirculating = sumRedeemedTokens(tranches, decimals)
+  return (<td>{totalCirculating}</td>);
 }
