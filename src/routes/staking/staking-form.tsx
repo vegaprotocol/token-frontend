@@ -1,0 +1,56 @@
+import { FormGroup, Intent, Radio, RadioGroup } from "@blueprintjs/core";
+import { Controller, useForm, useWatch } from "react-hook-form";
+
+interface FormFields {
+  amount: string;
+  action: "add" | "remove";
+}
+
+export const StakingForm = () => {
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<FormFields>();
+
+  const amount = useWatch({ control, name: "amount" });
+
+  function onSubmit(fields: FormFields) {
+    console.log(fields);
+  }
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <FormGroup
+        helperText={errors.action?.message}
+        intent={errors.action?.message ? Intent.DANGER : Intent.NONE}
+      >
+        <Controller
+          control={control}
+          name="action"
+          rules={{ required: "Required" }}
+          render={({ field }) => {
+            console.log(field);
+            return (
+              <RadioGroup onChange={field.onChange} selectedValue={field.value}>
+                <Radio value="add" label="Add" />
+                <Radio value="remove" label="Remove" />
+              </RadioGroup>
+            );
+          }}
+        />
+      </FormGroup>
+      <FormGroup
+        label="How much to add in next epoch"
+        helperText={errors.amount?.message}
+        intent={errors.amount?.message ? Intent.DANGER : Intent.NONE}
+      >
+        <input {...register("amount", { required: "Required" })} type="text" />
+      </FormGroup>
+      <button className="fill" type="submit">
+        Add {amount} VEGA tokens
+      </button>
+    </form>
+  );
+};
