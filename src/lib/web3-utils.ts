@@ -54,16 +54,28 @@ export type PromiEvent = typeof Promise & {
 };
 
 export interface IVegaStaking {
-  addStake(address: string, amount: string, vegaKey: string): PromiEvent;
+  stakeBalance(address: string, vegaKey: string): Promise<BigNumber>;
+  totalStaked(): Promise<BigNumber>;
   removeStake(address: string, amount: string, vegaKey: string): PromiEvent;
+  checkRemoveStake(
+    address: string,
+    amount: string,
+    vegaKey: string
+  ): Promise<any>;
+  addStake(address: string, amount: string, vegaKey: string): PromiEvent;
+  checkAddStake(address: string, amount: string, vegaKey: string): Promise<any>;
+  checkTransferStake(
+    address: string,
+    amount: string,
+    newAddress: string,
+    vegaKey: string
+  ): Promise<any>;
   transferStake(
     address: string,
     amount: string,
     newAddress: string,
     vegaKey: string
   ): PromiEvent;
-  stakeBalance(address: string, vegaKey: string): Promise<BigNumber>;
-  totalStaked(): Promise<BigNumber>;
 }
 
 export interface IVegaVesting {

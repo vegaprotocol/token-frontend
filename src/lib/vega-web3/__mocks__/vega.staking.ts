@@ -12,6 +12,28 @@ class MockedVegaStaking implements IVegaStaking {
   constructor(web3: Web3, vestingAddress: string, decimals: number) {
     this.decimals = decimals;
   }
+  checkRemoveStake(
+    address: string,
+    amount: string,
+    vegaKey: string
+  ): Promise<any> {
+    return Promise.resolve(true);
+  }
+  checkAddStake(
+    address: string,
+    amount: string,
+    vegaKey: string
+  ): Promise<any> {
+    return Promise.resolve(true);
+  }
+  checkTransferStake(
+    address: string,
+    amount: string,
+    newAddress: string,
+    vegaKey: string
+  ): Promise<any> {
+    return Promise.resolve(true);
+  }
   addStake(address: string, amount: string, vegaKey: string): PromiEvent {
     return promiEventFactory(uuidv4(), "add-stake");
   }

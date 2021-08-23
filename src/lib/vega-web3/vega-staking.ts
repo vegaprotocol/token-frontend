@@ -20,14 +20,41 @@ export default class StakingAbi implements IVegaStaking {
     this.decimals = decimals;
   }
 
+  checkAddStake(
+    address: string,
+    amount: string,
+    vegaKey: string
+  ): Promise<any> {
+    return this.contract.methods.stake(amount, vegaKey).call({ from: address });
+  }
+
   addStake(address: string, amount: string, vegaKey: string): PromiEvent {
     return this.contract.methods.stake(amount, vegaKey).send({ from: address });
+  }
+
+  checkRemoveStake(
+    address: string,
+    amount: string,
+    vegaKey: string
+  ): Promise<any> {
+    return this.contract.methods.stake(amount, vegaKey).call({ from: address });
   }
 
   removeStake(address: string, amount: string, vegaKey: string): PromiEvent {
     return this.contract.methods
       .remove_stake(amount, vegaKey)
       .send({ from: address });
+  }
+
+  checkTransferStake(
+    address: string,
+    amount: string,
+    newAddress: string,
+    vegaKey: string
+  ): Promise<any> {
+    return this.contract.methods
+      .remove_stake(amount, newAddress, vegaKey)
+      .call({ from: address });
   }
 
   transferStake(
