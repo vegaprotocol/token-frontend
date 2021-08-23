@@ -5,10 +5,16 @@ import { Web3Container } from "../../components/web3-container";
 import { RouteChildProps } from "..";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { TrancheContainer } from "../../components/tranche-container";
+import { isRestricted } from "./lib/is-restricted";
+import { ClaimRestricted } from "./claim-restricted";
 
 const ClaimIndex = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
   const { t } = useTranslation();
+
+  if (isRestricted()) {
+    return <ClaimRestricted />;
+  }
 
   return (
     <DefaultTemplate title={t("pageTitleClaim")}>
