@@ -1,4 +1,3 @@
-import "./associate.scss";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { DefaultTemplate } from "../../components/page-templates/default";
@@ -9,6 +8,7 @@ import { Radio, RadioGroup } from "@blueprintjs/core";
 import { FormEvent } from "react";
 import { useLocation } from "react-router-dom";
 import { ContractAssociate } from "./contract-associate";
+import { WalletAssociate } from "./wallet-associate";
 
 enum StakingMethod {
   Contract = "Contract",
@@ -61,7 +61,9 @@ const Associate = ({ name }: RouteChildProps) => {
         {selectedStakingMethod &&
           (selectedStakingMethod === StakingMethod.Contract ? (
             <ContractAssociate />
-          ) : null)}
+          ) : (
+            <WalletAssociate />
+          ))}
       </Web3Container>
     </DefaultTemplate>
   );
