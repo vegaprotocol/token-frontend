@@ -30,9 +30,9 @@ const initialAppState: AppState = {
   balanceFormatted: "",
   tranches: null,
   contractAddresses: Addresses[process.env.REACT_APP_CHAIN as EthereumChainId],
-  vegaWalletStatus: VegaWalletStatus.Pending,
-  vegaKeys: null,
-  currVegaKey: null,
+  totalStaked: null,
+  totalStakedFormatted: "",
+  ...supply,
 };
 
 function appStateReducer(state: AppState, action: AppStateAction): AppState {
