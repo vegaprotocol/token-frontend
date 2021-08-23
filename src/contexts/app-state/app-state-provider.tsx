@@ -12,6 +12,7 @@ import {
 } from "./app-state-context";
 // @ts-ignore
 import detectEthereumProvider from "DETECT_PROVIDER_PATH/detect-provider";
+import { truncateMiddle } from "../../lib/truncate-middle";
 
 interface AppStateProviderProps {
   children: React.ReactNode;
@@ -98,7 +99,6 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         balanceFormatted: action.balance?.toString() || "",
       };
     }
-
     case AppStateActionType.VEGA_WALLET_INIT: {
       if (!action.keys) {
         return { ...state, vegaWalletStatus: VegaWalletStatus.Ready };
@@ -148,8 +148,11 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
   // Detect provider
   React.useEffect(() => {
     detectEthereumProvider().then((res: any) => {
-      if (res !== null) {
+      // Extra check helps with Opera's legacy web3 - it properly falls through to NOT_DETECTED
+      if (res !== null && res.provider) {
         provider.current = res;
+
+        // The line below fails on legacy web3 as the method 'request' does not exist
         provider.current
           .request({ method: "eth_chainId" })
           .then((chainId: string) => {

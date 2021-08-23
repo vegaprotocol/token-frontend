@@ -2,7 +2,7 @@ const en = {
   Home: "Home",
 
   // Page titles
-  pageTitleHome: "Vega Staking",
+  pageTitleHome: "Vega Tokens",
   pageTitleClaim: "Claim Vega tokens",
   pageTitleRedemption: "CHECK AND REDEEM",
   pageTitleTranches: "Vesting tranches",
