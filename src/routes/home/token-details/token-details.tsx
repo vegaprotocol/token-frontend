@@ -11,14 +11,13 @@ import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { TokenDetailsTotal } from "./token-details-total";
 import { EtherscanLink } from "../../../components/etherscan-link";
 import { TokenDetailsCirculating } from "./token-details-circulating";
-import { Decimals, EthereumChainIds } from "../../../lib/web3-utils";
+import { EthereumChainIds } from "../../../lib/web3-utils";
 
 export const TokenDetails = () => {
   const { t } = useTranslation();
 
   const { appState } = useAppState();
 
-  const decimals = Decimals[appState.chainId!];
   const chainId = appState.chainId || EthereumChainIds.Mainnet;
 
   return (
@@ -53,7 +52,7 @@ export const TokenDetails = () => {
         <th>{t("Circulating supply")}</th>
         <TokenDetailsCirculating
           tranches={appState.tranches}
-          decimals={decimals}
+          decimals={appState.decimals}
         />
       </KeyValueTableRow>
       <KeyValueTableRow>

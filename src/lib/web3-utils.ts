@@ -43,11 +43,6 @@ export const Addresses = {
   },
 };
 
-export const Decimals = {
-  [EthereumChainIds.Mainnet]: 18,
-  [EthereumChainIds.Ropsten]: 5,
-};
-
 export type PromiEvent = typeof Promise & {
   on: (event: string, listener: (...args: any[]) => void) => PromiEvent;
   once: (event: string, listener: (...args: any[]) => void) => PromiEvent;

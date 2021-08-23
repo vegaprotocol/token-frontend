@@ -13,7 +13,6 @@ import {
 } from "./claim-reducer";
 import { ClaimFlow } from "./claim-flow";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
-import { Decimals } from "../../lib/web3-utils";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 
 const Claim = ({
@@ -31,7 +30,7 @@ const Claim = ({
   React.useEffect(() => {
     dispatch({
       type: ClaimActionType.SET_DATA_FROM_URL,
-      decimals: Decimals[appState.chainId!],
+      decimals: appState.decimals,
       data: {
         nonce: params.n,
         trancheId: params.t,
@@ -41,7 +40,7 @@ const Claim = ({
         code: params.r,
       },
     });
-  }, [appState.chainId, dispatch, params]);
+  }, [appState.decimals, dispatch, params]);
 
   // If the claim has been committed refetch the new VEGA balance
   React.useEffect(() => {
