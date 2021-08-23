@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { DefaultTemplate } from "../../components/page-templates/default";
+import { TemplateDefault } from "../../components/page-templates/template-default";
 import { Web3Container } from "../../components/web3-container";
 import { RouteChildProps } from "..";
 import { useDocumentTitle } from "../../hooks/use-document-title";
@@ -28,7 +28,7 @@ const Associate = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
   const { t } = useTranslation();
   return (
-    <DefaultTemplate title={t("pageTitleAssociate")}>
+    <TemplateDefault title={t("pageTitleAssociate")}>
       <Web3Container>
         <p data-testid="associate-information">
           {t(
@@ -65,7 +65,7 @@ const Associate = ({ name }: RouteChildProps) => {
             <WalletAssociate />
           ))}
       </Web3Container>
-    </DefaultTemplate>
+    </TemplateDefault>
   );
 };
 
