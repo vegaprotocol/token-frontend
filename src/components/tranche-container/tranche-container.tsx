@@ -1,5 +1,8 @@
 import React from "react";
-import { useAppState } from "../../contexts/app-state/app-state-context";
+import {
+  AppStateActionType,
+  useAppState,
+} from "../../contexts/app-state/app-state-context";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { SplashLoader } from "../splash-loader";
@@ -16,7 +19,7 @@ export const TrancheContainer = ({
   React.useEffect(() => {
     const run = async () => {
       const tranches = await vesting.getAllTranches();
-      appDispatch({ type: "SET_TRANCHES", tranches });
+      appDispatch({ type: AppStateActionType.SET_TRANCHES, tranches });
     };
 
     run();

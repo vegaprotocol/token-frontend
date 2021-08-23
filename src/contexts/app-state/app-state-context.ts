@@ -26,23 +26,40 @@ export interface AppState {
   };
 }
 
+export enum AppStateActionType {
+  PROVIDER_DETECTED,
+  PROVIDER_NOT_DETECTED,
+  CONNECT,
+  DISCONNECT,
+  CONNECT_SUCCESS,
+  CONNECT_FAIL,
+  ACCOUNTS_CHANGED,
+  CHAIN_CHANGED,
+  SET_TRANCHES,
+  APP_CHAIN_CHANGED,
+  SET_BALANCE,
+}
+
 export type AppStateAction =
-  | { type: "PROVIDER_DETECTED"; chainId: EthereumChainId }
-  | { type: "PROVIDER_NOT_DETECTED" }
-  | { type: "CONNECT" }
-  | { type: "DISCONNECT" }
+  | { type: AppStateActionType.PROVIDER_DETECTED; chainId: EthereumChainId }
+  | { type: AppStateActionType.PROVIDER_NOT_DETECTED }
+  | { type: AppStateActionType.CONNECT }
+  | { type: AppStateActionType.DISCONNECT }
   | {
-      type: "CONNECT_SUCCESS";
+      type: AppStateActionType.CONNECT_SUCCESS;
       address: string;
       chainId: EthereumChainId;
       balance: BigNumber | null;
     }
-  | { type: "CONNECT_FAIL"; error: Error }
-  | { type: "ACCOUNTS_CHANGED"; address: string }
-  | { type: "CHAIN_CHANGED"; chainId: EthereumChainId }
-  | { type: "SET_TRANCHES"; tranches: Tranche[] }
-  | { type: "APP_CHAIN_CHANGED"; newChainId: EthereumChainId }
-  | { type: "SET_BALANCE"; balance: BigNumber };
+  | { type: AppStateActionType.CONNECT_FAIL; error: Error }
+  | { type: AppStateActionType.ACCOUNTS_CHANGED; address: string }
+  | { type: AppStateActionType.CHAIN_CHANGED; chainId: EthereumChainId }
+  | { type: AppStateActionType.SET_TRANCHES; tranches: Tranche[] }
+  | {
+      type: AppStateActionType.APP_CHAIN_CHANGED;
+      newChainId: EthereumChainId;
+    }
+  | { type: AppStateActionType.SET_BALANCE; balance: BigNumber };
 
 type AppStateContextShape = {
   appState: AppState;

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useConnect } from "../../hooks/use-connect";
 import {
+  AppStateActionType,
   ProviderStatus,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
@@ -100,7 +101,7 @@ export const NetworkSwitcher = () => {
       style={{ padding: 4 }}
       onChange={(e) => {
         appDispatch({
-          type: "APP_CHAIN_CHANGED",
+          type: AppStateActionType.APP_CHAIN_CHANGED,
           newChainId: e.target.value as EthereumChainId,
         });
       }}
