@@ -51,13 +51,13 @@ export const ContractAssociate = () => {
             autoComplete="off"
             type="number"
           />
-          <a
+          <button
             onClick={useMaximum}
             data-testid="associate-amount-use-maximum"
-            className="contract-associate__use-maximum"
+            className="button-link contract-associate__use-maximum "
           >
             {t("Use maximum")}
-          </a>
+          </button>
         </div>
       </FormGroup>
       <Button data-testid="associate-button" fill={true} disabled={!amount}>
