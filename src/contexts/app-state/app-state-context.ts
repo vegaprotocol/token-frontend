@@ -36,6 +36,7 @@ export interface AppState {
   balanceFormatted: string;
   tranches: Tranche[] | null;
   appChainId: EthereumChainId;
+  decimals: number;
   totalSupply: BigNumber | null;
   totalSupplyFormatted: string;
   totalStaked: BigNumber | null;
@@ -67,6 +68,7 @@ export enum AppStateActionType {
   VEGA_WALLET_SET_KEY,
   VEGA_WALLET_DOWN,
   VEGA_WALLET_DISCONNECT,
+  SET_TOKEN,
 }
 
 export type AppStateAction =
@@ -91,7 +93,12 @@ export type AppStateAction =
     }
   | { type: AppStateActionType.VEGA_WALLET_SET_KEY; key: VegaKeyExtended }
   | { type: AppStateActionType.VEGA_WALLET_DOWN }
-  | { type: AppStateActionType.VEGA_WALLET_DISCONNECT };
+  | { type: AppStateActionType.VEGA_WALLET_DISCONNECT }
+  | {
+      type: AppStateActionType.SET_TOKEN;
+      decimals: number;
+      totalSupply: BigNumber;
+    };
 
 type AppStateContextShape = {
   appState: AppState;
