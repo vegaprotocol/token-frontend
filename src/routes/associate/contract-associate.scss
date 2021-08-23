@@ -7,14 +7,9 @@
 
   &__use-maximum {
     margin: 0 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
   }
 
   button {
-    height: 40px;
-
     &:disabled {
       background-color: $gray5 !important;
       color: $dark-gray5 !important;

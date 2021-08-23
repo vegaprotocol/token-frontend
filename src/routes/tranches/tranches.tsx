@@ -66,10 +66,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
         <p>{t("No tranches")}</p>
       )}
       <section style={{ textAlign: "center" }}>
-        <button
-          className="tranches__button-link"
-          onClick={() => setShowAll(!showAll)}
-        >
+        <button className="button-link" onClick={() => setShowAll(!showAll)}>
           {showAll
             ? t(
                 "Showing tranches with <{{trancheMinimum}} VEGA, click to hide these tranches",

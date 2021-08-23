@@ -93,8 +93,15 @@ button {
   &.button-link {
     display: inline;
     appearance: none;
-    padding: 0;
+    padding: 10;
     text-decoration: underline;
+    background-color: transparent;
+    color: $white;
+    outline: none;
+
+    &:hover {
+      color: $vega-yellow4 !important;
+    }
   }
 }
 
