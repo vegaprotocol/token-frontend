@@ -214,8 +214,8 @@ const en = {
   Staking: "Staking",
   "Once tokens have unlocked they can be redeemed to the Ethereum wallet that owns them":
     "Once tokens have unlocked they can be redeemed to the Ethereum wallet that owns them.",
-  "Tokens are held in different Tranches. Each tranche has its own schedule for how long the tokens are locked.":
-    "Tokens are held in different Tranches. Each tranche has its own schedule for how long the tokens are locked",
+  "Tokens are held in different Tranches. Each tranche has its own schedule for how long the tokens are locked":
+    "Tokens are held in different Tranches. Each tranche has its own schedule for how long the tokens are locked.",
   "Most VEGA tokens are held in a vesting contract. This means that they cannot be transferred between wallets until their vesting term is complete":
     "Most VEGA tokens are held in a vesting contract. This means that they cannot be transferred between wallets until their vesting term is complete.",
   "Token holders can propose changes to the Vega network":
@@ -230,7 +230,8 @@ const en = {
   "Staked on Vega": "Staked on Vega",
   "There are {{nodeCount}} nodes with a shared stake of {{sharedStake}} VEGA tokens":
     "There are {{nodeCount}} nodes with a shared stake of {{sharedStake}} VEGA tokens",
-  "Read about Staking on Vega": "Read about Staking on Vega",
+  "Read about staking on Vega": "Read about staking on Vega",
+  "Read about Governance on Vega": "Read about Governance on Vega",
 };
 
 export default en;
