@@ -12,7 +12,6 @@ import {
 } from "./app-state-context";
 // @ts-ignore
 import detectEthereumProvider from "DETECT_PROVIDER_PATH/detect-provider";
-import { truncateMiddle } from "../../lib/truncate-middle";
 
 interface AppStateProviderProps {
   children: React.ReactNode;
@@ -31,7 +30,7 @@ const initialAppState: AppState = {
   tranches: null,
   contractAddresses: Addresses[process.env.REACT_APP_CHAIN as EthereumChainId],
   totalStaked: null,
-  totalStakedFormatted: "",
+  totalStakedFormatted: "0",
   ...supply,
 };
 
