@@ -149,7 +149,7 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
   React.useEffect(() => {
     detectEthereumProvider().then((res: any) => {
       // Extra check helps with Opera's legacy web3 - it properly falls through to NOT_DETECTED
-      if (res !== null && res.provider) {
+      if (res !== null && res.request) {
         provider.current = res;
 
         // The line below fails on legacy web3 as the method 'request' does not exist
