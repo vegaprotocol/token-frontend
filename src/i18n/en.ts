@@ -228,6 +228,9 @@ const en = {
   "Total supply": "Total supply",
   "Circulating supply": "Circulating supply",
   "Staked on Vega": "Staked on Vega",
+  "There are {{nodeCount}} nodes with a shared stake of {{sharedStake}} VEGA tokens":
+    "There are {{nodeCount}} nodes with a shared stake of {{sharedStake}} VEGA tokens",
+  "Read about Staking on Vega": "Read about Staking on Vega",
 };
 
 export default en;

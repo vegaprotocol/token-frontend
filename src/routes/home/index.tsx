@@ -3,8 +3,10 @@ import "./home.scss";
 import { useTranslation } from "react-i18next";
 import { RouteChildProps } from "..";
 import { useDocumentTitle } from "../../hooks/use-document-title";
-import { TemplateDefault } from "../../components/page-templates/template-default";
 import { TokenDetails } from "../../components/token-details";
+import { StakingOverview } from "../../components/staking-overview";
+import { Link } from "react-router-dom";
+import { TemplateDefault } from "../../components/page-templates/template-default";
 
 const Home = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
@@ -35,11 +37,21 @@ const Home = ({ name }: RouteChildProps) => {
       <h2>{t("Governance")}</h2>
       <p>{t("Token holders can propose changes to the Vega network")}</p>
 
+      <p>
+        <Link to={"/governance"}>{t("Read about Governance on Vega")}</Link>
+      </p>
+
       <h2>{t("Staking")}</h2>
       <p>
         {t(
           "Token holders can nominate their tokens to a validator and are rewarded a proportion of the fees accumulated for infrastructure"
         )}
+      </p>
+
+      <StakingOverview />
+
+      <p>
+        <Link to={"/staking"}>{t("Read about staking on Vega")}</Link>
       </p>
     </TemplateDefault>
   );
