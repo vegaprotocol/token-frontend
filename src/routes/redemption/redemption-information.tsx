@@ -1,12 +1,12 @@
 import "./redemption-information.scss";
-import { useAppState } from "../../../contexts/app-state/app-state-context";
-import { RedemptionState } from "../redemption-reducer";
+import { useAppState } from "../../contexts/app-state/app-state-context";
+import { RedemptionState } from "./redemption-reducer";
 import { VestingTable } from "./vesting-table";
-import { TrancheTable } from "../tranche-table";
+import { TrancheTable } from "./tranche-table";
 import { useTranslation } from "react-i18next";
-import { Callout } from "../../../components/callout";
-import { HandUp } from "../../../components/icons";
-import { Link, useHistory } from "react-router-dom";
+import { Callout } from "../../components/callout";
+import { HandUp } from "../../components/icons";
+import { Link } from "react-router-dom";
 import React from "react";
 
 export const RedemptionInformation = ({
@@ -16,7 +16,6 @@ export const RedemptionInformation = ({
   state: RedemptionState;
   address: string;
 }) => {
-  const history = useHistory();
   const { t } = useTranslation();
   const {
     appState: { balanceFormatted },
@@ -95,6 +94,7 @@ export const RedemptionInformation = ({
         <TrancheTable
           key={tr.tranche_id}
           tranche={tr}
+          address={address!}
           lien={lien}
           locked={
             balances.find(
@@ -106,7 +106,6 @@ export const RedemptionInformation = ({
               ({ id }) => id.toString() === tr.tranche_id.toString()
             )!.vested
           }
-          onClick={() => history.push(`/redemption/${tr.tranche_id}`)}
         />
       ))}
       <Callout
