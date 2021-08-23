@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { RouteChildProps } from "..";
-import { DefaultTemplate } from "../../components/page-templates/default";
+import { TemplateDefault } from "../../components/page-templates/template-default";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { Staking } from "./staking";
 import { StakingNode } from "./staking-node";
@@ -11,7 +11,7 @@ const RedemptionRouter = ({ name }: RouteChildProps) => {
   const { t } = useTranslation();
   const match = useRouteMatch();
   return (
-    <DefaultTemplate title={t("pageTitleStaking")}>
+    <TemplateDefault title={t("pageTitleStaking")}>
       <Switch>
         <Route path={`${match.path}/:node`}>
           <StakingNode />
@@ -20,7 +20,7 @@ const RedemptionRouter = ({ name }: RouteChildProps) => {
           <Staking />
         </Route>
       </Switch>
-    </DefaultTemplate>
+    </TemplateDefault>
   );
 };
 
