@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { Callout } from "../../components/callout";
 import { HandUp } from "../../components/icons";
 import { Link } from "react-router-dom";
+import React from "react";
 
 export const RedemptionInformation = ({
   state,
@@ -26,6 +27,18 @@ export const RedemptionInformation = ({
     lien,
     balances,
   } = state;
+  const filteredTranches = React.useMemo(
+    () =>
+      userTranches.filter((tr) => {
+        const balance = balances.find(
+          ({ id }) => id.toString() === tr.tranche_id.toString()
+        )!;
+        return (
+          balance.locked.isGreaterThan(0) || balance.vested.isGreaterThan(0)
+        );
+      }),
+    [balances, userTranches]
+  );
   if (!userTranches.length) {
     return (
       <section data-testid="redemption-page">
@@ -76,33 +89,25 @@ export const RedemptionInformation = ({
         locked={totalLockedBalance}
         vested={totalVestedBalance}
       />
-      {userTranches
-        .filter((tr) => {
-          const balance = balances.find(
-            ({ id }) => id.toString() === tr.tranche_id.toString()
-          )!;
-          return (
-            balance.locked.isGreaterThan(0) || balance.vested.isGreaterThan(0)
-          );
-        })
-        .map((tr) => (
-          <TrancheTable
-            key={tr.tranche_id}
-            tranche={tr}
-            address={address!}
-            lien={lien}
-            locked={
-              balances.find(
-                ({ id }) => id.toString() === tr.tranche_id.toString()
-              )!.locked
-            }
-            vested={
-              balances.find(
-                ({ id }) => id.toString() === tr.tranche_id.toString()
-              )!.vested
-            }
-          />
-        ))}
+      {filteredTranches.length ? <h1>{t("Tranche breakdown")}</h1> : null}
+      {filteredTranches.map((tr) => (
+        <TrancheTable
+          key={tr.tranche_id}
+          tranche={tr}
+          address={address!}
+          lien={lien}
+          locked={
+            balances.find(
+              ({ id }) => id.toString() === tr.tranche_id.toString()
+            )!.locked
+          }
+          vested={
+            balances.find(
+              ({ id }) => id.toString() === tr.tranche_id.toString()
+            )!.vested
+          }
+        />
+      ))}
       <Callout
         title={t("Stake your Locked VEGA tokens!")}
         icon={<HandUp />}
