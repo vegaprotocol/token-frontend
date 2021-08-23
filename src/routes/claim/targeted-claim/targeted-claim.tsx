@@ -2,7 +2,12 @@ import React from "react";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { TxState } from "../../../hooks/transaction-reducer";
 import { useVegaClaim } from "../../../hooks/use-vega-claim";
-import { ClaimAction, ClaimState, ClaimStatus } from "../claim-reducer";
+import {
+  ClaimAction,
+  ClaimActionType,
+  ClaimState,
+  ClaimStatus,
+} from "../claim-reducer";
 import { BigNumber } from "../../../lib/bignumber";
 import { FormGroup } from "../../../components/form-group";
 import { CountrySelector } from "../../../components/country-selector";
@@ -57,7 +62,7 @@ export const TargetedClaim = ({
   React.useEffect(() => {
     if (txState.txData.hash) {
       dispatch({
-        type: "SET_CLAIM_TX_HASH",
+        type: ClaimActionType.SET_CLAIM_TX_HASH,
         claimTxHash: txState.txData.hash,
       });
     }
@@ -66,7 +71,10 @@ export const TargetedClaim = ({
   React.useEffect(() => {
     if (txState.txState === TxState.Complete) {
       setTimeout(() => {
-        dispatch({ type: "SET_CLAIM_STATUS", status: ClaimStatus.Finished });
+        dispatch({
+          type: ClaimActionType.SET_CLAIM_STATUS,
+          status: ClaimStatus.Finished,
+        });
       }, 2000);
     }
   }, [txState.txState, dispatch]);
@@ -82,7 +90,7 @@ export const TargetedClaim = ({
         <CountrySelector
           code={state.countryCode}
           onSelectCountry={(countryCode) =>
-            dispatch({ type: "SET_COUNTRY", countryCode })
+            dispatch({ type: ClaimActionType.SET_COUNTRY, countryCode })
           }
         />
       </FormGroup>
