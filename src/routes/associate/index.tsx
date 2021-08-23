@@ -39,7 +39,6 @@ const Associate = ({ name }: RouteChildProps) => {
           {t("Where would you like to stake from?")}
         </h2>
         <RadioGroup
-          data-testid="associate-radio"
           inline={true}
           onChange={(e: FormEvent<HTMLInputElement>) => {
             // @ts-ignore

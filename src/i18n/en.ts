@@ -225,6 +225,7 @@ const en = {
     "Token holders can propose changes to the Vega network.",
   "Token holders can nominate their tokens to a validator and are rewarded a proportion of the fees accumulated for infrastructure":
     "Token holders can nominate their tokens to a validator and are rewarded a proportion of the fees accumulated for infrastructure.",
+
   // Token Details
   "Token address": "Token address",
   "Token contract": "Token contract",
