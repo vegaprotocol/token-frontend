@@ -94,7 +94,6 @@ export const RedemptionInformation = ({
         <TrancheTable
           key={tr.tranche_id}
           tranche={tr}
-          address={address!}
           lien={lien}
           locked={
             balances.find(
