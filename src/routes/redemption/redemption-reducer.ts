@@ -27,21 +27,28 @@ export const initialRedemptionState: RedemptionState = {
   balances: [],
 };
 
+export enum RedemptionActionType {
+  ERROR,
+  SET_USER_TRANCHES,
+  SET_LOADING,
+  SET_USER_BALANCES,
+}
+
 export type RedemptionAction =
   | {
-      type: "ERROR";
+      type: RedemptionActionType.ERROR;
       error: Error;
     }
   | {
-      type: "SET_USER_TRANCHES";
+      type: RedemptionActionType.SET_USER_TRANCHES;
       userTranches: Tranche[];
     }
   | {
-      type: "SET_LOADING";
+      type: RedemptionActionType.SET_LOADING;
       loading: boolean;
     }
   | {
-      type: "SET_USER_BALANCES";
+      type: RedemptionActionType.SET_USER_BALANCES;
       balances: TrancheBalance[];
       lien: BigNumber;
     };
@@ -49,9 +56,9 @@ export type RedemptionAction =
 export function redemptionReducer(
   state: RedemptionState,
   action: RedemptionAction
-) {
+): RedemptionState {
   switch (action.type) {
-    case "SET_USER_BALANCES":
+    case RedemptionActionType.SET_USER_BALANCES:
       return {
         ...state,
         totalVestedBalance: BigNumber.sum.apply(null, [
@@ -65,17 +72,17 @@ export function redemptionReducer(
         balances: action.balances,
         lien: action.lien,
       };
-    case "SET_LOADING":
+    case RedemptionActionType.SET_LOADING:
       return {
         ...state,
         loading: action.loading,
       };
-    case "SET_USER_TRANCHES":
+    case RedemptionActionType.SET_USER_TRANCHES:
       return {
         ...state,
         userTranches: action.userTranches,
       };
-    case "ERROR":
+    case RedemptionActionType.ERROR:
       return {
         ...state,
         error: action.error,

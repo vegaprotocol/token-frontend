@@ -6,6 +6,7 @@ import { RedemptionError } from "./redemption-error";
 import { RedemptionInformation } from "./redemption-information";
 import {
   initialRedemptionState,
+  RedemptionActionType,
   redemptionReducer,
 } from "./redemption-reducer";
 
@@ -24,7 +25,7 @@ const RedemptionRouter = ({
   React.useEffect(() => {
     const run = async () => {
       dispatch({
-        type: "SET_LOADING",
+        type: RedemptionActionType.SET_LOADING,
         loading: true,
       });
       try {
@@ -34,7 +35,7 @@ const RedemptionRouter = ({
           )
         );
         dispatch({
-          type: "SET_USER_TRANCHES",
+          type: RedemptionActionType.SET_USER_TRANCHES,
           userTranches,
         });
         const getLien = vesting.getLien(address);
@@ -52,18 +53,18 @@ const RedemptionRouter = ({
         const balances = await Promise.all(promises);
         const lien = await getLien;
         dispatch({
-          type: "SET_USER_BALANCES",
+          type: RedemptionActionType.SET_USER_BALANCES,
           balances,
           lien,
         });
       } catch (e) {
         dispatch({
-          type: "ERROR",
+          type: RedemptionActionType.ERROR,
           error: e,
         });
       } finally {
         dispatch({
-          type: "SET_LOADING",
+          type: RedemptionActionType.SET_LOADING,
           loading: false,
         });
       }
