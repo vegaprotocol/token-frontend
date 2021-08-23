@@ -258,18 +258,18 @@ describe("Redemption", () => {
         cy.get(".vesting-table__progress-bar--locked")
           .invoke("outerWidth")
           // δ of 1
-          .should("gt", Math.floor((val * 0.005) / 0.009))
-          .should("lt", Math.ceil((val * 0.005) / 0.009));
+          .should("gte", Math.floor((val * 0.005) / 0.009))
+          .should("lte", Math.ceil((val * 0.005) / 0.009));
         cy.get(".vesting-table__progress-bar--vested")
           .invoke("outerWidth")
           // δ of 1
-          .should("gt", Math.floor((val * 0.004) / 0.009))
-          .should("lt", Math.ceil((val * 0.004) / 0.009));
+          .should("gte", Math.floor((val * 0.004) / 0.009))
+          .should("lte", Math.ceil((val * 0.004) / 0.009));
         cy.get(".vesting-table__progress-bar--staked")
           .invoke("outerWidth")
           // δ of 1
-          .should("gt", Math.floor((val * 0.0005) / 0.009))
-          .should("lt", Math.ceil((val * 0.0005) / 0.009));
+          .should("gte", Math.floor((val * 0.0005) / 0.009))
+          .should("lte", Math.ceil((val * 0.0005) / 0.009));
       });
   });
 
