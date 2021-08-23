@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { RouteChildProps } from "..";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { TemplateDefault } from "../../components/page-templates/template-default";
+import { TokenDetails } from "../../components/token-details";
 
 const Home = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
@@ -11,6 +12,9 @@ const Home = ({ name }: RouteChildProps) => {
   return (
     <TemplateDefault title={t("pageTitleHome")}>
       <h2>{t("The Vega Token")}</h2>
+
+      <TokenDetails />
+
       <h2>{t("Token Vesting")}</h2>
       <p>
         {t(
