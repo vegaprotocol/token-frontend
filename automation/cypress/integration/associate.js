@@ -1,6 +1,6 @@
 import { mock } from "../common/mock";
 
-describe.only("Associate", () => {
+describe("Associate", () => {
   it("Renders switcher, header and description", () => {
     // As a user
     mock(cy);
@@ -38,6 +38,16 @@ describe.only("Associate", () => {
     // Then I see contract associate flow
     cy.get('[data-testid="contract-associate"]').should("exist");
 
+    cy.get('[data-testid="associate-radio-contract"]').should("be.checked");
+  });
+
+  it("Allows the user to click to select", () => {
+    // As a user
+    mock(cy);
+    // When visiting a fake page
+    cy.visit("/associate");
+    // Then I see contract associate flow
+    cy.get('[data-testid="contract-associate"]').click();
     cy.get('[data-testid="associate-radio-contract"]').should("be.checked");
   });
 });
