@@ -3,7 +3,7 @@ import { Controller, useForm, useWatch } from "react-hook-form";
 
 interface FormFields {
   amount: string;
-  action: "add" | "remove";
+  action: "add" | "remove" | undefined;
 }
 
 export const StakingForm = () => {
@@ -15,6 +15,7 @@ export const StakingForm = () => {
   } = useForm<FormFields>();
 
   const amount = useWatch({ control, name: "amount" });
+  const action = useWatch({ control, name: "action" });
 
   function onSubmit(fields: FormFields) {
     console.log(fields);
@@ -33,7 +34,11 @@ export const StakingForm = () => {
           render={({ field }) => {
             console.log(field);
             return (
-              <RadioGroup onChange={field.onChange} selectedValue={field.value}>
+              <RadioGroup
+                onChange={field.onChange}
+                selectedValue={field.value}
+                inline={true}
+              >
                 <Radio value="add" label="Add" />
                 <Radio value="remove" label="Remove" />
               </RadioGroup>
@@ -41,16 +46,23 @@ export const StakingForm = () => {
           }}
         />
       </FormGroup>
-      <FormGroup
-        label="How much to add in next epoch"
-        helperText={errors.amount?.message}
-        intent={errors.amount?.message ? Intent.DANGER : Intent.NONE}
-      >
-        <input {...register("amount", { required: "Required" })} type="text" />
-      </FormGroup>
-      <button className="fill" type="submit">
-        Add {amount} VEGA tokens
-      </button>
+      {action !== undefined && (
+        <>
+          <FormGroup
+            label="How much to add in next epoch"
+            helperText={errors.amount?.message}
+            intent={errors.amount?.message ? Intent.DANGER : Intent.NONE}
+          >
+            <input
+              {...register("amount", { required: "Required" })}
+              type="text"
+            />
+          </FormGroup>
+          <button className="fill" type="submit">
+            {action} {amount} VEGA tokens
+          </button>
+        </>
+      )}
     </form>
   );
 };
