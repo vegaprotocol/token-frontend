@@ -36,6 +36,8 @@ export interface AppState {
   balanceFormatted: string;
   tranches: Tranche[] | null;
   appChainId: EthereumChainId;
+  totalSupply: BigNumber | null;
+  totalSupplyFormatted: string;
   contractAddresses: {
     vestingAddress: string;
     vegaTokenAddress: string;
