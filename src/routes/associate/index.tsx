@@ -5,7 +5,6 @@ import { RouteChildProps } from "..";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { Radio, RadioGroup } from "@blueprintjs/core";
 import { FormEvent } from "react";
-import { useLocation } from "react-router-dom";
 import { ContractAssociate } from "./contract-associate";
 import { WalletAssociate } from "./wallet-associate";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
@@ -14,11 +13,7 @@ import { VegaWallet } from "../../components/vega-wallet";
 import { useTransaction } from "../../hooks/use-transaction";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
-import {
-  TransactionActionType,
-  TxState,
-} from "../../hooks/transaction-reducer";
-import { TransactionCallout } from "../../components/transaction-callout";
+import { TxState } from "../../hooks/transaction-reducer";
 import {
   AssociateActionType,
   associateReducer,
@@ -54,7 +49,7 @@ const Associate = ({ name }: RouteChildProps) => {
     () => vesting.checkAddStake(address!, amount, currVegaKey!.pub)
   );
 
-  // TODO probably need this on vega connect
+  // TODO probably need this on vega connect and in app state
   React.useEffect(() => {
     const run = async () => {
       if (currVegaKey && address) {
