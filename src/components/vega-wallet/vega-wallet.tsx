@@ -157,7 +157,7 @@ const VegaWalletConnected = ({
                 ))}
             </ul>
             <button
-              className="button-link"
+              className="button-link button-link--dark"
               onClick={handleDisconnect}
               type="button"
             >
