@@ -9,6 +9,9 @@ import { FormEvent } from "react";
 import { useLocation } from "react-router-dom";
 import { ContractAssociate } from "./contract-associate";
 import { WalletAssociate } from "./wallet-associate";
+import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
+import { EthWallet } from "../../components/eth-wallet";
+import { VegaWallet } from "../../components/vega-wallet";
 
 enum StakingMethod {
   Contract = "Contract",
@@ -28,7 +31,11 @@ const Associate = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
   const { t } = useTranslation();
   return (
-    <TemplateDefault title={t("pageTitleAssociate")}>
+    <TemplateSidebar
+      title={t("pageTitleAssociate")}
+      sidebarButtonText={t("viewKeys")}
+      sidebar={[<EthWallet />, <VegaWallet />]}
+    >
       <Web3Container>
         <p data-testid="associate-information">
           {t(
@@ -64,7 +71,7 @@ const Associate = ({ name }: RouteChildProps) => {
             <WalletAssociate />
           ))}
       </Web3Container>
-    </TemplateDefault>
+    </TemplateSidebar>
   );
 };
 
