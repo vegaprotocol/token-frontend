@@ -21,31 +21,45 @@ export default class VegaVesting implements IVegaVesting {
       vestingAddress
     );
   }
-  stakeBalance(address: string, vegaKey: string): Promise<BigNumber> {
-    throw new Error("Method not implemented.");
+  async stakeBalance(address: string, vegaKey: string): Promise<BigNumber> {
+    const res = await this.contract.methods
+      .stake_balance(address, vegaKey)
+      .call();
+    return new BigNumber(addDecimal(new BigNumber(res), this.decimals));
   }
-  totalStaked(): Promise<BigNumber> {
-    throw new Error("Method not implemented.");
+
+  async totalStaked(): Promise<BigNumber> {
+    const res = await this.contract.methods.total_staked().call();
+    return new BigNumber(addDecimal(new BigNumber(res), this.decimals));
   }
-  removeStake(address: string, amount: string, vegaKey: string): PromiEvent {
-    throw new Error("Method not implemented.");
-  }
+
   checkRemoveStake(
     address: string,
     amount: string,
     vegaKey: string
   ): Promise<any> {
-    throw new Error("Method not implemented.");
+    return this.contract.methods.stake(amount, vegaKey).call({ from: address });
   }
+
+  removeStake(address: string, amount: string, vegaKey: string): PromiEvent {
+    return this.contract.methods
+      .remove_stake(amount, vegaKey)
+      .send({ from: address });
+  }
+
   addStake(address: string, amount: string, vegaKey: string): PromiEvent {
-    throw new Error("Method not implemented.");
+    return this.contract.methods
+      .stake_tokens(amount, vegaKey)
+      .call({ from: address });
   }
   checkAddStake(
     address: string,
     amount: string,
     vegaKey: string
   ): Promise<any> {
-    throw new Error("Method not implemented.");
+    return this.contract.methods
+      .stake_tokens(amount, vegaKey)
+      .call({ from: address });
   }
 
   async getLien(address: string): Promise<BigNumber> {
