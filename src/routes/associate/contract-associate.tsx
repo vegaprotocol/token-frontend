@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { Colors } from "../../colors";
 import { Callout } from "../../components/callout";
 import React from "react";
-import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber";
 import {
@@ -24,41 +23,21 @@ export const ContractAssociate = ({
   state: AssociateState;
   dispatch: React.Dispatch<AssociateAction>;
 }) => {
+  const { amount, stakedBalance } = state;
   const { t } = useTranslation();
-  const { amount } = state;
   const setAmount = React.useCallback(
     (value: string) => {
       dispatch({ type: AssociateActionType.SET_AMOUNT, amount: value });
     },
     [dispatch]
   );
-  const [stakedBalance, setStakedBalance] = React.useState<BigNumber>(
-    new BigNumber("0")
-  );
   const {
-    appState: { currVegaKey, address, balanceFormatted },
+    appState: { currVegaKey, balanceFormatted },
   } = useAppState();
-  const vesting = useVegaVesting();
-
-  React.useEffect(() => {
-    const run = async () => {
-      if (currVegaKey && address) {
-        const stakedBalance = await vesting.stakeBalance(
-          address,
-          currVegaKey.pub
-        );
-        setStakedBalance(stakedBalance);
-      }
-    };
-    run();
-  }, [address, currVegaKey, vesting]);
 
   const maximum = React.useMemo(() => {
-    return new BigNumber(balanceFormatted).minus(stakedBalance).toString();
+    return new BigNumber(balanceFormatted).minus(stakedBalance!).toString();
   }, [balanceFormatted, stakedBalance]);
-  const useMaximum = React.useCallback(() => {
-    setAmount(maximum);
-  }, [setAmount, maximum]);
 
   const isDisabled = React.useMemo<boolean>(
     () =>
@@ -105,7 +84,7 @@ export const ContractAssociate = ({
             type="number"
           />
           <button
-            onClick={useMaximum}
+            onClick={() => setAmount(maximum)}
             data-testid="associate-amount-use-maximum"
             className="button-link contract-associate__use-maximum "
           >

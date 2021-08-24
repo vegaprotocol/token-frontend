@@ -19,7 +19,11 @@ import {
   TxState,
 } from "../../hooks/transaction-reducer";
 import { TransactionCallout } from "../../components/transaction-callout";
-import { associateReducer, initialAssociateState } from "./associate-reducer";
+import {
+  AssociateActionType,
+  associateReducer,
+  initialAssociateState,
+} from "./associate-reducer";
 
 const useQueryParam = (param: string) => {
   const location = useLocation();
@@ -55,6 +59,22 @@ const Associate = ({ name }: RouteChildProps) => {
     () => vesting.addStake(address!, amount, currVegaKey!.pub),
     () => vesting.checkAddStake(address!, amount, currVegaKey!.pub)
   );
+
+  React.useEffect(() => {
+    const run = async () => {
+      if (currVegaKey && address) {
+        const stakedBalance = await vesting.stakeBalance(
+          address,
+          currVegaKey.pub
+        );
+        dispatch({
+          type: AssociateActionType.SET_STAKED_BALANCE,
+          stakedBalance,
+        });
+      }
+    };
+    run();
+  }, [address, currVegaKey, vesting]);
 
   return (
     <TemplateSidebar
