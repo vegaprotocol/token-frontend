@@ -11,7 +11,15 @@ import { WalletAssociate } from "./wallet-associate";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
 import { EthWallet } from "../../components/eth-wallet";
 import { VegaWallet } from "../../components/vega-wallet";
-// import { associateReducer, initialAssociateState } from "./associate-reducer";
+import { useTransaction } from "../../hooks/use-transaction";
+import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useVegaVesting } from "../../hooks/use-vega-vesting";
+import {
+  TransactionActionType,
+  TxState,
+} from "../../hooks/transaction-reducer";
+import { TransactionCallout } from "../../components/transaction-callout";
+import { associateReducer, initialAssociateState } from "./associate-reducer";
 
 const useQueryParam = (param: string) => {
   const location = useLocation();
@@ -29,11 +37,26 @@ enum StakingMethod {
 const Associate = ({ name }: RouteChildProps) => {
   const { t } = useTranslation();
   useDocumentTitle(name);
+  const {
+    appState: { currVegaKey, address },
+  } = useAppState();
+  const vesting = useVegaVesting();
   const stakingMethod = useQueryParam("method");
   const [selectedStakingMethod, setSelectedStakingMethod] = React.useState<
     StakingMethod | ""
   >(stakingMethod);
-  // const [state, dispatch] = useReducer(associateReducer, initialAssociateState);
+  // TODO fix
+  const amount = "0.00001";
+  const {
+    state: vestingBridgeTx,
+    dispatch: txDispatch,
+    perform,
+  } = useTransaction(
+    () => vesting.addStake(address!, amount!, currVegaKey!.pub),
+    () => vesting.checkAddStake(address!, amount!, currVegaKey!.pub)
+  );
+  const [state, dispatch] = useReducer(associateReducer, initialAssociateState);
+
   return (
     <TemplateSidebar
       title={t("pageTitleAssociate")}
@@ -41,6 +64,30 @@ const Associate = ({ name }: RouteChildProps) => {
       sidebar={[<EthWallet />, <VegaWallet />]}
     >
       <Web3Container>
+        {vestingBridgeTx.txState !== TxState.Default ? (
+          <TransactionCallout
+            completeHeading={t("Done")}
+            completeBody={t(
+              "Vega key {{vegaKey}} can now participate in governance and Nominate a validator with it’s stake.",
+              { vegaKey: currVegaKey?.pub }
+            )}
+            completeFooter={
+              <button style={{ width: "100%" }}>
+                {t("Nominate Stake to Validator Node")}
+              </button>
+            }
+            pendingHeading={t("Associating Tokens")}
+            pendingBody={t(
+              "Associating {{amount}} VEGA tokens with Vega key {{vegaKey}}",
+              { amount, vegaKey: currVegaKey?.pub }
+            )}
+            pendingFooter={t(
+              "The Vega network requires 30 Confirmations (approx 5 minutes) on Ethereum before crediting your Vega key with your tokens. This page will update once complete or you can come back and check your Vega wallet to see if it is ready to use."
+            )}
+            state={vestingBridgeTx}
+            reset={() => txDispatch({ type: TransactionActionType.TX_RESET })}
+          />
+        ) : null}
         <p data-testid="associate-information">
           {t(
             "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes."
@@ -70,7 +117,11 @@ const Associate = ({ name }: RouteChildProps) => {
         </RadioGroup>
         {selectedStakingMethod &&
           (selectedStakingMethod === StakingMethod.Contract ? (
-            <ContractAssociate />
+            <ContractAssociate
+              perform={perform}
+              state={state}
+              dispatch={dispatch}
+            />
           ) : (
             <WalletAssociate />
           ))}
