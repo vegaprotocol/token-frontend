@@ -4,8 +4,10 @@ import { useTranslation } from "react-i18next";
 import { Colors } from "../../colors";
 import { Callout } from "../../components/callout";
 import React from "react";
+import { useVegaVesting } from "../../hooks/use-vega-vesting";
 
 export const ContractAssociate = () => {
+  const vesting = useVegaVesting();
   const [amount, setAmount] = React.useState<string | undefined>("");
   const { t } = useTranslation();
   const maximum = "123";

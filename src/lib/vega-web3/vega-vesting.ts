@@ -21,6 +21,32 @@ export default class VegaVesting implements IVegaVesting {
       vestingAddress
     );
   }
+  stakeBalance(address: string, vegaKey: string): Promise<BigNumber> {
+    throw new Error("Method not implemented.");
+  }
+  totalStaked(): Promise<BigNumber> {
+    throw new Error("Method not implemented.");
+  }
+  removeStake(address: string, amount: string, vegaKey: string): PromiEvent {
+    throw new Error("Method not implemented.");
+  }
+  checkRemoveStake(
+    address: string,
+    amount: string,
+    vegaKey: string
+  ): Promise<any> {
+    throw new Error("Method not implemented.");
+  }
+  addStake(address: string, amount: string, vegaKey: string): PromiEvent {
+    throw new Error("Method not implemented.");
+  }
+  checkAddStake(
+    address: string,
+    amount: string,
+    vegaKey: string
+  ): Promise<any> {
+    throw new Error("Method not implemented.");
+  }
 
   async getLien(address: string): Promise<BigNumber> {
     const { lien } = await this.contract.methods.user_stats(address).call();
