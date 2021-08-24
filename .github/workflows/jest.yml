@@ -33,7 +33,7 @@ jobs:
 
       # Pins to IPFS with Infura. No auth required.
       - name: Pin to IPFS
-        uses: aquiladev/ipfs-action
+        uses: aquiladev/ipfs-action@v0.1.6
         with:
           path: ./build
           service: infura
