@@ -25,7 +25,9 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
 
   return (
     <>
-      <BulletHeader tag="h2">{t("Tranches")}</BulletHeader>
+      <BulletHeader tag="h2" style={{ marginTop: 0 }}>
+        {t("Tranches")}
+      </BulletHeader>
       {tranches?.length ? (
         <ul className="tranches__list">
           {(showAll ? tranches : filteredTranches).map((tranche) => {

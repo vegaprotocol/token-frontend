@@ -29,7 +29,7 @@ export const VestingTable = ({ vested, locked, staked }: VestingTableProps) => {
   }, [total, staked]);
   return (
     <section data-testid="vesting-table" className="vesting-table">
-      <h1>{t("Across all tranches")}</h1>
+      <h2>{t("Across all tranches")}</h2>
       <KeyValueTable numerical={true}>
         <KeyValueTableRow
           data-testid="vesting-table-total"

@@ -90,7 +90,7 @@ export const RedemptionInformation = ({
         locked={totalLockedBalance}
         vested={totalVestedBalance}
       />
-      {filteredTranches.length ? <h1>{t("Tranche breakdown")}</h1> : null}
+      {filteredTranches.length ? <h2>{t("Tranche breakdown")}</h2> : null}
       {filteredTranches.map((tr) => (
         <TrancheTable
           key={tr.tranche_id}
