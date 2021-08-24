@@ -39,11 +39,6 @@ export const ContractAssociate = ({
     return new BigNumber(balanceFormatted).minus(stakedBalance!).toString();
   }, [balanceFormatted, stakedBalance]);
 
-  console.log(
-    maximum.toString(),
-    // balanceFormatted.toString(),
-    stakedBalance.toString()
-  );
   const isDisabled = React.useMemo<boolean>(
     () =>
       !amount ||
