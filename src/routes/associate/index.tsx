@@ -24,14 +24,8 @@ import {
   associateReducer,
   initialAssociateState,
 } from "./associate-reducer";
-
-const useQueryParam = (param: string) => {
-  const location = useLocation();
-  return React.useMemo(() => {
-    const query = new URLSearchParams(location.search);
-    return query.get(param) as StakingMethod | "";
-  }, [location.search, param]);
-};
+import { useQueryParam } from "../../hooks/use-query-param";
+import { AssociateTransaction } from "./associate-transaction";
 
 enum StakingMethod {
   Contract = "Contract",
@@ -45,7 +39,7 @@ const Associate = ({ name }: RouteChildProps) => {
     appState: { currVegaKey, address },
   } = useAppState();
   const vesting = useVegaVesting();
-  const stakingMethod = useQueryParam("method");
+  const stakingMethod = useQueryParam<StakingMethod>("method");
   const [selectedStakingMethod, setSelectedStakingMethod] = React.useState<
     StakingMethod | ""
   >(stakingMethod);
@@ -60,6 +54,7 @@ const Associate = ({ name }: RouteChildProps) => {
     () => vesting.checkAddStake(address!, amount, currVegaKey!.pub)
   );
 
+  // TODO probably need this on vega connect
   React.useEffect(() => {
     const run = async () => {
       if (currVegaKey && address) {
@@ -84,29 +79,11 @@ const Associate = ({ name }: RouteChildProps) => {
     >
       <Web3Container>
         {vestingBridgeTx.txState !== TxState.Default ? (
-          <TransactionCallout
-            completeHeading={t("Done")}
-            completeBody={t(
-              "Vega key {{vegaKey}} can now participate in governance and Nominate a validator with it’s stake.",
-              { vegaKey: currVegaKey?.pub }
-            )}
-            completeFooter={
-              <button style={{ width: "100%" }}>
-                {t("Nominate Stake to Validator Node")}
-              </button>
-            }
-            pendingHeading={t("Associating Tokens")}
-            pendingBody={t(
-              "Associating {{amount}} VEGA tokens with Vega key {{vegaKey}}",
-              { amount, vegaKey: currVegaKey?.pub }
-            )}
-            pendingFooter={t(
-              "The Vega network requires 30 Confirmations (approx 5 minutes) on Ethereum before crediting your Vega key with your tokens. This page will update once complete or you can come back and check your Vega wallet to see if it is ready to use."
-            )}
+          <AssociateTransaction
+            amount={amount}
+            vegaKey={currVegaKey!.pub}
             state={vestingBridgeTx}
-            reset={() =>
-              vestingBridgeDispatch({ type: TransactionActionType.TX_RESET })
-            }
+            dispatch={vestingBridgeDispatch}
           />
         ) : null}
         {vestingBridgeTx.txState === TxState.Default && (
