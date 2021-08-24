@@ -15,7 +15,20 @@ const Errors = {
   INVALID_CREDENTIALS: "Invalid credentials",
 };
 
-export class VegaWalletService {
+export interface IVegaWalletService {
+  url: string;
+  token: string;
+  statusPoll: any;
+  getStatus(): Promise<boolean>;
+  getToken(params: {
+    wallet: string;
+    passphrase: string;
+  }): Promise<[string | undefined, string | undefined]>;
+  revokeToken(): Promise<[string | undefined, boolean]>;
+  getKeys(): Promise<[string | undefined, VegaKey[] | undefined]>;
+}
+
+export class VegaWalletService implements IVegaWalletService {
   url: string;
   token: string;
   statusPoll: any;
