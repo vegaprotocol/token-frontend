@@ -36,9 +36,9 @@ export const ContractAssociate = ({
   } = useAppState();
 
   const maximum = React.useMemo(() => {
+    // TODO should use lien not staked balance!
     return new BigNumber(balanceFormatted).minus(stakedBalance!).toString();
   }, [balanceFormatted, stakedBalance]);
-
   const isDisabled = React.useMemo<boolean>(
     () =>
       !amount ||
