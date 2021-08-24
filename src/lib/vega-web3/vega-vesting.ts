@@ -21,6 +21,7 @@ export default class VegaVesting implements IVegaVesting {
       vestingAddress
     );
   }
+
   async stakeBalance(address: string, vegaKey: string): Promise<BigNumber> {
     const res = await this.contract.methods
       .stake_balance(address, vegaKey)
@@ -52,6 +53,7 @@ export default class VegaVesting implements IVegaVesting {
       .stake_tokens(amount, vegaKey)
       .call({ from: address });
   }
+
   checkAddStake(
     address: string,
     amount: string,
