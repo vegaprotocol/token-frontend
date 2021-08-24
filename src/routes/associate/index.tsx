@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { useTranslation } from "react-i18next";
 import { Web3Container } from "../../components/web3-container";
 import { RouteChildProps } from "..";
@@ -11,6 +11,15 @@ import { WalletAssociate } from "./wallet-associate";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
 import { EthWallet } from "../../components/eth-wallet";
 import { VegaWallet } from "../../components/vega-wallet";
+// import { associateReducer, initialAssociateState } from "./associate-reducer";
+
+const useQueryParam = (param: string) => {
+  const location = useLocation();
+  return React.useMemo(() => {
+    const query = new URLSearchParams(location.search);
+    return query.get(param) as StakingMethod | "";
+  }, [location.search, param]);
+};
 
 enum StakingMethod {
   Contract = "Contract",
@@ -18,17 +27,13 @@ enum StakingMethod {
 }
 
 const Associate = ({ name }: RouteChildProps) => {
-  const location = useLocation();
-  const stakingMethod = React.useMemo(() => {
-    const query = new URLSearchParams(location.search);
-    return query.get("method") as StakingMethod | "";
-  }, [location.search]);
-
+  const { t } = useTranslation();
+  useDocumentTitle(name);
+  const stakingMethod = useQueryParam("method");
   const [selectedStakingMethod, setSelectedStakingMethod] = React.useState<
     StakingMethod | ""
   >(stakingMethod);
-  useDocumentTitle(name);
-  const { t } = useTranslation();
+  // const [state, dispatch] = useReducer(associateReducer, initialAssociateState);
   return (
     <TemplateSidebar
       title={t("pageTitleAssociate")}

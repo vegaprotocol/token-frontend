@@ -6,7 +6,7 @@ import vestingAbi from "../abis/vesting_abi.json";
 import { IVegaVesting, PromiEvent } from "../web3-utils";
 import { getTranchesFromHistory } from "./tranche-helpers";
 import { Tranche } from "./vega-web3-types";
-import { addDecimal } from "../decimals";
+import { addDecimal, removeDecimal } from "../decimals";
 
 export default class VegaVesting implements IVegaVesting {
   private web3: Web3;
@@ -49,9 +49,13 @@ export default class VegaVesting implements IVegaVesting {
   }
 
   addStake(address: string, amount: string, vegaKey: string): PromiEvent {
+    const convertedAmount = removeDecimal(
+      new BigNumber(amount),
+      this.decimals
+    ).toString();
     return this.contract.methods
-      .stake_tokens(amount, `0x${vegaKey}`)
-      .call({ from: address });
+      .stake_tokens(convertedAmount, `0x${vegaKey}`)
+      .send({ from: address });
   }
 
   checkAddStake(
@@ -59,8 +63,12 @@ export default class VegaVesting implements IVegaVesting {
     amount: string,
     vegaKey: string
   ): Promise<any> {
+    const convertedAmount = removeDecimal(
+      new BigNumber(amount),
+      this.decimals
+    ).toString();
     return this.contract.methods
-      .stake_tokens(amount, `0x${vegaKey}`)
+      .stake_tokens(convertedAmount, `0x${vegaKey}`)
       .call({ from: address });
   }
 

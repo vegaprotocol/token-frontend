@@ -7,6 +7,12 @@ import React from "react";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber";
+import { useTransaction } from "../../hooks/use-transaction";
+import { TransactionCallout } from "../../components/transaction-callout";
+import {
+  TransactionActionType,
+  TxState,
+} from "../../hooks/transaction-reducer";
 
 export const ContractAssociate = () => {
   const { t } = useTranslation();
@@ -39,9 +45,20 @@ export const ContractAssociate = () => {
   const inputName = "amount";
   const isDisabled = React.useMemo<boolean>(
     () =>
-      !amount || amount === "0" || new BigNumber(amount).isGreaterThan(maximum),
+      !amount ||
+      new BigNumber(amount).isLessThanOrEqualTo("0") ||
+      new BigNumber(amount).isGreaterThan(maximum),
     [amount, maximum]
   );
+  const {
+    state: txState,
+    dispatch: txDispatch,
+    perform,
+  } = useTransaction(
+    () => vesting.addStake(address!, amount!, currVegaKey!.pub),
+    () => vesting.checkAddStake(address!, amount!, currVegaKey!.pub)
+  );
+
   return (
     <section className="contract-associate" data-testid="contract-associate">
       <Callout>
@@ -87,9 +104,20 @@ export const ContractAssociate = () => {
           </button>
         </div>
       </FormGroup>
-      <Button data-testid="associate-button" fill={true} disabled={isDisabled}>
+      <Button
+        data-testid="associate-button"
+        fill={true}
+        disabled={isDisabled}
+        onClick={perform}
+      >
         {t("Associate VEGA Tokens with key")}
       </Button>
+      {txState.txState !== TxState.Default ? (
+        <TransactionCallout
+          state={txState}
+          reset={() => txDispatch({ type: TransactionActionType.TX_RESET })}
+        />
+      ) : null}
     </section>
   );
 };
