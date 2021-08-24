@@ -23,7 +23,7 @@ export const ContractAssociate = ({
   state: AssociateState;
   dispatch: React.Dispatch<AssociateAction>;
 }) => {
-  const { amount, stakedBalance } = state;
+  const { amount, lien } = state;
   const { t } = useTranslation();
   const setAmount = React.useCallback(
     (value: string) => {
@@ -37,8 +37,8 @@ export const ContractAssociate = ({
 
   const maximum = React.useMemo(() => {
     // TODO should use lien not staked balance!
-    return new BigNumber(balanceFormatted).minus(stakedBalance!).toString();
-  }, [balanceFormatted, stakedBalance]);
+    return new BigNumber(balanceFormatted).minus(lien!).toString();
+  }, [balanceFormatted, lien]);
   const isDisabled = React.useMemo<boolean>(
     () =>
       !amount ||

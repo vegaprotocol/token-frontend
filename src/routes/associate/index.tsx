@@ -53,13 +53,10 @@ const Associate = ({ name }: RouteChildProps) => {
   React.useEffect(() => {
     const run = async () => {
       if (currVegaKey && address) {
-        const stakedBalance = await vesting.stakeBalance(
-          address,
-          currVegaKey.pub
-        );
+        const lien = await vesting.getLien(address);
         dispatch({
           type: AssociateActionType.SET_STAKED_BALANCE,
-          stakedBalance,
+          lien,
         });
       }
     };
