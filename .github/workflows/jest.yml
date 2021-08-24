@@ -33,7 +33,9 @@ jobs:
 
       # Pins to IPFS with Infura. No auth required.
       - name: Pin to IPFS
-        uses: aquiladev/ipfs-action@v0.1.6
+        uses: alexanderschau/ipfs-pinning-action@v1.0.0
         with:
-          path: ./build
-          service: infura
+          path_to_add: 'build' #Required
+          endpoint: ${{ secrets.IPFS_ENDPOINT }} #Required
+          access_token: ${{ secrets.IPFS_ACCESS_TOKEN }} #Required
+          pin_name: 'github-actions-test' #Optional
