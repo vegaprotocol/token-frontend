@@ -193,6 +193,7 @@ const en = {
   connectVegaWallet: "Connect to VEGA wallet",
   disconnect: "Disconnect",
   awaitingDisconnect: "Disconnecting...",
+  "Checking Vega wallet status": "Checking Vega wallet status",
   urlLabel: "Wallet location",
   walletLabel: "Wallet",
   passphraseLabel: "Passphrase",
@@ -206,6 +207,7 @@ const en = {
   "Stake VEGA tokens": "Stake VEGA tokens",
   "Tranche breakdown": "Tranche breakdown",
   "Across all tranches": "Across all tranches",
+
   // Homepage
   "The Vega Token": "The Vega Token",
   // Duplicate title -> should probably use sections, lazily de-duping by changing the key

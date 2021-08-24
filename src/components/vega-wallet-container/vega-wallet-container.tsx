@@ -18,7 +18,7 @@ export const VegaWalletContainer = ({ children }: VegaWalletContainerProps) => {
   if (appState.vegaWalletStatus === VegaWalletStatus.Pending) {
     return (
       <Callout intent="warn" title="">
-        <p>Checking Vega wallet status...</p>
+        <p>{t("Checking Vega wallet status")}...</p>
       </Callout>
     );
   }
@@ -34,7 +34,7 @@ export const VegaWalletContainer = ({ children }: VegaWalletContainerProps) => {
   if (!appState.currVegaKey) {
     return (
       <Callout intent="error" icon={<Error />}>
-        <p>Please connect to vega wallet</p>
+        <p>{t("connectVegaWallet")}</p>
       </Callout>
     );
   }
