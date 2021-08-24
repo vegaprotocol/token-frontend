@@ -30,3 +30,10 @@ jobs:
           yarn run test
         env:
           NODE_OPTIONS: --max-old-space-size=4096
+
+      # Pins to IPFS with Infura. No auth required.
+      - name: Pin to IPFS
+        uses: aquiladev/ipfs-action@v1
+        with:
+          path: ./build
+          service: infura
