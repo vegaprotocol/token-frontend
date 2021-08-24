@@ -1,0 +1,1 @@
+describe("associate - vesting tokens", () => {});
