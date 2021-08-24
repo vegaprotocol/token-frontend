@@ -4,7 +4,7 @@ describe("Associate", () => {
   it("Renders switcher, header and description", () => {
     // As a user
     mock(cy);
-    // When visiting a fake page
+    // When visiting the associate page
     cy.visit("/associate");
 
     cy.get("[data-testid='associate-information']").should(
@@ -22,7 +22,7 @@ describe("Associate", () => {
   it("Allows query param from method (Wallet)", () => {
     // As a user
     mock(cy);
-    // When visiting a fake page
+    // When visiting the associate page
     cy.visit("/associate?method=Wallet");
     // Then I see contract associate flow
     cy.get('[data-testid="wallet-associate"]').should("exist");
@@ -33,7 +33,7 @@ describe("Associate", () => {
   it("Allows query param from method (Contract)", () => {
     // As a user
     mock(cy);
-    // When visiting a fake page
+    // When visiting the associate page
     cy.visit("/associate?method=Contract");
     // Then I see contract associate flow
     cy.get('[data-testid="contract-associate"]').should("exist");
@@ -44,7 +44,7 @@ describe("Associate", () => {
   it("Allows the user to click to select", () => {
     // As a user
     mock(cy);
-    // When visiting a fake page
+    // When visiting the associate page
     cy.visit("/associate");
     // Then I see contract associate flow
     cy.get('[data-testid="contract-associate"]').click();
