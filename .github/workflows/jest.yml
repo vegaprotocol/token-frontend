@@ -31,6 +31,10 @@ jobs:
         env:
           NODE_OPTIONS: --max-old-space-size=4096
 
+      - name: Build
+        run: |
+          yarn run build
+
       # Pins to IPFS with Infura. No auth required.
       - name: Pin to IPFS
         uses: alexanderschau/ipfs-pinning-action@v1.0.0
