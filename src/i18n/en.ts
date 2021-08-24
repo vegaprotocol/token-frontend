@@ -263,6 +263,15 @@ const en = {
   "Associate VEGA Tokens with key": "Associate VEGA Tokens with key",
   "Vesting contract": "Vesting contract",
   Wallet: "Wallet",
+  "Nominate Stake to Validator Node": "Nominate Stake to Validator Node",
+  "Associating Tokens": "Associating Tokens",
+  Done: "Done",
+  "Associating {{amount}} VEGA tokens with Vega key {{vegaKey}}":
+    "Associating {{amount}} VEGA tokens with Vega key {{vegaKey}}",
+  "The Vega network requires 30 Confirmations (approx 5 minutes) on Ethereum before crediting your Vega key with your tokens. This page will update once complete or you can come back and check your Vega wallet to see if it is ready to use.":
+    "The Vega network requires 30 Confirmations (approx 5 minutes) on Ethereum before crediting your Vega key with your tokens. This page will update once complete or you can come back and check your Vega wallet to see if it is ready to use.",
+  "Vega key {{vegaKey}} can now participate in governance and Nominate a validator with it’s stake.":
+    "Vega key {{vegaKey}} can now participate in governance and Nominate a validator with it’s stake.",
 };
 
 export default en;

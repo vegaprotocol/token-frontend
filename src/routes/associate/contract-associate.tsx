@@ -114,6 +114,24 @@ export const ContractAssociate = () => {
       </Button>
       {txState.txState !== TxState.Default ? (
         <TransactionCallout
+          completeHeading={t("Done")}
+          completeBody={t(
+            "Vega key {{vegaKey}} can now participate in governance and Nominate a validator with it’s stake.",
+            { vegaKey: currVegaKey?.pub }
+          )}
+          completeFooter={
+            <button style={{ width: "100%" }}>
+              {t("Nominate Stake to Validator Node")}
+            </button>
+          }
+          pendingHeading={t("Associating Tokens")}
+          pendingBody={t(
+            "Associating {{amount}} VEGA tokens with Vega key {{vegaKey}}",
+            { amount, vegaKey: currVegaKey?.pub }
+          )}
+          pendingFooter={t(
+            "The Vega network requires 30 Confirmations (approx 5 minutes) on Ethereum before crediting your Vega key with your tokens. This page will update once complete or you can come back and check your Vega wallet to see if it is ready to use."
+          )}
           state={txState}
           reset={() => txDispatch({ type: TransactionActionType.TX_RESET })}
         />
