@@ -45,17 +45,16 @@ const Associate = ({ name }: RouteChildProps) => {
   const [selectedStakingMethod, setSelectedStakingMethod] = React.useState<
     StakingMethod | ""
   >(stakingMethod);
-  // TODO fix
-  const amount = "0.00001";
+  const [state, dispatch] = useReducer(associateReducer, initialAssociateState);
+  const { amount } = state;
   const {
     state: vestingBridgeTx,
-    dispatch: txDispatch,
+    dispatch: vestingBridgeDispatch,
     perform,
   } = useTransaction(
-    () => vesting.addStake(address!, amount!, currVegaKey!.pub),
-    () => vesting.checkAddStake(address!, amount!, currVegaKey!.pub)
+    () => vesting.addStake(address!, amount, currVegaKey!.pub),
+    () => vesting.checkAddStake(address!, amount, currVegaKey!.pub)
   );
-  const [state, dispatch] = useReducer(associateReducer, initialAssociateState);
 
   return (
     <TemplateSidebar
@@ -85,46 +84,52 @@ const Associate = ({ name }: RouteChildProps) => {
               "The Vega network requires 30 Confirmations (approx 5 minutes) on Ethereum before crediting your Vega key with your tokens. This page will update once complete or you can come back and check your Vega wallet to see if it is ready to use."
             )}
             state={vestingBridgeTx}
-            reset={() => txDispatch({ type: TransactionActionType.TX_RESET })}
+            reset={() =>
+              vestingBridgeDispatch({ type: TransactionActionType.TX_RESET })
+            }
           />
         ) : null}
-        <p data-testid="associate-information">
-          {t(
-            "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes."
-          )}
-        </p>
-        <h2 data-testid="associate-subheader">
-          {t("Where would you like to stake from?")}
-        </h2>
-        <RadioGroup
-          inline={true}
-          onChange={(e: FormEvent<HTMLInputElement>) => {
-            // @ts-ignore
-            setSelectedStakingMethod(e.target.value);
-          }}
-          selectedValue={selectedStakingMethod}
-        >
-          <Radio
-            data-testid="associate-radio-contract"
-            label={t("Vesting contract")}
-            value={StakingMethod.Contract}
-          />
-          <Radio
-            data-testid="associate-radio-wallet"
-            label={t("Wallet")}
-            value={StakingMethod.Wallet}
-          />
-        </RadioGroup>
-        {selectedStakingMethod &&
-          (selectedStakingMethod === StakingMethod.Contract ? (
-            <ContractAssociate
-              perform={perform}
-              state={state}
-              dispatch={dispatch}
-            />
-          ) : (
-            <WalletAssociate />
-          ))}
+        {vestingBridgeTx.txState === TxState.Default && (
+          <>
+            <p data-testid="associate-information">
+              {t(
+                "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes."
+              )}
+            </p>
+            <h2 data-testid="associate-subheader">
+              {t("Where would you like to stake from?")}
+            </h2>
+            <RadioGroup
+              inline={true}
+              onChange={(e: FormEvent<HTMLInputElement>) => {
+                // @ts-ignore
+                setSelectedStakingMethod(e.target.value);
+              }}
+              selectedValue={selectedStakingMethod}
+            >
+              <Radio
+                data-testid="associate-radio-contract"
+                label={t("Vesting contract")}
+                value={StakingMethod.Contract}
+              />
+              <Radio
+                data-testid="associate-radio-wallet"
+                label={t("Wallet")}
+                value={StakingMethod.Wallet}
+              />
+            </RadioGroup>
+            {selectedStakingMethod &&
+              (selectedStakingMethod === StakingMethod.Contract ? (
+                <ContractAssociate
+                  perform={perform}
+                  state={state}
+                  dispatch={dispatch}
+                />
+              ) : (
+                <WalletAssociate />
+              ))}
+          </>
+        )}
       </Web3Container>
     </TemplateSidebar>
   );

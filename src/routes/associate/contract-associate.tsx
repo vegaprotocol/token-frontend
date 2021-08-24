@@ -26,9 +26,12 @@ export const ContractAssociate = ({
 }) => {
   const { t } = useTranslation();
   const { amount } = state;
-  const setAmount = React.useCallback((value: string) => {
-    dispatch({ type: AssociateActionType.SET_AMOUNT, amount: value });
-  }, [dispatch]);
+  const setAmount = React.useCallback(
+    (value: string) => {
+      dispatch({ type: AssociateActionType.SET_AMOUNT, amount: value });
+    },
+    [dispatch]
+  );
   const [stakedBalance, setStakedBalance] = React.useState<BigNumber>(
     new BigNumber("0")
   );
