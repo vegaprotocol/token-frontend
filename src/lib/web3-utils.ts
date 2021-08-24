@@ -48,7 +48,7 @@ export type PromiEvent = typeof Promise & {
   once: (event: string, listener: (...args: any[]) => void) => PromiEvent;
 };
 
-export interface IVegaStaking {
+export interface IStaking {
   stakeBalance(address: string, vegaKey: string): Promise<BigNumber>;
   totalStaked(): Promise<BigNumber>;
   removeStake(address: string, amount: string, vegaKey: string): PromiEvent;
@@ -59,6 +59,9 @@ export interface IVegaStaking {
   ): Promise<any>;
   addStake(address: string, amount: string, vegaKey: string): PromiEvent;
   checkAddStake(address: string, amount: string, vegaKey: string): Promise<any>;
+}
+
+export interface IVegaStaking extends IStaking {
   checkTransferStake(
     address: string,
     amount: string,
@@ -73,7 +76,7 @@ export interface IVegaStaking {
   ): PromiEvent;
 }
 
-export interface IVegaVesting {
+export interface IVegaVesting extends IStaking {
   getUserBalanceAllTranches(address: string): Promise<BigNumber>;
   getLien(address: string): Promise<BigNumber>;
   getAllTranches(): Promise<Tranche[]>;
