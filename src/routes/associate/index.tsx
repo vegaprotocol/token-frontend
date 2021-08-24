@@ -1,6 +1,5 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { TemplateDefault } from "../../components/page-templates/template-default";
 import { Web3Container } from "../../components/web3-container";
 import { RouteChildProps } from "..";
 import { useDocumentTitle } from "../../hooks/use-document-title";

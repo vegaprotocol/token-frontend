@@ -5,18 +5,20 @@ import { Colors } from "../../colors";
 import { Callout } from "../../components/callout";
 import React from "react";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
+import { useAppState } from "../../contexts/app-state/app-state-context";
 
 export const ContractAssociate = () => {
   const vesting = useVegaVesting();
   const [amount, setAmount] = React.useState<string | undefined>("");
   const { t } = useTranslation();
+  const {
+    appState: { currVegaKey },
+  } = useAppState();
   const maximum = "123";
   const useMaximum = React.useCallback(() => {
     setAmount(maximum);
   }, [setAmount, maximum]);
   const inputName = "amount";
-  const vegaKey =
-    "65ea371c556f5648640c243dd30cf7374b5501ffe3dc8603476f723dd636656e";
   return (
     <section className="contract-associate" data-testid="contract-associate">
       <Callout>
@@ -34,7 +36,7 @@ export const ContractAssociate = () => {
         {t("Connected Vega key")}
       </strong>
       <p style={{ color: Colors.WHITE }} data-testid="associate-vega-key">
-        {vegaKey}
+        {currVegaKey}
       </p>
       <h2 data-testid="associate-amount-header">
         {t("How much would you like to associate?")}
