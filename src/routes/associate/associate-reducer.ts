@@ -2,13 +2,13 @@ import { BigNumber } from "../../lib/bignumber";
 
 export interface AssociateState {
   error: Error | null;
-  stakedBalance: BigNumber;
   amount: string;
+  lien: BigNumber;
 }
 
 export const initialAssociateState: AssociateState = {
   error: null,
-  stakedBalance: new BigNumber(0),
+  lien: new BigNumber(0),
   amount: "",
 };
 
@@ -29,7 +29,7 @@ export type AssociateAction =
     }
   | {
       type: AssociateActionType.SET_STAKED_BALANCE;
-      stakedBalance: BigNumber;
+      lien: BigNumber;
     };
 
 export function associateReducer(
@@ -50,7 +50,7 @@ export function associateReducer(
     case AssociateActionType.SET_STAKED_BALANCE:
       return {
         ...state,
-        stakedBalance: action.stakedBalance,
+        lien: action.lien,
       };
   }
 }
