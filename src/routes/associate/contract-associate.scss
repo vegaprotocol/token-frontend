@@ -6,7 +6,11 @@
   }
 
   &__use-maximum {
+    height: 30px;
     margin: 0 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   button {
