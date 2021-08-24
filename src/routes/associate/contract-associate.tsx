@@ -11,7 +11,9 @@ import { BigNumber } from "../../lib/bignumber";
 export const ContractAssociate = () => {
   const { t } = useTranslation();
   const [amount, setAmount] = React.useState<string | undefined>("");
-  const stakedBalance = 0;
+  const [stakedBalance, setStakedBalance] = React.useState<BigNumber>(
+    new BigNumber("0")
+  );
   const {
     appState: { currVegaKey, address, balanceFormatted },
   } = useAppState();
@@ -23,13 +25,14 @@ export const ContractAssociate = () => {
           address,
           currVegaKey.pub
         );
+        setStakedBalance(stakedBalance);
       }
     };
     run();
   }, [address, currVegaKey, vesting]);
   const maximum = React.useMemo(() => {
     return new BigNumber(balanceFormatted).minus(stakedBalance).toString();
-  }, [balanceFormatted]);
+  }, [balanceFormatted, stakedBalance]);
   const useMaximum = React.useCallback(() => {
     setAmount(maximum);
   }, [setAmount, maximum]);
