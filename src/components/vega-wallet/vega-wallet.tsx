@@ -99,6 +99,7 @@ const VegaWalletNotConnected = ({
         <button
           onClick={() => setFormOpen(true)}
           className="vega-wallet__connect"
+          data-testid="connect-vega"
           type="button"
         >
           {t("connectVegaWallet")}
@@ -242,7 +243,11 @@ const VegaWalletForm = ({ vegaWallet, cancel }: VegaWalletFormProps) => {
         intent={errors.wallet?.message ? Intent.DANGER : Intent.NONE}
         helperText={errors.wallet?.message}
       >
-        <input {...register("wallet", { required })} type="text" />
+        <input
+          data-testid="wallet-name"
+          {...register("wallet", { required })}
+          type="text"
+        />
       </FormGroup>
       <FormGroup
         label={t("passphraseLabel")}
@@ -250,10 +255,15 @@ const VegaWalletForm = ({ vegaWallet, cancel }: VegaWalletFormProps) => {
         intent={errors.passphrase?.message ? Intent.DANGER : Intent.NONE}
         helperText={errors.passphrase?.message}
       >
-        <input {...register("passphrase", { required })} type="password" />
+        <input
+          data-testid="wallet-password"
+          {...register("passphrase", { required })}
+          type="password"
+        />
       </FormGroup>
       <div className="vega-wallet__form-buttons">
         <button
+          data-testid="wallet-login"
           type="submit"
           disabled={loading}
           className="vega-wallet__form-submit"

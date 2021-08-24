@@ -45,7 +45,6 @@ export function useConnect() {
       });
       const chainId = await provider.request({ method: "eth_chainId" });
       const balance = await vega.getUserBalanceAllTranches(accounts[0]);
-
       connected = true;
       appDispatch({
         type: AppStateActionType.CONNECT_SUCCESS,

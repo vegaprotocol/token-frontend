@@ -20,12 +20,14 @@ export const TransactionComplete = ({
   const { t } = useTranslation();
   return (
     <Callout icon={<Tick />} intent="success">
-      <p>{heading || t("Complete")}</p>
-      {body && <p>{body}</p>}
+      <p data-testid="transaction-complete-heading">
+        {heading || t("Complete")}
+      </p>
+      {body && <p data-testid="transaction-complete-body">{body}</p>}
       <p>
         <EtherscanLink hash={hash} chainId={chainId} />
       </p>
-      {footer && <p>{footer}</p>}
+      {footer && <p data-testid="transaction-complete-footer">{footer}</p>}
     </Callout>
   );
 };
