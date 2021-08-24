@@ -20,12 +20,14 @@ export const TransactionPending = ({
   const { t } = useTranslation();
   return (
     <Callout icon={<Loader />}>
-      <p>{heading || t("Transaction in progress")}</p>
-      {body && <p>{body}</p>}
+      <p data-testid="transaction-pending-heading">
+        {heading || t("Transaction in progress")}
+      </p>
+      {body && <p data-testid="transaction-pending-body">{body}</p>}
       <p>
         <EtherscanLink hash={hash} chainId={chainId} />
       </p>
-      {footer && <p>{footer}</p>}
+      {footer && <p data-testid="transaction-pending-footer">{footer}</p>}
     </Callout>
   );
 };

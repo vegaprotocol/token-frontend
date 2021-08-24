@@ -60,7 +60,12 @@ const ConnectedKey = () => {
 
   if (!address) {
     return (
-      <button type="button" onClick={connect} className="eth-wallet__connect">
+      <button
+        type="button"
+        onClick={connect}
+        data-testid="connect"
+        className="eth-wallet__connect"
+      >
         {t("Connect")}
       </button>
     );

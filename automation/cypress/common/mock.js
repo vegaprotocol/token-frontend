@@ -35,15 +35,16 @@ export const mock = (cy, options = {}) => {
   // VESTING
   cy.intercept(
     "GET",
+    "/mocks/vesting/balance/staked",
+    mergedOptions.vesting.stakedBalance
+  );
+  cy.intercept(
+    "GET",
     "/mocks/vesting/balance",
     JSON.stringify(mergedOptions.vesting.balance)
   );
   cy.intercept("GET", "/mocks/vesting/events", mergedOptions.vesting.tranches);
-  cy.intercept(
-    "GET",
-    "/mocks/vesting/balance/staked",
-    mergedOptions.vesting.stakedBalance
-  );
+
   // CLAIM
   cy.intercept(
     "GET",
@@ -71,6 +72,23 @@ export const mock = (cy, options = {}) => {
   cy.intercept(
     "http://localhost:1789/api/v1/status",
     JSON.stringify({ success: true })
+  );
+  cy.intercept(
+    "http://localhost:1789/api/v1/auth/token",
+    JSON.stringify({ token: "token" })
+  );
+  cy.intercept(
+    "http://localhost:1789/api/v1/keys",
+    JSON.stringify({
+      keys: [
+        {
+          algo: "vega/ed25519",
+          meta: [{ key: "alias", value: "Test wallet" }],
+          pub: "pub",
+          tainted: false,
+        },
+      ],
+    })
   );
 };
 
