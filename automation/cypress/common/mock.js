@@ -8,6 +8,7 @@ const defaultMockOptions = {
   vesting: {
     balance: "123",
     tranches: { fixture: "events.json" },
+    stakedBalance: "10",
   },
   claim: {
     committed: false,
@@ -38,7 +39,11 @@ export const mock = (cy, options = {}) => {
     JSON.stringify(mergedOptions.vesting.balance)
   );
   cy.intercept("GET", "/mocks/vesting/events", mergedOptions.vesting.tranches);
-
+  cy.intercept(
+    "GET",
+    "/mocks/vesting/balance/staked",
+    mergedOptions.vesting.stakedBalance
+  );
   // CLAIM
   cy.intercept(
     "GET",
@@ -61,6 +66,12 @@ export const mock = (cy, options = {}) => {
     const blocked = mergedOptions.claim.blockedCountries.includes(country);
     req.reply(blocked.toString());
   });
+
+  // VEGA WALLET
+  cy.intercept(
+    "http://localhost:1789/api/v1/status",
+    JSON.stringify({ success: true })
+  );
 };
 
 export const mockVesting = (balances, overrides = {}) => {
