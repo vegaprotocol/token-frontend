@@ -16,6 +16,7 @@ export const Staking = () => {
   return (
     <div>
       <h2>Staking</h2>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
       <Link to={`${match.path}/some-node`}>Stake some-node</Link>
     </div>
   );

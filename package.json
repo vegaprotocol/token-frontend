@@ -44,7 +44,8 @@
     "start:mock": "REACT_APP_MOCKED=1 craco -r @cypress/instrument-cra start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "generate": "node scripts/create-possible-types.js && npx apollo codegen:generate ./src/api/graphql/types --addTypename --outputFlat --target=typescript --localSchemaFile=./src/api/graphql/schema.graphql --includes=./src/ && node scripts/create-gql-exports.js"
   },
   "eslintConfig": {
     "extends": [
