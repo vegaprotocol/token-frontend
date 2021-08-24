@@ -8,9 +8,21 @@ import { useAppState } from "../../contexts/app-state/app-state-context";
 export const TransactionCallout = ({
   state,
   reset,
+  completeHeading,
+  completeBody,
+  completeFooter,
+  pendingHeading,
+  pendingFooter,
+  pendingBody,
 }: {
   state: TransactionState;
   reset: () => void;
+  completeHeading?: React.ReactElement | string;
+  completeBody?: React.ReactElement | string;
+  completeFooter?: React.ReactElement | string;
+  pendingHeading?: React.ReactElement | string;
+  pendingBody?: React.ReactElement | string;
+  pendingFooter?: React.ReactElement | string;
 }) => {
   const {
     appState: { chainId },
@@ -25,11 +37,27 @@ export const TransactionCallout = ({
       />
     );
   } else if (state.txState === TxState.Pending) {
-    return <TransactionPending hash={state.txData.hash!} chainId={chainId!} />;
+    return (
+      <TransactionPending
+        hash={state.txData.hash!}
+        chainId={chainId!}
+        heading={pendingHeading}
+        body={pendingBody}
+        footer={pendingFooter}
+      />
+    );
   } else if (state.txState === TxState.Requested) {
     return <TransactionRequested />;
   } else if (state.txState === TxState.Complete) {
-    return <TransactionComplete hash={state.txData.hash!} chainId={chainId!} />;
+    return (
+      <TransactionComplete
+        hash={state.txData.hash!}
+        chainId={chainId!}
+        heading={completeHeading}
+        body={completeBody}
+        footer={completeFooter}
+      />
+    );
   }
   return null;
 };

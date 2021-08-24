@@ -7,17 +7,25 @@ import { Tick } from "../icons";
 export const TransactionComplete = ({
   hash,
   chainId,
+  heading,
+  footer,
+  body,
 }: {
   hash: string;
   chainId: EthereumChainId;
+  heading?: React.ReactElement | string;
+  footer?: React.ReactElement | string;
+  body?: React.ReactElement | string;
 }) => {
   const { t } = useTranslation();
   return (
     <Callout icon={<Tick />} intent="success">
-      <p>{t("Complete")}</p>
+      <p>{heading || t("Complete")}</p>
+      {body && <p>{body}</p>}
       <p>
         <EtherscanLink hash={hash} chainId={chainId} />
       </p>
+      {footer && <p>{footer}</p>}
     </Callout>
   );
 };
