@@ -25,7 +25,7 @@ export const VegaWalletContainer = ({ children }: VegaWalletContainerProps) => {
 
   if (appState.vegaWalletStatus === VegaWalletStatus.None) {
     return (
-      <Callout intent="error" icon={<Error />} title="Vega wallet not running">
+      <Callout intent="error" icon={<Error />}>
         <p>{t("noService")}</p>
       </Callout>
     );
