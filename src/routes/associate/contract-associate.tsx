@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Colors } from "../../colors";
 import { Callout } from "../../components/callout";
 import React from "react";
-// import { useVegaVesting } from "../../hooks/use-vega-vesting";
+import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber";
 
@@ -13,23 +13,20 @@ export const ContractAssociate = () => {
   const [amount, setAmount] = React.useState<string | undefined>("");
   const stakedBalance = 0;
   const {
-    appState: { currVegaKey, balanceFormatted },
+    appState: { currVegaKey, address, balanceFormatted },
   } = useAppState();
-  // const vesting = useVegaVesting();
-  // React.useEffect(() => {
-  //   const run = async () => {
-  //     if (currVegaKey && address) {
-  //       const totalStaked = await vesting.totalStaked();
-  //       console.log(currVegaKey.pub, address, totalStaked.toString());
-  //       const stakedBalance = await vesting.stakeBalance(
-  //         address,
-  //         currVegaKey.pub
-  //       );
-  //       console.log(stakedBalance.toString());
-  //     }
-  //   };
-  //   run();
-  // }, [address, currVegaKey, vesting]);
+  const vesting = useVegaVesting();
+  React.useEffect(() => {
+    const run = async () => {
+      if (currVegaKey && address) {
+        const stakedBalance = await vesting.stakeBalance(
+          address,
+          currVegaKey.pub
+        );
+      }
+    };
+    run();
+  }, [address, currVegaKey, vesting]);
   const maximum = React.useMemo(() => {
     return new BigNumber(balanceFormatted).minus(stakedBalance).toString();
   }, [balanceFormatted]);

@@ -25,11 +25,15 @@ export default class StakingAbi implements IVegaStaking {
     amount: string,
     vegaKey: string
   ): Promise<any> {
-    return this.contract.methods.stake(amount, vegaKey).call({ from: address });
+    return this.contract.methods
+      .stake(amount, `0x${vegaKey}`)
+      .call({ from: address });
   }
 
   addStake(address: string, amount: string, vegaKey: string): PromiEvent {
-    return this.contract.methods.stake(amount, vegaKey).send({ from: address });
+    return this.contract.methods
+      .stake(amount, `0x${vegaKey}`)
+      .send({ from: address });
   }
 
   checkRemoveStake(
@@ -42,7 +46,7 @@ export default class StakingAbi implements IVegaStaking {
 
   removeStake(address: string, amount: string, vegaKey: string): PromiEvent {
     return this.contract.methods
-      .remove_stake(amount, vegaKey)
+      .remove_stake(amount, `0x${vegaKey}`)
       .send({ from: address });
   }
 
@@ -53,7 +57,7 @@ export default class StakingAbi implements IVegaStaking {
     vegaKey: string
   ): Promise<any> {
     return this.contract.methods
-      .remove_stake(amount, newAddress, vegaKey)
+      .remove_stake(amount, newAddress, `0x${vegaKey}`)
       .call({ from: address });
   }
 
@@ -64,13 +68,13 @@ export default class StakingAbi implements IVegaStaking {
     vegaKey: string
   ): PromiEvent {
     return this.contract.methods
-      .remove_stake(amount, newAddress, vegaKey)
+      .remove_stake(amount, newAddress, `0x${vegaKey}`)
       .send({ from: address });
   }
 
   async stakeBalance(address: string, vegaKey: string): Promise<BigNumber> {
     const res = await this.contract.methods
-      .stake_balance(address, vegaKey)
+      .stake_balance(address, `0x${vegaKey}`)
       .call();
     return new BigNumber(addDecimal(new BigNumber(res), this.decimals));
   }

@@ -24,7 +24,7 @@ export default class VegaVesting implements IVegaVesting {
 
   async stakeBalance(address: string, vegaKey: string): Promise<BigNumber> {
     const res = await this.contract.methods
-      .stake_balance(address, vegaKey)
+      .stake_balance(address, `0x${vegaKey}`)
       .call();
     return new BigNumber(addDecimal(new BigNumber(res), this.decimals));
   }
@@ -44,13 +44,13 @@ export default class VegaVesting implements IVegaVesting {
 
   removeStake(address: string, amount: string, vegaKey: string): PromiEvent {
     return this.contract.methods
-      .remove_stake(amount, vegaKey)
+      .remove_stake(amount, `0x${vegaKey}`)
       .send({ from: address });
   }
 
   addStake(address: string, amount: string, vegaKey: string): PromiEvent {
     return this.contract.methods
-      .stake_tokens(amount, vegaKey)
+      .stake_tokens(amount, `0x${vegaKey}`)
       .call({ from: address });
   }
 
@@ -60,7 +60,7 @@ export default class VegaVesting implements IVegaVesting {
     vegaKey: string
   ): Promise<any> {
     return this.contract.methods
-      .stake_tokens(amount, vegaKey)
+      .stake_tokens(amount, `0x${vegaKey}`)
       .call({ from: address });
   }
 
