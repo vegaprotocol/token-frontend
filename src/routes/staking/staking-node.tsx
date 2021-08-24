@@ -1,3 +1,5 @@
+import "./staking-node.scss";
+
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import {
@@ -29,7 +31,7 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
       <KeyValueTable>
         <KeyValueTableRow>
           <th>{t("VEGA ADDRESS / PUBLIC KEY")}</th>
-          <td>{validator.address}</td>
+          <td className="staking-node__cell">{validator.address}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("ABOUT THIS VALIDATOR")}</th>
