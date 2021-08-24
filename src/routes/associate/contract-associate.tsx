@@ -4,21 +4,44 @@ import { useTranslation } from "react-i18next";
 import { Colors } from "../../colors";
 import { Callout } from "../../components/callout";
 import React from "react";
-import { useVegaVesting } from "../../hooks/use-vega-vesting";
+// import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { useAppState } from "../../contexts/app-state/app-state-context";
+import { BigNumber } from "../../lib/bignumber";
 
 export const ContractAssociate = () => {
-  const vesting = useVegaVesting();
-  const [amount, setAmount] = React.useState<string | undefined>("");
   const { t } = useTranslation();
+  const [amount, setAmount] = React.useState<string | undefined>("");
+  const stakedBalance = 0;
   const {
-    appState: { currVegaKey },
+    appState: { currVegaKey, balanceFormatted },
   } = useAppState();
-  const maximum = "123";
+  // const vesting = useVegaVesting();
+  // React.useEffect(() => {
+  //   const run = async () => {
+  //     if (currVegaKey && address) {
+  //       const totalStaked = await vesting.totalStaked();
+  //       console.log(currVegaKey.pub, address, totalStaked.toString());
+  //       const stakedBalance = await vesting.stakeBalance(
+  //         address,
+  //         currVegaKey.pub
+  //       );
+  //       console.log(stakedBalance.toString());
+  //     }
+  //   };
+  //   run();
+  // }, [address, currVegaKey, vesting]);
+  const maximum = React.useMemo(() => {
+    return new BigNumber(balanceFormatted).minus(stakedBalance).toString();
+  }, [balanceFormatted]);
   const useMaximum = React.useCallback(() => {
     setAmount(maximum);
   }, [setAmount, maximum]);
   const inputName = "amount";
+  const isDisabled = React.useMemo<boolean>(
+    () =>
+      !amount || amount === "0" || new BigNumber(amount).isGreaterThan(maximum),
+    [amount, maximum]
+  );
   return (
     <section className="contract-associate" data-testid="contract-associate">
       <Callout>
@@ -36,7 +59,7 @@ export const ContractAssociate = () => {
         {t("Connected Vega key")}
       </strong>
       <p style={{ color: Colors.WHITE }} data-testid="associate-vega-key">
-        {currVegaKey}
+        {currVegaKey?.pub}
       </p>
       <h2 data-testid="associate-amount-header">
         {t("How much would you like to associate?")}
@@ -64,7 +87,7 @@ export const ContractAssociate = () => {
           </button>
         </div>
       </FormGroup>
-      <Button data-testid="associate-button" fill={true} disabled={!amount}>
+      <Button data-testid="associate-button" fill={true} disabled={isDisabled}>
         {t("Associate VEGA Tokens with key")}
       </Button>
     </section>
