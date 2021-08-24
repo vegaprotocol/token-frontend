@@ -4,6 +4,7 @@ import { RouteChildProps } from "..";
 import { EthWallet } from "../../components/eth-wallet";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
 import { VegaWallet } from "../../components/vega-wallet";
+import { VegaWalletContainer } from "../../components/vega-wallet-container";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { Staking } from "./staking";
 import { StakingNode } from "./staking-node";
@@ -18,14 +19,18 @@ const RedemptionRouter = ({ name }: RouteChildProps) => {
       sidebarButtonText={t("viewKeys")}
       sidebar={[<EthWallet />, <VegaWallet />]}
     >
-      <Switch>
-        <Route path={`${match.path}/:node`}>
-          <StakingNode />
-        </Route>
-        <Route path={match.path} exact>
-          <Staking />
-        </Route>
-      </Switch>
+      <VegaWalletContainer>
+        {({ vegaKey }) => (
+          <Switch>
+            <Route path={`${match.path}/:node`}>
+              <StakingNode vegaKey={vegaKey} />
+            </Route>
+            <Route path={match.path} exact>
+              <Staking />
+            </Route>
+          </Switch>
+        )}
+      </VegaWalletContainer>
     </TemplateSidebar>
   );
 };
