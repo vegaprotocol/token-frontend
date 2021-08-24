@@ -14,31 +14,39 @@ class MockedVesting implements IVegaVesting {
   constructor(web3: Web3, vestingAddress: string, decimals: number) {
     this.decimals = decimals;
   }
-  stakeBalance(address: string, vegaKey: string): Promise<BigNumber> {
-    throw new Error("Method not implemented.");
-  }
-  totalStaked(): Promise<BigNumber> {
-    throw new Error("Method not implemented.");
-  }
-  removeStake(address: string, amount: string, vegaKey: string): PromiEvent {
-    throw new Error("Method not implemented.");
-  }
+
   checkRemoveStake(
     address: string,
     amount: string,
     vegaKey: string
   ): Promise<any> {
-    throw new Error("Method not implemented.");
+    return Promise.resolve(true);
   }
-  addStake(address: string, amount: string, vegaKey: string): PromiEvent {
-    throw new Error("Method not implemented.");
-  }
+
   checkAddStake(
     address: string,
     amount: string,
     vegaKey: string
   ): Promise<any> {
-    throw new Error("Method not implemented.");
+    return Promise.resolve(true);
+  }
+
+  addStake(address: string, amount: string, vegaKey: string): PromiEvent {
+    return promiEventFactory(uuidv4(), "add-stake");
+  }
+
+  removeStake(address: string, amount: string, vegaKey: string): PromiEvent {
+    return promiEventFactory(uuidv4(), "remove-stake");
+  }
+
+  async stakeBalance(address: string, vegaKey: string): Promise<BigNumber> {
+    const res = await this.performFetch("balance/staked");
+    return new BigNumber(addDecimal(new BigNumber(res), this.decimals));
+  }
+
+  async totalStaked(): Promise<BigNumber> {
+    const res = await this.performFetch("staked/total");
+    return new BigNumber(addDecimal(new BigNumber(res), this.decimals));
   }
 
   private async performFetch(url: string, data?: any) {
@@ -89,6 +97,7 @@ class MockedVesting implements IVegaVesting {
     );
     return new BigNumber(addDecimal(new BigNumber(balance), this.decimals));
   }
+
   async userTrancheVestedBalance(
     address: string,
     tranche: number
