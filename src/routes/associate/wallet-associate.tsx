@@ -1,10 +1,20 @@
 import { useTranslation } from "react-i18next";
-import { useAppState } from "../../contexts/app-state/app-state-context";
+import {
+  AppStateActionType,
+  useAppState,
+} from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber";
 import { AssociateInfo } from "./associate-info";
 import { AssociateAction, AssociateState } from "./associate-reducer";
 import React from "react";
 import { AssociateInput } from "./associate-input";
+import { useTransaction } from "../../hooks/use-transaction";
+import { useVegaToken } from "../../hooks/use-vega-token";
+import {
+  TransactionActionType,
+  TxState,
+} from "../../hooks/transaction-reducer";
+import { TransactionCallout } from "../../components/transaction-callout";
 
 export const WalletAssociate = ({
   perform,
@@ -17,18 +27,24 @@ export const WalletAssociate = ({
 }) => {
   // TODO
   const stakedAmount = 0;
-  const isApproved = false;
 
   const { amount } = state;
   const { t } = useTranslation();
   const {
-    appState: { walletBalance, currVegaKey },
+    appDispatch,
+    appState: { walletBalance, currVegaKey, address, allowance },
   } = useAppState();
-  let pageContent = null;
-
+  const isApproved = !new BigNumber(allowance!).isEqualTo(0);
+  const token = useVegaToken();
+  const {
+    state: approveState,
+    perform: approve,
+    dispatch: approveDispatch,
+  } = useTransaction(() => token.approve(address!));
   const maximum = React.useMemo(
-    () => new BigNumber(walletBalance),
-    [walletBalance]
+    () =>
+      BigNumber.min(new BigNumber(walletBalance), new BigNumber(allowance!)),
+    [allowance, walletBalance]
   );
   const isDisabled = React.useMemo<boolean>(
     () =>
@@ -38,6 +54,22 @@ export const WalletAssociate = ({
       new BigNumber(amount).isGreaterThan(maximum),
     [amount, isApproved, maximum]
   );
+
+  // Once they have approved deposits then we need to refresh their allowance
+  React.useEffect(() => {
+    const run = async () => {
+      if (approveState.txState === TxState.Complete) {
+        const allowance = await token.allowance(address!);
+        appDispatch({
+          type: AppStateActionType.SET_ALLOWANCE,
+          allowance,
+        });
+      }
+    };
+    run();
+  }, [address, appDispatch, approveState.txState, token]);
+
+  let pageContent = null;
   if (new BigNumber(walletBalance).isEqualTo("0")) {
     pageContent = (
       <div className="wallet-associate__error">
@@ -54,6 +86,16 @@ export const WalletAssociate = ({
         )}
       </div>
     );
+  } else if (
+    approveState.txState !== TxState.Default &&
+    approveState.txState !== TxState.Complete
+  ) {
+    pageContent = (
+      <TransactionCallout
+        state={approveState}
+        reset={() => approveDispatch({ type: TransactionActionType.TX_RESET })}
+      />
+    );
   } else {
     pageContent = (
       <>
@@ -63,7 +105,7 @@ export const WalletAssociate = ({
           data-testid="approve-button"
           style={{ width: "100%" }}
           disabled={isApproved}
-          onClick={perform}
+          onClick={approve}
         >
           {t("Approve VEGA tokens for staking on Vega")}
         </button>
