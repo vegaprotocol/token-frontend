@@ -30,7 +30,6 @@ export const Web3Container = ({
     if (appState.providerStatus === ProviderStatus.Ready) {
       provider.on("accountsChanged", async (accounts: string[]) => {
         if (accounts.length) {
-          // TODO refetch all data
           const [balance, walletBalance, lien] = await Promise.all([
             vega.getUserBalanceAllTranches(accounts[0]),
             vegaToken.balanceOf(accounts[0]),
