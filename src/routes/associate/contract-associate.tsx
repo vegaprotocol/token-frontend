@@ -5,7 +5,6 @@ import { useAppState } from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber";
 import { AssociateAction, AssociateState } from "./associate-reducer";
 import { AssociateInfo } from "./associate-info";
-import { Button } from "@blueprintjs/core";
 import { AssociateInput } from "./associate-input";
 
 export const ContractAssociate = ({
@@ -43,14 +42,14 @@ export const ContractAssociate = ({
       </Callout>
       <AssociateInfo pubKey={currVegaKey!.pub} />
       <AssociateInput maximum={maximum} state={state} dispatch={dispatch} />
-      <Button
+      <button
         data-testid="associate-button"
-        fill={true}
         disabled={isDisabled}
+        style={{ width: "100%" }}
         onClick={perform}
       >
         {t("Associate VEGA Tokens with key")}
-      </Button>
+      </button>
     </section>
   );
 };
