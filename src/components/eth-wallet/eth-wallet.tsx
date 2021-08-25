@@ -12,6 +12,7 @@ import {
   WalletCardHeader,
   WalletCardRow,
 } from "../wallet-card";
+import { Colors } from "../../colors";
 
 export const EthWallet = () => {
   const { t } = useTranslation();
@@ -48,7 +49,8 @@ const ConnectedKey = () => {
   const { t } = useTranslation();
   const connect = useConnect();
   const { appState } = useAppState();
-  const { connecting, address, error, balanceFormatted, lien } = appState;
+  const { connecting, address, error, balanceFormatted, lien, walletBalance } =
+    appState;
 
   if (error) {
     return <div>{t("Something went wrong")}</div>;
@@ -75,8 +77,28 @@ const ConnectedKey = () => {
     <>
       <WalletCardRow>
         <span>{t("Vesting")}</span>
+      </WalletCardRow>
+      <WalletCardRow>
+        <span>{t("Total")}</span>
         <span>
           {balanceFormatted} {t("VEGA")}
+        </span>
+      </WalletCardRow>
+      <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
+      <WalletCardRow>
+        <span>{t("Staked")}</span>
+        <span>
+          {lien} {t("VEGA")}
+        </span>
+      </WalletCardRow>
+      <hr />
+      <WalletCardRow>
+        <span>{t("Wallet")}</span>
+      </WalletCardRow>
+      <WalletCardRow>
+        <span>{t("Balance")}</span>
+        <span>
+          {walletBalance} {t("VEGA")}
         </span>
       </WalletCardRow>
       {/* <WalletCardRow>
@@ -91,13 +113,6 @@ const ConnectedKey = () => {
           {new BigNumber(balanceFormatted).minus(lien).toString()} {t("VEGA")}
         </span>
       </WalletCardRow> */}
-      <hr />
-      <WalletCardRow>
-        <span>{t("Staked")}</span>
-        <span>
-          {lien} {t("VEGA")}
-        </span>
-      </WalletCardRow>
     </>
   );
 };

@@ -3,4 +3,5 @@ export const Colors = {
   RED: "#ED1515",
   PINK: "#ff077f",
   GREEN: "#26ff8a",
+  TEXT: "#c7c7c7",
 };
