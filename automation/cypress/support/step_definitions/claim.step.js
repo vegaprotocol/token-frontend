@@ -13,15 +13,13 @@ Given("I navigate to not found page",() => {
   cy.url("includes", /not-found/);
 })
 
-Then('I can see the 404 error page')
-
-    // mock(cy);
-    // When visiting a fake page
-
-    // THen I see a 404 page
+Then('I can see the 404 error page',()=>{
+    mock(cy);
     cy.contains(
-      "This page can not be found, please check the URL and try again."
-    );
+    "This page can not be found, please check the URL and try again."
+);
+})
+
 
 Then("I can see the header title is {string}", (headerTitle) => {
   cy.get(".heading__title").should("have.text", headerTitle);
