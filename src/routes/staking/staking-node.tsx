@@ -26,6 +26,7 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
       <p>Vega key: {vegaKey.pubShort}</p>
       <ValidatorTable node={node} />
       <EpochCountdown
+        containerClass="staking-node__epoch"
         count={epochData.count}
         startDate={epochData.startDate}
         endDate={epochData.endDate}

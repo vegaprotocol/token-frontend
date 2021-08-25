@@ -1,3 +1,5 @@
-.staking-node__cell {
-  word-break: break-all;
+.staking-node {
+  &__epoch {
+    padding-top: 20px;
+  }
 }

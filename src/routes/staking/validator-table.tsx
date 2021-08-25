@@ -1,3 +1,4 @@
+import "./validator-table.scss";
 import React from 'react'
 import { useTranslation } from 'react-i18next';
 
@@ -29,7 +30,7 @@ export const ValidatorTable = ({ node }: ValidatorTableProps) => {
       <KeyValueTable>
         <KeyValueTableRow>
           <th>{t("VEGA ADDRESS / PUBLIC KEY")}</th>
-          <td className="staking-node__cell">{validator.address}</td>
+          <td className="validator-table__cell">{validator.address}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("ABOUT THIS VALIDATOR")}</th>
