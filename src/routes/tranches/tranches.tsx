@@ -65,7 +65,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
       ) : (
         <p>{t("No tranches")}</p>
       )}
-      <section style={{ textAlign: "center" }}>
+      <section className="tranches__message">
         <button className="button-link" onClick={() => setShowAll(!showAll)}>
           {showAll
             ? t(
