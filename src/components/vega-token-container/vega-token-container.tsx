@@ -17,15 +17,12 @@ export const VegaTokenContainer = ({
 
   React.useEffect(() => {
     const run = async () => {
-      const [supply, decimals] = await Promise.all([
-        vegaToken.getTotalSupply(),
-        vegaToken.getDecimals(),
-      ]);
+      const { totalSupply, decimals } = await vegaToken.getTokenData();
 
       appDispatch({
         type: AppStateActionType.SET_TOKEN,
         decimals,
-        totalSupply: supply.toString(),
+        totalSupply: totalSupply.toString(),
       });
     };
 
