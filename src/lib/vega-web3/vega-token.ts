@@ -4,8 +4,9 @@ import { AbiItem } from "web3-utils";
 import type { Contract } from "web3-eth-contract";
 import tokenAbi from "../abis/vega_token_abi.json";
 import { addDecimal } from "../decimals";
+import { IVegaToken } from "../web3-utils";
 
-export default class VegaTokenAbi {
+export default class VegaToken implements IVegaToken {
   private web3: Web3;
   private contract: Contract;
 
@@ -17,20 +18,20 @@ export default class VegaTokenAbi {
     );
   }
 
-  async getTotalSupply(): Promise<BigNumber> {
+  async totalSupply(): Promise<BigNumber> {
     const res = await this.contract.methods.totalSupply().call();
     return new BigNumber(res);
   }
 
-  async getDecimals(): Promise<number> {
+  async decimals(): Promise<number> {
     const res = await this.contract.methods.decimals().call();
     return Number(res);
   }
 
-  async getTokenData(): Promise<{ totalSupply: BigNumber; decimals: number }> {
+  async tokenData(): Promise<{ totalSupply: BigNumber; decimals: number }> {
     const [supply, decimals] = await Promise.all([
-      this.getTotalSupply(),
-      this.getDecimals(),
+      this.totalSupply(),
+      this.decimals(),
     ]);
 
     return {
