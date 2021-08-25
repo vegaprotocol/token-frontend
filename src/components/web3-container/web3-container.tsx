@@ -7,7 +7,9 @@ import {
 } from "../../contexts/app-state/app-state-context";
 import { useConnect } from "../../hooks/use-connect";
 import { useVegaToken } from "../../hooks/use-vega-token";
-import { EthereumChainNames } from "../../lib/web3-utils";
+import { useVegaVesting } from "../../hooks/use-vega-vesting";
+import { BigNumber } from "../../lib/bignumber";
+import { EthereumChainId, EthereumChainNames } from "../../lib/web3-utils";
 import { Callout } from "../callout";
 import { Error } from "../icons";
 
@@ -18,9 +20,38 @@ export const Web3Container = ({
   children: React.ReactNode | ((address: string) => JSX.Element);
 }) => {
   const { t } = useTranslation();
-  const { appState, appDispatch } = useAppState();
+  const { appState, appDispatch, provider } = useAppState();
   const connect = useConnect();
   const vegaToken = useVegaToken();
+  const vega = useVegaVesting();
+
+  // Bind listeners for account change
+  React.useEffect(() => {
+    if (appState.providerStatus === ProviderStatus.Ready) {
+      provider.on("accountsChanged", async (accounts: string[]) => {
+        if (accounts.length) {
+          // TODO refetch all data
+          const [balance, walletBalance, lien] = await Promise.all([
+            vega.getUserBalanceAllTranches(accounts[0]),
+            vegaToken.balanceOf(accounts[0]),
+            vega.getLien(accounts[0]),
+          ]);
+          appDispatch({
+            type: AppStateActionType.ACCOUNTS_CHANGED,
+            address: accounts[0],
+            balance: new BigNumber(balance),
+            walletBalance,
+            lien,
+          });
+        } else {
+          appDispatch({ type: AppStateActionType.DISCONNECT });
+        }
+      });
+      provider.on("chainChanged", (chainId: EthereumChainId) => {
+        appDispatch({ type: AppStateActionType.CHAIN_CHANGED, chainId });
+      });
+    }
+  }, [appDispatch, appState.providerStatus, provider, vega, vegaToken]);
 
   React.useEffect(() => {
     const run = async () => {

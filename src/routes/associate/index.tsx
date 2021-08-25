@@ -14,11 +14,7 @@ import { useTransaction } from "../../hooks/use-transaction";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { TxState } from "../../hooks/transaction-reducer";
-import {
-  AssociateActionType,
-  associateReducer,
-  initialAssociateState,
-} from "./associate-reducer";
+import { associateReducer, initialAssociateState } from "./associate-reducer";
 import { AssociateTransaction } from "./associate-transaction";
 import { useSearchParams } from "../../hooks/use-search-params";
 

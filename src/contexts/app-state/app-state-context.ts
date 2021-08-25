@@ -79,14 +79,20 @@ export type AppStateAction =
   | { type: AppStateActionType.DISCONNECT }
   | {
       type: AppStateActionType.CONNECT_SUCCESS;
-      address: string;
       chainId: EthereumChainId;
+      address: string;
       balance: BigNumber | null;
       walletBalance: BigNumber | null;
       lien: BigNumber | null;
     }
   | { type: AppStateActionType.CONNECT_FAIL; error: Error }
-  | { type: AppStateActionType.ACCOUNTS_CHANGED; address: string }
+  | {
+      type: AppStateActionType.ACCOUNTS_CHANGED;
+      address: string;
+      balance: BigNumber | null;
+      walletBalance: BigNumber | null;
+      lien: BigNumber | null;
+    }
   | { type: AppStateActionType.CHAIN_CHANGED; chainId: EthereumChainId }
   | { type: AppStateActionType.SET_TRANCHES; tranches: Tranche[] }
   | { type: AppStateActionType.SET_BALANCE; balance: BigNumber }
