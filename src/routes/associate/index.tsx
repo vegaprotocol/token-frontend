@@ -21,7 +21,6 @@ const Associate = ({ name }: RouteChildProps) => {
       <Web3Container>
         {(address) => (
           <VegaWalletContainer>
-            {/* TODO move this into it's own component this is getting pretty bulky */}
             {({ vegaKey }) => (
               <AssociatePage address={address} vegaKey={vegaKey} />
             )}
