@@ -24,12 +24,12 @@ export const Web3Container = ({
 
   React.useEffect(() => {
     const run = async () => {
-      const supply = await vegaToken.getTotalSupply();
-      const decimals = await vegaToken.getDecimals();
+      const supply = await vegaToken.totalSupply();
+      const decimals = await vegaToken.decimals();
       appDispatch({
         type: AppStateActionType.SET_TOKEN,
         decimals,
-        totalSupply: supply,
+        totalSupply: supply.toString(),
       });
     };
 

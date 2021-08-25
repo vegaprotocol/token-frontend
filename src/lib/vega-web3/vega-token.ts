@@ -41,7 +41,7 @@ export default class VegaToken implements IVegaToken {
   }
 
   async balanceOf(address: string): Promise<BigNumber> {
-    const decimals = await this.getDecimals();
+    const decimals = await this.decimals();
     const res = await this.contract.methods.balanceOf(address).call();
     return new BigNumber(addDecimal(new BigNumber(res), decimals));
   }

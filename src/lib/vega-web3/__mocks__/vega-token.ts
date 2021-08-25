@@ -31,6 +31,10 @@ class MockedToken implements IVegaToken {
   async tokenData() {
     return this.performFetch("data");
   }
+
+  balanceOf(address: string): Promise<BigNumber> {
+    return this.performFetch("balance");
+  }
 }
 
 export default MockedToken;
