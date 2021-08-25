@@ -20,9 +20,16 @@ export const Web3Container = ({
   const connect = useConnect();
 
   if (appState.providerStatus === ProviderStatus.None) {
+    let error: string
+    // @ts-ignore
+    if (window?.web3?.currentProvider && !window.web3.currentProvider.request) {
+      error = t("invalidWeb3Provider")
+    } else {
+      error = t("invalidWeb3Browser")
+    }
     return (
       <Callout title={t("Cannot connect")} intent="error" icon={<Error />}>
-        <p>{t("invalidWeb3Browser")}</p>
+        <p>{error}</p>
       </Callout>
     );
   }
