@@ -8,12 +8,14 @@ import { useTranslation } from "react-i18next";
 export const DATE_FORMAT = "yyyy.MM.dd HH:mm";
 
 export interface EpochCountdownProps {
+  containerClass?: string;
   count: number;
   startDate: Date;
   endDate: Date;
 }
 
 export function EpochCountdown({
+  containerClass,
   count,
   startDate,
   endDate,
@@ -50,7 +52,7 @@ export function EpochCountdown({
   }, [endDate]);
 
   return (
-    <div className="epoch-countdown">
+    <div className={`${containerClass} epoch-countdown`}>
       <h3>
         {t("Epoch")} {count}
       </h3>

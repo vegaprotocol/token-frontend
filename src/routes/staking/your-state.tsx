@@ -36,7 +36,7 @@ export const YourStake = ({ node }: YourStakeProps) => {
       <KeyValueTable>
         <KeyValueTableRow>
           <th>{t("Your Stake On Node (This Epoch)")}</th>
-          <td className="staking-node__cell">{nodeData.yourStakeThisEpoch}</td>
+          <td>{nodeData.yourStakeThisEpoch}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("Your Stake On Node (Next Epoch)")}</th>
