@@ -34,7 +34,10 @@ export const Web3Container = ({
             vega.getUserBalanceAllTranches(accounts[0]),
             vegaToken.balanceOf(accounts[0]),
             vega.getLien(accounts[0]),
-            vegaToken.allowance(accounts[0]),
+            vegaToken.allowance(
+              accounts[0],
+              appState.contractAddresses.stakingBridge
+            ),
           ]);
           appDispatch({
             type: AppStateActionType.ACCOUNTS_CHANGED,
@@ -52,7 +55,7 @@ export const Web3Container = ({
         appDispatch({ type: AppStateActionType.CHAIN_CHANGED, chainId });
       });
     }
-  }, [appDispatch, appState.providerStatus, provider, vega, vegaToken]);
+  }, [appDispatch, appState.contractAddresses.stakingBridge, appState.providerStatus, provider, vega, vegaToken]);
 
   React.useEffect(() => {
     const run = async () => {
