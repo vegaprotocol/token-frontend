@@ -5,7 +5,8 @@ import { useParams } from "react-router-dom";
 import { ValidatorTable } from "./validator-table";
 import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
 import { EpochCountdown } from "./epoch-countdown";
-import { YourStake } from "./your-state";
+import { YourStake } from "./your-stake";
+import { StakingForm } from "./staking-form";
 
 interface StakingNodeProps {
   vegaKey: VegaKeyExtended;
@@ -33,6 +34,7 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
         endDate={epochData.endDate}
       />
       <YourStake node={node} />
+      <StakingForm />
     </>
   );
 };
