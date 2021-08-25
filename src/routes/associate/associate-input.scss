@@ -1,6 +1,6 @@
 @import "../../styles/colors";
 
-.contract-associate {
+.associate-input {
   &__input {
     flex: 1;
   }
@@ -12,12 +12,5 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
-
-  button {
-    &:disabled {
-      background-color: $gray5 !important;
-      color: $dark-gray5 !important;
-    }
   }
 }
