@@ -6,6 +6,7 @@ import {
   useAppState,
 } from "../../contexts/app-state/app-state-context";
 import { useConnect } from "../../hooks/use-connect";
+import { useVegaStaking } from "../../hooks/use-vega-staking";
 import { useVegaToken } from "../../hooks/use-vega-token";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { BigNumber } from "../../lib/bignumber";
@@ -22,8 +23,9 @@ export const Web3Container = ({
   const { t } = useTranslation();
   const { appState, appDispatch, provider } = useAppState();
   const connect = useConnect();
-  const vegaToken = useVegaToken();
-  const vega = useVegaVesting();
+  const token = useVegaToken();
+  const staking = useVegaStaking();
+  const vesting = useVegaVesting();
 
   // Bind listeners for account change
   React.useEffect(() => {
@@ -31,10 +33,10 @@ export const Web3Container = ({
       provider.on("accountsChanged", async (accounts: string[]) => {
         if (accounts.length) {
           const [balance, walletBalance, lien, allowance] = await Promise.all([
-            vega.getUserBalanceAllTranches(accounts[0]),
-            vegaToken.balanceOf(accounts[0]),
-            vega.getLien(accounts[0]),
-            vegaToken.allowance(
+            vesting.getUserBalanceAllTranches(accounts[0]),
+            token.balanceOf(accounts[0]),
+            vesting.getLien(accounts[0]),
+            token.allowance(
               accounts[0],
               appState.contractAddresses.stakingBridge
             ),
@@ -55,27 +57,37 @@ export const Web3Container = ({
         appDispatch({ type: AppStateActionType.CHAIN_CHANGED, chainId });
       });
     }
-  }, [appDispatch, appState.contractAddresses.stakingBridge, appState.providerStatus, provider, vega, vegaToken]);
+  }, [
+    appDispatch,
+    appState.contractAddresses.stakingBridge,
+    appState.providerStatus,
+    provider,
+    staking,
+    token,
+    vesting,
+  ]);
 
   React.useEffect(() => {
     const run = async () => {
-      const [supply, totalStaked, decimals] = await Promise.all([
-        vegaToken.totalSupply(),
-        vega.totalStaked(),
-        vegaToken.decimals(),
-      ]);
+      const [supply, totalStakedWallet, totalStakedVesting, decimals] =
+        await Promise.all([
+          token.totalSupply(),
+          staking.totalStaked(),
+          vesting.totalStaked(),
+          token.decimals(),
+        ]);
       appDispatch({
         type: AppStateActionType.SET_TOKEN,
         decimals,
         totalSupply: supply.toString(),
-        totalStaked,
+        totalStaked: totalStakedWallet.plus(totalStakedVesting),
       });
     };
 
     if (appState.providerStatus !== ProviderStatus.None) {
       run();
     }
-  }, [vegaToken, appState.providerStatus, appDispatch, vega]);
+  }, [token, appState.providerStatus, appDispatch, staking, vesting]);
 
   if (appState.providerStatus === ProviderStatus.None) {
     return (
