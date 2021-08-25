@@ -23,7 +23,7 @@ export const TokenDetails = ({ totalSupply }: { totalSupply: string }) => {
     <KeyValueTable className={"token-details"}>
       <KeyValueTableRow>
         <th>{t("Token address")}</th>
-        <td>
+        <td data-testid="token-address">
           <EtherscanLink
             chainId={chainId}
             hash={appState.contractAddresses.vegaTokenAddress}
@@ -33,7 +33,7 @@ export const TokenDetails = ({ totalSupply }: { totalSupply: string }) => {
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Token contract")}</th>
-        <td>
+        <td data-testid="token-contract">
           <EtherscanLink
             chainId={chainId}
             hash={appState.contractAddresses.vestingAddress}
@@ -43,7 +43,7 @@ export const TokenDetails = ({ totalSupply }: { totalSupply: string }) => {
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Total supply")}</th>
-        <td>{totalSupply}</td>
+        <td data-testid="total-supply">{totalSupply}</td>
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Circulating supply")}</th>
@@ -54,7 +54,7 @@ export const TokenDetails = ({ totalSupply }: { totalSupply: string }) => {
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Staked on Vega")}</th>
-        <td>{appState.totalStakedFormatted}</td>
+        <td data-testid="staked">{appState.totalStakedFormatted}</td>
       </KeyValueTableRow>
     </KeyValueTable>
   );

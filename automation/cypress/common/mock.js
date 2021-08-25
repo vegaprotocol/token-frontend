@@ -90,6 +90,13 @@ export const mock = (cy, options = {}) => {
       ],
     })
   );
+
+  // VEGA TOKEN
+  cy.intercept(
+    "GET",
+    "/mocks/vega-token/data",
+    JSON.stringify(mergedOptions.token)
+  );
 };
 
 export const mockVesting = (balances, overrides = {}) => {

@@ -145,3 +145,9 @@ export interface IVegaClaim {
   isUsed(nonce: string): Promise<boolean>;
   isCountryBlocked(country: string): Promise<boolean>;
 }
+
+export interface IVegaToken {
+  totalSupply(): Promise<BigNumber>;
+  decimals(): Promise<number>;
+  tokenData(): Promise<{ totalSupply: BigNumber; decimals: number }>;
+}
