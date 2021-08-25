@@ -40,8 +40,7 @@ export interface AppState {
   appChainId: EthereumChainId;
   decimals: number;
   totalSupply: string | null;
-  totalStaked: BigNumber | null;
-  totalStakedFormatted: string;
+  totalStaked: string;
   contractAddresses: {
     vestingAddress: string;
     vegaTokenAddress: string;
@@ -107,6 +106,7 @@ export type AppStateAction =
       type: AppStateActionType.SET_TOKEN;
       decimals: number;
       totalSupply: string;
+      totalStaked: BigNumber;
     };
 
 type AppStateContextShape = {

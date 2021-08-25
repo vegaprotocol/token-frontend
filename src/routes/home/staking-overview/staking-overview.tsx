@@ -1,15 +1,11 @@
 import { useTranslation } from "react-i18next";
 
-export const StakingOverview = ({
-  totalStakedFormatted,
-}: {
-  totalStakedFormatted: string;
-}) => {
+export const StakingOverview = ({ totalStaked }: { totalStaked: string }) => {
   const { t } = useTranslation();
 
   // TODO: Fetch values
   const nodeCount = 13;
-  const sharedStake = totalStakedFormatted;
+  const sharedStake = totalStaked;
 
   return (
     <p>

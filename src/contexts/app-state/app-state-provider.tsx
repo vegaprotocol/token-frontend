@@ -33,8 +33,7 @@ const initialAppState: AppState = {
   vegaWalletStatus: VegaWalletStatus.Pending,
   vegaKeys: null,
   currVegaKey: null,
-  totalStaked: null,
-  totalStakedFormatted: "0",
+  totalStaked: "",
   decimals: 0,
   totalSupply: null,
 };
@@ -152,6 +151,7 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         ...state,
         decimals: action.decimals,
         totalSupply: action.totalSupply,
+        totalStaked: action.totalStaked.toString(),
       };
     }
   }

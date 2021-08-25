@@ -54,7 +54,7 @@ export const TokenDetails = ({ totalSupply }: { totalSupply: string }) => {
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Staked on Vega")}</th>
-        <td data-testid="staked">{appState.totalStakedFormatted}</td>
+        <td data-testid="staked">{appState.totalStaked}</td>
       </KeyValueTableRow>
     </KeyValueTable>
   );
