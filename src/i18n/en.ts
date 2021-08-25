@@ -79,6 +79,7 @@ const en = {
   codeExpired: "Code expired",
 
   invalidWeb3Browser: "You need a web3 capable browser to use this site",
+  invalidWeb3Provider: "Incompatible web3 provider detected. Please try another browser / extension.",
   "Vesting Balance": "Vesting Balance",
   VEGA: "VEGA",
   Account: "Account",
