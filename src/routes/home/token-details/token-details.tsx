@@ -11,6 +11,7 @@ import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { EtherscanLink } from "../../../components/etherscan-link";
 import { TokenDetailsCirculating } from "./token-details-circulating";
 import { EthereumChainIds } from "../../../lib/web3-utils";
+import { truncateMiddle } from "../../../lib/truncate-middle";
 
 export const TokenDetails = ({ totalSupply }: { totalSupply: string }) => {
   const { t } = useTranslation();
@@ -27,7 +28,7 @@ export const TokenDetails = ({ totalSupply }: { totalSupply: string }) => {
           <EtherscanLink
             chainId={chainId}
             hash={appState.contractAddresses.vegaTokenAddress}
-            text={appState.contractAddresses.vegaTokenAddress}
+            text={truncateMiddle(appState.contractAddresses.vegaTokenAddress)}
           />
         </td>
       </KeyValueTableRow>
@@ -37,7 +38,7 @@ export const TokenDetails = ({ totalSupply }: { totalSupply: string }) => {
           <EtherscanLink
             chainId={chainId}
             hash={appState.contractAddresses.vestingAddress}
-            text={appState.contractAddresses.vestingAddress}
+            text={truncateMiddle(appState.contractAddresses.vestingAddress)}
           />
         </td>
       </KeyValueTableRow>
