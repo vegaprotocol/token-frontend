@@ -242,6 +242,12 @@ const en = {
   "Started": 'Started',
   "Ends In": 'Ends in',
   // Node Validator
+  "Manage your stake": "Manage your stake",
+  "Add Stake": "Add Stake",
+  "Remove Stake": "Remove Stake",
+  "Your Stake": "Your Stake",
+  "Your Stake On Node (This Epoch)": "Your Stake On Node (This Epoch)",
+  "Your Stake On Node (Next Epoch)": "Your Stake On Node (Next Epoch)",
   "VALIDATOR {{node}}": "VALIDATOR: {{node}}",
   "VEGA ADDRESS / PUBLIC KEY": "VEGA ADDRESS / PUBLIC KEY",
   "ABOUT THIS VALIDATOR": "ABOUT THIS VALIDATOR",
