@@ -101,18 +101,6 @@ const ConnectedKey = () => {
           {walletBalance} {t("VEGA")}
         </span>
       </WalletCardRow>
-      {/* <WalletCardRow>
-        <span>{t("Locked")}</span>
-        <span>
-          {balanceFormatted} {t("VEGA")}
-        </span>
-      </WalletCardRow>
-      <WalletCardRow>
-        <span>{t("Unlocked")}</span>
-        <span>
-          {new BigNumber(balanceFormatted).minus(lien).toString()} {t("VEGA")}
-        </span>
-      </WalletCardRow> */}
     </>
   );
 };
