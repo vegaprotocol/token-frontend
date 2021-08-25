@@ -71,7 +71,7 @@ describe("Associate", () => {
     cy.get('[data-testid="wallet-password"]').type("wallet");
     cy.get('[data-testid="wallet-login"]').click();
     // Then I see contract associate flow
-    cy.get('[data-testid="contract-associate"]').click();
+    cy.get('[data-testid="associate-radio-contract"]').click({ force: true });
     cy.get('[data-testid="associate-radio-contract"]').should("be.checked");
   });
 });
