@@ -1,4 +1,4 @@
-import { mock, sendChainResponse } from "../common/mock";
+import { mock, mockVesting, sendChainResponse } from "../common/mock";
 
 const generateCodeLink = ({ code, amount, tranche, nonce, target, expiry }) => {
   return `/claim/?r=${code}&d=${amount}&t=${tranche}&n=${nonce}&ex=${expiry}${
@@ -9,6 +9,7 @@ const generateCodeLink = ({ code, amount, tranche, nonce, target, expiry }) => {
 describe("Claim", () => {
   it("Renders error heading and error subheading if code is not enough", () => {
     // As a user
+    mockVesting();
     mock(cy);
     // Given a link with no information
     // When visiting the claim page
@@ -33,6 +34,7 @@ describe("Claim", () => {
       target: "0x" + "0".repeat(40),
       expiry: 0,
     });
+    mockVesting();
     mock(cy);
     // When visiting the claim page
     cy.visit(link);
@@ -57,6 +59,7 @@ describe("Claim", () => {
       target: address,
       expiry: 0,
     });
+    mockVesting();
     mock(cy);
     // When I visit the claim page
     cy.visit(link);
@@ -82,6 +85,7 @@ describe("Claim", () => {
       target: "0x" + "0".repeat(40),
       expiry: 1,
     });
+    mockVesting();
     mock(cy);
     // When I visit the claim page
     cy.visit(link);
@@ -105,6 +109,7 @@ describe("Claim", () => {
       target: "0x" + "0".repeat(40),
       expiry: 0,
     });
+    mockVesting();
     mock(cy);
     // When I visit the claim page
     cy.visit(link);
@@ -125,6 +130,7 @@ describe("Claim", () => {
       target: "0x" + "0".repeat(40),
       expiry: 0,
     });
+    mockVesting();
     mock(cy, {
       claim: {
         used: true,
@@ -158,6 +164,7 @@ describe("Claim", () => {
       target: "0x" + "0".repeat(40),
       expiry: 0,
     });
+    mockVesting();
     mock(cy, { claim: { blockedCountries: ["US"] } });
     // When I visit the claim page
     cy.visit(link);
@@ -186,6 +193,7 @@ describe("Claim", () => {
       target: "0x" + "0".repeat(40),
       expiry: 0,
     });
+    mockVesting();
     mock(cy, { provider: { chain: "0x1" } });
     // When I visit the claim page
     cy.visit(link);
@@ -214,6 +222,7 @@ describe("Untargeted code", () => {
       nonce: "f00",
       expiry: 0,
     });
+    mockVesting();
     mock(cy);
     // When I visit the claim page
     cy.visit(link);
@@ -252,6 +261,7 @@ describe("Untargeted code", () => {
       nonce: "f00",
       expiry: 0,
     });
+    mockVesting();
     mock(cy);
     // When I visit the claim page
     cy.visit(link);
@@ -306,6 +316,7 @@ describe("Untargeted code", () => {
       nonce: "f00",
       expiry: 0,
     });
+    mockVesting();
     mock(cy, {
       claim: {
         committed: true,
@@ -334,6 +345,7 @@ describe("Untargeted code", () => {
       nonce: "f00",
       expiry: 0,
     });
+    mockVesting();
     mock(cy);
     // When I visit the claim page
     cy.visit(link);
@@ -431,6 +443,7 @@ describe("Targeted code", () => {
       target: "0x" + "0".repeat(40),
       expiry: 0,
     });
+    mockVesting();
     mock(cy);
     // When I visit the claim page
     cy.visit(link);
@@ -470,6 +483,7 @@ describe("Targeted code", () => {
       target: "0x" + "0".repeat(40),
       expiry: 0,
     });
+    mockVesting();
     mock(cy);
     // When I visit the claim page
     cy.visit(link);
