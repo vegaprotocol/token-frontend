@@ -23,7 +23,7 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
 
   return (
     <>
-      <h1>{t("VALIDATOR {{node}}", { node })}</h1>
+      <h2>{t("VALIDATOR {{node}}", { node })}</h2>
       <p>Vega key: {vegaKey.pubShort}</p>
       <ValidatorTable node={node} />
       <EpochCountdown
