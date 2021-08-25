@@ -1,3 +1,4 @@
+import "./wallet-associate.scss";
 import { useTranslation } from "react-i18next";
 import {
   AppStateActionType,
@@ -95,10 +96,16 @@ export const WalletAssociate = ({
     approveState.txState !== TxState.Complete
   ) {
     pageContent = (
-      <TransactionCallout
-        state={approveState}
-        reset={() => approveDispatch({ type: TransactionActionType.TX_RESET })}
-      />
+      <>
+        <AssociateInfo pubKey={vegaKey.pub} />
+        <AssociateInput state={state} maximum={maximum} dispatch={dispatch} />
+        <TransactionCallout
+          state={approveState}
+          reset={() =>
+            approveDispatch({ type: TransactionActionType.TX_RESET })
+          }
+        />
+      </>
     );
   } else {
     pageContent = (
