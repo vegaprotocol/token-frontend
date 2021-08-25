@@ -14,7 +14,6 @@ export interface RedemptionState {
   totalVestedBalance: BigNumber;
   totalLockedBalance: BigNumber;
   balances: TrancheBalance[];
-  lien: BigNumber;
 }
 
 export const initialRedemptionState: RedemptionState = {
@@ -23,7 +22,6 @@ export const initialRedemptionState: RedemptionState = {
   loading: false,
   totalVestedBalance: new BigNumber(0),
   totalLockedBalance: new BigNumber(0),
-  lien: new BigNumber(0),
   balances: [],
 };
 
@@ -50,7 +48,6 @@ export type RedemptionAction =
   | {
       type: RedemptionActionType.SET_USER_BALANCES;
       balances: TrancheBalance[];
-      lien: BigNumber;
     };
 
 export function redemptionReducer(
@@ -70,7 +67,6 @@ export function redemptionReducer(
           ...action.balances.map((b) => b.locked),
         ]),
         balances: action.balances,
-        lien: action.lien,
       };
     case RedemptionActionType.SET_LOADING:
       return {

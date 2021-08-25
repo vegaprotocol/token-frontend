@@ -1,10 +1,12 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import {
+  AppStateActionType,
   ProviderStatus,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
 import { useConnect } from "../../hooks/use-connect";
+import { useVegaToken } from "../../hooks/use-vega-token";
 import { EthereumChainNames } from "../../lib/web3-utils";
 import { Callout } from "../callout";
 import { Error } from "../icons";
@@ -16,8 +18,25 @@ export const Web3Container = ({
   children: React.ReactNode | ((address: string) => JSX.Element);
 }) => {
   const { t } = useTranslation();
-  const { appState } = useAppState();
+  const { appState, appDispatch } = useAppState();
   const connect = useConnect();
+  const vegaToken = useVegaToken();
+
+  React.useEffect(() => {
+    const run = async () => {
+      const supply = await vegaToken.getTotalSupply();
+      const decimals = await vegaToken.getDecimals();
+      appDispatch({
+        type: AppStateActionType.SET_TOKEN,
+        decimals,
+        totalSupply: supply,
+      });
+    };
+
+    if (appState.providerStatus !== ProviderStatus.None) {
+      run();
+    }
+  }, [vegaToken, appState.providerStatus, appDispatch]);
 
   if (appState.providerStatus === ProviderStatus.None) {
     return (

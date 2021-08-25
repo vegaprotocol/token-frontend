@@ -29,9 +29,8 @@ export const TrancheTable = ({
   const trancheFullyLocked =
     tranche.tranche_start.getTime() > new Date().getTime();
   const unstaked = total.minus(lien);
-  const reduceAmount = vested.minus(unstaked);
+  const reduceAmount = vested.minus(BigNumber.max(unstaked, 0));
   const redeemable = reduceAmount.isLessThanOrEqualTo(0);
-
   return (
     <section data-testid="tranche-table" className="tranche-table">
       <KeyValueTable numerical={true}>

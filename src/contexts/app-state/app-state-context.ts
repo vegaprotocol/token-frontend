@@ -34,6 +34,8 @@ export interface AppState {
   connecting: boolean;
   chainId: EthereumChainId | null;
   balanceFormatted: string;
+  walletBalance: string;
+  lien: string;
   tranches: Tranche[] | null;
   appChainId: EthereumChainId;
   decimals: number;
@@ -80,6 +82,8 @@ export type AppStateAction =
       address: string;
       chainId: EthereumChainId;
       balance: BigNumber | null;
+      walletBalance: BigNumber | null;
+      lien: BigNumber | null;
     }
   | { type: AppStateActionType.CONNECT_FAIL; error: Error }
   | { type: AppStateActionType.ACCOUNTS_CHANGED; address: string }

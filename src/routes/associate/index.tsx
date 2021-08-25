@@ -51,20 +51,6 @@ const Associate = ({ name }: RouteChildProps) => {
     () => vesting.checkAddStake(address!, amount, currVegaKey!.pub)
   );
 
-  // TODO probably need this on vega connect and in app state
-  React.useEffect(() => {
-    const run = async () => {
-      if (currVegaKey && address) {
-        const lien = await vesting.getLien(address);
-        dispatch({
-          type: AssociateActionType.SET_STAKED_BALANCE,
-          lien,
-        });
-      }
-    };
-    run();
-  }, [address, currVegaKey, vesting]);
-
   return (
     <TemplateSidebar
       title={t("pageTitleAssociate")}

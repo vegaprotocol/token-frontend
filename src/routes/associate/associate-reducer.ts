@@ -1,14 +1,10 @@
-import { BigNumber } from "../../lib/bignumber";
-
 export interface AssociateState {
   error: Error | null;
   amount: string;
-  lien: BigNumber;
 }
 
 export const initialAssociateState: AssociateState = {
   error: null,
-  lien: new BigNumber(0),
   amount: "",
 };
 
@@ -26,10 +22,6 @@ export type AssociateAction =
   | {
       type: AssociateActionType.SET_AMOUNT;
       amount: string;
-    }
-  | {
-      type: AssociateActionType.SET_STAKED_BALANCE;
-      lien: BigNumber;
     };
 
 export function associateReducer(
@@ -46,11 +38,6 @@ export function associateReducer(
       return {
         ...state,
         amount: action.amount,
-      };
-    case AssociateActionType.SET_STAKED_BALANCE:
-      return {
-        ...state,
-        lien: action.lien,
       };
   }
 }

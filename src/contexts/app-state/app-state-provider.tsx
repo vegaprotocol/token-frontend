@@ -26,6 +26,8 @@ const initialAppState: AppState = {
   appChainId: process.env.REACT_APP_CHAIN as EthereumChainId,
   error: null,
   balanceFormatted: "",
+  walletBalance: "",
+  lien: "",
   tranches: null,
   contractAddresses: Addresses[process.env.REACT_APP_CHAIN as EthereumChainId],
   vegaWalletStatus: VegaWalletStatus.Pending,
@@ -62,6 +64,8 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         address: action.address,
         chainId: action.chainId,
         balanceFormatted: action.balance?.toString() || "",
+        walletBalance: action.walletBalance?.toString() || "",
+        lien: action.lien?.toString() || "",
         connecting: false,
       };
     case AppStateActionType.CONNECT_FAIL:
@@ -181,6 +185,7 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
     if (state.providerStatus === ProviderStatus.Ready) {
       provider.current.on("accountsChanged", (accounts: string[]) => {
         if (accounts.length) {
+          // TODO refetch all data
           dispatch({
             type: AppStateActionType.ACCOUNTS_CHANGED,
             address: accounts[0],
