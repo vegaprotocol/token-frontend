@@ -1,4 +1,5 @@
 import BigNumber from "bignumber.js";
+import { addDecimal } from "../../decimals";
 import { IVegaToken, PromiEvent } from "../../web3-utils";
 import { promiEventFactory, uuidv4 } from "./promi-manager";
 
@@ -39,6 +40,11 @@ class MockedToken implements IVegaToken {
 
   approve(address: string): PromiEvent {
     return promiEventFactory(uuidv4(), "approve");
+  }
+
+  async allowance(address: string): Promise<BigNumber> {
+    const res = await this.performFetch("allowance");
+    return new BigNumber(addDecimal(new BigNumber(res), this.mockDecimals));
   }
 }
 

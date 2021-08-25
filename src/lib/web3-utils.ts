@@ -152,4 +152,5 @@ export interface IVegaToken {
   tokenData(): Promise<{ totalSupply: BigNumber; decimals: number }>;
   balanceOf(address: string): Promise<BigNumber>;
   approve(address: string): PromiEvent;
+  allowance(address: string): Promise<BigNumber>;
 }
