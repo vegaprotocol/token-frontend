@@ -25,14 +25,17 @@ export const WalletAssociate = ({
   state: AssociateState;
   dispatch: React.Dispatch<AssociateAction>;
 }) => {
-  // TODO
-  const stakedAmount = 0;
-
   const { amount } = state;
   const { t } = useTranslation();
   const {
     appDispatch,
-    appState: { walletBalance, currVegaKey, address, allowance },
+    appState: {
+      walletBalance,
+      currVegaKey,
+      address,
+      allowance,
+      vegaStakedBalance,
+    },
   } = useAppState();
   const isApproved = !new BigNumber(allowance!).isEqualTo(0);
   const token = useVegaToken();
@@ -78,7 +81,9 @@ export const WalletAssociate = ({
         )}
       </div>
     );
-  } else if (new BigNumber(walletBalance).minus(stakedAmount).isEqualTo("0")) {
+  } else if (
+    new BigNumber(walletBalance).minus(vegaStakedBalance!).isEqualTo("0")
+  ) {
     pageContent = (
       <div className="wallet-associate__error">
         {t(

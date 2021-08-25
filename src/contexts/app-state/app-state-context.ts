@@ -52,6 +52,7 @@ export interface AppState {
   vegaWalletStatus: VegaWalletStatus;
   vegaKeys: VegaKeyExtended[] | null;
   currVegaKey: VegaKeyExtended | null;
+  vegaStakedBalance: string | null;
 }
 
 export enum AppStateActionType {
@@ -102,8 +103,13 @@ export type AppStateAction =
   | {
       type: AppStateActionType.VEGA_WALLET_INIT;
       keys: VegaKey[] | null | undefined;
+      vegaStakedBalance: BigNumber | null;
     }
-  | { type: AppStateActionType.VEGA_WALLET_SET_KEY; key: VegaKeyExtended }
+  | {
+      type: AppStateActionType.VEGA_WALLET_SET_KEY;
+      key: VegaKeyExtended;
+      vegaStakedBalance: BigNumber | null;
+    }
   | { type: AppStateActionType.VEGA_WALLET_DOWN }
   | { type: AppStateActionType.VEGA_WALLET_DISCONNECT }
   | {

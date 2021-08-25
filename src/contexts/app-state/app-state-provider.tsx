@@ -37,6 +37,7 @@ const initialAppState: AppState = {
   totalStaked: "",
   decimals: 0,
   totalSupply: null,
+  vegaStakedBalance: null,
 };
 
 function appStateReducer(state: AppState, action: AppStateAction): AppState {
@@ -128,12 +129,14 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         vegaKeys,
         currVegaKey: vegaKeys.length ? vegaKeys[0] : null,
         vegaWalletStatus: VegaWalletStatus.Ready,
+        vegaStakedBalance: action.vegaStakedBalance?.toString() || null,
       };
     }
     case AppStateActionType.VEGA_WALLET_SET_KEY: {
       return {
         ...state,
         currVegaKey: action.key,
+        vegaStakedBalance: action.vegaStakedBalance?.toString() || null,
       };
     }
     case AppStateActionType.VEGA_WALLET_DOWN: {
