@@ -15,7 +15,7 @@ describe("Home", () => {
       "0xfc9Ad8fE9E0b168999Ee7547797BC39D55d607AA"
     );
     cy.get('[data-testid="total-supply"]').should("have.text", "1000000000");
-    cy.get('[data-testid="staked"]').should("have.text", "0");
+    cy.get('[data-testid="staked"]').should("have.text", "0.0004");
 
     cy.contains("Read about staking on Vega").then((link) => {
       cy.request(link.prop("href"));
