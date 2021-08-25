@@ -25,6 +25,8 @@ const en = {
   Step: "Step",
   Unlocked: "Unlocked",
   Staked: "Staked",
+  Total: "Total",
+  Balance: "Balance",
 
   "VEGA was successfully withdrawn to your wallet":
     "VEGA was successfully withdrawn to your wallet",
@@ -281,6 +283,18 @@ const en = {
     "The Vega network requires 30 Confirmations (approx 5 minutes) on Ethereum before crediting your Vega key with your tokens. This page will update once complete or you can come back and check your Vega wallet to see if it is ready to use.",
   "Vega key {{vegaKey}} can now participate in governance and Nominate a validator with it’s stake.":
     "Vega key {{vegaKey}} can now participate in governance and Nominate a validator with it’s stake.",
+  "You have no VEGA tokens in your connected wallet. You will need to buy some VEGA tokens from an exchange in order to stake using this method.":
+    "You have no VEGA tokens in your connected wallet. You will need to buy some VEGA tokens from an exchange in order to stake using this method.",
+  "All VEGA tokens in the connected wallet is already associated with a Vega wallet/key":
+    "All VEGA tokens in the connected wallet is already associated with a Vega wallet/key",
+  "VEGA tokens are approved for staking":
+    "VEGA tokens are approved for staking",
+  "Approve VEGA tokens for staking on Vega":
+    "Approve VEGA tokens for staking on Vega",
+  "You have no VEGA tokens currently vesting.":
+    "You have no VEGA tokens currently vesting.",
+  "All VEGA tokens vesting in the connected wallet have already been staked.":
+    "All VEGA tokens vesting in the connected wallet have already been staked.",
 };
 
 export default en;
