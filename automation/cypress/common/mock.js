@@ -35,6 +35,7 @@ const defaultMockOptions = {
   },
   token: {
     balance: "100",
+    totalSupply: "20",
     allowance: Number.MAX_SAFE_INTEGER - 1,
   },
 };
@@ -121,7 +122,7 @@ export const mock = (cy, options = {}) => {
   cy.intercept(
     "GET",
     "/mocks/vega-token/data",
-    JSON.stringify(mergedOptions.token)
+    JSON.stringify(mergedOptions.token.totalSupply)
   );
   cy.intercept(
     "GET",
