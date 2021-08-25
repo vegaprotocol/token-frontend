@@ -5,6 +5,7 @@ import { useAppState } from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber";
 import { AssociateAction, AssociateState } from "./associate-reducer";
 import { AssociateFrom } from "./associate-form";
+import { Button } from "@blueprintjs/core";
 
 export const ContractAssociate = ({
   perform,
@@ -15,6 +16,7 @@ export const ContractAssociate = ({
   state: AssociateState;
   dispatch: React.Dispatch<AssociateAction>;
 }) => {
+  const { amount } = state;
   const { t } = useTranslation();
   const {
     appState: { currVegaKey, balanceFormatted, lien },
@@ -23,6 +25,13 @@ export const ContractAssociate = ({
   const maximum = React.useMemo(() => {
     return new BigNumber(balanceFormatted).minus(lien!);
   }, [balanceFormatted, lien]);
+  const isDisabled = React.useMemo<boolean>(
+    () =>
+      !amount ||
+      new BigNumber(amount).isLessThanOrEqualTo("0") ||
+      new BigNumber(amount).isGreaterThan(maximum),
+    [amount, maximum]
+  );
 
   return (
     <section className="contract-associate" data-testid="contract-associate">
@@ -36,9 +45,15 @@ export const ContractAssociate = ({
         maximum={maximum}
         dispatch={dispatch}
         pubKey={currVegaKey!.pub}
-        perform={perform}
-        requireApprove={false}
       />
+      <Button
+        data-testid="associate-button"
+        fill={true}
+        disabled={isDisabled}
+        onClick={perform}
+      >
+        {t("Associate VEGA Tokens with key")}
+      </Button>
     </section>
   );
 };
