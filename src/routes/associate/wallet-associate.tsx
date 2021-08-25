@@ -4,7 +4,6 @@ import { BigNumber } from "../../lib/bignumber";
 import { AssociateInfo } from "./associate-info";
 import { AssociateAction, AssociateState } from "./associate-reducer";
 import React from "react";
-import { Button } from "@blueprintjs/core";
 import { AssociateInput } from "./associate-input";
 
 export const WalletAssociate = ({
