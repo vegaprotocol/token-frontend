@@ -1,5 +1,6 @@
 import BigNumber from "bignumber.js";
-import { IVegaToken } from "../../web3-utils";
+import { IVegaToken, PromiEvent } from "../../web3-utils";
+import { promiEventFactory, uuidv4 } from "./promi-manager";
 
 const BASE_URL = "mocks/vega-token";
 
@@ -34,6 +35,10 @@ class MockedToken implements IVegaToken {
 
   balanceOf(address: string): Promise<BigNumber> {
     return this.performFetch("balance");
+  }
+
+  approve(address: string): PromiEvent {
+    return promiEventFactory(uuidv4(), "approve");
   }
 }
 
