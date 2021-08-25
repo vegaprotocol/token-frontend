@@ -238,6 +238,10 @@ const en = {
   "Read about staking on Vega": "Read about staking on Vega",
   "Read about Governance on Vega": "Read about Governance on Vega",
 
+  // Epoch counter
+  "Epoch": 'Epoch',
+  "Started": 'Started',
+  "Ends In": 'Ends in',
   // Node Validator
   "VALIDATOR {{node}}": "VALIDATOR: {{node}}",
   "VEGA ADDRESS / PUBLIC KEY": "VEGA ADDRESS / PUBLIC KEY",
