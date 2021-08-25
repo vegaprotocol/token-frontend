@@ -11,7 +11,6 @@ export const initialAssociateState: AssociateState = {
 export enum AssociateActionType {
   ERROR,
   SET_AMOUNT,
-  SET_STAKED_BALANCE,
 }
 
 export type AssociateAction =
