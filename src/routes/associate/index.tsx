@@ -99,7 +99,11 @@ const Associate = ({ name }: RouteChildProps) => {
                   dispatch={dispatch}
                 />
               ) : (
-                <WalletAssociate />
+                <WalletAssociate
+                  perform={perform}
+                  state={state}
+                  dispatch={dispatch}
+                />
               ))}
           </>
         )}

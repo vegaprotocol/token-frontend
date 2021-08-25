@@ -1,5 +1,5 @@
 import "./associate-form.scss";
-import { Button, FormGroup, InputGroup, Intent, Tag } from "@blueprintjs/core";
+import { FormGroup, InputGroup, Intent, Tag } from "@blueprintjs/core";
 import { useTranslation } from "react-i18next";
 import { Colors } from "../../colors";
 import React from "react";
@@ -17,19 +17,11 @@ export const AssociateFrom = ({
   dispatch,
   pubKey,
   maximum,
-  perform,
-  requireApprove,
-  isApproved = false,
-  children,
 }: {
   maximum: BigNumber;
   pubKey: string;
   state: AssociateState;
   dispatch: React.Dispatch<AssociateAction>;
-  perform: () => void;
-  requireApprove: boolean;
-  isApproved?: boolean;
-  children?: React.ReactNode;
 }) => {
   const { amount } = state;
   const setAmount = React.useCallback(
@@ -39,13 +31,6 @@ export const AssociateFrom = ({
     [dispatch]
   );
   const { t } = useTranslation();
-  const isDisabled = React.useMemo<boolean>(
-    () =>
-      !amount ||
-      new BigNumber(amount).isLessThanOrEqualTo("0") ||
-      new BigNumber(amount).isGreaterThan(maximum),
-    [amount, maximum]
-  );
   return (
     <section data-testid="associate-form">
       <h2 data-testid="associate-vega-key-header">
@@ -86,15 +71,6 @@ export const AssociateFrom = ({
           </button>
         </div>
       </FormGroup>
-      {requireApprove ? children : null}
-      <Button
-        data-testid="associate-button"
-        fill={true}
-        disabled={isDisabled}
-        onClick={perform}
-      >
-        {t("Associate VEGA Tokens with key")}
-      </Button>
     </section>
   );
 };
