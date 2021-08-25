@@ -20,17 +20,15 @@ export default class VegaToken implements IVegaToken {
     this.tokenAddress = tokenAddress;
   }
 
-  async allowance(address: string): Promise<BigNumber> {
+  async allowance(address: string, spender: string): Promise<BigNumber> {
     const decimals = await this.decimals();
-    const res = await this.contract.methods
-      .allowance(address, this.tokenAddress)
-      .call();
+    const res = await this.contract.methods.allowance(address, spender).call();
     return new BigNumber(addDecimal(new BigNumber(res), decimals));
   }
 
-  approve(address: string): PromiEvent {
+  approve(address: string, spender: string): PromiEvent {
     return this.contract.methods
-      .approve(this.tokenAddress, Number.MAX_SAFE_INTEGER - 1)
+      .approve(spender, Number.MAX_SAFE_INTEGER - 1)
       .send({ from: address });
   }
 

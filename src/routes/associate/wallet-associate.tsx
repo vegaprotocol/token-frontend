@@ -35,7 +35,12 @@ export const WalletAssociate = ({
   const { t } = useTranslation();
   const {
     appDispatch,
-    appState: { walletBalance, allowance, vegaStakedBalance },
+    appState: {
+      walletBalance,
+      allowance,
+      vegaStakedBalance,
+      contractAddresses,
+    },
   } = useAppState();
   const isApproved = !new BigNumber(allowance!).isEqualTo(0);
   const token = useVegaToken();
@@ -43,7 +48,9 @@ export const WalletAssociate = ({
     state: approveState,
     perform: approve,
     dispatch: approveDispatch,
-  } = useTransaction(() => token.approve(address));
+  } = useTransaction(() =>
+    token.approve(address, contractAddresses.stakingBridge)
+  );
   const maximum = React.useMemo(
     () =>
       BigNumber.min(new BigNumber(walletBalance), new BigNumber(allowance!)),
@@ -62,7 +69,10 @@ export const WalletAssociate = ({
   React.useEffect(() => {
     const run = async () => {
       if (approveState.txState === TxState.Complete) {
-        const allowance = await token.allowance(address);
+        const allowance = await token.allowance(
+          address,
+          contractAddresses.stakingBridge
+        );
         appDispatch({
           type: AppStateActionType.SET_ALLOWANCE,
           allowance,
@@ -70,7 +80,13 @@ export const WalletAssociate = ({
       }
     };
     run();
-  }, [address, appDispatch, approveState.txState, token]);
+  }, [
+    address,
+    appDispatch,
+    approveState.txState,
+    contractAddresses.stakingBridge,
+    token,
+  ]);
 
   let pageContent = null;
   if (new BigNumber(walletBalance).isEqualTo("0")) {

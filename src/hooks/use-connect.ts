@@ -51,7 +51,10 @@ export function useConnect() {
           vega.getUserBalanceAllTranches(accounts[0]),
           token.balanceOf(accounts[0]),
           vega.getLien(accounts[0]),
-          token.allowance(accounts[0]),
+          token.allowance(
+            accounts[0],
+            appState.contractAddresses.stakingBridge
+          ),
         ]);
       connected = true;
       appDispatch({
@@ -68,7 +71,7 @@ export function useConnect() {
       Sentry.captureEvent(e);
       appDispatch({ type: AppStateActionType.CONNECT_FAIL, error: e });
     }
-  }, [appDispatch, appState.providerStatus, provider, token, vega]);
+  }, [appDispatch, appState.contractAddresses.stakingBridge, appState.providerStatus, provider, token, vega]);
 
   React.useEffect(() => {
     return () => {
