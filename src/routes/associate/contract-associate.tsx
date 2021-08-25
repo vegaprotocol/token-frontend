@@ -1,7 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { Callout } from "../../components/callout";
 import React from "react";
-import { useAppState } from "../../contexts/app-state/app-state-context";
+import {
+  useAppState,
+  VegaKeyExtended,
+} from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber";
 import { AssociateAction, AssociateState } from "./associate-reducer";
 import { AssociateInfo } from "./associate-info";
@@ -11,15 +14,17 @@ export const ContractAssociate = ({
   perform,
   state,
   dispatch,
+  vegaKey,
 }: {
   perform: () => void;
   state: AssociateState;
   dispatch: React.Dispatch<AssociateAction>;
+  vegaKey: VegaKeyExtended;
 }) => {
   const { amount } = state;
   const { t } = useTranslation();
   const {
-    appState: { currVegaKey, balanceFormatted, lien },
+    appState: { balanceFormatted, lien },
   } = useAppState();
 
   const maximum = React.useMemo(() => {
@@ -40,7 +45,7 @@ export const ContractAssociate = ({
           "You can associate tokens while they are held in the vesting contract, when they unlock you will need to dissociate them before they can be redeemed."
         )}
       </Callout>
-      <AssociateInfo pubKey={currVegaKey!.pub} />
+      <AssociateInfo pubKey={vegaKey.pub} />
       <AssociateInput maximum={maximum} state={state} dispatch={dispatch} />
       <button
         data-testid="associate-button"

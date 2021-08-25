@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import {
   AppStateActionType,
   useAppState,
+  VegaKeyExtended,
 } from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber";
 import { AssociateInfo } from "./associate-info";
@@ -20,22 +21,18 @@ export const WalletAssociate = ({
   perform,
   state,
   dispatch,
+  vegaKey,
 }: {
   perform: () => void;
   state: AssociateState;
   dispatch: React.Dispatch<AssociateAction>;
+  vegaKey: VegaKeyExtended;
 }) => {
   const { amount } = state;
   const { t } = useTranslation();
   const {
     appDispatch,
-    appState: {
-      walletBalance,
-      currVegaKey,
-      address,
-      allowance,
-      vegaStakedBalance,
-    },
+    appState: { walletBalance, address, allowance, vegaStakedBalance },
   } = useAppState();
   const isApproved = !new BigNumber(allowance!).isEqualTo(0);
   const token = useVegaToken();
@@ -104,7 +101,7 @@ export const WalletAssociate = ({
   } else {
     pageContent = (
       <>
-        <AssociateInfo pubKey={currVegaKey!.pub} />
+        <AssociateInfo pubKey={vegaKey.pub} />
         <AssociateInput state={state} maximum={maximum} dispatch={dispatch} />
         <button
           data-testid="approve-button"
