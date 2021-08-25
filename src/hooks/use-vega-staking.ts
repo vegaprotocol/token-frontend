@@ -1,9 +1,9 @@
 import React from "react";
 import Web3 from "web3";
-
 import { useAppState } from "../contexts/app-state/app-state-context";
 import { IVegaStaking } from "../lib/web3-utils";
-import StakingAbi from "../lib/vega-web3/vega-staking";
+// @ts-ignore
+import StakingAbi from "../lib/VEGA_WEB3/vega-staking";
 
 export const useVegaStaking = () => {
   const {
