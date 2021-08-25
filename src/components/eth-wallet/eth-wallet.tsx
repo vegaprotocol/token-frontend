@@ -48,7 +48,7 @@ const ConnectedKey = () => {
   const { t } = useTranslation();
   const connect = useConnect();
   const { appState } = useAppState();
-  const { connecting, address, error, balanceFormatted } = appState;
+  const { connecting, address, error, balanceFormatted, lien } = appState;
 
   if (error) {
     return <div>{t("Something went wrong")}</div>;
@@ -72,11 +72,32 @@ const ConnectedKey = () => {
   }
 
   return (
-    <WalletCardRow>
-      <span>{t("Locked")}</span>
-      <span>
-        {balanceFormatted} {t("VEGA")}
-      </span>
-    </WalletCardRow>
+    <>
+      <WalletCardRow>
+        <span>{t("Vesting")}</span>
+        <span>
+          {balanceFormatted} {t("VEGA")}
+        </span>
+      </WalletCardRow>
+      {/* <WalletCardRow>
+        <span>{t("Locked")}</span>
+        <span>
+          {balanceFormatted} {t("VEGA")}
+        </span>
+      </WalletCardRow>
+      <WalletCardRow>
+        <span>{t("Unlocked")}</span>
+        <span>
+          {new BigNumber(balanceFormatted).minus(lien).toString()} {t("VEGA")}
+        </span>
+      </WalletCardRow> */}
+      <hr />
+      <WalletCardRow>
+        <span>{t("Staked")}</span>
+        <span>
+          {lien} {t("VEGA")}
+        </span>
+      </WalletCardRow>
+    </>
   );
 };

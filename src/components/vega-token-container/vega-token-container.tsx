@@ -12,8 +12,7 @@ export const VegaTokenContainer = ({
 }: {
   children: (data: { decimals: number; totalSupply: string }) => JSX.Element;
 }) => {
-  const { appState, appDispatch } = useAppState();
-  const vegaToken = useVegaToken();
+  const { appState } = useAppState();
 
   React.useEffect(() => {
     const run = async () => {

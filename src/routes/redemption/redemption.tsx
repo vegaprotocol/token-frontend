@@ -41,7 +41,6 @@ const RedemptionRouter = ({
           type: RedemptionActionType.SET_USER_TRANCHES,
           userTranches,
         });
-        const getLien = vesting.getLien(address);
         const promises = userTranches.map(async (t) => {
           const [total, vested] = await Promise.all([
             vesting.userTrancheTotalBalance(address, t.tranche_id),
@@ -54,11 +53,9 @@ const RedemptionRouter = ({
           };
         });
         const balances = await Promise.all(promises);
-        const lien = await getLien;
         dispatch({
           type: RedemptionActionType.SET_USER_BALANCES,
           balances,
-          lien,
         });
       } catch (e) {
         dispatch({

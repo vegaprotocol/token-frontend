@@ -39,4 +39,10 @@ export default class VegaToken implements IVegaToken {
       decimals,
     };
   }
+
+  async balanceOf(address: string): Promise<BigNumber> {
+    const decimals = await this.getDecimals();
+    const res = await this.contract.methods.balanceOf(address).call();
+    return new BigNumber(addDecimal(new BigNumber(res), decimals));
+  }
 }

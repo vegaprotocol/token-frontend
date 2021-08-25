@@ -8,6 +8,7 @@ import { Callout } from "../../../components/callout";
 import { HandUp } from "../../../components/icons";
 import { Link, useHistory } from "react-router-dom";
 import React from "react";
+import { BigNumber } from "../../../lib/bignumber";
 
 export const RedemptionInformation = ({
   state,
@@ -19,15 +20,10 @@ export const RedemptionInformation = ({
   const history = useHistory();
   const { t } = useTranslation();
   const {
-    appState: { balanceFormatted },
+    appState: { balanceFormatted, lien },
   } = useAppState();
-  const {
-    userTranches,
-    totalVestedBalance,
-    totalLockedBalance,
-    lien,
-    balances,
-  } = state;
+  const { userTranches, totalVestedBalance, totalLockedBalance, balances } =
+    state;
   const filteredTranches = React.useMemo(
     () =>
       userTranches.filter((tr) => {
@@ -86,7 +82,7 @@ export const RedemptionInformation = ({
       </p>
       <p data-testid="redemption-note">{t("redemptionExplain")}</p>
       <VestingTable
-        staked={lien}
+        staked={new BigNumber(lien)}
         locked={totalLockedBalance}
         vested={totalVestedBalance}
       />
@@ -95,7 +91,7 @@ export const RedemptionInformation = ({
         <TrancheTable
           key={tr.tranche_id}
           tranche={tr}
-          lien={lien}
+          lien={new BigNumber(lien)}
           locked={
             balances.find(
               ({ id }) => id.toString() === tr.tranche_id.toString()

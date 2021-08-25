@@ -8,6 +8,7 @@ import {
 } from "../../../hooks/transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { useVegaVesting } from "../../../hooks/use-vega-vesting";
+import { BigNumber } from "../../../lib/bignumber";
 import { RedemptionState } from "../redemption-reducer";
 import { TrancheTable } from "../tranche-table";
 
@@ -15,11 +16,11 @@ export const RedeemFromTranche = ({ state }: { state: RedemptionState }) => {
   const vesting = useVegaVesting();
   const { t } = useTranslation();
   const {
-    appState: { address },
+    appState: { address, lien },
   } = useAppState();
   const { id } = useParams<{ id: string }>();
   const numberId = Number(id);
-  const { balances, userTranches, lien } = state;
+  const { balances, userTranches } = state;
   const tranche = userTranches.find(
     ({ tranche_id }) => tranche_id === numberId
   );
@@ -54,7 +55,7 @@ export const RedeemFromTranche = ({ state }: { state: RedemptionState }) => {
       ) : (
         <TrancheTable
           tranche={tranche}
-          lien={lien}
+          lien={new BigNumber(lien)}
           locked={
             balances.find(({ id: bId }) => bId.toString() === id.toString())!
               .locked
