@@ -55,18 +55,20 @@ export const Web3Container = ({
   React.useEffect(() => {
     const run = async () => {
       const supply = await vegaToken.totalSupply();
+      const totalStaked = await vega.totalStaked();
       const decimals = await vegaToken.decimals();
       appDispatch({
         type: AppStateActionType.SET_TOKEN,
         decimals,
         totalSupply: supply.toString(),
+        totalStaked,
       });
     };
 
     if (appState.providerStatus !== ProviderStatus.None) {
       run();
     }
-  }, [vegaToken, appState.providerStatus, appDispatch]);
+  }, [vegaToken, appState.providerStatus, appDispatch, vega]);
 
   if (appState.providerStatus === ProviderStatus.None) {
     return (
