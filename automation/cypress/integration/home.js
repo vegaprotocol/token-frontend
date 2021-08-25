@@ -1,12 +1,8 @@
-import BigNumber from "bignumber.js";
 import { mock } from "../common/mock";
 
 describe("Home", () => {
   it("Displays the expected information", () => {
-    const token = { totalSupply: new BigNumber(20), decimals: 5 };
-    mock(cy, {
-      token,
-    });
+    mock(cy);
     cy.visit("/");
     cy.contains("Loading");
     cy.contains("The Vega Token");
@@ -18,14 +14,7 @@ describe("Home", () => {
       "have.text",
       "0xfc9Ad8fE9E0b168999Ee7547797BC39D55d607AA"
     );
-    cy.get('[data-testid="total-supply"]').should(
-      "have.text",
-      token.totalSupply.toString()
-    );
-    cy.get('[data-testid="total-supply"]').should(
-      "have.text",
-      token.totalSupply.toString()
-    );
+    cy.get('[data-testid="total-supply"]').should("have.text", "1000000000");
     cy.get('[data-testid="staked"]').should("have.text", "0");
 
     cy.contains("Read about staking on Vega").then((link) => {
