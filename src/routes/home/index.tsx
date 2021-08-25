@@ -22,13 +22,13 @@ const Home = ({ name }: RouteChildProps) => {
     <TemplateDefault title={t("pageTitleHome")}>
       <Web3Container>
         <VegaTokenContainer>
-          {() => (
+          {({ totalSupply }) => (
             <TrancheContainer>
               {() => (
                 <>
                   <h2>{t("The Vega Token")}</h2>
 
-                  <TokenDetails />
+                  <TokenDetails totalSupply={totalSupply} />
 
                   <h2>{t("Token Vesting")}</h2>
                   <p>

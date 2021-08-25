@@ -1,4 +1,3 @@
-import BigNumber from "bignumber.js";
 import React from "react";
 import {
   AppStateActionType,
@@ -11,20 +10,20 @@ import { SplashScreen } from "../splash-screen";
 export const VegaTokenContainer = ({
   children,
 }: {
-  children: (decimals: number, supply: BigNumber) => JSX.Element;
+  children: (data: { decimals: number; totalSupply: string }) => JSX.Element;
 }) => {
   const { appState, appDispatch } = useAppState();
   const vegaToken = useVegaToken();
 
   React.useEffect(() => {
     const run = async () => {
-      const supply = await vegaToken.getTotalSupply();
       const decimals = await vegaToken.getDecimals();
+      const supply = await vegaToken.getTotalSupply();
 
       appDispatch({
         type: AppStateActionType.SET_TOKEN,
         decimals,
-        totalSupply: supply,
+        totalSupply: supply.toString(),
       });
     };
 
@@ -39,5 +38,8 @@ export const VegaTokenContainer = ({
     );
   }
 
-  return children(appState.decimals, appState.totalSupply);
+  return children({
+    decimals: appState.decimals,
+    totalSupply: appState.totalSupply,
+  });
 };

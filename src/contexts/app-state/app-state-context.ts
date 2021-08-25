@@ -37,8 +37,7 @@ export interface AppState {
   tranches: Tranche[] | null;
   appChainId: EthereumChainId;
   decimals: number;
-  totalSupply: BigNumber | null;
-  totalSupplyFormatted: string;
+  totalSupply: string | null;
   totalStaked: BigNumber | null;
   totalStakedFormatted: string;
   contractAddresses: {
@@ -97,7 +96,7 @@ export type AppStateAction =
   | {
       type: AppStateActionType.SET_TOKEN;
       decimals: number;
-      totalSupply: BigNumber;
+      totalSupply: string;
     };
 
 type AppStateContextShape = {
