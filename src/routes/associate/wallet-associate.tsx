@@ -128,14 +128,17 @@ export const WalletAssociate = ({
       <>
         <AssociateInfo pubKey={vegaKey.pub} />
         <AssociateInput state={state} maximum={maximum} dispatch={dispatch} />
-        <button
-          data-testid="approve-button"
-          style={{ width: "100%" }}
-          disabled={isApproved}
-          onClick={approve}
-        >
-          {t("Approve VEGA tokens for staking on Vega")}
-        </button>
+        {isApproved ? (
+          t("VEGA tokens are approved for staking")
+        ) : (
+          <button
+            data-testid="approve-button"
+            style={{ width: "100%" }}
+            onClick={approve}
+          >
+            {t("Approve VEGA tokens for staking on Vega")}
+          </button>
+        )}
         <button
           style={{ marginTop: 10, width: "100%" }}
           data-testid="associate-button"
