@@ -236,9 +236,7 @@ const en = {
     "There are {{nodeCount}} nodes with a shared stake of {{sharedStake}} VEGA tokens",
   "Read about staking on Vega": "Read about staking on Vega",
   "Read about Governance on Vega": "Read about Governance on Vega",
-  "Stake VEGA tokens": "Stake VEGA tokens",
-  "Tranche breakdown": "Tranche breakdown",
-  "Across all tranches": "Across all tranches",
+
   // Node Validator
   "VALIDATOR {{node}}": "VALIDATOR: {{node}}",
   "VEGA ADDRESS / PUBLIC KEY": "VEGA ADDRESS / PUBLIC KEY",
