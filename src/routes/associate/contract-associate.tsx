@@ -4,8 +4,9 @@ import React from "react";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber";
 import { AssociateAction, AssociateState } from "./associate-reducer";
-import { AssociateFrom } from "./associate-form";
+import { AssociateInfo } from "./associate-info";
 import { Button } from "@blueprintjs/core";
+import { AssociateInput } from "./associate-input";
 
 export const ContractAssociate = ({
   perform,
@@ -40,12 +41,8 @@ export const ContractAssociate = ({
           "You can associate tokens while they are held in the vesting contract, when they unlock you will need to dissociate them before they can be redeemed."
         )}
       </Callout>
-      <AssociateFrom
-        state={state}
-        maximum={maximum}
-        dispatch={dispatch}
-        pubKey={currVegaKey!.pub}
-      />
+      <AssociateInfo pubKey={currVegaKey!.pub} />
+      <AssociateInput maximum={maximum} state={state} dispatch={dispatch} />
       <Button
         data-testid="associate-button"
         fill={true}

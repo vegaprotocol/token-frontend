@@ -1,11 +1,11 @@
-import "./wallet-associate.scss";
 import { useTranslation } from "react-i18next";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber";
-import { AssociateFrom } from "./associate-form";
+import { AssociateInfo } from "./associate-info";
 import { AssociateAction, AssociateState } from "./associate-reducer";
 import React from "react";
 import { Button } from "@blueprintjs/core";
+import { AssociateInput } from "./associate-input";
 
 export const WalletAssociate = ({
   perform,
@@ -58,16 +58,12 @@ export const WalletAssociate = ({
   } else {
     pageContent = (
       <>
-        <AssociateFrom
-          state={state}
-          maximum={maximum}
-          dispatch={dispatch}
-          pubKey={currVegaKey!.pub}
-        />
+        <AssociateInfo pubKey={currVegaKey!.pub} />
+        <AssociateInput state={state} maximum={maximum} dispatch={dispatch} />
         <Button
           data-testid="approve-button"
           fill={true}
-          disabled={isDisabled}
+          disabled={isApproved}
           onClick={perform}
         >
           {t("Approve VEGA tokens for staking on Vega")}
