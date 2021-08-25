@@ -8,12 +8,11 @@ import {
 } from "../../../components/key-value-table";
 import { useTranslation } from "react-i18next";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
-import { TokenDetailsTotal } from "./token-details-total";
 import { EtherscanLink } from "../../../components/etherscan-link";
 import { TokenDetailsCirculating } from "./token-details-circulating";
 import { EthereumChainIds } from "../../../lib/web3-utils";
 
-export const TokenDetails = () => {
+export const TokenDetails = ({ totalSupply }: { totalSupply: string }) => {
   const { t } = useTranslation();
 
   const { appState } = useAppState();
@@ -44,9 +43,7 @@ export const TokenDetails = () => {
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Total supply")}</th>
-        <TokenDetailsTotal
-          totalSupplyFormatted={appState.totalSupplyFormatted}
-        />
+        <td>{totalSupply}</td>
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Circulating supply")}</th>

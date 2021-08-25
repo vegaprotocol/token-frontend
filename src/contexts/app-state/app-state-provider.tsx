@@ -13,7 +13,6 @@ import {
 // @ts-ignore
 import detectEthereumProvider from "DETECT_PROVIDER_PATH/detect-provider";
 import { truncateMiddle } from "../../lib/truncate-middle";
-import { addDecimal } from "../../lib/decimals";
 
 interface AppStateProviderProps {
   children: React.ReactNode;
@@ -36,7 +35,6 @@ const initialAppState: AppState = {
   totalStakedFormatted: "0",
   decimals: 0,
   totalSupply: null,
-  totalSupplyFormatted: "",
 };
 
 function appStateReducer(state: AppState, action: AppStateAction): AppState {
@@ -147,7 +145,6 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         ...state,
         decimals: action.decimals,
         totalSupply: action.totalSupply,
-        totalSupplyFormatted: addDecimal(action.totalSupply, action.decimals),
       };
     }
   }
