@@ -19,8 +19,8 @@ import {
   associateReducer,
   initialAssociateState,
 } from "./associate-reducer";
-import { useQueryParam } from "../../hooks/use-query-param";
 import { AssociateTransaction } from "./associate-transaction";
+import { useSearchParams } from "../../hooks/use-search-params";
 
 enum StakingMethod {
   Contract = "Contract",
@@ -34,7 +34,9 @@ const Associate = ({ name }: RouteChildProps) => {
     appState: { currVegaKey, address },
   } = useAppState();
   const vesting = useVegaVesting();
-  const stakingMethod = useQueryParam<StakingMethod>("method");
+  const params = useSearchParams();
+  const stakingMethod = params.method as StakingMethod | "";
+
   const [selectedStakingMethod, setSelectedStakingMethod] = React.useState<
     StakingMethod | ""
   >(stakingMethod);
