@@ -1,20 +1,9 @@
 import { mock, mockVesting, sendChainResponse } from "../common/mock";
-const balances = {
-  1: {
-    locked: 60,
-    vested: 20,
-  },
-  2: {
-    locked: 30,
-    vested: 20,
-  },
-  lien: 5,
-};
 
 describe("Associate - vesting tokens", () => {
   it("Disabled the button if amount is empty", () => {
     // As a user
-    mockVesting(balances);
+    mockVesting();
     mock(cy);
     // When visiting the associate page
     cy.visit("/associate?method=Contract");
@@ -29,7 +18,7 @@ describe("Associate - vesting tokens", () => {
 
   it("Disabled the button if amount is 0", () => {
     // As a user
-    mockVesting(balances);
+    mockVesting();
     mock(cy);
     // When visiting the associate page
     cy.visit("/associate?method=Contract");
@@ -45,7 +34,7 @@ describe("Associate - vesting tokens", () => {
 
   it("Disabled the button if amount is less than 0", () => {
     // As a user
-    mockVesting(balances);
+    mockVesting();
     mock(cy);
     // When visiting the associate page
     cy.visit("/associate?method=Contract");
@@ -61,7 +50,7 @@ describe("Associate - vesting tokens", () => {
 
   it("Disabled the button if amount is greater than maximum", () => {
     // As a user
-    mockVesting(balances);
+    mockVesting();
     mock(cy);
     // When visiting the associate page
     cy.visit("/associate?method=Contract");
@@ -75,9 +64,9 @@ describe("Associate - vesting tokens", () => {
     cy.get('[data-testid="associate-button"]').should("be.disabled");
   });
 
-  it.only("Calculates maximum correctly if some tokens are staked", () => {
+  it("Calculates maximum correctly if some tokens are staked", () => {
     // As a user
-    mockVesting({ ...balances, lien: 0 });
+    mockVesting({ lien: 5 });
     mock(cy);
     // When visiting the associate page
     cy.visit("/associate?method=Contract");
@@ -89,17 +78,17 @@ describe("Associate - vesting tokens", () => {
     cy.get('[data-testid="wallet-login"]').click();
 
     // 0.00001 over maximum should be disabled
-    cy.get('[data-testid="associate-amount-input"]').type("124");
+    cy.get('[data-testid="associate-amount-input"]').type("0.00119");
     cy.get('[data-testid="associate-button"]').should("be.disabled");
 
     // maximum should be enabled
-    cy.get('[data-testid="associate-amount-input"]').clear().type("123");
+    cy.get('[data-testid="associate-amount-input"]').clear().type("0.00118");
     cy.get('[data-testid="associate-button"]').should("not.be.disabled");
   });
 
   it("Renders in progress and completed states", () => {
     // As a user
-    mockVesting(balances);
+    mockVesting();
     mock(cy);
     // When visiting the associate page
     cy.visit("/associate?method=Contract");

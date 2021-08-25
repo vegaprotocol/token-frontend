@@ -1,5 +1,17 @@
 import _ from "lodash";
 
+const defaultBalances = {
+  1: {
+    locked: 60,
+    vested: 20,
+  },
+  2: {
+    locked: 30,
+    vested: 20,
+  },
+  lien: 5,
+};
+
 const defaultMockOptions = {
   provider: {
     accounts: ["0x0000000000000000000000000000000000000000"],
@@ -57,6 +69,7 @@ export const mock = (cy, options = {}) => {
     "/mocks/vesting/staked/total",
     JSON.stringify(mergedOptions.vesting.stakedTotal)
   );
+  cy.intercept("GET", "/mocks/vesting/events", mergedOptions.vesting.tranches);
 
   // CLAIM
   cy.intercept(
@@ -131,6 +144,7 @@ export const mock = (cy, options = {}) => {
 };
 
 export const mockVesting = (balances, overrides = {}) => {
+  balances = _.merge({}, defaultBalances, balances);
   const lockedHandler = (req) => {
     const trancheId = req.url.match(/tranches\/(\d*)\/balance/)[1];
     req.reply({
