@@ -12,6 +12,7 @@ interface StakingNodeProps {
 }
 
 export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
+  // TODO temp data
   const epochData = {
     count: 1,
     startDate: new Date(1626375300000),
