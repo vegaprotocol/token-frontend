@@ -28,6 +28,7 @@ const initialAppState: AppState = {
   balanceFormatted: "",
   walletBalance: "",
   lien: "",
+  allowance: "",
   tranches: null,
   contractAddresses: Addresses[process.env.REACT_APP_CHAIN as EthereumChainId],
   vegaWalletStatus: VegaWalletStatus.Pending,
@@ -64,6 +65,7 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         chainId: action.chainId,
         balanceFormatted: action.balance?.toString() || "",
         walletBalance: action.walletBalance?.toString() || "",
+        allowance: action.allowance?.toString() || "",
         lien: action.lien?.toString() || "",
         connecting: false,
       };
@@ -86,6 +88,7 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         address: action.address,
         balanceFormatted: action.balance?.toString() || "",
         walletBalance: action.walletBalance?.toString() || "",
+        allowance: action.allowance?.toString() || "",
         lien: action.lien?.toString() || "",
       };
     }
@@ -152,6 +155,12 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         decimals: action.decimals,
         totalSupply: action.totalSupply,
         totalStaked: action.totalStaked.toString(),
+      };
+    }
+    case AppStateActionType.SET_ALLOWANCE: {
+      return {
+        ...state,
+        allowance: action.allowance?.toString() || "",
       };
     }
   }

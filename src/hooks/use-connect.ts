@@ -45,12 +45,14 @@ export function useConnect() {
       const accounts = await provider.request({
         method: "eth_requestAccounts",
       });
-      const [chainId, balance, walletBalance, lien] = await Promise.all([
-        provider.request({ method: "eth_chainId" }),
-        vega.getUserBalanceAllTranches(accounts[0]),
-        token.balanceOf(accounts[0]),
-        vega.getLien(accounts[0]),
-      ]);
+      const [chainId, balance, walletBalance, lien, allowance] =
+        await Promise.all([
+          provider.request({ method: "eth_chainId" }),
+          vega.getUserBalanceAllTranches(accounts[0]),
+          token.balanceOf(accounts[0]),
+          vega.getLien(accounts[0]),
+          token.allowance(accounts[0]),
+        ]);
       connected = true;
       appDispatch({
         type: AppStateActionType.CONNECT_SUCCESS,
@@ -58,6 +60,7 @@ export function useConnect() {
         chainId,
         balance: new BigNumber(balance),
         walletBalance,
+        allowance,
         lien,
       });
     } catch (e) {

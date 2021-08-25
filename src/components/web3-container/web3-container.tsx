@@ -30,10 +30,11 @@ export const Web3Container = ({
     if (appState.providerStatus === ProviderStatus.Ready) {
       provider.on("accountsChanged", async (accounts: string[]) => {
         if (accounts.length) {
-          const [balance, walletBalance, lien] = await Promise.all([
+          const [balance, walletBalance, lien, allowance] = await Promise.all([
             vega.getUserBalanceAllTranches(accounts[0]),
             vegaToken.balanceOf(accounts[0]),
             vega.getLien(accounts[0]),
+            vegaToken.allowance(accounts[0]),
           ]);
           appDispatch({
             type: AppStateActionType.ACCOUNTS_CHANGED,
@@ -41,6 +42,7 @@ export const Web3Container = ({
             balance: new BigNumber(balance),
             walletBalance,
             lien,
+            allowance,
           });
         } else {
           appDispatch({ type: AppStateActionType.DISCONNECT });

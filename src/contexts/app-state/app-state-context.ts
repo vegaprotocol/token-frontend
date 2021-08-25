@@ -41,6 +41,7 @@ export interface AppState {
   decimals: number;
   totalSupply: string | null;
   totalStaked: string;
+  allowance: string | null;
   contractAddresses: {
     vestingAddress: string;
     vegaTokenAddress: string;
@@ -69,6 +70,7 @@ export enum AppStateActionType {
   VEGA_WALLET_DOWN,
   VEGA_WALLET_DISCONNECT,
   SET_TOKEN,
+  SET_ALLOWANCE,
 }
 
 export type AppStateAction =
@@ -83,6 +85,7 @@ export type AppStateAction =
       balance: BigNumber | null;
       walletBalance: BigNumber | null;
       lien: BigNumber | null;
+      allowance: BigNumber | null;
     }
   | { type: AppStateActionType.CONNECT_FAIL; error: Error }
   | {
@@ -91,6 +94,7 @@ export type AppStateAction =
       balance: BigNumber | null;
       walletBalance: BigNumber | null;
       lien: BigNumber | null;
+      allowance: BigNumber | null;
     }
   | { type: AppStateActionType.CHAIN_CHANGED; chainId: EthereumChainId }
   | { type: AppStateActionType.SET_TRANCHES; tranches: Tranche[] }
@@ -107,6 +111,10 @@ export type AppStateAction =
       decimals: number;
       totalSupply: string;
       totalStaked: BigNumber;
+    }
+  | {
+      type: AppStateActionType.SET_ALLOWANCE;
+      allowance: BigNumber | null;
     };
 
 type AppStateContextShape = {
