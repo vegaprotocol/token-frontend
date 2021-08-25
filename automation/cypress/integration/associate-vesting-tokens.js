@@ -81,7 +81,7 @@ describe("Associate - vesting tokens", () => {
     cy.get('[data-testid="associate-button"]').should("not.be.disabled");
   });
 
-  it.only("Renders in progress and completed states", () => {
+  it("Renders in progress and completed states", () => {
     // As a user
     mock(cy);
     // When visiting the associate page
