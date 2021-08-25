@@ -55,67 +55,71 @@ const Associate = ({ name }: RouteChildProps) => {
       sidebar={[<EthWallet />, <VegaWallet />]}
     >
       <Web3Container>
-        <VegaWalletContainer>
-          {({ vegaKey }) => (
-            <>
-              {vestingBridgeTx.txState !== TxState.Default ? (
-                <AssociateTransaction
-                  amount={amount}
-                  vegaKey={vegaKey.pub}
-                  state={vestingBridgeTx}
-                  dispatch={vestingBridgeDispatch}
-                />
-              ) : null}
-              {vestingBridgeTx.txState === TxState.Default && (
-                <>
-                  <p data-testid="associate-information">
-                    {t(
-                      "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes."
-                    )}
-                  </p>
-                  <h2 data-testid="associate-subheader">
-                    {t("Where would you like to stake from?")}
-                  </h2>
-                  <RadioGroup
-                    inline={true}
-                    onChange={(e: FormEvent<HTMLInputElement>) => {
-                      // @ts-ignore
-                      setSelectedStakingMethod(e.target.value);
-                    }}
-                    selectedValue={selectedStakingMethod}
-                  >
-                    <Radio
-                      data-testid="associate-radio-contract"
-                      label={t("Vesting contract")}
-                      value={StakingMethod.Contract}
-                    />
-                    <Radio
-                      data-testid="associate-radio-wallet"
-                      label={t("Wallet")}
-                      value={StakingMethod.Wallet}
-                    />
-                  </RadioGroup>
-                  {selectedStakingMethod &&
-                    (selectedStakingMethod === StakingMethod.Contract ? (
-                      <ContractAssociate
-                        vegaKey={vegaKey}
-                        perform={perform}
-                        state={state}
-                        dispatch={dispatch}
+        {(address) => (
+          <VegaWalletContainer>
+            {/* TODO move this into it's own component this is getting pretty bulky */}
+            {({ vegaKey }) => (
+              <>
+                {vestingBridgeTx.txState !== TxState.Default ? (
+                  <AssociateTransaction
+                    amount={amount}
+                    vegaKey={vegaKey.pub}
+                    state={vestingBridgeTx}
+                    dispatch={vestingBridgeDispatch}
+                  />
+                ) : null}
+                {vestingBridgeTx.txState === TxState.Default && (
+                  <>
+                    <p data-testid="associate-information">
+                      {t(
+                        "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes."
+                      )}
+                    </p>
+                    <h2 data-testid="associate-subheader">
+                      {t("Where would you like to stake from?")}
+                    </h2>
+                    <RadioGroup
+                      inline={true}
+                      onChange={(e: FormEvent<HTMLInputElement>) => {
+                        // @ts-ignore
+                        setSelectedStakingMethod(e.target.value);
+                      }}
+                      selectedValue={selectedStakingMethod}
+                    >
+                      <Radio
+                        data-testid="associate-radio-contract"
+                        label={t("Vesting contract")}
+                        value={StakingMethod.Contract}
                       />
-                    ) : (
-                      <WalletAssociate
-                        vegaKey={vegaKey}
-                        perform={perform}
-                        state={state}
-                        dispatch={dispatch}
+                      <Radio
+                        data-testid="associate-radio-wallet"
+                        label={t("Wallet")}
+                        value={StakingMethod.Wallet}
                       />
-                    ))}
-                </>
-              )}
-            </>
-          )}
-        </VegaWalletContainer>
+                    </RadioGroup>
+                    {selectedStakingMethod &&
+                      (selectedStakingMethod === StakingMethod.Contract ? (
+                        <ContractAssociate
+                          vegaKey={vegaKey}
+                          perform={perform}
+                          state={state}
+                          dispatch={dispatch}
+                        />
+                      ) : (
+                        <WalletAssociate
+                          address={address}
+                          vegaKey={vegaKey}
+                          perform={perform}
+                          state={state}
+                          dispatch={dispatch}
+                        />
+                      ))}
+                  </>
+                )}
+              </>
+            )}
+          </VegaWalletContainer>
+        )}
       </Web3Container>
     </TemplateSidebar>
   );

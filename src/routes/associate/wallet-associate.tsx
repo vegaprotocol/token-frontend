@@ -22,17 +22,19 @@ export const WalletAssociate = ({
   state,
   dispatch,
   vegaKey,
+  address,
 }: {
   perform: () => void;
   state: AssociateState;
   dispatch: React.Dispatch<AssociateAction>;
   vegaKey: VegaKeyExtended;
+  address: string;
 }) => {
   const { amount } = state;
   const { t } = useTranslation();
   const {
     appDispatch,
-    appState: { walletBalance, address, allowance, vegaStakedBalance },
+    appState: { walletBalance, allowance, vegaStakedBalance },
   } = useAppState();
   const isApproved = !new BigNumber(allowance!).isEqualTo(0);
   const token = useVegaToken();
@@ -40,7 +42,7 @@ export const WalletAssociate = ({
     state: approveState,
     perform: approve,
     dispatch: approveDispatch,
-  } = useTransaction(() => token.approve(address!));
+  } = useTransaction(() => token.approve(address));
   const maximum = React.useMemo(
     () =>
       BigNumber.min(new BigNumber(walletBalance), new BigNumber(allowance!)),
@@ -59,7 +61,7 @@ export const WalletAssociate = ({
   React.useEffect(() => {
     const run = async () => {
       if (approveState.txState === TxState.Complete) {
-        const allowance = await token.allowance(address!);
+        const allowance = await token.allowance(address);
         appDispatch({
           type: AppStateActionType.SET_ALLOWANCE,
           allowance,
