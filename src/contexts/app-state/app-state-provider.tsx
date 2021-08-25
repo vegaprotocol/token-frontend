@@ -85,6 +85,9 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
       return {
         ...state,
         address: action.address,
+        balanceFormatted: action.balance?.toString() || "",
+        walletBalance: action.walletBalance?.toString() || "",
+        lien: action.lien?.toString() || "",
       };
     }
     case AppStateActionType.CHAIN_CHANGED: {
@@ -157,12 +160,11 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
 export function AppStateProvider({ children }: AppStateProviderProps) {
   const provider = React.useRef<any>();
   const [state, dispatch] = React.useReducer(appStateReducer, initialAppState);
-
   // Detect provider
   React.useEffect(() => {
     detectEthereumProvider().then((res: any) => {
       // Extra check helps with Opera's legacy web3 - it properly falls through to NOT_DETECTED
-      if (res !== null && res.request) {
+      if (res && res.request) {
         provider.current = res;
 
         // The line below fails on legacy web3 as the method 'request' does not exist
@@ -179,26 +181,6 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
       }
     });
   }, []);
-
-  // Bind listeners for account change
-  React.useEffect(() => {
-    if (state.providerStatus === ProviderStatus.Ready) {
-      provider.current.on("accountsChanged", (accounts: string[]) => {
-        if (accounts.length) {
-          // TODO refetch all data
-          dispatch({
-            type: AppStateActionType.ACCOUNTS_CHANGED,
-            address: accounts[0],
-          });
-        } else {
-          dispatch({ type: AppStateActionType.DISCONNECT });
-        }
-      });
-      provider.current.on("chainChanged", (chainId: EthereumChainId) => {
-        dispatch({ type: AppStateActionType.CHAIN_CHANGED, chainId });
-      });
-    }
-  }, [state.providerStatus]);
 
   if (state.providerStatus === ProviderStatus.Pending) {
     return (
