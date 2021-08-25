@@ -4,17 +4,26 @@ import { AbiItem } from "web3-utils";
 import type { Contract } from "web3-eth-contract";
 import tokenAbi from "../abis/vega_token_abi.json";
 import { addDecimal } from "../decimals";
-import { IVegaToken } from "../web3-utils";
+import { IVegaToken, PromiEvent } from "../web3-utils";
 
 export default class VegaToken implements IVegaToken {
   private web3: Web3;
   private contract: Contract;
+  private tokenAddress: string;
 
   constructor(web3: Web3, tokenAddress: string) {
     this.web3 = web3;
     this.contract = new this.web3.eth.Contract(
       tokenAbi as AbiItem[],
       tokenAddress
+    );
+    this.tokenAddress = tokenAddress;
+  }
+
+  approve(address: string): PromiEvent {
+    return this.contract.methods.approve(
+      this.tokenAddress,
+      Number.MAX_SAFE_INTEGER - 1
     );
   }
 
