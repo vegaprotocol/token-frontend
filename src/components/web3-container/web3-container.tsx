@@ -54,9 +54,11 @@ export const Web3Container = ({
 
   React.useEffect(() => {
     const run = async () => {
-      const supply = await vegaToken.totalSupply();
-      const totalStaked = await vega.totalStaked();
-      const decimals = await vegaToken.decimals();
+      const [supply, totalStaked, decimals] = await Promise.all([
+        vegaToken.totalSupply(),
+        vega.totalStaked(),
+        vegaToken.decimals(),
+      ]);
       appDispatch({
         type: AppStateActionType.SET_TOKEN,
         decimals,
