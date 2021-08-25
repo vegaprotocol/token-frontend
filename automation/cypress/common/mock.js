@@ -9,12 +9,21 @@ const defaultMockOptions = {
     balance: "123",
     tranches: { fixture: "events.json" },
     stakedBalance: "10",
+    stakedTotal: "20",
   },
   claim: {
     committed: false,
     used: false,
     expired: false,
     blockedCountries: ["US"],
+  },
+  staking: {
+    stakedTotal: "20",
+    balance: "30",
+  },
+  token: {
+    balance: "100",
+    allowance: Number.MAX_SAFE_INTEGER - 1,
   },
 };
 
@@ -43,7 +52,11 @@ export const mock = (cy, options = {}) => {
     "/mocks/vesting/balance",
     JSON.stringify(mergedOptions.vesting.balance)
   );
-  cy.intercept("GET", "/mocks/vesting/events", mergedOptions.vesting.tranches);
+  cy.intercept(
+    "GET",
+    "/mocks/vesting/staked/total",
+    JSON.stringify(mergedOptions.vesting.stakedTotal)
+  );
 
   // CLAIM
   cy.intercept(
@@ -97,6 +110,24 @@ export const mock = (cy, options = {}) => {
     "/mocks/vega-token/data",
     JSON.stringify(mergedOptions.token)
   );
+  cy.intercept(
+    "GET",
+    "/mocks/vega-token/balance",
+    JSON.stringify(mergedOptions.token.balance)
+  );
+  cy.intercept(
+    "GET",
+    "/mocks/vega-token/allowance",
+    JSON.stringify(mergedOptions.token.allowance)
+  );
+
+  // VEGA STAKING
+  cy.intercept(
+    "GET",
+    "/mocks/staking/balance/total",
+    mergedOptions.staking.stakedTotal
+  );
+  cy.intercept("GET", "/mocks/staking/balance", mergedOptions.staking.balance);
 };
 
 export const mockVesting = (balances, overrides = {}) => {
