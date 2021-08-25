@@ -1,4 +1,4 @@
-import { BigNumber } from "../../../lib/bignumber";
+import { BigNumber } from "../../bignumber";
 import { IVegaStaking, PromiEvent } from "../../web3-utils";
 import { promiEventFactory, uuidv4 } from "./promi-manager";
 import Web3 from "web3";
