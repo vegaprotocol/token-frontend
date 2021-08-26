@@ -43,6 +43,17 @@ const WalletDisassociate = ({
       new BigNumber(amount).isGreaterThan(maximum),
     [amount, maximum]
   );
+
+  if (new BigNumber(vegaStakedBalance!).isEqualTo("0")) {
+    return (
+      <div className="disassociate-page__error">
+        {t(
+          "You have no VEGA tokens currently staked through your connected Vega wallet."
+        )}
+      </div>
+    );
+  }
+
   return (
     <>
       <TokenInput maximum={maximum} amount={amount} setAmount={setAmount} />
@@ -52,7 +63,7 @@ const WalletDisassociate = ({
         disabled={isDisabled}
         onClick={perform}
       >
-        {t("disassociate VEGA Tokens from key")}
+        {t("Disassociate VEGA Tokens from key")}
       </button>
     </>
   );
@@ -71,7 +82,7 @@ const ContractDisassociate = ({
     appState: { lien },
   } = useAppState();
   const { t } = useTranslation();
-  const maximum = React.useMemo(() => new BigNumber(lien!), [lien]);
+  const maximum = React.useMemo(() => new BigNumber(lien), [lien]);
   const isDisabled = React.useMemo<boolean>(
     () =>
       !amount ||
@@ -79,6 +90,15 @@ const ContractDisassociate = ({
       new BigNumber(amount).isGreaterThan(maximum),
     [amount, maximum]
   );
+  if (new BigNumber(lien).isEqualTo("0")) {
+    return (
+      <div className="disassociate-page__error">
+        {t(
+          "You have no VEGA tokens currently staked through your connected Vega wallet."
+        )}
+      </div>
+    );
+  }
   return (
     <>
       <TokenInput maximum={maximum} amount={amount} setAmount={setAmount} />
