@@ -1,6 +1,6 @@
 import "./disassociate-page.scss";
 import BigNumber from "bignumber.js";
-import React from "react";
+import React, { useReducer } from "react";
 import { useTranslation } from "react-i18next";
 import { ConnectedVegaKey } from "../../components/connected-vega-key";
 import {
@@ -8,8 +8,78 @@ import {
   StakingMethodRadio,
 } from "../../components/staking-method-radio";
 import { TokenInput } from "../../components/token-input";
-import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
+import {
+  useAppState,
+  VegaKeyExtended,
+} from "../../contexts/app-state/app-state-context";
 import { useSearchParams } from "../../hooks/use-search-params";
+import {
+  DisassociateActionType,
+  disassociateReducer,
+  initialDisassociateState,
+} from "./disassociate-reducer";
+
+const WalletDisassociate = ({
+  perform,
+  amount,
+  setAmount,
+}: {
+  perform: () => void;
+  amount: string;
+  setAmount: React.Dispatch<string>;
+}) => {
+  const {
+    appState: { vegaStakedBalance },
+  } = useAppState();
+  const { t } = useTranslation();
+  const maximum = new BigNumber(vegaStakedBalance!);
+  // TODO
+  const isDisabled = true;
+  return (
+    <>
+      <TokenInput maximum={maximum} amount={amount} setAmount={setAmount} />
+      <button
+        style={{ marginTop: 10, width: "100%" }}
+        data-testid="associate-button"
+        disabled={isDisabled}
+        onClick={perform}
+      >
+        {t("Disassociate VEGA Tokens from key")}
+      </button>
+    </>
+  );
+};
+
+const ContractDisassociate = ({
+  perform,
+  amount,
+  setAmount,
+}: {
+  perform: () => void;
+  amount: string;
+  setAmount: React.Dispatch<string>;
+}) => {
+  const {
+    appState: { lien },
+  } = useAppState();
+  const { t } = useTranslation();
+  const maximum = new BigNumber(lien);
+  // TODO
+  const isDisabled = true;
+  return (
+    <>
+      <TokenInput maximum={maximum} amount={amount} setAmount={setAmount} />
+      <button
+        style={{ marginTop: 10, width: "100%" }}
+        data-testid="associate-button"
+        disabled={isDisabled}
+        onClick={perform}
+      >
+        {t("Disassociate VEGA Tokens from key")}
+      </button>
+    </>
+  );
+};
 
 export const DisassociatePage = ({
   address,
@@ -18,16 +88,19 @@ export const DisassociatePage = ({
   address: string;
   vegaKey: VegaKeyExtended;
 }) => {
-  // TODO
-  const maximum = new BigNumber("1");
-  const [amount, setAmount] = React.useState("");
-  const isDisabled = true;
-  const perform = () => undefined;
-
-  // Done
   const { t } = useTranslation();
   const params = useSearchParams();
+  const [state, dispatch] = useReducer(
+    disassociateReducer,
+    initialDisassociateState
+  );
 
+  const setAmount = React.useCallback(
+    (value: string) => {
+      dispatch({ type: DisassociateActionType.SET_AMOUNT, amount: value });
+    },
+    [dispatch]
+  );
   const stakingMethod = params.method as StakingMethod | "";
   const [selectedStakingMethod, setSelectedStakingMethod] = React.useState<
     StakingMethod | ""
@@ -52,19 +125,20 @@ export const DisassociatePage = ({
         setSelectedStakingMethod={setSelectedStakingMethod}
         selectedStakingMethod={selectedStakingMethod}
       />
-      {selectedStakingMethod ? (
-        <>
-          <TokenInput maximum={maximum} amount={amount} setAmount={setAmount} />
-          <button
-            style={{ marginTop: 10, width: "100%" }}
-            data-testid="associate-button"
-            disabled={isDisabled}
-            onClick={perform}
-          >
-            {t("Disassociate VEGA Tokens from key")}
-          </button>
-        </>
-      ) : null}
+      {selectedStakingMethod &&
+        (selectedStakingMethod === StakingMethod.Wallet ? (
+          <WalletDisassociate
+            setAmount={setAmount}
+            amount={state.amount}
+            perform={() => undefined}
+          />
+        ) : (
+          <ContractDisassociate
+            setAmount={setAmount}
+            amount={state.amount}
+            perform={() => undefined}
+          />
+        ))}
     </section>
   );
 };
