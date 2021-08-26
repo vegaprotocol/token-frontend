@@ -66,3 +66,11 @@ REACT_APP_REDEEM_LIVE=0
 REACT_APP_CHAIN=0x1
 REACT_APP_SHOW_NETWORK_SWITCHER=0
 ```
+
+## Cypress Automation
+
+1) Install Cypress: ```yarn add cypress```
+2) Run ```yarn start:mock``` from the root level of the Token FE project
+3) cd into automation
+4) from automation, run ```yarn```
+5) from automation, run ```yarn cypress:open```
