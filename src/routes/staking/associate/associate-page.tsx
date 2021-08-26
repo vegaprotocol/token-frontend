@@ -20,24 +20,33 @@ const useAddStake = (
   vegaKey: string,
   stakingMethod: StakingMethod | ""
 ) => {
-  // TODO refresh changes
   const vesting = useVegaVesting();
   const staking = useVegaStaking();
-  const contractRemove = useTransaction(
+  const contractAdd = useTransaction(
     () => vesting.addStake(address!, amount, vegaKey),
     () => vesting.checkAddStake(address!, amount, vegaKey)
   );
-  const walletRemove = useTransaction(
+  const walletAdd = useTransaction(
     () => staking.addStake(address!, amount, vegaKey),
     () => staking.checkAddStake(address!, amount, vegaKey)
   );
+
+  React.useEffect(() => {
+    if (
+      walletAdd.state.txState === TxState.Complete ||
+      contractAdd.state.txState === TxState.Complete
+    ) {
+      // TODO refresh values
+    }
+  }, [walletAdd.state.txState, contractAdd.state.txState]);
+
   return React.useMemo(() => {
     if (stakingMethod === StakingMethod.Contract) {
-      return walletRemove;
+      return walletAdd;
     } else {
-      return contractRemove;
+      return contractAdd;
     }
-  }, [contractRemove, stakingMethod, walletRemove]);
+  }, [contractAdd, stakingMethod, walletAdd]);
 };
 
 export const AssociatePage = ({

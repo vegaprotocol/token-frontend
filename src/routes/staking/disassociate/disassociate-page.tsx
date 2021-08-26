@@ -33,6 +33,16 @@ const useRemoveStake = (
     () => staking.removeStake(address!, amount, vegaKey),
     () => staking.checkRemoveStake(address!, amount, vegaKey)
   );
+
+  React.useEffect(() => {
+    if (
+      walletRemove.state.txState === TxState.Complete ||
+      contractRemove.state.txState === TxState.Complete
+    ) {
+      // TODO refresh values
+    }
+  }, [contractRemove.state.txState, walletRemove.state.txState]);
+
   return React.useMemo(() => {
     if (stakingMethod === StakingMethod.Contract) {
       return walletRemove;
