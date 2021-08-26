@@ -94,6 +94,16 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         lien: action.lien?.toString() || "",
       };
     }
+    case AppStateActionType.REFRESH_BALANCES: {
+      return {
+        ...state,
+        balanceFormatted: action.balance?.toString() || "",
+        walletBalance: action.walletBalance?.toString() || "",
+        allowance: action.allowance?.toString() || "",
+        lien: action.lien?.toString() || "",
+        vegaAssociatedBalance: action.vegaAssociatedBalance?.toString() || "",
+      };
+    }
     case AppStateActionType.CHAIN_CHANGED: {
       return {
         ...state,

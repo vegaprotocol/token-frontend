@@ -6,7 +6,11 @@ import {
   StakingMethod,
   StakingMethodRadio,
 } from "../../../components/staking-method-radio";
-import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
+import {
+  AppStateActionType,
+  useAppState,
+  VegaKeyExtended,
+} from "../../../contexts/app-state/app-state-context";
 import { useSearchParams } from "../../../hooks/use-search-params";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { useVegaVesting } from "../../../hooks/use-vega-vesting";
@@ -15,6 +19,7 @@ import { TxState } from "../../../hooks/transaction-reducer";
 import { WalletDisassociate } from "./wallet-disassociate";
 import { ContractDisassociate } from "./contract-disassociate";
 import { DisassociateTransaction } from "./disassociate-transaction";
+import { useVegaToken } from "../../../hooks/use-vega-token";
 
 const useRemoveStake = (
   address: string,
@@ -22,9 +27,10 @@ const useRemoveStake = (
   vegaKey: string,
   stakingMethod: StakingMethod | ""
 ) => {
-  // TODO refresh changes
+  const { appState, appDispatch } = useAppState();
   const vesting = useVegaVesting();
   const staking = useVegaStaking();
+  const token = useVegaToken();
   const contractRemove = useTransaction(
     () => vesting.removeStake(address!, amount, vegaKey),
     () => vesting.checkRemoveStake(address!, amount, vegaKey)
@@ -35,13 +41,42 @@ const useRemoveStake = (
   );
 
   React.useEffect(() => {
+    const run = async () => {
+      const [balance, walletBalance, lien, allowance, vegaAssociatedBalance] =
+        await Promise.all([
+          vesting.getUserBalanceAllTranches(address),
+          token.balanceOf(address),
+          vesting.getLien(address),
+          token.allowance(address, appState.contractAddresses.stakingBridge),
+          staking.stakeBalance(address, vegaKey),
+        ]);
+      appDispatch({
+        type: AppStateActionType.REFRESH_BALANCES,
+        balance,
+        walletBalance,
+        allowance,
+        lien,
+        vegaAssociatedBalance,
+      });
+    };
     if (
       walletRemove.state.txState === TxState.Complete ||
       contractRemove.state.txState === TxState.Complete
     ) {
-      // TODO refresh values
+      run();
     }
-  }, [contractRemove.state.txState, walletRemove.state.txState]);
+  }, [
+    address,
+    appDispatch,
+    appState.chainId,
+    appState.contractAddresses.stakingBridge,
+    contractRemove.state.txState,
+    staking,
+    token,
+    vegaKey,
+    vesting,
+    walletRemove.state.txState,
+  ]);
 
   return React.useMemo(() => {
     if (stakingMethod === StakingMethod.Contract) {
