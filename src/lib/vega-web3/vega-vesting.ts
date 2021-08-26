@@ -39,7 +39,9 @@ export default class VegaVesting implements IVegaVesting {
     amount: string,
     vegaKey: string
   ): Promise<any> {
-    return this.contract.methods.stake(amount, vegaKey).call({ from: address });
+    return this.contract.methods
+      .remove_stake(amount, `0x${vegaKey}`)
+      .call({ from: address });
   }
 
   removeStake(address: string, amount: string, vegaKey: string): PromiEvent {
