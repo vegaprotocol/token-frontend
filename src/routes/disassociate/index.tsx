@@ -6,6 +6,7 @@ import { TemplateSidebar } from "../../components/page-templates/template-sideba
 import { EthWallet } from "../../components/eth-wallet";
 import { VegaWallet } from "../../components/vega-wallet";
 import { VegaWalletContainer } from "../../components/vega-wallet-container";
+import { DisassociatePage } from "./disassociate-page";
 
 const Disassociate = ({ name }: RouteChildProps) => {
   const { t } = useTranslation();
@@ -21,9 +22,7 @@ const Disassociate = ({ name }: RouteChildProps) => {
         {(address) => (
           <VegaWalletContainer>
             {({ vegaKey }) => (
-              <div>
-                Disassociate {vegaKey.pub}/{address}
-              </div>
+              <DisassociatePage vegaKey={vegaKey} address={address} />
             )}
           </VegaWalletContainer>
         )}
