@@ -307,6 +307,10 @@ const en = {
     "What Vega wallet are you removing Tokens from?",
   "What tokens would you like to return?":
     "What tokens would you like to return?",
+  "You have no VEGA tokens currently staked through your connected Vega wallet.":
+    "You have no VEGA tokens currently staked through your connected Vega wallet.",
+  "You have no VEGA tokens currently staked through your connected Eth wallet.":
+    "You have no VEGA tokens currently staked through your connected Eth wallet.",
 };
 
 export default en;
