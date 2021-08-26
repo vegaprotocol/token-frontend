@@ -1,19 +1,14 @@
+import "./connected-vega-key.scss";
 import { useTranslation } from "react-i18next";
-import { Colors } from "../../colors";
 
 export const ConnectedVegaKey = ({ pubKey }: { pubKey: string }) => {
   const { t } = useTranslation();
   return (
-    <section>
-      <strong
-        data-testid="connected-vega-key-label"
-        style={{ color: Colors.WHITE }}
-      >
+    <section className="connected-vega-key">
+      <strong data-testid="connected-vega-key-label">
         {t("Connected Vega key")}
       </strong>
-      <p style={{ color: Colors.WHITE }} data-testid="connected-vega-key">
-        {pubKey}
-      </p>
+      <p data-testid="connected-vega-key">{pubKey}</p>
     </section>
   );
 };
