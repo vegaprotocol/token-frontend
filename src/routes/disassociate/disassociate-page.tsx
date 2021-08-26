@@ -32,19 +32,27 @@ const WalletDisassociate = ({
     appState: { vegaStakedBalance },
   } = useAppState();
   const { t } = useTranslation();
-  const maximum = new BigNumber(vegaStakedBalance!);
-  // TODO
-  const isDisabled = true;
+  const maximum = React.useMemo(
+    () => new BigNumber(vegaStakedBalance!),
+    [vegaStakedBalance]
+  );
+  const isDisabled = React.useMemo<boolean>(
+    () =>
+      !amount ||
+      new BigNumber(amount).isLessThanOrEqualTo("0") ||
+      new BigNumber(amount).isGreaterThan(maximum),
+    [amount, maximum]
+  );
   return (
     <>
       <TokenInput maximum={maximum} amount={amount} setAmount={setAmount} />
       <button
         style={{ marginTop: 10, width: "100%" }}
-        data-testid="associate-button"
+        data-testid="disassociate-button"
         disabled={isDisabled}
         onClick={perform}
       >
-        {t("Disassociate VEGA Tokens from key")}
+        {t("disassociate VEGA Tokens from key")}
       </button>
     </>
   );
@@ -63,15 +71,20 @@ const ContractDisassociate = ({
     appState: { lien },
   } = useAppState();
   const { t } = useTranslation();
-  const maximum = new BigNumber(lien);
-  // TODO
-  const isDisabled = true;
+  const maximum = React.useMemo(() => new BigNumber(lien!), [lien]);
+  const isDisabled = React.useMemo<boolean>(
+    () =>
+      !amount ||
+      new BigNumber(amount).isLessThanOrEqualTo("0") ||
+      new BigNumber(amount).isGreaterThan(maximum),
+    [amount, maximum]
+  );
   return (
     <>
       <TokenInput maximum={maximum} amount={amount} setAmount={setAmount} />
       <button
         style={{ marginTop: 10, width: "100%" }}
-        data-testid="associate-button"
+        data-testid="disassociate-button"
         disabled={isDisabled}
         onClick={perform}
       >
