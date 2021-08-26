@@ -1,0 +1,110 @@
+@import "../../styles/colors";
+
+.nav {
+  &__inner {
+    max-width: 1020px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    @media (min-width: 960px) {
+      justify-content: flex-start;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 10px;
+
+    @media (min-width: 960px) {
+      flex: 1 1 auto;
+    }
+
+    > button {
+      background: none;
+      padding: 0;
+    }
+  }
+
+  &__logo {
+    width: 30px;
+
+    @media (min-width: 960px) {
+      width: 60px;
+    }
+  }
+
+  &__drawer {
+    padding: 20px;
+  }
+
+  &__drawer-button {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 4px;
+
+    &:focus,
+    &:hover {
+      background: none;
+      outline: none;
+    }
+
+    span {
+      display: block;
+      width: 30px;
+      height: 4px;
+      background: $white;
+    }
+  }
+
+  &__wallets-container {
+    display: flex;
+    gap: 10px;
+
+    > button {
+      padding: 3px 10px;
+      font-size: 14px;
+    }
+  }
+}
+
+.nav-links {
+  display: flex;
+
+  > a {
+    color: $black;
+    text-decoration: none;
+    font-size: 14px;
+  }
+}
+
+.nav-links--row {
+  flex-direction: row;
+
+  > a {
+    padding: 3px 10px;
+    background: $white;
+    border-radius: 4px;
+  }
+}
+
+.nav-links--column {
+  flex-direction: column;
+  gap: 5px;
+
+  > a {
+    display: block;
+    padding: 20px;
+    border-bottom: 1px solid $black;
+  }
+}
+
+.nav-overlay {
+  left: calc(50vw - 200px);
+  margin: 10vh 0;
+  top: 0;
+  width: 400px;
+}

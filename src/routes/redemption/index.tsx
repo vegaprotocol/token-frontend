@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { RouteChildProps } from "..";
-import { EthWallet } from "../../components/eth-wallet";
-import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
+import { TemplateDefault } from "../../components/page-templates/template-default";
 import { TrancheContainer } from "../../components/tranche-container";
 import { Web3Container } from "../../components/web3-container";
 import { useDocumentTitle } from "../../hooks/use-document-title";
@@ -12,11 +11,7 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
   const { t } = useTranslation();
 
   return (
-    <TemplateSidebar
-      title={t("pageTitleRedemption")}
-      sidebarButtonText={t("viewKeys")}
-      sidebar={[<EthWallet />]}
-    >
+    <TemplateDefault title={t("pageTitleRedemption")}>
       <Web3Container>
         {(address) => (
           <TrancheContainer address={address}>
@@ -26,7 +21,7 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
           </TrancheContainer>
         )}
       </Web3Container>
-    </TemplateSidebar>
+    </TemplateDefault>
   );
 };
 

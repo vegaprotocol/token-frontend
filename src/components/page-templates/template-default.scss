@@ -1,24 +1,10 @@
 .template-default {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
   min-height: 100%;
-  max-width: 1020px;
-  margin: auto;
 
-  header {
-    grid-row: 1 / 1;
-  }
-
+  header,
   main {
-    grid-row: 2 / 3;
+    max-width: 1020px;
+    margin: 0 auto;
     padding: 20px;
-  }
-
-  aside {
-    grid-row: 2 / 3;
-  }
-
-  footer {
-    grid-row: 3 / 4;
   }
 }
