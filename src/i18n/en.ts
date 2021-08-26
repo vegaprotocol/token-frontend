@@ -249,7 +249,7 @@ const en = {
   // Epoch counter
   Epoch: "Epoch",
   Started: "Started",
-  "Ends In": "Ends in",
+  "Ends in": 'Ends in',
   // Node Validator
   "Manage your stake": "Manage your stake",
   "Add Stake": "Add Stake",

@@ -52,7 +52,10 @@ export function EpochCountdown({
   }, [endDate]);
 
   return (
-    <div className={`${containerClass} epoch-countdown`}>
+    <div
+      data-testid="epoch-countdown"
+      className={`${containerClass} epoch-countdown`}
+    >
       <h3>
         {t("Epoch")} {count}
       </h3>
@@ -66,7 +69,7 @@ export function EpochCountdown({
         {t("Started")} {format(startDate, DATE_FORMAT)}
       </p>
       <p>
-        {t("Ends In")} ~{endsIn}
+        {t("Ends in")} ~{endsIn}
       </p>
     </div>
   );
