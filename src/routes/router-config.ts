@@ -6,6 +6,7 @@ import NotPermitted from "./not-permitted";
 export const Routes = {
   HOME: "/",
   ASSOCIATE: "/associate",
+  DISASSOCIATE: "/disassociate",
   TRANCHES: "/tranches",
   CLAIM: "/claim",
   STAKING: "/staking",
@@ -46,6 +47,12 @@ const LazyAssociate = React.lazy(
       /* webpackChunkName: "route-associate", webpackPrefetch: true */ "./associate"
     )
 );
+const LazyDisassociate = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "route-disassociate", webpackPrefetch: true */ "./disassociate"
+    )
+);
 
 const routerConfig = [
   {
@@ -80,6 +87,12 @@ const routerConfig = [
     name: "Associate",
     children: [],
     component: LazyAssociate,
+  },
+  {
+    path: Routes.DISASSOCIATE,
+    name: "Disassociate",
+    children: [],
+    component: LazyDisassociate,
   },
   {
     path: Routes.NOT_PERMITTED,
