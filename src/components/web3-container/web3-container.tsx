@@ -27,6 +27,23 @@ export const Web3Container = ({
   const staking = useVegaStaking();
   const vesting = useVegaVesting();
 
+  React.useEffect(() => {
+    // Auto connect if possible
+    if (
+      appState.decimals &&
+      // We don't have an address we are not connected
+      !appState.address &&
+      // If we have an error we don't want to try reconnecting
+      !appState.error &&
+      // If we are connecting we don't want to try to connect
+      !appState.connecting &&
+      // @ts-ignore
+      (window.ethereum || (window.web3 && window.web3.currentProvider))
+    ) {
+      connect();
+    }
+  }, [appState.address, appState.connecting, appState.decimals, appState.error, connect]);
+
   // Bind listeners for account change
   React.useEffect(() => {
     if (appState.providerStatus === ProviderStatus.Ready) {
