@@ -1,6 +1,6 @@
 import "./validator-table.scss";
-import React from 'react'
-import { useTranslation } from 'react-i18next';
+import React from "react";
+import { useTranslation } from "react-i18next";
 
 import {
   KeyValueTable,
@@ -8,7 +8,7 @@ import {
 } from "../../components/key-value-table";
 
 export interface ValidatorTableProps {
-  node: string
+  node: string;
 }
 
 export const ValidatorTable = ({ node }: ValidatorTableProps) => {
@@ -27,7 +27,7 @@ export const ValidatorTable = ({ node }: ValidatorTableProps) => {
 
   return (
     <>
-      <KeyValueTable>
+      <KeyValueTable data-testid="validator-table">
         <KeyValueTableRow>
           <th>{t("VEGA ADDRESS / PUBLIC KEY")}</th>
           <td className="validator-table__cell">{validator.address}</td>

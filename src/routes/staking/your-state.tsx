@@ -13,15 +13,13 @@ enum ManageStakeMethod {
   Remove = "Remove",
 }
 
-
 export interface YourStakeProps {
   node: string;
 }
 
 export const YourStake = ({ node }: YourStakeProps) => {
-    const [selectedManageStakeMethod, setSelectedManageStakeMethod] = React.useState<
-      ManageStakeMethod
-    >(ManageStakeMethod.Add);
+  const [selectedManageStakeMethod, setSelectedManageStakeMethod] =
+    React.useState<ManageStakeMethod>(ManageStakeMethod.Add);
   const { t } = useTranslation();
 
   // TODO get stake data based on the node
@@ -31,7 +29,7 @@ export const YourStake = ({ node }: YourStakeProps) => {
   };
 
   return (
-    <>
+    <div data-testid="your-stake">
       <h2>{t("Your Stake")}</h2>
       <KeyValueTable>
         <KeyValueTableRow>
@@ -64,6 +62,6 @@ export const YourStake = ({ node }: YourStakeProps) => {
           value={ManageStakeMethod.Remove}
         />
       </RadioGroup>
-    </>
+    </div>
   );
 };
