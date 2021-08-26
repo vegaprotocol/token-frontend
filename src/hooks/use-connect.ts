@@ -71,7 +71,14 @@ export function useConnect() {
       Sentry.captureEvent(e);
       appDispatch({ type: AppStateActionType.CONNECT_FAIL, error: e });
     }
-  }, [appDispatch, appState.contractAddresses.stakingBridge, appState.providerStatus, provider, token, vega]);
+  }, [
+    appDispatch,
+    appState.contractAddresses.stakingBridge,
+    appState.providerStatus,
+    provider,
+    token,
+    vega,
+  ]);
 
   React.useEffect(() => {
     return () => {
