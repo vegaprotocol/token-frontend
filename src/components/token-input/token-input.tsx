@@ -1,39 +1,27 @@
-import "./associate-input.scss";
+import "./token-input.scss";
 import { FormGroup, InputGroup, Intent, Tag } from "@blueprintjs/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { BigNumber } from "../../lib/bignumber";
-import {
-  AssociateAction,
-  AssociateActionType,
-  AssociateState,
-} from "./associate-reducer";
 
 const inputName = "amount";
 
-export const AssociateInput = ({
+export const TokenInput = ({
   maximum,
-  state,
-  dispatch,
+  amount,
+  setAmount,
 }: {
   maximum: BigNumber;
-  state: AssociateState;
-  dispatch: React.Dispatch<AssociateAction>;
+  amount: string;
+  setAmount: React.Dispatch<any>;
 }) => {
-  const { amount } = state;
-  const setAmount = React.useCallback(
-    (value: string) => {
-      dispatch({ type: AssociateActionType.SET_AMOUNT, amount: value });
-    },
-    [dispatch]
-  );
   const { t } = useTranslation();
   return (
     <FormGroup label="" labelFor={inputName}>
       <div style={{ display: "flex" }}>
         <InputGroup
-          data-testid="associate-amount-input"
-          className="associate-input__input"
+          data-testid="token-amount-input"
+          className="token-input__input"
           name={inputName}
           id={inputName}
           onChange={(e) => setAmount(e.target.value)}
@@ -45,8 +33,8 @@ export const AssociateInput = ({
         />
         <button
           onClick={() => setAmount(maximum.toString())}
-          data-testid="associate-amount-use-maximum"
-          className="button-link associate-input__use-maximum "
+          data-testid="token-amount-use-maximum"
+          className="button-link token-input__use-maximum "
         >
           {t("Use maximum")}
         </button>

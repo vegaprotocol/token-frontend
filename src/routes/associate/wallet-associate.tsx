@@ -7,9 +7,12 @@ import {
 } from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber";
 import { AssociateInfo } from "./associate-info";
-import { AssociateAction, AssociateState } from "./associate-reducer";
+import {
+  AssociateAction,
+  AssociateActionType,
+  AssociateState,
+} from "./associate-reducer";
 import React from "react";
-import { AssociateInput } from "./associate-input";
 import { useTransaction } from "../../hooks/use-transaction";
 import { useVegaToken } from "../../hooks/use-vega-token";
 import {
@@ -17,6 +20,7 @@ import {
   TxState,
 } from "../../hooks/transaction-reducer";
 import { TransactionCallout } from "../../components/transaction-callout";
+import { TokenInput } from "../../components/token-input";
 
 export const WalletAssociate = ({
   perform,
@@ -63,6 +67,13 @@ export const WalletAssociate = ({
       new BigNumber(amount).isLessThanOrEqualTo("0") ||
       new BigNumber(amount).isGreaterThan(maximum),
     [amount, isApproved, maximum]
+  );
+
+  const setAmount = React.useCallback(
+    (value: string) => {
+      dispatch({ type: AssociateActionType.SET_AMOUNT, amount: value });
+    },
+    [dispatch]
   );
 
   // Once they have approved deposits then we need to refresh their allowance
@@ -114,7 +125,7 @@ export const WalletAssociate = ({
     pageContent = (
       <>
         <AssociateInfo pubKey={vegaKey.pub} />
-        <AssociateInput state={state} maximum={maximum} dispatch={dispatch} />
+        <TokenInput maximum={maximum} amount={amount} setAmount={setAmount} />
         <TransactionCallout
           state={approveState}
           reset={() =>
@@ -127,7 +138,7 @@ export const WalletAssociate = ({
     pageContent = (
       <>
         <AssociateInfo pubKey={vegaKey.pub} />
-        <AssociateInput state={state} maximum={maximum} dispatch={dispatch} />
+        <TokenInput maximum={maximum} amount={amount} setAmount={setAmount} />
         {isApproved ? (
           t("VEGA tokens are approved for staking")
         ) : (
