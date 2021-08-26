@@ -61,49 +61,47 @@ export const AssociatePage = ({
     perform: txPerform,
   } = useAddStake(address, amount, vegaKey.pub, selectedStakingMethod);
 
+  if (txState.txState !== TxState.Default) {
+    return (
+      <AssociateTransaction
+        amount={amount}
+        vegaKey={vegaKey.pub}
+        state={txState}
+        dispatch={txDispatch}
+      />
+    );
+  }
   return (
     <section data-testid="associate">
-      {txState.txState !== TxState.Default ? (
-        <AssociateTransaction
-          amount={amount}
-          vegaKey={vegaKey.pub}
-          state={txState}
-          dispatch={txDispatch}
-        />
-      ) : null}
-      {txState.txState === TxState.Default && (
-        <>
-          <p data-testid="associate-information">
-            {t(
-              "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes."
-            )}
-          </p>
-          <h2 data-testid="associate-subheader">
-            {t("Where would you like to stake from?")}
-          </h2>
-          <StakingMethodRadio
-            setSelectedStakingMethod={setSelectedStakingMethod}
-            selectedStakingMethod={selectedStakingMethod}
+      <p data-testid="associate-information">
+        {t(
+          "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes."
+        )}
+      </p>
+      <h2 data-testid="associate-subheader">
+        {t("Where would you like to stake from?")}
+      </h2>
+      <StakingMethodRadio
+        setSelectedStakingMethod={setSelectedStakingMethod}
+        selectedStakingMethod={selectedStakingMethod}
+      />
+      {selectedStakingMethod &&
+        (selectedStakingMethod === StakingMethod.Contract ? (
+          <ContractAssociate
+            vegaKey={vegaKey}
+            perform={txPerform}
+            amount={amount}
+            setAmount={setAmount}
           />
-          {selectedStakingMethod &&
-            (selectedStakingMethod === StakingMethod.Contract ? (
-              <ContractAssociate
-                vegaKey={vegaKey}
-                perform={txPerform}
-                amount={amount}
-                setAmount={setAmount}
-              />
-            ) : (
-              <WalletAssociate
-                address={address}
-                vegaKey={vegaKey}
-                perform={txPerform}
-                amount={amount}
-                setAmount={setAmount}
-              />
-            ))}
-        </>
-      )}
+        ) : (
+          <WalletAssociate
+            address={address}
+            vegaKey={vegaKey}
+            perform={txPerform}
+            amount={amount}
+            setAmount={setAmount}
+          />
+        ))}
     </section>
   );
 };
