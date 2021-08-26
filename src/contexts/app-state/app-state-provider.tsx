@@ -32,6 +32,8 @@ const initialAppState: AppState = {
   allowance: "",
   tranches: null,
   contractAddresses: Addresses[process.env.REACT_APP_CHAIN as EthereumChainId],
+  ethWalletOverlay: false,
+  vegaWalletOverlay: false,
   vegaWalletStatus: VegaWalletStatus.Pending,
   vegaKeys: null,
   currVegaKey: null,
@@ -194,6 +196,18 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
       return {
         ...state,
         trancheError: action.error,
+      };
+    }
+    case AppStateActionType.SET_VEGA_WALLET_OVERLAY: {
+      return {
+        ...state,
+        vegaWalletOverlay: action.isOpen,
+      };
+    }
+    case AppStateActionType.SET_ETH_WALLET_OVERLAY: {
+      return {
+        ...state,
+        ethWalletOverlay: action.isOpen,
       };
     }
   }
