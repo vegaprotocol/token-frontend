@@ -39,14 +39,22 @@ export default class VegaVesting implements IVegaVesting {
     amount: string,
     vegaKey: string
   ): Promise<any> {
+    const convertedAmount = removeDecimal(
+      new BigNumber(amount),
+      this.decimals
+    ).toString();
     return this.contract.methods
-      .remove_stake(amount, `0x${vegaKey}`)
+      .remove_stake(convertedAmount, `0x${vegaKey}`)
       .call({ from: address });
   }
 
   removeStake(address: string, amount: string, vegaKey: string): PromiEvent {
+    const convertedAmount = removeDecimal(
+      new BigNumber(amount),
+      this.decimals
+    ).toString();
     return this.contract.methods
-      .remove_stake(amount, `0x${vegaKey}`)
+      .remove_stake(convertedAmount, `0x${vegaKey}`)
       .send({ from: address });
   }
 
