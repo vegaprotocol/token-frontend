@@ -10,6 +10,7 @@ const en = {
   pageTitleStaking: "Stake your VEGA",
   pageTitle404: "Page not found",
   pageTitleNotPermitted: "Can not proceed!",
+  pageTitleDisassociate: "Dissociate VEGA tokens from a Vega key",
   Vesting: "VESTING VEGA TOKENS",
   of: "of",
   to: "to",
@@ -82,7 +83,8 @@ const en = {
   codeExpired: "Code expired",
 
   invalidWeb3Browser: "You need a web3 capable browser to use this site",
-  invalidWeb3Provider: "Incompatible web3 provider detected. Please try another browser / extension.",
+  invalidWeb3Provider:
+    "Incompatible web3 provider detected. Please try another browser / extension.",
   "Vesting Balance": "Vesting Balance",
   VEGA: "VEGA",
   Account: "Account",
@@ -242,9 +244,9 @@ const en = {
   "Read about Governance on Vega": "Read about Governance on Vega",
 
   // Epoch counter
-  "Epoch": 'Epoch',
-  "Started": 'Started',
-  "Ends In": 'Ends in',
+  Epoch: "Epoch",
+  Started: "Started",
+  "Ends In": "Ends in",
   // Node Validator
   "Manage your stake": "Manage your stake",
   "Add Stake": "Add Stake",
