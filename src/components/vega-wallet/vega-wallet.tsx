@@ -174,11 +174,13 @@ const VegaWalletConnected = ({
   return vegaKeys.length ? (
     <>
       <WalletCardContent>
-        <WalletCardRow
-          label={t("Associated")}
-          value={vegaAssociatedBalance}
-          valueSuffix={t("VEGA")}
-        />
+        {vegaAssociatedBalance ? (
+          <WalletCardRow
+            label={t("Associated")}
+            value={vegaAssociatedBalance}
+            valueSuffix={t("VEGA")}
+          />
+        ) : null}
         {expanded && (
           <div className="vega-wallet__expanded-container">
             <ul className="vega-wallet__key-list">
