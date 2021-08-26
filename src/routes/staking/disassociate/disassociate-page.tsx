@@ -1,5 +1,5 @@
 import "./disassociate-page.scss";
-import React, { useReducer } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { ConnectedVegaKey } from "../../../components/connected-vega-key";
 import {
@@ -8,11 +8,6 @@ import {
 } from "../../../components/staking-method-radio";
 import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
 import { useSearchParams } from "../../../hooks/use-search-params";
-import {
-  DisassociateActionType,
-  disassociateReducer,
-  initialDisassociateState,
-} from "./disassociate-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { useVegaVesting } from "../../../hooks/use-vega-vesting";
 import { useVegaStaking } from "../../../hooks/use-vega-staking";
@@ -20,6 +15,32 @@ import { TxState } from "../../../hooks/transaction-reducer";
 import { WalletDisassociate } from "./wallet-disassociate";
 import { ContractDisassociate } from "./contract-disassociate";
 import { DisassociateTransaction } from "./disassociate-transaction";
+
+const useRemoveStake = (
+  address: string,
+  amount: string,
+  vegaKey: string,
+  stakingMethod: StakingMethod | ""
+) => {
+  // TODO refresh changes
+  const vesting = useVegaVesting();
+  const staking = useVegaStaking();
+  const contractRemove = useTransaction(
+    () => vesting.removeStake(address!, amount, vegaKey),
+    () => vesting.checkRemoveStake(address!, amount, vegaKey)
+  );
+  const walletRemove = useTransaction(
+    () => staking.removeStake(address!, amount, vegaKey),
+    () => staking.checkRemoveStake(address!, amount, vegaKey)
+  );
+  return React.useMemo(() => {
+    if (stakingMethod === StakingMethod.Contract) {
+      return walletRemove;
+    } else {
+      return contractRemove;
+    }
+  }, [contractRemove, stakingMethod, walletRemove]);
+};
 
 export const DisassociatePage = ({
   address,
@@ -30,58 +51,25 @@ export const DisassociatePage = ({
 }) => {
   const { t } = useTranslation();
   const params = useSearchParams();
-  const [state, dispatch] = useReducer(
-    disassociateReducer,
-    initialDisassociateState
-  );
-  const vesting = useVegaVesting();
-  const staking = useVegaStaking();
-  const { amount } = state;
-  const {
-    state: vestingBridgeTx,
-    dispatch: vestingBridgeDispatch,
-    perform: disassociateFromContract,
-  } = useTransaction(
-    () => vesting.removeStake(address!, amount, vegaKey.pub),
-    () => vesting.checkRemoveStake(address!, amount, vegaKey.pub)
-  );
-  const {
-    state: walletTx,
-    dispatch: walletDispatch,
-    perform: disassociateFromWallet,
-  } = useTransaction(
-    () => staking.removeStake(address!, amount, vegaKey.pub),
-    () => staking.checkRemoveStake(address!, amount, vegaKey.pub)
-  );
-
-  const setAmount = React.useCallback(
-    (value: string) => {
-      dispatch({ type: DisassociateActionType.SET_AMOUNT, amount: value });
-    },
-    [dispatch]
-  );
-  const stakingMethod = params.method as StakingMethod | "";
+  const [amount, setAmount] = React.useState<string>("");
   const [selectedStakingMethod, setSelectedStakingMethod] = React.useState<
     StakingMethod | ""
-  >(stakingMethod);
-  if (vestingBridgeTx.txState !== TxState.Default) {
+  >(params.method as StakingMethod | "");
+
+  const {
+    state: txState,
+    dispatch: txDispatch,
+    perform: txPerform,
+  } = useRemoveStake(address, amount, vegaKey.pub, selectedStakingMethod);
+
+  if (txState.txState !== TxState.Default) {
     return (
       <DisassociateTransaction
-        state={vestingBridgeTx}
+        state={txState}
         amount={amount}
         vegaKey={vegaKey.pub}
-        stakingMethod={stakingMethod as StakingMethod}
-        dispatch={vestingBridgeDispatch}
-      />
-    );
-  } else if (walletTx.txState !== TxState.Default) {
-    return (
-      <DisassociateTransaction
-        state={walletTx}
-        amount={amount}
-        vegaKey={vegaKey.pub}
-        stakingMethod={stakingMethod as StakingMethod}
-        dispatch={walletDispatch}
+        stakingMethod={selectedStakingMethod as StakingMethod}
+        dispatch={txDispatch}
       />
     );
   } else {
@@ -110,13 +98,13 @@ export const DisassociatePage = ({
             <WalletDisassociate
               setAmount={setAmount}
               amount={amount}
-              perform={disassociateFromWallet}
+              perform={txPerform}
             />
           ) : (
             <ContractDisassociate
               setAmount={setAmount}
               amount={amount}
-              perform={disassociateFromContract}
+              perform={txPerform}
             />
           ))}
       </section>

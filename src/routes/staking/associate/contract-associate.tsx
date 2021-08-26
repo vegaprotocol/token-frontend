@@ -7,36 +7,24 @@ import {
   VegaKeyExtended,
 } from "../../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../../lib/bignumber";
-import {
-  AssociateAction,
-  AssociateActionType,
-  AssociateState,
-} from "./associate-reducer";
 import { AssociateInfo } from "./associate-info";
 import { TokenInput } from "../../../components/token-input";
 
 export const ContractAssociate = ({
   perform,
-  state,
-  dispatch,
+  amount,
+  setAmount,
   vegaKey,
 }: {
   perform: () => void;
-  state: AssociateState;
-  dispatch: React.Dispatch<AssociateAction>;
+  amount: string;
+  setAmount: React.Dispatch<string>;
   vegaKey: VegaKeyExtended;
 }) => {
-  const { amount } = state;
   const { t } = useTranslation();
   const {
     appState: { balanceFormatted, lien },
   } = useAppState();
-  const setAmount = React.useCallback(
-    (value: string) => {
-      dispatch({ type: AssociateActionType.SET_AMOUNT, amount: value });
-    },
-    [dispatch]
-  );
 
   const maximum = React.useMemo(() => {
     return new BigNumber(balanceFormatted).minus(lien!);
