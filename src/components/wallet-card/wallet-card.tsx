@@ -1,4 +1,9 @@
+import BigNumber from "bignumber.js";
+import React from "react";
+import { Colors } from "../../colors";
 import "./wallet-card.scss";
+
+const FLASH_DURATION = 800; // Duration of flash animation in milliseconds
 
 interface WalletCardProps {
   children: React.ReactNode;
@@ -36,6 +41,16 @@ export const WalletCardContent = ({ children }: WalletCardContentProps) => {
   return <div className="wallet-card__content">{children}</div>;
 };
 
+function usePrevious<T>(value: T): T | undefined {
+  const ref = React.useRef<T | undefined>();
+
+  React.useEffect(() => {
+    ref.current = value;
+  }, [value]);
+
+  return ref.current;
+}
+
 export const WalletCardRow = ({
   label,
   value,
@@ -45,8 +60,33 @@ export const WalletCardRow = ({
   value?: string | null;
   valueSuffix?: string;
 }) => {
+  const ref = React.useRef<HTMLDivElement | null>(null);
+  const previous = usePrevious(value);
+  if (new BigNumber(value || "0").isGreaterThan(previous || "0")) {
+    ref.current?.animate(
+      [
+        { backgroundColor: Colors.VEGA_RED, color: Colors.WHITE },
+        { backgroundColor: Colors.VEGA_RED, color: Colors.WHITE, offset: 0.8 },
+        { backgroundColor: Colors.GRAY_LIGHT, color: Colors.WHITE },
+      ],
+      FLASH_DURATION
+    );
+  } else if (new BigNumber(value || "0").isLessThan(previous || "0")) {
+    ref.current?.animate(
+      [
+        { backgroundColor: Colors.VEGA_GREEN, color: Colors.WHITE },
+        {
+          backgroundColor: Colors.VEGA_GREEN,
+          color: Colors.WHITE,
+          offset: 0.8,
+        },
+        { backgroundColor: Colors.GRAY_LIGHT, color: Colors.WHITE },
+      ],
+      FLASH_DURATION
+    );
+  }
   return (
-    <div className="wallet-card__row">
+    <div className="wallet-card__row" ref={ref}>
       <span>{label}</span>
       <span>
         {value} {valueSuffix}
