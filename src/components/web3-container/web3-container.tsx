@@ -30,6 +30,7 @@ export const Web3Container = ({
   React.useEffect(() => {
     // Auto connect if possible
     if (
+      // If we haven't loaded the contract information don't connect yet
       appState.decimals &&
       // We don't have an address we are not connected
       !appState.address &&
@@ -42,7 +43,13 @@ export const Web3Container = ({
     ) {
       connect();
     }
-  }, [appState.address, appState.connecting, appState.decimals, appState.error, connect]);
+  }, [
+    appState.address,
+    appState.connecting,
+    appState.decimals,
+    appState.error,
+    connect,
+  ]);
 
   // Bind listeners for account change
   React.useEffect(() => {
