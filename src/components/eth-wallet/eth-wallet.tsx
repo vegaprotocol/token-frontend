@@ -75,32 +75,25 @@ const ConnectedKey = () => {
 
   return (
     <>
-      <WalletCardRow>
-        <span>{t("Vesting")}</span>
-      </WalletCardRow>
-      <WalletCardRow>
-        <span>{t("Total")}</span>
-        <span>
-          {balanceFormatted} {t("VEGA")}
-        </span>
-      </WalletCardRow>
+      <WalletCardRow label={t("Vesting")} value={""} />
+      <WalletCardRow
+        label={t("Total")}
+        value={balanceFormatted}
+        valueSuffix={t("VEGA")}
+      />
       <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
-      <WalletCardRow>
-        <span>{t("Associated")}</span>
-        <span>
-          {lien} {t("VEGA")}
-        </span>
-      </WalletCardRow>
+      <WalletCardRow
+        label={t("Associated")}
+        value={lien}
+        valueSuffix={t("VEGA")}
+      />
       <hr />
-      <WalletCardRow>
-        <span>{t("Wallet")}</span>
-      </WalletCardRow>
-      <WalletCardRow>
-        <span>{t("Balance")}</span>
-        <span>
-          {walletBalance} {t("VEGA")}
-        </span>
-      </WalletCardRow>
+      <WalletCardRow label={t("Wallet")} />
+      <WalletCardRow
+        label={t("Balance")}
+        value={walletBalance}
+        valueSuffix={t("VEGA")}
+      />
     </>
   );
 };

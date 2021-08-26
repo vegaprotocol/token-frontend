@@ -36,10 +36,21 @@ export const WalletCardContent = ({ children }: WalletCardContentProps) => {
   return <div className="wallet-card__content">{children}</div>;
 };
 
-interface WalletCardRowProps {
-  children: React.ReactNode;
-}
-
-export const WalletCardRow = ({ children }: WalletCardRowProps) => (
-  <div className="wallet-card__row">{children}</div>
-);
+export const WalletCardRow = ({
+  label,
+  value,
+  valueSuffix,
+}: {
+  label: string;
+  value?: string | null;
+  valueSuffix?: string;
+}) => {
+  return (
+    <div className="wallet-card__row">
+      <span>{label}</span>
+      <span>
+        {value} {valueSuffix}
+      </span>
+    </div>
+  );
+};
