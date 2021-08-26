@@ -7,11 +7,6 @@ import {
 } from "../../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../../lib/bignumber";
 import { AssociateInfo } from "./associate-info";
-import {
-  AssociateAction,
-  AssociateActionType,
-  AssociateState,
-} from "./associate-reducer";
 import React from "react";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { useVegaToken } from "../../../hooks/use-vega-token";
@@ -24,18 +19,17 @@ import { TokenInput } from "../../../components/token-input";
 
 export const WalletAssociate = ({
   perform,
-  state,
-  dispatch,
   vegaKey,
+  amount,
+  setAmount,
   address,
 }: {
   perform: () => void;
-  state: AssociateState;
-  dispatch: React.Dispatch<AssociateAction>;
+  amount: string;
+  setAmount: React.Dispatch<string>;
   vegaKey: VegaKeyExtended;
   address: string;
 }) => {
-  const { amount } = state;
   const { t } = useTranslation();
   const {
     appDispatch,
@@ -67,13 +61,6 @@ export const WalletAssociate = ({
       new BigNumber(amount).isLessThanOrEqualTo("0") ||
       new BigNumber(amount).isGreaterThan(maximum),
     [amount, isApproved, maximum]
-  );
-
-  const setAmount = React.useCallback(
-    (value: string) => {
-      dispatch({ type: AssociateActionType.SET_AMOUNT, amount: value });
-    },
-    [dispatch]
   );
 
   // Once they have approved deposits then we need to refresh their allowance
