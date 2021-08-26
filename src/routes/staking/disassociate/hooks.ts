@@ -39,9 +39,9 @@ export const useRemoveStake = (
 
   return React.useMemo(() => {
     if (stakingMethod === StakingMethod.Contract) {
-      return walletRemove;
-    } else {
       return contractRemove;
+    } else {
+      return walletRemove;
     }
   }, [contractRemove, stakingMethod, walletRemove]);
 };
