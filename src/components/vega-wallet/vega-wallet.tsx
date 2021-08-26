@@ -22,37 +22,7 @@ import { useVegaStaking } from "../../hooks/use-vega-staking";
 export const VegaWallet = () => {
   const { t } = useTranslation();
   const vegaWallet = useVegaWallet();
-  const [expanded, setExpanded] = React.useState(false);
-  const { appState, appDispatch } = useAppState();
-  const staking = useVegaStaking();
-
-  React.useEffect(() => {
-    async function run() {
-      const isUp = await vegaWallet.getStatus();
-      if (isUp) {
-        // dont handle error here, if get key fails just 'log' the user
-        // out. Keys will be null and clearing the token is handled by the
-        // vegaWalletServices.
-        const [, keys] = await vegaWallet.getKeys();
-        let vegaAssociatedBalance = null;
-        if (appState.address && keys && keys.length) {
-          vegaAssociatedBalance = await staking.stakeBalance(
-            appState.address,
-            keys[0].pub
-          );
-        }
-        appDispatch({
-          type: AppStateActionType.VEGA_WALLET_INIT,
-          keys,
-          vegaAssociatedBalance,
-        });
-      } else {
-        appDispatch({ type: AppStateActionType.VEGA_WALLET_DOWN });
-      }
-    }
-
-    run();
-  }, [appDispatch, appState.address, staking, vegaWallet]);
+  const { appState } = useAppState();
 
   const child = !appState.vegaKeys ? (
     <VegaWalletNotConnected vegaWallet={vegaWallet} />
@@ -61,14 +31,12 @@ export const VegaWallet = () => {
       vegaWallet={vegaWallet}
       currVegaKey={appState.currVegaKey}
       vegaKeys={appState.vegaKeys}
-      expanded={expanded}
-      setExpanded={setExpanded}
     />
   );
 
   return (
     <WalletCard>
-      <WalletCardHeader onClick={() => setExpanded((curr) => !curr)}>
+      <WalletCardHeader>
         <span>{t("vegaKey")}</span>
         {appState.currVegaKey && (
           <>
@@ -127,16 +95,12 @@ interface VegaWalletConnectedProps {
   vegaWallet: VegaWalletService;
   currVegaKey: VegaKeyExtended | null;
   vegaKeys: VegaKeyExtended[];
-  expanded: boolean;
-  setExpanded: (e: boolean) => void;
 }
 
 const VegaWalletConnected = ({
   vegaWallet,
   currVegaKey,
   vegaKeys,
-  expanded,
-  setExpanded,
 }: VegaWalletConnectedProps) => {
   const { t } = useTranslation();
   const {
@@ -166,9 +130,8 @@ const VegaWalletConnected = ({
         key: k,
         vegaAssociatedBalance: vegaAssociatedBalance,
       });
-      setExpanded(false);
     },
-    [address, appDispatch, setExpanded, staking]
+    [address, appDispatch, staking]
   );
 
   return vegaKeys.length ? (
@@ -181,26 +144,24 @@ const VegaWalletConnected = ({
             valueSuffix={t("VEGA")}
           />
         ) : null}
-        {expanded && (
-          <div className="vega-wallet__expanded-container">
-            <ul className="vega-wallet__key-list">
-              {vegaKeys
-                .filter((k) => currVegaKey && currVegaKey.pub !== k.pub)
-                .map((k) => (
-                  <li key={k.pub} onClick={() => changeKey(k)}>
-                    {k.alias} {k.pubShort}
-                  </li>
-                ))}
-            </ul>
-            <button
-              className="button-link button-link--dark"
-              onClick={handleDisconnect}
-              type="button"
-            >
-              {disconnecting ? t("awaitingDisconnect") : t("disconnect")}
-            </button>
-          </div>
-        )}
+        <div className="vega-wallet__expanded-container">
+          <ul className="vega-wallet__key-list">
+            {vegaKeys
+              .filter((k) => currVegaKey && currVegaKey.pub !== k.pub)
+              .map((k) => (
+                <li key={k.pub} onClick={() => changeKey(k)}>
+                  {k.alias} {k.pubShort}
+                </li>
+              ))}
+          </ul>
+          <button
+            className="button-link button-link--dark"
+            onClick={handleDisconnect}
+            type="button"
+          >
+            {disconnecting ? t("awaitingDisconnect") : t("disconnect")}
+          </button>
+        </div>
       </WalletCardContent>
     </>
   ) : (

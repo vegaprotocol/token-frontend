@@ -2,10 +2,8 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { RouteChildProps } from "..";
-import { EthWallet } from "../../components/eth-wallet";
-import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
+import { TemplateDefault } from "../../components/page-templates/template-default";
 import { TrancheContainer } from "../../components/tranche-container";
-import { VegaWallet } from "../../components/vega-wallet";
 import { VegaWalletContainer } from "../../components/vega-wallet-container";
 import { Web3Container } from "../../components/web3-container";
 import { useDocumentTitle } from "../../hooks/use-document-title";
@@ -30,11 +28,7 @@ const StakingRouter = ({ name }: RouteChildProps) => {
     return t("pageTitleStaking");
   }, [associate, disassociate, t]);
   return (
-    <TemplateSidebar
-      title={title}
-      sidebarButtonText={t("viewKeys")}
-      sidebar={[<EthWallet />, <VegaWallet />]}
-    >
+    <TemplateDefault title={title}>
       <Web3Container>
         {(address) => (
           <VegaWalletContainer>
@@ -61,7 +55,7 @@ const StakingRouter = ({ name }: RouteChildProps) => {
           </VegaWalletContainer>
         )}
       </Web3Container>
-    </TemplateSidebar>
+    </TemplateDefault>
   );
 };
 
