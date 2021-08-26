@@ -73,6 +73,7 @@ export enum AppStateActionType {
   VEGA_WALLET_DISCONNECT,
   SET_TOKEN,
   SET_ALLOWANCE,
+  REFRESH_BALANCES,
 }
 
 export type AppStateAction =
@@ -122,6 +123,14 @@ export type AppStateAction =
   | {
       type: AppStateActionType.SET_ALLOWANCE;
       allowance: BigNumber | null;
+    }
+  | {
+      type: AppStateActionType.REFRESH_BALANCES;
+      balance: BigNumber | null;
+      walletBalance: BigNumber | null;
+      lien: BigNumber | null;
+      allowance: BigNumber | null;
+      vegaAssociatedBalance: BigNumber | null;
     };
 
 type AppStateContextShape = {
