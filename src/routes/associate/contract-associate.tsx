@@ -7,9 +7,13 @@ import {
   VegaKeyExtended,
 } from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber";
-import { AssociateAction, AssociateState } from "./associate-reducer";
+import {
+  AssociateAction,
+  AssociateActionType,
+  AssociateState,
+} from "./associate-reducer";
 import { AssociateInfo } from "./associate-info";
-import { AssociateInput } from "./associate-input";
+import { TokenInput } from "../../components/token-input";
 
 export const ContractAssociate = ({
   perform,
@@ -27,6 +31,12 @@ export const ContractAssociate = ({
   const {
     appState: { balanceFormatted, lien },
   } = useAppState();
+  const setAmount = React.useCallback(
+    (value: string) => {
+      dispatch({ type: AssociateActionType.SET_AMOUNT, amount: value });
+    },
+    [dispatch]
+  );
 
   const maximum = React.useMemo(() => {
     return new BigNumber(balanceFormatted).minus(lien!);
@@ -63,7 +73,7 @@ export const ContractAssociate = ({
           )}
         </Callout>
         <AssociateInfo pubKey={vegaKey.pub} />
-        <AssociateInput maximum={maximum} state={state} dispatch={dispatch} />
+        <TokenInput maximum={maximum} amount={amount} setAmount={setAmount} />
         <button
           data-testid="associate-button"
           disabled={isDisabled}
