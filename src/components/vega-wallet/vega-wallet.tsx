@@ -34,9 +34,9 @@ export const VegaWallet = () => {
         // out. Keys will be null and clearing the token is handled by the
         // vegaWalletServices.
         const [, keys] = await vegaWallet.getKeys();
-        let vegaStakedBalance = null;
+        let vegaAssociatedBalance = null;
         if (appState.address && keys && keys.length) {
-          vegaStakedBalance = await staking.stakeBalance(
+          vegaAssociatedBalance = await staking.stakeBalance(
             appState.address,
             keys[0].pub
           );
@@ -44,7 +44,7 @@ export const VegaWallet = () => {
         appDispatch({
           type: AppStateActionType.VEGA_WALLET_INIT,
           keys,
-          vegaStakedBalance,
+          vegaAssociatedBalance,
         });
       } else {
         appDispatch({ type: AppStateActionType.VEGA_WALLET_DOWN });
@@ -141,7 +141,7 @@ const VegaWalletConnected = ({
   const { t } = useTranslation();
   const {
     appDispatch,
-    appState: { address, vegaStakedBalance },
+    appState: { address, vegaAssociatedBalance },
   } = useAppState();
   const [disconnecting, setDisconnecting] = React.useState(false);
   const staking = useVegaStaking();
@@ -157,14 +157,14 @@ const VegaWalletConnected = ({
 
   const changeKey = React.useCallback(
     async (k: VegaKeyExtended) => {
-      let vegaStakedBalance = null;
+      let vegaAssociatedBalance = null;
       if (address) {
-        vegaStakedBalance = await staking.stakeBalance(address, k.pub);
+        vegaAssociatedBalance = await staking.stakeBalance(address, k.pub);
       }
       appDispatch({
         type: AppStateActionType.VEGA_WALLET_SET_KEY,
         key: k,
-        vegaStakedBalance,
+        vegaAssociatedBalance: vegaAssociatedBalance,
       });
       setExpanded(false);
     },
@@ -175,8 +175,8 @@ const VegaWalletConnected = ({
     <>
       <WalletCardContent>
         <WalletCardRow>
-          <span>{t("Staked")}</span>
-          <span>{vegaStakedBalance}</span>
+          <span>{t("Associated")}</span>
+          <span>{vegaAssociatedBalance}</span>
         </WalletCardRow>
         {expanded && (
           <div className="vega-wallet__expanded-container">
@@ -255,14 +255,14 @@ const VegaWalletForm = ({ vegaWallet, cancel }: VegaWalletFormProps) => {
       setLoading(false);
       return;
     }
-    let vegaStakedBalance = null;
+    let vegaAssociatedBalance = null;
     if (address && keys && keys.length) {
-      vegaStakedBalance = await staking.stakeBalance(address, keys[0].pub);
+      vegaAssociatedBalance = await staking.stakeBalance(address, keys[0].pub);
     }
     appDispatch({
       type: AppStateActionType.VEGA_WALLET_INIT,
       keys,
-      vegaStakedBalance,
+      vegaAssociatedBalance,
     });
     setLoading(false);
   }

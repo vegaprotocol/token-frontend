@@ -20,7 +20,7 @@ export const RedeemFromTranche = ({ state }: { state: RedemptionState }) => {
   } = useAppState();
   const { id } = useParams<{ id: string }>();
   const numberId = Number(id);
-  const { balances, userTranches } = state;
+  const { balances, userTranches, totalVestedBalance } = state;
   const tranche = userTranches.find(
     ({ tranche_id }) => tranche_id === numberId
   );
@@ -54,6 +54,7 @@ export const RedeemFromTranche = ({ state }: { state: RedemptionState }) => {
         />
       ) : (
         <TrancheTable
+          totalVested={totalVestedBalance}
           tranche={tranche}
           lien={new BigNumber(lien)}
           locked={

@@ -69,7 +69,7 @@ export const Web3Container = ({
 
   React.useEffect(() => {
     const run = async () => {
-      const [supply, totalStakedWallet, totalStakedVesting, decimals] =
+      const [supply, totalAssociatedWallet, totalAssociatedVesting, decimals] =
         await Promise.all([
           token.totalSupply(),
           staking.totalStaked(),
@@ -80,7 +80,7 @@ export const Web3Container = ({
         type: AppStateActionType.SET_TOKEN,
         decimals,
         totalSupply: supply.toString(),
-        totalStaked: totalStakedWallet.plus(totalStakedVesting),
+        totalAssociated: totalAssociatedWallet.plus(totalAssociatedVesting),
       });
     };
 
@@ -90,12 +90,12 @@ export const Web3Container = ({
   }, [token, appState.providerStatus, appDispatch, staking, vesting]);
 
   if (appState.providerStatus === ProviderStatus.None) {
-    let error: string
+    let error: string;
     // @ts-ignore
     if (window?.web3?.currentProvider && !window.web3.currentProvider.request) {
-      error = t("invalidWeb3Provider")
+      error = t("invalidWeb3Provider");
     } else {
-      error = t("invalidWeb3Browser")
+      error = t("invalidWeb3Browser");
     }
     return (
       <Callout title={t("Cannot connect")} intent="error" icon={<Error />}>

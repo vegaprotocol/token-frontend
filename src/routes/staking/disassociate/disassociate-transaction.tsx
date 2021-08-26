@@ -1,12 +1,12 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { StakingMethod } from "../../components/staking-method-radio";
+import { StakingMethod } from "../../../components/staking-method-radio";
 import {
   TransactionAction,
   TransactionActionType,
   TransactionState,
-} from "../../hooks/transaction-reducer";
-import { TransactionCallout } from "../../components/transaction-callout";
+} from "../../../hooks/transaction-reducer";
+import { TransactionCallout } from "../../../components/transaction-callout";
 import { useHistory } from "react-router-dom";
 
 export const DisassociateTransaction = ({
@@ -39,7 +39,7 @@ export const DisassociateTransaction = ({
       completeFooter={
         <button
           style={{ width: "100%" }}
-          onClick={() => history.push("/redemption")}
+          onClick={() => history.push("/vesting")}
         >
           {t("Redeem tokens")}
         </button>

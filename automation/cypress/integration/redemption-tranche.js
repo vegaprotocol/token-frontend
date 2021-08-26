@@ -24,7 +24,7 @@ describe("Redemption through tranche", () => {
       },
     });
     // When visiting redemption
-    cy.visit("/redemption/1");
+    cy.visit("/vesting/1");
     // When I connect to my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // Then I see the tranches table
@@ -75,7 +75,7 @@ describe("Redemption through tranche", () => {
       },
     });
     // When visiting redemption
-    cy.visit("/redemption/1");
+    cy.visit("/vesting/1");
     // When I connect to my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // When I redeem the value
@@ -106,7 +106,7 @@ describe("Redemption through tranche", () => {
       },
     });
     // When visiting redemption
-    cy.visit("/redemption/1");
+    cy.visit("/vesting/1");
     // When I connect to my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // When I redeem the value

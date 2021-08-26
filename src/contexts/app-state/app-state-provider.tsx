@@ -34,10 +34,11 @@ const initialAppState: AppState = {
   vegaWalletStatus: VegaWalletStatus.Pending,
   vegaKeys: null,
   currVegaKey: null,
+  totalAssociated: "",
   totalStaked: "",
   decimals: 0,
   totalSupply: null,
-  vegaStakedBalance: null,
+  vegaAssociatedBalance: null,
 };
 
 function appStateReducer(state: AppState, action: AppStateAction): AppState {
@@ -129,14 +130,14 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         vegaKeys,
         currVegaKey: vegaKeys.length ? vegaKeys[0] : null,
         vegaWalletStatus: VegaWalletStatus.Ready,
-        vegaStakedBalance: action.vegaStakedBalance?.toString() || null,
+        vegaAssociatedBalance: action.vegaAssociatedBalance?.toString() || null,
       };
     }
     case AppStateActionType.VEGA_WALLET_SET_KEY: {
       return {
         ...state,
         currVegaKey: action.key,
-        vegaStakedBalance: action.vegaStakedBalance?.toString() || null,
+        vegaAssociatedBalance: action.vegaAssociatedBalance?.toString() || null,
       };
     }
     case AppStateActionType.VEGA_WALLET_DOWN: {
@@ -157,7 +158,7 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         ...state,
         decimals: action.decimals,
         totalSupply: action.totalSupply,
-        totalStaked: action.totalStaked.toString(),
+        totalAssociated: action.totalAssociated.toString(),
       };
     }
     case AppStateActionType.SET_ALLOWANCE: {

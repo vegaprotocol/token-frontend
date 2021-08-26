@@ -1,19 +1,19 @@
 import "./contract-associate.scss";
 import { useTranslation } from "react-i18next";
-import { Callout } from "../../components/callout";
+import { Callout } from "../../../components/callout";
 import React from "react";
 import {
   useAppState,
   VegaKeyExtended,
-} from "../../contexts/app-state/app-state-context";
-import { BigNumber } from "../../lib/bignumber";
+} from "../../../contexts/app-state/app-state-context";
+import { BigNumber } from "../../../lib/bignumber";
 import {
   AssociateAction,
   AssociateActionType,
   AssociateState,
 } from "./associate-reducer";
 import { AssociateInfo } from "./associate-info";
-import { TokenInput } from "../../components/token-input";
+import { TokenInput } from "../../../components/token-input";
 
 export const ContractAssociate = ({
   perform,

@@ -3,6 +3,7 @@
 .template-sidebar {
   display: grid;
   grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1fr;
 
   @media (min-width: 960px) {
     grid-template-columns: 1fr 400px;
