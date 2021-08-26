@@ -29,6 +29,7 @@ const en = {
   Total: "Total",
   Balance: "Balance",
   Cancel: "Cancel",
+  Warning: "Warning",
 
   "VEGA was successfully withdrawn to your wallet":
     "VEGA was successfully withdrawn to your wallet",
@@ -298,6 +299,14 @@ const en = {
     "You have no VEGA tokens currently vesting.",
   "All VEGA tokens vesting in the connected wallet have already been staked.":
     "All VEGA tokens vesting in the connected wallet have already been staked.",
+  "Any Tokens that have been nominated to a node will sacrifice any Rewards they are due for the current epoch. If you do not wish to sacrifices fees you should remove stake from a node at the end of an epoch before disassocation.":
+    "Any Tokens that have been nominated to a node will sacrifice any Rewards they are due for the current epoch. If you do not wish to sacrifices fees you should remove stake from a node at the end of an epoch before disassocation.",
+  "Use this form to disassociate VEGA tokens with a Vega key. This returns them to either the Ethereum wallet that used the Staking bridge or the vesting contract.":
+    "Use this form to disassociate VEGA tokens with a Vega key. This returns them to either the Ethereum wallet that used the Staking bridge or the vesting contract.",
+  "What Vega wallet are you removing Tokens from?":
+    "What Vega wallet are you removing Tokens from?",
+  "What tokens would you like to return?":
+    "What tokens would you like to return?",
 };
 
 export default en;
