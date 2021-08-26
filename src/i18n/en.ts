@@ -311,6 +311,15 @@ const en = {
     "You have no VEGA tokens currently staked through your connected Vega wallet.",
   "You have no VEGA tokens currently staked through your connected Eth wallet.":
     "You have no VEGA tokens currently staked through your connected Eth wallet.",
+  "Dissociating Tokens": "Dissociating Tokens",
+  "Dissociating  {{amount}} VEGA tokens from Vega key {{vegaKey}}":
+    "Dissociating  {{amount}} VEGA tokens from Vega key {{vegaKey}}",
+  "Redeem tokens": "Redeem tokens",
+  "{{amount}} VEGA tokens have been returned to Vesting contract":
+    "{{amount}} VEGA tokens have been returned to Vesting contract",
+  "{{amount}} VEGA tokens have been returned to Ethereum wallet":
+    "{{amount}} VEGA tokens have been returned to Ethereum wallet",
+  "Disassociate VEGA Tokens from key": "Disassociate VEGA Tokens from key",
 };
 
 export default en;
