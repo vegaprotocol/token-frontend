@@ -35,9 +35,9 @@ export const useAddStake = (
 
   return React.useMemo(() => {
     if (stakingMethod === StakingMethod.Contract) {
-      return walletAdd;
-    } else {
       return contractAdd;
+    } else {
+      return walletAdd;
     }
   }, [contractAdd, stakingMethod, walletAdd]);
 };
