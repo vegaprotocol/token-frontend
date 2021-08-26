@@ -69,6 +69,17 @@ export const VegaWalletContainer = ({ children }: VegaWalletContainerProps) => {
     return (
       <Callout intent="error" icon={<Error />}>
         <p>{t("connectVegaWallet")}</p>
+        <button
+          type="button"
+          onClick={() =>
+            appDispatch({
+              type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,
+              isOpen: true,
+            })
+          }
+        >
+          Connect
+        </button>
       </Callout>
     );
   }

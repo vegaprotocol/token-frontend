@@ -59,6 +59,8 @@ export interface AppState {
     lockedAddress: string;
     stakingBridge: string;
   };
+  ethWalletOverlay: boolean;
+  vegaWalletOverlay: boolean;
   vegaWalletStatus: VegaWalletStatus;
   vegaKeys: VegaKeyExtended[] | null;
   currVegaKey: VegaKeyExtended | null;
@@ -84,6 +86,8 @@ export enum AppStateActionType {
   SET_ALLOWANCE,
   REFRESH_BALANCES,
   SET_TRANCHE_DATA,
+  SET_VEGA_WALLET_OVERLAY,
+  SET_ETH_WALLET_OVERLAY,
   SET_TRANCHE_ERROR,
 }
 
@@ -149,6 +153,14 @@ export type AppStateAction =
   | {
       type: AppStateActionType.SET_TRANCHE_ERROR;
       error: Error | null;
+    }
+  | {
+      type: AppStateActionType.SET_VEGA_WALLET_OVERLAY;
+      isOpen: boolean;
+    }
+  | {
+      type: AppStateActionType.SET_ETH_WALLET_OVERLAY;
+      isOpen: boolean;
     };
 
 type AppStateContextShape = {

@@ -25,7 +25,7 @@ export const VegaWallet = () => {
   const { appState } = useAppState();
 
   const child = !appState.vegaKeys ? (
-    <VegaWalletNotConnected vegaWallet={vegaWallet} />
+    <VegaWalletForm vegaWallet={vegaWallet} />
   ) : (
     <VegaWalletConnected
       vegaWallet={vegaWallet}
@@ -73,10 +73,7 @@ const VegaWalletNotConnected = ({
   return (
     <WalletCardContent>
       {formOpen ? (
-        <VegaWalletForm
-          vegaWallet={vegaWallet}
-          cancel={() => setFormOpen(false)}
-        />
+        <VegaWalletForm vegaWallet={vegaWallet} />
       ) : (
         <button
           onClick={() => setFormOpen(true)}
@@ -177,10 +174,9 @@ interface FormFields {
 
 interface VegaWalletFormProps {
   vegaWallet: VegaWalletService;
-  cancel: () => void;
 }
 
-const VegaWalletForm = ({ vegaWallet, cancel }: VegaWalletFormProps) => {
+const VegaWalletForm = ({ vegaWallet }: VegaWalletFormProps) => {
   const staking = useVegaStaking();
   const { t } = useTranslation();
   const {
@@ -275,13 +271,6 @@ const VegaWalletForm = ({ vegaWallet, cancel }: VegaWalletFormProps) => {
           className="vega-wallet__form-submit"
         >
           {loading ? t("vegaWalletConnecting") : t("vegaWalletConnect")}
-        </button>
-        <button
-          onClick={cancel}
-          type="button"
-          className="vega-wallet__form-cancel"
-        >
-          {t("Cancel")}
         </button>
       </div>
     </form>
