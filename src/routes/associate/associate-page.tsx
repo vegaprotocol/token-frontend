@@ -1,7 +1,5 @@
 import React, { useReducer } from "react";
 import { useTranslation } from "react-i18next";
-import { Radio, RadioGroup } from "@blueprintjs/core";
-import { FormEvent } from "react";
 import { ContractAssociate } from "./contract-associate";
 import { WalletAssociate } from "./wallet-associate";
 import { useTransaction } from "../../hooks/use-transaction";
@@ -12,11 +10,10 @@ import { associateReducer, initialAssociateState } from "./associate-reducer";
 import { AssociateTransaction } from "./associate-transaction";
 import { useSearchParams } from "../../hooks/use-search-params";
 import { useVegaStaking } from "../../hooks/use-vega-staking";
-
-enum StakingMethod {
-  Contract = "Contract",
-  Wallet = "Wallet",
-}
+import {
+  StakingMethod,
+  StakingMethodRadio,
+} from "../../components/staking-method-radio";
 
 export const AssociatePage = ({
   address,
@@ -29,8 +26,8 @@ export const AssociatePage = ({
   const vesting = useVegaVesting();
   const staking = useVegaStaking();
   const params = useSearchParams();
-  const stakingMethod = params.method as StakingMethod | "";
 
+  const stakingMethod = params.method as StakingMethod | "";
   const [selectedStakingMethod, setSelectedStakingMethod] = React.useState<
     StakingMethod | ""
   >(stakingMethod);
@@ -82,25 +79,10 @@ export const AssociatePage = ({
             <h2 data-testid="associate-subheader">
               {t("Where would you like to stake from?")}
             </h2>
-            <RadioGroup
-              inline={true}
-              onChange={(e: FormEvent<HTMLInputElement>) => {
-                // @ts-ignore
-                setSelectedStakingMethod(e.target.value);
-              }}
-              selectedValue={selectedStakingMethod}
-            >
-              <Radio
-                data-testid="associate-radio-contract"
-                label={t("Vesting contract")}
-                value={StakingMethod.Contract}
-              />
-              <Radio
-                data-testid="associate-radio-wallet"
-                label={t("Wallet")}
-                value={StakingMethod.Wallet}
-              />
-            </RadioGroup>
+            <StakingMethodRadio
+              setSelectedStakingMethod={setSelectedStakingMethod}
+              selectedStakingMethod={selectedStakingMethod}
+            />
             {selectedStakingMethod &&
               (selectedStakingMethod === StakingMethod.Contract ? (
                 <ContractAssociate
