@@ -1,11 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
-import { TransactionCallout } from "../../components/transaction-callout";
+import { TransactionCallout } from "../../../components/transaction-callout";
 import {
   TransactionAction,
   TransactionActionType,
   TransactionState,
-} from "../../hooks/transaction-reducer";
+} from "../../../hooks/transaction-reducer";
 
 export const AssociateTransaction = ({
   amount,

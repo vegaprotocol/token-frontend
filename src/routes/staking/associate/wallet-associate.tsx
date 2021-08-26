@@ -4,8 +4,8 @@ import {
   AppStateActionType,
   useAppState,
   VegaKeyExtended,
-} from "../../contexts/app-state/app-state-context";
-import { BigNumber } from "../../lib/bignumber";
+} from "../../../contexts/app-state/app-state-context";
+import { BigNumber } from "../../../lib/bignumber";
 import { AssociateInfo } from "./associate-info";
 import {
   AssociateAction,
@@ -13,14 +13,14 @@ import {
   AssociateState,
 } from "./associate-reducer";
 import React from "react";
-import { useTransaction } from "../../hooks/use-transaction";
-import { useVegaToken } from "../../hooks/use-vega-token";
+import { useTransaction } from "../../../hooks/use-transaction";
+import { useVegaToken } from "../../../hooks/use-vega-token";
 import {
   TransactionActionType,
   TxState,
-} from "../../hooks/transaction-reducer";
-import { TransactionCallout } from "../../components/transaction-callout";
-import { TokenInput } from "../../components/token-input";
+} from "../../../hooks/transaction-reducer";
+import { TransactionCallout } from "../../../components/transaction-callout";
+import { TokenInput } from "../../../components/token-input";
 
 export const WalletAssociate = ({
   perform,
@@ -42,7 +42,7 @@ export const WalletAssociate = ({
     appState: {
       walletBalance,
       allowance,
-      vegaStakedBalance,
+      vegaAssociatedBalance,
       contractAddresses,
     },
   } = useAppState();
@@ -109,7 +109,7 @@ export const WalletAssociate = ({
       </div>
     );
   } else if (
-    new BigNumber(walletBalance).minus(vegaStakedBalance!).isEqualTo("0")
+    new BigNumber(walletBalance).minus(vegaAssociatedBalance!).isEqualTo("0")
   ) {
     pageContent = (
       <div className="wallet-associate__error">

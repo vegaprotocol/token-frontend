@@ -1,8 +1,8 @@
 import BigNumber from "bignumber.js";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { TokenInput } from "../../components/token-input";
-import { useAppState } from "../../contexts/app-state/app-state-context";
+import { TokenInput } from "../../../components/token-input";
+import { useAppState } from "../../../contexts/app-state/app-state-context";
 
 export const WalletDisassociate = ({
   perform,
@@ -14,12 +14,12 @@ export const WalletDisassociate = ({
   setAmount: React.Dispatch<string>;
 }) => {
   const {
-    appState: { vegaStakedBalance },
+    appState: { vegaAssociatedBalance },
   } = useAppState();
   const { t } = useTranslation();
   const maximum = React.useMemo(
-    () => new BigNumber(vegaStakedBalance!),
-    [vegaStakedBalance]
+    () => new BigNumber(vegaAssociatedBalance!),
+    [vegaAssociatedBalance]
   );
   const isDisabled = React.useMemo<boolean>(
     () =>
@@ -29,7 +29,7 @@ export const WalletDisassociate = ({
     [amount, maximum]
   );
 
-  if (new BigNumber(vegaStakedBalance!).isEqualTo("0")) {
+  if (new BigNumber(vegaAssociatedBalance!).isEqualTo("0")) {
     return (
       <div className="disassociate-page__error">
         {t(

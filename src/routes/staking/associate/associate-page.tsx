@@ -2,18 +2,18 @@ import React, { useReducer } from "react";
 import { useTranslation } from "react-i18next";
 import { ContractAssociate } from "./contract-associate";
 import { WalletAssociate } from "./wallet-associate";
-import { useTransaction } from "../../hooks/use-transaction";
-import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
-import { useVegaVesting } from "../../hooks/use-vega-vesting";
-import { TxState } from "../../hooks/transaction-reducer";
+import { useTransaction } from "../../../hooks/use-transaction";
+import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
+import { useVegaVesting } from "../../../hooks/use-vega-vesting";
+import { TxState } from "../../../hooks/transaction-reducer";
 import { associateReducer, initialAssociateState } from "./associate-reducer";
 import { AssociateTransaction } from "./associate-transaction";
-import { useSearchParams } from "../../hooks/use-search-params";
-import { useVegaStaking } from "../../hooks/use-vega-staking";
+import { useSearchParams } from "../../../hooks/use-search-params";
+import { useVegaStaking } from "../../../hooks/use-vega-staking";
 import {
   StakingMethod,
   StakingMethodRadio,
-} from "../../components/staking-method-radio";
+} from "../../../components/staking-method-radio";
 
 export const AssociatePage = ({
   address,
@@ -51,7 +51,7 @@ export const AssociatePage = ({
   );
 
   return (
-    <>
+    <section data-testid="associate">
       {vestingBridgeTx.txState !== TxState.Default ? (
         <AssociateTransaction
           amount={amount}
@@ -102,6 +102,6 @@ export const AssociatePage = ({
               ))}
           </>
         )}
-    </>
+    </section>
   );
 };

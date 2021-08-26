@@ -60,7 +60,7 @@ export const RedemptionInformation = ({
           }
         )}
       </p>
-      <p data-testid="redemption-unlocked-tokens">
+      {/* <p data-testid="redemption-unlocked-tokens">
         {t("A total of {{amount}} Unlocked Vega tokens.", {
           amount: totalVestedBalance.toString(),
         })}
@@ -80,9 +80,9 @@ export const RedemptionInformation = ({
           {t("Use this page to redeem any unlocked VEGA tokens.")}
         </strong>
       </p>
-      <p data-testid="redemption-note">{t("redemptionExplain")}</p>
+      <p data-testid="redemption-note">{t("redemptionExplain")}</p> */}
       <VestingTable
-        staked={new BigNumber(lien)}
+        associated={new BigNumber(lien)}
         locked={totalLockedBalance}
         vested={totalVestedBalance}
       />
@@ -102,7 +102,8 @@ export const RedemptionInformation = ({
               ({ id }) => id.toString() === tr.tranche_id.toString()
             )!.vested
           }
-          onClick={() => history.push(`/redemption/${tr.tranche_id}`)}
+          totalVested={totalVestedBalance}
+          onClick={() => history.push(`/vesting/${tr.tranche_id}`)}
         />
       ))}
       <Callout

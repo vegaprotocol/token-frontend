@@ -86,7 +86,7 @@ const ConnectedKey = () => {
       </WalletCardRow>
       <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
       <WalletCardRow>
-        <span>{t("Staked")}</span>
+        <span>{t("Associated")}</span>
         <span>
           {lien} {t("VEGA")}
         </span>

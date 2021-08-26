@@ -30,6 +30,7 @@ const en = {
   Balance: "Balance",
   Cancel: "Cancel",
   Warning: "Warning",
+  Associated: "Associated",
 
   "VEGA was successfully withdrawn to your wallet":
     "VEGA was successfully withdrawn to your wallet",
@@ -77,7 +78,7 @@ const en = {
   claimExpiry: "The code expires on {{date}}",
   claimNoExpiry: "It has no expiry date",
   showRedeem:
-    "You'll be able to redeem your unlocked tokens at token.vega.xyz/redemption",
+    "You'll be able to redeem your unlocked tokens at token.vega.xyz/vesting",
   codeUsed: "Code already used",
   codeUsedText:
     "Looks like that code has already been used for address {{address}}",
@@ -166,8 +167,8 @@ const en = {
     "All the tokens in this tranche are locked and can not be redeemed yet.",
   "Redeem unlocked VEGA from tranche {{id}}":
     "Redeem unlocked VEGA from tranche {{id}}",
-  "You must reduce your staked vesting tokens by at least {{amount}} to redeem from this tranche. Manage your stake or just dissociate your tokens.":
-    "You must reduce your staked vesting tokens by at least {{amount}} to redeem from this tranche. Manage your stake or just dissociate your tokens.",
+  "You must reduce your associated vesting tokens by at least {{amount}} to redeem from this tranche. Manage your stake or just dissociate your tokens.":
+    "You must reduce your associated vesting tokens by at least {{amount}} to redeem from this tranche. Manage your stake or just dissociate your tokens.",
   redemptionExplain:
     "Note: The redeem function attempts to redeem all unlocked tokens from a tranche. However, it will only work if all the amount you are redeeming would not reduce the amount you have staked while vesting.",
   "Use this page to redeem any unlocked VEGA tokens.":
@@ -178,7 +179,7 @@ const en = {
   "A total of {{amount}} Unlocked Vega tokens.":
     "A total of {{amount}} Unlocked Vega tokens.",
   "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.":
-    "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.",
+    "The connected ethereum wallet ({{address}}) has {{balance}} VEGA tokens in {{tranches}} of the vesting contract.",
   "Stake your Locked VEGA tokens!":
     "You can stake your VEGA tokens even while locked.",
   "Find out more about Staking.":
@@ -239,6 +240,7 @@ const en = {
   "Total supply": "Total supply",
   "Circulating supply": "Circulating supply",
   "Staked on Vega": "Staked on Vega",
+  "Associated on Vega": "Associated on Vega",
   "There are {{nodeCount}} nodes with a shared stake of {{sharedStake}} VEGA tokens":
     "There are {{nodeCount}} nodes with a shared stake of {{sharedStake}} VEGA tokens",
   "Read about staking on Vega": "Read about staking on Vega",

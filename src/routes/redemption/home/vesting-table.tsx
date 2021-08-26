@@ -10,10 +10,14 @@ import { useTranslation } from "react-i18next";
 export interface VestingTableProps {
   vested: BigNumber;
   locked: BigNumber;
-  staked: BigNumber;
+  associated: BigNumber;
 }
 
-export const VestingTable = ({ vested, locked, staked }: VestingTableProps) => {
+export const VestingTable = ({
+  vested,
+  locked,
+  associated,
+}: VestingTableProps) => {
   const { t } = useTranslation();
   const total = React.useMemo(() => {
     return vested.plus(locked);
@@ -25,8 +29,8 @@ export const VestingTable = ({ vested, locked, staked }: VestingTableProps) => {
     return locked.div(total).times(100);
   }, [total, locked]);
   const stakedPercentage = React.useMemo(() => {
-    return staked.div(total).times(100);
-  }, [total, staked]);
+    return associated.div(total).times(100);
+  }, [total, associated]);
   return (
     <section data-testid="vesting-table" className="vesting-table">
       <h2>{t("Across all tranches")}</h2>
@@ -55,9 +59,9 @@ export const VestingTable = ({ vested, locked, staked }: VestingTableProps) => {
         <KeyValueTableRow data-testid="vesting-table-staked">
           <th>
             <div className="vesting-table__indicator-square vesting-table__indicator-square--staked"></div>
-            {t("Staked")}
+            {t("Associated")}
           </th>
-          <td>{staked.toString()}</td>
+          <td>{associated.toString()}</td>
         </KeyValueTableRow>
       </KeyValueTable>
       <div className="vesting-table__progress-bar">

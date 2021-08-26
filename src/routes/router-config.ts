@@ -5,12 +5,10 @@ import NotPermitted from "./not-permitted";
 
 export const Routes = {
   HOME: "/",
-  ASSOCIATE: "/associate",
-  DISASSOCIATE: "/disassociate",
   TRANCHES: "/tranches",
   CLAIM: "/claim",
   STAKING: "/staking",
-  REDEMPTION: "/redemption",
+  VESTING: "/vesting",
   NOT_PERMITTED: "/not-permitted",
   NOT_FOUND: "/not-found",
 };
@@ -41,18 +39,6 @@ const LazyStaking = React.lazy(
       /* webpackChunkName: "route-staking", webpackPrefetch: true */ "./staking"
     )
 );
-const LazyAssociate = React.lazy(
-  () =>
-    import(
-      /* webpackChunkName: "route-associate", webpackPrefetch: true */ "./associate"
-    )
-);
-const LazyDisassociate = React.lazy(
-  () =>
-    import(
-      /* webpackChunkName: "route-disassociate", webpackPrefetch: true */ "./disassociate"
-    )
-);
 
 const routerConfig = [
   {
@@ -78,21 +64,9 @@ const routerConfig = [
     component: LazyStaking,
   },
   {
-    path: Routes.REDEMPTION,
-    name: "Redemption",
+    path: Routes.VESTING,
+    name: "Vesting",
     component: LazyRedemption,
-  },
-  {
-    path: Routes.ASSOCIATE,
-    name: "Associate",
-    children: [],
-    component: LazyAssociate,
-  },
-  {
-    path: Routes.DISASSOCIATE,
-    name: "Disassociate",
-    children: [],
-    component: LazyDisassociate,
   },
   {
     path: Routes.NOT_PERMITTED,

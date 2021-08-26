@@ -33,7 +33,7 @@ describe("Redemption", () => {
       },
     });
     // When visiting redemption
-    cy.visit("/redemption");
+    cy.visit("/vesting");
     // When I connect to my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // Then I see a loading state
@@ -58,7 +58,7 @@ describe("Redemption", () => {
       },
     });
     // When visiting redemption
-    cy.visit("/redemption");
+    cy.visit("/vesting");
     // When I connect to my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // Then I see a loading state
@@ -84,7 +84,7 @@ describe("Redemption", () => {
       },
     });
     // When visiting redemption
-    cy.visit("/redemption");
+    cy.visit("/vesting");
     // When I connect to my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // Then I see an empty state
@@ -106,36 +106,36 @@ describe("Redemption", () => {
       },
     });
     // When visiting redemption
-    cy.visit("/redemption");
+    cy.visit("/vesting");
     // When I connect to my wallet
     cy.contains("Connect to an Ethereum wallet").click();
 
     // Then I see redemption information
     cy.get("[data-testid='redemption-description']").should(
       "have.text",
-      "0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD has 0.0009 VEGA tokens in 2 tranches of the vesting contract."
+      "The connected ethereum wallet (0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD) has 0.0009 VEGA tokens in 2 tranches of the vesting contract."
     );
-    cy.get("[data-testid='redemption-unlocked-tokens']").should(
-      "have.text",
-      "A total of 0.0004 Unlocked Vega tokens."
-    );
-    cy.get("[data-testid='redemption-locked-tokens']").should(
-      "have.text",
-      "A total of 0.0005 Locked Vega tokens."
-    );
-    // TODO needs to be implemented
-    cy.get("[data-testid='redemption-staked-tokens']").should(
-      "have.text",
-      "0.00005 are staked."
-    );
-    cy.get("[data-testid='redemption-page-description']").should(
-      "have.text",
-      "Use this page to redeem any unlocked VEGA tokens."
-    );
-    cy.get("[data-testid='redemption-note']").should(
-      "have.text",
-      "Note: The redeem function attempts to redeem all unlocked tokens from a tranche. However, it will only work if all the amount you are redeeming would not reduce the amount you have staked while vesting."
-    );
+    // cy.get("[data-testid='redemption-unlocked-tokens']").should(
+    //   "have.text",
+    //   "A total of 0.0004 Unlocked Vega tokens."
+    // );
+    // cy.get("[data-testid='redemption-locked-tokens']").should(
+    //   "have.text",
+    //   "A total of 0.0005 Locked Vega tokens."
+    // );
+    // // TODO needs to be implemented
+    // cy.get("[data-testid='redemption-staked-tokens']").should(
+    //   "have.text",
+    //   "0.00005 are staked."
+    // );
+    // cy.get("[data-testid='redemption-page-description']").should(
+    //   "have.text",
+    //   "Use this page to redeem any unlocked VEGA tokens."
+    // );
+    // cy.get("[data-testid='redemption-note']").should(
+    //   "have.text",
+    //   "Note: The redeem function attempts to redeem all unlocked tokens from a tranche. However, it will only work if all the amount you are redeeming would not reduce the amount you have staked while vesting."
+    // );
   });
 
   it("Renders callout", () => {
@@ -150,7 +150,7 @@ describe("Redemption", () => {
       },
     });
     // When visiting redemption
-    cy.visit("/redemption");
+    cy.visit("/vesting");
     // When I connect to my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     cy.get("[data-testid='callout'] h3").should(
@@ -175,7 +175,7 @@ describe("Redemption", () => {
       },
     });
     // When visiting redemption
-    cy.visit("/redemption");
+    cy.visit("/vesting");
     // When I connect to my wallet
     cy.contains("Connect to an Ethereum wallet").click();
 
@@ -257,7 +257,7 @@ describe("Redemption", () => {
       },
     });
     // When visiting redemption
-    cy.visit("/redemption");
+    cy.visit("/vesting");
     // When I connect to my wallet
     cy.contains("Connect to an Ethereum wallet").click();
 
@@ -322,7 +322,7 @@ describe("Redemption", () => {
       },
     });
     // When visiting redemption
-    cy.visit("/redemption");
+    cy.visit("/vesting");
     // When I connect to my wallet
     cy.contains("Connect to an Ethereum wallet").click();
 
@@ -412,7 +412,7 @@ describe("Redemption", () => {
       },
     });
     // When visiting redemption
-    cy.visit("/redemption");
+    cy.visit("/vesting");
     // When I connect to my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     cy.get("[data-testid='tranche-table-footer']").should(
@@ -439,7 +439,7 @@ describe("Redemption", () => {
       },
     });
     // When visiting redemption
-    cy.visit("/redemption");
+    cy.visit("/vesting");
     // When I connect to my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // Then I see a message saying
@@ -466,13 +466,13 @@ describe("Redemption", () => {
       },
     });
     // When visiting redemption
-    cy.visit("/redemption");
+    cy.visit("/vesting");
     // When I connect to my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // Then I see a message saying
     cy.get("[data-testid='tranche-table-footer']").should(
       "have.text",
-      "You must reduce your staked vesting tokens by at least 0.0001 to redeem from this tranche. Manage your stake or just dissociate your tokens."
+      "You must reduce your associated vesting tokens by at least 0.0001 to redeem from this tranche. Manage your stake or just dissociate your tokens."
     );
   });
 
@@ -493,7 +493,7 @@ describe("Redemption", () => {
       },
     });
     // When visiting redemption
-    cy.visit("/redemption");
+    cy.visit("/vesting");
     // When I connect to my wallet
     cy.contains("Connect to an Ethereum wallet").click();
     // When I redeem the value

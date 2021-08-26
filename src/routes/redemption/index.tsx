@@ -1,7 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { RouteChildProps } from "..";
-import { TemplateDefault } from "../../components/page-templates/template-default";
+import { EthWallet } from "../../components/eth-wallet";
+import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
 import { TrancheContainer } from "../../components/tranche-container";
+import { VegaWallet } from "../../components/vega-wallet";
+import { VegaWalletContainer } from "../../components/vega-wallet-container";
 import { Web3Container } from "../../components/web3-container";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import RedemptionRouter from "./redemption";
@@ -11,17 +14,25 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
   const { t } = useTranslation();
 
   return (
-    <TemplateDefault title={t("pageTitleRedemption")}>
+    <TemplateSidebar
+      title={t("pageTitleRedemption")}
+      sidebarButtonText={t("viewKeys")}
+      sidebar={[<EthWallet />, <VegaWallet />]}
+    >
       <Web3Container>
         {(address) => (
           <TrancheContainer>
             {(tranches) => (
-              <RedemptionRouter address={address} tranches={tranches} />
+              <VegaWalletContainer>
+                {({ vegaKey }) => (
+                  <RedemptionRouter address={address} tranches={tranches} />
+                )}
+              </VegaWalletContainer>
             )}
           </TrancheContainer>
         )}
       </Web3Container>
-    </TemplateDefault>
+    </TemplateSidebar>
   );
 };
 

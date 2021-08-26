@@ -14,6 +14,7 @@ export interface TrancheTableProps {
   locked: BigNumber;
   vested: BigNumber;
   lien: BigNumber;
+  totalVested: BigNumber;
   onClick: () => void;
 }
 
@@ -23,12 +24,13 @@ export const TrancheTable = ({
   vested,
   lien,
   onClick,
+  totalVested,
 }: TrancheTableProps) => {
   const { t } = useTranslation();
   const total = vested.plus(locked);
   const trancheFullyLocked =
     tranche.tranche_start.getTime() > new Date().getTime();
-  const unstaked = total.minus(lien);
+  const unstaked = totalVested.minus(lien);
   const reduceAmount = vested.minus(BigNumber.max(unstaked, 0));
   const redeemable = reduceAmount.isLessThanOrEqualTo(0);
   return (
@@ -70,7 +72,7 @@ export const TrancheTable = ({
         {!trancheFullyLocked && !redeemable && (
           <div>
             {t(
-              "You must reduce your staked vesting tokens by at least {{amount}} to redeem from this tranche. Manage your stake or just dissociate your tokens.",
+              "You must reduce your associated vesting tokens by at least {{amount}} to redeem from this tranche. Manage your stake or just dissociate your tokens.",
               { amount: reduceAmount }
             )}
           </div>

@@ -40,6 +40,7 @@ export interface AppState {
   appChainId: EthereumChainId;
   decimals: number;
   totalSupply: string | null;
+  totalAssociated: string;
   totalStaked: string;
   allowance: string | null;
   contractAddresses: {
@@ -52,7 +53,7 @@ export interface AppState {
   vegaWalletStatus: VegaWalletStatus;
   vegaKeys: VegaKeyExtended[] | null;
   currVegaKey: VegaKeyExtended | null;
-  vegaStakedBalance: string | null;
+  vegaAssociatedBalance: string | null;
 }
 
 export enum AppStateActionType {
@@ -103,12 +104,12 @@ export type AppStateAction =
   | {
       type: AppStateActionType.VEGA_WALLET_INIT;
       keys: VegaKey[] | null | undefined;
-      vegaStakedBalance: BigNumber | null;
+      vegaAssociatedBalance: BigNumber | null;
     }
   | {
       type: AppStateActionType.VEGA_WALLET_SET_KEY;
       key: VegaKeyExtended;
-      vegaStakedBalance: BigNumber | null;
+      vegaAssociatedBalance: BigNumber | null;
     }
   | { type: AppStateActionType.VEGA_WALLET_DOWN }
   | { type: AppStateActionType.VEGA_WALLET_DISCONNECT }
@@ -116,7 +117,7 @@ export type AppStateAction =
       type: AppStateActionType.SET_TOKEN;
       decimals: number;
       totalSupply: string;
-      totalStaked: BigNumber;
+      totalAssociated: BigNumber;
     }
   | {
       type: AppStateActionType.SET_ALLOWANCE;

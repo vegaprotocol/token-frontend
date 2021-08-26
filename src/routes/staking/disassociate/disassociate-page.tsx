@@ -1,22 +1,22 @@
 import "./disassociate-page.scss";
 import React, { useReducer } from "react";
 import { useTranslation } from "react-i18next";
-import { ConnectedVegaKey } from "../../components/connected-vega-key";
+import { ConnectedVegaKey } from "../../../components/connected-vega-key";
 import {
   StakingMethod,
   StakingMethodRadio,
-} from "../../components/staking-method-radio";
-import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
-import { useSearchParams } from "../../hooks/use-search-params";
+} from "../../../components/staking-method-radio";
+import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
+import { useSearchParams } from "../../../hooks/use-search-params";
 import {
   DisassociateActionType,
   disassociateReducer,
   initialDisassociateState,
 } from "./disassociate-reducer";
-import { useTransaction } from "../../hooks/use-transaction";
-import { useVegaVesting } from "../../hooks/use-vega-vesting";
-import { useVegaStaking } from "../../hooks/use-vega-staking";
-import { TxState } from "../../hooks/transaction-reducer";
+import { useTransaction } from "../../../hooks/use-transaction";
+import { useVegaVesting } from "../../../hooks/use-vega-vesting";
+import { useVegaStaking } from "../../../hooks/use-vega-staking";
+import { TxState } from "../../../hooks/transaction-reducer";
 import { WalletDisassociate } from "./wallet-disassociate";
 import { ContractDisassociate } from "./contract-disassociate";
 import { DisassociateTransaction } from "./disassociate-transaction";
