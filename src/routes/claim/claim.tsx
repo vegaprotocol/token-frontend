@@ -11,6 +11,7 @@ import {
 import { ClaimFlow } from "./claim-flow";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { useRefreshBalances } from "../../hooks/use-refresh-balances";
+import { useGetUserTrancheBalances } from "../../hooks/use-get-user-tranche-balances";
 
 const Claim = ({
   address,
@@ -19,6 +20,7 @@ const Claim = ({
   address: string;
   tranches: Tranche[];
 }) => {
+  const getUserTrancheBalances = useGetUserTrancheBalances(address);
   const params = useSearchParams();
   const { appState } = useAppState();
   const [state, dispatch] = React.useReducer(claimReducer, initialClaimState);
@@ -41,9 +43,10 @@ const Claim = ({
   // If the claim has been committed refetch the new VEGA balance
   React.useEffect(() => {
     if (state.claimStatus === ClaimStatus.Finished && address) {
+      getUserTrancheBalances();
       refreshBalances();
     }
-  }, [address, refreshBalances, state.claimStatus]);
+  }, [address, getUserTrancheBalances, refreshBalances, state.claimStatus]);
 
   if (state.error) {
     return <ClaimError />;

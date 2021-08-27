@@ -7,6 +7,7 @@ import {
   TransactionActionType,
   TxState,
 } from "../../../hooks/transaction-reducer";
+import { useGetUserTrancheBalances } from "../../../hooks/use-get-user-tranche-balances";
 import { useRefreshBalances } from "../../../hooks/use-refresh-balances";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { useVegaVesting } from "../../../hooks/use-vega-vesting";
@@ -27,7 +28,7 @@ export const RedeemFromTranche = ({
     appState: { lien, totalVestedBalance, trancheBalances },
   } = useAppState();
   const refreshBalances = useRefreshBalances(address);
-
+  const getUserTrancheBalances = useGetUserTrancheBalances(address);
   const { id } = useParams<{ id: string }>();
   const numberId = Number(id);
   const { userTranches } = state;
@@ -46,9 +47,10 @@ export const RedeemFromTranche = ({
   // If the claim has been committed refetch the new VEGA balance
   React.useEffect(() => {
     if (txState.txState === TxState.Complete && address) {
+      getUserTrancheBalances();
       refreshBalances();
     }
-  }, [address, refreshBalances, txState.txState]);
+  }, [address, getUserTrancheBalances, refreshBalances, txState.txState]);
 
   if (!tranche || tranche.total_removed.isEqualTo(tranche.total_added)) {
     return (
