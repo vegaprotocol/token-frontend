@@ -15,6 +15,7 @@ export interface TrancheTableProps {
   vested: BigNumber;
   lien: BigNumber;
   totalVested: BigNumber;
+  totalLocked: BigNumber;
   onClick: () => void;
 }
 
@@ -25,13 +26,15 @@ export const TrancheTable = ({
   lien,
   onClick,
   totalVested,
+  totalLocked,
 }: TrancheTableProps) => {
   const { t } = useTranslation();
   const total = vested.plus(locked);
   const trancheFullyLocked =
     tranche.tranche_start.getTime() > new Date().getTime();
-  const unstaked = totalVested.minus(lien);
-  const reduceAmount = vested.minus(BigNumber.max(unstaked, 0));
+  const unstaked = totalVested.plus(totalLocked).minus(lien);
+  const reduceAmount = totalVested.minus(BigNumber.max(unstaked, 0));
+  console.log(unstaked.toString());
   const redeemable = reduceAmount.isLessThanOrEqualTo(0);
   return (
     <section data-testid="tranche-table" className="tranche-table">
