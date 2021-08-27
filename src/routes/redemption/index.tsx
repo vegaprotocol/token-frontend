@@ -21,7 +21,7 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
     >
       <Web3Container>
         {(address) => (
-          <TrancheContainer>
+          <TrancheContainer address={address}>
             {(tranches) => (
               <VegaWalletContainer>
                 {({ vegaKey }) => (

@@ -27,6 +27,12 @@ export interface VegaKeyExtended extends VegaKey {
   pubShort: string;
 }
 
+export interface TrancheBalance {
+  id: number;
+  locked: BigNumber;
+  vested: BigNumber;
+}
+
 export interface AppState {
   providerStatus: ProviderStatus;
   address: string | null;
@@ -42,6 +48,9 @@ export interface AppState {
   totalSupply: string | null;
   totalAssociated: string;
   totalStaked: string;
+  totalVestedBalance: string;
+  totalLockedBalance: string;
+  trancheBalances: TrancheBalance[];
   allowance: string | null;
   contractAddresses: {
     vestingAddress: string;
@@ -74,6 +83,7 @@ export enum AppStateActionType {
   SET_TOKEN,
   SET_ALLOWANCE,
   REFRESH_BALANCES,
+  SET_TRANCHE_BALANCES,
 }
 
 export type AppStateAction =
@@ -131,6 +141,10 @@ export type AppStateAction =
       lien: BigNumber | null;
       allowance: BigNumber | null;
       vegaAssociatedBalance: BigNumber | null;
+    }
+  | {
+      type: AppStateActionType.SET_TRANCHE_BALANCES;
+      trancheBalances: TrancheBalance[];
     };
 
 type AppStateContextShape = {

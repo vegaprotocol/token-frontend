@@ -17,7 +17,7 @@ const TrancheRouter = ({ name }: RouteChildProps) => {
     <TemplateDefault title={t("pageTitleTranches")}>
       <Web3Container>
         {(address) => (
-          <TrancheContainer>
+          <TrancheContainer address={address}>
             {(tranches) => (
               <Switch>
                 <Route path={match.path} exact>

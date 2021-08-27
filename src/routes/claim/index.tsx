@@ -22,7 +22,7 @@ const ClaimIndex = ({ name }: RouteChildProps) => {
           {(address) => (
             <VegaTokenContainer>
               {() => (
-                <TrancheContainer>
+                <TrancheContainer address={address}>
                   {(tranches) => (
                     <Claim address={address} tranches={tranches} />
                   )}
