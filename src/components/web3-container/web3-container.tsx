@@ -33,7 +33,7 @@ export const Web3Container = ({
     if (
       !triedToConnect &&
       // If we haven't loaded the contract information don't connect yet
-      appState.decimals &&
+      appState.tokenDataLoaded &&
       // We don't have an address we are not connected
       !appState.address &&
       // If we have an error we don't want to try reconnecting
@@ -53,16 +53,18 @@ export const Web3Container = ({
   }, [
     appState.address,
     appState.connecting,
-    appState.decimals,
     appState.error,
+    appState.tokenDataLoaded,
     connect,
     triedToConnect,
   ]);
 
   // Bind listeners for account change
   React.useEffect(() => {
-    // TODO Hacky AF, data loading pattern needs looking into. Shouldn't render anything until token info is fetched
-    if (appState.decimals && appState.providerStatus === ProviderStatus.Ready) {
+    if (
+      appState.tokenDataLoaded &&
+      appState.providerStatus === ProviderStatus.Ready
+    ) {
       provider.on("accountsChanged", async (accounts: string[]) => {
         if (accounts.length) {
           const [balance, walletBalance, lien, allowance] = await Promise.all([

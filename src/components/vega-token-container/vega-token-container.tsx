@@ -9,7 +9,7 @@ export const VegaTokenContainer = ({
 }) => {
   const { appState } = useAppState();
 
-  if (!appState.totalSupply || !appState.decimals) {
+  if (!appState.totalSupply || !appState.tokenDataLoaded) {
     return (
       <SplashScreen>
         <SplashLoader />
