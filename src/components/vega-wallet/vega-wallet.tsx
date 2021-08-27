@@ -1,7 +1,5 @@
 import React from "react";
-import { FormGroup, Intent } from "@blueprintjs/core";
 import "./vega-wallet.scss";
-import { useForm } from "react-hook-form";
 import {
   AppStateActionType,
   useAppState,
@@ -25,7 +23,7 @@ export const VegaWallet = () => {
   const { appState } = useAppState();
 
   const child = !appState.vegaKeys ? (
-    <VegaWalletForm vegaWallet={vegaWallet} />
+    <VegaWalletNotConnected />
   ) : (
     <VegaWalletConnected
       vegaWallet={vegaWallet}
@@ -37,19 +35,49 @@ export const VegaWallet = () => {
   return (
     <WalletCard>
       <WalletCardHeader>
-        <span>{t("vegaKey")}</span>
+        <span>
+          {t("vegaKey")}{" "}
+          {appState.currVegaKey && `(${appState.currVegaKey.alias})`}
+        </span>
         {appState.currVegaKey && (
           <>
             <span className="vega-wallet__curr-key">
-              {appState.currVegaKey.alias} {appState.currVegaKey.pubShort}
+              {appState.currVegaKey.pubShort}
             </span>
           </>
         )}
       </WalletCardHeader>
-      <WalletCardContent>
-        {appState.vegaWalletStatus !== VegaWalletStatus.Pending && child}
-      </WalletCardContent>
+      <WalletCardContent>{child}</WalletCardContent>
     </WalletCard>
+  );
+};
+
+const VegaWalletNotConnected = () => {
+  const { t } = useTranslation();
+  const { appState, appDispatch } = useAppState();
+
+  if (appState.vegaWalletStatus === VegaWalletStatus.None) {
+    return (
+      <WalletCardContent>
+        <div>{t("noService")}</div>
+      </WalletCardContent>
+    );
+  }
+
+  return (
+    <button
+      onClick={() =>
+        appDispatch({
+          type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,
+          isOpen: true,
+        })
+      }
+      className="vega-wallet__connect"
+      data-testid="connect-vega"
+      type="button"
+    >
+      {t("connectVegaWallet")}
+    </button>
   );
 };
 
@@ -71,6 +99,7 @@ const VegaWalletConnected = ({
   } = useAppState();
   const [disconnecting, setDisconnecting] = React.useState(false);
   const staking = useVegaStaking();
+  const [expanded, setExpanded] = React.useState(false);
 
   const handleDisconnect = React.useCallback(
     async function () {
@@ -92,6 +121,7 @@ const VegaWalletConnected = ({
         key: k,
         vegaAssociatedBalance: vegaAssociatedBalance,
       });
+      setExpanded(false);
     },
     [address, appDispatch, staking]
   );
@@ -105,16 +135,34 @@ const VegaWalletConnected = ({
           valueSuffix={t("VEGA")}
         />
       ) : null}
-      <div className="vega-wallet__expanded-container">
-        <ul className="vega-wallet__key-list">
-          {vegaKeys
-            .filter((k) => currVegaKey && currVegaKey.pub !== k.pub)
-            .map((k) => (
-              <li key={k.pub} onClick={() => changeKey(k)}>
-                {k.alias} {k.pubShort}
-              </li>
-            ))}
-        </ul>
+      {expanded && (
+        <div className="vega-wallet__expanded-container">
+          <ul className="vega-wallet__key-list">
+            {vegaKeys
+              .filter((k) => currVegaKey && currVegaKey.pub !== k.pub)
+              .map((k) => (
+                <li key={k.pub} onClick={() => changeKey(k)}>
+                  {k.alias} {k.pubShort}
+                </li>
+              ))}
+          </ul>
+        </div>
+      )}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          gap: 5,
+          marginTop: 10,
+        }}
+      >
+        <button
+          className="button-link button-link--dark"
+          onClick={() => setExpanded(true)}
+          type="button"
+        >
+          Change key
+        </button>
         <button
           className="button-link button-link--dark"
           onClick={handleDisconnect}
@@ -126,116 +174,5 @@ const VegaWalletConnected = ({
     </>
   ) : (
     <WalletCardContent>{t("noKeys")}</WalletCardContent>
-  );
-};
-
-interface FormFields {
-  url: string;
-  wallet: string;
-  passphrase: string;
-}
-
-interface VegaWalletFormProps {
-  vegaWallet: VegaWalletService;
-}
-
-const VegaWalletForm = ({ vegaWallet }: VegaWalletFormProps) => {
-  const staking = useVegaStaking();
-  const { t } = useTranslation();
-  const {
-    appDispatch,
-    appState: { address },
-  } = useAppState();
-  const [loading, setLoading] = React.useState(false);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setError,
-  } = useForm<FormFields>({
-    defaultValues: {
-      url: vegaWallet.url,
-    },
-  });
-
-  async function onSubmit(fields: FormFields) {
-    setLoading(true);
-    const [tokenErr] = await vegaWallet.getToken({
-      wallet: fields.wallet,
-      passphrase: fields.passphrase,
-    });
-
-    if (tokenErr) {
-      setError("passphrase", { message: t(tokenErr) });
-      setLoading(false);
-      return;
-    }
-
-    const [keysErr, keys] = await vegaWallet.getKeys();
-
-    if (keysErr) {
-      setError("passphrase", { message: t(keysErr) });
-      setLoading(false);
-      return;
-    }
-    let vegaAssociatedBalance = null;
-    if (address && keys && keys.length) {
-      vegaAssociatedBalance = await staking.stakeBalance(address, keys[0].pub);
-    }
-    appDispatch({
-      type: AppStateActionType.VEGA_WALLET_INIT,
-      keys,
-      vegaAssociatedBalance,
-    });
-    setLoading(false);
-  }
-
-  const required = t("required");
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit)} className="vega-wallet__form">
-      <FormGroup
-        label={t("urlLabel")}
-        labelFor="url"
-        intent={errors.url?.message ? Intent.DANGER : Intent.NONE}
-        helperText={errors.url?.message}
-      >
-        <input {...register("url", { required })} type="text" />
-      </FormGroup>
-      <FormGroup
-        label={t("walletLabel")}
-        labelFor="wallet"
-        intent={errors.wallet?.message ? Intent.DANGER : Intent.NONE}
-        helperText={errors.wallet?.message}
-      >
-        <input
-          data-testid="wallet-name"
-          {...register("wallet", { required })}
-          type="text"
-        />
-      </FormGroup>
-      <FormGroup
-        label={t("passphraseLabel")}
-        labelFor="passphrase"
-        intent={errors.passphrase?.message ? Intent.DANGER : Intent.NONE}
-        helperText={errors.passphrase?.message}
-      >
-        <input
-          data-testid="wallet-password"
-          {...register("passphrase", { required })}
-          type="password"
-        />
-      </FormGroup>
-      <div className="vega-wallet__form-buttons">
-        <button
-          data-testid="wallet-login"
-          type="submit"
-          disabled={loading}
-          className="vega-wallet__form-submit"
-        >
-          {loading ? t("vegaWalletConnecting") : t("vegaWalletConnect")}
-        </button>
-      </div>
-    </form>
   );
 };

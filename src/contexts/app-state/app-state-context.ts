@@ -67,6 +67,7 @@ export interface AppState {
   vegaAssociatedBalance: string | null;
   tokenDataLoaded: boolean;
   trancheError: Error | null;
+  drawerOpen: boolean;
 }
 
 export enum AppStateActionType {
@@ -88,6 +89,7 @@ export enum AppStateActionType {
   SET_TRANCHE_DATA,
   SET_VEGA_WALLET_OVERLAY,
   SET_ETH_WALLET_OVERLAY,
+  SET_DRAWER,
   SET_TRANCHE_ERROR,
 }
 
@@ -160,6 +162,10 @@ export type AppStateAction =
     }
   | {
       type: AppStateActionType.SET_ETH_WALLET_OVERLAY;
+      isOpen: boolean;
+    }
+  | {
+      type: AppStateActionType.SET_DRAWER;
       isOpen: boolean;
     };
 

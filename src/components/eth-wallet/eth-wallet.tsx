@@ -1,6 +1,7 @@
 import "./eth-wallet.scss";
 import { useTranslation } from "react-i18next";
 import {
+  AppStateActionType,
   ProviderStatus,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
@@ -48,7 +49,7 @@ export const EthWallet = () => {
 const ConnectedKey = () => {
   const { t } = useTranslation();
   const connect = useConnect();
-  const { appState } = useAppState();
+  const { appState, appDispatch } = useAppState();
   const {
     connecting,
     address,
@@ -66,11 +67,16 @@ const ConnectedKey = () => {
     return (
       <button
         type="button"
-        onClick={connect}
+        onClick={() =>
+          appDispatch({
+            type: AppStateActionType.SET_ETH_WALLET_OVERLAY,
+            isOpen: true,
+          })
+        }
         data-testid="connect"
         className="eth-wallet__connect"
       >
-        {t("Connect with Metamask")}
+        {t("Connect")}
       </button>
     );
   }

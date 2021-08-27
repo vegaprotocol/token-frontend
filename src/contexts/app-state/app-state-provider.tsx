@@ -47,6 +47,7 @@ const initialAppState: AppState = {
   totalVestedBalance: "",
   tokenDataLoaded: false,
   trancheError: null,
+  drawerOpen: false,
 };
 
 function appStateReducer(state: AppState, action: AppStateAction): AppState {
@@ -78,6 +79,7 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         allowance: action.allowance?.toString() || "",
         lien: action.lien?.toString() || "",
         connecting: false,
+        ethWalletOverlay: false,
       };
     case AppStateActionType.CONNECT_FAIL:
       return {
@@ -202,12 +204,22 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
       return {
         ...state,
         vegaWalletOverlay: action.isOpen,
+        drawerOpen: action.isOpen ? false : state.drawerOpen,
       };
     }
     case AppStateActionType.SET_ETH_WALLET_OVERLAY: {
       return {
         ...state,
         ethWalletOverlay: action.isOpen,
+        drawerOpen: action.isOpen ? false : state.drawerOpen,
+      };
+    }
+    case AppStateActionType.SET_DRAWER: {
+      return {
+        ...state,
+        drawerOpen: action.isOpen,
+        ethWalletOverlay: false,
+        vegaWalletOverlay: false,
       };
     }
   }
