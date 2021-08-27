@@ -63,6 +63,7 @@ export interface AppState {
   vegaKeys: VegaKeyExtended[] | null;
   currVegaKey: VegaKeyExtended | null;
   vegaAssociatedBalance: string | null;
+  tokenDataLoaded: boolean;
 }
 
 export enum AppStateActionType {

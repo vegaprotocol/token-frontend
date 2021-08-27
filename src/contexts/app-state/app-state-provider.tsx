@@ -43,6 +43,7 @@ const initialAppState: AppState = {
   trancheBalances: [],
   totalLockedBalance: "",
   totalVestedBalance: "",
+  tokenDataLoaded: false,
 };
 
 function appStateReducer(state: AppState, action: AppStateAction): AppState {
@@ -158,6 +159,7 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
     case AppStateActionType.SET_TOKEN: {
       return {
         ...state,
+        tokenDataLoaded: true,
         decimals: action.decimals,
         totalSupply: action.totalSupply,
         totalAssociated: action.totalAssociated.toString(),
