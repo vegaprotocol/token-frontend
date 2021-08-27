@@ -13,6 +13,7 @@ import {
 // @ts-ignore
 import detectEthereumProvider from "DETECT_PROVIDER_PATH/detect-provider";
 import { truncateMiddle } from "../../lib/truncate-middle";
+import { BigNumber } from "../../lib/bignumber";
 
 interface AppStateProviderProps {
   children: React.ReactNode;
@@ -39,6 +40,9 @@ const initialAppState: AppState = {
   decimals: 0,
   totalSupply: null,
   vegaAssociatedBalance: null,
+  trancheBalances: [],
+  totalLockedBalance: "",
+  totalVestedBalance: "",
 };
 
 function appStateReducer(state: AppState, action: AppStateAction): AppState {
@@ -177,6 +181,23 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         allowance: action.allowance?.toString() || "",
       };
     }
+    case AppStateActionType.SET_TRANCHE_BALANCES:
+      return {
+        ...state,
+        totalVestedBalance: BigNumber.sum
+          .apply(null, [
+            new BigNumber(0),
+            ...action.trancheBalances.map((b) => b.vested),
+          ])
+          .toString(),
+        totalLockedBalance: BigNumber.sum
+          .apply(null, [
+            new BigNumber(0),
+            ...action.trancheBalances.map((b) => b.locked),
+          ])
+          .toString(),
+        trancheBalances: action.trancheBalances,
+      };
   }
 }
 

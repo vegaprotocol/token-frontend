@@ -24,7 +24,7 @@ const Home = ({ name }: RouteChildProps) => {
         {(address) => (
           <VegaTokenContainer>
             {({ totalSupply }) => (
-              <TrancheContainer>
+              <TrancheContainer address={address}>
                 {() => (
                   <>
                     <h2>{t("The Vega Token")}</h2>
