@@ -3,7 +3,7 @@ import React from "react";
 import { Colors } from "../../colors";
 import "./wallet-card.scss";
 
-const FLASH_DURATION = 800; // Duration of flash animation in milliseconds
+const FLASH_DURATION = 1200; // Duration of flash animation in milliseconds
 
 interface WalletCardProps {
   children: React.ReactNode;
