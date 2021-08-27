@@ -12,8 +12,6 @@ import { StakeNode, StakeNodeVariables } from "./__generated__/StakeNode";
 import { Callout } from "../../components/callout";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
-import { CalloutRemoveSuccess } from "./callout-remove-success";
-import { StakingCalloutRemoving } from "./staking-callout-removing";
 
 export const STAKE_NODE_QUERY = gql`
   query StakeNode($nodeId: String!, $partyId: ID!) {
@@ -85,7 +83,20 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
     );
   }
 
-  const amount = "1.1";
+  // TODO: update ui
+  // const renderStakeChild = () => {
+  //   switch () {
+  //     case RemoveStakeStatus.None:
+  //       return <StakingForm nodeId={node} pubkey={vegaKey.pub} />;
+  //     case RemoveStakeStatus.Pending:
+  //       return <StakingCalloutRemoving amount={amount} node={node} />;
+  //     case RemoveStakeStatus.Ready:
+  //       return <CalloutRemoveSuccess amount={amount} node={node} />;
+  //     default:
+  //       return <div>Not Found</div>;
+  //   }
+  // };
+
   return (
     <>
       <h2>{t("VALIDATOR {{node}}", { node })}</h2>
@@ -106,9 +117,7 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
         currentEpoch={data.epoch.id}
         delegations={data.party?.delegations || []}
       />
-      <StakingForm nodeId={node} pubkey={vegaKey.pub} />
-      <StakingCalloutRemoving amount={amount} node={node} />
-      <CalloutRemoveSuccess amount={amount} node={node} />
+      <StakingForm pubkey={vegaKey.pub} nodeId={node} />
     </>
   );
 };
