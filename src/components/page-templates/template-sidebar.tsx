@@ -1,7 +1,6 @@
 import "./template-sidebar.scss";
 import React from "react";
 import { Heading } from "../heading";
-import { Notice } from "../notice";
 
 export interface TemplateSidebarProps {
   title: string;

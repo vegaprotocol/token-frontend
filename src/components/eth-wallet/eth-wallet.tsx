@@ -1,11 +1,8 @@
-import "./eth-wallet.scss";
 import { useTranslation } from "react-i18next";
 import {
   AppStateActionType,
-  ProviderStatus,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
-import { useConnect } from "../../hooks/use-connect";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import {
   WalletCard,
@@ -17,17 +14,7 @@ import { Colors } from "../../colors";
 
 export const EthWallet = () => {
   const { t } = useTranslation();
-  const { appState } = useAppState();
-
-  let content = null;
-
-  if (appState.providerStatus === ProviderStatus.Pending) {
-    content = <div>{t("checkingForProvider")}</div>;
-  } else if (appState.providerStatus === ProviderStatus.None) {
-    content = <div>{t("invalidWeb3Browser")}</div>;
-  } else {
-    content = <ConnectedKey />;
-  }
+  const { appState, appDispatch } = useAppState();
 
   return (
     <WalletCard>
@@ -41,45 +28,34 @@ export const EthWallet = () => {
           </>
         )}
       </WalletCardHeader>
-      <WalletCardContent>{content}</WalletCardContent>
+      <WalletCardContent>
+        {appState.address ? (
+          <ConnectedKey />
+        ) : (
+          <button
+            type="button"
+            className="button-link"
+            onClick={() =>
+              appDispatch({
+                type: AppStateActionType.SET_ETH_WALLET_OVERLAY,
+                isOpen: true,
+              })
+            }
+            data-testid="connect"
+          >
+            {t("Connect")}
+          </button>
+        )}
+      </WalletCardContent>
     </WalletCard>
   );
 };
 
 const ConnectedKey = () => {
   const { t } = useTranslation();
-  const connect = useConnect();
-  const { appState, appDispatch } = useAppState();
-  const {
-    connecting,
-    address,
-    lien,
-    walletBalance,
-    totalLockedBalance,
-    totalVestedBalance,
-  } = appState;
-
-  if (connecting) {
-    return <div>{t("Awaiting action in wallet...")}</div>;
-  }
-
-  if (!address) {
-    return (
-      <button
-        type="button"
-        onClick={() =>
-          appDispatch({
-            type: AppStateActionType.SET_ETH_WALLET_OVERLAY,
-            isOpen: true,
-          })
-        }
-        data-testid="connect"
-        className="eth-wallet__connect"
-      >
-        {t("Connect")}
-      </button>
-    );
-  }
+  const { appState } = useAppState();
+  const { lien, walletBalance, totalLockedBalance, totalVestedBalance } =
+    appState;
 
   return (
     <>

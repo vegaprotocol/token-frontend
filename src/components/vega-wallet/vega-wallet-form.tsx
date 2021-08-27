@@ -1,3 +1,4 @@
+import "./vega-wallet-form.scss";
 import { FormGroup, Intent } from "@blueprintjs/core";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -76,7 +77,7 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
   const required = t("required");
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="vega-wallet__form">
+    <form onSubmit={handleSubmit(onSubmit)} className="vega-wallet-form">
       <FormGroup
         label={t("urlLabel")}
         labelFor="url"
@@ -109,16 +110,14 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
           type="password"
         />
       </FormGroup>
-      <div className="vega-wallet__form-buttons">
-        <button
-          data-testid="wallet-login"
-          type="submit"
-          disabled={loading}
-          className="vega-wallet__form-submit"
-        >
-          {loading ? t("vegaWalletConnecting") : t("vegaWalletConnect")}
-        </button>
-      </div>
+      <button
+        data-testid="wallet-login"
+        type="submit"
+        disabled={loading}
+        className="vega-wallet-form__submit"
+      >
+        {loading ? t("vegaWalletConnecting") : t("vegaWalletConnect")}
+      </button>
     </form>
   );
 };

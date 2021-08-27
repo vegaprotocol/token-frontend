@@ -136,32 +136,23 @@ const VegaWalletConnected = ({
         />
       ) : null}
       {expanded && (
-        <div className="vega-wallet__expanded-container">
-          <ul className="vega-wallet__key-list">
-            {vegaKeys
-              .filter((k) => currVegaKey && currVegaKey.pub !== k.pub)
-              .map((k) => (
-                <li key={k.pub} onClick={() => changeKey(k)}>
-                  {k.alias} {k.pubShort}
-                </li>
-              ))}
-          </ul>
-        </div>
+        <ul className="vega-wallet__key-list">
+          {vegaKeys
+            .filter((k) => currVegaKey && currVegaKey.pub !== k.pub)
+            .map((k) => (
+              <li key={k.pub} onClick={() => changeKey(k)}>
+                {k.alias} {k.pubShort}
+              </li>
+            ))}
+        </ul>
       )}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          gap: 5,
-          marginTop: 10,
-        }}
-      >
+      <div className="vega-wallet__actions">
         <button
           className="button-link button-link--dark"
-          onClick={() => setExpanded(true)}
+          onClick={() => setExpanded((x) => !x)}
           type="button"
         >
-          Change key
+          {expanded ? "Hide keys" : "Change key"}
         </button>
         <button
           className="button-link button-link--dark"

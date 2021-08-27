@@ -10,7 +10,7 @@ interface WalletCardProps {
 }
 
 export const WalletCard = ({ children }: WalletCardProps) => (
-  <div className="wallet-card">{children}</div>
+  <div className="wallet-card invert">{children}</div>
 );
 
 interface WalletCardHeaderProps {

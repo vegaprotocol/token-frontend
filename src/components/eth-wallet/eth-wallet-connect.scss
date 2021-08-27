@@ -1,12 +1,7 @@
 @import "../../styles/colors";
 
-.eth-wallet {
-  background-color: $white;
-  padding: 10px;
-  color: $black;
-  font-size: 14px;
-
-  &__connect {
+.eth-wallet-connect {
+  &__button {
     appearance: none;
     padding: 0;
     background-color: transparent;
