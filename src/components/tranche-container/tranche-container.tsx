@@ -38,10 +38,10 @@ export const TrancheContainer = ({
         };
       });
       const trancheBalances = await Promise.all(promises);
-      appDispatch({ type: AppStateActionType.SET_TRANCHES, tranches });
       appDispatch({
-        type: AppStateActionType.SET_TRANCHE_BALANCES,
+        type: AppStateActionType.SET_TRANCHE_DATA,
         trancheBalances,
+        tranches,
       });
     };
 
