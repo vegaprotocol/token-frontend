@@ -356,6 +356,15 @@ const en = {
   "Remove {{amount}} VEGA tokens": "Remove {{amount}} VEGA tokens",
   "How much to {{action}} in next epoch":
     "How much to {{action}} in next epoch",
+  "Removing {{amount}} VEGA from {{node}}":
+    "Removing {{amount}} VEGA from {{node}}",
+  "This should take approximately ({{time}}) to confirm.":
+    "This should take approximately ({{time}}) to confirm.",
+  "{{amount}} Has been removed to {{node}}":
+    "{{amount}} Has been removed to {{node}}",
+  "Nominate another node with your stake":
+    "Nominate another node with your stake",
+  "Dissociate VEGA tokens": "Dissociate VEGA tokens",
 };
 
 export default en;
