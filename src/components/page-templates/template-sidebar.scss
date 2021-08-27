@@ -1,17 +1,10 @@
 @import "../../styles/colors";
 
 .template-sidebar {
-  min-height: 100%;
-
-  &__wrapper {
-    max-width: 1020px;
-    margin: 0 auto;
-
-    @media (min-width: 960px) {
-      display: grid;
-      grid-template-rows: auto 1fr;
-      grid-template-columns: 1fr 400px;
-    }
+  @media (min-width: 960px) {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr 400px;
   }
 
   header,

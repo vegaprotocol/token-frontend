@@ -15,17 +15,15 @@ export function TemplateSidebar({
 }: TemplateSidebarProps) {
   return (
     <div className="template-sidebar">
-      <div className="template-sidebar__wrapper">
-        <Heading title={title} />
-        <main>{children}</main>
-        <aside>
-          {/* TODO: whats the best way to do the below, appeasing typescript
+      <Heading title={title} />
+      <main>{children}</main>
+      <aside>
+        {/* TODO: whats the best way to do the below, appeasing typescript
          // @ts-ignore */}
-          {sidebar.map((Component, i) => (
-            <section key={i}>{Component}</section>
-          ))}
-        </aside>
-      </div>
+        {sidebar.map((Component, i) => (
+          <section key={i}>{Component}</section>
+        ))}
+      </aside>
     </div>
   );
 }

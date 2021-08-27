@@ -10,10 +10,8 @@ export interface TemplateDefaultProps {
 export function TemplateDefault({ title, children }: TemplateDefaultProps) {
   return (
     <div className="template-default">
-      <div className="template-default__wrapper">
-        <Heading title={title} />
-        <main>{children}</main>
-      </div>
+      <Heading title={title} />
+      <main>{children}</main>
     </div>
   );
 }
