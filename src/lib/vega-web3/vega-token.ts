@@ -33,8 +33,9 @@ export default class VegaToken implements IVegaToken {
   }
 
   async totalSupply(): Promise<BigNumber> {
+    const decimals = await this.decimals();
     const res = await this.contract.methods.totalSupply().call();
-    return new BigNumber(res);
+    return new BigNumber(addDecimal(new BigNumber(res), decimals));
   }
 
   async decimals(): Promise<number> {
