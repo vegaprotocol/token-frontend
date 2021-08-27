@@ -90,14 +90,12 @@ const ConnectedKey = () => {
         value={walletBalance}
         valueSuffix={t("VEGA")}
       />
-      <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
-
+      <hr />
       <WalletCardRow
         label={t("Vesting")}
         value={balanceFormatted}
         valueSuffix={t("VEGA")}
       />
-
       <WalletCardRow
         label={t("Locked")}
         value={totalLockedBalance}

@@ -61,7 +61,8 @@ export const Web3Container = ({
 
   // Bind listeners for account change
   React.useEffect(() => {
-    if (appState.providerStatus === ProviderStatus.Ready) {
+    // TODO Hacky AF, data loading pattern needs looking into. Shouldn't render anything until token info is fetched
+    if (appState.decimals && appState.providerStatus === ProviderStatus.Ready) {
       provider.on("accountsChanged", async (accounts: string[]) => {
         if (accounts.length) {
           const [balance, walletBalance, lien, allowance] = await Promise.all([
@@ -92,6 +93,7 @@ export const Web3Container = ({
   }, [
     appDispatch,
     appState.contractAddresses.stakingBridge,
+    appState.decimals,
     appState.providerStatus,
     provider,
     staking,
