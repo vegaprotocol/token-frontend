@@ -248,10 +248,11 @@ const en = {
   // Epoch counter
   Epoch: "Epoch",
   Started: "Started",
-  "Ends in": "Ends in",
 
   // Staking
   "Node invalid": "Node invalid",
+  "Ends In": "Ends in",
+  // Node Validator
   "Manage your stake": "Manage your stake",
   "Add Stake": "Add Stake",
   "Remove Stake": "Remove Stake",
@@ -352,6 +353,9 @@ const en = {
 
   // stake failed
   "Failed to delegate to node {{node}}": "Failed to delegate to node {{node}}",
+  "Remove {{amount}} VEGA tokens": "Remove {{amount}} VEGA tokens",
+  "How much to {{action}} in next epoch":
+    "How much to {{action}} in next epoch",
 };
 
 export default en;
