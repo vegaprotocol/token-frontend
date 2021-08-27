@@ -21,7 +21,6 @@ export const TrancheContainer = ({
   React.useEffect(() => {
     const run = async () => {
       const tranches = await vesting.getAllTranches();
-      appDispatch({ type: AppStateActionType.SET_TRANCHES, tranches });
       const userTranches = tranches.filter((t) =>
         t.users.some(
           ({ address: a }) => a.toLowerCase() === address.toLowerCase()
@@ -39,6 +38,7 @@ export const TrancheContainer = ({
         };
       });
       const trancheBalances = await Promise.all(promises);
+      appDispatch({ type: AppStateActionType.SET_TRANCHES, tranches });
       appDispatch({
         type: AppStateActionType.SET_TRANCHE_BALANCES,
         trancheBalances,

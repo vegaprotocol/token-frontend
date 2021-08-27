@@ -18,6 +18,7 @@ import { useTranslation } from "react-i18next";
 import { useVegaWallet } from "../../hooks/use-vega-wallet";
 import { VegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
 import { useVegaStaking } from "../../hooks/use-vega-staking";
+import { Colors } from "../../colors";
 
 export const VegaWallet = () => {
   const { t } = useTranslation();
@@ -178,6 +179,21 @@ const VegaWalletConnected = ({
           <WalletCardRow
             label={t("Associated")}
             value={vegaAssociatedBalance}
+            valueSuffix={t("VEGA")}
+          />
+        ) : null}
+        {true ? (
+          <WalletCardRow
+            label={t("Unassociated")}
+            value={"0"}
+            valueSuffix={t("VEGA")}
+          />
+        ) : null}
+        <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
+        {true ? (
+          <WalletCardRow
+            label={t("Staked")}
+            value={"0"}
             valueSuffix={t("VEGA")}
           />
         ) : null}
