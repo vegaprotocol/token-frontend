@@ -38,7 +38,18 @@
   }
 
   &__drawer {
-    padding: 20px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  &__drawer-section {
+    border-top: 1px solid $black;
+
+    &:first-child {
+      border-top: 0;
+    }
   }
 
   &__drawer-button {
@@ -98,7 +109,7 @@
   > a {
     display: block;
     padding: 20px;
-    border-bottom: 1px solid $black;
+    border-top: 1px solid $black;
   }
 }
 
@@ -107,4 +118,7 @@
   margin: 10vh 0;
   top: 0;
   width: 400px;
+  background: $white;
+  padding: 20px;
+  color: $black;
 }

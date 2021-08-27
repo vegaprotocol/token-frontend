@@ -178,7 +178,16 @@ export const Web3Container = ({
             "Use the Ethereum wallet you want to send your tokens to. You'll also need enough Ethereum to pay gas."
           )}
         </p>
-        <button onClick={connect}>{t("Connect to an Ethereum wallet")}</button>
+        <button
+          onClick={() =>
+            appDispatch({
+              type: AppStateActionType.SET_ETH_WALLET_OVERLAY,
+              isOpen: true,
+            })
+          }
+        >
+          {t("Connect to an Ethereum wallet")}
+        </button>
       </>
     );
   }

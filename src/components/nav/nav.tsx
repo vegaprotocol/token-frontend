@@ -11,13 +11,16 @@ import {
   useAppState,
 } from "../../contexts/app-state/app-state-context";
 import { EthWallet } from "../eth-wallet";
-import { truncateMiddle } from "../../lib/truncate-middle";
+import { useTranslation } from "react-i18next";
+import { useConnect } from "../../hooks/use-connect";
+import { VegaWalletForm } from "../vega-wallet/vega-wallet-form";
 
 export const Nav = () => {
+  const { t } = useTranslation();
+  const connect = useConnect();
   const { appState, appDispatch } = useAppState();
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
-  const isDesktop = windowWidth > 960;
+  const isDesktop = windowWidth > 959;
 
   React.useEffect(() => {
     const handleResizeDebounced = debounce(() => {
@@ -31,34 +34,13 @@ export const Nav = () => {
     };
   }, []);
 
-  const nav = <NavLinks isDesktop={isDesktop} setDrawerOpen={setDrawerOpen} />;
-  const wallets = (
-    <div className="nav__wallets-container">
-      <button
-        onClick={() =>
-          appDispatch({
-            type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,
-            isOpen: true,
-          })
-        }
-      >
-        {!appState.vegaKeys
-          ? "Connect Vega"
-          : `Vega: ${appState.currVegaKey?.pubShort}`}
-      </button>
-      <button
-        onClick={() =>
-          appDispatch({
-            type: AppStateActionType.SET_ETH_WALLET_OVERLAY,
-            isOpen: true,
-          })
-        }
-      >
-        {appState.address
-          ? `Eth: ${truncateMiddle(appState.address)}`
-          : "Connect Ethereum"}
-      </button>
-    </div>
+  const nav = (
+    <NavLinks
+      isDesktop={isDesktop}
+      setDrawerOpen={(isOpen) =>
+        appDispatch({ type: AppStateActionType.SET_DRAWER, isOpen })
+      }
+    />
   );
 
   return (
@@ -72,16 +54,17 @@ export const Nav = () => {
           </div>
           <div className="nav__actions">
             {isDesktop ? (
-              <>
-                {nav}
-                <div style={{ marginLeft: "auto" }}>{wallets}</div>
-              </>
+              nav
             ) : (
               <>
-                {wallets}
                 <button
                   type="button"
-                  onClick={() => setDrawerOpen(true)}
+                  onClick={() =>
+                    appDispatch({
+                      type: AppStateActionType.SET_DRAWER,
+                      isOpen: true,
+                    })
+                  }
                   className="nav__drawer-button"
                 >
                   <span />
@@ -89,11 +72,26 @@ export const Nav = () => {
                   <span />
                 </button>
                 <Drawer
-                  isOpen={drawerOpen}
-                  onClose={() => setDrawerOpen(false)}
+                  isOpen={appState.drawerOpen}
+                  onClose={() =>
+                    appDispatch({
+                      type: AppStateActionType.SET_DRAWER,
+                      isOpen: false,
+                    })
+                  }
                   size="80%"
                 >
-                  <div className="nav__drawer">{nav}</div>
+                  <div className="nav__drawer">
+                    <div>
+                      <div className="nav__drawer-section">
+                        <VegaWallet />
+                      </div>
+                      <div className="nav__drawer-section">
+                        <EthWallet />
+                      </div>
+                    </div>
+                    {nav}
+                  </div>
                 </Drawer>
               </>
             )}
@@ -111,7 +109,14 @@ export const Nav = () => {
         transitionDuration={0}
       >
         <div className="nav-overlay">
-          <VegaWallet />
+          <VegaWalletForm
+            onConnect={() =>
+              appDispatch({
+                type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,
+                isOpen: false,
+              })
+            }
+          />
         </div>
       </Overlay>
       <Overlay
@@ -125,7 +130,26 @@ export const Nav = () => {
         transitionDuration={0}
       >
         <div className="nav-overlay">
-          <EthWallet />
+          <div>
+            <button
+              type="button"
+              onClick={connect}
+              data-testid="connect"
+              className="eth-wallet__connect"
+            >
+              {t("Connect with Metamask")}
+            </button>
+          </div>
+          <div>
+            <button
+              type="button"
+              onClick={() => alert("Coming soon")}
+              data-testid="connect"
+              className="eth-wallet__connect"
+            >
+              {t("Connect with Ledger")}
+            </button>
+          </div>
         </div>
       </Overlay>
     </>
@@ -144,6 +168,9 @@ export const NavLinks = ({
   };
   return (
     <nav className={`nav-links nav-links--${isDesktop ? "row" : "column"}`}>
+      <NavLink {...linkProps} to={Routes.VESTING}>
+        Vesting
+      </NavLink>
       <NavLink {...linkProps} to={Routes.TRANCHES}>
         Tranches
       </NavLink>

@@ -3,7 +3,7 @@
 
 .wallet-card {
   background-color: $white;
-  padding: 10px;
+  padding: 20px;
   color: $black;
   font-size: 14px;
 
@@ -21,12 +21,6 @@
         font-family: $font-mono;
       }
     }
-  }
-
-  &__content {
-    border-top: 1px solid $black;
-    padding-top: 5px;
-    margin-top: 3px;
   }
 
   &__row {
