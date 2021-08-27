@@ -21,62 +21,66 @@ const Home = ({ name }: RouteChildProps) => {
   return (
     <TemplateDefault title={t("pageTitleHome")}>
       <Web3Container>
-        <VegaTokenContainer>
-          {({ totalSupply }) => (
-            <TrancheContainer>
-              {() => (
-                <>
-                  <h2>{t("The Vega Token")}</h2>
+        {(address) => (
+          <VegaTokenContainer>
+            {({ totalSupply }) => (
+              <TrancheContainer>
+                {() => (
+                  <>
+                    <h2>{t("The Vega Token")}</h2>
 
-                  <TokenDetails totalSupply={totalSupply} />
+                    <TokenDetails totalSupply={totalSupply} />
 
-                  <h2>{t("Token Vesting")}</h2>
-                  <p>
-                    {t(
-                      "Most VEGA tokens are held in a vesting contract. This means that they cannot be transferred between wallets until their vesting term is complete"
-                    )}
-                  </p>
-                  <p>
-                    {t(
-                      "Tokens are held in different Tranches. Each tranche has its own schedule for how long the tokens are locked"
-                    )}
-                  </p>
-                  <p>
-                    {t(
-                      "Once tokens have unlocked they can be redeemed to the Ethereum wallet that owns them"
-                    )}
-                  </p>
+                    <h2>{t("Token Vesting")}</h2>
+                    <p>
+                      {t(
+                        "Most VEGA tokens are held in a vesting contract. This means that they cannot be transferred between wallets until their vesting term is complete"
+                      )}
+                    </p>
+                    <p>
+                      {t(
+                        "Tokens are held in different Tranches. Each tranche has its own schedule for how long the tokens are locked"
+                      )}
+                    </p>
+                    <p>
+                      {t(
+                        "Once tokens have unlocked they can be redeemed to the Ethereum wallet that owns them"
+                      )}
+                    </p>
 
-                  <h2>{t("Governance")}</h2>
-                  <p>
-                    {t("Token holders can propose changes to the Vega network")}
-                  </p>
+                    <h2>{t("Governance")}</h2>
+                    <p>
+                      {t(
+                        "Token holders can propose changes to the Vega network"
+                      )}
+                    </p>
 
-                  <p>
-                    <Link to={"/governance"}>
-                      {t("Read about Governance on Vega")}
-                    </Link>
-                  </p>
+                    <p>
+                      <Link to={"/governance"}>
+                        {t("Read about Governance on Vega")}
+                      </Link>
+                    </p>
 
-                  <h2>{t("Staking")}</h2>
-                  <p>
-                    {t(
-                      "Token holders can nominate their tokens to a validator and are rewarded a proportion of the fees accumulated for infrastructure"
-                    )}
-                  </p>
+                    <h2>{t("Staking")}</h2>
+                    <p>
+                      {t(
+                        "Token holders can nominate their tokens to a validator and are rewarded a proportion of the fees accumulated for infrastructure"
+                      )}
+                    </p>
 
-                  <StakingOverview totalStaked={appState.totalStaked} />
+                    <StakingOverview totalStaked={appState.totalStaked} />
 
-                  <p>
-                    <Link to={"/staking"}>
-                      {t("Read about staking on Vega")}
-                    </Link>
-                  </p>
-                </>
-              )}
-            </TrancheContainer>
-          )}
-        </VegaTokenContainer>
+                    <p>
+                      <Link to={"/staking"}>
+                        {t("Read about staking on Vega")}
+                      </Link>
+                    </p>
+                  </>
+                )}
+              </TrancheContainer>
+            )}
+          </VegaTokenContainer>
+        )}
       </Web3Container>
     </TemplateDefault>
   );
