@@ -45,5 +45,9 @@
     span:last-child {
       font-family: $font-mono;
     }
+
+    &--dark {
+      color: $black;
+    }
   }
 }

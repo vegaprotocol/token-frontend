@@ -13,7 +13,6 @@ import {
   WalletCardRow,
 } from "../wallet-card";
 import { Colors } from "../../colors";
-import { BigNumber } from "../../lib/bignumber";
 
 export const EthWallet = () => {
   const { t } = useTranslation();
@@ -54,7 +53,6 @@ const ConnectedKey = () => {
     connecting,
     address,
     error,
-    balanceFormatted,
     lien,
     walletBalance,
     totalLockedBalance,
@@ -84,18 +82,14 @@ const ConnectedKey = () => {
 
   return (
     <>
-      <WalletCardRow label={t("Wallet")} />
+      <WalletCardRow label={t("In Wallet")} dark={true} />
       <WalletCardRow
-        label={t("Balance")}
+        label={t("Not Staked")}
         value={walletBalance}
         valueSuffix={t("VEGA")}
       />
-      <hr />
-      <WalletCardRow
-        label={t("Vesting")}
-        value={balanceFormatted}
-        valueSuffix={t("VEGA")}
-      />
+      <hr style={{ borderColor: Colors.BLACK, borderTop: 1 }} />
+      <WalletCardRow label={t("Vesting")} dark={true} />
       <WalletCardRow
         label={t("Locked")}
         value={totalLockedBalance}
@@ -108,27 +102,10 @@ const ConnectedKey = () => {
       />
       <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
       <WalletCardRow
-        label={t("Total")}
-        value={new BigNumber(walletBalance)
-          .plus(totalLockedBalance)
-          .plus(totalVestedBalance)
-          .toString()}
-        valueSuffix={t("VEGA")}
-      />
-      <hr />
-      <WalletCardRow label={t("Staking")} />
-      <WalletCardRow
-        label={t("Unassociated")}
-        value={new BigNumber(balanceFormatted).minus(lien).toString()}
-        valueSuffix={t("VEGA")}
-      />
-      <WalletCardRow
         label={t("Associated")}
         value={lien}
         valueSuffix={t("VEGA")}
       />
-      <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
-      <WalletCardRow label={t("Staked")} value={"0"} valueSuffix={t("VEGA")} />
     </>
   );
 };

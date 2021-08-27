@@ -55,10 +55,12 @@ export const WalletCardRow = ({
   label,
   value,
   valueSuffix,
+  dark = false,
 }: {
   label: string;
   value?: string | null;
   valueSuffix?: string;
+  dark?: boolean;
 }) => {
   const ref = React.useRef<HTMLDivElement | null>(null);
   const previous = usePrevious(value);
@@ -90,7 +92,10 @@ export const WalletCardRow = ({
     );
   }
   return (
-    <div className="wallet-card__row" ref={ref}>
+    <div
+      className={`wallet-card__row ${dark ? "wallet-card__row--dark" : ""}`}
+      ref={ref}
+    >
       <span>{label}</span>
       <span>
         {value} {valueSuffix}
