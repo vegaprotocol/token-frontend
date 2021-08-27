@@ -34,9 +34,9 @@ export const RedemptionInformation = ({
       userTranches.filter((tr) => {
         const balance = trancheBalances.find(
           ({ id }) => id.toString() === tr.tranche_id.toString()
-        )!;
+        );
         return (
-          balance.locked.isGreaterThan(0) || balance.vested.isGreaterThan(0)
+          balance?.locked.isGreaterThan(0) || balance?.vested.isGreaterThan(0)
         );
       }),
     [trancheBalances, userTranches]

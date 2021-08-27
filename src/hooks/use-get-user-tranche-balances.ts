@@ -26,6 +26,7 @@ export const useGetUserTrancheBalances = (address: string) => {
         vested,
       };
     });
+
     const trancheBalances = await Promise.all(promises);
     appDispatch({
       type: AppStateActionType.SET_TRANCHE_DATA,
