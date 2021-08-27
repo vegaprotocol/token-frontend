@@ -177,27 +177,10 @@ const VegaWalletConnected = ({
       <WalletCardContent>
         {vegaAssociatedBalance ? (
           <WalletCardRow
-            label={t("Associated")}
+            label={t("Not staked")}
             value={vegaAssociatedBalance}
             valueSuffix={t("VEGA")}
           />
-        ) : null}
-        {true ? (
-          <WalletCardRow
-            label={t("Unassociated")}
-            value={"0"}
-            valueSuffix={t("VEGA")}
-          />
-        ) : null}
-        {true ? (
-          <>
-            <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
-            <WalletCardRow
-              label={t("Staked")}
-              value={"0"}
-              valueSuffix={t("VEGA")}
-            />
-          </>
         ) : null}
         {expanded && (
           <div className="vega-wallet__expanded-container">
