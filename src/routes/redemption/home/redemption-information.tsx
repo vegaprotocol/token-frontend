@@ -108,6 +108,7 @@ export const RedemptionInformation = ({
             )!.vested
           }
           totalVested={new BigNumber(totalVestedBalance)}
+          totalLocked={new BigNumber(totalLockedBalance)}
           onClick={() => history.push(`/vesting/${tr.tranche_id}`)}
         />
       ))}

@@ -25,7 +25,7 @@ export const RedeemFromTranche = ({
   const vesting = useVegaVesting();
   const { t } = useTranslation();
   const {
-    appState: { lien, totalVestedBalance, trancheBalances },
+    appState: { lien, totalVestedBalance, trancheBalances, totalLockedBalance },
   } = useAppState();
   const refreshBalances = useRefreshBalances(address);
   const getUserTrancheBalances = useGetUserTrancheBalances(address);
@@ -74,6 +74,7 @@ export const RedeemFromTranche = ({
       ) : (
         <TrancheTable
           totalVested={new BigNumber(totalVestedBalance)}
+          totalLocked={new BigNumber(totalLockedBalance)}
           tranche={tranche}
           lien={new BigNumber(lien)}
           locked={
