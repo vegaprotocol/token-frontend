@@ -15,22 +15,10 @@ export const WalletCard = ({ children }: WalletCardProps) => (
 
 interface WalletCardHeaderProps {
   children: React.ReactNode;
-  onClick?: () => void;
 }
 
-export const WalletCardHeader = ({
-  children,
-  onClick,
-}: WalletCardHeaderProps) => {
-  const className = [
-    "wallet-card__header",
-    onClick ? "wallet-card__header--expandable" : "",
-  ].join(" ");
-  return (
-    <div onClick={onClick} className={className}>
-      {children}
-    </div>
-  );
+export const WalletCardHeader = ({ children }: WalletCardHeaderProps) => {
+  return <div className="wallet-card__header">{children}</div>;
 };
 
 interface WalletCardContentProps {
