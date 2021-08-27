@@ -120,12 +120,6 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         tranches: action.tranches,
       };
     }
-    case AppStateActionType.SET_BALANCE: {
-      return {
-        ...state,
-        balanceFormatted: action.balance?.toString() || "",
-      };
-    }
     case AppStateActionType.VEGA_WALLET_INIT: {
       if (!action.keys) {
         return { ...state, vegaWalletStatus: VegaWalletStatus.Ready };

@@ -75,7 +75,6 @@ export enum AppStateActionType {
   ACCOUNTS_CHANGED,
   CHAIN_CHANGED,
   SET_TRANCHES,
-  SET_BALANCE,
   VEGA_WALLET_INIT,
   VEGA_WALLET_SET_KEY,
   VEGA_WALLET_DOWN,
@@ -111,7 +110,6 @@ export type AppStateAction =
     }
   | { type: AppStateActionType.CHAIN_CHANGED; chainId: EthereumChainId }
   | { type: AppStateActionType.SET_TRANCHES; tranches: Tranche[] }
-  | { type: AppStateActionType.SET_BALANCE; balance: BigNumber }
   | {
       type: AppStateActionType.VEGA_WALLET_INIT;
       keys: VegaKey[] | null | undefined;

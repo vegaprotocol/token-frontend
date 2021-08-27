@@ -7,7 +7,7 @@ import { useVegaStaking } from "./use-vega-staking";
 import { useVegaToken } from "./use-vega-token";
 import { useVegaVesting } from "./use-vega-vesting";
 
-export const useRefreshBalances = (address: string, vegaKey: string) => {
+export const useRefreshBalances = (address: string) => {
   const { appState, appDispatch } = useAppState();
   const vesting = useVegaVesting();
   const staking = useVegaStaking();
@@ -19,7 +19,10 @@ export const useRefreshBalances = (address: string, vegaKey: string) => {
         token.balanceOf(address),
         vesting.getLien(address),
         token.allowance(address, appState.contractAddresses.stakingBridge),
-        staking.stakeBalance(address, vegaKey),
+        // Refresh connected vega key balances as well if we are connected to a vega key
+        appState.currVegaKey?.pub
+          ? staking.stakeBalance(address, appState.currVegaKey.pub)
+          : null,
       ]);
     appDispatch({
       type: AppStateActionType.REFRESH_BALANCES,
@@ -33,9 +36,9 @@ export const useRefreshBalances = (address: string, vegaKey: string) => {
     address,
     appDispatch,
     appState.contractAddresses.stakingBridge,
+    appState.currVegaKey?.pub,
     staking,
     token,
-    vegaKey,
     vesting,
   ]);
 };

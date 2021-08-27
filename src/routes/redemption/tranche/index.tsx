@@ -1,3 +1,4 @@
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { TransactionCallout } from "../../../components/transaction-callout";
@@ -6,32 +7,48 @@ import {
   TransactionActionType,
   TxState,
 } from "../../../hooks/transaction-reducer";
+import { useRefreshBalances } from "../../../hooks/use-refresh-balances";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { useVegaVesting } from "../../../hooks/use-vega-vesting";
 import { BigNumber } from "../../../lib/bignumber";
 import { RedemptionState } from "../redemption-reducer";
 import { TrancheTable } from "../tranche-table";
 
-export const RedeemFromTranche = ({ state }: { state: RedemptionState }) => {
+export const RedeemFromTranche = ({
+  state,
+  address,
+}: {
+  state: RedemptionState;
+  address: string;
+}) => {
   const vesting = useVegaVesting();
   const { t } = useTranslation();
   const {
-    appState: { address, lien, totalVestedBalance, trancheBalances },
+    appState: { lien, totalVestedBalance, trancheBalances },
   } = useAppState();
+  const refreshBalances = useRefreshBalances(address);
+
   const { id } = useParams<{ id: string }>();
   const numberId = Number(id);
   const { userTranches } = state;
-  const tranche = userTranches.find(
-    ({ tranche_id }) => tranche_id === numberId
+  const tranche = React.useMemo(
+    () => userTranches.find(({ tranche_id }) => tranche_id === numberId),
+    [numberId, userTranches]
   );
   const {
     state: txState,
     perform,
     dispatch: txDispatch,
   } = useTransaction(
-    () => vesting.withdrawFromTranche(address!, numberId),
-    () => vesting.checkWithdrawFromTranche(address!, numberId)
+    () => vesting.withdrawFromTranche(address, numberId),
+    () => vesting.checkWithdrawFromTranche(address, numberId)
   );
+  // If the claim has been committed refetch the new VEGA balance
+  React.useEffect(() => {
+    if (txState.txState === TxState.Complete && address) {
+      refreshBalances();
+    }
+  }, [address, refreshBalances, txState.txState]);
 
   if (!tranche || tranche.total_removed.isEqualTo(tranche.total_added)) {
     return (
