@@ -1,4 +1,5 @@
 import "./i18n";
+import "./app.scss";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AppRouter } from "./routes";
 import { AppStateProvider } from "./contexts/app-state/app-state-provider";
@@ -14,13 +15,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <AppStateProvider>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateRows: "auto 1fr auto",
-              minHeight: "100%",
-            }}
-          >
+          <div className="app">
             <Nav />
             <AppRouter />
             <footer>
