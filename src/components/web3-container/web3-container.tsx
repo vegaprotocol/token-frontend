@@ -95,8 +95,8 @@ export const Web3Container = ({
   }, [
     appDispatch,
     appState.contractAddresses.stakingBridge,
-    appState.decimals,
     appState.providerStatus,
+    appState.tokenDataLoaded,
     provider,
     staking,
     token,
