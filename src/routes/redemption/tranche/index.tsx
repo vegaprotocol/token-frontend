@@ -16,11 +16,11 @@ export const RedeemFromTranche = ({ state }: { state: RedemptionState }) => {
   const vesting = useVegaVesting();
   const { t } = useTranslation();
   const {
-    appState: { address, lien },
+    appState: { address, lien, totalVestedBalance, trancheBalances },
   } = useAppState();
   const { id } = useParams<{ id: string }>();
   const numberId = Number(id);
-  const { balances, userTranches, totalVestedBalance } = state;
+  const { userTranches } = state;
   const tranche = userTranches.find(
     ({ tranche_id }) => tranche_id === numberId
   );
@@ -54,16 +54,18 @@ export const RedeemFromTranche = ({ state }: { state: RedemptionState }) => {
         />
       ) : (
         <TrancheTable
-          totalVested={totalVestedBalance}
+          totalVested={new BigNumber(totalVestedBalance)}
           tranche={tranche}
           lien={new BigNumber(lien)}
           locked={
-            balances.find(({ id: bId }) => bId.toString() === id.toString())!
-              .locked
+            trancheBalances.find(
+              ({ id: bId }) => bId.toString() === id.toString()
+            )!.locked
           }
           vested={
-            balances.find(({ id: bId }) => bId.toString() === id.toString())!
-              .vested
+            trancheBalances.find(
+              ({ id: bId }) => bId.toString() === id.toString()
+            )!.vested
           }
           onClick={perform}
         />

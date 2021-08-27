@@ -20,21 +20,26 @@ export const RedemptionInformation = ({
   const history = useHistory();
   const { t } = useTranslation();
   const {
-    appState: { balanceFormatted, lien },
+    appState: {
+      balanceFormatted,
+      lien,
+      totalVestedBalance,
+      totalLockedBalance,
+      trancheBalances,
+    },
   } = useAppState();
-  const { userTranches, totalVestedBalance, totalLockedBalance, balances } =
-    state;
+  const { userTranches } = state;
   const filteredTranches = React.useMemo(
     () =>
       userTranches.filter((tr) => {
-        const balance = balances.find(
+        const balance = trancheBalances.find(
           ({ id }) => id.toString() === tr.tranche_id.toString()
         )!;
         return (
           balance.locked.isGreaterThan(0) || balance.vested.isGreaterThan(0)
         );
       }),
-    [balances, userTranches]
+    [trancheBalances, userTranches]
   );
   if (!userTranches.length) {
     return (
@@ -83,8 +88,8 @@ export const RedemptionInformation = ({
       <p data-testid="redemption-note">{t("redemptionExplain")}</p> */}
       <VestingTable
         associated={new BigNumber(lien)}
-        locked={totalLockedBalance}
-        vested={totalVestedBalance}
+        locked={new BigNumber(totalLockedBalance)}
+        vested={new BigNumber(totalVestedBalance)}
       />
       {filteredTranches.length ? <h2>{t("Tranche breakdown")}</h2> : null}
       {filteredTranches.map((tr) => (
@@ -93,16 +98,16 @@ export const RedemptionInformation = ({
           tranche={tr}
           lien={new BigNumber(lien)}
           locked={
-            balances.find(
+            trancheBalances.find(
               ({ id }) => id.toString() === tr.tranche_id.toString()
             )!.locked
           }
           vested={
-            balances.find(
+            trancheBalances.find(
               ({ id }) => id.toString() === tr.tranche_id.toString()
             )!.vested
           }
-          totalVested={totalVestedBalance}
+          totalVested={new BigNumber(totalVestedBalance)}
           onClick={() => history.push(`/vesting/${tr.tranche_id}`)}
         />
       ))}
