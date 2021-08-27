@@ -1,3 +1,5 @@
+import "./staking-form.scss";
+
 import React from "react";
 import * as Sentry from "@sentry/react";
 import { FormGroup, Intent, Radio, RadioGroup } from "@blueprintjs/core";
@@ -53,9 +55,15 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
     register,
     handleSubmit,
     control,
+    setValue,
     formState: { errors },
   } = useForm<FormFields>();
 
+  const capitaliseFirstLetter = (input: string) => {
+    return input.charAt(0).toUpperCase() + input.slice(1);
+  };
+
+  const maxAmount = "555";
   const amount = useWatch({ control, name: "amount" });
   const action = useWatch({ control, name: "action" });
 
@@ -187,18 +195,29 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
         </FormGroup>
         {action !== undefined && (
           <>
+            <h2>{t("How much to {{action}} in next epoch", { action })}</h2>
             <FormGroup
-              label="How much to add in next epoch"
               helperText={errors.amount?.message}
               intent={errors.amount?.message ? Intent.DANGER : Intent.NONE}
             >
-              <input
-                {...register("amount", { required: "Required" })}
-                type="text"
-              />
+              <div className="staking-form__container">
+                <input
+                  className="staking-form__input"
+                  {...register("amount", { required: "Required" })}
+                  type="text"
+                />
+                <p className="staking-form__vega-label">{t("VEGA Tokens")}</p>
+                <button
+                  onClick={() => setValue("amount", maxAmount)}
+                  data-testid="staking-form-use-maximum"
+                  className="button-link"
+                >
+                  {t("Use maximum")}
+                </button>
+              </div>
             </FormGroup>
             <button className="fill" type="submit">
-              {action} {amount} VEGA tokens
+              {capitaliseFirstLetter(action)} {amount} VEGA tokens
             </button>
           </>
         )}
