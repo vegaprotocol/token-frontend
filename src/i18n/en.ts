@@ -192,7 +192,7 @@ const en = {
   checkingForProvider: "Checking for provider",
   "Awaiting action in wallet...":
     "Awaiting action in Ethereum wallet (e.g. metamask)",
-  Connect: "Connect to see your VEGA balance",
+  "Connect with Metamask": "Connect with Metamask",
 
   // Vega wallet
   viewKeys: "View keys",

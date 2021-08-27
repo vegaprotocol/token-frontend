@@ -52,16 +52,11 @@ const ConnectedKey = () => {
   const {
     connecting,
     address,
-    error,
     lien,
     walletBalance,
     totalLockedBalance,
     totalVestedBalance,
   } = appState;
-
-  if (error) {
-    return <div>{t("Something went wrong")}</div>;
-  }
 
   if (connecting) {
     return <div>{t("Awaiting action in wallet...")}</div>;
@@ -75,7 +70,7 @@ const ConnectedKey = () => {
         data-testid="connect"
         className="eth-wallet__connect"
       >
-        {t("Connect")}
+        {t("Connect with Metamask")}
       </button>
     );
   }

@@ -46,45 +46,10 @@ export const VegaWallet = () => {
           </>
         )}
       </WalletCardHeader>
-      {appState.vegaWalletStatus !== VegaWalletStatus.Pending && child}
-    </WalletCard>
-  );
-};
-
-interface VegaWalletNotConnectedProps {
-  vegaWallet: VegaWalletService;
-}
-
-const VegaWalletNotConnected = ({
-  vegaWallet,
-}: VegaWalletNotConnectedProps) => {
-  const { t } = useTranslation();
-  const { appState } = useAppState();
-  const [formOpen, setFormOpen] = React.useState(false);
-
-  if (appState.vegaWalletStatus === VegaWalletStatus.None) {
-    return (
       <WalletCardContent>
-        <div>{t("noService")}</div>
+        {appState.vegaWalletStatus !== VegaWalletStatus.Pending && child}
       </WalletCardContent>
-    );
-  }
-
-  return (
-    <WalletCardContent>
-      {formOpen ? (
-        <VegaWalletForm vegaWallet={vegaWallet} />
-      ) : (
-        <button
-          onClick={() => setFormOpen(true)}
-          className="vega-wallet__connect"
-          data-testid="connect-vega"
-          type="button"
-        >
-          {t("connectVegaWallet")}
-        </button>
-      )}
-    </WalletCardContent>
+    </WalletCard>
   );
 };
 
@@ -133,33 +98,31 @@ const VegaWalletConnected = ({
 
   return vegaKeys.length ? (
     <>
-      <WalletCardContent>
-        {vegaAssociatedBalance ? (
-          <WalletCardRow
-            label={t("Not staked")}
-            value={vegaAssociatedBalance}
-            valueSuffix={t("VEGA")}
-          />
-        ) : null}
-        <div className="vega-wallet__expanded-container">
-          <ul className="vega-wallet__key-list">
-            {vegaKeys
-              .filter((k) => currVegaKey && currVegaKey.pub !== k.pub)
-              .map((k) => (
-                <li key={k.pub} onClick={() => changeKey(k)}>
-                  {k.alias} {k.pubShort}
-                </li>
-              ))}
-          </ul>
-          <button
-            className="button-link button-link--dark"
-            onClick={handleDisconnect}
-            type="button"
-          >
-            {disconnecting ? t("awaitingDisconnect") : t("disconnect")}
-          </button>
-        </div>
-      </WalletCardContent>
+      {vegaAssociatedBalance ? (
+        <WalletCardRow
+          label={t("Not staked")}
+          value={vegaAssociatedBalance}
+          valueSuffix={t("VEGA")}
+        />
+      ) : null}
+      <div className="vega-wallet__expanded-container">
+        <ul className="vega-wallet__key-list">
+          {vegaKeys
+            .filter((k) => currVegaKey && currVegaKey.pub !== k.pub)
+            .map((k) => (
+              <li key={k.pub} onClick={() => changeKey(k)}>
+                {k.alias} {k.pubShort}
+              </li>
+            ))}
+        </ul>
+        <button
+          className="button-link button-link--dark"
+          onClick={handleDisconnect}
+          type="button"
+        >
+          {disconnecting ? t("awaitingDisconnect") : t("disconnect")}
+        </button>
+      </div>
     </>
   ) : (
     <WalletCardContent>{t("noKeys")}</WalletCardContent>
