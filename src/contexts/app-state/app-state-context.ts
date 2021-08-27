@@ -74,7 +74,6 @@ export enum AppStateActionType {
   CONNECT_FAIL,
   ACCOUNTS_CHANGED,
   CHAIN_CHANGED,
-  SET_TRANCHES,
   VEGA_WALLET_INIT,
   VEGA_WALLET_SET_KEY,
   VEGA_WALLET_DOWN,
@@ -82,7 +81,7 @@ export enum AppStateActionType {
   SET_TOKEN,
   SET_ALLOWANCE,
   REFRESH_BALANCES,
-  SET_TRANCHE_BALANCES,
+  SET_TRANCHE_DATA,
 }
 
 export type AppStateAction =
@@ -109,7 +108,6 @@ export type AppStateAction =
       allowance: BigNumber | null;
     }
   | { type: AppStateActionType.CHAIN_CHANGED; chainId: EthereumChainId }
-  | { type: AppStateActionType.SET_TRANCHES; tranches: Tranche[] }
   | {
       type: AppStateActionType.VEGA_WALLET_INIT;
       keys: VegaKey[] | null | undefined;
@@ -141,8 +139,9 @@ export type AppStateAction =
       vegaAssociatedBalance: BigNumber | null;
     }
   | {
-      type: AppStateActionType.SET_TRANCHE_BALANCES;
+      type: AppStateActionType.SET_TRANCHE_DATA;
       trancheBalances: TrancheBalance[];
+      tranches: Tranche[];
     };
 
 type AppStateContextShape = {

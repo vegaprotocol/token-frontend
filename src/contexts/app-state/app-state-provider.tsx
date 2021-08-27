@@ -114,12 +114,6 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         chainId: action.chainId,
       };
     }
-    case AppStateActionType.SET_TRANCHES: {
-      return {
-        ...state,
-        tranches: action.tranches,
-      };
-    }
     case AppStateActionType.VEGA_WALLET_INIT: {
       if (!action.keys) {
         return { ...state, vegaWalletStatus: VegaWalletStatus.Ready };
@@ -175,9 +169,10 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         allowance: action.allowance?.toString() || "",
       };
     }
-    case AppStateActionType.SET_TRANCHE_BALANCES:
+    case AppStateActionType.SET_TRANCHE_DATA:
       return {
         ...state,
+        tranches: action.tranches,
         totalVestedBalance: BigNumber.sum
           .apply(null, [
             new BigNumber(0),
