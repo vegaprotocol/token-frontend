@@ -22,7 +22,7 @@ export const useRemoveStake = (
     () => staking.removeStake(address!, amount, vegaKey),
     () => staking.checkRemoveStake(address!, amount, vegaKey)
   );
-  const refreshBalances = useRefreshBalances(address, vegaKey);
+  const refreshBalances = useRefreshBalances(address);
 
   React.useEffect(() => {
     if (

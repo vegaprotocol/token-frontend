@@ -70,7 +70,7 @@ const RedemptionRouter = ({
         <RedemptionInformation state={state} address={address} />
       </Route>
       <Route path={`${match.path}/:id`}>
-        <RedeemFromTranche state={state} />
+        <RedeemFromTranche state={state} address={address} />
       </Route>
     </Switch>
   );
