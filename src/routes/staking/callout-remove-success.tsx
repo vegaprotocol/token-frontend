@@ -1,3 +1,5 @@
+import "./callout-remove-success.scss";
+
 import { useTranslation } from "react-i18next";
 import { Callout } from "../../components/callout";
 import { Tick } from "../../components/icons";
@@ -22,8 +24,12 @@ export const CalloutRemoveSuccess = ({amount, node}: CalloutRemoveSuccessProps) 
     >
       <div>
         <p>{t("It will be applied in the next epoch", { time })}</p>
-        <button>{t("Nominate another node with your stake")}</button>
-        <button>{t("Dissociate VEGA tokens")}</button>
+        <button className="fill">
+          {t("Nominate another node with your stake")}
+        </button>
+        <button className="fill callout-remove-success__button">
+          {t("Dissociate VEGA tokens")}
+        </button>
       </div>
     </Callout>
   );
