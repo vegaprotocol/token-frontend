@@ -14,7 +14,6 @@ export const useAddStake = (
 ) => {
   const vesting = useVegaVesting();
   const staking = useVegaStaking();
-  const refreshBalances = useRefreshBalances(address);
   const contractAdd = useTransaction(
     () => vesting.addStake(address!, amount, vegaKey),
     () => vesting.checkAddStake(address!, amount, vegaKey)
@@ -23,6 +22,7 @@ export const useAddStake = (
     () => staking.addStake(address!, amount, vegaKey),
     () => staking.checkAddStake(address!, amount, vegaKey)
   );
+  const refreshBalances = useRefreshBalances(address);
 
   React.useEffect(() => {
     if (
