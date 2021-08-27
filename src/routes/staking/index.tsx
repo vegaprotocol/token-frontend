@@ -4,6 +4,7 @@ import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { RouteChildProps } from "..";
 import { EthWallet } from "../../components/eth-wallet";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
+import { TrancheContainer } from "../../components/tranche-container";
 import { VegaWallet } from "../../components/vega-wallet";
 import { VegaWalletContainer } from "../../components/vega-wallet-container";
 import { Web3Container } from "../../components/web3-container";
@@ -38,20 +39,24 @@ const StakingRouter = ({ name }: RouteChildProps) => {
         {(address) => (
           <VegaWalletContainer>
             {({ vegaKey }) => (
-              <Switch>
-                <Route path={`${match.path}/associate`}>
-                  <AssociatePage vegaKey={vegaKey} address={address} />
-                </Route>
-                <Route path={`${match.path}/disassociate`}>
-                  <DisassociatePage vegaKey={vegaKey} address={address} />
-                </Route>
-                <Route path={`${match.path}/:node`}>
-                  <StakingNode vegaKey={vegaKey} />
-                </Route>
-                <Route path={match.path} exact>
-                  <Staking />
-                </Route>
-              </Switch>
+              <TrancheContainer address={address}>
+                {() => (
+                  <Switch>
+                    <Route path={`${match.path}/associate`}>
+                      <AssociatePage vegaKey={vegaKey} address={address} />
+                    </Route>
+                    <Route path={`${match.path}/disassociate`}>
+                      <DisassociatePage vegaKey={vegaKey} address={address} />
+                    </Route>
+                    <Route path={`${match.path}/:node`}>
+                      <StakingNode vegaKey={vegaKey} />
+                    </Route>
+                    <Route path={match.path} exact>
+                      <Staking />
+                    </Route>
+                  </Switch>
+                )}
+              </TrancheContainer>
             )}
           </VegaWalletContainer>
         )}
