@@ -476,7 +476,7 @@ describe("Redemption", () => {
     );
   });
 
-  it("Renders message if user needs to reduce their stake to redeem", () => {
+  it("Prompts user to go to staking page", () => {
     mockVesting({
       1: {
         locked: 90,
@@ -499,6 +499,6 @@ describe("Redemption", () => {
     // When I redeem the value
     cy.contains("Redeem unlocked VEGA from tranche 1").click();
     // Then I am redirected to a new page
-    cy.url().should("include", "redemption/1");
+    cy.url().should("include", "vesting/1");
   });
 });
