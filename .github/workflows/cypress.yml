@@ -8,7 +8,7 @@ on:
 
 jobs:
   cypress-run:
-    if: ${{ github.event.label.name == 'readyTest' }}
+    if: contains(github.event.pull_request.labels.*.name, 'readyTest')
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
