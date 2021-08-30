@@ -10,10 +10,6 @@ export const useGetUserTrancheBalances = (address: string) => {
   const { appDispatch } = useAppState();
   return React.useCallback(async () => {
     appDispatch({
-      type: AppStateActionType.SET_TRANCHE_LOADING,
-      loading: true,
-    });
-    appDispatch({
       type: AppStateActionType.SET_TRANCHE_ERROR,
       error: null,
     });
@@ -46,11 +42,6 @@ export const useGetUserTrancheBalances = (address: string) => {
       appDispatch({
         type: AppStateActionType.SET_TRANCHE_ERROR,
         error: e,
-      });
-    } finally {
-      appDispatch({
-        type: AppStateActionType.SET_TRANCHE_LOADING,
-        loading: false,
       });
     }
   }, [address, appDispatch, vesting]);

@@ -44,7 +44,6 @@ const initialAppState: AppState = {
   totalLockedBalance: "",
   totalVestedBalance: "",
   tokenDataLoaded: false,
-  trancheLoading: false,
   trancheError: null,
 };
 
@@ -195,12 +194,6 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
       return {
         ...state,
         trancheError: action.error,
-      };
-    }
-    case AppStateActionType.SET_TRANCHE_LOADING: {
-      return {
-        ...state,
-        trancheLoading: action.loading,
       };
     }
   }
