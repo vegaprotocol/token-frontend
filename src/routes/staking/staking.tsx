@@ -12,7 +12,7 @@ import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { useTranslation } from "react-i18next";
 
-const STAKING_QUERY = gql`
+export const STAKING_QUERY = gql`
   query Staking($partyId: ID!) {
     party(id: $partyId) {
       id

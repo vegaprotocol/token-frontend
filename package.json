@@ -45,7 +45,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "generate": "npx apollo codegen:generate --target=typescript"
+    "generate": "npx apollo codegen:generate --target=typescript --globalTypesFile=src/__generated__/globalTypes.ts"
   },
   "eslintConfig": {
     "extends": [

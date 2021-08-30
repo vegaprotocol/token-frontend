@@ -19,8 +19,8 @@ export default function detectEthereumProvider(): Promise<any> {
           );
           return accounts;
         case "eth_chainId":
-          const { chain } = await this.performFetch<{ chain: string }>("chain");
-          return chain;
+          // const { chain } = await this.performFetch<{ chain: string }>("chain");
+          return "0x3";
         default:
           throw new Error(`No mock for provider method ${obj.method}`);
       }
