@@ -1,6 +1,6 @@
 import { mock } from "../common/mock";
 
-describe.only("Home", () => {
+describe("Home", () => {
   it("Displays the expected information", () => {
     mock(cy);
     cy.visit("/");
