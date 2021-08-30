@@ -28,7 +28,7 @@ describe("Associate - vesting tokens", () => {
     cy.get('[data-testid="wallet-name"]').type("wallet");
     cy.get('[data-testid="wallet-password"]').type("wallet");
     cy.get('[data-testid="wallet-login"]').click();
-    cy.get('[data-testid="associate-amount-input"]').type("0");
+    cy.get('[data-testid="token-amount-input"]').type("0");
     cy.get('[data-testid="associate-button"]').should("be.disabled");
   });
 
@@ -44,7 +44,7 @@ describe("Associate - vesting tokens", () => {
     cy.get('[data-testid="wallet-name"]').type("wallet");
     cy.get('[data-testid="wallet-password"]').type("wallet");
     cy.get('[data-testid="wallet-login"]').click();
-    cy.get('[data-testid="associate-amount-input"]').type("-1");
+    cy.get('[data-testid="token-amount-input"]').type("-1");
     cy.get('[data-testid="associate-button"]').should("be.disabled");
   });
 
@@ -60,7 +60,7 @@ describe("Associate - vesting tokens", () => {
     cy.get('[data-testid="wallet-name"]').type("wallet");
     cy.get('[data-testid="wallet-password"]').type("wallet");
     cy.get('[data-testid="wallet-login"]').click();
-    cy.get('[data-testid="associate-amount-input"]').type("123");
+    cy.get('[data-testid="token-amount-input"]').type("123");
     cy.get('[data-testid="associate-button"]').should("be.disabled");
   });
 
@@ -78,11 +78,11 @@ describe("Associate - vesting tokens", () => {
     cy.get('[data-testid="wallet-login"]').click();
 
     // 0.00001 over maximum should be disabled
-    cy.get('[data-testid="associate-amount-input"]').type("0.00119");
+    cy.get('[data-testid="token-amount-input"]').type("0.00119");
     cy.get('[data-testid="associate-button"]').should("be.disabled");
 
     // maximum should be enabled
-    cy.get('[data-testid="associate-amount-input"]').clear().type("0.00118");
+    cy.get('[data-testid="token-amount-input"]').clear().type("0.00118");
     cy.get('[data-testid="associate-button"]').should("not.be.disabled");
   });
 
@@ -98,8 +98,8 @@ describe("Associate - vesting tokens", () => {
     cy.get('[data-testid="wallet-name"]').type("wallet");
     cy.get('[data-testid="wallet-password"]').type("wallet");
     cy.get('[data-testid="wallet-login"]').click();
-    cy.get('[data-testid="associate-amount-input"]').type("0.001");
-    cy.get('[data-testid="associate-amount-input"]').type("0.001");
+    cy.get('[data-testid="token-amount-input"]').type("0.001");
+    cy.get('[data-testid="token-amount-input"]').type("0.001");
     cy.get('[data-testid="associate-button"]').click();
     sendChainResponse(cy, "add-stake", "transactionHash", "hash");
     cy.get('[data-testid="transaction-pending-heading"]').should(
