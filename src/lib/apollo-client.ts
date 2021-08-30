@@ -1,4 +1,4 @@
-import type { ApolloClientOptions, Operation } from "@apollo/client";
+import type { Operation } from "@apollo/client";
 import {
   ApolloClient,
   from,
@@ -18,11 +18,13 @@ export function createClient() {
   // Replace http with ws, preserving if its a secure connection eg. https => wss
   urlWS.protocol = urlWS.protocol.replace("http", "ws");
 
-  const apolloOptions: Partial<ApolloClientOptions<string>> = {
-    connectToDevTools: process.env.NODE_ENV === "development",
-  };
-
-  const cache = new InMemoryCache();
+  const cache = new InMemoryCache({
+    typePolicies: {
+      Node: {
+        keyFields: false,
+      },
+    },
+  });
 
   const httpLink = new HttpLink({
     uri: urlHTTP.href,
@@ -60,7 +62,7 @@ export function createClient() {
   );
 
   return new ApolloClient({
-    ...apolloOptions,
+    connectToDevTools: process.env.NODE_ENV === "development",
     link: from([errorLink, link]),
     cache,
   });
