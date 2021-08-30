@@ -9,16 +9,7 @@ interface NodeListProps {
 export const NodeList = ({ nodes }: NodeListProps) => {
   return (
     <ul className="node-list">
-      {[
-        {
-          id: "foo",
-          stakedTotal: "100",
-          stakedTotalPercentage: "34%",
-          userStake: "10",
-          userStakePercentage: "1%",
-        },
-        ...nodes,
-      ].map((n, i) => {
+      {nodes.map((n, i) => {
         return <NodeListItem key={i} {...n} />;
       })}
     </ul>

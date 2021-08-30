@@ -13,7 +13,7 @@ import { Callout } from "../../components/callout";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 
-const STAKE_NODE_QUERY = gql`
+export const STAKE_NODE_QUERY = gql`
   query StakeNode($nodeId: String!) {
     node(id: $nodeId) {
       id
