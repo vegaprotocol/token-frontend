@@ -1,4 +1,5 @@
 import { Overlay } from "@blueprintjs/core";
+import { useTranslation } from "react-i18next";
 import {
   AppStateActionType,
   useAppState,
@@ -7,6 +8,7 @@ import { Modal } from "../modal";
 import { EthWalletConnect } from "./eth-wallet-connect";
 
 export const EthWalletModal = () => {
+  const { t } = useTranslation();
   const { appState, appDispatch } = useAppState();
   return (
     <Overlay
@@ -21,7 +23,7 @@ export const EthWalletModal = () => {
     >
       <div className="modal">
         <Modal>
-          <h2>Connect to Ethereum</h2>
+          <h2>{t("Connect to an Ethereum wallet")}</h2>
           <EthWalletConnect />
         </Modal>
       </div>
