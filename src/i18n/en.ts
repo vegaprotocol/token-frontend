@@ -248,10 +248,12 @@ const en = {
   Started: "Started",
   "Ends in": "Ends in",
   // Node Validator
+  "Node invalid": "Node invalid",
   "Manage your stake": "Manage your stake",
   "Add Stake": "Add Stake",
   "Remove Stake": "Remove Stake",
-  "Your Stake": "Your Stake",
+  "Total stake": "Total stake",
+  "Your stake": "Your stake",
   "Your Stake On Node (This Epoch)": "Your Stake On Node (This Epoch)",
   "Your Stake On Node (Next Epoch)": "Your Stake On Node (Next Epoch)",
   "VALIDATOR {{node}}": "VALIDATOR: {{node}}",
