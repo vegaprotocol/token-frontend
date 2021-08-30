@@ -12,6 +12,8 @@ const cucumber = require("cypress-cucumber-preprocessor").default;
 
 module.exports = (on, config) => {
   on("file:preprocessor", cucumber());
+  // Prevent test crashes
+  // https://github.com/cypress-io/cypress/issues/7204#issuecomment-810774449
   on("before:browser:launch", (browser, launchOptions) => {
     if (browser.family === "chromium") {
       launchOptions.args.push("--disable-dev-shm-usage");
