@@ -37,15 +37,6 @@ export const EthWalletConnect = () => {
           {t("Connect with Metamask")}
         </button>
       </div>
-      <div>
-        <button
-          type="button"
-          onClick={() => alert("Coming soon")}
-          className="eth-wallet-connect__button"
-        >
-          {t("Connect with Ledger")}
-        </button>
-      </div>
     </div>
   );
 };

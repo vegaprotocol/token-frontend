@@ -5,7 +5,7 @@ import { Heading } from "../heading";
 export interface TemplateSidebarProps {
   title: string;
   children: React.ReactNode;
-  sidebar: React.ReactNode;
+  sidebar: React.ReactNode[];
 }
 
 export function TemplateSidebar({
@@ -18,8 +18,6 @@ export function TemplateSidebar({
       <Heading title={title} />
       <main>{children}</main>
       <aside>
-        {/* TODO: whats the best way to do the below, appeasing typescript
-         // @ts-ignore */}
         {sidebar.map((Component, i) => (
           <section key={i}>{Component}</section>
         ))}
