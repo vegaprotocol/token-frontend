@@ -1,6 +1,15 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/0c312b37-db30-47ed-b7fd-bda5304f5d77/deploy-status)](https://app.netlify.com/sites/token-vega-xyz/deploys)
+# Token frontend
 
-# Setup
+***Control panel for your VEGA tokens***
+
+Insert Screenshot
+
+## Features
+- View vesting progress
+- Redeem VEGA tokens
+- Stake VEGA tokens
+
+# Development
 
 Install:
 `yarn`
@@ -17,29 +26,19 @@ REACT_APP_SHOW_NETWORK_SWITCHER=1
 Starting the app:
 `yarn start`
 
-# Configuration
+## Configuration
 
 There are a few different configuration options offered for this app:
 
-## REACT_APP_SENTRY_DSN
+| **Flag**  | **Purpose**  |
+| ------------ | ------------ |
+|  `REACT_APP_SENTRY_DSN` |  The sentry endpoint   to report to. Should be off in dev but set in live. |
+|  `REACT_APP_REDEEM_LIVE`  | Disables call-to-actions about redeeming tokens while this feature is in development  |
+|  `REACT_APP_CHAIN`  | The ETH chain for the app to work on. Should be mainnet for live, but ropsten for preview deploys. |
+|  `REACT_APP_SHOW_NETWORK_SWITTCHER ` | Allows you to change the above dynamically in the application. Useful for testing, should be on for preview deploys/dev but should be for live. |
 
-The sentry DNS to report to. Should be off in dev but set in live
 
-<!-- Will be removed at some point -->
-
-## REACT_APP_REDEEM_LIVE
-
-We have not built the redeem pages at the time of writing. This turns off all calls to action about the redeem pages.
-
-## REACT_APP_CHAIN
-
-The desired chain for the app to work on. Should be mainnet for live, but ropsten for preview deploys.
-
-## REACT_APP_SHOW_NETWORK_SWITCHER
-
-Allows you to change the above dynamically in the application. Useful for testing, should be on for preview deploys/dev but should be for live.
-
-## Example configs:
+### Example configs:
 
 The used config can be found in [netlify.toml](./netlify.toml).
 
@@ -67,10 +66,30 @@ REACT_APP_CHAIN=0x1
 REACT_APP_SHOW_NETWORK_SWITCHER=0
 ```
 
-## Cypress Automation
+## Testing
+To run the minimal set of unit tests, run the following:
+```bash
+yarn install
+yarn test
+```
 
-1) Install Cypress: ```yarn add cypress```
-2) Run ```yarn start:mock``` from the root level of the Token FE project
-3) cd into automation
-4) from automation, run ```yarn```
-5) from automation, run ```yarn cypress:open```
+To run the UI automation tests with a mocked API, run:
+```bash
+yarn install
+yarn start:mock &
+cd automation
+yarn install
+yarn cypress:open
+```
+
+## See also
+- [vega-locked-erc20](https://github.com/vegaprotocol/vega-locked-erc20) - a proxy contract that shows your current balance
+  of locked tokens.
+- [VEGA Tokens: Vesting Details](https://blog.vega.xyz/vega-tokens-vesting-details-890b00fc238e) - a blog describing
+  the vesting process & key dates.
+- [Introducing the VEGA token](https://blog.vega.xyz/introducing-the-vega-token-40dac090b5c1) - a blog about the VEGA
+  token.
+- [vega.xyz](https://vega.xyz) - about Vega Protocol
+
+# License
+[MIT](LICENSE)
