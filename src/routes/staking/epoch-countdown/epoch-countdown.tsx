@@ -8,22 +8,22 @@ import { useTranslation } from "react-i18next";
 export const DATE_FORMAT = "yyyy.MM.dd HH:mm";
 
 export interface EpochCountdownProps {
-  containerClass?: string;
-  count: number;
+  id: string;
   startDate: Date;
   endDate: Date;
+  containerClass?: string;
 }
 
 export function EpochCountdown({
-  containerClass,
-  count,
+  id,
   startDate,
   endDate,
+  containerClass,
 }: EpochCountdownProps) {
   const { t } = useTranslation();
   const [now, setNow] = React.useState(Date.now());
 
-  // value between 0 and 1 for percentage progress
+  // number between 0 and 1 for percentage progress
   const progress = React.useMemo(() => {
     const start = startDate.getTime();
     const end = endDate.getTime();
@@ -57,7 +57,7 @@ export function EpochCountdown({
       className={`${containerClass} epoch-countdown`}
     >
       <h3>
-        {t("Epoch")} {count}
+        {t("Epoch")} {id}
       </h3>
       <ProgressBar
         animate={false}
