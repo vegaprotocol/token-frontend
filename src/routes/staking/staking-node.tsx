@@ -8,13 +8,13 @@ import { EpochCountdown } from "./epoch-countdown";
 import { YourStake } from "./your-stake";
 import { StakingForm } from "./staking-form";
 import { gql, useQuery } from "@apollo/client";
-import { Node, NodeVariables } from "./__generated__/Node";
+import { StakeNode, StakeNodeVariables } from "./__generated__/StakeNode";
 import { Callout } from "../../components/callout";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 
-const NODE_QUERY = gql`
-  query Node($nodeId: String!) {
+const STAKE_NODE_QUERY = gql`
+  query StakeNode($nodeId: String!) {
     node(id: $nodeId) {
       id
       pubkey
@@ -38,6 +38,9 @@ const NODE_QUERY = gql`
         end
       }
     }
+    nodeData {
+      stakedTotal
+    }
   }
 `;
 
@@ -48,10 +51,13 @@ interface StakingNodeProps {
 export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
   const { node } = useParams<{ node: string }>();
   const { t } = useTranslation();
-  const { data, loading, error } = useQuery<Node, NodeVariables>(NODE_QUERY, {
-    variables: { nodeId: node },
-    skip: !node,
-  });
+  const { data, loading, error } = useQuery<StakeNode, StakeNodeVariables>(
+    STAKE_NODE_QUERY,
+    {
+      variables: { nodeId: node },
+      skip: !node,
+    }
+  );
 
   if (error) {
     return (
@@ -62,7 +68,7 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
     );
   }
 
-  if (loading || !data) {
+  if (loading || !data?.node || !data?.epoch) {
     return (
       <SplashScreen>
         <SplashLoader />
@@ -74,7 +80,10 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
     <>
       <h2>{t("VALIDATOR {{node}}", { node })}</h2>
       <p>Vega key: {vegaKey.pubShort}</p>
-      <ValidatorTable node={node} />
+      <ValidatorTable
+        node={data.node}
+        stakedTotal={data.nodeData?.stakedTotal || "0"}
+      />
       {data.epoch.timestamps.start && data.epoch.timestamps.end && (
         <EpochCountdown
           containerClass="staking-node__epoch"
