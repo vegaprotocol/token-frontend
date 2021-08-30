@@ -1,4 +1,11 @@
-import {Addresses, EthereumChainId, EthereumChainIds} from "../../lib/web3-utils";
+import { Addresses, EthereumChainId, EthereumChainIds } from "../../lib/web3-utils";
+
+const TRANCHE_NAMES: Record<number, string> = {
+  '5': "Coinlist Option 1 / Community Whitelist",
+  '6': "Coinlist Option 2",
+  '7': "Coinlist Option 3",
+  '11': "Fairground rewards"
+}
 
 /**
  * Some tranches have names that will be useful to
@@ -10,22 +17,17 @@ import {Addresses, EthereumChainId, EthereumChainIds} from "../../lib/web3-utils
  * @param chainId The ID of the chain this contract is on
  * @param id The tranche ID on this contract
  */
-
-export const TrancheTitle = ({ contract, chainId, id}: {
+export const TrancheTitle = ({contract, chainId, id}: {
   chainId: EthereumChainId | null,
   contract: string,
   id: number
 }) => {
   // Only mainnet tranches on the known vesting contract have useful name
   if (chainId && chainId === EthereumChainIds.Mainnet && contract === Addresses[chainId].vestingAddress) {
-    if (id === 5) {
-      return <span>Coinlist Option 1 / Community Whitelist</span>
-    } else if (id === 6) {
-      return <span>Coinlist Option 2</span>
-    } else if (id === 7) {
-      return <span>Coinlist Option 3</span>
-    } else if (id === 11) {
-      return <span>Fairground rewards</span>
+
+    // Only some tranches have titles worth showing
+    if (TRANCHE_NAMES[id]) {
+      return <span>{TRANCHE_NAMES[id]}</span>
     }
   }
 
