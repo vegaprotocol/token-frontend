@@ -9,6 +9,7 @@ import {
 } from "./__generated__/Staking";
 import { BigNumber } from "../../lib/bignumber";
 import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useTranslation } from "react-i18next";
 
 const NODES_QUERY = gql`
   query Staking($partyId: ID!) {
@@ -116,20 +117,21 @@ export const NodeListItem = ({
   userStake,
   userStakePercentage,
 }: NodeListItemProps) => {
+  const { t } = useTranslation();
   const match = useRouteMatch();
 
   return (
     <li>
-      {id ? <Link to={`${match.path}/${id}`}>{id}</Link> : "Node is invalid"}
+      {id ? <Link to={`${match.path}/${id}`}>{id}</Link> : t("Node invalid")}
       <table>
         <tbody>
           <tr>
-            <th>Total stake</th>
+            <th>{t("Total stake")}</th>
             <td>{stakedTotal}</td>
             <td>{stakedTotalPercentage}</td>
           </tr>
           <tr>
-            <th>Your stake</th>
+            <th>{t("Your stake")}</th>
             <td>{userStake}</td>
             <td>{userStakePercentage}</td>
           </tr>
