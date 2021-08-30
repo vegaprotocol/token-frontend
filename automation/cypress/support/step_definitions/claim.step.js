@@ -1,5 +1,5 @@
-import { When, Then, Given } from "cypress-cucumber-preprocessor/steps";
-import { mock } from "../../common/mock";
+import {Then, Given} from "cypress-cucumber-preprocessor/steps";
+import {mock} from "../../common/mock";
 
 Given("I am on the tranches page", () => {
   mock(cy);
@@ -7,17 +7,17 @@ Given("I am on the tranches page", () => {
   cy.url().should("include", "tranches");
 });
 
-Given("I navigate to not found page",() => {    
+Given("I navigate to not found page", () => {
   mock(cy)
   cy.visit("/foo-bar-baz");
   cy.url("includes", /not-found/);
 })
 
-Then('I can see the 404 error page',()=>{
-    mock(cy);
-    cy.contains(
+Then("I can see the 404 error page", () => {
+  mock(cy);
+  cy.contains(
     "This page can not be found, please check the URL and try again."
-);
+  );
 })
 
 
