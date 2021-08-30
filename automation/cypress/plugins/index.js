@@ -12,6 +12,11 @@ const cucumber = require("cypress-cucumber-preprocessor").default;
 
 module.exports = (on, config) => {
   on("file:preprocessor", cucumber());
-
+  on("before:browser:launch", (browser, launchOptions) => {
+    if (browser.family === "chromium") {
+      launchOptions.args.push("--disable-dev-shm-usage");
+    }
+    return launchOptions;
+  });
   return cypressConfigResolver(config);
 };
