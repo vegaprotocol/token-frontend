@@ -24,7 +24,7 @@ export const TrancheContainer = ({
     return <TrancheError />;
   }
 
-  if (!appState.tranches || appState.trancheLoading) {
+  if (!appState.tranches) {
     return (
       <SplashScreen>
         <SplashLoader />
