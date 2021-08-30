@@ -210,7 +210,7 @@ describe("Redemption", () => {
 
     cy.get("[data-testid='vesting-table-staked'] th").should(
       "have.text",
-      "Staked"
+      "Associated"
     );
     cy.get("[data-testid='vesting-table-staked'] td").should(
       "have.text",

@@ -179,7 +179,7 @@ const en = {
   "A total of {{amount}} Unlocked Vega tokens.":
     "A total of {{amount}} Unlocked Vega tokens.",
   "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.":
-    "The connected ethereum wallet ({{address}}) has {{balance}} VEGA tokens in {{tranches}} of the vesting contract.",
+    "The connected ethereum wallet ({{address}}) has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.",
   "Stake your Locked VEGA tokens!":
     "You can stake your VEGA tokens even while locked.",
   "Find out more about Staking.":
@@ -249,7 +249,7 @@ const en = {
   // Epoch counter
   Epoch: "Epoch",
   Started: "Started",
-  "Ends in": 'Ends in',
+  "Ends in": "Ends in",
   // Node Validator
   "Manage your stake": "Manage your stake",
   "Add Stake": "Add Stake",
