@@ -13,6 +13,14 @@ const balances = {
 };
 
 describe("Redemption through tranche", () => {
+  afterEach(() => {
+    cy.window().then((win) => {
+      if (win.promiManager && win.promiManager.clearAllListeners) {
+        win.promiManager.clearAllListeners();
+      }
+    });
+  });
+
   it("Renders tranche table", () => {
     mockVesting(balances);
     mock(cy, {

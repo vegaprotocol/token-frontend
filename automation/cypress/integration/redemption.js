@@ -13,6 +13,14 @@ const balances = {
 };
 
 describe("Redemption", () => {
+  afterEach(() => {
+    cy.window().then((win) => {
+      if (win.promiManager && win.promiManager.clearAllListeners) {
+        win.promiManager.clearAllListeners();
+      }
+    });
+  });
+
   it("Renders loading state while data is loading", () => {
     // As a user
     mockVesting(balances, {
