@@ -1,25 +1,23 @@
 import React from "react";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import { useVegaVesting } from "../../hooks/use-vega-vesting";
+import { useGetUserTrancheBalances } from "../../hooks/use-get-user-tranche-balances";
+import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { SplashLoader } from "../splash-loader";
 import { SplashScreen } from "../splash-screen";
 
 export const TrancheContainer = ({
+  address,
   children,
 }: {
-  children: React.ReactNode;
+  address: string;
+  children: (tranches: Tranche[]) => JSX.Element;
 }) => {
-  const vesting = useVegaVesting();
-  const { appState, appDispatch } = useAppState();
+  const { appState } = useAppState();
+  const getUserTrancheBalances = useGetUserTrancheBalances(address);
 
   React.useEffect(() => {
-    const run = async () => {
-      const tranches = await vesting.getAllTranches();
-      appDispatch({ type: "SET_TRANCHES", tranches });
-    };
-
-    run();
-  }, [appDispatch, vesting]);
+    getUserTrancheBalances();
+  }, [getUserTrancheBalances]);
 
   if (!appState.tranches) {
     return (
@@ -29,5 +27,5 @@ export const TrancheContainer = ({
     );
   }
 
-  return <>{children}</>;
+  return children(appState.tranches);
 };

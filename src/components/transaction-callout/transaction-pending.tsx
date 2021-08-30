@@ -7,17 +7,27 @@ import { Loader } from "../loader";
 export const TransactionPending = ({
   hash,
   chainId,
+  heading,
+  footer,
+  body,
 }: {
   hash: string;
   chainId: EthereumChainId;
+  heading?: React.ReactElement | string;
+  footer?: React.ReactElement | string;
+  body?: React.ReactElement | string;
 }) => {
   const { t } = useTranslation();
   return (
     <Callout icon={<Loader />}>
-      <p>{t("Transaction in progress")}</p>
+      <p data-testid="transaction-pending-heading">
+        {heading || t("Transaction in progress")}
+      </p>
+      {body && <p data-testid="transaction-pending-body">{body}</p>}
       <p>
         <EtherscanLink hash={hash} chainId={chainId} />
       </p>
+      {footer && <p data-testid="transaction-pending-footer">{footer}</p>}
     </Callout>
   );
 };

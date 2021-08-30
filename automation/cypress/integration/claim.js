@@ -1,4 +1,4 @@
-import { mock } from "../common/mock";
+import { mock, mockVesting, sendChainResponse } from "../common/mock";
 
 const generateCodeLink = ({ code, amount, tranche, nonce, target, expiry }) => {
   return `/claim/?r=${code}&d=${amount}&t=${tranche}&n=${nonce}&ex=${expiry}${
@@ -6,29 +6,10 @@ const generateCodeLink = ({ code, amount, tranche, nonce, target, expiry }) => {
   }`;
 };
 
-const sendChainResponse = (cy, chainCommand, eventResponse, data) => {
-  return cy.window().then((win) => {
-    const commitEvents = win.promiManager.promiEvents.filter(
-      ({ name }) => name === chainCommand
-    );
-    if (commitEvents.length !== 1) {
-      throw new Error(
-        `Too many or not enough ${chainCommand} promi events found. Found:`,
-        commitEvents
-      );
-    }
-    win.dispatchEvent(
-      new CustomEvent(`${eventResponse}-mock`, {
-        detail: { data, id: commitEvents[0].id },
-      })
-    );
-    return win;
-  });
-};
-
 describe("Claim", () => {
   it("Renders error heading and error subheading if code is not enough", () => {
     // As a user
+    mockVesting();
     mock(cy);
     // Given a link with no information
     // When visiting the claim page
@@ -53,6 +34,7 @@ describe("Claim", () => {
       target: "0x" + "0".repeat(40),
       expiry: 0,
     });
+    mockVesting();
     mock(cy);
     // When visiting the claim page
     cy.visit(link);
@@ -77,6 +59,7 @@ describe("Claim", () => {
       target: address,
       expiry: 0,
     });
+    mockVesting();
     mock(cy);
     // When I visit the claim page
     cy.visit(link);
@@ -102,6 +85,7 @@ describe("Claim", () => {
       target: "0x" + "0".repeat(40),
       expiry: 1,
     });
+    mockVesting();
     mock(cy);
     // When I visit the claim page
     cy.visit(link);
@@ -125,6 +109,7 @@ describe("Claim", () => {
       target: "0x" + "0".repeat(40),
       expiry: 0,
     });
+    mockVesting();
     mock(cy);
     // When I visit the claim page
     cy.visit(link);
@@ -145,6 +130,7 @@ describe("Claim", () => {
       target: "0x" + "0".repeat(40),
       expiry: 0,
     });
+    mockVesting();
     mock(cy, {
       claim: {
         used: true,
@@ -163,7 +149,7 @@ describe("Claim", () => {
       "Keep track of locked tokens in your wallet with the VEGA (LOCKED) token."
     ).should("exist");
     cy.contains(
-      "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is 0x1b7192491bf89d616676032656b2c7a55fd08e4c. Hit the add token button in your ERC20 wallet and enter this address."
+      "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is 0x0356782bfb61cf0b0463746bc6fe8766aacae8f0. Hit the add token button in your ERC20 wallet and enter this address."
     ).should("exist");
   });
 
@@ -178,6 +164,7 @@ describe("Claim", () => {
       target: "0x" + "0".repeat(40),
       expiry: 0,
     });
+    mockVesting();
     mock(cy, { claim: { blockedCountries: ["US"] } });
     // When I visit the claim page
     cy.visit(link);
@@ -206,6 +193,7 @@ describe("Claim", () => {
       target: "0x" + "0".repeat(40),
       expiry: 0,
     });
+    mockVesting();
     mock(cy, { provider: { chain: "0x1" } });
     // When I visit the claim page
     cy.visit(link);
@@ -234,6 +222,7 @@ describe("Untargeted code", () => {
       nonce: "f00",
       expiry: 0,
     });
+    mockVesting();
     mock(cy);
     // When I visit the claim page
     cy.visit(link);
@@ -272,6 +261,7 @@ describe("Untargeted code", () => {
       nonce: "f00",
       expiry: 0,
     });
+    mockVesting();
     mock(cy);
     // When I visit the claim page
     cy.visit(link);
@@ -326,6 +316,7 @@ describe("Untargeted code", () => {
       nonce: "f00",
       expiry: 0,
     });
+    mockVesting();
     mock(cy, {
       claim: {
         committed: true,
@@ -344,7 +335,7 @@ describe("Untargeted code", () => {
     cy.contains("Claim 0.00001 VEGA").should("exist");
   });
 
-  it.skip("Allows user to do an untargeted claim", () => {
+  it("Allows user to do an untargeted claim", () => {
     // As a user
     // Given a code { code, 1, 1, f00, "0x" + "0".repeat(40), 0}
     const link = generateCodeLink({
@@ -354,6 +345,7 @@ describe("Untargeted code", () => {
       nonce: "f00",
       expiry: 0,
     });
+    mockVesting();
     mock(cy);
     // When I visit the claim page
     cy.visit(link);
@@ -421,7 +413,7 @@ describe("Untargeted code", () => {
                 "eep track of locked tokens in your wallet with the VEGA (LOCKED) token."
               ).should("exist");
               cy.contains(
-                "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is 0x1b7192491bf89d616676032656b2c7a55fd08e4c. Hit the add token button in your ERC20 wallet and enter this address."
+                "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is 0x0356782bfb61cf0b0463746bc6fe8766aacae8f0. Hit the add token button in your ERC20 wallet and enter this address."
               ).should("exist");
             });
           }
@@ -451,6 +443,7 @@ describe("Targeted code", () => {
       target: "0x" + "0".repeat(40),
       expiry: 0,
     });
+    mockVesting();
     mock(cy);
     // When I visit the claim page
     cy.visit(link);
@@ -490,6 +483,7 @@ describe("Targeted code", () => {
       target: "0x" + "0".repeat(40),
       expiry: 0,
     });
+    mockVesting();
     mock(cy);
     // When I visit the claim page
     cy.visit(link);
@@ -530,7 +524,7 @@ describe("Targeted code", () => {
           "Keep track of locked tokens in your wallet with the VEGA (LOCKED) token."
         ).should("exist");
         cy.contains(
-          "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is 0x1b7192491bf89d616676032656b2c7a55fd08e4c. Hit the add token button in your ERC20 wallet and enter this address."
+          "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is 0x0356782bfb61cf0b0463746bc6fe8766aacae8f0. Hit the add token button in your ERC20 wallet and enter this address."
         ).should("exist");
       });
     });

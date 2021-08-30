@@ -1,0 +1,53 @@
+@import "../../styles/colors";
+@import "../../styles/fonts";
+
+.wallet-card {
+  background-color: $white;
+  padding: 10px;
+  color: $black;
+  font-size: 14px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > span {
+      &:first-child {
+        text-transform: uppercase;
+      }
+
+      &:last-child {
+        font-family: $font-mono;
+      }
+    }
+  }
+
+  &__header--expandable {
+    cursor: pointer;
+  }
+
+  &__content {
+    border-top: 1px solid $black;
+    padding-top: 5px;
+    margin-top: 3px;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0 5px;
+    color: $text-color-deemphasise;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 2px;
+
+    span:last-child {
+      font-family: $font-mono;
+    }
+
+    &--dark {
+      color: $black;
+    }
+  }
+}

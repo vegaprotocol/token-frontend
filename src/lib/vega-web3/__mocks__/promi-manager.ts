@@ -68,6 +68,5 @@ export function promiEventFactory(id: string, name: string): PromiEvent {
     name,
   });
   fns.off = () => {};
-  // TODO shit
   return fns as unknown as PromiEvent;
 }

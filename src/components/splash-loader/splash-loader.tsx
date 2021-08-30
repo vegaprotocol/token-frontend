@@ -12,7 +12,7 @@ export const SplashLoader = ({ text = "Loading" }: { text?: string }) => {
   }, []);
 
   return (
-    <div className="loading">
+    <div className="loading" data-testid="splash-loader">
       <div className="loading__animation">
         {new Array(25).fill(null).map((_, i) => {
           return (

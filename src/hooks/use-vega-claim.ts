@@ -1,9 +1,9 @@
 import React from "react";
 import Web3 from "web3";
 import { useAppState } from "../contexts/app-state/app-state-context";
+import { IVegaClaim } from "../lib/web3-utils";
 // @ts-ignore
 import VegaClaim from "../lib/VEGA_WEB3/vega-claim";
-import { IVegaClaim } from "../lib/web3-utils";
 
 export const useVegaClaim = () => {
   const {

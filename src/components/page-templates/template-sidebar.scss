@@ -1,0 +1,67 @@
+@import "../../styles/colors";
+
+.template-sidebar {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 960px) {
+    grid-template-columns: 1fr 400px;
+  }
+
+  min-height: 100%;
+  max-width: 1020px;
+  margin: auto;
+
+  header {
+    grid-column: 1 / 3;
+    grid-row: 1 / 1;
+  }
+
+  main {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    padding: 20px;
+  }
+
+  aside {
+    padding: 20px;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+
+    section {
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  footer {
+    grid-column: 1 / 3;
+    grid-row: 3 / 4;
+  }
+}
+
+.template-sidebar {
+  &__drawer-button {
+    position: fixed;
+    top: 20;
+    right: 20;
+  }
+
+  &__drawer {
+    padding: 15px;
+    height: 100%;
+
+    section {
+      margin-bottom: 15px;
+      border: 1px solid $black;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

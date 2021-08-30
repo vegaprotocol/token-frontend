@@ -1,7 +1,7 @@
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { Tranche } from "./tranche";
 import { Tranches } from "./tranches";
-import { DefaultTemplate } from "../../components/page-templates/default";
+import { TemplateDefault } from "../../components/page-templates/template-default";
 import { useTranslation } from "react-i18next";
 import { Web3Container } from "../../components/web3-container";
 import { TrancheContainer } from "../../components/tranche-container";
@@ -14,20 +14,24 @@ const TrancheRouter = ({ name }: RouteChildProps) => {
   const match = useRouteMatch();
 
   return (
-    <DefaultTemplate title={t("pageTitleTranches")}>
+    <TemplateDefault title={t("pageTitleTranches")}>
       <Web3Container>
-        <TrancheContainer>
-          <Switch>
-            <Route path={match.path} exact>
-              <Tranches />
-            </Route>
-            <Route path={`${match.path}/:trancheId`}>
-              <Tranche />
-            </Route>
-          </Switch>
-        </TrancheContainer>
+        {(address) => (
+          <TrancheContainer address={address}>
+            {(tranches) => (
+              <Switch>
+                <Route path={match.path} exact>
+                  <Tranches tranches={tranches} />
+                </Route>
+                <Route path={`${match.path}/:trancheId`}>
+                  <Tranche tranches={tranches} />
+                </Route>
+              </Switch>
+            )}
+          </TrancheContainer>
+        )}
       </Web3Container>
-    </DefaultTemplate>
+    </TemplateDefault>
   );
 };
 

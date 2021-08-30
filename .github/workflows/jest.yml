@@ -1,0 +1,32 @@
+name: Jest
+
+on:
+  push:
+    branches: [master, develop]
+  pull_request:
+    branches: [master, develop]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version:
+          - 14.x
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      # https://help.github.com/en/actions/language-and-framework-guides/using-nodejs-with-github-actions
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Run tests
+        run: |
+          yarn install --frozen-lockfile
+          yarn run test
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096

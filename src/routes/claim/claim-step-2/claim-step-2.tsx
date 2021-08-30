@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import {
   TransactionAction,
+  TransactionActionType,
   TransactionState,
   TxState,
 } from "../../../hooks/transaction-reducer";
@@ -25,7 +26,7 @@ export const ClaimStep2 = ({
       <div data-testid="claim-step-2">
         <TransactionCallout
           state={txState}
-          reset={() => txDispatch({ type: "TX_RESET" })}
+          reset={() => txDispatch({ type: TransactionActionType.TX_RESET })}
         />
       </div>
     );

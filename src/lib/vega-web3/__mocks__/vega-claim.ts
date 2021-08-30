@@ -1,4 +1,4 @@
-import BigNumber from "bignumber.js";
+import { BigNumber } from "../../../lib/bignumber";
 import { IVegaClaim, PromiEvent } from "../../web3-utils";
 import { promiEventFactory, uuidv4 } from "./promi-manager";
 
