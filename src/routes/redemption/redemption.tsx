@@ -27,31 +27,15 @@ const RedemptionRouter = ({
   );
   React.useEffect(() => {
     const run = async () => {
+      const userTranches = tranches.filter((t) =>
+        t.users.some(
+          ({ address: a }) => a.toLowerCase() === address.toLowerCase()
+        )
+      );
       dispatch({
-        type: RedemptionActionType.SET_LOADING,
-        loading: true,
+        type: RedemptionActionType.SET_USER_TRANCHES,
+        userTranches,
       });
-      try {
-        const userTranches = tranches.filter((t) =>
-          t.users.some(
-            ({ address: a }) => a.toLowerCase() === address.toLowerCase()
-          )
-        );
-        dispatch({
-          type: RedemptionActionType.SET_USER_TRANCHES,
-          userTranches,
-        });
-      } catch (e) {
-        dispatch({
-          type: RedemptionActionType.ERROR,
-          error: e,
-        });
-      } finally {
-        dispatch({
-          type: RedemptionActionType.SET_LOADING,
-          loading: false,
-        });
-      }
     };
     run();
   }, [address, tranches, vesting]);

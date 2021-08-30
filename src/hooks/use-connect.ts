@@ -67,7 +67,6 @@ export function useConnect() {
         lien,
       });
     } catch (e) {
-      console.log(e);
       Sentry.captureEvent(e);
       appDispatch({ type: AppStateActionType.CONNECT_FAIL, error: e });
     }
