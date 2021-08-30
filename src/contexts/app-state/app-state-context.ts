@@ -64,6 +64,8 @@ export interface AppState {
   currVegaKey: VegaKeyExtended | null;
   vegaAssociatedBalance: string | null;
   tokenDataLoaded: boolean;
+  trancheLoading: boolean;
+  trancheError: Error | null;
 }
 
 export enum AppStateActionType {
@@ -83,6 +85,8 @@ export enum AppStateActionType {
   SET_ALLOWANCE,
   REFRESH_BALANCES,
   SET_TRANCHE_DATA,
+  SET_TRANCHE_LOADING,
+  SET_TRANCHE_ERROR,
 }
 
 export type AppStateAction =
@@ -143,6 +147,14 @@ export type AppStateAction =
       type: AppStateActionType.SET_TRANCHE_DATA;
       trancheBalances: TrancheBalance[];
       tranches: Tranche[];
+    }
+  | {
+      type: AppStateActionType.SET_TRANCHE_ERROR;
+      error: Error | null;
+    }
+  | {
+      type: AppStateActionType.SET_TRANCHE_LOADING;
+      loading: boolean;
     };
 
 type AppStateContextShape = {
