@@ -1,10 +1,8 @@
 import React from "react";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
-import { SplashLoader } from "../../components/splash-loader";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { RedemptionInformation } from "./home/redemption-information";
-import { RedemptionError } from "./redemption-error";
 import {
   initialRedemptionState,
   RedemptionActionType,
@@ -39,14 +37,6 @@ const RedemptionRouter = ({
     };
     run();
   }, [address, tranches, vesting]);
-
-  if (state.loading) {
-    return <SplashLoader />;
-  }
-
-  if (state.error) {
-    return <RedemptionError />;
-  }
 
   return (
     <Switch>

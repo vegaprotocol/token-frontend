@@ -4,6 +4,7 @@ import { useGetUserTrancheBalances } from "../../hooks/use-get-user-tranche-bala
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { SplashLoader } from "../splash-loader";
 import { SplashScreen } from "../splash-screen";
+import { TrancheError } from "./tranche-error";
 
 export const TrancheContainer = ({
   address,
@@ -19,7 +20,11 @@ export const TrancheContainer = ({
     getUserTrancheBalances();
   }, [getUserTrancheBalances]);
 
-  if (!appState.tranches) {
+  if (appState.trancheError) {
+    return <TrancheError />;
+  }
+
+  if (!appState.tranches || appState.trancheLoading) {
     return (
       <SplashScreen>
         <SplashLoader />

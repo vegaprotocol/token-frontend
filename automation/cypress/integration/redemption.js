@@ -61,13 +61,14 @@ describe("Redemption", () => {
     cy.visit("/vesting");
     // When I connect to my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+
     // Then I see a loading state
-    cy.get("[data-testid='redemption-error']").should("exist");
-    cy.get("[data-testid='redemption-error']").should(
+    cy.get("[data-testid='tranche-error']").should("exist");
+    cy.get("[data-testid='tranche-error']").should(
       "contain.text",
       "Something went wrong"
     );
-    cy.get("[data-testid='redemption-error']").should(
+    cy.get("[data-testid='tranche-error']").should(
       "contain.text",
       "We couldn't seem to load your data."
     );
