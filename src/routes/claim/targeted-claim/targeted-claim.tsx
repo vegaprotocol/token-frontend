@@ -2,7 +2,12 @@ import React from "react";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { TxState } from "../../../hooks/transaction-reducer";
 import { useVegaClaim } from "../../../hooks/use-vega-claim";
-import { ClaimAction, ClaimState, ClaimStatus } from "../claim-reducer";
+import {
+  ClaimAction,
+  ClaimActionType,
+  ClaimState,
+  ClaimStatus,
+} from "../claim-reducer";
 import { BigNumber } from "../../../lib/bignumber";
 import { FormGroup } from "../../../components/form-group";
 import { CountrySelector } from "../../../components/country-selector";
@@ -11,25 +16,25 @@ import { ClaimForm } from "../claim-form";
 import { BulletHeader } from "../../../components/bullet-header";
 
 interface TargetedClaimProps {
+  address: string;
   claimCode: string;
   denomination: BigNumber;
   trancheId: number;
   expiry: number;
   nonce: string;
   targeted: boolean;
-  account: string;
   state: ClaimState;
   dispatch: React.Dispatch<ClaimAction>;
 }
 
 export const TargetedClaim = ({
+  address,
   claimCode,
   denomination,
   trancheId,
   expiry,
   nonce,
   targeted,
-  account,
   state,
   dispatch,
 }: TargetedClaimProps) => {
@@ -42,7 +47,7 @@ export const TargetedClaim = ({
     nonce,
     country: state.countryCode!,
     targeted,
-    account,
+    account: address,
   };
   const claim = useVegaClaim();
   const {
@@ -57,7 +62,7 @@ export const TargetedClaim = ({
   React.useEffect(() => {
     if (txState.txData.hash) {
       dispatch({
-        type: "SET_CLAIM_TX_HASH",
+        type: ClaimActionType.SET_CLAIM_TX_HASH,
         claimTxHash: txState.txData.hash,
       });
     }
@@ -66,7 +71,10 @@ export const TargetedClaim = ({
   React.useEffect(() => {
     if (txState.txState === TxState.Complete) {
       setTimeout(() => {
-        dispatch({ type: "SET_CLAIM_STATUS", status: ClaimStatus.Finished });
+        dispatch({
+          type: ClaimActionType.SET_CLAIM_STATUS,
+          status: ClaimStatus.Finished,
+        });
       }, 2000);
     }
   }, [txState.txState, dispatch]);
@@ -82,7 +90,7 @@ export const TargetedClaim = ({
         <CountrySelector
           code={state.countryCode}
           onSelectCountry={(countryCode) =>
-            dispatch({ type: "SET_COUNTRY", countryCode })
+            dispatch({ type: ClaimActionType.SET_COUNTRY, countryCode })
           }
         />
       </FormGroup>

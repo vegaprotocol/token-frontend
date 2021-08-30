@@ -19,11 +19,6 @@
     }
   }
 
-  &__button-link {
-    color: $vega-yellow3;
-    background-color: transparent !important;
-  }
-
   &__item-title {
     margin-bottom: 10px;
     display: flex;
@@ -81,5 +76,10 @@
   &__progress-title {
     min-width: 70px;
     text-transform: uppercase;
+  }
+
+  &__message {
+    text-align: center;
+    margin-top: 30px;
   }
 }

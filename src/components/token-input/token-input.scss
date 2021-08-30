@@ -1,0 +1,16 @@
+@import "../../styles/colors";
+
+.token-input {
+  &__input {
+    flex: 1;
+  }
+
+  &__use-maximum {
+    padding: 10px !important;
+    height: 30px;
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,69 @@
+@import "../../styles/colors";
+@import "../../styles/fonts";
+
+.vega-wallet {
+  &__connect {
+    appearance: none;
+    padding: 0;
+    background-color: transparent;
+    text-decoration: underline;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  &__key-list {
+    list-style: none;
+    margin: 0 0 5px 0;
+    padding: 0;
+
+    > li {
+      text-align: right;
+      font-family: $font-mono;
+      cursor: pointer;
+      text-decoration: underline;
+      color: $text-color-deemphasise;
+
+      &:hover {
+        color: $black;
+      }
+    }
+  }
+
+  &__expanded-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-end;
+  }
+
+  &__form {
+    input {
+      background: transparent;
+      border: 1px solid $black;
+      color: $black;
+
+      &:focus {
+        background: $light-gray3;
+        outline: none;
+      }
+    }
+  }
+
+  &__form-buttons {
+    display: flex;
+    gap: 10px;
+
+    button {
+      flex: 1 0 auto;
+    }
+  }
+
+  &__form-submit {
+    background-color: $vega-green3;
+  }
+
+  &__form-cancel {
+    background-color: $vega-red3;
+  }
+}

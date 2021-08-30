@@ -1,18 +1,19 @@
-import React from "react";
-
 import "./i18n";
-import "./app.scss";
+import { ApolloProvider } from "@apollo/client";
 import { AppRouter } from "./routes";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AppStateProvider } from "./contexts/app-state/app-state-provider";
+import { client } from "./lib/apollo-client";
 
 function App() {
   return (
-    <Router>
-      <AppStateProvider>
-        <AppRouter />
-      </AppStateProvider>
-    </Router>
+    <ApolloProvider client={client}>
+      <Router>
+        <AppStateProvider>
+          <AppRouter />
+        </AppStateProvider>
+      </Router>
+    </ApolloProvider>
   );
 }
 

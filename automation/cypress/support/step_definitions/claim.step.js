@@ -1,9 +1,9 @@
-import {Then, Given} from "cypress-cucumber-preprocessor/steps";
-import {mock} from "../../common/mock";
+import { Then, Given } from "cypress-cucumber-preprocessor/steps";
+import { mock } from "../../common/mock";
 
 Given("I am on the tranches page", () => {
   mock(cy);
-  cy.visit("/");
+  cy.visit("/tranches");
   cy.url().should("include", "tranches");
 });
 

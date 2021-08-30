@@ -4,7 +4,6 @@ import { TrancheDates } from "./tranche-dates";
 import { useTranslation } from "react-i18next";
 import { TrancheProgress } from "./tranche-progress";
 import { BulletHeader } from "../../components/bullet-header";
-import { useTranches } from "../../hooks/use-tranches";
 import React from "react";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { Callout } from "../../components/callout";
@@ -12,17 +11,23 @@ import { Callout } from "../../components/callout";
 const trancheMinimum = 1;
 
 const isTestingTranche = (t: Tranche) =>
-  !t.total_added.isEqualTo(0) && t.total_added.isLessThan(trancheMinimum);
+  !t.total_added.isEqualTo(0) &&
+  t.total_added.isLessThanOrEqualTo(trancheMinimum);
 
-export const Tranches = () => {
+const shouldShowTranche = (t: Tranche) =>
+  !t.total_added.isLessThanOrEqualTo(trancheMinimum);
+
+export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
   const [showAll, setShowAll] = React.useState<boolean>(false);
   const { t } = useTranslation();
   const match = useRouteMatch();
-  const tranches = useTranches();
-  const filteredTranches = tranches?.filter((t) => !isTestingTranche(t)) || [];
+  const filteredTranches = tranches?.filter(shouldShowTranche) || [];
+
   return (
     <>
-      <BulletHeader tag="h2">{t("Tranches")}</BulletHeader>
+      <BulletHeader tag="h2" style={{ marginTop: 0 }}>
+        {t("Tranches")}
+      </BulletHeader>
       {tranches?.length ? (
         <ul className="tranches__list">
           {(showAll ? tranches : filteredTranches).map((tranche) => {
@@ -60,11 +65,8 @@ export const Tranches = () => {
       ) : (
         <p>{t("No tranches")}</p>
       )}
-      <section style={{ textAlign: "center" }}>
-        <button
-          className="tranches__button-link"
-          onClick={() => setShowAll(!showAll)}
-        >
+      <section className="tranches__message">
+        <button className="button-link" onClick={() => setShowAll(!showAll)}>
           {showAll
             ? t(
                 "Showing tranches with <{{trancheMinimum}} VEGA, click to hide these tranches",

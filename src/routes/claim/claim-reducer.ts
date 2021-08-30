@@ -42,9 +42,20 @@ export const initialClaimState: ClaimState = {
   claimTxHash: null,
 };
 
+export enum ClaimActionType {
+  SET_DATA_FROM_URL,
+  SET_INITIAL_CLAIM_STATUS,
+  SET_CLAIM_STATUS,
+  SET_LOADING,
+  SET_COUNTRY,
+  SET_COMMIT_TX_HASH,
+  SET_CLAIM_TX_HASH,
+  ERROR,
+}
+
 export type ClaimAction =
   | {
-      type: "SET_DATA_FROM_URL";
+      type: ClaimActionType.SET_DATA_FROM_URL;
       decimals: number;
       data: {
         denomination: string;
@@ -56,39 +67,42 @@ export type ClaimAction =
       };
     }
   | {
-      type: "SET_INITIAL_CLAIM_STATUS";
+      type: ClaimActionType.SET_INITIAL_CLAIM_STATUS;
       committed: boolean;
       expired: boolean;
       used: boolean;
     }
   | {
-      type: "SET_CLAIM_STATUS";
+      type: ClaimActionType.SET_CLAIM_STATUS;
       status: ClaimStatus;
     }
   | {
-      type: "SET_LOADING";
+      type: ClaimActionType.SET_LOADING;
       loading: boolean;
     }
   | {
-      type: "SET_COUNTRY";
+      type: ClaimActionType.SET_COUNTRY;
       countryCode: string;
     }
   | {
-      type: "SET_COMMIT_TX_HASH";
+      type: ClaimActionType.SET_COMMIT_TX_HASH;
       commitTxHash: string;
     }
   | {
-      type: "SET_CLAIM_TX_HASH";
+      type: ClaimActionType.SET_CLAIM_TX_HASH;
       claimTxHash: string;
     }
   | {
-      type: "ERROR";
+      type: ClaimActionType.ERROR;
       error: Error;
     };
 
-export function claimReducer(state: ClaimState, action: ClaimAction) {
+export function claimReducer(
+  state: ClaimState,
+  action: ClaimAction
+): ClaimState {
   switch (action.type) {
-    case "SET_DATA_FROM_URL":
+    case ClaimActionType.SET_DATA_FROM_URL:
       // We need all of these otherwise the code is invalid
       if (
         // Do not need target as keys can be for the holder only
@@ -115,7 +129,7 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
           nonce: action.data.nonce,
         };
       }
-    case "SET_INITIAL_CLAIM_STATUS":
+    case ClaimActionType.SET_INITIAL_CLAIM_STATUS:
       let status = ClaimStatus.Ready;
 
       if (action.committed) {
@@ -130,37 +144,35 @@ export function claimReducer(state: ClaimState, action: ClaimAction) {
         ...state,
         claimStatus: status,
       };
-    case "SET_CLAIM_STATUS":
+    case ClaimActionType.SET_CLAIM_STATUS:
       return {
         ...state,
         claimStatus: action.status,
       };
-    case "SET_COUNTRY":
+    case ClaimActionType.SET_COUNTRY:
       return {
         ...state,
         countryCode: action.countryCode,
       };
-    case "SET_LOADING":
+    case ClaimActionType.SET_LOADING:
       return {
         ...state,
         loading: action.loading,
       };
-    case "SET_COMMIT_TX_HASH":
+    case ClaimActionType.SET_COMMIT_TX_HASH:
       return {
         ...state,
         commitTxHash: action.commitTxHash,
       };
-    case "SET_CLAIM_TX_HASH":
+    case ClaimActionType.SET_CLAIM_TX_HASH:
       return {
         ...state,
         claimTxHash: action.claimTxHash,
       };
-    case "ERROR":
+    case ClaimActionType.ERROR:
       return {
         ...state,
         error: action.error,
       };
-    default:
-      return state;
   }
 }
