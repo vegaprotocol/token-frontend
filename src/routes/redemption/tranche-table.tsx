@@ -33,8 +33,9 @@ export const TrancheTable = ({
   const total = vested.plus(locked);
   const trancheFullyLocked =
     tranche.tranche_start.getTime() > new Date().getTime();
-  const unstaked = totalVested.plus(totalLocked).minus(lien);
-  const reduceAmount = totalVested.minus(BigNumber.max(unstaked, 0));
+  const totalAllTranches = totalVested.plus(totalLocked);
+  const unstaked = totalAllTranches.minus(lien);
+  const reduceAmount = vested.minus(BigNumber.max(unstaked, 0));
   const redeemable = reduceAmount.isLessThanOrEqualTo(0);
 
   let message = null;
