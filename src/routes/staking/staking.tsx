@@ -1,6 +1,6 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
-import { Link } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 import { BulletHeader } from "../../components/bullet-header";
 import { Callout } from "../../components/callout";
 import { useAppState } from "../../contexts/app-state/app-state-context";
@@ -48,6 +48,7 @@ export const STAKING_QUERY = gql`
 `;
 
 export const Staking = () => {
+  const match = useRouteMatch();
   const { t } = useTranslation();
   const { appState } = useAppState();
 
@@ -127,8 +128,10 @@ export const Staking = () => {
         </BulletHeader>
         <p>
           Your tokens need to be{" "}
-          <Link to="/associate">associated with a Vega wallet</Link> so that it
-          can control your stake
+          <Link to={`${match.path}/associate`}>
+            associated with a Vega wallet
+          </Link>{" "}
+          so that it can control your stake
         </p>
       </section>
       <section>
