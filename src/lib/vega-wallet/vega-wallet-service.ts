@@ -21,6 +21,7 @@ export interface DelegateSubmissionInput {
   pubKey: string;
   delegateSubmission: {
     nodeId: string;
+    amount: number;
   };
 }
 
@@ -154,9 +155,10 @@ export class VegaWalletService implements IVegaWalletService {
       }
 
       const json = await res.json();
+      console.log(json);
 
-      if ("error" in json) {
-        return [Errors.COMMAND_FAILED];
+      if ("errors" in json) {
+        return [Errors.COMMAND_FAILED, undefined];
       } else {
         return [undefined, json];
       }

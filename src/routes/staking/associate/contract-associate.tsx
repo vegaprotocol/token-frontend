@@ -29,6 +29,7 @@ export const ContractAssociate = ({
   const maximum = React.useMemo(() => {
     return new BigNumber(balanceFormatted).minus(lien!);
   }, [balanceFormatted, lien]);
+
   const isDisabled = React.useMemo<boolean>(
     () =>
       !amount ||
