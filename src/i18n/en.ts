@@ -337,6 +337,21 @@ const en = {
   stakingStep2Text:
     "Your tokens need to be <associateLink>associated with a Vega wallet</associateLink> so that it can control your stake",
   stakingStep3: "Step3. Select the validator you'd like to nominate",
+
+  // stake pending
+  "Adding {{amount}} VEGA to node {{node}}":
+    "Adding {{amount}} VEGA to node {{node}}",
+  "This should take approximately 3 minutes to confirm, and then will be credited at the beginning of the next epoch":
+    "This should take approximately 3 minutes to confirm, and then will be credited at the beginning of the next epoch",
+
+  // stake success
+  "{{amount}} VEGA has been added to node {{node}}":
+    "{{amount}} VEGA has been added to node {{node}}",
+  "It will be applied in the next epoch":
+    "It will be applied in the next epoch",
+
+  // stake failed
+  "Failed to delegate to node {{node}}": "Failed to delegate to node {{node}}",
 };
 
 export default en;
