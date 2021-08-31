@@ -126,7 +126,7 @@ describe("Redemption", () => {
     // Then I see redemption information
     cy.get("[data-testid='redemption-description']").should(
       "have.text",
-      "The connected ethereum wallet (0xBD8530F1AB4485405D50E27d13b6AfD6e3eFd9BD) has 0.0009 VEGA tokens in 2 tranches of the vesting contract."
+      "The connected ethereum wallet (0xBD85…d9BD) has 0.0009 VEGA tokens in 2 tranches of the vesting contract."
     );
     // cy.get("[data-testid='redemption-unlocked-tokens']").should(
     //   "have.text",
