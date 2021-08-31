@@ -10,7 +10,7 @@ import { BigNumber } from "../../lib/bignumber";
 import { getAbbreviatedNumber } from "../../lib/abbreviate-number";
 import { Routes } from "../router-config";
 import { Tranche as TrancheType } from "../../lib/vega-web3/vega-web3-types";
-import {TrancheTitle} from "./tranche-title";
+import {TrancheLabel} from "./tranche-label";
 import {useAppState} from "../../contexts/app-state/app-state-context";
 
 export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
@@ -40,7 +40,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
     <>
       <BulletHeader tag="h2">
         {t("Tranche")} #{trancheId}&nbsp;
-        <TrancheTitle chainId={appState.chainId} contract={appState.contractAddresses.vestingAddress} id={tranche.tranche_id} />
+        <TrancheLabel chainId={appState.chainId} contract={appState.contractAddresses.vestingAddress} id={tranche.tranche_id} />
       </BulletHeader>
       <div style={{ marginTop: 20 }}>
         <TrancheDates start={tranche.tranche_start} end={tranche.tranche_end} />

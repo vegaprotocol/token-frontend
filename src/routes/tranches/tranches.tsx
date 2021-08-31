@@ -1,6 +1,6 @@
 import "./tranches.scss";
 import { Link, useRouteMatch } from "react-router-dom";
-import { TrancheTitle } from "./tranche-title";
+import { TrancheLabel } from "./tranche-label";
 import { TrancheDates } from "./tranche-dates";
 import { useTranslation } from "react-i18next";
 import { TrancheProgress } from "./tranche-progress";
@@ -42,7 +42,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                     className="tranches__link"
                   >
                     <span>{t("Tranche")}</span>#{tranche.tranche_id}
-                    <TrancheTitle contract={appState.contractAddresses.vestingAddress} chainId={appState.chainId} id={tranche.tranche_id} />
+                    <TrancheLabel contract={appState.contractAddresses.vestingAddress} chainId={appState.chainId} id={tranche.tranche_id} />
                   </Link>
                   {isTestingTranche(tranche) ? (
                     <Callout>
