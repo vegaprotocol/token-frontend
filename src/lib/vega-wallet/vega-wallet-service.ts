@@ -25,7 +25,18 @@ export interface DelegateSubmissionInput {
   };
 }
 
-export type CommandSyncInput = DelegateSubmissionInput;
+export interface UndelegateSubmissionInput {
+  pubKey: string;
+  undelegateSubmission: {
+    nodeId: string;
+    amount: number;
+    method: "METHOD_AT_END_OF_EPOCH";
+  };
+}
+
+export type CommandSyncInput =
+  | DelegateSubmissionInput
+  | UndelegateSubmissionInput;
 
 export interface IVegaWalletService {
   url: string;
