@@ -35,11 +35,11 @@ export const YourStake = ({ currentEpoch, delegations }: YourStakeProps) => {
       <KeyValueTable>
         <KeyValueTableRow>
           <th>{t("Your Stake On Node (This Epoch)")}</th>
-          <td>{stakeThisEpoch}</td>
+          <td>{stakeThisEpoch.toString()}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("Your Stake On Node (Next Epoch)")}</th>
-          <td>{stakeNextEpoch}</td>
+          <td>{stakeNextEpoch.toString()}</td>
         </KeyValueTableRow>
       </KeyValueTable>
     </>
