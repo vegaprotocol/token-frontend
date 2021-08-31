@@ -148,13 +148,15 @@ const VegaWalletConnected = ({
         </ul>
       )}
       <div className="vega-wallet__actions">
-        <button
-          className="button-link button-link--dark"
-          onClick={() => setExpanded((x) => !x)}
-          type="button"
-        >
-          {expanded ? "Hide keys" : "Change key"}
-        </button>
+        {vegaKeys.length > 1 ? (
+          <button
+            className="button-link button-link--dark"
+            onClick={() => setExpanded((x) => !x)}
+            type="button"
+          >
+            {expanded ? "Hide keys" : "Change key"}
+          </button>
+        ) : null}
         <button
           className="button-link button-link--dark"
           onClick={handleDisconnect}
