@@ -13,6 +13,7 @@ import { VegaTokenContainer } from "../../components/vega-token-container";
 import { gql, useQuery } from "@apollo/client";
 import React from "react";
 import BigNumber from "bignumber.js";
+import { Nodes } from "./__generated__/Nodes";
 
 export const TOTAL_STAKED_QUERY = gql`
   query Nodes {
@@ -38,10 +39,10 @@ export const TOTAL_STAKED_QUERY = gql`
 const Home = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
   const { t } = useTranslation();
-  const { data } = useQuery<any>(TOTAL_STAKED_QUERY);
+  const { data } = useQuery<Nodes>(TOTAL_STAKED_QUERY);
   const totalStaked = React.useMemo(() => {
     const stakedBalances =
-      data?.nodes.map((n: any) => new BigNumber(n.stakedTotal)) || [];
+      data?.nodes?.map((n) => new BigNumber(n.stakedTotal)) || [];
     return BigNumber.sum
       .apply(null, [new BigNumber(0), ...stakedBalances])
       .toString();
