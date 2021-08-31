@@ -137,4 +137,5 @@ export interface StakeNode {
 
 export interface StakeNodeVariables {
   nodeId: string;
+  partyId: string;
 }
