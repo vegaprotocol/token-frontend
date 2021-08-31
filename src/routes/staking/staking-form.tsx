@@ -1,13 +1,34 @@
+import React from "react";
+import * as Sentry from "@sentry/react";
 import { FormGroup, Intent, Radio, RadioGroup } from "@blueprintjs/core";
 import { Controller, useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useVegaWallet } from "../../hooks/use-vega-wallet";
+import { Callout } from "../../components/callout";
+import { Loader } from "../../components/loader";
+import { Tick } from "../../components/icons";
+import { Link } from "react-router-dom";
+import { Routes } from "../router-config";
+
+enum FormState {
+  Default,
+  Pending,
+  Success,
+  Failure,
+}
 
 interface FormFields {
   amount: string;
   action: "add" | "remove" | undefined;
 }
 
-export const StakingForm = () => {
+interface StakingFormProps {
+  nodeId: string;
+}
+
+export const StakingForm = ({ nodeId }: StakingFormProps) => {
+  const [formState, setFormState] = React.useState(FormState.Default);
+  const vegaWallet = useVegaWallet();
   const { t } = useTranslation();
   const {
     register,
@@ -19,8 +40,58 @@ export const StakingForm = () => {
   const amount = useWatch({ control, name: "amount" });
   const action = useWatch({ control, name: "action" });
 
-  function onSubmit(fields: FormFields) {
-    console.log(fields);
+  async function onSubmit(fields: FormFields) {
+    setFormState(FormState.Pending);
+    try {
+      const [err] = await vegaWallet.commandSync({
+        pubKey: "",
+        delegateSubmission: {
+          nodeId,
+          amount: Number(fields.amount),
+        },
+      });
+
+      if (err) {
+        setFormState(FormState.Failure);
+        Sentry.captureEvent(err);
+      } else {
+        setFormState(FormState.Success);
+      }
+    } catch (err) {
+      setFormState(FormState.Failure);
+      Sentry.captureEvent(err);
+    }
+  }
+
+  if (formState === FormState.Failure) {
+    return (
+      <Callout intent="error" title={t("Something went wrong")}>
+        <p>Failed to delegate to node {nodeId}</p>
+      </Callout>
+    );
+  }
+
+  if (formState === FormState.Pending) {
+    return (
+      <Callout icon={<Loader />} title={t("Adding X VEGA to node X")}>
+        <p>
+          This should take approximately (3 minutes) to confirm, and then will
+          be credited at the beginning of the next epoch
+        </p>
+      </Callout>
+    );
+  }
+
+  if (formState === FormState.Success) {
+    return (
+      <Callout icon={<Tick />} title={t("X has been added to node X")}>
+        <p>It will be applied in the next epoch</p>
+        <p>
+          <Link to={Routes.STAKING}>{t("Back to staking page")}</Link>
+        </p>
+        {/* TODO: Add link to rewards */}
+      </Callout>
+    );
   }
 
   return (
@@ -36,7 +107,6 @@ export const StakingForm = () => {
             name="action"
             rules={{ required: "Required" }}
             render={({ field }) => {
-              console.log(field);
               return (
                 <RadioGroup
                   onChange={field.onChange}

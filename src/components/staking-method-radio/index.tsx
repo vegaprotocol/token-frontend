@@ -1,7 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Radio, RadioGroup } from "@blueprintjs/core";
-import { FormEvent } from "react";
 
 export enum StakingMethod {
   Contract = "Contract",
@@ -19,7 +18,7 @@ export const StakingMethodRadio = ({
   return (
     <RadioGroup
       inline={true}
-      onChange={(e: FormEvent<HTMLInputElement>) => {
+      onChange={(e) => {
         // @ts-ignore
         setSelectedStakingMethod(e.target.value);
       }}
