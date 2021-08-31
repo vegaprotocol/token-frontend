@@ -4,7 +4,8 @@ describe("Home", () => {
   it("Displays the expected information", () => {
     mock(cy);
     cy.visit("/");
-    cy.contains("[data-testid='connect']").click();
+    cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     cy.get('[data-testid="token-address"]').should("have.text", "0xFa52…A4A6");
     cy.get('[data-testid="token-contract"]').should("have.text", "0xfc9A…07AA");
     cy.get('[data-testid="total-supply"]').should("have.text", "1000000000");

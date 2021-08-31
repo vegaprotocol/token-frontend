@@ -43,7 +43,8 @@ describe("Redemption", () => {
     // When visiting redemption
     cy.visit("/vesting");
     // When I connect to my wallet
-    cy.contains("[data-testid='connect']").click();
+    cy.contains("Connect to an Ethereum wallet").click();
+    cy.get("[data-testid='connect-overlay']").click();
     // Then I see a loading state
     cy.get("[data-testid='splash-loader']").should("exist");
   });
@@ -68,7 +69,8 @@ describe("Redemption", () => {
     // When visiting redemption
     cy.visit("/vesting");
     // When I connect to my wallet
-    cy.contains("[data-testid='connect']").click();
+    cy.contains("Connect to an Ethereum wallet").click();
+    cy.get("[data-testid='connect-overlay']").click();
 
     // Then I see a loading state
     cy.get("[data-testid='tranche-error']").should("exist");
@@ -95,7 +97,8 @@ describe("Redemption", () => {
     // When visiting redemption
     cy.visit("/vesting");
     // When I connect to my wallet
-    cy.contains("[data-testid='connect']").click();
+    cy.contains("Connect to an Ethereum wallet").click();
+    cy.get("[data-testid='connect-overlay']").click();
     // Then I see an empty state
     cy.get("[data-testid='redemption-no-balance']").should(
       "have.text",
@@ -117,7 +120,8 @@ describe("Redemption", () => {
     // When visiting redemption
     cy.visit("/vesting");
     // When I connect to my wallet
-    cy.contains("[data-testid='connect']").click();
+    cy.contains("Connect to an Ethereum wallet").click();
+    cy.get("[data-testid='connect-overlay']").click();
 
     // Then I see redemption information
     cy.get("[data-testid='redemption-description']").should(
@@ -161,7 +165,8 @@ describe("Redemption", () => {
     // When visiting redemption
     cy.visit("/vesting");
     // When I connect to my wallet
-    cy.contains("[data-testid='connect']").click();
+    cy.contains("Connect to an Ethereum wallet").click();
+    cy.get("[data-testid='connect-overlay']").click();
     cy.get("[data-testid='callout'] h3").should(
       "have.text",
       "You can stake your VEGA tokens even while locked."
@@ -186,7 +191,8 @@ describe("Redemption", () => {
     // When visiting redemption
     cy.visit("/vesting");
     // When I connect to my wallet
-    cy.contains("[data-testid='connect']").click();
+    cy.contains("Connect to an Ethereum wallet").click();
+    cy.get("[data-testid='connect-overlay']").click();
 
     // Then I see staked information in the table
     cy.get("[data-testid='vesting-table']").should("exist");
@@ -268,7 +274,8 @@ describe("Redemption", () => {
     // When visiting redemption
     cy.visit("/vesting");
     // When I connect to my wallet
-    cy.contains("[data-testid='connect']").click();
+    cy.contains("Connect to an Ethereum wallet").click();
+    cy.get("[data-testid='connect-overlay']").click();
 
     // Then I see tranche information in the table
     cy.get("[data-testid='tranche-table']").should("exist");
@@ -333,7 +340,8 @@ describe("Redemption", () => {
     // When visiting redemption
     cy.visit("/vesting");
     // When I connect to my wallet
-    cy.contains("[data-testid='connect']").click();
+    cy.contains("Connect to an Ethereum wallet").click();
+    cy.get("[data-testid='connect-overlay']").click();
 
     // Then I see tranche information in the table
     cy.get("[data-testid='tranche-table']").should("have.length", 2);
@@ -423,7 +431,8 @@ describe("Redemption", () => {
     // When visiting redemption
     cy.visit("/vesting");
     // When I connect to my wallet
-    cy.contains("[data-testid='connect']").click();
+    cy.contains("Connect to an Ethereum wallet").click();
+    cy.get("[data-testid='connect-overlay']").click();
     cy.get("[data-testid='tranche-table-footer']").should(
       "have.text",
       "All the tokens in this tranche are locked and can not be redeemed yet."
@@ -450,7 +459,8 @@ describe("Redemption", () => {
     // When visiting redemption
     cy.visit("/vesting");
     // When I connect to my wallet
-    cy.contains("[data-testid='connect']").click();
+    cy.contains("Connect to an Ethereum wallet").click();
+    cy.get("[data-testid='connect-overlay']").click();
     // Then I see a message saying
     cy.get("[data-testid='tranche-table-footer']").should(
       "have.text",
@@ -477,7 +487,8 @@ describe("Redemption", () => {
     // When visiting redemption
     cy.visit("/vesting");
     // When I connect to my wallet
-    cy.contains("[data-testid='connect']").click();
+    cy.contains("Connect to an Ethereum wallet").click();
+    cy.get("[data-testid='connect-overlay']").click();
     // Then I see a message saying
     cy.get("[data-testid='tranche-table-footer']").should(
       "have.text",
@@ -504,7 +515,8 @@ describe("Redemption", () => {
     // When visiting redemption
     cy.visit("/vesting");
     // When I connect to my wallet
-    cy.contains("[data-testid='connect']").click();
+    cy.contains("Connect to an Ethereum wallet").click();
+    cy.get("[data-testid='connect-overlay']").click();
     // When I redeem the value
     cy.contains("Redeem unlocked VEGA from tranche 1").click();
     // Then I am redirected to a new page
