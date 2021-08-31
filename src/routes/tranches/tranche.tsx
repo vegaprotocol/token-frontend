@@ -39,7 +39,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
   return (
     <>
       <BulletHeader tag="h2">
-        {t("Tranche")} #{trancheId}
+        {t("Tranche")} #{trancheId}&nbsp;
         <TrancheTitle chainId={appState.chainId} contract={appState.contractAddresses.vestingAddress} id={tranche.tranche_id} />
       </BulletHeader>
       <div style={{ marginTop: 20 }}>

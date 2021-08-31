@@ -27,7 +27,7 @@ export const TrancheTitle = ({contract, chainId, id}: {
 
     // Only some tranches have titles worth showing
     if (TRANCHE_NAMES[id]) {
-      return <span>{TRANCHE_NAMES[id]}</span>
+      return <strong className="tranche-title">{TRANCHE_NAMES[id]}</strong>
     }
   }
 
