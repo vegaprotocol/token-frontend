@@ -167,6 +167,11 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
     );
   }
 
+  const onNewAction = (field: any) => {
+    window.history.replaceState(null, "", `?action=${action}`);
+    return field.onChange;
+  };
+
   return (
     <>
       <h2>{t("Manage your stake")}</h2>
@@ -182,7 +187,7 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
             render={({ field }) => {
               return (
                 <RadioGroup
-                  onChange={field.onChange}
+                  onChange={onNewAction(field)}
                   selectedValue={field.value}
                   inline={true}
                 >
@@ -195,7 +200,7 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
         </FormGroup>
         {action !== undefined && (
           <>
-            <h2>{t("How much to {{action}} in next epoch", { action })}</h2>
+            <h2>{t("How much to {{action}} in next epoch?", { action })}</h2>
             <FormGroup
               helperText={errors.amount?.message}
               intent={errors.amount?.message ? Intent.DANGER : Intent.NONE}
