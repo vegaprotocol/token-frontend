@@ -61,7 +61,7 @@ const ConnectedKey = () => {
     <>
       <WalletCardRow label={t("In Wallet")} dark={true} />
       <WalletCardRow
-        label={t("Not Staked")}
+        label={t("Not staked")}
         value={walletBalance}
         valueSuffix={t("VEGA")}
       />

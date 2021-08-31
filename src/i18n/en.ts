@@ -322,6 +322,9 @@ const en = {
   "{{amount}} VEGA tokens have been returned to Ethereum wallet":
     "{{amount}} VEGA tokens have been returned to Ethereum wallet",
   "Disassociate VEGA Tokens from key": "Disassociate VEGA Tokens from key",
+  "Not staked": "Not staked",
+  "In Wallet": "In Wallet",
+  Connect: "Connect",
 };
 
 export default en;

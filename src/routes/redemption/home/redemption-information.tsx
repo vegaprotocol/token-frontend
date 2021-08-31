@@ -58,7 +58,7 @@ export const RedemptionInformation = ({
     <section className="redemption-information" data-testid="redemption-page">
       <p data-testid="redemption-description">
         {t(
-          "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract tranches.",
+          "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.",
           {
             address: truncateMiddle(address),
             balance: balanceFormatted,
