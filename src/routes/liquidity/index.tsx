@@ -4,6 +4,7 @@ import { EthWallet } from "../../components/eth-wallet";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
 import { Web3Container } from "../../components/web3-container";
 import { useDocumentTitle } from "../../hooks/use-document-title";
+import {DexTokenRewards} from "./dex-token-rewards";
 
 const RedemptionIndex = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
@@ -13,7 +14,7 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
     <TemplateSidebar title={t("pageTitleLiquidity")} sidebar={[<EthWallet />]}>
       <Web3Container>
         {(address) => (
-          <p>{address}</p>
+          <DexTokenRewards address={address} />
        )}
       </Web3Container>
     </TemplateSidebar>
