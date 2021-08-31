@@ -16,6 +16,7 @@ import { useTranslation } from "react-i18next";
 import { useVegaWallet } from "../../hooks/use-vega-wallet";
 import { VegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
 import { useVegaStaking } from "../../hooks/use-vega-staking";
+import { BigNumber } from "../../lib/bignumber";
 
 export const VegaWallet = () => {
   const { t } = useTranslation();
@@ -95,7 +96,7 @@ const VegaWalletConnected = ({
   const { t } = useTranslation();
   const {
     appDispatch,
-    appState: { address, vegaAssociatedBalance },
+    appState: { address, vegaAssociatedBalance, lien },
   } = useAppState();
   const [disconnecting, setDisconnecting] = React.useState(false);
   const staking = useVegaStaking();
@@ -131,7 +132,7 @@ const VegaWalletConnected = ({
       {vegaAssociatedBalance ? (
         <WalletCardRow
           label={t("Not staked")}
-          value={vegaAssociatedBalance}
+          value={new BigNumber(vegaAssociatedBalance).plus(lien).toString()}
           valueSuffix={t("VEGA")}
         />
       ) : null}
