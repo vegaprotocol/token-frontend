@@ -42,7 +42,6 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                     className="tranches__link"
                   >
                     <span>{t("Tranche")}</span>#{tranche.tranche_id}
-                    <TrancheLabel contract={appState.contractAddresses.vestingAddress} chainId={appState.chainId} id={tranche.tranche_id} />
                   </Link>
                   {isTestingTranche(tranche) ? (
                     <Callout>
@@ -64,6 +63,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                   totalRemoved={tranche.total_removed}
                   totalAdded={tranche.total_added}
                 />
+                <TrancheLabel contract={appState.contractAddresses.vestingAddress} chainId={appState.chainId} id={tranche.tranche_id} />
               </li>
             );
           })}
