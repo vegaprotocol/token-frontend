@@ -34,8 +34,35 @@ export const TrancheTable = ({
     tranche.tranche_start.getTime() > new Date().getTime();
   const unstaked = totalVested.plus(totalLocked).minus(lien);
   const reduceAmount = totalVested.minus(BigNumber.max(unstaked, 0));
-
   const redeemable = reduceAmount.isLessThanOrEqualTo(0);
+
+  let message = null;
+  if (trancheFullyLocked || vested.isEqualTo(0)) {
+    message = (
+      <div>
+        {t(
+          "All the tokens in this tranche are locked and can not be redeemed yet."
+        )}
+      </div>
+    );
+  } else if (!trancheFullyLocked && !redeemable) {
+    message = (
+      <div>
+        {t(
+          "You must reduce your associated vesting tokens by at least {{amount}} to redeem from this tranche. Manage your stake or just dissociate your tokens.",
+          { amount: reduceAmount }
+        )}
+      </div>
+    );
+  } else if (!trancheFullyLocked && redeemable) {
+    message = (
+      <button onClick={onClick}>
+        {t("Redeem unlocked VEGA from tranche {{id}}", {
+          id: tranche.tranche_id,
+        })}
+      </button>
+    );
+  }
   return (
     <section data-testid="tranche-table" className="tranche-table">
       <KeyValueTable numerical={true}>
@@ -65,28 +92,7 @@ export const TrancheTable = ({
         </KeyValueTableRow>
       </KeyValueTable>
       <div className="tranche-table__footer" data-testid="tranche-table-footer">
-        {trancheFullyLocked && (
-          <div>
-            {t(
-              "All the tokens in this tranche are locked and can not be redeemed yet."
-            )}
-          </div>
-        )}
-        {!trancheFullyLocked && !redeemable && (
-          <div>
-            {t(
-              "You must reduce your associated vesting tokens by at least {{amount}} to redeem from this tranche. Manage your stake or just dissociate your tokens.",
-              { amount: reduceAmount }
-            )}
-          </div>
-        )}
-        {!trancheFullyLocked && redeemable && (
-          <button onClick={onClick}>
-            {t("Redeem unlocked VEGA from tranche {{id}}", {
-              id: tranche.tranche_id,
-            })}
-          </button>
-        )}
+        {message}
       </div>
     </section>
   );
