@@ -2,7 +2,7 @@ const TRUTHY = ["1", "true"];
 
 export const Flags = {
   MOCK: TRUTHY.includes(process.env.REACT_APP_MOCKED!),
-  MAINNET_LIVE: TRUTHY.includes(process.env.REACT_MAINNET_LIVE!),
+  MAINNET_DISABLED: TRUTHY.includes(process.env.REACT_APP_MAINNET_DISABLED!),
   SHOW_NETWORK_SWITCHER: TRUTHY.includes(
     process.env.REACT_APP_SHOW_NETWORK_SWITCHER || ""
   ),
