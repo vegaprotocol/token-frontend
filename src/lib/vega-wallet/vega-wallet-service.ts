@@ -155,7 +155,6 @@ export class VegaWalletService implements IVegaWalletService {
       }
 
       const json = await res.json();
-      console.log(json);
 
       if ("errors" in json) {
         return [Errors.COMMAND_FAILED, undefined];
