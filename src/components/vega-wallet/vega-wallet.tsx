@@ -135,7 +135,6 @@ const VegaWalletConnected = ({
           .query<Delegations, DelegationsVariables>({
             query: DELEGATIONS_QUERY,
             variables: { partyId: currVegaKey.pub },
-            // pollInterval: 1000,
           })
           .then((res) => {
             const filter =
