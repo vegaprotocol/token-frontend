@@ -10,6 +10,7 @@ export const Routes = {
   STAKING: "/staking",
   GOVERNANCE: "/governance",
   VESTING: "/vesting",
+  LIQUIDITY: "/liquidity",
   NOT_PERMITTED: "/not-permitted",
   NOT_FOUND: "/not-found",
 };
@@ -39,6 +40,12 @@ const LazyStaking = React.lazy(
     import(
       /* webpackChunkName: "route-staking", webpackPrefetch: true */ "./staking"
     )
+);
+const LazyLiquidity = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "route-liquidity", webpackPrefetch: true */ "./liquidity"
+      )
 );
 const LazyGovernance = React.lazy(
   () =>
@@ -76,6 +83,11 @@ const routerConfig = [
     component: LazyRedemption,
   },
   {
+    path: Routes.LIQUIDITY,
+    name: "DEX Liquidity",
+    component: LazyLiquidity
+  },
+  {
     path: Routes.GOVERNANCE,
     name: "Governance",
     component: LazyGovernance,
@@ -90,7 +102,7 @@ const routerConfig = [
     name: "NotFound",
     // Not lazy as loaded when a user first hits the site
     component: NotFound,
-  },
+  }
 ];
 
 export default routerConfig;
