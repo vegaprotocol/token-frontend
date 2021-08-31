@@ -41,6 +41,13 @@ export const STAKE_NODE_QUERY = gql`
     nodeData {
       stakedTotal
     }
+    party {
+      id
+      delegations(nodeId: $nodeId) {
+        amount
+        epoch
+      }
+    }
   }
 `;
 
@@ -92,7 +99,10 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
           endDate={new Date(data.epoch.timestamps.end)}
         />
       )}
-      <YourStake node={node} />
+      <YourStake
+        currentEpoch={data.epoch.id}
+        delegations={data.party?.delegations || []}
+      />
       <StakingForm nodeId={node} pubkey={vegaKey.pub} />
     </>
   );
