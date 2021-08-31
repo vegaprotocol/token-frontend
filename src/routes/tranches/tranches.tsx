@@ -8,9 +8,9 @@ import { BulletHeader } from "../../components/bullet-header";
 import React from "react";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { Callout } from "../../components/callout";
-import {useAppState} from "../../contexts/app-state/app-state-context";
+import { useAppState } from "../../contexts/app-state/app-state-context";
 
-const trancheMinimum = 1;
+const trancheMinimum = 10;
 
 const isTestingTranche = (t: Tranche) =>
   !t.total_added.isEqualTo(0) &&
