@@ -68,8 +68,6 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
     }
   );
 
-  console.log(data);
-
   if (error) {
     return (
       <Callout intent="error" title={t("Something went wrong")}>
@@ -103,7 +101,9 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
 
   return (
     <>
-      <h2>{t("VALIDATOR {{node}}", { node })}</h2>
+      <h2 style={{ wordBreak: "break-word" }}>
+        {t("VALIDATOR {{node}}", { node })}
+      </h2>
       <p>Vega key: {vegaKey.pubShort}</p>
       <ValidatorTable
         node={data.node}
