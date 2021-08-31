@@ -103,15 +103,11 @@ const en = {
   "Claim {amount} Vega": "Claim {{amount}} VEGA",
   "Sorry. It is not possible to claim tokens in your country or region.":
     "It is not possible to claim tokens in your country or region.",
-  "tranche description":
-    "Tokens in this tranche unlock on {{unlockDate}} and continue to unlock gradually until {{trancheEndDate}} when all tokens are unlocked. Come back to token.vega.xyz to redeem your tokens once they begin to unlock.",
   "none redeemable":
     "Tokens in this tranche unlock on {{unlockDate}} and continue to unlock gradually until {{trancheEndDate}} when all tokens are unlocked. Come back to token.vega.xyz to redeem your tokens once they begin to unlock.",
   "partially redeemable":
     "Tokens in this tranche began to unlock on {{unlockDate}} and will continue to unlock gradually until {{trancheEndDate}} when all tokens are unlocked.",
   "fully redeemable":
-    "Tokens in this tranche have fully unlocked and can be redeemed once claimed.",
-  "Tokens in this tranche are fully unlocked.":
     "Tokens in this tranche have fully unlocked and can be redeemed once claimed.",
   "This page can not be found, please check the URL and try again.":
     "This page can not be found, please check the URL and try again.",

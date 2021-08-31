@@ -25,30 +25,9 @@ export const ClaimInfo = ({ tranche }: ClaimInfoProps) => {
 
   return (
     <>
-      {noneRedeemable && (
-        <p>
-          {t("tranche description", {
-            unlockDate,
-            trancheEndDate,
-          })}{" "}
-          {t("none redeemable")}
-        </p>
-      )}
-      {partiallyRedeemable && (
-        <p>
-          {t("tranche description", {
-            unlockDate,
-            trancheEndDate,
-          })}{" "}
-          {t("partially redeemable")}
-        </p>
-      )}
-      {fullyRedeemable && (
-        <p>
-          {t("Tokens in this tranche are fully unlocked.")}
-          {t("fully redeemable")}
-        </p>
-      )}
+      {noneRedeemable && <p>{t("none redeemable")}</p>}
+      {partiallyRedeemable && <p>{t("partially redeemable")}</p>}
+      {fullyRedeemable && <p>{t("fully redeemable")}</p>}
     </>
   );
 };
