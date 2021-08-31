@@ -16,22 +16,9 @@ import BigNumber from "bignumber.js";
 import { Nodes } from "./__generated__/Nodes";
 
 export const TOTAL_STAKED_QUERY = gql`
-  query Nodes {
-    nodes {
-      id
-      pubkey
-      infoUrl
-      location
-      stakedByOperator
-      stakedByDelegates
+  query NodeData {
+    nodeData {
       stakedTotal
-      pendingStake
-      epochData {
-        total
-        offline
-        online
-      }
-      status
     }
   }
 `;
