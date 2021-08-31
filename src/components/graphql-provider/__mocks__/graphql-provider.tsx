@@ -10,8 +10,7 @@ import {
 import { STAKE_NODE_QUERY } from "../../../routes/staking/staking-node";
 import { StakeNode } from "../../../routes/staking/__generated__/StakeNode";
 
-const partyId =
-  "ad5bc6fcb1a5c2e57e1224ac8afae7019de41df394f6902fafcc17c99b40f13b";
+const partyId = "0x789";
 
 const nodes: Staking_nodes[] = [
   {
@@ -90,6 +89,7 @@ const MOCK_STAKING_NODE_QUERY: MockedResponse<StakeNode> = {
     query: STAKE_NODE_QUERY,
     variables: {
       nodeId: nodes[0].id,
+      partyId,
     },
   },
   result: {
