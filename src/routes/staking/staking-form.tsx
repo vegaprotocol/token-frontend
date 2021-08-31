@@ -66,17 +66,28 @@ export const StakingForm = ({ nodeId }: StakingFormProps) => {
   if (formState === FormState.Failure) {
     return (
       <Callout intent="error" title={t("Something went wrong")}>
-        <p>Failed to delegate to node {nodeId}</p>
+        <p>
+          {t("Failed to delegate to node {{node}}", {
+            node: nodeId,
+          })}
+        </p>
       </Callout>
     );
   }
 
   if (formState === FormState.Pending) {
     return (
-      <Callout icon={<Loader />} title={t("Adding X VEGA to node X")}>
+      <Callout
+        icon={<Loader />}
+        title={t("Adding {{amount}} VEGA to node {{node}}", {
+          amount,
+          node: nodeId,
+        })}
+      >
         <p>
-          This should take approximately (3 minutes) to confirm, and then will
-          be credited at the beginning of the next epoch
+          {t(
+            "This should take approximately 3 minutes to confirm, and then will be credited at the beginning of the next epoch"
+          )}
         </p>
       </Callout>
     );
@@ -84,8 +95,14 @@ export const StakingForm = ({ nodeId }: StakingFormProps) => {
 
   if (formState === FormState.Success) {
     return (
-      <Callout icon={<Tick />} title={t("X has been added to node X")}>
-        <p>It will be applied in the next epoch</p>
+      <Callout
+        icon={<Tick />}
+        title={t("{{amount}} has been added to node {{node}}", {
+          amount,
+          node: nodeId,
+        })}
+      >
+        <p>{t("It will be applied in the next epoch")}</p>
         <p>
           <Link to={Routes.STAKING}>{t("Back to staking page")}</Link>
         </p>
