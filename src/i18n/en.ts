@@ -354,8 +354,8 @@ const en = {
   // stake failed
   "Failed to delegate to node {{node}}": "Failed to delegate to node {{node}}",
   "Remove {{amount}} VEGA tokens": "Remove {{amount}} VEGA tokens",
-  "How much to {{action}} in next epoch":
-    "How much to {{action}} in next epoch",
+  "How much to {{action}} in next epoch?":
+    "How much to {{action}} in next epoch?",
   "Removing {{amount}} VEGA from {{node}}":
     "Removing {{amount}} VEGA from {{node}}",
   "This should take approximately ({{time}}) to confirm.":
