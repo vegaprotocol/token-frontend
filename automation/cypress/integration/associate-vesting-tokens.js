@@ -8,6 +8,7 @@ describe("Associate - vesting tokens", () => {
     // When visiting the associate page
     cy.visit("/staking/associate?method=Contract");
     cy.get('[data-testid="connect"]').click();
+    cy.get('[data-testid="connect-overlay"]').click();
     cy.get('[data-testid="connect-vega"]').click();
     cy.get('[data-testid="wallet-name"]').type("wallet");
     cy.get('[data-testid="wallet-password"]').type("wallet");
@@ -24,6 +25,7 @@ describe("Associate - vesting tokens", () => {
     cy.visit("/staking/associate?method=Contract");
     // Then the button is disabled by default
     cy.get('[data-testid="connect"]').click();
+    cy.get('[data-testid="connect-overlay"]').click();
     cy.get('[data-testid="connect-vega"]').click();
     cy.get('[data-testid="wallet-name"]').type("wallet");
     cy.get('[data-testid="wallet-password"]').type("wallet");
@@ -40,6 +42,7 @@ describe("Associate - vesting tokens", () => {
     cy.visit("/staking/associate?method=Contract");
     // Then the button is disabled by default
     cy.get('[data-testid="connect"]').click();
+    cy.get('[data-testid="connect-overlay"]').click();
     cy.get('[data-testid="connect-vega"]').click();
     cy.get('[data-testid="wallet-name"]').type("wallet");
     cy.get('[data-testid="wallet-password"]').type("wallet");
@@ -56,6 +59,7 @@ describe("Associate - vesting tokens", () => {
     cy.visit("/staking/associate?method=Contract");
     // Then the button is disabled by default
     cy.get('[data-testid="connect"]').click();
+    cy.get('[data-testid="connect-overlay"]').click();
     cy.get('[data-testid="connect-vega"]').click();
     cy.get('[data-testid="wallet-name"]').type("wallet");
     cy.get('[data-testid="wallet-password"]').type("wallet");
@@ -72,6 +76,7 @@ describe("Associate - vesting tokens", () => {
     cy.visit("/staking/associate?method=Contract");
     // Then the button is disabled by default
     cy.get('[data-testid="connect"]').click();
+    cy.get('[data-testid="connect-overlay"]').click();
     cy.get('[data-testid="connect-vega"]').click();
     cy.get('[data-testid="wallet-name"]').type("wallet");
     cy.get('[data-testid="wallet-password"]').type("wallet");
@@ -94,6 +99,7 @@ describe("Associate - vesting tokens", () => {
     cy.visit("/staking/associate?method=Contract");
     // Then the button is disabled by default
     cy.get('[data-testid="connect"]').click();
+    cy.get('[data-testid="connect-overlay"]').click();
     cy.get('[data-testid="connect-vega"]').click();
     cy.get('[data-testid="wallet-name"]').type("wallet");
     cy.get('[data-testid="wallet-password"]').type("wallet");

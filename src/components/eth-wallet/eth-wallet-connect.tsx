@@ -31,7 +31,7 @@ export const EthWalletConnect = () => {
         <button
           type="button"
           onClick={connect}
-          data-testid="connect"
+          data-testid="connect-overlay"
           className="eth-wallet-connect__button"
         >
           {t("Connect with Metamask")}

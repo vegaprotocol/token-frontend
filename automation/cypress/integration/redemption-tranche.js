@@ -34,7 +34,7 @@ describe("Redemption through tranche", () => {
     // When visiting redemption
     cy.visit("/vesting/1");
     // When I connect to my wallet
-    cy.contains("Connect to an Ethereum wallet").click();
+    cy.contains("[data-testid='connect']").click();
     // Then I see the tranches table
     cy.get("[data-testid='tranche-table-total'] th")
       .eq(0)
@@ -85,7 +85,7 @@ describe("Redemption through tranche", () => {
     // When visiting redemption
     cy.visit("/vesting/1");
     // When I connect to my wallet
-    cy.contains("Connect to an Ethereum wallet").click();
+    cy.contains("[data-testid='connect']").click();
     // When I redeem the value
     cy.contains("Redeem unlocked VEGA from tranche 1").click();
 
@@ -116,7 +116,7 @@ describe("Redemption through tranche", () => {
     // When visiting redemption
     cy.visit("/vesting/1");
     // When I connect to my wallet
-    cy.contains("Connect to an Ethereum wallet").click();
+    cy.contains("[data-testid='connect']").click();
     // When I redeem the value
     cy.contains("Redeem unlocked VEGA from tranche 1").click();
 
