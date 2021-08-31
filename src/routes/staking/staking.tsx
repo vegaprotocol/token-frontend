@@ -18,7 +18,9 @@ export const STAKING_QUERY = gql`
       id
       delegations {
         amount
-        node
+        node {
+          id
+        }
       }
     }
     nodes {
@@ -70,7 +72,7 @@ export const Staking = () => {
 
       const userStake = data.party?.delegations?.length
         ? data.party?.delegations
-            ?.filter((d) => d.node === node.id)
+            ?.filter((d) => d.node.id === node.id)
             .reduce((sum, d) => {
               const value = new BigNumber(d.amount);
               return sum.plus(value);

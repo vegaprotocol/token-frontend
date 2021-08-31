@@ -9,6 +9,14 @@ import { NodeStatus } from "./../../../__generated__/globalTypes";
 // GraphQL query operation: Staking
 // ====================================================
 
+export interface Staking_party_delegations_node {
+  __typename: "Node";
+  /**
+   * The node url eg n01.vega.xyz
+   */
+  id: string;
+}
+
 export interface Staking_party_delegations {
   __typename: "Delegation";
   /**
@@ -18,7 +26,7 @@ export interface Staking_party_delegations {
   /**
    * URL of node you are delegating to
    */
-  node: string;
+  node: Staking_party_delegations_node;
 }
 
 export interface Staking_party {

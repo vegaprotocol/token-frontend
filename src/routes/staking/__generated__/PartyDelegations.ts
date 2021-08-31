@@ -7,6 +7,14 @@
 // GraphQL query operation: PartyDelegations
 // ====================================================
 
+export interface PartyDelegations_party_delegations_node {
+  __typename: "Node";
+  /**
+   * The node url eg n01.vega.xyz
+   */
+  id: string;
+}
+
 export interface PartyDelegations_party_delegations {
   __typename: "Delegation";
   /**
@@ -16,7 +24,7 @@ export interface PartyDelegations_party_delegations {
   /**
    * URL of node you are delegating to
    */
-  node: string;
+  node: PartyDelegations_party_delegations_node;
   /**
    * Epoch of delegation
    */
