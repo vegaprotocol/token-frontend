@@ -3,8 +3,7 @@ import { Addresses, EthereumChainId, EthereumChainIds } from "../../lib/web3-uti
 const TRANCHE_NAMES: Record<number, string> = {
   '5': "Coinlist Option 1 / Community Whitelist",
   '6': "Coinlist Option 2",
-  '7': "Coinlist Option 3",
-  '11': "Fairground rewards"
+  '7': "Coinlist Option 3"
 }
 
 /**
