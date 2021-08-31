@@ -1,6 +1,6 @@
 import "./tranche-table.scss";
 
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import {
   KeyValueTable,
   KeyValueTableRow,
@@ -8,6 +8,7 @@ import {
 import { BigNumber } from "../../lib/bignumber";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { format } from "date-fns";
+import { Link } from "react-router-dom";
 
 export interface TrancheTableProps {
   tranche: Tranche;
@@ -48,10 +49,16 @@ export const TrancheTable = ({
   } else if (!trancheFullyLocked && !redeemable) {
     message = (
       <div>
-        {t(
-          "You must reduce your associated vesting tokens by at least {{amount}} to redeem from this tranche. Manage your stake or just dissociate your tokens.",
-          { amount: reduceAmount }
-        )}
+        <Trans
+          i18nKey="You must reduce your associated vesting tokens by at least {{amount}} to redeem from this tranche. <stakeLink>Manage your stake</stakeLink> or just <disassociateLink>dissociate your tokens</disassociateLink>."
+          values={{
+            amount: reduceAmount,
+          }}
+          components={{
+            stakeLink: <Link to={`/staking`} />,
+            disassociateLink: <Link to={`/staking/disassociate`} />,
+          }}
+        />
       </div>
     );
   } else if (!trancheFullyLocked && redeemable) {
