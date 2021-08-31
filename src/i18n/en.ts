@@ -249,7 +249,8 @@ const en = {
   Epoch: "Epoch",
   Started: "Started",
   "Ends in": "Ends in",
-  // Node Validator
+
+  // Staking
   "Node invalid": "Node invalid",
   "Manage your stake": "Manage your stake",
   "Add Stake": "Add Stake",
@@ -328,6 +329,14 @@ const en = {
   "Governance is coming soon": "Governance is coming soon",
   "Staking is coming soon": "Staking is coming soon",
   "VESTING VEGA TOKENS": "VESTING VEGA TOKENS",
+
+  stakingStep1: "Step 1. Connect to a Vega wallet",
+  stakingStep1Text:
+    "You will need a <vegaWalletLink>Vega wallet</vegaWalletLink> to control stake and receive staking rewards.",
+  stakingStep2: "Step 2. Associate tokens with a Vega wallet",
+  stakingStep2Text:
+    "Your tokens need to be <associateLink>associated with a Vega wallet</associateLink> so that it can control your stake",
+  stakingStep3: "Step3. Select the validator you'd like to nominate",
 };
 
 export default en;
