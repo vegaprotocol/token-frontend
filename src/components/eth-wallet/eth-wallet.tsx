@@ -59,7 +59,7 @@ const ConnectedKey = () => {
 
   return (
     <>
-      <WalletCardRow label={t("In Wallet")} dark={true} />
+      <WalletCardRow label={t("In wallet")} dark={true} />
       <WalletCardRow
         label={t("Not staked")}
         value={walletBalance}

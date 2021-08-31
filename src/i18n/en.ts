@@ -192,7 +192,9 @@ const en = {
   checkingForProvider: "Checking for provider",
   "Awaiting action in wallet...":
     "Awaiting action in Ethereum wallet (e.g. metamask)",
-  "Connect with Metamask": "Connect with Metamask",
+  Connect: "Connect to see your VEGA balance",
+  "In wallet": "In wallet",
+  "Not staked": "Not staked",
 
   // Vega wallet
   viewKeys: "View keys",
@@ -324,9 +326,7 @@ const en = {
   "{{amount}} VEGA tokens have been returned to Ethereum wallet":
     "{{amount}} VEGA tokens have been returned to Ethereum wallet",
   "Disassociate VEGA Tokens from key": "Disassociate VEGA Tokens from key",
-  "Not staked": "Not staked",
   "In Wallet": "In Wallet",
-  Connect: "Connect",
 };
 
 export default en;
