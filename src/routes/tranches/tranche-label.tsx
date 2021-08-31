@@ -1,9 +1,9 @@
 import { Addresses, EthereumChainId, EthereumChainIds } from "../../lib/web3-utils";
 
-const TRANCHE_NAMES: Record<number, string> = {
-  '5': "Coinlist Option 1 / Community Whitelist",
-  '6': "Coinlist Option 2",
-  '7': "Coinlist Option 3"
+const TRANCHE_LABELS: Record<number, string[]> = {
+  '5': ["Coinlist Option 1", "Community Whitelist"],
+  '6': ["Coinlist Option 2"],
+  '7': ["Coinlist Option 3"]
 }
 
 /**
@@ -16,7 +16,7 @@ const TRANCHE_NAMES: Record<number, string> = {
  * @param chainId The ID of the chain this contract is on
  * @param id The tranche ID on this contract
  */
-export const TrancheTitle = ({contract, chainId, id}: {
+export const TrancheLabel = ({contract, chainId, id}: {
   chainId: EthereumChainId | null,
   contract: string,
   id: number
@@ -25,8 +25,10 @@ export const TrancheTitle = ({contract, chainId, id}: {
   if (chainId && chainId === EthereumChainIds.Mainnet && contract === Addresses[chainId].vestingAddress) {
 
     // Only some tranches have titles worth showing
-    if (TRANCHE_NAMES[id]) {
-      return <strong className="tranche-title">{TRANCHE_NAMES[id]}</strong>
+    if (TRANCHE_LABELS[id]) {
+      return <div className="tranche-titles">
+        {TRANCHE_LABELS[id].map((t, i) => <strong className="tranche-title" key={`tranche-${id}-${i}`}>{t}</strong>)}
+      </div>
     }
   }
 
