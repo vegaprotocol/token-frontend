@@ -27,6 +27,11 @@ export function EpochCountdown({
   const progress = React.useMemo(() => {
     const start = startDate.getTime();
     const end = endDate.getTime();
+
+    if (now > end) {
+      return 1;
+    }
+
     // round it to make testing easier
     return Number(((now - start) / (end - start)).toFixed(2));
   }, [startDate, endDate, now]);
@@ -69,7 +74,9 @@ export function EpochCountdown({
         {t("Started")} {format(startDate, DATE_FORMAT)}
       </p>
       <p>
-        {t("Ends in")} ~{endsIn}
+        {Date.now() > endDate.getTime()
+          ? t("Ended on {{endText}}", { endText: format(endDate, DATE_FORMAT) })
+          : t("Ends in {{endText}}", { endText: endsIn })}
       </p>
     </div>
   );

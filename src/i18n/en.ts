@@ -251,7 +251,8 @@ const en = {
 
   // Staking
   "Node invalid": "Node invalid",
-  "Ends In": "Ends in",
+  "Ends in {{endText}}": "Ends in {{endText}}",
+  "Ended on {{endText}}": "Ended on {{endText}}",
   // Node Validator
   "Manage your stake": "Manage your stake",
   "Add Stake": "Add Stake",
