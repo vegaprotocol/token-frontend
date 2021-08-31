@@ -10,7 +10,7 @@ import { Staking as StakingQueryResult } from "./__generated__/Staking";
 import { BigNumber } from "../../lib/bignumber";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 export const STAKING_QUERY = gql`
   query Staking($partyId: ID!) {
@@ -112,32 +112,37 @@ export const Staking = () => {
     <>
       <section>
         <BulletHeader tag="h2" style={{ marginTop: 0 }}>
-          Step 1. Connect to a vega wallet
+          {t("stakingStep1")}
         </BulletHeader>
         <p>
-          You will need a{" "}
-          <a href={Links.VEGA_WALLET_RELEASES} target="_blank" rel="noreferrer">
-            Vega wallet
-          </a>{" "}
-          to control stake and receive staking rewards.
+          <Trans
+            i18nKey="stakingStep1Text"
+            components={{
+              vegaWalletLink: (
+                // eslint-disable-next-line
+                <a
+                  href={Links.VEGA_WALLET_RELEASES}
+                  target="_blank"
+                  rel="noreferrer"
+                />
+              ),
+            }}
+          />
         </p>
       </section>
       <section>
-        <BulletHeader tag="h2">
-          Step 2. Associate tokens with a Vega wallet
-        </BulletHeader>
+        <BulletHeader tag="h2">{t("stakingStep2")}</BulletHeader>
         <p>
-          Your tokens need to be{" "}
-          <Link to={`${match.path}/associate`}>
-            associated with a Vega wallet
-          </Link>{" "}
-          so that it can control your stake
+          <Trans
+            i18nKey="stakingStep2Text"
+            components={{
+              associateLink: <Link to={`${match.path}/associate`} />,
+            }}
+          />
         </p>
       </section>
       <section>
-        <BulletHeader tag="h2">
-          Step 3. Select the validator you'd like to nominate
-        </BulletHeader>
+        <BulletHeader tag="h2">{t("stakingStep3")}</BulletHeader>
         <NodeList nodes={nodes} />
       </section>
     </>
