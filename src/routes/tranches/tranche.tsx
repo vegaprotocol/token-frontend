@@ -40,7 +40,6 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
     <>
       <BulletHeader tag="h2">
         {t("Tranche")} #{trancheId}&nbsp;
-        <TrancheLabel chainId={appState.chainId} contract={appState.contractAddresses.vestingAddress} id={tranche.tranche_id} />
       </BulletHeader>
       <div style={{ marginTop: 20 }}>
         <TrancheDates start={tranche.tranche_start} end={tranche.tranche_end} />
@@ -72,6 +71,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
             {getAbbreviatedNumber(tranche.total_added)})
           </span>
         </div>
+        <TrancheLabel chainId={appState.chainId} contract={appState.contractAddresses.vestingAddress} id={tranche.tranche_id} />
       </div>
       <BulletHeader tag="h2">{t("Users")}</BulletHeader>
       {tranche.users.length ? (
