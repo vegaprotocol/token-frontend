@@ -17,6 +17,27 @@ import { useVegaWallet } from "../../hooks/use-vega-wallet";
 import { VegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
 import { useVegaStaking } from "../../hooks/use-vega-staking";
 import { BigNumber } from "../../lib/bignumber";
+import { gql, useApolloClient } from "@apollo/client";
+import {
+  Delegations,
+  DelegationsVariables,
+  Delegations_party_delegations,
+} from "./__generated__/Delegations";
+
+const DELEGATIONS_QUERY = gql`
+  query Delegations($partyId: ID!) {
+    epoch {
+      id
+    }
+    party(id: $partyId) {
+      delegations {
+        amount
+        node
+        epoch
+      }
+    }
+  }
+`;
 
 export const VegaWallet = () => {
   const { t } = useTranslation();
@@ -101,6 +122,35 @@ const VegaWalletConnected = ({
   const [disconnecting, setDisconnecting] = React.useState(false);
   const staking = useVegaStaking();
   const [expanded, setExpanded] = React.useState(false);
+  const client = useApolloClient();
+  const [delegations, setDelegations] = React.useState<
+    Delegations_party_delegations[]
+  >([]);
+  React.useEffect(() => {
+    let interval: any;
+    if (currVegaKey?.pub) {
+      console.log(currVegaKey.pub);
+      // start polling for delegation
+      interval = setInterval(() => {
+        client
+          .query<Delegations, DelegationsVariables>({
+            query: DELEGATIONS_QUERY,
+            variables: { partyId: currVegaKey.pub },
+            // pollInterval: 1000,
+          })
+          .then((res) => {
+            const filter =
+              res.data.party?.delegations?.filter((d) => {
+                return d.epoch.toString() === res.data.epoch.id;
+              }) || [];
+            setDelegations(filter);
+          })
+          .catch((err: Error) => console.log(err));
+      }, 1000);
+    }
+
+    return () => clearInterval(interval);
+  }, [client, currVegaKey?.pub]);
 
   const handleDisconnect = React.useCallback(
     async function () {
@@ -136,6 +186,13 @@ const VegaWalletConnected = ({
           valueSuffix={t("VEGA")}
         />
       ) : null}
+      {delegations.map((d) => (
+        <WalletCardRow
+          label={d.node}
+          value={d.amount}
+          valueSuffix={t("VEGA")}
+        />
+      ))}
       {expanded && (
         <ul className="vega-wallet__key-list">
           {vegaKeys
