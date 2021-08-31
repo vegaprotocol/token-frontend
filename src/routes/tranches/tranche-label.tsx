@@ -23,7 +23,7 @@ export const TrancheLabel = ({contract, chainId, id}: {
   id: number
 }) => {
   // Only mainnet tranches on the known vesting contract have useful name
-//  if (chainId && chainId === EthereumChainIds.Mainnet && contract === Addresses[chainId].vestingAddress) {
+  if (chainId && chainId === EthereumChainIds.Mainnet && contract === Addresses[chainId].vestingAddress) {
 
     // Only some tranches have titles worth showing
     if (TRANCHE_LABELS[id]) {
@@ -31,7 +31,7 @@ export const TrancheLabel = ({contract, chainId, id}: {
         {TRANCHE_LABELS[id].map((t, i) => <strong className="tranche-label" key={`tranche-${id}-${i}`}>{t}</strong>)}
       </div>
     }
- // }
+  }
 
   return null
 };
