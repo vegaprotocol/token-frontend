@@ -60,7 +60,7 @@ export const Staking = () => {
   const nodes = React.useMemo<NodeListItemProps[]>(() => {
     if (!data?.nodes) return [];
 
-    return data.nodes.map((node) => {
+    const nodesWithPercentages = data.nodes.map((node) => {
       const stakedTotal = new BigNumber(data?.nodeData?.stakedTotal || 0);
       const stakedOnNode = new BigNumber(node.stakedTotal);
       const stakedTotalPercentage =
@@ -84,12 +84,20 @@ export const Staking = () => {
 
       return {
         id: node.id,
-        stakedTotal: stakedTotal.toString(),
+        stakedTotal,
         stakedTotalPercentage,
-        userStake: userStake.toString(),
+        userStake,
         userStakePercentage,
       };
     });
+
+    const sortedByStake = nodesWithPercentages.sort((a, b) => {
+      if (a.stakedTotal.isLessThan(b.stakedTotal)) return -1;
+      if (a.stakedTotal.isGreaterThan(b.stakedTotal)) return 1;
+      return 0;
+    });
+
+    return sortedByStake;
   }, [data]);
 
   if (error) {
