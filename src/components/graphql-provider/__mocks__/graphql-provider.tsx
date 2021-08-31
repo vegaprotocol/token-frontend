@@ -105,6 +105,11 @@ const MOCK_STAKING_NODE_QUERY: MockedResponse<StakeNode> = {
         },
       },
       nodeData,
+      party: {
+        __typename: "Party",
+        id: partyId,
+        delegations: [],
+      },
     },
   },
 };

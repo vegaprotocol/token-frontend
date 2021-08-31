@@ -95,6 +95,27 @@ export interface StakeNode_nodeData {
   stakedTotal: string;
 }
 
+export interface StakeNode_party_delegations {
+  __typename: "Delegation";
+  /**
+   * Amount delegated
+   */
+  amount: string;
+  /**
+   * Epoch of delegation
+   */
+  epoch: number;
+}
+
+export interface StakeNode_party {
+  __typename: "Party";
+  /**
+   * Party identifier
+   */
+  id: string;
+  delegations: StakeNode_party_delegations[] | null;
+}
+
 export interface StakeNode {
   /**
    * specific node in network
@@ -108,6 +129,10 @@ export interface StakeNode {
    * returns information about nodes
    */
   nodeData: StakeNode_nodeData | null;
+  /**
+   * An entity that is trading on the VEGA network
+   */
+  party: StakeNode_party | null;
 }
 
 export interface StakeNodeVariables {
