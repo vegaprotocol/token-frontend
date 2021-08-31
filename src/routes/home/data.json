@@ -1,478 +1,478 @@
 [
   {
-    "Date": "2021-06-01",
-    "Team": 0,
-    "Early Investors": 0,
-    "Public sale": 0,
-    "Community": 266666.6667
+    "date": "2021-06-01",
+    "team": 0,
+    "earlyInvestors": 0,
+    "publicSale": 0,
+    "community": 266666.6667
   },
   {
-    "Date": "2021-07-01",
-    "Team": 0,
-    "Early Investors": 0,
-    "Public sale": 0,
-    "Community": 533333.3333
+    "date": "2021-07-01",
+    "team": 0,
+    "earlyInvestors": 0,
+    "publicSale": 0,
+    "community": 533333.3333
   },
   {
-    "Date": "2021-08-01",
-    "Team": 0,
-    "Early Investors": 0,
-    "Public sale": 0,
-    "Community": 800000
+    "date": "2021-08-01",
+    "team": 0,
+    "earlyInvestors": 0,
+    "publicSale": 0,
+    "community": 800000
   },
   {
-    "Date": "2021-09-01",
-    "Team": 0,
-    "Early Investors": 0,
-    "Public sale": 1625000,
-    "Community": 1200000
+    "date": "2021-09-01",
+    "team": 0,
+    "earlyInvestors": 0,
+    "publicSale": 1625000,
+    "community": 1200000
   },
   {
-    "Date": "2021-10-01",
-    "Team": 0,
-    "Early Investors": 974995.8,
-    "Public sale": 1625000,
-    "Community": 1600000
+    "date": "2021-10-01",
+    "team": 0,
+    "earlyInvestors": 974995.8,
+    "publicSale": 1625000,
+    "community": 1600000
   },
   {
-    "Date": "2021-11-01",
-    "Team": 0,
-    "Early Investors": 3865677.972,
-    "Public sale": 1625000,
-    "Community": 2000000
+    "date": "2021-11-01",
+    "team": 0,
+    "earlyInvestors": 3865677.972,
+    "publicSale": 1625000,
+    "community": 2000000
   },
   {
-    "Date": "2021-12-01",
-    "Team": 0,
-    "Early Investors": 4986020.425,
-    "Public sale": 1895833.333,
-    "Community": 2400000
+    "date": "2021-12-01",
+    "team": 0,
+    "earlyInvestors": 4986020.425,
+    "publicSale": 1895833.333,
+    "community": 2400000
   },
   {
-    "Date": "2022-01-01",
-    "Team": 0,
-    "Early Investors": 6106362.878,
-    "Public sale": 2166666.667,
-    "Community": 2800000
+    "date": "2022-01-01",
+    "team": 0,
+    "earlyInvestors": 6106362.878,
+    "publicSale": 2166666.667,
+    "community": 2800000
   },
   {
-    "Date": "2022-02-01",
-    "Team": 0,
-    "Early Investors": 7226705.331,
-    "Public sale": 2437500,
-    "Community": 3200000
+    "date": "2022-02-01",
+    "team": 0,
+    "earlyInvestors": 7226705.331,
+    "publicSale": 2437500,
+    "community": 3200000
   },
   {
-    "Date": "2022-03-01",
-    "Team": 287016.7333,
-    "Early Investors": 8347047.783,
-    "Public sale": 2708333.333,
-    "Community": 3600000
+    "date": "2022-03-01",
+    "team": 287016.7333,
+    "earlyInvestors": 8347047.783,
+    "publicSale": 2708333.333,
+    "community": 3600000
   },
   {
-    "Date": "2022-04-01",
-    "Team": 574033.4667,
-    "Early Investors": 9467390.236,
-    "Public sale": 2979166.667,
-    "Community": 3975000
+    "date": "2022-04-01",
+    "team": 574033.4667,
+    "earlyInvestors": 9467390.236,
+    "publicSale": 2979166.667,
+    "community": 3975000
   },
   {
-    "Date": "2022-05-01",
-    "Team": 861050.2,
-    "Early Investors": 10587732.69,
-    "Public sale": 3250000,
-    "Community": 4350000
+    "date": "2022-05-01",
+    "team": 861050.2,
+    "earlyInvestors": 10587732.69,
+    "publicSale": 3250000,
+    "community": 4350000
   },
   {
-    "Date": "2022-06-01",
-    "Team": 1982357.933,
-    "Early Investors": 11708075.14,
-    "Public sale": 3385416.667,
-    "Community": 4725000
+    "date": "2022-06-01",
+    "team": 1982357.933,
+    "earlyInvestors": 11708075.14,
+    "publicSale": 3385416.667,
+    "community": 4725000
   },
   {
-    "Date": "2022-07-01",
-    "Team": 3103665.667,
-    "Early Investors": 12828417.59,
-    "Public sale": 3520833.333,
-    "Community": 5100000
+    "date": "2022-07-01",
+    "team": 3103665.667,
+    "earlyInvestors": 12828417.59,
+    "publicSale": 3520833.333,
+    "community": 5100000
   },
   {
-    "Date": "2022-08-01",
-    "Team": 4224973.4,
-    "Early Investors": 13948760.05,
-    "Public sale": 3656250,
-    "Community": 5475000
+    "date": "2022-08-01",
+    "team": 4224973.4,
+    "earlyInvestors": 13948760.05,
+    "publicSale": 3656250,
+    "community": 5475000
   },
   {
-    "Date": "2022-09-01",
-    "Team": 5346281.133,
-    "Early Investors": 15069102.5,
-    "Public sale": 3791666.667,
-    "Community": 5850000
+    "date": "2022-09-01",
+    "team": 5346281.133,
+    "earlyInvestors": 15069102.5,
+    "publicSale": 3791666.667,
+    "community": 5850000
   },
   {
-    "Date": "2022-10-01",
-    "Team": 6467588.867,
-    "Early Investors": 16189444.95,
-    "Public sale": 3927083.333,
-    "Community": 6225000
+    "date": "2022-10-01",
+    "team": 6467588.867,
+    "earlyInvestors": 16189444.95,
+    "publicSale": 3927083.333,
+    "community": 6225000
   },
   {
-    "Date": "2022-11-01",
-    "Team": 7588896.6,
-    "Early Investors": 17309787.41,
-    "Public sale": 4062500,
-    "Community": 6600000
+    "date": "2022-11-01",
+    "team": 7588896.6,
+    "earlyInvestors": 17309787.41,
+    "publicSale": 4062500,
+    "community": 6600000
   },
   {
-    "Date": "2022-12-01",
-    "Team": 8710204.333,
-    "Early Investors": 18430129.86,
-    "Public sale": 4197916.667,
-    "Community": 6975000
+    "date": "2022-12-01",
+    "team": 8710204.333,
+    "earlyInvestors": 18430129.86,
+    "publicSale": 4197916.667,
+    "community": 6975000
   },
   {
-    "Date": "2023-01-01",
-    "Team": 9831512.067,
-    "Early Investors": 19550472.31,
-    "Public sale": 4333333.333,
-    "Community": 7350000
+    "date": "2023-01-01",
+    "team": 9831512.067,
+    "earlyInvestors": 19550472.31,
+    "publicSale": 4333333.333,
+    "community": 7350000
   },
   {
-    "Date": "2023-02-01",
-    "Team": 10952819.8,
-    "Early Investors": 20670814.76,
-    "Public sale": 4468750,
-    "Community": 7725000
+    "date": "2023-02-01",
+    "team": 10952819.8,
+    "earlyInvestors": 20670814.76,
+    "publicSale": 4468750,
+    "community": 7725000
   },
   {
-    "Date": "2023-03-01",
-    "Team": 12074127.53,
-    "Early Investors": 21791157.22,
-    "Public sale": 4604166.667,
-    "Community": 8100000
+    "date": "2023-03-01",
+    "team": 12074127.53,
+    "earlyInvestors": 21791157.22,
+    "publicSale": 4604166.667,
+    "community": 8100000
   },
   {
-    "Date": "2023-04-01",
-    "Team": 13195435.27,
-    "Early Investors": 22911499.67,
-    "Public sale": 4739583.333,
-    "Community": 8475000
+    "date": "2023-04-01",
+    "team": 13195435.27,
+    "earlyInvestors": 22911499.67,
+    "publicSale": 4739583.333,
+    "community": 8475000
   },
   {
-    "Date": "2023-05-01",
-    "Team": 14316743,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 8850000
+    "date": "2023-05-01",
+    "team": 14316743,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 8850000
   },
   {
-    "Date": "2023-06-01",
-    "Team": 15151034,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 9225000
+    "date": "2023-06-01",
+    "team": 15151034,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 9225000
   },
   {
-    "Date": "2023-07-01",
-    "Team": 15985325,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 9600000
+    "date": "2023-07-01",
+    "team": 15985325,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 9600000
   },
   {
-    "Date": "2023-08-01",
-    "Team": 16819616,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 9975000
+    "date": "2023-08-01",
+    "team": 16819616,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 9975000
   },
   {
-    "Date": "2023-09-01",
-    "Team": 17653907,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 10350000
+    "date": "2023-09-01",
+    "team": 17653907,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 10350000
   },
   {
-    "Date": "2023-10-01",
-    "Team": 18488198,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 10725000
+    "date": "2023-10-01",
+    "team": 18488198,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 10725000
   },
   {
-    "Date": "2023-11-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 11100000
+    "date": "2023-11-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 11100000
   },
   {
-    "Date": "2023-12-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 11475000
+    "date": "2023-12-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 11475000
   },
   {
-    "Date": "2024-01-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 11850000
+    "date": "2024-01-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 11850000
   },
   {
-    "Date": "2024-02-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 12225000
+    "date": "2024-02-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 12225000
   },
   {
-    "Date": "2024-03-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 12600000
+    "date": "2024-03-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 12600000
   },
   {
-    "Date": "2024-04-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 12700000
+    "date": "2024-04-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 12700000
   },
   {
-    "Date": "2024-05-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 12800000
+    "date": "2024-05-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 12800000
   },
   {
-    "Date": "2024-06-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 12900000
+    "date": "2024-06-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 12900000
   },
   {
-    "Date": "2024-07-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 13000000
+    "date": "2024-07-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 13000000
   },
   {
-    "Date": "2024-08-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 13100000
+    "date": "2024-08-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 13100000
   },
   {
-    "Date": "2024-09-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 13200000
+    "date": "2024-09-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 13200000
   },
   {
-    "Date": "2024-10-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 13300000
+    "date": "2024-10-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 13300000
   },
   {
-    "Date": "2024-11-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 13400000
+    "date": "2024-11-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 13400000
   },
   {
-    "Date": "2024-12-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 13500000
+    "date": "2024-12-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 13500000
   },
   {
-    "Date": "2025-01-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 13600000
+    "date": "2025-01-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 13600000
   },
   {
-    "Date": "2025-02-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 13700000
+    "date": "2025-02-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 13700000
   },
   {
-    "Date": "2025-03-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 13800000
+    "date": "2025-03-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 13800000
   },
   {
-    "Date": "2025-04-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 13900000
+    "date": "2025-04-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 13900000
   },
   {
-    "Date": "2025-05-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 14000000
+    "date": "2025-05-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 14000000
   },
   {
-    "Date": "2025-06-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 14100000
+    "date": "2025-06-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 14100000
   },
   {
-    "Date": "2025-07-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 14200000
+    "date": "2025-07-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 14200000
   },
   {
-    "Date": "2025-08-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 14300000
+    "date": "2025-08-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 14300000
   },
   {
-    "Date": "2025-09-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 14400000
+    "date": "2025-09-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 14400000
   },
   {
-    "Date": "2025-10-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 14500000
+    "date": "2025-10-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 14500000
   },
   {
-    "Date": "2025-11-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 14600000
+    "date": "2025-11-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 14600000
   },
   {
-    "Date": "2025-12-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 14700000
+    "date": "2025-12-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 14700000
   },
   {
-    "Date": "2026-01-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 14800000
+    "date": "2026-01-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 14800000
   },
   {
-    "Date": "2026-02-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 14900000
+    "date": "2026-02-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 14900000
   },
   {
-    "Date": "2026-03-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 15000000
+    "date": "2026-03-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 15000000
   },
   {
-    "Date": "2026-04-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 15000000
+    "date": "2026-04-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 15000000
   },
   {
-    "Date": "2026-05-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 15000000
+    "date": "2026-05-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 15000000
   },
   {
-    "Date": "2026-06-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 15000000
+    "date": "2026-06-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 15000000
   },
   {
-    "Date": "2026-07-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 15000000
+    "date": "2026-07-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 15000000
   },
   {
-    "Date": "2026-08-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 15000000
+    "date": "2026-08-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 15000000
   },
   {
-    "Date": "2026-09-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 15000000
+    "date": "2026-09-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 15000000
   },
   {
-    "Date": "2026-10-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 15000000
+    "date": "2026-10-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 15000000
   },
   {
-    "Date": "2026-11-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 15000000
+    "date": "2026-11-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 15000000
   },
   {
-    "Date": "2026-12-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 15000000
+    "date": "2026-12-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 15000000
   },
   {
-    "Date": "2027-01-01",
-    "Team": 19322489,
-    "Early Investors": 23724899,
-    "Public sale": 4875000,
-    "Community": 15000000
+    "date": "2027-01-01",
+    "team": 19322489,
+    "earlyInvestors": 23724899,
+    "publicSale": 4875000,
+    "community": 15000000
   }
 ]
