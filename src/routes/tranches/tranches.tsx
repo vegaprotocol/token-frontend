@@ -42,6 +42,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                     className="tranches__link"
                   >
                     <span>{t("Tranche")}</span>#{tranche.tranche_id}
+                    <TrancheTitle contract={appState.contractAddresses.vestingAddress} chainId={appState.chainId} id={tranche.tranche_id} />
                   </Link>
                   {isTestingTranche(tranche) ? (
                     <Callout>
@@ -51,11 +52,6 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                     </Callout>
                   ) : (
                     <>
-                      <TrancheTitle
-                        contract={appState.contractAddresses.vestingAddress}
-                        chainId={appState.chainId}
-                        id={tranche.tranche_id}
-                      />
                       <TrancheDates
                         start={tranche.tranche_start}
                         end={tranche.tranche_end}
