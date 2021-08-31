@@ -1,7 +1,7 @@
 import "./staking-node.scss";
 
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { ValidatorTable } from "./validator-table";
 import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
 import { EpochCountdown } from "./epoch-countdown";
@@ -56,7 +56,9 @@ interface StakingNodeProps {
 }
 
 export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
-  const { node } = useParams<{ node: string }>();
+  // TODO: Remove and get id via useParams. Eg:
+  // const node = useParams<{ node: string }>()
+  const node = TEMP_useNodeIdFromLocation();
   const { t } = useTranslation();
   const { data, loading, error } = useQuery<StakeNode, StakeNodeVariables>(
     STAKE_NODE_QUERY,
@@ -65,6 +67,8 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
       skip: !node,
     }
   );
+
+  console.log(data);
 
   if (error) {
     return (
@@ -121,3 +125,16 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
     </>
   );
 };
+
+// Hook to get the node id from the url. We need this because currently
+// the ides contain slashes which means the paths dont correctly match in
+// react router.
+function TEMP_useNodeIdFromLocation() {
+  const location = useLocation();
+  const regex = /\/staking\/(.+)$/;
+  const res = regex.exec(location.pathname);
+  if (res) {
+    return res[1];
+  }
+  return "";
+}
