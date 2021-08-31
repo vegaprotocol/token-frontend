@@ -1,0 +1,478 @@
+[
+  {
+    "Date": "2021-06-01",
+    "Team": 0,
+    "Early Investors": 0,
+    "Public sale": 0,
+    "Community": 266666.6667
+  },
+  {
+    "Date": "2021-07-01",
+    "Team": 0,
+    "Early Investors": 0,
+    "Public sale": 0,
+    "Community": 533333.3333
+  },
+  {
+    "Date": "2021-08-01",
+    "Team": 0,
+    "Early Investors": 0,
+    "Public sale": 0,
+    "Community": 800000
+  },
+  {
+    "Date": "2021-09-01",
+    "Team": 0,
+    "Early Investors": 0,
+    "Public sale": 1625000,
+    "Community": 1200000
+  },
+  {
+    "Date": "2021-10-01",
+    "Team": 0,
+    "Early Investors": 974995.8,
+    "Public sale": 1625000,
+    "Community": 1600000
+  },
+  {
+    "Date": "2021-11-01",
+    "Team": 0,
+    "Early Investors": 3865677.972,
+    "Public sale": 1625000,
+    "Community": 2000000
+  },
+  {
+    "Date": "2021-12-01",
+    "Team": 0,
+    "Early Investors": 4986020.425,
+    "Public sale": 1895833.333,
+    "Community": 2400000
+  },
+  {
+    "Date": "2022-01-01",
+    "Team": 0,
+    "Early Investors": 6106362.878,
+    "Public sale": 2166666.667,
+    "Community": 2800000
+  },
+  {
+    "Date": "2022-02-01",
+    "Team": 0,
+    "Early Investors": 7226705.331,
+    "Public sale": 2437500,
+    "Community": 3200000
+  },
+  {
+    "Date": "2022-03-01",
+    "Team": 287016.7333,
+    "Early Investors": 8347047.783,
+    "Public sale": 2708333.333,
+    "Community": 3600000
+  },
+  {
+    "Date": "2022-04-01",
+    "Team": 574033.4667,
+    "Early Investors": 9467390.236,
+    "Public sale": 2979166.667,
+    "Community": 3975000
+  },
+  {
+    "Date": "2022-05-01",
+    "Team": 861050.2,
+    "Early Investors": 10587732.69,
+    "Public sale": 3250000,
+    "Community": 4350000
+  },
+  {
+    "Date": "2022-06-01",
+    "Team": 1982357.933,
+    "Early Investors": 11708075.14,
+    "Public sale": 3385416.667,
+    "Community": 4725000
+  },
+  {
+    "Date": "2022-07-01",
+    "Team": 3103665.667,
+    "Early Investors": 12828417.59,
+    "Public sale": 3520833.333,
+    "Community": 5100000
+  },
+  {
+    "Date": "2022-08-01",
+    "Team": 4224973.4,
+    "Early Investors": 13948760.05,
+    "Public sale": 3656250,
+    "Community": 5475000
+  },
+  {
+    "Date": "2022-09-01",
+    "Team": 5346281.133,
+    "Early Investors": 15069102.5,
+    "Public sale": 3791666.667,
+    "Community": 5850000
+  },
+  {
+    "Date": "2022-10-01",
+    "Team": 6467588.867,
+    "Early Investors": 16189444.95,
+    "Public sale": 3927083.333,
+    "Community": 6225000
+  },
+  {
+    "Date": "2022-11-01",
+    "Team": 7588896.6,
+    "Early Investors": 17309787.41,
+    "Public sale": 4062500,
+    "Community": 6600000
+  },
+  {
+    "Date": "2022-12-01",
+    "Team": 8710204.333,
+    "Early Investors": 18430129.86,
+    "Public sale": 4197916.667,
+    "Community": 6975000
+  },
+  {
+    "Date": "2023-01-01",
+    "Team": 9831512.067,
+    "Early Investors": 19550472.31,
+    "Public sale": 4333333.333,
+    "Community": 7350000
+  },
+  {
+    "Date": "2023-02-01",
+    "Team": 10952819.8,
+    "Early Investors": 20670814.76,
+    "Public sale": 4468750,
+    "Community": 7725000
+  },
+  {
+    "Date": "2023-03-01",
+    "Team": 12074127.53,
+    "Early Investors": 21791157.22,
+    "Public sale": 4604166.667,
+    "Community": 8100000
+  },
+  {
+    "Date": "2023-04-01",
+    "Team": 13195435.27,
+    "Early Investors": 22911499.67,
+    "Public sale": 4739583.333,
+    "Community": 8475000
+  },
+  {
+    "Date": "2023-05-01",
+    "Team": 14316743,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 8850000
+  },
+  {
+    "Date": "2023-06-01",
+    "Team": 15151034,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 9225000
+  },
+  {
+    "Date": "2023-07-01",
+    "Team": 15985325,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 9600000
+  },
+  {
+    "Date": "2023-08-01",
+    "Team": 16819616,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 9975000
+  },
+  {
+    "Date": "2023-09-01",
+    "Team": 17653907,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 10350000
+  },
+  {
+    "Date": "2023-10-01",
+    "Team": 18488198,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 10725000
+  },
+  {
+    "Date": "2023-11-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 11100000
+  },
+  {
+    "Date": "2023-12-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 11475000
+  },
+  {
+    "Date": "2024-01-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 11850000
+  },
+  {
+    "Date": "2024-02-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 12225000
+  },
+  {
+    "Date": "2024-03-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 12600000
+  },
+  {
+    "Date": "2024-04-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 12700000
+  },
+  {
+    "Date": "2024-05-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 12800000
+  },
+  {
+    "Date": "2024-06-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 12900000
+  },
+  {
+    "Date": "2024-07-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 13000000
+  },
+  {
+    "Date": "2024-08-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 13100000
+  },
+  {
+    "Date": "2024-09-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 13200000
+  },
+  {
+    "Date": "2024-10-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 13300000
+  },
+  {
+    "Date": "2024-11-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 13400000
+  },
+  {
+    "Date": "2024-12-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 13500000
+  },
+  {
+    "Date": "2025-01-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 13600000
+  },
+  {
+    "Date": "2025-02-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 13700000
+  },
+  {
+    "Date": "2025-03-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 13800000
+  },
+  {
+    "Date": "2025-04-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 13900000
+  },
+  {
+    "Date": "2025-05-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 14000000
+  },
+  {
+    "Date": "2025-06-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 14100000
+  },
+  {
+    "Date": "2025-07-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 14200000
+  },
+  {
+    "Date": "2025-08-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 14300000
+  },
+  {
+    "Date": "2025-09-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 14400000
+  },
+  {
+    "Date": "2025-10-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 14500000
+  },
+  {
+    "Date": "2025-11-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 14600000
+  },
+  {
+    "Date": "2025-12-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 14700000
+  },
+  {
+    "Date": "2026-01-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 14800000
+  },
+  {
+    "Date": "2026-02-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 14900000
+  },
+  {
+    "Date": "2026-03-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 15000000
+  },
+  {
+    "Date": "2026-04-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 15000000
+  },
+  {
+    "Date": "2026-05-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 15000000
+  },
+  {
+    "Date": "2026-06-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 15000000
+  },
+  {
+    "Date": "2026-07-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 15000000
+  },
+  {
+    "Date": "2026-08-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 15000000
+  },
+  {
+    "Date": "2026-09-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 15000000
+  },
+  {
+    "Date": "2026-10-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 15000000
+  },
+  {
+    "Date": "2026-11-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 15000000
+  },
+  {
+    "Date": "2026-12-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 15000000
+  },
+  {
+    "Date": "2027-01-01",
+    "Team": 19322489,
+    "Early Investors": 23724899,
+    "Public sale": 4875000,
+    "Community": 15000000
+  }
+]
