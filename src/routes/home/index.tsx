@@ -11,12 +11,40 @@ import { Web3Container } from "../../components/web3-container";
 import { TemplateDefault } from "../../components/page-templates/template-default";
 import { TrancheContainer } from "../../components/tranche-container";
 import { VegaTokenContainer } from "../../components/vega-token-container";
+import { gql, useQuery } from "@apollo/client";
+import React from "react";
+import BigNumber from "bignumber.js";
+
+export const TOTAL_STAKED_QUERY = gql`
+  query Nodes {
+    nodes {
+      id
+      pubkey
+      infoUrl
+      location
+      stakedByOperator
+      stakedByDelegates
+      stakedTotal
+      pendingStake
+      epochData {
+        total
+        offline
+        online
+      }
+      status
+    }
+  }
+`;
 
 const Home = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
-
   const { t } = useTranslation();
-  const { appState } = useAppState();
+  const { data } = useQuery<any>(TOTAL_STAKED_QUERY);
+  const totalStaked = React.useMemo(() => {
+    const stakedBalances =
+      data?.nodes.map((n: any) => new BigNumber(n.stakedTotal)) || [];
+    return BigNumber.sum.apply(null, [new BigNumber(0), ...stakedBalances]);
+  }, [data]);
 
   return (
     <TemplateDefault title={t("pageTitleHome")}>
@@ -29,7 +57,10 @@ const Home = ({ name }: RouteChildProps) => {
                   <>
                     <h2>{t("The Vega Token")}</h2>
 
-                    <TokenDetails totalSupply={totalSupply} />
+                    <TokenDetails
+                      totalSupply={totalSupply}
+                      totalStaked={totalStaked.toString()}
+                    />
 
                     <h2>{t("Token Vesting")}</h2>
                     <p>
@@ -68,7 +99,7 @@ const Home = ({ name }: RouteChildProps) => {
                       )}
                     </p>
 
-                    <StakingOverview totalStaked={appState.totalStaked} />
+                    <StakingOverview totalStaked={totalStaked.toString()} />
 
                     <p>
                       <Link to={"/staking"}>
