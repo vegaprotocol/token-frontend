@@ -93,7 +93,7 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
         />
       )}
       <YourStake node={node} />
-      <StakingForm nodeId={node} />
+      <StakingForm nodeId={node} pubkey={vegaKey.pub} />
     </>
   );
 };
