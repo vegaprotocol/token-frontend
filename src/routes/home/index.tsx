@@ -6,7 +6,6 @@ import { useDocumentTitle } from "../../hooks/use-document-title";
 import { TokenDetails } from "./token-details";
 import { StakingOverview } from "./staking-overview";
 import { Link } from "react-router-dom";
-import { useAppState } from "../../contexts/app-state/app-state-context";
 import { Web3Container } from "../../components/web3-container";
 import { TemplateDefault } from "../../components/page-templates/template-default";
 import { TrancheContainer } from "../../components/tranche-container";
@@ -43,7 +42,9 @@ const Home = ({ name }: RouteChildProps) => {
   const totalStaked = React.useMemo(() => {
     const stakedBalances =
       data?.nodes.map((n: any) => new BigNumber(n.stakedTotal)) || [];
-    return BigNumber.sum.apply(null, [new BigNumber(0), ...stakedBalances]);
+    return BigNumber.sum
+      .apply(null, [new BigNumber(0), ...stakedBalances])
+      .toString();
   }, [data]);
 
   return (
@@ -59,7 +60,7 @@ const Home = ({ name }: RouteChildProps) => {
 
                     <TokenDetails
                       totalSupply={totalSupply}
-                      totalStaked={totalStaked.toString()}
+                      totalStaked={totalStaked}
                     />
 
                     <h2>{t("Token Vesting")}</h2>
@@ -99,7 +100,7 @@ const Home = ({ name }: RouteChildProps) => {
                       )}
                     </p>
 
-                    <StakingOverview totalStaked={totalStaked.toString()} />
+                    <StakingOverview totalStaked={totalStaked} />
 
                     <p>
                       <Link to={"/staking"}>
