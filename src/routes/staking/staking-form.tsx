@@ -9,6 +9,23 @@ import { Loader } from "../../components/loader";
 import { Tick } from "../../components/icons";
 import { Link } from "react-router-dom";
 import { Routes } from "../router-config";
+import { gql, useApolloClient } from "@apollo/client";
+import {
+  PartyDelegations,
+  PartyDelegationsVariables,
+} from "./__generated__/PartyDelegations";
+
+const PARTY_DELEGATIONS_QUERY = gql`
+  query PartyDelegations($partyId: String!) {
+    party(id: $partyId) {
+      delegations {
+        amount
+        node
+        epoch
+      }
+    }
+  }
+`;
 
 enum FormState {
   Default,
@@ -24,9 +41,11 @@ interface FormFields {
 
 interface StakingFormProps {
   nodeId: string;
+  pubkey: string;
 }
 
-export const StakingForm = ({ nodeId }: StakingFormProps) => {
+export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
+  const client = useApolloClient();
   const [formState, setFormState] = React.useState(FormState.Default);
   const vegaWallet = useVegaWallet();
   const { t } = useTranslation();
@@ -44,7 +63,7 @@ export const StakingForm = ({ nodeId }: StakingFormProps) => {
     setFormState(FormState.Pending);
     try {
       const [err] = await vegaWallet.commandSync({
-        pubKey: "",
+        pubKey: pubkey,
         delegateSubmission: {
           nodeId,
           amount: Number(fields.amount),
@@ -54,14 +73,43 @@ export const StakingForm = ({ nodeId }: StakingFormProps) => {
       if (err) {
         setFormState(FormState.Failure);
         Sentry.captureEvent(err);
-      } else {
-        setFormState(FormState.Success);
       }
+
+      // await success via poll
     } catch (err) {
       setFormState(FormState.Failure);
       Sentry.captureEvent(err);
     }
   }
+
+  React.useEffect(() => {
+    let interval: any;
+
+    if (formState === FormState.Success) {
+      // start polling for delegation
+      interval = setInterval(() => {
+        client
+          .query<PartyDelegations, PartyDelegationsVariables>({
+            query: PARTY_DELEGATIONS_QUERY,
+            variables: { partyId: pubkey },
+            pollInterval: 1000,
+          })
+          .then((res) => {
+            const delegation = res.data.party?.delegations?.find((d) => {
+              return d.node === nodeId; // && d.epoch === the next epoch?
+            });
+
+            if (delegation) {
+              setFormState(FormState.Success);
+              clearInterval(interval);
+            }
+          })
+          .catch((err) => console.log(err));
+      }, 1000);
+    }
+
+    return () => clearInterval(interval);
+  }, [formState, client, pubkey, nodeId]);
 
   if (formState === FormState.Failure) {
     return (
