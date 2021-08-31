@@ -32,6 +32,7 @@ export const TokenInput = ({
           type="number"
         />
         <button
+          type="button"
           onClick={() => setAmount(maximum.toString())}
           data-testid="token-amount-use-maximum"
           className="button-link token-input__use-maximum "
