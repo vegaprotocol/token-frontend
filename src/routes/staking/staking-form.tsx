@@ -27,7 +27,9 @@ const PARTY_DELEGATIONS_QUERY = gql`
     party(id: $partyId) {
       delegations {
         amount
-        node
+        node {
+          id
+        }
         epoch
       }
     }
@@ -102,7 +104,7 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
           })
           .then((res) => {
             const delegation = res.data.party?.delegations?.find((d) => {
-              return d.node === nodeId; // && d.epoch === the next epoch?
+              return d.node.id === nodeId; // && d.epoch === the next epoch?
             });
 
             if (delegation) {

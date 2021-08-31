@@ -74,7 +74,7 @@ const MOCK_STAKING_QUERY: MockedResponse<Staking> = {
           {
             __typename: "Delegation",
             amount: "100",
-            node: nodes[0].id,
+            node: nodes[0],
           },
         ],
       },
