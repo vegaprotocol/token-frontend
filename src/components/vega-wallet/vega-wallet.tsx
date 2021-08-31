@@ -129,7 +129,6 @@ const VegaWalletConnected = ({
   React.useEffect(() => {
     let interval: any;
     if (currVegaKey?.pub) {
-      console.log(currVegaKey.pub);
       // start polling for delegation
       interval = setInterval(() => {
         client
