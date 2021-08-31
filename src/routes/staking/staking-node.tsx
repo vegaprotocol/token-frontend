@@ -14,7 +14,7 @@ import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 
 export const STAKE_NODE_QUERY = gql`
-  query StakeNode($nodeId: String!) {
+  query StakeNode($nodeId: String!, $partyId: ID!) {
     node(id: $nodeId) {
       id
       pubkey
@@ -41,7 +41,7 @@ export const STAKE_NODE_QUERY = gql`
     nodeData {
       stakedTotal
     }
-    party {
+    party(id: $partyId) {
       id
       delegations(nodeId: $nodeId) {
         amount
@@ -61,7 +61,7 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
   const { data, loading, error } = useQuery<StakeNode, StakeNodeVariables>(
     STAKE_NODE_QUERY,
     {
-      variables: { nodeId: node },
+      variables: { nodeId: node, partyId: vegaKey.pub },
       skip: !node,
     }
   );
