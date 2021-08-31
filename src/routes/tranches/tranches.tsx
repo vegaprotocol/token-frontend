@@ -8,9 +8,9 @@ import { BulletHeader } from "../../components/bullet-header";
 import React from "react";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { Callout } from "../../components/callout";
-import {useAppState} from "../../contexts/app-state/app-state-context";
+import { useAppState } from "../../contexts/app-state/app-state-context";
 
-const trancheMinimum = 1;
+const trancheMinimum = 10;
 
 const isTestingTranche = (t: Tranche) =>
   !t.total_added.isEqualTo(0) &&
@@ -51,7 +51,11 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                     </Callout>
                   ) : (
                     <>
-                      <TrancheTitle contract={appState.contractAddresses.vestingAddress} chainId={appState.chainId} id={tranche.tranche_id} />
+                      <TrancheTitle
+                        contract={appState.contractAddresses.vestingAddress}
+                        chainId={appState.chainId}
+                        id={tranche.tranche_id}
+                      />
                       <TrancheDates
                         start={tranche.tranche_start}
                         end={tranche.tranche_end}
