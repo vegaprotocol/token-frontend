@@ -16,6 +16,7 @@ describe("Claim", () => {
     cy.visit("/claim");
     // When I try to connect
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // I see an error state
     cy.contains("Something doesn't look right");
     cy.contains(
@@ -65,6 +66,7 @@ describe("Claim", () => {
     cy.visit(link);
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // I see the correct error state
     cy.contains(
       "Connected to Ethereum key 0x0000000000000000000000000000000000000000."
@@ -91,6 +93,7 @@ describe("Claim", () => {
     cy.visit(link);
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // I see the correct error state
     cy.contains("Code expired").should("exist");
     cy.contains(
@@ -115,6 +118,7 @@ describe("Claim", () => {
     cy.visit(link);
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // I see the correct error state
     cy.contains("Tranche not found").should("exist");
   });
@@ -140,6 +144,7 @@ describe("Claim", () => {
     cy.visit(link);
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // I see the correct error state
     cy.contains("Code already used").should("exist");
     cy.contains(
@@ -170,6 +175,7 @@ describe("Claim", () => {
     cy.visit(link);
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // And I select a blocked country
     cy.get("[data-testid='country-selector'] input").click();
     cy.get("[data-testid='US']").click();
@@ -228,6 +234,7 @@ describe("Untargeted code", () => {
     cy.visit(link);
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // And I select a permitted country
     cy.get("[data-testid='country-selector'] input").click();
     cy.get("[data-testid='AF']").click();
@@ -264,6 +271,7 @@ describe("Untargeted code", () => {
     cy.visit(link);
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // And I select a permitted country
     cy.get("[data-testid='country-selector'] input").click();
     cy.get("[data-testid='AF']").click();
@@ -315,6 +323,7 @@ describe("Untargeted code", () => {
     cy.visit(link);
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // And I select a permitted country
     cy.get("[data-testid='country-selector'] input").click();
     cy.get("[data-testid='AF']").click();
@@ -340,6 +349,7 @@ describe("Untargeted code", () => {
     cy.visit(link);
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // And I select a permitted country
     cy.get("[data-testid='country-selector'] input").click();
     cy.get("[data-testid='AF']").click();
@@ -432,6 +442,7 @@ describe("Targeted code", () => {
     cy.visit(link);
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // And I select a permitted country
     cy.get("[data-testid='country-selector'] input").click();
     cy.get("[data-testid='AF']").click();
@@ -469,6 +480,7 @@ describe("Targeted code", () => {
     cy.visit(link);
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // And I select a permitted country
     cy.get("[data-testid='country-selector'] input").click();
     cy.get("[data-testid='AF']").click();
