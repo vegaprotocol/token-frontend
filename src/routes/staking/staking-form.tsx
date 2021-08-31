@@ -3,7 +3,6 @@ import "./staking-form.scss";
 import React from "react";
 import * as Sentry from "@sentry/react";
 import { FormGroup, Intent, Radio, RadioGroup } from "@blueprintjs/core";
-import { Controller, useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useVegaWallet } from "../../hooks/use-vega-wallet";
 import { Callout } from "../../components/callout";
@@ -16,6 +15,8 @@ import {
   PartyDelegations,
   PartyDelegationsVariables,
 } from "./__generated__/PartyDelegations";
+import { TokenInput } from "../../components/token-input";
+import BigNumber from "bignumber.js";
 
 const PARTY_DELEGATIONS_QUERY = gql`
   query PartyDelegations($partyId: String!) {
@@ -51,30 +52,18 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
   const [formState, setFormState] = React.useState(FormState.Default);
   const vegaWallet = useVegaWallet();
   const { t } = useTranslation();
-  const {
-    register,
-    handleSubmit,
-    control,
-    setValue,
-    formState: { errors },
-  } = useForm<FormFields>();
+  const [action, setAction] = React.useState<"add" | "remove" | undefined>();
+  const [amount, setAmount] = React.useState("");
 
-  const capitaliseFirstLetter = (input: string) => {
-    return input.charAt(0).toUpperCase() + input.slice(1);
-  };
-
-  const maxAmount = "555";
-  const amount = useWatch({ control, name: "amount" });
-  const action = useWatch({ control, name: "action" });
-
-  async function onSubmit(fields: FormFields) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     setFormState(FormState.Pending);
     try {
       const [err] = await vegaWallet.commandSync({
         pubKey: pubkey,
         delegateSubmission: {
           nodeId,
-          amount: Number(fields.amount),
+          amount: Number(amount),
         },
       });
 
@@ -167,62 +156,36 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
     );
   }
 
-  const onNewAction = (field: any) => {
-    window.history.replaceState(null, "", `?action=${action}`);
-    return field.onChange;
-  };
+  // const onNewAction = (field: any) => {
+  //   window.history.replaceState(null, "", `?action=${action}`);
+  //   return field.onChange;
+  // };
 
   return (
     <>
       <h2>{t("Manage your stake")}</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <FormGroup
-          helperText={errors.action?.message}
-          intent={errors.action?.message ? Intent.DANGER : Intent.NONE}
-        >
-          <Controller
-            control={control}
-            name="action"
-            rules={{ required: "Required" }}
-            render={({ field }) => {
-              return (
-                <RadioGroup
-                  onChange={onNewAction(field)}
-                  selectedValue={field.value}
-                  inline={true}
-                >
-                  <Radio value="add" label="Add" />
-                  <Radio value="remove" label="Remove" />
-                </RadioGroup>
-              );
-            }}
-          />
+      <form onSubmit={onSubmit}>
+        <FormGroup>
+          <RadioGroup
+            // @ts-ignore
+            onChange={(e) => setAction(e.target.value)}
+            selectedValue={action}
+            inline={true}
+          >
+            <Radio value="Add" label="Add" />
+            <Radio value="Remove" label="Remove" />
+          </RadioGroup>
         </FormGroup>
         {action !== undefined && (
           <>
             <h2>{t("How much to {{action}} in next epoch?", { action })}</h2>
-            <FormGroup
-              helperText={errors.amount?.message}
-              intent={errors.amount?.message ? Intent.DANGER : Intent.NONE}
-            >
-              <div className="staking-form__container">
-                <input
-                  className="staking-form__input"
-                  {...register("amount", { required: "Required" })}
-                  type="text"
-                />
-                <p className="staking-form__vega-label">{t("VEGA Tokens")}</p>
-                <button
-                  onClick={() => setValue("amount", maxAmount)}
-                  data-testid="staking-form-use-maximum"
-                  className="button-link"
-                >
-                  {t("Use maximum")}
-                </button>
-              </div>
-            </FormGroup>
+            <TokenInput
+              amount={amount}
+              setAmount={setAmount}
+              maximum={new BigNumber(555)}
+            />
             <button className="fill" type="submit">
-              {capitaliseFirstLetter(action)} {amount} VEGA tokens
+              {action} {amount} VEGA tokens
             </button>
           </>
         )}
