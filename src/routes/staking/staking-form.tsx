@@ -2,7 +2,7 @@ import "./staking-form.scss";
 
 import React from "react";
 import * as Sentry from "@sentry/react";
-import { FormGroup, Intent, Radio, RadioGroup } from "@blueprintjs/core";
+import { FormGroup, Radio, RadioGroup } from "@blueprintjs/core";
 import { useTranslation } from "react-i18next";
 import { useVegaWallet } from "../../hooks/use-vega-wallet";
 import { Callout } from "../../components/callout";
@@ -17,6 +17,10 @@ import {
 } from "./__generated__/PartyDelegations";
 import { TokenInput } from "../../components/token-input";
 import BigNumber from "bignumber.js";
+import {
+  DelegateSubmissionInput,
+  UndelegateSubmissionInput,
+} from "../../lib/vega-wallet/vega-wallet-service";
 
 const PARTY_DELEGATIONS_QUERY = gql`
   query PartyDelegations($partyId: String!) {
@@ -37,11 +41,6 @@ enum FormState {
   Failure,
 }
 
-interface FormFields {
-  amount: string;
-  action: "add" | "remove" | undefined;
-}
-
 interface StakingFormProps {
   nodeId: string;
   pubkey: string;
@@ -52,20 +51,30 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
   const [formState, setFormState] = React.useState(FormState.Default);
   const vegaWallet = useVegaWallet();
   const { t } = useTranslation();
-  const [action, setAction] = React.useState<"add" | "remove" | undefined>();
+  const [action, setAction] = React.useState<"Add" | "Remove" | undefined>();
   const [amount, setAmount] = React.useState("");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setFormState(FormState.Pending);
+    const delegateInput: DelegateSubmissionInput = {
+      pubKey: pubkey,
+      delegateSubmission: {
+        nodeId,
+        amount: Number(amount),
+      },
+    };
+    const undelegateInput: UndelegateSubmissionInput = {
+      pubKey: pubkey,
+      undelegateSubmission: {
+        nodeId,
+        amount: Number(amount),
+        method: "METHOD_AT_END_OF_EPOCH",
+      },
+    };
     try {
-      const [err] = await vegaWallet.commandSync({
-        pubKey: pubkey,
-        delegateSubmission: {
-          nodeId,
-          amount: Number(amount),
-        },
-      });
+      const command = action === "Add" ? delegateInput : undelegateInput;
+      const [err] = await vegaWallet.commandSync(command);
 
       if (err) {
         setFormState(FormState.Failure);
