@@ -1,21 +1,33 @@
+import BigNumber from "bignumber.js";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../components/key-value-table";
+import { StakeNode_party_delegations } from "./__generated__/StakeNode";
 
 export interface YourStakeProps {
-  node: string;
+  currentEpoch: string;
+  delegations: StakeNode_party_delegations[];
 }
 
-export const YourStake = ({ node }: YourStakeProps) => {
+export const YourStake = ({ currentEpoch, delegations }: YourStakeProps) => {
   const { t } = useTranslation();
 
-  // TODO get stake data based on the node
-  const nodeData = {
-    yourStakeThisEpoch: "1.00",
-    yourStakeNextEpoch: "10.00",
-  };
+  const stakeThisEpoch = React.useMemo(() => {
+    const amountsThisEpoch = delegations
+      .filter((d) => d.epoch === Number(currentEpoch))
+      .map((d) => new BigNumber(d.amount));
+    return BigNumber.sum.apply(null, [new BigNumber(0), ...amountsThisEpoch]);
+  }, [delegations, currentEpoch]);
+
+  const stakeNextEpoch = React.useMemo(() => {
+    const amountsNextEpoch = delegations
+      .filter((d) => d.epoch === Number(currentEpoch) + 1)
+      .map((d) => new BigNumber(d.amount));
+    return BigNumber.sum.apply(null, [new BigNumber(0), ...amountsNextEpoch]);
+  }, [delegations, currentEpoch]);
 
   return (
     <>
@@ -23,11 +35,11 @@ export const YourStake = ({ node }: YourStakeProps) => {
       <KeyValueTable>
         <KeyValueTableRow>
           <th>{t("Your Stake On Node (This Epoch)")}</th>
-          <td>{nodeData.yourStakeThisEpoch}</td>
+          <td>{stakeThisEpoch}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("Your Stake On Node (Next Epoch)")}</th>
-          <td>{nodeData.yourStakeNextEpoch}</td>
+          <td>{stakeNextEpoch}</td>
         </KeyValueTableRow>
       </KeyValueTable>
     </>
