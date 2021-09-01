@@ -373,6 +373,8 @@ const en = {
   "Associate VEGA tokens": "Associate VEGA tokens",
   "Nominate a validator": "Nominate a validator",
   "View Governance proposals": "View Governance proposals",
+  "This tranche unlocked prior to the token launch on 3rd Sept 2021. These tokens were all issued to institutions for distribution to purchasers, and to support listings and liquidity. They were unlocked early to ensure a smooth launch, but not sold or traded prior to the launch.":
+    "This tranche unlocked prior to the token launch on 3rd Sept 2021. These tokens were all issued to institutions for distribution to purchasers, and to support listings and liquidity. They were unlocked early to ensure a smooth launch, but not sold or traded prior to the launch.",
 };
 
 export default en;
