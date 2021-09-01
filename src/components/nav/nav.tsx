@@ -12,6 +12,7 @@ import {
 } from "../../contexts/app-state/app-state-context";
 import { EthWallet } from "../eth-wallet";
 import { useTranslation } from "react-i18next";
+import { Breadcrumbs } from "./breadcrumbs";
 
 export const Nav = () => {
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
@@ -41,6 +42,7 @@ export const Nav = () => {
           {isDesktop ? <NavLinks isDesktop={isDesktop} /> : <NavDrawer />}
         </div>
       </div>
+      <Breadcrumbs />
     </div>
   );
 };
