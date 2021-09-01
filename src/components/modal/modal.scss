@@ -1,0 +1,30 @@
+@import "../../styles/colors";
+
+.modal {
+  left: calc(50vw - 200px);
+  margin: 10vh 0;
+  top: 0;
+  width: 400px;
+  background: $white;
+  padding: 20px;
+  color: $black;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $black;
+  }
+
+  &__content {
+    > :first-child {
+      margin-top: 0;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+}

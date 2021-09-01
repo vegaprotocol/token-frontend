@@ -1,10 +1,8 @@
 import React from "react";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
-import { SplashLoader } from "../../components/splash-loader";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { RedemptionInformation } from "./home/redemption-information";
-import { RedemptionError } from "./redemption-error";
 import {
   initialRedemptionState,
   RedemptionActionType,
@@ -27,42 +25,18 @@ const RedemptionRouter = ({
   );
   React.useEffect(() => {
     const run = async () => {
+      const userTranches = tranches.filter((t) =>
+        t.users.some(
+          ({ address: a }) => a.toLowerCase() === address.toLowerCase()
+        )
+      );
       dispatch({
-        type: RedemptionActionType.SET_LOADING,
-        loading: true,
+        type: RedemptionActionType.SET_USER_TRANCHES,
+        userTranches,
       });
-      try {
-        const userTranches = tranches.filter((t) =>
-          t.users.some(
-            ({ address: a }) => a.toLowerCase() === address.toLowerCase()
-          )
-        );
-        dispatch({
-          type: RedemptionActionType.SET_USER_TRANCHES,
-          userTranches,
-        });
-      } catch (e) {
-        dispatch({
-          type: RedemptionActionType.ERROR,
-          error: e,
-        });
-      } finally {
-        dispatch({
-          type: RedemptionActionType.SET_LOADING,
-          loading: false,
-        });
-      }
     };
     run();
   }, [address, tranches, vesting]);
-
-  if (state.loading) {
-    return <SplashLoader />;
-  }
-
-  if (state.error) {
-    return <RedemptionError />;
-  }
 
   return (
     <Switch>

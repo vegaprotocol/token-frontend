@@ -1,6 +1,6 @@
 import "./tranche-table.scss";
 
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import {
   KeyValueTable,
   KeyValueTableRow,
@@ -8,6 +8,7 @@ import {
 import { BigNumber } from "../../lib/bignumber";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { format } from "date-fns";
+import { Link } from "react-router-dom";
 
 export interface TrancheTableProps {
   tranche: Tranche;
@@ -32,10 +33,44 @@ export const TrancheTable = ({
   const total = vested.plus(locked);
   const trancheFullyLocked =
     tranche.tranche_start.getTime() > new Date().getTime();
-  const unstaked = totalVested.plus(totalLocked).minus(lien);
-  const reduceAmount = totalVested.minus(BigNumber.max(unstaked, 0));
-
+  const totalAllTranches = totalVested.plus(totalLocked);
+  const unstaked = totalAllTranches.minus(lien);
+  const reduceAmount = vested.minus(BigNumber.max(unstaked, 0));
   const redeemable = reduceAmount.isLessThanOrEqualTo(0);
+
+  let message = null;
+  if (trancheFullyLocked || vested.isEqualTo(0)) {
+    message = (
+      <div>
+        {t(
+          "All the tokens in this tranche are locked and can not be redeemed yet."
+        )}
+      </div>
+    );
+  } else if (!trancheFullyLocked && !redeemable) {
+    message = (
+      <div>
+        <Trans
+          i18nKey="You must reduce your associated vesting tokens by at least {{amount}} to redeem from this tranche. <stakeLink>Manage your stake</stakeLink> or just <disassociateLink>dissociate your tokens</disassociateLink>."
+          values={{
+            amount: reduceAmount,
+          }}
+          components={{
+            stakeLink: <Link to={`/staking`} />,
+            disassociateLink: <Link to={`/staking/disassociate`} />,
+          }}
+        />
+      </div>
+    );
+  } else if (!trancheFullyLocked && redeemable) {
+    message = (
+      <button onClick={onClick}>
+        {t("Redeem unlocked VEGA from tranche {{id}}", {
+          id: tranche.tranche_id,
+        })}
+      </button>
+    );
+  }
   return (
     <section data-testid="tranche-table" className="tranche-table">
       <KeyValueTable numerical={true}>
@@ -65,28 +100,7 @@ export const TrancheTable = ({
         </KeyValueTableRow>
       </KeyValueTable>
       <div className="tranche-table__footer" data-testid="tranche-table-footer">
-        {trancheFullyLocked && (
-          <div>
-            {t(
-              "All the tokens in this tranche are locked and can not be redeemed yet."
-            )}
-          </div>
-        )}
-        {!trancheFullyLocked && !redeemable && (
-          <div>
-            {t(
-              "You must reduce your associated vesting tokens by at least {{amount}} to redeem from this tranche. Manage your stake or just dissociate your tokens.",
-              { amount: reduceAmount }
-            )}
-          </div>
-        )}
-        {!trancheFullyLocked && redeemable && (
-          <button onClick={onClick}>
-            {t("Redeem unlocked VEGA from tranche {{id}}", {
-              id: tranche.tranche_id,
-            })}
-          </button>
-        )}
+        {message}
       </div>
     </section>
   );

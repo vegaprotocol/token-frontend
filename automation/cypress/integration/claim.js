@@ -16,6 +16,7 @@ describe("Claim", () => {
     cy.visit("/claim");
     // When I try to connect
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // I see an error state
     cy.contains("Something doesn't look right");
     cy.contains(
@@ -65,6 +66,7 @@ describe("Claim", () => {
     cy.visit(link);
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // I see the correct error state
     cy.contains(
       "Connected to Ethereum key 0x0000000000000000000000000000000000000000."
@@ -91,6 +93,7 @@ describe("Claim", () => {
     cy.visit(link);
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // I see the correct error state
     cy.contains("Code expired").should("exist");
     cy.contains(
@@ -115,6 +118,7 @@ describe("Claim", () => {
     cy.visit(link);
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // I see the correct error state
     cy.contains("Tranche not found").should("exist");
   });
@@ -140,6 +144,7 @@ describe("Claim", () => {
     cy.visit(link);
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // I see the correct error state
     cy.contains("Code already used").should("exist");
     cy.contains(
@@ -170,6 +175,7 @@ describe("Claim", () => {
     cy.visit(link);
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // And I select a blocked country
     cy.get("[data-testid='country-selector'] input").click();
     cy.get("[data-testid='US']").click();
@@ -228,6 +234,7 @@ describe("Untargeted code", () => {
     cy.visit(link);
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // And I select a permitted country
     cy.get("[data-testid='country-selector'] input").click();
     cy.get("[data-testid='AF']").click();
@@ -238,17 +245,14 @@ describe("Untargeted code", () => {
       "exist"
     );
     // When the transaction errors
-    sendChainResponse(cy, "commit", "error", new Error("some error")).then(
-      () => {
-        // Then I see the error callout state
-        cy.contains("Something went wrong").should("exist");
-        cy.contains("Try again").should("exist");
-        // When I click try again
-        cy.contains("Try again").click();
-        // Then the form resets
-        cy.contains("Continue").should("exist");
-      }
-    );
+    sendChainResponse(cy, "commit", "error", new Error("some error"));
+    // Then I see the error callout state
+    cy.contains("Something went wrong").should("exist");
+    cy.contains("Try again").should("exist");
+    // When I click try again
+    cy.contains("Try again").click();
+    // Then the form resets
+    cy.contains("Continue").should("exist");
   });
 
   it("Renders error state if the transaction is rejected in step 2", () => {
@@ -267,6 +271,7 @@ describe("Untargeted code", () => {
     cy.visit(link);
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // And I select a permitted country
     cy.get("[data-testid='country-selector'] input").click();
     cy.get("[data-testid='AF']").click();
@@ -277,33 +282,25 @@ describe("Untargeted code", () => {
       "exist"
     );
     // When I permit the transaction
-    sendChainResponse(cy, "commit", "transactionHash", "hash").then(() => {
-      // Then I see transaction in progress and link
-      cy.contains("Transaction in progress").should("exist");
-      cy.contains("View on Etherscan (opens in a new tab)")
-        .should("have.attr", "href")
-        .and("match", /ropsten.etherscan.io\/tx\/hash/);
-      // When the transaction is complete
-      return sendChainResponse(cy, "commit", "receipt").then(() => {
-        // When I click the claim button
-        cy.contains("Claim 0.00001 VEGA").click();
-        // When the chain throws an error
-        return sendChainResponse(
-          cy,
-          "claim",
-          "error",
-          new Error("Some error")
-        ).then(() => {
-          // Then I see the error callout state
-          cy.contains("Something went wrong").should("exist");
-          cy.contains("Try again").should("exist");
-          // When I click try again
-          cy.contains("Try again").click();
-          // Then the form resets
-          cy.contains("Claim 0.00001 VEGA").should("exist");
-        });
-      });
-    });
+    sendChainResponse(cy, "commit", "transactionHash", "hash");
+    // Then I see transaction in progress and link
+    cy.contains("Transaction in progress").should("exist");
+    cy.contains("View on Etherscan (opens in a new tab)")
+      .should("have.attr", "href")
+      .and("match", /ropsten.etherscan.io\/tx\/hash/);
+    // When the transaction is complete
+    sendChainResponse(cy, "commit", "receipt");
+    // When I click the claim button
+    cy.contains("Claim 0.00001 VEGA").click();
+    // When the chain throws an error
+    sendChainResponse(cy, "claim", "error", new Error("Some error"));
+    // Then I see the error callout state
+    cy.contains("Something went wrong").should("exist");
+    cy.contains("Try again").should("exist");
+    // When I click try again
+    cy.contains("Try again").click();
+    // Then the form resets
+    cy.contains("Claim 0.00001 VEGA").should("exist");
   });
 
   it("Detects if the clam is committed but not used", () => {
@@ -326,6 +323,7 @@ describe("Untargeted code", () => {
     cy.visit(link);
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // And I select a permitted country
     cy.get("[data-testid='country-selector'] input").click();
     cy.get("[data-testid='AF']").click();
@@ -351,6 +349,7 @@ describe("Untargeted code", () => {
     cy.visit(link);
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // And I select a permitted country
     cy.get("[data-testid='country-selector'] input").click();
     cy.get("[data-testid='AF']").click();
@@ -361,65 +360,59 @@ describe("Untargeted code", () => {
       "exist"
     );
     // When I permit the transaction
-    sendChainResponse(cy, "commit", "transactionHash", "hash").then(() => {
-      // Then I see transaction in progress and link
-      cy.contains("Transaction in progress").should("exist");
-      cy.contains("View on Etherscan (opens in a new tab)")
-        .should("have.attr", "href")
-        .and("match", /ropsten.etherscan.io\/tx\/hash/);
-      // When the transaction is complete
-      return sendChainResponse(cy, "commit", "receipt").then(() => {
-        // Then the transaction callout shows complete and link
-        cy.contains("Complete").should("exist");
-        cy.get("[data-testid='claim-step-1']")
-          .contains("View on Etherscan (opens in a new tab)")
-          .should("have.attr", "href")
-          .and("match", /ropsten.etherscan.io\/tx\/hash/);
-        // When I click the claim button
-        cy.contains("Claim 0.00001 VEGA").click();
-        // Then I see the in progress state
-        cy.contains(
-          "Awaiting action in Ethereum wallet (e.g. metamask)"
-        ).should("exist");
-        // When the chain gives back a transaction hash
-        return sendChainResponse(cy, "claim", "transactionHash", "hash2").then(
-          () => {
-            // Then I see the in progress callout
-            cy.contains("Transaction in progress").should("exist");
-            cy.get("[data-testid='claim-step-2']")
-              .contains("View on Etherscan (opens in a new tab)")
-              .should("have.attr", "href")
-              .and("match", /ropsten.etherscan.io\/tx\/hash2/);
-            // When the chain confirms the transaction
-            return sendChainResponse(cy, "claim", "receipt").then(() => {
-              // Then i see the complete callout
-              cy.contains("Complete").should("exist");
-              cy.contains("View on Etherscan (opens in a new tab)");
+    sendChainResponse(cy, "commit", "transactionHash", "hash");
+    // Then I see transaction in progress and link
+    cy.contains("Transaction in progress").should("exist");
+    cy.contains("View on Etherscan (opens in a new tab)")
+      .should("have.attr", "href")
+      .and("match", /ropsten.etherscan.io\/tx\/hash/);
+    // When the transaction is complete
+    sendChainResponse(cy, "commit", "receipt");
+    // Then the transaction callout shows complete and link
+    cy.contains("Complete").should("exist");
+    cy.get("[data-testid='claim-step-1']")
+      .contains("View on Etherscan (opens in a new tab)")
+      .should("have.attr", "href")
+      .and("match", /ropsten.etherscan.io\/tx\/hash/);
+    // When I click the claim button
+    cy.contains("Claim 0.00001 VEGA").click();
+    // Then I see the in progress state
+    cy.contains("Awaiting action in Ethereum wallet (e.g. metamask)").should(
+      "exist"
+    );
+    // When the chain gives back a transaction hash
+    sendChainResponse(cy, "claim", "transactionHash", "hash2");
+    // Then I see the in progress callout
+    cy.contains("Transaction in progress").should("exist");
+    cy.get("[data-testid='claim-step-2']")
+      .contains("View on Etherscan (opens in a new tab)")
+      .should("have.attr", "href")
+      .and("match", /ropsten.etherscan.io\/tx\/hash2/);
+    // When the chain confirms the transaction
+    sendChainResponse(cy, "claim", "receipt");
+    // Then i see the complete callout
+    cy.contains("Complete").should("exist");
+    cy.contains("View on Etherscan (opens in a new tab)");
 
-              // THen the finished state is rendered
-              cy.contains("Claim complete").should("exist");
-              cy.contains(
-                "Ethereum address 0x0000000000000000000000000000000000000000 now has a vested right to 0.00123 VEGA tokens from tranche 1 of the vesting contract."
-              ).should("exist");
-              cy.contains("Link transaction:").should("exist");
-              cy.contains("Claim transaction:").should("exist");
-              cy.contains("hash")
-                .should("have.attr", "href")
-                .and("match", /ropsten.etherscan.io\/tx\/hash/);
-              cy.contains("hash2")
-                .should("have.attr", "href")
-                .and("match", /ropsten.etherscan.io\/tx\/hash2/);
-              cy.contains(
-                "eep track of locked tokens in your wallet with the VEGA (LOCKED) token."
-              ).should("exist");
-              cy.contains(
-                "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is 0x0356782bfb61cf0b0463746bc6fe8766aacae8f0. Hit the add token button in your ERC20 wallet and enter this address."
-              ).should("exist");
-            });
-          }
-        );
-      });
-    });
+    // THen the finished state is rendered
+    cy.contains("Claim complete").should("exist");
+    cy.contains(
+      "Ethereum address 0x0000000000000000000000000000000000000000 now has a vested right to 0.00123 VEGA tokens from tranche 1 of the vesting contract."
+    ).should("exist");
+    cy.contains("Link transaction:").should("exist");
+    cy.contains("Claim transaction:").should("exist");
+    cy.contains("hash")
+      .should("have.attr", "href")
+      .and("match", /ropsten.etherscan.io\/tx\/hash/);
+    cy.contains("hash2")
+      .should("have.attr", "href")
+      .and("match", /ropsten.etherscan.io\/tx\/hash2/);
+    cy.contains(
+      "eep track of locked tokens in your wallet with the VEGA (LOCKED) token."
+    ).should("exist");
+    cy.contains(
+      "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is 0x0356782bfb61cf0b0463746bc6fe8766aacae8f0. Hit the add token button in your ERC20 wallet and enter this address."
+    ).should("exist");
   });
 });
 
@@ -449,6 +442,7 @@ describe("Targeted code", () => {
     cy.visit(link);
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // And I select a permitted country
     cy.get("[data-testid='country-selector'] input").click();
     cy.get("[data-testid='AF']").click();
@@ -459,17 +453,14 @@ describe("Targeted code", () => {
       "exist"
     );
     // When the transaction errors
-    sendChainResponse(cy, "claim", "error", new Error("some error")).then(
-      () => {
-        // Then I see the error callout state
-        cy.contains("Something went wrong").should("exist");
-        cy.contains("Try again").should("exist");
-        // When I click try again
-        cy.contains("Try again").click();
-        // Then the form resets
-        cy.contains("Continue").should("exist");
-      }
-    );
+    sendChainResponse(cy, "claim", "error", new Error("some error"));
+    // Then I see the error callout state
+    cy.contains("Something went wrong").should("exist");
+    cy.contains("Try again").should("exist");
+    // When I click try again
+    cy.contains("Try again").click();
+    // Then the form resets
+    cy.contains("Continue").should("exist");
   });
 
   it("Allows uer to do a targeted claim", () => {
@@ -489,6 +480,7 @@ describe("Targeted code", () => {
     cy.visit(link);
     // And I connect my wallet
     cy.contains("Connect to an Ethereum wallet").click();
+    cy.get('[data-testid="connect-overlay"]').click();
     // And I select a permitted country
     cy.get("[data-testid='country-selector'] input").click();
     cy.get("[data-testid='AF']").click();
@@ -499,34 +491,32 @@ describe("Targeted code", () => {
       "exist"
     );
     // When the transaction errors
-    sendChainResponse(cy, "claim", "transactionHash", "hash").then(() => {
-      // Then I see the transaction pending callout state
-      cy.contains("Transaction in progress").should("exist");
-      cy.contains("View on Etherscan (opens in a new tab)")
-        .should("have.attr", "href")
-        .and("match", /ropsten.etherscan.io\/tx\/hash/);
-      // WHen the chin confirms the tx
-      sendChainResponse(cy, "claim", "receipt", "hash").then(() => {
-        // Then i see the complete callout
-        cy.contains("Complete").should("exist");
-        cy.contains("View on Etherscan (opens in a new tab)");
+    sendChainResponse(cy, "claim", "transactionHash", "hash");
+    // Then I see the transaction pending callout state
+    cy.contains("Transaction in progress").should("exist");
+    cy.contains("View on Etherscan (opens in a new tab)")
+      .should("have.attr", "href")
+      .and("match", /ropsten.etherscan.io\/tx\/hash/);
+    // WHen the chin confirms the tx
+    sendChainResponse(cy, "claim", "receipt", "hash");
+    // Then i see the complete callout
+    cy.contains("Complete").should("exist");
+    cy.contains("View on Etherscan (opens in a new tab)");
 
-        // THen it renders completed state
-        cy.contains("Claim complete").should("exist");
-        cy.contains(
-          "Ethereum address 0x0000000000000000000000000000000000000000 now has a vested right to 0.00123 VEGA tokens from tranche 1 of the vesting contract."
-        ).should("exist");
-        cy.contains("Claim transaction:").should("exist");
-        cy.contains("hash")
-          .should("have.attr", "href")
-          .and("match", /ropsten.etherscan.io\/tx\/hash/);
-        cy.contains(
-          "Keep track of locked tokens in your wallet with the VEGA (LOCKED) token."
-        ).should("exist");
-        cy.contains(
-          "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is 0x0356782bfb61cf0b0463746bc6fe8766aacae8f0. Hit the add token button in your ERC20 wallet and enter this address."
-        ).should("exist");
-      });
-    });
+    // THen it renders completed state
+    cy.contains("Claim complete").should("exist");
+    cy.contains(
+      "Ethereum address 0x0000000000000000000000000000000000000000 now has a vested right to 0.00123 VEGA tokens from tranche 1 of the vesting contract."
+    ).should("exist");
+    cy.contains("Claim transaction:").should("exist");
+    cy.contains("hash")
+      .should("have.attr", "href")
+      .and("match", /ropsten.etherscan.io\/tx\/hash/);
+    cy.contains(
+      "Keep track of locked tokens in your wallet with the VEGA (LOCKED) token."
+    ).should("exist");
+    cy.contains(
+      "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is 0x0356782bfb61cf0b0463746bc6fe8766aacae8f0. Hit the add token button in your ERC20 wallet and enter this address."
+    ).should("exist");
   });
 });

@@ -1,34 +1,29 @@
 name: Mocked backend tests
 
 on:
+  push:
+    branches: [master, develop]
   pull_request:
-    types: [labeled]
+    branches: [master, develop]
 
 jobs:
   cypress-run:
-    name: Cypress run
-    runs-on: ubuntu-latest
-    # https://github.com/cypress-io/cypress-docker-images/blob/master/browsers/README.md for more browser
-    container: cypress/browsers:node14.17.0-chrome91-ff89
-    if: ${{ github.event.label.name == 'readyTest' }}
-    strategy:
-      fail-fast: false
-      matrix:
-        containers: [1, 2]
+    if: contains(github.event.pull_request.labels.*.name, 'readyTest')
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Install root dependencies
         run: yarn install
+
       - name: Start server in the background
-        run: REACT_APP_REDEEM_LIVE=0 REACT_APP_CHAIN=0x3 REACT_APP_SHOW_NETWORK_SWITCHER=1 yarn start:mock &
+        run: REACT_APP_CHAIN=0x3 yarn start:mock &
 
       # Install yarn automation/ dependencies, cache them correctly
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          parallel: true
           wait-on: "http://localhost:3000"
           working-directory: automation
           wait-on-timeout: 120

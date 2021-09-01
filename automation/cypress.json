@@ -1,5 +1,5 @@
 {
   "baseUrl": "http://localhost:3000",
   "projectId": "9az7j4",
-  "testFiles":"**/*.feature"
+  "defaultCommandTimeout": 20000
 }

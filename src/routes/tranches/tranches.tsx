@@ -1,5 +1,6 @@
 import "./tranches.scss";
 import { Link, useRouteMatch } from "react-router-dom";
+import { TrancheLabel } from "./tranche-label";
 import { TrancheDates } from "./tranche-dates";
 import { useTranslation } from "react-i18next";
 import { TrancheProgress } from "./tranche-progress";
@@ -7,8 +8,9 @@ import { BulletHeader } from "../../components/bullet-header";
 import React from "react";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { Callout } from "../../components/callout";
+import { useAppState } from "../../contexts/app-state/app-state-context";
 
-const trancheMinimum = 1;
+const trancheMinimum = 10;
 
 const isTestingTranche = (t: Tranche) =>
   !t.total_added.isEqualTo(0) &&
@@ -22,6 +24,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
   const { t } = useTranslation();
   const match = useRouteMatch();
   const filteredTranches = tranches?.filter(shouldShowTranche) || [];
+  const { appState } = useAppState();
 
   return (
     <>
@@ -47,10 +50,12 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                       )}
                     </Callout>
                   ) : (
-                    <TrancheDates
-                      start={tranche.tranche_start}
-                      end={tranche.tranche_end}
-                    />
+                    <>
+                      <TrancheDates
+                        start={tranche.tranche_start}
+                        end={tranche.tranche_end}
+                      />
+                    </>
                   )}
                 </div>
                 <TrancheProgress
@@ -58,6 +63,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                   totalRemoved={tranche.total_removed}
                   totalAdded={tranche.total_added}
                 />
+                <TrancheLabel contract={appState.contractAddresses.vestingAddress} chainId={appState.chainId} id={tranche.tranche_id} />
               </li>
             );
           })}

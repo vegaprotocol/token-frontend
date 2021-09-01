@@ -37,10 +37,10 @@ h3,
 h4,
 h5,
 h6 {
-  color: $white;
   font-weight: 500;
   margin-top: 1em;
   margin-bottom: 15px;
+  color: $white;
 }
 
 p {
@@ -105,6 +105,14 @@ button {
 
     &:hover {
       color: $vega-yellow4 !important;
+    }
+
+    .invert & {
+      color: $black;
+
+      &:hover {
+        color: $black !important;
+      }
     }
   }
 }

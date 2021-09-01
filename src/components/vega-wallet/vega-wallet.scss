@@ -15,7 +15,7 @@
 
   &__key-list {
     list-style: none;
-    margin: 0 0 5px 0;
+    margin: 10px 0 5px 0;
     padding: 0;
 
     > li {
@@ -24,6 +24,7 @@
       cursor: pointer;
       text-decoration: underline;
       color: $text-color-deemphasise;
+      font-size: 14px;
 
       &:hover {
         color: $black;
@@ -31,39 +32,10 @@
     }
   }
 
-  &__expanded-container {
+  &__actions {
     display: flex;
-    flex-flow: column nowrap;
-    align-items: flex-end;
-  }
-
-  &__form {
-    input {
-      background: transparent;
-      border: 1px solid $black;
-      color: $black;
-
-      &:focus {
-        background: $light-gray3;
-        outline: none;
-      }
-    }
-  }
-
-  &__form-buttons {
-    display: flex;
-    gap: 10px;
-
-    button {
-      flex: 1 0 auto;
-    }
-  }
-
-  &__form-submit {
-    background-color: $vega-green3;
-  }
-
-  &__form-cancel {
-    background-color: $vega-red3;
+    justify-content: flex-end;
+    gap: 5px;
+    margin-top: 10px;
   }
 }

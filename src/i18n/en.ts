@@ -11,7 +11,8 @@ const en = {
   pageTitle404: "Page not found",
   pageTitleNotPermitted: "Can not proceed!",
   pageTitleDisassociate: "Dissociate VEGA tokens from a Vega key",
-  Vesting: "VESTING VEGA TOKENS",
+  pageTitleGovernance: "Governance",
+  Vesting: "Vesting",
   of: "of",
   to: "to",
 
@@ -103,15 +104,11 @@ const en = {
   "Claim {amount} Vega": "Claim {{amount}} VEGA",
   "Sorry. It is not possible to claim tokens in your country or region.":
     "It is not possible to claim tokens in your country or region.",
-  "tranche description":
-    "Tokens in this tranche unlock on {{unlockDate}} and continue to unlock gradually until {{trancheEndDate}} when all tokens are unlocked. Come back to token.vega.xyz to redeem your tokens once they begin to unlock.",
   "none redeemable":
     "Tokens in this tranche unlock on {{unlockDate}} and continue to unlock gradually until {{trancheEndDate}} when all tokens are unlocked. Come back to token.vega.xyz to redeem your tokens once they begin to unlock.",
   "partially redeemable":
-    "Tokens in this tranche began to unlock on {{unlockDate}} and will continue to unlock gradually until {{trancheEndDate}} when all tokens are unlocked. A redeem function will exist at token.vega.xyz in the near future",
+    "Tokens in this tranche began to unlock on {{unlockDate}} and will continue to unlock gradually until {{trancheEndDate}} when all tokens are unlocked.",
   "fully redeemable":
-    "Tokens in this tranche have fully unlocked and can be redeemed once claimed. A redeem function will exist at token.vega.xyz in the near future",
-  "Tokens in this tranche are fully unlocked.":
     "Tokens in this tranche have fully unlocked and can be redeemed once claimed.",
   "This page can not be found, please check the URL and try again.":
     "This page can not be found, please check the URL and try again.",
@@ -167,8 +164,8 @@ const en = {
     "All the tokens in this tranche are locked and can not be redeemed yet.",
   "Redeem unlocked VEGA from tranche {{id}}":
     "Redeem unlocked VEGA from tranche {{id}}",
-  "You must reduce your associated vesting tokens by at least {{amount}} to redeem from this tranche. Manage your stake or just dissociate your tokens.":
-    "You must reduce your associated vesting tokens by at least {{amount}} to redeem from this tranche. Manage your stake or just dissociate your tokens.",
+  "You must reduce your associated vesting tokens by at least {{amount}} to redeem from this tranche. <stakeLink>Manage your stake</stakeLink> or just <disassociateLink>dissociate your tokens</disassociateLink>.":
+    "You must reduce your associated vesting tokens by at least {{amount}} to redeem from this tranche. <stakeLink>Manage your stake</stakeLink> or just <disassociateLink>dissociate your tokens</disassociateLink>.",
   redemptionExplain:
     "Note: The redeem function attempts to redeem all unlocked tokens from a tranche. However, it will only work if all the amount you are redeeming would not reduce the amount you have staked while vesting.",
   "Use this page to redeem any unlocked VEGA tokens.":
@@ -179,7 +176,7 @@ const en = {
   "A total of {{amount}} Unlocked Vega tokens.":
     "A total of {{amount}} Unlocked Vega tokens.",
   "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.":
-    "The connected ethereum wallet ({{address}}) has {{balance}} VEGA tokens in {{tranches}} of the vesting contract.",
+    "The connected ethereum wallet ({{address}}) has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.",
   "Stake your Locked VEGA tokens!":
     "You can stake your VEGA tokens even while locked.",
   "Find out more about Staking.":
@@ -192,14 +189,14 @@ const en = {
   checkingForProvider: "Checking for provider",
   "Awaiting action in wallet...":
     "Awaiting action in Ethereum wallet (e.g. metamask)",
-  Connect: "Connect to see your VEGA balance",
+  "Connect with Metamask": "Connect with Metamask",
 
   // Vega wallet
   viewKeys: "View keys",
   vegaKey: "Vega key",
   noService:
     "Looks like the Vega wallet service isn't running. Please start it and refresh the page",
-  connectVegaWallet: "Connect to VEGA wallet",
+  connectVegaWallet: "Connect to Vega Wallet to control associated stake",
   disconnect: "Disconnect",
   awaitingDisconnect: "Disconnecting...",
   "Checking Vega wallet status": "Checking Vega wallet status",
@@ -249,7 +246,7 @@ const en = {
   // Epoch counter
   Epoch: "Epoch",
   Started: "Started",
-  "Ends in": 'Ends in',
+  "Ends in": "Ends in",
   // Node Validator
   "Manage your stake": "Manage your stake",
   "Add Stake": "Add Stake",
@@ -322,6 +319,13 @@ const en = {
   "{{amount}} VEGA tokens have been returned to Ethereum wallet":
     "{{amount}} VEGA tokens have been returned to Ethereum wallet",
   "Disassociate VEGA Tokens from key": "Disassociate VEGA Tokens from key",
+  "Not staked": "Not staked",
+  "In Wallet": "In Wallet",
+  Connect: "Connect",
+  "Read about Vesting on Vega": "Read about Vesting on Vega",
+  "Governance is coming soon": "Governance is coming soon",
+  "Staking is coming soon": "Staking is coming soon",
+  "VESTING VEGA TOKENS": "VESTING VEGA TOKENS",
 };
 
 export default en;

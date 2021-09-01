@@ -32,6 +32,8 @@ const initialAppState: AppState = {
   allowance: "",
   tranches: null,
   contractAddresses: Addresses[process.env.REACT_APP_CHAIN as EthereumChainId],
+  ethWalletOverlay: false,
+  vegaWalletOverlay: false,
   vegaWalletStatus: VegaWalletStatus.Pending,
   vegaKeys: null,
   currVegaKey: null,
@@ -44,6 +46,8 @@ const initialAppState: AppState = {
   totalLockedBalance: "",
   totalVestedBalance: "",
   tokenDataLoaded: false,
+  trancheError: null,
+  drawerOpen: false,
 };
 
 function appStateReducer(state: AppState, action: AppStateAction): AppState {
@@ -75,6 +79,7 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         allowance: action.allowance?.toString() || "",
         lien: action.lien?.toString() || "",
         connecting: false,
+        ethWalletOverlay: false,
       };
     case AppStateActionType.CONNECT_FAIL:
       return {
@@ -189,6 +194,34 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
           .toString(),
         trancheBalances: action.trancheBalances,
       };
+    case AppStateActionType.SET_TRANCHE_ERROR: {
+      return {
+        ...state,
+        trancheError: action.error,
+      };
+    }
+    case AppStateActionType.SET_VEGA_WALLET_OVERLAY: {
+      return {
+        ...state,
+        vegaWalletOverlay: action.isOpen,
+        drawerOpen: action.isOpen ? false : state.drawerOpen,
+      };
+    }
+    case AppStateActionType.SET_ETH_WALLET_OVERLAY: {
+      return {
+        ...state,
+        ethWalletOverlay: action.isOpen,
+        drawerOpen: action.isOpen ? false : state.drawerOpen,
+      };
+    }
+    case AppStateActionType.SET_DRAWER: {
+      return {
+        ...state,
+        drawerOpen: action.isOpen,
+        ethWalletOverlay: false,
+        vegaWalletOverlay: false,
+      };
+    }
   }
 }
 
@@ -197,24 +230,28 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
   const [state, dispatch] = React.useReducer(appStateReducer, initialAppState);
   // Detect provider
   React.useEffect(() => {
-    detectEthereumProvider().then((res: any) => {
-      // Extra check helps with Opera's legacy web3 - it properly falls through to NOT_DETECTED
-      if (res && res.request) {
-        provider.current = res;
+    detectEthereumProvider()
+      .then((res: any) => {
+        // Extra check helps with Opera's legacy web3 - it properly falls through to NOT_DETECTED
+        if (res && res.request) {
+          provider.current = res;
 
-        // The line below fails on legacy web3 as the method 'request' does not exist
-        provider.current
-          .request({ method: "eth_chainId" })
-          .then((chainId: string) => {
-            dispatch({
-              type: AppStateActionType.PROVIDER_DETECTED,
-              chainId: chainId as EthereumChainId,
+          // The line below fails on legacy web3 as the method 'request' does not exist
+          provider.current
+            .request({ method: "eth_chainId" })
+            .then((chainId: string) => {
+              dispatch({
+                type: AppStateActionType.PROVIDER_DETECTED,
+                chainId: chainId as EthereumChainId,
+              });
             });
-          });
-      } else {
+        } else {
+          dispatch({ type: AppStateActionType.PROVIDER_NOT_DETECTED });
+        }
+      })
+      .catch(() => {
         dispatch({ type: AppStateActionType.PROVIDER_NOT_DETECTED });
-      }
-    });
+      });
   }, []);
 
   if (state.providerStatus === ProviderStatus.Pending) {

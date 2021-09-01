@@ -12,11 +12,7 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
   const { t } = useTranslation();
 
   return (
-    <TemplateSidebar
-      title={t("pageTitleRedemption")}
-      sidebarButtonText={t("viewKeys")}
-      sidebar={[<EthWallet />]}
-    >
+    <TemplateSidebar title={t("pageTitleRedemption")} sidebar={[<EthWallet />]}>
       <Web3Container>
         {(address) => (
           <TrancheContainer address={address}>

@@ -13,7 +13,13 @@ import { TokenDetailsCirculating } from "./token-details-circulating";
 import { EthereumChainIds } from "../../../lib/web3-utils";
 import { truncateMiddle } from "../../../lib/truncate-middle";
 
-export const TokenDetails = ({ totalSupply }: { totalSupply: string }) => {
+export const TokenDetails = ({
+  totalSupply,
+  totalStaked,
+}: {
+  totalSupply: string;
+  totalStaked: string;
+}) => {
   const { t } = useTranslation();
 
   const { appState } = useAppState();
@@ -59,7 +65,7 @@ export const TokenDetails = ({ totalSupply }: { totalSupply: string }) => {
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Staked on Vega")}</th>
-        <td data-testid="staked">{appState.totalStaked}</td>
+        <td data-testid="staked">{totalStaked}</td>
       </KeyValueTableRow>
     </KeyValueTable>
   );

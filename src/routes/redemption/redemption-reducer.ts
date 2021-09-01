@@ -8,56 +8,31 @@ export interface TrancheBalance {
 }
 
 export interface RedemptionState {
-  error: Error | null;
   userTranches: Tranche[];
-  loading: boolean;
 }
 
 export const initialRedemptionState: RedemptionState = {
-  error: null,
   userTranches: [],
-  loading: false,
 };
 
 export enum RedemptionActionType {
-  ERROR,
   SET_USER_TRANCHES,
-  SET_LOADING,
 }
 
-export type RedemptionAction =
-  | {
-      type: RedemptionActionType.ERROR;
-      error: Error;
-    }
-  | {
-      type: RedemptionActionType.SET_USER_TRANCHES;
-      userTranches: Tranche[];
-    }
-  | {
-      type: RedemptionActionType.SET_LOADING;
-      loading: boolean;
-    };
+export type RedemptionAction = {
+  type: RedemptionActionType.SET_USER_TRANCHES;
+  userTranches: Tranche[];
+};
 
 export function redemptionReducer(
   state: RedemptionState,
   action: RedemptionAction
 ): RedemptionState {
   switch (action.type) {
-    case RedemptionActionType.SET_LOADING:
-      return {
-        ...state,
-        loading: action.loading,
-      };
     case RedemptionActionType.SET_USER_TRANCHES:
       return {
         ...state,
         userTranches: action.userTranches,
-      };
-    case RedemptionActionType.ERROR:
-      return {
-        ...state,
-        error: action.error,
       };
   }
 }
