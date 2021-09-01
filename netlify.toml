@@ -13,11 +13,9 @@
 [context.production.environment]
   REACT_APP_SENTRY_DSN = "https://4b8c8a8ba07742648aa4dfe1b8d17e40@o286262.ingest.sentry.io/5882996"
   REACT_APP_CHAIN = "0x1"
-  REACT_APP_SHOW_NETWORK_SWITCHER = "0"
   REACT_APP_MAINNET_DISABLED = '1'
 
 [context.deploy-preview.environment]
   REACT_APP_SENTRY_DSN = "https://4b8c8a8ba07742648aa4dfe1b8d17e40@o286262.ingest.sentry.io/5882996"
   REACT_APP_CHAIN = "0x3"
-  REACT_APP_SHOW_NETWORK_SWITCHER = "1"
   REACT_APP_MAINNET_DISABLED = '0'
