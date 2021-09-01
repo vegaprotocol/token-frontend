@@ -1,7 +1,7 @@
 import React from "react";
 import Web3 from "web3";
 import { useAppState } from "../contexts/app-state/app-state-context";
-import { IStaking, IVegaStaking, PromiEvent } from "../lib/web3-utils";
+import { IVegaStaking, PromiEvent } from "../lib/web3-utils";
 // @ts-ignore
 import StakingAbi from "../lib/VEGA_WEB3/vega-staking";
 import BigNumber from "bignumber.js";
