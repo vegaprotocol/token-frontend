@@ -43,6 +43,8 @@ enum FormState {
   Failure,
 }
 
+export type StakeAction = "Add" | "Remove" | undefined;
+
 interface StakingFormProps {
   nodeId: string;
   pubkey: string;
@@ -55,10 +57,17 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
   const [formState, setFormState] = React.useState(FormState.Default);
   const vegaWallet = useVegaWallet();
   const { t } = useTranslation();
-  const [action, setAction] = React.useState<"Add" | "Remove" | undefined>(
-    params.action
-  );
+  const [action, setAction] = React.useState<StakeAction>(params.action);
   const [amount, setAmount] = React.useState("");
+  const maxDelegation = React.useMemo(() => {
+    if (action === "Add") {
+      return new BigNumber(100);
+    }
+
+    if (action === "Remove") {
+      return new BigNumber(200);
+    }
+  }, [action]);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -168,7 +177,7 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
             <TokenInput
               amount={amount}
               setAmount={setAmount}
-              maximum={new BigNumber(555)}
+              maximum={maxDelegation}
             />
             <button className="fill" type="submit">
               {`${action}${amount ? ` ${amount}` : ""}`} {t("vegaTokens")}
