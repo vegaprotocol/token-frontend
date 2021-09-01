@@ -19,6 +19,8 @@ import {
 import { StakeSuccess } from "./stake-success";
 import { StakePending } from "./stake-pending";
 import { StakeFailure } from "./stake-failure";
+import { useHistory } from "react-router-dom";
+import { useSearchParams } from "../../hooks/use-search-params";
 
 export const PARTY_DELEGATIONS_QUERY = gql`
   query PartyDelegations($partyId: String!) {
@@ -47,11 +49,15 @@ interface StakingFormProps {
 }
 
 export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
+  const params = useSearchParams();
+  const history = useHistory();
   const client = useApolloClient();
   const [formState, setFormState] = React.useState(FormState.Default);
   const vegaWallet = useVegaWallet();
   const { t } = useTranslation();
-  const [action, setAction] = React.useState<"Add" | "Remove" | undefined>();
+  const [action, setAction] = React.useState<"Add" | "Remove" | undefined>(
+    params.action
+  );
   const [amount, setAmount] = React.useState("");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -130,19 +136,21 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
     return <StakeSuccess action={action} amount={amount} nodeId={nodeId} />;
   }
 
-  // const onNewAction = (field: any) => {
-  //   window.history.replaceState(null, "", `?action=${action}`);
-  //   return field.onChange;
-  // };
-
   return (
     <>
       <h2>{t("Manage your stake")}</h2>
       <form onSubmit={onSubmit} data-testid="stake-form">
         <FormGroup>
           <RadioGroup
-            // @ts-ignore
-            onChange={(e) => setAction(e.target.value)}
+            onChange={(e) => {
+              // @ts-ignore
+              const value = e.target.value;
+              setAction(value);
+              history.push({
+                pathname: history.location.pathname,
+                search: `?action=${value}`,
+              });
+            }}
             selectedValue={action}
             inline={true}
           >
