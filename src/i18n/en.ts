@@ -366,6 +366,10 @@ const en = {
     "How much to {{action}} in next epoch?",
 
   "Dissociate VEGA tokens": "Dissociate VEGA tokens",
+  "Early Investors": "Early Investors",
+  Team: "Team",
+  Community: "Community",
+  "Public Sale": "Public Sale",
 };
 
 export default en;
