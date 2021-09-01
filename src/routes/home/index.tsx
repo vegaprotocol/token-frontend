@@ -49,6 +49,8 @@ const Home = ({ name }: RouteChildProps) => {
                         totalStaked={totalStaked}
                       />
                       <h2>{t("Token Vesting")}</h2>
+                      <VestingChart />
+
                       <p>
                         {t(
                           "Most VEGA tokens are held in a vesting contract. This means that they cannot be transferred between wallets until their vesting term is complete"
@@ -64,7 +66,12 @@ const Home = ({ name }: RouteChildProps) => {
                           "Once tokens have unlocked they can be redeemed to the Ethereum wallet that owns them"
                         )}
                       </p>
-                      <VestingChart />
+                      <p>
+                        <Link to={"/vesting"}>
+                          {t("Read about Vesting on Vega")}
+                        </Link>
+                      </p>
+
                       <h2>{t("Governance")}</h2>
                       <p>
                         {t(
