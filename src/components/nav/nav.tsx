@@ -105,6 +105,9 @@ const NavLinks = ({ isDesktop }: { isDesktop: boolean }) => {
       <NavLink {...linkProps} to={Routes.STAKING}>
         Staking
       </NavLink>
+      <NavLink {...linkProps} to={Routes.GOVERNANCE}>
+        Governance
+      </NavLink>
     </nav>
   );
 };
