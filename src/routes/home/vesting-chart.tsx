@@ -100,7 +100,7 @@ export const VestingChart = () => {
           stackId="1"
           name={t("Community")}
         />
-        <Legend />
+        <Legend wrapperStyle={{ position: "relative" }} />
       </AreaChart>
     </ResponsiveContainer>
   );
