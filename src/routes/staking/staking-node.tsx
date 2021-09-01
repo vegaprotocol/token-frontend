@@ -71,8 +71,7 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
   if (error) {
     return (
       <Callout intent="error" title={t("Something went wrong")}>
-        <p>Query for node {node} failed.</p>
-        <pre>{error.message}</pre>
+        <p>{t("nodeQueryFailed", { node })}</p>
       </Callout>
     );
   }
@@ -84,20 +83,6 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
       </SplashScreen>
     );
   }
-
-  // TODO: update ui
-  // const renderStakeChild = () => {
-  //   switch () {
-  //     case RemoveStakeStatus.None:
-  //       return <StakingForm nodeId={node} pubkey={vegaKey.pub} />;
-  //     case RemoveStakeStatus.Pending:
-  //       return <StakingCalloutRemoving amount={amount} node={node} />;
-  //     case RemoveStakeStatus.Ready:
-  //       return <CalloutRemoveSuccess amount={amount} node={node} />;
-  //     default:
-  //       return <div>Not Found</div>;
-  //   }
-  // };
 
   return (
     <>
