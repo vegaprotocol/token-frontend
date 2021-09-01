@@ -26,6 +26,30 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
   const filteredTranches = tranches?.filter(shouldShowTranche) || [];
   const { appState } = useAppState();
 
+  const getContent = (tranche: Tranche) => {
+    console.log(tranche);
+    if (isTestingTranche(tranche)) {
+      return (
+        <Callout>
+          {t(
+            "This tranche was used to perform integration testing only prior to token launch and no tokens will enter the supply before 3rd Sep 2021."
+          )}
+        </Callout>
+      );
+    } else if (tranche.tranche_id === 10) {
+      return (
+        <Callout>
+          {t(
+            "This tranche unlocked prior to the token launch on 3rd Sept 2021. These tokens were all issued to institutions for distribution to purchasers, and to support listings and liquidity. They were unlocked early to ensure a smooth launch, but not sold or traded prior to the launch."
+          )}
+        </Callout>
+      );
+    }
+    return (
+      <TrancheDates start={tranche.tranche_start} end={tranche.tranche_end} />
+    );
+  };
+
   return (
     <>
       <BulletHeader tag="h2" style={{ marginTop: 0 }}>
@@ -45,20 +69,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                       >
                         <span>{t("Tranche")}</span>#{tranche.tranche_id}
                       </Link>
-                      {isTestingTranche(tranche) ? (
-                        <Callout>
-                          {t(
-                            "This tranche was used to perform integration testing only prior to token launch and no tokens will enter the supply before 3rd Sep 2021."
-                          )}
-                        </Callout>
-                      ) : (
-                        <>
-                          <TrancheDates
-                            start={tranche.tranche_start}
-                            end={tranche.tranche_end}
-                          />
-                        </>
-                      )}
+                      {getContent(tranche)}
                     </div>
                   </div>
                   <TrancheProgress
