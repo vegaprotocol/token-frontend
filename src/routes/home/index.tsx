@@ -63,6 +63,11 @@ const Home = ({ name }: RouteChildProps) => {
                         "Once tokens have unlocked they can be redeemed to the Ethereum wallet that owns them"
                       )}
                     </p>
+                    <p>
+                      <Link to={"/vesting"}>
+                        {t("Read about Vesting on Vega")}
+                      </Link>
+                    </p>
 
                     <h2>{t("Governance")}</h2>
                     <p>

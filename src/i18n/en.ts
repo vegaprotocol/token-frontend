@@ -321,6 +321,9 @@ const en = {
   "Not staked": "Not staked",
   "In Wallet": "In Wallet",
   Connect: "Connect",
+  "Read about Vesting on Vega": "Read about Vesting on Vega",
+  "Governance is coming soon": "Governance is coming soon",
+  "Staking is coming soon": "Staking is coming soon",
 };
 
 export default en;
