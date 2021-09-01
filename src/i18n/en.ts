@@ -369,6 +369,10 @@ const en = {
     "Tokens are held in different <trancheLink>Tranches</trancheLink>. Each tranche has its own schedule for how long the tokens are locked.",
   "To use your tokens on the Vega network they need to be associated with a Vega wallet/key.":
     "To use your tokens on the Vega network they need to be associated with a Vega wallet/key.",
+  "This can happen both while held in the vesting contract as well as when redeemed.":
+    "This can happen both while held in the vesting contract as well as when redeemed.",
+  "Get a Vega wallet": "Get a Vega wallet",
+  "Associate VEGA tokens": "Associate VEGA tokens",
 };
 
 export default en;

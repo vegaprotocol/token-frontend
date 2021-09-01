@@ -6,7 +6,6 @@ import { useDocumentTitle } from "../../hooks/use-document-title";
 import { TokenDetails } from "./token-details";
 import { Link, useHistory } from "react-router-dom";
 import { Web3Container } from "../../components/web3-container";
-import { TemplateDefault } from "../../components/page-templates/template-default";
 import { TrancheContainer } from "../../components/tranche-container";
 import { VegaTokenContainer } from "../../components/vega-token-container";
 import { gql, useQuery } from "@apollo/client";
@@ -106,9 +105,12 @@ const Home = ({ name }: RouteChildProps) => {
                             )}
                           </p>
                           <p>
-                            <Link to={"/governance"}>
+                            <button
+                              className="button-secondary"
+                              onClick={() => history.push("/governance")}
+                            >
                               {t("Read about Governance on Vega")}
-                            </Link>
+                            </button>
                           </p>
                         </div>
 
@@ -119,9 +121,12 @@ const Home = ({ name }: RouteChildProps) => {
                               "VEGA token holders can nominate a validator node and receive staking rewards."
                             )}
                           </p>
-                          <Link to={"/staking"}>
+                          <button
+                            className="button-secondary"
+                            onClick={() => history.push("/staking")}
+                          >
                             {t("Read about staking on Vega")}
-                          </Link>
+                          </button>
                         </div>
                       </div>
                     </>

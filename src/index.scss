@@ -90,6 +90,22 @@ button {
     width: 100%;
   }
 
+  &.button-secondary {
+    border: 1px solid $white;
+    border-radius: 0;
+    background: transparent;
+    color: white;
+
+    &:hover {
+      background: $dark-gray4;
+    }
+
+    &:active {
+      background: $white;
+      color: $black;
+    }
+  }
+
   &.button-link {
     display: inline;
     appearance: none;
