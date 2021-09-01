@@ -8,9 +8,18 @@
   }
 
   &__list-item {
-    padding: 20px 0;
     border-bottom: 1px solid $white;
+    padding: 20px 0;
+  }
+
+  &__list-item-container {
     color: $gray3;
+
+    @media (min-width: 960px) {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
   }
 
   &__item-title {
