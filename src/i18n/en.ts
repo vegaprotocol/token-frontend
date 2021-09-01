@@ -379,8 +379,7 @@ const en = {
     "VEGA token holders can vote on proposed changes to the network and create proposals.",
   "VEGA token holders can nominate a validator node and receive staking rewards.":
     "VEGA token holders can nominate a validator node and receive staking rewards.",
-  "USE YOUR VEGA TOKENS USE YOUR VEGA TOKENS":
-    "USE YOUR VEGA TOKENS USE YOUR VEGA TOKENS",
+  "USE YOUR VEGA TOKENS": "USE YOUR VEGA TOKENS",
 };
 
 export default en;
