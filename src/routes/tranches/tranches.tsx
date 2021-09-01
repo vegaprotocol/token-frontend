@@ -35,36 +35,42 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
         <ul className="tranches__list">
           {(showAll ? tranches : filteredTranches).map((tranche) => {
             return (
-              <li className="tranches__list-item" key={tranche.tranche_id}>
-                <div className="tranches__item-title">
-                  <Link
-                    to={`${match.path}/${tranche.tranche_id}`}
-                    className="tranches__link"
-                  >
-                    <span>{t("Tranche")}</span>#{tranche.tranche_id}
-                  </Link>
-                  {isTestingTranche(tranche) ? (
-                    <Callout>
-                      {t(
-                        "This tranche was used to perform integration testing only prior to token launch and no tokens will enter the supply before 3rd Sep 2021."
-                      )}
-                    </Callout>
-                  ) : (
-                    <>
-                      <TrancheDates
-                        start={tranche.tranche_start}
-                        end={tranche.tranche_end}
-                      />
-                    </>
-                  )}
-                </div>
-                <TrancheProgress
-                  locked={tranche.locked_amount}
-                  totalRemoved={tranche.total_removed}
-                  totalAdded={tranche.total_added}
-                />
-                <TrancheLabel contract={appState.contractAddresses.vestingAddress} chainId={appState.chainId} id={tranche.tranche_id} />
-              </li>
+              <>
+                <li className="tranches__list-item" key={tranche.tranche_id}>
+                  <div className="tranches__item-title">
+                    <Link
+                      to={`${match.path}/${tranche.tranche_id}`}
+                      className="tranches__link"
+                    >
+                      <span>{t("Tranche")}</span>#{tranche.tranche_id}
+                    </Link>
+                    {isTestingTranche(tranche) ? (
+                      <Callout>
+                        {t(
+                          "This tranche was used to perform integration testing only prior to token launch and no tokens will enter the supply before 3rd Sep 2021."
+                        )}
+                      </Callout>
+                    ) : (
+                      <>
+                        <TrancheDates
+                          start={tranche.tranche_start}
+                          end={tranche.tranche_end}
+                        />
+                      </>
+                    )}
+                  </div>
+                  <TrancheProgress
+                    locked={tranche.locked_amount}
+                    totalRemoved={tranche.total_removed}
+                    totalAdded={tranche.total_added}
+                  />
+                  <TrancheLabel
+                    contract={appState.contractAddresses.vestingAddress}
+                    chainId={appState.chainId}
+                    id={tranche.tranche_id}
+                  />
+                </li>
+              </>
             );
           })}
         </ul>
