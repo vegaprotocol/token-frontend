@@ -111,6 +111,10 @@ const MOCK_STAKING_NODE_QUERY: MockedResponse<StakeNode> = {
       party: {
         __typename: "Party",
         id: partyId,
+        stake: {
+          __typename: "PartyStake",
+          currentStakeAvailable: "100",
+        },
         delegations: [
           {
             __typename: "Delegation",

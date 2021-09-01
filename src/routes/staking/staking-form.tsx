@@ -163,7 +163,7 @@ export const StakingForm = ({
               // @ts-ignore
               const value = e.target.value;
               setAction(value);
-              history.push({
+              history.replace({
                 pathname: history.location.pathname,
                 search: `?action=${value}`,
               });

@@ -107,6 +107,14 @@ export interface StakeNode_party_delegations {
   epoch: number;
 }
 
+export interface StakeNode_party_stake {
+  __typename: "PartyStake";
+  /**
+   * The stake currently available for the party
+   */
+  currentStakeAvailable: string;
+}
+
 export interface StakeNode_party {
   __typename: "Party";
   /**
@@ -114,6 +122,10 @@ export interface StakeNode_party {
    */
   id: string;
   delegations: StakeNode_party_delegations[] | null;
+  /**
+   * The staking informations for this Party
+   */
+  stake: StakeNode_party_stake;
 }
 
 export interface StakeNode {
