@@ -103,9 +103,6 @@ const NavLinks = ({ isDesktop }: { isDesktop: boolean }) => {
       <NavLink {...linkProps} to={Routes.VESTING}>
         {t("Vesting")}
       </NavLink>
-      <NavLink {...linkProps} to={Routes.TRANCHES}>
-        {t("Tranches")}
-      </NavLink>
       <NavLink {...linkProps} to={Routes.STAKING}>
         {t("Staking")}
       </NavLink>
