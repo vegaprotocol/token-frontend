@@ -4,11 +4,11 @@ import { TrancheLabel } from "./tranche-label";
 import { TrancheDates } from "./tranche-dates";
 import { useTranslation } from "react-i18next";
 import { TrancheProgress } from "./tranche-progress";
-import { BulletHeader } from "../../components/bullet-header";
+import { BulletHeader } from "../../../components/bullet-header";
 import React from "react";
-import { Tranche } from "../../lib/vega-web3/vega-web3-types";
-import { Callout } from "../../components/callout";
-import { useAppState } from "../../contexts/app-state/app-state-context";
+import { Tranche } from "../../../lib/vega-web3/vega-web3-types";
+import { Callout } from "../../../components/callout";
+import { useAppState } from "../../../contexts/app-state/app-state-context";
 
 const trancheMinimum = 10;
 
@@ -63,7 +63,11 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                   totalRemoved={tranche.total_removed}
                   totalAdded={tranche.total_added}
                 />
-                <TrancheLabel contract={appState.contractAddresses.vestingAddress} chainId={appState.chainId} id={tranche.tranche_id} />
+                <TrancheLabel
+                  contract={appState.contractAddresses.vestingAddress}
+                  chainId={appState.chainId}
+                  id={tranche.tranche_id}
+                />
               </li>
             );
           })}

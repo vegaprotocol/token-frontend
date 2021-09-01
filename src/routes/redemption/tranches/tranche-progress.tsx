@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
-import { Colors } from "../../colors";
-import { getAbbreviatedNumber } from "../../lib/abbreviate-number";
-import { BigNumber } from "../../lib/bignumber";
+import { Colors } from "../../../colors";
+import { getAbbreviatedNumber } from "../../../lib/abbreviate-number";
+import { BigNumber } from "../../../lib/bignumber";
 import { ProgressBar } from "./progress-bar";
 
 interface TrancheProgressProps {

@@ -5,7 +5,6 @@ import NotPermitted from "./not-permitted";
 
 export const Routes = {
   HOME: "/",
-  TRANCHES: "/tranches",
   CLAIM: "/claim",
   STAKING: "/staking",
   GOVERNANCE: "/governance",
@@ -13,13 +12,6 @@ export const Routes = {
   NOT_PERMITTED: "/not-permitted",
   NOT_FOUND: "/not-found",
 };
-
-const LazyTranches = React.lazy(
-  () =>
-    import(
-      /* webpackChunkName: "route-tranches", webpackPrefetch: true */ "./tranches"
-    )
-);
 
 const LazyClaim = React.lazy(
   () =>
@@ -54,11 +46,6 @@ const routerConfig = [
     // Not lazy as loaded when a user first hits the site
     component: Home,
     exact: true,
-  },
-  {
-    path: Routes.TRANCHES,
-    name: "Tranches",
-    component: LazyTranches,
   },
   {
     path: Routes.CLAIM,

@@ -34,7 +34,7 @@ export const Complete = ({
               trancheLinkText: `tranche ${trancheId}`,
             }}
             components={{
-              trancheLink: <Link to={`/tranches/${trancheId}`} />,
+              trancheLink: <Link to={`/vesting/tranches/${trancheId}`} />,
             }}
           />
         </p>
