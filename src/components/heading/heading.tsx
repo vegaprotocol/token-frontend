@@ -2,7 +2,7 @@ import "./heading.scss";
 import { PixelatedText } from "../pixelated-text";
 
 export interface HeadingProps {
-  title: string;
+  title?: string;
 }
 
 export const Heading = ({ title }: HeadingProps) => {

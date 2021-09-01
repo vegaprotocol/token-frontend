@@ -3,7 +3,7 @@ import React from "react";
 import { Heading } from "../heading";
 
 export interface TemplateDefaultProps {
-  title: string;
+  title?: string;
   children: React.ReactNode;
 }
 

@@ -32,7 +32,7 @@ const Home = ({ name }: RouteChildProps) => {
   }, [data]);
 
   return (
-    <TemplateDefault title={t("pageTitleHome")}>
+    <TemplateDefault>
       <Web3Container>
         {(address) => (
           <VegaTokenContainer>

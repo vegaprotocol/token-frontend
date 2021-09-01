@@ -1,10 +1,10 @@
 import React from "react";
 
 export const PixelatedText = ({
-  text,
+  text = "",
   threshold = 0.6,
 }: {
-  text: string;
+  text?: string;
   threshold?: number;
 }) => {
   // useMemo so it doesn't re-randomize the text on every render
