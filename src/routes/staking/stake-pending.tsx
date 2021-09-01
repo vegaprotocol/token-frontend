@@ -1,9 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { Callout } from "../../components/callout";
 import { Loader } from "../../components/loader";
+import { StakeAction } from "./staking-form";
 
 interface StakePendingProps {
-  action: "Add" | "Remove" | undefined;
+  action: StakeAction;
   amount: string;
   nodeId: string;
 }

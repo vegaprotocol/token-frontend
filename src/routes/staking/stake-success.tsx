@@ -3,9 +3,10 @@ import { Callout } from "../../components/callout";
 import { Tick } from "../../components/icons";
 import { Link } from "react-router-dom";
 import { Routes } from "../router-config";
+import { StakeAction } from "./staking-form";
 
 interface StakeSuccessProps {
-  action: "Add" | "Remove" | undefined;
+  action: StakeAction;
   amount: string;
   nodeId: string;
 }
