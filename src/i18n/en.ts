@@ -155,7 +155,7 @@ const en = {
   "This tranche was used to perform integration testing only prior to token launch and no tokens will enter the supply before 3rd Sep 2021.":
     "This tranche was used to perform integration testing only prior to token launch and no tokens will enter the supply before 3rd Sep 2021.",
   "Showing tranches with <{{trancheMinimum}} VEGA, click to hide these tranches":
-    "Showing tranches with <{{trancheMinimum}} VEGA, click to hide these tranches",
+    "Showing tranches with <={{trancheMinimum}} VEGA, click to hide these tranches",
   "Not showing tranches with <{{trancheMinimum}} VEGA, click to show all tranches":
     "Not showing tranches with <={{trancheMinimum}} VEGA, click to show all tranches",
   "the holder": "the holder",
