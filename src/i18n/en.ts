@@ -12,7 +12,7 @@ const en = {
   pageTitleNotPermitted: "Can not proceed!",
   pageTitleDisassociate: "Dissociate VEGA tokens from a Vega key",
   pageTitleGovernance: "Governance",
-  Vesting: "VESTING VEGA TOKENS",
+  Vesting: "Vesting",
   of: "of",
   to: "to",
 
@@ -325,6 +325,7 @@ const en = {
   "Read about Vesting on Vega": "Read about Vesting on Vega",
   "Governance is coming soon": "Governance is coming soon",
   "Staking is coming soon": "Staking is coming soon",
+  "VESTING VEGA TOKENS": "VESTING VEGA TOKENS",
 };
 
 export default en;
