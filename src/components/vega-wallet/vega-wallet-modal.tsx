@@ -1,4 +1,5 @@
 import { Overlay } from "@blueprintjs/core";
+import { useTranslation } from "react-i18next";
 import {
   AppStateActionType,
   useAppState,
@@ -7,6 +8,7 @@ import { Modal } from "../modal";
 import { VegaWalletForm } from "./vega-wallet-form";
 
 export const VegaWalletModal = () => {
+  const { t } = useTranslation();
   const { appState, appDispatch } = useAppState();
   return (
     <Overlay
@@ -21,7 +23,7 @@ export const VegaWalletModal = () => {
     >
       <div className="modal">
         <Modal>
-          <h2>Connect to Vega wallet</h2>
+          <h2>{t("Connect to Vega wallet")}</h2>
           <VegaWalletForm
             onConnect={() =>
               appDispatch({
