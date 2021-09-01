@@ -5,11 +5,6 @@ import * as Sentry from "@sentry/react";
 import { FormGroup, Radio, RadioGroup } from "@blueprintjs/core";
 import { useTranslation } from "react-i18next";
 import { useVegaWallet } from "../../hooks/use-vega-wallet";
-import { Callout } from "../../components/callout";
-import { Loader } from "../../components/loader";
-import { Tick } from "../../components/icons";
-import { Link } from "react-router-dom";
-import { Routes } from "../router-config";
 import { gql, useApolloClient } from "@apollo/client";
 import {
   PartyDelegations,
@@ -21,6 +16,9 @@ import {
   DelegateSubmissionInput,
   UndelegateSubmissionInput,
 } from "../../lib/vega-wallet/vega-wallet-service";
+import { StakeSuccess } from "./stake-success";
+import { StakePending } from "./stake-pending";
+import { StakeFailure } from "./stake-failure";
 
 export const PARTY_DELEGATIONS_QUERY = gql`
   query PartyDelegations($partyId: String!) {
@@ -121,49 +119,15 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
   }, [formState, client, pubkey, nodeId]);
 
   if (formState === FormState.Failure) {
-    return (
-      <Callout intent="error" title={t("Something went wrong")}>
-        <p>
-          {t("Failed to delegate to node {{node}}", {
-            node: nodeId,
-          })}
-        </p>
-      </Callout>
-    );
+    return <StakeFailure nodeId={nodeId} />;
   }
 
   if (formState === FormState.Pending) {
-    const titleArgs = { amount, node: nodeId };
-    const title =
-      action === "Add"
-        ? t("Adding {{amount}} VEGA to node {{node}}", titleArgs)
-        : t("Removing {{amount}} VEGA from node {{node}}", titleArgs);
-    return (
-      <Callout icon={<Loader />} title={title}>
-        <p>
-          {t(
-            "This should take approximately 3 minutes to confirm, and then will be credited at the beginning of the next epoch"
-          )}
-        </p>
-      </Callout>
-    );
+    return <StakePending action={action} amount={amount} nodeId={nodeId} />;
   }
 
   if (formState === FormState.Success) {
-    const titleArgs = { amount, node: nodeId };
-    const title =
-      action === "Add"
-        ? t("{{amount}} VEGA has been added to node {{node}}", titleArgs)
-        : t("{{amount}} VEGA has been removed from node {{node}}", titleArgs);
-    return (
-      <Callout icon={<Tick />} intent="success" title={title}>
-        <p>{t("It will be applied in the next epoch")}</p>
-        <p>
-          <Link to={Routes.STAKING}>{t("Back to staking page")}</Link>
-        </p>
-        {/* TODO: Add link to rewards */}
-      </Callout>
-    );
+    return <StakeSuccess action={action} amount={amount} nodeId={nodeId} />;
   }
 
   // const onNewAction = (field: any) => {
