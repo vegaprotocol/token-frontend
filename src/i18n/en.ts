@@ -196,7 +196,7 @@ const en = {
   vegaKey: "Vega key",
   noService:
     "Looks like the Vega wallet service isn't running. Please start it and refresh the page",
-  connectVegaWallet: "Connect to VEGA wallet",
+  connectVegaWallet: "Connect to Vega Wallet to control associated stake",
   disconnect: "Disconnect",
   awaitingDisconnect: "Disconnecting...",
   "Checking Vega wallet status": "Checking Vega wallet status",
