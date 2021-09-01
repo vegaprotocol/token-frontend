@@ -11,6 +11,7 @@ const en = {
   pageTitle404: "Page not found",
   pageTitleNotPermitted: "Can not proceed!",
   pageTitleDisassociate: "Dissociate VEGA tokens from a Vega key",
+  pageTitleGovernance: "Governance",
   Vesting: "VESTING VEGA TOKENS",
   of: "of",
   to: "to",
@@ -321,6 +322,9 @@ const en = {
   "Not staked": "Not staked",
   "In Wallet": "In Wallet",
   Connect: "Connect",
+  "Read about Vesting on Vega": "Read about Vesting on Vega",
+  "Governance is coming soon": "Governance is coming soon",
+  "Staking is coming soon": "Staking is coming soon",
 };
 
 export default en;

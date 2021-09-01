@@ -33,7 +33,7 @@ const Home = ({ name }: RouteChildProps) => {
   }, [data]);
 
   return (
-    <TemplateDefault title={t("pageTitleHome")}>
+    <TemplateDefault>
       <Web3Container>
         {(address) => (
           <VegaTokenContainer>
@@ -48,7 +48,6 @@ const Home = ({ name }: RouteChildProps) => {
                         totalSupply={totalSupply}
                         totalStaked={totalStaked}
                       />
-
                       <h2>{t("Token Vesting")}</h2>
                       <p>
                         {t(
@@ -72,7 +71,6 @@ const Home = ({ name }: RouteChildProps) => {
                           "Token holders can propose changes to the Vega network"
                         )}
                       </p>
-
                       <p>
                         <Link to={"/governance"}>
                           {t("Read about Governance on Vega")}
