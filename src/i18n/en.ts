@@ -370,6 +370,7 @@ const en = {
   Team: "Team",
   Community: "Community",
   "Public Sale": "Public Sale",
+  "Connect to Vega wallet": "Connect to Vega wallet",
 };
 
 export default en;
