@@ -5,6 +5,7 @@ import {
   ProviderStatus,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
+import { Flags } from "../../flags";
 import { useConnect } from "../../hooks/use-connect";
 import { useVegaStaking } from "../../hooks/use-vega-staking";
 import { useVegaToken } from "../../hooks/use-vega-token";
@@ -71,10 +72,12 @@ export const Web3Container = ({
             vesting.getUserBalanceAllTranches(accounts[0]),
             token.balanceOf(accounts[0]),
             vesting.getLien(accounts[0]),
-            token.allowance(
-              accounts[0],
-              appState.contractAddresses.stakingBridge
-            ),
+            Flags.MAINNET_DISABLED
+              ? new BigNumber(0)
+              : token.allowance(
+                  accounts[0],
+                  appState.contractAddresses.stakingBridge
+                ),
           ]);
           appDispatch({
             type: AppStateActionType.ACCOUNTS_CHANGED,
