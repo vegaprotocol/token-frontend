@@ -14,18 +14,7 @@ import { gql, useQuery } from "@apollo/client";
 import React from "react";
 import BigNumber from "bignumber.js";
 import { NodeData } from "./__generated__/NodeData";
-import {
-  Legend,
-  Line,
-  LineChart,
-  ReferenceLine,
-  ResponsiveContainer,
-  XAxis,
-  YAxis,
-} from "recharts";
-import data from "./data.json";
-import { Colors } from "../../colors";
-import { format, startOfMonth } from "date-fns";
+import { VestingChart } from "./vesting-chart";
 
 export const TOTAL_STAKED_QUERY = gql`
   query NodeData {
@@ -76,50 +65,7 @@ const Home = ({ name }: RouteChildProps) => {
                           "Once tokens have unlocked they can be redeemed to the Ethereum wallet that owns them"
                         )}
                       </p>
-                      <ResponsiveContainer height={400} width="100%">
-                        <LineChart data={data}>
-                          <XAxis dataKey="date" />
-                          <YAxis type="number" width={80} />
-                          <ReferenceLine
-                            x={format(startOfMonth(new Date()), "yyyy-MM-dd")}
-                            stroke={Colors.WHITE}
-                            strokeWidth={2}
-                          />
-                          <Line
-                            dot={false}
-                            type="linear"
-                            dataKey="team"
-                            stroke={Colors.VEGA_GREEN}
-                            yAxisId={0}
-                            strokeWidth={2}
-                          />
-                          <Line
-                            dot={false}
-                            type="monotone"
-                            dataKey="earlyInvestors"
-                            stroke={Colors.VEGA_RED}
-                            yAxisId={0}
-                            strokeWidth={2}
-                          />
-                          <Line
-                            dot={false}
-                            type="monotone"
-                            dataKey="publicSale"
-                            stroke={Colors.VEGA_YELLOW}
-                            yAxisId={0}
-                            strokeWidth={2}
-                          />
-                          <Line
-                            dot={false}
-                            type="monotone"
-                            dataKey="community"
-                            stroke={Colors.PINK}
-                            yAxisId={0}
-                            strokeWidth={2}
-                          />
-                          <Legend margin={{ top: 25 }} />
-                        </LineChart>
-                      </ResponsiveContainer>
+                      <VestingChart />
                       <h2>{t("Governance")}</h2>
                       <p>
                         {t(
