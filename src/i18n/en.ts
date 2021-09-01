@@ -343,30 +343,26 @@ const en = {
   // stake pending
   "Adding {{amount}} VEGA to node {{node}}":
     "Adding {{amount}} VEGA to node {{node}}",
+  "Removing {{amount}} VEGA from node {{node}}":
+    "Removing {{amount}} VEGA from node {{node}}",
   "This should take approximately 3 minutes to confirm, and then will be credited at the beginning of the next epoch":
     "This should take approximately 3 minutes to confirm, and then will be credited at the beginning of the next epoch",
 
   // stake success
   "{{amount}} VEGA has been added to node {{node}}":
     "{{amount}} VEGA has been added to node {{node}}",
+  "{{amount}} VEGA has been removed from {{node}}":
+    "{{amount}} VEGA Has been removed from {{node}}",
   "It will be applied in the next epoch":
     "It will be applied in the next epoch",
 
-  // stake failed
+  // stake fail
   "Failed to delegate to node {{node}}": "Failed to delegate to node {{node}}",
+
   "Remove {{amount}} VEGA tokens": "Remove {{amount}} VEGA tokens",
   "How much to {{action}} in next epoch?":
     "How much to {{action}} in next epoch?",
-  "Removing {{amount}} VEGA from {{node}}":
-    "Removing {{amount}} VEGA from {{node}}",
-  "This should take approximately ({{time}}) to confirm.":
-    "This should take approximately ({{time}}) to confirm.",
-  "{{amount}} VEGA has been added to {{node}}":
-    "{{amount VEGA has been added to {{node}}",
-  "{{amount}} VEGA has been removed from {{node}}":
-    "{{amount}} VEGA Has been removed from {{node}}",
-  "Nominate another node with your stake":
-    "Nominate another node with your stake",
+
   "Dissociate VEGA tokens": "Dissociate VEGA tokens",
 };
 
