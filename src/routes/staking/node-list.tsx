@@ -36,7 +36,7 @@ export const NodeListItem = ({
   const match = useRouteMatch();
 
   return (
-    <li>
+    <li data-testid="node-list-item">
       {id ? <Link to={`${match.path}/${id}`}>{id}</Link> : t("Node invalid")}
       <table>
         <tbody>

@@ -30,18 +30,18 @@ export const YourStake = ({ currentEpoch, delegations }: YourStakeProps) => {
   }, [delegations, currentEpoch]);
 
   return (
-    <>
+    <div data-testid="your-stake">
       <h2>{t("Your Stake")}</h2>
       <KeyValueTable>
         <KeyValueTableRow>
           <th>{t("Your Stake On Node (This Epoch)")}</th>
-          <td>{stakeThisEpoch.toString()}</td>
+          <td data-testid="stake-this-epoch">{stakeThisEpoch.toString()}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("Your Stake On Node (Next Epoch)")}</th>
-          <td>{stakeNextEpoch.toString()}</td>
+          <td data-testid="stake-next-epoch">{stakeNextEpoch.toString()}</td>
         </KeyValueTableRow>
       </KeyValueTable>
-    </>
+    </div>
   );
 };

@@ -1,5 +1,6 @@
 import { MockedProvider, MockedResponse } from "@apollo/client/testing";
 import React from "react";
+import { addDays } from "date-fns";
 import { NodeStatus } from "../../../__generated__/globalTypes";
 import { STAKING_QUERY } from "../../../routes/staking/staking";
 import {
@@ -9,8 +10,10 @@ import {
 } from "../../../routes/staking/__generated__/Staking";
 import { STAKE_NODE_QUERY } from "../../../routes/staking/staking-node";
 import { StakeNode } from "../../../routes/staking/__generated__/StakeNode";
+import { PartyDelegations } from "../../../routes/staking/__generated__/PartyDelegations";
+import { PARTY_DELEGATIONS_QUERY } from "../../../routes/staking/staking-form";
 
-const partyId = "0x789";
+const partyId = "pub";
 
 const nodes: Staking_nodes[] = [
   {
@@ -97,18 +100,64 @@ const MOCK_STAKING_NODE_QUERY: MockedResponse<StakeNode> = {
       node: nodes[0],
       epoch: {
         __typename: "Epoch",
-        id: "epoch-1",
+        id: "1",
         timestamps: {
           __typename: "EpochTimestamps",
           start: new Date().toISOString(),
-          end: new Date().toISOString(),
+          end: addDays(new Date(), 1).toISOString(),
         },
       },
       nodeData,
       party: {
         __typename: "Party",
         id: partyId,
-        delegations: [],
+        delegations: [
+          {
+            __typename: "Delegation",
+            amount: "100",
+            epoch: 1,
+          },
+          {
+            __typename: "Delegation",
+            amount: "100",
+            epoch: 1,
+          },
+          {
+            __typename: "Delegation",
+            amount: "200",
+            epoch: 2,
+          },
+          {
+            __typename: "Delegation",
+            amount: "200",
+            epoch: 2,
+          },
+        ],
+      },
+    },
+  },
+};
+
+const MOCK_PARTY_DELEGATIONS: MockedResponse<PartyDelegations> = {
+  request: {
+    query: PARTY_DELEGATIONS_QUERY,
+    variables: { partyId },
+  },
+  result: {
+    data: {
+      party: {
+        __typename: "Party",
+        delegations: [
+          {
+            __typename: "Delegation",
+            amount: "100",
+            epoch: 1,
+            node: {
+              __typename: "Node",
+              id: "node-id-1",
+            },
+          },
+        ],
       },
     },
   },
@@ -120,7 +169,14 @@ export const GraphQlProvider = ({
   children: React.ReactNode;
 }) => {
   return (
-    <MockedProvider mocks={[MOCK_STAKING_QUERY, MOCK_STAKING_NODE_QUERY]}>
+    <MockedProvider
+      mocks={[
+        MOCK_STAKING_QUERY,
+        MOCK_STAKING_NODE_QUERY,
+        MOCK_PARTY_DELEGATIONS,
+        MOCK_STAKING_NODE_QUERY,
+      ]}
+    >
       {children}
     </MockedProvider>
   );

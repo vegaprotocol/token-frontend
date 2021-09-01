@@ -22,7 +22,7 @@ import {
   UndelegateSubmissionInput,
 } from "../../lib/vega-wallet/vega-wallet-service";
 
-const PARTY_DELEGATIONS_QUERY = gql`
+export const PARTY_DELEGATIONS_QUERY = gql`
   query PartyDelegations($partyId: String!) {
     party(id: $partyId) {
       delegations {
@@ -81,10 +81,12 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
       if (err) {
         setFormState(FormState.Failure);
         Sentry.captureEvent(err);
+        console.log("err", err);
       }
 
       // await success via poll
     } catch (err) {
+      console.log("catch", err);
       setFormState(FormState.Failure);
       Sentry.captureEvent(err);
     }
@@ -93,14 +95,13 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
   React.useEffect(() => {
     let interval: any;
 
-    if (formState === FormState.Success) {
+    if (formState === FormState.Pending) {
       // start polling for delegation
       interval = setInterval(() => {
         client
           .query<PartyDelegations, PartyDelegationsVariables>({
             query: PARTY_DELEGATIONS_QUERY,
             variables: { partyId: pubkey },
-            pollInterval: 1000,
           })
           .then((res) => {
             const delegation = res.data.party?.delegations?.find((d) => {
@@ -153,7 +154,8 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
     return (
       <Callout
         icon={<Tick />}
-        title={t("{{amount}} has been added to node {{node}}", {
+        intent="success"
+        title={t("{{amount}} VEGA has been added to node {{node}}", {
           amount,
           node: nodeId,
         })}
@@ -175,7 +177,7 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
   return (
     <>
       <h2>{t("Manage your stake")}</h2>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} data-testid="stake-form">
         <FormGroup>
           <RadioGroup
             // @ts-ignore
@@ -183,8 +185,12 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
             selectedValue={action}
             inline={true}
           >
-            <Radio value="Add" label="Add" />
-            <Radio value="Remove" label="Remove" />
+            <Radio value="Add" label="Add" data-testid="add-stake-radio" />
+            <Radio
+              value="Remove"
+              label="Remove"
+              data-testid="remove-stake-radio"
+            />
           </RadioGroup>
         </FormGroup>
         {action !== undefined && (
@@ -196,7 +202,7 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
               maximum={new BigNumber(555)}
             />
             <button className="fill" type="submit">
-              {action} {amount} VEGA tokens
+              {`${action}${amount ? ` ${amount}` : ""}`} VEGA tokens
             </button>
           </>
         )}
