@@ -33,6 +33,13 @@
   &__logo {
     width: 30px;
 
+    &-container {
+      height: 30px;
+      @media (min-width: 960px) {
+        height: 60px;
+      }
+    }
+
     @media (min-width: 960px) {
       width: 60px;
     }
