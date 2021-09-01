@@ -10,7 +10,7 @@ export const StakeFailure = ({ nodeId }: StakeFailureProps) => {
   return (
     <Callout intent="error" title={t("Something went wrong")}>
       <p>
-        {t("Failed to delegate to node {{node}}", {
+        {t("stakeFailed", {
           node: nodeId,
         })}
       </p>

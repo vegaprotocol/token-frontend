@@ -163,7 +163,7 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
               maximum={new BigNumber(555)}
             />
             <button className="fill" type="submit">
-              {`${action}${amount ? ` ${amount}` : ""}`} VEGA tokens
+              {`${action}${amount ? ` ${amount}` : ""}`} {t("vegaTokens")}
             </button>
           </>
         )}

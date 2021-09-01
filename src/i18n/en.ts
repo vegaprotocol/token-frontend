@@ -32,6 +32,7 @@ const en = {
   Cancel: "Cancel",
   Warning: "Warning",
   Associated: "Associated",
+  vegaTokens: "VEGA tokens",
 
   "VEGA was successfully withdrawn to your wallet":
     "VEGA was successfully withdrawn to your wallet",
@@ -340,6 +341,8 @@ const en = {
     "Your tokens need to be <associateLink>associated with a Vega wallet</associateLink> so that it can control your stake",
   stakingStep3: "Step3. Select the validator you'd like to nominate",
 
+  nodeQueryFailed: "Could not get data for node {{node}}",
+
   // stake pending
   "Adding {{amount}} VEGA to node {{node}}":
     "Adding {{amount}} VEGA to node {{node}}",
@@ -357,7 +360,7 @@ const en = {
     "It will be applied in the next epoch",
 
   // stake fail
-  "Failed to delegate to node {{node}}": "Failed to delegate to node {{node}}",
+  stakeFailed: "Failed to delegate to node {{node}}",
 
   "Remove {{amount}} VEGA tokens": "Remove {{amount}} VEGA tokens",
   "How much to {{action}} in next epoch?":

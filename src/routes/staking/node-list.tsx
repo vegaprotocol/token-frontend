@@ -37,7 +37,7 @@ export const NodeListItem = ({
 
   return (
     <li data-testid="node-list-item">
-      {id ? <Link to={`${match.path}/${id}`}>{id}</Link> : t("Node invalid")}
+      <Link to={`${match.path}/${id}`}>{id}</Link>
       <table>
         <tbody>
           <tr>
