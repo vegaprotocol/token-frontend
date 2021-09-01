@@ -9,6 +9,7 @@ import { useVegaVesting } from "./use-vega-vesting";
 import * as Sentry from "@sentry/react";
 import { BigNumber } from "../lib/bignumber";
 import { useVegaToken } from "./use-vega-token";
+import { Flags } from "../flags";
 
 export function useConnect() {
   const connectTimer = React.useRef<any>();
@@ -51,10 +52,12 @@ export function useConnect() {
           vega.getUserBalanceAllTranches(accounts[0]),
           token.balanceOf(accounts[0]),
           vega.getLien(accounts[0]),
-          token.allowance(
-            accounts[0],
-            appState.contractAddresses.stakingBridge
-          ),
+          Flags.MAINNET_DISABLED
+            ? new BigNumber(0)
+            : token.allowance(
+                accounts[0],
+                appState.contractAddresses.stakingBridge
+              ),
         ]);
       connected = true;
       appDispatch({
