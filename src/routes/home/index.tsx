@@ -44,10 +44,10 @@ const Home = ({ name }: RouteChildProps) => {
                     <>
                       <h2>{t("The Vega Token")}</h2>
 
-                    <TokenDetails
-                      totalSupply={totalSupply}
-                      totalStaked={totalStaked}
-                    />
+                      <TokenDetails
+                        totalSupply={totalSupply}
+                        totalStaked={totalStaked}
+                      />
 
                       <h2>{t("Token Vesting")}</h2>
                       <p>
@@ -86,17 +86,16 @@ const Home = ({ name }: RouteChildProps) => {
                         )}
                       </p>
 
-                      <StakingOverview totalStaked={appState.totalStaked} />
+                      <StakingOverview totalStaked={totalStaked} />
 
-                    <StakingOverview totalStaked={totalStaked} />
-
-                    <p>
-                      <Link to={"/staking"}>
-                        {t("Read about staking on Vega")}
-                      </Link>
-                    </p>
-                  </>
-                )}
+                      <p>
+                        <Link to={"/staking"}>
+                          {t("Read about staking on Vega")}
+                        </Link>
+                      </p>
+                    </>
+                  );
+                }}
               </TrancheContainer>
             )}
           </VegaTokenContainer>
