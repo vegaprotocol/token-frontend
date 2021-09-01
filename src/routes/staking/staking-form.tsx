@@ -133,14 +133,13 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
   }
 
   if (formState === FormState.Pending) {
+    const titleArgs = { amount, node: nodeId };
+    const title =
+      action === "Add"
+        ? t("Adding {{amount}} VEGA to node {{node}}", titleArgs)
+        : t("Removing {{amount}} VEGA from node {{node}}", titleArgs);
     return (
-      <Callout
-        icon={<Loader />}
-        title={t("Adding {{amount}} VEGA to node {{node}}", {
-          amount,
-          node: nodeId,
-        })}
-      >
+      <Callout icon={<Loader />} title={title}>
         <p>
           {t(
             "This should take approximately 3 minutes to confirm, and then will be credited at the beginning of the next epoch"
@@ -151,15 +150,13 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
   }
 
   if (formState === FormState.Success) {
+    const titleArgs = { amount, node: nodeId };
+    const title =
+      action === "Add"
+        ? t("{{amount}} VEGA has been added to node {{node}}", titleArgs)
+        : t("{{amount}} VEGA has been removed from node {{node}}", titleArgs);
     return (
-      <Callout
-        icon={<Tick />}
-        intent="success"
-        title={t("{{amount}} VEGA has been added to node {{node}}", {
-          amount,
-          node: nodeId,
-        })}
-      >
+      <Callout icon={<Tick />} intent="success" title={title}>
         <p>{t("It will be applied in the next epoch")}</p>
         <p>
           <Link to={Routes.STAKING}>{t("Back to staking page")}</Link>

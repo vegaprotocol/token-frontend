@@ -10,7 +10,7 @@ describe("staking", () => {
     cy.get('[data-testid="wallet-login"]').click();
   }
 
-  it("/staking page", () => {
+  it("staking page renders nodes", () => {
     mock(cy);
     cy.visit("/staking");
 
@@ -32,7 +32,7 @@ describe("staking", () => {
     cy.url().should("include", "/staking/node-id-1");
   });
 
-  it.only("/staking/:node page", () => {
+  it("staking/:node page can add stake to given node", () => {
     mock(cy);
 
     const nodeId = "node-id-1";
@@ -116,6 +116,7 @@ describe("staking", () => {
 
     cy.intercept(
       "http://localhost:1789/api/v1/command/sync",
+      // TODO: Return more realistic object here
       JSON.stringify({ returnVal: "something" }),
       (req) => {
         expect(req.method).to.equal("POST");
@@ -133,5 +134,69 @@ describe("staking", () => {
     cy.get('[data-testid="callout"]')
       .find("h3")
       .should("have.text", `${amount} VEGA has been added to node ${nodeId}`);
+  });
+
+  it("staking/:node page can remove stake to given node", () => {
+    mock(cy);
+
+    const nodeId = "node-id-1";
+    cy.visit(`/staking/${nodeId}`);
+
+    // connect
+    connectToWallets();
+
+    // REMOVE STAKE FLOW
+    cy.get('[data-testid="remove-stake-radio"]').click({ force: true });
+
+    cy.get('[data-testid="stake-form"]')
+      .find("h2")
+      .should("have.text", "How much to Remove in next epoch?");
+
+    cy.get('[data-testid="stake-form"]')
+      .find('button[type="submit"]')
+      .should("have.text", "Remove VEGA tokens");
+
+    const amount = "100";
+    cy.get('[data-testid="token-amount-input"]').type(amount);
+
+    cy.get('[data-testid="stake-form"]')
+      .find('button[type="submit"]')
+      .should("have.text", `Remove ${amount} VEGA tokens`);
+
+    cy.get('[data-testid="stake-form"]').find('button[type="submit"]').click();
+
+    const body = {
+      pubKey: "pub",
+      undelegateSubmission: {
+        nodeId,
+        amount,
+        method: "METHOD_AT_END_OF_EPOCH",
+      },
+      propagate: true,
+    };
+
+    cy.intercept(
+      "http://localhost:1789/api/v1/command/sync",
+      // TODO: Return more realistic object here
+      JSON.stringify({ returnVal: "something" }),
+      (req) => {
+        expect(req.method).to.equal("POST");
+        expect(JSON.parse(req.body)).to.deep.equal(body);
+      }
+    );
+
+    cy.get('[data-testid="callout"]')
+      .find("h3")
+      .should("have.text", `Removing ${amount} VEGA from node ${nodeId}`);
+    cy.get('[data-testid="callout"]').contains(
+      "This should take approximately 3 minutes to confirm"
+    );
+
+    cy.get('[data-testid="callout"]')
+      .find("h3")
+      .should(
+        "have.text",
+        `${amount} VEGA has been removed from node ${nodeId}`
+      );
   });
 });
