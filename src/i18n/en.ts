@@ -235,8 +235,6 @@ const en = {
   "Associated on Vega": "Associated on Vega",
   "There are {{nodeCount}} nodes with a shared stake of {{sharedStake}} VEGA tokens":
     "There are {{nodeCount}} nodes with a shared stake of {{sharedStake}} VEGA tokens",
-  "Read about staking on Vega": "Read about staking on Vega",
-  "Read about Governance on Vega": "Read about Governance on Vega",
 
   // Epoch counter
   Epoch: "Epoch",
@@ -373,6 +371,8 @@ const en = {
     "This can happen both while held in the vesting contract as well as when redeemed.",
   "Get a Vega wallet": "Get a Vega wallet",
   "Associate VEGA tokens": "Associate VEGA tokens",
+  "Nominate a validator": "Nominate a validator",
+  "View Governance proposals": "View Governance proposals",
 };
 
 export default en;

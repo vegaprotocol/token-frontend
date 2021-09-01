@@ -109,7 +109,7 @@ const Home = ({ name }: RouteChildProps) => {
                               className="button-secondary"
                               onClick={() => history.push("/governance")}
                             >
-                              {t("Read about Governance on Vega")}
+                              {t("View Governance proposals")}
                             </button>
                           </p>
                         </div>
@@ -125,7 +125,7 @@ const Home = ({ name }: RouteChildProps) => {
                             className="button-secondary"
                             onClick={() => history.push("/staking")}
                           >
-                            {t("Read about staking on Vega")}
+                            {t("Nominate a validator")}
                           </button>
                         </div>
                       </div>
