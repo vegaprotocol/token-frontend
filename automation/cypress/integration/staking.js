@@ -124,16 +124,18 @@ describe("staking", () => {
       }
     );
 
-    cy.get('[data-testid="callout"]')
-      .find("h3")
-      .should("have.text", `Adding ${amount} VEGA to node ${nodeId}`);
+    cy.get('[data-testid="callout"] h3').should(
+      "have.text",
+      `Adding ${amount} VEGA to node ${nodeId}`
+    );
     cy.get('[data-testid="callout"]').contains(
       "This should take approximately 3 minutes to confirm"
     );
 
-    cy.get('[data-testid="callout"]')
-      .find("h3")
-      .should("have.text", `${amount} VEGA has been added to node ${nodeId}`);
+    cy.get('[data-testid="callout"] h3').should(
+      "have.text",
+      `${amount} VEGA has been added to node ${nodeId}`
+    );
   });
 
   it("staking/:node page can remove stake to given node", () => {
@@ -185,19 +187,18 @@ describe("staking", () => {
       }
     );
 
-    cy.get('[data-testid="callout"]')
-      .find("h3")
-      .should("have.text", `Removing ${amount} VEGA from node ${nodeId}`);
+    cy.get('[data-testid="callout"] h3').should(
+      "have.text",
+      `Removing ${amount} VEGA from node ${nodeId}`
+    );
     cy.get('[data-testid="callout"]').contains(
       "This should take approximately 3 minutes to confirm"
     );
 
-    cy.get('[data-testid="callout"]')
-      .find("h3")
-      .should(
-        "have.text",
-        `${amount} VEGA has been removed from node ${nodeId}`
-      );
+    cy.get('[data-testid="callout"] h3').should(
+      "have.text",
+      `${amount} VEGA has been removed from node ${nodeId}`
+    );
   });
 
   it("Shows error message if stake command fails", () => {
@@ -216,30 +217,23 @@ describe("staking", () => {
 
     cy.get('[data-testid="stake-form"]').find('button[type="submit"]').click();
 
-    const body = {
-      pubKey: "pub",
-      delegateSubmission: {
-        nodeId,
-        amount,
-      },
-      propagate: true,
-    };
+    cy.get('[data-testid="callout"] h3').should(
+      "have.text",
+      `Adding ${amount} VEGA to node ${nodeId}`
+    );
+    cy.get('[data-testid="callout"]').contains(
+      "This should take approximately 3 minutes to confirm"
+    );
 
     cy.intercept(
       "http://localhost:1789/api/v1/command/sync",
       // TODO: Return more realistic object here
-      JSON.stringify({ errors: "oops an error!" }),
-      (req) => {
-        expect(req.method).to.equal("POST");
-        expect(JSON.parse(req.body)).to.deep.equal(body);
-      }
+      JSON.stringify({ errors: "oops an error!" })
     );
 
-    cy.get('[data-testid="callout"]')
-      .find("h3")
-      .should("have.text", "Something went wrong");
-    cy.get('[data-testid="callout"]').contains(
-      `Failed to delegate to node ${nodeId}`
+    cy.get('[data-testid="callout"] h3').should(
+      "have.text",
+      "Something went wrong"
     );
   });
 });
