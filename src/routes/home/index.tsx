@@ -97,7 +97,7 @@ const Home = ({ name }: RouteChildProps) => {
                         </Link>
                       </p>
                       <div style={{ display: "flex", gap: 36 }}>
-                        <div>
+                        <div style={{ flex: 1 }}>
                           <h2>{t("Governance")}</h2>
                           <p>
                             {t(
@@ -114,7 +114,7 @@ const Home = ({ name }: RouteChildProps) => {
                           </p>
                         </div>
 
-                        <div>
+                        <div style={{ flex: 1 }}>
                           <h2>{t("Staking")}</h2>
                           <p>
                             {t(
