@@ -304,8 +304,8 @@ const en = {
     "Approve VEGA tokens for staking on Vega",
   "You have no VEGA tokens currently vesting.":
     "You have no VEGA tokens currently vesting.",
-  "All VEGA tokens vesting in the connected wallet have already been staked.":
-    "All VEGA tokens vesting in the connected wallet have already been staked.",
+  "All VEGA tokens vesting in the connected wallet have already been associated.":
+    "All VEGA tokens vesting in the connected wallet have already been associated.",
   "Any Tokens that have been nominated to a node will sacrifice any Rewards they are due for the current epoch. If you do not wish to sacrifices fees you should remove stake from a node at the end of an epoch before disassocation.":
     "Any Tokens that have been nominated to a node will sacrifice any Rewards they are due for the current epoch. If you do not wish to sacrifices fees you should remove stake from a node at the end of an epoch before disassocation.",
   "Use this form to disassociate VEGA tokens with a Vega key. This returns them to either the Ethereum wallet that used the Staking bridge or the vesting contract.":

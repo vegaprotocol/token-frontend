@@ -1,12 +1,9 @@
 import "./staking-node.scss";
-
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { ValidatorTable } from "./validator-table";
-import {
-  useAppState,
-  VegaKeyExtended,
-} from "../../contexts/app-state/app-state-context";
+import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
 import { EpochCountdown } from "./epoch-countdown";
 import { YourStake } from "./your-stake";
 import { StakingForm } from "./staking-form";
@@ -51,6 +48,9 @@ export const STAKE_NODE_QUERY = gql`
         amount
         epoch
       }
+      stake {
+        currentStakeAvailable
+      }
     }
   }
 `;
@@ -63,7 +63,6 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
   // TODO: Remove and get id via useParams. Eg:
   // const node = useParams<{ node: string }>()
   const node = TEMP_useNodeIdFromLocation();
-  const { appState } = useAppState();
   const { t } = useTranslation();
   const { data, loading, error } = useQuery<StakeNode, StakeNodeVariables>(
     STAKE_NODE_QUERY,
@@ -72,6 +71,12 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
       skip: !node,
     }
   );
+
+  const currentDelegationAmount = React.useMemo(() => {
+    if (!data?.party?.delegations) return new BigNumber(0);
+    const amounts = data.party.delegations.map((d) => new BigNumber(d.amount));
+    return BigNumber.sum.apply(null, [new BigNumber(0), ...amounts]);
+  }, [data]);
 
   if (error) {
     return (
@@ -114,8 +119,10 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
       <StakingForm
         pubkey={vegaKey.pub}
         nodeId={node}
-        availableStakeToAdd={new BigNumber(appState.totalAssociated || "0")}
-        availableStakeToRemove={new BigNumber(appState.totalStaked || "0")}
+        availableStakeToAdd={
+          new BigNumber(data.party?.stake.currentStakeAvailable || "0")
+        }
+        availableStakeToRemove={currentDelegationAmount}
       />
     </>
   );

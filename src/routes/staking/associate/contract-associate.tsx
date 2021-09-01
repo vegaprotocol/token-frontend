@@ -49,7 +49,7 @@ export const ContractAssociate = ({
     pageContent = (
       <div className="contract-associate__error">
         {t(
-          "All VEGA tokens vesting in the connected wallet have already been staked."
+          "All VEGA tokens vesting in the connected wallet have already been associated."
         )}
       </div>
     );
