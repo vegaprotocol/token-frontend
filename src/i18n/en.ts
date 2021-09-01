@@ -189,7 +189,7 @@ const en = {
   checkingForProvider: "Checking for provider",
   "Awaiting action in wallet...":
     "Awaiting action in Ethereum wallet (e.g. metamask)",
-  Connect: "Connect",
+  Connect: "Connect to see your VEGA balance",
   "In wallet": "In wallet",
   "Not staked": "Not staked",
 
@@ -361,8 +361,10 @@ const en = {
     "Removing {{amount}} VEGA from {{node}}",
   "This should take approximately ({{time}}) to confirm.":
     "This should take approximately ({{time}}) to confirm.",
-  "{{amount}} Has been removed to {{node}}":
-    "{{amount}} Has been removed to {{node}}",
+  "{{amount}} VEGA has been added to {{node}}":
+    "{{amount VEGA has been added to {{node}}",
+  "{{amount}} VEGA has been removed from {{node}}":
+    "{{amount}} VEGA Has been removed from {{node}}",
   "Nominate another node with your stake":
     "Nominate another node with your stake",
   "Dissociate VEGA tokens": "Dissociate VEGA tokens",
