@@ -31,7 +31,7 @@ export const YourStake = ({ currentEpoch, delegations }: YourStakeProps) => {
 
   return (
     <div data-testid="your-stake">
-      <h2>{t("Your Stake")}</h2>
+      <h2>{t("Your stake")}</h2>
       <KeyValueTable>
         <KeyValueTableRow>
           <th>{t("Your Stake On Node (This Epoch)")}</th>

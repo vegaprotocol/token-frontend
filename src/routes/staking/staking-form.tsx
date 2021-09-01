@@ -48,9 +48,16 @@ export type StakeAction = "Add" | "Remove" | undefined;
 interface StakingFormProps {
   nodeId: string;
   pubkey: string;
+  availableStakeToAdd: BigNumber;
+  availableStakeToRemove: BigNumber;
 }
 
-export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
+export const StakingForm = ({
+  nodeId,
+  pubkey,
+  availableStakeToAdd,
+  availableStakeToRemove,
+}: StakingFormProps) => {
   const params = useSearchParams();
   const history = useHistory();
   const client = useApolloClient();
@@ -59,15 +66,16 @@ export const StakingForm = ({ nodeId, pubkey }: StakingFormProps) => {
   const { t } = useTranslation();
   const [action, setAction] = React.useState<StakeAction>(params.action);
   const [amount, setAmount] = React.useState("");
+
   const maxDelegation = React.useMemo(() => {
     if (action === "Add") {
-      return new BigNumber(100);
+      return availableStakeToAdd;
     }
 
     if (action === "Remove") {
-      return new BigNumber(200);
+      return availableStakeToRemove;
     }
-  }, [action]);
+  }, [action, availableStakeToAdd, availableStakeToRemove]);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
