@@ -35,11 +35,8 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
         <ul className="tranches__list">
           {(showAll ? tranches : filteredTranches).map((tranche) => {
             return (
-              <li className="tranches__list-item">
-                <div
-                  className="tranches__list-item-container"
-                  key={tranche.tranche_id}
-                >
+              <li className="tranches__list-item" key={tranche.tranche_id}>
+                <div className="tranches__list-item-container">
                   <div className="tranches__item-title">
                     <div className="tranches__item-line">
                       <Link
