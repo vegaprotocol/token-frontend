@@ -3,7 +3,10 @@ import "./staking-node.scss";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { ValidatorTable } from "./validator-table";
-import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
+import {
+  useAppState,
+  VegaKeyExtended,
+} from "../../contexts/app-state/app-state-context";
 import { EpochCountdown } from "./epoch-countdown";
 import { YourStake } from "./your-stake";
 import { StakingForm } from "./staking-form";
@@ -12,6 +15,7 @@ import { StakeNode, StakeNodeVariables } from "./__generated__/StakeNode";
 import { Callout } from "../../components/callout";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
+import BigNumber from "bignumber.js";
 
 export const STAKE_NODE_QUERY = gql`
   query StakeNode($nodeId: String!, $partyId: ID!) {
@@ -59,6 +63,7 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
   // TODO: Remove and get id via useParams. Eg:
   // const node = useParams<{ node: string }>()
   const node = TEMP_useNodeIdFromLocation();
+  const { appState } = useAppState();
   const { t } = useTranslation();
   const { data, loading, error } = useQuery<StakeNode, StakeNodeVariables>(
     STAKE_NODE_QUERY,
@@ -106,7 +111,12 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
         currentEpoch={data.epoch.id}
         delegations={data.party?.delegations || []}
       />
-      <StakingForm pubkey={vegaKey.pub} nodeId={node} />
+      <StakingForm
+        pubkey={vegaKey.pub}
+        nodeId={node}
+        availableStakeToAdd={new BigNumber(appState.totalAssociated || "0")}
+        availableStakeToRemove={new BigNumber(appState.totalStaked || "0")}
+      />
     </>
   );
 };
