@@ -91,7 +91,7 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
 
   return (
     <>
-      <h2 style={{ wordBreak: "break-word" }}>
+      <h2 style={{ wordBreak: "break-word", marginTop: 0 }}>
         {t("VALIDATOR {{node}}", { node })}
       </h2>
       <p>Vega key: {vegaKey.pubShort}</p>
