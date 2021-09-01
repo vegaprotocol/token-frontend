@@ -11,6 +11,7 @@ const en = {
   pageTitle404: "Page not found",
   pageTitleNotPermitted: "Can not proceed!",
   pageTitleDisassociate: "Dissociate VEGA tokens from a Vega key",
+  pageTitleGovernance: "Governance",
   Vesting: "VESTING VEGA TOKENS",
   of: "of",
   to: "to",
