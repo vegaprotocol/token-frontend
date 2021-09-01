@@ -375,6 +375,12 @@ const en = {
   "View Governance proposals": "View Governance proposals",
   "This tranche unlocked prior to the token launch on 3rd Sept 2021. These tokens were all issued to institutions for distribution to purchasers, and to support listings and liquidity. They were unlocked early to ensure a smooth launch, but not sold or traded prior to the launch.":
     "This tranche unlocked prior to the token launch on 3rd Sept 2021. These tokens were all issued to institutions for distribution to purchasers, and to support listings and liquidity. They were unlocked early to ensure a smooth launch, but not sold or traded prior to the launch.",
+  "VEGA token holders can vote on proposed changes to the network and create proposals.":
+    "VEGA token holders can vote on proposed changes to the network and create proposals.",
+  "VEGA token holders can nominate a validator node and receive staking rewards.":
+    "VEGA token holders can nominate a validator node and receive staking rewards.",
+  "USE YOUR VEGA TOKENS USE YOUR VEGA TOKENS":
+    "USE YOUR VEGA TOKENS USE YOUR VEGA TOKENS",
 };
 
 export default en;
