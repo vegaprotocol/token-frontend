@@ -12,24 +12,48 @@ import {
 import data from "./data.json";
 import { Colors } from "../../colors";
 import { format, startOfMonth } from "date-fns";
+import React from "react";
+
+const ORDER = ["community", "publicSale", "earlyInvestors", "team"];
 
 export const VestingChart = () => {
   const { t } = useTranslation();
+  const currentDate = React.useMemo(
+    () => format(startOfMonth(new Date()), "yyyy-MM-dd"),
+    []
+  );
   return (
     <ResponsiveContainer height={400} width="100%">
       <AreaChart data={data}>
-        <Tooltip contentStyle={{ backgroundColor: Colors.BLACK }} />
+        <Tooltip
+          contentStyle={{ backgroundColor: Colors.BLACK }}
+          separator=":"
+          formatter={(value: any, name: any, props: any) => {
+            return (
+              <div
+                style={{
+                  display: "flex",
+                  textAlign: "right",
+                }}
+              >
+                {Intl.NumberFormat().format(value)}
+              </div>
+            );
+          }}
+          itemSorter={(label: any) => {
+            return ORDER.indexOf(label.dataKey) + 1;
+          }}
+        />
         <XAxis dataKey="date" />
         <YAxis type="number" width={80} />
         <ReferenceLine
-          x={format(startOfMonth(new Date()), "yyyy-MM-dd")}
+          x={currentDate}
           stroke={Colors.WHITE}
           strokeWidth={2}
           label={{
             position: "right",
-            value: "Today",
+            value: currentDate,
             fill: Colors.WHITE,
-            fontSize: 12,
           }}
         />
         <Area
