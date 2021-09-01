@@ -231,6 +231,12 @@ const en = {
   "Token holders can nominate their tokens to a validator and are rewarded a proportion of the fees accumulated for infrastructure":
     "Token holders can nominate their tokens to a validator and are rewarded a proportion of the fees accumulated for infrastructure.",
 
+  // Governance
+  "This page lists proposed changes to the Vega network.": "This page lists proposed changes to the Vega network.",
+  "VEGA token holders can vote for or against proposals as well as make their own.": "VEGA token holders can vote for or against proposals as well as make their own.",
+  "Each proposal needs both a required majority of votes (e.g 66% but this differs by proposal type) and to meet a minimum threshold of votes.": "Each proposal needs both a required majority of votes (e.g 66% but this differs by proposal type) and to meet a minimum threshold of votes.",
+  "Proposals": "Proposals",
+
   // Token Details
   "Token address": "Token address",
   "Token contract": "Token contract",

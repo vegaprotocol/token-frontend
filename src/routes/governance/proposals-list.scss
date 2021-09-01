@@ -1,0 +1,27 @@
+@import "../../styles/colors";
+
+.proposals-list {
+  &__row {
+    display: flex;
+  }
+
+  &__first-item {
+    flex: 1;
+    margin: 1px;
+  }
+
+  &__item-left-low-key {
+    flex: 1;
+    margin: 1px;
+    color: $gray1
+  }
+
+  &__item-right {
+    margin: 1px;
+  }
+
+  &__item-pass {
+    margin: 1px;
+    color: $vega-green;
+  }
+}
