@@ -199,4 +199,47 @@ describe("staking", () => {
         `${amount} VEGA has been removed from node ${nodeId}`
       );
   });
+
+  it("Shows error message if stake command fails", () => {
+    mock(cy);
+
+    const nodeId = "node-id-1";
+    cy.visit(`/staking/${nodeId}`);
+
+    // connect
+    connectToWallets();
+
+    cy.get('[data-testid="add-stake-radio"]').click({ force: true });
+
+    const amount = "100";
+    cy.get('[data-testid="token-amount-input"]').type(amount);
+
+    cy.get('[data-testid="stake-form"]').find('button[type="submit"]').click();
+
+    const body = {
+      pubKey: "pub",
+      delegateSubmission: {
+        nodeId,
+        amount,
+      },
+      propagate: true,
+    };
+
+    cy.intercept(
+      "http://localhost:1789/api/v1/command/sync",
+      // TODO: Return more realistic object here
+      JSON.stringify({ errors: "oops an error!" }),
+      (req) => {
+        expect(req.method).to.equal("POST");
+        expect(JSON.parse(req.body)).to.deep.equal(body);
+      }
+    );
+
+    cy.get('[data-testid="callout"]')
+      .find("h3")
+      .should("have.text", "Something went wrong");
+    cy.get('[data-testid="callout"]').contains(
+      `Failed to delegate to node ${nodeId}`
+    );
+  });
 });
