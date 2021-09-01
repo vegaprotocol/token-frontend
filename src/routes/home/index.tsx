@@ -14,7 +14,6 @@ import { gql, useQuery } from "@apollo/client";
 import React from "react";
 import BigNumber from "bignumber.js";
 import { NodeData } from "./__generated__/NodeData";
-import { VestingChart } from "./vesting-chart";
 
 export const TOTAL_STAKED_QUERY = gql`
   query NodeData {
@@ -64,7 +63,7 @@ const Home = ({ name }: RouteChildProps) => {
                           "Once tokens have unlocked they can be redeemed to the Ethereum wallet that owns them"
                         )}
                       </p>
-                      <VestingChart />
+
                       <h2>{t("Governance")}</h2>
                       <p>
                         {t(

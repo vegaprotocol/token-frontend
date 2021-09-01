@@ -15,6 +15,7 @@ import { format, startOfMonth } from "date-fns";
 import React from "react";
 
 const ORDER = ["community", "publicSale", "earlyInvestors", "team"];
+const formatNumber = Intl.NumberFormat().format;
 
 export const VestingChart = () => {
   const { t } = useTranslation();
@@ -28,7 +29,7 @@ export const VestingChart = () => {
         <Tooltip
           contentStyle={{ backgroundColor: Colors.BLACK }}
           separator=":"
-          formatter={(value: any, name: any, props: any) => {
+          formatter={(value: any) => {
             return (
               <div
                 style={{
@@ -36,7 +37,7 @@ export const VestingChart = () => {
                   textAlign: "right",
                 }}
               >
-                {Intl.NumberFormat().format(value)}
+                {formatNumber(value)}
               </div>
             );
           }}
@@ -45,7 +46,7 @@ export const VestingChart = () => {
           }}
         />
         <XAxis dataKey="date" />
-        <YAxis type="number" width={80} />
+        <YAxis type="number" width={90} tickFormatter={formatNumber} />
         <ReferenceLine
           x={currentDate}
           stroke={Colors.WHITE}
@@ -100,7 +101,7 @@ export const VestingChart = () => {
           stackId="1"
           name={t("Community")}
         />
-        <Legend />
+        <Legend wrapperStyle={{ position: "relative" }} />
       </AreaChart>
     </ResponsiveContainer>
   );

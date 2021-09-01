@@ -10,6 +10,7 @@ import { Link, useHistory } from "react-router-dom";
 import React from "react";
 import { BigNumber } from "../../../lib/bignumber";
 import { truncateMiddle } from "../../../lib/truncate-middle";
+import { VestingChart } from "../../home/vesting-chart";
 
 export const RedemptionInformation = ({
   state,
@@ -66,6 +67,7 @@ export const RedemptionInformation = ({
           }
         )}
       </p>
+      <VestingChart />
       {/* <p data-testid="redemption-unlocked-tokens">
         {t("A total of {{amount}} Unlocked Vega tokens.", {
           amount: totalVestedBalance.toString(),
