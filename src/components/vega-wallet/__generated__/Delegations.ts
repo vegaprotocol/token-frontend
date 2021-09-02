@@ -15,6 +15,14 @@ export interface Delegations_epoch {
   id: string;
 }
 
+export interface Delegations_party_delegations_node {
+  __typename: "Node";
+  /**
+   * The node url eg n01.vega.xyz
+   */
+  id: string;
+}
+
 export interface Delegations_party_delegations {
   __typename: "Delegation";
   /**
@@ -24,7 +32,7 @@ export interface Delegations_party_delegations {
   /**
    * URL of node you are delegating to
    */
-  node: string;
+  node: Delegations_party_delegations_node;
   /**
    * Epoch of delegation
    */

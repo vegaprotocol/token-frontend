@@ -7,6 +7,7 @@ import {
   split,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
+import { RetryLink } from "@apollo/client/link/retry";
 import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
 
@@ -23,6 +24,14 @@ export function createClient() {
       Node: {
         keyFields: false,
       },
+    },
+  });
+
+  const retryLink = new RetryLink({
+    delay: {
+      initial: 300,
+      max: 10000,
+      jitter: true,
     },
   });
 
@@ -63,7 +72,7 @@ export function createClient() {
 
   return new ApolloClient({
     connectToDevTools: process.env.NODE_ENV === "development",
-    link: from([errorLink, link]),
+    link: from([errorLink, retryLink, link]),
     cache,
   });
 }

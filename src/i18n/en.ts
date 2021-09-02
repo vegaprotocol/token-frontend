@@ -325,11 +325,18 @@ const en = {
   stakingStep1: "Step 1. Connect to a Vega wallet",
   stakingStep1Text:
     "You will need a <vegaWalletLink>Vega wallet</vegaWalletLink> to control stake and receive staking rewards.",
+  stakingVegaWalletConnected:
+    "Connected to Vega wallet with public key {{key}}",
   stakingStep2: "Step 2. Associate tokens with a Vega wallet",
   stakingStep2Text:
-    "Your tokens need to be <associateLink>associated with a Vega wallet</associateLink> so that it can control your stake",
+    "Your tokens need to be associated with a Vega wallet so that it can control your stake",
+  stakingHasAssociated:
+    "You have associated {{tokens}} to your connected Vega wallet",
+  associateMore: "Associate more",
+
   stakingStep3: "Step3. Select the validator you'd like to nominate",
 
+  associateButton: "Associate VEGA tokens with wallet",
   nodeQueryFailed: "Could not get data for node {{node}}",
 
   // stake pending

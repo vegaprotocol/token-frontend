@@ -3,7 +3,10 @@ import { gql, useQuery } from "@apollo/client";
 import { Link, useRouteMatch } from "react-router-dom";
 import { BulletHeader } from "../../components/bullet-header";
 import { Callout } from "../../components/callout";
-import { useAppState } from "../../contexts/app-state/app-state-context";
+import {
+  AppStateActionType,
+  useAppState,
+} from "../../contexts/app-state/app-state-context";
 import { Links } from "../../lib/external-links";
 import { NodeList, NodeListItemProps } from "./node-list";
 import { Staking as StakingQueryResult } from "./__generated__/Staking";
@@ -11,6 +14,7 @@ import { BigNumber } from "../../lib/bignumber";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { Trans, useTranslation } from "react-i18next";
+import { Tick } from "../../components/icons";
 
 export const STAKING_QUERY = gql`
   query Staking($partyId: ID!) {
@@ -50,7 +54,6 @@ export const STAKING_QUERY = gql`
 `;
 
 export const Staking = () => {
-  const match = useRouteMatch();
   const { t } = useTranslation();
   const { appState } = useAppState();
 
@@ -124,37 +127,93 @@ export const Staking = () => {
         <BulletHeader tag="h2" style={{ marginTop: 0 }}>
           {t("stakingStep1")}
         </BulletHeader>
-        <p>
-          <Trans
-            i18nKey="stakingStep1Text"
-            components={{
-              vegaWalletLink: (
-                // eslint-disable-next-line
-                <a
-                  href={Links.VEGA_WALLET_RELEASES}
-                  target="_blank"
-                  rel="noreferrer"
-                />
-              ),
-            }}
-          />
-        </p>
+        <StakingStepConnectVegaWallet />
       </section>
       <section>
         <BulletHeader tag="h2">{t("stakingStep2")}</BulletHeader>
-        <p>
-          <Trans
-            i18nKey="stakingStep2Text"
-            components={{
-              associateLink: <Link to={`${match.path}/associate`} />,
-            }}
-          />
-        </p>
+        <StakingStepAssociate />
       </section>
       <section>
         <BulletHeader tag="h2">{t("stakingStep3")}</BulletHeader>
         <NodeList nodes={nodes} />
       </section>
+    </>
+  );
+};
+
+export const StakingStepConnectVegaWallet = () => {
+  const { t } = useTranslation();
+  const {
+    appState: { currVegaKey },
+    appDispatch,
+  } = useAppState();
+
+  if (currVegaKey) {
+    return (
+      <Callout intent="success" icon={<Tick />}>
+        <p>{t("stakingVegaWalletConnected", { key: currVegaKey.pubShort })}</p>
+      </Callout>
+    );
+  }
+
+  return (
+    <>
+      <p>
+        <Trans
+          i18nKey="stakingStep1Text"
+          components={{
+            vegaWalletLink: (
+              // eslint-disable-next-line
+              <a
+                href={Links.VEGA_WALLET_RELEASES}
+                target="_blank"
+                rel="noreferrer"
+              />
+            ),
+          }}
+        />
+      </p>
+      <button
+        onClick={() =>
+          appDispatch({
+            type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,
+            isOpen: true,
+          })
+        }
+        type="button"
+      >
+        {t("connectVegaWallet")}
+      </button>
+    </>
+  );
+};
+
+export const StakingStepAssociate = () => {
+  const match = useRouteMatch();
+  const { t } = useTranslation();
+  const {
+    appState: { lien, vegaAssociatedBalance },
+  } = useAppState();
+  const associated = new BigNumber(lien || 0);
+  console.log({ lien, vegaAssociatedBalance });
+
+  if (associated.isGreaterThan(0)) {
+    return (
+      <Callout intent="success" icon={<Tick />}>
+        <p>{t("stakingHasAssociated", { tokens: associated.toString() })}</p>
+        <p>
+          <Link to="/staking/associate">{t("associateMore")}</Link>
+        </p>
+      </Callout>
+    );
+  }
+
+  return (
+    <>
+      <p>{t("stakingStep2Text")}</p>
+      <Link to={`${match.path}/associate`}>
+        <button type="button">{t("associateButton")}</button>
+      </Link>
     </>
   );
 };
