@@ -66,7 +66,6 @@ export function useEthUser() {
         connect();
       } catch (e) {
         Sentry.captureException(e);
-        console.log(e);
       }
     }
   }, [
