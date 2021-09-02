@@ -6,6 +6,7 @@ import {
   transactionReducer,
 } from "./transaction-reducer";
 import { useTranslation } from "react-i18next";
+import * as Sentry from "@sentry/react";
 
 export const useTransaction = (
   performTransaction: (...args: any[]) => PromiEvent,
@@ -45,6 +46,7 @@ export const useTransaction = (
         })
         .on("error", (err: Error) => handleError(err));
     } catch (err) {
+      Sentry.captureException(err);
       handleError(err);
     }
   }, [performTransaction, checkTransaction, dispatch, handleError]);
