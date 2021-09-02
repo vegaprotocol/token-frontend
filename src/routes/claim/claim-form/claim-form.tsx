@@ -5,6 +5,7 @@ import * as Sentry from "@sentry/react";
 
 import {
   TransactionAction,
+  TransactionActionType,
   TransactionState,
   TxState,
 } from "../../../hooks/transaction-reducer";
@@ -63,7 +64,7 @@ export const ClaimForm = ({
     return (
       <TransactionCallout
         state={txState}
-        reset={() => txDispatch({ type: "TX_RESET" })}
+        reset={() => txDispatch({ type: TransactionActionType.TX_RESET })}
       />
     );
   }

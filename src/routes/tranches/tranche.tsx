@@ -1,5 +1,4 @@
 import "./tranche.scss";
-import React from "react";
 import { useParams } from "react-router";
 import { Redirect } from "react-router-dom";
 import { TrancheDates } from "./tranche-dates";
@@ -9,13 +8,18 @@ import { ProgressBar } from "./progress-bar";
 import { Colors } from "../../colors";
 import { BigNumber } from "../../lib/bignumber";
 import { getAbbreviatedNumber } from "../../lib/abbreviate-number";
-import { useTranche } from "../../hooks/use-tranches";
 import { Routes } from "../router-config";
+import { Tranche as TrancheType } from "../../lib/vega-web3/vega-web3-types";
+import {TrancheLabel} from "./tranche-label";
+import {useAppState} from "../../contexts/app-state/app-state-context";
 
-export const Tranche = () => {
+export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
   const { t } = useTranslation();
   const { trancheId } = useParams<{ trancheId: string }>();
-  const tranche = useTranche(parseInt(trancheId));
+  const { appState } = useAppState();
+  const tranche = tranches.find(
+    (tranche) => tranche.tranche_id === parseInt(trancheId)
+  );
 
   if (!tranche) {
     return <Redirect to={Routes.NOT_FOUND} />;
@@ -35,7 +39,7 @@ export const Tranche = () => {
   return (
     <>
       <BulletHeader tag="h2">
-        {t("Tranche")} #{trancheId}
+        {t("Tranche")} #{trancheId}&nbsp;
       </BulletHeader>
       <div style={{ marginTop: 20 }}>
         <TrancheDates start={tranche.tranche_start} end={tranche.tranche_end} />
@@ -67,6 +71,7 @@ export const Tranche = () => {
             {getAbbreviatedNumber(tranche.total_added)})
           </span>
         </div>
+        <TrancheLabel chainId={appState.chainId} contract={appState.contractAddresses.vestingAddress} id={tranche.tranche_id} />
       </div>
       <BulletHeader tag="h2">{t("Users")}</BulletHeader>
       {tranche.users.length ? (

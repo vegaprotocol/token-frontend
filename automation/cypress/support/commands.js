@@ -21,5 +21,10 @@
 // Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
 //
 //
-// -- This is will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+// Cypress.Commands.overwrite("contains", (originalFn, selector, str, ...rest) => {
+//   // if (!en[str]) {
+//   //   throw Error("Could not find translations for string:", str);
+//   // }
+//   return originalFn(selector, en[str] || str, ...rest);
+// });

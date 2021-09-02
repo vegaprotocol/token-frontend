@@ -1,16 +1,10 @@
-.app-wrapper {
+.app {
+  max-width: 1020px;
+  margin: 0 auto;
   display: grid;
   grid-template-rows: auto 1fr auto;
   min-height: 100%;
-  max-width: 1020px;
-  margin: auto;
-
-  main {
-    padding: 20px;
-  }
-
-  footer {
-    grid-row-start: 3;
-    grid-row-end: 4;
-  }
+  background-image: url("./images/banner.png");
+  background-repeat: no-repeat;
+  background-size: 100% auto;
 }

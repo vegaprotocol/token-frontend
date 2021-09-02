@@ -1,4 +1,3 @@
-import React from "react";
 import { format } from "date-fns";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { useTranslation } from "react-i18next";
@@ -9,7 +8,6 @@ interface ClaimInfoProps {
 
 export const ClaimInfo = ({ tranche }: ClaimInfoProps) => {
   const { t } = useTranslation();
-  const showRedeem = ["1", "true"].includes(process.env.REACT_APP_REDEEM_LIVE!);
   const unlockDate = format(
     new Date(tranche.tranche_start).getTime(),
     "MMM d, yyyy"
@@ -29,26 +27,26 @@ export const ClaimInfo = ({ tranche }: ClaimInfoProps) => {
     <>
       {noneRedeemable && (
         <p>
-          {t("tranche description", {
+          {t("none redeemable", {
             unlockDate,
             trancheEndDate,
-          })}{" "}
-          {showRedeem && t("none redeemable")}
+          })}
         </p>
       )}
       {partiallyRedeemable && (
         <p>
-          {t("tranche description", {
+          {t("partially redeemable", {
             unlockDate,
             trancheEndDate,
-          })}{" "}
-          {showRedeem && t("partially redeemable")}
+          })}
         </p>
       )}
       {fullyRedeemable && (
         <p>
-          {t("Tokens in this tranche are fully unlocked.")}
-          {showRedeem && t("fully redeemable")}
+          {t("fully redeemable", {
+            unlockDate,
+            trancheEndDate,
+          })}
         </p>
       )}
     </>

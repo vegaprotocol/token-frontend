@@ -1,0 +1,131 @@
+@import "../../styles/colors";
+
+.nav {
+  padding: 20px;
+
+  &__inner {
+    max-width: 1020px;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    @media (min-width: 960px) {
+      justify-content: flex-start;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 10px;
+
+    @media (min-width: 960px) {
+      flex: 1 1 auto;
+    }
+
+    > button {
+      background: none;
+      padding: 0;
+    }
+  }
+
+  &__logo {
+    width: 30px;
+
+    &-container {
+      height: 30px;
+      @media (min-width: 960px) {
+        height: 60px;
+      }
+    }
+
+    @media (min-width: 960px) {
+      width: 60px;
+    }
+  }
+
+  &__drawer {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  &__drawer-section {
+    padding: 5px;
+
+    &:first-child {
+      border-top: 0;
+    }
+  }
+
+  &__drawer-button {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 4px;
+
+    &:focus,
+    &:hover {
+      background: none;
+      outline: none;
+    }
+
+    span {
+      display: block;
+      width: 30px;
+      height: 4px;
+      background: $white;
+    }
+  }
+
+  &__wallets-container {
+    display: flex;
+    gap: 10px;
+
+    > button {
+      padding: 3px 10px;
+      font-size: 14px;
+    }
+  }
+}
+
+.nav-links {
+  display: flex;
+
+  .active {
+    background: $vega-yellow3;
+    color: $black;
+  }
+
+  > a {
+    background: $black;
+    text-decoration: none;
+    font-size: 14px;
+  }
+}
+
+.nav-links--row {
+  flex-direction: row;
+  text-transform: uppercase;
+
+  > a {
+    background: $black;
+    padding: 3px 10px;
+    color: $white;
+  }
+}
+
+.nav-links--column {
+  flex-direction: column;
+  grid-gap: 0;
+  gap: 0;
+
+  > a {
+    display: block;
+    background: $white;
+    color: $black;
+    padding: 20px;
+    border-top: 1px solid $black;
+  }
+}

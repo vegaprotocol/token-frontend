@@ -1,6 +1,10 @@
 import React from "react";
-import type { PromiEvent } from "../lib/vega-web3/vega-claim";
-import { initialState, transactionReducer } from "./transaction-reducer";
+import type { PromiEvent } from "../lib/web3-utils";
+import {
+  initialState,
+  TransactionActionType,
+  transactionReducer,
+} from "./transaction-reducer";
 import { useTranslation } from "react-i18next";
 
 export const useTransaction = (
@@ -17,27 +21,30 @@ export const useTransaction = (
         unknown: defaultMessage,
         "Transaction has been reverted by the EVM": defaultMessage,
       };
-      dispatch({ type: "TX_ERROR", error: err, errorSubstitutions });
+      dispatch({
+        type: TransactionActionType.TX_ERROR,
+        error: err,
+        errorSubstitutions,
+      });
     },
     [dispatch, t]
   );
 
   const perform = React.useCallback(async () => {
-    dispatch({ type: "TX_REQUESTED" });
+    dispatch({ type: TransactionActionType.TX_REQUESTED });
     try {
       if (typeof checkTransaction === "function") {
         await checkTransaction();
       }
       performTransaction()
         .on("transactionHash", (hash: string) => {
-          dispatch({ type: "TX_SUBMITTED", txHash: hash });
+          dispatch({ type: TransactionActionType.TX_SUBMITTED, txHash: hash });
         })
         .on("receipt", (receipt: any) => {
-          dispatch({ type: "TX_COMPLETE", receipt });
+          dispatch({ type: TransactionActionType.TX_COMPLETE, receipt });
         })
         .on("error", (err: Error) => handleError(err));
     } catch (err) {
-      console.log(err);
       handleError(err);
     }
   }, [performTransaction, checkTransaction, dispatch, handleError]);

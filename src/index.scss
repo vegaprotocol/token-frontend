@@ -37,6 +37,9 @@ h3,
 h4,
 h5,
 h6 {
+  font-weight: 500;
+  margin-top: 1em;
+  margin-bottom: 15px;
   color: $white;
 }
 
@@ -46,7 +49,8 @@ p {
   margin: 0 0 15px 0;
 }
 
-a {
+a,
+.link {
   text-decoration: underline;
   color: $white;
 
@@ -85,48 +89,59 @@ button {
   &.fill {
     width: 100%;
   }
+
+  &.button-secondary {
+    border: 1px solid $white;
+    border-radius: 0;
+    background: transparent;
+    color: white;
+    width: 100%;
+
+    &:hover {
+      background: $dark-gray4;
+    }
+
+    &:active {
+      background: $white;
+      color: $black;
+    }
+  }
+
+  &.button-link {
+    display: inline;
+    appearance: none;
+    padding: 0;
+    text-decoration: underline;
+    background-color: transparent;
+    color: $white;
+    outline: none;
+
+    &--dark {
+      color: $black;
+    }
+
+    &:hover {
+      color: $vega-yellow4 !important;
+    }
+
+    .invert & {
+      color: $black;
+
+      &:hover {
+        color: $black !important;
+      }
+    }
+  }
 }
 
 // FORM ELEMENTS
 select,
-input {
+input[type="text"],
+input[type="password"] {
   width: 100%;
   padding: 12px;
   border-radius: 4px;
   background-color: #3f3f3f;
   color: white;
   border: 0;
-}
-
-// TABLES
-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
-
-  tr {
-    border-bottom: 1px solid $white;
-
-    &:first-child {
-      border-top: 1px solid $white;
-    }
-  }
-
-  th,
-  td {
-    vertical-align: top;
-    padding: 5px;
-  }
-
-  th {
-    text-align: left;
-    font-weight: 500;
-    color: $white;
-    text-transform: uppercase;
-  }
-
-  td {
-    color: $text-color;
-    text-align: right;
-  }
 }

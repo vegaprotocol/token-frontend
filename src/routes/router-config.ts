@@ -7,7 +7,9 @@ export const Routes = {
   HOME: "/",
   TRANCHES: "/tranches",
   CLAIM: "/claim",
-  REDEMPTION: "/redemption",
+  STAKING: "/staking",
+  GOVERNANCE: "/governance",
+  VESTING: "/vesting",
   NOT_PERMITTED: "/not-permitted",
   NOT_FOUND: "/not-found",
 };
@@ -18,23 +20,37 @@ const LazyTranches = React.lazy(
       /* webpackChunkName: "route-tranches", webpackPrefetch: true */ "./tranches"
     )
 );
+
 const LazyClaim = React.lazy(
   () =>
     import(
       /* webpackChunkName: "route-claim", webpackPrefetch: true */ "./claim"
     )
 );
+
 const LazyRedemption = React.lazy(
   () =>
     import(
       /* webpackChunkName: "route-redemption", webpackPrefetch: true */ "./redemption"
     )
 );
+const LazyStaking = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "route-staking", webpackPrefetch: true */ "./staking"
+    )
+);
+const LazyGovernance = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "route-governance", webpackPrefetch: true */ "./governance"
+    )
+);
+
 const routerConfig = [
   {
     path: Routes.HOME,
     name: "Home",
-    children: [],
     // Not lazy as loaded when a user first hits the site
     component: Home,
     exact: true,
@@ -42,30 +58,36 @@ const routerConfig = [
   {
     path: Routes.TRANCHES,
     name: "Tranches",
-    children: [],
     component: LazyTranches,
   },
   {
     path: Routes.CLAIM,
     name: "Claim",
-    children: [],
     component: LazyClaim,
   },
   {
-    path: Routes.REDEMPTION,
-    name: "Redemption",
-    children: [],
+    path: Routes.STAKING,
+    name: "Staking",
+    component: LazyStaking,
+  },
+  {
+    path: Routes.VESTING,
+    name: "Vesting",
     component: LazyRedemption,
+  },
+  {
+    path: Routes.GOVERNANCE,
+    name: "Governance",
+    component: LazyGovernance,
   },
   {
     path: Routes.NOT_PERMITTED,
     name: "Not permitted",
-    children: [],
+    // Not lazy as loaded when a user first hits the site
     component: NotPermitted,
   },
   {
     name: "NotFound",
-    children: [],
     // Not lazy as loaded when a user first hits the site
     component: NotFound,
   },

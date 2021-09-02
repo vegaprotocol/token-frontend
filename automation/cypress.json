@@ -1,7 +1,5 @@
 {
   "baseUrl": "http://localhost:3000",
-  "targetedClaimLink" :"/claim/?r=0xf78012abf1178a407b9121c0a5632ca4bada6efc5bbc25d8e19d6411005540cd0e0b8c8fb8779a0154f39abcacc79d306e469af142d9858284c6414dca09331b1b&d=5&t=1&n=33469830324318491889925311876677015972621080441731498496307041669048565406241&targ=0x33353d153E08d2DCF228e7E2a395fFf2DEd296Cb&ex=2`;",
-  "testFiles":"**/*.feature",
-  "defaultCommandTimeout":20000,
-  "projectId": "9az7j4"
+  "projectId": "9az7j4",
+  "defaultCommandTimeout": 20000
 }
