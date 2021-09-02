@@ -21,6 +21,8 @@ import { StakePending } from "./stake-pending";
 import { StakeFailure } from "./stake-failure";
 import { useHistory } from "react-router-dom";
 import { useSearchParams } from "../../hooks/use-search-params";
+import { removeDecimal } from "../../lib/decimals";
+import { useAppState } from "../../contexts/app-state/app-state-context";
 
 export const PARTY_DELEGATIONS_QUERY = gql`
   query PartyDelegations($partyId: String!) {
@@ -61,6 +63,7 @@ export const StakingForm = ({
   const params = useSearchParams();
   const history = useHistory();
   const client = useApolloClient();
+  const { appState } = useAppState();
   const [formState, setFormState] = React.useState(FormState.Default);
   const vegaWallet = useVegaWallet();
   const { t } = useTranslation();
@@ -84,14 +87,14 @@ export const StakingForm = ({
       pubKey: pubkey,
       delegateSubmission: {
         nodeId,
-        amount: Number(amount),
+        amount: Number(removeDecimal(new BigNumber(amount), appState.decimals)),
       },
     };
     const undelegateInput: UndelegateSubmissionInput = {
       pubKey: pubkey,
       undelegateSubmission: {
         nodeId,
-        amount: Number(amount),
+        amount: Number(removeDecimal(new BigNumber(amount), appState.decimals)),
         method: "METHOD_AT_END_OF_EPOCH",
       },
     };
