@@ -13,9 +13,7 @@ import { Callout } from "../../components/callout";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 import BigNumber from "bignumber.js";
-import { VegaWalletContainer } from "../../components/vega-wallet-container";
-import { Web3Container } from "../../components/web3-container";
-import { TrancheContainer } from "../../components/tranche-container";
+import { StakingContainer } from "./staking-container";
 
 export const STAKE_NODE_QUERY = gql`
   query StakeNode($nodeId: String!, $partyId: ID!) {
@@ -60,17 +58,9 @@ export const STAKE_NODE_QUERY = gql`
 
 export const StakingNodeContainer = () => {
   return (
-    <Web3Container>
-      {(address) => (
-        <VegaWalletContainer>
-          {({ vegaKey }) => (
-            <TrancheContainer address={address}>
-              {() => <StakingNode vegaKey={vegaKey} />}
-            </TrancheContainer>
-          )}
-        </VegaWalletContainer>
-      )}
-    </Web3Container>
+    <StakingContainer>
+      {({ currVegaKey }) => <StakingNode vegaKey={currVegaKey} />}
+    </StakingContainer>
   );
 };
 

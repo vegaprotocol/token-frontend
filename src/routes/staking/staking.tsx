@@ -53,10 +53,6 @@ export const STAKING_QUERY = gql`
   }
 `;
 
-export const StakingContainer = () => {
-  return <Staking />;
-};
-
 export const Staking = () => {
   const { t } = useTranslation();
   return (

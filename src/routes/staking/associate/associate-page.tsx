@@ -11,20 +11,15 @@ import {
   StakingMethodRadio,
 } from "../../../components/staking-method-radio";
 import { useAddStake } from "./hooks";
-import { Web3Container } from "../../../components/web3-container";
-import { VegaWalletContainer } from "../../../components/vega-wallet-container";
+import { StakingContainer } from "../staking-container";
 
 export const AssociateContainer = () => {
   return (
-    <Web3Container>
-      {(address) => (
-        <VegaWalletContainer>
-          {({ vegaKey }) => (
-            <AssociatePage address={address} vegaKey={vegaKey} />
-          )}
-        </VegaWalletContainer>
+    <StakingContainer>
+      {({ address, currVegaKey }) => (
+        <AssociatePage address={address} vegaKey={currVegaKey} />
       )}
-    </Web3Container>
+    </StakingContainer>
   );
 };
 
