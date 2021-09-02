@@ -92,7 +92,7 @@ const Home = ({ name }: RouteChildProps) => {
                         </a>
                       </p>
                       <p>
-                        <Link to={`${Routes.VESTING}/associate`}>
+                        <Link to={`${Routes.STAKING}/associate`}>
                           {t("Associate VEGA tokens")}
                         </Link>
                       </p>
