@@ -14,6 +14,7 @@ import { BigNumber } from "../../lib/bignumber";
 import { Trans, useTranslation } from "react-i18next";
 import { Tick } from "../../components/icons";
 import { truncateMiddle } from "../../lib/truncate-middle";
+import { Web3Container } from "../../components/web3-container";
 
 export const STAKING_QUERY = gql`
   query Staking($partyId: ID!) {
@@ -53,7 +54,11 @@ export const STAKING_QUERY = gql`
 `;
 
 export const StakingContainer = () => {
-  return <Staking />;
+  return (
+    <Web3Container>
+      <Staking />
+    </Web3Container>
+  );
 };
 
 export const Staking = () => {
