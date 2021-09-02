@@ -103,7 +103,7 @@ export const ClaimFlow = ({
     return (
       <Complete
         address={address}
-        balanceFormatted={balanceFormatted}
+        balanceFormatted={state.denominationFormatted}
         trancheId={currentTranche.tranche_id}
         commitTxHash={state.commitTxHash}
         claimTxHash={state.claimTxHash}
