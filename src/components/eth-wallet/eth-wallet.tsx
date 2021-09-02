@@ -12,6 +12,7 @@ import {
 } from "../wallet-card";
 import { Colors } from "../../colors";
 import { useEthUser } from "../../hooks/use-eth-user";
+import { Flags } from "../../flags";
 
 export const EthWallet = () => {
   const { t } = useTranslation();
@@ -61,9 +62,8 @@ const ConnectedKey = () => {
 
   return (
     <>
-      <WalletCardRow label={t("In wallet")} dark={true} />
       <WalletCardRow
-        label={t("Not staked")}
+        label={t("VEGA in wallet")}
         value={walletBalance}
         valueSuffix={t("VEGA")}
       />
@@ -79,12 +79,16 @@ const ConnectedKey = () => {
         value={totalVestedBalance}
         valueSuffix={t("VEGA")}
       />
-      <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
-      <WalletCardRow
-        label={t("Associated")}
-        value={lien}
-        valueSuffix={t("VEGA")}
-      />
+      {Flags.MAINNET_DISABLED ? null : (
+        <>
+          <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
+          <WalletCardRow
+            label={t("Associated")}
+            value={lien}
+            valueSuffix={t("VEGA")}
+          />
+        </>
+      )}
     </>
   );
 };
