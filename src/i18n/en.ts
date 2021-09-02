@@ -151,9 +151,9 @@ const en = {
   "This tranche was used to perform integration testing only prior to token launch and no tokens will enter the supply before 3rd Sep 2021.":
     "This tranche was used to perform integration testing only prior to token launch and no tokens will enter the supply before 3rd Sep 2021.",
   "Showing tranches with <{{trancheMinimum}} VEGA, click to hide these tranches":
-    "Showing tranches with <={{trancheMinimum}} VEGA, click to hide these tranches",
+    "Showing tranches with ≤{{trancheMinimum}} VEGA, click to hide these tranches",
   "Not showing tranches with <{{trancheMinimum}} VEGA, click to show all tranches":
-    "Not showing tranches with <={{trancheMinimum}} VEGA, click to show all tranches",
+    "Not showing tranches with ≤{{trancheMinimum}} VEGA, click to show all tranches",
   "the holder": "the holder",
   "We couldn't seem to load your data.": "We couldn't seem to load your data.",
   "Vesting VEGA": "Vesting VEGA",
@@ -393,6 +393,8 @@ const en = {
     "Go to <stakingLink>staking</stakingLink> or <governanceLink>governance</governanceLink> to see how you can use your unlocked tokens",
   "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.":
     "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.",
+  "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.":
+    "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
 };
 
 export default en;
