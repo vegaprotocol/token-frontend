@@ -8,7 +8,7 @@ const en = {
   pageTitleRedemption: "Vesting",
   pageTitleRedemptionTranche: "Redeem from Tranche",
   pageTitleTranches: "Vesting tranches",
-  pageTitleStaking: "Stake your VEGA",
+  pageTitleStaking: "Staking",
   pageTitle404: "Page not found",
   pageTitleNotPermitted: "Can not proceed!",
   pageTitleDisassociate: "Dissociate VEGA tokens from a Vega key",
