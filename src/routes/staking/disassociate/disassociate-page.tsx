@@ -15,6 +15,7 @@ import { DisassociateTransaction } from "./disassociate-transaction";
 import { useRemoveStake } from "./hooks";
 import { Web3Container } from "../../../components/web3-container";
 import { VegaWalletContainer } from "../../../components/vega-wallet-container";
+import { TrancheContainer } from "../../../components/tranche-container";
 
 export const DisassociateContainer = () => {
   return (
@@ -22,7 +23,9 @@ export const DisassociateContainer = () => {
       {(address) => (
         <VegaWalletContainer>
           {({ vegaKey }) => (
-            <DisassociatePage address={address} vegaKey={vegaKey} />
+            <TrancheContainer address={address}>
+              {() => <DisassociatePage address={address} vegaKey={vegaKey} />}
+            </TrancheContainer>
           )}
         </VegaWalletContainer>
       )}
