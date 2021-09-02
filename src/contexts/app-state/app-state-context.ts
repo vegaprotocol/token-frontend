@@ -94,7 +94,6 @@ export type AppStateAction =
   | {
       type: AppStateActionType.CONNECT_SUCCESS;
       address: string;
-      chainId: EthereumChainId;
     }
   | { type: AppStateActionType.CONNECT_FAIL; error: Error }
   | {
