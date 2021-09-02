@@ -16,7 +16,7 @@ const TrancheRouter = ({ name }: RouteChildProps) => {
   const match = useRouteMatch();
   const tranches = useTranches();
 
-  if (!tranches) {
+  if (!tranches.length) {
     return (
       <SplashScreen>
         <SplashLoader />
