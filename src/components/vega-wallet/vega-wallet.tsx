@@ -98,7 +98,7 @@ const VegaWalletNotConnected = () => {
       data-testid="connect-vega"
       type="button"
     >
-      {t("Connect to Vega wallet")}
+      {t("Connect")}
     </button>
   );
 };
