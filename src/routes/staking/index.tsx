@@ -10,7 +10,7 @@ import { Flags } from "../../flags";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { AssociateContainer } from "./associate/associate-page";
 import { DisassociateContainer } from "./disassociate/disassociate-page";
-import { Staking } from "./staking";
+import { StakingContainer } from "./staking";
 import { StakingNodeContainer } from "./staking-node";
 
 const StakingRouter = ({ name }: RouteChildProps) => {
@@ -46,7 +46,7 @@ const StakingRouter = ({ name }: RouteChildProps) => {
             <StakingNodeContainer />
           </Route>
           <Route path={match.path} exact>
-            <Staking />
+            <StakingContainer />
           </Route>
         </Switch>
     </TemplateSidebar>

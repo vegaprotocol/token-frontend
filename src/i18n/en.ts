@@ -331,8 +331,7 @@ const en = {
   stakingStep2Text:
     "Your tokens need to be associated with a Vega wallet so that it can control your stake",
   stakingHasAssociated:
-    "You have associated {{tokens}} to your connected Vega wallet",
-  associateMore: "Associate more",
+    "You have associated {{tokens}} to your connected Vega wallet. You can <associateLink>associate more</associateLink> or <disassociateLink>disassociate</disassociateLink>",
 
   stakingStep3: "Step3. Select the validator you'd like to nominate",
 
