@@ -59,6 +59,138 @@ export const RewardsIndex = () => {
             endDate={new Date(data.epoch.timestamps.end)}
           />
         )}
+      <h3>Recent epochs</h3>
+      <table className="fill">
+        <thead>
+          <tr>
+            <th>
+              <div>Epoch number</div>
+              <div>Epoch end</div>
+            </th>
+            <th>You score based share %</th>
+            <th>
+              <div>Total (Fees+Reward)</div>
+              <select>
+                <option>VEGA tokens</option>
+              </select>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div>14 - Current</div>
+              <div>17 Sept 2021 23:59</div>
+            </td>
+            <td>0.09</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <div>14 - Current</div>
+              <div>17 Sept 2021 23:59</div>
+            </td>
+            <td>0.09</td>
+            <td>1,000.00</td>
+          </tr>
+          <tr>
+            <td>
+              <div>14 - Current</div>
+              <div>17 Sept 2021 23:59</div>
+            </td>
+            <td>0.09</td>
+            <td>1,000.00</td>
+          </tr>
+          <tr>
+            <td>
+              <div>14 - Current</div>
+              <div>17 Sept 2021 23:59</div>
+            </td>
+            <td>0.09</td>
+            <td>1,000.00</td>
+          </tr>
+          <tr>
+            <td>
+              <div>14 - Current</div>
+              <div>17 Sept 2021 23:59</div>
+            </td>
+            <td>0.09</td>
+            <td>1,000.00</td>
+          </tr>
+          <tr>
+            <td>
+              <div>14 - Current</div>
+              <div>17 Sept 2021 23:59</div>
+            </td>
+            <td>0.09</td>
+            <td>1,000.00</td>
+          </tr>
+          <tr>
+            <td>
+              <div>14 - Current</div>
+              <div>17 Sept 2021 23:59</div>
+            </td>
+            <td>0.09</td>
+            <td>1,000.00</td>
+          </tr>
+          <tr>
+            <td>
+              <div>14 - Current</div>
+              <div>17 Sept 2021 23:59</div>
+            </td>
+            <td>0.09</td>
+            <td>1,000.00</td>
+          </tr>
+          <tr>
+            <td>
+              <div>14 - Current</div>
+              <div>17 Sept 2021 23:59</div>
+            </td>
+            <td>0.09</td>
+            <td>1,000.00</td>
+          </tr>
+          <tr>
+            <td>
+              <div>14 - Current</div>
+              <div>17 Sept 2021 23:59</div>
+            </td>
+            <td>0.09</td>
+            <td>1,000.00</td>
+          </tr>
+          <tr>
+            <td>
+              <div>14 - Current</div>
+              <div>17 Sept 2021 23:59</div>
+            </td>
+            <td>0.09</td>
+            <td>1,000.00</td>
+          </tr>
+          <tr>
+            <td>
+              <div>14 - Current</div>
+              <div>17 Sept 2021 23:59</div>
+            </td>
+            <td>0.09</td>
+            <td>1,000.00</td>
+          </tr>
+          <tr>
+            <td>
+              <div>14 - Current</div>
+              <div>17 Sept 2021 23:59</div>
+            </td>
+            <td>0.09</td>
+            <td>1,000.00</td>
+          </tr>
+          <tr>
+            <td>
+              <div>14 - Current</div>
+              <div>17 Sept 2021 23:59</div>
+            </td>
+            <td>0.09</td>
+            <td>1,000.00</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
   );
 };
