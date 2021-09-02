@@ -3,11 +3,13 @@ import React from "react";
 import detectEthereumProvider from "DETECT_PROVIDER_PATH/detect-provider";
 import { SplashScreen } from "../splash-screen";
 import { SplashLoader } from "../splash-loader";
+import { useTranslation } from "react-i18next";
 
 enum ProviderStatus {
   Pending,
   Ready,
   None,
+  Invalid,
 }
 
 export const Web3Provider = ({
@@ -15,6 +17,7 @@ export const Web3Provider = ({
 }: {
   children: (provider: object) => JSX.Element;
 }) => {
+  const { t } = useTranslation();
   const provider = React.useRef<any>();
   const [status, setStatus] = React.useState(ProviderStatus.Pending);
 
@@ -27,7 +30,7 @@ export const Web3Provider = ({
           provider.current = res;
           setStatus(ProviderStatus.Ready);
         } else {
-          setStatus(ProviderStatus.None);
+          setStatus(ProviderStatus.Invalid);
         }
       })
       .catch(() => {
@@ -43,12 +46,13 @@ export const Web3Provider = ({
     );
   }
 
-  if (status === ProviderStatus.None) {
+  if (status !== ProviderStatus.Ready) {
     return (
       <SplashScreen>
         <div>
-          No provider detected. Please install Metamask, or use a Web3 capable
-          browser
+          {status === ProviderStatus.Invalid
+            ? t("invalidWeb3Provider")
+            : t("invalidWeb3Browser")}
         </div>
       </SplashScreen>
     );
