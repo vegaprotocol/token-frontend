@@ -5,16 +5,13 @@ import { RouteChildProps } from "..";
 import { EthWallet } from "../../components/eth-wallet";
 import { TemplateDefault } from "../../components/page-templates/template-default";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
-import { TrancheContainer } from "../../components/tranche-container";
 import { VegaWallet } from "../../components/vega-wallet";
-import { VegaWalletContainer } from "../../components/vega-wallet-container";
-import { Web3Container } from "../../components/web3-container";
 import { Flags } from "../../flags";
 import { useDocumentTitle } from "../../hooks/use-document-title";
-import { AssociatePage } from "./associate/associate-page";
-import { DisassociatePage } from "./disassociate/disassociate-page";
+import { AssociateContainer } from "./associate/associate-page";
+import { DisassociateContainer } from "./disassociate/disassociate-page";
 import { Staking } from "./staking";
-import { StakingNode } from "./staking-node";
+import { StakingNodeContainer } from "./staking-node";
 
 const StakingRouter = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
@@ -38,32 +35,20 @@ const StakingRouter = ({ name }: RouteChildProps) => {
     </TemplateDefault>
   ) : (
     <TemplateSidebar title={title} sidebar={[<EthWallet />, <VegaWallet />]}>
-      <Web3Container>
-        {(address) => (
-          <VegaWalletContainer>
-            {({ vegaKey }) => (
-              <TrancheContainer address={address}>
-                {() => (
-                  <Switch>
-                    <Route path={`${match.path}/associate`}>
-                      <AssociatePage vegaKey={vegaKey} address={address} />
-                    </Route>
-                    <Route path={`${match.path}/disassociate`}>
-                      <DisassociatePage vegaKey={vegaKey} address={address} />
-                    </Route>
-                    <Route path={`${match.path}/:node`}>
-                      <StakingNode vegaKey={vegaKey} />
-                    </Route>
-                    <Route path={match.path} exact>
-                      <Staking />
-                    </Route>
-                  </Switch>
-                )}
-              </TrancheContainer>
-            )}
-          </VegaWalletContainer>
-        )}
-      </Web3Container>
+        <Switch>
+          <Route path={`${match.path}/associate`}>
+            <AssociateContainer />
+          </Route>
+          <Route path={`${match.path}/disassociate`}>
+            <DisassociateContainer />
+          </Route>
+          <Route path={`${match.path}/:node`}>
+            <StakingNodeContainer />
+          </Route>
+          <Route path={match.path} exact>
+            <Staking />
+          </Route>
+        </Switch>
     </TemplateSidebar>
   );
 };

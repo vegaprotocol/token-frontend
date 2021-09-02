@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { TransactionCallout } from "../../../components/transaction-callout";
 import {
   TransactionAction,
@@ -19,7 +19,6 @@ export const AssociateTransaction = ({
   dispatch: React.Dispatch<TransactionAction>;
 }) => {
   const { t } = useTranslation();
-  const history = useHistory();
   return (
     <TransactionCallout
       completeHeading={t("Done")}
@@ -28,12 +27,11 @@ export const AssociateTransaction = ({
         { vegaKey }
       )}
       completeFooter={
-        <button
-          style={{ width: "100%" }}
-          onClick={() => history.push("/staking")}
-        >
-          {t("Nominate Stake to Validator Node")}
-        </button>
+        <Link to="/staking">
+          <button className="fill">
+            {t("Nominate Stake to Validator Node")}
+          </button>
+        </Link>
       }
       pendingHeading={t("Associating Tokens")}
       pendingBody={t(

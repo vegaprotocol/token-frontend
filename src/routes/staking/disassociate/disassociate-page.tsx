@@ -13,6 +13,22 @@ import { WalletDisassociate } from "./wallet-disassociate";
 import { ContractDisassociate } from "./contract-disassociate";
 import { DisassociateTransaction } from "./disassociate-transaction";
 import { useRemoveStake } from "./hooks";
+import { Web3Container } from "../../../components/web3-container";
+import { VegaWalletContainer } from "../../../components/vega-wallet-container";
+
+export const DisassociateContainer = () => {
+  return (
+    <Web3Container>
+      {(address) => (
+        <VegaWalletContainer>
+          {({ vegaKey }) => (
+            <DisassociatePage address={address} vegaKey={vegaKey} />
+          )}
+        </VegaWalletContainer>
+      )}
+    </Web3Container>
+  );
+};
 
 export const DisassociatePage = ({
   address,
