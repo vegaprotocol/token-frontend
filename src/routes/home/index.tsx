@@ -45,23 +45,25 @@ const Home = ({ name }: RouteChildProps) => {
 
       <p>
         {t(
-          "Most VEGA tokens are held in a vesting contract. This means that they cannot be transferred between wallets until their vesting term is complete"
+          "The vesting contract holds VEGA tokens until they have become unlocked."
         )}
       </p>
-      <button
-        onClick={() => history.push("/vesting")}
-        style={{ marginBottom: 8, width: "100%" }}
-      >
-        {t("Check to see if you can redeem unlocked VEGA tokens")}
-      </button>
       <p>
         <Trans
-          i18nKey="Tokens are held in different <trancheLink>Tranches</trancheLink>. Each tranche has its own schedule for how long the tokens are locked."
+          i18nKey="Tokens are held in different <trancheLink>Tranches</trancheLink>. Each tranche has its own schedule for how the tokens are unlocked."
           components={{
             trancheLink: <Link to={Routes.TRANCHES} />,
           }}
         />
       </p>
+      <p>
+        {t(
+          "Once unlocked they can be redeemed from the contract so that you can transfer them between wallets."
+        )}
+      </p>
+      <button onClick={() => history.push("/vesting")} className="fill">
+        {t("Check to see if you can redeem unlocked VEGA tokens")}
+      </button>
 
       <h2>{t("USE YOUR VEGA TOKENS")}</h2>
       {Flags.MAINNET_DISABLED ? (
@@ -107,22 +109,22 @@ const Home = ({ name }: RouteChildProps) => {
               </p>
             </div>
           </div>
+          <div style={{ flex: 1 }}>
+            <h2>{t("Staking")}</h2>
+            <p>
+              {t(
+                "VEGA token holders can nominate a validator node and receive staking rewards."
+              )}
+            </p>
+            <button
+              className="button-secondary"
+              onClick={() => history.push("/staking")}
+            >
+              {t("Nominate a validator")}
+            </button>
+          </div>
         </>
       )}
-      <div style={{ flex: 1 }}>
-        <h2>{t("Staking")}</h2>
-        <p>
-          {t(
-            "VEGA token holders can nominate a validator node and receive staking rewards."
-          )}
-        </p>
-        <button
-          className="button-secondary"
-          onClick={() => history.push("/staking")}
-        >
-          {t("Nominate a validator")}
-        </button>
-      </div>
     </TemplateSidebar>
   );
 };
