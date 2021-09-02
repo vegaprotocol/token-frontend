@@ -13,7 +13,6 @@ import {
 import { useAddStake } from "./hooks";
 import { Web3Container } from "../../../components/web3-container";
 import { VegaWalletContainer } from "../../../components/vega-wallet-container";
-import { TrancheContainer } from "../../../components/tranche-container";
 
 export const AssociateContainer = () => {
   return (
@@ -21,9 +20,7 @@ export const AssociateContainer = () => {
       {(address) => (
         <VegaWalletContainer>
           {({ vegaKey }) => (
-            <TrancheContainer address={address}>
-              {() => <AssociatePage address={address} vegaKey={vegaKey} />}
-            </TrancheContainer>
+            <AssociatePage address={address} vegaKey={vegaKey} />
           )}
         </VegaWalletContainer>
       )}
