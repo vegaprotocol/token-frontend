@@ -31,21 +31,31 @@ export const TokenDetails = ({
       <KeyValueTableRow>
         <th>{t("Token address")}</th>
         <td data-testid="token-address">
-          <EtherscanLink
-            chainId={chainId}
-            hash={appState.contractAddresses.vegaTokenAddress}
-            text={truncateMiddle(appState.contractAddresses.vegaTokenAddress)}
-          />
+          <a
+            rel="noreferrer"
+            target="_blank"
+            href={
+              "https://etherscan.io/address/" +
+              appState.contractAddresses.vegaTokenAddress
+            }
+          >
+            {truncateMiddle(appState.contractAddresses.vegaTokenAddress)}
+          </a>
         </td>
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Token contract")}</th>
         <td data-testid="token-contract">
-          <EtherscanLink
-            chainId={chainId}
-            hash={appState.contractAddresses.vestingAddress}
-            text={truncateMiddle(appState.contractAddresses.vestingAddress)}
-          />
+          <a
+            rel="noreferrer"
+            target="_blank"
+            href={
+              "https://etherscan.io/address/" +
+              appState.contractAddresses.vestingAddress
+            }
+          >
+            {truncateMiddle(appState.contractAddresses.vestingAddress)}
+          </a>
         </td>
       </KeyValueTableRow>
       <KeyValueTableRow>
