@@ -21,7 +21,7 @@ export interface DelegateSubmissionInput {
   pubKey: string;
   delegateSubmission: {
     nodeId: string;
-    amount: number;
+    amount: string;
   };
 }
 
@@ -29,7 +29,7 @@ export interface UndelegateSubmissionInput {
   pubKey: string;
   undelegateSubmission: {
     nodeId: string;
-    amount: number;
+    amount: string;
     method: "METHOD_AT_END_OF_EPOCH";
   };
 }
