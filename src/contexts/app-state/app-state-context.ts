@@ -48,6 +48,7 @@ export interface AppState {
   /** Ethereum address provided by Metamask */
   ethAddress: string | null;
 
+  /** Error if connecting to Metamask failed */
   error: Error | null;
 
   /** Whether or not we are awaiting the user to connect in Metamask */
@@ -62,7 +63,7 @@ export interface AppState {
   /** Users balance of VEGA in Metamask */
   walletBalance: string;
 
-  /** Amount associated */
+  /** Users total amount associated, potentially across multiple vega keys */
   lien: string;
 
   /** Array of tranche objects */
