@@ -384,6 +384,14 @@ const en = {
     "VEGA token holders can nominate a validator node and receive staking rewards.",
   "USE YOUR VEGA TOKENS": "USE YOUR VEGA TOKENS",
   "Check your vesting VEGA tokens": "Check your vesting VEGA tokens",
+  "Tokens from this Tranche have been redeemed":
+    "Tokens from this Tranche have been redeemed",
+  "You have redeemed {{redeemedAmount}} VEGA tokens from this tranche. They are now free to transfer from your Ethereum wallet.":
+    "You have redeemed {{redeemedAmount}} VEGA tokens from this tranche. They are now free to transfer from your Ethereum wallet.",
+  "The VEGA token address is {{address}}, make sure you add this to your wallet to see your tokens":
+    "The VEGA token address is {{address}}, make sure you add this to your wallet to see your tokens",
+  "Go to <stakingLink>staking</stakingLink> or <governanceLink>governance</governanceLink> to see how you can use your unlocked tokens":
+    "Go to <stakingLink>staking</stakingLink> or <governanceLink>governance</governanceLink> to see how you can use your unlocked tokens",
 };
 
 export default en;

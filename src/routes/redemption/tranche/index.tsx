@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";
 import { Colors } from "../../../colors";
 import { TransactionCallout } from "../../../components/transaction-callout";
@@ -56,7 +56,8 @@ export const RedeemFromTranche = ({
     return trancheBalances.find(
       ({ id: bId }) => bId.toString() === id.toString()
     )!.vested;
-    // TODO needs some explination
+    // Do not update this value as it is updated once the tranches are refetched on success and we want the old value
+    // so do not react to anything
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // If the claim has been committed refetch the new VEGA balance
@@ -85,24 +86,35 @@ export const RedeemFromTranche = ({
         <TransactionCallout
           completeHeading={
             <strong style={{ color: Colors.WHITE }}>
-              Tokens from this Tranche have been redeemed
+              {t("Tokens from this Tranche have been redeemed")}
             </strong>
           }
           completeFooter={
             <>
               <p>
-                You have redeemed {redeemedAmount.toString()} VEGA tokens from
-                this tranche. They are now free to transfer from your ethereum
-                wallet.
+                {t(
+                  "You have redeemed {{redeemedAmount}} VEGA tokens from this tranche. They are now free to transfer from your Ethereum wallet.",
+                  {
+                    redeemedAmount: redeemedAmount.toString(),
+                  }
+                )}
               </p>
               <p>
-                The VEGA token address is {contractAddresses.vegaTokenAddress},
-                make sure you add this to your wallet to see your tokens
+                {t(
+                  "The VEGA token address is {{address}}, make sure you add this to your wallet to see your tokens",
+                  {
+                    address: contractAddresses.vegaTokenAddress,
+                  }
+                )}
               </p>
               <p>
-                Go to <Link to={Routes.STAKING}>staking</Link> or{" "}
-                <Link to={Routes.GOVERNANCE}>governance</Link> to see how you
-                can use your unlocked tokens
+                <Trans
+                  i18nKey="Go to <stakingLink>staking</stakingLink> or <governanceLink>governance</governanceLink> to see how you can use your unlocked tokens"
+                  components={{
+                    stakingLink: <Link to={Routes.STAKING} />,
+                    governanceLink: <Link to={Routes.GOVERNANCE} />,
+                  }}
+                />
               </p>
             </>
           }
