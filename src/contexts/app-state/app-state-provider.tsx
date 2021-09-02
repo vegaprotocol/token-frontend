@@ -22,7 +22,6 @@ const initialAppState: AppState = {
   totalStaked: "",
   decimals: 0,
   totalSupply: "",
-
   address: "",
   connecting: false,
   chainId: process.env.REACT_APP_CHAIN as EthereumChainId,

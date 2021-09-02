@@ -16,39 +16,7 @@ export function useEthUser() {
   const vesting = useVegaVesting();
   const connectTimer = React.useRef<any>();
   const getUserTrancheBalances = useGetUserTrancheBalances(appState.address);
-
-  // const [triedToConnect, setTriedToConnect] = React.useState<boolean>(false);
-
-  // React.useEffect(() => {
-  //   // Auto connect if possible
-  //   if (
-  //     !triedToConnect &&
-  //     // If we haven't loaded the contract information don't connect yet
-  //     appState.tokenDataLoaded &&
-  //     // We don't have an address we are not connected
-  //     !appState.address &&
-  //     // If we have an error we don't want to try reconnecting
-  //     !appState.error &&
-  //     // If we are connecting we don't want to try to connect
-  //     !appState.connecting &&
-  //     // @ts-ignore
-  //     (window.ethereum || (window.web3 && window.web3.currentProvider))
-  //   ) {
-  //     try {
-  //       setTriedToConnect(true);
-  //       connect();
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   }
-  // }, [
-  //   appState.address,
-  //   appState.connecting,
-  //   appState.error,
-  //   appState.tokenDataLoaded,
-  //   connect,
-  //   triedToConnect,
-  // ]);
+  const [triedToConnect, setTriedToConnect] = React.useState<boolean>(false);
 
   const connect = React.useCallback(async () => {
     let connected = false;
@@ -80,6 +48,34 @@ export function useEthUser() {
       appDispatch({ type: AppStateActionType.CONNECT_FAIL, error: e });
     }
   }, [appDispatch, provider]);
+
+  // Auto connect if possible
+  React.useEffect(() => {
+    if (
+      !triedToConnect &&
+      // We don't have an address we are not connected
+      !appState.address &&
+      // If we have an error we don't want to try reconnecting
+      !appState.error &&
+      // If we are connecting we don't want to try to connect
+      !appState.connecting &&
+      // @ts-ignore
+      (window.ethereum || (window.web3 && window.web3.currentProvider))
+    ) {
+      try {
+        setTriedToConnect(true);
+        connect();
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  }, [
+    appState.address,
+    appState.connecting,
+    appState.error,
+    connect,
+    triedToConnect,
+  ]);
 
   // update balances on connect to Ethereum
   React.useEffect(() => {
