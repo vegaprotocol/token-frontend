@@ -62,7 +62,7 @@ export const RedemptionInformation = ({
           {
             address: truncateMiddle(address),
             balance: balanceFormatted,
-            tranches: userTranches.length,
+            tranches: filteredTranches.length,
           }
         )}
       </p>
