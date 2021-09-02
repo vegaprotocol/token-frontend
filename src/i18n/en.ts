@@ -173,7 +173,7 @@ const en = {
   "A total of {{amount}} Unlocked Vega tokens.":
     "A total of {{amount}} Unlocked Vega tokens.",
   "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.":
-    "The connected ethereum wallet ({{address}}) has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.",
+    "The connected ethereum wallet ({{address}}) has {{balance}} VEGA tokens in {{tranches}} tranche(s) of the vesting contract.",
   "Stake your Locked VEGA tokens!":
     "You can stake your VEGA tokens even while locked.",
   "Find out more about Staking.":
