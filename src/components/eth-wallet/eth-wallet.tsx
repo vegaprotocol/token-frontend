@@ -11,25 +11,27 @@ import {
   WalletCardRow,
 } from "../wallet-card";
 import { Colors } from "../../colors";
+import { useEthUser } from "../../hooks/use-eth-user";
 
 export const EthWallet = () => {
   const { t } = useTranslation();
-  const { appState, appDispatch } = useAppState();
+  const { appDispatch } = useAppState();
+  const { address } = useEthUser();
 
   return (
     <WalletCard>
       <WalletCardHeader>
         <span>{t("ethereumKey")}</span>
-        {appState.address && (
+        {address && (
           <>
             <span className="vega-wallet__curr-key">
-              {truncateMiddle(appState.address)}
+              {truncateMiddle(address)}
             </span>
           </>
         )}
       </WalletCardHeader>
       <WalletCardContent>
-        {appState.address ? (
+        {address ? (
           <ConnectedKey />
         ) : (
           <button
