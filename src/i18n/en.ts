@@ -406,7 +406,8 @@ const en = {
   liquidityTokenTitle: "LP Token",
   liquidityTokenBalance: "Balance",
   liquidityTokenDeposit: "Deposit",
-  liquidityTokenApprove: "Approve"
+  liquidityTokenApprove: "Approve",
+  liquidityComingSoon: "Liquidity rewards coming soon"
 };
 
 export default en;

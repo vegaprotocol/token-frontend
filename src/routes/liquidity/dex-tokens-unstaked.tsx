@@ -1,6 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { DexLPStakingContract } from "./index";
 import {Button} from "@blueprintjs/core";
+import {Flags} from "../../flags";
+import {TemplateDefault} from "../../components/page-templates/template-default";
+import React from "react";
 
 const isDepositEnabled = false
 
@@ -17,10 +20,15 @@ export const DexTokensUnstaked = ({
   contracts: DexLPStakingContract[]
 }) => {
   const { t } = useTranslation();
+  const title = t('liquidityTokensWalletTitle')
 
-  return (
+  return Flags.DEX_STAKING_DISABLED? (
+    <TemplateDefault title={title}>
+      <div>{t("liquidityComingSoon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</div>
+    </TemplateDefault>
+  ) : (
     <section className="dex-rewards-list">
-      <h2>{t('liquidityTokensWalletTitle')}</h2>
+      <h2>{title}</h2>
       <table className={'key-value-table dex-rewards-list-table'}>
         <thead>
         <tr>
