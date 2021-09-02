@@ -8,6 +8,7 @@ import { useVegaToken } from "./use-vega-token";
 import { useVegaVesting } from "./use-vega-vesting";
 import { BigNumber } from "../lib/bignumber";
 import { useGetUserTrancheBalances } from "./use-get-user-tranche-balances";
+import * as Sentry from "@sentry/react";
 
 export function useEthUser() {
   const { appState, appDispatch, provider } = useAppState();
@@ -43,8 +44,9 @@ export function useEthUser() {
         type: AppStateActionType.CONNECT_SUCCESS,
         address: accounts[0],
       });
+      Sentry.setUser({ id: accounts[0] });
     } catch (e) {
-      // Sentry.captureEvent(e);
+      Sentry.captureException(e);
       appDispatch({ type: AppStateActionType.CONNECT_FAIL, error: e });
     }
   }, [appDispatch, provider]);
@@ -58,15 +60,13 @@ export function useEthUser() {
       // If we have an error we don't want to try reconnecting
       !appState.error &&
       // If we are connecting we don't want to try to connect
-      !appState.connecting &&
-      // @ts-ignore
-      (window.ethereum || (window.web3 && window.web3.currentProvider))
+      !appState.connecting
     ) {
       try {
         setTriedToConnect(true);
         connect();
       } catch (e) {
-        console.log(e);
+        Sentry.captureException(e);
       }
     }
   }, [

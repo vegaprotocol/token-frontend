@@ -11,25 +11,28 @@ import {
   WalletCardRow,
 } from "../wallet-card";
 import { Colors } from "../../colors";
+import { useEthUser } from "../../hooks/use-eth-user";
+import { Flags } from "../../flags";
 
 export const EthWallet = () => {
   const { t } = useTranslation();
-  const { appState, appDispatch } = useAppState();
+  const { appDispatch } = useAppState();
+  const { address } = useEthUser();
 
   return (
     <WalletCard>
       <WalletCardHeader>
         <span>{t("ethereumKey")}</span>
-        {appState.address && (
+        {address && (
           <>
             <span className="vega-wallet__curr-key">
-              {truncateMiddle(appState.address)}
+              {truncateMiddle(address)}
             </span>
           </>
         )}
       </WalletCardHeader>
       <WalletCardContent>
-        {appState.address ? (
+        {address ? (
           <ConnectedKey />
         ) : (
           <button
@@ -59,9 +62,8 @@ const ConnectedKey = () => {
 
   return (
     <>
-      <WalletCardRow label={t("In wallet")} dark={true} />
       <WalletCardRow
-        label={t("Not staked")}
+        label={t("VEGA in wallet")}
         value={walletBalance}
         valueSuffix={t("VEGA")}
       />
@@ -77,12 +79,16 @@ const ConnectedKey = () => {
         value={totalVestedBalance}
         valueSuffix={t("VEGA")}
       />
-      <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
-      <WalletCardRow
-        label={t("Associated")}
-        value={lien}
-        valueSuffix={t("VEGA")}
-      />
+      {Flags.MAINNET_DISABLED ? null : (
+        <>
+          <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
+          <WalletCardRow
+            label={t("Associated")}
+            value={lien}
+            valueSuffix={t("VEGA")}
+          />
+        </>
+      )}
     </>
   );
 };

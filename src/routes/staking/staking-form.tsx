@@ -104,15 +104,13 @@ export const StakingForm = ({
 
       if (err) {
         setFormState(FormState.Failure);
-        Sentry.captureEvent(err);
-        console.log("err", err);
+        Sentry.captureException(err);
       }
 
       // await success via poll
     } catch (err) {
-      console.log("catch", err);
       setFormState(FormState.Failure);
-      Sentry.captureEvent(err);
+      Sentry.captureException(err);
     }
   }
 

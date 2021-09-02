@@ -34,6 +34,7 @@ const en = {
   Warning: "Warning",
   Associated: "Associated",
   vegaTokens: "VEGA tokens",
+  "Connect with Metamask": "Connect with Metamask",
 
   "VEGA was successfully withdrawn to your wallet":
     "VEGA was successfully withdrawn to your wallet",
@@ -219,8 +220,12 @@ const en = {
   "Token Vesting": "Vesting",
   Governance: "Governance",
   Staking: "Staking",
-  "Most VEGA tokens are held in a vesting contract. This means that they cannot be transferred between wallets until their vesting term is complete":
-    "Most VEGA tokens are held in a vesting contract. This means that they cannot be transferred between wallets until their vesting term is complete.",
+  "The vesting contract holds VEGA tokens until they have become unlocked.":
+    "The vesting contract holds VEGA tokens until they have become unlocked.",
+  "Once unlocked they can be redeemed from the contract so that you can transfer them between wallets.":
+    "Once unlocked they can be redeemed from the contract so that you can transfer them between wallets.",
+  "Tokens are held in different <trancheLink>Tranches</trancheLink>. Each tranche has its own schedule for how the tokens are unlocked.":
+    "Tokens are held in different <trancheLink>Tranches</trancheLink>. Each tranche has its own schedule for how the tokens are unlocked.",
 
   // Token Details
   "Token address": "Token address",
@@ -365,8 +370,6 @@ const en = {
   "Connect to Vega wallet": "Connect to Vega wallet",
   "Check to see if you can redeem unlocked VEGA tokens":
     "Check to see if you can redeem unlocked VEGA tokens",
-  "Tokens are held in different <trancheLink>Tranches</trancheLink>. Each tranche has its own schedule for how long the tokens are locked.":
-    "Tokens are held in different <trancheLink>Tranches</trancheLink>. Each tranche has its own schedule for how long the tokens are locked.",
   "To use your tokens on the Vega network they need to be associated with a Vega wallet/key.":
     "To use your tokens on the Vega network they need to be associated with a Vega wallet/key.",
   "This can happen both while held in the vesting contract as well as when redeemed.":
@@ -395,6 +398,9 @@ const en = {
     "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.",
   "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.":
     "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
+  mainnetDisableHome:
+    "You will be able to use your VEGA tokens on the Vega network to nominate Validator nodes and participate in governance.",
+  "VEGA in wallet": "VEGA in wallet",
 };
 
 export default en;

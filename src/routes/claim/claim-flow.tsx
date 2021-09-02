@@ -67,7 +67,7 @@ export const ClaimFlow = ({
           used,
         });
       } catch (e) {
-        Sentry.captureEvent(e);
+        Sentry.captureException(e);
         dispatch({
           type: ClaimActionType.ERROR,
           error: e,

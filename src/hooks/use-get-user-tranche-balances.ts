@@ -4,6 +4,7 @@ import {
   useAppState,
 } from "../contexts/app-state/app-state-context";
 import { useVegaVesting } from "./use-vega-vesting";
+import * as Sentry from "@sentry/react";
 
 export const useGetUserTrancheBalances = (address: string) => {
   const vesting = useVegaVesting();
@@ -39,6 +40,7 @@ export const useGetUserTrancheBalances = (address: string) => {
         tranches,
       });
     } catch (e) {
+      Sentry.captureException(e);
       appDispatch({
         type: AppStateActionType.SET_TRANCHE_ERROR,
         error: e,

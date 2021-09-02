@@ -42,7 +42,6 @@ export interface AppState {
   walletBalance: string;
   lien: string;
   tranches: Tranche[] | null;
-  appChainId: EthereumChainId;
   decimals: number;
   totalSupply: string;
   totalAssociated: string;
@@ -75,7 +74,6 @@ export enum AppStateActionType {
   CONNECT_FAIL,
   ACCOUNTS_CHANGED,
   UPDATE_ACCOUNT_BALANCES,
-  CHAIN_CHANGED,
   VEGA_WALLET_INIT,
   VEGA_WALLET_SET_KEY,
   VEGA_WALLET_DOWN,
@@ -109,7 +107,6 @@ export type AppStateAction =
       lien: BigNumber | null;
       allowance: BigNumber | null;
     }
-  | { type: AppStateActionType.CHAIN_CHANGED; chainId: EthereumChainId }
   | {
       type: AppStateActionType.VEGA_WALLET_INIT;
       keys: VegaKey[] | null | undefined;
