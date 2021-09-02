@@ -1,8 +1,6 @@
 import React from "react";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
-import { EthWrongChainPrompt } from "../../components/eth-connect-prompt/eth-wrong-chain-prompt";
-import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useEthUser } from "../../hooks/use-eth-user";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { RedemptionInformation } from "./home/redemption-information";
@@ -14,7 +12,6 @@ import {
 import { RedeemFromTranche } from "./tranche";
 
 const RedemptionRouter = () => {
-  const { appState } = useAppState();
   const match = useRouteMatch();
   const vesting = useVegaVesting();
   const [state, dispatch] = React.useReducer(
@@ -41,10 +38,6 @@ const RedemptionRouter = () => {
       run(address);
     }
   }, [address, vesting]);
-
-  if (appState.appChainId !== appState.chainId) {
-    return <EthWrongChainPrompt />;
-  }
 
   if (!address) {
     return <EthConnectPrompt />;

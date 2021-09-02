@@ -13,10 +13,12 @@ import { BigNumber } from "../../lib/bignumber";
 
 interface AppStateProviderProps {
   provider: any;
+  chainId: EthereumChainId;
   children: React.ReactNode;
 }
 
 const initialAppState: AppState = {
+  chainId: process.env.REACT_APP_CHAIN as EthereumChainId,
   // set in app-loader TODO: update when user stakes/unstakes/associates/disassociates
   totalAssociated: "",
   totalStaked: "",
@@ -24,8 +26,6 @@ const initialAppState: AppState = {
   totalSupply: "",
   address: "",
   connecting: false,
-  chainId: process.env.REACT_APP_CHAIN as EthereumChainId,
-  appChainId: process.env.REACT_APP_CHAIN as EthereumChainId,
   error: null,
   balanceFormatted: "",
   walletBalance: "",
@@ -59,6 +59,7 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
       return {
         ...state,
         address: action.address,
+        chainId: action.chainId,
         connecting: false,
         ethWalletOverlay: false,
       };
@@ -98,12 +99,6 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         allowance: action.allowance?.toString() || "",
         lien: action.lien?.toString() || "",
         vegaAssociatedBalance: action.vegaAssociatedBalance?.toString() || "",
-      };
-    }
-    case AppStateActionType.CHAIN_CHANGED: {
-      return {
-        ...state,
-        chainId: action.chainId,
       };
     }
     case AppStateActionType.VEGA_WALLET_INIT: {
@@ -213,8 +208,12 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
 export function AppStateProvider({
   children,
   provider,
+  chainId,
 }: AppStateProviderProps) {
-  const [state, dispatch] = React.useReducer(appStateReducer, initialAppState);
+  const [state, dispatch] = React.useReducer(appStateReducer, {
+    ...initialAppState,
+    chainId,
+  });
 
   React.useEffect(() => {
     provider.on("accountsChanged", (accounts: string[]) => {
@@ -222,10 +221,6 @@ export function AppStateProvider({
         type: AppStateActionType.ACCOUNTS_CHANGED,
         address: accounts[0],
       });
-    });
-
-    provider.on("chainChanged", (chainId: EthereumChainId) => {
-      dispatch({ type: AppStateActionType.CHAIN_CHANGED, chainId });
     });
   }, [provider]);
 

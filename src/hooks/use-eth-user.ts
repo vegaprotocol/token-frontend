@@ -8,6 +8,7 @@ import { useVegaToken } from "./use-vega-token";
 import { useVegaVesting } from "./use-vega-vesting";
 import { BigNumber } from "../lib/bignumber";
 import { useGetUserTrancheBalances } from "./use-get-user-tranche-balances";
+import { EthereumChainIds } from "../lib/web3-utils";
 
 export function useEthUser() {
   const { appState, appDispatch, provider } = useAppState();
@@ -36,12 +37,16 @@ export function useEthUser() {
       const accounts = await provider.request({
         method: "eth_requestAccounts",
       });
+      // const chainId = await provider.request({
+      //   method: "eth_chainId",
+      // });
 
       connected = true;
 
       appDispatch({
         type: AppStateActionType.CONNECT_SUCCESS,
         address: accounts[0],
+        chainId: EthereumChainIds.Ropsten,
       });
     } catch (e) {
       // Sentry.captureEvent(e);

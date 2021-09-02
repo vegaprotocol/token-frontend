@@ -4,6 +4,7 @@ import detectEthereumProvider from "DETECT_PROVIDER_PATH/detect-provider";
 import { SplashScreen } from "../splash-screen";
 import { SplashLoader } from "../splash-loader";
 import { useTranslation } from "react-i18next";
+import { EthereumChainId, EthereumChainNames } from "../../lib/web3-utils";
 
 enum ProviderStatus {
   Pending,
@@ -15,11 +16,12 @@ enum ProviderStatus {
 export const Web3Provider = ({
   children,
 }: {
-  children: (provider: object) => JSX.Element;
+  children: (data: { provider: any; chainId: EthereumChainId }) => JSX.Element;
 }) => {
   const { t } = useTranslation();
   const provider = React.useRef<any>();
   const [status, setStatus] = React.useState(ProviderStatus.Pending);
+  const [chainId, setChainId] = React.useState<EthereumChainId | null>(null);
 
   // Detect provider
   React.useEffect(() => {
@@ -38,15 +40,32 @@ export const Web3Provider = ({
       });
   }, []);
 
-  if (status === ProviderStatus.Pending) {
-    return (
-      <SplashScreen>
-        <SplashLoader />
-      </SplashScreen>
-    );
-  }
+  React.useEffect(() => {
+    const getChainId = async () => {
+      const chainId = await provider.current.request({
+        method: "eth_chainId",
+      });
+      setChainId(chainId);
+    };
 
-  if (status !== ProviderStatus.Ready) {
+    if (status === ProviderStatus.Ready) {
+      getChainId();
+    }
+  }, [status]);
+
+  React.useEffect(() => {
+    const bindChainChangeListener = () => {
+      provider.current.on("chainChanged", (chainId: EthereumChainId) => {
+        setChainId(chainId);
+      });
+    };
+
+    if (status === ProviderStatus.Ready) {
+      bindChainChangeListener();
+    }
+  }, [status]);
+
+  if (status === ProviderStatus.None || status === ProviderStatus.Invalid) {
     return (
       <SplashScreen>
         <div>
@@ -58,5 +77,31 @@ export const Web3Provider = ({
     );
   }
 
-  return children(provider.current);
+  if (status === ProviderStatus.Pending || chainId === null) {
+    return (
+      <SplashScreen>
+        <SplashLoader />
+      </SplashScreen>
+    );
+  }
+
+  if (chainId !== process.env.REACT_APP_CHAIN) {
+    const currentChain = EthereumChainNames[chainId];
+    const desiredChain =
+      EthereumChainNames[process.env.REACT_APP_CHAIN as EthereumChainId];
+    return (
+      <SplashScreen>
+        <div>
+          <p>
+            {t("Wrong network", { chain: currentChain })}.{" "}
+            {t("Desired network", {
+              chain: desiredChain,
+            })}
+          </p>
+        </div>
+      </SplashScreen>
+    );
+  }
+
+  return children({ provider: provider.current, chainId });
 };
