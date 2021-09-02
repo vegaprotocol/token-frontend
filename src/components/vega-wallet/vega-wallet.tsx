@@ -148,7 +148,6 @@ const VegaWalletConnected = ({
             setDelegations(filter);
           })
           .catch((err: Error) => {
-            console.log(err);
             // If query fails stop interval. Its almost certain that the query
             // will just continue to fail
             clearInterval(interval);
