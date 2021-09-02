@@ -327,7 +327,6 @@ const en = {
   "{{amount}} VEGA tokens have been returned to Ethereum wallet":
     "{{amount}} VEGA tokens have been returned to Ethereum wallet",
   "Disassociate VEGA Tokens from key": "Disassociate VEGA Tokens from key",
-  "In Wallet": "In Wallet",
   "Read about Vesting on Vega": "Read about Vesting on Vega",
   "Governance is coming soon": "Governance is coming soon",
   "Staking is coming soon": "Staking is coming soon",
