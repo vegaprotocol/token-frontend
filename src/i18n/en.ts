@@ -391,6 +391,8 @@ const en = {
     "The VEGA token address is {{address}}, make sure you add this to your wallet to see your tokens",
   "Go to <stakingLink>staking</stakingLink> or <governanceLink>governance</governanceLink> to see how you can use your unlocked tokens":
     "Go to <stakingLink>staking</stakingLink> or <governanceLink>governance</governanceLink> to see how you can use your unlocked tokens",
+  "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.":
+    "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.",
 };
 
 export default en;
