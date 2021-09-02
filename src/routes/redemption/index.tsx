@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useParams, useRouteMatch } from "react-router-dom";
+import { useRouteMatch } from "react-router-dom";
 import { RouteChildProps } from "..";
 import { EthWallet } from "../../components/eth-wallet";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
