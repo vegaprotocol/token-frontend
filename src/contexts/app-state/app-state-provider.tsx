@@ -10,6 +10,7 @@ import {
 
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { BigNumber } from "../../lib/bignumber";
+import * as Sentry from "@sentry/react";
 
 interface AppStateProviderProps {
   provider: any;
@@ -216,6 +217,7 @@ export function AppStateProvider({
 
   React.useEffect(() => {
     provider.on("accountsChanged", (accounts: string[]) => {
+      Sentry.setUser({ id: accounts[0] });
       dispatch({
         type: AppStateActionType.ACCOUNTS_CHANGED,
         address: accounts[0],
