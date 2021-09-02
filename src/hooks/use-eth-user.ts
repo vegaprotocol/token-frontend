@@ -8,6 +8,7 @@ import { useVegaToken } from "./use-vega-token";
 import { useVegaVesting } from "./use-vega-vesting";
 import { BigNumber } from "../lib/bignumber";
 import { useGetUserTrancheBalances } from "./use-get-user-tranche-balances";
+import * as Sentry from "@sentry/react";
 
 export function useEthUser() {
   const { appState, appDispatch, provider } = useAppState();
@@ -44,7 +45,7 @@ export function useEthUser() {
         address: accounts[0],
       });
     } catch (e) {
-      // Sentry.captureEvent(e);
+      Sentry.captureException(e);
       appDispatch({ type: AppStateActionType.CONNECT_FAIL, error: e });
     }
   }, [appDispatch, provider]);
@@ -64,6 +65,7 @@ export function useEthUser() {
         setTriedToConnect(true);
         connect();
       } catch (e) {
+        Sentry.captureException(e);
         console.log(e);
       }
     }
