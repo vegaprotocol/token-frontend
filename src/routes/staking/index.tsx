@@ -35,20 +35,20 @@ const StakingRouter = ({ name }: RouteChildProps) => {
     </TemplateDefault>
   ) : (
     <TemplateSidebar title={title} sidebar={[<EthWallet />, <VegaWallet />]}>
-        <Switch>
-          <Route path={`${match.path}/associate`}>
-            <AssociateContainer />
-          </Route>
-          <Route path={`${match.path}/disassociate`}>
-            <DisassociateContainer />
-          </Route>
-          <Route path={`${match.path}/:node`}>
-            <StakingNodeContainer />
-          </Route>
-          <Route path={match.path} exact>
-            <StakingContainer />
-          </Route>
-        </Switch>
+      <Switch>
+        <Route path={`${match.path}/associate`}>
+          <AssociateContainer />
+        </Route>
+        <Route path={`${match.path}/disassociate`}>
+          <DisassociateContainer />
+        </Route>
+        <Route path={`${match.path}/:node`}>
+          <StakingNodeContainer />
+        </Route>
+        <Route path={match.path} exact>
+          <StakingContainer />
+        </Route>
+      </Switch>
     </TemplateSidebar>
   );
 };
