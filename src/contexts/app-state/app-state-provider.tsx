@@ -59,7 +59,6 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
       return {
         ...state,
         address: action.address,
-        chainId: action.chainId,
         connecting: false,
         ethWalletOverlay: false,
       };
