@@ -63,7 +63,7 @@ export interface AppState {
   /** Users balance of VEGA in Metamask */
   walletBalance: string;
 
-  /** Users total amount associated, potentially across multiple vega keys */
+  /** Amount of tokens associated for a given eth address  */
   lien: string;
 
   /** Array of tranche objects */
@@ -105,7 +105,7 @@ export interface AppState {
   /** Current selected Vega key */
   currVegaKey: VegaKeyExtended | null;
 
-  /** Current amount of VEGA associated for staking with the current Vega key */
+  /** Amount of unlocked tockens associated with the current Vega key*/
   vegaAssociatedBalance: string | null;
 
   /** The error if one was thrown during retrieval of tranche data */
