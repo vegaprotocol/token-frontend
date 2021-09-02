@@ -83,8 +83,7 @@ const en = {
   showRedeem:
     "You'll be able to redeem your unlocked tokens at token.vega.xyz/vesting",
   codeUsed: "Code already used",
-  codeUsedText:
-    "Looks like that code has already been used for address {{address}}",
+  codeUsedText: "Looks like that code has already been used",
   codeExpired: "Code expired",
 
   invalidWeb3Browser: "You need a web3 capable browser to use this site",
