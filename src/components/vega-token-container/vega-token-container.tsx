@@ -9,13 +9,13 @@ export const VegaTokenContainer = ({
 }) => {
   const { appState } = useAppState();
 
-  if (!appState.totalSupply || !appState.tokenDataLoaded) {
-    return (
-      <SplashScreen>
-        <SplashLoader />
-      </SplashScreen>
-    );
-  }
+  // if (!appState.totalSupply || !appState.tokenDataLoaded) {
+  //   return (
+  //     <SplashScreen>
+  //       <SplashLoader />
+  //     </SplashScreen>
+  //   );
+  // }
 
   return children({
     decimals: appState.decimals,

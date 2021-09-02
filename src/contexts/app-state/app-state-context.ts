@@ -34,18 +34,17 @@ export interface TrancheBalance {
 }
 
 export interface AppState {
-  providerStatus: ProviderStatus;
-  address: string | null;
+  address: string;
   error: Error | null;
   connecting: boolean;
-  chainId: EthereumChainId | null;
+  chainId: EthereumChainId;
   balanceFormatted: string;
   walletBalance: string;
   lien: string;
   tranches: Tranche[] | null;
   appChainId: EthereumChainId;
   decimals: number;
-  totalSupply: string | null;
+  totalSupply: string;
   totalAssociated: string;
   totalStaked: string;
   totalVestedBalance: string;
@@ -65,19 +64,17 @@ export interface AppState {
   vegaKeys: VegaKeyExtended[] | null;
   currVegaKey: VegaKeyExtended | null;
   vegaAssociatedBalance: string | null;
-  tokenDataLoaded: boolean;
   trancheError: Error | null;
   drawerOpen: boolean;
 }
 
 export enum AppStateActionType {
-  PROVIDER_DETECTED,
-  PROVIDER_NOT_DETECTED,
   CONNECT,
   DISCONNECT,
   CONNECT_SUCCESS,
   CONNECT_FAIL,
   ACCOUNTS_CHANGED,
+  UPDATE_ACCOUNT_BALANCES,
   CHAIN_CHANGED,
   VEGA_WALLET_INIT,
   VEGA_WALLET_SET_KEY,
@@ -94,23 +91,19 @@ export enum AppStateActionType {
 }
 
 export type AppStateAction =
-  | { type: AppStateActionType.PROVIDER_DETECTED; chainId: EthereumChainId }
-  | { type: AppStateActionType.PROVIDER_NOT_DETECTED }
   | { type: AppStateActionType.CONNECT }
   | { type: AppStateActionType.DISCONNECT }
   | {
       type: AppStateActionType.CONNECT_SUCCESS;
-      chainId: EthereumChainId;
       address: string;
-      balance: BigNumber | null;
-      walletBalance: BigNumber | null;
-      lien: BigNumber | null;
-      allowance: BigNumber | null;
     }
   | { type: AppStateActionType.CONNECT_FAIL; error: Error }
   | {
       type: AppStateActionType.ACCOUNTS_CHANGED;
       address: string;
+    }
+  | {
+      type: AppStateActionType.UPDATE_ACCOUNT_BALANCES;
       balance: BigNumber | null;
       walletBalance: BigNumber | null;
       lien: BigNumber | null;

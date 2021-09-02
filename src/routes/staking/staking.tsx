@@ -54,11 +54,7 @@ export const STAKING_QUERY = gql`
 `;
 
 export const StakingContainer = () => {
-  return (
-    <Web3Container>
-      <Staking />
-    </Web3Container>
-  );
+  return <Staking />;
 };
 
 export const Staking = () => {
