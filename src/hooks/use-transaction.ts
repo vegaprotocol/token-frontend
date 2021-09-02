@@ -16,6 +16,7 @@ export const useTransaction = (
 
   const handleError = React.useCallback(
     (err: Error) => {
+      console.log(err);
       const defaultMessage = t("Something went wrong");
       const errorSubstitutions = {
         unknown: defaultMessage,
