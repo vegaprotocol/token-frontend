@@ -53,9 +53,10 @@ export const RedeemFromTranche = ({
     () => vesting.checkWithdrawFromTranche(address, numberId)
   );
   const redeemedAmount = React.useMemo(() => {
-    return trancheBalances.find(
-      ({ id: bId }) => bId.toString() === id.toString()
-    )!.vested;
+    return (
+      trancheBalances.find(({ id: bId }) => bId.toString() === id.toString())
+        ?.vested || new BigNumber(0).toString()
+    );
     // Do not update this value as it is updated once the tranches are refetched on success and we want the old value
     // so do not react to anything
     // eslint-disable-next-line react-hooks/exhaustive-deps
