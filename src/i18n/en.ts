@@ -148,10 +148,6 @@ const en = {
     "Ethereum address {{address}} now has a vested right to {{balance}} VEGA tokens from <trancheLink>{{trancheLinkText}}</trancheLink> of the vesting contract.",
   "Link transaction": "Link transaction",
   "Claim transaction": "Claim transaction",
-  "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.":
-    "Keep track of locked tokens in your wallet with the VEGA (LOCKED) token.",
-  "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.":
-    "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
   "This tranche was used to perform integration testing only prior to token launch and no tokens will enter the supply before 3rd Sep 2021.":
     "This tranche was used to perform integration testing only prior to token launch and no tokens will enter the supply before 3rd Sep 2021.",
   "Showing tranches with <{{trancheMinimum}} VEGA, click to hide these tranches":
@@ -386,6 +382,7 @@ const en = {
   "VEGA token holders can nominate a validator node and receive staking rewards.":
     "VEGA token holders can nominate a validator node and receive staking rewards.",
   "USE YOUR VEGA TOKENS": "USE YOUR VEGA TOKENS",
+  "Check your vesting VEGA tokens": "Check your vesting VEGA tokens",
 };
 
 export default en;
