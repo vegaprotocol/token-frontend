@@ -34,6 +34,7 @@ const en = {
   Warning: "Warning",
   Associated: "Associated",
   vegaTokens: "VEGA tokens",
+  "Connect with Metamask": "Connect with Metamask",
 
   "VEGA was successfully withdrawn to your wallet":
     "VEGA was successfully withdrawn to your wallet",
