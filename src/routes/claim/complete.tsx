@@ -32,10 +32,6 @@ export const Complete = ({
             values={{
               address,
               balance: balanceFormatted,
-              trancheLinkText: `tranche ${trancheId}`,
-            }}
-            components={{
-              trancheLink: <Link to={`/tranches/${trancheId}`} />,
             }}
           />
         </p>
