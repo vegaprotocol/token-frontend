@@ -2,8 +2,14 @@ import "./proposals-list.scss";
 
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { proposals_proposals } from "./_temp_/proposals";
 
-export const ProposalsList = () => {
+interface ProposalsListProps {
+  data: proposals_proposals[];
+}
+
+export const ProposalsList = ({ data }: ProposalsListProps) => {
+  console.log("got", data)
   const { t } = useTranslation();
   return (
     <div>
