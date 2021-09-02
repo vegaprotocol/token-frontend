@@ -1,12 +1,13 @@
 import "./breadcrumbs.scss";
 
-import { useHistory } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 import useBreadcrumbs from "use-react-router-breadcrumbs";
 
 export const Breadcrumbs = () => {
   const breadcrumbs = useBreadcrumbs();
   const history = useHistory();
-  return breadcrumbs.length > 1 ? (
+  const isClaim = useRouteMatch("/claim");
+  return !isClaim && breadcrumbs.length > 1 ? (
     <div className="breadcrumbs">
       {breadcrumbs.map(({ breadcrumb, match }, index) => (
         <div key={`${index}-container`} data-testid="breadcrumb">
