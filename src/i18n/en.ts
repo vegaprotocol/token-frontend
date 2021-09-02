@@ -48,7 +48,7 @@ const en = {
     "If you have been given a link please double check and try again",
 
   "You will need to connect to an ethereum wallet to pay the gas and claim tokens":
-    "To claim tokens you will need to connect an ethereum wallet with ETH to pay for gas. It may be easier to connect to the wallet that you wish your tokens to be sent to.",
+    "To claim tokens you will need to connect an Ethereum wallet with ETH to pay for gas. It may be easier to connect to the wallet that you wish your tokens to be sent to.",
   "Please check wallet": "Please check wallet",
   "Connect to an Ethereum wallet": "Connect to an Ethereum wallet",
 
@@ -69,7 +69,7 @@ const en = {
 
   commitTitle: "Link claim to your Ethereum address",
   commitBody:
-    "This links your claim to a specific ethereum address to prevent it being used by another person",
+    "This links your claim to a specific Ethereum address to prevent it being used by another person",
   selectCountryPrompt: "You must select a country/region first.",
   verifyingCountryPrompt: "Verifying country/region...",
 
@@ -173,7 +173,7 @@ const en = {
   "A total of {{amount}} Unlocked Vega tokens.":
     "A total of {{amount}} Unlocked Vega tokens.",
   "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.":
-    "The connected ethereum wallet ({{address}}) has {{balance}} VEGA tokens in {{tranches}} tranche(s) of the vesting contract.",
+    "The connected Ethereum wallet ({{address}}) has {{balance}} VEGA tokens in {{tranches}} tranche(s) of the vesting contract.",
   "Stake your Locked VEGA tokens!":
     "You can stake your VEGA tokens even while locked.",
   "Find out more about Staking.":
