@@ -7,6 +7,9 @@ import StakingAbi from "../lib/VEGA_WEB3/vega-staking";
 import BigNumber from "bignumber.js";
 import { Flags } from "../flags";
 
+// Currently there is not staking contract on Mainnet, so this shim allows us to
+// run a version of the token frontend until this contract has been released.
+// We can remove this when in web3 utils the stakingAddress has been filled in.
 class StakingShim implements IVegaStaking {
   checkTransferStake(
     address: string,
