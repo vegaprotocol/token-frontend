@@ -14,6 +14,7 @@ export const useRefreshBalances = (address: string) => {
   const vesting = useVegaVesting();
   const staking = useVegaStaking();
   const token = useVegaToken();
+
   return React.useCallback(async () => {
     const [balance, walletBalance, lien, allowance, vegaAssociatedBalance] =
       await Promise.all([

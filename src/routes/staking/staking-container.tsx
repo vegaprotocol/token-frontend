@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
 import { EthWrongChainPrompt } from "../../components/eth-connect-prompt/eth-wrong-chain-prompt";
-import { TrancheContainer } from "../../components/tranche-container";
 import {
   AppStateActionType,
   useAppState,
@@ -56,9 +55,5 @@ export const StakingContainer = ({
     );
   }
 
-  return (
-    <TrancheContainer address={address}>
-      {() => children({ address, currVegaKey })}
-    </TrancheContainer>
-  );
+  return children({ address, currVegaKey });
 };
