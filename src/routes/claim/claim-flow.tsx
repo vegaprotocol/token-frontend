@@ -140,9 +140,7 @@ export const ClaimFlow = ({
                 components={{
                   bold: <strong />,
                   trancheLink: (
-                    <Link
-                      to={`/vesting/tranches/${currentTranche.tranche_id}`}
-                    />
+                    <Link to={`/tranches/${currentTranche.tranche_id}`} />
                   ),
                 }}
               />
