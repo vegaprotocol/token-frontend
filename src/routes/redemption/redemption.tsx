@@ -1,10 +1,8 @@
 import React from "react";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
-import { EthWrongChainPrompt } from "../../components/eth-connect-prompt/eth-wrong-chain-prompt";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
-import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useEthUser } from "../../hooks/use-eth-user";
 import { useTranches } from "../../hooks/use-tranches";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
@@ -50,9 +48,6 @@ const RedemptionRouter = () => {
         <SplashLoader />
       </SplashScreen>
     );
-  }
-  if (appState.appChainId !== appState.chainId) {
-    return <EthWrongChainPrompt />;
   }
 
   if (!address) {
