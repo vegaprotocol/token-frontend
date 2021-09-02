@@ -5,7 +5,6 @@ export const PixelatedText = ({ text = "" }: { text?: string }) => {
   const chars = React.useMemo(() => {
     const charArray = text.split("");
     const threshold = 1 - 3 / (charArray.length - 1);
-    console.log(threshold);
     return charArray.map((char, i) => (
       <span
         key={i}
