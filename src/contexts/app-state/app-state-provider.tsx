@@ -1,29 +1,31 @@
 import React from "react";
-import { SplashLoader } from "../../components/splash-loader";
-import { SplashScreen } from "../../components/splash-screen";
 import { Addresses, EthereumChainId } from "../../lib/web3-utils";
 import {
   AppState,
   AppStateContext,
   AppStateAction,
-  ProviderStatus,
   AppStateActionType,
   VegaWalletStatus,
 } from "./app-state-context";
-// @ts-ignore
-import detectEthereumProvider from "DETECT_PROVIDER_PATH/detect-provider";
+
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { BigNumber } from "../../lib/bignumber";
 
 interface AppStateProviderProps {
+  provider: any;
   children: React.ReactNode;
 }
 
 const initialAppState: AppState = {
-  providerStatus: ProviderStatus.Pending,
-  address: null,
+  // set in app-loader TODO: update when user stakes/unstakes/associates/disassociates
+  totalAssociated: "",
+  totalStaked: "",
+  decimals: 0,
+  totalSupply: "",
+
+  address: "",
   connecting: false,
-  chainId: null,
+  chainId: process.env.REACT_APP_CHAIN as EthereumChainId,
   appChainId: process.env.REACT_APP_CHAIN as EthereumChainId,
   error: null,
   balanceFormatted: "",
@@ -37,32 +39,17 @@ const initialAppState: AppState = {
   vegaWalletStatus: VegaWalletStatus.Pending,
   vegaKeys: null,
   currVegaKey: null,
-  totalAssociated: "",
-  totalStaked: "",
-  decimals: 0,
-  totalSupply: null,
+
   vegaAssociatedBalance: null,
   trancheBalances: [],
   totalLockedBalance: "",
   totalVestedBalance: "",
-  tokenDataLoaded: false,
   trancheError: null,
   drawerOpen: false,
 };
 
 function appStateReducer(state: AppState, action: AppStateAction): AppState {
   switch (action.type) {
-    case AppStateActionType.PROVIDER_DETECTED:
-      return {
-        ...state,
-        providerStatus: ProviderStatus.Ready,
-        chainId: action.chainId,
-      };
-    case AppStateActionType.PROVIDER_NOT_DETECTED:
-      return {
-        ...state,
-        providerStatus: ProviderStatus.None,
-      };
     case AppStateActionType.CONNECT:
       return {
         ...state,
@@ -73,11 +60,6 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
       return {
         ...state,
         address: action.address,
-        chainId: action.chainId,
-        balanceFormatted: action.balance?.toString() || "",
-        walletBalance: action.walletBalance?.toString() || "",
-        allowance: action.allowance?.toString() || "",
-        lien: action.lien?.toString() || "",
         connecting: false,
         ethWalletOverlay: false,
       };
@@ -85,19 +67,24 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
       return {
         ...state,
         error: action.error,
-        address: null,
+        address: "",
         connecting: false,
       };
     case AppStateActionType.DISCONNECT:
       return {
         ...state,
         error: null,
-        address: null,
+        address: "",
       };
     case AppStateActionType.ACCOUNTS_CHANGED: {
       return {
         ...state,
         address: action.address,
+      };
+    }
+    case AppStateActionType.UPDATE_ACCOUNT_BALANCES: {
+      return {
+        ...state,
         balanceFormatted: action.balance?.toString() || "",
         walletBalance: action.walletBalance?.toString() || "",
         allowance: action.allowance?.toString() || "",
@@ -164,7 +151,6 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
     case AppStateActionType.SET_TOKEN: {
       return {
         ...state,
-        tokenDataLoaded: true,
         decimals: action.decimals,
         totalSupply: action.totalSupply,
         totalAssociated: action.totalAssociated.toString(),
@@ -225,49 +211,31 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
   }
 }
 
-export function AppStateProvider({ children }: AppStateProviderProps) {
-  const provider = React.useRef<any>();
+export function AppStateProvider({
+  children,
+  provider,
+}: AppStateProviderProps) {
   const [state, dispatch] = React.useReducer(appStateReducer, initialAppState);
-  // Detect provider
+
   React.useEffect(() => {
-    detectEthereumProvider()
-      .then((res: any) => {
-        // Extra check helps with Opera's legacy web3 - it properly falls through to NOT_DETECTED
-        if (res && res.request) {
-          provider.current = res;
-
-          // The line below fails on legacy web3 as the method 'request' does not exist
-          provider.current
-            .request({ method: "eth_chainId" })
-            .then((chainId: string) => {
-              dispatch({
-                type: AppStateActionType.PROVIDER_DETECTED,
-                chainId: chainId as EthereumChainId,
-              });
-            });
-        } else {
-          dispatch({ type: AppStateActionType.PROVIDER_NOT_DETECTED });
-        }
-      })
-      .catch(() => {
-        dispatch({ type: AppStateActionType.PROVIDER_NOT_DETECTED });
+    provider.on("accountsChanged", (accounts: string[]) => {
+      dispatch({
+        type: AppStateActionType.ACCOUNTS_CHANGED,
+        address: accounts[0],
       });
-  }, []);
+    });
 
-  if (state.providerStatus === ProviderStatus.Pending) {
-    return (
-      <SplashScreen>
-        <SplashLoader />
-      </SplashScreen>
-    );
-  }
+    provider.on("chainChanged", (chainId: EthereumChainId) => {
+      dispatch({ type: AppStateActionType.CHAIN_CHANGED, chainId });
+    });
+  }, [provider]);
 
   return (
     <AppStateContext.Provider
       value={{
         appState: state,
         appDispatch: dispatch,
-        provider: provider.current,
+        provider,
       }}
     >
       {children}
