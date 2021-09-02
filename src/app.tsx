@@ -17,8 +17,8 @@ function App() {
     <GraphQlProvider>
       <Router>
         <Web3Provider>
-          {(provider) => (
-            <AppStateProvider provider={provider}>
+          {({ provider, chainId }) => (
+            <AppStateProvider provider={provider} chainId={chainId}>
               <AppLoader>
                 <>
                   <div className="app">

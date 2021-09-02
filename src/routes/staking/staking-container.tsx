@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
-import { EthWrongChainPrompt } from "../../components/eth-connect-prompt/eth-wrong-chain-prompt";
 import {
   AppStateActionType,
   useAppState,
@@ -18,16 +17,9 @@ export const StakingContainer = ({
   }) => React.ReactElement;
 }) => {
   const { t } = useTranslation();
-  const {
-    appState: { appChainId, chainId },
-    appDispatch,
-  } = useAppState();
+  const { appDispatch } = useAppState();
   const { address } = useEthUser();
   const { currVegaKey } = useVegaUser();
-
-  if (appChainId !== chainId) {
-    return <EthWrongChainPrompt />;
-  }
 
   if (!address) {
     return <EthConnectPrompt />;
