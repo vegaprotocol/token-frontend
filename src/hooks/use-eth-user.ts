@@ -37,9 +37,6 @@ export function useEthUser() {
       const accounts = await provider.request({
         method: "eth_requestAccounts",
       });
-      // const chainId = await provider.request({
-      //   method: "eth_chainId",
-      // });
 
       connected = true;
 
@@ -63,9 +60,7 @@ export function useEthUser() {
       // If we have an error we don't want to try reconnecting
       !appState.error &&
       // If we are connecting we don't want to try to connect
-      !appState.connecting &&
-      // @ts-ignore
-      (window.ethereum || (window.web3 && window.web3.currentProvider))
+      !appState.connecting
     ) {
       try {
         setTriedToConnect(true);
