@@ -11,10 +11,10 @@ import { Links } from "../../lib/external-links";
 import { NodeList, NodeListItemProps } from "./node-list";
 import { Staking as StakingQueryResult } from "./__generated__/Staking";
 import { BigNumber } from "../../lib/bignumber";
-import { SplashLoader } from "../../components/splash-loader";
-import { SplashScreen } from "../../components/splash-screen";
 import { Trans, useTranslation } from "react-i18next";
 import { Tick } from "../../components/icons";
+import { truncateMiddle } from "../../lib/truncate-middle";
+import { Web3Container } from "../../components/web3-container";
 
 export const STAKING_QUERY = gql`
   query Staking($partyId: ID!) {
@@ -53,10 +53,151 @@ export const STAKING_QUERY = gql`
   }
 `;
 
+export const StakingContainer = () => {
+  return (
+    <Web3Container>
+      <Staking />
+    </Web3Container>
+  );
+};
+
 export const Staking = () => {
   const { t } = useTranslation();
-  const { appState } = useAppState();
+  return (
+    <>
+      <section>
+        <BulletHeader tag="h2" style={{ marginTop: 0 }}>
+          {t("stakingStep1")}
+        </BulletHeader>
+        <StakingStepConnectWallets />
+      </section>
+      <section>
+        <BulletHeader tag="h2">{t("stakingStep2")}</BulletHeader>
+        <StakingStepAssociate />
+      </section>
+      <section>
+        <BulletHeader tag="h2">{t("stakingStep3")}</BulletHeader>
+        <StakingStepSelectNode />
+      </section>
+    </>
+  );
+};
 
+export const StakingStepConnectWallets = () => {
+  const { t } = useTranslation();
+  const {
+    appState: { address, currVegaKey },
+    appDispatch,
+  } = useAppState();
+
+  if (currVegaKey && address) {
+    return (
+      <Callout intent="success" icon={<Tick />}>
+        <p>
+          {t("Connected Ethereum address")} {truncateMiddle(address)}
+        </p>
+        <p>{t("stakingVegaWalletConnected", { key: currVegaKey.pubShort })}</p>
+      </Callout>
+    );
+  }
+
+  return (
+    <>
+      <p>
+        <Trans
+          i18nKey="stakingStep1Text"
+          components={{
+            vegaWalletLink: (
+              // eslint-disable-next-line
+              <a
+                href={Links.VEGA_WALLET_RELEASES}
+                target="_blank"
+                rel="noreferrer"
+              />
+            ),
+          }}
+        />
+      </p>
+      {address ? (
+        <p>Ethereum wallet connected: {truncateMiddle(address)}</p>
+      ) : (
+        <p>
+          <button
+            onClick={() =>
+              appDispatch({
+                type: AppStateActionType.SET_ETH_WALLET_OVERLAY,
+                isOpen: true,
+              })
+            }
+            className="fill"
+            type="button"
+          >
+            {t("Connect to an Ethereum wallet")}
+          </button>
+        </p>
+      )}
+      {currVegaKey ? (
+        <p>Vega wallet connected: {currVegaKey.pubShort}</p>
+      ) : (
+        <p>
+          <button
+            onClick={() =>
+              appDispatch({
+                type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,
+                isOpen: true,
+              })
+            }
+            className="fill"
+            type="button"
+          >
+            {t("connectVegaWallet")}
+          </button>
+        </p>
+      )}
+    </>
+  );
+};
+
+export const StakingStepAssociate = () => {
+  const match = useRouteMatch();
+  const { t } = useTranslation();
+  const {
+    appState: { lien },
+  } = useAppState();
+  const associated = new BigNumber(lien || 0);
+
+  if (associated.isGreaterThan(0)) {
+    return (
+      <Callout intent="success" icon={<Tick />}>
+        <p>
+          <Trans
+            i18nKey="stakingHasAssociated"
+            values={{ tokens: associated.toString() }}
+            components={{
+              associateLink: <Link to="/staking/associate" />,
+              disassociateLink: <Link to="/staking/disassociate" />,
+            }}
+          />
+        </p>
+      </Callout>
+    );
+  }
+
+  return (
+    <>
+      <p>{t("stakingStep2Text")}</p>
+      <Link to={`${match.path}/associate`}>
+        <button type="button" className="fill">
+          {t("associateButton")}
+        </button>
+      </Link>
+    </>
+  );
+};
+
+export const StakingStepSelectNode = () => {
+  const { t } = useTranslation();
+  const { appState } = useAppState();
   const { data, loading, error } = useQuery<StakingQueryResult>(STAKING_QUERY, {
     variables: { partyId: appState.currVegaKey?.pub || "" },
     skip: !appState.currVegaKey?.pub,
@@ -105,6 +246,10 @@ export const Staking = () => {
     return sortedByStake;
   }, [data]);
 
+  if (!appState.currVegaKey) {
+    return <p className="text-muted">{t("connectVegaWallet")}</p>;
+  }
+
   if (error) {
     return (
       <Callout intent="error" title={t("Something went wrong")}>
@@ -114,106 +259,8 @@ export const Staking = () => {
   }
 
   if (loading) {
-    return (
-      <SplashScreen>
-        <SplashLoader />
-      </SplashScreen>
-    );
+    return <div>{t("Loading")}</div>;
   }
 
-  return (
-    <>
-      <section>
-        <BulletHeader tag="h2" style={{ marginTop: 0 }}>
-          {t("stakingStep1")}
-        </BulletHeader>
-        <StakingStepConnectVegaWallet />
-      </section>
-      <section>
-        <BulletHeader tag="h2">{t("stakingStep2")}</BulletHeader>
-        <StakingStepAssociate />
-      </section>
-      <section>
-        <BulletHeader tag="h2">{t("stakingStep3")}</BulletHeader>
-        <NodeList nodes={nodes} />
-      </section>
-    </>
-  );
-};
-
-export const StakingStepConnectVegaWallet = () => {
-  const { t } = useTranslation();
-  const {
-    appState: { currVegaKey },
-    appDispatch,
-  } = useAppState();
-
-  if (currVegaKey) {
-    return (
-      <Callout intent="success" icon={<Tick />}>
-        <p>{t("stakingVegaWalletConnected", { key: currVegaKey.pubShort })}</p>
-      </Callout>
-    );
-  }
-
-  return (
-    <>
-      <p>
-        <Trans
-          i18nKey="stakingStep1Text"
-          components={{
-            vegaWalletLink: (
-              // eslint-disable-next-line
-              <a
-                href={Links.VEGA_WALLET_RELEASES}
-                target="_blank"
-                rel="noreferrer"
-              />
-            ),
-          }}
-        />
-      </p>
-      <button
-        onClick={() =>
-          appDispatch({
-            type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,
-            isOpen: true,
-          })
-        }
-        type="button"
-      >
-        {t("connectVegaWallet")}
-      </button>
-    </>
-  );
-};
-
-export const StakingStepAssociate = () => {
-  const match = useRouteMatch();
-  const { t } = useTranslation();
-  const {
-    appState: { lien, vegaAssociatedBalance },
-  } = useAppState();
-  const associated = new BigNumber(lien || 0);
-  console.log({ lien, vegaAssociatedBalance });
-
-  if (associated.isGreaterThan(0)) {
-    return (
-      <Callout intent="success" icon={<Tick />}>
-        <p>{t("stakingHasAssociated", { tokens: associated.toString() })}</p>
-        <p>
-          <Link to="/staking/associate">{t("associateMore")}</Link>
-        </p>
-      </Callout>
-    );
-  }
-
-  return (
-    <>
-      <p>{t("stakingStep2Text")}</p>
-      <Link to={`${match.path}/associate`}>
-        <button type="button">{t("associateButton")}</button>
-      </Link>
-    </>
-  );
+  return <NodeList nodes={nodes} />;
 };
