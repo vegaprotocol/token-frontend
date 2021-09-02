@@ -400,6 +400,7 @@ const en = {
     "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
   mainnetDisableHome:
     "You will be able to use your VEGA tokens on the Vega network to nominate Validator nodes and participate in governance.",
+  "VEGA in wallet": "VEGA in wallet",
 };
 
 export default en;
