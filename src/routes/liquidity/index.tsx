@@ -1,21 +1,68 @@
-import { useTranslation } from "react-i18next";
-import { RouteChildProps } from "..";
-import { EthWallet } from "../../components/eth-wallet";
-import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
-import { Web3Container } from "../../components/web3-container";
-import { useDocumentTitle } from "../../hooks/use-document-title";
-import {DexTokenRewards} from "./dex-token-rewards";
+import {useTranslation} from "react-i18next";
+import {RouteChildProps} from "..";
+import {EthWallet} from "../../components/eth-wallet";
+import {TemplateSidebar} from "../../components/page-templates/template-sidebar";
+import {Web3Container} from "../../components/web3-container";
+import {useDocumentTitle} from "../../hooks/use-document-title";
+import {DexTokensStaked} from "./dex-tokens-staked";
+import {DexRewardsList} from "./dex-rewards-list";
+import {BigNumber} from "../../lib/bignumber";
+import {DexTokensUnstaked} from "./dex-tokens-unstaked";
 
-const RedemptionIndex = ({ name }: RouteChildProps) => {
+/**
+ * What I imagine we need to know about a contract to render this
+ */
+export type DexLPStakingContract = {
+  // The ethereum address of the contract
+  address: string,
+  // A title we can use to refer to the contract (a pair maybe?)
+  title: string,
+  // The total reward that has been deposited for distribution
+  availableRewardBalance: BigNumber,
+  // The token that this contract deals with
+  acceptsToken: string,
+  // The earned reward balance that the connected wallet has earned
+  connectedUserRewardBalance: BigNumber
+  // The balance of acceptsToken that the user has in this contract
+  connectedUserBalance: BigNumber,
+  estimatedAPY: number
+}
+
+const REWARD_CONTRACTS: DexLPStakingContract[] = [
+  {
+    address: "0x0",
+    title: "VEGA/ONE",
+    connectedUserBalance: new BigNumber("1"),
+    availableRewardBalance: new BigNumber("1"),
+    connectedUserRewardBalance: new BigNumber("1"),
+    acceptsToken: "0x1",
+    estimatedAPY: 0
+  },
+  {
+    address: "0x1",
+    title: "VEGA/TWO",
+    connectedUserBalance: new BigNumber("1"),
+    availableRewardBalance: new BigNumber("1"),
+    connectedUserRewardBalance: new BigNumber("1"),
+    acceptsToken: "0x0",
+    estimatedAPY: 0
+  }
+]
+
+const RedemptionIndex = ({name}: RouteChildProps) => {
   useDocumentTitle(name);
-  const { t } = useTranslation();
+  const {t} = useTranslation();
 
   return (
-    <TemplateSidebar title={t("pageTitleLiquidity")} sidebar={[<EthWallet />]}>
+    <TemplateSidebar title={t("pageTitleLiquidity")} sidebar={[<EthWallet/>]}>
       <Web3Container>
         {(address) => (
-          <DexTokenRewards address={address} />
-       )}
+          <>
+            <DexRewardsList contracts={REWARD_CONTRACTS}/>
+            <DexTokensStaked contracts={REWARD_CONTRACTS}/>
+            <DexTokensUnstaked contracts={REWARD_CONTRACTS}/>
+          </>
+        )}
       </Web3Container>
     </TemplateSidebar>
   );

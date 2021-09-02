@@ -6,6 +6,7 @@ const en = {
   pageTitleClaim: "Claim Vega tokens",
   pageTitleAssociate: "Associate VEGA tokens with VEGA Key",
   pageTitleRedemption: "Vesting",
+  pageTitleLiquidity: "Incentivised Liquidity Programme",
   pageTitleRedemptionTranche: "Redeem from Tranche",
   pageTitleTranches: "Vesting tranches",
   pageTitleStaking: "Stake your VEGA",
@@ -392,6 +393,20 @@ const en = {
     "The VEGA token address is {{address}}, make sure you add this to your wallet to see your tokens",
   "Go to <stakingLink>staking</stakingLink> or <governanceLink>governance</governanceLink> to see how you can use your unlocked tokens":
     "Go to <stakingLink>staking</stakingLink> or <governanceLink>governance</governanceLink> to see how you can use your unlocked tokens",
+  liquidityIntro: "Provide liquidity on decentralised exchanges and deposit the LP tokens in to our contract to earn rewards",
+  liquidityTokensWalletTitle: "LP Tokens in connected wallet",
+  liquidityTokensContractTitle: "LP Tokens earning rewards",
+  liquidityTotalAvailableRewards: "Total available rewards",
+  liquidityTotalAvailableRewardsToken: "Token",
+  liquidityTotalAvailableRewardsBalance: "Balance",
+  liquidityStakedToken: "LP Token",
+  liquidityStakedBalance: "LP token balance",
+  liquidityStakedRewards: "Earned rewards",
+  liquidityStakedWithdraw: "Withdraw",
+  liquidityTokenTitle: "LP Token",
+  liquidityTokenBalance: "Balance",
+  liquidityTokenDeposit: "Deposit",
+  liquidityTokenApprove: "Approve"
 };
 
 export default en;
