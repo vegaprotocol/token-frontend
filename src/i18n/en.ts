@@ -101,7 +101,7 @@ const en = {
   "Transaction in progress": "Transaction in progress",
   "Unknown error": "Unknown error",
   "Awaiting action in Ethereum wallet (e.g. metamask)":
-    "Awaiting action in Ethereum wallet (e.g. metamask)",
+    "Awaiting action in Ethereum wallet (e.g. Metamask)",
   "Claim {amount} Vega": "Claim {{amount}} VEGA",
   "Sorry. It is not possible to claim tokens in your country or region.":
     "It is not possible to claim tokens in your country or region.",
