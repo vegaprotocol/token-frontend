@@ -87,14 +87,14 @@ export const StakingForm = ({
       pubKey: pubkey,
       delegateSubmission: {
         nodeId,
-        amount: Number(removeDecimal(new BigNumber(amount), appState.decimals)),
+        amount: removeDecimal(new BigNumber(amount), appState.decimals),
       },
     };
     const undelegateInput: UndelegateSubmissionInput = {
       pubKey: pubkey,
       undelegateSubmission: {
         nodeId,
-        amount: Number(removeDecimal(new BigNumber(amount), appState.decimals)),
+        amount: removeDecimal(new BigNumber(amount), appState.decimals),
         method: "METHOD_AT_END_OF_EPOCH",
       },
     };
