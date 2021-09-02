@@ -241,8 +241,8 @@ const en = {
   "Circulating supply": "Circulating supply",
   "Staked on Vega": "Staked on Vega",
   "Associated on Vega": "Associated on Vega",
-  "There are {{nodeCount}} nodes with a shared stake of {{sharedStake}} VEGA tokens":
-    "There are {{nodeCount}} nodes with a shared stake of {{sharedStake}} VEGA tokens",
+  "There are {{totalNodes}} nodes with a shared stake of {{totalStaked}} VEGA tokens":
+    "There are {{totalNodes}} nodes with a shared stake of {{totalStaked}} VEGA tokens",
   "Read about staking on Vega": "Read about staking on Vega",
   "Read about Governance on Vega": "Read about Governance on Vega",
 

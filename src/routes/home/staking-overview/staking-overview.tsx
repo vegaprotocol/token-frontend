@@ -12,7 +12,7 @@ export const StakingOverview = ({
   return (
     <p>
       {t(
-        "There are {{nodeCount}} nodes with a shared stake of {{sharedStake}} VEGA tokens",
+        "There are {{totalNodes}} nodes with a shared stake of {{totalStaked}} VEGA tokens",
         {
           totalNodes,
           totalStaked,
