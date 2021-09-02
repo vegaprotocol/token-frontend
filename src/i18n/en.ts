@@ -396,6 +396,7 @@ const en = {
     "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.",
   "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.":
     "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
+  mainnetDisableHome: "",
 };
 
 export default en;
