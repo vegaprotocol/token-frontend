@@ -23,7 +23,6 @@ const initialAppState: AppState = {
   chainId: process.env.REACT_APP_CHAIN as EthereumChainId,
   // set in app-loader TODO: update when user stakes/unstakes/associates/disassociates
   totalAssociated: "",
-  totalStaked: "",
   decimals: 0,
   totalSupply: "",
   address: "",
@@ -40,7 +39,6 @@ const initialAppState: AppState = {
   vegaWalletStatus: VegaWalletStatus.Pending,
   vegaKeys: null,
   currVegaKey: null,
-
   vegaAssociatedBalance: null,
   trancheBalances: [],
   totalLockedBalance: "",

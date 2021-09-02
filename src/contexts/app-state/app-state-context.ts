@@ -4,14 +4,20 @@ import type { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { BigNumber } from "../../lib/bignumber";
 
 export enum ProviderStatus {
+  /** Detecting if a Web3 provider is available */
   Pending,
+  /** Web3 provider is available */
   Ready,
+  /** No Web3 provider not available */
   None,
 }
 
 export enum VegaWalletStatus {
+  /** Detecting if Vega wallet service is running */
   Pending,
+  /** Vega wallet service is running */
   Ready,
+  /** No Vega wallet not running */
   None,
 }
 
@@ -27,43 +33,96 @@ export interface VegaKeyExtended extends VegaKey {
   pubShort: string;
 }
 
-export interface TrancheBalance {
+export interface UserTrancheBalance {
+  /** ID of tranche */
   id: number;
+
+  /** Users vesting tokens on tranche */
   locked: BigNumber;
+
+  /** Users vested tokens on tranche */
   vested: BigNumber;
 }
 
 export interface AppState {
+  /** Ethereum address provided by Metamask */
   address: string;
   error: Error | null;
+
+  /** Whether or not we are awaiting the user to connect in Metamask */
   connecting: boolean;
+
+  /** Current chainId in Metamask */
   chainId: EthereumChainId;
+
+  /** Users vesting balance across all tranches */
   balanceFormatted: string;
+
+  /** Users balance of VEGA in Metamask */
   walletBalance: string;
+
+  /** Amount associated */
   lien: string;
+
+  /** Array of tranche objects */
   tranches: Tranche[] | null;
+  /** Number of decimal places of the VEGA token (18 on Mainnet, 5 on Ropsten) */
   decimals: number;
+
+  /** Total supply of VEGA tokens */
   totalSupply: string;
+
+  /** Total number of VEGA Tokens, both vesting and unlocked, associated for staking */
   totalAssociated: string;
-  totalStaked: string;
+
+  /** Users total unlocked tokens */
   totalVestedBalance: string;
+
+  /** Users total locked (vesting) tokens */
   totalLockedBalance: string;
-  trancheBalances: TrancheBalance[];
+
+  /** Breakdown of users vesting/vested balances across tranches */
+  trancheBalances: UserTrancheBalance[];
+
+  /** Approved amount of VEGA to be associated for staking */
   allowance: string | null;
+
+  /** Addresses of the different contracts in the VEGA ecosystem */
   contractAddresses: {
+    /** Vesting contract address */
     vestingAddress: string;
+    /** Vega token contract address */
     vegaTokenAddress: string;
+    /** Claim contract address */
     claimAddress: string;
+    /** Vesting Vega token contract address */
     lockedAddress: string;
+    /** Staking bridge contract address */
     stakingBridge: string;
   };
+
+  /** Whether or not the connect to Ethereum wallet overaly is open */
   ethWalletOverlay: boolean;
+
+  /** Whether or not the connect to VEGA wallet overaly is open */
   vegaWalletOverlay: boolean;
+
+  /** Whether or not a Vega wallet service is running, can be Pending, Ready or None */
   vegaWalletStatus: VegaWalletStatus;
+
+  /** Array of Vega key objects provided by the Vega wallet service */
   vegaKeys: VegaKeyExtended[] | null;
+
+  /** Current selected Vega key */
   currVegaKey: VegaKeyExtended | null;
+
+  /** Current amount of VEGA associated for staking with the current Vega key */
   vegaAssociatedBalance: string | null;
+
+  /** The error if one was thrown during retrieval of tranche data */
   trancheError: Error | null;
+
+  /** Whether or not the mobile drawer is open. Only relevant on screens smaller than 960 */
   drawerOpen: boolean;
 }
 
@@ -139,7 +198,7 @@ export type AppStateAction =
     }
   | {
       type: AppStateActionType.SET_TRANCHE_DATA;
-      trancheBalances: TrancheBalance[];
+      trancheBalances: UserTrancheBalance[];
       tranches: Tranche[];
     }
   | {
