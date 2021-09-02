@@ -3,7 +3,6 @@ import { format } from "date-fns";
 import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useVegaClaim } from "../../hooks/use-vega-claim";
 import {
   ClaimAction,
@@ -42,9 +41,6 @@ export const ClaimFlow = ({
   tranches,
 }: ClaimFlowProps) => {
   const { t } = useTranslation();
-  const {
-    appState: { balanceFormatted },
-  } = useAppState();
   const currentTranche = tranches.find(
     (tranche) => tranche.tranche_id === state.trancheId
   );
