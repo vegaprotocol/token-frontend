@@ -27,7 +27,6 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
   const { appState } = useAppState();
 
   const getContent = (tranche: Tranche) => {
-    console.log(tranche);
     if (isTestingTranche(tranche)) {
       return (
         <Callout>
