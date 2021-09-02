@@ -8,6 +8,7 @@ import {
   VegaKeyExtended,
 } from "../../contexts/app-state/app-state-context";
 import { useEthUser } from "../../hooks/use-eth-user";
+import { useVegaUser } from "../../hooks/use-vega-user";
 
 export const StakingContainer = ({
   children,
@@ -19,10 +20,11 @@ export const StakingContainer = ({
 }) => {
   const { t } = useTranslation();
   const {
-    appState: { appChainId, chainId, currVegaKey },
+    appState: { appChainId, chainId },
     appDispatch,
   } = useAppState();
   const { address } = useEthUser();
+  const { currVegaKey } = useVegaUser();
 
   if (appChainId !== chainId) {
     return <EthWrongChainPrompt />;
