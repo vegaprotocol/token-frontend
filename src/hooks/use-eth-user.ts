@@ -1,14 +1,13 @@
 import React from "react";
 import {
   AppStateActionType,
-  ProviderStatus,
   useAppState,
 } from "../contexts/app-state/app-state-context";
 import { useVegaStaking } from "./use-vega-staking";
 import { useVegaToken } from "./use-vega-token";
 import { useVegaVesting } from "./use-vega-vesting";
 import { BigNumber } from "../lib/bignumber";
-import { EthereumChainId } from "../lib/web3-utils";
+import { useGetUserTrancheBalances } from "./use-get-user-tranche-balances";
 
 export function useEthUser() {
   const { appState, appDispatch, provider } = useAppState();
@@ -16,6 +15,8 @@ export function useEthUser() {
   const staking = useVegaStaking();
   const vesting = useVegaVesting();
   const connectTimer = React.useRef<any>();
+  const getUserTrancheBalances = useGetUserTrancheBalances(appState.address);
+
   // const [triedToConnect, setTriedToConnect] = React.useState<boolean>(false);
 
   // React.useEffect(() => {
@@ -48,6 +49,7 @@ export function useEthUser() {
   //   connect,
   //   triedToConnect,
   // ]);
+
   const connect = React.useCallback(async () => {
     let connected = false;
 
@@ -79,6 +81,7 @@ export function useEthUser() {
     }
   }, [appDispatch, provider]);
 
+  // update balances on connect to Ethereum
   React.useEffect(() => {
     const updateBalances = async () => {
       const [balance, walletBalance, lien, allowance] = await Promise.all([
@@ -111,6 +114,11 @@ export function useEthUser() {
     token,
     vesting,
   ]);
+
+  // Updates on address change, getUserTrancheBalance has address as a dep
+  React.useEffect(() => {
+    getUserTrancheBalances();
+  }, [getUserTrancheBalances]);
 
   // Clear connect timer on unmount
   React.useEffect(() => {

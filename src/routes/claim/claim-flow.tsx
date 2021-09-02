@@ -60,6 +60,7 @@ export const ClaimFlow = ({
           claim.isExpired(state.expiry!),
           claim.isUsed(state.nonce!),
         ]);
+        console.log(committed, expired, used);
         dispatch({
           type: ClaimActionType.SET_INITIAL_CLAIM_STATUS,
           committed,

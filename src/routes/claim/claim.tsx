@@ -20,10 +20,10 @@ const Claim = ({
   address: string;
   tranches: Tranche[];
 }) => {
-  const getUserTrancheBalances = useGetUserTrancheBalances(address);
   const params = useSearchParams();
   const { appState } = useAppState();
   const [state, dispatch] = React.useReducer(claimReducer, initialClaimState);
+  const getUserTrancheBalances = useGetUserTrancheBalances(address);
   const refreshBalances = useRefreshBalances(address);
   React.useEffect(() => {
     dispatch({

@@ -23,6 +23,7 @@ import {
   DelegationsVariables,
   Delegations_party_delegations,
 } from "./__generated__/Delegations";
+import { useVegaUser } from "../../hooks/use-vega-user";
 
 const DELEGATIONS_QUERY = gql`
   query Delegations($partyId: ID!) {
@@ -44,15 +45,15 @@ const DELEGATIONS_QUERY = gql`
 export const VegaWallet = () => {
   const { t } = useTranslation();
   const vegaWallet = useVegaWallet();
-  const { appState } = useAppState();
+  const { currVegaKey, vegaKeys } = useVegaUser();
 
-  const child = !appState.vegaKeys ? (
+  const child = !vegaKeys ? (
     <VegaWalletNotConnected />
   ) : (
     <VegaWalletConnected
       vegaWallet={vegaWallet}
-      currVegaKey={appState.currVegaKey}
-      vegaKeys={appState.vegaKeys}
+      currVegaKey={currVegaKey}
+      vegaKeys={vegaKeys}
     />
   );
 
@@ -60,13 +61,12 @@ export const VegaWallet = () => {
     <WalletCard>
       <WalletCardHeader>
         <span>
-          {t("vegaKey")}{" "}
-          {appState.currVegaKey && `(${appState.currVegaKey.alias})`}
+          {t("vegaKey")} {currVegaKey && `(${currVegaKey.alias})`}
         </span>
-        {appState.currVegaKey && (
+        {currVegaKey && (
           <>
             <span className="vega-wallet__curr-key">
-              {appState.currVegaKey.pubShort}
+              {currVegaKey.pubShort}
             </span>
           </>
         )}
@@ -121,6 +121,7 @@ const VegaWalletConnected = ({
     appDispatch,
     appState: { address, vegaAssociatedBalance, lien },
   } = useAppState();
+
   const [disconnecting, setDisconnecting] = React.useState(false);
   const staking = useVegaStaking();
   const [expanded, setExpanded] = React.useState(false);
@@ -128,6 +129,7 @@ const VegaWalletConnected = ({
   const [delegations, setDelegations] = React.useState<
     Delegations_party_delegations[]
   >([]);
+
   React.useEffect(() => {
     let interval: any;
     if (currVegaKey?.pub) {
