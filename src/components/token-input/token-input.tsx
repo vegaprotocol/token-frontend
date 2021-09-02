@@ -7,13 +7,13 @@ import { BigNumber } from "../../lib/bignumber";
 const inputName = "amount";
 
 export const TokenInput = ({
-  maximum,
   amount,
   setAmount,
+  maximum,
 }: {
-  maximum: BigNumber;
   amount: string;
   setAmount: React.Dispatch<any>;
+  maximum?: BigNumber;
 }) => {
   const { t } = useTranslation();
   return (
@@ -31,13 +31,16 @@ export const TokenInput = ({
           autoComplete="off"
           type="number"
         />
-        <button
-          onClick={() => setAmount(maximum.toString())}
-          data-testid="token-amount-use-maximum"
-          className="button-link token-input__use-maximum "
-        >
-          {t("Use maximum")}
-        </button>
+        {maximum && (
+          <button
+            type="button"
+            onClick={() => setAmount(maximum.toString())}
+            data-testid="token-amount-use-maximum"
+            className="button-link token-input__use-maximum "
+          >
+            {t("Use maximum")}
+          </button>
+        )}
       </div>
     </FormGroup>
   );

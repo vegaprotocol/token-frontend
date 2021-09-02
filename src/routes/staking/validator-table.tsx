@@ -6,55 +6,57 @@ import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../components/key-value-table";
+import { StakeNode_node } from "./__generated__/StakeNode";
+import { BigNumber } from "../../lib/bignumber";
 
 export interface ValidatorTableProps {
-  node: string;
+  node: StakeNode_node;
+  stakedTotal: string;
 }
 
-export const ValidatorTable = ({ node }: ValidatorTableProps) => {
+export const ValidatorTable = ({ node, stakedTotal }: ValidatorTableProps) => {
   const { t } = useTranslation();
 
-  // TODO get validator data based on the node
-  const validator = {
-    address: "aecfd920cbadbe1c5040a989fabb765bbc6685f4825de8b6a9cff98919dc3a89",
-    about: "VEGANODZ.COM",
-    ip: "192.168.1.1",
-    totalStake: "3000.00",
-    stakeShare: "23.02%",
-    ownStake: "3000.00",
-    nominated: "0.00",
-  };
+  const stakePercentage = React.useMemo(() => {
+    const total = new BigNumber(stakedTotal);
+    const stakedOnNode = new BigNumber(node.stakedTotal);
+    const stakedTotalPercentage =
+      total.isEqualTo(0) || stakedOnNode.isEqualTo(0)
+        ? "-"
+        : stakedOnNode.dividedBy(total).times(100).toString() + "%";
+    return stakedTotalPercentage;
+  }, [node.stakedTotal, stakedTotal]);
 
   return (
     <>
       <KeyValueTable data-testid="validator-table">
         <KeyValueTableRow>
           <th>{t("VEGA ADDRESS / PUBLIC KEY")}</th>
-          <td className="validator-table__cell">{validator.address}</td>
+          <td className="validator-table__cell">{node.pubkey}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("ABOUT THIS VALIDATOR")}</th>
-          <td>{validator.about}</td>
+          <td>{node.infoUrl}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("IP ADDRESS")}</th>
-          <td>{validator.ip}</td>
+          <td>{node.location}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("TOTAL STAKE")}</th>
-          <td>{validator.totalStake}</td>
+          <td>{node.stakedTotal}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("STAKE SHARE")}</th>
-          <td>{validator.stakeShare}</td>
+          <td>{stakePercentage}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("OWN STAKE (THIS EPOCH)")}</th>
-          <td>{validator.ownStake}</td>
+          <td>{node.stakedByOperator}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("NOMINATED (THIS EPOCH)")}</th>
-          <td>{validator.nominated}</td>
+          <td>{node.stakedByDelegates}</td>
         </KeyValueTableRow>
       </KeyValueTable>
     </>

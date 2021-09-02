@@ -1,10 +1,11 @@
 @import "../../styles/colors";
 
 .nav {
+  padding: 20px;
+
   &__inner {
     max-width: 1020px;
     margin: 0 auto;
-    padding: 20px;
     display: flex;
     gap: 10px;
     justify-content: space-between;
@@ -31,6 +32,13 @@
 
   &__logo {
     width: 30px;
+
+    &-container {
+      height: 30px;
+      @media (min-width: 960px) {
+        height: 60px;
+      }
+    }
 
     @media (min-width: 960px) {
       width: 60px;
@@ -85,8 +93,13 @@
 .nav-links {
   display: flex;
 
-  > a {
+  .active {
+    background: $vega-yellow3;
     color: $black;
+  }
+
+  > a {
+    background: $black;
     text-decoration: none;
     font-size: 14px;
   }
@@ -94,20 +107,24 @@
 
 .nav-links--row {
   flex-direction: row;
+  text-transform: uppercase;
 
   > a {
+    background: $black;
     padding: 3px 10px;
-    background: $white;
-    border-radius: 4px;
+    color: $white;
   }
 }
 
 .nav-links--column {
   flex-direction: column;
-  gap: 5px;
+  grid-gap: 0;
+  gap: 0;
 
   > a {
     display: block;
+    background: $white;
+    color: $black;
     padding: 20px;
     border-top: 1px solid $black;
   }

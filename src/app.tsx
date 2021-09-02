@@ -7,12 +7,12 @@ import { Nav } from "./components/nav";
 import { Notice } from "./components/notice";
 import { VegaWalletModal } from "./components/vega-wallet/vega-wallet-modal";
 import { EthWalletModal } from "./components/eth-wallet/eth-wallet-modal";
-import { ApolloProvider } from "@apollo/client";
-import { client } from "./lib/apollo-client";
+// @ts-ignore
+import { GraphQlProvider } from "./components/GRAPHQL_PROVIDER/graphql-provider";
 
 function App() {
   return (
-    <ApolloProvider client={client}>
+    <GraphQlProvider>
       <Router>
         <AppStateProvider>
           <div className="app">
@@ -26,7 +26,7 @@ function App() {
           <EthWalletModal />
         </AppStateProvider>
       </Router>
-    </ApolloProvider>
+    </GraphQlProvider>
   );
 }
 

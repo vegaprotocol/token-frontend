@@ -90,6 +90,23 @@ button {
     width: 100%;
   }
 
+  &.button-secondary {
+    border: 1px solid $white;
+    border-radius: 0;
+    background: transparent;
+    color: white;
+    width: 100%;
+
+    &:hover {
+      background: $dark-gray4;
+    }
+
+    &:active {
+      background: $white;
+      color: $black;
+    }
+  }
+
   &.button-link {
     display: inline;
     appearance: none;
@@ -119,7 +136,8 @@ button {
 
 // FORM ELEMENTS
 select,
-input {
+input[type="text"],
+input[type="password"] {
   width: 100%;
   padding: 12px;
   border-radius: 4px;

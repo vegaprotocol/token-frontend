@@ -1,6 +1,4 @@
-import React from "react";
 import { BigNumber } from "../../../lib/bignumber";
-import { addDecimal } from "../../../lib/decimals";
 import { Tranche } from "../../../lib/vega-web3/vega-web3-types";
 
 /**
@@ -10,10 +8,7 @@ import { Tranche } from "../../../lib/vega-web3/vega-web3-types";
  * @param decimals decimal places for the formatted result
  * @return Total redeemed vouchers, formatted as a string
  */
-export function sumRedeemedTokens(
-  tranches: Tranche[] | null,
-  decimals: number
-): string {
+export function sumRedeemedTokens(tranches: Tranche[] | null): string {
   let totalCirculating: BigNumber = new BigNumber(0);
 
   tranches?.forEach(
@@ -21,7 +16,7 @@ export function sumRedeemedTokens(
       (totalCirculating = totalCirculating.plus(tranche.total_removed))
   );
 
-  return addDecimal(totalCirculating, decimals);
+  return totalCirculating.toString();
 }
 
 /**
@@ -34,11 +29,9 @@ export function sumRedeemedTokens(
  */
 export const TokenDetailsCirculating = ({
   tranches,
-  decimals,
 }: {
   tranches: Tranche[] | null;
-  decimals: number;
 }) => {
-  const totalCirculating = sumRedeemedTokens(tranches, decimals);
+  const totalCirculating = sumRedeemedTokens(tranches);
   return <td data-testid="circulating-supply">{totalCirculating}</td>;
 };

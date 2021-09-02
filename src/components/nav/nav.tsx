@@ -11,6 +11,8 @@ import {
   useAppState,
 } from "../../contexts/app-state/app-state-context";
 import { EthWallet } from "../eth-wallet";
+import { useTranslation } from "react-i18next";
+import { Breadcrumbs } from "./breadcrumbs";
 
 export const Nav = () => {
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
@@ -40,6 +42,7 @@ export const Nav = () => {
           {isDesktop ? <NavLinks isDesktop={isDesktop} /> : <NavDrawer />}
         </div>
       </div>
+      <Breadcrumbs />
     </div>
   );
 };
@@ -90,6 +93,7 @@ const NavDrawer = () => {
 
 const NavLinks = ({ isDesktop }: { isDesktop: boolean }) => {
   const { appDispatch } = useAppState();
+  const { t } = useTranslation();
   const linkProps = {
     onClick: () =>
       appDispatch({ type: AppStateActionType.SET_DRAWER, isOpen: false }),
@@ -97,13 +101,13 @@ const NavLinks = ({ isDesktop }: { isDesktop: boolean }) => {
   return (
     <nav className={`nav-links nav-links--${isDesktop ? "row" : "column"}`}>
       <NavLink {...linkProps} to={Routes.VESTING}>
-        Vesting
-      </NavLink>
-      <NavLink {...linkProps} to={Routes.TRANCHES}>
-        Tranches
+        {t("Vesting")}
       </NavLink>
       <NavLink {...linkProps} to={Routes.STAKING}>
-        Staking
+        {t("Staking")}
+      </NavLink>
+      <NavLink {...linkProps} to={Routes.GOVERNANCE}>
+        {t("Governance")}
       </NavLink>
       <NavLink {...linkProps} to={Routes.GOVERNANCE}>
         Governance

@@ -1,25 +1,45 @@
-import BigNumber from "bignumber.js";
 import { mock } from "../common/mock";
 
 describe("staking", () => {
-  it("loads the staking node page", () => {
-    const token = { totalSupply: new BigNumber(20), decimals: 5 };
-    mock(cy, {
-      token,
-    });
-    cy.visit("/staking");
-
-    // connect
+  function connectToWallets() {
     cy.get('[data-testid="connect"]').click();
     cy.get('[data-testid="connect-overlay"]').click();
     cy.get('[data-testid="connect-vega"]').click();
     cy.get('[data-testid="wallet-name"]').type("wallet");
     cy.get('[data-testid="wallet-password"]').type("wallet");
     cy.get('[data-testid="wallet-login"]').click();
+  }
 
-    cy.get('[data-testid="staking-item"]').click();
+  it("staking page renders nodes", () => {
+    mock(cy);
+    cy.visit("/staking");
 
-    cy.url().should("include", "/staking/some-node");
+    // connect
+    connectToWallets();
+
+    // Expect the two mocked nodes to be displayed
+    cy.get('[data-testid="node-list-item"]').should("have.length", 2);
+    cy.get('[data-testid="node-list-item"]')
+      .first()
+      .find("a")
+      .should("have.text", "node-id-1");
+    cy.get('[data-testid="node-list-item"]')
+      .last()
+      .find("a")
+      .should("have.text", "node-id-2");
+
+    cy.get('[data-testid="node-list-item"]').first().find("a").click();
+    cy.url().should("include", "/staking/node-id-1");
+  });
+
+  it("staking/:node page can add stake to given node", () => {
+    mock(cy);
+
+    const nodeId = "node-id-1";
+    cy.visit(`/staking/${nodeId}`);
+
+    // connect
+    connectToWallets();
 
     // high level, all components should be rendered
     cy.get('[data-testid="validator-table"]').should("exist");
@@ -44,7 +64,7 @@ describe("staking", () => {
     // test epoch countdown
     cy.get('[data-testid="epoch-countdown"]').contains("Epoch");
     cy.get('[data-testid="epoch-countdown"]').contains("Started");
-    cy.get('[data-testid="epoch-countdown"]').contains("Ends in");
+    cy.get('[data-testid="epoch-countdown"]').contains("Ends in 24 hours");
 
     // test Your stake
     cy.get('[data-testid="your-stake"]').contains("Your Stake");
@@ -54,24 +74,166 @@ describe("staking", () => {
     cy.get('[data-testid="your-stake"]').contains(
       "Your Stake On Node (Next Epoch)"
     );
-    cy.get('[data-testid="your-stake"]').contains("Manage your stake");
-    cy.get('[data-testid="your-stake-radio-add"]')
-      .parent()
-      .find("input")
-      .should("be.checked");
-    cy.get('[data-testid="your-stake-radio-remove"]')
-      .parent()
-      .find("input")
-      .should("be.not.checked");
 
-    cy.get('[data-testid="your-stake-radio-remove"]').click({ force: true });
-    cy.get('[data-testid="your-stake-radio-add"]')
-      .parent()
-      .find("input")
-      .should("be.not.checked");
-    cy.get('[data-testid="your-stake-radio-remove"]')
-      .parent()
-      .find("input")
-      .should("be.checked");
+    // assert that we are correctly summing the delegation amounts to show how
+    // much stake you have on the current and next epoch
+    cy.get('[data-testid="stake-this-epoch"]').contains("200");
+    cy.get('[data-testid="stake-next-epoch"]').contains("400");
+
+    // FORM INTERACTION
+
+    cy.get('[data-testid="add-stake-radio"]').should("not.be.checked");
+    cy.get('[data-testid="remove-stake-radio"]').should("not.be.checked");
+
+    // ADD STAKE FLOW
+    cy.get('[data-testid="add-stake-radio"]').click({ force: true });
+
+    cy.get('[data-testid="stake-form"]')
+      .find("h2")
+      .should("have.text", "How much to Add in next epoch?");
+
+    cy.get('[data-testid="stake-form"]')
+      .find('button[type="submit"]')
+      .should("have.text", "Add VEGA tokens");
+
+    const amount = "100";
+    cy.get('[data-testid="token-amount-input"]').type(amount);
+
+    cy.get('[data-testid="stake-form"]')
+      .find('button[type="submit"]')
+      .should("have.text", `Add ${amount} VEGA tokens`);
+
+    cy.get('[data-testid="stake-form"]').find('button[type="submit"]').click();
+
+    const body = {
+      pubKey: "pub",
+      delegateSubmission: {
+        nodeId,
+        amount,
+      },
+      propagate: true,
+    };
+
+    cy.intercept(
+      "http://localhost:1789/api/v1/command/sync",
+      // TODO: Return more realistic object here
+      JSON.stringify({ returnVal: "something" }),
+      (req) => {
+        expect(req.method).to.equal("POST");
+        expect(JSON.parse(req.body)).to.deep.equal(body);
+      }
+    );
+
+    cy.get('[data-testid="callout"] h3').should(
+      "have.text",
+      `Adding ${amount} VEGA to node ${nodeId}`
+    );
+    cy.get('[data-testid="callout"]').contains(
+      "This should take approximately 3 minutes to confirm"
+    );
+
+    cy.get('[data-testid="callout"] h3').should(
+      "have.text",
+      `${amount} VEGA has been added to node ${nodeId}`
+    );
+  });
+
+  it("staking/:node page can remove stake to given node", () => {
+    mock(cy);
+
+    const nodeId = "node-id-1";
+    cy.visit(`/staking/${nodeId}`);
+
+    // connect
+    connectToWallets();
+
+    // REMOVE STAKE FLOW
+    cy.get('[data-testid="remove-stake-radio"]').click({ force: true });
+
+    cy.get('[data-testid="stake-form"]')
+      .find("h2")
+      .should("have.text", "How much to Remove in next epoch?");
+
+    cy.get('[data-testid="stake-form"]')
+      .find('button[type="submit"]')
+      .should("have.text", "Remove VEGA tokens");
+
+    const amount = "100";
+    cy.get('[data-testid="token-amount-input"]').type(amount);
+
+    cy.get('[data-testid="stake-form"]')
+      .find('button[type="submit"]')
+      .should("have.text", `Remove ${amount} VEGA tokens`);
+
+    cy.get('[data-testid="stake-form"]').find('button[type="submit"]').click();
+
+    const body = {
+      pubKey: "pub",
+      undelegateSubmission: {
+        nodeId,
+        amount,
+        method: "METHOD_AT_END_OF_EPOCH",
+      },
+      propagate: true,
+    };
+
+    cy.intercept(
+      "http://localhost:1789/api/v1/command/sync",
+      // TODO: Return more realistic object here
+      JSON.stringify({ returnVal: "something" }),
+      (req) => {
+        expect(req.method).to.equal("POST");
+        expect(JSON.parse(req.body)).to.deep.equal(body);
+      }
+    );
+
+    cy.get('[data-testid="callout"] h3').should(
+      "have.text",
+      `Removing ${amount} VEGA from node ${nodeId}`
+    );
+    cy.get('[data-testid="callout"]').contains(
+      "This should take approximately 3 minutes to confirm"
+    );
+
+    cy.get('[data-testid="callout"] h3').should(
+      "have.text",
+      `${amount} VEGA has been removed from node ${nodeId}`
+    );
+  });
+
+  it("Shows error message if stake command fails", () => {
+    mock(cy);
+
+    const nodeId = "node-id-1";
+    cy.visit(`/staking/${nodeId}`);
+
+    // connect
+    connectToWallets();
+
+    cy.get('[data-testid="add-stake-radio"]').click({ force: true });
+
+    const amount = "100";
+    cy.get('[data-testid="token-amount-input"]').type(amount);
+
+    cy.get('[data-testid="stake-form"]').find('button[type="submit"]').click();
+
+    cy.get('[data-testid="callout"] h3').should(
+      "have.text",
+      `Adding ${amount} VEGA to node ${nodeId}`
+    );
+    cy.get('[data-testid="callout"]').contains(
+      "This should take approximately 3 minutes to confirm"
+    );
+
+    cy.intercept(
+      "http://localhost:1789/api/v1/command/sync",
+      // TODO: Return more realistic object here
+      JSON.stringify({ errors: "oops an error!" })
+    );
+
+    cy.get('[data-testid="callout"] h3').should(
+      "have.text",
+      "Something went wrong"
+    );
   });
 });

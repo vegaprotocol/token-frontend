@@ -32,7 +32,9 @@ const DELEGATIONS_QUERY = gql`
     party(id: $partyId) {
       delegations {
         amount
-        node
+        node {
+          id
+        }
         epoch
       }
     }
@@ -98,7 +100,7 @@ const VegaWalletNotConnected = () => {
       data-testid="connect-vega"
       type="button"
     >
-      {t("connectVegaWallet")}
+      {t("Connect")}
     </button>
   );
 };
@@ -143,7 +145,12 @@ const VegaWalletConnected = ({
               }) || [];
             setDelegations(filter);
           })
-          .catch((err: Error) => console.log(err));
+          .catch((err: Error) => {
+            console.log(err);
+            // If query fails stop interval. Its almost certain that the query
+            // will just continue to fail
+            clearInterval(interval);
+          });
       }, 1000);
     }
 
@@ -186,7 +193,7 @@ const VegaWalletConnected = ({
       ) : null}
       {delegations.map((d) => (
         <WalletCardRow
-          label={d.node}
+          label={d.node.id}
           value={d.amount}
           valueSuffix={t("VEGA")}
         />

@@ -1,11 +1,16 @@
-import { Addresses, EthereumChainId, EthereumChainIds } from "../../lib/web3-utils";
-import './tranche-label.scss'
+import {
+  Addresses,
+  EthereumChainId,
+  EthereumChainIds,
+} from "../../lib/web3-utils";
+import "./tranche-label.scss";
 
 const TRANCHE_LABELS: Record<number, string[]> = {
-  '5': ["Coinlist Option 1", "Community Whitelist"],
-  '6': ["Coinlist Option 2"],
-  '7': ["Coinlist Option 3"]
-}
+  "5": ["Coinlist Option 1", "Community Whitelist"],
+  "6": ["Coinlist Option 2"],
+  "7": ["Coinlist Option 3"],
+  "10": ["Liquidity Prerelease"],
+};
 
 /**
  * Some tranches have names that will be useful to
@@ -17,21 +22,34 @@ const TRANCHE_LABELS: Record<number, string[]> = {
  * @param chainId The ID of the chain this contract is on
  * @param id The tranche ID on this contract
  */
-export const TrancheLabel = ({contract, chainId, id}: {
-  chainId: EthereumChainId | null,
-  contract: string,
-  id: number
+export const TrancheLabel = ({
+  contract,
+  chainId,
+  id,
+}: {
+  chainId: EthereumChainId | null;
+  contract: string;
+  id: number;
 }) => {
   // Only mainnet tranches on the known vesting contract have useful name
-  if (chainId && chainId === EthereumChainIds.Mainnet && contract === Addresses[chainId].vestingAddress) {
-
+  if (
+    chainId &&
+    chainId === EthereumChainIds.Mainnet &&
+    contract === Addresses[chainId].vestingAddress
+  ) {
     // Only some tranches have titles worth showing
     if (TRANCHE_LABELS[id]) {
-      return <div className="tranche-labels">
-        {TRANCHE_LABELS[id].map((t, i) => <strong className="tranche-label" key={`tranche-${id}-${i}`}>{t}</strong>)}
-      </div>
+      return (
+        <div className="tranche-labels">
+          {TRANCHE_LABELS[id].map((t, i) => (
+            <strong className="tranche-label" key={`tranche-${id}-${i}`}>
+              {t}
+            </strong>
+          ))}
+        </div>
+      );
     }
   }
 
-  return null
+  return null;
 };

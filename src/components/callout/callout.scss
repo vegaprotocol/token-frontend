@@ -27,6 +27,12 @@
     box-shadow: 5px 5px 0px $vega-yellow3;
   }
 
+  &__content {
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+
   &__title,
   h4,
   h5,

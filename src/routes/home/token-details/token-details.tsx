@@ -54,14 +54,11 @@ export const TokenDetails = ({
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Circulating supply")}</th>
-        <TokenDetailsCirculating
-          tranches={appState.tranches}
-          decimals={appState.decimals}
-        />
+        <TokenDetailsCirculating tranches={appState.tranches} />
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Associated on Vega")}</th>
-        <td data-testid="staked">{appState.totalAssociated}</td>
+        <td data-testid="associated">{appState.totalAssociated}</td>
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Staked on Vega")}</th>

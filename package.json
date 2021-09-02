@@ -37,6 +37,7 @@
     "recharts": "^2.1.2",
     "subscriptions-transport-ws": "^0.9.19",
     "typescript": "^4.1.2",
+    "use-react-router-breadcrumbs": "^2.0.2",
     "web-vitals": "^1.0.1",
     "web3": "^1.4.0"
   },
@@ -46,7 +47,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "generate": "npx apollo codegen:generate --target=typescript"
+    "generate": "npx apollo codegen:generate --target=typescript --globalTypesFile=src/__generated__/globalTypes.ts"
   },
   "eslintConfig": {
     "extends": [
