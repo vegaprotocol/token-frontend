@@ -29,6 +29,7 @@ export const DexTokensUnstaked = ({
   ) : (
     <section className="dex-rewards-list">
       <h2>{title}</h2>
+      <p>{t('liquidityTokensWalletIntro')}</p>
       <table className={'key-value-table dex-rewards-list-table'}>
         <thead>
         <tr>

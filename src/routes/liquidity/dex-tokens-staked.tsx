@@ -20,6 +20,7 @@ export const DexTokensStaked = ({
   return (
     <section className="dex-rewards-list">
       <h2>{t('liquidityTokensContractTitle')}</h2>
+      <p>{t('liquidityStakedIntro')}</p>
       <table className={'key-value-table dex-rewards-list-table'}>
         <thead>
         <tr>

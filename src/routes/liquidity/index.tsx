@@ -1,13 +1,12 @@
 import {useTranslation} from "react-i18next";
 import {RouteChildProps} from "..";
-import {EthWallet} from "../../components/eth-wallet";
-import {TemplateSidebar} from "../../components/page-templates/template-sidebar";
 import {Web3Container} from "../../components/web3-container";
 import {useDocumentTitle} from "../../hooks/use-document-title";
 import {DexTokensStaked} from "./dex-tokens-staked";
 import {DexRewardsList} from "./dex-rewards-list";
 import {BigNumber} from "../../lib/bignumber";
 import {DexTokensUnstaked} from "./dex-tokens-unstaked";
+import {TemplateDefault} from "../../components/page-templates/template-default";
 
 /**
  * What I imagine we need to know about a contract to render this
@@ -54,7 +53,8 @@ const RedemptionIndex = ({name}: RouteChildProps) => {
   const {t} = useTranslation();
 
   return (
-    <TemplateSidebar title={t("pageTitleLiquidity")} sidebar={[<EthWallet/>]}>
+    <TemplateDefault title={t("pageTitleLiquidity")}>
+      <p>{t('liquidityIntro')}</p>
       <Web3Container>
         {(address) => (
           <>
@@ -64,7 +64,7 @@ const RedemptionIndex = ({name}: RouteChildProps) => {
           </>
         )}
       </Web3Container>
-    </TemplateSidebar>
+    </TemplateDefault>
   );
 };
 
