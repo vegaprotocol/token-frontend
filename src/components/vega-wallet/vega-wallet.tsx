@@ -32,7 +32,9 @@ const DELEGATIONS_QUERY = gql`
     party(id: $partyId) {
       delegations {
         amount
-        node
+        node {
+          id
+        }
         epoch
       }
     }
@@ -186,7 +188,7 @@ const VegaWalletConnected = ({
       ) : null}
       {delegations.map((d) => (
         <WalletCardRow
-          label={d.node}
+          label={d.node.id}
           value={d.amount}
           valueSuffix={t("VEGA")}
         />

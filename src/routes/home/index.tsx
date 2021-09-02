@@ -20,6 +20,7 @@ export const TOTAL_STAKED_QUERY = gql`
   query NodeData {
     nodeData {
       stakedTotal
+      totalNodes
     }
   }
 `;
@@ -91,7 +92,10 @@ const Home = ({ name }: RouteChildProps) => {
                         )}
                       </p>
 
-                      <StakingOverview totalStaked={totalStaked} />
+                      <StakingOverview
+                        totalStaked={totalStaked}
+                        totalNodes={data?.nodeData?.totalNodes || 0}
+                      />
 
                       <p>
                         <Link to={"/staking"}>
