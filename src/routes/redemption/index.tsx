@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useParams, useRouteMatch } from "react-router-dom";
 import { RouteChildProps } from "..";
 import { EthWallet } from "../../components/eth-wallet";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
@@ -10,9 +11,16 @@ import RedemptionRouter from "./redemption";
 const RedemptionIndex = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
   const { t } = useTranslation();
+  const match = useRouteMatch();
+  const tranche = useRouteMatch(`${match.path}/:id`);
 
   return (
-    <TemplateSidebar title={t("pageTitleRedemption")} sidebar={[<EthWallet />]}>
+    <TemplateSidebar
+      title={
+        tranche ? t("pageTitleRedemptionTranche") : t("pageTitleRedemption")
+      }
+      sidebar={[<EthWallet />]}
+    >
       <Web3Container>
         {(address) => (
           <TrancheContainer address={address}>
