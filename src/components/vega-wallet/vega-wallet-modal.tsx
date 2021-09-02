@@ -23,7 +23,7 @@ export const VegaWalletModal = () => {
     >
       <div className="modal">
         <Modal>
-          <h2>{t("Connect to Vega wallet")}</h2>
+          <h2>{t("connectVegaWallet")}</h2>
           <VegaWalletForm
             onConnect={() =>
               appDispatch({
