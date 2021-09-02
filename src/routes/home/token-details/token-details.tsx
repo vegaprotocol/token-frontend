@@ -1,16 +1,12 @@
 import "./token-details.scss";
 
-import React from "react";
-
 import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
 import { useTranslation } from "react-i18next";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
-import { EtherscanLink } from "../../../components/etherscan-link";
 import { TokenDetailsCirculating } from "./token-details-circulating";
-import { EthereumChainIds } from "../../../lib/web3-utils";
 import { truncateMiddle } from "../../../lib/truncate-middle";
 
 export const TokenDetails = ({
@@ -23,8 +19,6 @@ export const TokenDetails = ({
   const { t } = useTranslation();
 
   const { appState } = useAppState();
-
-  const chainId = appState.chainId || EthereumChainIds.Mainnet;
 
   return (
     <KeyValueTable className={"token-details"}>
