@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { TokenDetailsCirculating } from "./token-details-circulating";
 import { truncateMiddle } from "../../../lib/truncate-middle";
+import { ADDRESSES } from "../../../config";
 
 export const TokenDetails = ({
   totalSupply,
@@ -25,6 +26,7 @@ export const TokenDetails = ({
       <KeyValueTableRow>
         <th>{t("Token address")}</th>
         <td data-testid="token-address">
+<<<<<<< HEAD
           <a
             rel="noreferrer"
             target="_blank"
@@ -35,11 +37,19 @@ export const TokenDetails = ({
           >
             {truncateMiddle(appState.contractAddresses.vegaTokenAddress)}
           </a>
+=======
+          <EtherscanLink
+            chainId={chainId}
+            hash={ADDRESSES.vegaTokenAddress}
+            text={truncateMiddle(ADDRESSES.vegaTokenAddress)}
+          />
+>>>>>>> remove items from state that are constant values that never change
         </td>
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Token contract")}</th>
         <td data-testid="token-contract">
+<<<<<<< HEAD
           <a
             rel="noreferrer"
             target="_blank"
@@ -50,6 +60,13 @@ export const TokenDetails = ({
           >
             {truncateMiddle(appState.contractAddresses.vestingAddress)}
           </a>
+=======
+          <EtherscanLink
+            chainId={chainId}
+            hash={ADDRESSES.vestingAddress}
+            text={truncateMiddle(ADDRESSES.vestingAddress)}
+          />
+>>>>>>> remove items from state that are constant values that never change
         </td>
       </KeyValueTableRow>
       <KeyValueTableRow>

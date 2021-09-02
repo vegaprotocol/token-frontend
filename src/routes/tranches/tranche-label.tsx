@@ -1,15 +1,24 @@
+<<<<<<< HEAD
 import {
   Addresses,
   EthereumChainId,
   EthereumChainIds,
 } from "../../lib/web3-utils";
 import "./tranche-label.scss";
+=======
+import "./tranche-label.scss";
+import { ADDRESSES } from "../../config";
+import { EthereumChainId, EthereumChainIds } from "../../lib/web3-utils";
+>>>>>>> remove items from state that are constant values that never change
 
 const TRANCHE_LABELS: Record<number, string[]> = {
   "5": ["Coinlist Option 1", "Community Whitelist"],
   "6": ["Coinlist Option 2"],
   "7": ["Coinlist Option 3"],
+<<<<<<< HEAD
   "10": ["Liquidity Prerelease"],
+=======
+>>>>>>> remove items from state that are constant values that never change
 };
 
 /**
@@ -35,7 +44,11 @@ export const TrancheLabel = ({
   if (
     chainId &&
     chainId === EthereumChainIds.Mainnet &&
+<<<<<<< HEAD
     contract === Addresses[chainId].vestingAddress
+=======
+    contract === ADDRESSES.vestingAddress
+>>>>>>> remove items from state that are constant values that never change
   ) {
     // Only some tranches have titles worth showing
     if (TRANCHE_LABELS[id]) {

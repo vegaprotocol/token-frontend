@@ -9,6 +9,7 @@ import React from "react";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { Callout } from "../../components/callout";
 import { useAppState } from "../../contexts/app-state/app-state-context";
+import { ADDRESSES } from "../../config";
 
 const trancheMinimum = 10;
 
@@ -82,6 +83,14 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                   chainId={appState.chainId}
                   id={tranche.tranche_id}
                 />
+<<<<<<< HEAD
+=======
+                <TrancheLabel
+                  chainId={appState.chainId}
+                  contract={ADDRESSES.vestingAddress}
+                  id={tranche.tranche_id}
+                />
+>>>>>>> remove items from state that are constant values that never change
               </li>
             );
           })}

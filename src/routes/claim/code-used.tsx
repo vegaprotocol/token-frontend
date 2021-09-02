@@ -1,12 +1,15 @@
 import { useTranslation } from "react-i18next";
 import { Callout } from "../../components/callout";
 import { Error } from "../../components/icons";
+<<<<<<< HEAD
 import { useAppState } from "../../contexts/app-state/app-state-context";
+=======
+import { ADDRESSES } from "../../config";
+import { truncateMiddle } from "../../lib/truncate-middle";
+
+>>>>>>> remove items from state that are constant values that never change
 export const CodeUsed = ({ address }: { address: string | null }) => {
   const { t } = useTranslation();
-  const {
-    appState: { contractAddresses },
-  } = useAppState();
   return (
     <Callout intent="warn" icon={<Error />} title={t("codeUsed")}>
       <p>{t("codeUsedText")}</p>
@@ -19,7 +22,7 @@ export const CodeUsed = ({ address }: { address: string | null }) => {
         {t(
           "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
           {
-            address: contractAddresses.lockedAddress,
+            address: ADDRESSES.lockedAddress,
           }
         )}
       </p>

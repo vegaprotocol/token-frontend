@@ -1,4 +1,5 @@
 import React from "react";
+import { ADDRESSES } from "../config";
 import {
   AppStateActionType,
   useAppState,
@@ -21,9 +22,13 @@ export const useRefreshBalances = (address: string) => {
         vesting.getUserBalanceAllTranches(address),
         token.balanceOf(address),
         vesting.getLien(address),
+<<<<<<< HEAD
         Flags.MAINNET_DISABLED
           ? new BigNumber(0)
           : token.allowance(address, appState.contractAddresses.stakingBridge),
+=======
+        token.allowance(address, ADDRESSES.stakingBridge),
+>>>>>>> remove items from state that are constant values that never change
         // Refresh connected vega key balances as well if we are connected to a vega key
         appState.currVegaKey?.pub
           ? staking.stakeBalance(address, appState.currVegaKey.pub)
@@ -40,7 +45,6 @@ export const useRefreshBalances = (address: string) => {
   }, [
     address,
     appDispatch,
-    appState.contractAddresses.stakingBridge,
     appState.currVegaKey?.pub,
     staking,
     token,

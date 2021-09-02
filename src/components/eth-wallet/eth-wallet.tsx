@@ -23,16 +23,27 @@ export const EthWallet = () => {
     <WalletCard>
       <WalletCardHeader>
         <span>{t("ethereumKey")}</span>
+<<<<<<< HEAD
         {address && (
           <>
             <span className="vega-wallet__curr-key">
               {truncateMiddle(address)}
+=======
+        {appState.ethAddress && (
+          <>
+            <span className="vega-wallet__curr-key">
+              {truncateMiddle(appState.ethAddress)}
+>>>>>>> remove items from state that are constant values that never change
             </span>
           </>
         )}
       </WalletCardHeader>
       <WalletCardContent>
+<<<<<<< HEAD
         {address ? (
+=======
+        {appState.ethAddress ? (
+>>>>>>> remove items from state that are constant values that never change
           <ConnectedKey />
         ) : (
           <button

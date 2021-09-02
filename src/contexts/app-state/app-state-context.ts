@@ -46,11 +46,12 @@ export interface UserTrancheBalance {
 
 export interface AppState {
   /** Ethereum address provided by Metamask */
-  address: string;
+  ethAddress: string | null;
+
   error: Error | null;
 
   /** Whether or not we are awaiting the user to connect in Metamask */
-  connecting: boolean;
+  ethWalletConnecting: boolean;
 
   /** Current chainId in Metamask */
   chainId: EthereumChainId;
@@ -66,6 +67,7 @@ export interface AppState {
 
   /** Array of tranche objects */
   tranches: Tranche[] | null;
+
   /** Number of decimal places of the VEGA token (18 on Mainnet, 5 on Ropsten) */
   decimals: number;
 
@@ -86,20 +88,6 @@ export interface AppState {
 
   /** Approved amount of VEGA to be associated for staking */
   allowance: string | null;
-
-  /** Addresses of the different contracts in the VEGA ecosystem */
-  contractAddresses: {
-    /** Vesting contract address */
-    vestingAddress: string;
-    /** Vega token contract address */
-    vegaTokenAddress: string;
-    /** Claim contract address */
-    claimAddress: string;
-    /** Vesting Vega token contract address */
-    lockedAddress: string;
-    /** Staking bridge contract address */
-    stakingBridge: string;
-  };
 
   /** Whether or not the connect to Ethereum wallet overaly is open */
   ethWalletOverlay: boolean;

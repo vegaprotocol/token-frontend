@@ -119,7 +119,7 @@ const VegaWalletConnected = ({
   const { t } = useTranslation();
   const {
     appDispatch,
-    appState: { address, vegaAssociatedBalance, lien },
+    appState: { ethAddress: address, vegaAssociatedBalance, lien },
   } = useAppState();
 
   const [disconnecting, setDisconnecting] = React.useState(false);

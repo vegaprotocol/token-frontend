@@ -25,6 +25,7 @@ export const EthereumChainIds: Record<EthereumChainName, EthereumChainId> = {
   Kovan: "0x2a",
 };
 
+<<<<<<< HEAD
 export const Addresses = {
   [EthereumChainIds.Mainnet]: {
     vestingAddress: "0x23d1bFE8fA50a167816fBD79D7932577c06011f4",
@@ -42,6 +43,8 @@ export const Addresses = {
   },
 };
 
+=======
+>>>>>>> remove items from state that are constant values that never change
 export type PromiEvent = typeof Promise & {
   on: (event: string, listener: (...args: any[]) => void) => PromiEvent;
   once: (event: string, listener: (...args: any[]) => void) => PromiEvent;
