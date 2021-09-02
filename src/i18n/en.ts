@@ -145,7 +145,7 @@ const en = {
   // Claim success callout
   claimComplete: "Claim complete",
   claimCompleteMessage:
-    "Ethereum address {{address}} now has a vested right to {{balance}} VEGA tokens from <trancheLink>{{trancheLinkText}}</trancheLink> of the vesting contract.",
+    "Ethereum address {{address}} now has a vested right to {{balance}} more VEGA tokens.",
   "Link transaction": "Link transaction",
   "Claim transaction": "Claim transaction",
   "This tranche was used to perform integration testing only prior to token launch and no tokens will enter the supply before 3rd Sep 2021.":
