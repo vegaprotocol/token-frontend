@@ -33,8 +33,6 @@ export const Web3Container = ({
     // Auto connect if possible
     if (
       !triedToConnect &&
-      // If we haven't loaded the contract information don't connect yet
-      appState.tokenDataLoaded &&
       // We don't have an address we are not connected
       !appState.address &&
       // If we have an error we don't want to try reconnecting
@@ -55,51 +53,41 @@ export const Web3Container = ({
     appState.address,
     appState.connecting,
     appState.error,
-    appState.tokenDataLoaded,
     connect,
     triedToConnect,
   ]);
 
   // Bind listeners for account change
   React.useEffect(() => {
-    if (
-      appState.tokenDataLoaded &&
-      appState.providerStatus === ProviderStatus.Ready
-    ) {
-      provider.on("accountsChanged", async (accounts: string[]) => {
-        if (accounts.length) {
-          const [balance, walletBalance, lien, allowance] = await Promise.all([
-            vesting.getUserBalanceAllTranches(accounts[0]),
-            token.balanceOf(accounts[0]),
-            vesting.getLien(accounts[0]),
-            Flags.MAINNET_DISABLED
-              ? new BigNumber(0)
-              : token.allowance(
-                  accounts[0],
-                  appState.contractAddresses.stakingBridge
-                ),
-          ]);
-          appDispatch({
-            type: AppStateActionType.ACCOUNTS_CHANGED,
-            address: accounts[0],
-            balance: new BigNumber(balance),
-            walletBalance,
-            lien,
-            allowance,
-          });
-        } else {
-          appDispatch({ type: AppStateActionType.DISCONNECT });
-        }
-      });
-      provider.on("chainChanged", (chainId: EthereumChainId) => {
-        appDispatch({ type: AppStateActionType.CHAIN_CHANGED, chainId });
-      });
-    }
+    provider.on("accountsChanged", async (accounts: string[]) => {
+      if (accounts.length) {
+        const [balance, walletBalance, lien, allowance] = await Promise.all([
+          vesting.getUserBalanceAllTranches(accounts[0]),
+          token.balanceOf(accounts[0]),
+          vesting.getLien(accounts[0]),
+          token.allowance(
+            accounts[0],
+            appState.contractAddresses.stakingBridge
+          ),
+        ]);
+        appDispatch({
+          type: AppStateActionType.ACCOUNTS_CHANGED,
+          address: accounts[0],
+          // balance: new BigNumber(balance),
+          // walletBalance,
+          // lien,
+          // allowance,
+        });
+      } else {
+        appDispatch({ type: AppStateActionType.DISCONNECT });
+      }
+    });
+    provider.on("chainChanged", (chainId: EthereumChainId) => {
+      appDispatch({ type: AppStateActionType.CHAIN_CHANGED, chainId });
+    });
   }, [
     appDispatch,
     appState.contractAddresses.stakingBridge,
-    appState.providerStatus,
-    appState.tokenDataLoaded,
     provider,
     staking,
     token,
@@ -123,25 +111,8 @@ export const Web3Container = ({
       });
     };
 
-    if (appState.providerStatus !== ProviderStatus.None) {
-      run();
-    }
-  }, [token, appState.providerStatus, appDispatch, staking, vesting]);
-
-  if (appState.providerStatus === ProviderStatus.None) {
-    let error: string;
-    // @ts-ignore
-    if (window?.web3?.currentProvider && !window.web3.currentProvider.request) {
-      error = t("invalidWeb3Provider");
-    } else {
-      error = t("invalidWeb3Browser");
-    }
-    return (
-      <Callout title={t("Cannot connect")} intent="error" icon={<Error />}>
-        <p>{error}</p>
-      </Callout>
-    );
-  }
+    run();
+  }, [token, appDispatch, staking, vesting]);
 
   if (appState.appChainId !== appState.chainId) {
     return (

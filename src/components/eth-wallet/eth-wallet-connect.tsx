@@ -1,25 +1,14 @@
 import "./eth-wallet-connect.scss";
 import { useTranslation } from "react-i18next";
-import { useConnect } from "../../hooks/use-connect";
-import {
-  ProviderStatus,
-  useAppState,
-} from "../../contexts/app-state/app-state-context";
+import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useEthUser } from "../../hooks/use-eth-user";
 
 export const EthWalletConnect = () => {
   const { t } = useTranslation();
   const {
-    appState: { providerStatus, connecting },
+    appState: { connecting },
   } = useAppState();
-  const connect = useConnect();
-
-  if (providerStatus === ProviderStatus.Pending) {
-    return null;
-  }
-
-  if (providerStatus === ProviderStatus.None) {
-    return <p>{t("invalidWeb3Browser")}</p>;
-  }
+  const { connect } = useEthUser();
 
   if (connecting) {
     return <div>{t("Awaiting action in wallet...")}</div>;

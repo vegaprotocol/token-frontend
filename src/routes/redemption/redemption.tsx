@@ -1,7 +1,10 @@
 import React from "react";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
+import { EthConnectPrompt } from "../../components/eth-connect-prompt";
+import { EthWrongChainPrompt } from "../../components/eth-connect-prompt/eth-wrong-chain-prompt";
+import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useEthUser } from "../../hooks/use-eth-user";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
-import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { RedemptionInformation } from "./home/redemption-information";
 import {
   initialRedemptionState,
@@ -10,21 +13,19 @@ import {
 } from "./redemption-reducer";
 import { RedeemFromTranche } from "./tranche";
 
-const RedemptionRouter = ({
-  address,
-  tranches,
-}: {
-  address: string;
-  tranches: Tranche[];
-}) => {
+const RedemptionRouter = () => {
+  const { appState } = useAppState();
   const match = useRouteMatch();
   const vesting = useVegaVesting();
   const [state, dispatch] = React.useReducer(
     redemptionReducer,
     initialRedemptionState
   );
+  const { address } = useEthUser();
+
   React.useEffect(() => {
-    const run = async () => {
+    const run = async (address: string) => {
+      const tranches = await vesting.getAllTranches();
       const userTranches = tranches.filter((t) =>
         t.users.some(
           ({ address: a }) => a.toLowerCase() === address.toLowerCase()
@@ -35,8 +36,19 @@ const RedemptionRouter = ({
         userTranches,
       });
     };
-    run();
-  }, [address, tranches, vesting]);
+
+    if (address) {
+      run(address);
+    }
+  }, [address, vesting]);
+
+  if (appState.appChainId !== appState.chainId) {
+    return <EthWrongChainPrompt />;
+  }
+
+  if (!address) {
+    return <EthConnectPrompt />;
+  }
 
   return (
     <Switch>
