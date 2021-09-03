@@ -12,15 +12,18 @@ import { useVegaToken } from "./hooks/use-vega-token";
 import { useVegaVesting } from "./hooks/use-vega-vesting";
 import { useVegaWallet } from "./hooks/use-vega-wallet";
 
-let keysFetched = false;
-
 export const AppLoader = ({ children }: { children: React.ReactElement }) => {
   const { appState, appDispatch } = useAppState();
   const token = useVegaToken();
   const staking = useVegaStaking();
   const vesting = useVegaVesting();
   const vegaWalletService = useVegaWallet();
-  const [loaded, setLoaded] = React.useState(false);
+  const [balancesLoaded, setBalancesLoaded] = React.useState(false);
+  const [vegaKeysLoaded, setVegaKeysLoaded] = React.useState(false);
+
+  // Derive loaded state from all things that we want to load or attempted
+  // to load before rendering the app
+  const loaded = balancesLoaded && vegaKeysLoaded;
 
   React.useEffect(() => {
     const run = async () => {
@@ -42,7 +45,7 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
           totalSupply: supply,
           totalAssociated: totalAssociatedWallet.plus(totalAssociatedVesting),
         });
-        setLoaded(true);
+        setBalancesLoaded(true);
       } catch (err) {
         Sentry.captureException(err);
       }
@@ -54,11 +57,14 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
   // Attempte to get vega keys on startup
   React.useEffect(() => {
     async function run() {
+      console.log("getKeys");
       const [err, keys] = await vegaWalletService.getKeys();
-      keysFetched = true;
+
+      // attempt to load keys complete
+      setVegaKeysLoaded(true);
 
       if (err === VegaWalletServiceErrors.NO_TOKEN) {
-        // do nothing, make user authenticate again
+        // Do nothing so user has to auth again, but our load for vega keys is complete
         return;
       }
 
@@ -82,10 +88,16 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
       });
     }
 
-    if (!keysFetched) {
+    if (!vegaKeysLoaded) {
       run();
     }
-  }, [appDispatch, appState.address, staking, vegaWalletService]);
+  }, [
+    appDispatch,
+    appState.address,
+    staking,
+    vegaWalletService,
+    vegaKeysLoaded,
+  ]);
 
   if (!loaded) {
     return (
