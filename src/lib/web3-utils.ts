@@ -45,6 +45,7 @@ export const Addresses = {
 export type PromiEvent = typeof Promise & {
   on: (event: string, listener: (...args: any[]) => void) => PromiEvent;
   once: (event: string, listener: (...args: any[]) => void) => PromiEvent;
+  off: (event?: string) => void;
 };
 
 export interface IStaking {
