@@ -2,7 +2,7 @@
 
 ***Control panel for your VEGA tokens***
 
-Insert Screenshot
+![preview](https://user-images.githubusercontent.com/6678/131992372-4a89d7ea-d9b3-4698-b767-e4464396a7d0.jpg)
 
 ## Features
 - View vesting progress
