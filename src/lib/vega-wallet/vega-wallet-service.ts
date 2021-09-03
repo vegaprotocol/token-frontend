@@ -42,7 +42,6 @@ export interface IVegaWalletService {
   url: string;
   token: string;
   statusPoll: any;
-  getStatus(): Promise<boolean>;
   getToken(params: {
     wallet: string;
     passphrase: string;
@@ -59,20 +58,6 @@ export class VegaWalletService implements IVegaWalletService {
   constructor() {
     this.url = localStorage.getItem("vega_wallet_url") || DEFAULT_WALLET_URL;
     this.token = localStorage.getItem("vega_wallet_token") || "";
-  }
-
-  async getStatus() {
-    try {
-      const res = await fetch(`${this.url}/${Endpoints.STATUS}`);
-      const json = await res.json();
-      if (json.hasOwnProperty("success") && json.success) {
-        return true;
-      } else {
-        return false;
-      }
-    } catch (err) {
-      return false;
-    }
   }
 
   async getToken(params: {
