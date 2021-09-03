@@ -18,10 +18,10 @@ export const StakingContainer = ({
 }) => {
   const { t } = useTranslation();
   const { appDispatch } = useAppState();
-  const { address } = useEthUser();
+  const { ethAddress } = useEthUser();
   const { currVegaKey } = useVegaUser();
 
-  if (!address) {
+  if (!ethAddress) {
     return <EthConnectPrompt />;
   }
 
@@ -47,5 +47,5 @@ export const StakingContainer = ({
     );
   }
 
-  return children({ address, currVegaKey });
+  return children({ address: ethAddress, currVegaKey });
 };

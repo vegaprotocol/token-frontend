@@ -116,7 +116,7 @@ export function useEthUser() {
   }, []);
 
   return {
-    address: appState.ethAddress,
+    ethAddress: appState.ethAddress,
     connect,
   };
 }
