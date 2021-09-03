@@ -227,10 +227,16 @@ const en = {
     "Most VEGA tokens are held in a vesting contract. This means that they cannot be transferred between wallets until their vesting term is complete.",
 
   // Governance
-  "This page lists proposed changes to the Vega network.": "This page lists proposed changes to the Vega network.",
-  "VEGA token holders can vote for or against proposals as well as make their own.": "VEGA token holders can vote for or against proposals as well as make their own.",
-  "Each proposal needs both a required majority of votes (e.g 66% but this differs by proposal type) and to meet a minimum threshold of votes.": "Each proposal needs both a required majority of votes (e.g 66% but this differs by proposal type) and to meet a minimum threshold of votes.",
-  "Proposals": "Proposals",
+  governanceText1: "This page lists proposed changes to the Vega network.",
+  governanceText2:
+    "VEGA token holders can vote for or against proposals as well as make their own.",
+  governanceText3:
+    "Each proposal needs both a required majority of votes (e.g 66% but this differs by proposal type) and to meet a minimum threshold of votes.",
+  proposals: "Proposals",
+  proposedEnactment: "Proposed enactment",
+  voteStatus: "Vote status",
+  shouldPass: "Should pass",
+  shouldFail: "Should fail",
 
   // Token Details
   "Token address": "Token address",
