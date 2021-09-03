@@ -1,4 +1,5 @@
 import React from "react";
+import * as Sentry from "@sentry/react";
 import "./vega-wallet.scss";
 import {
   AppStateActionType,
@@ -160,9 +161,13 @@ const VegaWalletConnected = ({
 
   const handleDisconnect = React.useCallback(
     async function () {
-      setDisconnecting(true);
-      await vegaWallet.revokeToken();
-      appDispatch({ type: AppStateActionType.VEGA_WALLET_DISCONNECT });
+      try {
+        setDisconnecting(true);
+        await vegaWallet.revokeToken();
+        appDispatch({ type: AppStateActionType.VEGA_WALLET_DISCONNECT });
+      } catch (err) {
+        Sentry.captureException(err);
+      }
     },
     [appDispatch, vegaWallet]
   );

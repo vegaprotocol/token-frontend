@@ -1,4 +1,5 @@
 import React from "react";
+import * as Sentry from "@sentry/react";
 import {
   AppStateActionType,
   useAppState,
@@ -13,26 +14,30 @@ export function useVegaUser() {
 
   React.useEffect(() => {
     async function run() {
-      const isUp = await vegaWallet.getStatus();
-      if (isUp) {
-        // dont handle error here, if get key fails just 'log' the user
-        // out. Keys will be null and clearing the token is handled by the
-        // vegaWalletServices.
-        const [, keys] = await vegaWallet.getKeys();
-        let vegaAssociatedBalance = null;
-        if (appState.ethAddress && keys && keys.length) {
-          vegaAssociatedBalance = await staking.stakeBalance(
-            appState.ethAddress,
-            keys[0].pub
-          );
+      try {
+        const isUp = await vegaWallet.getStatus();
+        if (isUp) {
+          // dont handle error here, if get key fails just 'log' the user
+          // out. Keys will be null and clearing the token is handled by the
+          // vegaWalletServices.
+          const [, keys] = await vegaWallet.getKeys();
+          let vegaAssociatedBalance = null;
+          if (appState.ethAddress && keys && keys.length) {
+            vegaAssociatedBalance = await staking.stakeBalance(
+              appState.ethAddress,
+              keys[0].pub
+            );
+          }
+          appDispatch({
+            type: AppStateActionType.VEGA_WALLET_INIT,
+            keys,
+            vegaAssociatedBalance,
+          });
+        } else {
+          appDispatch({ type: AppStateActionType.VEGA_WALLET_DOWN });
         }
-        appDispatch({
-          type: AppStateActionType.VEGA_WALLET_INIT,
-          keys,
-          vegaAssociatedBalance,
-        });
-      } else {
-        appDispatch({ type: AppStateActionType.VEGA_WALLET_DOWN });
+      } catch (err) {
+        Sentry.captureException(err);
       }
     }
 
