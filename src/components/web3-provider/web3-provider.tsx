@@ -5,6 +5,8 @@ import { SplashScreen } from "../splash-screen";
 import { SplashLoader } from "../splash-loader";
 import { useTranslation } from "react-i18next";
 import { EthereumChainId, EthereumChainNames } from "../../lib/web3-utils";
+import * as Sentry from "@sentry/react";
+import { Severity } from "@sentry/react";
 
 enum ProviderStatus {
   Pending,
@@ -55,15 +57,28 @@ export const Web3Provider = ({
 
   React.useEffect(() => {
     const bindChainChangeListener = () => {
-      provider.current.on("chainChanged", (chainId: EthereumChainId) => {
-        setChainId(chainId);
+      provider.current.on("chainChanged", (newChainId: EthereumChainId) => {
+        Sentry.addBreadcrumb({
+          type: "AccountsChanged",
+          level: Severity.Log,
+          message: "User changed chain in wallet provider",
+          data: {
+            old: chainId,
+            new: newChainId,
+          },
+          timestamp: Date.now(),
+        });
+        setChainId(newChainId);
       });
     };
 
     if (status === ProviderStatus.Ready) {
       bindChainChangeListener();
     }
-  }, [status]);
+    return () => {
+      provider.current.removeAllListeners("chainChanged");
+    };
+  }, [chainId, status]);
 
   if (status === ProviderStatus.None || status === ProviderStatus.Invalid) {
     return (

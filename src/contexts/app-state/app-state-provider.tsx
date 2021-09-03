@@ -11,6 +11,7 @@ import {
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { BigNumber } from "../../lib/bignumber";
 import * as Sentry from "@sentry/react";
+import { Severity } from "@sentry/react";
 
 interface AppStateProviderProps {
   provider: any;
@@ -217,13 +218,26 @@ export function AppStateProvider({
 
   React.useEffect(() => {
     provider.on("accountsChanged", (accounts: string[]) => {
+      Sentry.addBreadcrumb({
+        type: "AccountsChanged",
+        level: Severity.Log,
+        message: "User changed accounts in wallet provider",
+        data: {
+          old: state.address,
+          new: accounts[0],
+        },
+        timestamp: Date.now(),
+      });
       Sentry.setUser({ id: accounts[0] });
       dispatch({
         type: AppStateActionType.ACCOUNTS_CHANGED,
         address: accounts[0],
       });
     });
-  }, [provider]);
+    return () => {
+      provider.removeAllListeners("accountsChanged");
+    };
+  }, [provider, state.address]);
 
   return (
     <AppStateContext.Provider
