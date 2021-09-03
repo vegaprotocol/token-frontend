@@ -1,4 +1,5 @@
 import React from "react";
+import { ADDRESSES } from "../config";
 import {
   AppStateActionType,
   useAppState,
@@ -23,7 +24,7 @@ export const useRefreshBalances = (address: string) => {
         vesting.getLien(address),
         Flags.MAINNET_DISABLED
           ? new BigNumber(0)
-          : token.allowance(address, appState.contractAddresses.stakingBridge),
+          : token.allowance(address, ADDRESSES.stakingBridge),
         // Refresh connected vega key balances as well if we are connected to a vega key
         appState.currVegaKey?.pub
           ? staking.stakeBalance(address, appState.currVegaKey.pub)
@@ -40,7 +41,6 @@ export const useRefreshBalances = (address: string) => {
   }, [
     address,
     appDispatch,
-    appState.contractAddresses.stakingBridge,
     appState.currVegaKey?.pub,
     staking,
     token,

@@ -24,7 +24,7 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
   const { t } = useTranslation();
   const {
     appDispatch,
-    appState: { address },
+    appState: { ethAddress: address },
   } = useAppState();
   const vegaWallet = useVegaWallet();
   const staking = useVegaStaking();

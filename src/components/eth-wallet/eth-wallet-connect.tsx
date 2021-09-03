@@ -6,11 +6,11 @@ import { useEthUser } from "../../hooks/use-eth-user";
 export const EthWalletConnect = () => {
   const { t } = useTranslation();
   const {
-    appState: { connecting },
+    appState: { ethWalletConnecting },
   } = useAppState();
   const { connect } = useEthUser();
 
-  if (connecting) {
+  if (ethWalletConnecting) {
     return <div>{t("Awaiting action in wallet...")}</div>;
   }
 

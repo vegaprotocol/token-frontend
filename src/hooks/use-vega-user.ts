@@ -20,9 +20,9 @@ export function useVegaUser() {
         // vegaWalletServices.
         const [, keys] = await vegaWallet.getKeys();
         let vegaAssociatedBalance = null;
-        if (appState.address && keys && keys.length) {
+        if (appState.ethAddress && keys && keys.length) {
           vegaAssociatedBalance = await staking.stakeBalance(
-            appState.address,
+            appState.ethAddress,
             keys[0].pub
           );
         }
@@ -37,7 +37,7 @@ export function useVegaUser() {
     }
 
     run();
-  }, [appDispatch, appState.address, staking, vegaWallet]);
+  }, [appDispatch, appState.ethAddress, staking, vegaWallet]);
 
   return {
     vegaKeys: appState.vegaKeys,

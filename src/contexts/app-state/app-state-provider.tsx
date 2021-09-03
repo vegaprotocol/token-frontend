@@ -1,5 +1,5 @@
 import React from "react";
-import { Addresses, EthereumChainId } from "../../lib/web3-utils";
+import { EthereumChainId } from "../../lib/web3-utils";
 import {
   AppState,
   AppStateContext,
@@ -23,24 +23,21 @@ const initialAppState: AppState = {
   chainId: process.env.REACT_APP_CHAIN as EthereumChainId,
   // set in app-loader TODO: update when user stakes/unstakes/associates/disassociates
   totalAssociated: "",
-  totalStaked: "",
   decimals: 0,
   totalSupply: "",
-  address: "",
-  connecting: false,
+  ethAddress: "",
+  ethWalletConnecting: false,
   error: null,
   balanceFormatted: "",
   walletBalance: "",
   lien: "",
   allowance: "",
   tranches: null,
-  contractAddresses: Addresses[process.env.REACT_APP_CHAIN as EthereumChainId],
   ethWalletOverlay: false,
   vegaWalletOverlay: false,
   vegaWalletStatus: VegaWalletStatus.Pending,
   vegaKeys: null,
   currVegaKey: null,
-
   vegaAssociatedBalance: null,
   trancheBalances: [],
   totalLockedBalance: "",
@@ -55,32 +52,32 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
       return {
         ...state,
         error: null,
-        connecting: true,
+        ethWalletConnecting: true,
       };
     case AppStateActionType.CONNECT_SUCCESS:
       return {
         ...state,
-        address: action.address,
-        connecting: false,
+        ethAddress: action.address,
+        ethWalletConnecting: false,
         ethWalletOverlay: false,
       };
     case AppStateActionType.CONNECT_FAIL:
       return {
         ...state,
         error: action.error,
-        address: "",
-        connecting: false,
+        ethAddress: "",
+        ethWalletConnecting: false,
       };
     case AppStateActionType.DISCONNECT:
       return {
         ...state,
         error: null,
-        address: "",
+        ethAddress: "",
       };
     case AppStateActionType.ACCOUNTS_CHANGED: {
       return {
         ...state,
-        address: action.address,
+        ethAddress: action.address,
       };
     }
     case AppStateActionType.UPDATE_ACCOUNT_BALANCES: {
@@ -223,7 +220,7 @@ export function AppStateProvider({
         level: Severity.Log,
         message: "User changed accounts in wallet provider",
         data: {
-          old: state.address,
+          old: state.ethAddress,
           new: accounts[0],
         },
         timestamp: Date.now(),
@@ -237,7 +234,7 @@ export function AppStateProvider({
     return () => {
       provider.removeAllListeners("accountsChanged");
     };
-  }, [provider, state.address]);
+  }, [provider, state.ethAddress]);
 
   return (
     <AppStateContext.Provider

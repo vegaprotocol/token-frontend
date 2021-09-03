@@ -17,22 +17,22 @@ import { Flags } from "../../flags";
 export const EthWallet = () => {
   const { t } = useTranslation();
   const { appDispatch } = useAppState();
-  const { address } = useEthUser();
+  const { ethAddress } = useEthUser();
 
   return (
     <WalletCard>
       <WalletCardHeader>
         <span>{t("ethereumKey")}</span>
-        {address && (
+        {ethAddress && (
           <>
             <span className="vega-wallet__curr-key">
-              {truncateMiddle(address)}
+              {truncateMiddle(ethAddress)}
             </span>
           </>
         )}
       </WalletCardHeader>
       <WalletCardContent>
-        {address ? (
+        {ethAddress ? (
           <ConnectedKey />
         ) : (
           <button

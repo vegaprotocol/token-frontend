@@ -21,7 +21,7 @@ const RedemptionRouter = () => {
     redemptionReducer,
     initialRedemptionState
   );
-  const { address } = useEthUser();
+  const { ethAddress } = useEthUser();
   const tranches = useTranches();
 
   React.useEffect(() => {
@@ -37,10 +37,10 @@ const RedemptionRouter = () => {
       });
     };
 
-    if (address) {
-      run(address);
+    if (ethAddress) {
+      run(ethAddress);
     }
-  }, [address, tranches, vesting]);
+  }, [ethAddress, tranches, vesting]);
 
   if (!tranches.length) {
     return (
@@ -50,17 +50,17 @@ const RedemptionRouter = () => {
     );
   }
 
-  if (!address) {
+  if (!ethAddress) {
     return <EthConnectPrompt />;
   }
 
   return (
     <Switch>
       <Route exact path={`${match.path}`}>
-        <RedemptionInformation state={state} address={address} />
+        <RedemptionInformation state={state} address={ethAddress} />
       </Route>
       <Route path={`${match.path}/:id`}>
-        <RedeemFromTranche state={state} address={address} />
+        <RedeemFromTranche state={state} address={ethAddress} />
       </Route>
     </Switch>
   );
