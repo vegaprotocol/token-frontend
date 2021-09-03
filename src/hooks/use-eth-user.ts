@@ -81,19 +81,23 @@ export function useEthUser() {
   // update balances on connect to Ethereum
   React.useEffect(() => {
     const updateBalances = async () => {
-      const [balance, walletBalance, lien, allowance] = await Promise.all([
-        vesting.getUserBalanceAllTranches(appState.ethAddress),
-        token.balanceOf(appState.ethAddress),
-        vesting.getLien(appState.ethAddress),
-        token.allowance(appState.ethAddress, ADDRESSES.stakingBridge),
-      ]);
-      appDispatch({
-        type: AppStateActionType.UPDATE_ACCOUNT_BALANCES,
-        balance: new BigNumber(balance),
-        walletBalance,
-        lien,
-        allowance,
-      });
+      try {
+        const [balance, walletBalance, lien, allowance] = await Promise.all([
+          vesting.getUserBalanceAllTranches(appState.ethAddress),
+          token.balanceOf(appState.ethAddress),
+          vesting.getLien(appState.ethAddress),
+          token.allowance(appState.ethAddress, ADDRESSES.stakingBridge),
+        ]);
+        appDispatch({
+          type: AppStateActionType.UPDATE_ACCOUNT_BALANCES,
+          balance: new BigNumber(balance),
+          walletBalance,
+          lien,
+          allowance,
+        });
+      } catch (err) {
+        Sentry.captureException(err);
+      }
     };
 
     if (appState.ethAddress) {
