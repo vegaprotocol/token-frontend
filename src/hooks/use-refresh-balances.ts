@@ -22,13 +22,9 @@ export const useRefreshBalances = (address: string) => {
         vesting.getUserBalanceAllTranches(address),
         token.balanceOf(address),
         vesting.getLien(address),
-<<<<<<< HEAD
         Flags.MAINNET_DISABLED
           ? new BigNumber(0)
-          : token.allowance(address, appState.contractAddresses.stakingBridge),
-=======
-        token.allowance(address, ADDRESSES.stakingBridge),
->>>>>>> remove items from state that are constant values that never change
+          : token.allowance(address, ADDRESSES.stakingBridge),
         // Refresh connected vega key balances as well if we are connected to a vega key
         appState.currVegaKey?.pub
           ? staking.stakeBalance(address, appState.currVegaKey.pub)

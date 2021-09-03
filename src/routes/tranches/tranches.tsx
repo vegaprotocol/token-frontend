@@ -79,18 +79,10 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                   />
                 </div>
                 <TrancheLabel
-                  contract={appState.contractAddresses.vestingAddress}
-                  chainId={appState.chainId}
-                  id={tranche.tranche_id}
-                />
-<<<<<<< HEAD
-=======
-                <TrancheLabel
-                  chainId={appState.chainId}
                   contract={ADDRESSES.vestingAddress}
+                  chainId={appState.chainId}
                   id={tranche.tranche_id}
                 />
->>>>>>> remove items from state that are constant values that never change
               </li>
             );
           })}

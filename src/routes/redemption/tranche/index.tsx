@@ -3,6 +3,7 @@ import { Trans, useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";
 import { Colors } from "../../../colors";
 import { TransactionCallout } from "../../../components/transaction-callout";
+import { ADDRESSES } from "../../../config";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import {
   TransactionActionType,
@@ -27,13 +28,7 @@ export const RedeemFromTranche = ({
   const vesting = useVegaVesting();
   const { t } = useTranslation();
   const {
-    appState: {
-      lien,
-      totalVestedBalance,
-      trancheBalances,
-      totalLockedBalance,
-      contractAddresses,
-    },
+    appState: { lien, totalVestedBalance, trancheBalances, totalLockedBalance },
   } = useAppState();
   const refreshBalances = useRefreshBalances(address);
   const getUserTrancheBalances = useGetUserTrancheBalances(address);
@@ -104,7 +99,7 @@ export const RedeemFromTranche = ({
                 {t(
                   "The VEGA token address is {{address}}, make sure you add this to your wallet to see your tokens",
                   {
-                    address: contractAddresses.vegaTokenAddress,
+                    address: ADDRESSES.vegaTokenAddress,
                   }
                 )}
               </p>

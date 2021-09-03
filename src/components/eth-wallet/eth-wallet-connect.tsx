@@ -6,15 +6,11 @@ import { useEthUser } from "../../hooks/use-eth-user";
 export const EthWalletConnect = () => {
   const { t } = useTranslation();
   const {
-<<<<<<< HEAD
-    appState: { connecting },
-=======
-    appState: { providerStatus, ethWalletConnecting: connecting },
->>>>>>> remove items from state that are constant values that never change
+    appState: { ethWalletConnecting },
   } = useAppState();
   const { connect } = useEthUser();
 
-  if (connecting) {
+  if (ethWalletConnecting) {
     return <div>{t("Awaiting action in wallet...")}</div>;
   }
 

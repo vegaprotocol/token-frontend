@@ -26,47 +26,25 @@ export const TokenDetails = ({
       <KeyValueTableRow>
         <th>{t("Token address")}</th>
         <td data-testid="token-address">
-<<<<<<< HEAD
           <a
             rel="noreferrer"
             target="_blank"
-            href={
-              "https://etherscan.io/address/" +
-              appState.contractAddresses.vegaTokenAddress
-            }
+            href={"https://etherscan.io/address/" + ADDRESSES.vegaTokenAddress}
           >
-            {truncateMiddle(appState.contractAddresses.vegaTokenAddress)}
+            {truncateMiddle(ADDRESSES.vegaTokenAddress)}
           </a>
-=======
-          <EtherscanLink
-            chainId={chainId}
-            hash={ADDRESSES.vegaTokenAddress}
-            text={truncateMiddle(ADDRESSES.vegaTokenAddress)}
-          />
->>>>>>> remove items from state that are constant values that never change
         </td>
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Token contract")}</th>
         <td data-testid="token-contract">
-<<<<<<< HEAD
           <a
             rel="noreferrer"
             target="_blank"
-            href={
-              "https://etherscan.io/address/" +
-              appState.contractAddresses.vestingAddress
-            }
+            href={"https://etherscan.io/address/" + ADDRESSES.vestingAddress}
           >
-            {truncateMiddle(appState.contractAddresses.vestingAddress)}
+            {truncateMiddle(ADDRESSES.vestingAddress)}
           </a>
-=======
-          <EtherscanLink
-            chainId={chainId}
-            hash={ADDRESSES.vestingAddress}
-            text={truncateMiddle(ADDRESSES.vestingAddress)}
-          />
->>>>>>> remove items from state that are constant values that never change
         </td>
       </KeyValueTableRow>
       <KeyValueTableRow>

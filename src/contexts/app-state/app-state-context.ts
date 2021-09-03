@@ -46,7 +46,7 @@ export interface UserTrancheBalance {
 
 export interface AppState {
   /** Ethereum address provided by Metamask */
-  ethAddress: string | null;
+  ethAddress: string;
 
   /** Error if connecting to Metamask failed */
   error: Error | null;
