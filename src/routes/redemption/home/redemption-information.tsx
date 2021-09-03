@@ -3,13 +3,14 @@ import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { RedemptionState } from "../redemption-reducer";
 import { VestingTable } from "./vesting-table";
 import { TrancheTable } from "../tranche-table";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { Callout } from "../../../components/callout";
 import { HandUp } from "../../../components/icons";
 import { Link, useHistory } from "react-router-dom";
 import React from "react";
 import { BigNumber } from "../../../lib/bignumber";
 import { truncateMiddle } from "../../../lib/truncate-middle";
+import { Routes } from "../../router-config";
 
 export const RedemptionInformation = ({
   state,
@@ -42,14 +43,18 @@ export const RedemptionInformation = ({
       }),
     [trancheBalances, userTranches]
   );
+
   if (!userTranches.length) {
     return (
       <section data-testid="redemption-page">
-        <div data-testid="redemption-no-balance">
-          {t(
-            "You do not have any vesting VEGA tokens. Switch to another Ethereum key to check what can be redeemed."
-          )}
-        </div>
+        <p data-testid="redemption-no-balance">
+          <Trans
+            i18nKey="noVestingTokens"
+            components={{
+              tranchesLink: <Link to={Routes.TRANCHES} />,
+            }}
+          />
+        </p>
       </section>
     );
   }
