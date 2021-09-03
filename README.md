@@ -19,6 +19,7 @@ Add .env file in root:
 ```bash
 // .env
 REACT_APP_CHAIN=0x3
+REACT_APP_VEGA_URL="https://n04.d.vega.xyz/query"
 ```
 
 Starting the app:
@@ -30,30 +31,12 @@ There are a few different configuration options offered for this app:
 
 | **Flag**  | **Purpose**  |
 | ------------ | ------------ |
-|  `REACT_APP_SENTRY_DSN` |  The sentry endpoint   to report to. Should be off in dev but set in live. |
+|  `REACT_APP_SENTRY_DSN` |  The sentry endpoint to report to. Should be off in dev but set in live. |
 |  `REACT_APP_REDEEM_LIVE`  | Disables call-to-actions about redeeming tokens while this feature is in development  |
 |  `REACT_APP_CHAIN`  | The ETH chain for the app to work on. Should be mainnet for live, but ropsten for preview deploys. |
-
+|  `REACT_APP_VEGA_URL` | The GraphQL query endpoint of a [Vega data node](https://github.com/vegaprotocol/networks#data-node) |
 ## Example configs:
-The used config can be found in [netlify.toml](./netlify.toml).
-
-```
-REACT_APP_CHAIN=0x3
-```
-
-Example config file for testnet:
-
-```
-REACT_APP_SENTRY_DSN=https://4b8c8a8ba07742648aa4dfe1b8d17e40@o286262.ingest.sentry.io/5882996
-REACT_APP_CHAIN=0x3
-```
-
-Example config for live:
-
-```
-REACT_APP_SENTRY_DSN=https://4b8c8a8ba07742648aa4dfe1b8d17e40@o286262.ingest.sentry.io/5882996
-REACT_APP_CHAIN=0x1
-```
+For example configurations, check out our [netlify.toml](./netlify.toml).
 
 ## Testing
 To run the minimal set of unit tests, run the following:
@@ -79,6 +62,7 @@ yarn cypress:open
   the vesting process & key dates.
 - [Introducing the VEGA token](https://blog.vega.xyz/introducing-the-vega-token-40dac090b5c1) - a blog about the VEGA
   token.
+- [The VEGA Token Listing & LP Incentives](https://blog.vega.xyz/unlocking-vega-coinlist-pro-uniswap-sushiswap-b1414750e358) - blog about the token and site
 - [vega.xyz](https://vega.xyz) - about Vega Protocol
 
 # License
