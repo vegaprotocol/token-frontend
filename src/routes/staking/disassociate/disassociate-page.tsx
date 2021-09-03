@@ -13,6 +13,17 @@ import { WalletDisassociate } from "./wallet-disassociate";
 import { ContractDisassociate } from "./contract-disassociate";
 import { DisassociateTransaction } from "./disassociate-transaction";
 import { useRemoveStake } from "./hooks";
+import { StakingContainer } from "../staking-container";
+
+export const DisassociateContainer = () => {
+  return (
+    <StakingContainer>
+      {({ address, currVegaKey }) => (
+        <DisassociatePage address={address} vegaKey={currVegaKey} />
+      )}
+    </StakingContainer>
+  );
+};
 
 export const DisassociatePage = ({
   address,

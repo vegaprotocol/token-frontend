@@ -7,26 +7,36 @@ import { Nav } from "./components/nav";
 import { Notice } from "./components/notice";
 import { VegaWalletModal } from "./components/vega-wallet/vega-wallet-modal";
 import { EthWalletModal } from "./components/eth-wallet/eth-wallet-modal";
-import { ApolloProvider } from "@apollo/client";
-import { client } from "./lib/apollo-client";
+// @ts-ignore
+import { GraphQlProvider } from "./components/GRAPHQL_PROVIDER/graphql-provider";
+import { AppLoader } from "./app-loader";
+import { Web3Provider } from "./components/web3-provider";
 
 function App() {
   return (
-    <ApolloProvider client={client}>
+    <GraphQlProvider>
       <Router>
-        <AppStateProvider>
-          <div className="app">
-            <Nav />
-            <AppRouter />
-            <footer>
-              <Notice />
-            </footer>
-          </div>
-          <VegaWalletModal />
-          <EthWalletModal />
-        </AppStateProvider>
+        <Web3Provider>
+          {({ provider, chainId }) => (
+            <AppStateProvider provider={provider} chainId={chainId}>
+              <AppLoader>
+                <>
+                  <div className="app">
+                    <Nav />
+                    <AppRouter />
+                    <footer>
+                      <Notice />
+                    </footer>
+                  </div>
+                  <VegaWalletModal />
+                  <EthWalletModal />
+                </>
+              </AppLoader>
+            </AppStateProvider>
+          )}
+        </Web3Provider>
       </Router>
-    </ApolloProvider>
+    </GraphQlProvider>
   );
 }
 

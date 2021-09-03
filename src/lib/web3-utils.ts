@@ -31,8 +31,7 @@ export const Addresses = {
     vegaTokenAddress: "0xcB84d72e61e383767C4DFEb2d8ff7f4FB89abc6e",
     claimAddress: "0xd1Bdf85dB6Af63f45211dB95928d938abCc52dC8",
     lockedAddress: "0x78344c7305d73a7a0ac3c94cd9960f4449a1814e",
-    // TODO need to be added
-    stakingBridge: "",
+    stakingBridge: "0x195064D33f09e0c42cF98E665D9506e0dC17de68",
   },
   [EthereumChainIds.Ropsten]: {
     vestingAddress: "0xfc9Ad8fE9E0b168999Ee7547797BC39D55d607AA",
@@ -46,6 +45,7 @@ export const Addresses = {
 export type PromiEvent = typeof Promise & {
   on: (event: string, listener: (...args: any[]) => void) => PromiEvent;
   once: (event: string, listener: (...args: any[]) => void) => PromiEvent;
+  off: (event?: string) => void;
 };
 
 export interface IStaking {

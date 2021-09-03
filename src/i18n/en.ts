@@ -5,9 +5,10 @@ const en = {
   pageTitleHome: "Vega Tokens",
   pageTitleClaim: "Claim Vega tokens",
   pageTitleAssociate: "Associate VEGA tokens with VEGA Key",
-  pageTitleRedemption: "CHECK AND REDEEM",
+  pageTitleRedemption: "Vesting",
+  pageTitleRedemptionTranche: "Redeem from Tranche",
   pageTitleTranches: "Vesting tranches",
-  pageTitleStaking: "Stake your VEGA",
+  pageTitleStaking: "Staking",
   pageTitle404: "Page not found",
   pageTitleNotPermitted: "Can not proceed!",
   pageTitleDisassociate: "Dissociate VEGA tokens from a Vega key",
@@ -32,6 +33,8 @@ const en = {
   Cancel: "Cancel",
   Warning: "Warning",
   Associated: "Associated",
+  vegaTokens: "VEGA tokens",
+  "Connect with Metamask": "Connect with Metamask",
 
   "VEGA was successfully withdrawn to your wallet":
     "VEGA was successfully withdrawn to your wallet",
@@ -46,7 +49,7 @@ const en = {
     "If you have been given a link please double check and try again",
 
   "You will need to connect to an ethereum wallet to pay the gas and claim tokens":
-    "To claim tokens you will need to connect an ethereum wallet with ETH to pay for gas. It may be easier to connect to the wallet that you wish your tokens to be sent to.",
+    "To claim tokens you will need to connect an Ethereum wallet with ETH to pay for gas. It may be easier to connect to the wallet that you wish your tokens to be sent to.",
   "Please check wallet": "Please check wallet",
   "Connect to an Ethereum wallet": "Connect to an Ethereum wallet",
 
@@ -67,7 +70,7 @@ const en = {
 
   commitTitle: "Link claim to your Ethereum address",
   commitBody:
-    "This links your claim to a specific ethereum address to prevent it being used by another person",
+    "This links your claim to a specific Ethereum address to prevent it being used by another person",
   selectCountryPrompt: "You must select a country/region first.",
   verifyingCountryPrompt: "Verifying country/region...",
 
@@ -81,8 +84,7 @@ const en = {
   showRedeem:
     "You'll be able to redeem your unlocked tokens at token.vega.xyz/vesting",
   codeUsed: "Code already used",
-  codeUsedText:
-    "Looks like that code has already been used for address {{address}}",
+  codeUsedText: "Looks like that code has already been used",
   codeExpired: "Code expired",
 
   invalidWeb3Browser: "You need a web3 capable browser to use this site",
@@ -100,7 +102,7 @@ const en = {
   "Transaction in progress": "Transaction in progress",
   "Unknown error": "Unknown error",
   "Awaiting action in Ethereum wallet (e.g. metamask)":
-    "Awaiting action in Ethereum wallet (e.g. metamask)",
+    "Awaiting action in Ethereum wallet (e.g. Metamask)",
   "Claim {amount} Vega": "Claim {{amount}} VEGA",
   "Sorry. It is not possible to claim tokens in your country or region.":
     "It is not possible to claim tokens in your country or region.",
@@ -144,19 +146,15 @@ const en = {
   // Claim success callout
   claimComplete: "Claim complete",
   claimCompleteMessage:
-    "Ethereum address {{address}} now has a vested right to {{balance}} VEGA tokens from <trancheLink>{{trancheLinkText}}</trancheLink> of the vesting contract.",
+    "Ethereum address {{address}} now has a vested right to {{balance}} more VEGA tokens.",
   "Link transaction": "Link transaction",
   "Claim transaction": "Claim transaction",
-  "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.":
-    "Keep track of locked tokens in your wallet with the VEGA (LOCKED) token.",
-  "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.":
-    "Add the VEGA (LOCKED) token to your wallet to track how much VEGA you have in the vesting contract. The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
   "This tranche was used to perform integration testing only prior to token launch and no tokens will enter the supply before 3rd Sep 2021.":
     "This tranche was used to perform integration testing only prior to token launch and no tokens will enter the supply before 3rd Sep 2021.",
   "Showing tranches with <{{trancheMinimum}} VEGA, click to hide these tranches":
-    "Showing tranches with <{{trancheMinimum}} VEGA, click to hide these tranches",
+    "Showing tranches with ≤{{trancheMinimum}} VEGA, click to hide these tranches",
   "Not showing tranches with <{{trancheMinimum}} VEGA, click to show all tranches":
-    "Not showing tranches with <={{trancheMinimum}} VEGA, click to show all tranches",
+    "Not showing tranches with ≤{{trancheMinimum}} VEGA, click to show all tranches",
   "the holder": "the holder",
   "We couldn't seem to load your data.": "We couldn't seem to load your data.",
   "Vesting VEGA": "Vesting VEGA",
@@ -176,7 +174,7 @@ const en = {
   "A total of {{amount}} Unlocked Vega tokens.":
     "A total of {{amount}} Unlocked Vega tokens.",
   "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.":
-    "The connected ethereum wallet ({{address}}) has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.",
+    "The connected Ethereum wallet ({{address}}) has {{balance}} VEGA tokens in {{tranches}} tranche(s) of the vesting contract.",
   "Stake your Locked VEGA tokens!":
     "You can stake your VEGA tokens even while locked.",
   "Find out more about Staking.":
@@ -189,7 +187,9 @@ const en = {
   checkingForProvider: "Checking for provider",
   "Awaiting action in wallet...":
     "Awaiting action in Ethereum wallet (e.g. metamask)",
-  "Connect with Metamask": "Connect with Metamask",
+  Connect: "Connect to see your VEGA balance",
+  "In wallet": "In wallet",
+  "Not staked": "Not staked",
 
   // Vega wallet
   viewKeys: "View keys",
@@ -220,16 +220,12 @@ const en = {
   "Token Vesting": "Vesting",
   Governance: "Governance",
   Staking: "Staking",
-  "Once tokens have unlocked they can be redeemed to the Ethereum wallet that owns them":
-    "Once tokens have unlocked they can be redeemed to the Ethereum wallet that owns them.",
-  "Tokens are held in different Tranches. Each tranche has its own schedule for how long the tokens are locked":
-    "Tokens are held in different Tranches. Each tranche has its own schedule for how long the tokens are locked.",
-  "Most VEGA tokens are held in a vesting contract. This means that they cannot be transferred between wallets until their vesting term is complete":
-    "Most VEGA tokens are held in a vesting contract. This means that they cannot be transferred between wallets until their vesting term is complete.",
-  "Token holders can propose changes to the Vega network":
-    "Token holders can propose changes to the Vega network.",
-  "Token holders can nominate their tokens to a validator and are rewarded a proportion of the fees accumulated for infrastructure":
-    "Token holders can nominate their tokens to a validator and are rewarded a proportion of the fees accumulated for infrastructure.",
+  "The vesting contract holds VEGA tokens until they have become unlocked.":
+    "The vesting contract holds VEGA tokens until they have become unlocked.",
+  "Once unlocked they can be redeemed from the contract so that you can transfer them between wallets.":
+    "Once unlocked they can be redeemed from the contract so that you can transfer them between wallets.",
+  "Tokens are held in different <trancheLink>Tranches</trancheLink>. Each tranche has its own schedule for how the tokens are unlocked.":
+    "Tokens are held in different <trancheLink>Tranches</trancheLink>. Each tranche has its own schedule for how the tokens are unlocked.",
 
   // Token Details
   "Token address": "Token address",
@@ -240,18 +236,21 @@ const en = {
   "Associated on Vega": "Associated on Vega",
   "There are {{nodeCount}} nodes with a shared stake of {{sharedStake}} VEGA tokens":
     "There are {{nodeCount}} nodes with a shared stake of {{sharedStake}} VEGA tokens",
-  "Read about staking on Vega": "Read about staking on Vega",
-  "Read about Governance on Vega": "Read about Governance on Vega",
 
   // Epoch counter
   Epoch: "Epoch",
   Started: "Started",
-  "Ends in": "Ends in",
+
+  // Staking
+  "Node invalid": "Node invalid",
+  "Ends in {{endText}}": "Ends in {{endText}}",
+  "Ended on {{endText}}": "Ended on {{endText}}",
   // Node Validator
   "Manage your stake": "Manage your stake",
   "Add Stake": "Add Stake",
   "Remove Stake": "Remove Stake",
-  "Your Stake": "Your Stake",
+  "Total stake": "Total stake",
+  "Your stake": "Your stake",
   "Your Stake On Node (This Epoch)": "Your Stake On Node (This Epoch)",
   "Your Stake On Node (Next Epoch)": "Your Stake On Node (Next Epoch)",
   "VALIDATOR {{node}}": "VALIDATOR: {{node}}",
@@ -296,8 +295,8 @@ const en = {
     "Approve VEGA tokens for staking on Vega",
   "You have no VEGA tokens currently vesting.":
     "You have no VEGA tokens currently vesting.",
-  "All VEGA tokens vesting in the connected wallet have already been staked.":
-    "All VEGA tokens vesting in the connected wallet have already been staked.",
+  "All VEGA tokens vesting in the connected wallet have already been associated.":
+    "All VEGA tokens vesting in the connected wallet have already been associated.",
   "Any Tokens that have been nominated to a node will sacrifice any Rewards they are due for the current epoch. If you do not wish to sacrifices fees you should remove stake from a node at the end of an epoch before disassocation.":
     "Any Tokens that have been nominated to a node will sacrifice any Rewards they are due for the current epoch. If you do not wish to sacrifices fees you should remove stake from a node at the end of an epoch before disassocation.",
   "Use this form to disassociate VEGA tokens with a Vega key. This returns them to either the Ethereum wallet that used the Staking bridge or the vesting contract.":
@@ -319,13 +318,89 @@ const en = {
   "{{amount}} VEGA tokens have been returned to Ethereum wallet":
     "{{amount}} VEGA tokens have been returned to Ethereum wallet",
   "Disassociate VEGA Tokens from key": "Disassociate VEGA Tokens from key",
-  "Not staked": "Not staked",
-  "In Wallet": "In Wallet",
-  Connect: "Connect",
   "Read about Vesting on Vega": "Read about Vesting on Vega",
   "Governance is coming soon": "Governance is coming soon",
   "Staking is coming soon": "Staking is coming soon",
   "VESTING VEGA TOKENS": "VESTING VEGA TOKENS",
+
+  stakingStep1: "Step 1. Connect to a Vega wallet",
+  stakingStep1Text:
+    "You will need a <vegaWalletLink>Vega wallet</vegaWalletLink> to control stake and receive staking rewards.",
+  stakingVegaWalletConnected:
+    "Connected to Vega wallet with public key {{key}}",
+  stakingStep2: "Step 2. Associate tokens with a Vega wallet",
+  stakingStep2Text:
+    "Your tokens need to be associated with a Vega wallet so that it can control your stake",
+  stakingHasAssociated:
+    "You have associated {{tokens}} to your connected Vega wallet. You can <associateLink>associate more</associateLink> or <disassociateLink>disassociate</disassociateLink>",
+
+  stakingStep3: "Step3. Select the validator you'd like to nominate",
+
+  associateButton: "Associate VEGA tokens with wallet",
+  nodeQueryFailed: "Could not get data for node {{node}}",
+
+  // stake pending
+  "Adding {{amount}} VEGA to node {{node}}":
+    "Adding {{amount}} VEGA to node {{node}}",
+  "Removing {{amount}} VEGA from node {{node}}":
+    "Removing {{amount}} VEGA from node {{node}}",
+  "This should take approximately 3 minutes to confirm, and then will be credited at the beginning of the next epoch":
+    "This should take approximately 3 minutes to confirm, and then will be credited at the beginning of the next epoch",
+
+  // stake success
+  "{{amount}} VEGA has been added to node {{node}}":
+    "{{amount}} VEGA has been added to node {{node}}",
+  "{{amount}} VEGA has been removed from {{node}}":
+    "{{amount}} VEGA Has been removed from {{node}}",
+  "It will be applied in the next epoch":
+    "It will be applied in the next epoch",
+
+  // stake fail
+  stakeFailed: "Failed to delegate to node {{node}}",
+
+  "Remove {{amount}} VEGA tokens": "Remove {{amount}} VEGA tokens",
+  "How much to {{action}} in next epoch?":
+    "How much to {{action}} in next epoch?",
+
+  "Dissociate VEGA tokens": "Dissociate VEGA tokens",
+  "Early Investors": "Early Investors",
+  Team: "Team",
+  Community: "Community",
+  "Public Sale": "Public Sale",
+  "Connect to Vega wallet": "Connect to Vega wallet",
+  "Check to see if you can redeem unlocked VEGA tokens":
+    "Check to see if you can redeem unlocked VEGA tokens",
+  "To use your tokens on the Vega network they need to be associated with a Vega wallet/key.":
+    "To use your tokens on the Vega network they need to be associated with a Vega wallet/key.",
+  "This can happen both while held in the vesting contract as well as when redeemed.":
+    "This can happen both while held in the vesting contract as well as when redeemed.",
+  "Get a Vega wallet": "Get a Vega wallet",
+  "Associate VEGA tokens": "Associate VEGA tokens",
+  "Nominate a validator": "Nominate a validator",
+  "View Governance proposals": "View Governance proposals",
+  "This tranche unlocked prior to the token launch on 3rd Sept 2021. These tokens were all issued to institutions for distribution to purchasers, and to support listings and liquidity. They were unlocked early to ensure a smooth launch, but not sold or traded prior to the launch.":
+    "This tranche unlocked prior to the token launch on 3rd Sept 2021. These tokens were all issued to institutions for distribution to purchasers, and to support listings and liquidity. They were unlocked early to ensure a smooth launch, but not sold or traded prior to the launch.",
+  "VEGA token holders can vote on proposed changes to the network and create proposals.":
+    "VEGA token holders can vote on proposed changes to the network and create proposals.",
+  "VEGA token holders can nominate a validator node and receive staking rewards.":
+    "VEGA token holders can nominate a validator node and receive staking rewards.",
+  "USE YOUR VEGA TOKENS": "USE YOUR VEGA TOKENS",
+  "Check your vesting VEGA tokens": "Check your vesting VEGA tokens",
+  "Tokens from this Tranche have been redeemed":
+    "Tokens from this Tranche have been redeemed",
+  "You have redeemed {{redeemedAmount}} VEGA tokens from this tranche. They are now free to transfer from your Ethereum wallet.":
+    "You have redeemed {{redeemedAmount}} VEGA tokens from this tranche. They are now free to transfer from your Ethereum wallet.",
+  "The VEGA token address is {{address}}, make sure you add this to your wallet to see your tokens":
+    "The VEGA token address is {{address}}, make sure you add this to your wallet to see your tokens",
+  "Go to <stakingLink>staking</stakingLink> or <governanceLink>governance</governanceLink> to see how you can use your unlocked tokens":
+    "Go to <stakingLink>staking</stakingLink> or <governanceLink>governance</governanceLink> to see how you can use your unlocked tokens",
+  "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.":
+    "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.",
+  "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.":
+    "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
+  mainnetDisableHome:
+    "You will be able to use your VEGA tokens on the Vega network to nominate Validator nodes and participate in governance.",
+  "VEGA in wallet": "VEGA in wallet",
 };
 
 export default en;

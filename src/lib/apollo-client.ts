@@ -1,4 +1,4 @@
-import type { ApolloClientOptions, Operation } from "@apollo/client";
+import type { Operation } from "@apollo/client";
 import {
   ApolloClient,
   from,
@@ -7,6 +7,7 @@ import {
   split,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
+import { RetryLink } from "@apollo/client/link/retry";
 import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
 
@@ -18,11 +19,21 @@ export function createClient() {
   // Replace http with ws, preserving if its a secure connection eg. https => wss
   urlWS.protocol = urlWS.protocol.replace("http", "ws");
 
-  const apolloOptions: Partial<ApolloClientOptions<string>> = {
-    connectToDevTools: process.env.NODE_ENV === "development",
-  };
+  const cache = new InMemoryCache({
+    typePolicies: {
+      Node: {
+        keyFields: false,
+      },
+    },
+  });
 
-  const cache = new InMemoryCache();
+  const retryLink = new RetryLink({
+    delay: {
+      initial: 300,
+      max: 10000,
+      jitter: true,
+    },
+  });
 
   const httpLink = new HttpLink({
     uri: urlHTTP.href,
@@ -60,8 +71,8 @@ export function createClient() {
   );
 
   return new ApolloClient({
-    ...apolloOptions,
-    link: from([errorLink, link]),
+    connectToDevTools: process.env.NODE_ENV === "development",
+    link: from([errorLink, retryLink, link]),
     cache,
   });
 }

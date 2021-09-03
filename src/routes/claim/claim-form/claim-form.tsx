@@ -51,7 +51,7 @@ export const ClaimForm = ({
         setCountryCheck(CountryCheck.Blocked);
       }
     } catch (err) {
-      Sentry.captureEvent(err);
+      Sentry.captureException(err);
       setCountryCheck(CountryCheck.Blocked);
     }
   }, [claim, countryCode, onSubmit]);

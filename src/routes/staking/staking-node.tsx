@@ -1,38 +1,151 @@
 import "./staking-node.scss";
-
+import React from "react";
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { ValidatorTable } from "./validator-table";
 import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
 import { EpochCountdown } from "./epoch-countdown";
-import { YourStake } from "./your-state";
+import { YourStake } from "./your-stake";
+import { StakingForm } from "./staking-form";
+import { gql, useQuery } from "@apollo/client";
+import { StakeNode, StakeNodeVariables } from "./__generated__/StakeNode";
+import { Callout } from "../../components/callout";
+import { SplashScreen } from "../../components/splash-screen";
+import { SplashLoader } from "../../components/splash-loader";
+import BigNumber from "bignumber.js";
+import { StakingContainer } from "./staking-container";
+
+export const STAKE_NODE_QUERY = gql`
+  query StakeNode($nodeId: String!, $partyId: ID!) {
+    node(id: $nodeId) {
+      id
+      pubkey
+      infoUrl
+      location
+      stakedByOperator
+      stakedByDelegates
+      stakedTotal
+      pendingStake
+      epochData {
+        total
+        offline
+        online
+      }
+      status
+    }
+    epoch {
+      id
+      timestamps {
+        start
+        end
+      }
+    }
+    nodeData {
+      stakedTotal
+    }
+    party(id: $partyId) {
+      id
+      delegations(nodeId: $nodeId) {
+        amount
+        epoch
+      }
+      stake {
+        currentStakeAvailable
+      }
+    }
+  }
+`;
+
+export const StakingNodeContainer = () => {
+  return (
+    <StakingContainer>
+      {({ currVegaKey }) => <StakingNode vegaKey={currVegaKey} />}
+    </StakingContainer>
+  );
+};
 
 interface StakingNodeProps {
   vegaKey: VegaKeyExtended;
 }
 
 export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
-  // TODO temp data
-  const epochData = {
-    count: 1,
-    startDate: new Date(1626375300000),
-    endDate: new Date(1629885333607),
-  };
+  // TODO: Remove and get id via useParams. Eg:
+  // const node = useParams<{ node: string }>()
+  const node = TEMP_useNodeIdFromLocation();
   const { t } = useTranslation();
-  const { node } = useParams<{ node: string }>();
+  const { data, loading, error } = useQuery<StakeNode, StakeNodeVariables>(
+    STAKE_NODE_QUERY,
+    {
+      variables: { nodeId: node, partyId: vegaKey.pub },
+      skip: !node,
+    }
+  );
+
+  const currentDelegationAmount = React.useMemo(() => {
+    if (!data?.party?.delegations) return new BigNumber(0);
+    const amounts = data.party.delegations.map((d) => new BigNumber(d.amount));
+    return BigNumber.sum.apply(null, [new BigNumber(0), ...amounts]);
+  }, [data]);
+
+  if (error) {
+    return (
+      <Callout intent="error" title={t("Something went wrong")}>
+        <p>{t("nodeQueryFailed", { node })}</p>
+      </Callout>
+    );
+  }
+
+  if (loading || !data?.node || !data?.epoch) {
+    return (
+      <SplashScreen>
+        <SplashLoader />
+      </SplashScreen>
+    );
+  }
 
   return (
     <>
-      <h1>{t("VALIDATOR {{node}}", { node })}</h1>
+      <h2 style={{ wordBreak: "break-word", marginTop: 0 }}>
+        {t("VALIDATOR {{node}}", { node })}
+      </h2>
       <p>Vega key: {vegaKey.pubShort}</p>
-      <ValidatorTable node={node} />
-      <EpochCountdown
-        containerClass="staking-node__epoch"
-        count={epochData.count}
-        startDate={epochData.startDate}
-        endDate={epochData.endDate}
+      <ValidatorTable
+        node={data.node}
+        stakedTotal={data.nodeData?.stakedTotal || "0"}
       />
-      <YourStake node={node} />
+      {data.epoch.timestamps.start && data.epoch.timestamps.end && (
+        <EpochCountdown
+          containerClass="staking-node__epoch"
+          id={data.epoch.id}
+          startDate={new Date(data.epoch.timestamps.start)}
+          endDate={new Date(data.epoch.timestamps.end)}
+        />
+      )}
+      <YourStake
+        currentEpoch={data.epoch.id}
+        delegations={data.party?.delegations || []}
+      />
+      <StakingForm
+        pubkey={vegaKey.pub}
+        nodeId={node}
+        availableStakeToAdd={
+          new BigNumber(data.party?.stake.currentStakeAvailable || "0")
+        }
+        availableStakeToRemove={currentDelegationAmount}
+      />
     </>
   );
 };
+
+// Hook to get the node id from the url. We need this because currently
+// the ides contain slashes which means the paths dont correctly match in
+// react router.
+function TEMP_useNodeIdFromLocation() {
+  const location = useLocation();
+  const regex = /\/staking\/(.+)$/;
+  const res = regex.exec(location.pathname);
+  if (res) {
+    return res[1];
+  }
+  return "";
+}

@@ -6,6 +6,7 @@ const Endpoints = {
   STATUS: "status",
   TOKEN: "auth/token",
   KEYS: "keys",
+  COMMAND: "command/sync",
 };
 
 const Errors = {
@@ -13,7 +14,29 @@ const Errors = {
   SERVICE_UNAVAILABLE: "Wallet service unavailable",
   SESSION_EXPIRED: "Session expired",
   INVALID_CREDENTIALS: "Invalid credentials",
+  COMMAND_FAILED: "Command failed",
 };
+
+export interface DelegateSubmissionInput {
+  pubKey: string;
+  delegateSubmission: {
+    nodeId: string;
+    amount: string;
+  };
+}
+
+export interface UndelegateSubmissionInput {
+  pubKey: string;
+  undelegateSubmission: {
+    nodeId: string;
+    amount: string;
+    method: "METHOD_AT_END_OF_EPOCH";
+  };
+}
+
+export type CommandSyncInput =
+  | DelegateSubmissionInput
+  | UndelegateSubmissionInput;
 
 export interface IVegaWalletService {
   url: string;
@@ -116,6 +139,39 @@ export class VegaWalletService implements IVegaWalletService {
       const json = await res.json();
 
       return [undefined, json.keys];
+    } catch (err) {
+      return [Errors.SERVICE_UNAVAILABLE, undefined];
+    }
+  }
+
+  async commandSync(body: CommandSyncInput) {
+    if (!this.token) {
+      return [Errors.NO_TOKEN, undefined];
+    }
+
+    try {
+      const res = await fetch(`${this.url}/${Endpoints.COMMAND}`, {
+        method: "post",
+        body: JSON.stringify({
+          ...body,
+          propagate: true,
+        }),
+        headers: { authorization: `Bearer ${this.token}` },
+      });
+
+      // forbidden, clear token
+      if (res.status === 403) {
+        this.clearToken();
+        return [Errors.SESSION_EXPIRED, undefined];
+      }
+
+      const json = await res.json();
+
+      if ("errors" in json) {
+        return [Errors.COMMAND_FAILED, undefined];
+      } else {
+        return [undefined, json];
+      }
     } catch (err) {
       return [Errors.SERVICE_UNAVAILABLE, undefined];
     }

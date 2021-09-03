@@ -2,8 +2,6 @@ import { useTranslation } from "react-i18next";
 import { Callout } from "../../components/callout";
 import { Error } from "../../components/icons";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import { truncateMiddle } from "../../lib/truncate-middle";
-
 export const CodeUsed = ({ address }: { address: string | null }) => {
   const { t } = useTranslation();
   const {
@@ -11,11 +9,7 @@ export const CodeUsed = ({ address }: { address: string | null }) => {
   } = useAppState();
   return (
     <Callout intent="warn" icon={<Error />} title={t("codeUsed")}>
-      <p>
-        {t("codeUsedText", {
-          address: truncateMiddle(address!),
-        })}
-      </p>
+      <p>{t("codeUsedText")}</p>
       <h4>
         {t(
           "Keep track of locked tokens in your wallet with the VEGA (VESTING) token."
