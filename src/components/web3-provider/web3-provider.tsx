@@ -59,7 +59,7 @@ export const Web3Provider = ({
     const bindChainChangeListener = () => {
       provider.current.on("chainChanged", (newChainId: EthereumChainId) => {
         Sentry.addBreadcrumb({
-          type: "AccountsChanged",
+          type: "ChainChanged",
           level: Severity.Log,
           message: "User changed chain in wallet provider",
           data: {
