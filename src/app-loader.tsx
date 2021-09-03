@@ -1,4 +1,5 @@
 import React from "react";
+import * as Sentry from "@sentry/react";
 import { SplashLoader } from "./components/splash-loader";
 import { SplashScreen } from "./components/splash-screen";
 import {
@@ -18,20 +19,28 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
 
   React.useEffect(() => {
     const run = async () => {
-      const [supply, totalAssociatedWallet, totalAssociatedVesting, decimals] =
-        await Promise.all([
+      try {
+        const [
+          supply,
+          totalAssociatedWallet,
+          totalAssociatedVesting,
+          decimals,
+        ] = await Promise.all([
           token.totalSupply(),
           staking.totalStaked(),
           vesting.totalStaked(),
           token.decimals(),
         ]);
-      appDispatch({
-        type: AppStateActionType.SET_TOKEN,
-        decimals,
-        totalSupply: supply.toString(),
-        totalAssociated: totalAssociatedWallet.plus(totalAssociatedVesting),
-      });
-      setLoaded(true);
+        appDispatch({
+          type: AppStateActionType.SET_TOKEN,
+          decimals,
+          totalSupply: supply.toString(),
+          totalAssociated: totalAssociatedWallet.plus(totalAssociatedVesting),
+        });
+        setLoaded(true);
+      } catch (err) {
+        Sentry.captureException(err);
+      }
     };
 
     run();
