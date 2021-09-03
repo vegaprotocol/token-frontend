@@ -17,6 +17,7 @@ export const useTransaction = (
 
   const handleError = React.useCallback(
     (err: Error) => {
+      Sentry.captureException(err);
       const defaultMessage = t("Something went wrong");
       const errorSubstitutions = {
         unknown: defaultMessage,
@@ -46,7 +47,6 @@ export const useTransaction = (
         })
         .on("error", (err: Error) => handleError(err));
     } catch (err) {
-      Sentry.captureException(err);
       handleError(err);
     }
   }, [performTransaction, checkTransaction, dispatch, handleError]);
