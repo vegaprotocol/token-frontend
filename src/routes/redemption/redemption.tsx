@@ -25,7 +25,7 @@ const RedemptionRouter = () => {
   const tranches = useTranches();
 
   React.useEffect(() => {
-    const run = async (address: string) => {
+    const run = (address: string) => {
       const userTranches = tranches.filter((t) =>
         t.users.some(
           ({ address: a }) => a.toLowerCase() === address.toLowerCase()
