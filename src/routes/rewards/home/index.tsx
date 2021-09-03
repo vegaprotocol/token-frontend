@@ -1,3 +1,4 @@
+import "./index.scss";
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 import { Trans, useTranslation } from "react-i18next";
@@ -30,7 +31,7 @@ export const RewardsIndex = () => {
   }
   console.log(data, loading, error);
   return (
-    <section>
+    <section className="rewards">
       <p>
         <Trans
           i18nKey="rewardsParagraph1"
@@ -60,7 +61,7 @@ export const RewardsIndex = () => {
           />
         )}
       <h3>Recent epochs</h3>
-      <table className="fill">
+      <table style={{ textAlign: "left", width: "100%" }}>
         <thead>
           <tr>
             <th>
@@ -82,112 +83,112 @@ export const RewardsIndex = () => {
               <div>14 - Current</div>
               <div>17 Sept 2021 23:59</div>
             </td>
-            <td>0.09</td>
-            <td>-</td>
+            <td style={{ textAlign: "right" }}>0.09</td>
+            <td style={{ textAlign: "right" }}>-</td>
           </tr>
           <tr>
             <td>
               <div>14 - Current</div>
               <div>17 Sept 2021 23:59</div>
             </td>
-            <td>0.09</td>
-            <td>1,000.00</td>
+            <td style={{ textAlign: "right" }}>0.09</td>
+            <td style={{ textAlign: "right" }}>1,000.00</td>
           </tr>
           <tr>
             <td>
               <div>14 - Current</div>
               <div>17 Sept 2021 23:59</div>
             </td>
-            <td>0.09</td>
-            <td>1,000.00</td>
+            <td style={{ textAlign: "right" }}>0.09</td>
+            <td style={{ textAlign: "right" }}>1,000.00</td>
           </tr>
           <tr>
             <td>
               <div>14 - Current</div>
               <div>17 Sept 2021 23:59</div>
             </td>
-            <td>0.09</td>
-            <td>1,000.00</td>
+            <td style={{ textAlign: "right" }}>0.09</td>
+            <td style={{ textAlign: "right" }}>1,000.00</td>
           </tr>
           <tr>
             <td>
               <div>14 - Current</div>
               <div>17 Sept 2021 23:59</div>
             </td>
-            <td>0.09</td>
-            <td>1,000.00</td>
+            <td style={{ textAlign: "right" }}>0.09</td>
+            <td style={{ textAlign: "right" }}>1,000.00</td>
           </tr>
           <tr>
             <td>
               <div>14 - Current</div>
               <div>17 Sept 2021 23:59</div>
             </td>
-            <td>0.09</td>
-            <td>1,000.00</td>
+            <td style={{ textAlign: "right" }}>0.09</td>
+            <td style={{ textAlign: "right" }}>1,000.00</td>
           </tr>
           <tr>
             <td>
               <div>14 - Current</div>
               <div>17 Sept 2021 23:59</div>
             </td>
-            <td>0.09</td>
-            <td>1,000.00</td>
+            <td style={{ textAlign: "right" }}>0.09</td>
+            <td style={{ textAlign: "right" }}>1,000.00</td>
           </tr>
           <tr>
             <td>
               <div>14 - Current</div>
               <div>17 Sept 2021 23:59</div>
             </td>
-            <td>0.09</td>
-            <td>1,000.00</td>
+            <td style={{ textAlign: "right" }}>0.09</td>
+            <td style={{ textAlign: "right" }}>1,000.00</td>
           </tr>
           <tr>
             <td>
               <div>14 - Current</div>
               <div>17 Sept 2021 23:59</div>
             </td>
-            <td>0.09</td>
-            <td>1,000.00</td>
+            <td style={{ textAlign: "right" }}>0.09</td>
+            <td style={{ textAlign: "right" }}>1,000.00</td>
           </tr>
           <tr>
             <td>
               <div>14 - Current</div>
               <div>17 Sept 2021 23:59</div>
             </td>
-            <td>0.09</td>
-            <td>1,000.00</td>
+            <td style={{ textAlign: "right" }}>0.09</td>
+            <td style={{ textAlign: "right" }}>1,000.00</td>
           </tr>
           <tr>
             <td>
               <div>14 - Current</div>
               <div>17 Sept 2021 23:59</div>
             </td>
-            <td>0.09</td>
-            <td>1,000.00</td>
+            <td style={{ textAlign: "right" }}>0.09</td>
+            <td style={{ textAlign: "right" }}>1,000.00</td>
           </tr>
           <tr>
             <td>
               <div>14 - Current</div>
               <div>17 Sept 2021 23:59</div>
             </td>
-            <td>0.09</td>
-            <td>1,000.00</td>
+            <td style={{ textAlign: "right" }}>0.09</td>
+            <td style={{ textAlign: "right" }}>1,000.00</td>
           </tr>
           <tr>
             <td>
               <div>14 - Current</div>
               <div>17 Sept 2021 23:59</div>
             </td>
-            <td>0.09</td>
-            <td>1,000.00</td>
+            <td style={{ textAlign: "right" }}>0.09</td>
+            <td style={{ textAlign: "right" }}>1,000.00</td>
           </tr>
           <tr>
             <td>
               <div>14 - Current</div>
               <div>17 Sept 2021 23:59</div>
             </td>
-            <td>0.09</td>
-            <td>1,000.00</td>
+            <td style={{ textAlign: "right" }}>0.09</td>
+            <td style={{ textAlign: "right" }}>1,000.00</td>
           </tr>
         </tbody>
       </table>
