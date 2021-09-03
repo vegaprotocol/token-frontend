@@ -71,14 +71,18 @@ export const useTransaction = (
       if (typeof checkTransaction === "function") {
         await checkTransaction();
       }
-      performTransaction()
+      const sub = performTransaction()
         .on("transactionHash", (hash: string) => {
           dispatch({ type: TransactionActionType.TX_SUBMITTED, txHash: hash });
         })
         .on("receipt", (receipt: any) => {
+          sub.off();
           dispatch({ type: TransactionActionType.TX_COMPLETE, receipt });
         })
-        .on("error", (err: Error) => handleError(err));
+        .on("error", (err: Error) => {
+          sub.off();
+          handleError(err);
+        });
     } catch (err) {
       handleError(err);
     }
