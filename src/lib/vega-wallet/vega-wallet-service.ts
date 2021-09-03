@@ -9,7 +9,7 @@ const Endpoints = {
   COMMAND: "command/sync",
 };
 
-const Errors = {
+export const Errors = {
   NO_TOKEN: "No token",
   SERVICE_UNAVAILABLE: "Wallet service unavailable",
   SESSION_EXPIRED: "Session expired",
