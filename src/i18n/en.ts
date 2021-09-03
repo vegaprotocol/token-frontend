@@ -236,7 +236,10 @@ const en = {
   proposedEnactment: "Proposed enactment",
   voteStatus: "Vote status",
   shouldPass: "Should pass",
-  shouldFail: "Should fail",
+  participationNotMet: "Participation Not Met",
+  majorityNotMet: "Majority not Met",
+  failed: "Failed",
+  passed: "Passed",
 
   // Token Details
   "Token address": "Token address",

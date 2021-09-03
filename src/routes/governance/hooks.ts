@@ -99,6 +99,11 @@ export const useVoteInformation = ({
       TOTAL_TOKENS_IN_CIRCULATION * Number(requiredParticipation);
     return totalTokensVoted > tokensNeeded;
   }, [requiredParticipation, totalTokensVoted]);
+
+  const majorityMet = React.useMemo(() => {
+    return totalTokensVoted >= requiredMajority;
+  }, [requiredMajority, totalTokensVoted]);
+
   const totalTokensPercentage = React.useMemo(() => {
     return Number(
       (100 * totalTokensVoted) / TOTAL_TOKENS_IN_CIRCULATION
@@ -120,5 +125,6 @@ export const useVoteInformation = ({
     yesTokens,
     requiredMajorityPercentage,
     requiredParticipation,
+    majorityMet,
   };
 };
