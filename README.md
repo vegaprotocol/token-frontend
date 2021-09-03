@@ -32,7 +32,6 @@ There are a few different configuration options offered for this app:
 | **Flag**  | **Purpose**  |
 | ------------ | ------------ |
 |  `REACT_APP_SENTRY_DSN` |  The sentry endpoint to report to. Should be off in dev but set in live. |
-|  `REACT_APP_REDEEM_LIVE`  | Disables call-to-actions about redeeming tokens while this feature is in development  |
 |  `REACT_APP_CHAIN`  | The ETH chain for the app to work on. Should be mainnet for live, but ropsten for preview deploys. |
 |  `REACT_APP_VEGA_URL` | The GraphQL query endpoint of a [Vega data node](https://github.com/vegaprotocol/networks#data-node) |
 ## Example configs:
