@@ -3,6 +3,7 @@ import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
+import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useEthUser } from "../../hooks/use-eth-user";
 import { useTranches } from "../../hooks/use-tranches";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
@@ -21,6 +22,9 @@ const RedemptionRouter = () => {
     redemptionReducer,
     initialRedemptionState
   );
+  const {
+    appState: { trancheBalances },
+  } = useAppState();
   const { ethAddress } = useEthUser();
   const tranches = useTranches();
 
@@ -42,7 +46,7 @@ const RedemptionRouter = () => {
     }
   }, [ethAddress, tranches, vesting]);
 
-  if (!tranches.length) {
+  if (!tranches.length || !trancheBalances.length) {
     return (
       <SplashScreen>
         <SplashLoader />
