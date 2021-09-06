@@ -9,13 +9,15 @@ import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { TokenDetailsCirculating } from "./token-details-circulating";
 import { truncateMiddle } from "../../../lib/truncate-middle";
 import { ADDRESSES } from "../../../config";
+import { formatNumber } from "../../../lib/format-number";
+import { BigNumber } from "../../../lib/bignumber";
 
 export const TokenDetails = ({
   totalSupply,
   totalStaked,
 }: {
-  totalSupply: string;
-  totalStaked: string;
+  totalSupply: BigNumber;
+  totalStaked: BigNumber;
 }) => {
   const { t } = useTranslation();
 
@@ -49,7 +51,7 @@ export const TokenDetails = ({
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Total supply")}</th>
-        <td data-testid="total-supply">{totalSupply}</td>
+        <td data-testid="total-supply">{formatNumber(totalSupply)}</td>
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Circulating supply")}</th>
@@ -57,11 +59,13 @@ export const TokenDetails = ({
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Associated on Vega")}</th>
-        <td data-testid="associated">{appState.totalAssociated}</td>
+        <td data-testid="associated">
+          {formatNumber(appState.totalAssociated)}
+        </td>
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Staked on Vega")}</th>
-        <td data-testid="staked">{totalStaked}</td>
+        <td data-testid="staked">{formatNumber(totalStaked)}</td>
       </KeyValueTableRow>
     </KeyValueTable>
   );

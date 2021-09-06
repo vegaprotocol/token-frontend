@@ -215,7 +215,7 @@ const VegaWalletConnected = ({
       {delegations.map((d) => (
         <WalletCardRow
           label={d.node.id}
-          value={d.amount}
+          value={new BigNumber(d.amount)}
           valueSuffix={t("VEGA")}
         />
       ))}

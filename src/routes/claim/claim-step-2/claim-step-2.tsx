@@ -7,6 +7,7 @@ import {
   TxState,
 } from "../../../hooks/transaction-reducer";
 import { TransactionCallout } from "../../../components/transaction-callout";
+import { BigNumber } from "../../../lib/bignumber";
 
 export const ClaimStep2 = ({
   amount,
@@ -14,7 +15,7 @@ export const ClaimStep2 = ({
   txDispatch,
   onSubmit,
 }: {
-  amount: string;
+  amount: BigNumber;
   txState: TransactionState;
   txDispatch: React.Dispatch<TransactionAction>;
   onSubmit: () => void;
@@ -35,7 +36,7 @@ export const ClaimStep2 = ({
   return (
     <div data-testid="claim-step-2">
       <button type="submit" onClick={onSubmit} className="fill">
-        {t("Claim {amount} Vega", { amount })}
+        {t("Claim {amount} Vega", { amount: amount.toString() })}
       </button>
     </div>
   );

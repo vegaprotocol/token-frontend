@@ -46,13 +46,13 @@ export const WalletCardRow = ({
   dark = false,
 }: {
   label: string;
-  value?: string | null;
+  value?: BigNumber | null;
   valueSuffix?: string;
   dark?: boolean;
 }) => {
   const ref = React.useRef<HTMLDivElement | null>(null);
   const previous = usePrevious(value);
-  if (value && previous && new BigNumber(value).isLessThan(previous)) {
+  if (value && previous && value.isLessThan(previous)) {
     ref.current?.animate(
       [
         { backgroundColor: Colors.VEGA_RED, color: Colors.WHITE },
@@ -61,11 +61,7 @@ export const WalletCardRow = ({
       ],
       FLASH_DURATION
     );
-  } else if (
-    value &&
-    previous &&
-    new BigNumber(value).isGreaterThan(previous)
-  ) {
+  } else if (value && previous && value.isGreaterThan(previous)) {
     ref.current?.animate(
       [
         { backgroundColor: Colors.VEGA_GREEN, color: Colors.WHITE },
@@ -86,7 +82,7 @@ export const WalletCardRow = ({
     >
       <span>{label}</span>
       <span>
-        {value} {valueSuffix}
+        {value?.toString()} {valueSuffix}
       </span>
     </div>
   );
