@@ -10,6 +10,7 @@ import { onError } from "@apollo/client/link/error";
 import { RetryLink } from "@apollo/client/link/retry";
 import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
+import { proposalTypePolicy } from "./type-policies/proposal";
 
 export function createClient() {
   const base = process.env.REACT_APP_VEGA_URL || "https://n04.d.vega.xyz/query";
@@ -21,6 +22,7 @@ export function createClient() {
 
   const cache = new InMemoryCache({
     typePolicies: {
+      ...proposalTypePolicy,
       Node: {
         keyFields: false,
       },
