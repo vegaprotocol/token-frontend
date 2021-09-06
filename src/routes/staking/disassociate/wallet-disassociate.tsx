@@ -14,12 +14,12 @@ export const WalletDisassociate = ({
   setAmount: React.Dispatch<string>;
 }) => {
   const {
-    appState: { vegaAssociatedBalance },
+    appState: { walletAssociatedBalance },
   } = useAppState();
   const { t } = useTranslation();
   const maximum = React.useMemo(
-    () => new BigNumber(vegaAssociatedBalance!),
-    [vegaAssociatedBalance]
+    () => new BigNumber(walletAssociatedBalance!),
+    [walletAssociatedBalance]
   );
   const isDisabled = React.useMemo<boolean>(
     () =>
@@ -29,7 +29,7 @@ export const WalletDisassociate = ({
     [amount, maximum]
   );
 
-  if (new BigNumber(vegaAssociatedBalance!).isEqualTo("0")) {
+  if (new BigNumber(walletAssociatedBalance!).isEqualTo("0")) {
     return (
       <div className="disassociate-page__error">
         {t(

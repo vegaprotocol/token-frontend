@@ -34,7 +34,7 @@ export const WalletAssociate = ({
   const { t } = useTranslation();
   const {
     appDispatch,
-    appState: { walletBalance, allowance, vegaAssociatedBalance },
+    appState: { walletBalance, allowance, walletAssociatedBalance },
   } = useAppState();
   const isApproved = !new BigNumber(allowance!).isEqualTo(0);
   const token = useVegaToken();
@@ -84,7 +84,7 @@ export const WalletAssociate = ({
       </div>
     );
   } else if (
-    new BigNumber(walletBalance).minus(vegaAssociatedBalance!).isEqualTo("0")
+    new BigNumber(walletBalance).minus(walletAssociatedBalance!).isEqualTo("0")
   ) {
     pageContent = (
       <div className="wallet-associate__error">
