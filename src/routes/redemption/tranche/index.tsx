@@ -129,10 +129,10 @@ export const RedeemFromTranche = ({
         />
       ) : (
         <TrancheTable
-          totalVested={new BigNumber(totalVestedBalance)}
-          totalLocked={new BigNumber(totalLockedBalance)}
+          totalVested={totalVestedBalance}
+          totalLocked={totalLockedBalance}
           tranche={tranche}
-          lien={new BigNumber(lien)}
+          lien={lien}
           locked={trancheBalance.locked}
           vested={trancheBalance.vested}
           onClick={perform}

@@ -34,7 +34,7 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
         appDispatch({
           type: AppStateActionType.SET_TOKEN,
           decimals,
-          totalSupply: supply.toString(),
+          totalSupply: supply,
           totalAssociated: totalAssociatedWallet.plus(totalAssociatedVesting),
         });
         setLoaded(true);

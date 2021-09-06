@@ -22,16 +22,16 @@ interface AppStateProviderProps {
 const initialAppState: AppState = {
   chainId: process.env.REACT_APP_CHAIN as EthereumChainId,
   // set in app-loader TODO: update when user stakes/unstakes/associates/disassociates
-  totalAssociated: "",
+  totalAssociated: new BigNumber(0),
   decimals: 0,
-  totalSupply: "",
+  totalSupply: new BigNumber(0),
   ethAddress: "",
   ethWalletConnecting: false,
   error: null,
-  balanceFormatted: "",
-  walletBalance: "",
-  lien: "",
-  allowance: "",
+  balanceFormatted: new BigNumber(0),
+  walletBalance: new BigNumber(0),
+  lien: new BigNumber(0),
+  allowance: new BigNumber(0),
   tranches: null,
   ethWalletOverlay: false,
   vegaWalletOverlay: false,
@@ -41,8 +41,8 @@ const initialAppState: AppState = {
   walletAssociatedBalance: null,
   vestingAssociatedBalance: null,
   trancheBalances: [],
-  totalLockedBalance: "",
-  totalVestedBalance: "",
+  totalLockedBalance: new BigNumber(0),
+  totalVestedBalance: new BigNumber(0),
   trancheError: null,
   drawerOpen: false,
 };
@@ -84,10 +84,10 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
     case AppStateActionType.UPDATE_ACCOUNT_BALANCES: {
       return {
         ...state,
-        balanceFormatted: action.balance?.toString() || "",
-        walletBalance: action.walletBalance?.toString() || "",
-        allowance: action.allowance?.toString() || "",
-        lien: action.lien?.toString() || "",
+        balanceFormatted: action.balance,
+        walletBalance: action.walletBalance,
+        allowance: action.allowance,
+        lien: action.lien,
       };
     }
     case AppStateActionType.REFRESH_BALANCES: {
@@ -155,31 +155,27 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         ...state,
         decimals: action.decimals,
         totalSupply: action.totalSupply,
-        totalAssociated: action.totalAssociated.toString(),
+        totalAssociated: action.totalAssociated,
       };
     }
     case AppStateActionType.SET_ALLOWANCE: {
       return {
         ...state,
-        allowance: action.allowance?.toString() || "",
+        allowance: action.allowance,
       };
     }
     case AppStateActionType.SET_TRANCHE_DATA:
       return {
         ...state,
         tranches: action.tranches,
-        totalVestedBalance: BigNumber.sum
-          .apply(null, [
-            new BigNumber(0),
-            ...action.trancheBalances.map((b) => b.vested),
-          ])
-          .toString(),
-        totalLockedBalance: BigNumber.sum
-          .apply(null, [
-            new BigNumber(0),
-            ...action.trancheBalances.map((b) => b.locked),
-          ])
-          .toString(),
+        totalVestedBalance: BigNumber.sum.apply(null, [
+          new BigNumber(0),
+          ...action.trancheBalances.map((b) => b.vested),
+        ]),
+        totalLockedBalance: BigNumber.sum.apply(null, [
+          new BigNumber(0),
+          ...action.trancheBalances.map((b) => b.locked),
+        ]),
         trancheBalances: action.trancheBalances,
       };
     case AppStateActionType.SET_TRANCHE_ERROR: {

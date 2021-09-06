@@ -30,7 +30,7 @@ const Home = ({ name }: RouteChildProps) => {
   const { appState } = useAppState();
   const { data } = useQuery<NodeData>(TOTAL_STAKED_QUERY);
   const totalStaked = React.useMemo(() => {
-    return new BigNumber(data?.nodeData?.stakedTotal || "0").toString();
+    return new BigNumber(data?.nodeData?.stakedTotal || "0");
   }, [data]);
 
   return (

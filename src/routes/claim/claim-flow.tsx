@@ -101,7 +101,6 @@ export const ClaimFlow = ({
       <Complete
         address={address}
         balanceFormatted={state.denominationFormatted}
-        trancheId={currentTranche.tranche_id}
         commitTxHash={state.commitTxHash}
         claimTxHash={state.claimTxHash}
       />
@@ -156,7 +155,7 @@ export const ClaimFlow = ({
               </KeyValueTableRow>
               <KeyValueTableRow>
                 <th>{t("Amount of VEGA")}</th>
-                <td>{state.denominationFormatted}</td>
+                <td>{state.denominationFormatted.toString()}</td>
               </KeyValueTableRow>
               <KeyValueTableRow>
                 <th>{t("Claim expires")}</th>

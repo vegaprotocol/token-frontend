@@ -58,13 +58,13 @@ export interface AppState {
   chainId: EthereumChainId;
 
   /** Users vesting balance across all tranches */
-  balanceFormatted: string;
+  balanceFormatted: BigNumber;
 
   /** Users balance of VEGA in Metamask */
-  walletBalance: string;
+  walletBalance: BigNumber;
 
   /** Amount of tokens associated for a given eth address  */
-  lien: string;
+  lien: BigNumber;
 
   /** Array of tranche objects */
   tranches: Tranche[] | null;
@@ -73,22 +73,22 @@ export interface AppState {
   decimals: number;
 
   /** Total supply of VEGA tokens */
-  totalSupply: string;
+  totalSupply: BigNumber;
 
   /** Total number of VEGA Tokens, both vesting and unlocked, associated for staking */
-  totalAssociated: string;
+  totalAssociated: BigNumber;
 
   /** Users total unlocked tokens */
-  totalVestedBalance: string;
+  totalVestedBalance: BigNumber;
 
   /** Users total locked (vesting) tokens */
-  totalLockedBalance: string;
+  totalLockedBalance: BigNumber;
 
   /** Breakdown of users vesting/vested balances across tranches */
   trancheBalances: UserTrancheBalance[];
 
   /** Approved amount of VEGA to be associated for staking */
-  allowance: string | null;
+  allowance: BigNumber;
 
   /** Whether or not the connect to Ethereum wallet overaly is open */
   ethWalletOverlay: boolean;
@@ -153,10 +153,10 @@ export type AppStateAction =
     }
   | {
       type: AppStateActionType.UPDATE_ACCOUNT_BALANCES;
-      balance: BigNumber | null;
-      walletBalance: BigNumber | null;
-      lien: BigNumber | null;
-      allowance: BigNumber | null;
+      balance: BigNumber;
+      walletBalance: BigNumber;
+      lien: BigNumber;
+      allowance: BigNumber;
     }
   | {
       type: AppStateActionType.VEGA_WALLET_INIT;
@@ -175,12 +175,12 @@ export type AppStateAction =
   | {
       type: AppStateActionType.SET_TOKEN;
       decimals: number;
-      totalSupply: string;
+      totalSupply: BigNumber;
       totalAssociated: BigNumber;
     }
   | {
       type: AppStateActionType.SET_ALLOWANCE;
-      allowance: BigNumber | null;
+      allowance: BigNumber;
     }
   | {
       type: AppStateActionType.REFRESH_BALANCES;
