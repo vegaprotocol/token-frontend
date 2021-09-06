@@ -9,6 +9,7 @@ import React from "react";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { Callout } from "../../components/callout";
 import { useAppState } from "../../contexts/app-state/app-state-context";
+import { ADDRESSES } from "../../config";
 
 const trancheMinimum = 10;
 
@@ -78,7 +79,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                   />
                 </div>
                 <TrancheLabel
-                  contract={appState.contractAddresses.vestingAddress}
+                  contract={ADDRESSES.vestingAddress}
                   chainId={appState.chainId}
                   id={tranche.tranche_id}
                 />

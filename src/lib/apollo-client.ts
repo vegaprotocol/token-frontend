@@ -24,6 +24,11 @@ export function createClient() {
       Node: {
         keyFields: false,
       },
+      NodeData: {
+        merge: (existing = {}, incoming) => {
+          return { ...existing, ...incoming };
+        },
+      },
     },
   });
 

@@ -1,7 +1,7 @@
 import "./staking-node.scss";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ValidatorTable } from "./validator-table";
 import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
 import { EpochCountdown } from "./epoch-countdown";
@@ -13,9 +13,7 @@ import { Callout } from "../../components/callout";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 import BigNumber from "bignumber.js";
-import { VegaWalletContainer } from "../../components/vega-wallet-container";
-import { Web3Container } from "../../components/web3-container";
-import { TrancheContainer } from "../../components/tranche-container";
+import { StakingContainer } from "./staking-container";
 
 export const STAKE_NODE_QUERY = gql`
   query StakeNode($nodeId: String!, $partyId: ID!) {
@@ -60,17 +58,9 @@ export const STAKE_NODE_QUERY = gql`
 
 export const StakingNodeContainer = () => {
   return (
-    <Web3Container>
-      {(address) => (
-        <VegaWalletContainer>
-          {({ vegaKey }) => (
-            <TrancheContainer address={address}>
-              {() => <StakingNode vegaKey={vegaKey} />}
-            </TrancheContainer>
-          )}
-        </VegaWalletContainer>
-      )}
-    </Web3Container>
+    <StakingContainer>
+      {({ currVegaKey }) => <StakingNode vegaKey={currVegaKey} />}
+    </StakingContainer>
   );
 };
 
@@ -79,9 +69,7 @@ interface StakingNodeProps {
 }
 
 export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
-  // TODO: Remove and get id via useParams. Eg:
-  // const node = useParams<{ node: string }>()
-  const node = TEMP_useNodeIdFromLocation();
+  const { node } = useParams<{ node: string }>();
   const { t } = useTranslation();
   const { data, loading, error } = useQuery<StakeNode, StakeNodeVariables>(
     STAKE_NODE_QUERY,
@@ -146,16 +134,3 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
     </>
   );
 };
-
-// Hook to get the node id from the url. We need this because currently
-// the ides contain slashes which means the paths dont correctly match in
-// react router.
-function TEMP_useNodeIdFromLocation() {
-  const location = useLocation();
-  const regex = /\/staking\/(.+)$/;
-  const res = regex.exec(location.pathname);
-  if (res) {
-    return res[1];
-  }
-  return "";
-}

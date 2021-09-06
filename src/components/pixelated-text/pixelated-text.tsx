@@ -1,15 +1,11 @@
 import React from "react";
 
-export const PixelatedText = ({
-  text = "",
-  threshold = 0.6,
-}: {
-  text?: string;
-  threshold?: number;
-}) => {
+export const PixelatedText = ({ text = "" }: { text?: string }) => {
   // useMemo so it doesn't re-randomize the text on every render
   const chars = React.useMemo(() => {
-    return text.split("").map((char, i) => (
+    const charArray = text.split("");
+    const threshold = 1 - 3 / (charArray.length - 1);
+    return charArray.map((char, i) => (
       <span
         key={i}
         className={Math.random() > threshold ? "text-pixelated" : ""}
@@ -17,7 +13,7 @@ export const PixelatedText = ({
         {char}
       </span>
     ));
-  }, [text, threshold]);
+  }, [text]);
 
   return <>{chars}</>;
 };

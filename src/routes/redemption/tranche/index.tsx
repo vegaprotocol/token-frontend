@@ -1,7 +1,9 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import { Trans, useTranslation } from "react-i18next";
+import { Link, useParams } from "react-router-dom";
+import { Colors } from "../../../colors";
 import { TransactionCallout } from "../../../components/transaction-callout";
+import { ADDRESSES } from "../../../config";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import {
   TransactionActionType,
@@ -12,6 +14,7 @@ import { useRefreshBalances } from "../../../hooks/use-refresh-balances";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { useVegaVesting } from "../../../hooks/use-vega-vesting";
 import { BigNumber } from "../../../lib/bignumber";
+import { Routes } from "../../router-config";
 import { RedemptionState } from "../redemption-reducer";
 import { TrancheTable } from "../tranche-table";
 
@@ -44,6 +47,15 @@ export const RedeemFromTranche = ({
     () => vesting.withdrawFromTranche(address, numberId),
     () => vesting.checkWithdrawFromTranche(address, numberId)
   );
+  const redeemedAmount = React.useMemo(() => {
+    return (
+      trancheBalances.find(({ id: bId }) => bId.toString() === id.toString())
+        ?.vested || new BigNumber(0).toString()
+    );
+    // Do not update this value as it is updated once the tranches are refetched on success and we want the old value
+    // so do not react to anything
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   // If the claim has been committed refetch the new VEGA balance
   React.useEffect(() => {
     if (txState.txState === TxState.Complete && address) {
@@ -63,11 +75,45 @@ export const RedeemFromTranche = ({
       </section>
     );
   }
-
+  // TODO needs some translations
   return (
     <section className="redemption-tranche" data-testid="redemption-tranche">
       {txState.txState !== TxState.Default ? (
         <TransactionCallout
+          completeHeading={
+            <strong style={{ color: Colors.WHITE }}>
+              {t("Tokens from this Tranche have been redeemed")}
+            </strong>
+          }
+          completeFooter={
+            <>
+              <p>
+                {t(
+                  "You have redeemed {{redeemedAmount}} VEGA tokens from this tranche. They are now free to transfer from your Ethereum wallet.",
+                  {
+                    redeemedAmount: redeemedAmount.toString(),
+                  }
+                )}
+              </p>
+              <p>
+                {t(
+                  "The VEGA token address is {{address}}, make sure you add this to your wallet to see your tokens",
+                  {
+                    address: ADDRESSES.vegaTokenAddress,
+                  }
+                )}
+              </p>
+              <p>
+                <Trans
+                  i18nKey="Go to <stakingLink>staking</stakingLink> or <governanceLink>governance</governanceLink> to see how you can use your unlocked tokens"
+                  components={{
+                    stakingLink: <Link to={Routes.STAKING} />,
+                    governanceLink: <Link to={Routes.GOVERNANCE} />,
+                  }}
+                />
+              </p>
+            </>
+          }
           state={txState}
           reset={() => txDispatch({ type: TransactionActionType.TX_RESET })}
         />

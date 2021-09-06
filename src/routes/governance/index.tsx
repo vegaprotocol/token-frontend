@@ -2,8 +2,10 @@ import React from "react";
 import compact from "lodash/compact";
 import flow from "lodash/flow";
 import orderBy from "lodash/orderBy";
-
+import { RouteChildProps } from "..";
+import { useDocumentTitle } from "../../hooks/use-document-title";
 import { useTranslation } from "react-i18next";
+
 import { gql, useQuery } from "@apollo/client";
 import { TemplateDefault } from "../../components/page-templates/template-default";
 import { ProposalsList } from "./proposals-list";
@@ -160,7 +162,9 @@ export const proposalsSubscription = gql`
   }
 `;
 
-const GovernanceRouter = () => {
+
+const GovernanceRouter = ({ name }: RouteChildProps) => {
+  useDocumentTitle(name);
   const { data, loading, error, subscribeToMore } = useQuery<proposals, never>(
     proposalsQuery,
     {

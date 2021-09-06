@@ -1,17 +1,14 @@
 import "./token-details.scss";
 
-import React from "react";
-
 import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
 import { useTranslation } from "react-i18next";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
-import { EtherscanLink } from "../../../components/etherscan-link";
 import { TokenDetailsCirculating } from "./token-details-circulating";
-import { EthereumChainIds } from "../../../lib/web3-utils";
 import { truncateMiddle } from "../../../lib/truncate-middle";
+import { ADDRESSES } from "../../../config";
 
 export const TokenDetails = ({
   totalSupply,
@@ -24,28 +21,30 @@ export const TokenDetails = ({
 
   const { appState } = useAppState();
 
-  const chainId = appState.chainId || EthereumChainIds.Mainnet;
-
   return (
     <KeyValueTable className={"token-details"}>
       <KeyValueTableRow>
         <th>{t("Token address")}</th>
         <td data-testid="token-address">
-          <EtherscanLink
-            chainId={chainId}
-            hash={appState.contractAddresses.vegaTokenAddress}
-            text={truncateMiddle(appState.contractAddresses.vegaTokenAddress)}
-          />
+          <a
+            rel="noreferrer"
+            target="_blank"
+            href={"https://etherscan.io/address/" + ADDRESSES.vegaTokenAddress}
+          >
+            {truncateMiddle(ADDRESSES.vegaTokenAddress)}
+          </a>
         </td>
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Token contract")}</th>
         <td data-testid="token-contract">
-          <EtherscanLink
-            chainId={chainId}
-            hash={appState.contractAddresses.vestingAddress}
-            text={truncateMiddle(appState.contractAddresses.vestingAddress)}
-          />
+          <a
+            rel="noreferrer"
+            target="_blank"
+            href={"https://etherscan.io/address/" + ADDRESSES.vestingAddress}
+          >
+            {truncateMiddle(ADDRESSES.vestingAddress)}
+          </a>
         </td>
       </KeyValueTableRow>
       <KeyValueTableRow>

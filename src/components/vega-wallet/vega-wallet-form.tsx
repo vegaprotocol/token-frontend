@@ -1,6 +1,7 @@
 import "./vega-wallet-form.scss";
 import { FormGroup, Intent } from "@blueprintjs/core";
 import React from "react";
+import * as Sentry from "@sentry/react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import {
@@ -24,7 +25,7 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
   const { t } = useTranslation();
   const {
     appDispatch,
-    appState: { address },
+    appState: { ethAddress: address },
   } = useAppState();
   const vegaWallet = useVegaWallet();
   const staking = useVegaStaking();
@@ -43,35 +44,45 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
 
   async function onSubmit(fields: FormFields) {
     setLoading(true);
-    const [tokenErr] = await vegaWallet.getToken({
-      wallet: fields.wallet,
-      passphrase: fields.passphrase,
-    });
 
-    if (tokenErr) {
-      setError("passphrase", { message: t(tokenErr) });
+    try {
+      const [tokenErr] = await vegaWallet.getToken({
+        wallet: fields.wallet,
+        passphrase: fields.passphrase,
+      });
+
+      if (tokenErr) {
+        setError("passphrase", { message: t(tokenErr) });
+        setLoading(false);
+        return;
+      }
+
+      const [keysErr, keys] = await vegaWallet.getKeys();
+
+      if (keysErr) {
+        setError("passphrase", { message: t(keysErr) });
+        setLoading(false);
+        return;
+      }
+
+      let vegaAssociatedBalance = null;
+      if (address && keys && keys.length) {
+        vegaAssociatedBalance = await staking.stakeBalance(
+          address,
+          keys[0].pub
+        );
+      }
+
+      appDispatch({
+        type: AppStateActionType.VEGA_WALLET_INIT,
+        keys,
+        vegaAssociatedBalance,
+      });
       setLoading(false);
-      return;
+      onConnect();
+    } catch (err) {
+      Sentry.captureException(err);
     }
-
-    const [keysErr, keys] = await vegaWallet.getKeys();
-
-    if (keysErr) {
-      setError("passphrase", { message: t(keysErr) });
-      setLoading(false);
-      return;
-    }
-    let vegaAssociatedBalance = null;
-    if (address && keys && keys.length) {
-      vegaAssociatedBalance = await staking.stakeBalance(address, keys[0].pub);
-    }
-    appDispatch({
-      type: AppStateActionType.VEGA_WALLET_INIT,
-      keys,
-      vegaAssociatedBalance,
-    });
-    setLoading(false);
-    onConnect();
   }
 
   const required = t("required");

@@ -9,22 +9,32 @@ import { VegaWalletModal } from "./components/vega-wallet/vega-wallet-modal";
 import { EthWalletModal } from "./components/eth-wallet/eth-wallet-modal";
 // @ts-ignore
 import { GraphQlProvider } from "./components/GRAPHQL_PROVIDER/graphql-provider";
+import { AppLoader } from "./app-loader";
+import { Web3Provider } from "./components/web3-provider";
 
 function App() {
   return (
     <GraphQlProvider>
       <Router>
-        <AppStateProvider>
-          <div className="app">
-            <Nav />
-            <AppRouter />
-            <footer>
-              <Notice />
-            </footer>
-          </div>
-          <VegaWalletModal />
-          <EthWalletModal />
-        </AppStateProvider>
+        <Web3Provider>
+          {({ provider, chainId }) => (
+            <AppStateProvider provider={provider} chainId={chainId}>
+              <AppLoader>
+                <>
+                  <div className="app">
+                    <Nav />
+                    <AppRouter />
+                    <footer>
+                      <Notice />
+                    </footer>
+                  </div>
+                  <VegaWalletModal />
+                  <EthWalletModal />
+                </>
+              </AppLoader>
+            </AppStateProvider>
+          )}
+        </Web3Provider>
       </Router>
     </GraphQlProvider>
   );
