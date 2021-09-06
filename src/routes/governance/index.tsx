@@ -51,6 +51,7 @@ export const proposalsQuery = gql`
           ... on UpdateNetworkParameter {
             networkParameter {
               key
+              value
             }
           }
         }

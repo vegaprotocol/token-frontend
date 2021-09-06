@@ -74,7 +74,6 @@ export interface proposals_proposals_terms_change_UpdateNetworkParameter_network
    * The name of the network parameter
    */
   key: string;
-  value:string;
 }
 
 export interface proposals_proposals_terms_change_UpdateNetworkParameter {
