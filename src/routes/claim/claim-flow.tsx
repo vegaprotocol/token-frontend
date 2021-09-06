@@ -80,134 +80,135 @@ export const ClaimFlow = ({
     run();
   }, [address, claim, dispatch, state.nonce, state.expiry, code]);
 
-  if (!currentTranche) {
-    return <TrancheNotFound />;
-  }
+  throw new Error("Testing");
+  // if (!currentTranche) {
+  //   return <TrancheNotFound />;
+  // }
 
-  if (state.loading) {
-    return <Verifying />;
-  }
+  // if (state.loading) {
+  //   return <Verifying />;
+  // }
 
-  if (state.claimStatus === ClaimStatus.Used) {
-    return <CodeUsed address={address} />;
-  }
+  // if (state.claimStatus === ClaimStatus.Used) {
+  //   return <CodeUsed address={address} />;
+  // }
 
-  if (state.claimStatus === ClaimStatus.Expired) {
-    return <Expired address={address} code={shortCode} />;
-  }
+  // if (state.claimStatus === ClaimStatus.Expired) {
+  //   return <Expired address={address} code={shortCode} />;
+  // }
 
-  if (state.claimStatus === ClaimStatus.Finished) {
-    return (
-      <Complete
-        address={address}
-        balanceFormatted={state.denominationFormatted}
-        trancheId={currentTranche.tranche_id}
-        commitTxHash={state.commitTxHash}
-        claimTxHash={state.claimTxHash}
-      />
-    );
-  }
+  // if (state.claimStatus === ClaimStatus.Finished) {
+  //   return (
+  //     <Complete
+  //       address={address}
+  //       balanceFormatted={state.denominationFormatted}
+  //       trancheId={currentTranche.tranche_id}
+  //       commitTxHash={state.commitTxHash}
+  //       claimTxHash={state.claimTxHash}
+  //     />
+  //   );
+  // }
 
-  if (state.target && state.target.toLowerCase() !== address.toLowerCase()) {
-    return (
-      <TargetAddressMismatch
-        connectedAddress={address}
-        expectedAddress={state.target}
-      />
-    );
-  }
+  // if (state.target && state.target.toLowerCase() !== address.toLowerCase()) {
+  //   return (
+  //     <TargetAddressMismatch
+  //       connectedAddress={address}
+  //       expectedAddress={state.target}
+  //     />
+  //   );
+  // }
 
-  return (
-    <>
-      <section>
-        <div className="claim-flow__grid">
-          <div>
-            <p>
-              <Trans
-                i18nKey="claim"
-                values={{
-                  user: state.target
-                    ? truncateMiddle(state.target)
-                    : t("the holder"),
-                  code: shortCode,
-                  amount: state.denominationFormatted,
-                  linkText: `${t("Tranche")} ${currentTranche.tranche_id}`,
-                  expiry: state.expiry
-                    ? t("claimExpiry", {
-                        date: format(state.expiry * 1000, "dd/MM/yyyy"),
-                      })
-                    : t("claimNoExpiry"),
-                }}
-                components={{
-                  bold: <strong />,
-                  trancheLink: (
-                    <Link to={`/tranches/${currentTranche.tranche_id}`} />
-                  ),
-                }}
-              />
-            </p>
-            <ClaimInfo tranche={currentTranche} />
-          </div>
-          <div>
-            <KeyValueTable>
-              <KeyValueTableRow>
-                <th>{t("Connected Ethereum address")}</th>
-                <td>{truncateMiddle(address)}</td>
-              </KeyValueTableRow>
-              <KeyValueTableRow>
-                <th>{t("Amount of VEGA")}</th>
-                <td>{state.denominationFormatted}</td>
-              </KeyValueTableRow>
-              <KeyValueTableRow>
-                <th>{t("Claim expires")}</th>
-                <td>
-                  {state.expiry
-                    ? format(state.expiry * 1000, "dd/MM/yyyy")
-                    : "No expiry"}
-                </td>
-              </KeyValueTableRow>
-              <KeyValueTableRow>
-                <th>{t("Starts unlocking")}</th>
-                <td>{format(currentTranche.tranche_start, "dd/MM/yyyy")}</td>
-              </KeyValueTableRow>
-              <KeyValueTableRow>
-                <th>{t("Fully unlocked")}</th>
-                <td>{format(currentTranche.tranche_end, "dd/MM/yyyy")}</td>
-              </KeyValueTableRow>
-            </KeyValueTable>
-          </div>
-        </div>
-      </section>
-      <section>
-        {/* If targeted we do not need to commit reveal, as there is no change of front running the mem pool */}
-        {state.target ? (
-          <TargetedClaim
-            address={address}
-            claimCode={state.code!}
-            denomination={state.denomination!}
-            expiry={state.expiry!}
-            nonce={state.nonce!}
-            trancheId={state.trancheId!}
-            targeted={!!state.target}
-            state={state}
-            dispatch={dispatch}
-          />
-        ) : (
-          <UntargetedClaim
-            address={address}
-            claimCode={state.code!}
-            denomination={state.denomination!}
-            denominationFormatted={state.denominationFormatted}
-            expiry={state.expiry!}
-            nonce={state.nonce!}
-            trancheId={state.trancheId!}
-            targeted={!!state.target}
-            committed={state.claimStatus === ClaimStatus.Committed}
-            state={state}
-            dispatch={dispatch}
-          />
-        )}
-      </section>
-    </>
-  );
+  // return (
+  //   <>
+  //     <section>
+  //       <div className="claim-flow__grid">
+  //         <div>
+  //           <p>
+  //             <Trans
+  //               i18nKey="claim"
+  //               values={{
+  //                 user: state.target
+  //                   ? truncateMiddle(state.target)
+  //                   : t("the holder"),
+  //                 code: shortCode,
+  //                 amount: state.denominationFormatted,
+  //                 linkText: `${t("Tranche")} ${currentTranche.tranche_id}`,
+  //                 expiry: state.expiry
+  //                   ? t("claimExpiry", {
+  //                       date: format(state.expiry * 1000, "dd/MM/yyyy"),
+  //                     })
+  //                   : t("claimNoExpiry"),
+  //               }}
+  //               components={{
+  //                 bold: <strong />,
+  //                 trancheLink: (
+  //                   <Link to={`/tranches/${currentTranche.tranche_id}`} />
+  //                 ),
+  //               }}
+  //             />
+  //           </p>
+  //           <ClaimInfo tranche={currentTranche} />
+  //         </div>
+  //         <div>
+  //           <KeyValueTable>
+  //             <KeyValueTableRow>
+  //               <th>{t("Connected Ethereum address")}</th>
+  //               <td>{truncateMiddle(address)}</td>
+  //             </KeyValueTableRow>
+  //             <KeyValueTableRow>
+  //               <th>{t("Amount of VEGA")}</th>
+  //               <td>{state.denominationFormatted}</td>
+  //             </KeyValueTableRow>
+  //             <KeyValueTableRow>
+  //               <th>{t("Claim expires")}</th>
+  //               <td>
+  //                 {state.expiry
+  //                   ? format(state.expiry * 1000, "dd/MM/yyyy")
+  //                   : "No expiry"}
+  //               </td>
+  //             </KeyValueTableRow>
+  //             <KeyValueTableRow>
+  //               <th>{t("Starts unlocking")}</th>
+  //               <td>{format(currentTranche.tranche_start, "dd/MM/yyyy")}</td>
+  //             </KeyValueTableRow>
+  //             <KeyValueTableRow>
+  //               <th>{t("Fully unlocked")}</th>
+  //               <td>{format(currentTranche.tranche_end, "dd/MM/yyyy")}</td>
+  //             </KeyValueTableRow>
+  //           </KeyValueTable>
+  //         </div>
+  //       </div>
+  //     </section>
+  //     <section>
+  //       {/* If targeted we do not need to commit reveal, as there is no change of front running the mem pool */}
+  //       {state.target ? (
+  //         <TargetedClaim
+  //           address={address}
+  //           claimCode={state.code!}
+  //           denomination={state.denomination!}
+  //           expiry={state.expiry!}
+  //           nonce={state.nonce!}
+  //           trancheId={state.trancheId!}
+  //           targeted={!!state.target}
+  //           state={state}
+  //           dispatch={dispatch}
+  //         />
+  //       ) : (
+  //         <UntargetedClaim
+  //           address={address}
+  //           claimCode={state.code!}
+  //           denomination={state.denomination!}
+  //           denominationFormatted={state.denominationFormatted}
+  //           expiry={state.expiry!}
+  //           nonce={state.nonce!}
+  //           trancheId={state.trancheId!}
+  //           targeted={!!state.target}
+  //           committed={state.claimStatus === ClaimStatus.Committed}
+  //           state={state}
+  //           dispatch={dispatch}
+  //         />
+  //       )}
+  //     </section>
+  //   </>
+  // );
 };
