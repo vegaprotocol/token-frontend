@@ -14,7 +14,6 @@ const dsn = process.env.REACT_APP_SENTRY_DSN || false;
 if (dsn) {
   Sentry.init({
     dsn,
-    environment: "DEV",
     integrations: [new Integrations.BrowserTracing()],
     tracesSampleRate: 0.1,
     beforeSend(event) {
