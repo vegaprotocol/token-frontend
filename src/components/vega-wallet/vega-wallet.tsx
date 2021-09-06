@@ -17,7 +17,6 @@ import { useTranslation } from "react-i18next";
 import { useVegaWallet } from "../../hooks/use-vega-wallet";
 import { VegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
 import { useVegaStaking } from "../../hooks/use-vega-staking";
-import { BigNumber } from "../../lib/bignumber";
 import { gql, useApolloClient } from "@apollo/client";
 import {
   Delegations,
