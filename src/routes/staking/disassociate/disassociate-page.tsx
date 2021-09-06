@@ -38,7 +38,7 @@ export const DisassociatePage = ({
   const [selectedStakingMethod, setSelectedStakingMethod] = React.useState<
     StakingMethod | ""
   >(params.method as StakingMethod | "");
-
+  console.log(selectedStakingMethod);
   const {
     state: txState,
     dispatch: txDispatch,

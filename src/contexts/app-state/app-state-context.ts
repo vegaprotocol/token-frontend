@@ -105,8 +105,11 @@ export interface AppState {
   /** Current selected Vega key */
   currVegaKey: VegaKeyExtended | null;
 
-  /** Amount of unlocked tockens associated with the current Vega key*/
-  vegaAssociatedBalance: string | null;
+  /** Amount of tokens associated with the current Vega key from wallet*/
+  walletAssociatedBalance: string | null;
+
+  /** Amount of tokens associated with the current Vega key from vesting contract*/
+  vestingAssociatedBalance: string | null;
 
   /** The error if one was thrown during retrieval of tranche data */
   trancheError: Error | null;
@@ -158,12 +161,14 @@ export type AppStateAction =
   | {
       type: AppStateActionType.VEGA_WALLET_INIT;
       keys: VegaKey[] | null | undefined;
-      vegaAssociatedBalance: BigNumber | null;
+      walletAssociatedBalance: BigNumber | null;
+      vestingAssociatedBalance: BigNumber | null;
     }
   | {
       type: AppStateActionType.VEGA_WALLET_SET_KEY;
       key: VegaKeyExtended;
-      vegaAssociatedBalance: BigNumber | null;
+      walletAssociatedBalance: BigNumber | null;
+      vestingAssociatedBalance: BigNumber | null;
     }
   | { type: AppStateActionType.VEGA_WALLET_DOWN }
   | { type: AppStateActionType.VEGA_WALLET_DISCONNECT }
@@ -183,7 +188,8 @@ export type AppStateAction =
       walletBalance: BigNumber | null;
       lien: BigNumber | null;
       allowance: BigNumber | null;
-      vegaAssociatedBalance: BigNumber | null;
+      walletAssociatedBalance: BigNumber | null;
+      vestingAssociatedBalance: BigNumber | null;
     }
   | {
       type: AppStateActionType.SET_TRANCHE_DATA;
