@@ -44,7 +44,7 @@ export const RedemptionInformation = ({
     [trancheBalances, userTranches]
   );
 
-  if (!userTranches.length) {
+  if (!filteredTranches.length) {
     return (
       <section data-testid="redemption-page">
         <p data-testid="redemption-no-balance">

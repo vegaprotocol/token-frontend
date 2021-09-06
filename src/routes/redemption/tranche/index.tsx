@@ -64,7 +64,17 @@ export const RedeemFromTranche = ({
     }
   }, [address, getUserTrancheBalances, refreshBalances, txState.txState]);
 
-  if (!tranche || tranche.total_removed.isEqualTo(tranche.total_added)) {
+  const trancheBalance = React.useMemo(() => {
+    return trancheBalances.find(
+      ({ id: bId }) => bId.toString() === id.toString()
+    );
+  }, [id, trancheBalances]);
+
+  if (
+    !tranche ||
+    tranche.total_removed.isEqualTo(tranche.total_added) ||
+    !trancheBalance
+  ) {
     return (
       <section data-testid="redemption-page">
         <div data-testid="redemption-no-balance">
@@ -75,7 +85,7 @@ export const RedeemFromTranche = ({
       </section>
     );
   }
-  // TODO needs some translations
+
   return (
     <section className="redemption-tranche" data-testid="redemption-tranche">
       {txState.txState !== TxState.Default ? (
@@ -123,16 +133,8 @@ export const RedeemFromTranche = ({
           totalLocked={new BigNumber(totalLockedBalance)}
           tranche={tranche}
           lien={new BigNumber(lien)}
-          locked={
-            trancheBalances.find(
-              ({ id: bId }) => bId.toString() === id.toString()
-            )!.locked
-          }
-          vested={
-            trancheBalances.find(
-              ({ id: bId }) => bId.toString() === id.toString()
-            )!.vested
-          }
+          locked={trancheBalance.locked}
+          vested={trancheBalance.vested}
           onClick={perform}
         />
       )}
