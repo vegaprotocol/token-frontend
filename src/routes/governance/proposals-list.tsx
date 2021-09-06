@@ -3,7 +3,7 @@ import "./proposals-list.scss";
 
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { proposals_proposals } from "./_temp_/proposals";
+import { proposals_proposals } from "./__generated__/proposals";
 import { CurrentProposalStatus } from "./current-proposal-status";
 
 interface ProposalsListProps {
@@ -16,7 +16,7 @@ export const ProposalsList = ({ data }: ProposalsListProps) => {
       return null;
     }
 
-    const enactmentDate = new Date(row.terms.enactmentDatetime).getTime()
+    const enactmentDate = new Date(row.terms.enactmentDatetime).getTime();
     return (
       <div key={row.id}>
         <div className="proposals-list__row">
@@ -37,9 +37,7 @@ export const ProposalsList = ({ data }: ProposalsListProps) => {
         </div>
 
         <div className="proposals-list__row proposals-list__border">
-          <p className="proposals-list__item-left-low-key">
-            {t("voteStatus")}
-          </p>
+          <p className="proposals-list__item-left-low-key">{t("voteStatus")}</p>
           <CurrentProposalStatus proposal={row} />
         </div>
       </div>

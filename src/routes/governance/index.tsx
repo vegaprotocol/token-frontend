@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import { gql, useQuery } from "@apollo/client";
 import { TemplateDefault } from "../../components/page-templates/template-default";
 import { ProposalsList } from "./proposals-list";
-import { proposals } from "./_temp_/proposals";
+import { proposals } from "./__generated__/proposals";
 import { Callout } from "../../components/callout";
 
 export const proposalsQuery = gql`

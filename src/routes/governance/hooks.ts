@@ -1,6 +1,6 @@
 import React from "react";
 
-import type { proposals_proposals } from "./_temp_/proposals";
+import type { proposals_proposals } from "./__generated__/proposals";
 import { useNetworkParam } from "./use-network-param";
 
 const TOTAL_TOKENS_IN_CIRCULATION = 65000000;

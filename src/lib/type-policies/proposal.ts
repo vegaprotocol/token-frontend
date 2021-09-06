@@ -2,7 +2,7 @@ import type { TypePolicy } from "@apollo/client";
 import {
   proposals_proposals_terms,
   proposals_proposals_terms_change,
-} from "../../routes/governance/_temp_/proposals";
+} from "../../routes/governance/__generated__/proposals";
 
 const typePolicy: TypePolicy = {
   fields: {
