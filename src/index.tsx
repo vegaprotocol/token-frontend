@@ -19,7 +19,6 @@ if (dsn) {
     tracesSampleRate: 0.1,
     beforeSend(event) {
       if (event.request?.url?.includes("/claim?")) {
-        debugger;
         return {
           ...event,
           request: { ...event.request, url: event.request?.url.split("?")[0] },
