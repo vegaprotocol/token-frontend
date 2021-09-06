@@ -22,7 +22,6 @@ export function createClient() {
 
   const cache = new InMemoryCache({
     typePolicies: {
-      ...proposalTypePolicy,
       Node: {
         keyFields: false,
       },
@@ -31,6 +30,7 @@ export function createClient() {
           return { ...existing, ...incoming };
         },
       },
+      ...proposalTypePolicy,
     },
   });
 
