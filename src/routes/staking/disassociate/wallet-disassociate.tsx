@@ -1,8 +1,8 @@
-import BigNumber from "bignumber.js";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { TokenInput } from "../../../components/token-input";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
+import { BigNumber } from "../../../lib/bignumber";
 
 export const WalletDisassociate = ({
   perform,

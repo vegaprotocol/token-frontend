@@ -1,10 +1,10 @@
-import BigNumber from "bignumber.js";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../components/key-value-table";
+import { BigNumber } from "../../lib/bignumber";
 import { StakeNode_party_delegations } from "./__generated__/StakeNode";
 
 export interface YourStakeProps {

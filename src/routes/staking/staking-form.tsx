@@ -11,7 +11,6 @@ import {
   PartyDelegationsVariables,
 } from "./__generated__/PartyDelegations";
 import { TokenInput } from "../../components/token-input";
-import BigNumber from "bignumber.js";
 import {
   DelegateSubmissionInput,
   UndelegateSubmissionInput,
@@ -23,6 +22,7 @@ import { useHistory } from "react-router-dom";
 import { useSearchParams } from "../../hooks/use-search-params";
 import { removeDecimal } from "../../lib/decimals";
 import { useAppState } from "../../contexts/app-state/app-state-context";
+import { BigNumber } from "../../lib/bignumber";
 
 export const PARTY_DELEGATIONS_QUERY = gql`
   query PartyDelegations($partyId: String!) {

@@ -1,6 +1,6 @@
-import BigNumber from "bignumber.js";
 import React from "react";
 import { Colors } from "../../colors";
+import { BigNumber } from "../../lib/bignumber";
 import "./wallet-card.scss";
 
 const FLASH_DURATION = 1200; // Duration of flash animation in milliseconds
