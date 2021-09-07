@@ -5,12 +5,20 @@ import orderBy from "lodash/orderBy";
 import { RouteChildProps } from "..";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { useTranslation } from "react-i18next";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
 
 import { gql, useQuery } from "@apollo/client";
 import { TemplateDefault } from "../../components/page-templates/template-default";
 import { proposals } from "./__generated__/proposals";
 import { Callout } from "../../components/callout";
 import { ProposalsList } from "./proposals-list";
+import { Flags } from "../../flags";
+import { EthWallet } from "../../components/eth-wallet";
+import { VegaWallet } from "../../components/vega-wallet";
+import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
+import { AssociateContainer } from "../staking/associate/associate-page";
+import { DisassociateContainer } from "../staking/disassociate/disassociate-page";
+import { StakingNodeContainer } from "../staking/staking-node";
 
 export const PROPOSALS_QUERY = gql`
   query Proposals {
@@ -165,6 +173,7 @@ export const proposalsSubscription = gql`
 
 
 const GovernanceRouter = ({ name }: RouteChildProps) => {
+  const match = useRouteMatch();
   useDocumentTitle(name);
   const { data, loading, error, subscribeToMore } = useQuery<proposals, never>(
     PROPOSALS_QUERY,
@@ -218,15 +227,38 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
     return <div>{t("Loading")}</div>;
   }
 
-  return (
+  return Flags.MAINNET_DISABLED ? (
     <TemplateDefault title={t("pageTitleGovernance")}>
-      <h1>{t("Governance")}</h1>
-      <p>{t("governanceText1")}</p>
-      <p>{t("governanceText2")}</p>
-      <p>{t("governanceText3")}</p>
-      <h1>{t("proposals")}</h1>
-      <ProposalsList data={proposals} />
+      <div>{t("Governance is coming soon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</div>
     </TemplateDefault>
+  ) : (
+    <TemplateSidebar
+      title={t("pageTitleGovernance")}
+      sidebar={[<EthWallet />, <VegaWallet />]}
+    >
+      {Flags.MAINNET_DISABLED ? (
+        <div>{t("Governance is coming soon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</div>
+      ) : (
+        <Switch>
+          <Route path={`${match.path}/associate`}>
+            <AssociateContainer />
+          </Route>
+          <Route path={`${match.path}/disassociate`}>
+            <DisassociateContainer />
+          </Route>
+          <Route path={`${match.path}/:node`}>
+            <StakingNodeContainer />
+          </Route>
+          <Route path={match.path} exact>
+            <p>{t("governanceText1")}</p>
+            <p>{t("governanceText2")}</p>
+            <p>{t("governanceText3")}</p>
+            <h1>{t("proposals")}</h1>
+            <ProposalsList data={proposals} />
+          </Route>
+        </Switch>
+      )}
+    </TemplateSidebar>
   );
 };
 

@@ -241,6 +241,7 @@ const en = {
   majorityNotMet: "Majority not Met",
   failed: "Failed",
   passed: "Passed",
+  noProposals: "There are no active network change proposals",
 
   // Token Details
   "Token address": "Token address",
