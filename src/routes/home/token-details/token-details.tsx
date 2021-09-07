@@ -11,6 +11,7 @@ import { truncateMiddle } from "../../../lib/truncate-middle";
 import { ADDRESSES } from "../../../config";
 import { formatNumber } from "../../../lib/format-number";
 import { BigNumber } from "../../../lib/bignumber";
+import { EtherscanLink } from "../../../components/etherscan-link";
 
 export const TokenDetails = ({
   totalSupply,
@@ -28,25 +29,21 @@ export const TokenDetails = ({
       <KeyValueTableRow>
         <th>{t("Token address")}</th>
         <td data-testid="token-address">
-          <a
-            rel="noreferrer"
-            target="_blank"
-            href={"https://etherscan.io/address/" + ADDRESSES.vegaTokenAddress}
-          >
-            {truncateMiddle(ADDRESSES.vegaTokenAddress)}
-          </a>
+          <EtherscanLink
+            chainId={appState.chainId}
+            address={ADDRESSES.vegaTokenAddress}
+            text={truncateMiddle(ADDRESSES.vegaTokenAddress)}
+          />
         </td>
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Token contract")}</th>
         <td data-testid="token-contract">
-          <a
-            rel="noreferrer"
-            target="_blank"
-            href={"https://etherscan.io/address/" + ADDRESSES.vestingAddress}
-          >
-            {truncateMiddle(ADDRESSES.vestingAddress)}
-          </a>
+          <EtherscanLink
+            chainId={appState.chainId}
+            address={ADDRESSES.vestingAddress}
+            text={truncateMiddle(ADDRESSES.vestingAddress)}
+          />
         </td>
       </KeyValueTableRow>
       <KeyValueTableRow>
