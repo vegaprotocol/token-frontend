@@ -1,3 +1,4 @@
+import { IgnoreCodes } from "../config";
 import { BigNumber } from "../lib/bignumber";
 import { Tranche } from "./vega-web3/vega-web3-types";
 
@@ -137,3 +138,31 @@ export interface IVegaToken {
   approve(address: string, spender: string): PromiEvent;
   allowance(address: string, spender: string): Promise<BigNumber>;
 }
+
+export interface TxError {
+  message: string;
+  code: number;
+  data?: unknown;
+}
+
+/**
+ * Check if the error from web3/metamask is something expected we can handle
+ * and thus not capture in Sentry
+ */
+export const isUnexpectedError = (error: Error | TxError) => {
+  if ("code" in error && Object.values(IgnoreCodes).includes(error.code)) {
+    return false;
+  }
+  return true;
+};
+
+/**
+ * Check if the error from web3/metamask is the user rejecting connection or
+ * a transaction confirmation prompt
+ */
+export const isUserRejection = (error: Error | TxError) => {
+  if ("code" in error && error.code === IgnoreCodes.USER_REJECTED) {
+    return true;
+  }
+  return false;
+};
