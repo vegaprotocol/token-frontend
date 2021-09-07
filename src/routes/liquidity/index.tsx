@@ -1,6 +1,6 @@
 import {useTranslation} from "react-i18next";
 import {RouteChildProps} from "..";
-import {Web3Container} from "../../components/web3-container";
+import {Web3Provider} from "../../components/web3-provider";
 import {useDocumentTitle} from "../../hooks/use-document-title";
 import {DexTokensStaked} from "./dex-tokens-staked";
 import {DexRewardsList} from "./dex-rewards-list";
@@ -55,7 +55,7 @@ const RedemptionIndex = ({name}: RouteChildProps) => {
   return (
     <TemplateDefault title={t("pageTitleLiquidity")}>
       <p>{t('liquidityIntro')}</p>
-      <Web3Container>
+      <Web3Provider>
         {(address) => (
           <>
             <DexRewardsList contracts={REWARD_CONTRACTS}/>
@@ -63,7 +63,7 @@ const RedemptionIndex = ({name}: RouteChildProps) => {
             <DexTokensUnstaked contracts={REWARD_CONTRACTS}/>
           </>
         )}
-      </Web3Container>
+      </Web3Provider>
     </TemplateDefault>
   );
 };
