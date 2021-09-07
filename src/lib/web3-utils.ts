@@ -1,30 +1,5 @@
-import { IgnoreCodes } from "../config";
 import { BigNumber } from "../lib/bignumber";
 import { Tranche } from "./vega-web3/vega-web3-types";
-
-export type EthereumChainId = "0x1" | "0x3" | "0x4" | "0x5" | "0x2a";
-export type EthereumChainName =
-  | "Mainnet"
-  | "Ropsten"
-  | "Rinkeby"
-  | "Goerli"
-  | "Kovan";
-
-export const EthereumChainNames: Record<EthereumChainId, EthereumChainName> = {
-  "0x1": "Mainnet",
-  "0x3": "Ropsten",
-  "0x4": "Rinkeby",
-  "0x5": "Goerli",
-  "0x2a": "Kovan",
-};
-
-export const EthereumChainIds: Record<EthereumChainName, EthereumChainId> = {
-  Mainnet: "0x1",
-  Ropsten: "0x3",
-  Rinkeby: "0x4",
-  Goerli: "0x5",
-  Kovan: "0x2a",
-};
 
 export type PromiEvent = typeof Promise & {
   on: (event: string, listener: (...args: any[]) => void) => PromiEvent;
@@ -144,6 +119,14 @@ export interface TxError {
   code: number;
   data?: unknown;
 }
+
+/**
+ * Error codes returned from Metamask that we can safely not capture in Sentry
+ */
+const IgnoreCodes = {
+  ALREADY_PROCESSING: 32002,
+  USER_REJECTED: 4001,
+};
 
 /**
  * Check if the error from web3/metamask is something expected we can handle

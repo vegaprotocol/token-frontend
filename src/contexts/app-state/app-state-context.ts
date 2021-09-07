@@ -1,5 +1,5 @@
 import React from "react";
-import { EthereumChainId } from "../../lib/web3-utils";
+import { EthereumChainId } from "../../config";
 import type { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { BigNumber } from "../../lib/bignumber";
 

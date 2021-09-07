@@ -4,7 +4,7 @@ import detectEthereumProvider from "DETECT_PROVIDER_PATH/detect-provider";
 import { SplashScreen } from "../splash-screen";
 import { SplashLoader } from "../splash-loader";
 import { useTranslation } from "react-i18next";
-import { EthereumChainId, EthereumChainNames } from "../../lib/web3-utils";
+import { EthereumChainId, EthereumChainNames } from "../../config";
 import * as Sentry from "@sentry/react";
 import { Severity } from "@sentry/react";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { EthereumChainId } from "../../lib/web3-utils";
+import { EthereumChainId } from "../../config";
 import {
   AppState,
   AppStateContext,
