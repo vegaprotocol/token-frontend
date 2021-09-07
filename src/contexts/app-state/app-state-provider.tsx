@@ -93,14 +93,12 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
     case AppStateActionType.REFRESH_BALANCES: {
       return {
         ...state,
-        balanceFormatted: action.balance?.toString() || "",
-        walletBalance: action.walletBalance?.toString() || "",
-        allowance: action.allowance?.toString() || "",
-        lien: action.lien?.toString() || "",
-        walletAssociatedBalance:
-          action.walletAssociatedBalance?.toString() || "",
-        vestingAssociatedBalance:
-          action.vestingAssociatedBalance?.toString() || "",
+        balanceFormatted: action.balance,
+        walletBalance: action.walletBalance,
+        allowance: action.allowance,
+        lien: action.lien,
+        walletAssociatedBalance: action.walletAssociatedBalance,
+        vestingAssociatedBalance: action.vestingAssociatedBalance,
       };
     }
     case AppStateActionType.VEGA_WALLET_INIT: {
@@ -121,20 +119,16 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         vegaKeys,
         currVegaKey: vegaKeys.length ? vegaKeys[0] : null,
         vegaWalletStatus: VegaWalletStatus.Ready,
-        walletAssociatedBalance:
-          action.walletAssociatedBalance?.toString() || null,
-        vestingAssociatedBalance:
-          action.vestingAssociatedBalance?.toString() || "",
+        walletAssociatedBalance: action.walletAssociatedBalance,
+        vestingAssociatedBalance: action.vestingAssociatedBalance,
       };
     }
     case AppStateActionType.VEGA_WALLET_SET_KEY: {
       return {
         ...state,
         currVegaKey: action.key,
-        walletAssociatedBalance:
-          action.walletAssociatedBalance?.toString() || null,
-        vestingAssociatedBalance:
-          action.vestingAssociatedBalance?.toString() || "",
+        walletAssociatedBalance: action.walletAssociatedBalance,
+        vestingAssociatedBalance: action.vestingAssociatedBalance,
       };
     }
     case AppStateActionType.VEGA_WALLET_DOWN: {
