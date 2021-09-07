@@ -4,6 +4,7 @@ import { AbiItem } from "web3-utils";
 import type { Contract } from "web3-eth-contract";
 import lpStakeAbi from "../abis/claim_abi.json";
 import { PromiEvent } from "../web3-utils";
+import { addDecimal } from "../decimals";
 
 /**
  * Example:
@@ -23,51 +24,53 @@ export default class VegaLPStaking {
   private web3: Web3;
   private contract: Contract;
   public readonly address: string;
+  private decimals: number;
 
-  constructor(web3: Web3, lpStakeAddress: string) {
+  constructor(web3: Web3, lpStakeAddress: string, decimals: number) {
     this.web3 = web3;
     this.address = lpStakeAddress;
     this.contract = new this.web3.eth.Contract(
       lpStakeAbi as AbiItem[],
       lpStakeAddress
     );
+    this.decimals = decimals;
   }
 
-  async stakedBalance (account: String): Promise<BigNumber> {
-    return this.contract.methods
+  async stakedBalance(account: String): Promise<BigNumber> {
+    const amount = await this.contract.methods
       .total_staked_for_user(account)
       .call({ from: account });
+    return new BigNumber(addDecimal(new BigNumber(amount), this.decimals));
   }
 
-  async rewardsBalance (account: String): Promise<BigNumber> {
-    return this.contract.methods
+  async rewardsBalance(account: String): Promise<BigNumber> {
+    const amount = await this.contract.methods
       .get_available_reward(account)
       .call({ from: account });
+    return new BigNumber(addDecimal(new BigNumber(amount), this.decimals));
   }
 
-  async estimateAPY (): Promise<BigNumber> {
+  async estimateAPY(): Promise<BigNumber> {
     const [epochReward, epochInterval, totalBalance] = await Promise.all([
       this.contract.methods.epoch_reward().call(),
       this.contract.methods.epoch_seconds().call(),
-      this.contract.methods.total_staked().call()
-    ])
+      this.contract.methods.total_staked().call(),
+    ]);
 
-    const epochsPerYear = new BigNumber(60 * 60 * 24 * 365).dividedBy(epochInterval)
-    const epochRoi = epochReward.dividedBy(totalBalance)
+    const epochsPerYear = new BigNumber(60 * 60 * 24 * 365).dividedBy(
+      epochInterval
+    );
+    const epochRoi = epochReward.dividedBy(totalBalance);
 
-    return epochRoi.mul(epochsPerYear)
+    return epochRoi.mul(epochsPerYear);
   }
 
-  async stake (amount: BigNumber, account: String) {
+  stake(amount: BigNumber, account: String): PromiEvent {
     // TODO: Call approve on IERC20(lp_token_address) ?
-    return this.contract.methods
-      .stake(amount)
-      .send({ from: account })
+    return this.contract.methods.stake(amount).send({ from: account });
   }
 
-  async unstake (account: String) {
-    return this.contract.methods
-      .unstake()
-      .send({ from: account })
+  unstake(account: String): PromiEvent {
+    return this.contract.methods.unstake().send({ from: account });
   }
 }
