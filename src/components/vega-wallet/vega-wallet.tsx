@@ -25,6 +25,7 @@ import {
 } from "./__generated__/Delegations";
 import { useVegaUser } from "../../hooks/use-vega-user";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
+import { BigNumber } from "../../lib/bignumber";
 
 const DELEGATIONS_QUERY = gql`
   query Delegations($partyId: ID!) {
