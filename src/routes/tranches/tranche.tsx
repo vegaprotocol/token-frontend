@@ -13,6 +13,7 @@ import { Tranche as TrancheType } from "../../lib/vega-web3/vega-web3-types";
 import { TrancheLabel } from "./tranche-label";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { ADDRESSES } from "../../config";
+import { EtherscanLink } from "../../components/etherscan-link";
 
 export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
   const { t } = useTranslation();
@@ -84,13 +85,11 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
           {tranche.users.map((user, i) => {
             return (
               <li className="tranche__user-item" key={i}>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  href={"https://etherscan.io/address/" + user.address}
-                >
-                  {user.address}
-                </a>
+                <EtherscanLink
+                  chainId={appState.chainId}
+                  address={user.address}
+                  text={user.address}
+                />
                 <div className="tranche__user-info">
                   <span>{user.total_tokens.toString()} VEGA</span>
                   <span>
