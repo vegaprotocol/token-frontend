@@ -72,10 +72,16 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
         return;
       }
 
-      let vegaAssociatedBalance = null;
-      if (appState.address && keys && keys.length) {
-        vegaAssociatedBalance = await staking.stakeBalance(
-          appState.address,
+      let walletAssociatedBalance = null;
+      let vestingAssociatedBalance = null;
+
+      if (appState.ethAddress && keys && keys.length) {
+        walletAssociatedBalance = await staking.stakeBalance(
+          appState.ethAddress,
+          keys[0].pub
+        );
+        vestingAssociatedBalance = await vesting.stakeBalance(
+          appState.ethAddress,
           keys[0].pub
         );
       }
@@ -83,7 +89,8 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
       appDispatch({
         type: AppStateActionType.VEGA_WALLET_INIT,
         keys,
-        vegaAssociatedBalance,
+        walletAssociatedBalance,
+        vestingAssociatedBalance,
       });
     }
 
@@ -92,8 +99,9 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
     }
   }, [
     appDispatch,
-    appState.address,
+    appState.ethAddress,
     staking,
+    vesting,
     vegaWalletService,
     vegaKeysLoaded,
   ]);
