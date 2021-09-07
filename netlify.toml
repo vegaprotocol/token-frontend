@@ -11,13 +11,12 @@
   status = 200
 
 [context.production.environment]
-  REACT_APP_SENTRY_DSN = "https://4b8c8a8ba07742648aa4dfe1b8d17e40@o286262.ingest.sentry.io/5882996"
   REACT_APP_CHAIN = "0x1"
   REACT_APP_MAINNET_DISABLED = '1'
   REACT_APP_DEX_STAKING_DISABLED = '1'
 
 [context.deploy-preview.environment]
-  REACT_APP_SENTRY_DSN = "https://4b8c8a8ba07742648aa4dfe1b8d17e40@o286262.ingest.sentry.io/5882996"
   REACT_APP_CHAIN = "0x3"
   REACT_APP_MAINNET_DISABLED = '1'
   REACT_APP_DEX_STAKING_DISABLED = '0'
+  REACT_APP_VEGA_URL = "https://n04.d.vega.xyz/query"

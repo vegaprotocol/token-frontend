@@ -87,14 +87,14 @@ export const StakingForm = ({
       pubKey: pubkey,
       delegateSubmission: {
         nodeId,
-        amount: Number(removeDecimal(new BigNumber(amount), appState.decimals)),
+        amount: removeDecimal(new BigNumber(amount), appState.decimals),
       },
     };
     const undelegateInput: UndelegateSubmissionInput = {
       pubKey: pubkey,
       undelegateSubmission: {
         nodeId,
-        amount: Number(removeDecimal(new BigNumber(amount), appState.decimals)),
+        amount: removeDecimal(new BigNumber(amount), appState.decimals),
         method: "METHOD_AT_END_OF_EPOCH",
       },
     };
@@ -104,15 +104,13 @@ export const StakingForm = ({
 
       if (err) {
         setFormState(FormState.Failure);
-        Sentry.captureEvent(err);
-        console.log("err", err);
+        Sentry.captureException(err);
       }
 
       // await success via poll
     } catch (err) {
-      console.log("catch", err);
       setFormState(FormState.Failure);
-      Sentry.captureEvent(err);
+      Sentry.captureException(err);
     }
   }
 

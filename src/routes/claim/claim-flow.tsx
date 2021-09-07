@@ -3,7 +3,6 @@ import { format } from "date-fns";
 import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useVegaClaim } from "../../hooks/use-vega-claim";
 import {
   ClaimAction,
@@ -42,9 +41,6 @@ export const ClaimFlow = ({
   tranches,
 }: ClaimFlowProps) => {
   const { t } = useTranslation();
-  const {
-    appState: { balanceFormatted },
-  } = useAppState();
   const currentTranche = tranches.find(
     (tranche) => tranche.tranche_id === state.trancheId
   );
@@ -52,6 +48,7 @@ export const ClaimFlow = ({
   const code = state.code!;
   const shortCode = truncateMiddle(code);
 
+  // Check that the claim is valid, by checking if its already committed, expired, or used
   React.useEffect(() => {
     const run = async () => {
       dispatch({ type: ClaimActionType.SET_LOADING, loading: true });
@@ -71,7 +68,7 @@ export const ClaimFlow = ({
           used,
         });
       } catch (e) {
-        Sentry.captureEvent(e);
+        Sentry.captureException(e);
         dispatch({
           type: ClaimActionType.ERROR,
           error: e,
@@ -103,7 +100,7 @@ export const ClaimFlow = ({
     return (
       <Complete
         address={address}
-        balanceFormatted={balanceFormatted}
+        balanceFormatted={state.denominationFormatted}
         trancheId={currentTranche.tranche_id}
         commitTxHash={state.commitTxHash}
         claimTxHash={state.claimTxHash}
@@ -144,9 +141,7 @@ export const ClaimFlow = ({
                 components={{
                   bold: <strong />,
                   trancheLink: (
-                    <Link
-                      to={`/vesting/tranches/${currentTranche.tranche_id}`}
-                    />
+                    <Link to={`/tranches/${currentTranche.tranche_id}`} />
                   ),
                 }}
               />

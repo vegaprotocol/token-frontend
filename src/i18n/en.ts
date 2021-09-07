@@ -9,7 +9,7 @@ const en = {
   pageTitleLiquidity: "Incentivised Liquidity Programme",
   pageTitleRedemptionTranche: "Redeem from Tranche",
   pageTitleTranches: "Vesting tranches",
-  pageTitleStaking: "Stake your VEGA",
+  pageTitleStaking: "Staking",
   pageTitle404: "Page not found",
   pageTitleNotPermitted: "Can not proceed!",
   pageTitleDisassociate: "Dissociate VEGA tokens from a Vega key",
@@ -35,6 +35,7 @@ const en = {
   Warning: "Warning",
   Associated: "Associated",
   vegaTokens: "VEGA tokens",
+  "Connect with Metamask": "Connect with Metamask",
 
   "VEGA was successfully withdrawn to your wallet":
     "VEGA was successfully withdrawn to your wallet",
@@ -49,7 +50,7 @@ const en = {
     "If you have been given a link please double check and try again",
 
   "You will need to connect to an ethereum wallet to pay the gas and claim tokens":
-    "To claim tokens you will need to connect an ethereum wallet with ETH to pay for gas. It may be easier to connect to the wallet that you wish your tokens to be sent to.",
+    "To claim tokens you will need to connect an Ethereum wallet with ETH to pay for gas. It may be easier to connect to the wallet that you wish your tokens to be sent to.",
   "Please check wallet": "Please check wallet",
   "Connect to an Ethereum wallet": "Connect to an Ethereum wallet",
 
@@ -70,7 +71,7 @@ const en = {
 
   commitTitle: "Link claim to your Ethereum address",
   commitBody:
-    "This links your claim to a specific ethereum address to prevent it being used by another person",
+    "This links your claim to a specific Ethereum address to prevent it being used by another person",
   selectCountryPrompt: "You must select a country/region first.",
   verifyingCountryPrompt: "Verifying country/region...",
 
@@ -84,8 +85,7 @@ const en = {
   showRedeem:
     "You'll be able to redeem your unlocked tokens at token.vega.xyz/vesting",
   codeUsed: "Code already used",
-  codeUsedText:
-    "Looks like that code has already been used for address {{address}}",
+  codeUsedText: "Looks like that code has already been used",
   codeExpired: "Code expired",
 
   invalidWeb3Browser: "You need a web3 capable browser to use this site",
@@ -103,7 +103,7 @@ const en = {
   "Transaction in progress": "Transaction in progress",
   "Unknown error": "Unknown error",
   "Awaiting action in Ethereum wallet (e.g. metamask)":
-    "Awaiting action in Ethereum wallet (e.g. metamask)",
+    "Awaiting action in Ethereum wallet (e.g. Metamask)",
   "Claim {amount} Vega": "Claim {{amount}} VEGA",
   "Sorry. It is not possible to claim tokens in your country or region.":
     "It is not possible to claim tokens in your country or region.",
@@ -147,15 +147,15 @@ const en = {
   // Claim success callout
   claimComplete: "Claim complete",
   claimCompleteMessage:
-    "Ethereum address {{address}} now has a vested right to {{balance}} VEGA tokens from <trancheLink>{{trancheLinkText}}</trancheLink> of the vesting contract.",
+    "Ethereum address {{address}} now has a vested right to {{balance}} more VEGA tokens.",
   "Link transaction": "Link transaction",
   "Claim transaction": "Claim transaction",
   "This tranche was used to perform integration testing only prior to token launch and no tokens will enter the supply before 3rd Sep 2021.":
     "This tranche was used to perform integration testing only prior to token launch and no tokens will enter the supply before 3rd Sep 2021.",
   "Showing tranches with <{{trancheMinimum}} VEGA, click to hide these tranches":
-    "Showing tranches with <={{trancheMinimum}} VEGA, click to hide these tranches",
+    "Showing tranches with ≤{{trancheMinimum}} VEGA, click to hide these tranches",
   "Not showing tranches with <{{trancheMinimum}} VEGA, click to show all tranches":
-    "Not showing tranches with <={{trancheMinimum}} VEGA, click to show all tranches",
+    "Not showing tranches with ≤{{trancheMinimum}} VEGA, click to show all tranches",
   "the holder": "the holder",
   "We couldn't seem to load your data.": "We couldn't seem to load your data.",
   "Vesting VEGA": "Vesting VEGA",
@@ -175,13 +175,13 @@ const en = {
   "A total of {{amount}} Unlocked Vega tokens.":
     "A total of {{amount}} Unlocked Vega tokens.",
   "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.":
-    "The connected ethereum wallet ({{address}}) has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.",
+    "The connected Ethereum wallet ({{address}}) has {{balance}} VEGA tokens in {{tranches}} tranche(s) of the vesting contract.",
   "Stake your Locked VEGA tokens!":
     "You can stake your VEGA tokens even while locked.",
   "Find out more about Staking.":
     "Use your Vega tokens to stake a validator, earn rewards and participate in governance of the Vega network.",
-  "You do not have any vesting VEGA tokens. Switch to another Ethereum key to check what can be redeemed.":
-    "You do not have any vesting VEGA tokens. Switch to another Ethereum key to check what can be redeemed.",
+  noVestingTokens:
+    "You do not have any vesting VEGA tokens. Switch to another Ethereum address to check what can be redeemed, or view <tranchesLink>all tranches</tranchesLink>",
 
   // Ethereum wallet
   ethereumKey: "Ethereum key",
@@ -221,8 +221,12 @@ const en = {
   "Token Vesting": "Vesting",
   Governance: "Governance",
   Staking: "Staking",
-  "Most VEGA tokens are held in a vesting contract. This means that they cannot be transferred between wallets until their vesting term is complete":
-    "Most VEGA tokens are held in a vesting contract. This means that they cannot be transferred between wallets until their vesting term is complete.",
+  "The vesting contract holds VEGA tokens until they have become unlocked.":
+    "The vesting contract holds VEGA tokens until they have become unlocked.",
+  "Once unlocked they can be redeemed from the contract so that you can transfer them between wallets.":
+    "Once unlocked they can be redeemed from the contract so that you can transfer them between wallets.",
+  "Tokens are held in different <trancheLink>Tranches</trancheLink>. Each tranche has its own schedule for how the tokens are unlocked.":
+    "Tokens are held in different <trancheLink>Tranches</trancheLink>. Each tranche has its own schedule for how the tokens are unlocked.",
 
   // Token Details
   "Token address": "Token address",
@@ -367,8 +371,6 @@ const en = {
   "Connect to Vega wallet": "Connect to Vega wallet",
   "Check to see if you can redeem unlocked VEGA tokens":
     "Check to see if you can redeem unlocked VEGA tokens",
-  "Tokens are held in different <trancheLink>Tranches</trancheLink>. Each tranche has its own schedule for how long the tokens are locked.":
-    "Tokens are held in different <trancheLink>Tranches</trancheLink>. Each tranche has its own schedule for how long the tokens are locked.",
   "To use your tokens on the Vega network they need to be associated with a Vega wallet/key.":
     "To use your tokens on the Vega network they need to be associated with a Vega wallet/key.",
   "This can happen both while held in the vesting contract as well as when redeemed.":
@@ -393,6 +395,7 @@ const en = {
     "The VEGA token address is {{address}}, make sure you add this to your wallet to see your tokens",
   "Go to <stakingLink>staking</stakingLink> or <governanceLink>governance</governanceLink> to see how you can use your unlocked tokens":
     "Go to <stakingLink>staking</stakingLink> or <governanceLink>governance</governanceLink> to see how you can use your unlocked tokens",
+<<<<<<< HEAD
   liquidityNav: "DEX Liquidity",
   liquidityIntro: "Provide liquidity on decentralised exchanges and deposit the LP tokens in to our contract to earn rewards",
   liquidityTokensWalletTitle: "LP Tokens in connected wallet",
@@ -411,6 +414,17 @@ const en = {
   liquidityTokenDeposit: "Deposit",
   liquidityTokenApprove: "Approve",
   liquidityComingSoon: "Liquidity rewards coming soon"
+=======
+  "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.":
+    "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.",
+  "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.":
+    "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
+  mainnetDisableHome:
+    "You will be able to use your VEGA tokens on the Vega network to nominate Validator nodes and participate in governance.",
+  "VEGA in wallet": "VEGA in wallet",
+  "Vesting associated": "Vesting associated",
+  "Wallet associated": "Wallet associated",
+>>>>>>> develop
 };
 
 export default en;

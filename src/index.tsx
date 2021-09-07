@@ -16,6 +16,15 @@ if (dsn) {
     dsn,
     integrations: [new Integrations.BrowserTracing()],
     tracesSampleRate: 0.1,
+    beforeSend(event) {
+      if (event.request?.url?.includes("/claim?")) {
+        return {
+          ...event,
+          request: { ...event.request, url: event.request?.url.split("?")[0] },
+        };
+      }
+      return event;
+    },
   });
 }
 

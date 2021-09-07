@@ -14,7 +14,7 @@ import { BigNumber } from "../../lib/bignumber";
 import { Trans, useTranslation } from "react-i18next";
 import { Tick } from "../../components/icons";
 import { truncateMiddle } from "../../lib/truncate-middle";
-import { Web3Container } from "../../components/web3-container";
+import { useVegaUser } from "../../hooks/use-vega-user";
 
 export const STAKING_QUERY = gql`
   query Staking($partyId: ID!) {
@@ -53,14 +53,6 @@ export const STAKING_QUERY = gql`
   }
 `;
 
-export const StakingContainer = () => {
-  return (
-    <Web3Container>
-      <Staking />
-    </Web3Container>
-  );
-};
-
 export const Staking = () => {
   const { t } = useTranslation();
   return (
@@ -86,15 +78,15 @@ export const Staking = () => {
 export const StakingStepConnectWallets = () => {
   const { t } = useTranslation();
   const {
-    appState: { address, currVegaKey },
+    appState: { ethAddress, currVegaKey },
     appDispatch,
   } = useAppState();
 
-  if (currVegaKey && address) {
+  if (currVegaKey && ethAddress) {
     return (
       <Callout intent="success" icon={<Tick />}>
         <p>
-          {t("Connected Ethereum address")} {truncateMiddle(address)}
+          {t("Connected Ethereum address")} {truncateMiddle(ethAddress)}
         </p>
         <p>{t("stakingVegaWalletConnected", { key: currVegaKey.pubShort })}</p>
       </Callout>
@@ -118,8 +110,8 @@ export const StakingStepConnectWallets = () => {
           }}
         />
       </p>
-      {address ? (
-        <p>Ethereum wallet connected: {truncateMiddle(address)}</p>
+      {ethAddress ? (
+        <p>Ethereum wallet connected: {truncateMiddle(ethAddress)}</p>
       ) : (
         <p>
           <button
@@ -197,10 +189,10 @@ export const StakingStepAssociate = () => {
 
 export const StakingStepSelectNode = () => {
   const { t } = useTranslation();
-  const { appState } = useAppState();
+  const { currVegaKey } = useVegaUser();
   const { data, loading, error } = useQuery<StakingQueryResult>(STAKING_QUERY, {
-    variables: { partyId: appState.currVegaKey?.pub || "" },
-    skip: !appState.currVegaKey?.pub,
+    variables: { partyId: currVegaKey?.pub || "" },
+    skip: !currVegaKey?.pub,
   });
 
   const nodes = React.useMemo<NodeListItemProps[]>(() => {
@@ -246,7 +238,7 @@ export const StakingStepSelectNode = () => {
     return sortedByStake;
   }, [data]);
 
-  if (!appState.currVegaKey) {
+  if (!currVegaKey) {
     return <p className="text-muted">{t("connectVegaWallet")}</p>;
   }
 

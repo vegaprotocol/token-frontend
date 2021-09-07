@@ -1,103 +1,89 @@
 import React from "react";
-import { SplashLoader } from "../../components/splash-loader";
-import { SplashScreen } from "../../components/splash-screen";
-import { Addresses, EthereumChainId } from "../../lib/web3-utils";
+import { EthereumChainId } from "../../lib/web3-utils";
 import {
   AppState,
   AppStateContext,
   AppStateAction,
-  ProviderStatus,
   AppStateActionType,
   VegaWalletStatus,
 } from "./app-state-context";
-// @ts-ignore
-import detectEthereumProvider from "DETECT_PROVIDER_PATH/detect-provider";
+
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { BigNumber } from "../../lib/bignumber";
+import * as Sentry from "@sentry/react";
+import { Severity } from "@sentry/react";
 
 interface AppStateProviderProps {
+  provider: any;
+  chainId: EthereumChainId;
   children: React.ReactNode;
 }
 
 const initialAppState: AppState = {
-  providerStatus: ProviderStatus.Pending,
-  address: null,
-  connecting: false,
-  chainId: null,
-  appChainId: process.env.REACT_APP_CHAIN as EthereumChainId,
+  chainId: process.env.REACT_APP_CHAIN as EthereumChainId,
+  // set in app-loader TODO: update when user stakes/unstakes/associates/disassociates
+  totalAssociated: "",
+  decimals: 0,
+  totalSupply: "",
+  ethAddress: "",
+  ethWalletConnecting: false,
   error: null,
   balanceFormatted: "",
   walletBalance: "",
   lien: "",
   allowance: "",
   tranches: null,
-  contractAddresses: Addresses[process.env.REACT_APP_CHAIN as EthereumChainId],
   ethWalletOverlay: false,
   vegaWalletOverlay: false,
   vegaWalletStatus: VegaWalletStatus.Pending,
   vegaKeys: null,
   currVegaKey: null,
-  totalAssociated: "",
-  totalStaked: "",
-  decimals: 0,
-  totalSupply: null,
-  vegaAssociatedBalance: null,
+  walletAssociatedBalance: null,
+  vestingAssociatedBalance: null,
   trancheBalances: [],
   totalLockedBalance: "",
   totalVestedBalance: "",
-  tokenDataLoaded: false,
   trancheError: null,
   drawerOpen: false,
 };
 
 function appStateReducer(state: AppState, action: AppStateAction): AppState {
   switch (action.type) {
-    case AppStateActionType.PROVIDER_DETECTED:
-      return {
-        ...state,
-        providerStatus: ProviderStatus.Ready,
-        chainId: action.chainId,
-      };
-    case AppStateActionType.PROVIDER_NOT_DETECTED:
-      return {
-        ...state,
-        providerStatus: ProviderStatus.None,
-      };
     case AppStateActionType.CONNECT:
       return {
         ...state,
         error: null,
-        connecting: true,
+        ethWalletConnecting: true,
       };
     case AppStateActionType.CONNECT_SUCCESS:
       return {
         ...state,
-        address: action.address,
-        chainId: action.chainId,
-        balanceFormatted: action.balance?.toString() || "",
-        walletBalance: action.walletBalance?.toString() || "",
-        allowance: action.allowance?.toString() || "",
-        lien: action.lien?.toString() || "",
-        connecting: false,
+        ethAddress: action.address,
+        ethWalletConnecting: false,
         ethWalletOverlay: false,
       };
     case AppStateActionType.CONNECT_FAIL:
       return {
         ...state,
         error: action.error,
-        address: null,
-        connecting: false,
+        ethAddress: "",
+        ethWalletConnecting: false,
       };
     case AppStateActionType.DISCONNECT:
       return {
         ...state,
         error: null,
-        address: null,
+        ethAddress: "",
       };
     case AppStateActionType.ACCOUNTS_CHANGED: {
       return {
         ...state,
-        address: action.address,
+        ethAddress: action.address,
+      };
+    }
+    case AppStateActionType.UPDATE_ACCOUNT_BALANCES: {
+      return {
+        ...state,
         balanceFormatted: action.balance?.toString() || "",
         walletBalance: action.walletBalance?.toString() || "",
         allowance: action.allowance?.toString() || "",
@@ -111,13 +97,10 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         walletBalance: action.walletBalance?.toString() || "",
         allowance: action.allowance?.toString() || "",
         lien: action.lien?.toString() || "",
-        vegaAssociatedBalance: action.vegaAssociatedBalance?.toString() || "",
-      };
-    }
-    case AppStateActionType.CHAIN_CHANGED: {
-      return {
-        ...state,
-        chainId: action.chainId,
+        walletAssociatedBalance:
+          action.walletAssociatedBalance?.toString() || "",
+        vestingAssociatedBalance:
+          action.vestingAssociatedBalance?.toString() || "",
       };
     }
     case AppStateActionType.VEGA_WALLET_INIT: {
@@ -138,14 +121,20 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         vegaKeys,
         currVegaKey: vegaKeys.length ? vegaKeys[0] : null,
         vegaWalletStatus: VegaWalletStatus.Ready,
-        vegaAssociatedBalance: action.vegaAssociatedBalance?.toString() || null,
+        walletAssociatedBalance:
+          action.walletAssociatedBalance?.toString() || null,
+        vestingAssociatedBalance:
+          action.vestingAssociatedBalance?.toString() || "",
       };
     }
     case AppStateActionType.VEGA_WALLET_SET_KEY: {
       return {
         ...state,
         currVegaKey: action.key,
-        vegaAssociatedBalance: action.vegaAssociatedBalance?.toString() || null,
+        walletAssociatedBalance:
+          action.walletAssociatedBalance?.toString() || null,
+        vestingAssociatedBalance:
+          action.vestingAssociatedBalance?.toString() || "",
       };
     }
     case AppStateActionType.VEGA_WALLET_DOWN: {
@@ -164,7 +153,6 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
     case AppStateActionType.SET_TOKEN: {
       return {
         ...state,
-        tokenDataLoaded: true,
         decimals: action.decimals,
         totalSupply: action.totalSupply,
         totalAssociated: action.totalAssociated.toString(),
@@ -225,49 +213,45 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
   }
 }
 
-export function AppStateProvider({ children }: AppStateProviderProps) {
-  const provider = React.useRef<any>();
-  const [state, dispatch] = React.useReducer(appStateReducer, initialAppState);
-  // Detect provider
+export function AppStateProvider({
+  children,
+  provider,
+  chainId,
+}: AppStateProviderProps) {
+  const [state, dispatch] = React.useReducer(appStateReducer, {
+    ...initialAppState,
+    chainId,
+  });
+
   React.useEffect(() => {
-    detectEthereumProvider()
-      .then((res: any) => {
-        // Extra check helps with Opera's legacy web3 - it properly falls through to NOT_DETECTED
-        if (res && res.request) {
-          provider.current = res;
-
-          // The line below fails on legacy web3 as the method 'request' does not exist
-          provider.current
-            .request({ method: "eth_chainId" })
-            .then((chainId: string) => {
-              dispatch({
-                type: AppStateActionType.PROVIDER_DETECTED,
-                chainId: chainId as EthereumChainId,
-              });
-            });
-        } else {
-          dispatch({ type: AppStateActionType.PROVIDER_NOT_DETECTED });
-        }
-      })
-      .catch(() => {
-        dispatch({ type: AppStateActionType.PROVIDER_NOT_DETECTED });
+    provider.on("accountsChanged", (accounts: string[]) => {
+      Sentry.addBreadcrumb({
+        type: "AccountsChanged",
+        level: Severity.Log,
+        message: "User changed accounts in wallet provider",
+        data: {
+          old: state.ethAddress,
+          new: accounts[0],
+        },
+        timestamp: Date.now(),
       });
-  }, []);
-
-  if (state.providerStatus === ProviderStatus.Pending) {
-    return (
-      <SplashScreen>
-        <SplashLoader />
-      </SplashScreen>
-    );
-  }
+      Sentry.setUser({ id: accounts[0] });
+      dispatch({
+        type: AppStateActionType.ACCOUNTS_CHANGED,
+        address: accounts[0],
+      });
+    });
+    return () => {
+      provider.removeAllListeners("accountsChanged");
+    };
+  }, [provider, state.ethAddress]);
 
   return (
     <AppStateContext.Provider
       value={{
         appState: state,
         appDispatch: dispatch,
-        provider: provider.current,
+        provider,
       }}
     >
       {children}

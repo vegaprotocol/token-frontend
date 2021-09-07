@@ -10,7 +10,7 @@ import { Flags } from "../../flags";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { AssociateContainer } from "./associate/associate-page";
 import { DisassociateContainer } from "./disassociate/disassociate-page";
-import { StakingContainer } from "./staking";
+import { Staking } from "./staking";
 import { StakingNodeContainer } from "./staking-node";
 
 const StakingRouter = ({ name }: RouteChildProps) => {
@@ -35,6 +35,9 @@ const StakingRouter = ({ name }: RouteChildProps) => {
     </TemplateDefault>
   ) : (
     <TemplateSidebar title={title} sidebar={[<EthWallet />, <VegaWallet />]}>
+      {Flags.MAINNET_DISABLED ? (
+        <div>{t("Staking is coming soon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</div>
+      ) : (
         <Switch>
           <Route path={`${match.path}/associate`}>
             <AssociateContainer />
@@ -46,9 +49,10 @@ const StakingRouter = ({ name }: RouteChildProps) => {
             <StakingNodeContainer />
           </Route>
           <Route path={match.path} exact>
-            <StakingContainer />
+            <Staking />
           </Route>
         </Switch>
+      )}
     </TemplateSidebar>
   );
 };
