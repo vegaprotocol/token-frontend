@@ -1,7 +1,7 @@
 import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";
-import { Colors } from "../../../colors";
+import { Colors } from "../../../config";
 import { TransactionCallout } from "../../../components/transaction-callout";
 import { ADDRESSES } from "../../../config";
 import { useAppState } from "../../../contexts/app-state/app-state-context";

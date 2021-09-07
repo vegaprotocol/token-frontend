@@ -1,4 +1,4 @@
-import { EthereumChainId, EthereumChainIds } from "./lib/web3-utils";
+import { EthereumChainId, EthereumChainIds } from "../lib/web3-utils";
 
 export const Addresses = {
   [EthereumChainIds.Mainnet]: {

@@ -47,6 +47,7 @@ export function useEthUser() {
       });
       Sentry.setUser({ id: accounts[0] });
     } catch (e) {
+      console.log(e);
       Sentry.captureException(e);
       appDispatch({ type: AppStateActionType.CONNECT_FAIL, error: e });
     }

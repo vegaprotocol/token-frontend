@@ -10,7 +10,7 @@ import {
   YAxis,
 } from "recharts";
 import data from "./data.json";
-import { Colors } from "../../colors";
+import { Colors } from "../../config";
 import { format, startOfMonth } from "date-fns";
 import React from "react";
 
