@@ -416,6 +416,8 @@ const en = {
   mainnetDisableHome:
     "You will be able to use your VEGA tokens on the Vega network to nominate Validator nodes and participate in governance.",
   "VEGA in wallet": "VEGA in wallet",
+  "Vesting associated": "Vesting associated",
+  "Wallet associated": "Wallet associated",
 };
 
 export default en;

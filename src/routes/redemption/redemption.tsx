@@ -1,8 +1,11 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
+import { Callout } from "../../components/callout";
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
+import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useEthUser } from "../../hooks/use-eth-user";
 import { useTranches } from "../../hooks/use-tranches";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
@@ -15,12 +18,16 @@ import {
 import { RedeemFromTranche } from "./tranche";
 
 const RedemptionRouter = () => {
+  const { t } = useTranslation();
   const match = useRouteMatch();
   const vesting = useVegaVesting();
   const [state, dispatch] = React.useReducer(
     redemptionReducer,
     initialRedemptionState
   );
+  const {
+    appState: { trancheBalances },
+  } = useAppState();
   const { ethAddress } = useEthUser();
   const tranches = useTranches();
 
@@ -47,6 +54,14 @@ const RedemptionRouter = () => {
       <SplashScreen>
         <SplashLoader />
       </SplashScreen>
+    );
+  }
+
+  if (!trancheBalances.length) {
+    return (
+      <Callout>
+        <p>{t("You have no VEGA tokens currently vesting.")}</p>
+      </Callout>
     );
   }
 

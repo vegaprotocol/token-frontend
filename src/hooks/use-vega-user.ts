@@ -6,11 +6,13 @@ import {
 } from "../contexts/app-state/app-state-context";
 import { useVegaStaking } from "./use-vega-staking";
 import { useVegaWallet } from "./use-vega-wallet";
+import { useVegaVesting } from "./use-vega-vesting";
 
 export function useVegaUser() {
   const { appState, appDispatch } = useAppState();
   const vegaWallet = useVegaWallet();
   const staking = useVegaStaking();
+  const vesting = useVegaVesting();
 
   React.useEffect(() => {
     async function run() {
@@ -21,9 +23,14 @@ export function useVegaUser() {
           // out. Keys will be null and clearing the token is handled by the
           // vegaWalletServices.
           const [, keys] = await vegaWallet.getKeys();
-          let vegaAssociatedBalance = null;
+          let walletAssociatedBalance = null;
+          let vestingAssociatedBalance = null;
           if (appState.ethAddress && keys && keys.length) {
-            vegaAssociatedBalance = await staking.stakeBalance(
+            walletAssociatedBalance = await staking.stakeBalance(
+              appState.ethAddress,
+              keys[0].pub
+            );
+            vestingAssociatedBalance = await vesting.stakeBalance(
               appState.ethAddress,
               keys[0].pub
             );
@@ -31,7 +38,8 @@ export function useVegaUser() {
           appDispatch({
             type: AppStateActionType.VEGA_WALLET_INIT,
             keys,
-            vegaAssociatedBalance,
+            walletAssociatedBalance,
+            vestingAssociatedBalance,
           });
         } else {
           appDispatch({ type: AppStateActionType.VEGA_WALLET_DOWN });
@@ -42,7 +50,7 @@ export function useVegaUser() {
     }
 
     run();
-  }, [appDispatch, appState.ethAddress, staking, vegaWallet]);
+  }, [appDispatch, appState.ethAddress, staking, vegaWallet, vesting]);
 
   return {
     vegaKeys: appState.vegaKeys,

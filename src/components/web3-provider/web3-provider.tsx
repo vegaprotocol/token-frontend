@@ -76,7 +76,7 @@ export const Web3Provider = ({
       bindChainChangeListener();
     }
     return () => {
-      provider.current.removeAllListeners("chainChanged");
+      provider.current && provider.current.removeAllListeners("chainChanged");
     };
   }, [chainId, status]);
 
