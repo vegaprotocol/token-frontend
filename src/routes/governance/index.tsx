@@ -19,6 +19,8 @@ import { TemplateSidebar } from "../../components/page-templates/template-sideba
 import { AssociateContainer } from "../staking/associate/associate-page";
 import { DisassociateContainer } from "../staking/disassociate/disassociate-page";
 import { StakingNodeContainer } from "../staking/staking-node";
+import { SplashScreen } from "../../components/splash-screen";
+import { SplashLoader } from "../../components/splash-loader";
 
 export const PROPOSALS_QUERY = gql`
   query Proposals {
@@ -171,7 +173,6 @@ export const proposalsSubscription = gql`
   }
 `;
 
-
 const GovernanceRouter = ({ name }: RouteChildProps) => {
   const match = useRouteMatch();
   useDocumentTitle(name);
@@ -224,7 +225,11 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
   }
 
   if (loading) {
-    return <div>{t("Loading")}</div>;
+    return (
+      <SplashScreen>
+        <SplashLoader />
+      </SplashScreen>
+    );
   }
 
   return Flags.MAINNET_DISABLED ? (
@@ -250,10 +255,10 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
             <StakingNodeContainer />
           </Route>
           <Route path={match.path} exact>
-            <p>{t("governanceText1")}</p>
-            <p>{t("governanceText2")}</p>
-            <p>{t("governanceText3")}</p>
-            <h1>{t("proposals")}</h1>
+            <p>{t("proposedChangesToVegaNetwork")}</p>
+            <p>{t("vegaTokenHoldersCanVote")}</p>
+            <p>{t("requiredMajorityDescription")}</p>
+            <h2>{t("proposals")}</h2>
             <ProposalsList data={proposals} />
           </Route>
         </Switch>

@@ -228,10 +228,10 @@ const en = {
     "Tokens are held in different <trancheLink>Tranches</trancheLink>. Each tranche has its own schedule for how the tokens are unlocked.",
 
   // Governance
-  governanceText1: "This page lists proposed changes to the Vega network.",
-  governanceText2:
+  proposedChangesToVegaNetwork: "This page lists proposed changes to the Vega network.",
+  vegaTokenHoldersCanVote:
     "VEGA token holders can vote for or against proposals as well as make their own.",
-  governanceText3:
+  requiredMajorityDescription:
     "Each proposal needs both a required majority of votes (e.g 66% but this differs by proposal type) and to meet a minimum threshold of votes.",
   proposals: "Proposals",
   proposedEnactment: "Proposed enactment",
