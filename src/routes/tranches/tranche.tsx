@@ -5,7 +5,7 @@ import { TrancheDates } from "./tranche-dates";
 import { useTranslation } from "react-i18next";
 import { BulletHeader } from "../../components/bullet-header";
 import { ProgressBar } from "./progress-bar";
-import { Colors } from "../../colors";
+import { Colors } from "../../config";
 import { BigNumber } from "../../lib/bignumber";
 import { getAbbreviatedNumber } from "../../lib/abbreviate-number";
 import { Routes } from "../router-config";

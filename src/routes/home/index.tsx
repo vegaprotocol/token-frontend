@@ -13,7 +13,7 @@ import { Routes } from "../router-config";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
 import { EthWallet } from "../../components/eth-wallet";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import { Flags } from "../../flags";
+import { Flags } from "../../config";
 
 export const TOTAL_STAKED_QUERY = gql`
   query NodeData {
