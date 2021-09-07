@@ -5,6 +5,7 @@ import { EtherscanLink } from "../../components/etherscan-link";
 import { Tick } from "../../components/icons";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber";
+import { formatNumber } from "../../lib/format-number";
 import { Routes } from "../router-config";
 
 export const Complete = ({
@@ -30,7 +31,7 @@ export const Complete = ({
             i18nKey="claimCompleteMessage"
             values={{
               address,
-              balance: balanceFormatted.toString(),
+              balance: formatNumber(balanceFormatted),
             }}
           />
         </p>
