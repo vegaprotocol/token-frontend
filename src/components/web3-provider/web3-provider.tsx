@@ -108,7 +108,10 @@ export const Web3Provider = ({
       <SplashScreen>
         <div>
           <p>
-            {t("Wrong network", { chain: currentChain })}.{" "}
+            {/* If we can find a friendly name for chain use it else fall back to generic message */}
+            {currentChain
+              ? t("wrongNetwork", { chain: currentChain })
+              : t("wrongNetworkUnknownChain", { chain: desiredChain })}
             {t("Desired network", {
               chain: desiredChain,
             })}
