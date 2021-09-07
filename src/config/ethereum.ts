@@ -49,11 +49,3 @@ export const ADDRESSES = Addresses[appChainId];
  * Normally this is 0x3 (Ropsten) for dev and 0x1 (Mainnet) for prod
  */
 export const APP_CHAIN_ID = appChainId;
-
-/**
- * Error codes returned from Metamask that we can safely not capture in Sentry
- */
-export const IgnoreCodes = {
-  ALREADY_PROCESSING: 32002,
-  USER_REJECTED: 4001,
-};
