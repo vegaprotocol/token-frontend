@@ -5,7 +5,7 @@ import type { networkParams } from "./__generated__/networkParams";
 
 export const networkParamsQuery = gql`
   query NETWORK_PARAMS_QUERY {
-    NetworkParameters {
+    networkParameters {
       key
       value
     }
