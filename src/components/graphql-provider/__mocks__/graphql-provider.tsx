@@ -17,8 +17,8 @@ import { STAKE_NODE_QUERY } from "../../../routes/staking/staking-node";
 import { StakeNode } from "../../../routes/staking/__generated__/StakeNode";
 import { PartyDelegations } from "../../../routes/staking/__generated__/PartyDelegations";
 import { PARTY_DELEGATIONS_QUERY } from "../../../routes/staking/staking-form";
-import { proposals_proposals } from "../../../routes/governance/__generated__/proposals";
 import { PROPOSALS_QUERY } from "../../../routes/governance";
+import { Proposals_proposals } from "../../../routes/governance/__generated__/proposals";
 
 const partyId = "pub";
 
@@ -174,7 +174,7 @@ const MOCK_PARTY_DELEGATIONS: MockedResponse<PartyDelegations> = {
   },
 };
 
-// const MOCK_PROPOSALS: MockedResponse<proposals_proposals[]> = {
+// const MOCK_PROPOSALS: MockedResponse<Proposals_proposals[]> = {
 //   request: {
 //     query: PROPOSALS_QUERY,
 //     variables: { partyId },

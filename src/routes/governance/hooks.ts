@@ -1,6 +1,6 @@
 import React from "react";
 
-import type { proposals_proposals } from "./__generated__/proposals";
+import type { Proposals_proposals } from "./__generated__/proposals";
 import { useNetworkParam } from "./use-network-param";
 
 const TOTAL_TOKENS_IN_CIRCULATION = 65000000;
@@ -8,7 +8,7 @@ const TOTAL_TOKENS_IN_CIRCULATION = 65000000;
 const useProposalNetworkParams = ({
   proposal,
 }: {
-  proposal: proposals_proposals;
+  proposal: Proposals_proposals;
 }) => {
   const { data, loading } = useNetworkParam([
     "governance.proposal.updateMarket.requiredMajority",
@@ -64,7 +64,7 @@ const useProposalNetworkParams = ({
 export const useVoteInformation = ({
   proposal,
 }: {
-  proposal: proposals_proposals;
+  proposal: Proposals_proposals;
 }) => {
   const { requiredMajority, requiredParticipation } = useProposalNetworkParams({
     proposal,

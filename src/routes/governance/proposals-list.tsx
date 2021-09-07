@@ -3,41 +3,45 @@ import "./proposals-list.scss";
 
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { proposals_proposals, proposals_proposals_terms_change_UpdateNetworkParameter } from "./__generated__/proposals";
+import {
+  Proposals_proposals,
+  Proposals_proposals_terms_change_UpdateNetworkParameter,
+} from "./__generated__/proposals";
 import { CurrentProposalStatus } from "./current-proposal-status";
 
 interface ProposalsListProps {
-  data: proposals_proposals[];
+  data: Proposals_proposals[];
 }
 
 export const ProposalsList = ({ data }: ProposalsListProps) => {
   const { t } = useTranslation();
 
-  const filteredData = data.filter(row => {
-    return row.terms.change.__typename === "UpdateNetworkParameter"
-  })
+  const filteredData = data.filter((row) => {
+    return row.terms.change.__typename === "UpdateNetworkParameter";
+  });
 
   if (filteredData.length === 0) {
     return <p>{t("noProposals")}</p>;
   }
 
-  const renderRow = (row: proposals_proposals) => {
-
+  const renderRow = (row: Proposals_proposals) => {
     const enactmentDate = new Date(row.terms.enactmentDatetime).getTime();
     return (
       <div key={row.id}>
         <div className="proposals-list__row">
           <Link className="proposals-list__first-item" to={"/test"}>
-            {(
-              row.terms
-                .change as proposals_proposals_terms_change_UpdateNetworkParameter
-            ).networkParameter.key}
+            {
+              (
+                row.terms
+                  .change as Proposals_proposals_terms_change_UpdateNetworkParameter
+              ).networkParameter.key
+            }
           </Link>
           <p className="proposals-list__item-right">
             {
               (
                 row.terms
-                  .change as proposals_proposals_terms_change_UpdateNetworkParameter
+                  .change as Proposals_proposals_terms_change_UpdateNetworkParameter
               ).networkParameter!.value
             }
           </p>

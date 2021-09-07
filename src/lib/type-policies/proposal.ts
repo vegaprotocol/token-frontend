@@ -1,7 +1,7 @@
 import type { TypePolicy } from "@apollo/client";
 import {
-  proposals_proposals_terms,
-  proposals_proposals_terms_change,
+  Proposals_proposals_terms,
+  Proposals_proposals_terms_change,
 } from "../../routes/governance/__generated__/proposals";
 
 const typePolicy: TypePolicy = {
@@ -11,7 +11,7 @@ const typePolicy: TypePolicy = {
         if (name) {
           return name;
         }
-        const terms = readField<proposals_proposals_terms>("terms");
+        const terms = readField<Proposals_proposals_terms>("terms");
         if (!terms) {
           return "Unknown proposal";
         }
@@ -30,7 +30,7 @@ export const proposalTypePolicy = {
   Proposal: typePolicy,
 };
 
-export function getProposalName(change: proposals_proposals_terms_change) {
+export function getProposalName(change: Proposals_proposals_terms_change) {
   if (change.__typename === "NewAsset") {
     return `New asset: ${change.symbol}`;
   } else if (change.__typename === "NewMarket") {
