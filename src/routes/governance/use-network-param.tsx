@@ -1,7 +1,16 @@
 import { useQuery } from "@apollo/client";
-import { networkParamsQuery } from "./network-params";
+import { gql } from "@apollo/client";
 
 import type { networkParams } from "./__generated__/networkParams";
+
+export const networkParamsQuery = gql`
+  query NETWORK_PARAMS_QUERY {
+    NetworkParameters {
+      key
+      value
+    }
+  }
+`;
 
 export function useNetworkParam(params: string[]) {
   const { data, loading, error } = useQuery<networkParams, never>(
