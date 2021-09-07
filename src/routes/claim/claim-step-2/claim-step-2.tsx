@@ -8,6 +8,7 @@ import {
 } from "../../../hooks/transaction-reducer";
 import { TransactionCallout } from "../../../components/transaction-callout";
 import { BigNumber } from "../../../lib/bignumber";
+import { formatNumber } from "../../../lib/format-number";
 
 export const ClaimStep2 = ({
   amount,
@@ -36,7 +37,7 @@ export const ClaimStep2 = ({
   return (
     <div data-testid="claim-step-2">
       <button type="submit" onClick={onSubmit} className="fill">
-        {t("Claim {amount} Vega", { amount: amount.toString() })}
+        {t("Claim {amount} Vega", { amount: formatNumber(amount) })}
       </button>
     </div>
   );

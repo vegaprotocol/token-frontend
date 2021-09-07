@@ -1,6 +1,7 @@
 import BigNumber from "bignumber.js";
 import React from "react";
 import { Colors } from "../../colors";
+import { formatNumber } from "../../lib/format-number";
 import "./wallet-card.scss";
 
 const FLASH_DURATION = 1200; // Duration of flash animation in milliseconds
@@ -82,7 +83,7 @@ export const WalletCardRow = ({
     >
       <span>{label}</span>
       <span>
-        {value?.toString()} {valueSuffix}
+        {value ? formatNumber(value) : ""} {valueSuffix}
       </span>
     </div>
   );
