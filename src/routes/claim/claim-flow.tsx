@@ -26,6 +26,7 @@ import {
   KeyValueTableRow,
 } from "../../components/key-value-table";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
+import { formatNumber } from "../../lib/format-number";
 
 interface ClaimFlowProps {
   state: ClaimState;
@@ -155,7 +156,7 @@ export const ClaimFlow = ({
               </KeyValueTableRow>
               <KeyValueTableRow>
                 <th>{t("Amount of VEGA")}</th>
-                <td>{state.denominationFormatted.toString()}</td>
+                <td>{formatNumber(state.denominationFormatted)}</td>
               </KeyValueTableRow>
               <KeyValueTableRow>
                 <th>{t("Claim expires")}</th>
