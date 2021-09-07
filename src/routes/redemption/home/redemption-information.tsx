@@ -10,6 +10,7 @@ import { Link, useHistory } from "react-router-dom";
 import React from "react";
 import { truncateMiddle } from "../../../lib/truncate-middle";
 import { Routes } from "../../router-config";
+import { formatNumber } from "../../../lib/format-number";
 
 export const RedemptionInformation = ({
   state,
@@ -65,7 +66,7 @@ export const RedemptionInformation = ({
           "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.",
           {
             address: truncateMiddle(address),
-            balance: balanceFormatted.toString(),
+            balance: formatNumber(balanceFormatted),
             tranches: filteredTranches.length,
           }
         )}
