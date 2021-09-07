@@ -45,7 +45,7 @@
     "start": "craco start",
     "start:mock": "REACT_APP_MOCKED=1 craco -r @cypress/instrument-cra start",
     "build": "craco build",
-    "test": "craco test",
+    "test": "REACT_APP_CHAIN=0x1 craco test",
     "eject": "react-scripts eject",
     "generate": "npx apollo codegen:generate --target=typescript --globalTypesFile=src/__generated__/globalTypes.ts"
   },
