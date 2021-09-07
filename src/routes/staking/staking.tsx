@@ -78,15 +78,15 @@ export const Staking = () => {
 export const StakingStepConnectWallets = () => {
   const { t } = useTranslation();
   const {
-    appState: { address, currVegaKey },
+    appState: { ethAddress, currVegaKey },
     appDispatch,
   } = useAppState();
 
-  if (currVegaKey && address) {
+  if (currVegaKey && ethAddress) {
     return (
       <Callout intent="success" icon={<Tick />}>
         <p>
-          {t("Connected Ethereum address")} {truncateMiddle(address)}
+          {t("Connected Ethereum address")} {truncateMiddle(ethAddress)}
         </p>
         <p>{t("stakingVegaWalletConnected", { key: currVegaKey.pubShort })}</p>
       </Callout>
@@ -110,8 +110,8 @@ export const StakingStepConnectWallets = () => {
           }}
         />
       </p>
-      {address ? (
-        <p>Ethereum wallet connected: {truncateMiddle(address)}</p>
+      {ethAddress ? (
+        <p>Ethereum wallet connected: {truncateMiddle(ethAddress)}</p>
       ) : (
         <p>
           <button

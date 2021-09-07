@@ -48,6 +48,7 @@ export const ClaimFlow = ({
   const code = state.code!;
   const shortCode = truncateMiddle(code);
 
+  // Check that the claim is valid, by checking if its already committed, expired, or used
   React.useEffect(() => {
     const run = async () => {
       dispatch({ type: ClaimActionType.SET_LOADING, loading: true });

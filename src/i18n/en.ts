@@ -179,8 +179,8 @@ const en = {
     "You can stake your VEGA tokens even while locked.",
   "Find out more about Staking.":
     "Use your Vega tokens to stake a validator, earn rewards and participate in governance of the Vega network.",
-  "You do not have any vesting VEGA tokens. Switch to another Ethereum key to check what can be redeemed.":
-    "You do not have any vesting VEGA tokens. Switch to another Ethereum key to check what can be redeemed.",
+  noVestingTokens:
+    "You do not have any vesting VEGA tokens. Switch to another Ethereum address to check what can be redeemed, or view <tranchesLink>all tranches</tranchesLink>",
 
   // Ethereum wallet
   ethereumKey: "Ethereum key",
@@ -401,6 +401,8 @@ const en = {
   mainnetDisableHome:
     "You will be able to use your VEGA tokens on the Vega network to nominate Validator nodes and participate in governance.",
   "VEGA in wallet": "VEGA in wallet",
+  "Vesting associated": "Vesting associated",
+  "Wallet associated": "Wallet associated",
 };
 
 export default en;

@@ -3,6 +3,7 @@ import { Trans, useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";
 import { Colors } from "../../../colors";
 import { TransactionCallout } from "../../../components/transaction-callout";
+import { ADDRESSES } from "../../../config";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import {
   TransactionActionType,
@@ -27,13 +28,7 @@ export const RedeemFromTranche = ({
   const vesting = useVegaVesting();
   const { t } = useTranslation();
   const {
-    appState: {
-      lien,
-      totalVestedBalance,
-      trancheBalances,
-      totalLockedBalance,
-      contractAddresses,
-    },
+    appState: { lien, totalVestedBalance, trancheBalances, totalLockedBalance },
   } = useAppState();
   const refreshBalances = useRefreshBalances(address);
   const getUserTrancheBalances = useGetUserTrancheBalances(address);
@@ -69,7 +64,17 @@ export const RedeemFromTranche = ({
     }
   }, [address, getUserTrancheBalances, refreshBalances, txState.txState]);
 
-  if (!tranche || tranche.total_removed.isEqualTo(tranche.total_added)) {
+  const trancheBalance = React.useMemo(() => {
+    return trancheBalances.find(
+      ({ id: bId }) => bId.toString() === id.toString()
+    );
+  }, [id, trancheBalances]);
+
+  if (
+    !tranche ||
+    tranche.total_removed.isEqualTo(tranche.total_added) ||
+    !trancheBalance
+  ) {
     return (
       <section data-testid="redemption-page">
         <div data-testid="redemption-no-balance">
@@ -80,7 +85,7 @@ export const RedeemFromTranche = ({
       </section>
     );
   }
-  // TODO needs some translations
+
   return (
     <section className="redemption-tranche" data-testid="redemption-tranche">
       {txState.txState !== TxState.Default ? (
@@ -104,7 +109,7 @@ export const RedeemFromTranche = ({
                 {t(
                   "The VEGA token address is {{address}}, make sure you add this to your wallet to see your tokens",
                   {
-                    address: contractAddresses.vegaTokenAddress,
+                    address: ADDRESSES.vegaTokenAddress,
                   }
                 )}
               </p>
@@ -128,16 +133,8 @@ export const RedeemFromTranche = ({
           totalLocked={new BigNumber(totalLockedBalance)}
           tranche={tranche}
           lien={new BigNumber(lien)}
-          locked={
-            trancheBalances.find(
-              ({ id: bId }) => bId.toString() === id.toString()
-            )!.locked
-          }
-          vested={
-            trancheBalances.find(
-              ({ id: bId }) => bId.toString() === id.toString()
-            )!.vested
-          }
+          locked={trancheBalance.locked}
+          vested={trancheBalance.vested}
           onClick={perform}
         />
       )}

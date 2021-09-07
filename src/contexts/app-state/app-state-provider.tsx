@@ -1,5 +1,5 @@
 import React from "react";
-import { Addresses, EthereumChainId } from "../../lib/web3-utils";
+import { EthereumChainId } from "../../lib/web3-utils";
 import {
   AppState,
   AppStateContext,
@@ -23,25 +23,23 @@ const initialAppState: AppState = {
   chainId: process.env.REACT_APP_CHAIN as EthereumChainId,
   // set in app-loader TODO: update when user stakes/unstakes/associates/disassociates
   totalAssociated: "",
-  totalStaked: "",
   decimals: 0,
   totalSupply: "",
-  address: "",
-  connecting: false,
+  ethAddress: "",
+  ethWalletConnecting: false,
   error: null,
   balanceFormatted: "",
   walletBalance: "",
   lien: "",
   allowance: "",
   tranches: null,
-  contractAddresses: Addresses[process.env.REACT_APP_CHAIN as EthereumChainId],
   ethWalletOverlay: false,
   vegaWalletOverlay: false,
   vegaWalletStatus: VegaWalletStatus.Pending,
   vegaKeys: null,
   currVegaKey: null,
-
-  vegaAssociatedBalance: null,
+  walletAssociatedBalance: null,
+  vestingAssociatedBalance: null,
   trancheBalances: [],
   totalLockedBalance: "",
   totalVestedBalance: "",
@@ -55,32 +53,32 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
       return {
         ...state,
         error: null,
-        connecting: true,
+        ethWalletConnecting: true,
       };
     case AppStateActionType.CONNECT_SUCCESS:
       return {
         ...state,
-        address: action.address,
-        connecting: false,
+        ethAddress: action.address,
+        ethWalletConnecting: false,
         ethWalletOverlay: false,
       };
     case AppStateActionType.CONNECT_FAIL:
       return {
         ...state,
         error: action.error,
-        address: "",
-        connecting: false,
+        ethAddress: "",
+        ethWalletConnecting: false,
       };
     case AppStateActionType.DISCONNECT:
       return {
         ...state,
         error: null,
-        address: "",
+        ethAddress: "",
       };
     case AppStateActionType.ACCOUNTS_CHANGED: {
       return {
         ...state,
-        address: action.address,
+        ethAddress: action.address,
       };
     }
     case AppStateActionType.UPDATE_ACCOUNT_BALANCES: {
@@ -99,7 +97,10 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         walletBalance: action.walletBalance?.toString() || "",
         allowance: action.allowance?.toString() || "",
         lien: action.lien?.toString() || "",
-        vegaAssociatedBalance: action.vegaAssociatedBalance?.toString() || "",
+        walletAssociatedBalance:
+          action.walletAssociatedBalance?.toString() || "",
+        vestingAssociatedBalance:
+          action.vestingAssociatedBalance?.toString() || "",
       };
     }
     case AppStateActionType.VEGA_WALLET_INIT: {
@@ -120,14 +121,20 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         vegaKeys,
         currVegaKey: vegaKeys.length ? vegaKeys[0] : null,
         vegaWalletStatus: VegaWalletStatus.Ready,
-        vegaAssociatedBalance: action.vegaAssociatedBalance?.toString() || null,
+        walletAssociatedBalance:
+          action.walletAssociatedBalance?.toString() || null,
+        vestingAssociatedBalance:
+          action.vestingAssociatedBalance?.toString() || "",
       };
     }
     case AppStateActionType.VEGA_WALLET_SET_KEY: {
       return {
         ...state,
         currVegaKey: action.key,
-        vegaAssociatedBalance: action.vegaAssociatedBalance?.toString() || null,
+        walletAssociatedBalance:
+          action.walletAssociatedBalance?.toString() || null,
+        vestingAssociatedBalance:
+          action.vestingAssociatedBalance?.toString() || "",
       };
     }
     case AppStateActionType.VEGA_WALLET_DOWN: {
@@ -223,7 +230,7 @@ export function AppStateProvider({
         level: Severity.Log,
         message: "User changed accounts in wallet provider",
         data: {
-          old: state.address,
+          old: state.ethAddress,
           new: accounts[0],
         },
         timestamp: Date.now(),
@@ -237,7 +244,7 @@ export function AppStateProvider({
     return () => {
       provider.removeAllListeners("accountsChanged");
     };
-  }, [provider, state.address]);
+  }, [provider, state.ethAddress]);
 
   return (
     <AppStateContext.Provider

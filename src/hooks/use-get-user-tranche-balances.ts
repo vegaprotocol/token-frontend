@@ -18,7 +18,7 @@ export const useGetUserTrancheBalances = (address: string) => {
       const tranches = await vesting.getAllTranches();
       const userTranches = tranches.filter((t) =>
         t.users.some(
-          ({ address: a }) => a.toLowerCase() === address.toLowerCase()
+          ({ address: a }) => a && address && a.toLowerCase() === address.toLowerCase()
         )
       );
       const promises = userTranches.map(async (t) => {

@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { TokenDetailsCirculating } from "./token-details-circulating";
 import { truncateMiddle } from "../../../lib/truncate-middle";
+import { ADDRESSES } from "../../../config";
 
 export const TokenDetails = ({
   totalSupply,
@@ -28,12 +29,9 @@ export const TokenDetails = ({
           <a
             rel="noreferrer"
             target="_blank"
-            href={
-              "https://etherscan.io/address/" +
-              appState.contractAddresses.vegaTokenAddress
-            }
+            href={"https://etherscan.io/address/" + ADDRESSES.vegaTokenAddress}
           >
-            {truncateMiddle(appState.contractAddresses.vegaTokenAddress)}
+            {truncateMiddle(ADDRESSES.vegaTokenAddress)}
           </a>
         </td>
       </KeyValueTableRow>
@@ -43,12 +41,9 @@ export const TokenDetails = ({
           <a
             rel="noreferrer"
             target="_blank"
-            href={
-              "https://etherscan.io/address/" +
-              appState.contractAddresses.vestingAddress
-            }
+            href={"https://etherscan.io/address/" + ADDRESSES.vestingAddress}
           >
-            {truncateMiddle(appState.contractAddresses.vestingAddress)}
+            {truncateMiddle(ADDRESSES.vestingAddress)}
           </a>
         </td>
       </KeyValueTableRow>
