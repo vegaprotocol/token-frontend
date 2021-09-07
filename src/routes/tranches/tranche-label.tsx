@@ -1,5 +1,4 @@
-import { ADDRESSES } from "../../config";
-import { EthereumChainId, EthereumChainIds } from "../../lib/web3-utils";
+import { ADDRESSES, EthereumChainId, EthereumChainIds } from "../../config";
 import "./tranche-label.scss";
 
 const TRANCHE_LABELS: Record<number, string[]> = {

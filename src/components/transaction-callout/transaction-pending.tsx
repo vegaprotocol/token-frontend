@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { EthereumChainId } from "../../lib/web3-utils";
+import { EthereumChainId } from "../../config";
 import { Callout } from "../callout";
 import { EtherscanLink } from "../etherscan-link";
 import { Loader } from "../loader";
