@@ -24,7 +24,7 @@ export const TransactionError = ({
       <p>{error ? error.message : t("Something went wrong")}</p>
       {hash ? (
         <p>
-          <EtherscanLink hash={hash} chainId={chainId} />
+          <EtherscanLink tx={hash} chainId={chainId} />
         </p>
       ) : null}
       <button onClick={() => onActionClick()}>{t("Try again")}</button>

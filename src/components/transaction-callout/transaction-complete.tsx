@@ -25,7 +25,7 @@ export const TransactionComplete = ({
       </p>
       {body && <p data-testid="transaction-complete-body">{body}</p>}
       <p>
-        <EtherscanLink hash={hash} chainId={chainId} />
+        <EtherscanLink tx={hash} chainId={chainId} />
       </p>
       {footer && <p data-testid="transaction-complete-footer">{footer}</p>}
     </Callout>
