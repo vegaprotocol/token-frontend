@@ -2,8 +2,9 @@ import React from "react";
 
 import type { Proposals_proposals } from "./__generated__/proposals";
 import { useNetworkParam } from "./use-network-param";
-
-const TOTAL_TOKENS_IN_CIRCULATION = 65000000;
+import {
+  useAppState,
+} from "../../contexts/app-state/app-state-context";
 
 const useProposalNetworkParams = ({
   proposal,
@@ -20,18 +21,13 @@ const useProposalNetworkParams = ({
     "governance.proposal.updateNetParam.requiredMajority",
     "governance.proposal.updateNetParam.requiredParticipation",
   ]);
-  if (loading) {
+  if (loading || !data) {
     return {
       requiredMajority: 100,
       requiredParticipation: 100,
     };
   }
-  if (!data) {
-    return {
-      requiredMajority: 0,
-      requiredParticipation: 0,
-    };
-  }
+  
   const [
     updateMarketMajority,
     updateMarketParticipation,
@@ -72,6 +68,9 @@ export const useVoteInformation = ({
 }: {
   proposal: Proposals_proposals;
 }) => {
+  const {
+    appState: { totalSupply },
+  } = useAppState();
   const { requiredMajority, requiredParticipation } = useProposalNetworkParams({
     proposal,
   });
@@ -101,20 +100,17 @@ export const useVoteInformation = ({
     [noTokens, totalTokensVoted]
   );
   const participationMet = React.useMemo(() => {
-    const tokensNeeded =
-      TOTAL_TOKENS_IN_CIRCULATION * Number(requiredParticipation);
+    const tokensNeeded = +totalSupply * Number(requiredParticipation);
     return totalTokensVoted > tokensNeeded;
-  }, [requiredParticipation, totalTokensVoted]);
+  }, [requiredParticipation, totalTokensVoted, totalSupply]);
 
   const majorityMet = React.useMemo(() => {
     return totalTokensVoted >= requiredMajority;
   }, [requiredMajority, totalTokensVoted]);
 
   const totalTokensPercentage = React.useMemo(() => {
-    return Number(
-      (100 * totalTokensVoted) / TOTAL_TOKENS_IN_CIRCULATION
-    ).toFixed(4);
-  }, [totalTokensVoted]);
+    return Number((100 * totalTokensVoted) / +totalSupply).toFixed(4);
+  }, [totalTokensVoted, totalSupply]);
   
   const willPass = React.useMemo(
     () => participationMet && yesPercentage > requiredMajorityPercentage,
