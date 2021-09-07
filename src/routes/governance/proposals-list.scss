@@ -24,4 +24,13 @@
     border-bottom: 1px solid white;
     margin-bottom: 12px;
   }
+
+  &__main-list-item {
+    list-style-type: none;
+  }
+
+  &__main-list {
+    padding: 0;
+    margin: 0;
+  }
 }

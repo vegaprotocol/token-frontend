@@ -27,7 +27,7 @@ export const ProposalsList = ({ data }: ProposalsListProps) => {
   const renderRow = (row: Proposals_proposals) => {
     const enactmentDate = new Date(row.terms.enactmentDatetime).getTime();
     return (
-      <div key={row.id}>
+      <li className="proposals-list__main-list-item" key={row.id}>
         <div className="proposals-list__row">
           <Link className="proposals-list__first-item" to={"/test"}>
             {
@@ -59,9 +59,9 @@ export const ProposalsList = ({ data }: ProposalsListProps) => {
           <p className="proposals-list__item-left-low-key">{t("voteStatus")}</p>
           <CurrentProposalStatus proposal={row} />
         </div>
-      </div>
+      </li>
     );
   };
 
-  return <div>{filteredData.map((row) => renderRow(row))}</div>;
+  return <ul className="proposals-list__main-list" >{filteredData.map((row) => renderRow(row))}</ul>;
 };

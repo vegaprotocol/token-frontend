@@ -26,6 +26,12 @@ const useProposalNetworkParams = ({
       requiredParticipation: 100,
     };
   }
+  if (!data) {
+    return {
+      requiredMajority: 0,
+      requiredParticipation: 0,
+    };
+  }
   const [
     updateMarketMajority,
     updateMarketParticipation,
@@ -35,7 +41,7 @@ const useProposalNetworkParams = ({
     assetParticipation,
     paramMajority,
     paramParticipation,
-  ] = data!;
+  ] = data;
 
   switch (proposal.terms.change.__typename) {
     case "UpdateMarket":
