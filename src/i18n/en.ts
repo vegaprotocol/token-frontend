@@ -395,7 +395,6 @@ const en = {
     "The VEGA token address is {{address}}, make sure you add this to your wallet to see your tokens",
   "Go to <stakingLink>staking</stakingLink> or <governanceLink>governance</governanceLink> to see how you can use your unlocked tokens":
     "Go to <stakingLink>staking</stakingLink> or <governanceLink>governance</governanceLink> to see how you can use your unlocked tokens",
-<<<<<<< HEAD
   liquidityNav: "DEX Liquidity",
   liquidityIntro: "Provide liquidity on decentralised exchanges and deposit the LP tokens in to our contract to earn rewards",
   liquidityTokensWalletTitle: "LP Tokens in connected wallet",
@@ -413,8 +412,7 @@ const en = {
   liquidityTokenBalance: "Balance",
   liquidityTokenDeposit: "Deposit",
   liquidityTokenApprove: "Approve",
-  liquidityComingSoon: "Liquidity rewards coming soon"
-=======
+  liquidityComingSoon: "Liquidity rewards coming soon",
   "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.":
     "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.",
   "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.":
@@ -424,7 +422,6 @@ const en = {
   "VEGA in wallet": "VEGA in wallet",
   "Vesting associated": "Vesting associated",
   "Wallet associated": "Wallet associated",
->>>>>>> develop
 };
 
 export default en;
