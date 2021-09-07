@@ -57,7 +57,6 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
   // Attempte to get vega keys on startup
   React.useEffect(() => {
     async function run() {
-      console.log("getKeys");
       const [err, keys] = await vegaWalletService.getKeys();
 
       // attempt to load keys complete
