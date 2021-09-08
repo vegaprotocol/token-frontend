@@ -162,6 +162,6 @@ export interface IVegaLPStaking {
   stakedBalance(account: string): Promise<BigNumber>;
   rewardsBalance(account: string): Promise<BigNumber>;
   estimateAPY(): Promise<BigNumber>;
-  stake(amount: BigNumber, account: string): PromiEvent;
-  unstake(account: string): PromiEvent;
+  stake(amount: BigNumber, account: string): PromiEvent<string>;
+  unstake(account: string): PromiEvent<void>;
 }

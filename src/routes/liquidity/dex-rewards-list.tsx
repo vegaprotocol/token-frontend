@@ -3,7 +3,6 @@ import "./dex-rewards-list.scss"
 import {EtherscanLink} from "../../components/etherscan-link";
 import {useAppState} from "../../contexts/app-state/app-state-context";
 import {DexLiquidityRewards} from "../../config";
-import {truncateMiddle} from "../../lib/truncate-middle";
 
 /**
  * Maps over a list of contracts and fetches the total
@@ -35,7 +34,7 @@ export const DexRewardsList = ({ contracts, hideBalance }: {
         <tbody>
           {contracts.map(r => (<tr id={r.address}>
             <td>{r.title}</td>
-            <td><EtherscanLink chainId={chainId} hash={r.address} text={truncateMiddle(r.address)} /></td>
+            <td><EtherscanLink chainId={chainId} hash={r.address} text={r.address} /></td>
             {hideBalance ? null : <td>0</td>}
           </tr>))}
         </tbody>

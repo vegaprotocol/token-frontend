@@ -38,7 +38,7 @@ class MockedToken implements IVegaToken {
     return this.performFetch("balance");
   }
 
-  approve(address: string, spender: string): PromiEvent {
+  approve(address: string, spender: string): PromiEvent<boolean> {
     return promiEventFactory(uuidv4(), "approve");
   }
 

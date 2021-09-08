@@ -45,7 +45,7 @@ class MockedVegaStaking implements IVegaStaking {
     amount: string,
     newAddress: string,
     vegaKey: string
-  ): PromiEvent<void> {
+  ): PromiEvent<string> {
     return promiEventFactory(uuidv4(), "transfer-stake");
   }
   async stakeBalance(address: string, vegaKey: string): Promise<BigNumber> {

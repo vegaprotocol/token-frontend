@@ -25,7 +25,7 @@ export function uuidv4() {
   });
 }
 
-export function promiEventFactory(id: string, name: string): PromiEvent<void> {
+export function promiEventFactory(id: string, name: string): PromiEvent<any> {
   let events: { [event: string]: Array<Function> } = {};
   const fns: { [fn: string]: Function } = {};
 
@@ -68,5 +68,5 @@ export function promiEventFactory(id: string, name: string): PromiEvent<void> {
     name,
   });
   fns.off = () => {};
-  return fns as unknown as PromiEvent<void>;
+  return fns as unknown as PromiEvent<any>;
 }

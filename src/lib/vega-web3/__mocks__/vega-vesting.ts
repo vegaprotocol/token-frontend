@@ -31,11 +31,11 @@ class MockedVesting implements IVegaVesting {
     return Promise.resolve(true);
   }
 
-  addStake(address: string, amount: string, vegaKey: string): PromiEvent {
+  addStake(address: string, amount: string, vegaKey: string): PromiEvent<void> {
     return promiEventFactory(uuidv4(), "add-stake");
   }
 
-  removeStake(address: string, amount: string, vegaKey: string): PromiEvent {
+  removeStake(address: string, amount: string, vegaKey: string): PromiEvent<void> {
     return promiEventFactory(uuidv4(), "remove-stake");
   }
 
@@ -72,7 +72,7 @@ class MockedVesting implements IVegaVesting {
     }
   }
 
-  withdrawFromTranche(account: string, trancheId: number): PromiEvent {
+  withdrawFromTranche(account: string, trancheId: number): PromiEvent<void> {
     return promiEventFactory(uuidv4(), "withdraw-from-tranche");
   }
 
