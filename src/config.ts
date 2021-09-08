@@ -33,19 +33,19 @@ export const Addresses: IAddresses = {
     stakingBridge: "0x1B57E5393d949242a9AD6E029E2f8A684BFbBC08",
     dexLiquidityRewards: [
       {
-        title: "DEX/VEGA/USDC",
+        title: "SUSHI/VEGA/ETH",
         address: "0xf3153577008864d23805Dd0912340AF5604bb544"
       },
       {
-        title: "DEX/VEGA/DAI",
+        title: "SUSHI/VEGA/USDC",
         address: "0xf3153577008864d23805Dd0912340AF5604bb544"
       },
       {
-        title: "DEX2/VEGA/DAI",
+        title: "UNI/VEGA/ETH",
         address: "0xf3153577008864d23805Dd0912340AF5604bb544"
       },
       {
-        title: "DEX2/VEGA/DAI",
+        title: "UNI/VEGA/USDC",
         address: "0xf3153577008864d23805Dd0912340AF5604bb544"
       }
     ],
