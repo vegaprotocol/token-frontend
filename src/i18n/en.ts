@@ -243,6 +243,13 @@ const en = {
   passed: "Passed",
   noProposals: "There are no active network change proposals",
 
+  newNetworkParam: "New Network param",
+  networkChanges: "NETWORK CHANGES",
+  proposedOn: "Proposed on:",
+  proposedBy: "Proposed by:",
+  toEnactOn: "to enact on:",
+  proposedNewValue: "Proposed new value:",
+
   // Token Details
   "Token address": "Token address",
   "Token contract": "Token contract",
