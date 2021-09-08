@@ -1,6 +1,6 @@
 import { BigNumber } from "../lib/bignumber";
 import { Tranche } from "./vega-web3/vega-web3-types";
-import {EventEmitter} from 'events';
+import { EventEmitter } from "events";
 
 export type EthereumChainId = "0x1" | "0x3" | "0x4" | "0x5" | "0x2a";
 export type EthereumChainName =
@@ -26,35 +26,54 @@ export const EthereumChainIds: Record<EthereumChainName, EthereumChainId> = {
   Kovan: "0x2a",
 };
 
-export declare class PromiEvent<T> extends EventEmitter implements PromiseLike<T>
+export declare class PromiEvent<T>
+  extends EventEmitter
+  implements PromiseLike<T>
 {
-    constructor(executor: (resolve: PromiEvent.Resolve<T>, reject: PromiEvent.Reject) => void);
+  constructor(
+    executor: (
+      resolve: PromiEvent.Resolve<T>,
+      reject: PromiEvent.Reject
+    ) => void
+  );
 
-    public then <TResult1, TResult2> (
-    onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
-    onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null
+  public then<TResult1, TResult2>(
+    onfulfilled?:
+      | ((value: T) => TResult1 | PromiseLike<TResult1>)
+      | undefined
+      | null,
+    onrejected?:
+      | ((reason: any) => TResult2 | PromiseLike<TResult2>)
+      | undefined
+      | null
   ): Promise<TResult1 | TResult2>;
 
-  public catch <TResult> (
-    onRejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null
+  public catch<TResult>(
+    onRejected?:
+      | ((reason: any) => TResult | PromiseLike<TResult>)
+      | undefined
+      | null
   ): Promise<T | TResult>;
 
   public finally(onfinally?: (() => void) | null | undefined): Promise<T>;
 
   static resolve<T>(value: T): PromiEvent<T>;
   static reject<T>(reason: any): PromiEvent<T>;
-};
+}
 
-declare namespace PromiEvent
-{
-    export type Resolve<T> = (value?: T | PromiseLike<T>) => void
-    export type Reject = (reason?: any) => void
+declare namespace PromiEvent {
+  export type Resolve<T> = (value?: T | PromiseLike<T>) => void;
+  export type Reject = (reason?: any) => void;
 }
 
 export interface IStaking {
   stakeBalance(address: string, vegaKey: string): Promise<BigNumber>;
   totalStaked(): Promise<BigNumber>;
-  removeStake(address: string, amount: string, vegaKey: string): PromiEvent<void>;
+  removeStake(
+    address: string,
+    amount: string,
+    vegaKey: string
+  ): PromiEvent<void>;
   checkRemoveStake(
     address: string,
     amount: string,
@@ -159,9 +178,11 @@ export interface IVegaToken {
 }
 
 export interface IVegaLPStaking {
-  stakedBalance(account: string): Promise<BigNumber>;
-  rewardsBalance(account: string): Promise<BigNumber>;
+  stakedBalance(account: string): Promise<string>;
+  rewardsBalance(account: string): Promise<string>;
+  awardTokenTotalSupply(): Promise<string>;
   estimateAPY(): Promise<BigNumber>;
   stake(amount: BigNumber, account: string): PromiEvent<string>;
   unstake(account: string): PromiEvent<void>;
+  lpAllowance(account: string): Promise<string>;
 }
