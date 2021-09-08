@@ -18,12 +18,11 @@ import { VegaWallet } from "../../components/vega-wallet";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
 import { AssociateContainer } from "../staking/associate/associate-page";
 import { DisassociateContainer } from "../staking/disassociate/disassociate-page";
-import { StakingNodeContainer } from "../staking/staking-node";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 
-  // # fragment ProposalFields on Proposals {
-    
+// # fragment ProposalFields on Proposals {
+
 export const PROPOSALS_QUERY = gql`
   query Proposals {
     proposals {
@@ -197,8 +196,6 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
       unsub();
     };
   }, [subscribeToMore]);
-
-  console.log("data", data);
 
   // const proposals = React.useMemo(() => {
   //   if (!data?.proposals?.length) {
@@ -861,9 +858,6 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
   return Flags.MAINNET_DISABLED ? (
     <TemplateDefault title={t("pageTitleGovernance")}>
       <div>{t("Governance is coming soon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</div>
-      <Callout intent="error" title={t("Something went wrong")}>
-        <pre>{"error.messages"}</pre>
-      </Callout>
     </TemplateDefault>
   ) : (
     <TemplateSidebar
@@ -880,14 +874,7 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
           <Route path={`${match.path}/disassociate`}>
             <DisassociateContainer />
           </Route>
-          <Route path={`${match.path}/:node`}>
-            <StakingNodeContainer />
-          </Route>
           <Route path={match.path} exact>
-            <p>{t("proposedChangesToVegaNetwork")}</p>
-            <p>{t("vegaTokenHoldersCanVote")}</p>
-            <p>{t("requiredMajorityDescription")}</p>
-            <h2>{t("proposals")}</h2>
             {error ? (
               <Callout intent="error" title={t("Something went wrong")}>
                 <pre>{error.message}</pre>
@@ -895,6 +882,9 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
             ) : (
               <ProposalsList data={proposals} />
             )}
+          </Route>
+          <Route path={`${match.path}/:node`}>
+            <div>Placeholder</div>
           </Route>
         </Switch>
       )}

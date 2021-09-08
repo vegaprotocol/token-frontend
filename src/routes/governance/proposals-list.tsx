@@ -29,7 +29,7 @@ export const ProposalsList = ({ data }: ProposalsListProps) => {
     return (
       <li className="proposals-list__main-list-item" key={row.id}>
         <div className="proposals-list__row">
-          <Link className="proposals-list__first-item" to={"/test"}>
+          <Link className="proposals-list__first-item" to={`/governance/${row.id}`}>
             {
               (
                 row.terms
@@ -63,5 +63,15 @@ export const ProposalsList = ({ data }: ProposalsListProps) => {
     );
   };
 
-  return <ul className="proposals-list__main-list" >{filteredData.map((row) => renderRow(row))}</ul>;
+  return (
+    <>
+      <p>{t("proposedChangesToVegaNetwork")}</p>
+      <p>{t("vegaTokenHoldersCanVote")}</p>
+      <p>{t("requiredMajorityDescription")}</p>
+      <h2>{t("proposals")}</h2>
+      <ul className="proposals-list__main-list">
+        {filteredData.map((row) => renderRow(row))}
+      </ul>
+    </>
+  );
 };
