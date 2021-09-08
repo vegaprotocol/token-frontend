@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import "./dex-rewards-list.scss"
 import {EtherscanLink} from "../../components/etherscan-link";
 import {useAppState} from "../../contexts/app-state/app-state-context";
-import {DexLiquidityRewards} from "../../config";
+import {DexContractState} from "./dex-liquidity-reducer";
 
 /**
  * Maps over a list of contracts and fetches the total
@@ -11,7 +11,7 @@ import {DexLiquidityRewards} from "../../config";
  * @constructor
  */
 export const DexRewardsList = ({ contracts }: {
-  contracts: DexLiquidityRewards[]
+  contracts
 }) => {
   const { t } = useTranslation();
 
@@ -31,11 +31,10 @@ export const DexRewardsList = ({ contracts }: {
           </tr>
         </thead>
         <tbody>
-          {contracts.map(r => (<tr id={r.address}>
             <td>{r.title}</td>
             <td><EtherscanLink chainId={chainId} hash={r.address} text={r.address} /></td>
             <td>0</td>
-          </tr>))}
+          </tr>
         </tbody>
       </table>
 
