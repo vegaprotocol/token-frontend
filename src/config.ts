@@ -1,6 +1,21 @@
-import { EthereumChainId, EthereumChainIds } from "./lib/web3-utils";
+import {EthereumChainId, EthereumChainIds, EthereumChainName} from "./lib/web3-utils";
+import {DexLPStakingContract} from "./routes/liquidity";
 
-export const Addresses = {
+type IAddressList = {
+  vestingAddress: string
+  vegaTokenAddress: string
+  claimAddress: string
+  lockedAddress: string
+  stakingBridge: string
+  dexLiquidityRewards: DexLiquidityRewards[]
+}
+
+// Lame cop out: any should
+type IAddresses = Record<any, IAddressList>
+type DexLiquidityRewards = Pick<DexLPStakingContract, "title" | "address">
+
+
+export const Addresses: IAddresses = {
   [EthereumChainIds.Mainnet]: {
     vestingAddress: "0x23d1bFE8fA50a167816fBD79D7932577c06011f4",
     vegaTokenAddress: "0xcB84d72e61e383767C4DFEb2d8ff7f4FB89abc6e",
@@ -17,8 +32,23 @@ export const Addresses = {
     lockedAddress: "0x0356782bfb61cf0b0463746bc6fe8766aacae8f0",
     stakingBridge: "0x1B57E5393d949242a9AD6E029E2f8A684BFbBC08",
     dexLiquidityRewards: [
-
-    ]
+      {
+        title: "DEX/VEGA/USDC",
+        address: "0xf3153577008864d23805Dd0912340AF5604bb544"
+      },
+      {
+        title: "DEX/VEGA/DAI",
+        address: "0xf3153577008864d23805Dd0912340AF5604bb544"
+      },
+      {
+        title: "DEX/VEGA/DAI",
+        address: "0xf3153577008864d23805Dd0912340AF5604bb544"
+      },
+      {
+        title: "DEX/VEGA/DAI",
+        address: "0xf3153577008864d23805Dd0912340AF5604bb544"
+      }
+    ],
   },
 };
 
