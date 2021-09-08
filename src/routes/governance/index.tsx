@@ -8,22 +8,21 @@ import { useTranslation } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 
 import { gql, useQuery } from "@apollo/client";
-import { TemplateDefault } from "../../components/page-templates/template-default";
 import { Proposals } from "./__generated__/proposals";
 import { Callout } from "../../components/callout";
 import { ProposalsList } from "./proposals-list";
-import { Flags } from "../../flags";
 import { EthWallet } from "../../components/eth-wallet";
 import { VegaWallet } from "../../components/vega-wallet";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
 import { AssociateContainer } from "../staking/associate/associate-page";
 import { DisassociateContainer } from "../staking/disassociate/disassociate-page";
-import { StakingNodeContainer } from "../staking/staking-node";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 
+// # fragment ProposalFields on Proposals {
+
 export const PROPOSALS_QUERY = gql`
-  fragment ProposalFields on Proposals {
+  query Proposals {
     proposals {
       id
       name @client
@@ -195,8 +194,6 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
       unsub();
     };
   }, [subscribeToMore]);
-
-  console.log("data", data);
 
   // const proposals = React.useMemo(() => {
   //   if (!data?.proposals?.length) {
@@ -856,46 +853,37 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
     );
   }
 
-  return Flags.MAINNET_DISABLED ? (
-    <TemplateDefault title={t("pageTitleGovernance")}>
-      <div>{t("Governance is coming soon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</div>
-      <Callout intent="error" title={t("Something went wrong")}>
-        <pre>{"error.messages"}</pre>
-      </Callout>
-    </TemplateDefault>
-  ) : (
+  return (
     <TemplateSidebar
       title={t("pageTitleGovernance")}
       sidebar={[<EthWallet />, <VegaWallet />]}
     >
-      {Flags.MAINNET_DISABLED ? (
-        <div>{t("Governance is coming soon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</div>
-      ) : (
-        <Switch>
-          <Route path={`${match.path}/associate`}>
-            <AssociateContainer />
-          </Route>
-          <Route path={`${match.path}/disassociate`}>
-            <DisassociateContainer />
-          </Route>
-          <Route path={`${match.path}/:node`}>
-            <StakingNodeContainer />
-          </Route>
-          <Route path={match.path} exact>
-            <p>{t("proposedChangesToVegaNetwork")}</p>
-            <p>{t("vegaTokenHoldersCanVote")}</p>
-            <p>{t("requiredMajorityDescription")}</p>
-            <h2>{t("proposals")}</h2>
-            {error ? (
-              <Callout intent="error" title={t("Something went wrong")}>
-                <pre>{error.message}</pre>
-              </Callout>
-            ) : (
-              <ProposalsList data={proposals} />
-            )}
-          </Route>
-        </Switch>
-      )}
+      <Switch>
+        <Route path={`${match.path}/associate`}>
+          <AssociateContainer />
+        </Route>
+        <Route path={`${match.path}/disassociate`}>
+          <DisassociateContainer />
+        </Route>
+        <Route path={match.path} exact>
+          {error ? (
+            <Callout intent="error" title={t("Something went wrong")}>
+              <pre>{error.message}</pre>
+            </Callout>
+          ) : (
+            <ProposalsList data={proposals} />
+          )}
+        </Route>
+        <Route path={`${match.path}/:node`}>
+          {error ? (
+            <Callout intent="error" title={t("Something went wrong")}>
+              <pre>{error.message}</pre>
+            </Callout>
+          ) : (
+            <div>Placeholder</div>
+          )}
+        </Route>
+      </Switch>
     </TemplateSidebar>
   );
 };
