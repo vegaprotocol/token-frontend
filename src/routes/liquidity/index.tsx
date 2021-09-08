@@ -14,6 +14,8 @@ import {ADDRESSES } from "../../config";
 const DISABLE_EARNING = true;
 const DISABLE_CONNECTED = true;
 
+const BLOG_LINK = "https://blog.vega.xyz/unlocking-vega-coinlist-pro-uniswap-sushiswap-b1414750e358";
+
 /**
  * What I imagine we need to know about a contract to render this
  */
@@ -62,6 +64,10 @@ const RedemptionIndex = ({name}: RouteChildProps) => {
   return (
     <TemplateDefault title={t("pageTitleLiquidity")}>
       <p>{t('liquidityIntro')}</p>
+      <p>
+        {t('liquidityIntroInstructionsLink')}.&nbsp;
+        <a href={BLOG_LINK} rel="nofollow noreferrer">{t('liquidityIntroInstructionsLink')}</a>.
+      </p>
       <Web3Provider>
         {(address) => (
           <>

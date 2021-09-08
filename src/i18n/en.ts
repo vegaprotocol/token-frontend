@@ -397,6 +397,7 @@ const en = {
     "Go to <stakingLink>staking</stakingLink> or <governanceLink>governance</governanceLink> to see how you can use your unlocked tokens",
   liquidityNav: "DEX Liquidity",
   liquidityIntro: "Provide liquidity on decentralised exchanges and deposit the LP tokens in to our contract to earn rewards",
+  liquidityIntroInstructionsLink: "You can read about our our incentive program in this blog post",
   liquidityTokensWalletTitle: "LP Tokens in connected wallet",
   liquidityTokensWalletIntro: "The following tokens can be staked to earn VEGA",
   liquidityTokensContractTitle: "LP Tokens earning rewards",
