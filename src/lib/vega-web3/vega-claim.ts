@@ -38,7 +38,7 @@ export default class VegaClaim implements IVegaClaim {
    * otherwise the action is pointless
    * @return {Promise<boolean>}
    */
-  public commit(claimCode: string, account: string): PromiEvent {
+  public commit(claimCode: string, account: string): PromiEvent<void> {
     const hash = this.deriveCommitment(claimCode, account);
 
     return this.contract.methods
@@ -78,7 +78,7 @@ export default class VegaClaim implements IVegaClaim {
     country: string;
     targeted: boolean;
     account: string;
-  }): PromiEvent {
+  }): PromiEvent<void> {
     return this.contract.methods[
       targeted ? "redeem_targeted" : "redeem_untargeted_code"
     ](
