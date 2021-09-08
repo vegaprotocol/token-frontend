@@ -872,16 +872,16 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
               <pre>{error.message}</pre>
             </Callout>
           ) : (
-            <ProposalsList data={proposals} />
+            <ProposalsList proposals={proposals} />
           )}
         </Route>
-        <Route path={`${match.path}/:node`}>
+        <Route path={`${match.path}/:proposalId`}>
           {error ? (
             <Callout intent="error" title={t("Something went wrong")}>
               <pre>{error.message}</pre>
             </Callout>
           ) : (
-            <Proposal />
+            <Proposal proposals={proposals} />
           )}
         </Route>
       </Switch>
