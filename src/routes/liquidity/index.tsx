@@ -8,6 +8,12 @@ import {BigNumber} from "../../lib/bignumber";
 import {DexTokensUnstaked} from "./dex-tokens-unstaked";
 import {TemplateDefault} from "../../components/page-templates/template-default";
 import {ADDRESSES } from "../../config";
+
+// It's possible for us to deploy with just addresses. Bad but possible. These 'flags'
+// are here in case we have to do that.
+const DISABLE_EARNING = true;
+const DISABLE_CONNECTED = true;
+
 /**
  * What I imagine we need to know about a contract to render this
  */
@@ -53,7 +59,6 @@ const RedemptionIndex = ({name}: RouteChildProps) => {
   const {t} = useTranslation();
 
   const AvailableRewards = ADDRESSES.dexLiquidityRewards;
-
   return (
     <TemplateDefault title={t("pageTitleLiquidity")}>
       <p>{t('liquidityIntro')}</p>
@@ -61,8 +66,8 @@ const RedemptionIndex = ({name}: RouteChildProps) => {
         {(address) => (
           <>
             <DexRewardsList contracts={AvailableRewards}/>
-            <DexTokensStaked contracts={REWARD_CONTRACTS}/>
-            <DexTokensUnstaked contracts={REWARD_CONTRACTS}/>
+            { DISABLE_EARNING ? null : <DexTokensStaked contracts={REWARD_CONTRACTS}/> }
+            { DISABLE_CONNECTED ? null : <DexTokensUnstaked contracts={REWARD_CONTRACTS}/> }
           </>
         )}
       </Web3Provider>
