@@ -18,6 +18,7 @@ import { AssociateContainer } from "../staking/associate/associate-page";
 import { DisassociateContainer } from "../staking/disassociate/disassociate-page";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
+import { Proposal } from "./proposal";
 
 // # fragment ProposalFields on Proposals {
 
@@ -880,7 +881,7 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
               <pre>{error.message}</pre>
             </Callout>
           ) : (
-            <div>Placeholder</div>
+            <Proposal />
           )}
         </Route>
       </Switch>
