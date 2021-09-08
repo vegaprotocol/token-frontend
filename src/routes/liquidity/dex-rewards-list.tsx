@@ -11,7 +11,10 @@ import {truncateMiddle} from "../../lib/truncate-middle";
  *
  * @constructor
  */
-export const DexRewardsList = ({ contracts }: { contracts: DexLiquidityRewards[]}) => {
+export const DexRewardsList = ({ contracts, hideBalance }: {
+  contracts: DexLiquidityRewards[],
+  hideBalance: boolean
+}) => {
   const { t } = useTranslation();
 
   const {
@@ -26,14 +29,14 @@ export const DexRewardsList = ({ contracts }: { contracts: DexLiquidityRewards[]
           <tr>
             <th>{t('liquidityTotalAvailableRewardsToken')}</th>
             <th>{t('liquidityTotalAvailableAddress')}</th>
-            <th>{t('liquidityTotalAvailableRewardsBalance')}</th>
+            {hideBalance ? null : <th>{t('liquidityTotalAvailableRewardsBalance')}</th>}
           </tr>
         </thead>
         <tbody>
           {contracts.map(r => (<tr id={r.address}>
             <td>{r.title}</td>
             <td><EtherscanLink chainId={chainId} hash={r.address} text={truncateMiddle(r.address)} /></td>
-            <td>0</td>
+            {hideBalance ? null : <td>0</td>}
           </tr>))}
         </tbody>
       </table>
