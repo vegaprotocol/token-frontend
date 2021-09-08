@@ -22,8 +22,10 @@ import { StakingNodeContainer } from "../staking/staking-node";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 
+  // # fragment ProposalFields on Proposals {
+    
 export const PROPOSALS_QUERY = gql`
-  fragment ProposalFields on Proposals {
+  query Proposals {
     proposals {
       id
       name @client
