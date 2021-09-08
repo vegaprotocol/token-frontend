@@ -275,7 +275,6 @@ const en = {
   "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes.":
     "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes.",
   "Associate VEGA Tokens with key": "Associate VEGA Tokens with key",
-  "Vesting contract": "Vesting contract",
   Wallet: "Wallet",
   "Nominate Stake to Validator Node": "Nominate Stake to Validator Node",
   "Associating Tokens": "Associating Tokens",
