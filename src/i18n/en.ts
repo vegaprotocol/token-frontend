@@ -216,7 +216,7 @@ const en = {
   "Across all tranches": "Across all tranches",
 
   // Homepage
-  "The Vega Token": "The Vega Token",
+  "The $VEGA token": "The $VEGA token",
   // Duplicate title -> should probably use sections, lazily de-duping by changing the key
   "Token Vesting": "Vesting",
   Governance: "Governance",
@@ -230,11 +230,11 @@ const en = {
 
   // Token Details
   "Token address": "Token address",
-  "Token contract": "Token contract",
+  "Vesting contract": "Vesting contract",
   "Total supply": "Total supply",
   "Circulating supply": "Circulating supply",
-  "Staked on Vega": "Staked on Vega",
-  "Associated on Vega": "Associated on Vega",
+  "Staked on Vega validator": "Staked on Vega validator",
+  "$VEGA associated with a Vega key": "$VEGA associated with a Vega key",
   "There are {{nodeCount}} nodes with a shared stake of {{sharedStake}} VEGA tokens":
     "There are {{nodeCount}} nodes with a shared stake of {{sharedStake}} VEGA tokens",
 

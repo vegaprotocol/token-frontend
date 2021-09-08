@@ -37,7 +37,7 @@ export const TokenDetails = ({
         </td>
       </KeyValueTableRow>
       <KeyValueTableRow>
-        <th>{t("Token contract")}</th>
+        <th>{t("Vesting contract")}</th>
         <td data-testid="token-contract">
           <EtherscanLink
             chainId={appState.chainId}
@@ -55,13 +55,15 @@ export const TokenDetails = ({
         <TokenDetailsCirculating tranches={appState.tranches} />
       </KeyValueTableRow>
       <KeyValueTableRow>
-        <th>{t("Associated on Vega")}</th>
+        <th style={{ whiteSpace: "nowrap" }}>
+          {t("$VEGA associated with a Vega key")}
+        </th>
         <td data-testid="associated">
           {formatNumber(appState.totalAssociated)}
         </td>
       </KeyValueTableRow>
       <KeyValueTableRow>
-        <th>{t("Staked on Vega")}</th>
+        <th>{t("Staked on Vega validator")}</th>
         <td data-testid="staked">{formatNumber(totalStaked)}</td>
       </KeyValueTableRow>
     </KeyValueTable>
