@@ -249,6 +249,7 @@ const en = {
   proposedBy: "Proposed by:",
   toEnactOn: "to enact on:",
   proposedNewValue: "Proposed new value:",
+  votes: "Votes",
 
   // Token Details
   "Token address": "Token address",
