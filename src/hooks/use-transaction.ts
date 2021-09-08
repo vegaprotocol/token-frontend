@@ -20,7 +20,7 @@ const IgnoreCodes = {
 };
 
 export const useTransaction = (
-  performTransaction: (...args: any[]) => PromiEvent,
+  performTransaction: (...args: any[]) => PromiEvent<any>,
   checkTransaction?: (...args: any[]) => Promise<any>
 ) => {
   const { t } = useTranslation();
@@ -76,10 +76,12 @@ export const useTransaction = (
           dispatch({ type: TransactionActionType.TX_SUBMITTED, txHash: hash });
         })
         .on("receipt", (receipt: any) => {
+          // @ts-ignore
           sub.off();
           dispatch({ type: TransactionActionType.TX_COMPLETE, receipt });
         })
         .on("error", (err: Error) => {
+          // @ts-ignore
           sub.off();
           handleError(err);
         });

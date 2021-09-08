@@ -17,7 +17,7 @@ class MockedVegaClaim implements IVegaClaim {
     }
   }
 
-  commit(claimCode: string, account: string): PromiEvent {
+  commit(claimCode: string, account: string): PromiEvent<void> {
     return promiEventFactory(uuidv4(), "commit");
   }
 
@@ -44,7 +44,7 @@ class MockedVegaClaim implements IVegaClaim {
     country: string;
     targeted: boolean;
     account: string;
-  }): PromiEvent {
+  }): PromiEvent<void> {
     return promiEventFactory(uuidv4(), "claim");
   }
 
