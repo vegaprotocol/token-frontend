@@ -7,7 +7,7 @@ import {DexRewardsList} from "./dex-rewards-list";
 import {BigNumber} from "../../lib/bignumber";
 import {DexTokensUnstaked} from "./dex-tokens-unstaked";
 import {TemplateDefault} from "../../components/page-templates/template-default";
-
+import {ADDRESSES } from "../../config";
 /**
  * What I imagine we need to know about a contract to render this
  */
@@ -52,13 +52,15 @@ const RedemptionIndex = ({name}: RouteChildProps) => {
   useDocumentTitle(name);
   const {t} = useTranslation();
 
+  const AvailableRewards = ADDRESSES.dexLiquidityRewards;
+
   return (
     <TemplateDefault title={t("pageTitleLiquidity")}>
       <p>{t('liquidityIntro')}</p>
       <Web3Provider>
         {(address) => (
           <>
-            <DexRewardsList contracts={REWARD_CONTRACTS}/>
+            <DexRewardsList contracts={AvailableRewards}/>
             <DexTokensStaked contracts={REWARD_CONTRACTS}/>
             <DexTokensUnstaked contracts={REWARD_CONTRACTS}/>
           </>

@@ -12,7 +12,7 @@ type IAddressList = {
 
 // Lame cop out: any should
 type IAddresses = Record<any, IAddressList>
-type DexLiquidityRewards = Pick<DexLPStakingContract, "title" | "address">
+export type DexLiquidityRewards = Pick<DexLPStakingContract, "title" | "address">
 
 
 export const Addresses: IAddresses = {
@@ -41,11 +41,11 @@ export const Addresses: IAddresses = {
         address: "0xf3153577008864d23805Dd0912340AF5604bb544"
       },
       {
-        title: "DEX/VEGA/DAI",
+        title: "DEX2/VEGA/DAI",
         address: "0xf3153577008864d23805Dd0912340AF5604bb544"
       },
       {
-        title: "DEX/VEGA/DAI",
+        title: "DEX2/VEGA/DAI",
         address: "0xf3153577008864d23805Dd0912340AF5604bb544"
       }
     ],

@@ -1,6 +1,9 @@
 import { useTranslation } from "react-i18next";
 import "./dex-rewards-list.scss"
-import {DexLPStakingContract} from "./index";
+import {EtherscanLink} from "../../components/etherscan-link";
+import {useAppState} from "../../contexts/app-state/app-state-context";
+import {DexLiquidityRewards} from "../../config";
+import {truncateMiddle} from "../../lib/truncate-middle";
 
 /**
  * Maps over a list of contracts and fetches the total
@@ -8,8 +11,12 @@ import {DexLPStakingContract} from "./index";
  *
  * @constructor
  */
-export const DexRewardsList = ({ contracts }: { contracts: DexLPStakingContract[]}) => {
+export const DexRewardsList = ({ contracts }: { contracts: DexLiquidityRewards[]}) => {
   const { t } = useTranslation();
+
+  const {
+    appState: { chainId },
+  } = useAppState();
 
   return (
     <section className="dex-rewards-list">
@@ -18,13 +25,15 @@ export const DexRewardsList = ({ contracts }: { contracts: DexLPStakingContract[
         <thead>
           <tr>
             <th>{t('liquidityTotalAvailableRewardsToken')}</th>
+            <th>{t('liquidityTotalAvailableAddress')}</th>
             <th>{t('liquidityTotalAvailableRewardsBalance')}</th>
           </tr>
         </thead>
         <tbody>
           {contracts.map(r => (<tr id={r.address}>
             <td>{r.title}</td>
-            <td>{r.availableRewardBalance.toString()}</td>
+            <td><EtherscanLink chainId={chainId} hash={r.address} text={truncateMiddle(r.address)} /></td>
+            <td>0</td>
           </tr>))}
         </tbody>
       </table>
