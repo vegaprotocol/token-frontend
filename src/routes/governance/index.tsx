@@ -99,78 +99,78 @@ export const PROPOSALS_QUERY = gql`
 
 export const proposalsSubscription = gql`
   subscription proposalsSub {
-    ...ProposalFields
-    # proposals {
-    #   id
-    #   name @client
-    #   reference
-    #   state
-    #   datetime
-    #   rejectionReason
-    #   party {
-    #     id
-    #   }
-    #   terms {
-    #     closingDatetime
-    #     enactmentDatetime
-    #     change {
-    #       ... on NewMarket {
-    #         instrument {
-    #           name
-    #         }
-    #       }
-    #       ... on UpdateMarket {
-    #         marketId
-    #       }
-    #       ... on UpdateNetworkParameter {
-    #         __typename
-    #         networkParameter {
-    #           key
-    #           value
-    #         }
-    #       }
-    #       ... on NewAsset {
-    #         __typename
-    #         symbol
-    #         source {
-    #           ... on BuiltinAsset {
-    #             maxFaucetAmountMint
-    #           }
-    #           ... on ERC20 {
-    #             contractAddress
-    #           }
-    #         }
-    #       }
-    #     }
-    #   }
-    #   votes {
-    #     yes {
-    #       totalTokens
-    #       totalWeight
-    #       totalNumber
-    #       votes {
-    #         value
-    #         party {
-    #           id
-    #         }
-    #         datetime
-    #       }
-    #     }
-    #     no {
-    #       totalTokens
-    #       totalWeight
-    #       totalNumber
-    #       votes {
-    #         value
-    #         party {
-    #           id
-    #         }
-    #         datetime
-    #       }
-    #     }
-    #   }
-    #   pending @client
-    # }
+    # ...ProposalFields
+    proposals {
+      id
+      name @client
+      reference
+      state
+      datetime
+      rejectionReason
+      party {
+        id
+      }
+      terms {
+        closingDatetime
+        enactmentDatetime
+        change {
+          ... on NewMarket {
+            instrument {
+              name
+            }
+          }
+          ... on UpdateMarket {
+            marketId
+          }
+          ... on UpdateNetworkParameter {
+            __typename
+            networkParameter {
+              key
+              value
+            }
+          }
+          ... on NewAsset {
+            __typename
+            symbol
+            source {
+              ... on BuiltinAsset {
+                maxFaucetAmountMint
+              }
+              ... on ERC20 {
+                contractAddress
+              }
+            }
+          }
+        }
+      }
+      votes {
+        yes {
+          totalTokens
+          totalWeight
+          totalNumber
+          votes {
+            value
+            party {
+              id
+            }
+            datetime
+          }
+        }
+        no {
+          totalTokens
+          totalWeight
+          totalNumber
+          votes {
+            value
+            party {
+              id
+            }
+            datetime
+          }
+        }
+      }
+      pending @client
+    }
   }
 `;
 
