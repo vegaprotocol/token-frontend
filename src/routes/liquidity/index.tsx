@@ -71,7 +71,7 @@ const RedemptionIndex = ({name}: RouteChildProps) => {
       <Web3Provider>
         {(address) => (
           <>
-            <DexRewardsList contracts={AvailableRewards} hideBalance={DISABLE_CONNECTED && DISABLE_EARNING}/>
+            <DexRewardsList contracts={AvailableRewards} />
             { DISABLE_EARNING ? null : <DexTokensStaked contracts={REWARD_CONTRACTS}/> }
             { DISABLE_CONNECTED ? null : <DexTokensUnstaked contracts={REWARD_CONTRACTS}/> }
           </>

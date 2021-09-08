@@ -10,9 +10,8 @@ import {DexLiquidityRewards} from "../../config";
  *
  * @constructor
  */
-export const DexRewardsList = ({ contracts, hideBalance }: {
-  contracts: DexLiquidityRewards[],
-  hideBalance: boolean
+export const DexRewardsList = ({ contracts }: {
+  contracts: DexLiquidityRewards[]
 }) => {
   const { t } = useTranslation();
 
@@ -23,19 +22,19 @@ export const DexRewardsList = ({ contracts, hideBalance }: {
   return (
     <section className="dex-rewards-list">
       <h2>{t('liquidityTotalAvailableRewards')}</h2>
-      <table className={'key-value-table dex-rewards-list-table'}>
-        <thead>
+      <table className="dex-rewards-list-table key-value-table">
+        <thead className="key-value-table__header">
           <tr>
             <th>{t('liquidityTotalAvailableRewardsToken')}</th>
             <th>{t('liquidityTotalAvailableAddress')}</th>
-            {hideBalance ? null : <th>{t('liquidityTotalAvailableRewardsBalance')}</th>}
+            <th>{t('liquidityTotalAvailableRewardsBalance')}</th>
           </tr>
         </thead>
         <tbody>
           {contracts.map(r => (<tr id={r.address}>
             <td>{r.title}</td>
             <td><EtherscanLink chainId={chainId} hash={r.address} text={r.address} /></td>
-            {hideBalance ? null : <td>0</td>}
+            <td>0</td>
           </tr>))}
         </tbody>
       </table>
