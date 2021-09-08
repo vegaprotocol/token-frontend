@@ -8,11 +8,9 @@ import { useTranslation } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 
 import { gql, useQuery } from "@apollo/client";
-import { TemplateDefault } from "../../components/page-templates/template-default";
 import { Proposals } from "./__generated__/proposals";
 import { Callout } from "../../components/callout";
 import { ProposalsList } from "./proposals-list";
-import { Flags } from "../../flags";
 import { EthWallet } from "../../components/eth-wallet";
 import { VegaWallet } from "../../components/vega-wallet";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
@@ -855,39 +853,37 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
     );
   }
 
-  return Flags.MAINNET_DISABLED ? (
-    <TemplateDefault title={t("pageTitleGovernance")}>
-      <div>{t("Governance is coming soon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</div>
-    </TemplateDefault>
-  ) : (
+  return (
     <TemplateSidebar
       title={t("pageTitleGovernance")}
       sidebar={[<EthWallet />, <VegaWallet />]}
     >
-      {Flags.MAINNET_DISABLED ? (
-        <div>{t("Governance is coming soon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</div>
-      ) : (
-        <Switch>
-          <Route path={`${match.path}/associate`}>
-            <AssociateContainer />
-          </Route>
-          <Route path={`${match.path}/disassociate`}>
-            <DisassociateContainer />
-          </Route>
-          <Route path={match.path} exact>
-            {error ? (
-              <Callout intent="error" title={t("Something went wrong")}>
-                <pre>{error.message}</pre>
-              </Callout>
-            ) : (
-              <ProposalsList data={proposals} />
-            )}
-          </Route>
-          <Route path={`${match.path}/:node`}>
+      <Switch>
+        <Route path={`${match.path}/associate`}>
+          <AssociateContainer />
+        </Route>
+        <Route path={`${match.path}/disassociate`}>
+          <DisassociateContainer />
+        </Route>
+        <Route path={match.path} exact>
+          {error ? (
+            <Callout intent="error" title={t("Something went wrong")}>
+              <pre>{error.message}</pre>
+            </Callout>
+          ) : (
+            <ProposalsList data={proposals} />
+          )}
+        </Route>
+        <Route path={`${match.path}/:node`}>
+          {error ? (
+            <Callout intent="error" title={t("Something went wrong")}>
+              <pre>{error.message}</pre>
+            </Callout>
+          ) : (
             <div>Placeholder</div>
-          </Route>
-        </Switch>
-      )}
+          )}
+        </Route>
+      </Switch>
     </TemplateSidebar>
   );
 };
