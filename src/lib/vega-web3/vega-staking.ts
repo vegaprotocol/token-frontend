@@ -34,7 +34,7 @@ export default class StakingAbi implements IVegaStaking {
       .call({ from: address });
   }
 
-  addStake(address: string, amount: string, vegaKey: string): PromiEvent {
+  addStake(address: string, amount: string, vegaKey: string): PromiEvent<void> {
     const convertedAmount = removeDecimal(
       new BigNumber(amount),
       this.decimals
@@ -58,7 +58,7 @@ export default class StakingAbi implements IVegaStaking {
       .call({ from: address });
   }
 
-  removeStake(address: string, amount: string, vegaKey: string): PromiEvent {
+  removeStake(address: string, amount: string, vegaKey: string): PromiEvent<void> {
     const convertedAmount = removeDecimal(
       new BigNumber(amount),
       this.decimals
@@ -88,7 +88,7 @@ export default class StakingAbi implements IVegaStaking {
     amount: string,
     newAddress: string,
     vegaKey: string
-  ): PromiEvent {
+  ): PromiEvent<string> {
     const convertedAmount = removeDecimal(
       new BigNumber(amount),
       this.decimals

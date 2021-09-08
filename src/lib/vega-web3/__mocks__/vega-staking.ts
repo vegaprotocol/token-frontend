@@ -34,10 +34,10 @@ class MockedVegaStaking implements IVegaStaking {
   ): Promise<any> {
     return Promise.resolve(true);
   }
-  addStake(address: string, amount: string, vegaKey: string): PromiEvent {
+  addStake(address: string, amount: string, vegaKey: string): PromiEvent<void> {
     return promiEventFactory(uuidv4(), "add-stake");
   }
-  removeStake(address: string, amount: string, vegaKey: string): PromiEvent {
+  removeStake(address: string, amount: string, vegaKey: string): PromiEvent<void> {
     return promiEventFactory(uuidv4(), "remove-stake");
   }
   transferStake(
@@ -45,7 +45,7 @@ class MockedVegaStaking implements IVegaStaking {
     amount: string,
     newAddress: string,
     vegaKey: string
-  ): PromiEvent {
+  ): PromiEvent<void> {
     return promiEventFactory(uuidv4(), "transfer-stake");
   }
   async stakeBalance(address: string, vegaKey: string): Promise<BigNumber> {

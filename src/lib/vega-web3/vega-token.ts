@@ -26,7 +26,7 @@ export default class VegaToken implements IVegaToken {
     return new BigNumber(addDecimal(new BigNumber(res), decimals));
   }
 
-  approve(address: string, spender: string): PromiEvent {
+  approve(address: string, spender: string): PromiEvent<boolean> {
     return this.contract.methods
       .approve(spender, Number.MAX_SAFE_INTEGER - 1)
       .send({ from: address });

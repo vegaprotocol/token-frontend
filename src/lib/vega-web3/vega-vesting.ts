@@ -48,7 +48,7 @@ export default class VegaVesting implements IVegaVesting {
       .call({ from: address });
   }
 
-  removeStake(address: string, amount: string, vegaKey: string): PromiEvent {
+  removeStake(address: string, amount: string, vegaKey: string): PromiEvent<void> {
     const convertedAmount = removeDecimal(
       new BigNumber(amount),
       this.decimals
@@ -58,7 +58,7 @@ export default class VegaVesting implements IVegaVesting {
       .send({ from: address });
   }
 
-  addStake(address: string, amount: string, vegaKey: string): PromiEvent {
+  addStake(address: string, amount: string, vegaKey: string): PromiEvent<void> {
     const convertedAmount = removeDecimal(
       new BigNumber(amount),
       this.decimals
@@ -122,7 +122,7 @@ export default class VegaVesting implements IVegaVesting {
     return getTranchesFromHistory(events, this.decimals);
   }
 
-  withdrawFromTranche(account: string, trancheId: number): PromiEvent {
+  withdrawFromTranche(account: string, trancheId: number): PromiEvent<void> {
     return this.contract.methods
       .withdraw_from_tranche(trancheId)
       .send({ from: account });
