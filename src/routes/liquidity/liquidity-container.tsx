@@ -1,5 +1,3 @@
-// It's possible for us to deploy with just addresses. Bad but possible. These 'flags'
-
 import { useTranslation } from "react-i18next";
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
 import { useEthUser } from "../../hooks/use-eth-user";

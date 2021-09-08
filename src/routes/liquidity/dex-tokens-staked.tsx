@@ -1,4 +1,5 @@
 import React from "react";
+import * as Sentry from "@sentry/react";
 import { useTranslation } from "react-i18next";
 import { useVegaLPStaking } from "../../hooks/use-vega-lp-staking";
 import { REWARDS_ADDRESSES } from "../../config";
@@ -68,7 +69,7 @@ export const DexTokensStakedItem = ({
         setUserLPTokens(LPTokens);
         setUserRewardBalance(rewardBalance);
       } catch (err) {
-        console.error(err);
+        Sentry.captureException(err);
       }
     };
 

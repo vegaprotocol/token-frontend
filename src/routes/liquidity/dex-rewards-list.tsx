@@ -1,5 +1,6 @@
 import "./dex-rewards-list.scss";
 import React from "react";
+import * as Sentry from "@sentry/react";
 import { useTranslation } from "react-i18next";
 import { EtherscanLink } from "../../components/etherscan-link";
 import { useAppState } from "../../contexts/app-state/app-state-context";
@@ -61,7 +62,7 @@ export const DexRewardsListItem = ({
         const supply = await lpStaking.awardTokenTotalSupply();
         setTotal(supply);
       } catch (err) {
-        console.error(err);
+        Sentry.captureException(err);
       }
     };
 
