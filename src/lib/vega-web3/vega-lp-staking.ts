@@ -3,7 +3,7 @@ import Web3 from "web3";
 import { AbiItem } from "web3-utils";
 import type { Contract } from "web3-eth-contract";
 import lpStakeAbi from "../abis/claim_abi.json";
-import { PromiEvent } from "../web3-utils";
+import {IVegaLPStaking, PromiEvent} from "../web3-utils";
 import { addDecimal } from "../decimals";
 
 /**
@@ -20,7 +20,7 @@ import { addDecimal } from "../decimals";
  * contract.isClaimValid({ claimCode: "0x...", expiry: 0, nonce: "0x00", account: "0x00" })
  * ```
  */
-export default class VegaLPStaking {
+export default class VegaLPStaking implements IVegaLPStaking {
   private web3: Web3;
   private contract: Contract;
   public readonly address: string;
@@ -36,14 +36,14 @@ export default class VegaLPStaking {
     this.decimals = decimals;
   }
 
-  async stakedBalance(account: String): Promise<BigNumber> {
+  async stakedBalance(account: string): Promise<BigNumber> {
     const amount = await this.contract.methods
       .total_staked_for_user(account)
       .call({ from: account });
     return new BigNumber(addDecimal(new BigNumber(amount), this.decimals));
   }
 
-  async rewardsBalance(account: String): Promise<BigNumber> {
+  async rewardsBalance(account: string): Promise<BigNumber> {
     const amount = await this.contract.methods
       .get_available_reward(account)
       .call({ from: account });

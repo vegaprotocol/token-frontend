@@ -137,3 +137,11 @@ export interface IVegaToken {
   approve(address: string, spender: string): PromiEvent;
   allowance(address: string, spender: string): Promise<BigNumber>;
 }
+
+export interface IVegaLPStaking {
+  stakedBalance(account: string): Promise<BigNumber>;
+  rewardsBalance(account: string): Promise<BigNumber>;
+  estimateAPY(): Promise<BigNumber>;
+  stake(amount: BigNumber, account: string): PromiEvent;
+  unstake(account: string): PromiEvent;
+}
