@@ -95,7 +95,7 @@ const DexRewardsTableRow = ({
     rewardsBalance: string;
     stakedBalance: string;
     unstakedBalance: string;
-  } | null>();
+  } | null>(null);
 
   React.useEffect(() => {
     const run = async () => {
@@ -135,7 +135,7 @@ const DexRewardsTableRow = ({
 
   return (
     <tr>
-      <td style={{ textAlign: "left" }}>{name}</td>
+      <td>{name}</td>
       <td>
         <EtherscanLink
           chainId={chainId}
@@ -143,10 +143,10 @@ const DexRewardsTableRow = ({
           text={truncateMiddle(contractAddress)}
         />
       </td>
-      <td>{values?.totalRewardsAvailable}</td>
-      <td>{values?.stakedBalance}</td>
-      <td>{values?.unstakedBalance}</td>
-      <td>{values?.rewardsBalance}</td>
+      <td>{values.totalRewardsAvailable}</td>
+      <td>{values.stakedBalance}</td>
+      <td>{values.unstakedBalance}</td>
+      <td>{values.rewardsBalance}</td>
     </tr>
   );
 };
