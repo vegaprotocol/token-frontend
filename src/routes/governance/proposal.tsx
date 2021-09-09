@@ -5,7 +5,7 @@ import {
   Proposals_proposals,
 } from "./__generated__/proposals";
 import { NetworkChange } from "./network-change";
-import { Vote } from "./vote";
+import { VoteDetails } from "./vote-details";
 
 interface ProposalProps {
   proposals: Proposals_proposals[];
@@ -22,7 +22,7 @@ export const Proposal = ({ proposals }: ProposalProps) => {
   return (
     <div>
       <NetworkChange proposal={proposal} />
-      <Vote proposal={proposal} />
+      <VoteDetails proposal={proposal} />
     </div>
   );
 };

@@ -228,7 +228,8 @@ const en = {
     "Tokens are held in different <trancheLink>Tranches</trancheLink>. Each tranche has its own schedule for how the tokens are unlocked.",
 
   // Governance
-  proposedChangesToVegaNetwork: "This page lists proposed changes to the Vega network.",
+  proposedChangesToVegaNetwork:
+    "This page lists proposed changes to the Vega network.",
   vegaTokenHoldersCanVote:
     "VEGA token holders can vote for or against proposals as well as make their own.",
   requiredMajorityDescription:
@@ -249,7 +250,14 @@ const en = {
   proposedBy: "Proposed by:",
   toEnactOn: "to enact on:",
   proposedNewValue: "Proposed new value:",
-  votes: "Votes",
+  "GOVERNANCE.votes": "Votes",
+  "GOVERNANCE.for": "For",
+  "GOVERNANCE.against": "Against",
+  "GOVERNANCE.majorityRequired": "Majority Required",
+  "GOVERNANCE.participation": "Participation",
+  "GOVERNANCE.met": "Met",
+  "GOVERNANCE.notMet": "Not Met",
+  "GOVERNANCE.required": "Required",
 
   // Token Details
   "Token address": "Token address",

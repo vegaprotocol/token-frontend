@@ -1,0 +1,47 @@
+@import '../../styles/colors';
+
+.proposal-toast__vote-buttons {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  width: 100%;
+
+  > button {
+    width: 45%;
+  }
+}
+
+.proposal-toast__vote-status {
+  margin-bottom: 0;
+  margin-top: 5px;
+}
+
+.proposal-toast__table {
+  th,
+  td {
+    font-weight: normal;
+  }
+
+  th:first-child {
+    color: $vega-green3;
+  }
+
+  th:last-child {
+    color: $vega-red3;
+  }
+
+  th:first-child,
+  td:first-child {
+    text-align: left;
+  }
+
+  th:last-child,
+  td:last-child {
+    text-align: right;
+  }
+
+  td {
+    color: $text-color-deemphasise;
+  }
+}
