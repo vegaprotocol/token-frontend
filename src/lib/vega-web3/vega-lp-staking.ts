@@ -138,7 +138,7 @@ export default class VegaLPStaking implements IVegaLPStaking {
     return this.contract.methods.unstake().send({ from: account });
   }
 
-  async lpAllowance(account: string): Promise<string> {
+  async allowance(account: string): Promise<string> {
     return addDecimal(
       new BigNumber(
         await (await this.lpContract).methods
@@ -147,5 +147,11 @@ export default class VegaLPStaking implements IVegaLPStaking {
       ),
       await this.lpDecimals
     );
+  }
+
+  approve(address: string, spender: string): PromiEvent<boolean> {
+    return this.contract.methods
+      .approve(spender, Number.MAX_SAFE_INTEGER - 1)
+      .send({ from: address });
   }
 }
