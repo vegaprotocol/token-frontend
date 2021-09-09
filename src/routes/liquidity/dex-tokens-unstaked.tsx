@@ -3,6 +3,7 @@ import * as Sentry from "@sentry/react";
 import { useTranslation } from "react-i18next";
 import { REWARDS_ADDRESSES } from "../../config";
 import { useVegaLPStaking } from "../../hooks/use-vega-lp-staking";
+import { BigNumber } from "../../lib/bignumber";
 
 interface DexTokensUnstakedProps {
   ethAddress: string;
@@ -57,12 +58,19 @@ export const DexTokensUnstakedItem = ({
 }: DexTokensUnstakedItemProps) => {
   const lpStaking = useVegaLPStaking({ address: contractAddress });
   const [unstakedBalance, setUnstakedBalance] = React.useState("0");
+  const [approvedAmount, setApprovedAmount] = React.useState<BigNumber>(
+    new BigNumber("0")
+  );
 
   React.useEffect(() => {
     const run = async () => {
       try {
-        const value = await lpStaking.totalUnstaked(ethAddress);
-        setUnstakedBalance(value.toString());
+        const [balance, allowance] = await Promise.all([
+          lpStaking.totalUnstaked(ethAddress),
+          lpStaking.allowance(ethAddress),
+        ]);
+        setUnstakedBalance(balance);
+        setApprovedAmount(new BigNumber(allowance));
       } catch (err) {
         Sentry.captureException(err);
       }
@@ -70,11 +78,22 @@ export const DexTokensUnstakedItem = ({
 
     run();
   }, [lpStaking, ethAddress]);
-
+  const hasApproved = React.useMemo(
+    () => !approvedAmount.isEqualTo(0),
+    [approvedAmount]
+  );
   return (
     <tr id={contractAddress}>
       <td>{name}</td>
-      <td>{unstakedBalance}</td>
+      <td>
+        {unstakedBalance}&nbsp;
+        {hasApproved ? null : <button className="button-link">Approve</button>}
+        &nbsp;
+        <button disabled={!hasApproved} className="button-link">
+          Deposit
+        </button>
+        &nbsp;
+      </td>
     </tr>
   );
 };
