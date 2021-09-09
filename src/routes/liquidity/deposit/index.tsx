@@ -25,6 +25,7 @@ export const LiquidityDepositPage = ({
   const [allowance, setAllowance] = React.useState<BigNumber>(
     new BigNumber("0")
   );
+  const [unstakedBalance, setUnstakedBalance] = React.useState("0");
   const {
     state: txApprovalState,
     dispatch: txApprovalDispatch,
@@ -35,7 +36,25 @@ export const LiquidityDepositPage = ({
     dispatch: txStakeDispatch,
     perform: txStakePerform,
   } = useTransaction(() => lpStaking.stake(amount, ethAddress));
+
   const { ethAddress } = useEthUser();
+  React.useEffect(() => {
+    const run = async () => {
+      try {
+        const balance = await lpStaking.totalUnstaked(ethAddress);
+        setUnstakedBalance(balance);
+      } catch (err) {
+        Sentry.captureException(err);
+      }
+    };
+
+    run();
+  }, [lpStaking, ethAddress]);
+  const maximum = React.useMemo(
+    () =>
+      BigNumber.min(new BigNumber(unstakedBalance), new BigNumber(allowance!)),
+    [allowance, unstakedBalance]
+  );
   React.useEffect(() => {
     const run = async () => {
       try {
@@ -87,7 +106,7 @@ export const LiquidityDepositPage = ({
           approve={txApprovalPerform}
           amount={amount}
           setAmount={setAmount}
-          maximum={new BigNumber(100)}
+          maximum={maximum}
         />
       </>
     );
