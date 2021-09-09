@@ -74,13 +74,14 @@ export default class VegaLPStaking implements IVegaLPStaking {
   }
 
   async rewardsBalance(account: string): Promise<string> {
-    // Contract reverts if no stake is added
+    // Contract reverts if no stake is added, resulting in the catch block
+    // being run. Just return 0 if thats the case
     try {
       return addDecimal(
         new BigNumber(
           await this.contract.methods
             .get_available_reward(account)
-            .call({ from: account })
+            .call()
         ),
         await this.awardDecimals
       );
