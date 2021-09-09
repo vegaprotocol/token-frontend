@@ -65,40 +65,25 @@ const DexTokensSection = ({
   const lpStaking = useVegaLPStaking({ address: contractAddress });
 
   const [values, setValues] = React.useState<{
-    totalRewardsAvailable: string;
-    rewardsBalance: string;
-    stakedBalance: string;
-    unstakedBalance: string;
+    rewardPerEpoch: string;
     awardContractAddress: string;
-    lpTokenTotalSupply: string;
+    rewardPoolBalance: string;
   } | null>(null);
 
   React.useEffect(() => {
     const run = async () => {
       try {
         const promises = [
-          await lpStaking.awardTokenTotalSupply(),
-          await lpStaking.rewardsBalance(ethAddress),
-          await lpStaking.stakedBalance(ethAddress),
-          await lpStaking.totalUnstaked(ethAddress),
+          await lpStaking.rewardPerEpoch(),
           await lpStaking.awardContractAddress(),
-          await lpStaking.lpTokenTotalSupply(),
+          await lpStaking.liquidityTokensInRewardPool(),
         ];
-        const [
-          totalRewardsAvailable,
-          rewardsBalance,
-          stakedBalance,
-          unstakedBalance,
-          awardContractAddress,
-          lpTokenTotalSupply,
-        ] = await Promise.all(promises);
+        const [rewardPerEpoch, awardContractAddress, rewardPoolBalance] =
+          await Promise.all(promises);
         setValues({
-          totalRewardsAvailable,
-          rewardsBalance,
-          stakedBalance,
-          unstakedBalance,
+          rewardPerEpoch,
           awardContractAddress,
-          lpTokenTotalSupply,
+          rewardPoolBalance,
         });
       } catch (err) {
         Sentry.captureException(err);
@@ -128,7 +113,7 @@ const DexTokensSection = ({
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("rewardPerEpoch")}</th>
-          <td>{values.totalRewardsAvailable}</td>
+          <td>{values.rewardPerEpoch}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("rewardTokenContractAddress")}</th>
@@ -141,8 +126,8 @@ const DexTokensSection = ({
           </td>
         </KeyValueTableRow>
         <KeyValueTableRow>
-          <th>{t("liquidityTokenSupply")}</th>
-          <td>{values.lpTokenTotalSupply}</td>
+          <th>{t("lpTokensInRewardPool")}</th>
+          <td>{values.rewardPoolBalance}</td>
         </KeyValueTableRow>
       </KeyValueTable>
     </section>

@@ -62,14 +62,6 @@ export default class VegaLPStaking implements IVegaLPStaking {
     })();
   }
 
-  async lpTokenTotalSupply() {
-    const lpTokenContract = await this.lpContract;
-    const decimals = await this.lpDecimals;
-    const supply = await lpTokenContract.methods.totalSupply().call();
-    console.log(supply);
-    return addDecimal(new BigNumber(supply), decimals);
-  }
-
   async stakedBalance(account: string): Promise<string> {
     return addDecimal(
       new BigNumber(
@@ -102,11 +94,17 @@ export default class VegaLPStaking implements IVegaLPStaking {
     return awardContract._address;
   }
 
-  async awardTokenTotalSupply(): Promise<string> {
-    const awardContract = await this.awardContract;
+  async rewardPerEpoch(): Promise<string> {
+    const rewardPerEpoch = await this.contract.methods.epoch_reward().call();
     const decimals = await this.awardDecimals;
-    const supply = await awardContract.methods.totalSupply().call();
-    return addDecimal(new BigNumber(supply), decimals);
+    return addDecimal(new BigNumber(rewardPerEpoch), decimals);
+  }
+
+  async liquidityTokensInRewardPool() {
+    const rewardContract = await this.awardContract;
+    const decimals = await this.awardDecimals;
+    const balance = await rewardContract.methods.balanceOf(this.address).call();
+    return addDecimal(new BigNumber(balance), decimals);
   }
 
   async estimateAPY(): Promise<BigNumber> {

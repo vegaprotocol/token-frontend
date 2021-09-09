@@ -420,7 +420,7 @@ const en = {
   liquidityTokenContractAddress: "Liquidty token contract address",
   rewardPerEpoch: "Reward per epoch (split between reward pool)",
   rewardTokenContractAddress: "Reward token contract address",
-  liquidityTokenSupply: "Liquidity token supply",
+  lpTokensInRewardPool: "Tokens in reward pool",
 
   liquidityTotalAvailableRewardsBalance: "Balance",
   liquidityStakedToken: "LP Token",

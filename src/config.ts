@@ -19,12 +19,12 @@ const Addresses = {
 
 const RewardsAddresses = {
   [EthereumChainIds.Mainnet]: {
-    "sushi-vega-eth": "0x29C827Ce49aCCF68A1a278C67C9D30c52fBbC348",
-    "sushi-vega-usdc": "0x42b7B8f8F83fA5cbf0176f8c24Ad51EbcD4B5F17",
+    "Sushi Swap VEGA/ETH": "0x29C827Ce49aCCF68A1a278C67C9D30c52fBbC348",
+    "Sushi Swap VEGA/USDC": "0x42b7B8f8F83fA5cbf0176f8c24Ad51EbcD4B5F17",
   },
   [EthereumChainIds.Ropsten]: {
-    "sushi-vega-eth": "0xf3153577008864d23805Dd0912340AF5604bb544",
-    "sushi-vega-usdc": "0xf3153577008864d23805Dd0912340AF5604bb544",
+    "Sushi Swap VEGA/ETH": "0xf3153577008864d23805Dd0912340AF5604bb544",
+    "Sushi Swap VEGA/USDC": "0xf3153577008864d23805Dd0912340AF5604bb544",
   },
 };
 
