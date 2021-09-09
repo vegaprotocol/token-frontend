@@ -80,8 +80,7 @@ export const StakingForm = ({
     }
   }, [action, availableStakeToAdd, availableStakeToRemove]);
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  async function onSubmit() {
     setFormState(FormState.Pending);
     const delegateInput: DelegateSubmissionInput = {
       pubKey: pubkey,
@@ -157,43 +156,40 @@ export const StakingForm = ({
   return (
     <>
       <h2>{t("Manage your stake")}</h2>
-      <form onSubmit={onSubmit} data-testid="stake-form">
-        <FormGroup>
-          <RadioGroup
-            onChange={(e) => {
-              // @ts-ignore
-              const value = e.target.value;
-              setAction(value);
-              history.replace({
-                pathname: history.location.pathname,
-                search: `?action=${value}`,
-              });
-            }}
-            selectedValue={action}
-            inline={true}
-          >
-            <Radio value="Add" label="Add" data-testid="add-stake-radio" />
-            <Radio
-              value="Remove"
-              label="Remove"
-              data-testid="remove-stake-radio"
-            />
-          </RadioGroup>
-        </FormGroup>
-        {action !== undefined && (
-          <>
-            <h2>{t("How much to {{action}} in next epoch?", { action })}</h2>
-            <TokenInput
-              amount={amount}
-              setAmount={setAmount}
-              maximum={maxDelegation}
-            />
-            <button className="fill" type="submit">
-              {`${action}${amount ? ` ${amount}` : ""}`} {t("vegaTokens")}
-            </button>
-          </>
-        )}
-      </form>
+      <FormGroup>
+        <RadioGroup
+          onChange={(e) => {
+            // @ts-ignore
+            const value = e.target.value;
+            setAction(value);
+            history.replace({
+              pathname: history.location.pathname,
+              search: `?action=${value}`,
+            });
+          }}
+          selectedValue={action}
+          inline={true}
+        >
+          <Radio value="Add" label="Add" data-testid="add-stake-radio" />
+          <Radio
+            value="Remove"
+            label="Remove"
+            data-testid="remove-stake-radio"
+          />
+        </RadioGroup>
+      </FormGroup>
+      {action !== undefined && maxDelegation && (
+        <>
+          <h2>{t("How much to {{action}} in next epoch?", { action })}</h2>
+          <TokenInput
+            submitText={`${action} ${amount ? amount : ""} ${t("vegaTokens")}`}
+            perform={onSubmit}
+            amount={amount}
+            setAmount={setAmount}
+            maximum={maxDelegation}
+          />
+        </>
+      )}
     </>
   );
 };

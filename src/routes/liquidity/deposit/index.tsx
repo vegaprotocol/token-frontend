@@ -5,26 +5,26 @@ import { BigNumber } from "../../../lib/bignumber";
 import * as Sentry from "@sentry/react";
 import { useParams } from "react-router";
 import { REWARDS_ADDRESSES } from "../../../config";
+import { TokenInput } from "../../../components/token-input";
+import { useTranslation } from "react-i18next";
 
 export const LiquidityDepositPage = ({
   lpTokenAddress,
 }: {
   lpTokenAddress: string;
 }) => {
+  const { t } = useTranslation();
+  const [amount, setAmount] = React.useState("0");
   const lpStaking = useVegaLPStaking({ address: lpTokenAddress });
-  const [approvedAmount, setApprovedAmount] = React.useState<BigNumber>(
+  const [allowance, setAllowance] = React.useState<BigNumber>(
     new BigNumber("0")
   );
   const { ethAddress } = useEthUser();
-  const hasApproved = React.useMemo(
-    () => !approvedAmount.isEqualTo(0),
-    [approvedAmount]
-  );
   React.useEffect(() => {
     const run = async () => {
       try {
         const allowance = await lpStaking.allowance(ethAddress);
-        setApprovedAmount(new BigNumber(allowance));
+        setAllowance(new BigNumber(allowance));
       } catch (err) {
         Sentry.captureException(err);
       }
@@ -32,7 +32,23 @@ export const LiquidityDepositPage = ({
 
     run();
   }, [lpStaking, ethAddress]);
-  return <section>Deposit</section>;
+  return (
+    <section>
+      <TokenInput
+        submitText={t("Deposit {{address}}", { address: lpTokenAddress })}
+        approveText={t("Approve deposits of {{address}}", {
+          address: lpTokenAddress,
+        })}
+        requireApproval={true}
+        allowance={allowance}
+        perform={() => undefined}
+        approve={() => undefined}
+        amount={amount}
+        setAmount={setAmount}
+        maximum={new BigNumber(100)}
+      />
+    </section>
+  );
 };
 
 export const LiquidityDeposit = () => {

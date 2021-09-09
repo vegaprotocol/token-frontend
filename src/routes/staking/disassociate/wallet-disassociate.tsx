@@ -21,13 +21,6 @@ export const WalletDisassociate = ({
     () => new BigNumber(walletAssociatedBalance!),
     [walletAssociatedBalance]
   );
-  const isDisabled = React.useMemo<boolean>(
-    () =>
-      !amount ||
-      new BigNumber(amount).isLessThanOrEqualTo("0") ||
-      new BigNumber(amount).isGreaterThan(maximum),
-    [amount, maximum]
-  );
 
   if (new BigNumber(walletAssociatedBalance!).isEqualTo("0")) {
     return (
@@ -41,15 +34,13 @@ export const WalletDisassociate = ({
 
   return (
     <>
-      <TokenInput maximum={maximum} amount={amount} setAmount={setAmount} />
-      <button
-        style={{ marginTop: 10, width: "100%" }}
-        data-testid="disassociate-button"
-        disabled={isDisabled}
-        onClick={perform}
-      >
-        {t("Disassociate VEGA Tokens from key")}
-      </button>
+      <TokenInput
+        submitText={t("Disassociate VEGA Tokens from key")}
+        perform={perform}
+        maximum={maximum}
+        amount={amount}
+        setAmount={setAmount}
+      />
     </>
   );
 };
