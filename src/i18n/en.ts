@@ -258,6 +258,10 @@ const en = {
   "GOVERNANCE.met": "Met",
   "GOVERNANCE.notMet": "Not Met",
   "GOVERNANCE.required": "Required",
+  "GOVERNANCE.setTo": "Currently set to ",
+  "GOVERNANCE.day": " day",
+  "GOVERNANCE.days": " days",
+  "GOVERNANCE.daysLeft": " left to vote.",
 
   // Token Details
   "Token address": "Token address",

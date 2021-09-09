@@ -22,45 +22,49 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
     requiredParticipation,
   } = useVoteInformation({ proposal });
   const { t } = useTranslation();
+  const daysLeft = 1;
+  const daysLeftText =
+    daysLeft > 1
+      ? `${daysLeft} ${t("GOVERNANCE.days")}`
+      : `${daysLeft} ${t("GOVERNANCE.day")}`;
+  const status = "Pass";
 
   return (
     <section>
-      <h4 className="proposal__sub-title">{t("votes")}</h4>
+      <h4 className="proposal__sub-title">{t("GOVERNANCE.votes")}</h4>
       <div>
+        <p>
+          {t("GOVERNANCE.setTo")}
+          <span className="proposal-toast__success-text">{status}</span>.&nbsp;
+          {daysLeftText}
+          {t("GOVERNANCE.daysLeft")}
+        </p>
         <table className="proposal-toast__table">
           <thead>
             <tr>
-              <th style={{ width: "25%", color: Colors.GREEN }}>
-                {t("GOVERNANCE.for")}
-              </th>
+              <th>{t("GOVERNANCE.for")}</th>
               <th style={{ width: "50%" }}>
                 <VoteProgress
                   threshold={requiredMajorityPercentage}
                   progress={yesPercentage}
                 />
               </th>
-              <th style={{ width: "25%", color: Colors.RED }}>
-                {t("GOVERNANCE.against")}
-              </th>
+              <th>{t("GOVERNANCE.against")}</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td style={{ color: Colors.WHITE }}>
-                {yesPercentage.toFixed(2)}%
-              </td>
-              <td style={{ textAlign: "center", color: Colors.WHITE }}>
+              <td>{yesPercentage.toFixed(2)}%</td>
+              <td className="proposal-toast__summary">
                 {t("GOVERNANCE.majorityRequired")}{" "}
                 {requiredMajorityPercentage.toFixed(2)}%
               </td>
-              <td style={{ color: Colors.WHITE }}>
-                {noPercentage.toFixed(2)}%
-              </td>
+              <td>{noPercentage.toFixed(2)}%</td>
             </tr>
             <tr>
-              <td>{yesTokens}</td>
+              <td className="proposal-toast__deemphasise">{yesTokens}</td>
               <td></td>
-              <td>{noTokens}</td>
+              <td className="proposal-toast__deemphasise">{noTokens}</td>
             </tr>
           </tbody>
         </table>
@@ -69,11 +73,11 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
         {t("GOVERNANCE.participation")}
         {": "}
         {participationMet ? (
-          <span style={{ color: Colors.GREEN, marginRight: 5, marginLeft: 5 }}>
+          <span className="proposal-toast__participation-met">
             {t("GOVERNANCE.met")}
           </span>
         ) : (
-          <span style={{ color: Colors.RED, marginRight: 5, marginLeft: 5 }}>
+          <span className="proposal-toast__participation-not-met">
             {t("GOVERNANCE.notMet")}
           </span>
         )}{" "}

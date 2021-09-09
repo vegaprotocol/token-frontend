@@ -262,16 +262,16 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
           },
           votes: {
             yes: {
-              totalTokens: "0",
-              totalWeight: "0",
-              totalNumber: "0",
+              totalTokens: "10",
+              totalWeight: "10",
+              totalNumber: "10",
               votes: null,
               __typename: "ProposalVoteSide",
             },
             no: {
-              totalTokens: "0",
-              totalWeight: "0",
-              totalNumber: "0",
+              totalTokens: "10",
+              totalWeight: "10",
+              totalNumber: "10",
               votes: null,
               __typename: "ProposalVoteSide",
             },
