@@ -152,9 +152,13 @@ export default class VegaLPStaking implements IVegaLPStaking {
     );
   }
 
-  approve(address: string, spender: string): PromiEvent<boolean> {
-    return this.contract.methods
-      .approve(spender, Number.MAX_SAFE_INTEGER - 1)
+  async approve(address: string, spender: string): PromiEvent<boolean> {
+    const amount = removeDecimal(
+      new BigNumber(Number.MAX_SAFE_INTEGER),
+      await this.lpDecimals
+    );
+    return await (await this.lpContract).methods
+      .approve(spender, amount)
       .send({ from: address });
   }
 }
