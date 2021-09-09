@@ -291,8 +291,7 @@ const MOCK_PROPOSALS_SUBSCRIPTION: MockedResponse<any> = {
   },
   result: {
     data: {
-      proposals: null,
-      updateProposals: () => {}
+      proposals: null
     },
   },
 };
