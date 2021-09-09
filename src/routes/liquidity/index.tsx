@@ -1,3 +1,4 @@
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { RouteChildProps } from "..";
@@ -12,9 +13,19 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
   const { t } = useTranslation();
   const match = useRouteMatch();
+  const withdraw = useRouteMatch(`${match.path}/:address/withdraw`);
+  const deposit = useRouteMatch(`${match.path}/:address/deposit`);
 
+  const title = React.useMemo(() => {
+    if (withdraw) {
+      return t("pageTitleWithdrawLp");
+    } else if (deposit) {
+      return t("pageTitleDepositLp");
+    }
+    return t("pageTitleLiquidity");
+  }, [withdraw, deposit, t]);
   return (
-    <TemplateDefault title={t("pageTitleLiquidity")}>
+    <TemplateDefault title={title}>
       {Flags.DEX_STAKING_DISABLED ? (
         <p>{t("liquidityComingSoon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</p>
       ) : (

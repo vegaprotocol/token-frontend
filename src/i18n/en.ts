@@ -14,6 +14,8 @@ const en = {
   pageTitleNotPermitted: "Can not proceed!",
   pageTitleDisassociate: "Dissociate VEGA tokens from a Vega key",
   pageTitleGovernance: "Governance",
+  pageTitleDepositLp: "Deposit liquidity token for VEGA rewards",
+  pageTitleWithdrawLp: "Withdraw liquidity token",
   Vesting: "Vesting",
   of: "of",
   to: "to",
