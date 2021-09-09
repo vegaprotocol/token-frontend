@@ -28,9 +28,7 @@ export const LiquidityWithdrawPage = ({
   } = useTransaction(() => lpStaking.unstake(ethAddress));
   const [unstakedBalance, setUnstakedBalance] = React.useState("0");
   const transactionInProgress = React.useMemo(
-    () =>
-      txUnstakeState.txState !== TxState.Default &&
-      txUnstakeState.txState !== TxState.Complete,
+    () => txUnstakeState.txState !== TxState.Default,
     [txUnstakeState.txState]
   );
   React.useEffect(() => {

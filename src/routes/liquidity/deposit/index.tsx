@@ -69,10 +69,7 @@ export const LiquidityDepositPage = ({
   }, [lpStaking, ethAddress]);
 
   let pageContent;
-  if (
-    txApprovalState.txState !== TxState.Default &&
-    txApprovalState.txState !== TxState.Complete
-  ) {
+  if (txApprovalState.txState !== TxState.Default) {
     pageContent = (
       <TransactionCallout
         state={txApprovalState}
