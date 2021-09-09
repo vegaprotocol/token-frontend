@@ -56,6 +56,7 @@ export const DexTokensUnstakedItem = ({
   contractAddress,
   ethAddress,
 }: DexTokensUnstakedItemProps) => {
+  const { t } = useTranslation();
   const lpStaking = useVegaLPStaking({ address: contractAddress });
   const [unstakedBalance, setUnstakedBalance] = React.useState("0");
   const [approvedAmount, setApprovedAmount] = React.useState<BigNumber>(
@@ -87,10 +88,12 @@ export const DexTokensUnstakedItem = ({
       <td>{name}</td>
       <td>
         {unstakedBalance}&nbsp;
-        {hasApproved ? null : <button className="button-link">Approve</button>}
+        {hasApproved ? null : (
+          <button className="button-link">{t("Approve")}</button>
+        )}
         &nbsp;
         <button disabled={!hasApproved} className="button-link">
-          Deposit
+          {t("Deposit")}
         </button>
         &nbsp;
       </td>
