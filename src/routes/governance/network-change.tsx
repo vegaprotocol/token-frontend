@@ -53,10 +53,6 @@ export const NetworkChange = ({proposal}: NetworkChangeProps) => {
           </span>
         </div>
       </section>
-
-      <section>
-        <h4 className="proposal__sub-title">{t("votes")}</h4>
-      </section>
     </>
   );
 };

@@ -24,7 +24,8 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
   const { t } = useTranslation();
 
   return (
-    <>
+    <section>
+      <h4 className="proposal__sub-title">{t("votes")}</h4>
       <div>
         <table className="proposal-toast__table">
           <thead>
@@ -65,23 +66,22 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
         </table>
       </div>
       <div>
-        {"i18n.TOASTS.proposal.participation"}
+        {t("GOVERNANCE.participation")}
         {": "}
         {participationMet ? (
           <span style={{ color: Colors.GREEN, marginRight: 5, marginLeft: 5 }}>
-            {"i18n.TOASTS.proposal.met"}
+            {t("GOVERNANCE.met")}
           </span>
         ) : (
           <span style={{ color: Colors.RED, marginRight: 5, marginLeft: 5 }}>
-            {"i18n.TOASTS.proposal.notMet"}
+            {t("GOVERNANCE.notMet")}
           </span>
         )}{" "}
         {totalTokensVoted} {totalTokensPercentage}%
         <span style={{ marginLeft: 5 }} className="text-deemphasise">
-          ({Number(requiredParticipation) * 100}%{" "}
-          {"i18n.TOASTS.proposal.required"})
+          ({Number(requiredParticipation) * 100}% {t("GOVERNANCE.required")})
         </span>
       </div>
-    </>
+    </section>
   );
 };
