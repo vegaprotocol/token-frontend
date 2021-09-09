@@ -102,6 +102,11 @@ export default class VegaLPStaking implements IVegaLPStaking {
       this.contract.methods.total_staked().call(),
     ]);
 
+    // If there is none staked the APY is 0, not infinity
+    if (new BigNumber(totalBalance).isEqualTo(0)) {
+      return new BigNumber(0);
+    }
+
     const epochsPerYear = new BigNumber(60 * 60 * 24 * 365).dividedBy(
       epochInterval
     );
