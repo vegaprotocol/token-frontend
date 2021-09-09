@@ -6,13 +6,15 @@ import * as Sentry from "@sentry/react";
 import { useParams } from "react-router";
 import { REWARDS_ADDRESSES } from "../../../config";
 import { TokenInput } from "../../../components/token-input";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { TransactionCallout } from "../../../components/transaction-callout";
 import {
   TransactionActionType,
   TxState,
 } from "../../../hooks/transaction-reducer";
+import { Routes } from "../../router-config";
+import { Link } from "react-router-dom";
 
 export const LiquidityDepositPage = ({
   lpTokenAddress,
@@ -26,6 +28,7 @@ export const LiquidityDepositPage = ({
     new BigNumber("0")
   );
   const [unstakedBalance, setUnstakedBalance] = React.useState("0");
+  const [stakedBalance, setStakedBalance] = React.useState("0");
   const {
     state: txApprovalState,
     dispatch: txApprovalDispatch,
@@ -41,7 +44,11 @@ export const LiquidityDepositPage = ({
   React.useEffect(() => {
     const run = async () => {
       try {
-        const balance = await lpStaking.totalUnstaked(ethAddress);
+        const [balance, stakedBalance] = await Promise.all([
+          lpStaking.totalUnstaked(ethAddress),
+          lpStaking.stakedBalance(ethAddress),
+        ]);
+        setStakedBalance(stakedBalance);
         setUnstakedBalance(balance);
       } catch (err) {
         Sentry.captureException(err);
@@ -87,6 +94,19 @@ export const LiquidityDepositPage = ({
         state={txStakeState}
         reset={() => txStakeDispatch({ type: TransactionActionType.TX_RESET })}
       />
+    );
+  } else if (!new BigNumber(stakedBalance).isEqualTo(0)) {
+    pageContent = (
+      <p>
+        <Trans
+          i18nKey="depositLpAlreadyStaked"
+          components={{
+            withdrawLink: (
+              <Link to={`${Routes.LIQUIDITY}/${lpTokenAddress}/withdraw`} />
+            ),
+          }}
+        />
+      </p>
     );
   } else {
     pageContent = (
