@@ -15,7 +15,7 @@ const en = {
   pageTitleDisassociate: "Dissociate VEGA tokens from a Vega key",
   pageTitleGovernance: "Governance",
   pageTitleDepositLp: "Deposit liquidity token for VEGA rewards",
-  pageTitleWithdrawLp: "Withdraw liquidity token",
+  pageTitleWithdrawLp: "Withdraw SLP and Rewards",
   Vesting: "Vesting",
   of: "of",
   to: "to",

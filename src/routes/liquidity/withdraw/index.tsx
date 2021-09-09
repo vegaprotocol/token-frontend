@@ -47,7 +47,7 @@ export const LiquidityWithdrawPage = ({
   }, [lpStaking, ethAddress]);
 
   if (new BigNumber(unstakedBalance).isEqualTo(0)) {
-    return <section>You have no LP tokens staked</section>;
+    return <section>You have no SLP tokens deposited</section>;
   }
 
   return (
@@ -61,7 +61,7 @@ export const LiquidityWithdrawPage = ({
         />
       ) : (
         <button className="fill" onClick={txUnstakePerform}>
-          Withdraw all tokens
+          Withdraw all SLP and VEGA rewards
         </button>
       )}
     </section>
