@@ -6,6 +6,7 @@ import { Flags } from "../../flags";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { LiquidityDeposit } from "./deposit";
 import { LiquidityContainer } from "./liquidity-container";
+import { LiquidityWithdraw } from "./withdraw";
 
 const RedemptionIndex = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
@@ -21,8 +22,11 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
           <Route exact path={`${match.path}`}>
             <LiquidityContainer />
           </Route>
-          <Route path={`${match.path}/:address`}>
+          <Route path={`${match.path}/:address/deposit`}>
             <LiquidityDeposit />
+          </Route>
+          <Route path={`${match.path}/:address/withdraw`}>
+            <LiquidityWithdraw />
           </Route>
         </Switch>
       )}
