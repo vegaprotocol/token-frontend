@@ -18,7 +18,7 @@ import { StakeNode } from "../../../routes/staking/__generated__/StakeNode";
 import { PartyDelegations } from "../../../routes/staking/__generated__/PartyDelegations";
 import { PARTY_DELEGATIONS_QUERY } from "../../../routes/staking/staking-form";
 import { PROPOSALS_QUERY } from "../../../routes/governance";
-import { Proposals_proposals } from "../../../routes/governance/__generated__/proposals";
+import { Proposals } from "../../../routes/governance/__generated__/proposals";
 
 const partyId = "pub";
 
@@ -174,114 +174,115 @@ const MOCK_PARTY_DELEGATIONS: MockedResponse<PartyDelegations> = {
   },
 };
 
-// const MOCK_PROPOSALS: MockedResponse<Proposals_proposals[]> = {
-//   request: {
-//     query: PROPOSALS_QUERY,
-//     variables: { partyId },
-//   },
-//   result: {
-//     data: [
-//       {
-//         name: "abc",
-//         pending: false,
-//         id: "dab4eb13c027c82f1f2c9208aa4fe7c04413f91e5709fa4a44a4c29f4d449266",
-//         reference: "",
-//         state: ProposalState.Open,
-//         datetime: "2021-09-02T13:19:42.157201307Z",
-//         rejectionReason: null,
-//         party: {
-//           id: "65ea371c556f5648640c243dd30cf7374b5501ffe3dc8603476f723dd636656e",
-//           __typename: "Party",
-//         },
-//         terms: {
-//           closingDatetime: "2022-03-01T00:00:00Z",
-//           enactmentDatetime: "2022-08-30T23:00:00Z",
-//           change: {
-//             networkParameter: {
-//               key: "market.fee.factors.makerFee",
-//               value: "0.0003",
-//               __typename: "NetworkParameter",
-//             },
-//             __typename: "UpdateNetworkParameter",
-//           },
-//           __typename: "ProposalTerms",
-//         },
-//         votes: {
-//           yes: {
-//             totalTokens: "0",
-//             totalWeight: "0",
-//             totalNumber: "1",
-//             votes: [
-//               {
-//                 value: VoteValue.Yes,
-//                 party: {
-//                   id: "65ea371c556f5648640c243dd30cf7374b5501ffe3dc8603476f723dd636656e",
-//                   __typename: "Party",
-//                 },
-//                 datetime: "2021-09-02T13:20:23.184093701Z",
-//                 __typename: "Vote",
-//               },
-//             ],
-//             __typename: "ProposalVoteSide",
-//           },
-//           no: {
-//             totalTokens: "0",
-//             totalWeight: "0",
-//             totalNumber: "0",
-//             votes: null,
-//             __typename: "ProposalVoteSide",
-//           },
-//           __typename: "ProposalVotes",
-//         },
-//         __typename: "Proposal",
-//       },
-//       {
-//         name: "123",
-//         pending: false,
-//         id: "eeeef3ac1b19bfaddf86ba1ce853e092991383ac9d76be3b20f5a254583feeee",
-//         reference: "",
-//         state: ProposalState.Rejected,
-//         datetime: "2021-09-02T13:17:42.490013828Z",
-//         rejectionReason: ProposalRejectionReason.EnactTimeTooLate,
-//         party: {
-//           id: "65ea371c556f5648640c243dd30cf7374b5501ffe3dc8603476f723dd636656e",
-//           __typename: "Party",
-//         },
-//         terms: {
-//           closingDatetime: "2022-03-30T23:00:00Z",
-//           enactmentDatetime: "2022-09-29T23:00:00Z",
-//           change: {
-//             networkParameter: {
-//               key: "governance.proposal.updateNetParam.maxEnact",
-//               value: "8761h0m0s",
-//               __typename: "NetworkParameter",
-//             },
-//             __typename: "UpdateNetworkParameter",
-//           },
-//           __typename: "ProposalTerms",
-//         },
-//         votes: {
-//           yes: {
-//             totalTokens: "0",
-//             totalWeight: "0",
-//             totalNumber: "0",
-//             votes: null,
-//             __typename: "ProposalVoteSide",
-//           },
-//           no: {
-//             totalTokens: "0",
-//             totalWeight: "0",
-//             totalNumber: "0",
-//             votes: null,
-//             __typename: "ProposalVoteSide",
-//           },
-//           __typename: "ProposalVotes",
-//         },
-//         __typename: "Proposal",
-//       },
-//     ],
-//   },
-// };
+const MOCK_PROPOSALS: MockedResponse<Proposals> = {
+  request: {
+    query: PROPOSALS_QUERY,
+  },
+  result: {
+    data: {
+      proposals: [
+        {
+          name: "abc",
+          pending: false,
+          id: "dab4eb13c027c82f1f2c9208aa4fe7c04413f91e5709fa4a44a4c29f4d449266",
+          reference: "",
+          state: ProposalState.Open,
+          datetime: "2021-09-02T13:19:42.157201307Z",
+          rejectionReason: null,
+          party: {
+            id: "65ea371c556f5648640c243dd30cf7374b5501ffe3dc8603476f723dd636656e",
+            __typename: "Party",
+          },
+          terms: {
+            closingDatetime: "2022-03-01T00:00:00Z",
+            enactmentDatetime: "2022-08-30T23:00:00Z",
+            change: {
+              networkParameter: {
+                key: "market.fee.factors.makerFee",
+                value: "0.33333",
+                __typename: "NetworkParameter",
+              },
+              __typename: "UpdateNetworkParameter",
+            },
+            __typename: "ProposalTerms",
+          },
+          votes: {
+            yes: {
+              totalTokens: "0",
+              totalWeight: "0",
+              totalNumber: "1",
+              votes: [
+                {
+                  value: VoteValue.Yes,
+                  party: {
+                    id: "65ea371c556f5648640c243dd30cf7374b5501ffe3dc8603476f723dd636656e",
+                    __typename: "Party",
+                  },
+                  datetime: "2021-09-02T13:20:23.184093701Z",
+                  __typename: "Vote",
+                },
+              ],
+              __typename: "ProposalVoteSide",
+            },
+            no: {
+              totalTokens: "0",
+              totalWeight: "0",
+              totalNumber: "0",
+              votes: null,
+              __typename: "ProposalVoteSide",
+            },
+            __typename: "ProposalVotes",
+          },
+          __typename: "Proposal",
+        },
+        {
+          name: "123",
+          pending: false,
+          id: "eeeef3ac1b19bfaddf86ba1ce853e092991383ac9d76be3b20f5a254583feeee",
+          reference: "",
+          state: ProposalState.Rejected,
+          datetime: "2021-09-02T13:17:42.490013828Z",
+          rejectionReason: ProposalRejectionReason.EnactTimeTooLate,
+          party: {
+            id: "65ea371c556f5648640c243dd30cf7374b5501ffe3dc8603476f723dd636656e",
+            __typename: "Party",
+          },
+          terms: {
+            closingDatetime: "2022-03-30T23:00:00Z",
+            enactmentDatetime: "2022-09-29T23:00:00Z",
+            change: {
+              networkParameter: {
+                key: "governance.proposal.updateNetParam.maxEnact",
+                value: "8761h0m0s",
+                __typename: "NetworkParameter",
+              },
+              __typename: "UpdateNetworkParameter",
+            },
+            __typename: "ProposalTerms",
+          },
+          votes: {
+            yes: {
+              totalTokens: "0",
+              totalWeight: "0",
+              totalNumber: "0",
+              votes: null,
+              __typename: "ProposalVoteSide",
+            },
+            no: {
+              totalTokens: "0",
+              totalWeight: "0",
+              totalNumber: "0",
+              votes: null,
+              __typename: "ProposalVoteSide",
+            },
+            __typename: "ProposalVotes",
+          },
+          __typename: "Proposal",
+        },
+      ],
+    },
+  },
+};
 
 export const GraphQlProvider = ({
   children,
@@ -295,7 +296,7 @@ export const GraphQlProvider = ({
         MOCK_STAKING_NODE_QUERY,
         MOCK_PARTY_DELEGATIONS,
         MOCK_STAKING_NODE_QUERY,
-        // MOCK_PROPOSALS,
+        MOCK_PROPOSALS,
       ]}
     >
       {children}

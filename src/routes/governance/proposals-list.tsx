@@ -67,8 +67,14 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
   };
 
   return (
-    <ul className="proposals-list__main-list">
-      {filteredData.map((row) => renderRow(row))}
-    </ul>
+    <>
+      <p>{t("proposedChangesToVegaNetwork")}</p>
+      <p>{t("vegaTokenHoldersCanVote")}</p>
+      <p>{t("requiredMajorityDescription")}</p>
+      <h2>{t("proposals")}</h2>
+      <ul className="proposals-list__main-list">
+        {filteredData.map((row) => renderRow(row))}
+      </ul>
+    </>
   );
 };
