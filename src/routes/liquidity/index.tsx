@@ -2,7 +2,8 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { RouteChildProps } from "..";
-import { TemplateDefault } from "../../components/page-templates/template-default";
+import { EthWallet } from "../../components/eth-wallet";
+import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
 import { Flags } from "../../flags";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { LiquidityDeposit } from "./deposit";
@@ -25,7 +26,7 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
     return t("pageTitleLiquidity");
   }, [withdraw, deposit, t]);
   return (
-    <TemplateDefault title={title}>
+    <TemplateSidebar title={title} sidebar={[<EthWallet />]}>
       {Flags.DEX_STAKING_DISABLED ? (
         <p>{t("liquidityComingSoon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</p>
       ) : (
@@ -41,7 +42,7 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
           </Route>
         </Switch>
       )}
-    </TemplateDefault>
+    </TemplateSidebar>
   );
 };
 
