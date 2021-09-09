@@ -6,6 +6,7 @@ import lpStakeAbi from "../abis/lp_staking_abi.json";
 import erc20Abi from "../abis/erc20_abi.json";
 import { IVegaLPStaking, PromiEvent } from "../web3-utils";
 import { addDecimal, removeDecimal } from "../decimals";
+import * as Sentry from "@sentry/react";
 
 export default class VegaLPStaking implements IVegaLPStaking {
   private web3: Web3;
@@ -79,13 +80,12 @@ export default class VegaLPStaking implements IVegaLPStaking {
     try {
       return addDecimal(
         new BigNumber(
-          await this.contract.methods
-            .get_available_reward(account)
-            .call()
+          await this.contract.methods.get_available_reward(account).call()
         ),
         await this.awardDecimals
       );
-    } catch {
+    } catch (e) {
+      Sentry.captureException(e);
       return "0";
     }
   }
