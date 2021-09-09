@@ -4,22 +4,11 @@ import * as Sentry from "@sentry/react";
 import { useTranslation } from "react-i18next";
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
 import { EtherscanLink } from "../../components/etherscan-link";
-import {
-  KeyValueTable,
-  KeyValueTableRow,
-} from "../../components/key-value-table";
 import { REWARDS_ADDRESSES } from "../../config";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useEthUser } from "../../hooks/use-eth-user";
 import { useVegaLPStaking } from "../../hooks/use-vega-lp-staking";
-import { DexRewardsList } from "./dex-rewards-list";
-import { DexTokensStaked } from "./dex-tokens-staked";
-import { DexTokensUnstaked } from "./dex-tokens-unstaked";
 import { truncateMiddle } from "../../lib/truncate-middle";
-
-// are here in case we have to do that.
-const DISABLE_EARNING = false;
-const DISABLE_CONNECTED = false;
 
 const BLOG_LINK =
   "https://blog.vega.xyz/unlocking-vega-coinlist-pro-uniswap-sushiswap-b1414750e358";
@@ -66,9 +55,6 @@ export const LiquidityContainer = () => {
           })}
         </tbody>
       </table>
-      {/* <DexRewardsList />
-      {DISABLE_EARNING ? null : <DexTokensStaked ethAddress={ethAddress} />}
-      {DISABLE_CONNECTED ? null : <DexTokensUnstaked ethAddress={ethAddress} />} */}
     </>
   );
 };
