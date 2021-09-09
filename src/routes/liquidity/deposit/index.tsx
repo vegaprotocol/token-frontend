@@ -7,6 +7,12 @@ import { useParams } from "react-router";
 import { REWARDS_ADDRESSES } from "../../../config";
 import { TokenInput } from "../../../components/token-input";
 import { useTranslation } from "react-i18next";
+import { useTransaction } from "../../../hooks/use-transaction";
+import { TransactionCallout } from "../../../components/transaction-callout";
+import {
+  TransactionActionType,
+  TxState,
+} from "../../../hooks/transaction-reducer";
 
 export const LiquidityDepositPage = ({
   lpTokenAddress,
@@ -19,6 +25,16 @@ export const LiquidityDepositPage = ({
   const [allowance, setAllowance] = React.useState<BigNumber>(
     new BigNumber("0")
   );
+  const {
+    state: txApprovalState,
+    dispatch: txApprovalDispatch,
+    perform: txApprovalPerform,
+  } = useTransaction(() => lpStaking.approve(ethAddress, lpTokenAddress));
+  const {
+    state: txStakeState,
+    dispatch: txStakeDispatch,
+    perform: txStakePerform,
+  } = useTransaction(() => lpStaking.stake(amount, ethAddress));
   const { ethAddress } = useEthUser();
   React.useEffect(() => {
     const run = async () => {
@@ -32,23 +48,55 @@ export const LiquidityDepositPage = ({
 
     run();
   }, [lpStaking, ethAddress]);
+
+  let pageContent;
+  if (
+    txApprovalState.txState !== TxState.Default &&
+    txApprovalState.txState !== TxState.Complete
+  ) {
+    pageContent = (
+      <TransactionCallout
+        state={txApprovalState}
+        reset={() =>
+          txApprovalDispatch({ type: TransactionActionType.TX_RESET })
+        }
+      />
+    );
+  } else if (
+    txStakeState.txState !== TxState.Default &&
+    txStakeState.txState !== TxState.Complete
+  ) {
+    pageContent = (
+      <TransactionCallout
+        state={txStakeState}
+        reset={() => txStakeDispatch({ type: TransactionActionType.TX_RESET })}
+      />
+    );
+  } else {
+    pageContent = (
+      <>
+        <h1>{t("depositLpTokensHeading")}</h1>
+        <TokenInput
+          submitText={t("depositLpSubmitButton", { address: lpTokenAddress })}
+          approveText={t("depositLpApproveButton", {
+            address: lpTokenAddress,
+          })}
+          requireApproval={true}
+          allowance={allowance}
+          perform={txStakePerform}
+          approve={txApprovalPerform}
+          amount={amount}
+          setAmount={setAmount}
+          maximum={new BigNumber(100)}
+        />
+      </>
+    );
+  }
+
   return (
     <section>
       <p>{t("depositLpTokensDescription")}</p>
-      <h1>{t("depositLpTokensHeading")}</h1>
-      <TokenInput
-        submitText={t("depositLpSubmitButton", { address: lpTokenAddress })}
-        approveText={t("depositLpApproveButton", {
-          address: lpTokenAddress,
-        })}
-        requireApproval={true}
-        allowance={allowance}
-        perform={() => undefined}
-        approve={() => undefined}
-        amount={amount}
-        setAmount={setAmount}
-        maximum={new BigNumber(100)}
-      />
+      {pageContent}
     </section>
   );
 };
