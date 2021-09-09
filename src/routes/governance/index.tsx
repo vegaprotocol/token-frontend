@@ -133,7 +133,6 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
   }, [subscribeToMore]);
 
   const proposals = React.useMemo(() => {
-    console.log(33, data);
     if (!data?.proposals?.length) {
       return [];
     }
@@ -151,7 +150,6 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
         ),
     ])(data.proposals);
   }, [data]);
-
 
   const { t } = useTranslation();
 
