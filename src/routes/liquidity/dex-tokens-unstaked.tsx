@@ -82,7 +82,7 @@ export const DexTokensUnstakedItem = ({
       <td>{name}</td>
       <td>
         {unstakedBalance}&nbsp;
-        <Link to={`${Routes.LIQUIDITY}/${contractAddress}`}>
+        <Link to={`${Routes.LIQUIDITY}/${contractAddress}/deposit`}>
           <button disabled={!hasUnstakedBalance} className="button-link">
             {t("Deposit")}
           </button>

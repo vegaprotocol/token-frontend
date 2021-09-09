@@ -3,8 +3,11 @@ import * as Sentry from "@sentry/react";
 import { useTranslation } from "react-i18next";
 import { useVegaLPStaking } from "../../hooks/use-vega-lp-staking";
 import { REWARDS_ADDRESSES } from "../../config";
+import { Link } from "react-router-dom";
+import { Routes } from "../router-config";
+import { BigNumber } from "../../lib/bignumber";
 
-const isWithdrawEnabled = false;
+const isWithdrawEnabled = true;
 
 interface DexTokensStakedProps {
   ethAddress: string;
@@ -75,19 +78,23 @@ export const DexTokensStakedItem = ({
 
     run();
   }, [lpStaking, ethAddress]);
-
+  const hasLpTokensDeposited = React.useMemo(
+    () =>
+      new BigNumber(userLPTokens).plus(userRewardBalance).isGreaterThan("0"),
+    [userLPTokens, userRewardBalance]
+  );
   return (
     <tr>
       <td>{name}</td>
       <td>{userLPTokens}</td>
       <td>
-        {userRewardBalance} VEGA
+        {userRewardBalance} {t("VEGA")}&nbsp;
         {isWithdrawEnabled ? (
-          <p>
-            <button onClick={() => alert("TODO:")}>
-              {t("liquidityStakedWithdraw")}
+          <Link to={`${Routes.LIQUIDITY}/${contractAddress}/withdraw`}>
+            <button disabled={!hasLpTokensDeposited} className="button-link">
+              {t("Withdraw")}
             </button>
-          </p>
+          </Link>
         ) : null}
       </td>
     </tr>
