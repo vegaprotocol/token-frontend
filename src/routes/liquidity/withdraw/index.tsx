@@ -26,6 +26,7 @@ export const LiquidityWithdrawPage = ({
     dispatch: txUnstakeDispatch,
     perform: txUnstakePerform,
   } = useTransaction(() => lpStaking.unstake(ethAddress));
+  // TODO get from reducer state
   const [unstakedBalance, setUnstakedBalance] = React.useState("0");
   const transactionInProgress = React.useMemo(
     () => txUnstakeState.txState !== TxState.Default,
@@ -45,7 +46,7 @@ export const LiquidityWithdrawPage = ({
   }, [lpStaking, ethAddress]);
 
   if (new BigNumber(unstakedBalance).isEqualTo(0)) {
-    return <section>You have no SLP tokens deposited</section>;
+    return <section>{t("withdrawLpNoneDeposited")}</section>;
   }
 
   return (
@@ -59,7 +60,7 @@ export const LiquidityWithdrawPage = ({
         />
       ) : (
         <button className="fill" onClick={txUnstakePerform}>
-          Withdraw all SLP and VEGA rewards
+          {t("withdrawLpWithdrawButton")}
         </button>
       )}
     </section>
@@ -67,6 +68,7 @@ export const LiquidityWithdrawPage = ({
 };
 
 export const LiquidityWithdraw = () => {
+  const { t } = useTranslation();
   const { address } = useParams<{ address: string }>();
 
   const isValidAddress = React.useMemo(
@@ -75,11 +77,7 @@ export const LiquidityWithdraw = () => {
   );
 
   if (!isValidAddress) {
-    return (
-      <section>
-        Address {address} is not a valid LP token address for VEGA
-      </section>
-    );
+    return <section>{t("lpTokensInvalidToken", { address })}</section>;
   }
   return <LiquidityWithdrawPage lpTokenAddress={address} />;
 };

@@ -366,13 +366,18 @@ const en = {
     "How much to {{action}} in next epoch?",
 
   // LP tokens
-  depositLpTokensInvalidToken:
+  lpTokensInvalidToken:
     "Address {{address}} is not a valid LP token address for VEGA",
   depositLpTokensDescription:
     "Deposit the Tokens you recived for providing liquidity and earn rewards in VEGA.",
   depositLpTokensHeading: "How much would you like to deposit?",
   depositLpSubmitButton: "Deposit {{address}}",
   depositLpApproveButton: "Approve deposits of {{address}}",
+  depositLpAlreadyStaked:
+    "You have already staked your LP tokens, go to <withdrawLink>withdraw</withdrawLink> in order withdraw these before you can add more.",
+
+  withdrawLpWithdrawButton: "Withdraw all SLP and VEGA rewards",
+  withdrawLpNoneDeposited: "You have no SLP tokens deposited",
 
   "Dissociate VEGA tokens": "Dissociate VEGA tokens",
   "Early Investors": "Early Investors",

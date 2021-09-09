@@ -27,6 +27,7 @@ export const LiquidityDepositPage = ({
   const [allowance, setAllowance] = React.useState<BigNumber>(
     new BigNumber("0")
   );
+  // TODO get from reducer state
   const [unstakedBalance, setUnstakedBalance] = React.useState("0");
   const [stakedBalance, setStakedBalance] = React.useState("0");
   const {
@@ -147,7 +148,7 @@ export const LiquidityDeposit = () => {
   );
 
   if (!isValidAddress) {
-    return <section>{t("depositLpTokensInvalidToken", { address })}</section>;
+    return <section>{t("lpTokensInvalidToken", { address })}</section>;
   }
   return <LiquidityDepositPage lpTokenAddress={address} />;
 };
