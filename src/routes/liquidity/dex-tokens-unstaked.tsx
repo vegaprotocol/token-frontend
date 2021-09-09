@@ -3,6 +3,8 @@ import * as Sentry from "@sentry/react";
 import { useTranslation } from "react-i18next";
 import { REWARDS_ADDRESSES } from "../../config";
 import { useVegaLPStaking } from "../../hooks/use-vega-lp-staking";
+import { Routes } from "../router-config";
+import { Link } from "react-router-dom";
 import { BigNumber } from "../../lib/bignumber";
 
 interface DexTokensUnstakedProps {
@@ -59,19 +61,12 @@ export const DexTokensUnstakedItem = ({
   const { t } = useTranslation();
   const lpStaking = useVegaLPStaking({ address: contractAddress });
   const [unstakedBalance, setUnstakedBalance] = React.useState("0");
-  const [approvedAmount, setApprovedAmount] = React.useState<BigNumber>(
-    new BigNumber("0")
-  );
 
   React.useEffect(() => {
     const run = async () => {
       try {
-        const [balance, allowance] = await Promise.all([
-          lpStaking.totalUnstaked(ethAddress),
-          lpStaking.allowance(ethAddress),
-        ]);
+        const balance = await lpStaking.totalUnstaked(ethAddress);
         setUnstakedBalance(balance);
-        setApprovedAmount(new BigNumber(allowance));
       } catch (err) {
         Sentry.captureException(err);
       }
@@ -79,23 +74,19 @@ export const DexTokensUnstakedItem = ({
 
     run();
   }, [lpStaking, ethAddress]);
-  const hasApproved = React.useMemo(
-    () => !approvedAmount.isEqualTo(0),
-    [approvedAmount]
-  );
+  const hasUnstakedBalance = React.useMemo(() => {
+    return new BigNumber(unstakedBalance).isEqualTo(0);
+  }, [unstakedBalance]);
   return (
     <tr id={contractAddress}>
       <td>{name}</td>
       <td>
         {unstakedBalance}&nbsp;
-        {hasApproved ? null : (
-          <button className="button-link">{t("Approve")}</button>
-        )}
-        &nbsp;
-        <button disabled={!hasApproved} className="button-link">
-          {t("Deposit")}
-        </button>
-        &nbsp;
+        <Link to={`${Routes.LIQUIDITY}/${contractAddress}`}>
+          <button disabled={!hasUnstakedBalance} className="button-link">
+            {t("Deposit")}
+          </button>
+        </Link>
       </td>
     </tr>
   );

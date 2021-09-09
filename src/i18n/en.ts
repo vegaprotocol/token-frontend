@@ -17,7 +17,7 @@ const en = {
   Vesting: "Vesting",
   of: "of",
   to: "to",
-
+  Deposit: "Deposit",
   Tranche: "Tranche",
   Tranches: "Tranches",
   "Invalid tranche!": "Invalid tranche!",
@@ -396,8 +396,10 @@ const en = {
   "Go to <stakingLink>staking</stakingLink> or <governanceLink>governance</governanceLink> to see how you can use your unlocked tokens":
     "Go to <stakingLink>staking</stakingLink> or <governanceLink>governance</governanceLink> to see how you can use your unlocked tokens",
   liquidityNav: "DEX Liquidity",
-  liquidityIntro: "Provide liquidity on decentralised exchanges and deposit the LP tokens in to our contract to earn rewards",
-  liquidityIntroInstructionsLink: "You can read about our our incentive program in this blog post",
+  liquidityIntro:
+    "Provide liquidity on decentralised exchanges and deposit the LP tokens in to our contract to earn rewards",
+  liquidityIntroInstructionsLink:
+    "You can read about our our incentive program in this blog post",
   liquidityTokensWalletTitle: "LP Tokens in connected wallet",
   liquidityTokensWalletIntro: "The following tokens can be staked to earn VEGA",
   liquidityTokensContractTitle: "LP Tokens earning rewards",
@@ -406,7 +408,8 @@ const en = {
   liquidityTotalAvailableRewardsToken: "Token",
   liquidityTotalAvailableRewardsBalance: "Balance",
   liquidityStakedToken: "LP Token",
-  liquidityStakedIntro: "Withdrawing your LP tokens from the contract will also claim the reward balance",
+  liquidityStakedIntro:
+    "Withdrawing your LP tokens from the contract will also claim the reward balance",
   liquidityStakedBalance: "LP token balance",
   liquidityStakedRewards: "Earned rewards",
   liquidityStakedWithdraw: "Withdraw",
