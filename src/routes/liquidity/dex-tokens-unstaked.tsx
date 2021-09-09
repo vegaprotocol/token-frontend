@@ -75,7 +75,7 @@ export const DexTokensUnstakedItem = ({
     run();
   }, [lpStaking, ethAddress]);
   const hasUnstakedBalance = React.useMemo(() => {
-    return new BigNumber(unstakedBalance).isEqualTo(0);
+    return !new BigNumber(unstakedBalance).isEqualTo(0);
   }, [unstakedBalance]);
   return (
     <tr id={contractAddress}>
