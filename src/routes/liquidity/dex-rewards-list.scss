@@ -1,6 +1,11 @@
 .dex-rewards-list-table {
   table-layout: auto;
-  tbody td {
-    text-align: left;
+
+  td,
+  th {
+    text-align: right;
+    &:first-child {
+      text-align: left;
+    }
   }
 }
