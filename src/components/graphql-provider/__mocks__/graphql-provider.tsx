@@ -288,6 +288,7 @@ const MOCK_PROPOSALS_SUBSCRIPTION: MockedResponse<any> = {
   result: {
     data: {
       proposals: null,
+      updateProposals: () => {}
     },
   },
 };
@@ -303,7 +304,7 @@ export const GraphQlProvider = ({
         MOCK_STAKING_QUERY,
         MOCK_STAKING_NODE_QUERY,
         MOCK_PARTY_DELEGATIONS,
-        MOCK_STAKING_NODE_QUERY,
+        MOCK_PROPOSALS_SUBSCRIPTION,
         MOCK_PROPOSALS,
         MOCK_PROPOSALS_SUBSCRIPTION
       ]}

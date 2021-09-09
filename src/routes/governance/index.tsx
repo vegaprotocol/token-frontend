@@ -125,7 +125,8 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
     const unsub = subscribeToMore({
       document: PROPOSAL_SUBSCRIPTION,
       // @ts-ignore
-      // updateQuery: (prev, data) => updateProposals(prev, data, notify),
+      //  https://github.com/vegaprotocol/token-frontend/issues/397
+      updateQuery: console.log("update here"),
     });
 
     return () => {
