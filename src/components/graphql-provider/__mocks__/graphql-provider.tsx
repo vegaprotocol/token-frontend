@@ -17,7 +17,7 @@ import { STAKE_NODE_QUERY } from "../../../routes/staking/staking-node";
 import { StakeNode } from "../../../routes/staking/__generated__/StakeNode";
 import { PartyDelegations } from "../../../routes/staking/__generated__/PartyDelegations";
 import { PARTY_DELEGATIONS_QUERY } from "../../../routes/staking/staking-form";
-import { PROPOSALS_QUERY } from "../../../routes/governance";
+import { PROPOSALS_QUERY, PROPOSAL_SUBSCRIPTION } from "../../../routes/governance";
 import { Proposals } from "../../../routes/governance/__generated__/proposals";
 
 const partyId = "pub";
@@ -284,6 +284,20 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
   },
 };
 
+
+const MOCK_PROPOSALS_SUBSCRIPTION: MockedResponse<any> = {
+  request: {
+    query: PROPOSAL_SUBSCRIPTION,
+  },
+  result: {
+    data: {
+      proposals: null,
+      updateProposals: () => {}
+    },
+  },
+};
+
+
 export const GraphQlProvider = ({
   children,
 }: {
@@ -295,7 +309,7 @@ export const GraphQlProvider = ({
         MOCK_STAKING_QUERY,
         MOCK_STAKING_NODE_QUERY,
         MOCK_PARTY_DELEGATIONS,
-        MOCK_STAKING_NODE_QUERY,
+        MOCK_PROPOSALS_SUBSCRIPTION,
         MOCK_PROPOSALS,
       ]}
     >
