@@ -34,9 +34,11 @@ export const LiquidityDepositPage = ({
   }, [lpStaking, ethAddress]);
   return (
     <section>
+      <p>{t("depositLpTokensDescription")}</p>
+      <h1>{t("depositLpTokensHeading")}</h1>
       <TokenInput
-        submitText={t("Deposit {{address}}", { address: lpTokenAddress })}
-        approveText={t("Approve deposits of {{address}}", {
+        submitText={t("depositLpSubmitButton", { address: lpTokenAddress })}
+        approveText={t("depositLpApproveButton", {
           address: lpTokenAddress,
         })}
         requireApproval={true}
@@ -52,6 +54,7 @@ export const LiquidityDepositPage = ({
 };
 
 export const LiquidityDeposit = () => {
+  const { t } = useTranslation();
   const { address } = useParams<{ address: string }>();
 
   const isValidAddress = React.useMemo(
@@ -60,11 +63,7 @@ export const LiquidityDeposit = () => {
   );
 
   if (!isValidAddress) {
-    return (
-      <section>
-        Address {address} is not a valid LP token address for VEGA
-      </section>
-    );
+    return <section>{t("depositLpTokensInvalidToken", { address })}</section>;
   }
   return <LiquidityDepositPage lpTokenAddress={address} />;
 };

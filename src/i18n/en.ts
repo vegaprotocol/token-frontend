@@ -363,6 +363,15 @@ const en = {
   "How much to {{action}} in next epoch?":
     "How much to {{action}} in next epoch?",
 
+  // LP tokens
+  depositLpTokensInvalidToken:
+    "Address {{address}} is not a valid LP token address for VEGA",
+  depositLpTokensDescription:
+    "Deposit the Tokens you recived for providing liquidity and earn rewards in VEGA.",
+  depositLpTokensHeading: "How much would you like to deposit?",
+  depositLpSubmitButton: "Deposit {{address}}",
+  depositLpApproveButton: "Approve deposits of {{address}}",
+
   "Dissociate VEGA tokens": "Dissociate VEGA tokens",
   "Early Investors": "Early Investors",
   Team: "Team",
