@@ -216,7 +216,7 @@ const en = {
   "Across all tranches": "Across all tranches",
 
   // Homepage
-  "The Vega Token": "The Vega Token",
+  "The $VEGA token": "The $VEGA token",
   // Duplicate title -> should probably use sections, lazily de-duping by changing the key
   "Token Vesting": "Vesting",
   Governance: "Governance",
@@ -230,11 +230,11 @@ const en = {
 
   // Token Details
   "Token address": "Token address",
-  "Token contract": "Token contract",
+  "Vesting contract": "Vesting contract",
   "Total supply": "Total supply",
   "Circulating supply": "Circulating supply",
-  "Staked on Vega": "Staked on Vega",
-  "Associated on Vega": "Associated on Vega",
+  "Staked on Vega validator": "Staked on Vega validator",
+  "$VEGA associated with a Vega key": "$VEGA associated with a Vega key",
   "There are {{nodeCount}} nodes with a shared stake of {{sharedStake}} VEGA tokens":
     "There are {{nodeCount}} nodes with a shared stake of {{sharedStake}} VEGA tokens",
 
@@ -275,7 +275,6 @@ const en = {
   "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes.":
     "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes.",
   "Associate VEGA Tokens with key": "Associate VEGA Tokens with key",
-  "Vesting contract": "Vesting contract",
   Wallet: "Wallet",
   "Nominate Stake to Validator Node": "Nominate Stake to Validator Node",
   "Associating Tokens": "Associating Tokens",
