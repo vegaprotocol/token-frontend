@@ -262,6 +262,8 @@ const en = {
   "GOVERNANCE.day": " day",
   "GOVERNANCE.days": " days",
   "GOVERNANCE.daysLeft": " left to vote.",
+  "GOVERNANCE.voteFor": "Vote for",
+  "GOVERNANCE.voteAgainst": "Vote against",
 
   // Token Details
   "Token address": "Token address",

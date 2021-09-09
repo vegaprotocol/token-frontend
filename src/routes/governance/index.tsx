@@ -125,7 +125,7 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
     const unsub = subscribeToMore({
       document: PROPOSAL_SUBSCRIPTION,
       // @ts-ignore
-      updateQuery: (prev, data) => updateProposals(prev, data, notify),
+      // updateQuery: (prev, data) => updateProposals(prev, data, notify),
     });
 
     return () => {

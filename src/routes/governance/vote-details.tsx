@@ -1,9 +1,9 @@
 import "./vote-details.scss";
 import { useTranslation } from "react-i18next";
-import { Colors } from "../../colors";
 import { useVoteInformation } from "./hooks";
 import { VoteProgress } from "./vote-progress";
 import { Proposals_proposals } from "./__generated__/proposals";
+import { CurrentProposalStatus } from "./current-proposal-status";
 
 interface VoteDetailsProps {
   proposal: Proposals_proposals;
@@ -27,7 +27,6 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
     daysLeft > 1
       ? `${daysLeft} ${t("GOVERNANCE.days")}`
       : `${daysLeft} ${t("GOVERNANCE.day")}`;
-  const status = "Pass";
 
   return (
     <section>
@@ -35,7 +34,10 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
       <div>
         <p>
           {t("GOVERNANCE.setTo")}
-          <span className="proposal-toast__success-text">{status}</span>.&nbsp;
+          <span className="proposal-toast__success-text">
+            <CurrentProposalStatus proposal={proposal} />
+          </span>
+          .&nbsp;
           {daysLeftText}
           {t("GOVERNANCE.daysLeft")}
         </p>
@@ -82,9 +84,17 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
           </span>
         )}{" "}
         {totalTokensVoted} {totalTokensPercentage}%
-        <span style={{ marginLeft: 5 }} className="text-deemphasise">
+        <span className="proposal-toast__required-participation text-deemphasise">
           ({Number(requiredParticipation) * 100}% {t("GOVERNANCE.required")})
         </span>
+      </div>
+      <div className="proposal-toast__vote-buttons">
+        <button type="button" className="fill">
+          {t("GOVERNANCE.voteFor")}
+        </button>
+        <button type="button" className="fill">
+          {t("GOVERNANCE.voteAgainst")}
+        </button>
       </div>
     </section>
   );

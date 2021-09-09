@@ -68,4 +68,12 @@
     margin-right: 5px;
     margin-left: 5px; 
   }
+
+  &__vote-buttons {
+    display: flex;
+  }
+
+  &__required-participation {
+    margin-left: 5px;
+  }
 }

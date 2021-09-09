@@ -17,8 +17,7 @@ import { STAKE_NODE_QUERY } from "../../../routes/staking/staking-node";
 import { StakeNode } from "../../../routes/staking/__generated__/StakeNode";
 import { PartyDelegations } from "../../../routes/staking/__generated__/PartyDelegations";
 import { PARTY_DELEGATIONS_QUERY } from "../../../routes/staking/staking-form";
-import { PROPOSALS_QUERY } from "../../../routes/governance";
-import { Proposals } from "../../../routes/governance/__generated__/proposals";
+import { PROPOSALS_QUERY, PROPOSAL_SUBSCRIPTION } from "../../../routes/governance";
 
 const partyId = "pub";
 
@@ -174,7 +173,7 @@ const MOCK_PARTY_DELEGATIONS: MockedResponse<PartyDelegations> = {
   },
 };
 
-const MOCK_PROPOSALS: MockedResponse<Proposals> = {
+const MOCK_PROPOSALS: MockedResponse<any> = {
   request: {
     query: PROPOSALS_QUERY,
   },
@@ -182,8 +181,7 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
     data: {
       proposals: [
         {
-          name: "abc",
-          pending: false,
+          name: "123",
           id: "dab4eb13c027c82f1f2c9208aa4fe7c04413f91e5709fa4a44a4c29f4d449266",
           reference: "",
           state: ProposalState.Open,
@@ -236,8 +234,7 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
           __typename: "Proposal",
         },
         {
-          name: "123",
-          pending: false,
+          name: "123abc",
           id: "eeeef3ac1b19bfaddf86ba1ce853e092991383ac9d76be3b20f5a254583feeee",
           reference: "",
           state: ProposalState.Rejected,
@@ -284,6 +281,17 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
   },
 };
 
+const MOCK_PROPOSALS_SUBSCRIPTION: MockedResponse<any> = {
+  request: {
+    query: PROPOSAL_SUBSCRIPTION,
+  },
+  result: {
+    data: {
+      proposals: null,
+    },
+  },
+};
+
 export const GraphQlProvider = ({
   children,
 }: {
@@ -297,6 +305,7 @@ export const GraphQlProvider = ({
         MOCK_PARTY_DELEGATIONS,
         MOCK_STAKING_NODE_QUERY,
         MOCK_PROPOSALS,
+        MOCK_PROPOSALS_SUBSCRIPTION
       ]}
     >
       {children}
