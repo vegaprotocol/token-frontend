@@ -182,7 +182,9 @@ export interface IVegaLPStaking {
   rewardsBalance(account: string): Promise<string>;
   awardTokenTotalSupply(): Promise<string>;
   estimateAPY(): Promise<BigNumber>;
-  stake(amount: BigNumber, account: string): PromiEvent<string>;
+  totalStaked(): Promise<string>;
+  totalUnstaked(account: string): Promise<string>;
+  stake(amount: string, account: string): PromiEvent<void>;
   unstake(account: string): PromiEvent<void>;
   lpAllowance(account: string): Promise<string>;
 }

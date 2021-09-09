@@ -56,13 +56,13 @@ export const DexTokensUnstakedItem = ({
   ethAddress,
 }: DexTokensUnstakedItemProps) => {
   const lpStaking = useVegaLPStaking({ address: contractAddress });
-  const [allowance, setAllowance] = React.useState("0");
+  const [unstakedBalance, setUnstakedBalance] = React.useState("0");
 
   React.useEffect(() => {
     const run = async () => {
       try {
-        const value = await lpStaking.lpAllowance(ethAddress);
-        setAllowance(value.toString());
+        const value = await lpStaking.totalUnstaked(ethAddress);
+        setUnstakedBalance(value.toString());
       } catch (err) {
         Sentry.captureException(err);
       }
@@ -74,7 +74,7 @@ export const DexTokensUnstakedItem = ({
   return (
     <tr id={contractAddress}>
       <td>{name}</td>
-      <td>{allowance}</td>
+      <td>{unstakedBalance}</td>
     </tr>
   );
 };

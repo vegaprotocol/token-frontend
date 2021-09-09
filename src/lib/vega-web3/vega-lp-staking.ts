@@ -4,10 +4,10 @@ import { AbiItem } from "web3-utils";
 import type { Contract } from "web3-eth-contract";
 import lpStakeAbi from "../abis/lp_staking_abi.json";
 import erc20Abi from "../abis/erc20_abi.json";
-import { PromiEvent } from "../web3-utils";
+import { IVegaLPStaking, PromiEvent } from "../web3-utils";
 import { addDecimal, removeDecimal } from "../decimals";
 
-export default class VegaLPStaking {
+export default class VegaLPStaking implements IVegaLPStaking {
   private web3: Web3;
   private contract: Contract;
   public readonly address: string;
@@ -116,6 +116,13 @@ export default class VegaLPStaking {
       new BigNumber(await this.contract.methods.total_staked().call()),
       await this.lpDecimals
     );
+  }
+
+  async totalUnstaked(account: string): Promise<string> {
+    const lpTokenContract = await this.lpContract;
+    const lpTokenDecimals = await this.lpDecimals;
+    const value = await lpTokenContract.methods.balanceOf(account).call();
+    return addDecimal(new BigNumber(value), lpTokenDecimals);
   }
 
   async stake(amount: string, account: string): PromiEvent<void> {
