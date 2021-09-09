@@ -1,5 +1,5 @@
 import { BigNumber } from "../../../lib/bignumber";
-import { IVegaClaim, PromiEvent } from "../../web3-utils";
+import { IVegaClaim, WrappedPromiEvent } from "../../web3-utils";
 import { promiEventFactory, uuidv4 } from "./promi-manager";
 
 const BASE_URL = "mocks/claim";
@@ -17,7 +17,7 @@ class MockedVegaClaim implements IVegaClaim {
     }
   }
 
-  commit(claimCode: string, account: string): PromiEvent<void> {
+  commit(claimCode: string, account: string): WrappedPromiEvent<void> {
     return promiEventFactory(uuidv4(), "commit");
   }
 
@@ -44,7 +44,7 @@ class MockedVegaClaim implements IVegaClaim {
     country: string;
     targeted: boolean;
     account: string;
-  }): PromiEvent<void> {
+  }): WrappedPromiEvent<void> {
     return promiEventFactory(uuidv4(), "claim");
   }
 

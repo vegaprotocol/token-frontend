@@ -4,7 +4,7 @@ import { AbiItem } from "web3-utils";
 import type { Contract } from "web3-eth-contract";
 import tokenAbi from "../abis/vega_token_abi.json";
 import { addDecimal, removeDecimal } from "../decimals";
-import { IVegaToken, PromiEvent } from "../web3-utils";
+import { IVegaToken, WrappedPromiEvent } from "../web3-utils";
 
 export default class VegaToken implements IVegaToken {
   private web3: Web3;
@@ -26,15 +26,20 @@ export default class VegaToken implements IVegaToken {
     return new BigNumber(addDecimal(new BigNumber(res), decimals));
   }
 
-  async approve(address: string, spender: string): PromiEvent<boolean> {
+  async approve(
+    address: string,
+    spender: string
+  ): Promise<WrappedPromiEvent<boolean>> {
     const decimals = await this.decimals();
     const amount = removeDecimal(
       new BigNumber(Number.MAX_SAFE_INTEGER),
       decimals
     );
-    return this.contract.methods
-      .approve(spender, amount)
-      .send({ from: address });
+    return {
+      promiEvent: this.contract.methods
+        .approve(spender, amount)
+        .send({ from: address }),
+    };
   }
 
   async totalSupply(): Promise<BigNumber> {

@@ -3,7 +3,7 @@ import Web3 from "web3";
 import { AbiItem } from "web3-utils";
 import type { Contract } from "web3-eth-contract";
 import stakingAbi from "../abis/staking_abi.json";
-import { IVegaStaking, PromiEvent } from "../web3-utils";
+import { IVegaStaking, WrappedPromiEvent } from "../web3-utils";
 import { addDecimal, removeDecimal } from "../decimals";
 
 export default class StakingAbi implements IVegaStaking {
@@ -34,14 +34,20 @@ export default class StakingAbi implements IVegaStaking {
       .call({ from: address });
   }
 
-  addStake(address: string, amount: string, vegaKey: string): PromiEvent<void> {
+  addStake(
+    address: string,
+    amount: string,
+    vegaKey: string
+  ): WrappedPromiEvent<void> {
     const convertedAmount = removeDecimal(
       new BigNumber(amount),
       this.decimals
     ).toString();
-    return this.contract.methods
-      .stake(convertedAmount, `0x${vegaKey}`)
-      .send({ from: address });
+    return {
+      promiEvent: this.contract.methods
+        .stake(convertedAmount, `0x${vegaKey}`)
+        .send({ from: address }),
+    };
   }
 
   checkRemoveStake(
@@ -58,14 +64,20 @@ export default class StakingAbi implements IVegaStaking {
       .call({ from: address });
   }
 
-  removeStake(address: string, amount: string, vegaKey: string): PromiEvent<void> {
+  removeStake(
+    address: string,
+    amount: string,
+    vegaKey: string
+  ): WrappedPromiEvent<void> {
     const convertedAmount = removeDecimal(
       new BigNumber(amount),
       this.decimals
     ).toString();
-    return this.contract.methods
-      .remove_stake(convertedAmount, `0x${vegaKey}`)
-      .send({ from: address });
+    return {
+      promiEvent: this.contract.methods
+        .remove_stake(convertedAmount, `0x${vegaKey}`)
+        .send({ from: address }),
+    };
   }
 
   checkTransferStake(
@@ -88,14 +100,16 @@ export default class StakingAbi implements IVegaStaking {
     amount: string,
     newAddress: string,
     vegaKey: string
-  ): PromiEvent<string> {
+  ): WrappedPromiEvent<string> {
     const convertedAmount = removeDecimal(
       new BigNumber(amount),
       this.decimals
     ).toString();
-    return this.contract.methods
-      .remove_stake(convertedAmount, newAddress, `0x${vegaKey}`)
-      .send({ from: address });
+    return {
+      promiEvent: this.contract.methods
+        .remove_stake(convertedAmount, newAddress, `0x${vegaKey}`)
+        .send({ from: address }),
+    };
   }
 
   async stakeBalance(address: string, vegaKey: string): Promise<BigNumber> {

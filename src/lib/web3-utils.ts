@@ -55,6 +55,8 @@ export declare class PromiEvent<T>
       | null
   ): Promise<T | TResult>;
 
+  public off(): this;
+
   public finally(onfinally?: (() => void) | null | undefined): Promise<T>;
 
   static resolve<T>(value: T): PromiEvent<T>;
@@ -66,6 +68,10 @@ declare namespace PromiEvent {
   export type Reject = (reason?: any) => void;
 }
 
+export interface WrappedPromiEvent<T> {
+  promiEvent: PromiEvent<T>;
+}
+
 export interface IStaking {
   stakeBalance(address: string, vegaKey: string): Promise<BigNumber>;
   totalStaked(): Promise<BigNumber>;
@@ -73,13 +79,17 @@ export interface IStaking {
     address: string,
     amount: string,
     vegaKey: string
-  ): PromiEvent<void>;
+  ): WrappedPromiEvent<void>;
   checkRemoveStake(
     address: string,
     amount: string,
     vegaKey: string
   ): Promise<any>;
-  addStake(address: string, amount: string, vegaKey: string): PromiEvent<void>;
+  addStake(
+    address: string,
+    amount: string,
+    vegaKey: string
+  ): WrappedPromiEvent<void>;
   checkAddStake(address: string, amount: string, vegaKey: string): Promise<any>;
 }
 
@@ -95,7 +105,7 @@ export interface IVegaStaking extends IStaking {
     amount: string,
     newAddress: string,
     vegaKey: string
-  ): PromiEvent<string>;
+  ): WrappedPromiEvent<string>;
 }
 
 export interface IVegaVesting extends IStaking {
@@ -107,12 +117,15 @@ export interface IVegaVesting extends IStaking {
     address: string,
     tranche: number
   ): Promise<BigNumber>;
-  withdrawFromTranche(account: string, trancheId: number): PromiEvent<void>;
+  withdrawFromTranche(
+    account: string,
+    trancheId: number
+  ): WrappedPromiEvent<void>;
   checkWithdrawFromTranche(account: string, trancheId: number): Promise<any>;
 }
 
 export interface IVegaClaim {
-  commit(claimCode: string, account: string): PromiEvent<void>;
+  commit(claimCode: string, account: string): WrappedPromiEvent<void>;
 
   checkCommit(claimCode: string, account: string): Promise<any>;
 
@@ -134,7 +147,7 @@ export interface IVegaClaim {
     country: string;
     targeted: boolean;
     account: string;
-  }): PromiEvent<void>;
+  }): WrappedPromiEvent<void>;
 
   checkClaim({
     claimCode,
@@ -173,7 +186,10 @@ export interface IVegaToken {
   decimals(): Promise<number>;
   tokenData(): Promise<{ totalSupply: BigNumber; decimals: number }>;
   balanceOf(address: string): Promise<BigNumber>;
-  approve(address: string, spender: string): PromiEvent<boolean>;
+  approve(
+    address: string,
+    spender: string
+  ): Promise<WrappedPromiEvent<boolean>>;
   allowance(address: string, spender: string): Promise<BigNumber>;
 }
 
@@ -184,8 +200,11 @@ export interface IVegaLPStaking {
   estimateAPY(): Promise<BigNumber>;
   totalStaked(): Promise<string>;
   totalUnstaked(account: string): Promise<string>;
-  stake(amount: string, account: string): PromiEvent<void>;
-  unstake(account: string): PromiEvent<void>;
+  stake(amount: string, account: string): Promise<WrappedPromiEvent<boolean>>;
+  unstake(account: string): WrappedPromiEvent<void>;
   allowance(account: string): Promise<string>;
-  approve(address: string, spender: string): PromiEvent<boolean>;
+  approve(
+    address: string,
+    spender: string
+  ): Promise<WrappedPromiEvent<boolean>>;
 }

@@ -3,7 +3,7 @@ import Web3 from "web3";
 import { AbiItem } from "web3-utils";
 import type { Contract } from "web3-eth-contract";
 import claimAbi from "../abis/claim_abi.json";
-import { IVegaClaim, PromiEvent } from "../web3-utils";
+import { IVegaClaim, WrappedPromiEvent } from "../web3-utils";
 
 /**
  * Example:
@@ -38,12 +38,14 @@ export default class VegaClaim implements IVegaClaim {
    * otherwise the action is pointless
    * @return {Promise<boolean>}
    */
-  public commit(claimCode: string, account: string): PromiEvent<void> {
+  public commit(claimCode: string, account: string): WrappedPromiEvent<void> {
     const hash = this.deriveCommitment(claimCode, account);
 
-    return this.contract.methods
-      .commit_untargeted_code(hash)
-      .send({ from: account });
+    return {
+      promiEvent: this.contract.methods
+        .commit_untargeted_code(hash)
+        .send({ from: account }),
+    };
   }
 
   public checkCommit(claimCode: string, account: string): Promise<any> {
@@ -78,17 +80,19 @@ export default class VegaClaim implements IVegaClaim {
     country: string;
     targeted: boolean;
     account: string;
-  }): PromiEvent<void> {
-    return this.contract.methods[
-      targeted ? "redeem_targeted" : "redeem_untargeted_code"
-    ](
-      claimCode,
-      denomination.toString(),
-      trancheId,
-      expiry,
-      nonce,
-      Web3.utils.asciiToHex(country)
-    ).send({ from: account });
+  }): WrappedPromiEvent<void> {
+    return {
+      promiEvent: this.contract.methods[
+        targeted ? "redeem_targeted" : "redeem_untargeted_code"
+      ](
+        claimCode,
+        denomination.toString(),
+        trancheId,
+        expiry,
+        nonce,
+        Web3.utils.asciiToHex(country)
+      ).send({ from: account }),
+    };
   }
 
   public checkClaim({

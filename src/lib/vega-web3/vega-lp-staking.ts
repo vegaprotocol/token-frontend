@@ -4,7 +4,7 @@ import { AbiItem } from "web3-utils";
 import type { Contract } from "web3-eth-contract";
 import lpStakeAbi from "../abis/lp_staking_abi.json";
 import erc20Abi from "../abis/erc20_abi.json";
-import { IVegaLPStaking, PromiEvent } from "../web3-utils";
+import { IVegaLPStaking, WrappedPromiEvent } from "../web3-utils";
 import { addDecimal, removeDecimal } from "../decimals";
 
 export default class VegaLPStaking implements IVegaLPStaking {
@@ -129,16 +129,22 @@ export default class VegaLPStaking implements IVegaLPStaking {
     return addDecimal(new BigNumber(value), lpTokenDecimals);
   }
 
-  async stake(amount: string, account: string): PromiEvent<void> {
-    return this.contract.methods
-      .stake(
-        removeDecimal(new BigNumber(amount), await this.lpDecimals).toString()
-      )
-      .send({ from: account });
+  async stake(
+    amount: string,
+    account: string
+  ): Promise<WrappedPromiEvent<boolean>> {
+    const decimals = await this.lpDecimals;
+    return {
+      promiEvent: this.contract.methods
+        .stake(removeDecimal(new BigNumber(amount), decimals).toString())
+        .send({ from: account }),
+    };
   }
 
-  async unstake(account: string): PromiEvent<void> {
-    return this.contract.methods.unstake().send({ from: account });
+  unstake(account: string): WrappedPromiEvent<void> {
+    return {
+      promiEvent: this.contract.methods.unstake().send({ from: account }),
+    };
   }
 
   async allowance(account: string): Promise<string> {
@@ -152,13 +158,15 @@ export default class VegaLPStaking implements IVegaLPStaking {
     );
   }
 
-  async approve(address: string, spender: string): PromiEvent<boolean> {
+  async approve(
+    address: string,
+    spender: string
+  ): Promise<WrappedPromiEvent<boolean>> {
     const amount = removeDecimal(
       new BigNumber(Number.MAX_SAFE_INTEGER),
       await this.lpDecimals
     );
-    return await (await this.lpContract).methods
-      .approve(spender, amount)
-      .send({ from: address });
+    const contract = await this.lpContract;
+    return contract.methods.approve(spender, amount).send({ from: address });
   }
 }

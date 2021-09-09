@@ -1,6 +1,6 @@
 import { BigNumber } from "../../../lib/bignumber";
 import { Tranche } from "../vega-web3-types";
-import { IVegaVesting, PromiEvent } from "../../web3-utils";
+import { IVegaVesting, WrappedPromiEvent } from "../../web3-utils";
 import { getTranchesFromHistory } from "../tranche-helpers";
 import Web3 from "web3";
 import { addDecimal } from "../../decimals";
@@ -31,11 +31,19 @@ class MockedVesting implements IVegaVesting {
     return Promise.resolve(true);
   }
 
-  addStake(address: string, amount: string, vegaKey: string): PromiEvent<void> {
+  addStake(
+    address: string,
+    amount: string,
+    vegaKey: string
+  ): WrappedPromiEvent<void> {
     return promiEventFactory(uuidv4(), "add-stake");
   }
 
-  removeStake(address: string, amount: string, vegaKey: string): PromiEvent<void> {
+  removeStake(
+    address: string,
+    amount: string,
+    vegaKey: string
+  ): WrappedPromiEvent<void> {
     return promiEventFactory(uuidv4(), "remove-stake");
   }
 
@@ -72,7 +80,10 @@ class MockedVesting implements IVegaVesting {
     }
   }
 
-  withdrawFromTranche(account: string, trancheId: number): PromiEvent<void> {
+  withdrawFromTranche(
+    account: string,
+    trancheId: number
+  ): WrappedPromiEvent<void> {
     return promiEventFactory(uuidv4(), "withdraw-from-tranche");
   }
 
