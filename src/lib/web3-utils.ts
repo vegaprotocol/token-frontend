@@ -196,6 +196,7 @@ export interface IVegaToken {
 export interface IVegaLPStaking {
   stakedBalance(account: string): Promise<string>;
   rewardsBalance(account: string): Promise<string>;
+  awardContractAddress(): Promise<string>;
   awardTokenTotalSupply(): Promise<string>;
   estimateAPY(): Promise<BigNumber>;
   totalStaked(): Promise<string>;
@@ -207,4 +208,5 @@ export interface IVegaLPStaking {
     address: string,
     spender: string
   ): Promise<WrappedPromiEvent<boolean>>;
+  lpTokenTotalSupply(): Promise<string>;
 }

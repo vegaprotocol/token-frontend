@@ -3,7 +3,6 @@ import { useEthUser } from "../../../hooks/use-eth-user";
 import { useVegaLPStaking } from "../../../hooks/use-vega-lp-staking";
 import { useParams } from "react-router";
 import { REWARDS_ADDRESSES } from "../../../config";
-import { useTranslation } from "react-i18next";
 import { useTransaction } from "../../../hooks/use-transaction";
 import {
   TransactionActionType,
@@ -18,7 +17,6 @@ export const LiquidityWithdrawPage = ({
 }: {
   lpTokenAddress: string;
 }) => {
-  const { t } = useTranslation();
   const lpStaking = useVegaLPStaking({ address: lpTokenAddress });
   const { ethAddress } = useEthUser();
   const {

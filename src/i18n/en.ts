@@ -415,8 +415,13 @@ const en = {
   liquidityTokensWalletIntro: "The following tokens can be staked to earn VEGA",
   liquidityTokensContractTitle: "LP Tokens earning rewards",
   liquidityTotalAvailableRewards: "Total available rewards",
-  liquidityTotalAvailableAddress: "Contract address",
-  liquidityTotalAvailableRewardsToken: "Token",
+
+  liquidityRewardsTitle: "Active liquidity rewards",
+  liquidityTokenContractAddress: "Liquidty token contract address",
+  rewardPerEpoch: "Reward per epoch (split between reward pool)",
+  rewardTokenContractAddress: "Reward token contract address",
+  liquidityTokenSupply: "Liquidity token supply",
+
   liquidityTotalAvailableRewardsBalance: "Balance",
   liquidityStakedToken: "LP Token",
   liquidityStakedIntro:
