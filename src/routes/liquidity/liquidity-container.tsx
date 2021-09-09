@@ -100,10 +100,17 @@ const DexRewardsTableRow = ({
   React.useEffect(() => {
     const run = async () => {
       try {
-        const totalRewardsAvailable = await lpStaking.awardTokenTotalSupply();
-        const rewardsBalance = await lpStaking.rewardsBalance(ethAddress);
-        const stakedBalance = await lpStaking.stakedBalance(ethAddress);
-        const unstakedBalance = await lpStaking.totalUnstaked(ethAddress);
+        const [
+          totalRewardsAvailable,
+          rewardsBalance,
+          stakedBalance,
+          unstakedBalance,
+        ] = await Promise.all([
+          await lpStaking.awardTokenTotalSupply(),
+          await lpStaking.rewardsBalance(ethAddress),
+          await lpStaking.stakedBalance(ethAddress),
+          await lpStaking.totalUnstaked(ethAddress),
+        ]);
         setValues({
           totalRewardsAvailable,
           rewardsBalance,
