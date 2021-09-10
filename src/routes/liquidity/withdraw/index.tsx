@@ -14,6 +14,8 @@ import BigNumber from "bignumber.js";
 import { useTranslation } from "react-i18next";
 import { EthConnectPrompt } from "../../../components/eth-connect-prompt";
 
+import "./withdraw.scss"
+
 export const LiquidityWithdrawPage = ({
   lpTokenAddress,
 }: {
@@ -28,6 +30,7 @@ export const LiquidityWithdrawPage = ({
     perform: txUnstakePerform,
   } = useTransaction(() => lpStaking.unstake(ethAddress));
   const [stakedBalance, setStakedBalance] = React.useState(new BigNumber(0));
+  const [rewardsBalance, setRewardsBalance] = React.useState(new BigNumber(0));
   const transactionInProgress = React.useMemo(
     () => txUnstakeState.txState !== TxState.Default,
     [txUnstakeState.txState]
@@ -36,7 +39,10 @@ export const LiquidityWithdrawPage = ({
     const run = async () => {
       try {
         const stakedBalance = await lpStaking.stakedBalance(ethAddress);
+        const rewardsBalance = await lpStaking.rewardsBalance(ethAddress);
+
         setStakedBalance(stakedBalance);
+        setRewardsBalance(rewardsBalance);
       } catch (err) {
         Sentry.captureException(err);
       }
@@ -60,9 +66,28 @@ export const LiquidityWithdrawPage = ({
           }
         />
       ) : (
-        <button className="fill" onClick={txUnstakePerform}>
-          {t("withdrawLpWithdrawButton")}
-        </button>
+        <section>
+          <p>{t('lpTokenWithdrawSubmit')}</p>
+          <table className="dex-tokens-withdraw__table">
+            <tbody>
+            <tr>
+              <th>{t("liquidityTokenWithdrawBalance")}</th>
+              <td>
+                {stakedBalance.toString()}
+              </td>
+            </tr>
+            <tr>
+              <th>{t("liquidityTokenWithdrawRewards")}</th>
+              <td>{rewardsBalance.toString()}</td>
+            </tr>
+            </tbody>
+          </table>
+          <p className="dex-tokens-withdraw__submit">
+            <button className="fill" onClick={txUnstakePerform}>
+              {t("withdrawLpWithdrawButton")}
+            </button>
+          </p>
+        </section>
       )}
     </section>
   );

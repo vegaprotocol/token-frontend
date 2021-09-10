@@ -1,3 +1,5 @@
+import React from "react";
+
 const en = {
   Home: "Home",
 
@@ -428,6 +430,9 @@ const en = {
   rewardTokenContractAddress: "Reward token contract address",
   lpTokensInRewardPool: "Tokens in reward pool",
   lpTokensEstimateAPY: "Estimated APY",
+  lpTokenWithdrawSubmit: "Submitting this form will withdraw your entire staked balance & all rewards to your connected wallet:",
+  liquidityTokenWithdrawBalance: "Withdrawal balance",
+  liquidityTokenWithdrawRewards: "Withdrawal rewards",
   usersLpTokens: "Your LP tokens in connected wallet",
   depositToRewardPoolButton: "Deposit to reward pool",
   usersStakedLPTokens: "Your LP tokens in reward pool",
