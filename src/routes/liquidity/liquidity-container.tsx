@@ -11,6 +11,8 @@ import { useAppState } from "../../contexts/app-state/app-state-context";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { IVegaLPStaking } from "../../lib/web3-utils";
 import { BigNumber } from "../../lib/bignumber";
+import { Link } from "react-router-dom";
+import { Routes } from "../router-config";
 
 const BLOG_LINK =
   "https://blog.vega.xyz/unlocking-vega-coinlist-pro-uniswap-sushiswap-b1414750e358";
@@ -110,7 +112,7 @@ const DexTokensSection = ({
           </tr>
           <tr>
             <th>{t("rewardPerEpoch")}</th>
-            <td>{values.rewardPerEpoch}</td>
+            <td>{values.rewardPerEpoch} VEGA</td>
           </tr>
           <tr>
             <th>{t("rewardTokenContractAddress")}</th>
@@ -128,6 +130,7 @@ const DexTokensSection = ({
           </tr>
           {ethAddress && (
             <ConnectedRows
+              lpContractAddress={contractAddress}
               ethAddress={ethAddress}
               lpStaking={lpStaking}
               rewardPoolBalance={values.rewardPoolBalance}
@@ -140,12 +143,14 @@ const DexTokensSection = ({
 };
 
 interface ConnectedRowsProps {
+  lpContractAddress: string;
   ethAddress: string;
   lpStaking: IVegaLPStaking;
   rewardPoolBalance: string;
 }
 
 const ConnectedRows = ({
+  lpContractAddress,
   ethAddress,
   lpStaking,
   rewardPoolBalance,
@@ -192,10 +197,16 @@ const ConnectedRows = ({
       <tr>
         <th>{t("usersLpTokens")}</th>
         <td>
-          <div style={{ marginBottom: 3 }}>{values.availableLPTokens}</div>
-          <div>
-            <button>{t("depositToRewardPoolButton")}</button>
-          </div>
+          <div>{values.availableLPTokens}</div>
+          {new BigNumber(values.stakedLPTokens).isGreaterThan(0) ? (
+            <span className="text-muted">{t("alreadyDeposited")}</span>
+          ) : (
+            <div style={{ marginTop: 3 }}>
+              <Link to={`${Routes.LIQUIDITY}/${lpContractAddress}/deposit`}>
+                <button>{t("depositToRewardPoolButton")}</button>
+              </Link>
+            </div>
+          )}
         </td>
       </tr>
       <tr>
@@ -208,7 +219,17 @@ const ConnectedRows = ({
       </tr>
       <tr>
         <th>{t("usersAccumulatedRewards")}</th>
-        <td>{values.accumulatedRewards}</td>
+        <td>
+          <div>{values.accumulatedRewards} VEGA</div>
+          {/* // TODO: check this condition is correct */}
+          {new BigNumber(values.stakedLPTokens).isGreaterThan(0) && (
+            <div style={{ marginTop: 3 }}>
+              <Link to={`${Routes.LIQUIDITY}/${lpContractAddress}/withdraw`}>
+                <button>{t("withdrawFromRewardPoolButton")}</button>
+              </Link>
+            </div>
+          )}
+        </td>
       </tr>
     </>
   );

@@ -426,6 +426,8 @@ const en = {
   usersStakedLPTokens: "Your LP tokens in reward pool",
   usersShareOfPool: "Your share of pool",
   usersAccumulatedRewards: "Your accumulated rewards",
+  alreadyDeposited: "You need to withdraw before you can deposit again",
+  withdrawFromRewardPoolButton: "Withdraw LP tokens and VEGA tokens",
 
   liquidityTotalAvailableRewardsBalance: "Balance",
   liquidityStakedToken: "LP Token",
