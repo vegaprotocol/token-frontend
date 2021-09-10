@@ -212,10 +212,6 @@ export interface ProposalFields {
    */
   id: string | null;
   /**
-   * Generated name for the proposal
-   */
-  name: string;
-  /**
    * A UUID reference to aid tracking proposals on VEGA
    */
   reference: string;
@@ -243,8 +239,4 @@ export interface ProposalFields {
    * Votes cast for this proposal
    */
   votes: ProposalFields_votes;
-  /**
-   * Whether or the not the proposal is processing on the blockchain
-   */
-  pending: boolean;
 }

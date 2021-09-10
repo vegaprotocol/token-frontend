@@ -23,7 +23,6 @@ import { updateProposals } from "./update-proposals";
 export const PROPOSALS_FRAGMENT = gql`
   fragment ProposalFields on Proposal {
     id
-    name @client
     reference
     state
     datetime
@@ -89,7 +88,6 @@ export const PROPOSALS_FRAGMENT = gql`
         }
       }
     }
-    pending @client
   }
 `;
 
