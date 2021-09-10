@@ -4,10 +4,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: networkParams
+// GraphQL query operation: NetworkParams
 // ====================================================
 
-export interface networkParams_networkParameters {
+export interface NetworkParams_networkParameters {
   __typename: "NetworkParameter";
   /**
    * The name of the network parameter
@@ -19,9 +19,9 @@ export interface networkParams_networkParameters {
   value: string;
 }
 
-export interface networkParams {
+export interface NetworkParams {
   /**
    * return the full list of network parameters
    */
-  networkParameters: networkParams_networkParameters[] | null;
+  networkParameters: NetworkParams_networkParameters[] | null;
 }

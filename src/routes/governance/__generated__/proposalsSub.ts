@@ -212,10 +212,6 @@ export interface ProposalsSub_proposals {
    */
   id: string | null;
   /**
-   * Generated name for the proposal
-   */
-  name: string;
-  /**
    * A UUID reference to aid tracking proposals on VEGA
    */
   reference: string;
@@ -243,10 +239,6 @@ export interface ProposalsSub_proposals {
    * Votes cast for this proposal
    */
   votes: ProposalsSub_proposals_votes;
-  /**
-   * Whether or the not the proposal is processing on the blockchain
-   */
-  pending: boolean;
 }
 
 export interface ProposalsSub {

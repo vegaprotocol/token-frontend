@@ -6,7 +6,7 @@
     "node": ">=14.15.0"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.21",
+    "@apollo/client": "^3.4.8",
     "@blueprintjs/core": "^3.47.0",
     "@blueprintjs/select": "^3.16.6",
     "@craco/craco": "^6.2.0",
