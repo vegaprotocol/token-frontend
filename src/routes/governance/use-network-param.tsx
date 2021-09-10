@@ -3,7 +3,7 @@ import { gql } from "@apollo/client";
 
 import type { networkParams } from "./__generated__/networkParams";
 
-export const networkParamsQuery = gql`
+export const NETWORK_PARAMS_QUERY = gql`
   query NETWORK_PARAMS_QUERY {
     networkParameters {
       key
@@ -14,7 +14,7 @@ export const networkParamsQuery = gql`
 
 export function useNetworkParam(params: string[]) {
   const { data, loading, error } = useQuery<networkParams, never>(
-    networkParamsQuery
+    NETWORK_PARAMS_QUERY
   );
   const foundParams = data?.networkParameters?.filter((p) =>
     params.includes(p.key)
