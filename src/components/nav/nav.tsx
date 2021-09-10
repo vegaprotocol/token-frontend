@@ -13,7 +13,7 @@ import {
 import { EthWallet } from "../eth-wallet";
 import { useTranslation } from "react-i18next";
 import { Breadcrumbs } from "./breadcrumbs";
-import {Flags} from "../../flags";
+import {Flags} from "../../config";
 
 export const Nav = () => {
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);

@@ -4,7 +4,7 @@ import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { RouteChildProps } from "..";
 import { EthWallet } from "../../components/eth-wallet";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
-import { Flags } from "../../flags";
+import { Flags } from "../../config";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { LiquidityDeposit } from "./deposit";
 import { LiquidityContainer } from "./liquidity-container";

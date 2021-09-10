@@ -22,6 +22,7 @@ interface DexTokensSectionProps {
   ethAddress: string;
   state: LiquidityState;
   dispatch: React.Dispatch<LiquidityAction>;
+  showInteractionButton?: boolean
 }
 
 export const DexTokensSection = ({
@@ -30,6 +31,7 @@ export const DexTokensSection = ({
   ethAddress,
   state,
   dispatch,
+  showInteractionButton = true,
 }: DexTokensSectionProps) => {
   const { appState } = useAppState();
   const { t } = useTranslation();
@@ -74,7 +76,7 @@ export const DexTokensSection = ({
             <td>
               <EtherscanLink
                 chainId={appState.chainId}
-                hash={contractAddress}
+                tx={contractAddress}
                 text={truncateMiddle(contractAddress)}
               />
             </td>
@@ -88,7 +90,7 @@ export const DexTokensSection = ({
             <td>
               <EtherscanLink
                 chainId={appState.chainId}
-                hash={values.awardContractAddress}
+                tx={values.awardContractAddress}
                 text={truncateMiddle(values.awardContractAddress)}
               />
             </td>
@@ -99,6 +101,7 @@ export const DexTokensSection = ({
           </tr>
           {ethAddress && (
             <ConnectedRows
+              showInteractionButton={showInteractionButton}
               lpContractAddress={contractAddress}
               ethAddress={ethAddress}
               lpStaking={lpStaking}
@@ -120,6 +123,7 @@ interface ConnectedRowsProps {
   rewardPoolBalance: BigNumber;
   state: LiquidityState;
   dispatch: React.Dispatch<LiquidityAction>;
+  showInteractionButton: boolean;
 }
 
 const ConnectedRows = ({
@@ -129,6 +133,7 @@ const ConnectedRows = ({
   rewardPoolBalance,
   state,
   dispatch,
+  showInteractionButton = true
 }: ConnectedRowsProps) => {
   const { t } = useTranslation();
   const [loading, setLoading] = React.useState(true);
@@ -172,6 +177,9 @@ const ConnectedRows = ({
     return null;
   }
 
+  // Only shows the Deposit/Withdraw button IF they have tokens AND they haven't staked AND we're not on the relevant page
+  const isDepositButtonVisible = showInteractionButton && values.availableLPTokens.isGreaterThan(0)
+
   return (
     <>
       <tr>
@@ -180,13 +188,14 @@ const ConnectedRows = ({
           <div>{values.availableLPTokens.toString()}</div>
           {values.stakedLPTokens.isGreaterThan(0) ? (
             <span className="text-muted">{t("alreadyDeposited")}</span>
-          ) : (
+          ) : isDepositButtonVisible ? (
             <div style={{ marginTop: 3 }}>
               <Link to={`${Routes.LIQUIDITY}/${lpContractAddress}/deposit`}>
                 <button>{t("depositToRewardPoolButton")}</button>
               </Link>
             </div>
-          )}
+          ):null}
+
         </td>
       </tr>
       <tr>

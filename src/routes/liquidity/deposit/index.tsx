@@ -107,6 +107,7 @@ export const LiquidityDepositPage = ({
           contractAddress={lpTokenAddress}
           ethAddress={ethAddress}
           state={state}
+          showInteractionButton={false}
           dispatch={dispatch}
         />
         <h1>{t("depositLpTokensHeading")}</h1>
