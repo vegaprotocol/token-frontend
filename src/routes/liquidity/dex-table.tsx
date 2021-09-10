@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import { useVegaLPStaking } from "../../hooks/use-vega-lp-staking";
 import { EtherscanLink } from "../../components/etherscan-link";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import { truncateMiddle } from "../../lib/truncate-middle";
 import { IVegaLPStaking } from "../../lib/web3-utils";
 import { BigNumber } from "../../lib/bignumber";
 import { Link } from "react-router-dom";
