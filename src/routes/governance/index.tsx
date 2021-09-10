@@ -114,10 +114,7 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
   const match = useRouteMatch();
   useDocumentTitle(name);
   const { data, loading, error, subscribeToMore } = useQuery<Proposals, never>(
-    PROPOSALS_QUERY,
-    {
-      errorPolicy: "ignore",
-    }
+    PROPOSALS_QUERY
   );
 
   React.useEffect(() => {
