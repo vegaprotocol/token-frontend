@@ -43,6 +43,9 @@ export const RedemptionInformation = ({
       }),
     [trancheBalances, userTranches]
   );
+  const zeroTranche = React.useMemo(() => {
+    return trancheBalances.find((t) => t.id === 0);
+  }, [trancheBalances]);
 
   if (!filteredTranches.length) {
     return (
@@ -98,6 +101,31 @@ export const RedemptionInformation = ({
         vested={totalVestedBalance}
       />
       {filteredTranches.length ? <h2>{t("Tranche breakdown")}</h2> : null}
+      {zeroTranche && (
+        <TrancheTable
+          key={zeroTranche.id}
+          tranche={{
+            tranche_id: zeroTranche.id,
+            tranche_end: new Date(0),
+            tranche_start: new Date(0),
+          }}
+          lien={lien}
+          locked={
+            trancheBalances.find(
+              ({ id }) => id.toString() === zeroTranche.id.toString()
+            )!.locked
+          }
+          vested={
+            trancheBalances.find(
+              ({ id }) => id.toString() === zeroTranche.id.toString()
+            )!.vested
+          }
+          totalVested={totalVestedBalance}
+          totalLocked={totalLockedBalance}
+          disabled={true}
+          onClick={() => {}}
+        />
+      )}
       {filteredTranches.map((tr) => (
         <TrancheTable
           key={tr.tranche_id}

@@ -6,18 +6,22 @@ import {
   KeyValueTableRow,
 } from "../../components/key-value-table";
 import { BigNumber } from "../../lib/bignumber";
-import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 
 export interface TrancheTableProps {
-  tranche: Tranche;
+  tranche: {
+    tranche_id: number;
+    tranche_start: Date;
+    tranche_end: Date;
+  };
   locked: BigNumber;
   vested: BigNumber;
   lien: BigNumber;
   totalVested: BigNumber;
   totalLocked: BigNumber;
   onClick: () => void;
+  disabled?: boolean;
 }
 
 export const TrancheTable = ({
@@ -28,6 +32,7 @@ export const TrancheTable = ({
   onClick,
   totalVested,
   totalLocked,
+  disabled = false,
 }: TrancheTableProps) => {
   const { t } = useTranslation();
   const total = vested.plus(locked);
@@ -64,7 +69,7 @@ export const TrancheTable = ({
     );
   } else if (!trancheFullyLocked && redeemable) {
     message = (
-      <button onClick={onClick}>
+      <button onClick={onClick} disabled={disabled}>
         {t("Redeem unlocked VEGA from tranche {{id}}", {
           id: tranche.tranche_id,
         })}
