@@ -1,15 +1,13 @@
 import { mock, mockVesting } from "../common/mock";
 
 describe("Associate", () => {
-  it("Renders switcher, header and description", () => {
+  it.only("Renders switcher, header and description", () => {
     // As a user
     mockVesting();
     mock(cy);
 
     // When visiting the associate page
     cy.visit("/staking/associate");
-    cy.get('[data-testid="connect"]').click();
-    cy.get('[data-testid="connect-overlay"]').click();
     cy.get('[data-testid="connect-vega"]').click();
     cy.get('[data-testid="wallet-name"]').type("wallet");
     cy.get('[data-testid="wallet-password"]').type("wallet");
