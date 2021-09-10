@@ -111,19 +111,20 @@ export const LiquidityDepositPage = ({
           dispatch={dispatch}
         />
         <h1>{t("depositLpTokensHeading")}</h1>
-        <TokenInput
-          submitText={t("depositLpSubmitButton", { address: lpTokenAddress })}
-          approveText={t("depositLpApproveButton", {
-            address: lpTokenAddress,
-          })}
-          requireApproval={true}
-          allowance={allowance}
-          perform={txStakePerform}
-          approve={txApprovalPerform}
-          amount={amount}
-          setAmount={setAmount}
-          maximum={maximum}
-        />
+        {maximum.isGreaterThan(0) ? (
+          <TokenInput
+            submitText={t("depositLpSubmitButton", { address: lpTokenAddress })}
+            approveText={t("depositLpApproveButton", {
+              address: lpTokenAddress,
+            })}
+            requireApproval={true}
+            allowance={allowance}
+            perform={txStakePerform}
+            approve={txApprovalPerform}
+            amount={amount}
+            setAmount={setAmount}
+            maximum={maximum}
+          />) : (<p>{t('depositLpInsufficientBalance')}</p>)}
       </>
     );
   }

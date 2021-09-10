@@ -369,10 +369,11 @@ const en = {
   lpTokensInvalidToken:
     "Address {{address}} is not a valid LP token address for VEGA",
   depositLpTokensDescription:
-    "Deposit the Tokens you recived for providing liquidity and earn rewards in VEGA.",
+    "Deposit the Tokens you received for providing liquidity and earn rewards in VEGA.",
   depositLpTokensHeading: "How much would you like to deposit?",
   depositLpSubmitButton: "Deposit {{address}}",
   depositLpApproveButton: "Approve deposits of {{address}}",
+  depositLpInsufficientBalance: "You do not have tokens to deposit.",
   depositLpAlreadyStaked:
     "You have already staked your LP tokens, go to <withdrawLink>withdraw</withdrawLink> in order withdraw these before you can add more.",
 
