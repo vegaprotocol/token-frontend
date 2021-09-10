@@ -65,6 +65,8 @@ export const TokenInput = ({
           rightElement={<Tag minimal={true}>{t("VEGA Tokens")}</Tag>}
           autoComplete="off"
           type="number"
+          max={maximum.toNumber()}
+          min={0}
         />
         {maximum && (
           <button
@@ -78,7 +80,7 @@ export const TokenInput = ({
         )}
       </div>
       {isApproved ? (
-        t("VEGA tokens are approved for staking")
+        <p className="token-input__approved">{t("VEGA tokens are approved for staking")}</p>
       ) : (
         <button
           data-testid="token-input-approve-button"
