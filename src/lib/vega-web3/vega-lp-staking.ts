@@ -65,7 +65,7 @@ export default class VegaLPStaking implements IVegaLPStaking {
   /**
    * Retrieve staked VEGA LP tokens for a given account
    * @param  {string}          account ethereum address
-   * @return {Promise<string>}         balance in VEGA LP tokens as decimal number
+   * @return {Promise<BigNumber>}         balance in VEGA LP tokens as decimal number
    */
   async stakedBalance(account: string): Promise<BigNumber> {
     const value = await this.contract.methods
@@ -82,7 +82,7 @@ export default class VegaLPStaking implements IVegaLPStaking {
    * passed.
    *
    * @param  {string}          account address
-   * @return {Promise<string>}         Reward token balance in units
+   * @return {Promise<BigNumber>}         Reward token balance in units
    */
   async rewardsBalance(account: string): Promise<BigNumber> {
     // Contract reverts if no stake is added, resulting in the catch block
@@ -111,7 +111,7 @@ export default class VegaLPStaking implements IVegaLPStaking {
     return new BigNumber(addDecimal(new BigNumber(rewardPerEpoch), decimals));
   }
 
-  async liquidityTokensInRewardPool() {
+  async liquidityTokensInRewardPool(): Promise<BigNumber> {
     const rewardContract = await this.awardContract;
     const decimals = await this.awardDecimals;
     const balance = await rewardContract.methods.balanceOf(this.address).call();
@@ -147,13 +147,20 @@ export default class VegaLPStaking implements IVegaLPStaking {
 
   /**
    * Total amount staked in this liquidity pool
-   * @return {Promise<string>} Amount in VEGA LP units
+   * @return {Promise<BigNumber>} Amount in VEGA LP units
    */
   async totalStaked(): Promise<BigNumber> {
     const value = await this.contract.methods.total_staked().call();
     return new BigNumber(
       addDecimal(new BigNumber(value), await this.lpDecimals)
     );
+  }
+
+  async totalUnstaked(account: string): Promise<BigNumber> {
+    const lpTokenContract = await this.lpContract;
+    const lpTokenDecimals = await this.lpDecimals;
+    const value = await lpTokenContract.methods.balanceOf(account).call();
+    return new BigNumber(addDecimal(new BigNumber(value), lpTokenDecimals));
   }
 
   /**
@@ -165,10 +172,8 @@ export default class VegaLPStaking implements IVegaLPStaking {
    *
    * @param  {string}           amount  stake in VEGA LP units
    * @param  {string}           account address
-   * @return {PromiEvent<void>}
+   * @return {Promise<WrappedPromiEvent<boolean>>}
    */
-  }
-
   async stake(
     amount: string,
     account: string
@@ -181,6 +186,11 @@ export default class VegaLPStaking implements IVegaLPStaking {
     };
   }
 
+  /**
+   * Unstake the full amount and receive rewards.
+   * @param  {string}           account address
+   * @return {WrappedPromiEvent<void>}
+   */
   unstake(account: string): WrappedPromiEvent<void> {
     return {
       promiEvent: this.contract.methods.unstake().send({ from: account }),
@@ -193,8 +203,9 @@ export default class VegaLPStaking implements IVegaLPStaking {
    * to `.stake(amount, account)`. The amount is returned as a decimal number of
    * VEGA LP tokens
    * @param  {string}          account address
-   * @return {Promise<string>}
+   * @return {Promise<BigNumber>}
    */
+  async allowance(account: string): Promise<BigNumber> {
     const value = await (await this.lpContract).methods
       .allowance(account, this.address)
       .call();
