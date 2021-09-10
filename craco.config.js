@@ -1,5 +1,5 @@
 const webpack = require("webpack");
-
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = function () {
   const isMock = ["1", "true"].includes(process.env.REACT_APP_MOCKED);
   const detectProviderPath = isMock ? "../../__mocks__/@metamask" : "@metamask";
@@ -11,6 +11,9 @@ module.exports = function () {
   return {
     webpack: {
       plugins: [
+        new MiniCssExtractPlugin({
+          ignoreOrder: true,
+        }),
         new webpack.NormalModuleReplacementPlugin(
           /(.*)DETECT_PROVIDER_PATH(\.*)/,
           function (resource) {
