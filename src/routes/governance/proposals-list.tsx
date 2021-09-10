@@ -52,7 +52,7 @@ export const ProposalsList = ({ data }: ProposalsListProps) => {
         </div>
         <div className="proposals-list__row">
           <p className="proposals-list__item-left-low-key">
-            {t("Proposed enactment")}
+            {t("proposedEnactment")}
           </p>
           <span className="proposals-list__item-right">
             {format(enactmentDate, "d MMM yyyy")}

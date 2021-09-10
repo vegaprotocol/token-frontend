@@ -18,6 +18,7 @@ import { AssociateContainer } from "../staking/associate/associate-page";
 import { DisassociateContainer } from "../staking/disassociate/disassociate-page";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
+import { updateProposals } from "./update-proposals";
 
 export const PROPOSALS_FRAGMENT = gql`
   fragment ProposalFields on Proposal {
@@ -121,8 +122,7 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
     const unsub = subscribeToMore({
       document: PROPOSAL_SUBSCRIPTION,
       // @ts-ignore
-      //  https://github.com/vegaprotocol/token-frontend/issues/397
-      updateQuery: console.log("update here"),
+      updateQuery: (prev, data) => updateProposals(prev, data),
     });
 
     return () => {
