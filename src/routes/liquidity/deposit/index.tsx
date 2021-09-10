@@ -111,7 +111,7 @@ export const LiquidityDepositPage = ({
           dispatch={dispatch}
         />
         <h1>{t("depositLpTokensHeading")}</h1>
-        {maximum.isGreaterThan(0) ? (
+        {values?.availableLPTokens?.isGreaterThan(0) ? (
           <TokenInput
             submitText={t("depositLpSubmitButton", { address: lpTokenAddress })}
             approveText={t("depositLpApproveButton", {
