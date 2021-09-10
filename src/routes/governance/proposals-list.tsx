@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import "./proposals-list.scss";
 
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 import {
   Proposals_proposals,
   Proposals_proposals_terms_change_UpdateNetworkParameter,
@@ -15,6 +15,7 @@ interface ProposalsListProps {
 
 export const ProposalsList = ({ data }: ProposalsListProps) => {
   const { t } = useTranslation();
+  const match = useRouteMatch();
 
   const filteredData = data.filter((row) => {
     return row.terms.change.__typename === "UpdateNetworkParameter";
@@ -25,11 +26,14 @@ export const ProposalsList = ({ data }: ProposalsListProps) => {
   }
 
   const renderRow = (row: Proposals_proposals) => {
-    const enactmentDate = new Date(row.terms.enactmentDatetime).getTime();
+    const enactmentDate = new Date(row.terms.enactmentDatetime);
     return (
       <li className="proposals-list__main-list-item" key={row.id}>
         <div className="proposals-list__row">
-          <Link className="proposals-list__first-item" to={`/governance/${row.id}`}>
+          <Link
+            className="proposals-list__first-item"
+            to={`${match.path}/${row.id}`}
+          >
             {
               (
                 row.terms
