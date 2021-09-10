@@ -12,7 +12,7 @@ export enum ClaimStatus {
 export interface ClaimState {
   // From URL
   denomination: BigNumber | null; // amount
-  denominationFormatted: string; // amount formatted with decimal places
+  denominationFormatted: BigNumber; // amount formatted with decimal places
   target: string | null; // ETH address
   trancheId: number | null;
   expiry: number | null; // timestamp in seconds
@@ -28,7 +28,7 @@ export interface ClaimState {
 
 export const initialClaimState: ClaimState = {
   denomination: null,
-  denominationFormatted: "",
+  denominationFormatted: new BigNumber(0),
   target: null,
   trancheId: null,
   expiry: null,
@@ -121,7 +121,9 @@ export function claimReducer(
         return {
           ...state,
           denomination,
-          denominationFormatted: addDecimal(denomination, action.decimals),
+          denominationFormatted: new BigNumber(
+            addDecimal(denomination, action.decimals)
+          ),
           target: action.data.target ?? null,
           trancheId: Number(action.data.trancheId),
           expiry: Number(action.data.expiry),

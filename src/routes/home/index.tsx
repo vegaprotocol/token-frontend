@@ -12,7 +12,7 @@ import { Routes } from "../router-config";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
 import { EthWallet } from "../../components/eth-wallet";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import { Flags } from "../../flags";
+import { Flags } from "../../config";
 import { BigNumber } from "../../lib/bignumber";
 
 export const TOTAL_STAKED_QUERY = gql`
@@ -30,12 +30,12 @@ const Home = ({ name }: RouteChildProps) => {
   const { appState } = useAppState();
   const { data } = useQuery<NodeData>(TOTAL_STAKED_QUERY);
   const totalStaked = React.useMemo(() => {
-    return new BigNumber(data?.nodeData?.stakedTotal || "0").toString();
+    return new BigNumber(data?.nodeData?.stakedTotal || "0");
   }, [data]);
 
   return (
     <TemplateSidebar sidebar={[<EthWallet />]}>
-      <h2>{t("The Vega Token")}</h2>
+      <h2>{t("The $VEGA token")}</h2>
 
       <TokenDetails
         totalSupply={appState.totalSupply}

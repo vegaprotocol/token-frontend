@@ -3,5 +3,3 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom";
-import { EthereumChainIds } from "./lib/web3-utils";
-process.env.REACT_APP_CHAIN = EthereumChainIds.Mainnet;

@@ -8,9 +8,9 @@ import { Callout } from "../../../components/callout";
 import { HandUp } from "../../../components/icons";
 import { Link, useHistory } from "react-router-dom";
 import React from "react";
-import { BigNumber } from "../../../lib/bignumber";
 import { truncateMiddle } from "../../../lib/truncate-middle";
 import { Routes } from "../../router-config";
+import { formatNumber } from "../../../lib/format-number";
 
 export const RedemptionInformation = ({
   state,
@@ -66,7 +66,7 @@ export const RedemptionInformation = ({
           "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.",
           {
             address: truncateMiddle(address),
-            balance: balanceFormatted,
+            balance: formatNumber(balanceFormatted),
             tranches: filteredTranches.length,
           }
         )}
@@ -93,16 +93,16 @@ export const RedemptionInformation = ({
       </p>
       <p data-testid="redemption-note">{t("redemptionExplain")}</p> */}
       <VestingTable
-        associated={new BigNumber(lien)}
-        locked={new BigNumber(totalLockedBalance)}
-        vested={new BigNumber(totalVestedBalance)}
+        associated={lien}
+        locked={totalLockedBalance}
+        vested={totalVestedBalance}
       />
       {filteredTranches.length ? <h2>{t("Tranche breakdown")}</h2> : null}
       {filteredTranches.map((tr) => (
         <TrancheTable
           key={tr.tranche_id}
           tranche={tr}
-          lien={new BigNumber(lien)}
+          lien={lien}
           locked={
             trancheBalances.find(
               ({ id }) => id.toString() === tr.tranche_id.toString()
@@ -113,8 +113,8 @@ export const RedemptionInformation = ({
               ({ id }) => id.toString() === tr.tranche_id.toString()
             )!.vested
           }
-          totalVested={new BigNumber(totalVestedBalance)}
-          totalLocked={new BigNumber(totalLockedBalance)}
+          totalVested={totalVestedBalance}
+          totalLocked={totalLockedBalance}
           onClick={() => history.push(`/vesting/${tr.tranche_id}`)}
         />
       ))}

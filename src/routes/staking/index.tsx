@@ -6,7 +6,7 @@ import { EthWallet } from "../../components/eth-wallet";
 import { TemplateDefault } from "../../components/page-templates/template-default";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
 import { VegaWallet } from "../../components/vega-wallet";
-import { Flags } from "../../flags";
+import { Flags } from "../../config";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { AssociateContainer } from "./associate/associate-page";
 import { DisassociateContainer } from "./disassociate/disassociate-page";

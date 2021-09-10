@@ -4,18 +4,18 @@ import { Callout } from "../../components/callout";
 import { EtherscanLink } from "../../components/etherscan-link";
 import { Tick } from "../../components/icons";
 import { useAppState } from "../../contexts/app-state/app-state-context";
+import { BigNumber } from "../../lib/bignumber";
+import { formatNumber } from "../../lib/format-number";
 import { Routes } from "../router-config";
 
 export const Complete = ({
   address,
   balanceFormatted,
-  trancheId,
   commitTxHash,
   claimTxHash,
 }: {
   address: string;
-  balanceFormatted: string;
-  trancheId: number;
+  balanceFormatted: BigNumber;
   commitTxHash: string | null;
   claimTxHash: string | null;
 }) => {
@@ -31,7 +31,7 @@ export const Complete = ({
             i18nKey="claimCompleteMessage"
             values={{
               address,
-              balance: balanceFormatted,
+              balance: formatNumber(balanceFormatted),
             }}
           />
         </p>
@@ -40,7 +40,7 @@ export const Complete = ({
             {t("Link transaction")}:{" "}
             <EtherscanLink
               chainId={chainId!}
-              hash={commitTxHash}
+              tx={commitTxHash}
               text={commitTxHash}
             />
           </p>
@@ -50,7 +50,7 @@ export const Complete = ({
             {t("Claim transaction")}:{" "}
             <EtherscanLink
               chainId={chainId!}
-              hash={claimTxHash}
+              tx={claimTxHash}
               text={claimTxHash}
             />
           </p>

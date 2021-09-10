@@ -5,7 +5,7 @@ import {
   AppStateActionType,
   useAppState,
 } from "../contexts/app-state/app-state-context";
-import { Flags } from "../flags";
+import { Flags } from "../config";
 import { BigNumber } from "../lib/bignumber";
 import { useVegaStaking } from "./use-vega-staking";
 import { useVegaToken } from "./use-vega-token";

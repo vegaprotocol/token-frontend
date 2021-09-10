@@ -10,7 +10,7 @@ test("It sums some easy tranches correctly", () => {
   ];
 
   const result = sumRedeemedTokens(tranches as Tranche[]);
-  expect(result).toEqual("300");
+  expect(result.toString()).toEqual("300");
 });
 
 test("It sums some longer tranches correctly", () => {
@@ -21,12 +21,12 @@ test("It sums some longer tranches correctly", () => {
   ];
 
   const result = sumRedeemedTokens(tranches as Tranche[]);
-  expect(result).toEqual("10000003020");
+  expect(result.toString()).toEqual("10000003020");
 });
 
 test("Handles null tranche array", () => {
   const tranches = null;
 
   const result = sumRedeemedTokens(tranches as any as Tranche[]);
-  expect(result).toEqual("0");
+  expect(result.toString()).toEqual("0");
 });

@@ -66,7 +66,7 @@ export const WalletAssociate = ({
   }, [address, appDispatch, approveState.txState, token]);
 
   let pageContent = null;
-  if (new BigNumber(walletBalance).isEqualTo("0")) {
+  if (walletBalance.isEqualTo("0")) {
     pageContent = (
       <div className="wallet-associate__error">
         {t(
