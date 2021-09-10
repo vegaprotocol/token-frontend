@@ -1,16 +1,4 @@
-import type { TypePolicy } from "@apollo/client";
-import {
-  Proposals_proposals_terms_change,
-} from "../../routes/governance/__generated__/proposals";
-
-const typePolicy: TypePolicy = {
-  fields: {
-  },
-};
-
-export const proposalTypePolicy = {
-  Proposal: typePolicy,
-};
+import { Proposals_proposals_terms_change } from "../../routes/governance/__generated__/proposals";
 
 export function getProposalName(change: Proposals_proposals_terms_change) {
   if (change.__typename === "NewAsset") {
