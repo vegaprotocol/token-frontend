@@ -18,16 +18,18 @@ export const useGetUserTrancheBalances = (address: string) => {
       const tranches = await vesting.getAllTranches();
       const userTranches = tranches.filter((t) =>
         t.users.some(
-          ({ address: a }) => a && address && a.toLowerCase() === address.toLowerCase()
+          ({ address: a }) =>
+            a && address && a.toLowerCase() === address.toLowerCase()
         )
       );
-      const promises = userTranches.map(async (t) => {
+      const trancheIds = [0, ...userTranches.map((t) => t.tranche_id)];
+      const promises = trancheIds.map(async (tId) => {
         const [total, vested] = await Promise.all([
-          vesting.userTrancheTotalBalance(address, t.tranche_id),
-          vesting.userTrancheVestedBalance(address, t.tranche_id),
+          vesting.userTrancheTotalBalance(address, tId),
+          vesting.userTrancheVestedBalance(address, tId),
         ]);
         return {
-          id: t.tranche_id,
+          id: tId,
           locked: total.minus(vested),
           vested,
         };
