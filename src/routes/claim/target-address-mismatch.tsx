@@ -1,5 +1,5 @@
 import { Trans, useTranslation } from "react-i18next";
-import { Colors } from "../../colors";
+import { Colors } from "../../config/colors";
 
 interface TargetAddressMismatchProps {
   connectedAddress: string;

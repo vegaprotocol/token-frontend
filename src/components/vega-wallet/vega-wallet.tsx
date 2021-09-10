@@ -25,6 +25,7 @@ import {
 } from "./__generated__/Delegations";
 import { useVegaUser } from "../../hooks/use-vega-user";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
+import { BigNumber } from "../../lib/bignumber";
 
 const DELEGATIONS_QUERY = gql`
   query Delegations($partyId: ID!) {
@@ -215,7 +216,7 @@ const VegaWalletConnected = ({
       {delegations.map((d) => (
         <WalletCardRow
           label={d.node.id}
-          value={d.amount}
+          value={new BigNumber(d.amount)}
           valueSuffix={t("VEGA")}
         />
       ))}

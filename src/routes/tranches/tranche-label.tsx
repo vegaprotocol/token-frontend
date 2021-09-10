@@ -1,6 +1,5 @@
-import { ADDRESSES } from "../../config";
-import { EthereumChainId, EthereumChainIds } from "../../lib/web3-utils";
 import "./tranche-label.scss";
+import { ADDRESSES, EthereumChainId, EthereumChainIds } from "../../config";
 
 const TRANCHE_LABELS: Record<number, string[]> = {
   "5": ["Coinlist Option 1", "Community Whitelist"],
