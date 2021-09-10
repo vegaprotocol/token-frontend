@@ -11,12 +11,14 @@ import {
 import { TransactionCallout } from "../../../components/transaction-callout";
 import * as Sentry from "@sentry/react";
 import BigNumber from "bignumber.js";
+import { useTranslation } from "react-i18next";
 
 export const LiquidityWithdrawPage = ({
   lpTokenAddress,
 }: {
   lpTokenAddress: string;
 }) => {
+  const { t } = useTranslation();
   const lpStaking = useVegaLPStaking({ address: lpTokenAddress });
   const { ethAddress } = useEthUser();
   const {
@@ -28,9 +30,7 @@ export const LiquidityWithdrawPage = ({
     new BigNumber(0)
   );
   const transactionInProgress = React.useMemo(
-    () =>
-      txUnstakeState.txState !== TxState.Default &&
-      txUnstakeState.txState !== TxState.Complete,
+    () => txUnstakeState.txState !== TxState.Default,
     [txUnstakeState.txState]
   );
   React.useEffect(() => {
@@ -47,7 +47,7 @@ export const LiquidityWithdrawPage = ({
   }, [lpStaking, ethAddress]);
 
   if (unstakedBalance.isEqualTo(0)) {
-    return <section>You have no SLP tokens deposited</section>;
+    return <section>{t("withdrawLpNoneDeposited")}</section>;
   }
 
   return (
@@ -61,7 +61,7 @@ export const LiquidityWithdrawPage = ({
         />
       ) : (
         <button className="fill" onClick={txUnstakePerform}>
-          Withdraw all SLP and VEGA rewards
+          {t("withdrawLpWithdrawButton")}
         </button>
       )}
     </section>
@@ -69,6 +69,7 @@ export const LiquidityWithdrawPage = ({
 };
 
 export const LiquidityWithdraw = () => {
+  const { t } = useTranslation();
   const { address } = useParams<{ address: string }>();
 
   const isValidAddress = React.useMemo(
@@ -77,11 +78,7 @@ export const LiquidityWithdraw = () => {
   );
 
   if (!isValidAddress) {
-    return (
-      <section>
-        Address {address} is not a valid LP token address for VEGA
-      </section>
-    );
+    return <section>{t("lpTokensInvalidToken", { address })}</section>;
   }
   return <LiquidityWithdrawPage lpTokenAddress={address} />;
 };
