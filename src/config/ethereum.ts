@@ -45,8 +45,8 @@ const RewardsAddresses = {
     "Sushi Swap VEGA/USDC": "0x42b7B8f8F83fA5cbf0176f8c24Ad51EbcD4B5F17",
   },
   [EthereumChainIds.Ropsten]: {
-    "Sushi Swap VEGA/ETH": "0xf3153577008864d23805Dd0912340AF5604bb544",
-    "Sushi Swap VEGA/USDC": "0xf3153577008864d23805Dd0912340AF5604bb544",
+    "Sushi Swap VEGA/ETH": "0xbb12cd85C71DC11f4d82fc6E2E68c343c329d85E",
+    "Sushi Swap VEGA/USDC": "0xbb12cd85C71DC11f4d82fc6E2E68c343c329d85E",
   },
 };
 
