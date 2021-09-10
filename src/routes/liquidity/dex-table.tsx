@@ -148,6 +148,7 @@ const ConnectedRows = ({
         // values here?
         const accumulatedRewards = await lpStaking.rewardsBalance(ethAddress);
 
+        // TODO: This is wrong, so the row showing it is hidden
         const shareOfPool =
           stakedLPTokens.dividedBy(rewardPoolBalance).times(100).toString() +
           "%";
@@ -201,10 +202,10 @@ const ConnectedRows = ({
         <th>{t("usersStakedLPTokens")}</th>
         <td>{values.stakedLPTokens.toString()}</td>
       </tr>
-      <tr>
+      {/*<tr>
         <th>{t("usersShareOfPool")}</th>
         <td>{values.shareOfPool}</td>
-      </tr>
+      </tr>*/}
       <tr>
         <th>{t("usersAccumulatedRewards")}</th>
         <td>
