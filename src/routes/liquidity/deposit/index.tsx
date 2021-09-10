@@ -22,10 +22,10 @@ export const LiquidityDepositPage = ({
   const { t } = useTranslation();
   const [amount, setAmount] = React.useState("0");
   const lpStaking = useVegaLPStaking({ address: lpTokenAddress });
-  const [allowance, setAllowance] = React.useState<BigNumber>(
-    new BigNumber("0")
+  const [allowance, setAllowance] = React.useState<BigNumber>(new BigNumber(0));
+  const [unstakedBalance, setUnstakedBalance] = React.useState(
+    new BigNumber(0)
   );
-  const [unstakedBalance, setUnstakedBalance] = React.useState("0");
   const {
     state: txApprovalState,
     dispatch: txApprovalDispatch,
@@ -51,15 +51,14 @@ export const LiquidityDepositPage = ({
     run();
   }, [lpStaking, ethAddress]);
   const maximum = React.useMemo(
-    () =>
-      BigNumber.min(new BigNumber(unstakedBalance), new BigNumber(allowance!)),
+    () => BigNumber.min(unstakedBalance, new BigNumber(allowance!)),
     [allowance, unstakedBalance]
   );
   React.useEffect(() => {
     const run = async () => {
       try {
         const allowance = await lpStaking.allowance(ethAddress);
-        setAllowance(new BigNumber(allowance));
+        setAllowance(allowance);
       } catch (err) {
         Sentry.captureException(err);
       }

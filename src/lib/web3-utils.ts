@@ -194,19 +194,19 @@ export interface IVegaToken {
 }
 
 export interface IVegaLPStaking {
-  stakedBalance(account: string): Promise<string>;
-  rewardsBalance(account: string): Promise<string>;
+  stakedBalance(account: string): Promise<BigNumber>;
+  rewardsBalance(account: string): Promise<BigNumber>;
   awardContractAddress(): Promise<string>;
-  rewardPerEpoch(): Promise<string>;
+  rewardPerEpoch(): Promise<BigNumber>;
   estimateAPY(): Promise<BigNumber>;
-  totalStaked(): Promise<string>;
-  totalUnstaked(account: string): Promise<string>;
+  totalStaked(): Promise<BigNumber>;
+  totalUnstaked(account: string): Promise<BigNumber>;
   stake(amount: string, account: string): Promise<WrappedPromiEvent<boolean>>;
   unstake(account: string): WrappedPromiEvent<void>;
-  allowance(account: string): Promise<string>;
+  allowance(account: string): Promise<BigNumber>;
   approve(
     address: string,
     spender: string
   ): Promise<WrappedPromiEvent<boolean>>;
-  liquidityTokensInRewardPool(): Promise<string>;
+  liquidityTokensInRewardPool(): Promise<BigNumber>;
 }

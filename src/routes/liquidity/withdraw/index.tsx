@@ -24,7 +24,9 @@ export const LiquidityWithdrawPage = ({
     dispatch: txUnstakeDispatch,
     perform: txUnstakePerform,
   } = useTransaction(() => lpStaking.unstake(ethAddress));
-  const [unstakedBalance, setUnstakedBalance] = React.useState("0");
+  const [unstakedBalance, setUnstakedBalance] = React.useState(
+    new BigNumber(0)
+  );
   const transactionInProgress = React.useMemo(
     () =>
       txUnstakeState.txState !== TxState.Default &&
@@ -44,7 +46,7 @@ export const LiquidityWithdrawPage = ({
     run();
   }, [lpStaking, ethAddress]);
 
-  if (new BigNumber(unstakedBalance).isEqualTo(0)) {
+  if (unstakedBalance.isEqualTo(0)) {
     return <section>You have no SLP tokens deposited</section>;
   }
 

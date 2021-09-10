@@ -63,9 +63,9 @@ const DexTokensSection = ({
   const lpStaking = useVegaLPStaking({ address: contractAddress });
 
   const [values, setValues] = React.useState<{
-    rewardPerEpoch: string;
+    rewardPerEpoch: BigNumber;
+    rewardPoolBalance: BigNumber;
     awardContractAddress: string;
-    rewardPoolBalance: string;
   } | null>(null);
 
   React.useEffect(() => {
@@ -73,15 +73,19 @@ const DexTokensSection = ({
       try {
         const promises = [
           await lpStaking.rewardPerEpoch(),
-          await lpStaking.awardContractAddress(),
           await lpStaking.liquidityTokensInRewardPool(),
+          await lpStaking.awardContractAddress(),
         ];
-        const [rewardPerEpoch, awardContractAddress, rewardPoolBalance] =
+
+        const [rewardPerEpoch, rewardPoolBalance, awardContractAddress] =
           await Promise.all(promises);
+
         setValues({
-          rewardPerEpoch,
-          awardContractAddress,
-          rewardPoolBalance,
+          // Typescript doesnt seem to properly infer the type of each item
+          // in the array returned from promise.all
+          rewardPerEpoch: rewardPerEpoch as BigNumber,
+          rewardPoolBalance: rewardPoolBalance as BigNumber,
+          awardContractAddress: awardContractAddress as string,
         });
       } catch (err) {
         Sentry.captureException(err);
@@ -112,7 +116,7 @@ const DexTokensSection = ({
           </tr>
           <tr>
             <th>{t("rewardPerEpoch")}</th>
-            <td>{values.rewardPerEpoch} VEGA</td>
+            <td>{values.rewardPerEpoch.toString()} VEGA</td>
           </tr>
           <tr>
             <th>{t("rewardTokenContractAddress")}</th>
@@ -126,7 +130,7 @@ const DexTokensSection = ({
           </tr>
           <tr>
             <th>{t("lpTokensInRewardPool")}</th>
-            <td>{values.rewardPoolBalance}</td>
+            <td>{values.rewardPoolBalance.toString()}</td>
           </tr>
           {ethAddress && (
             <ConnectedRows
@@ -146,7 +150,7 @@ interface ConnectedRowsProps {
   lpContractAddress: string;
   ethAddress: string;
   lpStaking: IVegaLPStaking;
-  rewardPoolBalance: string;
+  rewardPoolBalance: BigNumber;
 }
 
 const ConnectedRows = ({
@@ -157,10 +161,10 @@ const ConnectedRows = ({
 }: ConnectedRowsProps) => {
   const { t } = useTranslation();
   const [values, setValues] = React.useState<{
-    availableLPTokens: string;
-    stakedLPTokens: string;
+    availableLPTokens: BigNumber;
+    stakedLPTokens: BigNumber;
     shareOfPool: string;
-    accumulatedRewards: string;
+    accumulatedRewards: BigNumber;
   } | null>(null);
 
   React.useEffect(() => {
@@ -171,11 +175,8 @@ const ConnectedRows = ({
       // values here?
       const accumulatedRewards = await lpStaking.rewardsBalance(ethAddress);
 
-      const rewardPool = new BigNumber(rewardPoolBalance);
-      const shareOfPool = new BigNumber(stakedLPTokens)
-        .dividedBy(rewardPool)
-        .times(100)
-        .toString();
+      const shareOfPool =
+        stakedLPTokens.dividedBy(rewardPoolBalance).times(100).toString() + "%";
 
       setValues({
         availableLPTokens,
@@ -197,8 +198,8 @@ const ConnectedRows = ({
       <tr>
         <th>{t("usersLpTokens")}</th>
         <td>
-          <div>{values.availableLPTokens}</div>
-          {new BigNumber(values.stakedLPTokens).isGreaterThan(0) ? (
+          <div>{values.availableLPTokens.toString()}</div>
+          {values.stakedLPTokens.isGreaterThan(0) ? (
             <span className="text-muted">{t("alreadyDeposited")}</span>
           ) : (
             <div style={{ marginTop: 3 }}>
@@ -211,7 +212,7 @@ const ConnectedRows = ({
       </tr>
       <tr>
         <th>{t("usersStakedLPTokens")}</th>
-        <td>{values.stakedLPTokens}</td>
+        <td>{values.stakedLPTokens.toString()}</td>
       </tr>
       <tr>
         <th>{t("usersShareOfPool")}</th>
@@ -220,9 +221,9 @@ const ConnectedRows = ({
       <tr>
         <th>{t("usersAccumulatedRewards")}</th>
         <td>
-          <div>{values.accumulatedRewards} VEGA</div>
+          <div>{values.accumulatedRewards.toString()} VEGA</div>
           {/* // TODO: check this condition is correct */}
-          {new BigNumber(values.stakedLPTokens).isGreaterThan(0) && (
+          {values.stakedLPTokens.isGreaterThan(0) && (
             <div style={{ marginTop: 3 }}>
               <Link to={`${Routes.LIQUIDITY}/${lpContractAddress}/withdraw`}>
                 <button>{t("withdrawFromRewardPoolButton")}</button>
