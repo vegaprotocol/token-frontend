@@ -12,6 +12,10 @@ module.exports = function () {
     webpack: {
       plugins: [
         new MiniCssExtractPlugin({
+          // Options similar to the same options in webpackOptions.output
+          // both options are optional
+          filename: "static/css/[name].[contenthash:8].css",
+          chunkFilename: "static/css/[name].[contenthash:8].chunk.css",
           ignoreOrder: true,
         }),
         new webpack.NormalModuleReplacementPlugin(
