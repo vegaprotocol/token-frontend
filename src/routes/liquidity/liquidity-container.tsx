@@ -13,6 +13,13 @@ import { IVegaLPStaking } from "../../lib/web3-utils";
 import { BigNumber } from "../../lib/bignumber";
 import { Link } from "react-router-dom";
 import { Routes } from "../router-config";
+import {
+  initialLiquidityState,
+  LiquidityState,
+  LiquidityAction,
+  LiquidityActionType,
+  liquidityReducer,
+} from "./liquidity-reducer";
 
 const BLOG_LINK =
   "https://blog.vega.xyz/unlocking-vega-coinlist-pro-uniswap-sushiswap-b1414750e358";
@@ -20,7 +27,10 @@ const BLOG_LINK =
 export const LiquidityContainer = () => {
   const { t } = useTranslation();
   const { ethAddress } = useEthUser();
-
+  const [state, dispatch] = React.useReducer(
+    liquidityReducer,
+    initialLiquidityState
+  );
   return (
     <>
       <p>{t("liquidityIntro")}</p>
@@ -40,6 +50,8 @@ export const LiquidityContainer = () => {
             name={name}
             contractAddress={contractAddress}
             ethAddress={ethAddress}
+            state={state}
+            dispatch={dispatch}
           />
         );
       })}
@@ -51,41 +63,38 @@ interface DexTokensSectionProps {
   name: string;
   contractAddress: string;
   ethAddress: string;
+  state: LiquidityState;
+  dispatch: React.Dispatch<LiquidityAction>;
 }
 
 const DexTokensSection = ({
   name,
   contractAddress,
   ethAddress,
+  state,
+  dispatch,
 }: DexTokensSectionProps) => {
   const { appState } = useAppState();
   const { t } = useTranslation();
   const lpStaking = useVegaLPStaking({ address: contractAddress });
-
-  const [values, setValues] = React.useState<{
-    rewardPerEpoch: BigNumber;
-    rewardPoolBalance: BigNumber;
-    awardContractAddress: string;
-  } | null>(null);
-
+  const values = state.contractData[contractAddress];
   React.useEffect(() => {
     const run = async () => {
       try {
-        const promises = [
-          await lpStaking.rewardPerEpoch(),
-          await lpStaking.liquidityTokensInRewardPool(),
-          await lpStaking.awardContractAddress(),
-        ];
-
         const [rewardPerEpoch, rewardPoolBalance, awardContractAddress] =
-          await Promise.all(promises);
-
-        setValues({
-          // Typescript doesnt seem to properly infer the type of each item
-          // in the array returned from promise.all
-          rewardPerEpoch: rewardPerEpoch as BigNumber,
-          rewardPoolBalance: rewardPoolBalance as BigNumber,
-          awardContractAddress: awardContractAddress as string,
+          await Promise.all<BigNumber, BigNumber, string>([
+            await lpStaking.rewardPerEpoch(),
+            await lpStaking.liquidityTokensInRewardPool(),
+            await lpStaking.awardContractAddress(),
+          ]);
+        dispatch({
+          type: LiquidityActionType.SET_CONTRACT_INFORMATION,
+          contractAddress,
+          contractData: {
+            rewardPerEpoch: rewardPerEpoch,
+            rewardPoolBalance: rewardPoolBalance,
+            awardContractAddress: awardContractAddress,
+          },
         });
       } catch (err) {
         Sentry.captureException(err);
@@ -93,9 +102,8 @@ const DexTokensSection = ({
     };
 
     run();
-  }, [lpStaking, ethAddress]);
-
-  if (values === null) {
+  }, [lpStaking, ethAddress, contractAddress, dispatch]);
+  if (!values) {
     return <p>{t("Loading")}...</p>;
   }
 
@@ -138,6 +146,8 @@ const DexTokensSection = ({
               ethAddress={ethAddress}
               lpStaking={lpStaking}
               rewardPoolBalance={values.rewardPoolBalance}
+              state={state}
+              dispatch={dispatch}
             />
           )}
         </tbody>
@@ -151,6 +161,8 @@ interface ConnectedRowsProps {
   ethAddress: string;
   lpStaking: IVegaLPStaking;
   rewardPoolBalance: BigNumber;
+  state: LiquidityState;
+  dispatch: React.Dispatch<LiquidityAction>;
 }
 
 const ConnectedRows = ({
@@ -158,38 +170,48 @@ const ConnectedRows = ({
   ethAddress,
   lpStaking,
   rewardPoolBalance,
+  state,
+  dispatch,
 }: ConnectedRowsProps) => {
   const { t } = useTranslation();
-  const [values, setValues] = React.useState<{
-    availableLPTokens: BigNumber;
-    stakedLPTokens: BigNumber;
-    shareOfPool: string;
-    accumulatedRewards: BigNumber;
-  } | null>(null);
+  const [loading, setLoading] = React.useState(true);
 
+  const values = state.contractData[lpContractAddress];
   React.useEffect(() => {
     const run = async () => {
-      const availableLPTokens = await lpStaking.totalUnstaked(ethAddress);
-      const stakedLPTokens = await lpStaking.stakedBalance(ethAddress);
-      // TODO: check that this is correct, I think we are meant to be summing a few
-      // values here?
-      const accumulatedRewards = await lpStaking.rewardsBalance(ethAddress);
+      try {
+        setLoading(true);
+        const availableLPTokens = await lpStaking.totalUnstaked(ethAddress);
+        const stakedLPTokens = await lpStaking.stakedBalance(ethAddress);
+        // TODO: check that this is correct, I think we are meant to be summing a few
+        // values here?
+        const accumulatedRewards = await lpStaking.rewardsBalance(ethAddress);
 
-      const shareOfPool =
-        stakedLPTokens.dividedBy(rewardPoolBalance).times(100).toString() + "%";
+        const shareOfPool =
+          stakedLPTokens.dividedBy(rewardPoolBalance).times(100).toString() +
+          "%";
 
-      setValues({
-        availableLPTokens,
-        stakedLPTokens,
-        shareOfPool,
-        accumulatedRewards,
-      });
+        dispatch({
+          type: LiquidityActionType.SET_CONTRACT_INFORMATION,
+          contractAddress: lpContractAddress,
+          contractData: {
+            availableLPTokens,
+            stakedLPTokens,
+            shareOfPool,
+            accumulatedRewards,
+          },
+        });
+      } catch (e) {
+        Sentry.captureException(e);
+      } finally {
+        setLoading(false);
+      }
     };
 
     run();
-  }, [ethAddress, lpStaking, rewardPoolBalance]);
+  }, [dispatch, ethAddress, lpContractAddress, lpStaking, rewardPoolBalance]);
 
-  if (values === null) {
+  if (loading) {
     return null;
   }
 
