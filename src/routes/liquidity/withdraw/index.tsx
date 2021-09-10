@@ -26,9 +26,7 @@ export const LiquidityWithdrawPage = ({
     dispatch: txUnstakeDispatch,
     perform: txUnstakePerform,
   } = useTransaction(() => lpStaking.unstake(ethAddress));
-  const [unstakedBalance, setUnstakedBalance] = React.useState(
-    new BigNumber(0)
-  );
+  const [stakedBalance, setStakedBalance] = React.useState(new BigNumber(0));
   const transactionInProgress = React.useMemo(
     () => txUnstakeState.txState !== TxState.Default,
     [txUnstakeState.txState]
@@ -37,7 +35,7 @@ export const LiquidityWithdrawPage = ({
     const run = async () => {
       try {
         const stakedBalance = await lpStaking.stakedBalance(ethAddress);
-        setUnstakedBalance(stakedBalance);
+        setStakedBalance(stakedBalance);
       } catch (err) {
         Sentry.captureException(err);
       }
@@ -46,7 +44,7 @@ export const LiquidityWithdrawPage = ({
     run();
   }, [lpStaking, ethAddress]);
 
-  if (unstakedBalance.isEqualTo(0)) {
+  if (stakedBalance.isEqualTo(0)) {
     return <section>{t("withdrawLpNoneDeposited")}</section>;
   }
 

@@ -59,7 +59,7 @@ export const LiquidityDepositPage = ({
     run();
   }, [lpStaking, ethAddress]);
   const maximum = React.useMemo(
-    () => BigNumber.min(unstakedBalance, new BigNumber(allowance!)),
+    () => BigNumber.min(unstakedBalance, allowance),
     [allowance, unstakedBalance]
   );
   React.useEffect(() => {
