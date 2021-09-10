@@ -1,13 +1,13 @@
 import { render } from "@testing-library/react";
+import { ADDRESSES, EthereumChainIds } from "../../config";
 import { TrancheLabel } from "./tranche-label";
-import { EthereumChainIds } from "../../lib/web3-utils";
 
 let props: any;
 
 beforeEach(() => {
   props = {
     chainId: EthereumChainIds.Mainnet,
-    contract: "0x23d1bFE8fA50a167816fBD79D7932577c06011f4",
+    contract: ADDRESSES.vestingAddress,
     id: 5,
   };
 });

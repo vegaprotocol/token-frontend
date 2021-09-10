@@ -20,7 +20,7 @@ interface UntargetedClaimProps {
   address: string;
   claimCode: string;
   denomination: BigNumber;
-  denominationFormatted: string;
+  denominationFormatted: BigNumber;
   trancheId: number;
   expiry: number;
   nonce: string;

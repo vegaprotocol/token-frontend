@@ -1,4 +1,5 @@
 import { BigNumber } from "../../../lib/bignumber";
+import { formatNumber } from "../../../lib/format-number";
 import { Tranche } from "../../../lib/vega-web3/vega-web3-types";
 
 /**
@@ -8,7 +9,7 @@ import { Tranche } from "../../../lib/vega-web3/vega-web3-types";
  * @param decimals decimal places for the formatted result
  * @return Total redeemed vouchers, formatted as a string
  */
-export function sumRedeemedTokens(tranches: Tranche[] | null): string {
+export function sumRedeemedTokens(tranches: Tranche[] | null): BigNumber {
   let totalCirculating: BigNumber = new BigNumber(0);
 
   tranches?.forEach(
@@ -16,7 +17,7 @@ export function sumRedeemedTokens(tranches: Tranche[] | null): string {
       (totalCirculating = totalCirculating.plus(tranche.total_removed))
   );
 
-  return totalCirculating.toString();
+  return totalCirculating;
 }
 
 /**
@@ -33,5 +34,7 @@ export const TokenDetailsCirculating = ({
   tranches: Tranche[] | null;
 }) => {
   const totalCirculating = sumRedeemedTokens(tranches);
-  return <td data-testid="circulating-supply">{totalCirculating}</td>;
+  return (
+    <td data-testid="circulating-supply">{formatNumber(totalCirculating)}</td>
+  );
 };

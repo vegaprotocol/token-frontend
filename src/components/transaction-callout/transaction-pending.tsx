@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { EthereumChainId } from "../../lib/web3-utils";
+import { EthereumChainId } from "../../config";
 import { Callout } from "../callout";
 import { EtherscanLink } from "../etherscan-link";
 import { Loader } from "../loader";
@@ -25,7 +25,7 @@ export const TransactionPending = ({
       </p>
       {body && <p data-testid="transaction-pending-body">{body}</p>}
       <p>
-        <EtherscanLink hash={hash} chainId={chainId} />
+        <EtherscanLink tx={hash} chainId={chainId} />
       </p>
       {footer && <p data-testid="transaction-pending-footer">{footer}</p>}
     </Callout>

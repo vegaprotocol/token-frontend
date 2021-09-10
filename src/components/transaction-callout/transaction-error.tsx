@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { EthereumChainId } from "../../lib/web3-utils";
+import { EthereumChainId } from "../../config";
 import { Callout } from "../callout";
 import { EtherscanLink } from "../etherscan-link";
 import { Error } from "../icons";
@@ -24,7 +24,7 @@ export const TransactionError = ({
       <p>{error ? error.message : t("Something went wrong")}</p>
       {hash ? (
         <p>
-          <EtherscanLink hash={hash} chainId={chainId} />
+          <EtherscanLink tx={hash} chainId={chainId} />
         </p>
       ) : null}
       <button onClick={() => onActionClick()}>{t("Try again")}</button>
