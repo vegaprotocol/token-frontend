@@ -7,6 +7,7 @@ export interface LpContractData {
   awardContractAddress: string;
   availableLPTokens: BigNumber;
   stakedLPTokens: BigNumber;
+  estimateAPY: BigNumber;
   shareOfPool: string;
   accumulatedRewards: BigNumber;
 }

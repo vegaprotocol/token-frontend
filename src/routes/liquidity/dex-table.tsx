@@ -39,10 +39,11 @@ export const DexTokensSection = ({
   React.useEffect(() => {
     const run = async () => {
       try {
-        const [rewardPerEpoch, rewardPoolBalance, awardContractAddress] =
-          await Promise.all<BigNumber, BigNumber, string>([
+        const [rewardPerEpoch, rewardPoolBalance, estimateAPY, awardContractAddress] =
+          await Promise.all<BigNumber, BigNumber, BigNumber, string>([
             await lpStaking.rewardPerEpoch(),
             await lpStaking.liquidityTokensInRewardPool(),
+            await lpStaking.estimateAPY(),
             await lpStaking.awardContractAddress(),
           ]);
         dispatch({
@@ -51,6 +52,7 @@ export const DexTokensSection = ({
           contractData: {
             rewardPerEpoch: rewardPerEpoch,
             rewardPoolBalance: rewardPoolBalance,
+            estimateAPY: rewardPoolBalance,
             awardContractAddress: awardContractAddress,
           },
         });
@@ -93,6 +95,10 @@ export const DexTokensSection = ({
                 text={values.awardContractAddress}
               />
             </td>
+          </tr>
+          <tr>
+            <th>{t("lpTokensEstimateAPY")}</th>
+            <td>{values.estimateAPY.toString()}</td>
           </tr>
           <tr>
             <th>{t("lpTokensInRewardPool")}</th>
