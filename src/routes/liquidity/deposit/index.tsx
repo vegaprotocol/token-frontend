@@ -17,6 +17,7 @@ import { Routes } from "../../router-config";
 import { Link } from "react-router-dom";
 import { DexTokensSection } from "../dex-table";
 import { initialLiquidityState, liquidityReducer } from "../liquidity-reducer";
+import { EthConnectPrompt } from "../../../components/eth-connect-prompt";
 
 export const LiquidityDepositPage = ({
   lpTokenAddress,
@@ -62,9 +63,10 @@ export const LiquidityDepositPage = ({
     run();
   }, [lpStaking, ethAddress]);
   let pageContent;
-  if (!values) {
-    pageContent = null;
-  } else if (txApprovalState.txState !== TxState.Default) {
+  // if (!values) {
+  //   pageContent = null;
+  // } else
+  if (txApprovalState.txState !== TxState.Default) {
     pageContent = (
       <TransactionCallout
         state={txApprovalState}
@@ -83,7 +85,7 @@ export const LiquidityDepositPage = ({
         reset={() => txStakeDispatch({ type: TransactionActionType.TX_RESET })}
       />
     );
-  } else if (!values.stakedLPTokens.isEqualTo(0)) {
+  } else if (values?.stakedLPTokens && !values.stakedLPTokens.isEqualTo(0)) {
     pageContent = (
       <p>
         <Trans
@@ -99,6 +101,7 @@ export const LiquidityDepositPage = ({
   } else {
     pageContent = (
       <>
+        {!ethAddress && <EthConnectPrompt />}
         <DexTokensSection
           name={name}
           contractAddress={lpTokenAddress}

@@ -12,6 +12,7 @@ import { TransactionCallout } from "../../../components/transaction-callout";
 import * as Sentry from "@sentry/react";
 import BigNumber from "bignumber.js";
 import { useTranslation } from "react-i18next";
+import { EthConnectPrompt } from "../../../components/eth-connect-prompt";
 
 export const LiquidityWithdrawPage = ({
   lpTokenAddress,
@@ -50,6 +51,7 @@ export const LiquidityWithdrawPage = ({
 
   return (
     <section>
+      {!ethAddress && <EthConnectPrompt />}
       {transactionInProgress ? (
         <TransactionCallout
           state={txUnstakeState}
