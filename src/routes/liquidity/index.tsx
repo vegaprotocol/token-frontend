@@ -9,6 +9,7 @@ import { useDocumentTitle } from "../../hooks/use-document-title";
 import { LiquidityDeposit } from "./deposit";
 import { LiquidityContainer } from "./liquidity-container";
 import { LiquidityWithdraw } from "./withdraw";
+import {Redirect} from "react-router";
 
 const RedemptionIndex = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
@@ -37,8 +38,11 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
           <Route path={`${match.path}/:address/deposit`}>
             <LiquidityDeposit />
           </Route>
-          <Route path={`${match.path}/:address/withdraw`}>
-            <LiquidityWithdraw />
+          <Route path={`${match.path}/:address/`}>
+            <Redirect to={match.path} />
+          </Route>
+          <Route exact path={`${match.path}`}>
+            <LiquidityContainer />
           </Route>
         </Switch>
       )}
