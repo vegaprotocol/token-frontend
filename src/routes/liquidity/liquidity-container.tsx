@@ -1,11 +1,8 @@
+import "./liquidity-container.scss";
 import React from "react";
 import * as Sentry from "@sentry/react";
 import { useTranslation } from "react-i18next";
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
-import {
-  KeyValueTable,
-  KeyValueTableRow,
-} from "../../components/key-value-table";
 import { REWARDS_ADDRESSES } from "../../config";
 import { useEthUser } from "../../hooks/use-eth-user";
 import { useVegaLPStaking } from "../../hooks/use-vega-lp-staking";
@@ -98,38 +95,40 @@ const DexTokensSection = ({
   }
 
   return (
-    <section>
+    <section className="dex-tokens-section">
       <h3>{name}</h3>
-      <KeyValueTable>
-        <KeyValueTableRow>
-          <th>{t("liquidityTokenContractAddress")}</th>
-          <td>
-            <EtherscanLink
-              chainId={appState.chainId}
-              hash={contractAddress}
-              text={truncateMiddle(contractAddress)}
-            />
-          </td>
-        </KeyValueTableRow>
-        <KeyValueTableRow>
-          <th>{t("rewardPerEpoch")}</th>
-          <td>{values.rewardPerEpoch}</td>
-        </KeyValueTableRow>
-        <KeyValueTableRow>
-          <th>{t("rewardTokenContractAddress")}</th>
-          <td>
-            <EtherscanLink
-              chainId={appState.chainId}
-              hash={values.awardContractAddress}
-              text={truncateMiddle(values.awardContractAddress)}
-            />
-          </td>
-        </KeyValueTableRow>
-        <KeyValueTableRow>
-          <th>{t("lpTokensInRewardPool")}</th>
-          <td>{values.rewardPoolBalance}</td>
-        </KeyValueTableRow>
-      </KeyValueTable>
+      <table className="dex-tokens-section__table">
+        <tbody>
+          <tr>
+            <th>{t("liquidityTokenContractAddress")}</th>
+            <td>
+              <EtherscanLink
+                chainId={appState.chainId}
+                hash={contractAddress}
+                text={truncateMiddle(contractAddress)}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>{t("rewardPerEpoch")}</th>
+            <td>{values.rewardPerEpoch}</td>
+          </tr>
+          <tr>
+            <th>{t("rewardTokenContractAddress")}</th>
+            <td>
+              <EtherscanLink
+                chainId={appState.chainId}
+                hash={values.awardContractAddress}
+                text={truncateMiddle(values.awardContractAddress)}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>{t("lpTokensInRewardPool")}</th>
+            <td>{values.rewardPoolBalance}</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
   );
 };
