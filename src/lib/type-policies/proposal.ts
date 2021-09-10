@@ -1,28 +1,10 @@
 import type { TypePolicy } from "@apollo/client";
 import {
-  Proposals_proposals_terms,
   Proposals_proposals_terms_change,
 } from "../../routes/governance/__generated__/proposals";
 
 const typePolicy: TypePolicy = {
   fields: {
-    name: {
-      read(name, { readField }) {
-        if (name) {
-          return name;
-        }
-        const terms = readField<Proposals_proposals_terms>("terms");
-        if (!terms) {
-          return "Unknown proposal";
-        }
-        return getProposalName(terms.change);
-      },
-    },
-    pending: {
-      read(isPending = false) {
-        return isPending;
-      },
-    },
   },
 };
 
