@@ -4,6 +4,8 @@ import { useVoteInformation } from "./hooks";
 import { VoteProgress } from "./vote-progress";
 import { Proposals_proposals } from "./__generated__/proposals";
 import { CurrentProposalStatus } from "./current-proposal-status";
+import { VoteButtons } from "./vote-buttons";
+import { useUserVote } from "./use-user-vote";
 
 interface VoteDetailsProps {
   proposal: Proposals_proposals;
@@ -22,6 +24,12 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
     requiredParticipation,
   } = useVoteInformation({ proposal });
   const { t } = useTranslation();
+  const { voteState, votePending, voteDatetime, castVote } = useUserVote(
+    proposal.id,
+    proposal.votes.yes.votes,
+    proposal.votes.no.votes
+  );
+
   const daysLeft = 1;
   const daysLeftText =
     daysLeft > 1
@@ -89,12 +97,18 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
         </span>
       </div>
       <div className="proposal-toast__vote-buttons">
-        <button type="button" className="fill">
+        <VoteButtons
+          voteState={voteState}
+          castVote={castVote}
+          voteDatetime={voteDatetime}
+          votePending={votePending}
+        />
+        {/* <button type="button" className="fill">
           {t("GOVERNANCE.voteFor")}
         </button>
         <button type="button" className="fill">
           {t("GOVERNANCE.voteAgainst")}
-        </button>
+        </button> */}
       </div>
     </section>
   );

@@ -1,0 +1,27 @@
+.vote-buttons__button-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.vote-buttons__button {
+  max-width: 150px;
+  min-width: 70px;
+  width: calc(50% - 7px);
+
+  &:first-child {
+    margin-right: 10px;
+  }
+
+  .vote-buttons__error-message {
+    margin: 5px 0 0;
+  }
+}
+
+.vote-buttons__container {
+  align-items: baseline;
+  display: flex;
+}
+
+.vote-buttons__governance-button {
+  padding: 5px;
+}
