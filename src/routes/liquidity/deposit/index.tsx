@@ -15,21 +15,20 @@ import {
 } from "../../../hooks/transaction-reducer";
 import { Routes } from "../../router-config";
 import { Link } from "react-router-dom";
+import { DexTokensSection } from "../dex-table";
+import { initialLiquidityState, liquidityReducer } from "../liquidity-reducer";
 
 export const LiquidityDepositPage = ({
   lpTokenAddress,
+  name,
 }: {
   lpTokenAddress: string;
+  name: string;
 }) => {
   const { t } = useTranslation();
   const [amount, setAmount] = React.useState("0");
   const lpStaking = useVegaLPStaking({ address: lpTokenAddress });
   const [allowance, setAllowance] = React.useState<BigNumber>(new BigNumber(0));
-  // TODO get from reducer state
-  const [unstakedBalance, setUnstakedBalance] = React.useState(
-    new BigNumber(0)
-  );
-  const [stakedBalance, setStakedBalance] = React.useState(new BigNumber(0));
   const {
     state: txApprovalState,
     dispatch: txApprovalDispatch,
@@ -40,27 +39,15 @@ export const LiquidityDepositPage = ({
     dispatch: txStakeDispatch,
     perform: txStakePerform,
   } = useTransaction(() => lpStaking.stake(amount, ethAddress));
-
+  const [state, dispatch] = React.useReducer(
+    liquidityReducer,
+    initialLiquidityState
+  );
   const { ethAddress } = useEthUser();
-  React.useEffect(() => {
-    const run = async () => {
-      try {
-        const [balance, stakedBalance] = await Promise.all([
-          lpStaking.totalUnstaked(ethAddress),
-          lpStaking.stakedBalance(ethAddress),
-        ]);
-        setStakedBalance(stakedBalance);
-        setUnstakedBalance(balance);
-      } catch (err) {
-        Sentry.captureException(err);
-      }
-    };
-
-    run();
-  }, [lpStaking, ethAddress]);
+  const values = state.contractData[lpTokenAddress];
   const maximum = React.useMemo(
-    () => BigNumber.min(unstakedBalance, allowance),
-    [allowance, unstakedBalance]
+    () => BigNumber.min(values?.availableLPTokens || 0, allowance),
+    [allowance, values?.availableLPTokens]
   );
   React.useEffect(() => {
     const run = async () => {
@@ -74,9 +61,10 @@ export const LiquidityDepositPage = ({
 
     run();
   }, [lpStaking, ethAddress]);
-
   let pageContent;
-  if (txApprovalState.txState !== TxState.Default) {
+  if (!values) {
+    pageContent = null;
+  } else if (txApprovalState.txState !== TxState.Default) {
     pageContent = (
       <TransactionCallout
         state={txApprovalState}
@@ -95,7 +83,7 @@ export const LiquidityDepositPage = ({
         reset={() => txStakeDispatch({ type: TransactionActionType.TX_RESET })}
       />
     );
-  } else if (!stakedBalance.isEqualTo(0)) {
+  } else if (!values.stakedLPTokens.isEqualTo(0)) {
     pageContent = (
       <p>
         <Trans
@@ -111,6 +99,13 @@ export const LiquidityDepositPage = ({
   } else {
     pageContent = (
       <>
+        <DexTokensSection
+          name={name}
+          contractAddress={lpTokenAddress}
+          ethAddress={ethAddress}
+          state={state}
+          dispatch={dispatch}
+        />
         <h1>{t("depositLpTokensHeading")}</h1>
         <TokenInput
           submitText={t("depositLpSubmitButton", { address: lpTokenAddress })}
@@ -149,5 +144,8 @@ export const LiquidityDeposit = () => {
   if (!isValidAddress) {
     return <section>{t("lpTokensInvalidToken", { address })}</section>;
   }
-  return <LiquidityDepositPage lpTokenAddress={address} />;
+  const [name] = Object.entries(REWARDS_ADDRESSES).find(
+    ([, a]) => a === address
+  )!;
+  return <LiquidityDepositPage name={name} lpTokenAddress={address} />;
 };
