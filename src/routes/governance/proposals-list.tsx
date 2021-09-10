@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import "./proposals-list.scss";
 
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 import {
   Proposals_proposals,
   Proposals_proposals_terms_change_UpdateNetworkParameter,
@@ -15,6 +15,7 @@ interface ProposalsListProps {
 
 export const ProposalsList = ({ proposals }: ProposalsListProps) => {
   const { t } = useTranslation();
+  const match = useRouteMatch();
 
   const filteredData = proposals.filter((row) => {
     return row.terms.change.__typename === "UpdateNetworkParameter";
@@ -25,13 +26,13 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
   }
 
   const renderRow = (row: Proposals_proposals) => {
-    const enactmentDate = new Date(row.terms.enactmentDatetime).getTime();
+    const enactmentDate = new Date(row.terms.enactmentDatetime);
     return (
       <li className="proposals-list__main-list-item" key={row.id}>
         <div className="proposals-list__row">
           <Link
             className="proposals-list__first-item"
-            to={`governance/${row.id}`}
+            to={`${match.path}/${row.id}`}
           >
             {
               (
@@ -51,7 +52,7 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
         </div>
         <div className="proposals-list__row">
           <p className="proposals-list__item-left-low-key">
-            {t("Proposed enactment")}
+            {t("proposedEnactment")}
           </p>
           <span className="proposals-list__item-right">
             {format(enactmentDate, "d MMM yyyy")}

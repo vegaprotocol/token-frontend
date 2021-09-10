@@ -18,6 +18,7 @@ import { AssociateContainer } from "../staking/associate/associate-page";
 import { DisassociateContainer } from "../staking/disassociate/disassociate-page";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
+import { updateProposals } from "./update-proposals";
 import { Proposal } from "./proposal";
 
 export const PROPOSALS_FRAGMENT = gql`
@@ -115,18 +116,14 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
   const match = useRouteMatch();
   useDocumentTitle(name);
   const { data, loading, error, subscribeToMore } = useQuery<Proposals, never>(
-    PROPOSALS_QUERY,
-    {
-      errorPolicy: "ignore",
-    }
+    PROPOSALS_QUERY
   );
 
   React.useEffect(() => {
     const unsub = subscribeToMore({
       document: PROPOSAL_SUBSCRIPTION,
       // @ts-ignore
-      //  https://github.com/vegaprotocol/token-frontend/issues/397
-      updateQuery: console.log("update here"),
+      updateQuery: (prev, data) => updateProposals(prev, data),
     });
 
     return () => {
