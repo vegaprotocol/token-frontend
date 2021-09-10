@@ -62,6 +62,11 @@ export default class VegaLPStaking implements IVegaLPStaking {
     })();
   }
 
+  /**
+   * Retrieve staked VEGA LP tokens for a given account
+   * @param  {string}          account ethereum address
+   * @return {Promise<string>}         balance in VEGA LP tokens as decimal number
+   */
   async stakedBalance(account: string): Promise<BigNumber> {
     const value = await this.contract.methods
       .total_staked_for_user(account)
@@ -71,6 +76,14 @@ export default class VegaLPStaking implements IVegaLPStaking {
     );
   }
 
+  /**
+   * Retrieve the current accumulated rewards denominated in the reward tokens'
+   * unit. This will be zero when nothing is staked or until one epoch has
+   * passed.
+   *
+   * @param  {string}          account address
+   * @return {Promise<string>}         Reward token balance in units
+   */
   async rewardsBalance(account: string): Promise<BigNumber> {
     // Contract reverts if no stake is added, resulting in the catch block
     // being run. Just return 0 if thats the case
@@ -105,6 +118,13 @@ export default class VegaLPStaking implements IVegaLPStaking {
     return new BigNumber(addDecimal(new BigNumber(balance), decimals));
   }
 
+  /**
+   * Estimated APY. Note that this number may flucutate a lot and will decrease
+   * with each staking, including what the user may want to stake.
+   * When nothing is stake the APY will be Infinity, while after that it will be
+   * a decimal number (not percent).
+   * @return {Promise<BigNumber>} APY as a decimal number. See above caveats
+   */
   async estimateAPY(): Promise<BigNumber> {
     const [epochReward, epochInterval, totalBalance] = await Promise.all([
       this.contract.methods.epoch_reward().call(),
@@ -125,6 +145,10 @@ export default class VegaLPStaking implements IVegaLPStaking {
     return epochRoi.multipliedBy(epochsPerYear);
   }
 
+  /**
+   * Total amount staked in this liquidity pool
+   * @return {Promise<string>} Amount in VEGA LP units
+   */
   async totalStaked(): Promise<BigNumber> {
     const value = await this.contract.methods.total_staked().call();
     return new BigNumber(
@@ -132,11 +156,17 @@ export default class VegaLPStaking implements IVegaLPStaking {
     );
   }
 
-  async totalUnstaked(account: string): Promise<BigNumber> {
-    const lpTokenContract = await this.lpContract;
-    const lpTokenDecimals = await this.lpDecimals;
-    const value = await lpTokenContract.methods.balanceOf(account).call();
-    return new BigNumber(addDecimal(new BigNumber(value), lpTokenDecimals));
+  /**
+   * Stake action. Note that the user must have called `.approve` on the VEGA LP
+   * contract before this can be invoked. The allowance can be checked with
+   * `.lpAllowance(account)`. Staking cannot be topped up. To change stake,
+   * first `.unstake(account)` must be called, before another staking can take
+   * place.
+   *
+   * @param  {string}           amount  stake in VEGA LP units
+   * @param  {string}           account address
+   * @return {PromiEvent<void>}
+   */
   }
 
   async stake(
@@ -157,7 +187,14 @@ export default class VegaLPStaking implements IVegaLPStaking {
     };
   }
 
-  async allowance(account: string): Promise<BigNumber> {
+  /**
+   * Retrieve the VEGA LP allowance that the staking contract can maximum
+   * withdraw. This number must be greater than or equal to any amount passed
+   * to `.stake(amount, account)`. The amount is returned as a decimal number of
+   * VEGA LP tokens
+   * @param  {string}          account address
+   * @return {Promise<string>}
+   */
     const value = await (await this.lpContract).methods
       .allowance(account, this.address)
       .call();
