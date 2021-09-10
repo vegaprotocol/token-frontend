@@ -9,6 +9,8 @@ import { useVegaLPStaking } from "../../hooks/use-vega-lp-staking";
 import { EtherscanLink } from "../../components/etherscan-link";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { truncateMiddle } from "../../lib/truncate-middle";
+import { IVegaLPStaking } from "../../lib/web3-utils";
+import { BigNumber } from "../../lib/bignumber";
 
 const BLOG_LINK =
   "https://blog.vega.xyz/unlocking-vega-coinlist-pro-uniswap-sushiswap-b1414750e358";
@@ -16,10 +18,6 @@ const BLOG_LINK =
 export const LiquidityContainer = () => {
   const { t } = useTranslation();
   const { ethAddress } = useEthUser();
-
-  if (!ethAddress) {
-    return <EthConnectPrompt />;
-  }
 
   return (
     <>
@@ -31,6 +29,7 @@ export const LiquidityContainer = () => {
         </a>
         .
       </p>
+      {!ethAddress && <EthConnectPrompt />}
       <h2>{t("liquidityRewardsTitle")}</h2>
       {Object.entries(REWARDS_ADDRESSES).map(([name, contractAddress]) => {
         return (
@@ -127,8 +126,90 @@ const DexTokensSection = ({
             <th>{t("lpTokensInRewardPool")}</th>
             <td>{values.rewardPoolBalance}</td>
           </tr>
+          {ethAddress && (
+            <ConnectedRows
+              ethAddress={ethAddress}
+              lpStaking={lpStaking}
+              rewardPoolBalance={values.rewardPoolBalance}
+            />
+          )}
         </tbody>
       </table>
     </section>
+  );
+};
+
+interface ConnectedRowsProps {
+  ethAddress: string;
+  lpStaking: IVegaLPStaking;
+  rewardPoolBalance: string;
+}
+
+const ConnectedRows = ({
+  ethAddress,
+  lpStaking,
+  rewardPoolBalance,
+}: ConnectedRowsProps) => {
+  const { t } = useTranslation();
+  const [values, setValues] = React.useState<{
+    availableLPTokens: string;
+    stakedLPTokens: string;
+    shareOfPool: string;
+    accumulatedRewards: string;
+  } | null>(null);
+
+  React.useEffect(() => {
+    const run = async () => {
+      const availableLPTokens = await lpStaking.totalUnstaked(ethAddress);
+      const stakedLPTokens = await lpStaking.stakedBalance(ethAddress);
+      // TODO: check that this is correct, I think we are meant to be summing a few
+      // values here?
+      const accumulatedRewards = await lpStaking.rewardsBalance(ethAddress);
+
+      const rewardPool = new BigNumber(rewardPoolBalance);
+      const shareOfPool = new BigNumber(stakedLPTokens)
+        .dividedBy(rewardPool)
+        .times(100)
+        .toString();
+
+      setValues({
+        availableLPTokens,
+        stakedLPTokens,
+        shareOfPool,
+        accumulatedRewards,
+      });
+    };
+
+    run();
+  }, [ethAddress, lpStaking, rewardPoolBalance]);
+
+  if (values === null) {
+    return null;
+  }
+
+  return (
+    <>
+      <tr>
+        <th>{t("usersLpTokens")}</th>
+        <td>
+          <div style={{ marginBottom: 3 }}>{values.availableLPTokens}</div>
+          <div>
+            <button>{t("depositToRewardPoolButton")}</button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>{t("usersStakedLPTokens")}</th>
+        <td>{values.stakedLPTokens}</td>
+      </tr>
+      <tr>
+        <th>{t("usersShareOfPool")}</th>
+        <td>{values.shareOfPool}</td>
+      </tr>
+      <tr>
+        <th>{t("usersAccumulatedRewards")}</th>
+        <td>{values.accumulatedRewards}</td>
+      </tr>
+    </>
   );
 };

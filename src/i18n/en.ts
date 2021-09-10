@@ -421,6 +421,11 @@ const en = {
   rewardPerEpoch: "Reward per epoch (split between reward pool)",
   rewardTokenContractAddress: "Reward token contract address",
   lpTokensInRewardPool: "Tokens in reward pool",
+  usersLpTokens: "Your LP tokens in connected wallet",
+  depositToRewardPoolButton: "Deposit to reward pool",
+  usersStakedLPTokens: "Your LP tokens in reward pool",
+  usersShareOfPool: "Your share of pool",
+  usersAccumulatedRewards: "Your accumulated rewards",
 
   liquidityTotalAvailableRewardsBalance: "Balance",
   liquidityStakedToken: "LP Token",
