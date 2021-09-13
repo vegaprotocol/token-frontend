@@ -4,7 +4,7 @@ import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { RouteChildProps } from "..";
 import { EthWallet } from "../../components/eth-wallet";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
-import { Flags } from "../../config";
+import { Flags, REWARDS_ADDRESSES } from "../../config";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { LiquidityDeposit } from "./deposit";
 import { LiquidityContainer } from "./liquidity-container";
@@ -19,6 +19,9 @@ import {
 import { IVegaLPStaking } from "../../lib/web3-utils";
 import * as Sentry from "@sentry/react";
 import { useEthUser } from "../../hooks/use-eth-user";
+import { useVegaLPStaking } from "../../hooks/use-vega-lp-staking";
+import { SplashScreen } from "../../components/splash-screen";
+import { SplashLoader } from "../../components/splash-loader";
 
 const RedemptionIndex = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
@@ -31,7 +34,13 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
     initialLiquidityState
   );
   const { ethAddress } = useEthUser();
-
+  const [loading, setLoading] = React.useState(true);
+  const lpStakingEth = useVegaLPStaking({
+    address: REWARDS_ADDRESSES["Sushi Swap VEGA/ETH"],
+  });
+  const lpStakingUSDC = useVegaLPStaking({
+    address: REWARDS_ADDRESSES["Sushi Swap VEGA/USDC"],
+  });
   const getBalances = React.useCallback(
     async (lpStaking: IVegaLPStaking, contractAddress: string) => {
       try {
@@ -86,6 +95,22 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
     },
     [dispatch, ethAddress]
   );
+  React.useEffect(() => {
+    const run = async () => {
+      try {
+        await Promise.all([
+          getBalances(lpStakingUSDC, REWARDS_ADDRESSES["Sushi Swap VEGA/USDC"]),
+          getBalances(lpStakingEth, REWARDS_ADDRESSES["Sushi Swap VEGA/ETH"]),
+        ]);
+      } catch (e) {
+        Sentry.captureException(e);
+      } finally {
+        setLoading(false);
+      }
+    };
+    run();
+  }, [getBalances, lpStakingEth, lpStakingUSDC, ethAddress]);
+
   const title = React.useMemo(() => {
     if (withdraw) {
       return t("pageTitleWithdrawLp");
@@ -94,6 +119,13 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
     }
     return t("pageTitleLiquidity");
   }, [withdraw, deposit, t]);
+  if (loading) {
+    return (
+      <SplashScreen>
+        <SplashLoader />
+      </SplashScreen>
+    );
+  }
   return (
     <TemplateSidebar title={title} sidebar={[<EthWallet />]}>
       {Flags.DEX_STAKING_DISABLED ? (
@@ -101,10 +133,10 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
       ) : (
         <Switch>
           <Route exact path={`${match.path}`}>
-            <LiquidityContainer />
+            <LiquidityContainer state={state} dispatch={dispatch} />
           </Route>
           <Route path={`${match.path}/:address/deposit`}>
-            <LiquidityDeposit />
+            <LiquidityDeposit state={state} dispatch={dispatch} />
           </Route>
           <Route path={`${match.path}/:address/withdraw`}>
             <LiquidityWithdraw />

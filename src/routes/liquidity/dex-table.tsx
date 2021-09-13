@@ -1,19 +1,11 @@
 import "./liquidity-container.scss";
 import React from "react";
-import * as Sentry from "@sentry/react";
 import { useTranslation } from "react-i18next";
-import { useVegaLPStaking } from "../../hooks/use-vega-lp-staking";
 import { EtherscanLink } from "../../components/etherscan-link";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import { IVegaLPStaking } from "../../lib/web3-utils";
-import { BigNumber } from "../../lib/bignumber";
 import { Link } from "react-router-dom";
 import { Routes } from "../router-config";
-import {
-  LiquidityState,
-  LiquidityAction,
-  LiquidityActionType,
-} from "./liquidity-reducer";
+import { LiquidityState, LiquidityAction } from "./liquidity-reducer";
 
 interface DexTokensSectionProps {
   name: string;
@@ -29,45 +21,11 @@ export const DexTokensSection = ({
   contractAddress,
   ethAddress,
   state,
-  dispatch,
   showInteractionButton = true,
 }: DexTokensSectionProps) => {
   const { appState } = useAppState();
   const { t } = useTranslation();
-  const lpStaking = useVegaLPStaking({ address: contractAddress });
   const values = state.contractData[contractAddress];
-  React.useEffect(() => {
-    const run = async () => {
-      try {
-        const [
-          rewardPerEpoch,
-          rewardPoolBalance,
-          estimateAPY,
-          awardContractAddress,
-        ] = await Promise.all<BigNumber, BigNumber, BigNumber, string>([
-          await lpStaking.rewardPerEpoch(),
-          await lpStaking.liquidityTokensInRewardPool(),
-          await lpStaking.estimateAPY(),
-          await lpStaking.awardContractAddress(),
-        ]);
-
-        dispatch({
-          type: LiquidityActionType.SET_CONTRACT_INFORMATION,
-          contractAddress,
-          contractData: {
-            rewardPerEpoch: rewardPerEpoch,
-            rewardPoolBalance: rewardPoolBalance,
-            estimateAPY: estimateAPY,
-            awardContractAddress: awardContractAddress,
-          },
-        });
-      } catch (err) {
-        Sentry.captureException(err);
-      }
-    };
-
-    run();
-  }, [lpStaking, ethAddress, contractAddress, dispatch]);
   if (!values) {
     return <p>{t("Loading")}...</p>;
   }
@@ -115,11 +73,7 @@ export const DexTokensSection = ({
             <ConnectedRows
               showInteractionButton={showInteractionButton}
               lpContractAddress={contractAddress}
-              ethAddress={ethAddress}
-              lpStaking={lpStaking}
-              rewardPoolBalance={values.rewardPoolBalance}
               state={state}
-              dispatch={dispatch}
             />
           )}
         </tbody>
@@ -130,63 +84,17 @@ export const DexTokensSection = ({
 
 interface ConnectedRowsProps {
   lpContractAddress: string;
-  ethAddress: string;
-  lpStaking: IVegaLPStaking;
-  rewardPoolBalance: BigNumber;
   state: LiquidityState;
-  dispatch: React.Dispatch<LiquidityAction>;
   showInteractionButton: boolean;
 }
 
 const ConnectedRows = ({
   lpContractAddress,
-  ethAddress,
-  lpStaking,
-  rewardPoolBalance,
   state,
-  dispatch,
   showInteractionButton = true,
 }: ConnectedRowsProps) => {
   const { t } = useTranslation();
-  const [loading, setLoading] = React.useState(true);
-
   const values = state.contractData[lpContractAddress];
-  React.useEffect(() => {
-    const run = async () => {
-      try {
-        setLoading(true);
-        const availableLPTokens = await lpStaking.totalUnstaked(ethAddress);
-        const stakedLPTokens = await lpStaking.stakedBalance(ethAddress);
-        const accumulatedRewards = await lpStaking.rewardsBalance(ethAddress);
-
-        // TODO: This is wrong, so the row showing it is hidden
-        const shareOfPool =
-          stakedLPTokens.dividedBy(rewardPoolBalance).times(100).toString() +
-          "%";
-
-        dispatch({
-          type: LiquidityActionType.SET_CONTRACT_INFORMATION,
-          contractAddress: lpContractAddress,
-          contractData: {
-            availableLPTokens,
-            stakedLPTokens,
-            shareOfPool,
-            accumulatedRewards,
-          },
-        });
-      } catch (e) {
-        Sentry.captureException(e);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    run();
-  }, [dispatch, ethAddress, lpContractAddress, lpStaking, rewardPoolBalance]);
-
-  if (loading) {
-    return null;
-  }
 
   // Only shows the Deposit/Withdraw button IF they have tokens AND they haven't staked AND we're not on the relevant page
   const isDepositButtonVisible =

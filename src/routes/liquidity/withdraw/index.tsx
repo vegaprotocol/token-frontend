@@ -14,7 +14,7 @@ import BigNumber from "bignumber.js";
 import { useTranslation } from "react-i18next";
 import { EthConnectPrompt } from "../../../components/eth-connect-prompt";
 
-import "./withdraw.scss"
+import "./withdraw.scss";
 
 export const LiquidityWithdrawPage = ({
   lpTokenAddress,
@@ -29,6 +29,7 @@ export const LiquidityWithdrawPage = ({
     dispatch: txUnstakeDispatch,
     perform: txUnstakePerform,
   } = useTransaction(() => lpStaking.unstake(ethAddress));
+  // TODO use state
   const [stakedBalance, setStakedBalance] = React.useState(new BigNumber(0));
   const [rewardsBalance, setRewardsBalance] = React.useState(new BigNumber(0));
   const transactionInProgress = React.useMemo(
@@ -67,19 +68,17 @@ export const LiquidityWithdrawPage = ({
         />
       ) : (
         <section>
-          <p>{t('lpTokenWithdrawSubmit')}</p>
+          <p>{t("lpTokenWithdrawSubmit")}</p>
           <table className="dex-tokens-withdraw__table">
             <tbody>
-            <tr>
-              <th>{t("liquidityTokenWithdrawBalance")}</th>
-              <td>
-                {stakedBalance.toString()}
-              </td>
-            </tr>
-            <tr>
-              <th>{t("liquidityTokenWithdrawRewards")}</th>
-              <td>{rewardsBalance.toString()}</td>
-            </tr>
+              <tr>
+                <th>{t("liquidityTokenWithdrawBalance")}</th>
+                <td>{stakedBalance.toString()}</td>
+              </tr>
+              <tr>
+                <th>{t("liquidityTokenWithdrawRewards")}</th>
+                <td>{rewardsBalance.toString()}</td>
+              </tr>
             </tbody>
           </table>
           <p className="dex-tokens-withdraw__submit">

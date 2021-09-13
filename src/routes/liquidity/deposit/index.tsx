@@ -16,15 +16,19 @@ import {
 import { Routes } from "../../router-config";
 import { Link } from "react-router-dom";
 import { DexTokensSection } from "../dex-table";
-import { initialLiquidityState, liquidityReducer } from "../liquidity-reducer";
+import { LiquidityAction, LiquidityState } from "../liquidity-reducer";
 import { EthConnectPrompt } from "../../../components/eth-connect-prompt";
 
 export const LiquidityDepositPage = ({
   lpTokenAddress,
   name,
+  state,
+  dispatch,
 }: {
   lpTokenAddress: string;
   name: string;
+  state: LiquidityState;
+  dispatch: React.Dispatch<LiquidityAction>;
 }) => {
   const { t } = useTranslation();
   const [amount, setAmount] = React.useState("0");
@@ -40,10 +44,6 @@ export const LiquidityDepositPage = ({
     dispatch: txStakeDispatch,
     perform: txStakePerform,
   } = useTransaction(() => lpStaking.stake(amount, ethAddress));
-  const [state, dispatch] = React.useReducer(
-    liquidityReducer,
-    initialLiquidityState
-  );
   const { ethAddress } = useEthUser();
   const values = state.contractData[lpTokenAddress];
   const maximum = React.useMemo(
@@ -63,9 +63,6 @@ export const LiquidityDepositPage = ({
     run();
   }, [lpStaking, ethAddress]);
   let pageContent;
-  // if (!values) {
-  //   pageContent = null;
-  // } else
   if (txApprovalState.txState !== TxState.Default) {
     pageContent = (
       <TransactionCallout
@@ -124,7 +121,10 @@ export const LiquidityDepositPage = ({
             amount={amount}
             setAmount={setAmount}
             maximum={maximum}
-          />) : (<p>{t('depositLpInsufficientBalance')}</p>)}
+          />
+        ) : (
+          <p>{t("depositLpInsufficientBalance")}</p>
+        )}
       </>
     );
   }
@@ -137,7 +137,13 @@ export const LiquidityDepositPage = ({
   );
 };
 
-export const LiquidityDeposit = () => {
+export const LiquidityDeposit = ({
+  state,
+  dispatch,
+}: {
+  state: LiquidityState;
+  dispatch: React.Dispatch<LiquidityAction>;
+}) => {
   const { t } = useTranslation();
   const { address } = useParams<{ address: string }>();
 
@@ -152,5 +158,12 @@ export const LiquidityDeposit = () => {
   const [name] = Object.entries(REWARDS_ADDRESSES).find(
     ([, a]) => a === address
   )!;
-  return <LiquidityDepositPage name={name} lpTokenAddress={address} />;
+  return (
+    <LiquidityDepositPage
+      state={state}
+      dispatch={dispatch}
+      name={name}
+      lpTokenAddress={address}
+    />
+  );
 };
