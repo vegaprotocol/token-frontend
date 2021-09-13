@@ -1,3 +1,4 @@
+import BigNumber from "bignumber.js";
 import _ from "lodash";
 
 const defaultBalances = {
@@ -34,9 +35,12 @@ const defaultMockOptions = {
     balance: "30",
   },
   token: {
-    balance: "100",
+    balance: new BigNumber(100),
     totalSupply: "20",
     allowance: Number.MAX_SAFE_INTEGER - 1,
+  },
+  vegaWallet: {
+    commandSync: {},
   },
 };
 
@@ -116,6 +120,10 @@ export const mock = (cy, options = {}) => {
         },
       ],
     })
+  );
+  cy.intercept(
+    "http://localhost:1789/api/v1/command/sync",
+    JSON.stringify(mergedOptions.vegaWallet.commandSync)
   );
 
   // VEGA TOKEN

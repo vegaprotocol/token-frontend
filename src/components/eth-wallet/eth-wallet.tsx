@@ -10,8 +10,8 @@ import {
   WalletCardHeader,
   WalletCardRow,
 } from "../wallet-card";
-import { Colors, Flags } from "../../config";
 import { useEthUser } from "../../hooks/use-eth-user";
+import { Colors, Flags } from "../../config";
 
 export const EthWallet = () => {
   const { t } = useTranslation();

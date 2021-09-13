@@ -180,8 +180,8 @@ const VegaWalletConnected = ({
 
   const changeKey = React.useCallback(
     async (k: VegaKeyExtended) => {
-      let walletAssociatedBalance = null;
-      let vestingAssociatedBalance = null;
+      let walletAssociatedBalance: BigNumber | null = null;
+      let vestingAssociatedBalance: BigNumber | null = null;
       if (address) {
         walletAssociatedBalance = await staking.stakeBalance(address, k.pub);
         vestingAssociatedBalance = await vesting.stakeBalance(address, k.pub);
@@ -189,7 +189,7 @@ const VegaWalletConnected = ({
       appDispatch({
         type: AppStateActionType.VEGA_WALLET_SET_KEY,
         key: k,
-        walletAssociatedBalance: walletAssociatedBalance,
+        walletAssociatedBalance,
         vestingAssociatedBalance,
       });
       setExpanded(false);

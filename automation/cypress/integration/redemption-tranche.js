@@ -33,9 +33,6 @@ describe("Redemption through tranche", () => {
     });
     // When visiting redemption
     cy.visit("/vesting/1");
-    // When I connect to my wallet
-    cy.contains("Connect to an Ethereum wallet").click();
-    cy.get("[data-testid='connect-overlay']").click();
     // Then I see the tranches table
     cy.get("[data-testid='tranche-table-total'] th")
       .eq(0)
@@ -85,9 +82,7 @@ describe("Redemption through tranche", () => {
     });
     // When visiting redemption
     cy.visit("/vesting/1");
-    // When I connect to my wallet
-    cy.contains("Connect to an Ethereum wallet").click();
-    cy.get("[data-testid='connect-overlay']").click();
+
     // When I redeem the value
     cy.contains("Redeem unlocked VEGA from tranche 1").click();
 
@@ -117,9 +112,7 @@ describe("Redemption through tranche", () => {
     });
     // When visiting redemption
     cy.visit("/vesting/1");
-    // When I connect to my wallet
-    cy.contains("Connect to an Ethereum wallet").click();
-    cy.get("[data-testid='connect-overlay']").click();
+
     // When I redeem the value
     cy.contains("Redeem unlocked VEGA from tranche 1").click();
 
@@ -134,8 +127,11 @@ describe("Redemption through tranche", () => {
       .and("match", /ropsten.etherscan.io\/tx\/hash/);
 
     sendChainResponse(cy, "withdraw-from-tranche", "receipt", "hash");
-    cy.get("[data-testid='callout'] p:first").should("have.text", "Complete");
-    cy.get("[data-testid='callout'] a")
+    cy.get("[data-testid='callout'] p:first").should(
+      "have.text",
+      "Tokens from this Tranche have been redeemed"
+    );
+    cy.get("[data-testid='callout'] a:first")
       .should("have.text", "View on Etherscan (opens in a new tab)")
       .should("have.attr", "href")
       .and("match", /ropsten.etherscan.io\/tx\/hash/);
