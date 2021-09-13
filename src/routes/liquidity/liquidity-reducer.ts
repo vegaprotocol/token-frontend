@@ -5,11 +5,11 @@ export interface LpContractData {
   rewardPerEpoch: BigNumber;
   rewardPoolBalance: BigNumber;
   awardContractAddress: string;
-  availableLPTokens: BigNumber;
-  stakedLPTokens: BigNumber;
   estimateAPY: BigNumber;
-  shareOfPool: string;
-  accumulatedRewards: BigNumber;
+  availableLPTokens: BigNumber | null;
+  stakedLPTokens: BigNumber | null;
+  shareOfPool: string | null;
+  accumulatedRewards: BigNumber | null;
 }
 
 export interface LiquidityState {

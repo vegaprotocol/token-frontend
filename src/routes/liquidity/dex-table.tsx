@@ -157,8 +157,6 @@ const ConnectedRows = ({
         setLoading(true);
         const availableLPTokens = await lpStaking.totalUnstaked(ethAddress);
         const stakedLPTokens = await lpStaking.stakedBalance(ethAddress);
-        // TODO: check that this is correct, I think we are meant to be summing a few
-        // values here?
         const accumulatedRewards = await lpStaking.rewardsBalance(ethAddress);
 
         // TODO: This is wrong, so the row showing it is hidden
@@ -192,15 +190,17 @@ const ConnectedRows = ({
 
   // Only shows the Deposit/Withdraw button IF they have tokens AND they haven't staked AND we're not on the relevant page
   const isDepositButtonVisible =
-    showInteractionButton && values.availableLPTokens.isGreaterThan(0);
+    showInteractionButton &&
+    values.availableLPTokens &&
+    values.availableLPTokens.isGreaterThan(0);
 
   return (
     <>
       <tr>
         <th>{t("usersLpTokens")}</th>
         <td>
-          <div>{values.availableLPTokens.toString()}</div>
-          {values.stakedLPTokens.isGreaterThan(0) ? (
+          <div>{values.availableLPTokens?.toString()}</div>
+          {values.stakedLPTokens?.isGreaterThan(0) ? (
             <span className="text-muted">{t("alreadyDeposited")}</span>
           ) : isDepositButtonVisible ? (
             <div style={{ marginTop: 3 }}>
@@ -213,7 +213,7 @@ const ConnectedRows = ({
       </tr>
       <tr>
         <th>{t("usersStakedLPTokens")}</th>
-        <td>{values.stakedLPTokens.toString()}</td>
+        <td>{values.stakedLPTokens?.toString()}</td>
       </tr>
       {/*<tr>
         <th>{t("usersShareOfPool")}</th>
@@ -222,9 +222,10 @@ const ConnectedRows = ({
       <tr>
         <th>{t("usersAccumulatedRewards")}</th>
         <td>
-          <div>{values.accumulatedRewards.toString()} VEGA</div>
-          {/* // TODO: check this condition is correct */}
-          {values.stakedLPTokens.isGreaterThan(0) && (
+          <div>
+            {values.accumulatedRewards?.toString()} {t("VEGA")}
+          </div>
+          {values.stakedLPTokens?.isGreaterThan(0) && (
             <div style={{ marginTop: 3 }}>
               <Link to={`${Routes.LIQUIDITY}/${lpContractAddress}/withdraw`}>
                 <button>{t("withdrawFromRewardPoolButton")}</button>
