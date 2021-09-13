@@ -80,14 +80,19 @@
     "name": "epochs",
     "outputs": [
       {
-        "internalType": "uint8",
-        "name": "epoch_number",
-        "type": "uint8"
-      },
-      {
         "internalType": "uint256",
         "name": "balance",
         "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "minimum_balance",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint8",
+        "name": "epoch_number",
+        "type": "uint8"
       }
     ],
     "stateMutability": "view",
@@ -96,6 +101,38 @@
   {
     "inputs": [],
     "name": "final_epoch",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "get_available_reward",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "get_current_epoch_number",
     "outputs": [
       {
         "internalType": "uint8",
@@ -133,36 +170,25 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "staking_start",
-    "outputs": [
+    "inputs": [
       {
         "internalType": "uint256",
-        "name": "",
+        "name": "value",
         "type": "uint256"
       }
     ],
-    "stateMutability": "view",
+    "name": "stake",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "users",
+    "inputs": [],
+    "name": "staking_end",
     "outputs": [
       {
-        "internalType": "uint8",
-        "name": "last_epoch_withdrawn",
-        "type": "uint8"
-      },
-      {
         "internalType": "uint256",
-        "name": "balance",
+        "name": "",
         "type": "uint256"
       }
     ],
@@ -171,26 +197,7 @@
   },
   {
     "inputs": [],
-    "name": "get_current_epoch_number",
-    "outputs": [
-      {
-        "internalType": "uint8",
-        "name": "",
-        "type": "uint8"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "user",
-        "type": "address"
-      }
-    ],
-    "name": "total_staked_for_user",
+    "name": "staking_start",
     "outputs": [
       {
         "internalType": "uint256",
@@ -217,14 +224,20 @@
   {
     "inputs": [
       {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "total_staked_for_user",
+    "outputs": [
+      {
         "internalType": "uint256",
-        "name": "value",
+        "name": "",
         "type": "uint256"
       }
     ],
-    "name": "stake",
-    "outputs": [],
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -238,15 +251,20 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "account",
+        "name": "",
         "type": "address"
       }
     ],
-    "name": "get_available_reward",
+    "name": "users",
     "outputs": [
       {
+        "internalType": "uint8",
+        "name": "last_epoch_withdrawn",
+        "type": "uint8"
+      },
+      {
         "internalType": "uint256",
-        "name": "",
+        "name": "balance",
         "type": "uint256"
       }
     ],
