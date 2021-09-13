@@ -1,6 +1,5 @@
 import "./vote-buttons.scss";
 
-import { Button } from "@blueprintjs/core";
 import * as React from "react";
 import { useHistory } from "react-router-dom";
 import { VoteState } from "./use-user-vote";
@@ -11,12 +10,14 @@ import {
   useAppState,
 } from "../../contexts/app-state/app-state-context";
 import { useTranslation } from "react-i18next";
+import { Parties_parties } from "./__generated__/Parties";
 
 interface VoteButtonsProps {
   voteState: VoteState;
   castVote: (vote: VoteValue) => void;
   voteDatetime: string | null;
   votePending: boolean;
+  party: Parties_parties | undefined | null;
 }
 
 export const VoteButtons = ({
@@ -24,6 +25,7 @@ export const VoteButtons = ({
   castVote,
   voteDatetime,
   votePending,
+  party
 }: VoteButtonsProps) => {
   // const { accounts } = useAccount(pubkey)
   const { t } = useTranslation();
@@ -32,7 +34,7 @@ export const VoteButtons = ({
   //   a => a.asset.id === governance.vote.VOTE_ASSET_ID
   // )
   // const lacksGovernanceToken = !account || account.total === '0'
-  const lacksGovernanceToken = false;
+  const lacksGovernanceToken = party ? +party.stake.currentStakeAvailable > 0 : false;
 
   const history = useHistory();
   const {
@@ -61,10 +63,9 @@ export const VoteButtons = ({
 
   if (lacksGovernanceToken) {
     return (
-      <span className="vote-buttons__container">
-        {"i18n.GOVERNANCE.youNeed"}
-        {"i18n.GOVERNANCE.toVote"}
-      </span>
+      <h3 className="vote-buttons__container">
+        {t("noGovernanceTokens")}
+      </h3>
     );
   }
 
@@ -107,8 +108,8 @@ export const VoteButtons = ({
     );
   }
 
-  console.log("pubkey", pubkey);
-  console.log("votePending", votePending);
+  // console.log("pubkey", pubkey);
+  // console.log("votePending", votePending);
   console.log("lacksGovernanceToken", lacksGovernanceToken);
 
   return (

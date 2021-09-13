@@ -266,6 +266,7 @@ const en = {
   voteFor: "Vote for",
   voteAgainst: "Vote against",
   connectToVote: "Connect to VEGA wallet",
+  noGovernanceTokens: "You need some VEGA tokens to participate in governance",
 
   // Token Details
   "Token address": "Token address",

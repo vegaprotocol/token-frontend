@@ -194,7 +194,7 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
           datetime: "2021-09-02T13:19:42.157201307Z",
           rejectionReason: null,
           party: {
-            id: "65ea371c556f5648640c243dd30cf7374b5501ffe3dc8603476f723dd636656e",
+            id: "65ea371c556f5648640c243dd30cf7374b5501ffe3dc8603476f723dd6366555",
             __typename: "Party",
           },
           terms: {
@@ -219,7 +219,7 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
                 {
                   value: VoteValue.Yes,
                   party: {
-                    id: "65ea371c556f5648640c243dd30cf7374b5501ffe3dc8603476f723dd636656e",
+                    id: "65ea371c556f5648640c243dd30cf7374b5501ffe3dc8603476f723dd6366555",
                     __typename: "Party",
                   },
                   datetime: "2021-09-02T13:20:23.184093701Z",
@@ -246,7 +246,7 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
           datetime: "2021-09-02T13:17:42.490013828Z",
           rejectionReason: ProposalRejectionReason.EnactTimeTooLate,
           party: {
-            id: "65ea371c556f5648640c243dd30cf7374b5501ffe3dc8603476f723dd636656e",
+            id: "123",
             __typename: "Party",
           },
           terms: {

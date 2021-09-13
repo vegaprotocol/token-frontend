@@ -1,4 +1,5 @@
 import "./vote-details.scss";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { useVoteInformation } from "./hooks";
 import { VoteProgress } from "./vote-progress";
@@ -7,11 +8,12 @@ import { CurrentProposalStatus } from "./current-proposal-status";
 import { VoteButtons } from "./vote-buttons";
 import { useUserVote } from "./use-user-vote";
 import { gql, useQuery } from "@apollo/client";
+import { Parties } from "./__generated__/Parties";
 
 export const PARTIES_QUERY = gql`
   query Parties {
     parties {
-      id,
+      id
       stake {
         currentStakeAvailable
       }
@@ -42,9 +44,18 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
     proposal.votes.no.votes
   );
 
-  const { data, loading, error, subscribeToMore } = useQuery(PARTIES_QUERY);
+  const { data, loading, error } = useQuery<Parties>(PARTIES_QUERY);
 
-  console.log("got", data, loading, error);
+  const party = React.useMemo(() => {
+    if (!data || !data.parties || data.parties?.length === 0) {
+      return null;
+    }
+
+    return data.parties.find(
+      (party) => party.id === proposal.party.id
+    );
+  }, [data]);
+
   const daysLeft = 1;
   const daysLeftText =
     daysLeft > 1 ? `${daysLeft} ${t("days")}` : `${daysLeft} ${t("day")}`;
@@ -107,6 +118,7 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
         </span>
       </div>
       <VoteButtons
+        party={party}
         voteState={voteState}
         castVote={castVote}
         voteDatetime={voteDatetime}
