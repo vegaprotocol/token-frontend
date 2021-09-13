@@ -6,7 +6,9 @@ import { useAppState } from "../../contexts/app-state/app-state-context";
 import { Link } from "react-router-dom";
 import { Routes } from "../router-config";
 import { LiquidityState, LiquidityAction } from "./liquidity-reducer";
+import { REWARDS_POOL_ADDRESSES } from "../../config";
 
+const BASE_SUSHI_URL = "https://analytics.sushi.com/pairs/";
 interface DexTokensSectionProps {
   name: string;
   contractAddress: string;
@@ -29,6 +31,12 @@ export const DexTokensSection = ({
     () => state.contractData[contractAddress],
     [contractAddress, state.contractData]
   );
+  const poolAddress = React.useMemo<string>(
+    // TODO how to fix this?
+    // @ts-ignore
+    () => REWARDS_POOL_ADDRESSES[contractAddress],
+    [contractAddress]
+  );
   if (!values) {
     return <p>{t("Loading")}...</p>;
   }
@@ -38,6 +46,18 @@ export const DexTokensSection = ({
       <h3>{name}</h3>
       <table className="dex-tokens-section__table">
         <tbody>
+          <tr>
+            <th>{t("liquidityTokenSushiAddress")}</th>
+            <td>
+              <a
+                target="_blank"
+                rel="nofollow noreferrer"
+                href={`${BASE_SUSHI_URL}/${poolAddress}`}
+              >
+                {poolAddress}
+              </a>
+            </td>
+          </tr>
           <tr>
             <th>{t("liquidityTokenContractAddress")}</th>
             <td>

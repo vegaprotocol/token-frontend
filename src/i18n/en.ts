@@ -232,7 +232,8 @@ const en = {
     "Tokens are held in different <trancheLink>Tranches</trancheLink>. Each tranche has its own schedule for how the tokens are unlocked.",
 
   // Governance
-  proposedChangesToVegaNetwork: "This page lists proposed changes to the Vega network.",
+  proposedChangesToVegaNetwork:
+    "This page lists proposed changes to the Vega network.",
   vegaTokenHoldersCanVote:
     "VEGA token holders can vote for or against proposals as well as make their own.",
   requiredMajorityDescription:
@@ -439,6 +440,7 @@ const en = {
   liquidityTotalAvailableRewards: "Total available rewards",
 
   liquidityRewardsTitle: "Active liquidity rewards",
+  liquidityTokenSushiAddress: "SLP pool/token address",
   liquidityTokenContractAddress: "Liquidty token contract address",
   rewardPerEpoch: "Reward per epoch (split between reward pool)",
   rewardTokenContractAddress: "Reward token contract address",

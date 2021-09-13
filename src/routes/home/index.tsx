@@ -82,7 +82,11 @@ const Home = ({ name }: RouteChildProps) => {
           </p>
 
           <p>
-            <a href="https://github.com/vegaprotocol/go-wallet">
+            <a
+              href="https://github.com/vegaprotocol/go-wallet"
+              target="_blank"
+              rel="nofollow noreferrer"
+            >
               {t("Get a Vega wallet")}
             </a>
           </p>

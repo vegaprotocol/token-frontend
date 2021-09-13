@@ -24,7 +24,7 @@ export const LiquidityContainer = ({
       <p>{t("liquidityIntro")}</p>
       <p>
         {t("liquidityIntroInstructionsLink")}.&nbsp;
-        <a href={BLOG_LINK} rel="nofollow noreferrer">
+        <a href={BLOG_LINK} target="_blank" rel="nofollow noreferrer">
           {t("liquidityIntroInstructionsLink")}
         </a>
         .

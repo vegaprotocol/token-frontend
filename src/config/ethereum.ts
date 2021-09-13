@@ -50,6 +50,22 @@ const RewardsAddresses = {
   },
 };
 
+const RewardsPoolAddresses = {
+  [EthereumChainIds.Mainnet]: {
+    "0x29C827Ce49aCCF68A1a278C67C9D30c52fBbC348":
+      "0x29c827ce49accf68a1a278c67c9d30c52fbbc348",
+    "0x42b7B8f8F83fA5cbf0176f8c24Ad51EbcD4B5F17":
+      "0x42b7B8f8F83fA5cbf0176f8c24Ad51EbcD4B5F17",
+  },
+  [EthereumChainIds.Ropsten]: {
+    "0xcc382BF2451d5eA0990Ed881aDbc85Ca49B9E672":
+      "0x29c827ce49accf68a1a278c67c9d30c52fbbc348",
+    // Same address so cannot have same key twice
+    // "0xcc382BF2451d5eA0990Ed881aDbc85Ca49B9E672":
+    //   "https://analytics.sushi.com/pairs/0x42b7b8f8f83fa5cbf0176f8c24ad51ebcd4b5f17",
+  },
+};
+
 const appChainId = process.env.REACT_APP_CHAIN as EthereumChainId;
 
 /** Contract addresses for the different contracts in the VEGA ecosystem */
@@ -57,6 +73,7 @@ export const ADDRESSES = Addresses[appChainId];
 
 /** Contract addresses for liquidity rewards for different markets */
 export const REWARDS_ADDRESSES = RewardsAddresses[appChainId];
+export const REWARDS_POOL_ADDRESSES = RewardsPoolAddresses[appChainId];
 
 /**
  * The Chain ID the environment is configured for.
