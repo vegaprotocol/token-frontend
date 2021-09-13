@@ -9,17 +9,19 @@ import {
   TxState,
 } from "../../../hooks/transaction-reducer";
 import { TransactionCallout } from "../../../components/transaction-callout";
-import * as Sentry from "@sentry/react";
-import BigNumber from "bignumber.js";
 import { useTranslation } from "react-i18next";
 import { EthConnectPrompt } from "../../../components/eth-connect-prompt";
 
 import "./withdraw.scss";
+import { LiquidityAction, LiquidityState } from "../liquidity-reducer";
 
 export const LiquidityWithdrawPage = ({
   lpTokenAddress,
+  state,
 }: {
   lpTokenAddress: string;
+  state: LiquidityState;
+  dispatch: React.Dispatch<LiquidityAction>;
 }) => {
   const { t } = useTranslation();
   const lpStaking = useVegaLPStaking({ address: lpTokenAddress });
@@ -29,30 +31,13 @@ export const LiquidityWithdrawPage = ({
     dispatch: txUnstakeDispatch,
     perform: txUnstakePerform,
   } = useTransaction(() => lpStaking.unstake(ethAddress));
-  // TODO use state
-  const [stakedBalance, setStakedBalance] = React.useState(new BigNumber(0));
-  const [rewardsBalance, setRewardsBalance] = React.useState(new BigNumber(0));
   const transactionInProgress = React.useMemo(
     () => txUnstakeState.txState !== TxState.Default,
     [txUnstakeState.txState]
   );
-  React.useEffect(() => {
-    const run = async () => {
-      try {
-        const stakedBalance = await lpStaking.stakedBalance(ethAddress);
-        const rewardsBalance = await lpStaking.rewardsBalance(ethAddress);
+  const values = state.contractData[lpTokenAddress];
 
-        setStakedBalance(stakedBalance);
-        setRewardsBalance(rewardsBalance);
-      } catch (err) {
-        Sentry.captureException(err);
-      }
-    };
-
-    run();
-  }, [lpStaking, ethAddress]);
-
-  if (stakedBalance.isEqualTo(0)) {
+  if (!values.stakedLPTokens || values.stakedLPTokens.isEqualTo(0)) {
     return <section>{t("withdrawLpNoneDeposited")}</section>;
   }
 
@@ -73,11 +58,11 @@ export const LiquidityWithdrawPage = ({
             <tbody>
               <tr>
                 <th>{t("liquidityTokenWithdrawBalance")}</th>
-                <td>{stakedBalance.toString()}</td>
+                <td>{values.stakedLPTokens.toString()}</td>
               </tr>
               <tr>
                 <th>{t("liquidityTokenWithdrawRewards")}</th>
-                <td>{rewardsBalance.toString()}</td>
+                <td>{values.accumulatedRewards!.toString()}</td>
               </tr>
             </tbody>
           </table>
@@ -92,7 +77,13 @@ export const LiquidityWithdrawPage = ({
   );
 };
 
-export const LiquidityWithdraw = () => {
+export const LiquidityWithdraw = ({
+  state,
+  dispatch,
+}: {
+  state: LiquidityState;
+  dispatch: React.Dispatch<LiquidityAction>;
+}) => {
   const { t } = useTranslation();
   const { address } = useParams<{ address: string }>();
 
@@ -104,5 +95,11 @@ export const LiquidityWithdraw = () => {
   if (!isValidAddress) {
     return <section>{t("lpTokensInvalidToken", { address })}</section>;
   }
-  return <LiquidityWithdrawPage lpTokenAddress={address} />;
+  return (
+    <LiquidityWithdrawPage
+      lpTokenAddress={address}
+      state={state}
+      dispatch={dispatch}
+    />
+  );
 };

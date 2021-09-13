@@ -155,7 +155,7 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
             <LiquidityDeposit state={state} dispatch={dispatch} />
           </Route>
           <Route path={`${match.path}/:address/withdraw`}>
-            <LiquidityWithdraw />
+            <LiquidityWithdraw state={state} dispatch={dispatch} />
           </Route>
           <Route path={`${match.path}/:address/`}>
             <Redirect to={match.path} />
