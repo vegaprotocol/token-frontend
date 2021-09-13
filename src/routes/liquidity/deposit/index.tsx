@@ -68,7 +68,7 @@ export const LiquidityDepositPage = ({
   let pageContent;
   if (
     txApprovalState.txState !== TxState.Default &&
-    txStakeState.txState !== TxState.Complete
+    txApprovalState.txState !== TxState.Complete
   ) {
     pageContent = (
       <TransactionCallout
