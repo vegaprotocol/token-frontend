@@ -53,7 +53,7 @@ export const TokenInput = ({
   }, [amount, isApproved, maximum, requireApproval]);
   return (
     <FormGroup label="" labelFor={inputName}>
-      <div style={{ display: "flex" }}>
+      <div className="token-input__container">
         <InputGroup
           data-testid="token-amount-input"
           className="token-input__input"
@@ -84,17 +84,15 @@ export const TokenInput = ({
       ) : (
         <button
           data-testid="token-input-approve-button"
-          className="fill"
-          style={{ marginTop: 10 }}
+          className="fill token-input__submit"
           onClick={approve}
         >
           {approveText}
         </button>
       )}
       <button
-        style={{ marginTop: 10 }}
-        className="fill"
         data-testid="token-input-submit-button"
+        className="fill token-input__submit"
         disabled={isDisabled}
         onClick={perform}
       >

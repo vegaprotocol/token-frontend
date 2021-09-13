@@ -1,6 +1,10 @@
 @import "../../styles/colors";
 
 .token-input {
+  &__container {
+    display: flex;
+  }
+
   &__input {
     flex: 1;
   }
@@ -16,5 +20,9 @@
 
   &__approved {
     margin-top: 25px;
+  }
+
+  &__submit {
+    margin-top: 10px;
   }
 }
