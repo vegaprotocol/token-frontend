@@ -45,7 +45,10 @@ export const LiquidityDepositPage = ({
     perform: txStakePerform,
   } = useTransaction(() => lpStaking.stake(amount, ethAddress));
   const { ethAddress } = useEthUser();
-  const values = state.contractData[lpTokenAddress];
+  const values = React.useMemo(
+    () => state.contractData[lpTokenAddress],
+    [lpTokenAddress, state.contractData]
+  );
   const maximum = React.useMemo(
     () => BigNumber.min(values?.availableLPTokens || 0, allowance),
     [allowance, values?.availableLPTokens]

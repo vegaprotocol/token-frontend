@@ -35,7 +35,10 @@ export const LiquidityWithdrawPage = ({
     () => txUnstakeState.txState !== TxState.Default,
     [txUnstakeState.txState]
   );
-  const values = state.contractData[lpTokenAddress];
+  const values = React.useMemo(
+    () => state.contractData[lpTokenAddress],
+    [lpTokenAddress, state.contractData]
+  );
 
   if (!values.stakedLPTokens || values.stakedLPTokens.isEqualTo(0)) {
     return <section>{t("withdrawLpNoneDeposited")}</section>;

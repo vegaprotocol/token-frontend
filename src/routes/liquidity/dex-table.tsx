@@ -25,7 +25,10 @@ export const DexTokensSection = ({
 }: DexTokensSectionProps) => {
   const { appState } = useAppState();
   const { t } = useTranslation();
-  const values = state.contractData[contractAddress];
+  const values = React.useMemo(
+    () => state.contractData[contractAddress],
+    [contractAddress, state.contractData]
+  );
   if (!values) {
     return <p>{t("Loading")}...</p>;
   }
@@ -94,7 +97,10 @@ const ConnectedRows = ({
   showInteractionButton = true,
 }: ConnectedRowsProps) => {
   const { t } = useTranslation();
-  const values = state.contractData[lpContractAddress];
+  const values = React.useMemo(
+    () => state.contractData[lpContractAddress],
+    [lpContractAddress, state.contractData]
+  );
 
   // Only shows the Deposit/Withdraw button IF they have tokens AND they haven't staked AND we're not on the relevant page
   const isDepositButtonVisible =
