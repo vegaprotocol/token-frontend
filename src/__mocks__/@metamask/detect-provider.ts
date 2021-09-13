@@ -7,10 +7,12 @@ export default function detectEthereumProvider(): Promise<any> {
       return res.json() as unknown as T;
     }
 
-    removeAllListeners() {}
-
     on(event: string, callback: () => void) {
       console.log(`Adding listener for event ${event}`);
+    }
+
+    removeAllListeners() {
+      // no op for mock
     }
 
     async request(obj: any) {
