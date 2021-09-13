@@ -16,6 +16,7 @@ import { EthConnectPrompt } from "../../../components/eth-connect-prompt";
 import * as Sentry from "@sentry/react";
 import { LiquidityAction, LiquidityState } from "../liquidity-reducer";
 import { useGetLiquidityBalances } from "../hooks";
+import { BigNumber } from "../../../lib/bignumber";
 
 export const LiquidityWithdrawPage = ({
   lpTokenAddress,
@@ -62,7 +63,10 @@ export const LiquidityWithdrawPage = ({
     }
   }, [getBalances, lpStakingEth, lpStakingUSDC, txUnstakeState.txState]);
 
-  if (!values.stakedLPTokens || values.stakedLPTokens.isEqualTo(0)) {
+  if (
+    (!values.stakedLPTokens || values.stakedLPTokens.isEqualTo(0)) &&
+    (!values.pendingStakedLPTokens || values.pendingStakedLPTokens.isEqualTo(0))
+  ) {
     return <section>{t("withdrawLpNoneDeposited")}</section>;
   }
 
@@ -83,7 +87,12 @@ export const LiquidityWithdrawPage = ({
             <tbody>
               <tr>
                 <th>{t("liquidityTokenWithdrawBalance")}</th>
-                <td>{values.stakedLPTokens.toString()}</td>
+                <td>
+                  {new BigNumber(0)
+                    .plus(values.stakedLPTokens || 0)
+                    .plus(values.pendingStakedLPTokens || 0)
+                    .toString()}
+                </td>
               </tr>
               <tr>
                 <th>{t("liquidityTokenWithdrawRewards")}</th>
