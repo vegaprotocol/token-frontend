@@ -4,16 +4,16 @@ import {
   useAppState,
 } from "../../contexts/app-state/app-state-context";
 
-export const EthConnectPrompt = () => {
+interface EthConnectPrompProps {
+  children?: React.ReactNode;
+}
+
+export const EthConnectPrompt = ({ children }: EthConnectPrompProps) => {
   const { appDispatch } = useAppState();
   const { t } = useTranslation();
   return (
     <>
-      <p>
-        {t(
-          "Use the Ethereum wallet you want to send your tokens to. You'll also need enough Ethereum to pay gas."
-        )}
-      </p>
+      {children}
       <button
         onClick={() =>
           appDispatch({

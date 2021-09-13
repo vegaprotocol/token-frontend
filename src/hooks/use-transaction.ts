@@ -3,6 +3,7 @@ import {
   isUnexpectedError,
   isUserRejection,
   PromiEvent,
+  WrappedPromiEvent
 } from "../lib/web3-utils";
 import {
   initialState,
@@ -13,7 +14,9 @@ import { useTranslation } from "react-i18next";
 import * as Sentry from "@sentry/react";
 
 export const useTransaction = (
-  performTransaction: (...args: any[]) => PromiEvent,
+  performTransaction:
+    | ((...args: any[]) => WrappedPromiEvent<any>)
+    | ((...args: any[]) => Promise<WrappedPromiEvent<any>>),
   checkTransaction?: (...args: any[]) => Promise<any>
 ) => {
   const { t } = useTranslation();
@@ -50,19 +53,31 @@ export const useTransaction = (
       if (typeof checkTransaction === "function") {
         await checkTransaction();
       }
-      const sub = performTransaction()
+      const sub = performTransaction();
+      let promiEvent: PromiEvent<any>;
+      if ("promiEvent" in sub) {
+        promiEvent = sub.promiEvent;
+      } else {
+        promiEvent = (await sub).promiEvent;
+      }
+
+      promiEvent
         .on("transactionHash", (hash: string) => {
-          dispatch({ type: TransactionActionType.TX_SUBMITTED, txHash: hash });
+          dispatch({
+            type: TransactionActionType.TX_SUBMITTED,
+            txHash: hash,
+          });
         })
         .on("receipt", (receipt: any) => {
-          sub.off();
+          promiEvent.off();
           dispatch({ type: TransactionActionType.TX_COMPLETE, receipt });
         })
         .on("error", (err: Error) => {
-          sub.off();
+          promiEvent.off();
           handleError(err);
         });
     } catch (err) {
+      console.log(err);
       handleError(err);
     }
   }, [performTransaction, checkTransaction, dispatch, handleError]);

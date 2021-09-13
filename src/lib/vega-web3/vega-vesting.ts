@@ -3,7 +3,7 @@ import Web3 from "web3";
 import { AbiItem } from "web3-utils";
 import type { Contract } from "web3-eth-contract";
 import vestingAbi from "../abis/vesting_abi.json";
-import { IVegaVesting, PromiEvent } from "../web3-utils";
+import { IVegaVesting, WrappedPromiEvent } from "../web3-utils";
 import { getTranchesFromHistory } from "./tranche-helpers";
 import { Tranche } from "./vega-web3-types";
 import { addDecimal, removeDecimal } from "../decimals";
@@ -48,24 +48,36 @@ export default class VegaVesting implements IVegaVesting {
       .call({ from: address });
   }
 
-  removeStake(address: string, amount: string, vegaKey: string): PromiEvent {
+  removeStake(
+    address: string,
+    amount: string,
+    vegaKey: string
+  ): WrappedPromiEvent<void> {
     const convertedAmount = removeDecimal(
       new BigNumber(amount),
       this.decimals
     ).toString();
-    return this.contract.methods
-      .remove_stake(convertedAmount, `0x${vegaKey}`)
-      .send({ from: address });
+    return {
+      promiEvent: this.contract.methods
+        .remove_stake(convertedAmount, `0x${vegaKey}`)
+        .send({ from: address }),
+    };
   }
 
-  addStake(address: string, amount: string, vegaKey: string): PromiEvent {
+  addStake(
+    address: string,
+    amount: string,
+    vegaKey: string
+  ): WrappedPromiEvent<void> {
     const convertedAmount = removeDecimal(
       new BigNumber(amount),
       this.decimals
     ).toString();
-    return this.contract.methods
-      .stake_tokens(convertedAmount, `0x${vegaKey}`)
-      .send({ from: address });
+    return {
+      promiEvent: this.contract.methods
+        .stake_tokens(convertedAmount, `0x${vegaKey}`)
+        .send({ from: address }),
+    };
   }
 
   checkAddStake(
@@ -122,10 +134,15 @@ export default class VegaVesting implements IVegaVesting {
     return getTranchesFromHistory(events, this.decimals);
   }
 
-  withdrawFromTranche(account: string, trancheId: number): PromiEvent {
-    return this.contract.methods
-      .withdraw_from_tranche(trancheId)
-      .send({ from: account });
+  withdrawFromTranche(
+    account: string,
+    trancheId: number
+  ): WrappedPromiEvent<void> {
+    return {
+      promiEvent: this.contract.methods
+        .withdraw_from_tranche(trancheId)
+        .send({ from: account }),
+    };
   }
 
   checkWithdrawFromTranche(account: string, trancheId: number): Promise<any> {

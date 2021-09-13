@@ -30,14 +30,6 @@ export const ContractAssociate = ({
     return new BigNumber(balanceFormatted).minus(lien!);
   }, [balanceFormatted, lien]);
 
-  const isDisabled = React.useMemo<boolean>(
-    () =>
-      !amount ||
-      new BigNumber(amount).isLessThanOrEqualTo("0") ||
-      new BigNumber(amount).isGreaterThan(maximum),
-    [amount, maximum]
-  );
-
   let pageContent = null;
   if (new BigNumber(balanceFormatted).isEqualTo("0")) {
     pageContent = (
@@ -62,15 +54,13 @@ export const ContractAssociate = ({
           )}
         </Callout>
         <AssociateInfo pubKey={vegaKey.pub} />
-        <TokenInput maximum={maximum} amount={amount} setAmount={setAmount} />
-        <button
-          data-testid="associate-button"
-          disabled={isDisabled}
-          style={{ width: "100%" }}
-          onClick={perform}
-        >
-          {t("Associate VEGA Tokens with key")}
-        </button>
+        <TokenInput
+          submitText={t("Associate VEGA Tokens with key")}
+          perform={perform}
+          maximum={maximum}
+          amount={amount}
+          setAmount={setAmount}
+        />
       </>
     );
   }

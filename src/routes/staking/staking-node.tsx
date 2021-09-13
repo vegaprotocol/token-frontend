@@ -12,8 +12,8 @@ import { StakeNode, StakeNodeVariables } from "./__generated__/StakeNode";
 import { Callout } from "../../components/callout";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
-import BigNumber from "bignumber.js";
 import { StakingContainer } from "./staking-container";
+import { BigNumber } from "../../lib/bignumber";
 
 export const STAKE_NODE_QUERY = gql`
   query StakeNode($nodeId: String!, $partyId: ID!) {

@@ -36,7 +36,6 @@ export const WalletAssociate = ({
     appDispatch,
     appState: { walletBalance, allowance, walletAssociatedBalance },
   } = useAppState();
-  const isApproved = !new BigNumber(allowance!).isEqualTo(0);
   const token = useVegaToken();
   const {
     state: approveState,
@@ -47,14 +46,6 @@ export const WalletAssociate = ({
     () =>
       BigNumber.min(new BigNumber(walletBalance), new BigNumber(allowance!)),
     [allowance, walletBalance]
-  );
-  const isDisabled = React.useMemo<boolean>(
-    () =>
-      !isApproved ||
-      !amount ||
-      new BigNumber(amount).isLessThanOrEqualTo("0") ||
-      new BigNumber(amount).isGreaterThan(maximum),
-    [amount, isApproved, maximum]
   );
 
   // Once they have approved deposits then we need to refresh their allowance
@@ -100,7 +91,13 @@ export const WalletAssociate = ({
     pageContent = (
       <>
         <AssociateInfo pubKey={vegaKey.pub} />
-        <TokenInput maximum={maximum} amount={amount} setAmount={setAmount} />
+        <TokenInput
+          submitText={t("Associate VEGA Tokens with key")}
+          perform={() => undefined}
+          maximum={maximum}
+          amount={amount}
+          setAmount={setAmount}
+        />
         <TransactionCallout
           state={approveState}
           reset={() =>
@@ -113,26 +110,15 @@ export const WalletAssociate = ({
     pageContent = (
       <>
         <AssociateInfo pubKey={vegaKey.pub} />
-        <TokenInput maximum={maximum} amount={amount} setAmount={setAmount} />
-        {isApproved ? (
-          t("VEGA tokens are approved for staking")
-        ) : (
-          <button
-            data-testid="approve-button"
-            style={{ width: "100%" }}
-            onClick={approve}
-          >
-            {t("Approve VEGA tokens for staking on Vega")}
-          </button>
-        )}
-        <button
-          style={{ marginTop: 10, width: "100%" }}
-          data-testid="associate-button"
-          disabled={isDisabled}
-          onClick={perform}
-        >
-          {t("Associate VEGA Tokens with key")}
-        </button>
+        <TokenInput
+          approveText={t("Approve VEGA tokens for staking on Vega")}
+          submitText={t("Associate VEGA Tokens with key")}
+          approve={approve}
+          perform={() => undefined}
+          maximum={maximum}
+          amount={amount}
+          setAmount={setAmount}
+        />
       </>
     );
   }

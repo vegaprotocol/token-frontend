@@ -6,6 +6,7 @@ const en = {
   pageTitleClaim: "Claim Vega tokens",
   pageTitleAssociate: "Associate VEGA tokens with VEGA Key",
   pageTitleRedemption: "Vesting",
+  pageTitleLiquidity: "Incentivised Liquidity Programme",
   pageTitleRedemptionTranche: "Redeem from Tranche",
   pageTitleTranches: "Vesting tranches",
   pageTitleStaking: "Staking",
@@ -13,10 +14,12 @@ const en = {
   pageTitleNotPermitted: "Can not proceed!",
   pageTitleDisassociate: "Dissociate VEGA tokens from a Vega key",
   pageTitleGovernance: "Governance",
+  pageTitleDepositLp: "Deposit liquidity token for VEGA rewards",
+  pageTitleWithdrawLp: "Withdraw SLP and Rewards",
   Vesting: "Vesting",
   of: "of",
   to: "to",
-
+  Deposit: "deposit",
   Tranche: "Tranche",
   Tranches: "Tranches",
   "Invalid tranche!": "Invalid tranche!",
@@ -229,7 +232,8 @@ const en = {
     "Tokens are held in different <trancheLink>Tranches</trancheLink>. Each tranche has its own schedule for how the tokens are unlocked.",
 
   // Governance
-  proposedChangesToVegaNetwork: "This page lists proposed changes to the Vega network.",
+  proposedChangesToVegaNetwork:
+    "This page lists proposed changes to the Vega network.",
   vegaTokenHoldersCanVote:
     "VEGA token holders can vote for or against proposals as well as make their own.",
   requiredMajorityDescription:
@@ -378,6 +382,21 @@ const en = {
   "How much to {{action}} in next epoch?":
     "How much to {{action}} in next epoch?",
 
+  // LP tokens
+  lpTokensInvalidToken:
+    "Address {{address}} is not a valid LP token address for VEGA",
+  depositLpTokensDescription:
+    "Deposit the Tokens you received for providing liquidity and earn rewards in VEGA.",
+  depositLpTokensHeading: "How much would you like to deposit?",
+  depositLpSubmitButton: "Deposit {{address}}",
+  depositLpApproveButton: "Approve deposits of {{address}}",
+  depositLpInsufficientBalance: "You do not have tokens to deposit.",
+  depositLpAlreadyStaked:
+    "You have already staked your LP tokens, go to <withdrawLink>withdraw</withdrawLink> in order withdraw these before you can add more.",
+
+  withdrawLpWithdrawButton: "Withdraw all SLP and VEGA rewards",
+  withdrawLpNoneDeposited: "You have no SLP tokens deposited",
+
   "Dissociate VEGA tokens": "Dissociate VEGA tokens",
   "Early Investors": "Early Investors",
   Team: "Team",
@@ -410,6 +429,48 @@ const en = {
     "The VEGA token address is {{address}}, make sure you add this to your wallet to see your tokens",
   "Go to <stakingLink>staking</stakingLink> or <governanceLink>governance</governanceLink> to see how you can use your unlocked tokens":
     "Go to <stakingLink>staking</stakingLink> or <governanceLink>governance</governanceLink> to see how you can use your unlocked tokens",
+  liquidityNav: "DEX Liquidity",
+  liquidityIntro:
+    "Provide liquidity on decentralised exchanges and deposit the LP tokens in to our contract to earn rewards",
+  liquidityIntroInstructionsLink:
+    "You can read about our our incentive program in this blog post",
+  liquidityTokensWalletTitle: "LP Tokens in connected wallet",
+  liquidityTokensWalletIntro: "The following tokens can be staked to earn VEGA",
+  liquidityTokensContractTitle: "LP Tokens earning rewards",
+  liquidityTotalAvailableRewards: "Total available rewards",
+
+  liquidityRewardsTitle: "Active liquidity rewards",
+  liquidityTokenSushiAddress: "SLP pool/token address",
+  liquidityTokenContractAddress: "Liquidty token contract address",
+  rewardPerEpoch: "Reward per epoch (split between reward pool)",
+  rewardTokenContractAddress: "Reward token contract address",
+  lpTokensInRewardPool: "Tokens in reward pool",
+  lpTokensEstimateAPY: "Estimated APY",
+  lpTokenWithdrawSubmit:
+    "Submitting this form will withdraw your entire staked balance & all rewards to your connected wallet:",
+  liquidityTokenWithdrawBalance: "Withdrawal balance",
+  liquidityTokenWithdrawRewards: "Withdrawal rewards",
+  usersLpTokens: "Your LP tokens in connected wallet",
+  depositToRewardPoolButton: "Deposit to reward pool",
+  usersStakedLPTokens: "Your LP tokens in reward pool",
+  usersPendingStakeLPTokens: "Your LP tokens in reward pool (next epoch)",
+  usersShareOfPool: "Your share of pool",
+  usersAccumulatedRewards: "Your accumulated rewards",
+  alreadyDeposited: "You need to withdraw before you can deposit again",
+  withdrawFromRewardPoolButton: "Withdraw LP tokens and VEGA tokens",
+
+  liquidityTotalAvailableRewardsBalance: "Balance",
+  liquidityStakedToken: "LP Token",
+  liquidityStakedIntro:
+    "Withdrawing your LP tokens from the contract will also claim the reward balance",
+  liquidityStakedBalance: "LP token balance",
+  liquidityStakedRewards: "Earned rewards",
+  liquidityStakedWithdraw: "Withdraw",
+  liquidityTokenTitle: "LP Token",
+  liquidityTokenBalance: "Balance",
+  liquidityTokenDeposit: "Deposit",
+  liquidityTokenApprove: "Approve",
+  liquidityComingSoon: "Liquidity rewards coming soon",
   "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.":
     "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.",
   "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.":
