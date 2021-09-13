@@ -140,9 +140,9 @@ export default class VegaLPStaking implements IVegaLPStaking {
     const epochsPerYear = new BigNumber(60 * 60 * 24 * 365).dividedBy(
       epochInterval
     );
-    const epochRoi = new BigNumber(epochReward).dividedBy(totalBalance);
+    const epochApy = new BigNumber(epochReward).dividedBy(totalBalance);
 
-    return epochRoi.multipliedBy(epochsPerYear);
+    return epochApy.multipliedBy(epochsPerYear).times(100);
   }
 
   /**
