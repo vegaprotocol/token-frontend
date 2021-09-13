@@ -73,6 +73,10 @@
     "add": "^2.0.6",
     "istanbul-lib-coverage": "^3.0.0",
     "nyc": "^15.1.0",
-    "yarn": "^1.22.11"
+    "yarn": "^1.22.11",
+    "apollo": "^2.33.4"
+  },
+  "resolutions": {
+    "graphql": "15.5.1"
   }
 }
