@@ -10,90 +10,12 @@ import { LiquidityDeposit } from "./deposit";
 import { LiquidityContainer } from "./liquidity-container";
 import { LiquidityWithdraw } from "./withdraw";
 import { Redirect } from "react-router";
-import { BigNumber } from "../../lib/bignumber";
-import {
-  initialLiquidityState,
-  LiquidityAction,
-  LiquidityActionType,
-  liquidityReducer,
-} from "./liquidity-reducer";
-import { IVegaLPStaking } from "../../lib/web3-utils";
+import { initialLiquidityState, liquidityReducer } from "./liquidity-reducer";
 import * as Sentry from "@sentry/react";
 import { useEthUser } from "../../hooks/use-eth-user";
-import { useVegaLPStaking } from "../../hooks/use-vega-lp-staking";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
-
-const useGetLiquidityBalances = (
-  dispatch: React.Dispatch<LiquidityAction>,
-  ethAddress: string
-) => {
-  const lpStakingEth = useVegaLPStaking({
-    address: REWARDS_ADDRESSES["Sushi Swap VEGA/ETH"],
-  });
-  const lpStakingUSDC = useVegaLPStaking({
-    address: REWARDS_ADDRESSES["Sushi Swap VEGA/USDC"],
-  });
-  const getBalances = React.useCallback(
-    async (lpStaking: IVegaLPStaking, contractAddress: string) => {
-      try {
-        const [
-          rewardPerEpoch,
-          rewardPoolBalance,
-          estimateAPY,
-          awardContractAddress,
-        ] = await Promise.all<BigNumber, BigNumber, BigNumber, string>([
-          await lpStaking.rewardPerEpoch(),
-          await lpStaking.liquidityTokensInRewardPool(),
-          await lpStaking.estimateAPY(),
-          await lpStaking.awardContractAddress(),
-        ]);
-        let availableLPTokens = null;
-        let stakedLPTokens = null;
-        let accumulatedRewards = null;
-        let shareOfPool = null;
-        if (ethAddress) {
-          const [unstaked, staked, rewards] = await Promise.all([
-            lpStaking.totalUnstaked(ethAddress),
-            lpStaking.stakedBalance(ethAddress),
-            lpStaking.rewardsBalance(ethAddress),
-          ]);
-          availableLPTokens = unstaked;
-          stakedLPTokens = staked;
-          accumulatedRewards = rewards;
-
-          // TODO: This is wrong, so the row showing it is hidden
-          shareOfPool =
-            stakedLPTokens.dividedBy(rewardPoolBalance).times(100).toString() +
-            "%";
-        }
-
-        dispatch({
-          type: LiquidityActionType.SET_CONTRACT_INFORMATION,
-          contractAddress,
-          contractData: {
-            rewardPerEpoch: rewardPerEpoch,
-            rewardPoolBalance: rewardPoolBalance,
-            estimateAPY: estimateAPY,
-            awardContractAddress: awardContractAddress,
-            availableLPTokens,
-            stakedLPTokens,
-            shareOfPool,
-            accumulatedRewards,
-          },
-        });
-      } catch (err) {
-        Sentry.captureException(err);
-      }
-    },
-    [dispatch, ethAddress]
-  );
-  return {
-    getBalances,
-    lpStakingEth,
-    lpStakingUSDC,
-  };
-};
+import { useGetLiquidityBalances } from "./hooks";
 
 const RedemptionIndex = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
