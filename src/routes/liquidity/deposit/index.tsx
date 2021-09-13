@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 import { DexTokensSection } from "../dex-table";
 import { LiquidityAction, LiquidityState } from "../liquidity-reducer";
 import { EthConnectPrompt } from "../../../components/eth-connect-prompt";
+import { useGetLiquidityBalances } from "../hooks";
 
 export const LiquidityDepositPage = ({
   lpTokenAddress,
@@ -45,6 +46,25 @@ export const LiquidityDepositPage = ({
     perform: txStakePerform,
   } = useTransaction(() => lpStaking.stake(amount, ethAddress));
   const { ethAddress } = useEthUser();
+  const { getBalances, lpStakingEth, lpStakingUSDC } = useGetLiquidityBalances(
+    dispatch,
+    ethAddress
+  );
+  React.useEffect(() => {
+    const run = async () => {
+      try {
+        await Promise.all([
+          getBalances(lpStakingUSDC, REWARDS_ADDRESSES["Sushi Swap VEGA/USDC"]),
+          getBalances(lpStakingEth, REWARDS_ADDRESSES["Sushi Swap VEGA/ETH"]),
+        ]);
+      } catch (e) {
+        Sentry.captureException(e);
+      }
+    };
+    if (txStakeState.txState === TxState.Complete) {
+      run();
+    }
+  }, [getBalances, lpStakingEth, lpStakingUSDC, txStakeState.txState]);
   const values = React.useMemo(
     () => state.contractData[lpTokenAddress],
     [lpTokenAddress, state.contractData]
@@ -161,6 +181,7 @@ export const LiquidityDeposit = ({
   const [name] = Object.entries(REWARDS_ADDRESSES).find(
     ([, a]) => a === address
   )!;
+
   return (
     <LiquidityDepositPage
       state={state}
