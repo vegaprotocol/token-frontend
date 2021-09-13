@@ -43,7 +43,7 @@ export const DexTokensSection = ({
             <td>
               <EtherscanLink
                 chainId={appState.chainId}
-                tx={contractAddress}
+                address={contractAddress}
                 text={contractAddress}
               />
             </td>
@@ -59,7 +59,7 @@ export const DexTokensSection = ({
             <td>
               <EtherscanLink
                 chainId={appState.chainId}
-                tx={values.awardContractAddress}
+                address={values.awardContractAddress}
                 text={values.awardContractAddress}
               />
             </td>
