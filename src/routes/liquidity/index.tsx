@@ -13,6 +13,7 @@ import { Redirect } from "react-router";
 import { BigNumber } from "../../lib/bignumber";
 import {
   initialLiquidityState,
+  LiquidityAction,
   LiquidityActionType,
   liquidityReducer,
 } from "./liquidity-reducer";
@@ -23,18 +24,10 @@ import { useVegaLPStaking } from "../../hooks/use-vega-lp-staking";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 
-const RedemptionIndex = ({ name }: RouteChildProps) => {
-  useDocumentTitle(name);
-  const { t } = useTranslation();
-  const match = useRouteMatch();
-  const withdraw = useRouteMatch(`${match.path}/:address/withdraw`);
-  const deposit = useRouteMatch(`${match.path}/:address/deposit`);
-  const [state, dispatch] = React.useReducer(
-    liquidityReducer,
-    initialLiquidityState
-  );
-  const { ethAddress } = useEthUser();
-  const [loading, setLoading] = React.useState(true);
+const useGetLiquidityBalances = (
+  dispatch: React.Dispatch<LiquidityAction>,
+  ethAddress: string
+) => {
   const lpStakingEth = useVegaLPStaking({
     address: REWARDS_ADDRESSES["Sushi Swap VEGA/ETH"],
   });
@@ -94,6 +87,29 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
       }
     },
     [dispatch, ethAddress]
+  );
+  return {
+    getBalances,
+    lpStakingEth,
+    lpStakingUSDC,
+  };
+};
+
+const RedemptionIndex = ({ name }: RouteChildProps) => {
+  useDocumentTitle(name);
+  const { t } = useTranslation();
+  const match = useRouteMatch();
+  const withdraw = useRouteMatch(`${match.path}/:address/withdraw`);
+  const deposit = useRouteMatch(`${match.path}/:address/deposit`);
+  const [state, dispatch] = React.useReducer(
+    liquidityReducer,
+    initialLiquidityState
+  );
+  const { ethAddress } = useEthUser();
+  const [loading, setLoading] = React.useState(true);
+  const { getBalances, lpStakingUSDC, lpStakingEth } = useGetLiquidityBalances(
+    dispatch,
+    ethAddress
   );
   React.useEffect(() => {
     const run = async () => {
