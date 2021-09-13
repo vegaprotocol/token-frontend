@@ -223,6 +223,10 @@ export default class VegaLPStaking implements IVegaLPStaking {
       await this.lpDecimals
     );
     const contract = await this.lpContract;
-    return contract.methods.approve(spender, amount).send({ from: address });
+    return {
+      promiEvent: contract.methods
+        .approve(spender, amount)
+        .send({ from: address }),
+    };
   }
 }
