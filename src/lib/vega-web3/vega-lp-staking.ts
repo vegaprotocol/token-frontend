@@ -112,9 +112,9 @@ export default class VegaLPStaking implements IVegaLPStaking {
   }
 
   async liquidityTokensInRewardPool(): Promise<BigNumber> {
-    const rewardContract = await this.awardContract;
+    const lpContract = await this.lpContract;
     const decimals = await this.awardDecimals;
-    const balance = await rewardContract.methods.balanceOf(this.address).call();
+    const balance = await lpContract.methods.balanceOf(this.address).call();
     return new BigNumber(addDecimal(new BigNumber(balance), decimals));
   }
 
