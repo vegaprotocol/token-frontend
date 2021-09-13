@@ -6,7 +6,11 @@ import { useHistory } from "react-router-dom";
 import { VoteState } from "./use-user-vote";
 import { VoteValue } from "../../__generated__/globalTypes";
 import { Colors } from "../../config";
-import { useAppState } from "../../contexts/app-state/app-state-context";
+import {
+  AppStateActionType,
+  useAppState,
+} from "../../contexts/app-state/app-state-context";
+import { useTranslation } from "react-i18next";
 
 interface VoteButtonsProps {
   voteState: VoteState;
@@ -22,6 +26,7 @@ export const VoteButtons = ({
   votePending,
 }: VoteButtonsProps) => {
   // const { accounts } = useAccount(pubkey)
+  const { t } = useTranslation();
   const [changeVote, setChangeVote] = React.useState(false);
   // const account = accounts.find(
   //   a => a.asset.id === governance.vote.VOTE_ASSET_ID
@@ -36,11 +41,22 @@ export const VoteButtons = ({
   } = useAppState();
   const pubkey = currVegaKey ? currVegaKey.pub : null;
   const isAuth = !!currVegaKey;
-  // const { isAuth } = useWalletState()
-
+  
   if (!isAuth) {
-    return <div>link to wallet</div>;
-    // return <ConnectToWalletAsLink />
+    return (
+      <button
+          onClick={() =>
+            appDispatch({
+              type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,
+              isOpen: true,
+            })
+          }
+          className="vote-buttons__logged-out-button fill"
+          type="button"
+        >
+          {t("connectToVote")}
+        </button>
+    )
   }
 
   if (lacksGovernanceToken) {
@@ -91,26 +107,32 @@ export const VoteButtons = ({
     );
   }
 
+  console.log("pubkey", pubkey);
+  console.log("votePending", votePending);
+  console.log("lacksGovernanceToken", lacksGovernanceToken);
+
   return (
     <div className="vote-buttons__button-container">
-      <Button
+      <button
+        type="button"
         onClick={() => submitVote(VoteValue.Yes)}
-        disabled={!pubkey || votePending || lacksGovernanceToken}
+        disabled={votePending || lacksGovernanceToken}
         className="vote-buttons__button"
       >
         {voteState === VoteState.Yes && votePending
           ? "i18n.GOVERNANCE.votePending"
-          : "i18n.VOTE_STATE.Yes"}
-      </Button>
-      <Button
+          : t("GOVERNANCE.voteFor")}
+      </button>
+      <button
+        type="button"
         onClick={() => submitVote(VoteValue.No)}
-        disabled={!pubkey || votePending || lacksGovernanceToken}
+        disabled={votePending || lacksGovernanceToken}
         className="vote-buttons__button"
       >
         {voteState === VoteState.No && votePending
           ? "i18n.GOVERNANCE.votePending"
-          : "i18n.VOTE_STATE.No"}
-      </Button>
+          : t("GOVERNANCE.voteAgainst")}
+      </button>
       {voteState === VoteState.Failed && (
         <p className="vote-buttons__error-message text-error">
           {"i18n.GOVERNANCE.voteError"}

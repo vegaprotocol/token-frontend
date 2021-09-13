@@ -265,6 +265,7 @@ const en = {
   "GOVERNANCE.daysLeft": " left to vote.",
   "GOVERNANCE.voteFor": "Vote for",
   "GOVERNANCE.voteAgainst": "Vote against",
+  connectToVote: "Connect to VEGA wallet",
 
   // Token Details
   "Token address": "Token address",

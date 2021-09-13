@@ -1,27 +1,31 @@
-.vote-buttons__button-container {
-  display: flex;
-  flex-flow: row wrap;
-}
-
-.vote-buttons__button {
-  max-width: 150px;
-  min-width: 70px;
-  width: calc(50% - 7px);
-
-  &:first-child {
-    margin-right: 10px;
+.vote-buttons {
+  &__button-container {
+    display: flex;
   }
 
-  .vote-buttons__error-message {
-    margin: 5px 0 0;
+  &__button {
+    width: calc(50% - 7px);
+    margin-top: 5px;
+
+    &:first-child {
+      margin-right: 10px;
+    }
+
+    &__error-message {
+      margin: 5px 0 0;
+    }
   }
-}
 
-.vote-buttons__container {
-  align-items: baseline;
-  display: flex;
-}
+  &__container {
+    align-items: baseline;
+    display: flex;
+  }
 
-.vote-buttons__governance-button {
-  padding: 5px;
+  &__governance-button {
+    padding: 5px;
+  }
+
+  &__logged-out-button {
+    margin-top: 5px;
+  }
 }

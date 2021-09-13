@@ -96,20 +96,12 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
           ({Number(requiredParticipation) * 100}% {t("GOVERNANCE.required")})
         </span>
       </div>
-      <div className="proposal-toast__vote-buttons">
         <VoteButtons
           voteState={voteState}
           castVote={castVote}
           voteDatetime={voteDatetime}
           votePending={votePending}
         />
-        {/* <button type="button" className="fill">
-          {t("GOVERNANCE.voteFor")}
-        </button>
-        <button type="button" className="fill">
-          {t("GOVERNANCE.voteAgainst")}
-        </button> */}
-      </div>
     </section>
   );
 };
