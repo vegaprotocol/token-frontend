@@ -21,7 +21,7 @@ interface DexTokensSectionProps {
   ethAddress: string;
   state: LiquidityState;
   dispatch: React.Dispatch<LiquidityAction>;
-  showInteractionButton?: boolean
+  showInteractionButton?: boolean;
 }
 
 export const DexTokensSection = ({
@@ -39,20 +39,25 @@ export const DexTokensSection = ({
   React.useEffect(() => {
     const run = async () => {
       try {
-        const [rewardPerEpoch, rewardPoolBalance, estimateAPY, awardContractAddress] =
-          await Promise.all<BigNumber, BigNumber, BigNumber, string>([
-            await lpStaking.rewardPerEpoch(),
-            await lpStaking.liquidityTokensInRewardPool(),
-            await lpStaking.estimateAPY(),
-            await lpStaking.awardContractAddress(),
-          ]);
+        const [
+          rewardPerEpoch,
+          rewardPoolBalance,
+          estimateAPY,
+          awardContractAddress,
+        ] = await Promise.all<BigNumber, BigNumber, BigNumber, string>([
+          await lpStaking.rewardPerEpoch(),
+          await lpStaking.liquidityTokensInRewardPool(),
+          await lpStaking.estimateAPY(),
+          await lpStaking.awardContractAddress(),
+        ]);
+        console.log(rewardPoolBalance.toString());
         dispatch({
           type: LiquidityActionType.SET_CONTRACT_INFORMATION,
           contractAddress,
           contractData: {
             rewardPerEpoch: rewardPerEpoch,
             rewardPoolBalance: rewardPoolBalance,
-            estimateAPY: rewardPoolBalance,
+            estimateAPY: estimateAPY,
             awardContractAddress: awardContractAddress,
           },
         });
@@ -84,7 +89,9 @@ export const DexTokensSection = ({
           </tr>
           <tr>
             <th>{t("rewardPerEpoch")}</th>
-            <td>{values.rewardPerEpoch.toString()} VEGA</td>
+            <td>
+              {values.rewardPerEpoch.toString()} {t("VEGA")}
+            </td>
           </tr>
           <tr>
             <th>{t("rewardTokenContractAddress")}</th>
@@ -98,7 +105,7 @@ export const DexTokensSection = ({
           </tr>
           <tr>
             <th>{t("lpTokensEstimateAPY")}</th>
-            <td>{values.estimateAPY.toString()}</td>
+            <td>{values.estimateAPY.toString()}%</td>
           </tr>
           <tr>
             <th>{t("lpTokensInRewardPool")}</th>
@@ -138,7 +145,7 @@ const ConnectedRows = ({
   rewardPoolBalance,
   state,
   dispatch,
-  showInteractionButton = true
+  showInteractionButton = true,
 }: ConnectedRowsProps) => {
   const { t } = useTranslation();
   const [loading, setLoading] = React.useState(true);
@@ -184,7 +191,8 @@ const ConnectedRows = ({
   }
 
   // Only shows the Deposit/Withdraw button IF they have tokens AND they haven't staked AND we're not on the relevant page
-  const isDepositButtonVisible = showInteractionButton && values.availableLPTokens.isGreaterThan(0)
+  const isDepositButtonVisible =
+    showInteractionButton && values.availableLPTokens.isGreaterThan(0);
 
   return (
     <>
@@ -200,8 +208,7 @@ const ConnectedRows = ({
                 <button>{t("depositToRewardPoolButton")}</button>
               </Link>
             </div>
-          ):null}
-
+          ) : null}
         </td>
       </tr>
       <tr>
