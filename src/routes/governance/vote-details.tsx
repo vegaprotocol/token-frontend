@@ -33,40 +33,40 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
   const daysLeft = 1;
   const daysLeftText =
     daysLeft > 1
-      ? `${daysLeft} ${t("GOVERNANCE.days")}`
-      : `${daysLeft} ${t("GOVERNANCE.day")}`;
+      ? `${daysLeft} ${t("days")}`
+      : `${daysLeft} ${t("day")}`;
 
   return (
     <section>
-      <h4 className="proposal__sub-title">{t("GOVERNANCE.votes")}</h4>
+      <h4 className="proposal__sub-title">{t("votes")}</h4>
       <div>
         <p>
-          {t("GOVERNANCE.setTo")}
+          {t("setTo")}
           <span className="proposal-toast__success-text">
             <CurrentProposalStatus proposal={proposal} />
           </span>
           .&nbsp;
           {daysLeftText}
-          {t("GOVERNANCE.daysLeft")}
+          {t("daysLeft")}
         </p>
         <table className="proposal-toast__table">
           <thead>
             <tr>
-              <th>{t("GOVERNANCE.for")}</th>
+              <th>{t("for")}</th>
               <th style={{ width: "50%" }}>
                 <VoteProgress
                   threshold={requiredMajorityPercentage}
                   progress={yesPercentage}
                 />
               </th>
-              <th>{t("GOVERNANCE.against")}</th>
+              <th>{t("against")}</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>{yesPercentage.toFixed(2)}%</td>
               <td className="proposal-toast__summary">
-                {t("GOVERNANCE.majorityRequired")}{" "}
+                {t("majorityRequired")}{" "}
                 {requiredMajorityPercentage.toFixed(2)}%
               </td>
               <td>{noPercentage.toFixed(2)}%</td>
@@ -80,20 +80,20 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
         </table>
       </div>
       <div>
-        {t("GOVERNANCE.participation")}
+        {t("participation")}
         {": "}
         {participationMet ? (
           <span className="proposal-toast__participation-met">
-            {t("GOVERNANCE.met")}
+            {t("met")}
           </span>
         ) : (
           <span className="proposal-toast__participation-not-met">
-            {t("GOVERNANCE.notMet")}
+            {t("notMet")}
           </span>
         )}{" "}
         {totalTokensVoted} {totalTokensPercentage}%
         <span className="proposal-toast__required-participation text-deemphasise">
-          ({Number(requiredParticipation) * 100}% {t("GOVERNANCE.required")})
+          ({Number(requiredParticipation) * 100}% {t("governanceRequired")})
         </span>
       </div>
         <VoteButtons

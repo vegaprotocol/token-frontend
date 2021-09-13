@@ -121,7 +121,7 @@ export const VoteButtons = ({
       >
         {voteState === VoteState.Yes && votePending
           ? "i18n.GOVERNANCE.votePending"
-          : t("GOVERNANCE.voteFor")}
+          : t("voteFor")}
       </button>
       <button
         type="button"
@@ -131,7 +131,7 @@ export const VoteButtons = ({
       >
         {voteState === VoteState.No && votePending
           ? "i18n.GOVERNANCE.votePending"
-          : t("GOVERNANCE.voteAgainst")}
+          : t("voteAgainst")}
       </button>
       {voteState === VoteState.Failed && (
         <p className="vote-buttons__error-message text-error">
