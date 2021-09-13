@@ -7,6 +7,35 @@
 // START Enums and Input Objects
 //==============================================================
 
+export enum BusEventType {
+  Account = "Account",
+  Asset = "Asset",
+  Auction = "Auction",
+  Deposit = "Deposit",
+  LiquidityProvision = "LiquidityProvision",
+  LossSocialization = "LossSocialization",
+  MarginLevels = "MarginLevels",
+  Market = "Market",
+  MarketCreated = "MarketCreated",
+  MarketData = "MarketData",
+  MarketTick = "MarketTick",
+  MarketUpdated = "MarketUpdated",
+  NodeSignature = "NodeSignature",
+  OracleSpec = "OracleSpec",
+  Order = "Order",
+  Party = "Party",
+  PositionResolution = "PositionResolution",
+  Proposal = "Proposal",
+  RiskFactor = "RiskFactor",
+  SettleDistressed = "SettleDistressed",
+  SettlePosition = "SettlePosition",
+  TimeUpdate = "TimeUpdate",
+  Trade = "Trade",
+  TransferResponses = "TransferResponses",
+  Vote = "Vote",
+  Withdrawal = "Withdrawal",
+}
+
 export enum NodeStatus {
   NonValidator = "NonValidator",
   Validator = "Validator",

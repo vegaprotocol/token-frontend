@@ -23,6 +23,8 @@ import {
 } from "../../../routes/governance";
 import { ProposalsSub } from "../../../routes/governance/__generated__/proposalsSub";
 import { Proposals } from "../../../routes/governance/__generated__/proposals";
+import { Parties } from "../../../routes/governance/__generated__/Parties";
+import { PARTIES_QUERY } from "../../../routes/governance/vote-details";
 
 const partyId = "pub";
 
@@ -346,6 +348,27 @@ const MOCK_PROPOSALS_SUBSCRIPTION: MockedResponse<ProposalsSub> = {
   },
 };
 
+
+const MOCK_PARTIES: MockedResponse<Parties> = {
+  request: {
+    query: PARTIES_QUERY,
+  },
+  result: {
+    data: {
+      parties: [
+        {
+          __typename: "Party",
+          id: "123",
+          stake: {
+            __typename: "PartyStake",
+            currentStakeAvailable: "12345",
+          },
+        },
+      ],
+    },
+  },
+};
+
 export const GraphQlProvider = ({
   children,
 }: {
@@ -358,7 +381,8 @@ export const GraphQlProvider = ({
         MOCK_STAKING_NODE_QUERY,
         MOCK_PARTY_DELEGATIONS,
         MOCK_PROPOSALS,
-        MOCK_PROPOSALS_SUBSCRIPTION
+        MOCK_PROPOSALS_SUBSCRIPTION,
+        MOCK_PARTIES,
       ]}
     >
       {children}

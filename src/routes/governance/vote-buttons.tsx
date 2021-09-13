@@ -41,7 +41,7 @@ export const VoteButtons = ({
   } = useAppState();
   const pubkey = currVegaKey ? currVegaKey.pub : null;
   const isAuth = !!currVegaKey;
-  
+
   if (!isAuth) {
     return (
       <button

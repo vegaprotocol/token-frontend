@@ -6,6 +6,18 @@ import { Proposals_proposals } from "./__generated__/proposals";
 import { CurrentProposalStatus } from "./current-proposal-status";
 import { VoteButtons } from "./vote-buttons";
 import { useUserVote } from "./use-user-vote";
+import { gql, useQuery } from "@apollo/client";
+
+export const PARTIES_QUERY = gql`
+  query Parties {
+    parties {
+      id,
+      stake {
+        currentStakeAvailable
+      }
+    }
+  }
+`;
 
 interface VoteDetailsProps {
   proposal: Proposals_proposals;
@@ -30,11 +42,12 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
     proposal.votes.no.votes
   );
 
+  const { data, loading, error, subscribeToMore } = useQuery(PARTIES_QUERY);
+
+  console.log("got", data, loading, error);
   const daysLeft = 1;
   const daysLeftText =
-    daysLeft > 1
-      ? `${daysLeft} ${t("days")}`
-      : `${daysLeft} ${t("day")}`;
+    daysLeft > 1 ? `${daysLeft} ${t("days")}` : `${daysLeft} ${t("day")}`;
 
   return (
     <section>
@@ -66,8 +79,7 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
             <tr>
               <td>{yesPercentage.toFixed(2)}%</td>
               <td className="proposal-toast__summary">
-                {t("majorityRequired")}{" "}
-                {requiredMajorityPercentage.toFixed(2)}%
+                {t("majorityRequired")} {requiredMajorityPercentage.toFixed(2)}%
               </td>
               <td>{noPercentage.toFixed(2)}%</td>
             </tr>
@@ -83,9 +95,7 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
         {t("participation")}
         {": "}
         {participationMet ? (
-          <span className="proposal-toast__participation-met">
-            {t("met")}
-          </span>
+          <span className="proposal-toast__participation-met">{t("met")}</span>
         ) : (
           <span className="proposal-toast__participation-not-met">
             {t("notMet")}
@@ -96,12 +106,12 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
           ({Number(requiredParticipation) * 100}% {t("governanceRequired")})
         </span>
       </div>
-        <VoteButtons
-          voteState={voteState}
-          castVote={castVote}
-          voteDatetime={voteDatetime}
-          votePending={votePending}
-        />
+      <VoteButtons
+        voteState={voteState}
+        castVote={castVote}
+        voteDatetime={voteDatetime}
+        votePending={votePending}
+      />
     </section>
   );
 };
