@@ -63,7 +63,10 @@ export const LiquidityDepositPage = ({
     run();
   }, [lpStaking, ethAddress]);
   let pageContent;
-  if (txApprovalState.txState !== TxState.Default) {
+  if (
+    txApprovalState.txState !== TxState.Default &&
+    txStakeState.txState !== TxState.Complete
+  ) {
     pageContent = (
       <TransactionCallout
         state={txApprovalState}
@@ -72,10 +75,7 @@ export const LiquidityDepositPage = ({
         }
       />
     );
-  } else if (
-    txStakeState.txState !== TxState.Default &&
-    txStakeState.txState !== TxState.Complete
-  ) {
+  } else if (txStakeState.txState !== TxState.Default) {
     pageContent = (
       <TransactionCallout
         state={txStakeState}
