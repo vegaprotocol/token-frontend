@@ -8,8 +8,9 @@ export interface LpContractData {
   estimateAPY: BigNumber;
   availableLPTokens: BigNumber | null;
   stakedLPTokens: BigNumber | null;
-  shareOfPool: string | null;
+  shareOfPool: BigNumber | null;
   accumulatedRewards: BigNumber | null;
+  pendingStakedLPTokens: BigNumber | null;
 }
 
 export interface LiquidityState {

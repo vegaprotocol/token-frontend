@@ -453,6 +453,7 @@ const en = {
   usersLpTokens: "Your LP tokens in connected wallet",
   depositToRewardPoolButton: "Deposit to reward pool",
   usersStakedLPTokens: "Your LP tokens in reward pool",
+  usersPendingStakeLPTokens: "Your LP tokens in reward pool (next epoch)",
   usersShareOfPool: "Your share of pool",
   usersAccumulatedRewards: "Your accumulated rewards",
   alreadyDeposited: "You need to withdraw before you can deposit again",

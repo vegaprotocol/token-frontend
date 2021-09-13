@@ -67,13 +67,33 @@ export default class VegaLPStaking implements IVegaLPStaking {
    * @param  {string}          account ethereum address
    * @return {Promise<BigNumber>}         balance in VEGA LP tokens as decimal number
    */
-  async stakedBalance(account: string): Promise<BigNumber> {
+  async stakedBalance(account: string): Promise<{
+    pending: BigNumber;
+    earningRewards: BigNumber;
+    total: BigNumber;
+  }> {
+    const user = await this.contract.methods.users(account).call();
+    const currentEpoch = await this.contract.methods
+      .get_current_epoch_number()
+      .call();
+    const isPending = currentEpoch === user.last_epoch_withdrawn;
     const value = await this.contract.methods
       .total_staked_for_user(account)
       .call({ from: account });
-    return new BigNumber(
+    const total = new BigNumber(
       addDecimal(new BigNumber(value), await this.lpDecimals)
     );
+    return isPending
+      ? {
+          pending: total,
+          earningRewards: new BigNumber(0),
+          total,
+        }
+      : {
+          earningRewards: total,
+          pending: new BigNumber(0),
+          total,
+        };
   }
 
   /**

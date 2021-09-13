@@ -149,10 +149,14 @@ const ConnectedRows = ({
         <th>{t("usersStakedLPTokens")}</th>
         <td>{values.stakedLPTokens?.toString()}</td>
       </tr>
-      {/*<tr>
+      <tr>
+        <th>{t("usersPendingStakeLPTokens")}</th>
+        <td>{values.pendingStakedLPTokens?.toString()}</td>
+      </tr>
+      <tr>
         <th>{t("usersShareOfPool")}</th>
-        <td>{values.shareOfPool}</td>
-      </tr>*/}
+        <td>{values.shareOfPool?.toString()}%</td>
+      </tr>
       <tr>
         <th>{t("usersAccumulatedRewards")}</th>
         <td>

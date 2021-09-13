@@ -194,7 +194,13 @@ export interface IVegaToken {
 }
 
 export interface IVegaLPStaking {
-  stakedBalance(account: string): Promise<BigNumber>;
+  stakedBalance(
+    account: string
+  ): Promise<{
+    pending: BigNumber;
+    earningRewards: BigNumber;
+    total: BigNumber;
+  }>;
   rewardsBalance(account: string): Promise<BigNumber>;
   awardContractAddress(): Promise<string>;
   rewardPerEpoch(): Promise<BigNumber>;

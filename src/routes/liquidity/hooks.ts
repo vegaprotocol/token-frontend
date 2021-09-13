@@ -44,22 +44,22 @@ export const useGetLiquidityBalances = (
           stakedLPTokens = staked;
           accumulatedRewards = rewards;
 
-          // TODO: This is wrong, so the row showing it is hidden
-          shareOfPool =
-            stakedLPTokens.dividedBy(rewardPoolBalance).times(100).toString() +
-            "%";
+          shareOfPool = stakedLPTokens.earningRewards
+            .dividedBy(rewardPoolBalance)
+            .times(100);
         }
 
         dispatch({
           type: LiquidityActionType.SET_CONTRACT_INFORMATION,
           contractAddress,
           contractData: {
-            rewardPerEpoch: rewardPerEpoch,
-            rewardPoolBalance: rewardPoolBalance,
-            estimateAPY: estimateAPY,
-            awardContractAddress: awardContractAddress,
+            rewardPerEpoch,
+            rewardPoolBalance,
+            estimateAPY,
+            awardContractAddress,
             availableLPTokens,
-            stakedLPTokens,
+            stakedLPTokens: stakedLPTokens?.earningRewards,
+            pendingStakedLPTokens: stakedLPTokens?.pending,
             shareOfPool,
             accumulatedRewards,
           },
