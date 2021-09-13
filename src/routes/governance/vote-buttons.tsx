@@ -1,7 +1,6 @@
 import "./vote-buttons.scss";
 
 import * as React from "react";
-import { useHistory } from "react-router-dom";
 import { VoteState } from "./use-user-vote";
 import { VoteValue } from "../../__generated__/globalTypes";
 import { Colors } from "../../config";
@@ -25,7 +24,7 @@ export const VoteButtons = ({
   castVote,
   voteDatetime,
   votePending,
-  party
+  party,
 }: VoteButtonsProps) => {
   // const { accounts } = useAccount(pubkey)
   const { t } = useTranslation();
@@ -34,9 +33,12 @@ export const VoteButtons = ({
   //   a => a.asset.id === governance.vote.VOTE_ASSET_ID
   // )
   // const lacksGovernanceToken = !account || account.total === '0'
-  const lacksGovernanceToken = party ? +party.stake.currentStakeAvailable > 0 : false;
+  const lacksGovernanceToken = party
+    ? +party.stake.currentStakeAvailable === 0 ||
+      party.stake.currentStakeAvailable === undefined
+    : true;
 
-  const history = useHistory();
+
   const {
     appState: { currVegaKey },
     appDispatch,
@@ -47,25 +49,23 @@ export const VoteButtons = ({
   if (!isAuth) {
     return (
       <button
-          onClick={() =>
-            appDispatch({
-              type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,
-              isOpen: true,
-            })
-          }
-          className="vote-buttons__logged-out-button fill"
-          type="button"
-        >
-          {t("connectToVote")}
-        </button>
-    )
+        onClick={() =>
+          appDispatch({
+            type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,
+            isOpen: true,
+          })
+        }
+        className="vote-buttons__logged-out-button fill"
+        type="button"
+      >
+        {t("connectToVote")}
+      </button>
+    );
   }
 
   if (lacksGovernanceToken) {
     return (
-      <h3 className="vote-buttons__container">
-        {t("noGovernanceTokens")}
-      </h3>
+      <h3 className="vote-buttons__container">{t("noGovernanceTokens")}</h3>
     );
   }
 
@@ -81,6 +81,7 @@ export const VoteButtons = ({
     setChangeVote(false);
     castVote(vote);
   }
+  console.log("votest", voteState)
 
   if (
     (voteState === VoteState.No || voteState === VoteState.Yes) &&
@@ -89,20 +90,24 @@ export const VoteButtons = ({
   ) {
     return (
       <div>
-        <span>{"i18n.GOVERNANCE.youVoted"}</span>{" "}
-        <span style={{ color: voteColor }}>{"i18n.VOTE_STATE[voteState]"}</span>
+        <span>{t("youVoted")}</span>{" "}
+        <span style={{ color: voteColor }}>{t(`voteState_${voteState}`)}</span>
         {". "}
-        {voteDatetime ? (
-          <span>{voteDatetime}. </span>
-        ) : // <span>{format(new Date(voteDatetime), DateFormats.DATE_TIME)}. </span>
-        null}
+        {voteDatetime ? <span>{voteDatetime}. </span> : null}
         {/* <ButtonLink */}
+        <a
+          onClick={() => {
+            setChangeVote(true);
+          }}
+        >
+          {t("changeVote")}
+        </a>
         <button
           onClick={() => {
             setChangeVote(true);
           }}
         >
-          "i18n.GOVERNANCE.changeVote
+          i18n.GOVERNANCE.changeVote
         </button>
       </div>
     );

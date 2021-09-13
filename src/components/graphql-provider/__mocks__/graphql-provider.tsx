@@ -219,7 +219,7 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
                 {
                   value: VoteValue.Yes,
                   party: {
-                    id: "65ea371c556f5648640c243dd30cf7374b5501ffe3dc8603476f723dd6366555",
+                    id: "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527",
                     __typename: "Party",
                   },
                   datetime: "2021-09-02T13:20:23.184093701Z",
@@ -275,6 +275,194 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
               totalWeight: "10",
               totalNumber: "10",
               votes: null,
+              __typename: "ProposalVoteSide",
+            },
+            __typename: "ProposalVotes",
+          },
+          __typename: "Proposal",
+        },
+        {
+          id: "555",
+          reference: "",
+          state: ProposalState.Rejected,
+          datetime: "2021-09-02T13:17:42.490013828Z",
+          rejectionReason: ProposalRejectionReason.EnactTimeTooLate,
+          party: {
+            id: "123",
+            __typename: "Party",
+          },
+          terms: {
+            closingDatetime: "2022-03-30T23:00:00Z",
+            enactmentDatetime: "2022-09-29T23:00:00Z",
+            change: {
+              networkParameter: {
+                key: "not.voted",
+                value: "8761h0m0s",
+                __typename: "NetworkParameter",
+              },
+              __typename: "UpdateNetworkParameter",
+            },
+            __typename: "ProposalTerms",
+          },
+          votes: {
+            yes: {
+              totalTokens: "10",
+              totalWeight: "10",
+              totalNumber: "10",
+              votes: null,
+              __typename: "ProposalVoteSide",
+            },
+            no: {
+              totalTokens: "10",
+              totalWeight: "10",
+              totalNumber: "10",
+              votes: null,
+              __typename: "ProposalVoteSide",
+            },
+            __typename: "ProposalVotes",
+          },
+          __typename: "Proposal",
+        },
+        {
+          id: "556",
+          reference: "",
+          state: ProposalState.Rejected,
+          datetime: "2021-09-02T13:17:42.490013828Z",
+          rejectionReason: ProposalRejectionReason.EnactTimeTooLate,
+          party: {
+            id: "123666",
+            __typename: "Party",
+          },
+          terms: {
+            closingDatetime: "2022-03-30T23:00:00Z",
+            enactmentDatetime: "2022-09-29T23:00:00Z",
+            change: {
+              networkParameter: {
+                key: "no.tokens",
+                value: "8761h0m0s",
+                __typename: "NetworkParameter",
+              },
+              __typename: "UpdateNetworkParameter",
+            },
+            __typename: "ProposalTerms",
+          },
+          votes: {
+            yes: {
+              totalTokens: "10",
+              totalWeight: "10",
+              totalNumber: "10",
+              votes: null,
+              __typename: "ProposalVoteSide",
+            },
+            no: {
+              totalTokens: "10",
+              totalWeight: "10",
+              totalNumber: "10",
+              votes: null,
+              __typename: "ProposalVoteSide",
+            },
+            __typename: "ProposalVotes",
+          },
+          __typename: "Proposal",
+        },
+        {
+          id: "557",
+          reference: "",
+          state: ProposalState.Rejected,
+          datetime: "2021-09-02T13:17:42.490013828Z",
+          rejectionReason: ProposalRejectionReason.EnactTimeTooLate,
+          party: {
+            id: "123",
+            __typename: "Party",
+          },
+          terms: {
+            closingDatetime: "2022-03-30T23:00:00Z",
+            enactmentDatetime: "2022-09-29T23:00:00Z",
+            change: {
+              networkParameter: {
+                key: "voted.for",
+                value: "8761h0m0s",
+                __typename: "NetworkParameter",
+              },
+              __typename: "UpdateNetworkParameter",
+            },
+            __typename: "ProposalTerms",
+          },
+          votes: {
+            yes: {
+              totalTokens: "0",
+              totalWeight: "0",
+              totalNumber: "1",
+              votes: [
+                {
+                  value: VoteValue.Yes,
+                  party: {
+                    id: "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527",
+                    __typename: "Party",
+                  },
+                  datetime: "2021-09-02T13:20:23.184093701Z",
+                  __typename: "Vote",
+                },
+              ],
+              __typename: "ProposalVoteSide",
+            },
+            no: {
+              totalTokens: "10",
+              totalWeight: "10",
+              totalNumber: "10",
+              votes: null,
+              __typename: "ProposalVoteSide",
+            },
+            __typename: "ProposalVotes",
+          },
+          __typename: "Proposal",
+        },
+        {
+          id: "558",
+          reference: "",
+          state: ProposalState.Rejected,
+          datetime: "2021-09-02T13:17:42.490013828Z",
+          rejectionReason: ProposalRejectionReason.EnactTimeTooLate,
+          party: {
+            id: "123",
+            __typename: "Party",
+          },
+          terms: {
+            closingDatetime: "2022-03-30T23:00:00Z",
+            enactmentDatetime: "2022-09-29T23:00:00Z",
+            change: {
+              networkParameter: {
+                key: "voted.against",
+                value: "8761h0m0s",
+                __typename: "NetworkParameter",
+              },
+              __typename: "UpdateNetworkParameter",
+            },
+            __typename: "ProposalTerms",
+          },
+          votes: {
+            yes: {
+              totalTokens: "0",
+              totalWeight: "0",
+              totalNumber: "1",
+              votes: null,
+              __typename: "ProposalVoteSide",
+            },
+            no: {
+              totalTokens: "10",
+              totalWeight: "10",
+              totalNumber: "10",
+              votes: [
+                {
+                  value: VoteValue.No,
+                  party: {
+                    id: "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527",
+                    __typename: "Party",
+                  },
+                  datetime: "2021-09-02T13:20:23.184093701Z",
+                  __typename: "Vote",
+                },
+              ],
               __typename: "ProposalVoteSide",
             },
             __typename: "ProposalVotes",

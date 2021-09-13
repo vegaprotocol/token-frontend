@@ -267,7 +267,13 @@ const en = {
   voteAgainst: "Vote against",
   connectToVote: "Connect to VEGA wallet",
   noGovernanceTokens: "You need some VEGA tokens to participate in governance",
+  youVoted: "You voted",
+  changeVote: "Change Vote",
 
+  voteState_Yes: 'For',
+  voteState_No: 'Against',
+  voteState_NotCast: 'Not cast',
+  voteState_Failed: 'Failed',
   // Token Details
   "Token address": "Token address",
   "Vesting contract": "Vesting contract",

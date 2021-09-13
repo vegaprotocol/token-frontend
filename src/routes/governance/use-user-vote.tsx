@@ -1,10 +1,13 @@
-import { captureException } from '@sentry/minimal'
-import * as React from 'react'
-import { useAppState } from '../../contexts/app-state/app-state-context'
-import { useVegaWallet } from '../../hooks/use-vega-wallet'
-import { hasErrorProperty, VoteSubmissionInput } from '../../lib/vega-wallet/vega-wallet-service'
-import { VoteValue } from '../../__generated__/globalTypes'
-import { VOTE_VALUE_MAP } from './vote-types'
+import { captureException } from "@sentry/minimal";
+import * as React from "react";
+import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useVegaWallet } from "../../hooks/use-vega-wallet";
+import {
+  hasErrorProperty,
+  VoteSubmissionInput,
+} from "../../lib/vega-wallet/vega-wallet-service";
+import { VoteValue } from "../../__generated__/globalTypes";
+import { VOTE_VALUE_MAP } from "./vote-types";
 import { gql, useApolloClient } from "@apollo/client";
 
 export const VOTES_SUBSCRIPTION_QUERY = gql`
@@ -25,29 +28,30 @@ export const VOTES_SUBSCRIPTION_QUERY = gql`
 `;
 
 export type Vote = {
-  value: VoteValue
-  datetime: string
-  party: { id: string }
-}
+  value: VoteValue;
+  datetime: string;
+  party: { id: string };
+};
 
-export type Votes = Array<Vote | null>
+export type Votes = Array<Vote | null>;
 
 export enum VoteState {
-  NotCast = 'NotCast',
-  Yes = 'Yes',
-  No = 'No',
-  Failed = 'Failed'
+  NotCast = "NotCast",
+  Yes = "Yes",
+  No = "No",
+  Failed = "Failed",
 }
 
 export function getMyVote(pubkey: string, yesVotes?: Votes, noVotes?: Votes) {
-  const myYes = yesVotes?.find(v => v && v.party.id === pubkey)
-  const myNo = noVotes?.find(v => v && v.party.id === pubkey)
+  console.log("myviote", pubkey, yesVotes);
+  const myYes = yesVotes?.find((v) => v && v.party.id === pubkey);
+  const myNo = noVotes?.find((v) => v && v.party.id === pubkey);
   if (myYes) {
-    return myYes
+    return myYes;
   } else if (myNo) {
-    return myNo
+    return myNo;
   } else {
-    return null
+    return null;
   }
 }
 
@@ -56,16 +60,16 @@ export function useUserVote(
   yesVotes: Votes | null,
   noVotes: Votes | null
 ) {
-  const yes = React.useMemo(() => yesVotes || [], [yesVotes])
-  const no = React.useMemo(() => noVotes || [], [noVotes])
-  const client = useApolloClient()
+  const yes = React.useMemo(() => yesVotes || [], [yesVotes]);
+  const no = React.useMemo(() => noVotes || [], [noVotes]);
+  const client = useApolloClient();
   const {
-    appState: { currVegaKey }
+    appState: { currVegaKey },
   } = useAppState();
   const vegaWallet = useVegaWallet();
   // const { commandSync } = useWalletDispatch()
-  const subRef = React.useRef<any>(null)
-  const [votePending, setVotePending] = React.useState(false)
+  const subRef = React.useRef<any>(null);
+  const [votePending, setVotePending] = React.useState(false);
 
   const myVote = React.useMemo(() => {
     if (currVegaKey) return getMyVote(currVegaKey.pub, yes, no);
@@ -73,19 +77,19 @@ export function useUserVote(
 
   const initialState = React.useMemo(() => {
     if (myVote === null || myVote === undefined) {
-      return VoteState.NotCast
+      return VoteState.NotCast;
     } else {
-      return myVote.value === VoteValue.Yes ? VoteState.Yes : VoteState.No
+      return myVote.value === VoteValue.Yes ? VoteState.Yes : VoteState.No;
     }
-  }, [myVote])
+  }, [myVote]);
 
-  const [voteState, setVoteState] = React.useState(initialState)
+  const [voteState, setVoteState] = React.useState(initialState);
 
   async function castVote(value: VoteValue) {
     if (!proposalId || !currVegaKey) return;
 
-    setVotePending(true)
-    setVoteState(value === VoteValue.Yes ? VoteState.Yes : VoteState.No)
+    setVotePending(true);
+    setVoteState(value === VoteValue.Yes ? VoteState.Yes : VoteState.No);
 
     try {
       const variables: VoteSubmissionInput = {
@@ -99,12 +103,11 @@ export function useUserVote(
       const res = await vegaWallet.commandSync(variables);
 
       if (hasErrorProperty(res)) {
-        throw new Error(res.error)
+        throw new Error(res.error);
       }
-
     } catch (err) {
-      setVoteState(VoteState.Failed)
-      captureException(err)
+      setVoteState(VoteState.Failed);
+      captureException(err);
     }
 
     // start a subscription to see if your vote passes consensus
@@ -140,16 +143,16 @@ export function useUserVote(
   React.useEffect(() => {
     return () => {
       if (subRef.current) {
-        subRef.current.unsubscribe()
+        subRef.current.unsubscribe();
       }
-    }
-  }, [])
+    };
+  }, []);
 
   return {
     voteState,
     votePending,
     castVote,
     myVote,
-    voteDatetime: myVote ? myVote.datetime : null
-  }
+    voteDatetime: myVote ? myVote.datetime : null,
+  };
 }
