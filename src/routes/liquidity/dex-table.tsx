@@ -50,7 +50,7 @@ export const DexTokensSection = ({
           await lpStaking.estimateAPY(),
           await lpStaking.awardContractAddress(),
         ]);
-        console.log(rewardPoolBalance.toString());
+
         dispatch({
           type: LiquidityActionType.SET_CONTRACT_INFORMATION,
           contractAddress,
@@ -105,7 +105,7 @@ export const DexTokensSection = ({
           </tr>
           <tr>
             <th>{t("lpTokensEstimateAPY")}</th>
-            <td>{values.estimateAPY.toString()}%</td>
+            <td>{values.estimateAPY.decimalPlaces(2).toString()}%</td>
           </tr>
           <tr>
             <th>{t("lpTokensInRewardPool")}</th>
