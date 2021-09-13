@@ -19,7 +19,7 @@ const en = {
   Vesting: "Vesting",
   of: "of",
   to: "to",
-  Deposit: "Deposit",
+  Deposit: "deposit",
   Tranche: "Tranche",
   Tranches: "Tranches",
   "Invalid tranche!": "Invalid tranche!",
