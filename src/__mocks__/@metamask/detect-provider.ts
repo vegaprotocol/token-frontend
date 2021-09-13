@@ -11,6 +11,10 @@ export default function detectEthereumProvider(): Promise<any> {
       console.log(`Adding listener for event ${event}`);
     }
 
+    removeAllListeners() {
+      // no op for mock
+    }
+
     async request(obj: any) {
       switch (obj.method) {
         case "eth_requestAccounts":

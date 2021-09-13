@@ -1,0 +1,6 @@
+extend type Proposal {
+  "Whether or the not the proposal is processing on the blockchain"
+  pending: Boolean!
+  "Generated name for the proposal"
+  name: String!
+}

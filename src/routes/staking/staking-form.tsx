@@ -25,7 +25,7 @@ import { useAppState } from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber";
 
 export const PARTY_DELEGATIONS_QUERY = gql`
-  query PartyDelegations($partyId: String!) {
+  query PartyDelegations($partyId: ID!) {
     party(id: $partyId) {
       delegations {
         amount
