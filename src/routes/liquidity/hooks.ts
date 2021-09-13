@@ -26,7 +26,7 @@ export const useGetLiquidityBalances = (
           awardContractAddress,
         ] = await Promise.all<BigNumber, BigNumber, BigNumber, string>([
           await lpStaking.rewardPerEpoch(),
-          await lpStaking.liquidityTokensInRewardPool(),
+          await lpStaking.totalStaked(),
           await lpStaking.estimateAPY(),
           await lpStaking.awardContractAddress(),
         ]);

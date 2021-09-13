@@ -127,14 +127,16 @@ const ConnectedRows = ({
     showInteractionButton &&
     values.availableLPTokens &&
     values.availableLPTokens.isGreaterThan(0);
-
+  const hasDeposited =
+    values.stakedLPTokens?.isGreaterThan(0) ||
+    values.pendingStakedLPTokens?.isGreaterThan(0);
   return (
     <>
       <tr>
         <th>{t("usersLpTokens")}</th>
         <td>
           <div>{values.availableLPTokens?.toString()}</div>
-          {values.stakedLPTokens?.isGreaterThan(0) ? (
+          {hasDeposited ? (
             <span className="text-muted">{t("alreadyDeposited")}</span>
           ) : isDepositButtonVisible ? (
             <div style={{ marginTop: 3 }}>
@@ -163,7 +165,7 @@ const ConnectedRows = ({
           <div>
             {values.accumulatedRewards?.toString()} {t("VEGA")}
           </div>
-          {values.stakedLPTokens?.isGreaterThan(0) && (
+          {hasDeposited && (
             <div style={{ marginTop: 3 }}>
               <Link to={`${Routes.LIQUIDITY}/${lpContractAddress}/withdraw`}>
                 <button>{t("withdrawFromRewardPoolButton")}</button>
