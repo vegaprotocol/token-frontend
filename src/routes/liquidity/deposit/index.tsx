@@ -73,18 +73,22 @@ export const LiquidityDepositPage = ({
     () => BigNumber.min(values?.availableLPTokens || 0, allowance),
     [allowance, values?.availableLPTokens]
   );
+  const fetchAllowance = React.useCallback(async () => {
+    try {
+      const allowance = await lpStaking.allowance(ethAddress);
+      setAllowance(allowance);
+    } catch (err) {
+      Sentry.captureException(err);
+    }
+  }, [ethAddress, lpStaking]);
   React.useEffect(() => {
-    const run = async () => {
-      try {
-        const allowance = await lpStaking.allowance(ethAddress);
-        setAllowance(allowance);
-      } catch (err) {
-        Sentry.captureException(err);
-      }
-    };
-
-    run();
-  }, [lpStaking, ethAddress]);
+    if (txApprovalState.txState === TxState.Complete) {
+      fetchAllowance();
+    }
+  }, [lpStaking, ethAddress, fetchAllowance, txApprovalState.txState]);
+  React.useEffect(() => {
+    fetchAllowance();
+  }, [lpStaking, ethAddress, fetchAllowance]);
   let pageContent;
   if (
     txApprovalState.txState !== TxState.Default &&
