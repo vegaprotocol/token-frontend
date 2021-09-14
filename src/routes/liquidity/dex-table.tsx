@@ -141,7 +141,9 @@ const ConnectedRows = ({
           ) : isDepositButtonVisible ? (
             <div style={{ marginTop: 3 }}>
               <Link to={`${Routes.LIQUIDITY}/${lpContractAddress}/deposit`}>
-                <button>{t("depositToRewardPoolButton")}</button>
+                <button className="button-secondary">
+                  {t("depositToRewardPoolButton")}
+                </button>
               </Link>
             </div>
           ) : null}
@@ -172,7 +174,9 @@ const ConnectedRows = ({
           {hasDeposited && (
             <div style={{ marginTop: 3 }}>
               <Link to={`${Routes.LIQUIDITY}/${lpContractAddress}/withdraw`}>
-                <button>{t("withdrawFromRewardPoolButton")}</button>
+                <button className="button-secondary">
+                  {t("withdrawFromRewardPoolButton")}
+                </button>
               </Link>
             </div>
           )}
