@@ -242,7 +242,7 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
         {
           id: "eeeef3ac1b19bfaddf86ba1ce853e092991383ac9d76be3b20f5a254583feeee",
           reference: "",
-          state: ProposalState.Rejected,
+          state: ProposalState.Open,
           datetime: "2021-09-02T13:17:42.490013828Z",
           rejectionReason: ProposalRejectionReason.EnactTimeTooLate,
           party: {
@@ -284,7 +284,7 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
         {
           id: "555",
           reference: "",
-          state: ProposalState.Rejected,
+          state: ProposalState.Open,
           datetime: "2021-09-02T13:17:42.490013828Z",
           rejectionReason: ProposalRejectionReason.EnactTimeTooLate,
           party: {
@@ -326,7 +326,7 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
         {
           id: "556",
           reference: "",
-          state: ProposalState.Rejected,
+          state: ProposalState.Open,
           datetime: "2021-09-02T13:17:42.490013828Z",
           rejectionReason: ProposalRejectionReason.EnactTimeTooLate,
           party: {
@@ -368,7 +368,7 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
         {
           id: "557",
           reference: "",
-          state: ProposalState.Rejected,
+          state: ProposalState.Open,
           datetime: "2021-09-02T13:17:42.490013828Z",
           rejectionReason: ProposalRejectionReason.EnactTimeTooLate,
           party: {
@@ -420,7 +420,7 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
         {
           id: "558",
           reference: "",
-          state: ProposalState.Rejected,
+          state: ProposalState.Open,
           datetime: "2021-09-02T13:17:42.490013828Z",
           rejectionReason: ProposalRejectionReason.EnactTimeTooLate,
           party: {
@@ -484,7 +484,7 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
             enactmentDatetime: "2020-09-29T23:00:00Z",
             change: {
               networkParameter: {
-                key: "voted.closed",
+                key: "voted.closed.voted.no",
                 value: "8761h0m0s",
                 __typename: "NetworkParameter",
               },
@@ -509,6 +509,58 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
                   value: VoteValue.No,
                   party: {
                     id: "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527",
+                    __typename: "Party",
+                  },
+                  datetime: "2020-09-02T13:20:23.184093701Z",
+                  __typename: "Vote",
+                },
+              ],
+              __typename: "ProposalVoteSide",
+            },
+            __typename: "ProposalVotes",
+          },
+          __typename: "Proposal",
+        },
+        {
+          id: "666",
+          reference: "",
+          state: ProposalState.Failed,
+          datetime: "2020-09-02T13:17:42.490013828Z",
+          rejectionReason: ProposalRejectionReason.EnactTimeTooLate,
+          party: {
+            id: "123",
+            __typename: "Party",
+          },
+          terms: {
+            closingDatetime: "2020-03-30T23:00:00Z",
+            enactmentDatetime: "2020-09-29T23:00:00Z",
+            change: {
+              networkParameter: {
+                key: "voted.closed.did.not.vote",
+                value: "8761h0m0s",
+                __typename: "NetworkParameter",
+              },
+              __typename: "UpdateNetworkParameter",
+            },
+            __typename: "ProposalTerms",
+          },
+          votes: {
+            yes: {
+              totalTokens: "0",
+              totalWeight: "0",
+              totalNumber: "1",
+              votes: null,
+              __typename: "ProposalVoteSide",
+            },
+            no: {
+              totalTokens: "10",
+              totalWeight: "10",
+              totalNumber: "10",
+              votes: [
+                {
+                  value: VoteValue.No,
+                  party: {
+                    id: "666",
                     __typename: "Party",
                   },
                   datetime: "2020-09-02T13:20:23.184093701Z",

@@ -140,6 +140,7 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
         castVote={castVote}
         voteDatetime={voteDatetime}
         votePending={votePending}
+        proposalState={proposal.state}
       />
     </section>
   );

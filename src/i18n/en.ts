@@ -271,6 +271,7 @@ const en = {
   votePending: "Casting vote",
   voteError: "Something went wrong, please try again later",
   back: "back",
+  youDidNotVote: "You did not vote",
 
   partiesQueryFailed: "Could not get data for parties query",
 

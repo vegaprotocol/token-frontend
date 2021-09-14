@@ -3,7 +3,7 @@ import { format } from "date-fns";
 
 import * as React from "react";
 import { VoteState } from "./use-user-vote";
-import { VoteValue } from "../../__generated__/globalTypes";
+import { ProposalState, VoteValue } from "../../__generated__/globalTypes";
 import { Colors } from "../../config";
 import {
   AppStateActionType,
@@ -21,6 +21,7 @@ interface VoteButtonsProps {
   voteDatetime: string | null;
   votePending: boolean;
   party: Parties_parties | undefined | null;
+  proposalState: ProposalState;
 }
 
 export const VoteButtons = ({
@@ -29,9 +30,11 @@ export const VoteButtons = ({
   voteDatetime,
   votePending,
   party,
+  proposalState,
 }: VoteButtonsProps) => {
   const { t } = useTranslation();
   const [changeVote, setChangeVote] = React.useState(false);
+
   const lacksGovernanceToken = party
     ? +party.stake.currentStakeAvailable === 0 ||
       party.stake.currentStakeAvailable === undefined
@@ -93,14 +96,19 @@ export const VoteButtons = ({
     return (
       <div className="vote-buttons__callout-container">
         <Callout intent="error" icon={<Error />} title={t("voteError")}>
-          <button
-            className="vote-buttons__link-button"
-            onClick={() => {
-              setChangeVote(true);
-            }}
-          >
-            {t("back")}
-          </button>
+          {
+            proposalState === ProposalState.Open ?
+            <button
+              className="vote-buttons__link-button"
+              onClick={() => {
+                setChangeVote(true);
+              }}
+            >
+              {t("back")}
+            </button>
+            :
+          null
+          }
         </Callout>
       </div>
     );
@@ -126,34 +134,44 @@ export const VoteButtons = ({
         ) : (
           ". "
         )}
+        {
+          proposalState === ProposalState.Open
+          ?
+          <button
+            className="vote-buttons__link-button"
+            onClick={() => {
+              setChangeVote(true);
+            }}
+          >
+            {t("changeVote")}
+          </button>
+          :
+          null
+        }
+      </div>
+    );
+  }
+
+  if (proposalState === ProposalState.Open) {
+    return (
+      <div className="vote-buttons__button-container">
         <button
-          className="vote-buttons__link-button"
-          onClick={() => {
-            setChangeVote(true);
-          }}
+          type="button"
+          onClick={() => submitVote(VoteValue.Yes)}
+          className="vote-buttons__button"
         >
-          {t("changeVote")}
+          {t("voteFor")}
+        </button>
+        <button
+          type="button"
+          onClick={() => submitVote(VoteValue.No)}
+          className="vote-buttons__button"
+        >
+          {t("voteAgainst")}
         </button>
       </div>
     );
   }
 
-  return (
-    <div className="vote-buttons__button-container">
-      <button
-        type="button"
-        onClick={() => submitVote(VoteValue.Yes)}
-        className="vote-buttons__button"
-      >
-        {t("voteFor")}
-      </button>
-      <button
-        type="button"
-        onClick={() => submitVote(VoteValue.No)}
-        className="vote-buttons__button"
-      >
-        {t("voteAgainst")}
-      </button>
-    </div>
-  );
+  return <h3 className="vote-buttons__container">{t("youDidNotVote")}</h3>;
 };
