@@ -148,12 +148,16 @@ const ConnectedRows = ({
         </td>
       </tr>
       <tr>
-        <th>{t("usersStakedLPTokens")}</th>
-        <td>{values.stakedLPTokens?.toString()}</td>
-      </tr>
-      <tr>
-        <th>{t("usersPendingStakeLPTokens")}</th>
-        <td>{values.pendingStakedLPTokens?.toString()}</td>
+        <th>
+          {values.pendingStakedLPTokens?.isGreaterThan(0)
+            ? t("usersPendingStakeLPTokens")
+            : t("usersStakedLPTokens")}
+        </th>
+        <td>
+          {values.pendingStakedLPTokens?.isGreaterThan(0)
+            ? values.pendingStakedLPTokens?.toString()
+            : values.stakedLPTokens?.toString()}
+        </td>
       </tr>
       <tr>
         <th>{t("usersShareOfPool")}</th>
