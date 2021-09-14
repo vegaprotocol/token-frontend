@@ -79,6 +79,32 @@ export const VoteButtons = ({
     castVote(vote);
   }
 
+  if (votePending) {
+    return (
+      <div className="vote-buttons__callout-container">
+        <Callout icon={<Loader />} title={t("votePending")}>
+          &nbsp;
+        </Callout>
+      </div>
+    );
+  }
+
+  if (voteState === VoteState.Failed && !changeVote) {
+    return (
+      <div className="vote-buttons__callout-container">
+        <Callout intent="error" icon={<Error />} title={t("voteError")}>
+          <a
+            onClick={() => {
+              setChangeVote(true);
+            }}
+          >
+            {t("back")}
+          </a>
+        </Callout>
+      </div>
+    );
+  }
+
   if (
     (voteState === VoteState.No || voteState === VoteState.Yes) &&
     !votePending &&
@@ -106,32 +132,6 @@ export const VoteButtons = ({
         >
           {t("changeVote")}
         </a>
-      </div>
-    );
-  }
-
-  if (votePending) {
-    return (
-      <div className="vote-buttons__callout-container">
-        <Callout icon={<Loader />} title={t("votePending")}>
-          &nbsp;
-        </Callout>
-      </div>
-    );
-  }
-
-  if (voteState === VoteState.Failed && !changeVote) {
-    return (
-      <div className="vote-buttons__callout-container">
-        <Callout intent="error" icon={<Error />} title={t("voteError")}>
-          <a
-            onClick={() => {
-              setChangeVote(true);
-            }}
-          >
-            {t("back")}
-          </a>
-        </Callout>
       </div>
     );
   }

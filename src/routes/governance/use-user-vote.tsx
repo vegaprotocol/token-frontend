@@ -66,7 +66,6 @@ export function useUserVote(
     appState: { currVegaKey },
   } = useAppState();
   const vegaWallet = useVegaWallet();
-  // const { commandSync } = useWalletDispatch()
   const subRef = React.useRef<any>(null);
   const [votePending, setVotePending] = React.useState(false);
 
@@ -98,7 +97,6 @@ export function useUserVote(
           proposalId,
         },
       };
-      // const res = await commandSync(variables)
       const res = await vegaWallet.commandSync(variables);
 
       if (hasErrorProperty(res)) {

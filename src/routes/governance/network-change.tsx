@@ -9,7 +9,6 @@ interface NetworkChangeProps {
   proposal: Proposals_proposals;
 }
 
-
 export const NetworkChange = ({proposal}: NetworkChangeProps) => {
   const { t } = useTranslation();
 
