@@ -1,7 +1,7 @@
 import "./node-list.scss";
 import { Link, useRouteMatch } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import BigNumber from "bignumber.js";
+import { BigNumber } from "../../lib/bignumber";
 
 interface NodeListProps {
   nodes: NodeListItemProps[];

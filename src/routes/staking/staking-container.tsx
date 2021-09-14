@@ -22,7 +22,15 @@ export const StakingContainer = ({
   const { currVegaKey } = useVegaUser();
 
   if (!ethAddress) {
-    return <EthConnectPrompt />;
+    return (
+      <EthConnectPrompt>
+        <p>
+          {t(
+            "Use the Ethereum wallet you want to send your tokens to. You'll also need enough Ethereum to pay gas."
+          )}
+        </p>
+      </EthConnectPrompt>
+    );
   }
 
   if (!currVegaKey) {

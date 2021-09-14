@@ -7,13 +7,13 @@ import { TokenDetails } from "./token-details";
 import { Link, useHistory } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 import React from "react";
-import BigNumber from "bignumber.js";
 import { NodeData } from "./__generated__/NodeData";
 import { Routes } from "../router-config";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
 import { EthWallet } from "../../components/eth-wallet";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { Flags } from "../../config";
+import { BigNumber } from "../../lib/bignumber";
 
 export const TOTAL_STAKED_QUERY = gql`
   query NodeData {
@@ -82,7 +82,11 @@ const Home = ({ name }: RouteChildProps) => {
           </p>
 
           <p>
-            <a href="https://github.com/vegaprotocol/go-wallet">
+            <a
+              href="https://github.com/vegaprotocol/go-wallet"
+              target="_blank"
+              rel="nofollow noreferrer"
+            >
               {t("Get a Vega wallet")}
             </a>
           </p>

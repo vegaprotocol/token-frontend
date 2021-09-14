@@ -3,8 +3,8 @@ import Web3 from "web3";
 import { AbiItem } from "web3-utils";
 import type { Contract } from "web3-eth-contract";
 import tokenAbi from "../abis/vega_token_abi.json";
-import { addDecimal } from "../decimals";
-import { IVegaToken, PromiEvent } from "../web3-utils";
+import { addDecimal, removeDecimal } from "../decimals";
+import { IVegaToken, WrappedPromiEvent } from "../web3-utils";
 
 export default class VegaToken implements IVegaToken {
   private web3: Web3;
@@ -26,10 +26,20 @@ export default class VegaToken implements IVegaToken {
     return new BigNumber(addDecimal(new BigNumber(res), decimals));
   }
 
-  approve(address: string, spender: string): PromiEvent {
-    return this.contract.methods
-      .approve(spender, Number.MAX_SAFE_INTEGER - 1)
-      .send({ from: address });
+  async approve(
+    address: string,
+    spender: string
+  ): Promise<WrappedPromiEvent<boolean>> {
+    const decimals = await this.decimals();
+    const amount = removeDecimal(
+      new BigNumber(Number.MAX_SAFE_INTEGER),
+      decimals
+    );
+    return {
+      promiEvent: this.contract.methods
+        .approve(spender, amount)
+        .send({ from: address }),
+    };
   }
 
   async totalSupply(): Promise<BigNumber> {

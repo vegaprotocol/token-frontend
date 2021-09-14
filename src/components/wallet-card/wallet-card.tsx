@@ -1,5 +1,5 @@
-import BigNumber from "bignumber.js";
 import React from "react";
+import { BigNumber } from "../../lib/bignumber";
 import { Colors } from "../../config";
 import { formatNumber } from "../../lib/format-number";
 import "./wallet-card.scss";
