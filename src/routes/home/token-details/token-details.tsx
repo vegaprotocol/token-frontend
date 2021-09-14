@@ -12,40 +12,7 @@ import { ADDRESSES } from "../../../config";
 import { formatNumber } from "../../../lib/format-number";
 import { BigNumber } from "../../../lib/bignumber";
 import { EtherscanLink } from "../../../components/etherscan-link";
-import React from "react";
-
-const useAddToWallet = (
-  address: string,
-  symbol: string,
-  decimals: number,
-  image: string
-) => {
-  const { provider } = useAppState();
-  return React.useCallback(async () => {
-    try {
-      const wasAdded = await provider.request({
-        method: "wallet_watchAsset",
-        params: {
-          type: "ERC20",
-          options: {
-            address,
-            symbol,
-            decimals,
-            image,
-          },
-        },
-      });
-
-      if (wasAdded) {
-        console.log("Thanks for your interest!");
-      } else {
-        console.log("Your loss!");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, [address, decimals, image, provider, symbol]);
-};
+import { useAddAssetToWallet } from "../../../hooks/use-add-asset-to-wallet";
 
 export const TokenDetails = ({
   totalSupply,
@@ -56,7 +23,7 @@ export const TokenDetails = ({
 }) => {
   const { t } = useTranslation();
   const { appState } = useAppState();
-  const addToken = useAddToWallet(
+  const addToken = useAddAssetToWallet(
     ADDRESSES.vegaTokenAddress,
     "$VEGA",
     18,
