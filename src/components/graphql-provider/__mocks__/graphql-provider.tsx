@@ -469,6 +469,58 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
           },
           __typename: "Proposal",
         },
+        {
+          id: "559",
+          reference: "",
+          state: ProposalState.Passed,
+          datetime: "2020-09-02T13:17:42.490013828Z",
+          rejectionReason: ProposalRejectionReason.EnactTimeTooLate,
+          party: {
+            id: "123",
+            __typename: "Party",
+          },
+          terms: {
+            closingDatetime: "2020-03-30T23:00:00Z",
+            enactmentDatetime: "2020-09-29T23:00:00Z",
+            change: {
+              networkParameter: {
+                key: "voted.closed",
+                value: "8761h0m0s",
+                __typename: "NetworkParameter",
+              },
+              __typename: "UpdateNetworkParameter",
+            },
+            __typename: "ProposalTerms",
+          },
+          votes: {
+            yes: {
+              totalTokens: "0",
+              totalWeight: "0",
+              totalNumber: "1",
+              votes: null,
+              __typename: "ProposalVoteSide",
+            },
+            no: {
+              totalTokens: "10",
+              totalWeight: "10",
+              totalNumber: "10",
+              votes: [
+                {
+                  value: VoteValue.No,
+                  party: {
+                    id: "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527",
+                    __typename: "Party",
+                  },
+                  datetime: "2020-09-02T13:20:23.184093701Z",
+                  __typename: "Vote",
+                },
+              ],
+              __typename: "ProposalVoteSide",
+            },
+            __typename: "ProposalVotes",
+          },
+          __typename: "Proposal",
+        },
       ],
     },
   },

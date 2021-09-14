@@ -1,5 +1,6 @@
 import "./vote-details.scss";
 import React from "react";
+import { formatDistanceToNow } from "date-fns";
 import { useTranslation } from "react-i18next";
 import { useVoteInformation } from "./hooks";
 import { VoteProgress } from "./vote-progress";
@@ -57,9 +58,9 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
     return data.parties.find((party) => party.id === proposal.party.id);
   }, [data, proposal.party.id]);
 
-  const daysLeft = 1;
-  const daysLeftText =
-    daysLeft > 1 ? `${daysLeft} ${t("days")}` : `${daysLeft} ${t("day")}`;
+  const daysLeft = formatDistanceToNow(
+    new Date(proposal.terms.closingDatetime)
+  );
 
   if (loading) {
     return (
@@ -86,7 +87,7 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
             <CurrentProposalStatus proposal={proposal} />
           </span>
           .&nbsp;
-          {daysLeftText}
+          {daysLeft}
           {t("daysLeft")}
         </p>
         <table className="proposal-toast__table">

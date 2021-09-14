@@ -260,8 +260,6 @@ const en = {
   notMet: "Not Met",
   governanceRequired: "Required",
   setTo: "Currently set to ",
-  day: " day",
-  days: " days",
   daysLeft: " left to vote.",
   voteFor: "Vote for",
   voteAgainst: "Vote against",
