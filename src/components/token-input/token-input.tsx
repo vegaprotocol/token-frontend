@@ -3,6 +3,8 @@ import { FormGroup, InputGroup, Intent, Tag } from "@blueprintjs/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { BigNumber } from "../../lib/bignumber";
+import { Callout } from "../callout";
+import { Tick } from "../icons";
 
 const inputName = "amount";
 
@@ -80,7 +82,13 @@ export const TokenInput = ({
         )}
       </div>
       {isApproved ? (
-        <p className="token-input__approved">{t("VEGA tokens are approved for staking")}</p>
+        <div className="token-input__callout-container">
+          <Callout
+            icon={<Tick />}
+            intent="success"
+            title={t("VEGA tokens are approved for staking")}
+          ></Callout>
+        </div>
       ) : (
         <button
           data-testid="token-input-approve-button"
