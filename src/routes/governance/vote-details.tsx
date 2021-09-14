@@ -54,7 +54,7 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
     return data.parties.find(
       (party) => party.id === proposal.party.id
     );
-  }, [data]);
+  }, [data, proposal.party.id]);
 
   const daysLeft = 1;
   const daysLeftText =

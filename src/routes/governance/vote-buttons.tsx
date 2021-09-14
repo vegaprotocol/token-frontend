@@ -93,13 +93,14 @@ export const VoteButtons = ({
     return (
       <div className="vote-buttons__callout-container">
         <Callout intent="error" icon={<Error />} title={t("voteError")}>
-          <a
+          <button
+            className="vote-buttons__link-button"
             onClick={() => {
               setChangeVote(true);
             }}
           >
             {t("back")}
-          </a>
+          </button>
         </Callout>
       </div>
     );
@@ -125,13 +126,14 @@ export const VoteButtons = ({
         ) : (
           ". "
         )}
-        <a
+        <button
+          className="vote-buttons__link-button"
           onClick={() => {
             setChangeVote(true);
           }}
         >
           {t("changeVote")}
-        </a>
+        </button>
       </div>
     );
   }
