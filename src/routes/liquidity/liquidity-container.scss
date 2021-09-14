@@ -1,7 +1,6 @@
 @import "../../styles/colors";
 
 .dex-tokens-section {
-  border-top: 1px solid $white;
   margin-bottom: 20px;
 
   &__table {
@@ -15,6 +14,9 @@
 
       &:first-child {
         border-top: 0;
+      }
+      &:last-child {
+        border: 0;
       }
     }
 
