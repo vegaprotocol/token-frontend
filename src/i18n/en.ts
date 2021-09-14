@@ -388,8 +388,8 @@ const en = {
   depositLpTokensDescription:
     "Deposit the Tokens you received for providing liquidity and earn rewards in VEGA.",
   depositLpTokensHeading: "How much would you like to deposit?",
-  depositLpSubmitButton: "Deposit {{address}}",
-  depositLpApproveButton: "Approve deposits of {{address}}",
+  depositLpSubmitButton: "Deposit SLP",
+  depositLpApproveButton: "Approve SLP tokens for deposit",
   depositLpInsufficientBalance: "You do not have tokens to deposit.",
   depositLpAlreadyStaked:
     "You have already staked your LP tokens, go to <withdrawLink>withdraw</withdrawLink> in order withdraw these before you can add more.",
