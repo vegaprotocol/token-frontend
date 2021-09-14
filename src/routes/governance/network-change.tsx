@@ -23,8 +23,8 @@ export const NetworkChange = ({proposal}: NetworkChangeProps) => {
     <>
       <section>
         <h1>{t("newNetworkParam")}</h1>
-        <h4 className="proposal__sub-title">{t("networkChanges")}</h4>
-        <h4 className="proposal__top-title">{networkParameter.key}</h4>
+        <h2 className="proposal__sub-title">{t("networkChanges")}</h2>
+        <h2 className="proposal__top-title">{networkParameter.key}</h2>
 
         <div className="proposal__row">
           <p className="proposal__item-left">{t("proposedNewValue")}&nbsp;</p>

@@ -94,7 +94,7 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
           <thead>
             <tr>
               <th>{t("for")}</th>
-              <th style={{ width: "50%" }}>
+              <th>
                 <VoteProgress
                   threshold={requiredMajorityPercentage}
                   progress={yesPercentage}

@@ -129,7 +129,7 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
     };
   }, [subscribeToMore]);
 
-  const proposals = React.useMemo(() => {
+  const proposalsData = React.useMemo(() => {
     if (!data?.proposals?.length) {
       return [];
     }
@@ -176,7 +176,7 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
               <pre>{error.message}</pre>
             </Callout>
           ) : (
-            <ProposalsList proposals={proposals} />
+            <ProposalsList proposals={proposalsData} />
           )}
         </Route>
         <Route path={`${match.path}/:proposalId`}>
@@ -185,7 +185,7 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
               <pre>{error.message}</pre>
             </Callout>
           ) : (
-            <Proposal proposals={proposals} />
+            <Proposal proposals={proposalsData} />
           )}
         </Route>
       </Switch>

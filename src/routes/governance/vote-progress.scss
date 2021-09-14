@@ -1,7 +1,7 @@
 @import '../../styles/colors';
 
-.proposal-toast__vote-progress {
-  &-indicator {
+.vote-progress {
+  &__indicator {
     background-color: $white;
     height: 16px;
     position: relative;
@@ -10,13 +10,13 @@
     z-index: 1;
   }
 
-  &-container {
+  &__container {
     background-color: $vega-red3 !important;
     border-radius: 0 !important;
     height: 5px;
   }
 
-  &-bar {
+  &__bar {
     background-color: $vega-green3 !important;
     border-radius: 0 !important;
   }
