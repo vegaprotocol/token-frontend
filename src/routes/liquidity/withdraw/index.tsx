@@ -63,7 +63,19 @@ export const LiquidityWithdrawPage = ({
     }
   }, [getBalances, lpStakingEth, lpStakingUSDC, txUnstakeState.txState]);
 
-  if (
+  if (transactionInProgress) {
+    return (
+      <>
+        <p>{t("lpTokenWithdrawSubmit")}</p>
+        <TransactionCallout
+          state={txUnstakeState}
+          reset={() =>
+            txUnstakeDispatch({ type: TransactionActionType.TX_RESET })
+          }
+        />
+      </>
+    );
+  } else if (
     (!values.stakedLPTokens || values.stakedLPTokens.isEqualTo(0)) &&
     (!values.pendingStakedLPTokens || values.pendingStakedLPTokens.isEqualTo(0))
   ) {
@@ -73,40 +85,31 @@ export const LiquidityWithdrawPage = ({
   return (
     <section>
       {!ethAddress && <EthConnectPrompt />}
-      {transactionInProgress ? (
-        <TransactionCallout
-          state={txUnstakeState}
-          reset={() =>
-            txUnstakeDispatch({ type: TransactionActionType.TX_RESET })
-          }
-        />
-      ) : (
-        <section>
-          <p>{t("lpTokenWithdrawSubmit")}</p>
-          <table className="dex-tokens-withdraw__table">
-            <tbody>
-              <tr>
-                <th>{t("liquidityTokenWithdrawBalance")}</th>
-                <td>
-                  {new BigNumber(0)
-                    .plus(values.stakedLPTokens || 0)
-                    .plus(values.pendingStakedLPTokens || 0)
-                    .toString()}
-                </td>
-              </tr>
-              <tr>
-                <th>{t("liquidityTokenWithdrawRewards")}</th>
-                <td>{values.accumulatedRewards!.toString()}</td>
-              </tr>
-            </tbody>
-          </table>
-          <p className="dex-tokens-withdraw__submit">
-            <button className="fill" onClick={txUnstakePerform}>
-              {t("withdrawLpWithdrawButton")}
-            </button>
-          </p>
-        </section>
-      )}
+      <section>
+        <p>{t("lpTokenWithdrawSubmit")}</p>
+        <table className="dex-tokens-withdraw__table">
+          <tbody>
+            <tr>
+              <th>{t("liquidityTokenWithdrawBalance")}</th>
+              <td>
+                {new BigNumber(0)
+                  .plus(values.stakedLPTokens || 0)
+                  .plus(values.pendingStakedLPTokens || 0)
+                  .toString()}
+              </td>
+            </tr>
+            <tr>
+              <th>{t("liquidityTokenWithdrawRewards")}</th>
+              <td>{values.accumulatedRewards!.toString()}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p className="dex-tokens-withdraw__submit">
+          <button className="fill" onClick={txUnstakePerform}>
+            {t("withdrawLpWithdrawButton")}
+          </button>
+        </p>
+      </section>
     </section>
   );
 };
