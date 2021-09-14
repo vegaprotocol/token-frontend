@@ -7,6 +7,10 @@ import { Link } from "react-router-dom";
 import { Routes } from "../router-config";
 import { LiquidityState, LiquidityAction } from "./liquidity-reducer";
 import { REWARDS_POOL_ADDRESSES } from "../../config";
+import {
+  KeyValueTable,
+  KeyValueTableRow,
+} from "../../components/key-value-table";
 
 const BASE_SUSHI_URL = "https://analytics.sushi.com/pairs/";
 interface DexTokensSectionProps {
@@ -44,63 +48,61 @@ export const DexTokensSection = ({
   return (
     <section className="dex-tokens-section">
       <h3>{name}</h3>
-      <table className="dex-tokens-section__table">
-        <tbody>
-          <tr>
-            <th>{t("liquidityTokenSushiAddress")}</th>
-            <td>
-              <a
-                target="_blank"
-                rel="nofollow noreferrer"
-                href={`${BASE_SUSHI_URL}/${poolAddress}`}
-              >
-                {poolAddress}
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <th>{t("liquidityTokenContractAddress")}</th>
-            <td>
-              <EtherscanLink
-                chainId={appState.chainId}
-                address={contractAddress}
-                text={contractAddress}
-              />
-            </td>
-          </tr>
-          <tr>
-            <th>{t("rewardPerEpoch")}</th>
-            <td>
-              {values.rewardPerEpoch.toString()} {t("VEGA")}
-            </td>
-          </tr>
-          <tr>
-            <th>{t("rewardTokenContractAddress")}</th>
-            <td>
-              <EtherscanLink
-                chainId={appState.chainId}
-                address={values.awardContractAddress}
-                text={values.awardContractAddress}
-              />
-            </td>
-          </tr>
-          <tr>
-            <th>{t("lpTokensEstimateAPY")}</th>
-            <td>{values.estimateAPY.decimalPlaces(2).toString()}%</td>
-          </tr>
-          <tr>
-            <th>{t("lpTokensInRewardPool")}</th>
-            <td>{values.rewardPoolBalance.toString()}</td>
-          </tr>
-          {ethAddress && (
-            <ConnectedRows
-              showInteractionButton={showInteractionButton}
-              lpContractAddress={contractAddress}
-              state={state}
+      <KeyValueTable numerical={true}>
+        <KeyValueTableRow>
+          <th>{t("liquidityTokenSushiAddress")}</th>
+          <td>
+            <a
+              target="_blank"
+              rel="nofollow noreferrer"
+              href={`${BASE_SUSHI_URL}/${poolAddress}`}
+            >
+              {poolAddress}
+            </a>
+          </td>
+        </KeyValueTableRow>
+        <KeyValueTableRow>
+          <th>{t("liquidityTokenContractAddress")}</th>
+          <td>
+            <EtherscanLink
+              chainId={appState.chainId}
+              address={contractAddress}
+              text={contractAddress}
             />
-          )}
-        </tbody>
-      </table>
+          </td>
+        </KeyValueTableRow>
+        <KeyValueTableRow>
+          <th>{t("rewardPerEpoch")}</th>
+          <td>
+            {values.rewardPerEpoch.toString()} {t("VEGA")}
+          </td>
+        </KeyValueTableRow>
+        <KeyValueTableRow>
+          <th>{t("rewardTokenContractAddress")}</th>
+          <td>
+            <EtherscanLink
+              chainId={appState.chainId}
+              address={values.awardContractAddress}
+              text={values.awardContractAddress}
+            />
+          </td>
+        </KeyValueTableRow>
+        <KeyValueTableRow>
+          <th>{t("lpTokensEstimateAPY")}</th>
+          <td>{values.estimateAPY.decimalPlaces(2).toString()}%</td>
+        </KeyValueTableRow>
+        <KeyValueTableRow>
+          <th>{t("lpTokensInRewardPool")}</th>
+          <td>{values.rewardPoolBalance.toString()}</td>
+        </KeyValueTableRow>
+        {ethAddress && (
+          <ConnectedRows
+            showInteractionButton={showInteractionButton}
+            lpContractAddress={contractAddress}
+            state={state}
+          />
+        )}
+      </KeyValueTable>
     </section>
   );
 };
@@ -132,7 +134,7 @@ const ConnectedRows = ({
     values.pendingStakedLPTokens?.isGreaterThan(0);
   return (
     <>
-      <tr>
+      <KeyValueTableRow>
         <th>{t("usersLpTokens")}</th>
         <td>
           <div>{values.availableLPTokens?.toString()}</div>
@@ -141,15 +143,18 @@ const ConnectedRows = ({
           ) : isDepositButtonVisible ? (
             <div style={{ marginTop: 3 }}>
               <Link to={`${Routes.LIQUIDITY}/${lpContractAddress}/deposit`}>
-                <button className="button-secondary">
+                <button
+                  className="butt
+                on-secondary"
+                >
                   {t("depositToRewardPoolButton")}
                 </button>
               </Link>
             </div>
           ) : null}
         </td>
-      </tr>
-      <tr>
+      </KeyValueTableRow>
+      <KeyValueTableRow>
         <th>
           {values.pendingStakedLPTokens?.isGreaterThan(0)
             ? t("usersPendingStakeLPTokens")
@@ -160,12 +165,12 @@ const ConnectedRows = ({
             ? values.pendingStakedLPTokens?.toString()
             : values.stakedLPTokens?.toString()}
         </td>
-      </tr>
-      <tr>
+      </KeyValueTableRow>
+      <KeyValueTableRow>
         <th>{t("usersShareOfPool")}</th>
         <td>{values.shareOfPool?.toString()}%</td>
-      </tr>
-      <tr>
+      </KeyValueTableRow>
+      <KeyValueTableRow>
         <th>{t("usersAccumulatedRewards")}</th>
         <td>
           <div>
@@ -181,7 +186,7 @@ const ConnectedRows = ({
             </div>
           )}
         </td>
-      </tr>
+      </KeyValueTableRow>
     </>
   );
 };
