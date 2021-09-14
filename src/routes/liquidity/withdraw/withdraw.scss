@@ -1,34 +1,7 @@
 @import "../../../styles/colors";
 
-.dex-tokens-withdraw{
+.dex-tokens-withdraw {
   &__table {
     font-size: 12px;
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
-    margin: 10px 0 20px 0;
-
-    tr {
-      border-top: 1px dotted $white;
-
-      &:first-child {
-        border-top: 0;
-      }
-    }
-
-    th,
-    td {
-      font-weight: normal;
-      padding: 5px 0;
-    }
-
-    th {
-      text-align: left;
-      vertical-align: top;
-    }
-
-    td {
-      text-align: right;
-    }
   }
 }

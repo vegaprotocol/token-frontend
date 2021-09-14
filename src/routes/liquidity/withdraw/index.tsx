@@ -17,6 +17,10 @@ import * as Sentry from "@sentry/react";
 import { LiquidityAction, LiquidityState } from "../liquidity-reducer";
 import { useGetLiquidityBalances } from "../hooks";
 import { BigNumber } from "../../../lib/bignumber";
+import {
+  KeyValueTable,
+  KeyValueTableRow,
+} from "../../../components/key-value-table";
 
 export const LiquidityWithdrawPage = ({
   lpTokenAddress,
@@ -87,23 +91,21 @@ export const LiquidityWithdrawPage = ({
       {!ethAddress && <EthConnectPrompt />}
       <section>
         <p>{t("lpTokenWithdrawSubmit")}</p>
-        <table className="dex-tokens-withdraw__table">
-          <tbody>
-            <tr>
-              <th>{t("liquidityTokenWithdrawBalance")}</th>
-              <td>
-                {new BigNumber(0)
-                  .plus(values.stakedLPTokens || 0)
-                  .plus(values.pendingStakedLPTokens || 0)
-                  .toString()}
-              </td>
-            </tr>
-            <tr>
-              <th>{t("liquidityTokenWithdrawRewards")}</th>
-              <td>{values.accumulatedRewards!.toString()}</td>
-            </tr>
-          </tbody>
-        </table>
+        <KeyValueTable className="dex-tokens-withdraw__table">
+          <KeyValueTableRow>
+            <th>{t("liquidityTokenWithdrawBalance")}</th>
+            <td>
+              {new BigNumber(0)
+                .plus(values.stakedLPTokens || 0)
+                .plus(values.pendingStakedLPTokens || 0)
+                .toString()}
+            </td>
+          </KeyValueTableRow>
+          <KeyValueTableRow>
+            <th>{t("liquidityTokenWithdrawRewards")}</th>
+            <td>{values.accumulatedRewards!.toString()}</td>
+          </KeyValueTableRow>
+        </KeyValueTable>
         <p className="dex-tokens-withdraw__submit">
           <button className="fill" onClick={txUnstakePerform}>
             {t("withdrawLpWithdrawButton")}

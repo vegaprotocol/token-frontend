@@ -1,4 +1,3 @@
-import "./liquidity-container.scss";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";

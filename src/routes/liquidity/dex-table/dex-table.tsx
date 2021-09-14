@@ -46,7 +46,7 @@ export const DexTokensSection = ({
   }
 
   return (
-    <section className="dex-tokens-section">
+    <section className="dex-table">
       <h3>{name}</h3>
       <KeyValueTable className="dex-tokens-section__table">
         <KeyValueTableRow>
