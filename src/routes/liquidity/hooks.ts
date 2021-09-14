@@ -30,7 +30,7 @@ export const useGetLiquidityBalances = (
           await lpStaking.estimateAPY(),
           await lpStaking.awardContractAddress(),
         ]);
-        console.log(rewardPoolBalance.toString());
+
         let availableLPTokens = null;
         let stakedLPTokens = null;
         let accumulatedRewards = null;
