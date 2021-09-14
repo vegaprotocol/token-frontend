@@ -12,6 +12,40 @@ import { ADDRESSES } from "../../../config";
 import { formatNumber } from "../../../lib/format-number";
 import { BigNumber } from "../../../lib/bignumber";
 import { EtherscanLink } from "../../../components/etherscan-link";
+import React from "react";
+
+const useAddToWallet = (
+  address: string,
+  symbol: string,
+  decimals: number,
+  image: string
+) => {
+  const { provider } = useAppState();
+  return React.useCallback(async () => {
+    try {
+      const wasAdded = await provider.request({
+        method: "wallet_watchAsset",
+        params: {
+          type: "ERC20",
+          options: {
+            address,
+            symbol,
+            decimals,
+            image,
+          },
+        },
+      });
+
+      if (wasAdded) {
+        console.log("Thanks for your interest!");
+      } else {
+        console.log("Your loss!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [address, decimals, image, provider, symbol]);
+};
 
 export const TokenDetails = ({
   totalSupply,
@@ -21,8 +55,13 @@ export const TokenDetails = ({
   totalStaked: BigNumber;
 }) => {
   const { t } = useTranslation();
-
   const { appState } = useAppState();
+  const addToken = useAddToWallet(
+    ADDRESSES.vegaTokenAddress,
+    "$VEGA",
+    18,
+    "https://s2.coinmarketcap.com/static/img/coins/64x64/10223.png"
+  );
 
   return (
     <KeyValueTable className={"token-details"}>
@@ -34,6 +73,10 @@ export const TokenDetails = ({
             address={ADDRESSES.vegaTokenAddress}
             text={truncateMiddle(ADDRESSES.vegaTokenAddress)}
           />
+          &nbsp;
+          <button className="button-link" onClick={addToken}>
+            + Add to wallet
+          </button>
         </td>
       </KeyValueTableRow>
       <KeyValueTableRow>
