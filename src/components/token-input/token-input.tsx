@@ -38,6 +38,9 @@ export const TokenInput = ({
   }
   const { t } = useTranslation();
   const isApproved = !new BigNumber(allowance!).isEqualTo(0);
+  const showApproveButton =
+    !isApproved || new BigNumber(amount).isGreaterThan(allowance!);
+  console.log(showApproveButton);
   const isDisabled = React.useMemo<boolean>(() => {
     if (requireApproval) {
       return (
@@ -81,15 +84,7 @@ export const TokenInput = ({
           </button>
         )}
       </div>
-      {isApproved ? (
-        <div className="token-input__callout-container">
-          <Callout
-            icon={<Tick />}
-            intent="success"
-            title={t("VEGA tokens are approved for staking")}
-          ></Callout>
-        </div>
-      ) : (
+      {showApproveButton ? (
         <button
           data-testid="token-input-approve-button"
           className="fill token-input__submit"
@@ -97,6 +92,14 @@ export const TokenInput = ({
         >
           {approveText}
         </button>
+      ) : (
+        <div className="token-input__callout-container">
+          <Callout
+            icon={<Tick />}
+            intent="success"
+            title={t("VEGA tokens are approved for staking")}
+          ></Callout>
+        </div>
       )}
       <button
         data-testid="token-input-submit-button"
