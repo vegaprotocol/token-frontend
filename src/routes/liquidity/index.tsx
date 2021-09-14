@@ -2,7 +2,6 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { RouteChildProps } from "..";
-import { EthWallet } from "../../components/eth-wallet";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
 import { Flags, REWARDS_ADDRESSES } from "../../config";
 import { useDocumentTitle } from "../../hooks/use-document-title";
@@ -65,7 +64,7 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
     );
   }
   return (
-    <TemplateSidebar title={title} sidebar={[<EthWallet />]}>
+    <TemplateSidebar title={title} sidebar={[]}>
       {Flags.DEX_STAKING_DISABLED ? (
         <p>{t("liquidityComingSoon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</p>
       ) : (
