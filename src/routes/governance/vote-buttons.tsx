@@ -1,4 +1,5 @@
 import "./vote-buttons.scss";
+import { format } from "date-fns";
 
 import * as React from "react";
 import { VoteState } from "./use-user-vote";
@@ -10,6 +11,9 @@ import {
 } from "../../contexts/app-state/app-state-context";
 import { useTranslation } from "react-i18next";
 import { Parties_parties } from "./__generated__/Parties";
+import { Callout } from "../../components/callout";
+import { Loader } from "../../components/loader";
+import { Error } from "../../components/icons";
 
 interface VoteButtonsProps {
   voteState: VoteState;
@@ -81,11 +85,20 @@ export const VoteButtons = ({
     !changeVote
   ) {
     return (
-      <div>
+      <div className="vote-buttons__callout-container">
         <span>{t("youVoted")}</span>{" "}
         <span style={{ color: voteColor }}>{t(`voteState_${voteState}`)}</span>
-        {". "}
-        {voteDatetime ? <span>{voteDatetime}. </span> : null}
+        {voteDatetime ? (
+          <span>
+            {`${t("forThisProposal")} ${format(
+              new Date(voteDatetime),
+              "d MMM yyyy"
+            )}`}
+            .{" "}
+          </span>
+        ) : (
+          ". "
+        )}
         <a
           onClick={() => {
             setChangeVote(true);
@@ -97,33 +110,48 @@ export const VoteButtons = ({
     );
   }
 
+  if (votePending) {
+    return (
+      <div className="vote-buttons__callout-container">
+        <Callout icon={<Loader />} title={t("votePending")}>
+          &nbsp;
+        </Callout>
+      </div>
+    );
+  }
+
+  if (voteState === VoteState.Failed && !changeVote) {
+    return (
+      <div className="vote-buttons__callout-container">
+        <Callout intent="error" icon={<Error />} title={t("voteError")}>
+          <a
+            onClick={() => {
+              setChangeVote(true);
+            }}
+          >
+            {t("back")}
+          </a>
+        </Callout>
+      </div>
+    );
+  }
+
   return (
     <div className="vote-buttons__button-container">
       <button
         type="button"
         onClick={() => submitVote(VoteValue.Yes)}
-        disabled={votePending || lacksGovernanceToken}
         className="vote-buttons__button"
       >
-        {voteState === VoteState.Yes && votePending
-          ? t("votePending")
-          : t("voteFor")}
+        {t("voteFor")}
       </button>
       <button
         type="button"
         onClick={() => submitVote(VoteValue.No)}
-        disabled={votePending || lacksGovernanceToken}
         className="vote-buttons__button"
       >
-        {voteState === VoteState.No && votePending
-          ? t("votePending")
-          : t("voteAgainst")}
+        {t("voteAgainst")}
       </button>
-      {voteState === VoteState.Failed && (
-        <p className="vote-buttons__error-message text-error">
-          {t("voteError")}
-        </p>
-      )}
     </div>
   );
 };

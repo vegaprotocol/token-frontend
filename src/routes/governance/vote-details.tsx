@@ -64,7 +64,7 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
     <section>
       <h4 className="proposal__sub-title">{t("votes")}</h4>
       <div>
-        <p>
+        <p className="proposal__set_to">
           {t("setTo")}
           <span className="proposal-toast__success-text">
             <CurrentProposalStatus proposal={proposal} />
@@ -122,7 +122,7 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
         voteState={voteState}
         castVote={castVote}
         voteDatetime={voteDatetime}
-        votePending={!votePending}
+        votePending={votePending}
       />
     </section>
   );

@@ -268,9 +268,11 @@ const en = {
   connectToVote: "Connect to VEGA wallet",
   noGovernanceTokens: "You need some VEGA tokens to participate in governance",
   youVoted: "You voted",
+  forThisProposal: " this proposal on",
   changeVote: "Change Vote",
   votePending: "Casting vote",
   voteError: "Something went wrong, please try again later",
+  back: "back",
 
   voteState_Yes: "For",
   voteState_No: "Against",

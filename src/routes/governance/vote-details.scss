@@ -1,7 +1,7 @@
-@import '../../styles/colors';
+@import "../../styles/colors";
 
 .proposal-toast {
-    &__vote-buttons {
+  &__vote-buttons {
     align-items: center;
     display: flex;
     justify-content: space-between;
@@ -42,11 +42,10 @@
     td:last-child {
       text-align: right;
     }
-
   }
 
   &__success-text {
-    color: $vega-green3
+    color: $vega-green3;
   }
 
   &__summary {
@@ -61,12 +60,12 @@
   &__participation-met {
     color: $vega-green3;
     margin-right: 5px;
-    margin-left: 5px; 
+    margin-left: 5px;
   }
   &__participation-not-met {
     color: $vega-red3;
     margin-right: 5px;
-    margin-left: 5px; 
+    margin-left: 5px;
   }
 
   &__vote-buttons {
@@ -75,5 +74,9 @@
 
   &__required-participation {
     margin-left: 5px;
+  }
+
+  &__set_to {
+    margin-bottom: 0px;
   }
 }
