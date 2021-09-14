@@ -393,6 +393,7 @@ const en = {
   depositLpInsufficientBalance: "You do not have tokens to deposit.",
   depositLpAlreadyStaked:
     "You have already staked your LP tokens, go to <withdrawLink>withdraw</withdrawLink> in order withdraw these before you can add more.",
+  depositLpSuccessButton: "View rewards",
 
   withdrawLpWithdrawButton: "Withdraw all SLP and VEGA rewards",
   withdrawLpNoneDeposited: "You have no SLP tokens deposited",
