@@ -1,16 +1,16 @@
-import "./liquidity-container.scss";
+import "./dex-table.scss";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { EtherscanLink } from "../../components/etherscan-link";
-import { useAppState } from "../../contexts/app-state/app-state-context";
+import { EtherscanLink } from "../../../components/etherscan-link";
+import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { Link } from "react-router-dom";
-import { Routes } from "../router-config";
-import { LiquidityState, LiquidityAction } from "./liquidity-reducer";
-import { REWARDS_POOL_ADDRESSES } from "../../config";
+import { Routes } from "../../router-config";
+import { LiquidityState, LiquidityAction } from "../liquidity-reducer";
+import { REWARDS_POOL_ADDRESSES } from "../../../config";
 import {
   KeyValueTable,
   KeyValueTableRow,
-} from "../../components/key-value-table";
+} from "../../../components/key-value-table";
 
 const BASE_SUSHI_URL = "https://analytics.sushi.com/pairs/";
 interface DexTokensSectionProps {
@@ -48,7 +48,7 @@ export const DexTokensSection = ({
   return (
     <section className="dex-tokens-section">
       <h3>{name}</h3>
-      <KeyValueTable numerical={true}>
+      <KeyValueTable className="dex-tokens-section__table">
         <KeyValueTableRow>
           <th>{t("liquidityTokenSushiAddress")}</th>
           <td>

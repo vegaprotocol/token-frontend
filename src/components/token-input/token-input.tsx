@@ -8,6 +8,46 @@ import { Tick } from "../icons";
 
 const inputName = "amount";
 
+export const AmountInput = ({
+  amount,
+  setAmount,
+  maximum,
+}: {
+  amount: string;
+  setAmount: React.Dispatch<any>;
+  maximum: BigNumber;
+}) => {
+  const { t } = useTranslation();
+  return (
+    <div className="token-input__container">
+      <InputGroup
+        data-testid="token-amount-input"
+        className="token-input__input"
+        name={inputName}
+        id={inputName}
+        onChange={(e) => setAmount(e.target.value)}
+        value={amount}
+        intent={Intent.NONE}
+        rightElement={<Tag minimal={true}>{t("VEGA Tokens")}</Tag>}
+        autoComplete="off"
+        type="number"
+        max={maximum.toNumber()}
+        min={0}
+      />
+      {maximum && (
+        <button
+          type="button"
+          onClick={() => setAmount(maximum.toString())}
+          data-testid="token-amount-use-maximum"
+          className="button-link token-input__use-maximum "
+        >
+          {t("Use maximum")}
+        </button>
+      )}
+    </div>
+  );
+};
+
 export const TokenInput = ({
   amount,
   setAmount,
@@ -40,7 +80,7 @@ export const TokenInput = ({
   const isApproved = !new BigNumber(allowance!).isEqualTo(0);
   const showApproveButton =
     !isApproved || new BigNumber(amount).isGreaterThan(allowance!);
-  console.log(showApproveButton);
+
   const isDisabled = React.useMemo<boolean>(() => {
     if (requireApproval) {
       return (
@@ -58,32 +98,7 @@ export const TokenInput = ({
   }, [amount, isApproved, maximum, requireApproval]);
   return (
     <FormGroup label="" labelFor={inputName}>
-      <div className="token-input__container">
-        <InputGroup
-          data-testid="token-amount-input"
-          className="token-input__input"
-          name={inputName}
-          id={inputName}
-          onChange={(e) => setAmount(e.target.value)}
-          value={amount}
-          intent={Intent.NONE}
-          rightElement={<Tag minimal={true}>{t("VEGA Tokens")}</Tag>}
-          autoComplete="off"
-          type="number"
-          max={maximum.toNumber()}
-          min={0}
-        />
-        {maximum && (
-          <button
-            type="button"
-            onClick={() => setAmount(maximum.toString())}
-            data-testid="token-amount-use-maximum"
-            className="button-link token-input__use-maximum "
-          >
-            {t("Use maximum")}
-          </button>
-        )}
-      </div>
+      <AmountInput amount={amount} setAmount={setAmount} maximum={maximum} />
       {showApproveButton ? (
         <button
           data-testid="token-input-approve-button"
