@@ -45,9 +45,11 @@ export const useGetLiquidityBalances = (
           stakedLPTokens = staked;
           accumulatedRewards = rewards;
 
-          shareOfPool = stakedLPTokens.earningRewards
-            .dividedBy(rewardPoolBalance)
-            .times(100);
+          shareOfPool = rewardPoolBalance.isEqualTo(0)
+            ? rewardPoolBalance
+            : stakedLPTokens.earningRewards
+                .dividedBy(rewardPoolBalance)
+                .times(100);
         }
 
         dispatch({
