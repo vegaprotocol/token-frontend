@@ -26,24 +26,17 @@ export const VoteButtons = ({
   votePending,
   party,
 }: VoteButtonsProps) => {
-  // const { accounts } = useAccount(pubkey)
   const { t } = useTranslation();
   const [changeVote, setChangeVote] = React.useState(false);
-  // const account = accounts.find(
-  //   a => a.asset.id === governance.vote.VOTE_ASSET_ID
-  // )
-  // const lacksGovernanceToken = !account || account.total === '0'
   const lacksGovernanceToken = party
     ? +party.stake.currentStakeAvailable === 0 ||
       party.stake.currentStakeAvailable === undefined
     : true;
 
-
   const {
     appState: { currVegaKey },
     appDispatch,
   } = useAppState();
-  const pubkey = currVegaKey ? currVegaKey.pub : null;
   const isAuth = !!currVegaKey;
 
   if (!isAuth) {
@@ -81,7 +74,6 @@ export const VoteButtons = ({
     setChangeVote(false);
     castVote(vote);
   }
-  console.log("votest", voteState)
 
   if (
     (voteState === VoteState.No || voteState === VoteState.Yes) &&
@@ -94,7 +86,6 @@ export const VoteButtons = ({
         <span style={{ color: voteColor }}>{t(`voteState_${voteState}`)}</span>
         {". "}
         {voteDatetime ? <span>{voteDatetime}. </span> : null}
-        {/* <ButtonLink */}
         <a
           onClick={() => {
             setChangeVote(true);
@@ -102,20 +93,9 @@ export const VoteButtons = ({
         >
           {t("changeVote")}
         </a>
-        <button
-          onClick={() => {
-            setChangeVote(true);
-          }}
-        >
-          i18n.GOVERNANCE.changeVote
-        </button>
       </div>
     );
   }
-
-  // console.log("pubkey", pubkey);
-  // console.log("votePending", votePending);
-  console.log("lacksGovernanceToken", lacksGovernanceToken);
 
   return (
     <div className="vote-buttons__button-container">
@@ -126,7 +106,7 @@ export const VoteButtons = ({
         className="vote-buttons__button"
       >
         {voteState === VoteState.Yes && votePending
-          ? "i18n.GOVERNANCE.votePending"
+          ? t("votePending")
           : t("voteFor")}
       </button>
       <button
@@ -136,12 +116,12 @@ export const VoteButtons = ({
         className="vote-buttons__button"
       >
         {voteState === VoteState.No && votePending
-          ? "i18n.GOVERNANCE.votePending"
+          ? t("votePending")
           : t("voteAgainst")}
       </button>
       {voteState === VoteState.Failed && (
         <p className="vote-buttons__error-message text-error">
-          {"i18n.GOVERNANCE.voteError"}
+          {t("voteError")}
         </p>
       )}
     </div>

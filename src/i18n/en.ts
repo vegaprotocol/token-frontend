@@ -269,11 +269,13 @@ const en = {
   noGovernanceTokens: "You need some VEGA tokens to participate in governance",
   youVoted: "You voted",
   changeVote: "Change Vote",
+  votePending: "Casting vote",
+  voteError: "Something went wrong, please try again later",
 
-  voteState_Yes: 'For',
-  voteState_No: 'Against',
-  voteState_NotCast: 'Not cast',
-  voteState_Failed: 'Failed',
+  voteState_Yes: "For",
+  voteState_No: "Against",
+  voteState_NotCast: "Not cast",
+  voteState_Failed: "Failed",
   // Token Details
   "Token address": "Token address",
   "Vesting contract": "Vesting contract",

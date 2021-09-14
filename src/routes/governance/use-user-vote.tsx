@@ -43,7 +43,6 @@ export enum VoteState {
 }
 
 export function getMyVote(pubkey: string, yesVotes?: Votes, noVotes?: Votes) {
-  console.log("myviote", pubkey, yesVotes);
   const myYes = yesVotes?.find((v) => v && v.party.id === pubkey);
   const myNo = noVotes?.find((v) => v && v.party.id === pubkey);
   if (myYes) {
