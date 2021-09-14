@@ -9,6 +9,9 @@ import { VoteButtons } from "./vote-buttons";
 import { useUserVote } from "./use-user-vote";
 import { gql, useQuery } from "@apollo/client";
 import { Parties } from "./__generated__/Parties";
+import { SplashScreen } from "../../components/splash-screen";
+import { SplashLoader } from "../../components/splash-loader";
+import { Callout } from "../../components/callout";
 
 export const PARTIES_QUERY = gql`
   query Parties {
@@ -51,15 +54,28 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
       return null;
     }
 
-    return data.parties.find(
-      (party) => party.id === proposal.party.id
-    );
+    return data.parties.find((party) => party.id === proposal.party.id);
   }, [data, proposal.party.id]);
 
   const daysLeft = 1;
   const daysLeftText =
     daysLeft > 1 ? `${daysLeft} ${t("days")}` : `${daysLeft} ${t("day")}`;
 
+  if (loading) {
+    return (
+      <SplashScreen>
+        <SplashLoader />
+      </SplashScreen>
+    );
+  }
+
+  if (error) {
+    return (
+      <Callout intent="error" title={t("Something went wrong")}>
+        <p>{t("partiesQueryFailed")}</p>
+      </Callout>
+    );
+  }
   return (
     <section>
       <h4 className="proposal__sub-title">{t("votes")}</h4>

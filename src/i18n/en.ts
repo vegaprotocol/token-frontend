@@ -274,6 +274,8 @@ const en = {
   voteError: "Something went wrong, please try again later",
   back: "back",
 
+  partiesQueryFailed: "Could not get data for parties query",
+
   voteState_Yes: "For",
   voteState_No: "Against",
   voteState_NotCast: "Not cast",
