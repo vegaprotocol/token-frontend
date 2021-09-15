@@ -16,7 +16,7 @@
   REACT_APP_DEX_STAKING_DISABLED = '1'
 
 [context.deploy-preview.environment]
-  REACT_APP_CHAIN = "0x3"
+  REACT_APP_CHAIN = "0x1"
   REACT_APP_MAINNET_DISABLED = '1'
   REACT_APP_DEX_STAKING_DISABLED = '0'
   REACT_APP_VEGA_URL = "https://n04.d.vega.xyz/query"
