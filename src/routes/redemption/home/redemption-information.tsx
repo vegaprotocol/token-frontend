@@ -123,7 +123,7 @@ export const RedemptionInformation = ({
           totalVested={totalVestedBalance}
           totalLocked={totalLockedBalance}
           disabled={true}
-          onClick={() => {}}
+          onClick={() => history.push(`/vesting/${zeroTranche.id}`)}
         />
       )}
       {filteredTranches.map((tr) => (
