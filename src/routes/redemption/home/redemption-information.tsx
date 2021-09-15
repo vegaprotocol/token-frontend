@@ -2,7 +2,7 @@ import "./redemption-information.scss";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { RedemptionState } from "../redemption-reducer";
 import { VestingTable } from "./vesting-table";
-import { TrancheTable } from "../tranche-table";
+import { Tranche0Table, TrancheTable } from "../tranche-table";
 import { Trans, useTranslation } from "react-i18next";
 import { Callout } from "../../../components/callout";
 import { HandUp } from "../../../components/icons";
@@ -44,7 +44,10 @@ export const RedemptionInformation = ({
     [trancheBalances, userTranches]
   );
   const zeroTranche = React.useMemo(() => {
-    return trancheBalances.find((t) => t.id === 0);
+    const zeroTranche = trancheBalances.find((t) => t.id === 0);
+    if (zeroTranche && zeroTranche.locked.isGreaterThan(0)) {
+      return zeroTranche;
+    }
   }, [trancheBalances]);
 
   if (!filteredTranches.length) {
@@ -102,28 +105,13 @@ export const RedemptionInformation = ({
       />
       {filteredTranches.length ? <h2>{t("Tranche breakdown")}</h2> : null}
       {zeroTranche && (
-        <TrancheTable
-          key={zeroTranche.id}
-          tranche={{
-            tranche_id: zeroTranche.id,
-            tranche_end: new Date(0),
-            tranche_start: new Date(0),
-          }}
-          lien={lien}
-          locked={
+        <Tranche0Table
+          trancheId={0}
+          total={
             trancheBalances.find(
               ({ id }) => id.toString() === zeroTranche.id.toString()
             )!.locked
           }
-          vested={
-            trancheBalances.find(
-              ({ id }) => id.toString() === zeroTranche.id.toString()
-            )!.vested
-          }
-          totalVested={totalVestedBalance}
-          totalLocked={totalLockedBalance}
-          disabled={true}
-          onClick={() => history.push(`/vesting/${zeroTranche.id}`)}
         />
       )}
       {filteredTranches.map((tr) => (

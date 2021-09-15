@@ -24,6 +24,39 @@ export interface TrancheTableProps {
   disabled?: boolean;
 }
 
+export const Tranche0Table = ({
+  trancheId,
+  total,
+}: {
+  trancheId: number;
+  total: BigNumber;
+}) => {
+  const { t } = useTranslation();
+  return (
+    <>
+      <KeyValueTable numerical={true}>
+        <KeyValueTableRow data-testid="tranche-table-total">
+          <th>
+            <span className="tranche-table__label">
+              {t("Tranche")} {trancheId}
+            </span>
+          </th>
+          <td>{total.toString()}</td>
+        </KeyValueTableRow>
+        <KeyValueTableRow data-testid="tranche-table-locked">
+          <th>{t("Locked")}</th>
+          <td>{total.toString()}</td>
+        </KeyValueTableRow>
+      </KeyValueTable>
+      <div className="tranche-table__footer" data-testid="tranche-table-footer">
+        {t(
+          "All the tokens in this tranche are locked and must be assigned to a tranche before they can be redeemed."
+        )}
+      </div>
+    </>
+  );
+};
+
 export const TrancheTable = ({
   tranche,
   locked,
