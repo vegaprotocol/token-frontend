@@ -45,7 +45,7 @@ export const RedemptionInformation = ({
   );
   const zeroTranche = React.useMemo(() => {
     const zeroTranche = trancheBalances.find((t) => t.id === 0);
-    if (zeroTranche && zeroTranche.locked.isGreaterThan(0)) {
+    if (zeroTranche && zeroTranche.vested.isGreaterThan(0)) {
       return zeroTranche;
     }
   }, [trancheBalances]);
@@ -110,7 +110,7 @@ export const RedemptionInformation = ({
           total={
             trancheBalances.find(
               ({ id }) => id.toString() === zeroTranche.id.toString()
-            )!.locked
+            )!.vested
           }
         />
       )}
