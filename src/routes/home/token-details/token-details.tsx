@@ -40,9 +40,17 @@ export const TokenDetails = ({
             address={ADDRESSES.vegaTokenAddress}
             text={truncateMiddle(ADDRESSES.vegaTokenAddress)}
           />
-          &nbsp;
           <button className="button-link" onClick={addToken}>
-            + Add to wallet
+            <img
+              style={{
+                width: 32,
+                height: 32,
+                border: "1px solid white",
+                borderRadius: 2,
+              }}
+              alt="token-logo"
+              src="https://s2.coinmarketcap.com/static/img/coins/64x64/10223.png"
+            />
           </button>
         </td>
       </KeyValueTableRow>
