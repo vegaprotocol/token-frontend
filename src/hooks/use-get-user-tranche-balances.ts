@@ -5,6 +5,7 @@ import {
 } from "../contexts/app-state/app-state-context";
 import { useVegaVesting } from "./use-vega-vesting";
 import * as Sentry from "@sentry/react";
+import BigNumber from "bignumber.js";
 
 export const useGetUserTrancheBalances = (address: string) => {
   const vesting = useVegaVesting();
@@ -30,8 +31,8 @@ export const useGetUserTrancheBalances = (address: string) => {
         ]);
         return {
           id: tId,
-          locked: total.minus(vested),
-          vested,
+          locked: tId === 0 ? total : total.minus(vested),
+          vested: tId === 0 ? new BigNumber(0) : vested,
         };
       });
 
