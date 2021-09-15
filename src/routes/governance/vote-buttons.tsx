@@ -173,5 +173,6 @@ export const VoteButtons = ({
     );
   }
 
+
   return <h3 className="vote-buttons__container">{t("youDidNotVote")}</h3>;
 };
