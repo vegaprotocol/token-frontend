@@ -2,7 +2,7 @@ import "./redemption-information.scss";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { RedemptionState } from "../redemption-reducer";
 import { VestingTable } from "./vesting-table";
-import { TrancheTable } from "../tranche-table";
+import { Tranche0Table, TrancheTable } from "../tranche-table";
 import { Trans, useTranslation } from "react-i18next";
 import { Callout } from "../../../components/callout";
 import { HandUp } from "../../../components/icons";
@@ -43,6 +43,12 @@ export const RedemptionInformation = ({
       }),
     [trancheBalances, userTranches]
   );
+  const zeroTranche = React.useMemo(() => {
+    const zeroTranche = trancheBalances.find((t) => t.id === 0);
+    if (zeroTranche && zeroTranche.locked.isGreaterThan(0)) {
+      return zeroTranche;
+    }
+  }, [trancheBalances]);
 
   if (!filteredTranches.length) {
     return (
@@ -98,6 +104,16 @@ export const RedemptionInformation = ({
         vested={totalVestedBalance}
       />
       {filteredTranches.length ? <h2>{t("Tranche breakdown")}</h2> : null}
+      {zeroTranche && (
+        <Tranche0Table
+          trancheId={0}
+          total={
+            trancheBalances.find(
+              ({ id }) => id.toString() === zeroTranche.id.toString()
+            )!.locked
+          }
+        />
+      )}
       {filteredTranches.map((tr) => (
         <TrancheTable
           key={tr.tranche_id}

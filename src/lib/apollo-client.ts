@@ -12,7 +12,10 @@ import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
 
 export function createClient() {
-  const base = process.env.REACT_APP_VEGA_URL || "https://n04.d.vega.xyz/query";
+  const base = process.env.REACT_APP_VEGA_URL;
+  if (!base) {
+    throw new Error("Environment variable REACT_APP_VEGA_URL must be set");
+  }
   const gqlPath = "query";
   const urlHTTP = new URL(gqlPath, base);
   const urlWS = new URL(gqlPath, base);

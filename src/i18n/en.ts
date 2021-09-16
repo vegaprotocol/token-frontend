@@ -168,6 +168,9 @@ const en = {
     "Redeem unlocked VEGA from tranche {{id}}",
   "You must reduce your associated vesting tokens by at least {{amount}} to redeem from this tranche. <stakeLink>Manage your stake</stakeLink> or just <disassociateLink>dissociate your tokens</disassociateLink>.":
     "You must reduce your associated vesting tokens by at least {{amount}} to redeem from this tranche. <stakeLink>Manage your stake</stakeLink> or just <disassociateLink>dissociate your tokens</disassociateLink>.",
+  "All the tokens in this tranche are locked and must be assigned to a tranche before they can be redeemed.":
+    "All the tokens in this tranche are locked and must be assigned to a tranche before they can be redeemed.",
+
   redemptionExplain:
     "Note: The redeem function attempts to redeem all unlocked tokens from a tranche. However, it will only work if all the amount you are redeeming would not reduce the amount you have staked while vesting.",
   "Use this page to redeem any unlocked VEGA tokens.":

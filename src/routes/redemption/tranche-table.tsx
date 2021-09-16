@@ -6,19 +6,56 @@ import {
   KeyValueTableRow,
 } from "../../components/key-value-table";
 import { BigNumber } from "../../lib/bignumber";
-import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 
 export interface TrancheTableProps {
-  tranche: Tranche;
+  tranche: {
+    tranche_id: number;
+    tranche_start: Date;
+    tranche_end: Date;
+  };
   locked: BigNumber;
   vested: BigNumber;
   lien: BigNumber;
   totalVested: BigNumber;
   totalLocked: BigNumber;
   onClick: () => void;
+  disabled?: boolean;
 }
+
+export const Tranche0Table = ({
+  trancheId,
+  total,
+}: {
+  trancheId: number;
+  total: BigNumber;
+}) => {
+  const { t } = useTranslation();
+  return (
+    <>
+      <KeyValueTable numerical={true}>
+        <KeyValueTableRow data-testid="tranche-table-total">
+          <th>
+            <span className="tranche-table__label">
+              {t("Tranche")} {trancheId}
+            </span>
+          </th>
+          <td>{total.toString()}</td>
+        </KeyValueTableRow>
+        <KeyValueTableRow data-testid="tranche-table-locked">
+          <th>{t("Locked")}</th>
+          <td>{total.toString()}</td>
+        </KeyValueTableRow>
+      </KeyValueTable>
+      <div className="tranche-table__footer" data-testid="tranche-table-footer">
+        {t(
+          "All the tokens in this tranche are locked and must be assigned to a tranche before they can be redeemed."
+        )}
+      </div>
+    </>
+  );
+};
 
 export const TrancheTable = ({
   tranche,
@@ -28,6 +65,7 @@ export const TrancheTable = ({
   onClick,
   totalVested,
   totalLocked,
+  disabled = false,
 }: TrancheTableProps) => {
   const { t } = useTranslation();
   const total = vested.plus(locked);
@@ -64,7 +102,7 @@ export const TrancheTable = ({
     );
   } else if (!trancheFullyLocked && redeemable) {
     message = (
-      <button onClick={onClick}>
+      <button onClick={onClick} disabled={disabled}>
         {t("Redeem unlocked VEGA from tranche {{id}}", {
           id: tranche.tranche_id,
         })}
