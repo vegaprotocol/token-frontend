@@ -44,7 +44,7 @@
     "web3": "^1.4.0"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "REACT_APP_IN_CONTEXT_TRANSLATION=0 craco start",
     "start:mock": "REACT_APP_MOCKED=1 craco -r @cypress/instrument-cra start",
     "build": "craco build",
     "test": "REACT_APP_CHAIN=0x1 craco test",

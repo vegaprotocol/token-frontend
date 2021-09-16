@@ -1,6 +1,11 @@
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-module.exports = function () {
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
+module.exports = function (options) {
+  const isTranslationBranch = ["1", "true"].includes(
+    process.env.REACT_APP_IN_CONTEXT_TRANSLATION
+  );
   const isMock = ["1", "true"].includes(process.env.REACT_APP_MOCKED);
   const detectProviderPath = isMock ? "../../__mocks__/@metamask" : "@metamask";
   const vegaWeb3Path = isMock ? "vega-web3/__mocks__" : "vega-web3";
@@ -10,6 +15,13 @@ module.exports = function () {
 
   return {
     webpack: {
+      configure: (webpackConfig) => {
+        const htmlWebpackPluginInstance = webpackConfig.plugins.find(
+          (webpackPlugin) => webpackPlugin instanceof HtmlWebpackPlugin
+        );
+        htmlWebpackPluginInstance.options.translations = isTranslationBranch;
+        return webpackConfig;
+      },
       plugins: [
         new MiniCssExtractPlugin({
           // Options similar to the same options in webpackOptions.output

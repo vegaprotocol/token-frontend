@@ -26,6 +26,7 @@
       rel="stylesheet"
     />
     <title>VEGA Token</title>
+    <% if(htmlWebpackPlugin.options.translations) { %>
     <script type="text/javascript">
       var _jipt = [];
       _jipt.push(["project", "token-frontend"]);
@@ -34,6 +35,7 @@
       type="text/javascript"
       src="//cdn.crowdin.com/jipt/jipt.js"
     ></script>
+    <% } %>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
