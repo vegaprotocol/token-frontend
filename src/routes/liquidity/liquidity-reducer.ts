@@ -6,11 +6,14 @@ export interface LpContractData {
   rewardPoolBalance: BigNumber;
   awardContractAddress: string;
   estimateAPY: BigNumber;
-  availableLPTokens: BigNumber | null;
-  stakedLPTokens: BigNumber | null;
-  shareOfPool: BigNumber | null;
-  accumulatedRewards: BigNumber | null;
-  pendingStakedLPTokens: BigNumber | null;
+  connectedWalletData: {
+    availableLPTokens: BigNumber;
+    stakedLPTokens: BigNumber;
+    shareOfPool: BigNumber;
+    accumulatedRewards: BigNumber;
+    pendingStakedLPTokens: BigNumber;
+    totalStaked: BigNumber;
+  } | null;
 }
 
 export interface LiquidityState {

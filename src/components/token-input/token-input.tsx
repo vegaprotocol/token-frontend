@@ -3,8 +3,50 @@ import { FormGroup, InputGroup, Intent, Tag } from "@blueprintjs/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { BigNumber } from "../../lib/bignumber";
+import { Callout } from "../callout";
+import { Tick } from "../icons";
 
 const inputName = "amount";
+
+export const AmountInput = ({
+  amount,
+  setAmount,
+  maximum,
+}: {
+  amount: string;
+  setAmount: React.Dispatch<any>;
+  maximum: BigNumber;
+}) => {
+  const { t } = useTranslation();
+  return (
+    <div className="token-input__container">
+      <InputGroup
+        data-testid="token-amount-input"
+        className="token-input__input"
+        name={inputName}
+        id={inputName}
+        onChange={(e) => setAmount(e.target.value)}
+        value={amount}
+        intent={Intent.NONE}
+        rightElement={<Tag minimal={true}>{t("VEGA Tokens")}</Tag>}
+        autoComplete="off"
+        type="number"
+        max={maximum.toNumber()}
+        min={0}
+      />
+      {maximum && (
+        <button
+          type="button"
+          onClick={() => setAmount(maximum.toString())}
+          data-testid="token-amount-use-maximum"
+          className="button-link token-input__use-maximum "
+        >
+          {t("Use maximum")}
+        </button>
+      )}
+    </div>
+  );
+};
 
 export const TokenInput = ({
   amount,
@@ -36,6 +78,9 @@ export const TokenInput = ({
   }
   const { t } = useTranslation();
   const isApproved = !new BigNumber(allowance!).isEqualTo(0);
+  const showApproveButton =
+    !isApproved || new BigNumber(amount).isGreaterThan(allowance!);
+
   const isDisabled = React.useMemo<boolean>(() => {
     if (requireApproval) {
       return (
@@ -53,35 +98,8 @@ export const TokenInput = ({
   }, [amount, isApproved, maximum, requireApproval]);
   return (
     <FormGroup label="" labelFor={inputName}>
-      <div className="token-input__container">
-        <InputGroup
-          data-testid="token-amount-input"
-          className="token-input__input"
-          name={inputName}
-          id={inputName}
-          onChange={(e) => setAmount(e.target.value)}
-          value={amount}
-          intent={Intent.NONE}
-          rightElement={<Tag minimal={true}>{t("VEGA Tokens")}</Tag>}
-          autoComplete="off"
-          type="number"
-          max={maximum.toNumber()}
-          min={0}
-        />
-        {maximum && (
-          <button
-            type="button"
-            onClick={() => setAmount(maximum.toString())}
-            data-testid="token-amount-use-maximum"
-            className="button-link token-input__use-maximum "
-          >
-            {t("Use maximum")}
-          </button>
-        )}
-      </div>
-      {isApproved ? (
-        <p className="token-input__approved">{t("VEGA tokens are approved for staking")}</p>
-      ) : (
+      <AmountInput amount={amount} setAmount={setAmount} maximum={maximum} />
+      {showApproveButton ? (
         <button
           data-testid="token-input-approve-button"
           className="fill token-input__submit"
@@ -89,6 +107,14 @@ export const TokenInput = ({
         >
           {approveText}
         </button>
+      ) : (
+        <div className="token-input__callout-container">
+          <Callout
+            icon={<Tick />}
+            intent="success"
+            title={t("VEGA tokens are approved for staking")}
+          ></Callout>
+        </div>
       )}
       <button
         data-testid="token-input-submit-button"
