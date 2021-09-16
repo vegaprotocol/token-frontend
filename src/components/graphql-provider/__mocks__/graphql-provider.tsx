@@ -185,65 +185,73 @@ const MOCK_PARTY_DELEGATIONS: MockedResponse<PartyDelegations> = {
   },
 };
 
-const notVoted = generateProposal();
-(
-  notVoted.terms
-    .change as Proposals_proposals_terms_change_UpdateNetworkParameter
-).networkParameter.key = "not.voted";
-notVoted.party.id = "123";
-notVoted.votes.yes.votes = null;
-notVoted.votes.no.votes = null;
-
-const noTokens = generateProposal();
-(
-  noTokens.terms
-    .change as Proposals_proposals_terms_change_UpdateNetworkParameter
-).networkParameter.key = "no.tokens";
-
-const votedAgainst = generateProposal();
-(
-  votedAgainst.terms
-    .change as Proposals_proposals_terms_change_UpdateNetworkParameter
-).networkParameter.key = "voted.against";
-votedAgainst.party.id = "123";
-votedAgainst.votes.no.votes = [
-  {
-    value: VoteValue.No,
-    party: {
-      id: "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527",
-      __typename: "Party",
-    },
-    datetime: faker.date.past().toISOString(),
-    __typename: "Vote",
+const notVoted = generateProposal({
+  // @ts-ignore
+  terms: { change: { networkParameter: { key: "not.voted" } } },
+  // @ts-ignore
+  party: { id: "123" },
+  votes: {
+    // @ts-ignore
+    yes: { votes: null },
+    // @ts-ignore
+    no: { votes: null },
   },
-];
+});
 
-const didNotVote = generateProposal();
-(
-  didNotVote.terms
-    .change as Proposals_proposals_terms_change_UpdateNetworkParameter
-).networkParameter.key = "voted.closed.did.not.vote";
-didNotVote.state = ProposalState.Enacted;
-didNotVote.party.id = "123";
+const noTokens = generateProposal({
+  // @ts-ignore
+  terms: { change: { networkParameter: { key: "no.tokens" } } }
+});
 
-const voteClosedVotedFor = generateProposal();
-(
-  voteClosedVotedFor.terms
-    .change as Proposals_proposals_terms_change_UpdateNetworkParameter
-).networkParameter.key = "voted.closed.voted.for";
-voteClosedVotedFor.state = ProposalState.Enacted;
-voteClosedVotedFor.party.id = "123";
-voteClosedVotedFor.votes.yes.votes = [
-  {
-    value: VoteValue.Yes,
-    party: {
-      id: "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527",
-      __typename: "Party",
+const votedAgainst = generateProposal({
+  // @ts-ignore
+  terms: { change: { networkParameter: { key: "voted.against" } } },
+  // @ts-ignore
+  party: { id: "123" },
+  votes: {no: {votes: [
+    {
+      // @ts-ignore
+      value: VoteValue.No,
+      // @ts-ignore
+      party: {
+        id: "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527",
+      },
+      datetime: faker.date.past().toISOString(),
+    }
+  ]}}
+});
+
+const didNotVote = generateProposal({
+  // @ts-ignore
+  terms: { change: { networkParameter: { key: "voted.closed.did.not.vote" } } },
+  state: ProposalState.Enacted,
+  // @ts-ignore
+  party: { id: "123" },
+});
+
+const voteClosedVotedFor = generateProposal({
+  // @ts-ignore
+  terms: { change: { networkParameter: { key: "voted.closed.voted.for" } } },
+  state: ProposalState.Enacted,
+  // @ts-ignore
+  party: { id: "123" },
+  votes: {
+    // @ts-ignore
+    yes: {
+      votes: [
+        {
+          value: VoteValue.Yes,
+          party: {
+            id: "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527",
+            __typename: "Party",
+          },
+          datetime: faker.date.past().toISOString(),
+          __typename: "Vote",
+        },
+      ],
     },
-    datetime: faker.date.past().toISOString(),
-    __typename: "Vote",
   },
-];
+});
 
 const MOCK_PROPOSALS: MockedResponse<Proposals> = {
   request: {
