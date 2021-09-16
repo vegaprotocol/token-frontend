@@ -7,7 +7,7 @@ import ru from "./translations/ru.json";
 import zh from "./translations/zh.json";
 import zu from "./translations/zu.json";
 
-const isInContextTranslation = process.env.REACT_APP_IN_CONTEXT_TRANSLATION;
+const isInContextTranslation = true; // process.env.REACT_APP_IN_CONTEXT_TRANSLATION;
 
 const psuedoLanguage = {
   keys: zu,
@@ -27,7 +27,7 @@ i18n
       ...(isInContextTranslation ? { zu: { translations: zu } } : {}),
     },
     lng: isInContextTranslation ? psuedoLanguage.locale : undefined,
-    fallbackLng: isInContextTranslation ? psuedoLanguage.locale : "en",
+    fallbackLng: "en",
     debug: true,
     // have a common namespace used around the full app
     ns: ["translations"],
