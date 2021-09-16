@@ -95,13 +95,13 @@ export const DexTokensSection = ({
           <th>{t("lpTokensInRewardPool")}</th>
           <td>{values.rewardPoolBalance.toString()}</td>
         </KeyValueTableRow>
-        {ethAddress && (
+        {ethAddress ? (
           <ConnectedRows
             showInteractionButton={showInteractionButton}
             lpContractAddress={contractAddress}
             state={state}
           />
-        )}
+        ) : null}
       </KeyValueTable>
     </section>
   );
