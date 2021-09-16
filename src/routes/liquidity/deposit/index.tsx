@@ -70,8 +70,12 @@ export const LiquidityDepositPage = ({
     [lpTokenAddress, state.contractData]
   );
   const maximum = React.useMemo(
-    () => BigNumber.min(values?.availableLPTokens || 0, allowance),
-    [allowance, values?.availableLPTokens]
+    () =>
+      BigNumber.min(
+        values.connectedWalletData?.availableLPTokens || 0,
+        allowance
+      ),
+    [allowance, values.connectedWalletData?.availableLPTokens]
   );
   const fetchAllowance = React.useCallback(async () => {
     try {
@@ -114,7 +118,10 @@ export const LiquidityDepositPage = ({
         reset={() => txStakeDispatch({ type: TransactionActionType.TX_RESET })}
       />
     );
-  } else if (values?.stakedLPTokens && !values.stakedLPTokens.isEqualTo(0)) {
+  } else if (
+    values.connectedWalletData?.stakedLPTokens &&
+    !values.connectedWalletData?.stakedLPTokens.isEqualTo(0)
+  ) {
     pageContent = (
       <p>
         <Trans
@@ -140,7 +147,7 @@ export const LiquidityDepositPage = ({
           dispatch={dispatch}
         />
         <h1>{t("depositLpTokensHeading")}</h1>
-        {values?.availableLPTokens?.isGreaterThan(0) ? (
+        {values.connectedWalletData?.availableLPTokens?.isGreaterThan(0) ? (
           <TokenInput
             submitText={t("depositLpSubmitButton")}
             approveText={t("depositLpApproveButton")}

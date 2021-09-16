@@ -30,26 +30,30 @@ export const useGetLiquidityBalances = (
           await lpStaking.estimateAPY(),
           await lpStaking.awardContractAddress(),
         ]);
-
-        let availableLPTokens = null;
-        let stakedLPTokens = null;
-        let accumulatedRewards = null;
-        let shareOfPool = null;
+        let connectedWalletData = null;
         if (ethAddress) {
           const [unstaked, staked, rewards] = await Promise.all([
             lpStaking.totalUnstaked(ethAddress),
             lpStaking.stakedBalance(ethAddress),
             lpStaking.rewardsBalance(ethAddress),
           ]);
-          availableLPTokens = unstaked;
-          stakedLPTokens = staked;
-          accumulatedRewards = rewards;
-
-          shareOfPool = rewardPoolBalance.isEqualTo(0)
+          const availableLPTokens = unstaked;
+          const stakedLPTokens = staked;
+          const accumulatedRewards = rewards;
+          const shareOfPool = rewardPoolBalance.isEqualTo(0)
             ? rewardPoolBalance
             : stakedLPTokens.earningRewards
                 .dividedBy(rewardPoolBalance)
                 .times(100);
+
+          connectedWalletData = {
+            availableLPTokens,
+            totalStaked: stakedLPTokens?.total,
+            stakedLPTokens: stakedLPTokens?.earningRewards,
+            pendingStakedLPTokens: stakedLPTokens?.pending,
+            shareOfPool,
+            accumulatedRewards,
+          };
         }
 
         dispatch({
@@ -60,12 +64,7 @@ export const useGetLiquidityBalances = (
             rewardPoolBalance,
             estimateAPY,
             awardContractAddress,
-            availableLPTokens,
-            totalStaked: stakedLPTokens?.total,
-            stakedLPTokens: stakedLPTokens?.earningRewards,
-            pendingStakedLPTokens: stakedLPTokens?.pending,
-            shareOfPool,
-            accumulatedRewards,
+            connectedWalletData,
           },
         });
       } catch (err) {

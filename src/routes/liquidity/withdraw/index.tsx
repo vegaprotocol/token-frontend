@@ -16,7 +16,6 @@ import { EthConnectPrompt } from "../../../components/eth-connect-prompt";
 import * as Sentry from "@sentry/react";
 import { LiquidityAction, LiquidityState } from "../liquidity-reducer";
 import { useGetLiquidityBalances } from "../hooks";
-import { BigNumber } from "../../../lib/bignumber";
 import {
   KeyValueTable,
   KeyValueTableRow,
@@ -79,31 +78,39 @@ export const LiquidityWithdrawPage = ({
         />
       </>
     );
-  } else if (!values.totalStaked || values.totalStaked.isEqualTo(0)) {
+  } else if (
+    !values.connectedWalletData?.totalStaked ||
+    values.connectedWalletData?.totalStaked.isEqualTo(0)
+  ) {
     return <section>{t("withdrawLpNoneDeposited")}</section>;
   }
 
   return (
     <section>
-      {!ethAddress && <EthConnectPrompt />}
-      <section>
-        <p>{t("lpTokenWithdrawSubmit")}</p>
-        <KeyValueTable className="dex-tokens-withdraw__table">
-          <KeyValueTableRow>
-            <th>{t("liquidityTokenWithdrawBalance")}</th>
-            <td>{values.totalStaked?.toString()}</td>
-          </KeyValueTableRow>
-          <KeyValueTableRow>
-            <th>{t("liquidityTokenWithdrawRewards")}</th>
-            <td>{values.accumulatedRewards!.toString()}</td>
-          </KeyValueTableRow>
-        </KeyValueTable>
-        <p className="dex-tokens-withdraw__submit">
-          <button className="fill" onClick={txUnstakePerform}>
-            {t("withdrawLpWithdrawButton")}
-          </button>
-        </p>
-      </section>
+      {!ethAddress ? (
+        <EthConnectPrompt />
+      ) : (
+        <section>
+          <p>{t("lpTokenWithdrawSubmit")}</p>
+          <KeyValueTable className="dex-tokens-withdraw__table">
+            <KeyValueTableRow>
+              <th>{t("liquidityTokenWithdrawBalance")}</th>
+              <td>{values.connectedWalletData.totalStaked.toString()}</td>
+            </KeyValueTableRow>
+            <KeyValueTableRow>
+              <th>{t("liquidityTokenWithdrawRewards")}</th>
+              <td>
+                {values.connectedWalletData.accumulatedRewards.toString()}
+              </td>
+            </KeyValueTableRow>
+          </KeyValueTable>
+          <p className="dex-tokens-withdraw__submit">
+            <button className="fill" onClick={txUnstakePerform}>
+              {t("withdrawLpWithdrawButton")}
+            </button>
+          </p>
+        </section>
+      )}
     </section>
   );
 };

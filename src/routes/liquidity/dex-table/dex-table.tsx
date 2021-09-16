@@ -123,19 +123,29 @@ const ConnectedRows = ({
     () => state.contractData[lpContractAddress],
     [lpContractAddress, state.contractData]
   );
-
+  if (!values.connectedWalletData) {
+    return null;
+  }
+  const {
+    availableLPTokens,
+    totalStaked,
+    pendingStakedLPTokens,
+    stakedLPTokens,
+    shareOfPool,
+    accumulatedRewards,
+  } = values.connectedWalletData;
   // Only shows the Deposit/Withdraw button IF they have tokens AND they haven't staked AND we're not on the relevant page
   const isDepositButtonVisible =
     showInteractionButton &&
-    values.availableLPTokens &&
-    values.availableLPTokens.isGreaterThan(0);
-  const hasDeposited = values.totalStaked?.isGreaterThan(0);
+    availableLPTokens &&
+    availableLPTokens.isGreaterThan(0);
+  const hasDeposited = totalStaked.isGreaterThan(0);
   return (
     <>
       <KeyValueTableRow>
         <th>{t("usersLpTokens")}</th>
         <td>
-          <div>{values.availableLPTokens?.toString()}</div>
+          <div>{availableLPTokens.toString()}</div>
           {hasDeposited ? (
             <span className="text-muted">{t("alreadyDeposited")}</span>
           ) : isDepositButtonVisible ? (
@@ -154,25 +164,25 @@ const ConnectedRows = ({
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>
-          {values.pendingStakedLPTokens?.isGreaterThan(0)
+          {pendingStakedLPTokens.isGreaterThan(0)
             ? t("usersPendingStakeLPTokens")
             : t("usersStakedLPTokens")}
         </th>
         <td>
-          {values.pendingStakedLPTokens?.isGreaterThan(0)
-            ? values.pendingStakedLPTokens?.toString()
-            : values.stakedLPTokens?.toString()}
+          {pendingStakedLPTokens?.isGreaterThan(0)
+            ? pendingStakedLPTokens?.toString()
+            : stakedLPTokens?.toString()}
         </td>
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("usersShareOfPool")}</th>
-        <td>{values.shareOfPool?.toString()}%</td>
+        <td>{shareOfPool.toString()}%</td>
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("usersAccumulatedRewards")}</th>
         <td>
           <div>
-            {values.accumulatedRewards?.toString()} {t("VEGA")}
+            {accumulatedRewards.toString()} {t("VEGA")}
           </div>
           {hasDeposited && (
             <div style={{ marginTop: 3 }}>
