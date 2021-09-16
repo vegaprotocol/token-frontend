@@ -79,10 +79,7 @@ export const LiquidityWithdrawPage = ({
         />
       </>
     );
-  } else if (
-    (!values.stakedLPTokens || values.stakedLPTokens.isEqualTo(0)) &&
-    (!values.pendingStakedLPTokens || values.pendingStakedLPTokens.isEqualTo(0))
-  ) {
+  } else if (!values.totalStaked || values.totalStaked.isEqualTo(0)) {
     return <section>{t("withdrawLpNoneDeposited")}</section>;
   }
 

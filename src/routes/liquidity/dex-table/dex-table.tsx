@@ -129,9 +129,7 @@ const ConnectedRows = ({
     showInteractionButton &&
     values.availableLPTokens &&
     values.availableLPTokens.isGreaterThan(0);
-  const hasDeposited =
-    values.stakedLPTokens?.isGreaterThan(0) ||
-    values.pendingStakedLPTokens?.isGreaterThan(0);
+  const hasDeposited = values.totalStaked?.isGreaterThan(0);
   return (
     <>
       <KeyValueTableRow>
