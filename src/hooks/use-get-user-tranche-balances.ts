@@ -5,6 +5,7 @@ import {
 } from "../contexts/app-state/app-state-context";
 import { useVegaVesting } from "./use-vega-vesting";
 import * as Sentry from "@sentry/react";
+import BigNumber from "bignumber.js";
 
 export const useGetUserTrancheBalances = (address: string) => {
   const vesting = useVegaVesting();
@@ -18,18 +19,20 @@ export const useGetUserTrancheBalances = (address: string) => {
       const tranches = await vesting.getAllTranches();
       const userTranches = tranches.filter((t) =>
         t.users.some(
-          ({ address: a }) => a && address && a.toLowerCase() === address.toLowerCase()
+          ({ address: a }) =>
+            a && address && a.toLowerCase() === address.toLowerCase()
         )
       );
-      const promises = userTranches.map(async (t) => {
+      const trancheIds = [0, ...userTranches.map((t) => t.tranche_id)];
+      const promises = trancheIds.map(async (tId) => {
         const [total, vested] = await Promise.all([
-          vesting.userTrancheTotalBalance(address, t.tranche_id),
-          vesting.userTrancheVestedBalance(address, t.tranche_id),
+          vesting.userTrancheTotalBalance(address, tId),
+          vesting.userTrancheVestedBalance(address, tId),
         ]);
         return {
-          id: t.tranche_id,
-          locked: total.minus(vested),
-          vested,
+          id: tId,
+          locked: tId === 0 ? total : total.minus(vested),
+          vested: tId === 0 ? new BigNumber(0) : vested,
         };
       });
 
