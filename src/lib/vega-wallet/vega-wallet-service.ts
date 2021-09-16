@@ -1,4 +1,7 @@
 import { VegaKey } from "../../contexts/app-state/app-state-context";
+import { VOTE_VALUE_MAP } from "../../routes/governance/vote-types";
+import { VoteValue } from "../../__generated__/globalTypes";
+import { GenericErrorResponse } from "./vega-wallet-types";
 
 const DEFAULT_WALLET_URL = "http://localhost:1789/api/v1";
 
@@ -34,9 +37,18 @@ export interface UndelegateSubmissionInput {
   };
 }
 
+export interface VoteSubmissionInput {
+  pubKey: string;
+  voteSubmission: {
+    value: typeof VOTE_VALUE_MAP[VoteValue];
+    proposalId: string;
+  };
+}
+
 export type CommandSyncInput =
   | DelegateSubmissionInput
-  | UndelegateSubmissionInput;
+  | UndelegateSubmissionInput
+  | VoteSubmissionInput;
 
 export interface IVegaWalletService {
   url: string;
@@ -171,4 +183,15 @@ export class VegaWalletService implements IVegaWalletService {
     this.token = "";
     localStorage.removeItem("vega_wallet_token");
   }
+}
+
+export function hasErrorProperty(obj: unknown): obj is GenericErrorResponse {
+  if (
+    (obj as GenericErrorResponse).error !== undefined &&
+    typeof (obj as GenericErrorResponse).error === "string"
+  ) {
+    return true;
+  }
+
+  return false;
 }

@@ -10,14 +10,14 @@ import {
 import { CurrentProposalStatus } from "./current-proposal-status";
 
 interface ProposalsListProps {
-  data: Proposals_proposals[];
+  proposals: Proposals_proposals[];
 }
 
-export const ProposalsList = ({ data }: ProposalsListProps) => {
+export const ProposalsList = ({ proposals }: ProposalsListProps) => {
   const { t } = useTranslation();
   const match = useRouteMatch();
 
-  const filteredData = data.filter((row) => {
+  const filteredData = proposals.filter((row) => {
     return row.terms.change.__typename === "UpdateNetworkParameter";
   });
 

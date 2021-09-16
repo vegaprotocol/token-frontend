@@ -1,9 +1,10 @@
 import { MockedProvider, MockedResponse } from "@apollo/client/testing";
 import React from "react";
 import { addDays } from "date-fns";
+import * as faker from "faker";
+
 import {
   NodeStatus,
-  ProposalRejectionReason,
   ProposalState,
   VoteValue,
 } from "../../../__generated__/globalTypes";
@@ -21,8 +22,14 @@ import {
   PROPOSALS_QUERY,
   PROPOSAL_SUBSCRIPTION,
 } from "../../../routes/governance";
-import { Proposals } from "../../../routes/governance/__generated__/proposals";
 import { ProposalsSub } from "../../../routes/governance/__generated__/proposalsSub";
+import {
+  Proposals,
+  Proposals_proposals_terms_change_UpdateNetworkParameter,
+} from "../../../routes/governance/__generated__/proposals";
+import { Parties } from "../../../routes/governance/__generated__/Parties";
+import { PARTIES_QUERY } from "../../../routes/governance/vote-details";
+import { generateProposal } from "../../../routes/governance/test-helpers/generate-proposals";
 
 const partyId = "pub";
 
@@ -178,6 +185,74 @@ const MOCK_PARTY_DELEGATIONS: MockedResponse<PartyDelegations> = {
   },
 };
 
+const notVoted = generateProposal({
+  // @ts-ignore
+  terms: { change: { networkParameter: { key: "not.voted" } } },
+  // @ts-ignore
+  party: { id: "123" },
+  votes: {
+    // @ts-ignore
+    yes: { votes: null },
+    // @ts-ignore
+    no: { votes: null },
+  },
+});
+
+const noTokens = generateProposal({
+  // @ts-ignore
+  terms: { change: { networkParameter: { key: "no.tokens" } } }
+});
+
+const votedAgainst = generateProposal({
+  // @ts-ignore
+  terms: { change: { networkParameter: { key: "voted.against" } } },
+  // @ts-ignore
+  party: { id: "123" },
+  votes: {no: {votes: [
+    {
+      // @ts-ignore
+      value: VoteValue.No,
+      // @ts-ignore
+      party: {
+        id: "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527",
+      },
+      datetime: faker.date.past().toISOString(),
+    }
+  ]}}
+});
+
+const didNotVote = generateProposal({
+  // @ts-ignore
+  terms: { change: { networkParameter: { key: "voted.closed.did.not.vote" } } },
+  state: ProposalState.Enacted,
+  // @ts-ignore
+  party: { id: "123" },
+});
+
+const voteClosedVotedFor = generateProposal({
+  // @ts-ignore
+  terms: { change: { networkParameter: { key: "voted.closed.voted.for" } } },
+  state: ProposalState.Enacted,
+  // @ts-ignore
+  party: { id: "123" },
+  votes: {
+    // @ts-ignore
+    yes: {
+      votes: [
+        {
+          value: VoteValue.Yes,
+          party: {
+            id: "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527",
+            __typename: "Party",
+          },
+          datetime: faker.date.past().toISOString(),
+          __typename: "Vote",
+        },
+      ],
+    },
+  },
+});
+
 const MOCK_PROPOSALS: MockedResponse<Proposals> = {
   request: {
     query: PROPOSALS_QUERY,
@@ -185,100 +260,11 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
   result: {
     data: {
       proposals: [
-        {
-          id: "dab4eb13c027c82f1f2c9208aa4fe7c04413f91e5709fa4a44a4c29f4d449266",
-          reference: "",
-          state: ProposalState.Open,
-          datetime: "2021-09-02T13:19:42.157201307Z",
-          rejectionReason: null,
-          party: {
-            id: "65ea371c556f5648640c243dd30cf7374b5501ffe3dc8603476f723dd636656e",
-            __typename: "Party",
-          },
-          terms: {
-            closingDatetime: "2022-03-01T00:00:00Z",
-            enactmentDatetime: "2022-08-30T23:00:00Z",
-            change: {
-              networkParameter: {
-                key: "market.fee.factors.makerFee",
-                value: "0.33333",
-                __typename: "NetworkParameter",
-              },
-              __typename: "UpdateNetworkParameter",
-            },
-            __typename: "ProposalTerms",
-          },
-          votes: {
-            yes: {
-              totalTokens: "0",
-              totalWeight: "0",
-              totalNumber: "1",
-              votes: [
-                {
-                  value: VoteValue.Yes,
-                  party: {
-                    id: "65ea371c556f5648640c243dd30cf7374b5501ffe3dc8603476f723dd636656e",
-                    __typename: "Party",
-                  },
-                  datetime: "2021-09-02T13:20:23.184093701Z",
-                  __typename: "Vote",
-                },
-              ],
-              __typename: "ProposalVoteSide",
-            },
-            no: {
-              totalTokens: "0",
-              totalWeight: "0",
-              totalNumber: "0",
-              votes: null,
-              __typename: "ProposalVoteSide",
-            },
-            __typename: "ProposalVotes",
-          },
-          __typename: "Proposal",
-        },
-        {
-          id: "eeeef3ac1b19bfaddf86ba1ce853e092991383ac9d76be3b20f5a254583feeee",
-          reference: "",
-          state: ProposalState.Rejected,
-          datetime: "2021-09-02T13:17:42.490013828Z",
-          rejectionReason: ProposalRejectionReason.EnactTimeTooLate,
-          party: {
-            id: "65ea371c556f5648640c243dd30cf7374b5501ffe3dc8603476f723dd636656e",
-            __typename: "Party",
-          },
-          terms: {
-            closingDatetime: "2022-03-30T23:00:00Z",
-            enactmentDatetime: "2022-09-29T23:00:00Z",
-            change: {
-              networkParameter: {
-                key: "governance.proposal.updateNetParam.maxEnact",
-                value: "8761h0m0s",
-                __typename: "NetworkParameter",
-              },
-              __typename: "UpdateNetworkParameter",
-            },
-            __typename: "ProposalTerms",
-          },
-          votes: {
-            yes: {
-              totalTokens: "0",
-              totalWeight: "0",
-              totalNumber: "0",
-              votes: null,
-              __typename: "ProposalVoteSide",
-            },
-            no: {
-              totalTokens: "0",
-              totalWeight: "0",
-              totalNumber: "0",
-              votes: null,
-              __typename: "ProposalVoteSide",
-            },
-            __typename: "ProposalVotes",
-          },
-          __typename: "Proposal",
-        },
+        notVoted,
+        noTokens,
+        votedAgainst,
+        didNotVote,
+        voteClosedVotedFor,
       ],
     },
   },
@@ -346,6 +332,26 @@ const MOCK_PROPOSALS_SUBSCRIPTION: MockedResponse<ProposalsSub> = {
   },
 };
 
+const MOCK_PARTIES: MockedResponse<Parties> = {
+  request: {
+    query: PARTIES_QUERY,
+  },
+  result: {
+    data: {
+      parties: [
+        {
+          __typename: "Party",
+          id: "123",
+          stake: {
+            __typename: "PartyStake",
+            currentStakeAvailable: "12345",
+          },
+        },
+      ],
+    },
+  },
+};
+
 export const GraphQlProvider = ({
   children,
 }: {
@@ -357,8 +363,9 @@ export const GraphQlProvider = ({
         MOCK_STAKING_QUERY,
         MOCK_STAKING_NODE_QUERY,
         MOCK_PARTY_DELEGATIONS,
-        MOCK_PROPOSALS_SUBSCRIPTION,
         MOCK_PROPOSALS,
+        MOCK_PROPOSALS_SUBSCRIPTION,
+        MOCK_PARTIES,
       ]}
     >
       {children}

@@ -19,6 +19,7 @@ import { DisassociateContainer } from "../staking/disassociate/disassociate-page
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 import { updateProposals } from "./update-proposals";
+import { Proposal } from "./proposal";
 
 export const PROPOSALS_FRAGMENT = gql`
   fragment ProposalFields on Proposal {
@@ -128,7 +129,7 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
     };
   }, [subscribeToMore]);
 
-  const proposals = React.useMemo(() => {
+  const proposalsData = React.useMemo(() => {
     if (!data?.proposals?.length) {
       return [];
     }
@@ -175,16 +176,16 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
               <pre>{error.message}</pre>
             </Callout>
           ) : (
-            <ProposalsList data={proposals} />
+            <ProposalsList proposals={proposalsData} />
           )}
         </Route>
-        <Route path={`${match.path}/:node`}>
+        <Route path={`${match.path}/:proposalId`}>
           {error ? (
             <Callout intent="error" title={t("Something went wrong")}>
               <pre>{error.message}</pre>
             </Callout>
           ) : (
-            <div>Placeholder</div>
+            <Proposal proposals={proposalsData} />
           )}
         </Route>
       </Switch>
