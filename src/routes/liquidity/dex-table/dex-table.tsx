@@ -149,10 +149,7 @@ const ConnectedRows = ({
           ) : isDepositButtonVisible ? (
             <div style={{ marginTop: 3 }}>
               <Link to={`${Routes.LIQUIDITY}/${lpContractAddress}/deposit`}>
-                <button
-                  className="butt
-                on-secondary"
-                >
+                <button className="button-secondary">
                   {t("depositToRewardPoolButton")}
                 </button>
               </Link>
