@@ -30,6 +30,10 @@ $ns: "key-value-table";
     }
   }
 
+  th {
+    word-break: break-word;
+  }
+
   th,
   td {
     vertical-align: top;
