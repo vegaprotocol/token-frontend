@@ -29,25 +29,25 @@ const Addresses = {
     claimAddress: "0xd1Bdf85dB6Af63f45211dB95928d938abCc52dC8",
     lockedAddress: "0x78344c7305d73a7a0ac3c94cd9960f4449a1814e",
     stakingBridge: "0x195064D33f09e0c42cF98E665D9506e0dC17de68",
-  },
+  } as { [key: string]: string },
   [EthereumChainIds.Ropsten]: {
     vestingAddress: "0xfc9Ad8fE9E0b168999Ee7547797BC39D55d607AA",
     vegaTokenAddress: "0x5b634a05754283b6d9d7938dcca9d646425593eb",
     claimAddress: "0x695eD7f6AcA81201d1D92107f120579CaAe2E5F2",
     lockedAddress: "0x0356782bfb61cf0b0463746bc6fe8766aacae8f0",
     stakingBridge: "0x7bd4a4789394fe5a93fc67ef64c47beb013e5450",
-  },
+  } as { [key: string]: string },
 };
 
 const RewardsAddresses = {
   [EthereumChainIds.Mainnet]: {
     "Sushi Swap VEGA/ETH": "0x29C827Ce49aCCF68A1a278C67C9D30c52fBbC348",
     "Sushi Swap VEGA/USDC": "0x42b7B8f8F83fA5cbf0176f8c24Ad51EbcD4B5F17",
-  },
+  } as { [key: string]: string },
   [EthereumChainIds.Ropsten]: {
     "Sushi Swap VEGA/ETH": "0x376d608CacD83C0Fb72541ebaa96bEb1b73bb6E3",
     "Sushi Swap VEGA/USDC": "0x376d608CacD83C0Fb72541ebaa96bEb1b73bb6E3",
-  },
+  } as { [key: string]: string },
 };
 
 const RewardsPoolAddresses = {
@@ -56,14 +56,14 @@ const RewardsPoolAddresses = {
       "0x29c827ce49accf68a1a278c67c9d30c52fbbc348",
     "0x42b7B8f8F83fA5cbf0176f8c24Ad51EbcD4B5F17":
       "0x42b7B8f8F83fA5cbf0176f8c24Ad51EbcD4B5F17",
-  },
+  } as { [key: string]: string },
   [EthereumChainIds.Ropsten]: {
     "0x376d608CacD83C0Fb72541ebaa96bEb1b73bb6E3":
       "0x29c827ce49accf68a1a278c67c9d30c52fbbc348",
     // Same address so cannot have same key twice
     // "0xcc382BF2451d5eA0990Ed881aDbc85Ca49B9E672":
     //   "https://analytics.sushi.com/pairs/0x42b7b8f8f83fa5cbf0176f8c24ad51ebcd4b5f17",
-  },
+  } as { [key: string]: string },
 };
 
 const appChainId = process.env.REACT_APP_CHAIN as EthereumChainId;

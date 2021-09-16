@@ -36,8 +36,6 @@ export const DexTokensSection = ({
     [contractAddress, state.contractData]
   );
   const poolAddress = React.useMemo<string>(
-    // TODO how to fix this?
-    // @ts-ignore
     () => REWARDS_POOL_ADDRESSES[contractAddress],
     [contractAddress]
   );
