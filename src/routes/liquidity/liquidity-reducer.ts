@@ -11,6 +11,7 @@ export interface LpContractData {
   shareOfPool: BigNumber | null;
   accumulatedRewards: BigNumber | null;
   pendingStakedLPTokens: BigNumber | null;
+  totalStaked: BigNumber | null;
 }
 
 export interface LiquidityState {

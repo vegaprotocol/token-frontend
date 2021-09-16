@@ -94,12 +94,7 @@ export const LiquidityWithdrawPage = ({
         <KeyValueTable className="dex-tokens-withdraw__table">
           <KeyValueTableRow>
             <th>{t("liquidityTokenWithdrawBalance")}</th>
-            <td>
-              {new BigNumber(0)
-                .plus(values.stakedLPTokens || 0)
-                .plus(values.pendingStakedLPTokens || 0)
-                .toString()}
-            </td>
+            <td>{values.totalStaked?.toString()}</td>
           </KeyValueTableRow>
           <KeyValueTableRow>
             <th>{t("liquidityTokenWithdrawRewards")}</th>

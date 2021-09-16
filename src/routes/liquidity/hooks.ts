@@ -61,6 +61,7 @@ export const useGetLiquidityBalances = (
             estimateAPY,
             awardContractAddress,
             availableLPTokens,
+            totalStaked: stakedLPTokens?.total,
             stakedLPTokens: stakedLPTokens?.earningRewards,
             pendingStakedLPTokens: stakedLPTokens?.pending,
             shareOfPool,
