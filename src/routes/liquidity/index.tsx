@@ -32,21 +32,32 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
     dispatch,
     ethAddress
   );
+  const loadAllBalances = React.useCallback(async () => {
+    try {
+      await Promise.all([
+        getBalances(lpStakingUSDC, REWARDS_ADDRESSES["Sushi Swap VEGA/USDC"]),
+        getBalances(lpStakingEth, REWARDS_ADDRESSES["Sushi Swap VEGA/ETH"]),
+      ]);
+    } catch (e) {
+      Sentry.captureException(e);
+    } finally {
+      setLoading(false);
+    }
+  }, [getBalances, lpStakingEth, lpStakingUSDC]);
   React.useEffect(() => {
-    const run = async () => {
-      try {
-        await Promise.all([
-          getBalances(lpStakingUSDC, REWARDS_ADDRESSES["Sushi Swap VEGA/USDC"]),
-          getBalances(lpStakingEth, REWARDS_ADDRESSES["Sushi Swap VEGA/ETH"]),
-        ]);
-      } catch (e) {
-        Sentry.captureException(e);
-      } finally {
-        setLoading(false);
+    loadAllBalances();
+  }, [loadAllBalances]);
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      loadAllBalances();
+    }, 10000);
+    return () => {
+      if (interval) {
+        clearInterval(interval);
       }
     };
-    run();
-  }, [getBalances, lpStakingEth, lpStakingUSDC, ethAddress]);
+  });
 
   const title = React.useMemo(() => {
     if (withdraw) {
