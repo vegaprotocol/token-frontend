@@ -1,0 +1,11 @@
+"project_id": "476505" #open project settings and go to API section
+"api_token": "2e3213c1908dd37400541f67833be777" #open profile settings and go to API > New Token > create Token
+"base_url": "https://api.crowdin.com"
+"preserve_hierarchy": true
+
+"files": [
+    {
+      "source": "/src/i18n/en.json", #source files filter
+      "translation": "/src/i18n/%two_letters_code%.json", #where translations are stored
+    },
+  ]
