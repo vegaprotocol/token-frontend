@@ -6,6 +6,6 @@
 "files": [
     {
       "source": "/src/i18n/en.json", #source files filter
-      "translation": "/src/i18n/%two_letters_code%.json", #where translations are stored
+      "translation": "/src/i18n/translations/%two_letters_code%.json", #where translations are stored
     },
   ]
