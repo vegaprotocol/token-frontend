@@ -1,11 +1,13 @@
 import { merge } from "lodash";
 import { BigNumber } from "../../lib/bignumber";
+import { EpochDetails } from "../../lib/web3-utils";
 
 export interface LpContractData {
   rewardPerEpoch: BigNumber;
   rewardPoolBalance: BigNumber;
   awardContractAddress: string;
   estimateAPY: BigNumber;
+  epochDetails: EpochDetails;
   connectedWalletData: {
     availableLPTokens: BigNumber;
     stakedLPTokens: BigNumber;

@@ -11,6 +11,7 @@ import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
+import { EpochCountdown } from "../../staking/epoch-countdown";
 
 const BASE_SUSHI_URL = "https://analytics.sushi.com/pairs/";
 interface DexTokensSectionProps {
@@ -42,7 +43,7 @@ export const DexTokensSection = ({
   if (!values) {
     return <p>{t("Loading")}...</p>;
   }
-
+  console.log(values);
   return (
     <section className="dex-table">
       <h3>{name}</h3>
@@ -103,6 +104,11 @@ export const DexTokensSection = ({
           />
         ) : null}
       </KeyValueTable>
+      <EpochCountdown
+        startDate={new Date(values.epochDetails.startSeconds.toNumber() * 1000)}
+        endDate={new Date(values.epochDetails.endSeconds.toNumber() * 1000)}
+        id={values.epochDetails.id}
+      />
     </section>
   );
 };

@@ -26,6 +26,12 @@ export const EthereumChainIds: Record<EthereumChainName, EthereumChainId> = {
   Kovan: "0x2a",
 };
 
+export interface EpochDetails {
+  id: string;
+  startSeconds: BigNumber;
+  endSeconds: BigNumber;
+}
+
 export declare class PromiEvent<T>
   extends EventEmitter
   implements PromiseLike<T>
@@ -194,9 +200,7 @@ export interface IVegaToken {
 }
 
 export interface IVegaLPStaking {
-  stakedBalance(
-    account: string
-  ): Promise<{
+  stakedBalance(account: string): Promise<{
     pending: BigNumber;
     earningRewards: BigNumber;
     total: BigNumber;
@@ -215,6 +219,7 @@ export interface IVegaLPStaking {
     spender: string
   ): Promise<WrappedPromiEvent<boolean>>;
   liquidityTokensInRewardPool(): Promise<BigNumber>;
+  currentEpochDetails(): Promise<EpochDetails>;
 }
 
 export interface TxError {
