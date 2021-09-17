@@ -19,6 +19,8 @@ import { DexTokensSection } from "../dex-table";
 import { LiquidityAction, LiquidityState } from "../liquidity-reducer";
 import { EthConnectPrompt } from "../../../components/eth-connect-prompt";
 import { useGetLiquidityBalances } from "../hooks";
+import { Callout } from "../../../components/callout";
+import { Error } from "../../../components/icons";
 
 export const LiquidityDepositPage = ({
   lpTokenAddress,
@@ -94,25 +96,15 @@ export const LiquidityDepositPage = ({
     fetchAllowance();
   }, [lpStaking, ethAddress, fetchAllowance]);
   let pageContent;
-  if (
-    txApprovalState.txState !== TxState.Default &&
-    txApprovalState.txState !== TxState.Complete
-  ) {
-    pageContent = (
-      <TransactionCallout
-        state={txApprovalState}
-        reset={() =>
-          txApprovalDispatch({ type: TransactionActionType.TX_RESET })
-        }
-      />
-    );
-  } else if (txStakeState.txState !== TxState.Default) {
+  if (txStakeState.txState !== TxState.Default) {
     pageContent = (
       <TransactionCallout
         state={txStakeState}
-        completeBody={
+        completeHeading={t("depositLpSuccessCalloutTitle")}
+        completeBody={t("depositLpSuccessCalloutBody")}
+        completeFooter={
           <Link to={Routes.LIQUIDITY}>
-            <button className="fill">{t("depositLpSuccessButton")}</button>
+            <button className="fill">{t("lpTxSuccessButton")}</button>
           </Link>
         }
         reset={() => txStakeDispatch({ type: TransactionActionType.TX_RESET })}
@@ -138,6 +130,13 @@ export const LiquidityDepositPage = ({
     pageContent = (
       <>
         {!ethAddress && <EthConnectPrompt />}
+        <Callout
+          icon={<Error />}
+          intent="error"
+          title={t("depositLpCalloutTitle")}
+        >
+          <p>{t("depositLpCalloutBody")}</p>
+        </Callout>
         <DexTokensSection
           name={name}
           contractAddress={lpTokenAddress}
@@ -158,6 +157,8 @@ export const LiquidityDepositPage = ({
             amount={amount}
             setAmount={setAmount}
             maximum={maximum}
+            approveTxState={txApprovalState}
+            approveTxDispatch={txApprovalDispatch}
           />
         ) : (
           <p>{t("depositLpInsufficientBalance")}</p>
@@ -166,12 +167,7 @@ export const LiquidityDepositPage = ({
     );
   }
 
-  return (
-    <section>
-      <p>{t("depositLpTokensDescription")}</p>
-      {pageContent}
-    </section>
-  );
+  return <section>{pageContent}</section>;
 };
 
 export const LiquidityDeposit = ({

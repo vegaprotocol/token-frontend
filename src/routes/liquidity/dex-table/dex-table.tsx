@@ -11,6 +11,7 @@ import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
+import { EpochCountdown } from "../../staking/epoch-countdown";
 
 const BASE_SUSHI_URL = "https://analytics.sushi.com/pairs/";
 interface DexTokensSectionProps {
@@ -91,7 +92,9 @@ export const DexTokensSection = ({
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("lpTokensInRewardPool")}</th>
-          <td>{values.rewardPoolBalance.toString()}</td>
+          <td>
+            {values.rewardPoolBalance.toString()} {t("SLP")}
+          </td>
         </KeyValueTableRow>
         {ethAddress ? (
           <ConnectedRows
@@ -101,6 +104,11 @@ export const DexTokensSection = ({
           />
         ) : null}
       </KeyValueTable>
+      <EpochCountdown
+        startDate={new Date(values.epochDetails.startSeconds.toNumber() * 1000)}
+        endDate={new Date(values.epochDetails.endSeconds.toNumber() * 1000)}
+        id={values.epochDetails.id}
+      />
     </section>
   );
 };
@@ -143,16 +151,15 @@ const ConnectedRows = ({
       <KeyValueTableRow>
         <th>{t("usersLpTokens")}</th>
         <td>
-          <div>{availableLPTokens.toString()}</div>
+          <div>
+            {availableLPTokens.toString()}&nbsp;{t("SLP")}
+          </div>
           {hasDeposited ? (
             <span className="text-muted">{t("alreadyDeposited")}</span>
           ) : isDepositButtonVisible ? (
             <div style={{ marginTop: 3 }}>
               <Link to={`${Routes.LIQUIDITY}/${lpContractAddress}/deposit`}>
-                <button
-                  className="butt
-                on-secondary"
-                >
+                <button className="button-secondary">
                   {t("depositToRewardPoolButton")}
                 </button>
               </Link>
@@ -170,6 +177,7 @@ const ConnectedRows = ({
           {pendingStakedLPTokens?.isGreaterThan(0)
             ? pendingStakedLPTokens?.toString()
             : stakedLPTokens?.toString()}
+          &nbsp;{t("SLP")}
         </td>
       </KeyValueTableRow>
       <KeyValueTableRow>

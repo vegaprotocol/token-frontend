@@ -20,6 +20,10 @@ import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
+import { Callout } from "../../../components/callout";
+import { Error } from "../../../components/icons";
+import { Link } from "react-router-dom";
+import { Routes } from "../../router-config";
 
 export const LiquidityWithdrawPage = ({
   lpTokenAddress,
@@ -72,6 +76,12 @@ export const LiquidityWithdrawPage = ({
         <p>{t("lpTokenWithdrawSubmit")}</p>
         <TransactionCallout
           state={txUnstakeState}
+          completeHeading={t("withdrawLpSuccessCalloutTitle")}
+          completeFooter={
+            <Link to={Routes.LIQUIDITY}>
+              <button className="fill">{t("lpTxSuccessButton")}</button>
+            </Link>
+          }
           reset={() =>
             txUnstakeDispatch({ type: TransactionActionType.TX_RESET })
           }
@@ -91,16 +101,27 @@ export const LiquidityWithdrawPage = ({
         <EthConnectPrompt />
       ) : (
         <section>
+          <Callout
+            icon={<Error />}
+            intent="error"
+            title={t("withdrawLpCalloutTitle")}
+          >
+            <p>{t("withdrawLpCalloutBody")}</p>
+          </Callout>
           <p>{t("lpTokenWithdrawSubmit")}</p>
           <KeyValueTable className="dex-tokens-withdraw__table">
             <KeyValueTableRow>
               <th>{t("liquidityTokenWithdrawBalance")}</th>
-              <td>{values.connectedWalletData.totalStaked.toString()}</td>
+              <td>
+                {values.connectedWalletData.totalStaked.toString()}&nbsp;
+                {t("SLP")}
+              </td>
             </KeyValueTableRow>
             <KeyValueTableRow>
               <th>{t("liquidityTokenWithdrawRewards")}</th>
               <td>
-                {values.connectedWalletData.accumulatedRewards.toString()}
+                {values.connectedWalletData.accumulatedRewards.toString()}&nbsp;
+                {t("VEGA")}
               </td>
             </KeyValueTableRow>
           </KeyValueTable>

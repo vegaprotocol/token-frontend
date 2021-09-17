@@ -19,10 +19,7 @@ export const TransactionComplete = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <Callout icon={<Tick />} intent="success">
-      <p data-testid="transaction-complete-heading">
-        {heading || t("Complete")}
-      </p>
+    <Callout icon={<Tick />} intent="success" title={heading || t("Complete")}>
       {body && <p data-testid="transaction-complete-body">{body}</p>}
       <p>
         <EtherscanLink tx={hash} chainId={chainId} />
