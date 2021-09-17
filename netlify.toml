@@ -10,14 +10,26 @@
   to = "/index.html"
   status = 200
 
-[context.production.environment]
+# Thre are deploy sites: production/deploy previews and then the translations branch
+# so cannot use context.pruction.environmenet so using production env vars don't collide
+# transaltion uses develop as its' production branch so this will not apply to translations
+
+# This configures the master branch for production environement with the correct information
+[context.master.environment]
   REACT_APP_CHAIN = "0x1"
   REACT_APP_MAINNET_DISABLED = '1'
   REACT_APP_DEX_STAKING_DISABLED = '1'
 
-[context.translations.environment]
+# The translation flag for each of these is defined in the netlify UI so they can be independant based on the branch
+[context.develop.environment]
   REACT_APP_CHAIN = "0x3"
   REACT_APP_MAINNET_DISABLED = '1'
+  REACT_APP_DEX_STAKING_DISABLED = '1'
+
+# TODO: remove once the translations branch is merged
+[context.translations.environment]
+  REACT_APP_CHAIN = "0x3"
+  REACT_APP_MAINNET_DISABLED = '0'
   REACT_APP_DEX_STAKING_DISABLED = '0'
   REACT_APP_IN_CONTEXT_TRANSLATION = '1'
   REACT_APP_VEGA_URL = "https://n04.d.vega.xyz/query"
