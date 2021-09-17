@@ -422,7 +422,7 @@ const en = {
   // LP tokens
   lpTokensInvalidToken:
     "Address {{address}} is not a valid LP token address for VEGA",
-  lpTxSuccessButton: "Back to liquidity page",
+  lpTxSuccessButton: "Review liquidity stake",
 
   depositLpTokensHeading: "How much would you like to deposit?",
   depositLpSubmitButton: "Deposit SLP",

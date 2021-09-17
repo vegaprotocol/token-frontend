@@ -112,7 +112,9 @@ export const LiquidityDepositPage = ({
     pageContent = (
       <TransactionCallout
         state={txStakeState}
-        completeBody={
+        completeHeading={t("depositLpSuccessCalloutTitle")}
+        completeBody={t("depositLpSuccessCalloutBody")}
+        completeFooter={
           <Link to={Routes.LIQUIDITY}>
             <button className="fill">{t("lpTxSuccessButton")}</button>
           </Link>
