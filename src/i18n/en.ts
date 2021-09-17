@@ -95,6 +95,7 @@ const en = {
     "Incompatible web3 provider detected. Please try another browser / extension.",
   "Vesting Balance": "Vesting Balance",
   VEGA: "VEGA",
+  SLP: "SLP",
   Account: "Account",
   Loading: "Loading...",
   "Something went wrong": "Something went wrong",

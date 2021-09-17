@@ -91,7 +91,9 @@ export const DexTokensSection = ({
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("lpTokensInRewardPool")}</th>
-          <td>{values.rewardPoolBalance.toString()}</td>
+          <td>
+            {values.rewardPoolBalance.toString()} {t("SLP")}
+          </td>
         </KeyValueTableRow>
         {ethAddress ? (
           <ConnectedRows
@@ -143,7 +145,9 @@ const ConnectedRows = ({
       <KeyValueTableRow>
         <th>{t("usersLpTokens")}</th>
         <td>
-          <div>{availableLPTokens.toString()}</div>
+          <div>
+            {availableLPTokens.toString()}&nbsp;{t("SLP")}
+          </div>
           {hasDeposited ? (
             <span className="text-muted">{t("alreadyDeposited")}</span>
           ) : isDepositButtonVisible ? (
@@ -167,6 +171,7 @@ const ConnectedRows = ({
           {pendingStakedLPTokens?.isGreaterThan(0)
             ? pendingStakedLPTokens?.toString()
             : stakedLPTokens?.toString()}
+          &nbsp;{t("SLP")}
         </td>
       </KeyValueTableRow>
       <KeyValueTableRow>
