@@ -43,7 +43,7 @@ export const DexTokensSection = ({
   if (!values) {
     return <p>{t("Loading")}...</p>;
   }
-  console.log(values);
+
   return (
     <section className="dex-table">
       <h3>{name}</h3>
