@@ -1,4 +1,5 @@
 import "./tranche-table.scss";
+import React from "react";
 
 import { Trans, useTranslation } from "react-i18next";
 import {
@@ -76,6 +77,14 @@ export const TrancheTable = ({
   const reduceAmount = vested.minus(BigNumber.max(unstaked, 0));
   const redeemable = reduceAmount.isLessThanOrEqualTo(0);
 
+  const lockedPercentage = React.useMemo(() => {
+    return locked.div(total).times(100);
+  }, [total, locked]);
+
+  const vestedPercentage = React.useMemo(() => {
+    return vested.div(total).times(100);
+  }, [total, vested]);
+
   let message = null;
   if (trancheFullyLocked || vested.isEqualTo(0)) {
     message = (
@@ -111,6 +120,31 @@ export const TrancheTable = ({
   }
   return (
     <section data-testid="tranche-table" className="tranche-table">
+      <div className="tranche-table__header">
+        <span className="tranche-table__label">
+          {t("Tranche")} {tranche.tranche_id}
+        </span>
+      </div>
+      <div className="tranche-table__row">
+        <span>{t("Starts unlocking")}</span>
+        <span>{format(tranche.tranche_start, "d MMM yyyy")}</span>
+      </div>
+      <div className="tranche-table__row">
+        <span>{t("Fully unlocked")}</span>
+        <span>{format(tranche.tranche_end, "d MMM yyyy")}</span>
+      </div>
+      <div className="vesting-table__progress-bar">
+        <div
+          className="vesting-table__progress-bar--locked"
+          style={{ flex: lockedPercentage.toNumber() }}
+        ></div>
+        <div
+          className="vesting-table__progress-bar--vested"
+          style={{ flex: vestedPercentage.toNumber() }}
+        ></div>
+      </div>
+
+      <div>++++++</div>
       <KeyValueTable numerical={true}>
         <KeyValueTableRow data-testid="tranche-table-total">
           <th>

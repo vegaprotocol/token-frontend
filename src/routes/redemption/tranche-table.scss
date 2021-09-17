@@ -1,4 +1,5 @@
 @import "../../styles/colors";
+@import "../../styles/fonts";
 
 .tranche-table {
   margin-bottom: 30px;
@@ -10,7 +11,26 @@
     padding: 3px;
   }
 
+  &__header {
+    border-bottom: white;
+    border-width: 1px;
+    border-bottom-style: solid;
+    padding-bottom: 5px;
+  }
+
   &__footer {
     text-align: right;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0 5px;
+    padding: 2px;
+    
+    span:last-child {
+      font-family: $font-mono;
+      color: $text-color-deemphasise;
+    }
   }
 }
