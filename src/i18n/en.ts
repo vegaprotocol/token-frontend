@@ -469,9 +469,25 @@ const en = {
     "Go to <stakingLink>staking</stakingLink> or <governanceLink>governance</governanceLink> to see how you can use your unlocked tokens",
   liquidityNav: "DEX Liquidity",
   liquidityIntro:
-    "Provide liquidity on decentralised exchanges and deposit the LP tokens in to our contract to earn rewards",
+    "You can read about our our incentive program in this <linkToPost>blog post</linkToPost>.",
+  liquidityTitle: "How it works",
   liquidityIntroInstructionsLink:
     "You can read about our our incentive program in this blog post",
+  liquidityStep1Title:
+    "Provide liquidity on one of the markets below and get your SLP tokens.",
+  liquidityStep1Body:
+    "You will need to add the SushiSwap market/token address to your wallet to see your SLP tokens.",
+  liquidityStep2Title:
+    "Stake these SLP tokens into the appropriate contract below.",
+  liquidityStep2Body:
+    "You can’t increase your stake without un-staking first so consider how much you stake and when.",
+  liquidityStep3Title:
+    "Wait for a full epoch, get a share of the incentive for each full epoch you stake.",
+  liquidityStep3Body:
+    "The reward amount is divided by the amount of SLP tokens staked in that epoch. The APY on each pool is indicative based on the current state, this will change over time and is not guaranteed. ",
+  liquidityStep4Title: "Un-stake to receive your rewards.",
+  liquidityStep4Body:
+    "Upon un-staking, your Ethereum key will be credited with its share of VEGA tokens for each full epoch that it was staked. It is only possible to un-stake the full staked amount and you will not be entitled to rewards from the epoch that you un-staked in.",
   liquidityTokensWalletTitle: "LP Tokens in connected wallet",
   liquidityTokensWalletIntro: "The following tokens can be staked to earn VEGA",
   liquidityTokensContractTitle: "LP Tokens earning rewards",
