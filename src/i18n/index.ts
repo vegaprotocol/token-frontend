@@ -2,6 +2,7 @@ import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
 import { Flags } from "../config";
+import dev from "./translations/dev.json";
 import en from "./translations/en.json";
 import fr from "./translations/fr.json";
 import ru from "./translations/ru.json";
@@ -21,7 +22,12 @@ i18n
   .init({
     // we init with resources
     resources: {
-      en: { translations: en },
+      en: {
+        translations: {
+          ...dev,
+          ...en,
+        },
+      },
       fr: { translations: fr },
       ru: { translations: ru },
       zh: { translations: zh },
