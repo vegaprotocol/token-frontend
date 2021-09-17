@@ -22,6 +22,8 @@ import {
 } from "../../../components/key-value-table";
 import { Callout } from "../../../components/callout";
 import { Error } from "../../../components/icons";
+import { Link } from "react-router-dom";
+import { Routes } from "../../router-config";
 
 export const LiquidityWithdrawPage = ({
   lpTokenAddress,
@@ -74,6 +76,11 @@ export const LiquidityWithdrawPage = ({
         <p>{t("lpTokenWithdrawSubmit")}</p>
         <TransactionCallout
           state={txUnstakeState}
+          completeBody={
+            <Link to={Routes.LIQUIDITY}>
+              <button className="fill">{t("lpTxSuccessButton")}</button>
+            </Link>
+          }
           reset={() =>
             txUnstakeDispatch({ type: TransactionActionType.TX_RESET })
           }

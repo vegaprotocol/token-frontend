@@ -114,7 +114,7 @@ export const LiquidityDepositPage = ({
         state={txStakeState}
         completeBody={
           <Link to={Routes.LIQUIDITY}>
-            <button className="fill">{t("depositLpSuccessButton")}</button>
+            <button className="fill">{t("lpTxSuccessButton")}</button>
           </Link>
         }
         reset={() => txStakeDispatch({ type: TransactionActionType.TX_RESET })}

@@ -428,7 +428,7 @@ const en = {
   depositLpInsufficientBalance: "You do not have tokens to deposit.",
   depositLpAlreadyStaked:
     "You have already staked your LP tokens, go to <withdrawLink>withdraw</withdrawLink> in order withdraw these before you can add more.",
-  depositLpSuccessButton: "Back to liquidity page",
+  lpTxSuccessButton: "Back to liquidity page",
   depositLpCalloutTitle: "You can only make one deposit at a time",
   depositLpCalloutBody:
     "If you want to add more LP tokens later you will need to withdraw first or use a different Ethereum key.",
