@@ -19,10 +19,7 @@ export const TransactionPending = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <Callout icon={<Loader />}>
-      <p data-testid="transaction-pending-heading">
-        {heading || t("Transaction in progress")}
-      </p>
+    <Callout icon={<Loader />} title={heading || t("Transaction in progress")}>
       {body && <p data-testid="transaction-pending-body">{body}</p>}
       <p>
         <EtherscanLink tx={hash} chainId={chainId} />
