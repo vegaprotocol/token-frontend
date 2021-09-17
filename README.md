@@ -1,10 +1,11 @@
 # Token frontend
 
-***Control panel for your VEGA tokens***
+**_Control panel for your VEGA tokens_**
 
 ![preview](https://user-images.githubusercontent.com/6678/131992372-4a89d7ea-d9b3-4698-b767-e4464396a7d0.jpg)
 
 ## Features
+
 - View vesting progress
 - Redeem VEGA tokens
 - Stake VEGA tokens
@@ -29,22 +30,27 @@ Starting the app:
 
 There are a few different configuration options offered for this app:
 
-| **Flag**  | **Purpose**  |
-| ------------ | ------------ |
-|  `REACT_APP_SENTRY_DSN` |  The sentry endpoint to report to. Should be off in dev but set in live. |
-|  `REACT_APP_CHAIN`  | The ETH chain for the app to work on. Should be mainnet for live, but ropsten for preview deploys. |
-|  `REACT_APP_VEGA_URL` | The GraphQL query endpoint of a [Vega data node](https://github.com/vegaprotocol/networks#data-node) |
+| **Flag**               | **Purpose**                                                                                          |
+| ---------------------- | ---------------------------------------------------------------------------------------------------- |
+| `REACT_APP_SENTRY_DSN` | The sentry endpoint to report to. Should be off in dev but set in live.                              |
+| `REACT_APP_CHAIN`      | The ETH chain for the app to work on. Should be mainnet for live, but ropsten for preview deploys.   |
+| `REACT_APP_VEGA_URL`   | The GraphQL query endpoint of a [Vega data node](https://github.com/vegaprotocol/networks#data-node) |
+
 ## Example configs:
+
 For example configurations, check out our [netlify.toml](./netlify.toml).
 
 ## Testing
+
 To run the minimal set of unit tests, run the following:
+
 ```bash
 yarn install
 yarn test
 ```
 
 To run the UI automation tests with a mocked API, run:
+
 ```bash
 yarn install
 yarn add cypress
@@ -55,6 +61,7 @@ yarn cypress:open
 ```
 
 ## See also
+
 - [vega-locked-erc20](https://github.com/vegaprotocol/vega-locked-erc20) - a proxy contract that shows your current balance
   of locked tokens.
 - [VEGA Tokens: Vesting Details](https://blog.vega.xyz/vega-tokens-vesting-details-890b00fc238e) - a blog describing
@@ -65,4 +72,5 @@ yarn cypress:open
 - [vega.xyz](https://vega.xyz) - about Vega Protocol
 
 # License
+
 [MIT](LICENSE)

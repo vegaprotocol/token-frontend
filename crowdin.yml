@@ -1,0 +1,5 @@
+base_url: 'https://api.crowdin.com'
+preserve_hierarchy: true
+files:
+  - source: /src/i18n/en.json
+    translation: /src/i18n/translations/%two_letters_code%.json
