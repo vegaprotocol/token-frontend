@@ -19,6 +19,8 @@ import { DexTokensSection } from "../dex-table";
 import { LiquidityAction, LiquidityState } from "../liquidity-reducer";
 import { EthConnectPrompt } from "../../../components/eth-connect-prompt";
 import { useGetLiquidityBalances } from "../hooks";
+import { Callout } from "../../../components/callout";
+import { Error } from "../../../components/icons";
 
 export const LiquidityDepositPage = ({
   lpTokenAddress,
@@ -138,6 +140,13 @@ export const LiquidityDepositPage = ({
     pageContent = (
       <>
         {!ethAddress && <EthConnectPrompt />}
+        <Callout
+          icon={<Error />}
+          intent="error"
+          title={t("depositLpCalloutTitle")}
+        >
+          <p>{t("depositLpCalloutBody")}</p>
+        </Callout>
         <DexTokensSection
           name={name}
           contractAddress={lpTokenAddress}
@@ -166,12 +175,7 @@ export const LiquidityDepositPage = ({
     );
   }
 
-  return (
-    <section>
-      <p>{t("depositLpTokensDescription")}</p>
-      {pageContent}
-    </section>
-  );
+  return <section>{pageContent}</section>;
 };
 
 export const LiquidityDeposit = ({

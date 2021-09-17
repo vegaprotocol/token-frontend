@@ -20,6 +20,8 @@ import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
+import { Callout } from "../../../components/callout";
+import { Error } from "../../../components/icons";
 
 export const LiquidityWithdrawPage = ({
   lpTokenAddress,
@@ -91,6 +93,13 @@ export const LiquidityWithdrawPage = ({
         <EthConnectPrompt />
       ) : (
         <section>
+          <Callout
+            icon={<Error />}
+            intent="error"
+            title={t("withdrawLpCalloutTitle")}
+          >
+            <p>{t("withdrawLpCalloutBody")}</p>
+          </Callout>
           <p>{t("lpTokenWithdrawSubmit")}</p>
           <KeyValueTable className="dex-tokens-withdraw__table">
             <KeyValueTableRow>
