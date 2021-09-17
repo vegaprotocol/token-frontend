@@ -422,16 +422,21 @@ const en = {
   // LP tokens
   lpTokensInvalidToken:
     "Address {{address}} is not a valid LP token address for VEGA",
+  lpTxSuccessButton: "Back to liquidity page",
+
   depositLpTokensHeading: "How much would you like to deposit?",
   depositLpSubmitButton: "Deposit SLP",
   depositLpApproveButton: "Approve SLP tokens for deposit",
   depositLpInsufficientBalance: "You do not have tokens to deposit.",
   depositLpAlreadyStaked:
     "You have already staked your LP tokens, go to <withdrawLink>withdraw</withdrawLink> in order withdraw these before you can add more.",
-  lpTxSuccessButton: "Back to liquidity page",
   depositLpCalloutTitle: "You can only make one deposit at a time",
   depositLpCalloutBody:
     "If you want to add more LP tokens later you will need to withdraw first or use a different Ethereum key.",
+  depositLpSuccessCalloutTitle:
+    "You LP tokens have been deposited and will start earning rewards from the next epoch",
+  depositLpSuccessCalloutBody:
+    "You will be rewarded for each full epoch your LP tokens are staked",
 
   withdrawLpWithdrawButton: "Withdraw all SLP and VEGA rewards",
   withdrawLpNoneDeposited: "You have no SLP tokens deposited",
@@ -439,6 +444,8 @@ const en = {
     "Unstaking during an epoch will forfeit any rewards due for that epoch",
   withdrawLpCalloutBody:
     "If you want to add more liquidity tokens later you will need to withdraw first or use a different Ethereum key.",
+  withdrawLpSuccessCalloutTitle:
+    "Your LP tokens and rewards have been returned to your Ethereum address",
 
   "Dissociate VEGA tokens": "Dissociate VEGA tokens",
   "Early Investors": "Early Investors",

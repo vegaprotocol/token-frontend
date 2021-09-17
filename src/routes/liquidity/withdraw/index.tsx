@@ -76,7 +76,8 @@ export const LiquidityWithdrawPage = ({
         <p>{t("lpTokenWithdrawSubmit")}</p>
         <TransactionCallout
           state={txUnstakeState}
-          completeBody={
+          completeHeading={t("withdrawLpSuccessCalloutTitle")}
+          completeFooter={
             <Link to={Routes.LIQUIDITY}>
               <button className="fill">{t("lpTxSuccessButton")}</button>
             </Link>
