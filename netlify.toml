@@ -25,13 +25,6 @@
   REACT_APP_CHAIN = "0x3"
   REACT_APP_MAINNET_DISABLED = '0'
   REACT_APP_DEX_STAKING_DISABLED = '0'
-
-# TODO: remove once the translations branch is merged
-[context.translations.environment]
-  REACT_APP_CHAIN = "0x3"
-  REACT_APP_MAINNET_DISABLED = '0'
-  REACT_APP_DEX_STAKING_DISABLED = '0'
-  REACT_APP_IN_CONTEXT_TRANSLATION = '1'
   REACT_APP_VEGA_URL = "https://n04.d.vega.xyz/query"
 
 [context.deploy-preview.environment]
