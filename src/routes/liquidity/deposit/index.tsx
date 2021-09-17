@@ -96,19 +96,7 @@ export const LiquidityDepositPage = ({
     fetchAllowance();
   }, [lpStaking, ethAddress, fetchAllowance]);
   let pageContent;
-  if (
-    txApprovalState.txState !== TxState.Default &&
-    txApprovalState.txState !== TxState.Complete
-  ) {
-    pageContent = (
-      <TransactionCallout
-        state={txApprovalState}
-        reset={() =>
-          txApprovalDispatch({ type: TransactionActionType.TX_RESET })
-        }
-      />
-    );
-  } else if (txStakeState.txState !== TxState.Default) {
+  if (txStakeState.txState !== TxState.Default) {
     pageContent = (
       <TransactionCallout
         state={txStakeState}
@@ -169,6 +157,8 @@ export const LiquidityDepositPage = ({
             amount={amount}
             setAmount={setAmount}
             maximum={maximum}
+            approveTxState={txApprovalState}
+            approveTxDispatch={txApprovalDispatch}
           />
         ) : (
           <p>{t("depositLpInsufficientBalance")}</p>

@@ -5,6 +5,13 @@ import { useTranslation } from "react-i18next";
 import { BigNumber } from "../../lib/bignumber";
 import { Callout } from "../callout";
 import { Tick } from "../icons";
+import {
+  TransactionAction,
+  TransactionActionType,
+  TransactionState,
+  TxState,
+} from "../../hooks/transaction-reducer";
+import { TransactionCallout } from "../transaction-callout";
 
 const inputName = "amount";
 
@@ -59,6 +66,8 @@ export const TokenInput = ({
   approve,
   requireApproval = false,
   maximum = new BigNumber("0"),
+  approveTxState,
+  approveTxDispatch,
 }: {
   amount: string;
   setAmount: React.Dispatch<any>;
@@ -70,10 +79,18 @@ export const TokenInput = ({
   allowance?: BigNumber;
   approve?: () => void;
   approveText?: string;
+  approveTxState?: TransactionState;
+  approveTxDispatch?: React.Dispatch<TransactionAction>;
 }) => {
-  if (requireApproval && (allowance == null || approve == null)) {
+  if (
+    requireApproval &&
+    (allowance == null ||
+      approve == null ||
+      !approveTxState ||
+      !approveTxDispatch)
+  ) {
     throw new Error(
-      "If requires approval is true allowance and approve props are required!"
+      "If requires approval is true allowance, approve, approveTxState and approveDispatch props are required!"
     );
   }
   const { t } = useTranslation();
@@ -96,10 +113,25 @@ export const TokenInput = ({
       new BigNumber(amount).isGreaterThan(maximum)
     );
   }, [amount, isApproved, maximum, requireApproval]);
-  return (
-    <FormGroup label="" labelFor={inputName}>
-      <AmountInput amount={amount} setAmount={setAmount} maximum={maximum} />
-      {showApproveButton ? (
+  let approveContent = null;
+
+  if (showApproveButton) {
+    if (
+      approveTxDispatch &&
+      approveTxState &&
+      approveTxState.txState !== TxState.Default
+    ) {
+      approveContent = (
+        <TransactionCallout
+          state={approveTxState}
+          pendingHeading={"Approve VEGA tokens for staking on Vega"}
+          reset={() =>
+            approveTxDispatch({ type: TransactionActionType.TX_RESET })
+          }
+        />
+      );
+    } else {
+      approveContent = (
         <button
           data-testid="token-input-approve-button"
           className="fill token-input__submit"
@@ -107,15 +139,21 @@ export const TokenInput = ({
         >
           {approveText}
         </button>
-      ) : (
-        <div className="token-input__callout-container">
-          <Callout
-            icon={<Tick />}
-            intent="success"
-            title={t("VEGA tokens are approved for staking")}
-          ></Callout>
-        </div>
-      )}
+      );
+    }
+  } else {
+    approveContent = (
+      <Callout
+        icon={<Tick />}
+        intent="success"
+        title={t("VEGA tokens are approved for staking")}
+      ></Callout>
+    );
+  }
+  return (
+    <FormGroup label="" labelFor={inputName}>
+      <AmountInput amount={amount} setAmount={setAmount} maximum={maximum} />
+      {approveContent}
       <button
         data-testid="token-input-submit-button"
         className="fill token-input__submit"
