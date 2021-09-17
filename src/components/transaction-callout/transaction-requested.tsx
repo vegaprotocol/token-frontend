@@ -5,8 +5,10 @@ import { HandUp } from "../icons";
 export const TransactionRequested = () => {
   const { t } = useTranslation();
   return (
-    <Callout icon={<HandUp />} intent="warn">
-      <p>{t("Awaiting action in Ethereum wallet (e.g. metamask)")}</p>
-    </Callout>
+    <Callout
+      icon={<HandUp />}
+      intent="warn"
+      title={t("Awaiting action in Ethereum wallet (e.g. metamask)")}
+    ></Callout>
   );
 };

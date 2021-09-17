@@ -4,7 +4,7 @@ import { AbiItem } from "web3-utils";
 import type { Contract } from "web3-eth-contract";
 import lpStakeAbi from "../abis/lp_staking_abi.json";
 import erc20Abi from "../abis/erc20_abi.json";
-import { IVegaLPStaking, WrappedPromiEvent } from "../web3-utils";
+import { EpochDetails, IVegaLPStaking, WrappedPromiEvent } from "../web3-utils";
 import { addDecimal, removeDecimal } from "../decimals";
 
 export default class VegaLPStaking implements IVegaLPStaking {
@@ -62,6 +62,27 @@ export default class VegaLPStaking implements IVegaLPStaking {
     })();
   }
 
+  currentEpoch(): Promise<string> {
+    return this.contract.methods.get_current_epoch_number().call();
+  }
+
+  async currentEpochDetails(): Promise<EpochDetails> {
+    const id = await this.currentEpoch();
+    const startSeconds = await this.contract.methods.staking_start().call();
+    const epochSeconds = await this.contract.methods.epoch_seconds().call();
+    const res = {
+      id,
+      startSeconds: new BigNumber(startSeconds).plus(
+        new BigNumber(id).times(epochSeconds)
+      ),
+      endSeconds: new BigNumber(startSeconds).plus(
+        new BigNumber(id).plus(1).times(epochSeconds)
+      ),
+    };
+
+    return res;
+  }
+
   /**
    * Retrieve staked VEGA LP tokens for a given account
    * @param  {string}          account ethereum address
@@ -73,9 +94,7 @@ export default class VegaLPStaking implements IVegaLPStaking {
     total: BigNumber;
   }> {
     const user = await this.contract.methods.users(account).call();
-    const currentEpoch = await this.contract.methods
-      .get_current_epoch_number()
-      .call();
+    const currentEpoch = await this.currentEpoch();
     const isPending = currentEpoch === user.last_epoch_withdrawn;
     const value = await this.contract.methods
       .total_staked_for_user(account)

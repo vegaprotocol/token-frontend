@@ -2,7 +2,7 @@ import React from "react";
 import { REWARDS_ADDRESSES } from "../../config";
 import { BigNumber } from "../../lib/bignumber";
 import { LiquidityAction, LiquidityActionType } from "./liquidity-reducer";
-import { IVegaLPStaking } from "../../lib/web3-utils";
+import { EpochDetails, IVegaLPStaking } from "../../lib/web3-utils";
 import * as Sentry from "@sentry/react";
 import { useVegaLPStaking } from "../../hooks/use-vega-lp-staking";
 
@@ -24,11 +24,19 @@ export const useGetLiquidityBalances = (
           rewardPoolBalance,
           estimateAPY,
           awardContractAddress,
-        ] = await Promise.all<BigNumber, BigNumber, BigNumber, string>([
+          epochDetails,
+        ] = await Promise.all<
+          BigNumber,
+          BigNumber,
+          BigNumber,
+          string,
+          EpochDetails
+        >([
           await lpStaking.rewardPerEpoch(),
           await lpStaking.totalStaked(),
           await lpStaking.estimateAPY(),
           await lpStaking.awardContractAddress(),
+          await lpStaking.currentEpochDetails(),
         ]);
         let connectedWalletData = null;
         if (ethAddress) {
@@ -60,6 +68,7 @@ export const useGetLiquidityBalances = (
           type: LiquidityActionType.SET_CONTRACT_INFORMATION,
           contractAddress,
           contractData: {
+            epochDetails,
             rewardPerEpoch,
             rewardPoolBalance,
             estimateAPY,
