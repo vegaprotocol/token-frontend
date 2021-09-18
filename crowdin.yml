@@ -1,3 +1,4 @@
+commit_message: "chore: new translations for %locale% [skip ci]"
 base_url: "https://api.crowdin.com"
 preserve_hierarchy: true
 files:
