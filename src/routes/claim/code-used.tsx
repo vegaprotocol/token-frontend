@@ -1,3 +1,4 @@
+import "./code-used.scss";
 import { useTranslation } from "react-i18next";
 import { AddTokenButton } from "../../components/add-token-button";
 import { Callout } from "../../components/callout";
@@ -25,9 +26,9 @@ export const CodeUsed = ({ address }: { address: string | null }) => {
           }
         />
       </p>
-      <div style={{ display: "flex ", margin: "12px 0px" }}>
-        <hr style={{ flex: 1, marginRight: 12, marginTop: 12 }} />
-        Or <hr style={{ flex: 1, marginLeft: 12, marginTop: 12 }} />
+      <div className="or">
+        <hr />
+        {t("Or")} <hr />
       </div>
       <p>
         {t(
