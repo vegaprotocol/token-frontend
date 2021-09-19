@@ -12,7 +12,7 @@ import { ADDRESSES, EthereumChainId } from "../../../config";
 import { formatNumber } from "../../../lib/format-number";
 import { BigNumber } from "../../../lib/bignumber";
 import { EtherscanLink } from "../../../components/etherscan-link";
-import { useAddAssetToWallet } from "../../../hooks/use-add-asset-to-wallet";
+import { AddTokenButton } from "../../../components/add-token-button";
 
 const AddTokenTableCell = ({
   chainId,
@@ -21,15 +21,16 @@ const AddTokenTableCell = ({
   decimals,
   image,
   text,
+  buttonImage,
 }: {
   chainId: EthereumChainId;
   address: string;
   symbol: string;
   decimals: number;
   image: string;
+  buttonImage: string;
   text: string;
 }) => {
-  const addToken = useAddAssetToWallet(address, symbol, decimals, image);
   return (
     <div style={{ display: "flex", justifyContent: "flex-end" }}>
       <div
@@ -42,18 +43,13 @@ const AddTokenTableCell = ({
       >
         <EtherscanLink chainId={chainId} address={address} text={text} />
       </div>
-      <button className="button-link" onClick={addToken}>
-        <img
-          style={{
-            width: 32,
-            height: 32,
-            border: "1px solid white",
-            borderRadius: 2,
-          }}
-          alt="token-logo"
-          src="https://s2.coinmarketcap.com/static/img/coins/64x64/10223.png"
-        />
-      </button>
+      <AddTokenButton
+        address={address}
+        symbol={symbol}
+        decimals={decimals}
+        image={image}
+        buttonImage={buttonImage}
+      />
     </div>
   );
 };
@@ -80,6 +76,7 @@ export const TokenDetails = ({
             symbol="$VEGA"
             image="https://s2.coinmarketcap.com/static/img/coins/64x64/10223.png"
             text={truncateMiddle(ADDRESSES.vegaTokenAddress)}
+            buttonImage="https://s2.coinmarketcap.com/static/img/coins/64x64/10223.png"
           />
         </td>
       </KeyValueTableRow>
@@ -93,6 +90,7 @@ export const TokenDetails = ({
             symbol="VEGA-Locked"
             image="https://s2.coinmarketcap.com/static/img/coins/64x64/10223.png"
             text={truncateMiddle(ADDRESSES.vestingAddress)}
+            buttonImage="https://s2.coinmarketcap.com/static/img/coins/64x64/10223.png"
           />
         </td>
       </KeyValueTableRow>

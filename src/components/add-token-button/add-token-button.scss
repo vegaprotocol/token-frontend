@@ -1,0 +1,10 @@
+@import "../../styles/colors";
+
+.add-token-button {
+  img {
+    width: 32px;
+    height: 32px;
+    border: 1px solid $white;
+    border-radius: 2px;
+  }
+}
