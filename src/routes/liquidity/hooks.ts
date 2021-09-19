@@ -24,11 +24,13 @@ export const useGetLiquidityBalances = (
           rewardPoolBalance,
           estimateAPY,
           awardContractAddress,
-        ] = await Promise.all<BigNumber, BigNumber, BigNumber, string>([
+          lpTokenAddress,
+        ] = await Promise.all<BigNumber, BigNumber, BigNumber, string, string>([
           await lpStaking.rewardPerEpoch(),
           await lpStaking.totalStaked(),
           await lpStaking.estimateAPY(),
           await lpStaking.awardContractAddress(),
+          await lpStaking.lpTokenAddress(),
         ]);
         let availableLPTokens = null;
         let stakedLPTokens = null;
@@ -57,6 +59,7 @@ export const useGetLiquidityBalances = (
             rewardPoolBalance,
             estimateAPY,
             awardContractAddress,
+            lpTokenAddress,
             availableLPTokens,
             stakedLPTokens: stakedLPTokens?.earningRewards,
             pendingStakedLPTokens: stakedLPTokens?.pending,

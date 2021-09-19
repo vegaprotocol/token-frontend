@@ -5,6 +5,7 @@ export interface LpContractData {
   rewardPerEpoch: BigNumber;
   rewardPoolBalance: BigNumber;
   awardContractAddress: string;
+  lpTokenAddress: string;
   estimateAPY: BigNumber;
   availableLPTokens: BigNumber | null;
   stakedLPTokens: BigNumber | null;
