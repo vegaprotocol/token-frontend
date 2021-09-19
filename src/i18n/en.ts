@@ -472,7 +472,7 @@ const en = {
   liquidityTokenApprove: "Approve",
   liquidityComingSoon: "Liquidity rewards coming soon",
   "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.":
-    "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.",
+    "Keep track of locked tokens in your wallet with the VEGA-Locked token by clicking the button below:",
   "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.":
     "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
   mainnetDisableHome:
