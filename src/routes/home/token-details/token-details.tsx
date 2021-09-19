@@ -21,14 +21,12 @@ const AddTokenTableCell = ({
   decimals,
   image,
   text,
-  buttonImage,
 }: {
   chainId: EthereumChainId;
   address: string;
   symbol: string;
   decimals: number;
   image: string;
-  buttonImage: string;
   text: string;
 }) => {
   return (
@@ -48,7 +46,6 @@ const AddTokenTableCell = ({
         symbol={symbol}
         decimals={decimals}
         image={image}
-        buttonImage={buttonImage}
       />
     </div>
   );
@@ -76,7 +73,6 @@ export const TokenDetails = ({
             symbol="$VEGA"
             image="https://s2.coinmarketcap.com/static/img/coins/64x64/10223.png"
             text={truncateMiddle(ADDRESSES.vegaTokenAddress)}
-            buttonImage="https://s2.coinmarketcap.com/static/img/coins/64x64/10223.png"
           />
         </td>
       </KeyValueTableRow>
@@ -90,7 +86,6 @@ export const TokenDetails = ({
             symbol="VEGA-Locked"
             image="https://s2.coinmarketcap.com/static/img/coins/64x64/10223.png"
             text={truncateMiddle(ADDRESSES.vestingAddress)}
-            buttonImage="https://s2.coinmarketcap.com/static/img/coins/64x64/10223.png"
           />
         </td>
       </KeyValueTableRow>

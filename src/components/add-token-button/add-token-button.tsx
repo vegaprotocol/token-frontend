@@ -6,18 +6,16 @@ export const AddTokenButton = ({
   symbol,
   decimals,
   image,
-  buttonImage,
 }: {
   address: string;
   symbol: string;
   decimals: number;
   image: string;
-  buttonImage: string;
 }) => {
   const addToken = useAddAssetToWallet(address, symbol, decimals, image);
   return (
     <button className="add-token-button button-link" onClick={addToken}>
-      <img alt="token-logo" src={buttonImage} />
+      <img alt="token-logo" src={image} />
     </button>
   );
 };
