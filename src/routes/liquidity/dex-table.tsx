@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { Routes } from "../router-config";
 import { LiquidityState, LiquidityAction } from "./liquidity-reducer";
 import { REWARDS_POOL_ADDRESSES } from "../../config";
+import { AddTokenButton } from "../../components/add-token-button";
 
 const BASE_SUSHI_URL = "https://analytics.sushi.com/pairs/";
 interface DexTokensSectionProps {
@@ -43,7 +44,28 @@ export const DexTokensSection = ({
 
   return (
     <section className="dex-tokens-section">
-      <h3>{name}</h3>
+      <h3>
+        <div style={{ display: "flex", justifyContent: "flex-start" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              marginRight: 6,
+            }}
+          >
+            {name}{" "}
+          </div>
+          <AddTokenButton
+            address={values.lpTokenAddress}
+            symbol="SLP"
+            decimals={18}
+            image={
+              "https://s2.coinmarketcap.com/static/img/coins/64x64/10223.png"
+            }
+          />
+        </div>
+      </h3>
       <table className="dex-tokens-section__table">
         <tbody>
           <tr>
