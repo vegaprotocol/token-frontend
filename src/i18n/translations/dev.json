@@ -306,7 +306,7 @@
   "withdrawLpCalloutTitle": "Unstaking during an epoch will forfeit any rewards due for that epoch",
   "withdrawLpCalloutBody": "If you want to add more liquidity tokens later you will need to withdraw first or use a different Ethereum key.",
   "withdrawAllLpSuccessCalloutTitle": "Your SLP tokens and rewards have been returned to your Ethereum address",
-  "withdrawVegaLpSuccessCalloutTitle": "Your SLP tokens and rewards have been returned to your Ethereum address",
+  "withdrawVegaLpSuccessCalloutTitle": "Your rewards have been returned to your Ethereum address",
   "Dissociate VEGA tokens": "Dissociate VEGA tokens",
   "Early Investors": "Early Investors",
   "Team": "Team",
