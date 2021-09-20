@@ -38,6 +38,7 @@ export const ContractDisassociate = ({
         maximum={maximum}
         amount={amount}
         setAmount={setAmount}
+        currency={t("VEGA Tokens")}
       />
     </>
   );

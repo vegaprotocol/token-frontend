@@ -40,6 +40,7 @@ export const WalletDisassociate = ({
         maximum={maximum}
         amount={amount}
         setAmount={setAmount}
+        currency={t("VEGA Tokens")}
       />
     </>
   );

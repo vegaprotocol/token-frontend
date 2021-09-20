@@ -159,6 +159,7 @@ export const LiquidityDepositPage = ({
             maximum={maximum}
             approveTxState={txApprovalState}
             approveTxDispatch={txApprovalDispatch}
+            currency={t("SLP Tokens")}
           />
         ) : (
           <p>{t("depositLpInsufficientBalance")}</p>
