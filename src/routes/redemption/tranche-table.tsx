@@ -125,52 +125,41 @@ export const TrancheTable = ({
           {t("Tranche")} {tranche.tranche_id}
         </span>
       </div>
-      <div className="tranche-table__row">
-        <span>{t("Starts unlocking")}</span>
-        <span>{format(tranche.tranche_start, "d MMM yyyy")}</span>
-      </div>
-      <div className="tranche-table__row">
-        <span>{t("Fully unlocked")}</span>
-        <span>{format(tranche.tranche_end, "d MMM yyyy")}</span>
-      </div>
-      <div className="vesting-table__progress-bar">
-        <div
-          className="vesting-table__progress-bar--locked"
-          style={{ flex: lockedPercentage.toNumber() }}
-        ></div>
-        <div
-          className="vesting-table__progress-bar--vested"
-          style={{ flex: vestedPercentage.toNumber() }}
-        ></div>
+      <table>
+        <tbody>
+          <tr>
+            <td>{t("Starts unlocking")}</td>
+            <td>{format(tranche.tranche_start, "d MMM yyyy")}</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>{t("Fully unlocked")}</td>
+            <td>{format(tranche.tranche_end, "d MMM yyyy")}</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <div className="tranche-table__progress">
+        <div className="tranche-table__progress-bar">
+          <div
+            className="tranche-table__progress-bar--locked"
+            style={{ flex: lockedPercentage.toNumber() }}
+          ></div>
+          <div
+            className="tranche-table__progress-bar--vested"
+            style={{ flex: vestedPercentage.toNumber() }}
+          ></div>
+        </div>
+        <div className="tranche-table__progress-contents">
+          <span>{t("Locked")}</span>
+          <span>{t("Unlocked")}</span>
+        </div>
+        <div className="tranche-table__progress-contents">
+          <span>{locked.toString()}</span>
+          <span>{vested.toString()}</span>
+        </div>
       </div>
 
-      <div>++++++</div>
-      <KeyValueTable numerical={true}>
-        <KeyValueTableRow data-testid="tranche-table-total">
-          <th>
-            <span className="tranche-table__label">
-              {t("Tranche")} {tranche.tranche_id}
-            </span>
-          </th>
-          <td>{total.toString()}</td>
-        </KeyValueTableRow>
-        <KeyValueTableRow data-testid="tranche-table-start">
-          <th>{t("Starts unlocking")}</th>
-          <td>{format(tranche.tranche_start, "dd/MM/yyyy")}</td>
-        </KeyValueTableRow>
-        <KeyValueTableRow data-testid="tranche-table-finish">
-          <th>{t("Fully unlocked")}</th>
-          <td>{format(tranche.tranche_end, "dd/MM/yyyy")}</td>
-        </KeyValueTableRow>
-        <KeyValueTableRow data-testid="tranche-table-locked">
-          <th>{t("Locked")}</th>
-          <td>{locked.toString()}</td>
-        </KeyValueTableRow>
-        <KeyValueTableRow data-testid="tranche-table-unlocked">
-          <th>{t("Unlocked")}</th>
-          <td>{vested.toString()}</td>
-        </KeyValueTableRow>
-      </KeyValueTable>
       <div className="tranche-table__footer" data-testid="tranche-table-footer">
         {message}
       </div>
