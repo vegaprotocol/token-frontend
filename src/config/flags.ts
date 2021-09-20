@@ -9,4 +9,7 @@ export const Flags = {
   DEX_STAKING_DISABLED: TRUTHY.includes(
     process.env.REACT_APP_DEX_STAKING_DISABLED!
   ),
+  GOVERNANCE_DISABLED: TRUTHY.includes(
+    process.env.REACT_APP_GOVERNANCE_DISABLED!
+  ),
 };
