@@ -20,6 +20,8 @@ import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 import { updateProposals } from "./update-proposals";
 import { Proposal } from "./proposal";
+import { Flags } from "../../config";
+import { TemplateDefault } from "../../components/page-templates/template-default";
 
 export const PROPOSALS_FRAGMENT = gql`
   fragment ProposalFields on Proposal {
@@ -150,7 +152,13 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
 
   const { t } = useTranslation();
 
-  if (loading) {
+  if (Flags.GOVERNANCE_DISABLED) {
+    return (
+      <TemplateDefault title={t("pageTitleGovernance")}>
+        <section>{t("Governance is coming soon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</section>
+      </TemplateDefault>
+    );
+  } else if (loading) {
     return (
       <SplashScreen>
         <SplashLoader />

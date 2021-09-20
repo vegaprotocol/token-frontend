@@ -19,6 +19,7 @@
   REACT_APP_CHAIN = "0x1"
   REACT_APP_MAINNET_DISABLED = '1'
   REACT_APP_DEX_STAKING_DISABLED = '1'
+  REACT_APP_GOVERNANCE_DISABLED = '1'
   REACT_APP_VEGA_URL = "https://n04.d.vega.xyz/query"
 
 # The translation flag for each of these is defined in the netlify UI so they can be independant based on the branch
@@ -26,10 +27,12 @@
   REACT_APP_CHAIN = "0x3"
   REACT_APP_MAINNET_DISABLED = '0'
   REACT_APP_DEX_STAKING_DISABLED = '0'
+  REACT_APP_GOVERNANCE_DISABLED = '0'
   REACT_APP_VEGA_URL = "https://n04.d.vega.xyz/query"
 
 [context.deploy-preview.environment]
   REACT_APP_CHAIN = "0x1"
   REACT_APP_MAINNET_DISABLED = '1'
   REACT_APP_DEX_STAKING_DISABLED = '1'
+  REACT_APP_GOVERNANCE_DISABLED = '1'
   REACT_APP_VEGA_URL = "https://n04.d.vega.xyz/query"
