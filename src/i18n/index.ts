@@ -2,17 +2,18 @@ import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
 import { Flags } from "../config";
-import en from "./translations/en.json";
-import fr from "./translations/fr.json";
-import ru from "./translations/ru.json";
-import zh from "./translations/zh.json";
-import zu from "./translations/zu.json";
+import dev from "./translations/dev.json";
+import en from "./translations/en-US.json";
+import fr from "./translations/fr-FR.json";
+import ru from "./translations/ru-RU.json";
+import zh from "./translations/zh-CN.json";
+import zu from "./translations/zu-ZA.json";
 
 const isInContextTranslation = Flags.IN_CONTEXT_TRANSLATION;
 
 const psuedoLanguage = {
   keys: zu,
-  locale: "zu",
+  locale: "zu-ZA",
 };
 
 i18n
@@ -21,7 +22,12 @@ i18n
   .init({
     // we init with resources
     resources: {
-      en: { translations: en },
+      en: {
+        translations: {
+          ...dev,
+          ...en,
+        },
+      },
       fr: { translations: fr },
       ru: { translations: ru },
       zh: { translations: zh },
