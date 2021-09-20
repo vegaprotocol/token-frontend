@@ -19,10 +19,12 @@ export const AmountInput = ({
   amount,
   setAmount,
   maximum,
+  currency,
 }: {
   amount: string;
   setAmount: React.Dispatch<any>;
   maximum: BigNumber;
+  currency: string;
 }) => {
   const { t } = useTranslation();
   return (
@@ -35,7 +37,7 @@ export const AmountInput = ({
         onChange={(e) => setAmount(e.target.value)}
         value={amount}
         intent={Intent.NONE}
-        rightElement={<Tag minimal={true}>{t("VEGA Tokens")}</Tag>}
+        rightElement={<Tag minimal={true}>{currency}</Tag>}
         autoComplete="off"
         type="number"
         max={maximum.toNumber()}
@@ -60,6 +62,7 @@ export const TokenInput = ({
   setAmount,
   perform,
   submitText,
+  currency,
 
   approveText,
   allowance,
@@ -72,9 +75,10 @@ export const TokenInput = ({
   amount: string;
   setAmount: React.Dispatch<any>;
   perform: () => void;
-  requireApproval?: boolean;
   submitText: string;
+  currency: string;
 
+  requireApproval?: boolean;
   maximum?: BigNumber;
   allowance?: BigNumber;
   approve?: () => void;
@@ -152,7 +156,12 @@ export const TokenInput = ({
   }
   return (
     <FormGroup label="" labelFor={inputName}>
-      <AmountInput amount={amount} setAmount={setAmount} maximum={maximum} />
+      <AmountInput
+        amount={amount}
+        setAmount={setAmount}
+        maximum={maximum}
+        currency={currency}
+      />
       {approveContent}
       <button
         data-testid="token-input-submit-button"

@@ -10,9 +10,9 @@
   to = "/index.html"
   status = 200
 
-# Thre are deploy sites: production/deploy previews and then the translations branch
-# so cannot use context.pruction.environmenet so using production env vars don't collide
-# transaltion uses develop as its' production branch so this will not apply to translations
+# Thre are deploy sites: production/pr previews as well as the translations branch
+# so cannot use context.production.environmenet as using production results in env vars colliding
+# (production = develop on translation, production = master on main)
 
 # This configures the master branch for production environement with the correct information
 [context.master.environment]

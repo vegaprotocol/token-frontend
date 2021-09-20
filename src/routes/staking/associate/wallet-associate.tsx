@@ -97,6 +97,7 @@ export const WalletAssociate = ({
           maximum={maximum}
           amount={amount}
           setAmount={setAmount}
+          currency={t("VEGA Tokens")}
         />
         <TransactionCallout
           state={approveState}
@@ -118,6 +119,7 @@ export const WalletAssociate = ({
           maximum={maximum}
           amount={amount}
           setAmount={setAmount}
+          currency={t("VEGA Tokens")}
         />
       </>
     );

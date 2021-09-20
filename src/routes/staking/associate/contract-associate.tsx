@@ -60,6 +60,7 @@ export const ContractAssociate = ({
           maximum={maximum}
           amount={amount}
           setAmount={setAmount}
+          currency={t("VEGA Tokens")}
         />
       </>
     );

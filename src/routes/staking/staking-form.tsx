@@ -187,6 +187,7 @@ export const StakingForm = ({
             amount={amount}
             setAmount={setAmount}
             maximum={maxDelegation}
+            currency={t("VEGA Tokens")}
           />
         </>
       )}
