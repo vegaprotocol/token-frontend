@@ -300,7 +300,7 @@
   "depositLpCalloutBody": "If you want to add more LP tokens later you will need to withdraw first or use a different Ethereum key.",
   "depositLpSuccessCalloutTitle": "You LP tokens have been deposited and will start earning rewards from the next epoch",
   "depositLpSuccessCalloutBody": "You will be rewarded for each full epoch your LP tokens are staked",
-  "withdrawLpWithdrawAllButton": "Withdraw all SLP and VEGA rewards",
+  "withdrawLpWithdrawAllButton": "Withdraw VEGA rewards and unstake SLP",
   "withdrawLpWithdrawVegaButton": "Withdraw VEGA rewards only",
   "withdrawLpNoneDeposited": "You have no SLP tokens deposited or rewards accumulated",
   "withdrawLpCalloutTitle": "Unstaking during an epoch will forfeit any rewards due for that epoch",
