@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import { useTranslation } from "react-i18next";
 import { BigNumber } from "../../lib/bignumber";
 
-import "./tranche-item.scss"
+import "./tranche-item.scss";
 
 export interface TrancheItemProps {
   tranche: {
@@ -14,25 +14,45 @@ export interface TrancheItemProps {
   locked: BigNumber;
   vested: BigNumber;
   total: BigNumber;
-  message: React.ReactNode;
+  message?: React.ReactNode;
+  secondaryHeader?: React.ReactNode;
 }
 
-export const TrancheItem = ({tranche, locked, vested, total, message}: TrancheItemProps) => {
+export const TrancheItem = ({
+  tranche,
+  locked,
+  vested,
+  total,
+  message,
+  secondaryHeader
+}: TrancheItemProps) => {
   const { t } = useTranslation();
-    const lockedPercentage = React.useMemo(() => {
-      return locked.div(total).times(100);
-    }, [total, locked]);
+  const lockedPercentage = React.useMemo(() => {
+    return locked.div(total).times(100);
+  }, [total, locked]);
 
-    const vestedPercentage = React.useMemo(() => {
-      return vested.div(total).times(100);
-    }, [total, vested]);
+  const vestedPercentage = React.useMemo(() => {
+    return vested.div(total).times(100);
+  }, [total, vested]);
 
+  console.log("locked", locked);
+  console.log("total", total);
+  console.log("lockedPercentage", lockedPercentage);
+  console.log("vestedPercentage", vestedPercentage);
+  console.log("vested", vested);
+  console.log("lockedPercentage.toNumber()", lockedPercentage.toNumber());
+  console.log("vestedPercentage.toNumber()", vestedPercentage.toNumber());
   return (
     <section data-testid="tranche-item" className="tranche-item">
       <div className="tranche-item__header">
         <span className="tranche-item__label">
           {t("Tranche")} {tranche.tranche_id}
         </span>
+        {
+          secondaryHeader ?
+          <span className="tranche-item__secondary-label">{secondaryHeader}</span>
+          : null
+        }
       </div>
       <table>
         <tbody>
@@ -52,11 +72,19 @@ export const TrancheItem = ({tranche, locked, vested, total, message}: TrancheIt
         <div className="tranche-item__progress-bar">
           <div
             className="tranche-item__progress-bar--locked"
-            style={{ flex: lockedPercentage.toNumber() }}
+            style={{
+              flex: isNaN(lockedPercentage.toNumber())
+                ? 0
+                : lockedPercentage.toNumber(),
+            }}
           ></div>
           <div
             className="tranche-item__progress-bar--vested"
-            style={{ flex: vestedPercentage.toNumber() }}
+            style={{
+              flex: isNaN(vestedPercentage.toNumber())
+                ? 0
+                : vestedPercentage.toNumber(),
+            }}
           ></div>
         </div>
         <div className="tranche-item__progress-contents">
@@ -74,4 +102,4 @@ export const TrancheItem = ({tranche, locked, vested, total, message}: TrancheIt
       </div>
     </section>
   );
-}
+};
