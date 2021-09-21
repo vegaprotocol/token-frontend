@@ -17,7 +17,12 @@
     }
   }
 
+  a {
+    max-width: 400px;
+  }
+
   table {
+    flex: 1;
     font-size: 14px;
   }
 

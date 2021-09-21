@@ -236,6 +236,8 @@ export const StakingStepSelectNode = () => {
       if (a.formattedStakedTotal.isLessThan(b.formattedStakedTotal)) return -1;
       if (a.formattedStakedTotal.isGreaterThan(b.formattedStakedTotal))
         return 1;
+      if (a.id < b.id) return -1;
+      if (a.id > b.id) return 1;
       return 0;
     });
 
