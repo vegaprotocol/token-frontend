@@ -14,7 +14,6 @@ import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 import { StakingContainer } from "./staking-container";
 import { BigNumber } from "../../lib/bignumber";
-import { addDecimal } from "../../lib/decimals";
 
 export const STAKE_NODE_QUERY = gql`
   query StakeNode($nodeId: String!, $partyId: ID!) {
@@ -51,6 +50,7 @@ export const STAKE_NODE_QUERY = gql`
         epoch
       }
       stake {
+        formattedCurrentStakeAvailable @client
         currentStakeAvailable
       }
     }
@@ -85,17 +85,6 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
     const amounts = data.party.delegations.map((d) => new BigNumber(d.amount));
     return BigNumber.sum.apply(null, [new BigNumber(0), ...amounts]);
   }, [data]);
-
-  const currentStakeAvailable = React.useMemo(
-    () =>
-      new BigNumber(
-        addDecimal(
-          new BigNumber(data?.party?.stake.currentStakeAvailable || "0"),
-          18
-        )
-      ),
-    [data?.party?.stake.currentStakeAvailable]
-  );
 
   if (error) {
     return (
@@ -138,7 +127,7 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
       <StakingForm
         pubkey={vegaKey.pub}
         nodeId={node}
-        availableStakeToAdd={currentStakeAvailable}
+        availableStakeToAdd={data.party.formattedCurrentStakeAvailable}
         availableStakeToRemove={currentDelegationAmount}
       />
     </>

@@ -4,3 +4,7 @@ extend type Proposal {
   "Generated name for the proposal"
   name: String!
 }
+
+extend type PartyStake {
+  formattedCurrentStakeAvailable: String!
+}

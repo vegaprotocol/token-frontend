@@ -10,6 +10,8 @@ import { onError } from "@apollo/client/link/error";
 import { RetryLink } from "@apollo/client/link/retry";
 import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
+import BigNumber from "bignumber.js";
+import { addDecimal } from "./decimals";
 
 export function createClient() {
   const base = process.env.REACT_APP_VEGA_URL;
@@ -30,6 +32,24 @@ export function createClient() {
       NodeData: {
         merge: (existing = {}, incoming) => {
           return { ...existing, ...incoming };
+        },
+      },
+      Party: {
+        fields: {
+          stake: {
+            read(data) {
+              if (data) {
+                return {
+                  ...data,
+                  formattedCurrentStakeAvailable: addDecimal(
+                    new BigNumber(data.currentStakeAvailable),
+                    18
+                  ).toString(),
+                };
+              }
+              return data;
+            },
+          },
         },
       },
     },
