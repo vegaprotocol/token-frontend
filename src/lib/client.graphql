@@ -12,3 +12,11 @@ extend type PartyStake {
 extend type Delegation {
   formattedAmount: String!
 }
+
+extend type NodeData {
+  formattedStakedTotal: String!
+}
+
+extend type Node {
+  formattedStakedTotal: String!
+}

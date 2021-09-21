@@ -42,6 +42,7 @@ export const STAKING_QUERY = gql`
         online
       }
       status
+      formattedStakedTotal @client
     }
     nodeData {
       stakedTotal
@@ -49,6 +50,7 @@ export const STAKING_QUERY = gql`
       inactiveNodes
       validatingNodes
       uptime
+      formattedStakedTotal @client
     }
   }
 `;
@@ -199,12 +201,15 @@ export const StakingStepSelectNode = () => {
     if (!data?.nodes) return [];
 
     const nodesWithPercentages = data.nodes.map((node) => {
-      const stakedTotal = new BigNumber(data?.nodeData?.stakedTotal || 0);
-      const stakedOnNode = new BigNumber(node.stakedTotal);
+      const formattedStakedTotal = new BigNumber(
+        data?.nodeData?.formattedStakedTotal || 0
+      );
+      const stakedOnNode = new BigNumber(node.formattedStakedTotal);
       const stakedTotalPercentage =
-        stakedTotal.isEqualTo(0) || stakedOnNode.isEqualTo(0)
+        formattedStakedTotal.isEqualTo(0) || stakedOnNode.isEqualTo(0)
           ? "-"
-          : stakedOnNode.dividedBy(stakedTotal).times(100).toString() + "%";
+          : stakedOnNode.dividedBy(formattedStakedTotal).times(100).toString() +
+            "%";
 
       const userStake = data.party?.delegations?.length
         ? data.party?.delegations
@@ -222,7 +227,7 @@ export const StakingStepSelectNode = () => {
 
       return {
         id: node.id,
-        stakedTotal,
+        formattedStakedTotal,
         stakedTotalPercentage,
         userStake,
         userStakePercentage,
@@ -230,8 +235,9 @@ export const StakingStepSelectNode = () => {
     });
 
     const sortedByStake = nodesWithPercentages.sort((a, b) => {
-      if (a.stakedTotal.isLessThan(b.stakedTotal)) return -1;
-      if (a.stakedTotal.isGreaterThan(b.stakedTotal)) return 1;
+      if (a.formattedStakedTotal.isLessThan(b.formattedStakedTotal)) return -1;
+      if (a.formattedStakedTotal.isGreaterThan(b.formattedStakedTotal))
+        return 1;
       return 0;
     });
 

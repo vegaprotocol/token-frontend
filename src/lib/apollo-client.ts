@@ -13,6 +13,7 @@ import { getMainDefinition } from "@apollo/client/utilities";
 import BigNumber from "bignumber.js";
 import { Delegations_party_delegations } from "../components/vega-wallet/__generated__/Delegations";
 import { Parties_parties_stake } from "../routes/governance/__generated__/Parties";
+import { Staking_nodeData } from "../routes/staking/__generated__/Staking";
 import { addDecimal } from "./decimals";
 
 export function createClient() {
@@ -26,17 +27,37 @@ export function createClient() {
   // Replace http with ws, preserving if its a secure connection eg. https => wss
   urlWS.protocol = urlWS.protocol.replace("http", "ws");
 
-  const formatStringToNumber = (amount: string) =>
+  const formatUintToNumber = (amount: string) =>
     addDecimal(new BigNumber(amount), 18).toString();
 
   const cache = new InMemoryCache({
     typePolicies: {
       Node: {
         keyFields: false,
+        fields: {
+          read(nodeData: Staking_nodeData) {
+            if (nodeData) {
+              return {
+                ...nodeData,
+                formattedStakedTotal: formatUintToNumber(nodeData.stakedTotal),
+              };
+            }
+          },
+        },
       },
       NodeData: {
         merge: (existing = {}, incoming) => {
           return { ...existing, ...incoming };
+        },
+        fields: {
+          read(nodeData: Staking_nodeData) {
+            if (nodeData) {
+              return {
+                ...nodeData,
+                formattedStakedTotal: formatUintToNumber(nodeData.stakedTotal),
+              };
+            }
+          },
         },
       },
       Party: {
@@ -54,7 +75,7 @@ export function createClient() {
                 }
                 const mappedDelegations = delegations.map((d) => ({
                   ...d,
-                  formattedAmount: formatStringToNumber(d.amount),
+                  formattedAmount: formatUintToNumber(d.amount),
                 }));
                 return mappedDelegations;
               }
@@ -66,7 +87,7 @@ export function createClient() {
               if (stake) {
                 return {
                   ...stake,
-                  formattedCurrentStakeAvailable: formatStringToNumber(
+                  formattedCurrentStakeAvailable: formatUintToNumber(
                     stake.currentStakeAvailable
                   ),
                 };
