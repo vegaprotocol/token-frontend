@@ -153,7 +153,10 @@ const VegaWalletConnected = ({
               res.data.party?.delegations?.filter((d) => {
                 return d.epoch.toString() === res.data.epoch.id;
               }) || [];
-            setDelegations(filter);
+            const sortedDelegations = [...filter].sort((a, b) => {
+              return new BigNumber(b.amount).minus(a.amount).toNumber();
+            });
+            setDelegations(sortedDelegations);
           })
           .catch((err: Error) => {
             // If query fails stop interval. Its almost certain that the query

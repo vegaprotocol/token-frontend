@@ -11,7 +11,6 @@ import { RetryLink } from "@apollo/client/link/retry";
 import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
 import BigNumber from "bignumber.js";
-import { Delegations_party_delegations } from "../components/vega-wallet/__generated__/Delegations";
 import { Parties_parties_stake } from "../routes/governance/__generated__/Parties";
 import { addDecimal } from "./decimals";
 
@@ -81,23 +80,9 @@ export function createClient() {
       Party: {
         fields: {
           delegations: {
-            read(
-              delegations:
-                | Delegations_party_delegations
-                | Delegations_party_delegations[]
-                | null
-            ) {
-              if (delegations) {
-                if (!Array.isArray(delegations)) {
-                  delegations = [delegations];
-                }
-                const mappedDelegations = delegations.map((d) => ({
-                  ...d,
-                  amount: formatUintToNumber(d.amount),
-                }));
-                return mappedDelegations;
-              }
-              return delegations;
+            // Only get full updates
+            merge(_, incoming: any[]) {
+              return incoming;
             },
           },
           stake: {
