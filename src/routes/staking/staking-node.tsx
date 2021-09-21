@@ -14,6 +14,7 @@ import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 import { StakingContainer } from "./staking-container";
 import { BigNumber } from "../../lib/bignumber";
+import { addDecimal } from "../../lib/decimals";
 
 export const STAKE_NODE_QUERY = gql`
   query StakeNode($nodeId: String!, $partyId: ID!) {
@@ -85,6 +86,17 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
     return BigNumber.sum.apply(null, [new BigNumber(0), ...amounts]);
   }, [data]);
 
+  const currentStakeAvailable = React.useMemo(
+    () =>
+      new BigNumber(
+        addDecimal(
+          new BigNumber(data?.party?.stake.currentStakeAvailable || "0"),
+          18
+        )
+      ),
+    [data?.party?.stake.currentStakeAvailable]
+  );
+
   if (error) {
     return (
       <Callout intent="error" title={t("Something went wrong")}>
@@ -126,9 +138,7 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
       <StakingForm
         pubkey={vegaKey.pub}
         nodeId={node}
-        availableStakeToAdd={
-          new BigNumber(data.party?.stake.currentStakeAvailable || "0")
-        }
+        availableStakeToAdd={currentStakeAvailable}
         availableStakeToRemove={currentDelegationAmount}
       />
     </>
