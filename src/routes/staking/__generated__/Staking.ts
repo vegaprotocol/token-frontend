@@ -11,7 +11,10 @@ import { NodeStatus } from "./../../../__generated__/globalTypes";
 
 export interface Staking_party_stake {
   __typename: "PartyStake";
-  formattedCurrentStakeAvailable: string;
+  /**
+   * The stake currently available for the party
+   */
+  currentStakeAvailable: string;
 }
 
 export interface Staking_party_delegations_node {

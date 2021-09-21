@@ -50,7 +50,6 @@ export const STAKE_NODE_QUERY = gql`
         epoch
       }
       stake {
-        formattedCurrentStakeAvailable @client
         currentStakeAvailable
       }
     }
@@ -128,7 +127,7 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
         pubkey={vegaKey.pub}
         nodeId={node}
         availableStakeToAdd={
-          new BigNumber(data?.party?.stake.formattedCurrentStakeAvailable || 0)
+          new BigNumber(data?.party?.stake.currentStakeAvailable || 0)
         }
         availableStakeToRemove={currentDelegationAmount}
       />

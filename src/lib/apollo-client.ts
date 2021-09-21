@@ -93,7 +93,7 @@ export function createClient() {
                 }
                 const mappedDelegations = delegations.map((d) => ({
                   ...d,
-                  formattedAmount: formatUintToNumber(d.amount),
+                  amount: formatUintToNumber(d.amount),
                 }));
                 return mappedDelegations;
               }
@@ -105,7 +105,7 @@ export function createClient() {
               if (stake) {
                 return {
                   ...stake,
-                  formattedCurrentStakeAvailable: formatUintToNumber(
+                  currentStakeAvailable: formatUintToNumber(
                     stake.currentStakeAvailable
                   ),
                 };

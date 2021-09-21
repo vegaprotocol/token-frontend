@@ -4,19 +4,3 @@ extend type Proposal {
   "Generated name for the proposal"
   name: String!
 }
-
-extend type PartyStake {
-  formattedCurrentStakeAvailable: String!
-}
-
-extend type Delegation {
-  formattedAmount: String!
-}
-
-extend type NodeData {
-  formattedStakedTotal: String!
-}
-
-extend type Node {
-  formattedStakedTotal: String!
-}

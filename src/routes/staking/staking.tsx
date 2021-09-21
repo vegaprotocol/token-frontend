@@ -20,7 +20,6 @@ export const STAKING_QUERY = gql`
   query Staking($partyId: ID!) {
     party(id: $partyId) {
       stake {
-        formattedCurrentStakeAvailable @client
         currentStakeAvailable
       }
       id
@@ -89,9 +88,7 @@ export const Staking = () => {
         <BulletHeader tag="h2">{t("stakingStep2")}</BulletHeader>
         <StakingStepAssociate
           associated={
-            new BigNumber(
-              data?.party?.stake.formattedCurrentStakeAvailable || "0"
-            )
+            new BigNumber(data?.party?.stake.currentStakeAvailable || "0")
           }
         />
       </section>

@@ -36,7 +36,6 @@ const DELEGATIONS_QUERY = gql`
     party(id: $partyId) {
       delegations {
         amount
-        formattedAmount @client
         node {
           id
         }
@@ -218,7 +217,7 @@ const VegaWalletConnected = ({
         <WalletCardRow
           key={d.node.id}
           label={truncateMiddle(d.node.id)}
-          value={new BigNumber(d.formattedAmount)}
+          value={new BigNumber(d.amount)}
           valueSuffix={t("VEGA")}
         />
       ))}

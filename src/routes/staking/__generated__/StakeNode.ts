@@ -109,7 +109,6 @@ export interface StakeNode_party_delegations {
 
 export interface StakeNode_party_stake {
   __typename: "PartyStake";
-  formattedCurrentStakeAvailable: string;
   /**
    * The stake currently available for the party
    */
