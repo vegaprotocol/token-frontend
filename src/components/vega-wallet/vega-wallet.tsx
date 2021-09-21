@@ -216,7 +216,7 @@ const VegaWalletConnected = ({
     <>
       {unstaked ? (
         <WalletCardRow
-          label={t("Unstaked")}
+          label={t("unstaked")}
           value={unstaked}
           valueSuffix={t("VEGA")}
         />
