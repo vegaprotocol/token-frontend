@@ -160,17 +160,19 @@ export const StakingStepAssociate = () => {
 
   if (associated.isGreaterThan(0)) {
     return (
-      <Callout intent="success" icon={<Tick />}>
+      <Callout
+        intent="success"
+        icon={<Tick />}
+        title={t("stakingHasAssociated", { tokens: associated.toString() })}
+      >
         <p>
-          <Trans
-            i18nKey="stakingHasAssociated"
-            values={{ tokens: associated.toString() }}
-            components={{
-              associateLink: <Link to="/staking/associate" />,
-              disassociateLink: <Link to="/staking/disassociate" />,
-            }}
-          />
+          <Link to="/staking/associate">
+            <button className="fill">{t("stakingAssociateMoreButton")}</button>
+          </Link>
         </p>
+        <Link to="/staking/disassociate">
+          <button className="fill">{t("stakingDisassociateButton")}</button>
+        </Link>
       </Callout>
     );
   }
