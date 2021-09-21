@@ -40,6 +40,7 @@ const nodes: Staking_nodes[] = [
     stakedByOperator: "100",
     stakedByDelegates: "100",
     stakedTotal: "200",
+    formattedStakedTotal: "0.00000000000000002",
     pendingStake: "100",
     epochData: {
       __typename: "EpochData",
@@ -58,6 +59,7 @@ const nodes: Staking_nodes[] = [
     stakedByOperator: "100",
     stakedByDelegates: "100",
     stakedTotal: "200",
+    formattedStakedTotal: "0.00000000000000002",
     pendingStake: "100",
     epochData: {
       __typename: "EpochData",
@@ -72,6 +74,7 @@ const nodes: Staking_nodes[] = [
 const nodeData: Staking_nodeData = {
   __typename: "NodeData",
   stakedTotal: "500",
+  formattedStakedTotal: "0.00000000000000005",
   totalNodes: 5,
   inactiveNodes: 3,
   validatingNodes: 1,
