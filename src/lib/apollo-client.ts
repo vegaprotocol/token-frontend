@@ -44,9 +44,24 @@ export function createClient() {
       Node: {
         keyFields: false,
         fields: {
+          pendingStake: {
+            read(amount) {
+              return amount ? formatUintToNumber(amount) : "0";
+            },
+          },
+          stakedByOperator: {
+            read(amount) {
+              return amount ? formatUintToNumber(amount) : "0";
+            },
+          },
+          stakedByDelegates: {
+            read(amount) {
+              return amount ? formatUintToNumber(amount) : "0";
+            },
+          },
           stakedTotal: {
-            read(stakedTotal) {
-              return stakedTotal ? formatUintToNumber(stakedTotal) : "0";
+            read(amount) {
+              return amount ? formatUintToNumber(amount) : "0";
             },
           },
         },
@@ -57,8 +72,8 @@ export function createClient() {
         },
         fields: {
           stakedTotal: {
-            read(stakedTotal) {
-              return stakedTotal ? formatUintToNumber(stakedTotal) : "0";
+            read(amount) {
+              return amount ? formatUintToNumber(amount) : "0";
             },
           },
         },
