@@ -91,14 +91,6 @@ export const WalletAssociate = ({
     pageContent = (
       <>
         <AssociateInfo pubKey={vegaKey.pub} />
-        <TokenInput
-          submitText={t("Associate VEGA Tokens with key")}
-          perform={() => undefined}
-          maximum={maximum}
-          amount={amount}
-          setAmount={setAmount}
-          currency={t("VEGA Tokens")}
-        />
         <TransactionCallout
           state={approveState}
           reset={() =>
@@ -114,8 +106,9 @@ export const WalletAssociate = ({
         <TokenInput
           approveText={t("Approve VEGA tokens for staking on Vega")}
           submitText={t("Associate VEGA Tokens with key")}
+          allowance={allowance}
           approve={approve}
-          perform={() => undefined}
+          perform={perform}
           maximum={maximum}
           amount={amount}
           setAmount={setAmount}
