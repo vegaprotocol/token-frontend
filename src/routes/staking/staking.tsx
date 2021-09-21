@@ -285,7 +285,11 @@ export const StakingStepSelectNode = ({
       };
     });
     const sortedByStake = nodesWithPercentages.sort((a, b) => {
-      return b.stakedOnNode.minus(a.stakedOnNode).toNumber();
+      if (a.stakedOnNode.isLessThan(b.stakedOnNode)) return 1;
+      if (a.stakedOnNode.isGreaterThan(b.stakedOnNode)) return -1;
+      if (a.id < b.id) return 1;
+      if (a.id > b.id) return -1;
+      return 0;
     });
 
     return sortedByStake;
