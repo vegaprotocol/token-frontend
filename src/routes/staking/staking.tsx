@@ -112,7 +112,7 @@ export const StakingStepConnectWallets = () => {
 
   if (currVegaKey && ethAddress) {
     return (
-      <Callout intent="success" icon={<Tick />}>
+      <Callout intent="success" icon={<Tick />} title={"Connected"}>
         <p>
           {t("Connected Ethereum address")} {truncateMiddle(ethAddress)}
         </p>
@@ -139,7 +139,11 @@ export const StakingStepConnectWallets = () => {
         />
       </p>
       {ethAddress ? (
-        <p>Ethereum wallet connected: {truncateMiddle(ethAddress)}</p>
+        <Callout
+          icon={<Tick />}
+          intent="success"
+          title={`Ethereum wallet connected: {truncateMiddle(ethAddress)}`}
+        />
       ) : (
         <p>
           <button
@@ -157,7 +161,11 @@ export const StakingStepConnectWallets = () => {
         </p>
       )}
       {currVegaKey ? (
-        <p>Vega wallet connected: {currVegaKey.pubShort}</p>
+        <Callout
+          icon={<Tick />}
+          intent="success"
+          title={`Vega wallet connected: ${currVegaKey.pubShort}`}
+        />
       ) : (
         <p>
           <button
