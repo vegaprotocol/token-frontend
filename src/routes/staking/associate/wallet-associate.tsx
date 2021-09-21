@@ -10,11 +10,7 @@ import { AssociateInfo } from "./associate-info";
 import React from "react";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { useVegaToken } from "../../../hooks/use-vega-token";
-import {
-  TransactionActionType,
-  TxState,
-} from "../../../hooks/transaction-reducer";
-import { TransactionCallout } from "../../../components/transaction-callout";
+import { TxState } from "../../../hooks/transaction-reducer";
 import { TokenInput } from "../../../components/token-input";
 import { ADDRESSES } from "../../../config";
 
@@ -84,21 +80,6 @@ export const WalletAssociate = ({
         )}
       </div>
     );
-  } else if (
-    approveState.txState !== TxState.Default &&
-    approveState.txState !== TxState.Complete
-  ) {
-    pageContent = (
-      <>
-        <AssociateInfo pubKey={vegaKey.pub} />
-        <TransactionCallout
-          state={approveState}
-          reset={() =>
-            approveDispatch({ type: TransactionActionType.TX_RESET })
-          }
-        />
-      </>
-    );
   } else {
     pageContent = (
       <>
@@ -106,12 +87,15 @@ export const WalletAssociate = ({
         <TokenInput
           approveText={t("Approve VEGA tokens for staking on Vega")}
           submitText={t("Associate VEGA Tokens with key")}
+          requireApproval={true}
           allowance={allowance}
           approve={approve}
           perform={perform}
-          maximum={maximum}
           amount={amount}
           setAmount={setAmount}
+          maximum={maximum}
+          approveTxState={approveState}
+          approveTxDispatch={approveDispatch}
           currency={t("VEGA Tokens")}
         />
       </>
