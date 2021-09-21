@@ -127,7 +127,9 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
       <StakingForm
         pubkey={vegaKey.pub}
         nodeId={node}
-        availableStakeToAdd={data.party.formattedCurrentStakeAvailable}
+        availableStakeToAdd={
+          new BigNumber(data?.party?.stake.formattedCurrentStakeAvailable || 0)
+        }
         availableStakeToRemove={currentDelegationAmount}
       />
     </>
