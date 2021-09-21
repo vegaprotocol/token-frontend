@@ -24,7 +24,7 @@ export const TrancheItem = ({
   vested,
   total,
   message,
-  secondaryHeader
+  secondaryHeader,
 }: TrancheItemProps) => {
   const { t } = useTranslation();
   const lockedPercentage = React.useMemo(() => {
@@ -35,24 +35,17 @@ export const TrancheItem = ({
     return vested.div(total).times(100);
   }, [total, vested]);
 
-  console.log("locked", locked);
-  console.log("total", total);
-  console.log("lockedPercentage", lockedPercentage);
-  console.log("vestedPercentage", vestedPercentage);
-  console.log("vested", vested);
-  console.log("lockedPercentage.toNumber()", lockedPercentage.toNumber());
-  console.log("vestedPercentage.toNumber()", vestedPercentage.toNumber());
   return (
     <section data-testid="tranche-item" className="tranche-item">
       <div className="tranche-item__header">
         <span className="tranche-item__label">
           {t("Tranche")} {tranche.tranche_id}
         </span>
-        {
-          secondaryHeader ?
-          <span className="tranche-item__secondary-label">{secondaryHeader}</span>
-          : null
-        }
+        {secondaryHeader ? (
+          <span className="tranche-item__secondary-label">
+            {secondaryHeader}
+          </span>
+        ) : null}
       </div>
       <table>
         <tbody>
@@ -73,17 +66,21 @@ export const TrancheItem = ({
           <div
             className="tranche-item__progress-bar--locked"
             style={{
-              flex: isNaN(lockedPercentage.toNumber())
-                ? 0
-                : lockedPercentage.toNumber(),
+              flex:
+                isNaN(lockedPercentage.toNumber()) ||
+                !isFinite(lockedPercentage.toNumber())
+                  ? 0
+                  : lockedPercentage.toNumber(),
             }}
           ></div>
           <div
             className="tranche-item__progress-bar--vested"
             style={{
-              flex: isNaN(vestedPercentage.toNumber())
-                ? 0
-                : vestedPercentage.toNumber(),
+              flex:
+                isNaN(vestedPercentage.toNumber()) ||
+                !isFinite(vestedPercentage.toNumber())
+                  ? 0
+                  : vestedPercentage.toNumber(),
             }}
           ></div>
         </div>
