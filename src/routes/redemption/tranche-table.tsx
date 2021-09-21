@@ -7,8 +7,8 @@ import {
   KeyValueTableRow,
 } from "../../components/key-value-table";
 import { BigNumber } from "../../lib/bignumber";
-import { format } from "date-fns";
 import { Link } from "react-router-dom";
+import { TrancheItem } from "./tranche-item";
 
 export interface TrancheTableProps {
   tranche: {
@@ -77,14 +77,6 @@ export const TrancheTable = ({
   const reduceAmount = vested.minus(BigNumber.max(unstaked, 0));
   const redeemable = reduceAmount.isLessThanOrEqualTo(0);
 
-  const lockedPercentage = React.useMemo(() => {
-    return locked.div(total).times(100);
-  }, [total, locked]);
-
-  const vestedPercentage = React.useMemo(() => {
-    return vested.div(total).times(100);
-  }, [total, vested]);
-
   let message = null;
   if (trancheFullyLocked || vested.isEqualTo(0)) {
     message = (
@@ -119,50 +111,12 @@ export const TrancheTable = ({
     );
   }
   return (
-    <section data-testid="tranche-table" className="tranche-table">
-      <div className="tranche-table__header">
-        <span className="tranche-table__label">
-          {t("Tranche")} {tranche.tranche_id}
-        </span>
-      </div>
-      <table>
-        <tbody>
-          <tr>
-            <td>{t("Starts unlocking")}</td>
-            <td>{format(tranche.tranche_start, "d MMM yyyy")}</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>{t("Fully unlocked")}</td>
-            <td>{format(tranche.tranche_end, "d MMM yyyy")}</td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-      <div className="tranche-table__progress">
-        <div className="tranche-table__progress-bar">
-          <div
-            className="tranche-table__progress-bar--locked"
-            style={{ flex: lockedPercentage.toNumber() }}
-          ></div>
-          <div
-            className="tranche-table__progress-bar--vested"
-            style={{ flex: vestedPercentage.toNumber() }}
-          ></div>
-        </div>
-        <div className="tranche-table__progress-contents">
-          <span>{t("Locked")}</span>
-          <span>{t("Unlocked")}</span>
-        </div>
-        <div className="tranche-table__progress-contents">
-          <span>{locked.toString()}</span>
-          <span>{vested.toString()}</span>
-        </div>
-      </div>
-
-      <div className="tranche-table__footer" data-testid="tranche-table-footer">
-        {message}
-      </div>
-    </section>
+    <TrancheItem
+      tranche={tranche}
+      locked={locked}
+      vested={vested}
+      total={total}
+      message={message}
+    />
   );
 };
