@@ -21,7 +21,7 @@
     text-transform: uppercase;
     background-color: $white;
     color: $black;
-    padding: 6px;
+    padding: 5px;
   }
 
   &__secondary-label {
@@ -32,6 +32,7 @@
     border-style: solid;
     margin-left: 5px;
     padding: 3px;
+    border-width: 2px;
   }
 
   &__header {
