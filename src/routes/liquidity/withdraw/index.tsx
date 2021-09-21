@@ -42,12 +42,10 @@ export const LiquidityWithdrawPage = ({
     dispatch: txUnstakeDispatch,
     perform: txUnstakePerform,
   } = useTransaction(() => lpStaking.unstake(ethAddress));
-  const {
-    state: txWithdrawState,
-    dispatch: txWithdrawDispatch,
-    perform: txWithdrawPerform,
-  } = useTransaction(() => lpStaking.withdrawRewards(ethAddress));
-
+  const transactionInProgress = React.useMemo(
+    () => txUnstakeState.txState !== TxState.Default,
+    [txUnstakeState.txState]
+  );
   const values = React.useMemo(
     () => state.contractData[lpTokenAddress],
     [lpTokenAddress, state.contractData]
@@ -72,27 +70,13 @@ export const LiquidityWithdrawPage = ({
     }
   }, [getBalances, lpStakingEth, lpStakingUSDC, txUnstakeState.txState]);
 
-  const hasLpTokens = React.useMemo(() => {
-    return !(
-      values.connectedWalletData?.totalStaked &&
-      values.connectedWalletData?.totalStaked.isEqualTo(0)
-    );
-  }, [values.connectedWalletData?.totalStaked]);
-
-  const hasRewardsTokens = React.useMemo(() => {
-    return !(
-      values.connectedWalletData?.accumulatedRewards &&
-      values.connectedWalletData?.accumulatedRewards.isEqualTo(0)
-    );
-  }, [values.connectedWalletData?.accumulatedRewards]);
-
-  if (txUnstakeState.txState !== TxState.Default) {
+  if (transactionInProgress) {
     return (
       <>
         <p>{t("lpTokenWithdrawSubmit")}</p>
         <TransactionCallout
           state={txUnstakeState}
-          completeHeading={t("withdrawAllLpSuccessCalloutTitle")}
+          completeHeading={t("withdrawLpSuccessCalloutTitle")}
           completeFooter={
             <Link to={Routes.LIQUIDITY}>
               <button className="fill">{t("lpTxSuccessButton")}</button>
@@ -104,25 +88,10 @@ export const LiquidityWithdrawPage = ({
         />
       </>
     );
-  } else if (txWithdrawState.txState !== TxState.Default) {
-    return (
-      <>
-        <p>{t("lpTokenWithdrawSubmit")}</p>
-        <TransactionCallout
-          state={txWithdrawState}
-          completeHeading={t("withdrawVegaLpSuccessCalloutTitle")}
-          completeFooter={
-            <Link to={Routes.LIQUIDITY}>
-              <button className="fill">{t("lpTxSuccessButton")}</button>
-            </Link>
-          }
-          reset={() =>
-            txWithdrawDispatch({ type: TransactionActionType.TX_RESET })
-          }
-        />
-      </>
-    );
-  } else if (!hasLpTokens && !hasRewardsTokens) {
+  } else if (
+    !values.connectedWalletData?.totalStaked ||
+    values.connectedWalletData?.totalStaked.isEqualTo(0)
+  ) {
     return <section>{t("withdrawLpNoneDeposited")}</section>;
   }
 
@@ -144,35 +113,21 @@ export const LiquidityWithdrawPage = ({
             <KeyValueTableRow>
               <th>{t("liquidityTokenWithdrawBalance")}</th>
               <td>
-                {values.connectedWalletData?.totalStaked.toString() || 0}&nbsp;
+                {values.connectedWalletData.totalStaked.toString()}&nbsp;
                 {t("SLP")}
               </td>
             </KeyValueTableRow>
             <KeyValueTableRow>
               <th>{t("liquidityTokenWithdrawRewards")}</th>
               <td>
-                {values.connectedWalletData?.accumulatedRewards.toString() || 0}
-                &nbsp;
+                {values.connectedWalletData.accumulatedRewards.toString()}&nbsp;
                 {t("VEGA")}
               </td>
             </KeyValueTableRow>
           </KeyValueTable>
           <p className="dex-tokens-withdraw__submit">
-            <button
-              disabled={!hasLpTokens}
-              className="fill"
-              onClick={txUnstakePerform}
-            >
-              {t("withdrawLpWithdrawAllButton")}
-            </button>
-          </p>
-          <p className="dex-tokens-withdraw__submit">
-            <button
-              disabled={!hasRewardsTokens}
-              className="fill"
-              onClick={txWithdrawPerform}
-            >
-              {t("withdrawLpWithdrawVegaButton")}
+            <button className="fill" onClick={txUnstakePerform}>
+              {t("withdrawLpWithdrawButton")}
             </button>
           </p>
         </section>

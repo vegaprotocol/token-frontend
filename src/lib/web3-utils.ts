@@ -213,7 +213,6 @@ export interface IVegaLPStaking {
   totalUnstaked(account: string): Promise<BigNumber>;
   stake(amount: string, account: string): Promise<WrappedPromiEvent<boolean>>;
   unstake(account: string): WrappedPromiEvent<void>;
-  withdrawRewards(address: string): WrappedPromiEvent<void>;
   allowance(account: string): Promise<BigNumber>;
   approve(
     address: string,
