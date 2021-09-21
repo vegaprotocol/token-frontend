@@ -146,6 +146,7 @@ const ConnectedRows = ({
     availableLPTokens &&
     availableLPTokens.isGreaterThan(0);
   const hasDeposited = totalStaked.isGreaterThan(0);
+  const hasRewards = accumulatedRewards.isGreaterThan(0);
   return (
     <>
       <KeyValueTableRow>
@@ -190,7 +191,7 @@ const ConnectedRows = ({
           <div>
             {accumulatedRewards.toString()} {t("VEGA")}
           </div>
-          {hasDeposited && (
+          {(hasDeposited || hasRewards) && (
             <div style={{ marginTop: 3 }}>
               <Link to={`${Routes.LIQUIDITY}/${lpContractAddress}/withdraw`}>
                 <button className="button-secondary">
