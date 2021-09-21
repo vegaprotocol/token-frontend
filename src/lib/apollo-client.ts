@@ -13,7 +13,6 @@ import { getMainDefinition } from "@apollo/client/utilities";
 import BigNumber from "bignumber.js";
 import { Delegations_party_delegations } from "../components/vega-wallet/__generated__/Delegations";
 import { Parties_parties_stake } from "../routes/governance/__generated__/Parties";
-import { Staking_nodeData } from "../routes/staking/__generated__/Staking";
 import { addDecimal } from "./decimals";
 
 export function createClient() {
@@ -32,16 +31,23 @@ export function createClient() {
 
   const cache = new InMemoryCache({
     typePolicies: {
+      Delegation: {
+        keyFields: false,
+        fields: {
+          amount: {
+            read(amount) {
+              return amount ? formatUintToNumber(amount) : "0";
+            },
+          },
+        },
+      },
       Node: {
         keyFields: false,
         fields: {
-          read(nodeData: Staking_nodeData) {
-            if (nodeData) {
-              return {
-                ...nodeData,
-                formattedStakedTotal: formatUintToNumber(nodeData.stakedTotal),
-              };
-            }
+          stakedTotal: {
+            read(stakedTotal) {
+              return stakedTotal ? formatUintToNumber(stakedTotal) : "0";
+            },
           },
         },
       },
@@ -50,13 +56,10 @@ export function createClient() {
           return { ...existing, ...incoming };
         },
         fields: {
-          read(nodeData: Staking_nodeData) {
-            if (nodeData) {
-              return {
-                ...nodeData,
-                formattedStakedTotal: formatUintToNumber(nodeData.stakedTotal),
-              };
-            }
+          stakedTotal: {
+            read(stakedTotal) {
+              return stakedTotal ? formatUintToNumber(stakedTotal) : "0";
+            },
           },
         },
       },

@@ -42,7 +42,6 @@ export const STAKING_QUERY = gql`
         online
       }
       status
-      formattedStakedTotal @client
     }
     nodeData {
       stakedTotal
@@ -50,7 +49,6 @@ export const STAKING_QUERY = gql`
       inactiveNodes
       validatingNodes
       uptime
-      formattedStakedTotal @client
     }
   }
 `;
@@ -202,9 +200,9 @@ export const StakingStepSelectNode = () => {
 
     const nodesWithPercentages = data.nodes.map((node) => {
       const formattedStakedTotal = new BigNumber(
-        data?.nodeData?.formattedStakedTotal || 0
+        data?.nodeData?.stakedTotal || 0
       );
-      const stakedOnNode = new BigNumber(node.formattedStakedTotal);
+      const stakedOnNode = new BigNumber(node.stakedTotal);
       const stakedTotalPercentage =
         formattedStakedTotal.isEqualTo(0) || stakedOnNode.isEqualTo(0)
           ? "-"

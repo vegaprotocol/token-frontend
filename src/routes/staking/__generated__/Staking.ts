@@ -90,7 +90,6 @@ export interface Staking_nodes {
   pendingStake: string;
   epochData: Staking_nodes_epochData | null;
   status: NodeStatus;
-  formattedStakedTotal: string;
 }
 
 export interface Staking_nodeData {
@@ -115,7 +114,6 @@ export interface Staking_nodeData {
    * Total uptime for all epochs across all nodes. Or specify a number of epochs
    */
   uptime: number;
-  formattedStakedTotal: string;
 }
 
 export interface Staking {
