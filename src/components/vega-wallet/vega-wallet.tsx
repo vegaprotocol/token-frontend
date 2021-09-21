@@ -27,7 +27,6 @@ import { useVegaUser } from "../../hooks/use-vega-user";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { BigNumber } from "../../lib/bignumber";
 import { truncateMiddle } from "../../lib/truncate-middle";
-import { addDecimal } from "../../lib/decimals";
 
 const DELEGATIONS_QUERY = gql`
   query Delegations($partyId: ID!) {
@@ -37,6 +36,7 @@ const DELEGATIONS_QUERY = gql`
     party(id: $partyId) {
       delegations {
         amount
+        formattedAmount @client
         node {
           id
         }
@@ -154,11 +154,7 @@ const VegaWalletConnected = ({
               res.data.party?.delegations?.filter((d) => {
                 return d.epoch.toString() === res.data.epoch.id;
               }) || [];
-            const mappedDelegations = filter.map((d) => ({
-              ...d,
-              amount: addDecimal(new BigNumber(d.amount), 18).toString(),
-            }));
-            setDelegations(mappedDelegations);
+            setDelegations(filter);
           })
           .catch((err: Error) => {
             // If query fails stop interval. Its almost certain that the query
@@ -170,7 +166,6 @@ const VegaWalletConnected = ({
 
     return () => clearInterval(interval);
   }, [client, currVegaKey?.pub]);
-
   const handleDisconnect = React.useCallback(
     async function () {
       try {
@@ -223,7 +218,7 @@ const VegaWalletConnected = ({
         <WalletCardRow
           key={d.node.id}
           label={truncateMiddle(d.node.id)}
-          value={new BigNumber(d.amount)}
+          value={new BigNumber(d.formattedAmount)}
           valueSuffix={t("VEGA")}
         />
       ))}

@@ -11,6 +11,8 @@ import { RetryLink } from "@apollo/client/link/retry";
 import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
 import BigNumber from "bignumber.js";
+import { Delegations_party_delegations } from "../components/vega-wallet/__generated__/Delegations";
+import { Parties_parties_stake } from "../routes/governance/__generated__/Parties";
 import { addDecimal } from "./decimals";
 
 export function createClient() {
@@ -24,6 +26,9 @@ export function createClient() {
   // Replace http with ws, preserving if its a secure connection eg. https => wss
   urlWS.protocol = urlWS.protocol.replace("http", "ws");
 
+  const formatStringToNumber = (amount: string) =>
+    addDecimal(new BigNumber(amount), 18).toString();
+
   const cache = new InMemoryCache({
     typePolicies: {
       Node: {
@@ -36,18 +41,37 @@ export function createClient() {
       },
       Party: {
         fields: {
+          delegations: {
+            read(
+              delegations:
+                | Delegations_party_delegations
+                | Delegations_party_delegations[]
+                | null
+            ) {
+              if (delegations) {
+                if (!Array.isArray(delegations)) {
+                  delegations = [delegations];
+                }
+                const mappedDelegations = delegations.map((d) => ({
+                  ...d,
+                  formattedAmount: formatStringToNumber(d.amount),
+                }));
+                return mappedDelegations;
+              }
+              return delegations;
+            },
+          },
           stake: {
-            read(data) {
-              if (data) {
+            read(stake: Parties_parties_stake) {
+              if (stake) {
                 return {
-                  ...data,
-                  formattedCurrentStakeAvailable: addDecimal(
-                    new BigNumber(data.currentStakeAvailable),
-                    18
-                  ).toString(),
+                  ...stake,
+                  formattedCurrentStakeAvailable: formatStringToNumber(
+                    stake.currentStakeAvailable
+                  ),
                 };
               }
-              return data;
+              return stake;
             },
           },
         },

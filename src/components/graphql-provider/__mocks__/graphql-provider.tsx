@@ -23,10 +23,7 @@ import {
   PROPOSAL_SUBSCRIPTION,
 } from "../../../routes/governance";
 import { ProposalsSub } from "../../../routes/governance/__generated__/proposalsSub";
-import {
-  Proposals,
-  Proposals_proposals_terms_change_UpdateNetworkParameter,
-} from "../../../routes/governance/__generated__/proposals";
+import { Proposals } from "../../../routes/governance/__generated__/proposals";
 import { Parties } from "../../../routes/governance/__generated__/Parties";
 import { PARTIES_QUERY } from "../../../routes/governance/vote-details";
 import { generateProposal } from "../../../routes/governance/test-helpers/generate-proposals";
@@ -132,6 +129,7 @@ const MOCK_STAKING_NODE_QUERY: MockedResponse<StakeNode> = {
         stake: {
           __typename: "PartyStake",
           currentStakeAvailable: "100",
+          formattedCurrentStakeAvailable: "0.00000000000000001",
         },
         delegations: [
           {
@@ -200,7 +198,7 @@ const notVoted = generateProposal({
 
 const noTokens = generateProposal({
   // @ts-ignore
-  terms: { change: { networkParameter: { key: "no.tokens" } } }
+  terms: { change: { networkParameter: { key: "no.tokens" } } },
 });
 
 const votedAgainst = generateProposal({
@@ -208,17 +206,21 @@ const votedAgainst = generateProposal({
   terms: { change: { networkParameter: { key: "voted.against" } } },
   // @ts-ignore
   party: { id: "123" },
-  votes: {no: {votes: [
-    {
-      // @ts-ignore
-      value: VoteValue.No,
-      // @ts-ignore
-      party: {
-        id: "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527",
-      },
-      datetime: faker.date.past().toISOString(),
-    }
-  ]}}
+  votes: {
+    no: {
+      votes: [
+        {
+          // @ts-ignore
+          value: VoteValue.No,
+          // @ts-ignore
+          party: {
+            id: "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527",
+          },
+          datetime: faker.date.past().toISOString(),
+        },
+      ],
+    },
+  },
 });
 
 const didNotVote = generateProposal({

@@ -8,3 +8,7 @@ extend type Proposal {
 extend type PartyStake {
   formattedCurrentStakeAvailable: String!
 }
+
+extend type Delegation {
+  formattedAmount: String!
+}
