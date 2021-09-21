@@ -25,6 +25,7 @@ const shouldShowTranche = (t: Tranche) =>
 export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
   const [showAll, setShowAll] = React.useState<boolean>(false);
   const { t } = useTranslation();
+  const match = useRouteMatch();
   const filteredTranches = tranches?.filter(shouldShowTranche) || [];
 
   const getContent = (tranche: Tranche) => {
@@ -62,11 +63,12 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
             return (
               <TrancheItem
                 key={tranche.tranche_id}
+                link={`${match.path}/${tranche.tranche_id}`}
                 tranche={tranche}
                 locked={tranche.locked_amount}
                 vested={new BigNumber(4)}
                 total={tranche.total_added}
-                secondaryHeader={"getContent(tranche)"}
+                secondaryHeader={getContent(tranche)}
               />
               // <li className="tranches__list-item" key={tranche.tranche_id}>
               //     <div className="tranches__list-item-container">

@@ -2,6 +2,7 @@ import React from "react";
 import { format } from "date-fns";
 import { useTranslation } from "react-i18next";
 import { BigNumber } from "../../lib/bignumber";
+import { Link } from "react-router-dom";
 
 import "./tranche-item.scss";
 
@@ -16,6 +17,7 @@ export interface TrancheItemProps {
   total: BigNumber;
   message?: React.ReactNode;
   secondaryHeader?: React.ReactNode;
+  link?: string;
 }
 
 export const TrancheItem = ({
@@ -25,6 +27,7 @@ export const TrancheItem = ({
   total,
   message,
   secondaryHeader,
+  link
 }: TrancheItemProps) => {
   const { t } = useTranslation();
   const lockedPercentage = React.useMemo(() => {
@@ -38,9 +41,17 @@ export const TrancheItem = ({
   return (
     <section data-testid="tranche-item" className="tranche-item">
       <div className="tranche-item__header">
-        <span className="tranche-item__label">
-          {t("Tranche")} {tranche.tranche_id}
-        </span>
+        {link ? (
+          <Link to={link} className="tranches__link">
+            <span className="tranche-item__label">
+              {t("Tranche")} {tranche.tranche_id}
+            </span>
+          </Link>
+        ) : (
+          <span className="tranche-item__label">
+            {t("Tranche")} {tranche.tranche_id}
+          </span>
+        )}
         {secondaryHeader ? (
           <span className="tranche-item__secondary-label">
             {secondaryHeader}
