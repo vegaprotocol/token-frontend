@@ -3,6 +3,8 @@ import { format } from "date-fns";
 import { useTranslation } from "react-i18next";
 import { BigNumber } from "../../lib/bignumber";
 
+import "./tranche-item.scss"
+
 export interface TrancheItemProps {
   tranche: {
     tranche_id: number;
@@ -26,9 +28,9 @@ export const TrancheItem = ({tranche, locked, vested, total, message}: TrancheIt
     }, [total, vested]);
 
   return (
-    <section data-testid="tranche-table" className="tranche-table">
-      <div className="tranche-table__header">
-        <span className="tranche-table__label">
+    <section data-testid="tranche-item" className="tranche-item">
+      <div className="tranche-item__header">
+        <span className="tranche-item__label">
           {t("Tranche")} {tranche.tranche_id}
         </span>
       </div>
@@ -46,28 +48,28 @@ export const TrancheItem = ({tranche, locked, vested, total, message}: TrancheIt
           </tr>
         </tbody>
       </table>
-      <div className="tranche-table__progress">
-        <div className="tranche-table__progress-bar">
+      <div className="tranche-item__progress">
+        <div className="tranche-item__progress-bar">
           <div
-            className="tranche-table__progress-bar--locked"
+            className="tranche-item__progress-bar--locked"
             style={{ flex: lockedPercentage.toNumber() }}
           ></div>
           <div
-            className="tranche-table__progress-bar--vested"
+            className="tranche-item__progress-bar--vested"
             style={{ flex: vestedPercentage.toNumber() }}
           ></div>
         </div>
-        <div className="tranche-table__progress-contents">
+        <div className="tranche-item__progress-contents">
           <span>{t("Locked")}</span>
           <span>{t("Unlocked")}</span>
         </div>
-        <div className="tranche-table__progress-contents">
+        <div className="tranche-item__progress-contents">
           <span>{locked.toString()}</span>
           <span>{vested.toString()}</span>
         </div>
       </div>
 
-      <div className="tranche-table__footer" data-testid="tranche-table-footer">
+      <div className="tranche-item__footer" data-testid="tranche-item-footer">
         {message}
       </div>
     </section>

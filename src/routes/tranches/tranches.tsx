@@ -10,6 +10,8 @@ import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { Callout } from "../../components/callout";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { ADDRESSES } from "../../config";
+import { TrancheItem } from "../redemption/tranche-item";
+import { BigNumber } from "../../lib/bignumber";
 
 const trancheMinimum = 10;
 
@@ -59,31 +61,39 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
         <ul className="tranches__list">
           {(showAll ? tranches : filteredTranches).map((tranche) => {
             return (
-              <li className="tranches__list-item" key={tranche.tranche_id}>
-                <div className="tranches__list-item-container">
-                  <div className="tranches__item-title">
-                    <div className="tranches__item-line">
-                      <Link
-                        to={`${match.path}/${tranche.tranche_id}`}
-                        className="tranches__link"
-                      >
-                        <span>{t("Tranche")}</span>#{tranche.tranche_id}
-                      </Link>
-                      {getContent(tranche)}
+              <TrancheItem
+                key={tranche.tranche_id}
+                tranche={tranche}
+                locked={tranche.locked_amount}
+                vested={new BigNumber(40)}
+                total={tranche.total_added}
+                message={getContent(tranche)}
+              />
+              /* <li className="tranches__list-item" key={tranche.tranche_id}>
+                  <div className="tranches__list-item-container">
+                    <div className="tranches__item-title">
+                      <div className="tranches__item-line">
+                        <Link
+                          to={`${match.path}/${tranche.tranche_id}`}
+                          className="tranches__link"
+                        >
+                          <span>{t("Tranche")}</span>#{tranche.tranche_id}
+                        </Link>
+                        {getContent(tranche)}
+                      </div>
                     </div>
+                    <TrancheProgress
+                      locked={tranche.locked_amount}
+                      totalRemoved={tranche.total_removed}
+                      totalAdded={tranche.total_added}
+                    />
                   </div>
-                  <TrancheProgress
-                    locked={tranche.locked_amount}
-                    totalRemoved={tranche.total_removed}
-                    totalAdded={tranche.total_added}
+                  <TrancheLabel
+                    contract={ADDRESSES.vestingAddress}
+                    chainId={appState.chainId}
+                    id={tranche.tranche_id}
                   />
-                </div>
-                <TrancheLabel
-                  contract={ADDRESSES.vestingAddress}
-                  chainId={appState.chainId}
-                  id={tranche.tranche_id}
-                />
-              </li>
+                </li> */
             );
           })}
         </ul>
