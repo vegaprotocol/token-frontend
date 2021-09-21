@@ -41,6 +41,9 @@ const DELEGATIONS_QUERY = gql`
         }
         epoch
       }
+      stake {
+        currentStakeAvailable
+      }
     }
   }
 `;
@@ -122,11 +125,7 @@ const VegaWalletConnected = ({
   const { t } = useTranslation();
   const {
     appDispatch,
-    appState: {
-      ethAddress: address,
-      walletAssociatedBalance,
-      vestingAssociatedBalance,
-    },
+    appState: { ethAddress: address },
   } = useAppState();
 
   const [disconnecting, setDisconnecting] = React.useState(false);
@@ -137,6 +136,8 @@ const VegaWalletConnected = ({
   const [delegations, setDelegations] = React.useState<
     Delegations_party_delegations[]
   >([]);
+  const [currentStakeAvailable, setCurrentStakeAvailable] =
+    React.useState<BigNumber>(new BigNumber(0));
 
   React.useEffect(() => {
     let interval: any;
@@ -157,6 +158,9 @@ const VegaWalletConnected = ({
               return new BigNumber(b.amount).minus(a.amount).toNumber();
             });
             setDelegations(sortedDelegations);
+            setCurrentStakeAvailable(
+              new BigNumber(res.data.party?.stake.currentStakeAvailable || 0)
+            );
           })
           .catch((err: Error) => {
             // If query fails stop interval. Its almost certain that the query
@@ -181,6 +185,14 @@ const VegaWalletConnected = ({
     [appDispatch, vegaWallet]
   );
 
+  const unstaked = React.useMemo(() => {
+    const totalDelegated = delegations.reduce<BigNumber>(
+      (acc, cur) => acc.plus(cur.amount),
+      new BigNumber(0)
+    );
+    return totalDelegated.minus(currentStakeAvailable);
+  }, [currentStakeAvailable, delegations]);
+
   const changeKey = React.useCallback(
     async (k: VegaKeyExtended) => {
       let walletAssociatedBalance: BigNumber | null = null;
@@ -202,17 +214,10 @@ const VegaWalletConnected = ({
 
   return vegaKeys.length ? (
     <>
-      {walletAssociatedBalance ? (
+      {unstaked ? (
         <WalletCardRow
-          label={t("Wallet associated")}
-          value={walletAssociatedBalance}
-          valueSuffix={t("VEGA")}
-        />
-      ) : null}
-      {vestingAssociatedBalance ? (
-        <WalletCardRow
-          label={t("Vesting associated")}
-          value={vestingAssociatedBalance}
+          label={t("Unstaked")}
+          value={unstaked}
           valueSuffix={t("VEGA")}
         />
       ) : null}
