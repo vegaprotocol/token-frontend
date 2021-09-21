@@ -87,6 +87,10 @@ const MOCK_STAKING_QUERY: MockedResponse<Staking> = {
     data: {
       party: {
         __typename: "Party",
+        stake: {
+          __typename: "PartyStake",
+          formattedCurrentStakeAvailable: "0.00000000000001",
+        },
         id: partyId,
         delegations: [
           {

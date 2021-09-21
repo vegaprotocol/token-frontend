@@ -9,6 +9,11 @@ import { NodeStatus } from "./../../../__generated__/globalTypes";
 // GraphQL query operation: Staking
 // ====================================================
 
+export interface Staking_party_stake {
+  __typename: "PartyStake";
+  formattedCurrentStakeAvailable: string;
+}
+
 export interface Staking_party_delegations_node {
   __typename: "Node";
   /**
@@ -31,6 +36,10 @@ export interface Staking_party_delegations {
 
 export interface Staking_party {
   __typename: "Party";
+  /**
+   * The staking informations for this Party
+   */
+  stake: Staking_party_stake;
   /**
    * Party identifier
    */

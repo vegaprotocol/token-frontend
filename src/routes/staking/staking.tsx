@@ -19,6 +19,10 @@ import { useVegaUser } from "../../hooks/use-vega-user";
 export const STAKING_QUERY = gql`
   query Staking($partyId: ID!) {
     party(id: $partyId) {
+      stake {
+        formattedCurrentStakeAvailable @client
+        currentStakeAvailable
+      }
       id
       delegations {
         amount
@@ -55,6 +59,24 @@ export const STAKING_QUERY = gql`
 
 export const Staking = () => {
   const { t } = useTranslation();
+  const { currVegaKey } = useVegaUser();
+  const { data, loading, error } = useQuery<StakingQueryResult>(STAKING_QUERY, {
+    variables: { partyId: currVegaKey?.pub || "" },
+    skip: !currVegaKey?.pub,
+  });
+  let stakingStep = null;
+  if (error) {
+    stakingStep = (
+      <Callout intent="error" title={t("Something went wrong")}>
+        <pre>{error.message}</pre>
+      </Callout>
+    );
+  } else if (loading) {
+    stakingStep = <div>{t("Loading")}</div>;
+  } else {
+    stakingStep = <StakingStepSelectNode data={data} />;
+  }
+
   return (
     <>
       <section>
@@ -65,11 +87,17 @@ export const Staking = () => {
       </section>
       <section>
         <BulletHeader tag="h2">{t("stakingStep2")}</BulletHeader>
-        <StakingStepAssociate />
+        <StakingStepAssociate
+          associated={
+            new BigNumber(
+              data?.party?.stake.formattedCurrentStakeAvailable || "0"
+            )
+          }
+        />
       </section>
       <section>
         <BulletHeader tag="h2">{t("stakingStep3")}</BulletHeader>
-        <StakingStepSelectNode />
+        {stakingStep}
       </section>
     </>
   );
@@ -150,13 +178,13 @@ export const StakingStepConnectWallets = () => {
   );
 };
 
-export const StakingStepAssociate = () => {
+export const StakingStepAssociate = ({
+  associated,
+}: {
+  associated: BigNumber;
+}) => {
   const match = useRouteMatch();
   const { t } = useTranslation();
-  const {
-    appState: { lien },
-  } = useAppState();
-  const associated = new BigNumber(lien || 0);
 
   if (associated.isGreaterThan(0)) {
     return (
@@ -189,13 +217,13 @@ export const StakingStepAssociate = () => {
   );
 };
 
-export const StakingStepSelectNode = () => {
+export const StakingStepSelectNode = ({
+  data,
+}: {
+  data?: StakingQueryResult;
+}) => {
   const { t } = useTranslation();
   const { currVegaKey } = useVegaUser();
-  const { data, loading, error } = useQuery<StakingQueryResult>(STAKING_QUERY, {
-    variables: { partyId: currVegaKey?.pub || "" },
-    skip: !currVegaKey?.pub,
-  });
 
   const nodes = React.useMemo<NodeListItemProps[]>(() => {
     if (!data?.nodes) return [];
@@ -244,18 +272,6 @@ export const StakingStepSelectNode = () => {
 
   if (!currVegaKey) {
     return <p className="text-muted">{t("connectVegaWallet")}</p>;
-  }
-
-  if (error) {
-    return (
-      <Callout intent="error" title={t("Something went wrong")}>
-        <pre>{error.message}</pre>
-      </Callout>
-    );
-  }
-
-  if (loading) {
-    return <div>{t("Loading")}</div>;
   }
 
   return <NodeList nodes={nodes} />;
