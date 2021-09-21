@@ -276,6 +276,8 @@
   "stakingVegaWalletConnected": "Connected to Vega wallet with public key {{key}}",
   "stakingStep2": "Step 2. Associate tokens with a Vega wallet",
   "stakingStep2Text": "Your tokens need to be associated with a Vega wallet so that it can control your stake",
+  "stakingAssociateConnectVega": "You need to connect to a Vega wallet first",
+  "stakingAssociateConnectEth": "You need to connect to an Ethereum wallet first",
   "stakingHasAssociated": "You have {{tokens}} VEGA tokens associated.",
   "stakingAssociateMoreButton": "Associate more VEGA tokens with wallet",
   "stakingDisassociateButton": "Dissociate VEGA tokens from wallet",

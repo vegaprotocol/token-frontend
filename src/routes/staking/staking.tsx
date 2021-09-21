@@ -12,7 +12,7 @@ import { NodeList, NodeListItemProps } from "./node-list";
 import { Staking as StakingQueryResult } from "./__generated__/Staking";
 import { BigNumber } from "../../lib/bignumber";
 import { Trans, useTranslation } from "react-i18next";
-import { Tick } from "../../components/icons";
+import { Tick, Error } from "../../components/icons";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { useVegaUser } from "../../hooks/use-vega-user";
 
@@ -142,7 +142,7 @@ export const StakingStepConnectWallets = () => {
         <Callout
           icon={<Tick />}
           intent="success"
-          title={`Ethereum wallet connected: {truncateMiddle(ethAddress)}`}
+          title={`Ethereum wallet connected: ${truncateMiddle(ethAddress)}`}
         />
       ) : (
         <p>
@@ -193,7 +193,27 @@ export const StakingStepAssociate = ({
 }) => {
   const match = useRouteMatch();
   const { t } = useTranslation();
+  const {
+    appState: { ethAddress, currVegaKey },
+  } = useAppState();
 
+  if (!ethAddress) {
+    return (
+      <Callout
+        intent="error"
+        icon={<Error />}
+        title={t("stakingAssociateConnectEth")}
+      />
+    );
+  } else if (!currVegaKey) {
+    return (
+      <Callout
+        intent="error"
+        icon={<Error />}
+        title={t("stakingAssociateConnectVega")}
+      />
+    );
+  }
   if (associated.isGreaterThan(0)) {
     return (
       <Callout
