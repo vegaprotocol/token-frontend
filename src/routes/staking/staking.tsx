@@ -199,15 +199,12 @@ export const StakingStepSelectNode = () => {
     if (!data?.nodes) return [];
 
     const nodesWithPercentages = data.nodes.map((node) => {
-      const formattedStakedTotal = new BigNumber(
-        data?.nodeData?.stakedTotal || 0
-      );
+      const stakedTotal = new BigNumber(data?.nodeData?.stakedTotal || 0);
       const stakedOnNode = new BigNumber(node.stakedTotal);
       const stakedTotalPercentage =
-        formattedStakedTotal.isEqualTo(0) || stakedOnNode.isEqualTo(0)
+        stakedTotal.isEqualTo(0) || stakedOnNode.isEqualTo(0)
           ? "-"
-          : stakedOnNode.dividedBy(formattedStakedTotal).times(100).toString() +
-            "%";
+          : stakedOnNode.dividedBy(stakedTotal).times(100).toString() + "%";
 
       const userStake = data.party?.delegations?.length
         ? data.party?.delegations
@@ -225,17 +222,16 @@ export const StakingStepSelectNode = () => {
 
       return {
         id: node.id,
-        formattedStakedTotal,
+        stakedTotal,
+        stakedOnNode,
         stakedTotalPercentage,
         userStake,
         userStakePercentage,
       };
     });
-
     const sortedByStake = nodesWithPercentages.sort((a, b) => {
-      if (a.formattedStakedTotal.isLessThan(b.formattedStakedTotal)) return -1;
-      if (a.formattedStakedTotal.isGreaterThan(b.formattedStakedTotal))
-        return 1;
+      if (a.stakedTotal.isLessThan(b.stakedTotal)) return -1;
+      if (a.stakedTotal.isGreaterThan(b.stakedTotal)) return 1;
       if (a.id < b.id) return -1;
       if (a.id > b.id) return 1;
       return 0;

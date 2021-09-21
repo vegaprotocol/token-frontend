@@ -19,7 +19,7 @@ export const NodeList = ({ nodes }: NodeListProps) => {
 
 export interface NodeListItemProps {
   id: string;
-  formattedStakedTotal: BigNumber;
+  stakedOnNode: BigNumber;
   stakedTotalPercentage: string;
   userStake: BigNumber;
   userStakePercentage: string;
@@ -27,7 +27,7 @@ export interface NodeListItemProps {
 
 export const NodeListItem = ({
   id,
-  formattedStakedTotal,
+  stakedOnNode,
   stakedTotalPercentage,
   userStake,
   userStakePercentage,
@@ -42,7 +42,7 @@ export const NodeListItem = ({
         <tbody>
           <tr>
             <th>{t("Total stake")}</th>
-            <td>{formattedStakedTotal.toString()}</td>
+            <td>{stakedOnNode.toString()}</td>
             <td>{stakedTotalPercentage}</td>
           </tr>
           <tr>
