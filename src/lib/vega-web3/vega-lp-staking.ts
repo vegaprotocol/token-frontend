@@ -253,6 +253,14 @@ export default class VegaLPStaking implements IVegaLPStaking {
     );
   }
 
+  withdrawRewards(address: string): WrappedPromiEvent<void> {
+    return {
+      promiEvent: this.contract.methods
+        .withdraw_rewards()
+        .send({ from: address }),
+    };
+  }
+
   async approve(
     address: string,
     spender: string
