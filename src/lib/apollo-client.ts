@@ -32,6 +32,10 @@ export function createClient() {
     typePolicies: {
       Delegation: {
         keyFields: false,
+        // Only get full updates
+        merge(_, incoming: any[]) {
+          return incoming;
+        },
         fields: {
           amount: {
             read(amount) {
@@ -79,12 +83,6 @@ export function createClient() {
       },
       Party: {
         fields: {
-          delegations: {
-            // Only get full updates
-            merge(_, incoming: any[]) {
-              return incoming;
-            },
-          },
           stake: {
             read(stake: Parties_parties_stake) {
               if (stake) {
