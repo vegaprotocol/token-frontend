@@ -101,9 +101,10 @@ const NavLinks = ({ isDesktop }: { isDesktop: boolean }) => {
   };
   return (
     <nav className={`nav-links nav-links--${isDesktop ? "row" : "column"}`}>
-      <NavLink {...linkProps} to={Routes.VESTING}>
-        {t("Vesting")}
-      </NavLink>
+      {Flags.DEX_STAKING_DISABLED ? null :
+        (<NavLink {...linkProps} to={Routes.VESTING}>
+          {t("Vesting")}
+        </NavLink>)}
       <NavLink {...linkProps} to={Routes.STAKING}>
         {t("Staking")}
       </NavLink>
