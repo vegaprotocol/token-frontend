@@ -215,7 +215,7 @@ const VegaWalletConnected = ({
   return vegaKeys.length ? (
     <>
       <WalletCardRow
-        label={t("Associated $VEGA")}
+        label={t("associatedVega")}
         value={currentStakeAvailable}
         valueSuffix={t("VEGA")}
       />
