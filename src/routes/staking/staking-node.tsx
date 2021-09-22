@@ -40,8 +40,8 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
     return BigNumber.sum.apply(null, [new BigNumber(0), ...amounts]);
   }, [data]);
   const unstaked = React.useMemo(() => {
-    return currentDelegationAmount.minus(
-      data?.party?.stake.currentStakeAvailable || 0
+    return new BigNumber(data?.party?.stake.currentStakeAvailable || 0).minus(
+      currentDelegationAmount
     );
   }, [currentDelegationAmount, data?.party?.stake.currentStakeAvailable]);
 
