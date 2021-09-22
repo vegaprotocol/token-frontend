@@ -10,6 +10,11 @@
   to = "/index.html"
   status = 200
 
+  
+[[redirects]]
+  from = "/api/*"
+  to = "http://141.94.109.199:3008/:splat"
+
 # Thre are deploy sites: production/pr previews as well as the translations branch
 # so cannot use context.production.environmenet as using production results in env vars colliding
 # (production = develop on translation, production = master on main)
@@ -35,8 +40,5 @@
   REACT_APP_STAKING_DISABLED = '0'
   REACT_APP_DEX_STAKING_DISABLED = '0'
   REACT_APP_GOVERNANCE_DISABLED = '0'
-  REACT_APP_VEGA_URL = "https://deploy-preview-481--token-vega-xyz.netlify.app/api/query"
-  
-  [[redirects]]
-    from = "/api"
-    to = "http://141.94.109.199:3009"
+  REACT_APP_VEGA_URL = "https://deploy-preview-481--token-vega-xyz.netlify.app/api/"
+
