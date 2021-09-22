@@ -23,7 +23,7 @@ export interface TrancheItemProps {
 export const TrancheItem = ({
   tranche,
   locked,
-  unlocked: vested,
+  unlocked,
   total,
   message,
   secondaryHeader,
@@ -34,9 +34,9 @@ export const TrancheItem = ({
     return locked.div(total).times(100);
   }, [total, locked]);
 
-  const vestedPercentage = React.useMemo(() => {
-    return vested.div(total).times(100);
-  }, [total, vested]);
+  const unlockedPercentage = React.useMemo(() => {
+    return unlocked.div(total).times(100);
+  }, [total, unlocked]);
 
   return (
     <section data-testid="tranche-item" className="tranche-item">
@@ -86,13 +86,13 @@ export const TrancheItem = ({
             }}
           ></div>
           <div
-            className="tranche-item__progress-bar--vested"
+            className="tranche-item__progress-bar--unlocked"
             style={{
               flex:
-                isNaN(vestedPercentage.toNumber()) ||
-                !isFinite(vestedPercentage.toNumber())
+                isNaN(unlockedPercentage.toNumber()) ||
+                !isFinite(unlockedPercentage.toNumber())
                   ? 0
-                  : vestedPercentage.toNumber(),
+                  : unlockedPercentage.toNumber(),
             }}
           ></div>
         </div>
@@ -102,7 +102,7 @@ export const TrancheItem = ({
         </div>
         <div className="tranche-item__progress-contents">
           <span>{locked.toString()}</span>
-          <span>{vested.toString()}</span>
+          <span>{unlocked.toString()}</span>
         </div>
       </div>
 
