@@ -8,7 +8,7 @@ import {
 import { useEthUser } from "../../hooks/use-eth-user";
 import { useVegaUser } from "../../hooks/use-vega-user";
 
-export const StakingContainer = ({
+export const StakingWalletsContainer = ({
   children,
 }: {
   children: (data: {

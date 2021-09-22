@@ -12,7 +12,7 @@ import { StakeNode, StakeNodeVariables } from "./__generated__/StakeNode";
 import { Callout } from "../../components/callout";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
-import { StakingContainer } from "./staking-container";
+import { StakingWalletsContainer } from "./staking-wallets-container";
 import { BigNumber } from "../../lib/bignumber";
 
 export const STAKE_NODE_QUERY = gql`
@@ -58,11 +58,11 @@ export const STAKE_NODE_QUERY = gql`
 
 export const StakingNodeContainer = () => {
   return (
-    <StakingContainer>
+    <StakingWalletsContainer>
       {({ currVegaKey }) => (
         <StakingNode vegaKey={currVegaKey} unstaked={new BigNumber(0)} />
       )}
-    </StakingContainer>
+    </StakingWalletsContainer>
   );
 };
 

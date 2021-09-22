@@ -11,15 +11,15 @@ import {
   StakingMethodRadio,
 } from "../../../components/staking-method-radio";
 import { useAddStake } from "./hooks";
-import { StakingContainer } from "../staking-container";
+import { StakingWalletsContainer } from "../staking-wallets-container";
 
 export const AssociateContainer = () => {
   return (
-    <StakingContainer>
+    <StakingWalletsContainer>
       {({ address, currVegaKey }) => (
         <AssociatePage address={address} vegaKey={currVegaKey} />
       )}
-    </StakingContainer>
+    </StakingWalletsContainer>
   );
 };
 
