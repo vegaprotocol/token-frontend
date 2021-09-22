@@ -25,7 +25,6 @@ import { useAppState } from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber";
 import { Colors } from "../../config";
 
-// TODO completely unessecary
 export const PARTY_DELEGATIONS_QUERY = gql`
   query PartyDelegations($partyId: ID!) {
     party(id: $partyId) {
