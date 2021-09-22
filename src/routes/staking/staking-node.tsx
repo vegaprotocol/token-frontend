@@ -59,16 +59,19 @@ export const STAKE_NODE_QUERY = gql`
 export const StakingNodeContainer = () => {
   return (
     <StakingContainer>
-      {({ currVegaKey }) => <StakingNode vegaKey={currVegaKey} />}
+      {({ currVegaKey }) => (
+        <StakingNode vegaKey={currVegaKey} unstaked={new BigNumber(0)} />
+      )}
     </StakingContainer>
   );
 };
 
 interface StakingNodeProps {
   vegaKey: VegaKeyExtended;
+  unstaked: BigNumber;
 }
 
-export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
+export const StakingNode = ({ vegaKey, unstaked }: StakingNodeProps) => {
   const { node } = useParams<{ node: string }>();
   const { t } = useTranslation();
   const { data, loading, error } = useQuery<StakeNode, StakeNodeVariables>(
@@ -126,9 +129,7 @@ export const StakingNode = ({ vegaKey }: StakingNodeProps) => {
       <StakingForm
         pubkey={vegaKey.pub}
         nodeId={node}
-        availableStakeToAdd={
-          new BigNumber(data?.party?.stake.currentStakeAvailable || 0)
-        }
+        availableStakeToAdd={unstaked}
         availableStakeToRemove={currentDelegationAmount}
       />
     </>

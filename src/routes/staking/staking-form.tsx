@@ -23,6 +23,7 @@ import { useSearchParams } from "../../hooks/use-search-params";
 import { removeDecimal } from "../../lib/decimals";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber";
+import { Colors } from "../../config";
 
 export const PARTY_DELEGATIONS_QUERY = gql`
   query PartyDelegations($partyId: ID!) {
@@ -143,14 +144,12 @@ export const StakingForm = ({
 
   if (formState === FormState.Failure) {
     return <StakeFailure nodeId={nodeId} />;
-  }
-
-  if (formState === FormState.Pending) {
+  } else if (formState === FormState.Pending) {
     return <StakePending action={action} amount={amount} nodeId={nodeId} />;
-  }
-
-  if (formState === FormState.Success) {
+  } else if (formState === FormState.Success) {
     return <StakeSuccess action={action} amount={amount} nodeId={nodeId} />;
+  } else if (availableStakeToAdd.isEqualTo(0)) {
+    return <span style={{ color: Colors.RED }}>{t("stakeNodeNone")}</span>;
   }
 
   return (
@@ -178,7 +177,7 @@ export const StakingForm = ({
           />
         </RadioGroup>
       </FormGroup>
-      {action !== undefined && maxDelegation && (
+      {action !== undefined && (
         <>
           <h2>{t("How much to {{action}} in next epoch?", { action })}</h2>
           <TokenInput
