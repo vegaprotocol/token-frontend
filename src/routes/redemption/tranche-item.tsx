@@ -13,7 +13,7 @@ export interface TrancheItemProps {
     tranche_end: Date;
   };
   locked: BigNumber;
-  vested: BigNumber;
+  unlocked: BigNumber;
   total: BigNumber;
   message?: React.ReactNode;
   secondaryHeader?: React.ReactNode;
@@ -23,7 +23,7 @@ export interface TrancheItemProps {
 export const TrancheItem = ({
   tranche,
   locked,
-  vested,
+  unlocked: vested,
   total,
   message,
   secondaryHeader,
@@ -57,7 +57,7 @@ export const TrancheItem = ({
             {secondaryHeader}
           </span>
         ) : null}
-        <span>{total.toNumber()}</span>
+        <span>{total.toString()}</span>
       </div>
       <table>
         <tbody>

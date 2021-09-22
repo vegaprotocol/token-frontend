@@ -61,6 +61,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
         <ul className="tranches__list">
           {(showAll ? tranches : filteredTranches).map((tranche) => {
             console.log(tranche);
+            const total = tranche.total_added.minus(tranche.total_removed);
 
             return (
               <div key={tranche.tranche_id}>
@@ -68,8 +69,8 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                   link={`${match.path}/${tranche.tranche_id}`}
                   tranche={tranche}
                   locked={tranche.locked_amount}
-                  vested={new BigNumber(4)}
-                  total={tranche.total_added}
+                  unlocked={total.minus(tranche.locked_amount)}
+                  total={total}
                   secondaryHeader={"getContent(tranche)"}
                 />
                 <TrancheLabel
@@ -135,3 +136,15 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
     </>
   );
 };
+
+
+/*
+
+
+total is total added - total removed
+
+unlocked = above - locked
+
+user locked = total tokens - remaing
+user uncled = remaining
+*/ 

@@ -50,7 +50,7 @@
     }
   }
 
-    &__progress {
+  &__progress {
     border-left: $white;
     border-left-style: solid;
     border-left-width: 1px;
@@ -64,6 +64,17 @@
       gap: 0 5px;
       font-family: $font-mono;
       padding: 2px 5px 2px 5px;
+      color: $text-color-deemphasise;
+    }
+  }
+
+  &__contentsp {
+    display: flex;
+    justify-content: space-between;
+    gap: 0 5px;
+    padding: 2px 5px 2px 5px;
+    :last-child {
+      font-family: $font-mono;
       color: $text-color-deemphasise;
     }
   }

@@ -114,7 +114,7 @@ export const TrancheTable = ({
     <TrancheItem
       tranche={tranche}
       locked={locked}
-      vested={vested}
+      unlocked={vested}
       total={total}
       message={message}
     />

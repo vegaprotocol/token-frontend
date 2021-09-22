@@ -14,6 +14,7 @@ import { TrancheLabel } from "./tranche-label";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { ADDRESSES } from "../../config";
 import { EtherscanLink } from "../../components/etherscan-link";
+import { TrancheItem } from "../redemption/tranche-item";
 
 export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
   const { t } = useTranslation();
@@ -38,9 +39,19 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
     removed_percentage = new BigNumber(0);
   }
 
-  console.log(tranche)
+  console.log(tranche);
   return (
     <>
+      <TrancheItem
+        tranche={tranche}
+        locked={tranche.locked_amount}
+        unlocked={new BigNumber(2)}
+        total={tranche.total_added}
+      />
+      <div className="tranche__contentsp">
+        <span>{t("alreadyRedeemed")}</span>
+        <span>{tranche.total_removed.toString()}</span>
+      </div>
       <BulletHeader tag="h2">
         {t("Tranche")} #{trancheId}&nbsp;
       </BulletHeader>
@@ -85,22 +96,22 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
         <ul className="tranche__user-list">
           {tranche.users.map((user, i) => {
             return (
-                <li className="tranche__item" key={i}>
-                  <EtherscanLink
-                    chainId={appState.chainId}
-                    address={user.address}
-                    text={user.address}
-                  />
-                  <div className="tranche__progress-contents">
-                    <span>{t("Locked")}</span>
-                    <span>{t("Unlocked")}</span>
-                  </div>
-                  <div className="tranche__progress-contents">
-                    <span>{"locked.toString()"}</span>
-                    <span>{"vested.toString()"}</span>
-                  </div>
-                </li>
-            )
+              <li className="tranche__item" key={i}>
+                <EtherscanLink
+                  chainId={appState.chainId}
+                  address={user.address}
+                  text={user.address}
+                />
+                <div className="tranche__progress-contents">
+                  <span>{t("Locked")}</span>
+                  <span>{t("Unlocked")}</span>
+                </div>
+                <div className="tranche__progress-contents">
+                  <span>{"locked.toString()"}</span>
+                  <span>{"vested.toString()"}</span>
+                </div>
+              </li>
+            );
 
             // return (
             //     <li className="tranche__user-item" key={i}>
