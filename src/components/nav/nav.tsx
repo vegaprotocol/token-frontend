@@ -13,7 +13,7 @@ import {
 import { EthWallet } from "../eth-wallet";
 import { useTranslation } from "react-i18next";
 import { Breadcrumbs } from "./breadcrumbs";
-import {Flags} from "../../config";
+import { Flags } from "../../config";
 
 export const Nav = () => {
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
@@ -101,20 +101,24 @@ const NavLinks = ({ isDesktop }: { isDesktop: boolean }) => {
   };
   return (
     <nav className={`nav-links nav-links--${isDesktop ? "row" : "column"}`}>
-      {Flags.DEX_STAKING_DISABLED ? null :
-        (<NavLink {...linkProps} to={Routes.VESTING}>
+      {Flags.REDEEM_DISABLED ? null : (
+        <NavLink {...linkProps} to={Routes.VESTING}>
           {t("Vesting")}
-        </NavLink>)}
+        </NavLink>
+      )}
       <NavLink {...linkProps} to={Routes.STAKING}>
         {t("Staking")}
       </NavLink>
-      <NavLink {...linkProps} to={Routes.GOVERNANCE}>
-        {t("Governance")}
-      </NavLink>
-      {Flags.DEX_STAKING_DISABLED ? null :
+      {Flags.GOVERNANCE_DISABLED ? null : (
+        <NavLink {...linkProps} to={Routes.GOVERNANCE}>
+          {t("Governance")}
+        </NavLink>
+      )}
+      {Flags.DEX_STAKING_DISABLED ? null : (
         <NavLink {...linkProps} to={Routes.LIQUIDITY}>
           {t("liquidityNav")}
-        </NavLink>}
+        </NavLink>
+      )}
     </nav>
   );
 };
