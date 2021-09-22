@@ -15,6 +15,7 @@
   "pageTitleDepositLp": "crwdns4531:0crwdne4531:0",
   "pageTitleWithdrawLp": "crwdns4533:0crwdne4533:0",
   "Vesting": "crwdns4535:0crwdne4535:0",
+  "unstaked": "crwdns5303:0crwdne5303:0",
   "of": "crwdns4537:0crwdne4537:0",
   "to": "crwdns4539:0crwdne4539:0",
   "Deposit": "crwdns4541:0crwdne4541:0",
@@ -276,7 +277,11 @@
   "stakingVegaWalletConnected": "crwdns5051:0{{key}}crwdne5051:0",
   "stakingStep2": "crwdns5053:0crwdne5053:0",
   "stakingStep2Text": "crwdns5055:0crwdne5055:0",
-  "stakingHasAssociated": "crwdns5057:0{{tokens}}crwdne5057:0",
+  "stakingAssociateConnectVega": "crwdns5305:0crwdne5305:0",
+  "stakingAssociateConnectEth": "crwdns5307:0crwdne5307:0",
+  "stakingHasAssociated": "crwdns5309:0{{tokens}}crwdne5309:0",
+  "stakingAssociateMoreButton": "crwdns5311:0crwdne5311:0",
+  "stakingDisassociateButton": "crwdns5313:0crwdne5313:0",
   "stakingStep3": "crwdns5059:0crwdne5059:0",
   "associateButton": "crwdns5061:0crwdne5061:0",
   "nodeQueryFailed": "crwdns5063:0{{node}}crwdne5063:0",
@@ -379,5 +384,6 @@
   "mainnetDisableHome": "crwdns5253:0crwdne5253:0",
   "VEGA in wallet": "crwdns5255:0crwdne5255:0",
   "Vesting associated": "crwdns5257:0crwdne5257:0",
-  "Wallet associated": "crwdns5259:0crwdne5259:0"
+  "Wallet associated": "crwdns5259:0crwdne5259:0",
+  "stakeNodeNone": "crwdns5315:0crwdne5315:0"
 }
