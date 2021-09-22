@@ -74,11 +74,13 @@ const ConnectedKey = () => {
         dark={true}
         valueSuffix={t("VEGA")}
       />
-      <WalletCardRow
-        label={t("Not Associated")}
-        value={walletBalance}
-        valueSuffix={t("VEGA")}
-      />
+      {Flags.STAKING_DISABLED ? null : (
+        <WalletCardRow
+          label={t("Not Associated")}
+          value={walletBalance}
+          valueSuffix={t("VEGA")}
+        />
+      )}
       <WalletCardRow
         label={t("Associated")}
         value={lien}
@@ -101,7 +103,7 @@ const ConnectedKey = () => {
         value={totalVestedBalance}
         valueSuffix={t("VEGA")}
       />
-      {Flags.MAINNET_DISABLED ? null : (
+      {Flags.STAKING_DISABLED ? null : (
         <>
           <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
           <WalletCardRow

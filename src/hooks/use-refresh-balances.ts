@@ -30,7 +30,7 @@ export const useRefreshBalances = (address: string) => {
         vesting.getUserBalanceAllTranches(address),
         token.balanceOf(address),
         vesting.getLien(address),
-        Flags.MAINNET_DISABLED
+        Flags.STAKING_DISABLED
           ? new BigNumber(0)
           : token.allowance(address, ADDRESSES.stakingBridge),
         // Refresh connected vega key balances as well if we are connected to a vega key

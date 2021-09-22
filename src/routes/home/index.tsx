@@ -66,7 +66,7 @@ const Home = ({ name }: RouteChildProps) => {
       </button>
 
       <h2>{t("USE YOUR VEGA TOKENS")}</h2>
-      {Flags.MAINNET_DISABLED ? (
+      {Flags.STAKING_DISABLED ? (
         <p>{t("mainnetDisableHome")}</p>
       ) : (
         <>
