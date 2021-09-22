@@ -190,7 +190,7 @@ const VegaWalletConnected = ({
       (acc, cur) => acc.plus(cur.amount),
       new BigNumber(0)
     );
-    return totalDelegated.minus(currentStakeAvailable);
+    return currentStakeAvailable.minus(totalDelegated);
   }, [currentStakeAvailable, delegations]);
 
   const changeKey = React.useCallback(
