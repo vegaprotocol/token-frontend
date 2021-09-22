@@ -32,10 +32,10 @@ const Addresses = {
   } as { [key: string]: string },
   [EthereumChainIds.Ropsten]: {
     vestingAddress: "0xfc9Ad8fE9E0b168999Ee7547797BC39D55d607AA",
-    vegaTokenAddress: "0x5b634a05754283b6d9d7938dcca9d646425593eb",
+    vegaTokenAddress: "0xF0598Cd16FA3bf4c34052923cBE2D34028da0c69",
     claimAddress: "0x695eD7f6AcA81201d1D92107f120579CaAe2E5F2",
     lockedAddress: "0x0356782bfb61cf0b0463746bc6fe8766aacae8f0",
-    stakingBridge: "0x7bd4a4789394fe5a93fc67ef64c47beb013e5450",
+    stakingBridge: "0xfce2CC92203A266a9C8e67461ae5067c78f67235",
   } as { [key: string]: string },
 };
 
