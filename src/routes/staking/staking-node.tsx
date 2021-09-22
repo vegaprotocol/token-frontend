@@ -67,12 +67,12 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
         node={nodeInfo}
         stakedTotal={data?.nodeData?.stakedTotal || "0"}
       />
-      {data?.epoch.timestamps.start && data?.epoch.timestamps.end && (
+      {data?.epoch.timestamps.start && data?.epoch.timestamps.expiry && (
         <EpochCountdown
           containerClass="staking-node__epoch"
           id={data.epoch.id}
           startDate={new Date(data?.epoch.timestamps.start)}
-          endDate={new Date(data?.epoch.timestamps.end)}
+          endDate={new Date(data?.epoch.timestamps.expiry)}
         />
       )}
       <YourStake

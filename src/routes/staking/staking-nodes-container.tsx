@@ -27,6 +27,7 @@ export const STAKING_QUERY = gql`
       timestamps {
         start
         end
+        expiry
       }
     }
     nodes {

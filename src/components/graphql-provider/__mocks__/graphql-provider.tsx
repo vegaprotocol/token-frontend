@@ -89,6 +89,7 @@ const MOCK_STAKING_QUERY: MockedResponse<Staking> = {
           __typename: "EpochTimestamps",
           start: new Date().toISOString(),
           end: addDays(new Date(), 1).toISOString(),
+          expiry: addDays(new Date(), 1).toISOString(),
         },
       },
       party: {
