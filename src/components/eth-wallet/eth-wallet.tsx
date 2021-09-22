@@ -81,29 +81,35 @@ const ConnectedKey = () => {
           valueSuffix={t("VEGA")}
         />
       )}
-      <WalletCardRow
-        label={t("Associated")}
-        value={lien}
-        valueSuffix={t("VEGA")}
-      />
-      <hr style={{ borderColor: Colors.BLACK, borderTop: 1 }} />
-      <WalletCardRow
-        label={t("VESTING VEGA TOKENS")}
-        valueSuffix={t("VEGA")}
-        dark={true}
-        value={totalInVestingContract}
-      />
-      <WalletCardRow
-        label={t("Locked")}
-        value={totalLockedBalance}
-        valueSuffix={t("VEGA")}
-      />
-      <WalletCardRow
-        label={t("Unlocked")}
-        value={totalVestedBalance}
-        valueSuffix={t("VEGA")}
-      />
       {Flags.STAKING_DISABLED ? null : (
+        <WalletCardRow
+          label={t("Associated")}
+          value={lien}
+          valueSuffix={t("VEGA")}
+        />
+      )}
+      <hr style={{ borderColor: Colors.BLACK, borderTop: 1 }} />
+      {Flags.VESTING_DISABLED ? null : (
+        <>
+          <WalletCardRow
+            label={t("VESTING VEGA TOKENS")}
+            valueSuffix={t("VEGA")}
+            dark={true}
+            value={totalInVestingContract}
+          />
+          <WalletCardRow
+            label={t("Locked")}
+            value={totalLockedBalance}
+            valueSuffix={t("VEGA")}
+          />
+          <WalletCardRow
+            label={t("Unlocked")}
+            value={totalVestedBalance}
+            valueSuffix={t("VEGA")}
+          />
+        </>
+      )}
+      {Flags.STAKING_DISABLED || Flags.VESTING_DISABLED ? null : (
         <>
           <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
           <WalletCardRow
