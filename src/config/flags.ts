@@ -5,11 +5,8 @@ export const Flags = {
     process.env.REACT_APP_IN_CONTEXT_TRANSLATION!
   ),
   MOCK: TRUTHY.includes(process.env.REACT_APP_MOCKED!),
-  // One per section
-  // new one for vesting contract disabled
-  MAINNET_DISABLED: TRUTHY.includes(process.env.REACT_APP_MAINNET_DISABLED!),
-
   STAKING_DISABLED: TRUTHY.includes(process.env.REACT_APP_STAKING_DISABLED!),
+  REDEEM_DISABLED: TRUTHY.includes(process.env.REACT_APP_REDEEM_DISABLED!),
   DEX_STAKING_DISABLED: TRUTHY.includes(
     process.env.REACT_APP_DEX_STAKING_DISABLED!
   ),
