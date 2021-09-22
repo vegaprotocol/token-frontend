@@ -27,7 +27,7 @@ export const TrancheItem = ({
   total,
   message,
   secondaryHeader,
-  link
+  link,
 }: TrancheItemProps) => {
   const { t } = useTranslation();
   const lockedPercentage = React.useMemo(() => {
@@ -42,7 +42,7 @@ export const TrancheItem = ({
     <section data-testid="tranche-item" className="tranche-item">
       <div className="tranche-item__header">
         {link ? (
-          <Link to={link} className="tranches__link">
+          <Link to={link}>
             <span className="tranche-item__label">
               {t("Tranche")} {tranche.tranche_id}
             </span>
@@ -57,6 +57,7 @@ export const TrancheItem = ({
             {secondaryHeader}
           </span>
         ) : null}
+        <span>{total.toNumber()}</span>
       </div>
       <table>
         <tbody>

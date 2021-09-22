@@ -26,6 +26,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
   const [showAll, setShowAll] = React.useState<boolean>(false);
   const { t } = useTranslation();
   const match = useRouteMatch();
+  const { appState } = useAppState();
   const filteredTranches = tranches?.filter(shouldShowTranche) || [];
 
   const getContent = (tranche: Tranche) => {
@@ -60,43 +61,59 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
         <ul className="tranches__list">
           {(showAll ? tranches : filteredTranches).map((tranche) => {
             console.log(tranche);
+
             return (
-              <TrancheItem
-                key={tranche.tranche_id}
-                link={`${match.path}/${tranche.tranche_id}`}
-                tranche={tranche}
-                locked={tranche.locked_amount}
-                vested={new BigNumber(4)}
-                total={tranche.total_added}
-                secondaryHeader={getContent(tranche)}
-              />
-              // <li className="tranches__list-item" key={tranche.tranche_id}>
-              //     <div className="tranches__list-item-container">
-              //       <div className="tranches__item-title">
-              //         <div className="tranches__item-line">
-              //           <Link
-              //             to={`${match.path}/${tranche.tranche_id}`}
-              //             className="tranches__link"
-              //           >
-              //             <span>{t("Tranche")}</span>#{tranche.tranche_id}
-              //           </Link>
-              //           {getContent(tranche)}
-              //         </div>
-              //       </div>
-              //       <TrancheProgress
-              //         locked={tranche.locked_amount}
-              //         totalRemoved={tranche.total_removed}
-              //         totalAdded={tranche.total_added}
-              //       />
-              //     </div>
-              //     <TrancheLabel
-              //       contract={ADDRESSES.vestingAddress}
-              //       chainId={appState.chainId}
-              //       id={tranche.tranche_id}
-              //     />
-              //   </li>
-              //   </>
+              <div key={tranche.tranche_id}>
+                <TrancheItem
+                  link={`${match.path}/${tranche.tranche_id}`}
+                  tranche={tranche}
+                  locked={tranche.locked_amount}
+                  vested={new BigNumber(4)}
+                  total={tranche.total_added}
+                  secondaryHeader={"getContent(tranche)"}
+                />
+                <TrancheLabel
+                  contract={ADDRESSES.vestingAddress}
+                  chainId={appState.chainId}
+                  id={tranche.tranche_id}
+                />
+              </div>
             );
+            //   return (
+            //     <>
+            //       <TrancheLabel
+            //         contract={ADDRESSES.vestingAddress}
+            //         chainId={appState.chainId}
+            //         id={tranche.tranche_id}
+            //       />
+
+            //       <li className="tranches__list-item" key={tranche.tranche_id}>
+            //         <div className="tranches__list-item-container">
+            //           <div className="tranches__item-title">
+            //             <div className="tranches__item-line">
+            //               <Link
+            //                 to={`${match.path}/${tranche.tranche_id}`}
+            //                 className="tranches__link"
+            //               >
+            //                 <span>{t("Tranche")}</span>#{tranche.tranche_id}
+            //               </Link>
+            //               {getContent(tranche)}
+            //             </div>
+            //           </div>
+            //           <TrancheProgress
+            //             locked={tranche.locked_amount}
+            //             totalRemoved={tranche.total_removed}
+            //             totalAdded={tranche.total_added}
+            //           />
+            //         </div>
+            //         <TrancheLabel
+            //           contract={ADDRESSES.vestingAddress}
+            //           chainId={appState.chainId}
+            //           id={tranche.tranche_id}
+            //         />
+            //       </li>
+            //     </>
+            //   );
           })}
         </ul>
       ) : (
