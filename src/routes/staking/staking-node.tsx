@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { ValidatorTable } from "./validator-table";
 import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
-import { EpochCountdown } from "./epoch-countdown";
+import { EpochCountdown } from "../../components/epoch-countdown";
 import { YourStake } from "./your-stake";
 import { StakingForm } from "./staking-form";
 import { gql, useQuery } from "@apollo/client";
