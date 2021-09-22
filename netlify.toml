@@ -35,7 +35,7 @@
   REACT_APP_STAKING_DISABLED = '0'
   REACT_APP_DEX_STAKING_DISABLED = '0'
   REACT_APP_GOVERNANCE_DISABLED = '0'
-  REACT_APP_VEGA_URL = "/api/query"
+  REACT_APP_VEGA_URL = "https://deploy-preview-481--token-vega-xyz.netlify.app/api/query"
   
   [[redirects]]
     from = "/api"
