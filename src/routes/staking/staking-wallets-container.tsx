@@ -26,7 +26,7 @@ export const StakingWalletsContainer = ({
       <EthConnectPrompt>
         <p>
           {t(
-            "Use the Ethereum wallet you want to send your tokens to. You'll also need enough Ethereum to pay gas."
+            "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes."
           )}
         </p>
       </EthConnectPrompt>
@@ -38,7 +38,7 @@ export const StakingWalletsContainer = ({
       <>
         <p>
           {t(
-            "Use the Ethereum wallet you want to send your tokens to. You'll also need enough Ethereum to pay gas."
+            "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes."
           )}
         </p>
         <button
