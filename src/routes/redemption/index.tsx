@@ -21,7 +21,7 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
       sidebar={[<EthWallet />]}
     >
       {Flags.REDEEM_DISABLED ? (
-        <p>{t("liquidityComingSoon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</p>
+        <p>{t("redeemComingSoon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</p>
       ) : (
         <RedemptionRouter />
       )}

@@ -386,5 +386,6 @@
   "VEGA in wallet": "$VEGA in wallet",
   "Vesting associated": "Vesting associated",
   "Wallet associated": "Wallet associated",
-  "stakeNodeNone": "You need to associate some VEGA before you can stake"
+  "stakeNodeNone": "You need to associate some VEGA before you can stake",
+  "redeemComingSoon": "Redeem is coming soon "
 }
