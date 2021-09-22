@@ -48,6 +48,7 @@
   "Please check wallet": "Please check wallet",
   "Connect to an Ethereum wallet": "Connect to an Ethereum wallet",
   "projectDescription": "This web page reads directly from the vesting smart contract implemented by the Vega project team. The vesting smart contract is responsible for holding tokens whilst they are locked, and managing the distribution of tokens to their owners according to pre-defined vesting terms.",
+  "projectDescriptionNoVesting": "This web page can be used to stake VEGA tokens held in your wallet.",
   "The contract is deployed at the following address": "The contract is deployed at the following address:",
   "Connected Ethereum address": "Connected Ethereum address",
   "Amount of VEGA": "Amount of VEGA",
