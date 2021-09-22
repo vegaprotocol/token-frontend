@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { TokenDetailsCirculating } from "./token-details-circulating";
 import { truncateMiddle } from "../../../lib/truncate-middle";
-import { ADDRESSES } from "../../../config";
+import {ADDRESSES, Flags} from "../../../config";
 import { formatNumber } from "../../../lib/format-number";
 import { BigNumber } from "../../../lib/bignumber";
 import { EtherscanLink } from "../../../components/etherscan-link";
@@ -23,6 +23,9 @@ export const TokenDetails = ({
   const { t } = useTranslation();
 
   const { appState } = useAppState();
+
+  // Hacky hack: Contract on ropsten is a different DP
+  const formattedTotalSupply = Flags.HACK_FIX_TOTAL_SUPPLY ? totalSupply : formatNumber(totalSupply)
 
   return (
     <KeyValueTable className={"token-details"}>
@@ -48,7 +51,7 @@ export const TokenDetails = ({
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Total supply")}</th>
-        <td data-testid="total-supply">{formatNumber(totalSupply)}</td>
+        <td data-testid="total-supply">{formattedTotalSupply}</td>
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Circulating supply")}</th>

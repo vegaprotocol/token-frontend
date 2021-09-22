@@ -14,4 +14,5 @@ export const Flags = {
     process.env.REACT_APP_GOVERNANCE_DISABLED!
   ),
   VESTING_DISABLED: TRUTHY.includes(process.env.REACT_APP_VESTING_DISABLED!),
+  HACK_FIX_TOTAL_SUPPLY: TRUTHY.includes(process.env.REACT_APP_HACK_FIX_TOTAL_SUPPLY!),
 };

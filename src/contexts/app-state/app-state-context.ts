@@ -192,7 +192,7 @@ export type AppStateAction =
       vestingAssociatedBalance: BigNumber | null;
     }
   | {
-      type: AppStateActionType.SET_TRANCHE_DATA;
+      type: AppStateActihomeonType.SET_TRANCHE_DATA;
       trancheBalances: UserTrancheBalance[];
       tranches: Tranche[];
     }
