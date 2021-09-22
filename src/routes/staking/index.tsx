@@ -12,6 +12,7 @@ import { AssociateContainer } from "./associate/associate-page";
 import { DisassociateContainer } from "./disassociate/disassociate-page";
 import { Staking } from "./staking";
 import { StakingNodeContainer } from "./staking-node";
+import { StakingNodesContainer } from "./staking-nodes-container";
 
 const StakingRouter = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
@@ -49,7 +50,9 @@ const StakingRouter = ({ name }: RouteChildProps) => {
             <StakingNodeContainer />
           </Route>
           <Route path={match.path} exact>
-            <Staking />
+            <StakingNodesContainer>
+              {({ data }) => <Staking data={data} />}
+            </StakingNodesContainer>
           </Route>
         </Switch>
       )}

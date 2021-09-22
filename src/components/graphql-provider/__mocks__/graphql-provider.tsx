@@ -1,21 +1,17 @@
 import { MockedProvider, MockedResponse } from "@apollo/client/testing";
 import React from "react";
-import { addDays } from "date-fns";
 import * as faker from "faker";
-
+import { addDays } from "date-fns";
 import {
   NodeStatus,
   ProposalState,
   VoteValue,
 } from "../../../__generated__/globalTypes";
-import { STAKING_QUERY } from "../../../routes/staking/staking";
 import {
   Staking,
   Staking_nodeData,
   Staking_nodes,
 } from "../../../routes/staking/__generated__/Staking";
-import { STAKE_NODE_QUERY } from "../../../routes/staking/staking-node";
-import { StakeNode } from "../../../routes/staking/__generated__/StakeNode";
 import { PartyDelegations } from "../../../routes/staking/__generated__/PartyDelegations";
 import { PARTY_DELEGATIONS_QUERY } from "../../../routes/staking/staking-form";
 import {
@@ -27,6 +23,7 @@ import { Proposals } from "../../../routes/governance/__generated__/proposals";
 import { Parties } from "../../../routes/governance/__generated__/Parties";
 import { PARTIES_QUERY } from "../../../routes/governance/vote-details";
 import { generateProposal } from "../../../routes/governance/test-helpers/generate-proposals";
+import { STAKING_QUERY } from "../../../routes/staking/staking-nodes-container";
 
 const partyId = "pub";
 
@@ -85,6 +82,15 @@ const MOCK_STAKING_QUERY: MockedResponse<Staking> = {
   },
   result: {
     data: {
+      epoch: {
+        __typename: "Epoch",
+        id: "1",
+        timestamps: {
+          __typename: "EpochTimestamps",
+          start: new Date().toISOString(),
+          end: addDays(new Date(), 1).toISOString(),
+        },
+      },
       party: {
         __typename: "Party",
         stake: {
@@ -97,66 +103,12 @@ const MOCK_STAKING_QUERY: MockedResponse<Staking> = {
             __typename: "Delegation",
             amount: "100",
             node: nodes[0],
+            epoch: 1,
           },
         ],
       },
       nodes,
       nodeData,
-    },
-  },
-};
-
-const MOCK_STAKING_NODE_QUERY: MockedResponse<StakeNode> = {
-  request: {
-    query: STAKE_NODE_QUERY,
-    variables: {
-      nodeId: nodes[0].id,
-      partyId,
-    },
-  },
-  result: {
-    data: {
-      node: nodes[0],
-      epoch: {
-        __typename: "Epoch",
-        id: "1",
-        timestamps: {
-          __typename: "EpochTimestamps",
-          start: new Date().toISOString(),
-          end: addDays(new Date(), 1).toISOString(),
-        },
-      },
-      nodeData,
-      party: {
-        __typename: "Party",
-        id: partyId,
-        stake: {
-          __typename: "PartyStake",
-          currentStakeAvailable: "100",
-        },
-        delegations: [
-          {
-            __typename: "Delegation",
-            amount: "100",
-            epoch: 1,
-          },
-          {
-            __typename: "Delegation",
-            amount: "100",
-            epoch: 1,
-          },
-          {
-            __typename: "Delegation",
-            amount: "200",
-            epoch: 2,
-          },
-          {
-            __typename: "Delegation",
-            amount: "200",
-            epoch: 2,
-          },
-        ],
-      },
     },
   },
 };
@@ -366,7 +318,6 @@ export const GraphQlProvider = ({
     <MockedProvider
       mocks={[
         MOCK_STAKING_QUERY,
-        MOCK_STAKING_NODE_QUERY,
         MOCK_PARTY_DELEGATIONS,
         MOCK_PROPOSALS,
         MOCK_PROPOSALS_SUBSCRIPTION,

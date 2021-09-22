@@ -1,5 +1,4 @@
 import React from "react";
-import { gql, useQuery } from "@apollo/client";
 import { Link, useRouteMatch } from "react-router-dom";
 import { BulletHeader } from "../../components/bullet-header";
 import { Callout } from "../../components/callout";
@@ -16,65 +15,8 @@ import { Tick, Error } from "../../components/icons";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { useVegaUser } from "../../hooks/use-vega-user";
 
-export const STAKING_QUERY = gql`
-  query Staking($partyId: ID!) {
-    party(id: $partyId) {
-      stake {
-        currentStakeAvailable
-      }
-      id
-      delegations {
-        amount
-        node {
-          id
-        }
-      }
-    }
-    nodes {
-      id
-      pubkey
-      infoUrl
-      location
-      stakedByOperator
-      stakedByDelegates
-      stakedTotal
-      pendingStake
-      epochData {
-        total
-        offline
-        online
-      }
-      status
-    }
-    nodeData {
-      stakedTotal
-      totalNodes
-      inactiveNodes
-      validatingNodes
-      uptime
-    }
-  }
-`;
-
-export const Staking = () => {
+export const Staking = ({ data }: { data: StakingQueryResult }) => {
   const { t } = useTranslation();
-  const { currVegaKey } = useVegaUser();
-  const { data, loading, error } = useQuery<StakingQueryResult>(STAKING_QUERY, {
-    variables: { partyId: currVegaKey?.pub || "" },
-    skip: !currVegaKey?.pub,
-  });
-  let stakingStep = null;
-  if (error) {
-    stakingStep = (
-      <Callout intent="error" title={t("Something went wrong")}>
-        <pre>{error.message}</pre>
-      </Callout>
-    );
-  } else if (loading) {
-    stakingStep = <div>{t("Loading")}</div>;
-  } else {
-    stakingStep = <StakingStepSelectNode data={data} />;
-  }
 
   return (
     <>
@@ -94,7 +36,7 @@ export const Staking = () => {
       </section>
       <section>
         <BulletHeader tag="h2">{t("stakingStep3")}</BulletHeader>
-        {stakingStep}
+        <StakingStepSelectNode data={data} />
       </section>
     </>
   );
