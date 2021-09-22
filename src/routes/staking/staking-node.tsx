@@ -27,7 +27,7 @@ export const StakingNodeContainer = () => {
 
 interface StakingNodeProps {
   vegaKey: VegaKeyExtended;
-  data: StakingQueryResult;
+  data?: StakingQueryResult;
 }
 
 export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
@@ -41,9 +41,9 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
   }, [data]);
   const unstaked = React.useMemo(() => {
     return currentDelegationAmount.minus(
-      data.party?.stake.currentStakeAvailable || 0
+      data?.party?.stake.currentStakeAvailable || 0
     );
-  }, [currentDelegationAmount, data.party?.stake.currentStakeAvailable]);
+  }, [currentDelegationAmount, data?.party?.stake.currentStakeAvailable]);
 
   const nodeInfo = React.useMemo(() => {
     return data?.nodes?.find(({ id }) => id === node);
@@ -65,19 +65,19 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
       <p>Vega key: {vegaKey.pubShort}</p>
       <ValidatorTable
         node={nodeInfo}
-        stakedTotal={data.nodeData?.stakedTotal || "0"}
+        stakedTotal={data?.nodeData?.stakedTotal || "0"}
       />
-      {data.epoch.timestamps.start && data.epoch.timestamps.end && (
+      {data?.epoch.timestamps.start && data?.epoch.timestamps.end && (
         <EpochCountdown
           containerClass="staking-node__epoch"
           id={data.epoch.id}
-          startDate={new Date(data.epoch.timestamps.start)}
-          endDate={new Date(data.epoch.timestamps.end)}
+          startDate={new Date(data?.epoch.timestamps.start)}
+          endDate={new Date(data?.epoch.timestamps.end)}
         />
       )}
       <YourStake
-        currentEpoch={data.epoch.id}
-        delegations={data.party?.delegations || []}
+        currentEpoch={data?.epoch.id!}
+        delegations={data?.party?.delegations || []}
       />
       <StakingForm
         pubkey={vegaKey.pub}

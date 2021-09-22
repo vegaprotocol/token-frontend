@@ -15,7 +15,7 @@ import { Tick, Error } from "../../components/icons";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { useVegaUser } from "../../hooks/use-vega-user";
 
-export const Staking = ({ data }: { data: StakingQueryResult }) => {
+export const Staking = ({ data }: { data?: StakingQueryResult }) => {
   const { t } = useTranslation();
 
   return (

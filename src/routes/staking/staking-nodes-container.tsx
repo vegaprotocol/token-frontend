@@ -58,7 +58,7 @@ export const STAKING_QUERY = gql`
 export const StakingNodesContainer = ({
   children,
 }: {
-  children: ({ data }: { data: StakingQueryResult }) => React.ReactElement;
+  children: ({ data }: { data?: StakingQueryResult }) => React.ReactElement;
 }) => {
   const { t } = useTranslation();
   const { currVegaKey } = useVegaUser();
@@ -72,7 +72,7 @@ export const StakingNodesContainer = ({
         <pre>{error.message}</pre>
       </Callout>
     );
-  } else if (loading || !data) {
+  } else if (loading) {
     return (
       <SplashScreen>
         <SplashLoader />
