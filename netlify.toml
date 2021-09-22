@@ -35,4 +35,8 @@
   REACT_APP_STAKING_DISABLED = '0'
   REACT_APP_DEX_STAKING_DISABLED = '0'
   REACT_APP_GOVERNANCE_DISABLED = '0'
-  REACT_APP_VEGA_URL = "https://n04.d.vega.xyz/query"
+  REACT_APP_VEGA_URL = "/api/query"
+  
+  [[redirects]]
+    from = "/api"
+    to = "http://141.94.109.199:3009"
