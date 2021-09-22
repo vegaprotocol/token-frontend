@@ -214,13 +214,16 @@ const VegaWalletConnected = ({
 
   return vegaKeys.length ? (
     <>
-      {unstaked ? (
-        <WalletCardRow
-          label={t("unstaked")}
-          value={unstaked}
-          valueSuffix={t("VEGA")}
-        />
-      ) : null}
+      <WalletCardRow
+        label={t("Associated $VEGA")}
+        value={currentStakeAvailable}
+        valueSuffix={t("VEGA")}
+      />
+      <WalletCardRow
+        label={t("unstaked")}
+        value={unstaked}
+        valueSuffix={t("VEGA")}
+      />
       {delegations.map((d) => (
         <WalletCardRow
           key={d.node.id}

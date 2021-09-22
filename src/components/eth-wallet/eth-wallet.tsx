@@ -103,6 +103,7 @@ const ConnectedKey = () => {
       />
       {Flags.MAINNET_DISABLED ? null : (
         <>
+          <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
           <WalletCardRow
             label={t("Associated")}
             value={lien}
