@@ -66,7 +66,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                   locked={tranche.locked_amount}
                   unlocked={total.minus(tranche.locked_amount)}
                   total={total}
-                  secondaryHeader={"getContent(tranche)"}
+                  secondaryHeader={getContent(tranche)}
                 />
                 <TrancheLabel
                   contract={ADDRESSES.vestingAddress}
