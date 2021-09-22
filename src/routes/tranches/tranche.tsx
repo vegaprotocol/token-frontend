@@ -28,73 +28,37 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
     return <Redirect to={Routes.NOT_FOUND} />;
   }
 
-  let locked_percentage = tranche.locked_amount
-    .div(tranche.total_added)
-    .times(100);
-  let removed_percentage = tranche.total_removed
-    .div(tranche.total_added)
-    .times(100);
-  if (tranche.total_added.toNumber() === 0) {
-    locked_percentage = new BigNumber(0);
-    removed_percentage = new BigNumber(0);
-  }
+  // let locked_percentage = tranche.locked_amount
+  //   .div(tranche.total_added)
+  //   .times(100);
+  // let removed_percentage = tranche.total_removed
+  //   .div(tranche.total_added)
+  //   .times(100);
+  // if (tranche.total_added.toNumber() === 0) {
+  //   locked_percentage = new BigNumber(0);
+  //   removed_percentage = new BigNumber(0);
+  // }
 
-  console.log(tranche);
+  const total = tranche.total_added.minus(tranche.total_removed);
   return (
     <>
       <TrancheItem
         tranche={tranche}
         locked={tranche.locked_amount}
-        unlocked={new BigNumber(2)}
-        total={tranche.total_added}
+        unlocked={total.minus(tranche.locked_amount)}
+        total={total}
       />
       <div className="tranche__contentsp">
         <span>{t("alreadyRedeemed")}</span>
         <span>{tranche.total_removed.toString()}</span>
       </div>
-      <BulletHeader tag="h2">
-        {t("Tranche")} #{trancheId}&nbsp;
-      </BulletHeader>
-      <div style={{ marginTop: 20 }}>
-        <TrancheDates start={tranche.tranche_start} end={tranche.tranche_end} />
-      </div>
-      <div>
-        <h3 className="tranche__progress-title">{t("Locked")}</h3>
-        <div className="tranche__progress-info">
-          <ProgressBar
-            percentage={locked_percentage.toNumber()}
-            width={300}
-            color={Colors.PINK}
-          />
-          <span>
-            {getAbbreviatedNumber(tranche.locked_amount)} of (
-            {getAbbreviatedNumber(tranche.total_added)})
-          </span>
-        </div>
-      </div>
-      <div>
-        <h3 className="tranche__progress-title">{t("Redeemed")}</h3>
-        <div className="tranche__progress-info">
-          <ProgressBar
-            percentage={removed_percentage.toNumber()}
-            width={300}
-            color={Colors.PINK}
-          />
-          <span>
-            {getAbbreviatedNumber(tranche.total_removed)} of (
-            {getAbbreviatedNumber(tranche.total_added)})
-          </span>
-        </div>
-        <TrancheLabel
-          chainId={appState.chainId}
-          contract={ADDRESSES.vestingAddress}
-          id={tranche.tranche_id}
-        />
-      </div>
       <h2>{t("Holders")}</h2>
       {tranche.users.length ? (
         <ul className="tranche__user-list">
           {tranche.users.map((user, i) => {
+            const locked: BigNumber = user.total_tokens.minus(
+              user.remaining_tokens
+            );
             return (
               <li className="tranche__item" key={i}>
                 <EtherscanLink
@@ -107,27 +71,11 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
                   <span>{t("Unlocked")}</span>
                 </div>
                 <div className="tranche__progress-contents">
-                  <span>{"locked.toString()"}</span>
-                  <span>{"vested.toString()"}</span>
+                  <span>{locked.toString()}</span>
+                  <span>{user.remaining_tokens.toString()}</span>
                 </div>
               </li>
             );
-
-            // return (
-            //     <li className="tranche__user-item" key={i}>
-            //       <EtherscanLink
-            //         chainId={appState.chainId}
-            //         address={user.address}
-            //         text={user.address}
-            //       />
-            //       <div className="tranche__user-info">
-            //         <span>{user.total_tokens.toString()} VEGA</span>
-            //         <span>
-            //           {user.withdrawn_tokens.toString()} {t("Redeemed")}
-            //         </span>
-            //       </div>
-            //     </li>
-            //   );
           })}
         </ul>
       ) : (

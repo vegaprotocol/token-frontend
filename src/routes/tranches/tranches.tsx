@@ -1,17 +1,14 @@
 import "./tranches.scss";
-import { Link, useRouteMatch } from "react-router-dom";
+import { useRouteMatch } from "react-router-dom";
 import { TrancheLabel } from "./tranche-label";
 import { TrancheDates } from "./tranche-dates";
 import { useTranslation } from "react-i18next";
-import { TrancheProgress } from "./tranche-progress";
 import { BulletHeader } from "../../components/bullet-header";
 import React from "react";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
-import { Callout } from "../../components/callout";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { ADDRESSES } from "../../config";
 import { TrancheItem } from "../redemption/tranche-item";
-import { BigNumber } from "../../lib/bignumber";
 
 const trancheMinimum = 10;
 
@@ -60,9 +57,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
       {tranches?.length ? (
         <ul className="tranches__list">
           {(showAll ? tranches : filteredTranches).map((tranche) => {
-            console.log(tranche);
             const total = tranche.total_added.minus(tranche.total_removed);
-
             return (
               <div key={tranche.tranche_id}>
                 <TrancheItem
@@ -80,41 +75,6 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                 />
               </div>
             );
-            //   return (
-            //     <>
-            //       <TrancheLabel
-            //         contract={ADDRESSES.vestingAddress}
-            //         chainId={appState.chainId}
-            //         id={tranche.tranche_id}
-            //       />
-
-            //       <li className="tranches__list-item" key={tranche.tranche_id}>
-            //         <div className="tranches__list-item-container">
-            //           <div className="tranches__item-title">
-            //             <div className="tranches__item-line">
-            //               <Link
-            //                 to={`${match.path}/${tranche.tranche_id}`}
-            //                 className="tranches__link"
-            //               >
-            //                 <span>{t("Tranche")}</span>#{tranche.tranche_id}
-            //               </Link>
-            //               {getContent(tranche)}
-            //             </div>
-            //           </div>
-            //           <TrancheProgress
-            //             locked={tranche.locked_amount}
-            //             totalRemoved={tranche.total_removed}
-            //             totalAdded={tranche.total_added}
-            //           />
-            //         </div>
-            //         <TrancheLabel
-            //           contract={ADDRESSES.vestingAddress}
-            //           chainId={appState.chainId}
-            //           id={tranche.tranche_id}
-            //         />
-            //       </li>
-            //     </>
-            //   );
           })}
         </ul>
       ) : (
@@ -136,15 +96,3 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
     </>
   );
 };
-
-
-/*
-
-
-total is total added - total removed
-
-unlocked = above - locked
-
-user locked = total tokens - remaing
-user uncled = remaining
-*/ 
