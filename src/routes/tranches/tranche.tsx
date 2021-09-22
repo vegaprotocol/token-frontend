@@ -80,7 +80,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
           id={tranche.tranche_id}
         />
       </div>
-      <h2>{t("Users")}</h2>
+      <h2>{t("Holders")}</h2>
       {tranche.users.length ? (
         <ul className="tranche__user-list">
           {tranche.users.map((user, i) => {
