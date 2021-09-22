@@ -4,7 +4,7 @@
   status = 403
   force = true
   conditions = {Country = [ "AS", "BD", "BO", "CA", "CN", "RC", "CU", "EC", "EG", "GU", "KP", "KG", "MA", "MM", "NA", "MP", "PR", "SS", "SD", "SY", "UM", "US", "VI" ]}
-  
+
 [[redirects]]
   from = "/api/query"
   to = "http://141.94.109.199:3008/query"
@@ -38,7 +38,9 @@
 [context.deploy-preview.environment]
   REACT_APP_CHAIN = "0x3"
   REACT_APP_STAKING_DISABLED = '0'
-  REACT_APP_DEX_STAKING_DISABLED = '0'
-  REACT_APP_GOVERNANCE_DISABLED = '0'
+  REACT_APP_DEX_STAKING_DISABLED = '1'
+  REACT_APP_GOVERNANCE_DISABLED = '1'
+  REACT_APP_VESTING_DISABLED = '1'
+  REACT_APP_REDEEM_DISABLED = '1'
   REACT_APP_VEGA_URL = "https://deploy-preview-481--token-vega-xyz.netlify.app/api/"
 
