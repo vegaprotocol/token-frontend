@@ -24,9 +24,6 @@ export const TokenDetails = ({
 
   const { appState } = useAppState();
 
-  // Hacky hack: Contract on ropsten is a different DP
-  const formattedTotalSupply = Flags.HACK_FIX_TOTAL_SUPPLY ? totalSupply : formatNumber(totalSupply)
-
   return (
     <KeyValueTable className={"token-details"}>
       <KeyValueTableRow>
@@ -49,14 +46,17 @@ export const TokenDetails = ({
           />
         </td>
       </KeyValueTableRow>
-      <KeyValueTableRow>
-        <th>{t("Total supply")}</th>
-        <td data-testid="total-supply">{formattedTotalSupply}</td>
-      </KeyValueTableRow>
-      <KeyValueTableRow>
-        <th>{t("Circulating supply")}</th>
-        <TokenDetailsCirculating tranches={appState.tranches} />
-      </KeyValueTableRow>
+      {Flags.VESTING_DISABLED ? null : (<>
+        <KeyValueTableRow>
+          <th>{t("Total supply")}</th>
+          <td data-testid="total-supply">{formatNumber(totalSupply)}</td>
+        </KeyValueTableRow>
+        <KeyValueTableRow>
+          <th>{t("Circulating supply")}</th>
+          <TokenDetailsCirculating tranches={appState.tranches} />
+        </KeyValueTableRow>
+        </>
+      )}
       <KeyValueTableRow>
         <th style={{ whiteSpace: "nowrap" }}>
           {t("$VEGA associated with a Vega key")}

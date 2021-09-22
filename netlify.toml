@@ -42,6 +42,5 @@
   REACT_APP_GOVERNANCE_DISABLED = '1'
   REACT_APP_VESTING_DISABLED = '1'
   REACT_APP_REDEEM_DISABLED = '1'
-  REACT_APP_HACK_FIX_TOTAL_SUPPLY = '1'
   REACT_APP_VEGA_URL = "https://deploy-preview-481--token-vega-xyz.netlify.app/api/"
 
