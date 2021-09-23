@@ -3,7 +3,7 @@ import {
   isUnexpectedError,
   isUserRejection,
   PromiEvent,
-  WrappedPromiEvent
+  WrappedPromiEvent,
 } from "../lib/web3-utils";
 import {
   initialState,
@@ -17,7 +17,8 @@ export const useTransaction = (
   performTransaction:
     | ((...args: any[]) => WrappedPromiEvent<any>)
     | ((...args: any[]) => Promise<WrappedPromiEvent<any>>),
-  checkTransaction?: (...args: any[]) => Promise<any>
+  checkTransaction?: (...args: any[]) => Promise<any>,
+  requiredConfirmations?: number
 ) => {
   const { t } = useTranslation();
   const [state, dispatch] = React.useReducer(transactionReducer, initialState);
@@ -68,19 +69,40 @@ export const useTransaction = (
             txHash: hash,
           });
         })
+        .on("confirmation", (count: number) => {
+          if (requiredConfirmations && count > requiredConfirmations) {
+            dispatch({
+              type: TransactionActionType.TX_COMPLETE,
+              receipt: {},
+              confirmations: count,
+            });
+            promiEvent.off();
+          }
+        })
         .on("receipt", (receipt: any) => {
           promiEvent.off();
-          dispatch({ type: TransactionActionType.TX_COMPLETE, receipt });
+          if (!requiredConfirmations) {
+            dispatch({
+              type: TransactionActionType.TX_COMPLETE,
+              receipt,
+              confirmations: 1,
+            });
+          }
         })
         .on("error", (err: Error) => {
           promiEvent.off();
           handleError(err);
         });
-    } catch (err) {
+    } catch (err: Error) {
       console.log(err);
       handleError(err);
     }
-  }, [performTransaction, checkTransaction, dispatch, handleError]);
+  }, [
+    checkTransaction,
+    performTransaction,
+    requiredConfirmations,
+    handleError,
+  ]);
 
   return {
     state,

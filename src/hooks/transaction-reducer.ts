@@ -14,6 +14,7 @@ export interface TransactionState {
     receipt: object | null;
     error: Error | null;
     userFacingError?: Error | null;
+    confirmations: number | null;
   };
 }
 
@@ -25,6 +26,7 @@ export const initialState: TransactionState = {
     receipt: null,
     error: null,
     userFacingError: null,
+    confirmations: null,
   },
 };
 
@@ -64,6 +66,7 @@ export type TransactionAction =
   | {
       type: TransactionActionType.TX_COMPLETE;
       receipt: any;
+      confirmations: number;
     }
   | {
       type: TransactionActionType.TX_ERROR;
@@ -108,6 +111,7 @@ export function transactionReducer(
         txData: {
           ...state.txData,
           receipt: action.receipt,
+          confirmations: action.confirmations,
         },
       };
     case TransactionActionType.TX_ERROR:
