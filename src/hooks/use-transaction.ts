@@ -21,7 +21,10 @@ export const useTransaction = (
   requiredConfirmations: number | null = null
 ) => {
   const { t } = useTranslation();
-  const [state, dispatch] = React.useReducer(transactionReducer, initialState);
+  const [state, dispatch] = React.useReducer(transactionReducer, {
+    ...initialState,
+    requiredConfirmations,
+  });
 
   const handleError = React.useCallback(
     (err: Error) => {
@@ -51,7 +54,6 @@ export const useTransaction = (
   const perform = React.useCallback(async () => {
     dispatch({
       type: TransactionActionType.TX_REQUESTED,
-      requiredConfirmations: requiredConfirmations,
     });
     try {
       if (typeof checkTransaction === "function") {

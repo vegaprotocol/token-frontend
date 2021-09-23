@@ -9,26 +9,26 @@ export enum TxState {
 export interface TransactionState {
   // claim form state
   txState: TxState;
+  requiredConfirmations: number | null;
   txData: {
     hash: string | null;
     receipt: object | null;
     error: Error | null;
     userFacingError?: Error | null;
     confirmations: number | null;
-    requiredConfirmations: number | null;
   };
 }
 
 export const initialState: TransactionState = {
   // claim tx
   txState: TxState.Default,
+  requiredConfirmations: null,
   txData: {
     hash: null,
     receipt: null,
     error: null,
     userFacingError: null,
     confirmations: null,
-    requiredConfirmations: null,
   },
 };
 
@@ -60,7 +60,6 @@ export type TransactionAction =
     }
   | {
       type: TransactionActionType.TX_REQUESTED;
-      requiredConfirmations: number | null;
     }
   | {
       type: TransactionActionType.TX_SUBMITTED;
@@ -86,12 +85,12 @@ export function transactionReducer(
       return {
         ...state,
         txState: TxState.Default,
+        requiredConfirmations: state.requiredConfirmations || null,
         txData: {
           hash: null,
           receipt: null,
           error: null,
           confirmations: null,
-          requiredConfirmations: null,
         },
       };
     case TransactionActionType.TX_REQUESTED:
@@ -100,7 +99,6 @@ export function transactionReducer(
         txState: TxState.Requested,
         txData: {
           ...state.txData,
-          requiredConfirmations: action.requiredConfirmations,
         },
       };
     case TransactionActionType.TX_SUBMITTED: {
