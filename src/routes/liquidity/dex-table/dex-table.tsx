@@ -11,7 +11,7 @@ import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
-import { EpochCountdown } from "../../staking/epoch-countdown";
+import { EpochCountdown } from "../../../components/epoch-countdown";
 
 const BASE_SUSHI_URL = "https://analytics.sushi.com/pairs/";
 interface DexTokensSectionProps {
