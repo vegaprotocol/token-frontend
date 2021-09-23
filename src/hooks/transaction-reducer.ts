@@ -15,6 +15,7 @@ export interface TransactionState {
     error: Error | null;
     userFacingError?: Error | null;
     confirmations: number | null;
+    requiredConfirmations: number | null;
   };
 }
 
@@ -27,6 +28,7 @@ export const initialState: TransactionState = {
     error: null,
     userFacingError: null,
     confirmations: null,
+    requiredConfirmations: null,
   },
 };
 
@@ -58,6 +60,7 @@ export type TransactionAction =
     }
   | {
       type: TransactionActionType.TX_REQUESTED;
+      requiredConfirmations: number | null;
     }
   | {
       type: TransactionActionType.TX_SUBMITTED;
@@ -88,12 +91,17 @@ export function transactionReducer(
           receipt: null,
           error: null,
           confirmations: null,
+          requiredConfirmations: null,
         },
       };
     case TransactionActionType.TX_REQUESTED:
       return {
         ...state,
         txState: TxState.Requested,
+        txData: {
+          ...state.txData,
+          requiredConfirmations: action.requiredConfirmations,
+        },
       };
     case TransactionActionType.TX_SUBMITTED: {
       return {

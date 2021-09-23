@@ -18,7 +18,7 @@ export const useTransaction = (
     | ((...args: any[]) => WrappedPromiEvent<any>)
     | ((...args: any[]) => Promise<WrappedPromiEvent<any>>),
   checkTransaction?: (...args: any[]) => Promise<any>,
-  requiredConfirmations?: number
+  requiredConfirmations: number | null = null
 ) => {
   const { t } = useTranslation();
   const [state, dispatch] = React.useReducer(transactionReducer, initialState);
@@ -49,7 +49,10 @@ export const useTransaction = (
   );
 
   const perform = React.useCallback(async () => {
-    dispatch({ type: TransactionActionType.TX_REQUESTED });
+    dispatch({
+      type: TransactionActionType.TX_REQUESTED,
+      requiredConfirmations: requiredConfirmations,
+    });
     try {
       if (typeof checkTransaction === "function") {
         await checkTransaction();
