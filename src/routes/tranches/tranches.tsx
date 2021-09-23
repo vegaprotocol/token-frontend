@@ -28,21 +28,9 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
 
   const getContent = (tranche: Tranche) => {
     if (isTestingTranche(tranche)) {
-      return (
-        <span>
-          {t(
-            "This tranche was used to perform integration testing only prior to token launch and no tokens will enter the supply before 3rd Sep 2021."
-          )}
-        </span>
-      );
+      return <span>{t("trancheExtraInfo")}</span>;
     } else if (tranche.tranche_id === 10) {
-      return (
-        <span>
-          {t(
-            "This tranche unlocked prior to the token launch on 3rd Sept 2021. These tokens were all issued to institutions for distribution to purchasers, and to support listings and liquidity. They were unlocked early to ensure a smooth launch, but not sold or traded prior to the launch."
-          )}
-        </span>
-      );
+      return <span>{t("trancheExtraInfoTranche10")}</span>;
     }
     return (
       <TrancheDates start={tranche.tranche_start} end={tranche.tranche_end} />
