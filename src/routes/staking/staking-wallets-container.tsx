@@ -48,6 +48,7 @@ export const StakingWalletsContainer = ({
               isOpen: true,
             })
           }
+          className="fill"
         >
           {t("connectVegaWallet")}
         </button>
