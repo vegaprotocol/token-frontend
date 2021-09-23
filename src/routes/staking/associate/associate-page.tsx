@@ -70,7 +70,7 @@ export const AssociateContainer = () => {
             <AssociatePage
               address={address}
               vegaKey={currVegaKey}
-              confirmations={data.confirmations}
+              requiredConfirmations={data.confirmations}
             />
           )}
         </StakingWalletsContainer>
@@ -82,11 +82,11 @@ export const AssociateContainer = () => {
 export const AssociatePage = ({
   address,
   vegaKey,
-  confirmations,
+  requiredConfirmations,
 }: {
   address: string;
   vegaKey: VegaKeyExtended;
-  confirmations: number;
+  requiredConfirmations: number;
 }) => {
   const { t } = useTranslation();
   const params = useSearchParams();
@@ -105,7 +105,7 @@ export const AssociatePage = ({
     amount,
     vegaKey.pub,
     selectedStakingMethod,
-    confirmations
+    requiredConfirmations
   );
 
   if (txState.txState !== TxState.Default) {
@@ -115,6 +115,7 @@ export const AssociatePage = ({
         vegaKey={vegaKey.pub}
         state={txState}
         dispatch={txDispatch}
+        requiredConfirmations={requiredConfirmations}
       />
     );
   }
