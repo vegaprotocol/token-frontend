@@ -3,7 +3,6 @@ import { useRouteMatch } from "react-router-dom";
 import { TrancheLabel } from "./tranche-label";
 import { TrancheDates } from "./tranche-dates";
 import { useTranslation } from "react-i18next";
-import { BulletHeader } from "../../components/bullet-header";
 import React from "react";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { useAppState } from "../../contexts/app-state/app-state-context";
@@ -39,9 +38,6 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
 
   return (
     <>
-      <BulletHeader tag="h2" style={{ marginTop: 0 }}>
-        {t("Tranches")}
-      </BulletHeader>
       {tranches?.length ? (
         <ul className="tranches__list">
           {(showAll ? tranches : filteredTranches).map((tranche) => {
