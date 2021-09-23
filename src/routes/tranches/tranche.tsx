@@ -30,7 +30,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
         unlocked={total.minus(tranche.locked_amount)}
         total={total}
       />
-      <div className="tranche__contentsp">
+      <div className="tranche__redeemed">
         <span>{t("alreadyRedeemed")}</span>
         <span>{tranche.total_removed.toString()}</span>
       </div>
@@ -42,7 +42,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
               user.remaining_tokens
             );
             return (
-              <li className="tranche__item" key={i}>
+              <li className="tranche__user-list--item" key={i}>
                 <EtherscanLink
                   chainId={appState.chainId}
                   address={user.address}
