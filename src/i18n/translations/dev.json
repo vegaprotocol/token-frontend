@@ -15,6 +15,7 @@
   "pageTitleDepositLp": "Deposit liquidity token for VEGA rewards",
   "pageTitleWithdrawLp": "Withdraw SLP and Rewards",
   "Vesting": "Vesting",
+  "unstaked": "Unstaked",
   "of": "of",
   "to": "to",
   "Deposit": "deposit",
@@ -277,7 +278,11 @@
   "stakingVegaWalletConnected": "Connected to Vega wallet with public key {{key}}",
   "stakingStep2": "Step 2. Associate tokens with a Vega wallet",
   "stakingStep2Text": "Your tokens need to be associated with a Vega wallet so that it can control your stake",
-  "stakingHasAssociated": "You have associated {{tokens}} to your connected Vega wallet. You can <associateLink>associate more</associateLink> or <disassociateLink>disassociate</disassociateLink>",
+  "stakingAssociateConnectVega": "You need to connect to a Vega wallet first",
+  "stakingAssociateConnectEth": "You need to connect to an Ethereum wallet first",
+  "stakingHasAssociated": "You have {{tokens}} VEGA tokens associated.",
+  "stakingAssociateMoreButton": "Associate more VEGA tokens with wallet",
+  "stakingDisassociateButton": "Dissociate VEGA tokens from wallet",
   "stakingStep3": "Step3. Select the validator you'd like to nominate",
   "associateButton": "Associate VEGA tokens with wallet",
   "nodeQueryFailed": "Could not get data for node {{node}}",
@@ -380,5 +385,6 @@
   "VEGA in wallet": "VEGA in wallet",
   "Vesting associated": "Vesting associated",
   "Wallet associated": "Wallet associated",
-  "alreadyRedeemed": "Already redeemed"
+  "alreadyRedeemed": "Already redeemed",
+  "stakeNodeNone": "You need to associate some VEGA before you can stake"
 }

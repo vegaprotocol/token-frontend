@@ -39,9 +39,21 @@ export interface Delegations_party_delegations {
   epoch: number;
 }
 
+export interface Delegations_party_stake {
+  __typename: "PartyStake";
+  /**
+   * The stake currently available for the party
+   */
+  currentStakeAvailable: string;
+}
+
 export interface Delegations_party {
   __typename: "Party";
   delegations: Delegations_party_delegations[] | null;
+  /**
+   * The staking informations for this Party
+   */
+  stake: Delegations_party_stake;
 }
 
 export interface Delegations {
