@@ -52,6 +52,7 @@ export enum TransactionActionType {
   TX_SUBMITTED,
   TX_COMPLETE,
   TX_ERROR,
+  TX_CONFIRMATION,
 }
 
 export type TransactionAction =
@@ -74,6 +75,10 @@ export type TransactionAction =
       type: TransactionActionType.TX_ERROR;
       error: Error;
       errorSubstitutions: { [errMessage: string]: string };
+    }
+  | {
+      type: TransactionActionType.TX_CONFIRMATION;
+      confirmations: number;
     };
 
 export function transactionReducer(
@@ -118,6 +123,14 @@ export function transactionReducer(
         txData: {
           ...state.txData,
           receipt: action.receipt,
+          confirmations: action.confirmations,
+        },
+      };
+    case TransactionActionType.TX_CONFIRMATION:
+      return {
+        ...state,
+        txData: {
+          ...state.txData,
           confirmations: action.confirmations,
         },
       };

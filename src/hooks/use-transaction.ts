@@ -82,11 +82,16 @@ export const useTransaction = (
               confirmations: count,
             });
             promiEvent.off();
+          } else {
+            dispatch({
+              type: TransactionActionType.TX_CONFIRMATION,
+              confirmations: count,
+            });
           }
         })
         .on("receipt", (receipt: any) => {
-          promiEvent.off();
           if (!requiredConfirmations) {
+            promiEvent.off();
             dispatch({
               type: TransactionActionType.TX_COMPLETE,
               receipt,
