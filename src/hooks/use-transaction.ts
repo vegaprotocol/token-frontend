@@ -93,7 +93,7 @@ export const useTransaction = (
           promiEvent.off();
           handleError(err);
         });
-    } catch (err: Error) {
+    } catch (err) {
       console.log(err);
       handleError(err);
     }
