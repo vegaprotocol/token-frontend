@@ -87,6 +87,7 @@ export function transactionReducer(
           hash: null,
           receipt: null,
           error: null,
+          confirmations: null,
         },
       };
     case TransactionActionType.TX_REQUESTED:
