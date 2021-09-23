@@ -12,42 +12,7 @@ import {
 } from "../../../components/staking-method-radio";
 import { useAddStake } from "./hooks";
 import { StakingWalletsContainer } from "../staking-wallets-container";
-import { useNetworkParam } from "../../governance/use-network-param";
-import * as Sentry from "@sentry/react";
-
-export const ETH_NETWORK_PARAM = "blockchains.ethereumConfig";
-
-const useEthereumConfig = () => {
-  const { data: ethereumConfigJSON, loading } = useNetworkParam([
-    ETH_NETWORK_PARAM,
-  ]);
-  const ethereumConfig = React.useMemo(() => {
-    if (!ethereumConfigJSON && !loading) {
-      Sentry.captureMessage(
-        `No ETH config found for network param ${ETH_NETWORK_PARAM}`
-      );
-      return null;
-    } else if (!ethereumConfigJSON) {
-      return null;
-    }
-    try {
-      const [configJson] = ethereumConfigJSON;
-      const config = JSON.parse(configJson);
-      return config;
-    } catch {
-      Sentry.captureMessage("Ethereum config JSON is invalid");
-      return null;
-    }
-  }, [ethereumConfigJSON, loading]);
-
-  if (!ethereumConfig) {
-    return null;
-  }
-
-  return {
-    confirmations: ethereumConfig.confirmations,
-  };
-};
+import { useEthereumConfig } from "../../../hooks/use-ethereum-config";
 
 export const NetworkParamsContainer = ({
   children,
