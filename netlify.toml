@@ -6,11 +6,6 @@
   conditions = {Country = [ "AS", "BD", "BO", "CA", "CN", "RC", "CU", "EC", "EG", "GU", "KP", "KG", "MA", "MM", "NA", "MP", "PR", "SS", "SD", "SY", "UM", "US", "VI" ]}
 
 [[redirects]]
-  from = "/api/query"
-  to = "http://141.94.109.199:3008/query"
-  status = 200
-
-[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
