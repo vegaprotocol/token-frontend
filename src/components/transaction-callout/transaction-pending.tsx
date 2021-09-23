@@ -29,14 +29,17 @@ export const TransactionPending = ({
     }
     return 0;
   }, [confirmations, requiredConfirmations]);
+  const title = React.useMemo(() => {
+    const defaultTitle = heading || t("Transaction in progress");
+    if (requiredConfirmations) {
+      return `${defaultTitle}. ${t("blockCountdown", {
+        amount: remainingConfirmations,
+      })}`;
+    }
+    return defaultTitle;
+  }, [heading, remainingConfirmations, requiredConfirmations, t]);
   return (
-    <Callout icon={<Loader />} title={heading || t("Transaction in progress")}>
-      {requiredConfirmations ? (
-        <>
-          <div>Required confirmations: {requiredConfirmations}</div>
-          <div>Remaining confirmations: {remainingConfirmations}</div>
-        </>
-      ) : null}
+    <Callout icon={<Loader />} title={title}>
       {body && <p data-testid="transaction-pending-body">{body}</p>}
       <p>
         <EtherscanLink tx={hash} chainId={chainId} />
