@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { ContractAssociate } from "./contract-associate";
 import { WalletAssociate } from "./wallet-associate";
-import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
+import { useAppState, VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
 import { TxState } from "../../../hooks/transaction-reducer";
 import { AssociateTransaction } from "./associate-transaction";
 import { useSearchParams } from "../../../hooks/use-search-params";
@@ -44,6 +44,13 @@ export const AssociatePage = ({
     perform: txPerform,
   } = useAddStake(address, amount, vegaKey.pub, selectedStakingMethod);
 
+  const {
+    appState: { walletBalance, totalVestedBalance },
+  } = useAppState();
+
+  const zeroVesting = totalVestedBalance.isEqualTo(0);
+  const zeroVega = walletBalance.isEqualTo(0);
+
   if (txState.txState !== TxState.Default) {
     return (
       <AssociateTransaction
@@ -61,13 +68,21 @@ export const AssociatePage = ({
           "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes."
         )}
       </p>
-      <h2 data-testid="associate-subheader">
-        {t("Where would you like to stake from?")}
-      </h2>
-      <StakingMethodRadio
-        setSelectedStakingMethod={setSelectedStakingMethod}
-        selectedStakingMethod={selectedStakingMethod}
-      />
+      {
+        zeroVesting && zeroVega
+        ?
+        <>
+        <h2 data-testid="associate-subheader">
+          {t("Where would you like to stake from?")}
+        </h2>
+        <StakingMethodRadio
+          setSelectedStakingMethod={setSelectedStakingMethod}
+          selectedStakingMethod={selectedStakingMethod}
+        />
+        </>
+        :
+        null
+      }
       {selectedStakingMethod &&
         (selectedStakingMethod === StakingMethod.Contract ? (
           <ContractAssociate
