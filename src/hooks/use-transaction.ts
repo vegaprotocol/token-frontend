@@ -75,7 +75,7 @@ export const useTransaction = (
           });
         })
         .on("confirmation", (count: number) => {
-          if (requiredConfirmations && count > requiredConfirmations) {
+          if (requiredConfirmations && count >= requiredConfirmations) {
             dispatch({
               type: TransactionActionType.TX_COMPLETE,
               receipt: {},
