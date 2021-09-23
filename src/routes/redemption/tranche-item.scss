@@ -3,6 +3,19 @@
 
 .tranche-item {
   margin-bottom: 15px;
+  
+  &__header {
+    border-bottom: white;
+    border-width: 1px;
+    border-bottom-style: solid;
+    padding-bottom: 5px;
+    display: flex;
+    :last-child {
+      font-family: $font-mono;
+      text-align: right;
+      flex: 1;
+    }
+  }
 
   table {
     width: 100%;
