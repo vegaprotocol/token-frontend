@@ -2,13 +2,10 @@ import "./liquidity-container.scss";
 import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
-import { REWARDS_ADDRESSES } from "../../config";
+import { Links, REWARDS_ADDRESSES } from "../../config";
 import { useEthUser } from "../../hooks/use-eth-user";
 import { DexTokensSection } from "./dex-table";
 import { LiquidityAction, LiquidityState } from "./liquidity-reducer";
-
-const BLOG_LINK =
-  "https://blog.vega.xyz/unlocking-vega-coinlist-pro-uniswap-sushiswap-b1414750e358";
 
 export const LiquidityContainer = ({
   state,
@@ -27,7 +24,11 @@ export const LiquidityContainer = ({
           bold: <strong />,
           linkToPost: (
             // eslint-disable-next-line jsx-a11y/anchor-has-content
-            <a href={BLOG_LINK} target="_blank" rel="nofollow noreferrer"></a>
+            <a
+              href={Links.INCENTIVE_PROGRAM_BLOG_POST}
+              target="_blank"
+              rel="nofollow noreferrer"
+            />
           ),
         }}
       />

@@ -12,7 +12,7 @@ import { Routes } from "../router-config";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
 import { EthWallet } from "../../components/eth-wallet";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import { Flags } from "../../config";
+import { Flags, Links } from "../../config";
 import { BigNumber } from "../../lib/bignumber";
 
 export const TOTAL_STAKED_QUERY = gql`
@@ -41,8 +41,8 @@ const Home = ({ name }: RouteChildProps) => {
         totalSupply={appState.totalSupply}
         totalStaked={totalStaked}
       />
-      {Flags.VESTING_DISABLED ? null :
-        (<>
+      {Flags.VESTING_DISABLED ? null : (
+        <>
           <h2>{t("Token Vesting")}</h2>
 
           <p>
@@ -66,7 +66,8 @@ const Home = ({ name }: RouteChildProps) => {
           <button onClick={() => history.push("/vesting")} className="fill">
             {t("Check to see if you can redeem unlocked VEGA tokens")}
           </button>
-        </>)}
+        </>
+      )}
       <h2>{t("USE YOUR VEGA TOKENS")}</h2>
       {Flags.STAKING_DISABLED ? (
         <p>{t("mainnetDisableHome")}</p>
@@ -85,7 +86,7 @@ const Home = ({ name }: RouteChildProps) => {
 
           <p>
             <a
-              href="https://github.com/vegaprotocol/go-wallet"
+              href={Links.WALLET_RELEASES}
               target="_blank"
               rel="nofollow noreferrer"
             >
