@@ -62,7 +62,7 @@ const RewardsPoolAddresses = {
       "0x29c827ce49accf68a1a278c67c9d30c52fbbc348",
     // Same address so cannot have same key twice
     // "0xcc382BF2451d5eA0990Ed881aDbc85Ca49B9E672":
-    //   "https://analytics.sushi.com/pairs/0x42b7b8f8f83fa5cbf0176f8c24ad51ebcd4b5f17",
+    //   "0x42b7b8f8f83fa5cbf0176f8c24ad51ebcd4b5f17",
   } as { [key: string]: string },
 };
 

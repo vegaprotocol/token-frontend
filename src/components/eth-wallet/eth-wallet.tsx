@@ -12,6 +12,7 @@ import {
 } from "../wallet-card";
 import { useEthUser } from "../../hooks/use-eth-user";
 import { Colors, Flags } from "../../config";
+import React from "react";
 
 export const EthWallet = () => {
   const { t } = useTranslation();
@@ -58,27 +59,57 @@ const ConnectedKey = () => {
   const { appState } = useAppState();
   const { lien, walletBalance, totalLockedBalance, totalVestedBalance } =
     appState;
+  const totalInWallet = React.useMemo(() => {
+    return walletBalance.plus(lien);
+  }, [lien, walletBalance]);
+  const totalInVestingContract = React.useMemo(() => {
+    return totalLockedBalance.plus(totalVestedBalance);
+  }, [totalLockedBalance, totalVestedBalance]);
 
   return (
     <>
       <WalletCardRow
         label={t("VEGA in wallet")}
-        value={walletBalance}
+        value={totalInWallet}
+        dark={true}
         valueSuffix={t("VEGA")}
       />
+      {Flags.STAKING_DISABLED ? null : (
+        <WalletCardRow
+          label={t("Not Associated")}
+          value={walletBalance}
+          valueSuffix={t("VEGA")}
+        />
+      )}
+      {Flags.STAKING_DISABLED ? null : (
+        <WalletCardRow
+          label={t("Associated")}
+          value={lien}
+          valueSuffix={t("VEGA")}
+        />
+      )}
       <hr style={{ borderColor: Colors.BLACK, borderTop: 1 }} />
-      <WalletCardRow label={t("VESTING VEGA TOKENS")} dark={true} />
-      <WalletCardRow
-        label={t("Locked")}
-        value={totalLockedBalance}
-        valueSuffix={t("VEGA")}
-      />
-      <WalletCardRow
-        label={t("Unlocked")}
-        value={totalVestedBalance}
-        valueSuffix={t("VEGA")}
-      />
-      {Flags.MAINNET_DISABLED ? null : (
+      {Flags.VESTING_DISABLED ? null : (
+        <>
+          <WalletCardRow
+            label={t("VESTING VEGA TOKENS")}
+            valueSuffix={t("VEGA")}
+            dark={true}
+            value={totalInVestingContract}
+          />
+          <WalletCardRow
+            label={t("Locked")}
+            value={totalLockedBalance}
+            valueSuffix={t("VEGA")}
+          />
+          <WalletCardRow
+            label={t("Unlocked")}
+            value={totalVestedBalance}
+            valueSuffix={t("VEGA")}
+          />
+        </>
+      )}
+      {Flags.STAKING_DISABLED || Flags.VESTING_DISABLED ? null : (
         <>
           <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
           <WalletCardRow

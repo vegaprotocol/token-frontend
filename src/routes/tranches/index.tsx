@@ -9,6 +9,7 @@ import React from "react";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 import { useTranches } from "../../hooks/use-tranches";
+import { Flags } from "../../config";
 
 const TrancheRouter = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
@@ -26,14 +27,18 @@ const TrancheRouter = ({ name }: RouteChildProps) => {
 
   return (
     <TemplateDefault title={t("pageTitleTranches")}>
-      <Switch>
-        <Route path={match.path} exact>
-          <Tranches tranches={tranches} />
-        </Route>
-        <Route path={`${match.path}/:trancheId`}>
-          <Tranche tranches={tranches} />
-        </Route>
-      </Switch>
+      {Flags.REDEEM_DISABLED ? (
+        <p>{t("redeemComingSoon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</p>
+      ) : (
+        <Switch>
+          <Route path={match.path} exact>
+            <Tranches tranches={tranches} />
+          </Route>
+          <Route path={`${match.path}/:trancheId`}>
+            <Tranche tranches={tranches} />
+          </Route>
+        </Switch>
+      )}
     </TemplateDefault>
   );
 };
