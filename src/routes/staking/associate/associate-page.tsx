@@ -12,23 +12,81 @@ import {
 } from "../../../components/staking-method-radio";
 import { useAddStake } from "./hooks";
 import { StakingWalletsContainer } from "../staking-wallets-container";
+import { useNetworkParam } from "../../governance/use-network-param";
+import * as Sentry from "@sentry/react";
+
+export const ETH_NETWORK_PARAM = "blockchains.ethereumConfig";
+
+const useEthereumConfig = () => {
+  const { data: ethereumConfigJSON, loading } = useNetworkParam([
+    ETH_NETWORK_PARAM,
+  ]);
+  const ethereumConfig = React.useMemo(() => {
+    if (!ethereumConfigJSON && !loading) {
+      Sentry.captureMessage(
+        `No ETH config found for network param ${ETH_NETWORK_PARAM}`
+      );
+      return null;
+    } else if (!ethereumConfigJSON) {
+      return null;
+    }
+    try {
+      const [configJson] = ethereumConfigJSON;
+      const config = JSON.parse(configJson);
+      return config;
+    } catch {
+      Sentry.captureMessage("Ethereum config JSON is invalid");
+      return null;
+    }
+  }, [ethereumConfigJSON, loading]);
+
+  if (!ethereumConfig) {
+    return null;
+  }
+
+  return {
+    confirmations: ethereumConfig.confirmations,
+  };
+};
+
+export const NetworkParamsContainer = ({
+  children,
+}: {
+  children: (data: { confirmations: number }) => React.ReactElement;
+}) => {
+  const config = useEthereumConfig();
+  if (!config) {
+    return null;
+  }
+  return children({ confirmations: config.confirmations });
+};
 
 export const AssociateContainer = () => {
   return (
-    <StakingWalletsContainer>
-      {({ address, currVegaKey }) => (
-        <AssociatePage address={address} vegaKey={currVegaKey} />
+    <NetworkParamsContainer>
+      {(data) => (
+        <StakingWalletsContainer>
+          {({ address, currVegaKey }) => (
+            <AssociatePage
+              address={address}
+              vegaKey={currVegaKey}
+              confirmations={data.confirmations}
+            />
+          )}
+        </StakingWalletsContainer>
       )}
-    </StakingWalletsContainer>
+    </NetworkParamsContainer>
   );
 };
 
 export const AssociatePage = ({
   address,
   vegaKey,
+  confirmations,
 }: {
   address: string;
   vegaKey: VegaKeyExtended;
+  confirmations: number;
 }) => {
   const { t } = useTranslation();
   const params = useSearchParams();
@@ -42,7 +100,13 @@ export const AssociatePage = ({
     state: txState,
     dispatch: txDispatch,
     perform: txPerform,
-  } = useAddStake(address, amount, vegaKey.pub, selectedStakingMethod);
+  } = useAddStake(
+    address,
+    amount,
+    vegaKey.pub,
+    selectedStakingMethod,
+    confirmations
+  );
 
   if (txState.txState !== TxState.Default) {
     return (
