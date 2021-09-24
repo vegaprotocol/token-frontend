@@ -27,9 +27,15 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
 
   const getContent = (tranche: Tranche) => {
     if (isTestingTranche(tranche)) {
-      return <p className="tranches__secondary-header">{t("trancheExtraInfo")}</p>;
+      return (
+        <p className="tranches__secondary-header">{t("trancheExtraInfo")}</p>
+      );
     } else if (tranche.tranche_id === 10) {
-      return <p className="tranches__secondary-header">{t("trancheExtraInfoTranche10")}</p>;
+      return (
+        <p className="tranches__secondary-header">
+          {t("trancheExtraInfoTranche10")}
+        </p>
+      );
     }
     return (
       <TrancheDates start={tranche.tranche_start} end={tranche.tranche_end} />
@@ -43,7 +49,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
           {(showAll ? tranches : filteredTranches).map((tranche) => {
             const total = tranche.total_added.minus(tranche.total_removed);
             return (
-              <div key={tranche.tranche_id}>
+              <React.Fragment key={tranche.tranche_id}>
                 <TrancheItem
                   link={`${match.path}/${tranche.tranche_id}`}
                   tranche={tranche}
@@ -57,7 +63,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                   chainId={appState.chainId}
                   id={tranche.tranche_id}
                 />
-              </div>
+              </React.Fragment>
             );
           })}
         </ul>
