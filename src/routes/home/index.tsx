@@ -12,7 +12,7 @@ import { Routes } from "../router-config";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
 import { EthWallet } from "../../components/eth-wallet";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import { Flags } from "../../config";
+import { Flags, Links } from "../../config";
 import { BigNumber } from "../../lib/bignumber";
 
 export const TOTAL_STAKED_QUERY = gql`
@@ -41,32 +41,35 @@ const Home = ({ name }: RouteChildProps) => {
         totalSupply={appState.totalSupply}
         totalStaked={totalStaked}
       />
-      <h2>{t("Token Vesting")}</h2>
+      {Flags.VESTING_DISABLED ? null : (
+        <>
+          <h2>{t("Token Vesting")}</h2>
 
-      <p>
-        {t(
-          "The vesting contract holds VEGA tokens until they have become unlocked."
-        )}
-      </p>
-      <p>
-        <Trans
-          i18nKey="Tokens are held in different <trancheLink>Tranches</trancheLink>. Each tranche has its own schedule for how the tokens are unlocked."
-          components={{
-            trancheLink: <Link to={Routes.TRANCHES} />,
-          }}
-        />
-      </p>
-      <p>
-        {t(
-          "Once unlocked they can be redeemed from the contract so that you can transfer them between wallets."
-        )}
-      </p>
-      <button onClick={() => history.push("/vesting")} className="fill">
-        {t("Check to see if you can redeem unlocked VEGA tokens")}
-      </button>
-
+          <p>
+            {t(
+              "The vesting contract holds VEGA tokens until they have become unlocked."
+            )}
+          </p>
+          <p>
+            <Trans
+              i18nKey="Tokens are held in different <trancheLink>Tranches</trancheLink>. Each tranche has its own schedule for how the tokens are unlocked."
+              components={{
+                trancheLink: <Link to={Routes.TRANCHES} />,
+              }}
+            />
+          </p>
+          <p>
+            {t(
+              "Once unlocked they can be redeemed from the contract so that you can transfer them between wallets."
+            )}
+          </p>
+          <button onClick={() => history.push("/vesting")} className="fill">
+            {t("Check to see if you can redeem unlocked VEGA tokens")}
+          </button>
+        </>
+      )}
       <h2>{t("USE YOUR VEGA TOKENS")}</h2>
-      {Flags.MAINNET_DISABLED ? (
+      {Flags.STAKING_DISABLED ? (
         <p>{t("mainnetDisableHome")}</p>
       ) : (
         <>
@@ -83,7 +86,7 @@ const Home = ({ name }: RouteChildProps) => {
 
           <p>
             <a
-              href="https://github.com/vegaprotocol/go-wallet"
+              href={Links.WALLET_RELEASES}
               target="_blank"
               rel="nofollow noreferrer"
             >

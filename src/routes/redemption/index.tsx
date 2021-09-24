@@ -3,6 +3,7 @@ import { useRouteMatch } from "react-router-dom";
 import { RouteChildProps } from "..";
 import { EthWallet } from "../../components/eth-wallet";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
+import { Flags } from "../../config";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import RedemptionRouter from "./redemption";
 
@@ -19,7 +20,11 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
       }
       sidebar={[<EthWallet />]}
     >
-      <RedemptionRouter />
+      {Flags.REDEEM_DISABLED ? (
+        <p>{t("redeemComingSoon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</p>
+      ) : (
+        <RedemptionRouter />
+      )}
     </TemplateSidebar>
   );
 };

@@ -6,7 +6,6 @@ import {
   AppStateActionType,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
-import { Links } from "../../lib/external-links";
 import { NodeList, NodeListItemProps } from "./node-list";
 import { Staking as StakingQueryResult } from "./__generated__/Staking";
 import { BigNumber } from "../../lib/bignumber";
@@ -14,6 +13,7 @@ import { Trans, useTranslation } from "react-i18next";
 import { Tick, Error } from "../../components/icons";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { useVegaUser } from "../../hooks/use-vega-user";
+import { Links } from "../../config";
 
 export const Staking = ({ data }: { data?: StakingQueryResult }) => {
   const { t } = useTranslation();
@@ -67,9 +67,9 @@ export const StakingStepConnectWallets = () => {
           i18nKey="stakingStep1Text"
           components={{
             vegaWalletLink: (
-              // eslint-disable-next-line
+              // eslint-disable-next-line jsx-a11y/anchor-has-content
               <a
-                href={Links.VEGA_WALLET_RELEASES}
+                href={Links.WALLET_RELEASES}
                 target="_blank"
                 rel="noreferrer"
               />

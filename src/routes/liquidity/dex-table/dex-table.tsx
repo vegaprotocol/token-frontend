@@ -6,14 +6,13 @@ import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { Link } from "react-router-dom";
 import { Routes } from "../../router-config";
 import { LiquidityState, LiquidityAction } from "../liquidity-reducer";
-import { REWARDS_POOL_ADDRESSES } from "../../../config";
+import { Links, REWARDS_POOL_ADDRESSES } from "../../../config";
 import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
 import { EpochCountdown } from "../../../components/epoch-countdown";
 
-const BASE_SUSHI_URL = "https://analytics.sushi.com/pairs/";
 interface DexTokensSectionProps {
   name: string;
   contractAddress: string;
@@ -54,7 +53,7 @@ export const DexTokensSection = ({
             <a
               target="_blank"
               rel="nofollow noreferrer"
-              href={`${BASE_SUSHI_URL}/${poolAddress}`}
+              href={`${Links.SUSHI_PAIRS}/${poolAddress}`}
             >
               {poolAddress}
             </a>

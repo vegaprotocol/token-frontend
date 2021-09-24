@@ -13,12 +13,13 @@
 # Development
 
 Install:
-`yarn`
+`yarn install`
 
 Add .env file in root:
 
 ```bash
 // .env
+REACT_APP_ENV=development
 REACT_APP_CHAIN=0x3
 REACT_APP_VEGA_URL="https://n04.d.vega.xyz/query"
 ```
@@ -30,11 +31,16 @@ Starting the app:
 
 There are a few different configuration options offered for this app:
 
-| **Flag**               | **Purpose**                                                                                          |
-| ---------------------- | ---------------------------------------------------------------------------------------------------- |
-| `REACT_APP_SENTRY_DSN` | The sentry endpoint to report to. Should be off in dev but set in live.                              |
-| `REACT_APP_CHAIN`      | The ETH chain for the app to work on. Should be mainnet for live, but ropsten for preview deploys.   |
-| `REACT_APP_VEGA_URL`   | The GraphQL query endpoint of a [Vega data node](https://github.com/vegaprotocol/networks#data-node) |
+| **Flag**                         | **Purpose**                                                                                          |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `REACT_APP_SENTRY_DSN`           | The sentry endpoint to report to. Should be off in dev but set in live.                              |
+| `REACT_APP_CHAIN`                | The ETH chain for the app to work on. Should be mainnet for live, but ropsten for preview deploys.   |
+| `REACT_APP_VEGA_URL`             | The GraphQL query endpoint of a [Vega data node](https://github.com/vegaprotocol/networks#data-node) |
+| `REACT_APP_STAKING_DISABLED`     | Disable the staking page an show a coming soon message                                               |
+| `REACT_APP_REDEEM_DISABLED`      | Disable the redeem page an show a coming soon message                                                |
+| `REACT_APP_DEX_STAKING_DISABLED` | Disable the dex liquidity page an show a coming soon message                                         |
+| `REACT_APP_GOVERNANCE_DISABLED`  | Disable the governance page and show a coming soon message                                           |
+| `REACT_APP_VESTING_DISABLED`     | Prevent association from the vesting contract                                                        |
 
 ## Example configs:
 
