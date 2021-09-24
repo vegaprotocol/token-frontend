@@ -41,32 +41,34 @@ const Home = ({ name }: RouteChildProps) => {
         totalSupply={appState.totalSupply}
         totalStaked={totalStaked}
       />
-      <h2>{t("Token Vesting")}</h2>
+      {Flags.VESTING_DISABLED ? null :
+        (<>
+          <h2>{t("Token Vesting")}</h2>
 
-      <p>
-        {t(
-          "The vesting contract holds VEGA tokens until they have become unlocked."
-        )}
-      </p>
-      <p>
-        <Trans
-          i18nKey="Tokens are held in different <trancheLink>Tranches</trancheLink>. Each tranche has its own schedule for how the tokens are unlocked."
-          components={{
-            trancheLink: <Link to={Routes.TRANCHES} />,
-          }}
-        />
-      </p>
-      <p>
-        {t(
-          "Once unlocked they can be redeemed from the contract so that you can transfer them between wallets."
-        )}
-      </p>
-      <button onClick={() => history.push("/vesting")} className="fill">
-        {t("Check to see if you can redeem unlocked VEGA tokens")}
-      </button>
-
+          <p>
+            {t(
+              "The vesting contract holds VEGA tokens until they have become unlocked."
+            )}
+          </p>
+          <p>
+            <Trans
+              i18nKey="Tokens are held in different <trancheLink>Tranches</trancheLink>. Each tranche has its own schedule for how the tokens are unlocked."
+              components={{
+                trancheLink: <Link to={Routes.TRANCHES} />,
+              }}
+            />
+          </p>
+          <p>
+            {t(
+              "Once unlocked they can be redeemed from the contract so that you can transfer them between wallets."
+            )}
+          </p>
+          <button onClick={() => history.push("/vesting")} className="fill">
+            {t("Check to see if you can redeem unlocked VEGA tokens")}
+          </button>
+        </>)}
       <h2>{t("USE YOUR VEGA TOKENS")}</h2>
-      {Flags.MAINNET_DISABLED ? (
+      {Flags.STAKING_DISABLED ? (
         <p>{t("mainnetDisableHome")}</p>
       ) : (
         <>

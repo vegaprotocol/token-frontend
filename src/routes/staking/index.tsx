@@ -30,32 +30,28 @@ const StakingRouter = ({ name }: RouteChildProps) => {
     return t("pageTitleStaking");
   }, [associate, disassociate, t]);
 
-  return Flags.MAINNET_DISABLED ? (
+  return Flags.STAKING_DISABLED ? (
     <TemplateDefault title={title}>
       <div>{t("Staking is coming soon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</div>
     </TemplateDefault>
   ) : (
     <TemplateSidebar title={title} sidebar={[<EthWallet />, <VegaWallet />]}>
-      {Flags.MAINNET_DISABLED ? (
-        <div>{t("Staking is coming soon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</div>
-      ) : (
-        <Switch>
-          <Route path={`${match.path}/associate`}>
-            <AssociateContainer />
-          </Route>
-          <Route path={`${match.path}/disassociate`}>
-            <DisassociateContainer />
-          </Route>
-          <Route path={`${match.path}/:node`}>
-            <StakingNodeContainer />
-          </Route>
-          <Route path={match.path} exact>
-            <StakingNodesContainer>
-              {({ data }) => <Staking data={data} />}
-            </StakingNodesContainer>
-          </Route>
-        </Switch>
-      )}
+      <Switch>
+        <Route path={`${match.path}/associate`}>
+          <AssociateContainer />
+        </Route>
+        <Route path={`${match.path}/disassociate`}>
+          <DisassociateContainer />
+        </Route>
+        <Route path={`${match.path}/:node`}>
+          <StakingNodeContainer />
+        </Route>
+        <Route path={match.path} exact>
+          <StakingNodesContainer>
+            {({ data }) => <Staking data={data} />}
+          </StakingNodesContainer>
+        </Route>
+      </Switch>
     </TemplateSidebar>
   );
 };
