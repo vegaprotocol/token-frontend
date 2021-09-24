@@ -159,20 +159,20 @@ export const LiquidityWithdrawPage = ({
           </KeyValueTable>
           <p className="dex-tokens-withdraw__submit">
             <button
-              disabled={!hasLpTokens}
-              className="fill"
-              onClick={txUnstakePerform}
-            >
-              {t("withdrawLpWithdrawAllButton")}
-            </button>
-          </p>
-          <p className="dex-tokens-withdraw__submit">
-            <button
               disabled={!hasRewardsTokens}
               className="fill"
               onClick={txWithdrawPerform}
             >
               {t("withdrawLpWithdrawVegaButton")}
+            </button>
+          </p>
+          <p className="dex-tokens-withdraw__submit">
+            <button
+              disabled={!hasLpTokens}
+              className="fill"
+              onClick={txUnstakePerform}
+            >
+              {t("withdrawLpWithdrawAllButton")}
             </button>
           </p>
         </section>
