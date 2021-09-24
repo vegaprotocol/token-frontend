@@ -45,8 +45,8 @@ const RewardsAddresses = {
     "Sushi Swap VEGA/USDC": "0x42b7B8f8F83fA5cbf0176f8c24Ad51EbcD4B5F17",
   } as { [key: string]: string },
   [EthereumChainIds.Ropsten]: {
-    "Sushi Swap VEGA/ETH": "0x4984e68fff0f1663bcc6c20935d59b6663ea11d9",
-    "Sushi Swap VEGA/USDC": "0x4984e68fff0f1663bcc6c20935d59b6663ea11d9",
+    "Sushi Swap VEGA/ETH": "0x27387e2b7d8E545561bDB8e21EE887D6f2A4C7F3",
+    "Sushi Swap VEGA/USDC": "0x27387e2b7d8E545561bDB8e21EE887D6f2A4C7F3",
   } as { [key: string]: string },
 };
 
@@ -58,7 +58,7 @@ const RewardsPoolAddresses = {
       "0x42b7B8f8F83fA5cbf0176f8c24Ad51EbcD4B5F17",
   } as { [key: string]: string },
   [EthereumChainIds.Ropsten]: {
-    "0x4984e68fff0f1663bcc6c20935d59b6663ea11d9":
+    "0x27387e2b7d8E545561bDB8e21EE887D6f2A4C7F3":
       "0x29c827ce49accf68a1a278c67c9d30c52fbbc348",
     // Same address so cannot have same key twice
     // "0xcc382BF2451d5eA0990Ed881aDbc85Ca49B9E672":
