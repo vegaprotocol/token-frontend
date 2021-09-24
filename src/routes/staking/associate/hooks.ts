@@ -10,17 +10,20 @@ export const useAddStake = (
   address: string,
   amount: string,
   vegaKey: string,
-  stakingMethod: StakingMethod | ""
+  stakingMethod: StakingMethod | "",
+  confirmations: number
 ) => {
   const vesting = useVegaVesting();
   const staking = useVegaStaking();
   const contractAdd = useTransaction(
     () => vesting.addStake(address!, amount, vegaKey),
-    () => vesting.checkAddStake(address!, amount, vegaKey)
+    () => vesting.checkAddStake(address!, amount, vegaKey),
+    confirmations
   );
   const walletAdd = useTransaction(
     () => staking.addStake(address!, amount, vegaKey),
-    () => staking.checkAddStake(address!, amount, vegaKey)
+    () => staking.checkAddStake(address!, amount, vegaKey),
+    confirmations
   );
   const refreshBalances = useRefreshBalances(address);
 

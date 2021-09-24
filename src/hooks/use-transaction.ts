@@ -3,7 +3,7 @@ import {
   isUnexpectedError,
   isUserRejection,
   PromiEvent,
-  WrappedPromiEvent
+  WrappedPromiEvent,
 } from "../lib/web3-utils";
 import {
   initialState,
@@ -17,10 +17,14 @@ export const useTransaction = (
   performTransaction:
     | ((...args: any[]) => WrappedPromiEvent<any>)
     | ((...args: any[]) => Promise<WrappedPromiEvent<any>>),
-  checkTransaction?: (...args: any[]) => Promise<any>
+  checkTransaction?: (...args: any[]) => Promise<any>,
+  requiredConfirmations: number | null = null
 ) => {
   const { t } = useTranslation();
-  const [state, dispatch] = React.useReducer(transactionReducer, initialState);
+  const [state, dispatch] = React.useReducer(transactionReducer, {
+    ...initialState,
+    requiredConfirmations,
+  });
 
   const handleError = React.useCallback(
     (err: Error) => {
@@ -48,7 +52,9 @@ export const useTransaction = (
   );
 
   const perform = React.useCallback(async () => {
-    dispatch({ type: TransactionActionType.TX_REQUESTED });
+    dispatch({
+      type: TransactionActionType.TX_REQUESTED,
+    });
     try {
       if (typeof checkTransaction === "function") {
         await checkTransaction();
@@ -68,9 +74,30 @@ export const useTransaction = (
             txHash: hash,
           });
         })
+        .on("confirmation", (count: number) => {
+          if (requiredConfirmations && count >= requiredConfirmations) {
+            dispatch({
+              type: TransactionActionType.TX_COMPLETE,
+              receipt: {},
+              confirmations: count,
+            });
+            promiEvent.off();
+          } else {
+            dispatch({
+              type: TransactionActionType.TX_CONFIRMATION,
+              confirmations: count,
+            });
+          }
+        })
         .on("receipt", (receipt: any) => {
-          promiEvent.off();
-          dispatch({ type: TransactionActionType.TX_COMPLETE, receipt });
+          if (!requiredConfirmations) {
+            promiEvent.off();
+            dispatch({
+              type: TransactionActionType.TX_COMPLETE,
+              receipt,
+              confirmations: 1,
+            });
+          }
         })
         .on("error", (err: Error) => {
           promiEvent.off();
@@ -80,7 +107,12 @@ export const useTransaction = (
       console.log(err);
       handleError(err);
     }
-  }, [performTransaction, checkTransaction, dispatch, handleError]);
+  }, [
+    checkTransaction,
+    performTransaction,
+    requiredConfirmations,
+    handleError,
+  ]);
 
   return {
     state,

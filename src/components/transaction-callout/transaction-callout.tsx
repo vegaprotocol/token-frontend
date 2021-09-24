@@ -27,6 +27,7 @@ export const TransactionCallout = ({
   const {
     appState: { chainId },
   } = useAppState();
+  // TODO use switch to kill dead code branches
   if (state.txState === TxState.Error) {
     return (
       <TransactionError
@@ -39,6 +40,8 @@ export const TransactionCallout = ({
   } else if (state.txState === TxState.Pending) {
     return (
       <TransactionPending
+        confirmations={state.txData.confirmations}
+        requiredConfirmations={state.requiredConfirmations}
         hash={state.txData.hash!}
         chainId={chainId!}
         heading={pendingHeading}
