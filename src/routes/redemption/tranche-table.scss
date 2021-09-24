@@ -25,9 +25,7 @@
   }
 
   &__header {
-    border-bottom: white;
-    border-width: 1px;
-    border-bottom-style: solid;
+    border-bottom: 1px solid white;
     padding-bottom: 5px;
   }
 
@@ -36,12 +34,8 @@
   }
 
   &__progress {
-    border-left: $white;
-    border-left-style: solid;
-    border-left-width: 1px;
-    border-right: $white;
-    border-right-style: solid;
-    border-right-width: 1px;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
 
     &-contents {
       display: flex;
