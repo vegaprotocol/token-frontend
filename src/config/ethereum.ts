@@ -1,3 +1,6 @@
+const appChainId = process.env.REACT_APP_CHAIN as EthereumChainId;
+const appEnv = process.env.REACT_APP_ENV;
+
 export type EthereumChainId = "0x1" | "0x3" | "0x4" | "0x5" | "0x2a";
 export type EthereumChainName =
   | "Mainnet"
@@ -32,7 +35,10 @@ const Addresses = {
   } as { [key: string]: string },
   [EthereumChainIds.Ropsten]: {
     vestingAddress: "0xfc9Ad8fE9E0b168999Ee7547797BC39D55d607AA",
-    vegaTokenAddress: "0x5b634a05754283b6d9d7938dcca9d646425593eb",
+    vegaTokenAddress:
+      appEnv === "staging"
+        ? "0x45984C4E9F3D55325fc6Fd2E260881EE3Ce9bbCD"
+        : "0x5b634a05754283b6d9d7938dcca9d646425593eb",
     claimAddress: "0x695eD7f6AcA81201d1D92107f120579CaAe2E5F2",
     lockedAddress: "0x0356782bfb61cf0b0463746bc6fe8766aacae8f0",
     stakingBridge: "0x7bd4a4789394fe5a93fc67ef64c47beb013e5450",
@@ -65,8 +71,6 @@ const RewardsPoolAddresses = {
     //   "0x42b7b8f8f83fa5cbf0176f8c24ad51ebcd4b5f17",
   } as { [key: string]: string },
 };
-
-const appChainId = process.env.REACT_APP_CHAIN as EthereumChainId;
 
 /** Contract addresses for the different contracts in the VEGA ecosystem */
 export const ADDRESSES = Addresses[appChainId];
