@@ -51,7 +51,7 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
   React.useEffect(() => {
     const interval = setInterval(() => {
       loadAllBalances();
-    }, 60000);
+    }, 10000);
     return () => {
       if (interval) {
         clearInterval(interval);
