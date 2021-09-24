@@ -101,6 +101,8 @@ export const AssociatePage = ({
       {
         zeroVesting && zeroVega
         ?
+        null
+        :
         <>
         <h2 data-testid="associate-subheader">
           {t("Where would you like to stake from?")}
@@ -110,8 +112,7 @@ export const AssociatePage = ({
           selectedStakingMethod={selectedStakingMethod}
         />
         </>
-        :
-        null
+
       }
       {selectedStakingMethod &&
         (selectedStakingMethod === StakingMethod.Contract ? (
