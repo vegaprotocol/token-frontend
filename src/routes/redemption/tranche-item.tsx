@@ -79,8 +79,7 @@ export const TrancheItem = ({
             className="tranche-item__progress-bar--locked"
             style={{
               flex:
-                isNaN(lockedPercentage.toNumber()) ||
-                !isFinite(lockedPercentage.toNumber())
+                isNaN(lockedPercentage.toNumber())
                   ? 0
                   : lockedPercentage.toNumber(),
             }}
@@ -89,8 +88,7 @@ export const TrancheItem = ({
             className="tranche-item__progress-bar--unlocked"
             style={{
               flex:
-                isNaN(unlockedPercentage.toNumber()) ||
-                !isFinite(unlockedPercentage.toNumber())
+                isNaN(unlockedPercentage.toNumber())
                   ? 0
                   : unlockedPercentage.toNumber(),
             }}
