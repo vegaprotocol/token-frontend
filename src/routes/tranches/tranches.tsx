@@ -27,9 +27,9 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
 
   const getContent = (tranche: Tranche) => {
     if (isTestingTranche(tranche)) {
-      return <span>{t("trancheExtraInfo")}</span>;
+      return <p className="tranches__secondary-header">{t("trancheExtraInfo")}</p>;
     } else if (tranche.tranche_id === 10) {
-      return <span>{t("trancheExtraInfoTranche10")}</span>;
+      return <p className="tranches__secondary-header">{t("trancheExtraInfoTranche10")}</p>;
     }
     return (
       <TrancheDates start={tranche.tranche_start} end={tranche.tranche_end} />
