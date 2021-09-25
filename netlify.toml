@@ -25,12 +25,10 @@
 
 # The translation flag for each of these is defined in the netlify UI so they can be independant based on the branch
 [context.develop.environment]
-  REACT_APP_ENV = "staging"
+  REACT_APP_ENV = "development"
   REACT_APP_CHAIN = "0x3"
-  REACT_APP_VEGA_URL = "https://n04.d.vega.xyz/query"
 
 [context.deploy-preview.environment]
   REACT_APP_ENV = "development"
   REACT_APP_CHAIN = "0x3"
-  REACT_APP_VEGA_URL = "https://n04.d.vega.xyz/query"
 
