@@ -207,6 +207,7 @@ export interface IVegaLPStaking {
   }>;
   rewardsBalance(account: string): Promise<BigNumber>;
   awardContractAddress(): Promise<string>;
+  slpContractAddress(): Promise<string>;
   rewardPerEpoch(): Promise<BigNumber>;
   estimateAPY(): Promise<BigNumber>;
   totalStaked(): Promise<BigNumber>;

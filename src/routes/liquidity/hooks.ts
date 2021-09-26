@@ -24,11 +24,13 @@ export const useGetLiquidityBalances = (
           rewardPoolBalance,
           estimateAPY,
           awardContractAddress,
+          lpTokenContractAddress,
           epochDetails,
         ] = await Promise.all<
           BigNumber,
           BigNumber,
           BigNumber,
+          string,
           string,
           EpochDetails
         >([
@@ -36,6 +38,7 @@ export const useGetLiquidityBalances = (
           await lpStaking.totalStaked(),
           await lpStaking.estimateAPY(),
           await lpStaking.awardContractAddress(),
+          await lpStaking.slpContractAddress(),
           await lpStaking.currentEpochDetails(),
         ]);
         let connectedWalletData = null;
@@ -73,6 +76,7 @@ export const useGetLiquidityBalances = (
             rewardPoolBalance,
             estimateAPY,
             awardContractAddress,
+            lpTokenContractAddress,
             connectedWalletData,
           },
         });
