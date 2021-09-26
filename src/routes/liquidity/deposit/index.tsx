@@ -56,8 +56,8 @@ export const LiquidityDepositPage = ({
     const run = async () => {
       try {
         await Promise.all([
-          getBalances(lpStakingUSDC, REWARDS_ADDRESSES["Sushi Swap VEGA/USDC"]),
-          getBalances(lpStakingEth, REWARDS_ADDRESSES["Sushi Swap VEGA/ETH"]),
+          getBalances(lpStakingUSDC, REWARDS_ADDRESSES["SushiSwap VEGA/USDC"]),
+          getBalances(lpStakingEth, REWARDS_ADDRESSES["SushiSwap VEGA/ETH"]),
         ]);
       } catch (e) {
         Sentry.captureException(e);

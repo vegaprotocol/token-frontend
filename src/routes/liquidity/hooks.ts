@@ -11,10 +11,10 @@ export const useGetLiquidityBalances = (
   ethAddress: string
 ) => {
   const lpStakingEth = useVegaLPStaking({
-    address: REWARDS_ADDRESSES["Sushi Swap VEGA/ETH"],
+    address: REWARDS_ADDRESSES["SushiSwap VEGA/ETH"],
   });
   const lpStakingUSDC = useVegaLPStaking({
-    address: REWARDS_ADDRESSES["Sushi Swap VEGA/USDC"],
+    address: REWARDS_ADDRESSES["SushiSwap VEGA/USDC"],
   });
   const getBalances = React.useCallback(
     async (lpStaking: IVegaLPStaking, contractAddress: string) => {
