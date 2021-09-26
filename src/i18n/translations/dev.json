@@ -368,7 +368,7 @@
   "usersShareOfPool": "Your share of pool",
   "usersAccumulatedRewards": "Your accumulated rewards",
   "alreadyDeposited": "You need to withdraw before you can deposit again",
-  "withdrawFromRewardPoolButton": "Withdraw SLP tokens and VEGA tokens",
+  "withdrawFromRewardPoolButton": "Withdraw rewards or unstake",
   "liquidityTotalAvailableRewardsBalance": "Balance",
   "liquidityStakedToken": "SLP Token",
   "liquidityStakedIntro": "Withdrawing your SLP tokens from the contract will also claim the reward balance",
