@@ -60,8 +60,8 @@ export const LiquidityWithdrawPage = ({
     const run = async () => {
       try {
         await Promise.all([
-          getBalances(lpStakingUSDC, REWARDS_ADDRESSES["Sushi Swap VEGA/USDC"]),
-          getBalances(lpStakingEth, REWARDS_ADDRESSES["Sushi Swap VEGA/ETH"]),
+          getBalances(lpStakingUSDC, REWARDS_ADDRESSES["SushiSwap VEGA/USDC"]),
+          getBalances(lpStakingEth, REWARDS_ADDRESSES["SushiSwap VEGA/ETH"]),
         ]);
       } catch (e) {
         Sentry.captureException(e);
@@ -89,7 +89,6 @@ export const LiquidityWithdrawPage = ({
   if (txUnstakeState.txState !== TxState.Default) {
     return (
       <>
-        <p>{t("lpTokenWithdrawSubmit")}</p>
         <TransactionCallout
           state={txUnstakeState}
           completeHeading={t("withdrawAllLpSuccessCalloutTitle")}
@@ -107,7 +106,6 @@ export const LiquidityWithdrawPage = ({
   } else if (txWithdrawState.txState !== TxState.Default) {
     return (
       <>
-        <p>{t("lpTokenWithdrawSubmit")}</p>
         <TransactionCallout
           state={txWithdrawState}
           completeHeading={t("withdrawVegaLpSuccessCalloutTitle")}
@@ -139,7 +137,6 @@ export const LiquidityWithdrawPage = ({
           >
             <p>{t("withdrawLpCalloutBody")}</p>
           </Callout>
-          <p>{t("lpTokenWithdrawSubmit")}</p>
           <KeyValueTable className="dex-tokens-withdraw__table">
             <KeyValueTableRow>
               <th>{t("liquidityTokenWithdrawBalance")}</th>
@@ -159,20 +156,20 @@ export const LiquidityWithdrawPage = ({
           </KeyValueTable>
           <p className="dex-tokens-withdraw__submit">
             <button
-              disabled={!hasLpTokens}
-              className="fill"
-              onClick={txUnstakePerform}
-            >
-              {t("withdrawLpWithdrawAllButton")}
-            </button>
-          </p>
-          <p className="dex-tokens-withdraw__submit">
-            <button
               disabled={!hasRewardsTokens}
               className="fill"
               onClick={txWithdrawPerform}
             >
               {t("withdrawLpWithdrawVegaButton")}
+            </button>
+          </p>
+          <p className="dex-tokens-withdraw__submit">
+            <button
+              disabled={!hasLpTokens}
+              className="fill"
+              onClick={txUnstakePerform}
+            >
+              {t("withdrawLpWithdrawAllButton")}
             </button>
           </p>
         </section>

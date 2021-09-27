@@ -97,7 +97,6 @@ export const TokenInput = ({
       "If requires approval is true allowance, approve, approveTxState and approveDispatch props are required!"
     );
   }
-  const { t } = useTranslation();
   const isApproved = !new BigNumber(allowance!).isEqualTo(0);
   const showApproveButton =
     !isApproved || new BigNumber(amount).isGreaterThan(allowance!);
@@ -128,7 +127,7 @@ export const TokenInput = ({
       approveContent = (
         <TransactionCallout
           state={approveTxState}
-          pendingHeading={"Approve VEGA tokens for staking on Vega"}
+          pendingHeading={`Approve ${currency} for staking on Vega`}
           reset={() =>
             approveTxDispatch({ type: TransactionActionType.TX_RESET })
           }
@@ -150,7 +149,7 @@ export const TokenInput = ({
       <Callout
         icon={<Tick />}
         intent="success"
-        title={t("VEGA tokens are approved for staking")}
+        title={`${currency} are approved for staking`}
       ></Callout>
     );
   }

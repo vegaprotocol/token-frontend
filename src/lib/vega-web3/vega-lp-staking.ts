@@ -144,6 +144,12 @@ export default class VegaLPStaking implements IVegaLPStaking {
     return awardContract._address as string;
   }
 
+  async slpContractAddress() {
+    const lpContract = await this.lpContract;
+    // @ts-ignore // Contract._address is private
+    return lpContract._address as string;
+  }
+
   async rewardPerEpoch(): Promise<BigNumber> {
     const rewardPerEpoch = await this.contract.methods.epoch_reward().call();
     const decimals = await this.awardDecimals;
