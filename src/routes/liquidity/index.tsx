@@ -35,8 +35,8 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
   const loadAllBalances = React.useCallback(async () => {
     try {
       await Promise.all([
-        getBalances(lpStakingUSDC, REWARDS_ADDRESSES["Sushi Swap VEGA/USDC"]),
-        getBalances(lpStakingEth, REWARDS_ADDRESSES["Sushi Swap VEGA/ETH"]),
+        getBalances(lpStakingUSDC, REWARDS_ADDRESSES["SushiSwap VEGA/USDC"]),
+        getBalances(lpStakingEth, REWARDS_ADDRESSES["SushiSwap VEGA/ETH"]),
       ]);
     } catch (e) {
       Sentry.captureException(e);
@@ -51,7 +51,7 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
   React.useEffect(() => {
     const interval = setInterval(() => {
       loadAllBalances();
-    }, 60000);
+    }, 10000);
     return () => {
       if (interval) {
         clearInterval(interval);

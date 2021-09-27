@@ -11,10 +11,10 @@ export const useGetLiquidityBalances = (
   ethAddress: string
 ) => {
   const lpStakingEth = useVegaLPStaking({
-    address: REWARDS_ADDRESSES["Sushi Swap VEGA/ETH"],
+    address: REWARDS_ADDRESSES["SushiSwap VEGA/ETH"],
   });
   const lpStakingUSDC = useVegaLPStaking({
-    address: REWARDS_ADDRESSES["Sushi Swap VEGA/USDC"],
+    address: REWARDS_ADDRESSES["SushiSwap VEGA/USDC"],
   });
   const getBalances = React.useCallback(
     async (lpStaking: IVegaLPStaking, contractAddress: string) => {
@@ -24,11 +24,13 @@ export const useGetLiquidityBalances = (
           rewardPoolBalance,
           estimateAPY,
           awardContractAddress,
+          lpTokenContractAddress,
           epochDetails,
         ] = await Promise.all<
           BigNumber,
           BigNumber,
           BigNumber,
+          string,
           string,
           EpochDetails
         >([
@@ -36,6 +38,7 @@ export const useGetLiquidityBalances = (
           await lpStaking.totalStaked(),
           await lpStaking.estimateAPY(),
           await lpStaking.awardContractAddress(),
+          await lpStaking.slpContractAddress(),
           await lpStaking.currentEpochDetails(),
         ]);
         let connectedWalletData = null;
@@ -73,6 +76,7 @@ export const useGetLiquidityBalances = (
             rewardPoolBalance,
             estimateAPY,
             awardContractAddress,
+            lpTokenContractAddress,
             connectedWalletData,
           },
         });
