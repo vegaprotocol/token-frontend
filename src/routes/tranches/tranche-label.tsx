@@ -1,9 +1,5 @@
-import {
-  Addresses,
-  EthereumChainId,
-  EthereumChainIds,
-} from "../../lib/web3-utils";
 import "./tranche-label.scss";
+import { ADDRESSES, EthereumChainId, EthereumChainIds } from "../../config";
 
 const TRANCHE_LABELS: Record<number, string[]> = {
   "5": ["Coinlist Option 1", "Community Whitelist"],
@@ -35,7 +31,7 @@ export const TrancheLabel = ({
   if (
     chainId &&
     chainId === EthereumChainIds.Mainnet &&
-    contract === Addresses[chainId].vestingAddress
+    contract === ADDRESSES.vestingAddress
   ) {
     // Only some tranches have titles worth showing
     if (TRANCHE_LABELS[id]) {

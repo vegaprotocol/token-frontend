@@ -1,6 +1,10 @@
 @import "../../styles/colors";
 
 .token-input {
+  &__container {
+    display: flex;
+  }
+
   &__input {
     flex: 1;
   }
@@ -12,5 +16,13 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+
+  &__submit {
+    margin-top: 10px;
+  }
+
+  &__callout-container {
+    margin-top: 10px;
   }
 }

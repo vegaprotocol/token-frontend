@@ -14,7 +14,7 @@ import { EthConnectPrompt } from "../../components/eth-connect-prompt";
 const ClaimIndex = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
   const { t } = useTranslation();
-  const { address } = useEthUser();
+  const { ethAddress } = useEthUser();
   const tranches = useTranches();
 
   if (!tranches.length) {
@@ -27,13 +27,21 @@ const ClaimIndex = ({ name }: RouteChildProps) => {
 
   let content = null;
 
-  if (!address) {
-    content = <EthConnectPrompt />;
+  if (!ethAddress) {
+    content = (
+      <EthConnectPrompt>
+        <p>
+          {t(
+            "Use the Ethereum wallet you want to send your tokens to. You'll also need enough Ethereum to pay gas."
+          )}
+        </p>
+      </EthConnectPrompt>
+    );
   } else {
     content = isRestricted() ? (
       <ClaimRestricted />
     ) : (
-      <Claim address={address} tranches={tranches} />
+      <Claim address={ethAddress} tranches={tranches} />
     );
   }
 

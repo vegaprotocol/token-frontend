@@ -1,15 +1,15 @@
-import BigNumber from "bignumber.js";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../components/key-value-table";
-import { StakeNode_party_delegations } from "./__generated__/StakeNode";
+import { BigNumber } from "../../lib/bignumber";
+import { Staking_party_delegations } from "./__generated__/Staking";
 
 export interface YourStakeProps {
   currentEpoch: string;
-  delegations: StakeNode_party_delegations[];
+  delegations: Staking_party_delegations[];
 }
 
 export const YourStake = ({ currentEpoch, delegations }: YourStakeProps) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Addresses, EthereumChainId } from "../../lib/web3-utils";
+import { EthereumChainId } from "../../config";
 import {
   AppState,
   AppStateContext,
@@ -11,6 +11,7 @@ import {
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { BigNumber } from "../../lib/bignumber";
 import * as Sentry from "@sentry/react";
+import { Severity } from "@sentry/react";
 
 interface AppStateProviderProps {
   provider: any;
@@ -21,29 +22,27 @@ interface AppStateProviderProps {
 const initialAppState: AppState = {
   chainId: process.env.REACT_APP_CHAIN as EthereumChainId,
   // set in app-loader TODO: update when user stakes/unstakes/associates/disassociates
-  totalAssociated: "",
-  totalStaked: "",
+  totalAssociated: new BigNumber(0),
   decimals: 0,
-  totalSupply: "",
-  address: "",
-  connecting: false,
+  totalSupply: new BigNumber(0),
+  ethAddress: "",
+  ethWalletConnecting: false,
   error: null,
-  balanceFormatted: "",
-  walletBalance: "",
-  lien: "",
-  allowance: "",
+  balanceFormatted: new BigNumber(0),
+  walletBalance: new BigNumber(0),
+  lien: new BigNumber(0),
+  allowance: new BigNumber(0),
   tranches: null,
-  contractAddresses: Addresses[process.env.REACT_APP_CHAIN as EthereumChainId],
   ethWalletOverlay: false,
   vegaWalletOverlay: false,
   vegaWalletStatus: VegaWalletStatus.Pending,
   vegaKeys: null,
   currVegaKey: null,
-
-  vegaAssociatedBalance: null,
+  walletAssociatedBalance: null,
+  vestingAssociatedBalance: null,
   trancheBalances: [],
-  totalLockedBalance: "",
-  totalVestedBalance: "",
+  totalLockedBalance: new BigNumber(0),
+  totalVestedBalance: new BigNumber(0),
   trancheError: null,
   drawerOpen: false,
 };
@@ -54,51 +53,52 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
       return {
         ...state,
         error: null,
-        connecting: true,
+        ethWalletConnecting: true,
       };
     case AppStateActionType.CONNECT_SUCCESS:
       return {
         ...state,
-        address: action.address,
-        connecting: false,
+        ethAddress: action.address,
+        ethWalletConnecting: false,
         ethWalletOverlay: false,
       };
     case AppStateActionType.CONNECT_FAIL:
       return {
         ...state,
         error: action.error,
-        address: "",
-        connecting: false,
+        ethAddress: "",
+        ethWalletConnecting: false,
       };
     case AppStateActionType.DISCONNECT:
       return {
         ...state,
         error: null,
-        address: "",
+        ethAddress: "",
       };
     case AppStateActionType.ACCOUNTS_CHANGED: {
       return {
         ...state,
-        address: action.address,
+        ethAddress: action.address,
       };
     }
     case AppStateActionType.UPDATE_ACCOUNT_BALANCES: {
       return {
         ...state,
-        balanceFormatted: action.balance?.toString() || "",
-        walletBalance: action.walletBalance?.toString() || "",
-        allowance: action.allowance?.toString() || "",
-        lien: action.lien?.toString() || "",
+        balanceFormatted: action.balance,
+        walletBalance: action.walletBalance,
+        allowance: action.allowance,
+        lien: action.lien,
       };
     }
     case AppStateActionType.REFRESH_BALANCES: {
       return {
         ...state,
-        balanceFormatted: action.balance?.toString() || "",
-        walletBalance: action.walletBalance?.toString() || "",
-        allowance: action.allowance?.toString() || "",
-        lien: action.lien?.toString() || "",
-        vegaAssociatedBalance: action.vegaAssociatedBalance?.toString() || "",
+        balanceFormatted: action.balance,
+        walletBalance: action.walletBalance,
+        allowance: action.allowance,
+        lien: action.lien,
+        walletAssociatedBalance: action.walletAssociatedBalance,
+        vestingAssociatedBalance: action.vestingAssociatedBalance,
       };
     }
     case AppStateActionType.VEGA_WALLET_INIT: {
@@ -119,14 +119,16 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         vegaKeys,
         currVegaKey: vegaKeys.length ? vegaKeys[0] : null,
         vegaWalletStatus: VegaWalletStatus.Ready,
-        vegaAssociatedBalance: action.vegaAssociatedBalance?.toString() || null,
+        walletAssociatedBalance: action.walletAssociatedBalance,
+        vestingAssociatedBalance: action.vestingAssociatedBalance,
       };
     }
     case AppStateActionType.VEGA_WALLET_SET_KEY: {
       return {
         ...state,
         currVegaKey: action.key,
-        vegaAssociatedBalance: action.vegaAssociatedBalance?.toString() || null,
+        walletAssociatedBalance: action.walletAssociatedBalance,
+        vestingAssociatedBalance: action.vestingAssociatedBalance,
       };
     }
     case AppStateActionType.VEGA_WALLET_DOWN: {
@@ -147,31 +149,27 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         ...state,
         decimals: action.decimals,
         totalSupply: action.totalSupply,
-        totalAssociated: action.totalAssociated.toString(),
+        totalAssociated: action.totalAssociated,
       };
     }
     case AppStateActionType.SET_ALLOWANCE: {
       return {
         ...state,
-        allowance: action.allowance?.toString() || "",
+        allowance: action.allowance,
       };
     }
     case AppStateActionType.SET_TRANCHE_DATA:
       return {
         ...state,
         tranches: action.tranches,
-        totalVestedBalance: BigNumber.sum
-          .apply(null, [
-            new BigNumber(0),
-            ...action.trancheBalances.map((b) => b.vested),
-          ])
-          .toString(),
-        totalLockedBalance: BigNumber.sum
-          .apply(null, [
-            new BigNumber(0),
-            ...action.trancheBalances.map((b) => b.locked),
-          ])
-          .toString(),
+        totalVestedBalance: BigNumber.sum.apply(null, [
+          new BigNumber(0),
+          ...action.trancheBalances.map((b) => b.vested),
+        ]),
+        totalLockedBalance: BigNumber.sum.apply(null, [
+          new BigNumber(0),
+          ...action.trancheBalances.map((b) => b.locked),
+        ]),
         trancheBalances: action.trancheBalances,
       };
     case AppStateActionType.SET_TRANCHE_ERROR: {
@@ -217,13 +215,26 @@ export function AppStateProvider({
 
   React.useEffect(() => {
     provider.on("accountsChanged", (accounts: string[]) => {
+      Sentry.addBreadcrumb({
+        type: "AccountsChanged",
+        level: Severity.Log,
+        message: "User changed accounts in wallet provider",
+        data: {
+          old: state.ethAddress,
+          new: accounts[0],
+        },
+        timestamp: Date.now(),
+      });
       Sentry.setUser({ id: accounts[0] });
       dispatch({
         type: AppStateActionType.ACCOUNTS_CHANGED,
         address: accounts[0],
       });
     });
-  }, [provider]);
+    return () => {
+      provider.removeAllListeners("accountsChanged");
+    };
+  }, [provider, state.ethAddress]);
 
   return (
     <AppStateContext.Provider

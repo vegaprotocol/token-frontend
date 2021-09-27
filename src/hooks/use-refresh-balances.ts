@@ -1,9 +1,11 @@
 import React from "react";
+import * as Sentry from "@sentry/react";
+import { ADDRESSES } from "../config";
 import {
   AppStateActionType,
   useAppState,
 } from "../contexts/app-state/app-state-context";
-import { Flags } from "../flags";
+import { Flags } from "../config";
 import { BigNumber } from "../lib/bignumber";
 import { useVegaStaking } from "./use-vega-staking";
 import { useVegaToken } from "./use-vega-token";
@@ -16,31 +18,44 @@ export const useRefreshBalances = (address: string) => {
   const token = useVegaToken();
 
   return React.useCallback(async () => {
-    const [balance, walletBalance, lien, allowance, vegaAssociatedBalance] =
-      await Promise.all([
+    try {
+      const [
+        balance,
+        walletBalance,
+        lien,
+        allowance,
+        walletAssociatedBalance,
+        vestingAssociatedBalance,
+      ] = await Promise.all([
         vesting.getUserBalanceAllTranches(address),
         token.balanceOf(address),
         vesting.getLien(address),
-        Flags.MAINNET_DISABLED
+        Flags.STAKING_DISABLED
           ? new BigNumber(0)
-          : token.allowance(address, appState.contractAddresses.stakingBridge),
+          : token.allowance(address, ADDRESSES.stakingBridge),
         // Refresh connected vega key balances as well if we are connected to a vega key
         appState.currVegaKey?.pub
           ? staking.stakeBalance(address, appState.currVegaKey.pub)
           : null,
+        appState.currVegaKey?.pub
+          ? vesting.stakeBalance(address, appState.currVegaKey.pub)
+          : null,
       ]);
-    appDispatch({
-      type: AppStateActionType.REFRESH_BALANCES,
-      balance,
-      walletBalance,
-      allowance,
-      lien,
-      vegaAssociatedBalance,
-    });
+      appDispatch({
+        type: AppStateActionType.REFRESH_BALANCES,
+        balance,
+        walletBalance,
+        allowance,
+        lien,
+        walletAssociatedBalance,
+        vestingAssociatedBalance,
+      });
+    } catch (err) {
+      Sentry.captureException(err);
+    }
   }, [
     address,
     appDispatch,
-    appState.contractAddresses.stakingBridge,
     appState.currVegaKey?.pub,
     staking,
     token,

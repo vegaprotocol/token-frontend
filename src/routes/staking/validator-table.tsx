@@ -6,11 +6,11 @@ import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../components/key-value-table";
-import { StakeNode_node } from "./__generated__/StakeNode";
 import { BigNumber } from "../../lib/bignumber";
+import { Staking_nodes } from "./__generated__/Staking";
 
 export interface ValidatorTableProps {
-  node: StakeNode_node;
+  node: Staking_nodes;
   stakedTotal: string;
 }
 

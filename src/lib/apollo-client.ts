@@ -10,19 +10,93 @@ import { onError } from "@apollo/client/link/error";
 import { RetryLink } from "@apollo/client/link/retry";
 import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
+import BigNumber from "bignumber.js";
+import { Parties_parties_stake } from "../routes/governance/__generated__/Parties";
+import { addDecimal } from "./decimals";
 
 export function createClient() {
-  const base = process.env.REACT_APP_VEGA_URL || "https://n04.d.vega.xyz/query";
+  const base = process.env.REACT_APP_VEGA_URL;
+  if (!base) {
+    throw new Error("Environment variable REACT_APP_VEGA_URL must be set");
+  }
   const gqlPath = "query";
   const urlHTTP = new URL(gqlPath, base);
   const urlWS = new URL(gqlPath, base);
   // Replace http with ws, preserving if its a secure connection eg. https => wss
   urlWS.protocol = urlWS.protocol.replace("http", "ws");
 
+  const formatUintToNumber = (amount: string) =>
+    addDecimal(new BigNumber(amount), 18).toString();
+
   const cache = new InMemoryCache({
     typePolicies: {
+      Delegation: {
+        keyFields: false,
+        // Only get full updates
+        merge(_, incoming: any[]) {
+          return incoming;
+        },
+        fields: {
+          amount: {
+            read(amount) {
+              return amount ? formatUintToNumber(amount) : "0";
+            },
+          },
+        },
+      },
       Node: {
         keyFields: false,
+        fields: {
+          pendingStake: {
+            read(amount) {
+              return amount ? formatUintToNumber(amount) : "0";
+            },
+          },
+          stakedByOperator: {
+            read(amount) {
+              return amount ? formatUintToNumber(amount) : "0";
+            },
+          },
+          stakedByDelegates: {
+            read(amount) {
+              return amount ? formatUintToNumber(amount) : "0";
+            },
+          },
+          stakedTotal: {
+            read(amount) {
+              return amount ? formatUintToNumber(amount) : "0";
+            },
+          },
+        },
+      },
+      NodeData: {
+        merge: (existing = {}, incoming) => {
+          return { ...existing, ...incoming };
+        },
+        fields: {
+          stakedTotal: {
+            read(amount) {
+              return amount ? formatUintToNumber(amount) : "0";
+            },
+          },
+        },
+      },
+      Party: {
+        fields: {
+          stake: {
+            read(stake: Parties_parties_stake) {
+              if (stake) {
+                return {
+                  ...stake,
+                  currentStakeAvailable: formatUintToNumber(
+                    stake.currentStakeAvailable
+                  ),
+                };
+              }
+              return stake;
+            },
+          },
+        },
       },
     },
   });

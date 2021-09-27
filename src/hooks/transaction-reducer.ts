@@ -9,22 +9,26 @@ export enum TxState {
 export interface TransactionState {
   // claim form state
   txState: TxState;
+  requiredConfirmations: number | null;
   txData: {
     hash: string | null;
     receipt: object | null;
     error: Error | null;
     userFacingError?: Error | null;
+    confirmations: number | null;
   };
 }
 
 export const initialState: TransactionState = {
   // claim tx
   txState: TxState.Default,
+  requiredConfirmations: null,
   txData: {
     hash: null,
     receipt: null,
     error: null,
     userFacingError: null,
+    confirmations: null,
   },
 };
 
@@ -48,6 +52,7 @@ export enum TransactionActionType {
   TX_SUBMITTED,
   TX_COMPLETE,
   TX_ERROR,
+  TX_CONFIRMATION,
 }
 
 export type TransactionAction =
@@ -64,11 +69,16 @@ export type TransactionAction =
   | {
       type: TransactionActionType.TX_COMPLETE;
       receipt: any;
+      confirmations: number;
     }
   | {
       type: TransactionActionType.TX_ERROR;
       error: Error;
       errorSubstitutions: { [errMessage: string]: string };
+    }
+  | {
+      type: TransactionActionType.TX_CONFIRMATION;
+      confirmations: number;
     };
 
 export function transactionReducer(
@@ -80,16 +90,21 @@ export function transactionReducer(
       return {
         ...state,
         txState: TxState.Default,
+        requiredConfirmations: state.requiredConfirmations || null,
         txData: {
           hash: null,
           receipt: null,
           error: null,
+          confirmations: null,
         },
       };
     case TransactionActionType.TX_REQUESTED:
       return {
         ...state,
         txState: TxState.Requested,
+        txData: {
+          ...state.txData,
+        },
       };
     case TransactionActionType.TX_SUBMITTED: {
       return {
@@ -108,6 +123,15 @@ export function transactionReducer(
         txData: {
           ...state.txData,
           receipt: action.receipt,
+          confirmations: action.confirmations,
+        },
+      };
+    case TransactionActionType.TX_CONFIRMATION:
+      return {
+        ...state,
+        txData: {
+          ...state.txData,
+          confirmations: action.confirmations,
         },
       };
     case TransactionActionType.TX_ERROR:

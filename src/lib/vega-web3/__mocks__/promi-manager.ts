@@ -1,4 +1,4 @@
-import { PromiEvent } from "../../web3-utils";
+import { PromiEvent, WrappedPromiEvent } from "../../web3-utils";
 
 // @ts-ignore
 if (!window.promiManager) {
@@ -25,7 +25,10 @@ export function uuidv4() {
   });
 }
 
-export function promiEventFactory(id: string, name: string): PromiEvent {
+export function promiEventFactory(
+  id: string,
+  name: string
+): WrappedPromiEvent<any> {
   let events: { [event: string]: Array<Function> } = {};
   const fns: { [fn: string]: Function } = {};
 
@@ -68,5 +71,5 @@ export function promiEventFactory(id: string, name: string): PromiEvent {
     name,
   });
   fns.off = () => {};
-  return fns as unknown as PromiEvent;
+  return { promiEvent: fns as unknown as PromiEvent<any> };
 }

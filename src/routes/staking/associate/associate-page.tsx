@@ -11,24 +11,47 @@ import {
   StakingMethodRadio,
 } from "../../../components/staking-method-radio";
 import { useAddStake } from "./hooks";
-import { StakingContainer } from "../staking-container";
+import { StakingWalletsContainer } from "../staking-wallets-container";
+import { useEthereumConfig } from "../../../hooks/use-ethereum-config";
+
+export const NetworkParamsContainer = ({
+  children,
+}: {
+  children: (data: { confirmations: number }) => React.ReactElement;
+}) => {
+  const config = useEthereumConfig();
+  if (!config) {
+    return null;
+  }
+  return children({ confirmations: config.confirmations });
+};
 
 export const AssociateContainer = () => {
   return (
-    <StakingContainer>
-      {({ address, currVegaKey }) => (
-        <AssociatePage address={address} vegaKey={currVegaKey} />
+    <NetworkParamsContainer>
+      {(data) => (
+        <StakingWalletsContainer>
+          {({ address, currVegaKey }) => (
+            <AssociatePage
+              address={address}
+              vegaKey={currVegaKey}
+              requiredConfirmations={data.confirmations}
+            />
+          )}
+        </StakingWalletsContainer>
       )}
-    </StakingContainer>
+    </NetworkParamsContainer>
   );
 };
 
 export const AssociatePage = ({
   address,
   vegaKey,
+  requiredConfirmations,
 }: {
   address: string;
   vegaKey: VegaKeyExtended;
+  requiredConfirmations: number;
 }) => {
   const { t } = useTranslation();
   const params = useSearchParams();
@@ -42,7 +65,13 @@ export const AssociatePage = ({
     state: txState,
     dispatch: txDispatch,
     perform: txPerform,
-  } = useAddStake(address, amount, vegaKey.pub, selectedStakingMethod);
+  } = useAddStake(
+    address,
+    amount,
+    vegaKey.pub,
+    selectedStakingMethod,
+    requiredConfirmations
+  );
 
   if (txState.txState !== TxState.Default) {
     return (
@@ -51,6 +80,7 @@ export const AssociatePage = ({
         vegaKey={vegaKey.pub}
         state={txState}
         dispatch={txDispatch}
+        requiredConfirmations={requiredConfirmations}
       />
     );
   }

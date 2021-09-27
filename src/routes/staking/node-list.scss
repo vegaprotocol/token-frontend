@@ -7,6 +7,7 @@
   padding: 0;
 
   > li {
+    word-break: break-all;
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
@@ -16,12 +17,18 @@
     }
   }
 
+  a {
+    max-width: 400px;
+  }
+
   table {
+    flex: 1;
     font-size: 14px;
   }
 
   th,
   td {
+    word-break: break-word;
     padding: 1px 5px;
   }
 

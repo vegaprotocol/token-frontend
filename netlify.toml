@@ -10,12 +10,24 @@
   to = "/index.html"
   status = 200
 
-[context.production.environment]
-  REACT_APP_SENTRY_DSN = "https://4b8c8a8ba07742648aa4dfe1b8d17e40@o286262.ingest.sentry.io/5882996"
+# There are deploy sites: production/pr previews as well as the translations branch
+# so cannot use context.production.environmenet as using production results in env vars colliding
+# (production = develop on translation, production = master on main)
+
+# This configures the master branch for production environement with the correct information
+[context.master.environment]
+  REACT_APP_ENV = "production"
   REACT_APP_CHAIN = "0x1"
-  REACT_APP_MAINNET_DISABLED = '1'
+  REACT_APP_STAKING_DISABLED = '1'
+  REACT_APP_DEX_STAKING_DISABLED = '1'
+  REACT_APP_GOVERNANCE_DISABLED = '1'
+
+# The translation flag for each of these is defined in the netlify UI so they can be independant based on the branch
+[context.develop.environment]
+  REACT_APP_ENV = "development"
+  REACT_APP_CHAIN = "0x3"
 
 [context.deploy-preview.environment]
-  REACT_APP_SENTRY_DSN = "https://4b8c8a8ba07742648aa4dfe1b8d17e40@o286262.ingest.sentry.io/5882996"
+  REACT_APP_ENV = "development"
   REACT_APP_CHAIN = "0x3"
-  REACT_APP_MAINNET_DISABLED = '1'
+

@@ -26,6 +26,7 @@ import {
   KeyValueTableRow,
 } from "../../components/key-value-table";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
+import { formatNumber } from "../../lib/format-number";
 
 interface ClaimFlowProps {
   state: ClaimState;
@@ -48,6 +49,7 @@ export const ClaimFlow = ({
   const code = state.code!;
   const shortCode = truncateMiddle(code);
 
+  // Check that the claim is valid, by checking if its already committed, expired, or used
   React.useEffect(() => {
     const run = async () => {
       dispatch({ type: ClaimActionType.SET_LOADING, loading: true });
@@ -100,7 +102,6 @@ export const ClaimFlow = ({
       <Complete
         address={address}
         balanceFormatted={state.denominationFormatted}
-        trancheId={currentTranche.tranche_id}
         commitTxHash={state.commitTxHash}
         claimTxHash={state.claimTxHash}
       />
@@ -155,7 +156,7 @@ export const ClaimFlow = ({
               </KeyValueTableRow>
               <KeyValueTableRow>
                 <th>{t("Amount of VEGA")}</th>
-                <td>{state.denominationFormatted}</td>
+                <td>{formatNumber(state.denominationFormatted)}</td>
               </KeyValueTableRow>
               <KeyValueTableRow>
                 <th>{t("Claim expires")}</th>

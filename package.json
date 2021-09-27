@@ -16,6 +16,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@types/faker": "^5.5.8",
     "@types/jest": "^26.0.15",
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
@@ -23,6 +24,7 @@
     "@types/react-router-dom": "^5.1.8",
     "bignumber.js": "^9.0.1",
     "date-fns": "^2.23.0",
+    "faker": "^5.5.3",
     "graphql": "^15.5.1",
     "i18next": "^20.3.5",
     "i18next-browser-languagedetector": "^6.1.2",
@@ -44,10 +46,11 @@
   "scripts": {
     "start": "craco start",
     "start:mock": "REACT_APP_MOCKED=1 craco -r @cypress/instrument-cra start",
+    "postinstall": "cp .env.example .env",
     "build": "craco build",
-    "test": "craco test",
+    "test": "REACT_APP_CHAIN=0x1 craco test",
     "eject": "react-scripts eject",
-    "generate": "npx apollo codegen:generate --target=typescript --globalTypesFile=src/__generated__/globalTypes.ts"
+    "generate": "REACT_APP_VEGA_URL='https://n04.d.vega.xyz/query' yarn apollo codegen:generate --target=typescript --globalTypesFile=src/__generated__/globalTypes.ts"
   },
   "eslintConfig": {
     "extends": [
@@ -71,8 +74,12 @@
     "@cypress/instrument-cra": "^1.4.0",
     "@types/lodash": "^4.14.171",
     "add": "^2.0.6",
+    "apollo": "^2.33.4",
     "istanbul-lib-coverage": "^3.0.0",
     "nyc": "^15.1.0",
     "yarn": "^1.22.11"
+  },
+  "resolutions": {
+    "graphql": "15.5.1"
   }
 }

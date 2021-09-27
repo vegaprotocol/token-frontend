@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { EthereumChainId } from "../../lib/web3-utils";
+import { EthereumChainId } from "../../config";
 import { Callout } from "../callout";
 import { EtherscanLink } from "../etherscan-link";
 import { Tick } from "../icons";
@@ -19,13 +19,10 @@ export const TransactionComplete = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <Callout icon={<Tick />} intent="success">
-      <p data-testid="transaction-complete-heading">
-        {heading || t("Complete")}
-      </p>
+    <Callout icon={<Tick />} intent="success" title={heading || t("Complete")}>
       {body && <p data-testid="transaction-complete-body">{body}</p>}
       <p>
-        <EtherscanLink hash={hash} chainId={chainId} />
+        <EtherscanLink tx={hash} chainId={chainId} />
       </p>
       {footer && <p data-testid="transaction-complete-footer">{footer}</p>}
     </Callout>

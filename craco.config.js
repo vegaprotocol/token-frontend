@@ -1,6 +1,11 @@
 const webpack = require("webpack");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-module.exports = function () {
+module.exports = function (options) {
+  const isTranslationBranch = ["1", "true"].includes(
+    process.env.REACT_APP_IN_CONTEXT_TRANSLATION
+  );
   const isMock = ["1", "true"].includes(process.env.REACT_APP_MOCKED);
   const detectProviderPath = isMock ? "../../__mocks__/@metamask" : "@metamask";
   const vegaWeb3Path = isMock ? "vega-web3/__mocks__" : "vega-web3";
@@ -10,7 +15,21 @@ module.exports = function () {
 
   return {
     webpack: {
+      configure: (webpackConfig) => {
+        const htmlWebpackPluginInstance = webpackConfig.plugins.find(
+          (webpackPlugin) => webpackPlugin instanceof HtmlWebpackPlugin
+        );
+        htmlWebpackPluginInstance.options.translations = isTranslationBranch;
+        return webpackConfig;
+      },
       plugins: [
+        new MiniCssExtractPlugin({
+          // Options similar to the same options in webpackOptions.output
+          // both options are optional
+          filename: "static/css/[name].[contenthash:8].css",
+          chunkFilename: "static/css/[name].[contenthash:8].chunk.css",
+          ignoreOrder: true,
+        }),
         new webpack.NormalModuleReplacementPlugin(
           /(.*)DETECT_PROVIDER_PATH(\.*)/,
           function (resource) {

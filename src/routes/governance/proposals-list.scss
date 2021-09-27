@@ -1,0 +1,36 @@
+@import "../../styles/colors";
+
+.proposals-list {
+  &__row {
+    display: flex;
+  }
+
+  &__first-item {
+    flex: 1;
+    margin: 1px;
+  }
+
+  &__item-left-low-key {
+    flex: 1;
+    margin: 1px;
+    color: $gray1
+  }
+
+  &__item-right {
+    margin: 1px;
+  }
+
+  &__border {
+    border-bottom: 1px solid white;
+    margin-bottom: 12px;
+  }
+
+  &__main-list-item {
+    list-style-type: none;
+  }
+
+  &__main-list {
+    padding: 0;
+    margin: 0;
+  }
+}

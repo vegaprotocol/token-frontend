@@ -1,0 +1,94 @@
+import React from "react";
+import { REWARDS_ADDRESSES } from "../../config";
+import { BigNumber } from "../../lib/bignumber";
+import { LiquidityAction, LiquidityActionType } from "./liquidity-reducer";
+import { EpochDetails, IVegaLPStaking } from "../../lib/web3-utils";
+import * as Sentry from "@sentry/react";
+import { useVegaLPStaking } from "../../hooks/use-vega-lp-staking";
+
+export const useGetLiquidityBalances = (
+  dispatch: React.Dispatch<LiquidityAction>,
+  ethAddress: string
+) => {
+  const lpStakingEth = useVegaLPStaking({
+    address: REWARDS_ADDRESSES["SushiSwap VEGA/ETH"],
+  });
+  const lpStakingUSDC = useVegaLPStaking({
+    address: REWARDS_ADDRESSES["SushiSwap VEGA/USDC"],
+  });
+  const getBalances = React.useCallback(
+    async (lpStaking: IVegaLPStaking, contractAddress: string) => {
+      try {
+        const [
+          rewardPerEpoch,
+          rewardPoolBalance,
+          estimateAPY,
+          awardContractAddress,
+          lpTokenContractAddress,
+          epochDetails,
+        ] = await Promise.all<
+          BigNumber,
+          BigNumber,
+          BigNumber,
+          string,
+          string,
+          EpochDetails
+        >([
+          await lpStaking.rewardPerEpoch(),
+          await lpStaking.totalStaked(),
+          await lpStaking.estimateAPY(),
+          await lpStaking.awardContractAddress(),
+          await lpStaking.slpContractAddress(),
+          await lpStaking.currentEpochDetails(),
+        ]);
+        let connectedWalletData = null;
+        if (ethAddress) {
+          const [unstaked, staked, rewards] = await Promise.all([
+            lpStaking.totalUnstaked(ethAddress),
+            lpStaking.stakedBalance(ethAddress),
+            lpStaking.rewardsBalance(ethAddress),
+          ]);
+          const availableLPTokens = unstaked;
+          const stakedLPTokens = staked;
+          const accumulatedRewards = rewards;
+          const shareOfPool = rewardPoolBalance.isEqualTo(0)
+            ? rewardPoolBalance
+            : stakedLPTokens.earningRewards
+                .dividedBy(rewardPoolBalance)
+                .times(100);
+
+          connectedWalletData = {
+            availableLPTokens,
+            totalStaked: stakedLPTokens?.total,
+            stakedLPTokens: stakedLPTokens?.earningRewards,
+            pendingStakedLPTokens: stakedLPTokens?.pending,
+            shareOfPool,
+            accumulatedRewards,
+          };
+        }
+
+        dispatch({
+          type: LiquidityActionType.SET_CONTRACT_INFORMATION,
+          contractAddress,
+          contractData: {
+            epochDetails,
+            rewardPerEpoch,
+            rewardPoolBalance,
+            estimateAPY,
+            awardContractAddress,
+            lpTokenContractAddress,
+            connectedWalletData,
+          },
+        });
+      } catch (err) {
+        Sentry.captureException(err);
+      }
+    },
+    [dispatch, ethAddress]
+  );
+  return {
+    getBalances,
+    lpStakingEth,
+    lpStakingUSDC,
+  };
+};

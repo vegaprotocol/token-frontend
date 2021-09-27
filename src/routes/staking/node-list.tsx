@@ -1,7 +1,7 @@
 import "./node-list.scss";
 import { Link, useRouteMatch } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import BigNumber from "bignumber.js";
+import { BigNumber } from "../../lib/bignumber";
 
 interface NodeListProps {
   nodes: NodeListItemProps[];
@@ -19,7 +19,7 @@ export const NodeList = ({ nodes }: NodeListProps) => {
 
 export interface NodeListItemProps {
   id: string;
-  stakedTotal: BigNumber;
+  stakedOnNode: BigNumber;
   stakedTotalPercentage: string;
   userStake: BigNumber;
   userStakePercentage: string;
@@ -27,7 +27,7 @@ export interface NodeListItemProps {
 
 export const NodeListItem = ({
   id,
-  stakedTotal,
+  stakedOnNode,
   stakedTotalPercentage,
   userStake,
   userStakePercentage,
@@ -42,7 +42,7 @@ export const NodeListItem = ({
         <tbody>
           <tr>
             <th>{t("Total stake")}</th>
-            <td>{stakedTotal.toString()}</td>
+            <td>{stakedOnNode.toString()}</td>
             <td>{stakedTotalPercentage}</td>
           </tr>
           <tr>

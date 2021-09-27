@@ -1,4 +1,4 @@
-import { EthereumChainId } from "../web3-utils";
+import { EthereumChainId } from "../../config";
 import { PromiEvent } from "web3-core";
 import VegaClaim from "./vega-claim";
 import { BigNumber } from "../bignumber";

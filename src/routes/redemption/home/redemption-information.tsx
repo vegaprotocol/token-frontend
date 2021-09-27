@@ -2,14 +2,15 @@ import "./redemption-information.scss";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { RedemptionState } from "../redemption-reducer";
 import { VestingTable } from "./vesting-table";
-import { TrancheTable } from "../tranche-table";
-import { useTranslation } from "react-i18next";
+import { Tranche0Table, TrancheTable } from "../tranche-table";
+import { Trans, useTranslation } from "react-i18next";
 import { Callout } from "../../../components/callout";
 import { HandUp } from "../../../components/icons";
 import { Link, useHistory } from "react-router-dom";
 import React from "react";
-import { BigNumber } from "../../../lib/bignumber";
 import { truncateMiddle } from "../../../lib/truncate-middle";
+import { Routes } from "../../router-config";
+import { formatNumber } from "../../../lib/format-number";
 
 export const RedemptionInformation = ({
   state,
@@ -42,14 +43,24 @@ export const RedemptionInformation = ({
       }),
     [trancheBalances, userTranches]
   );
-  if (!userTranches.length) {
+  const zeroTranche = React.useMemo(() => {
+    const zeroTranche = trancheBalances.find((t) => t.id === 0);
+    if (zeroTranche && zeroTranche.locked.isGreaterThan(0)) {
+      return zeroTranche;
+    }
+  }, [trancheBalances]);
+
+  if (!filteredTranches.length) {
     return (
       <section data-testid="redemption-page">
-        <div data-testid="redemption-no-balance">
-          {t(
-            "You do not have any vesting VEGA tokens. Switch to another Ethereum key to check what can be redeemed."
-          )}
-        </div>
+        <p data-testid="redemption-no-balance">
+          <Trans
+            i18nKey="noVestingTokens"
+            components={{
+              tranchesLink: <Link to={Routes.TRANCHES} />,
+            }}
+          />
+        </p>
       </section>
     );
   }
@@ -61,7 +72,7 @@ export const RedemptionInformation = ({
           "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.",
           {
             address: truncateMiddle(address),
-            balance: balanceFormatted,
+            balance: formatNumber(balanceFormatted),
             tranches: filteredTranches.length,
           }
         )}
@@ -88,16 +99,26 @@ export const RedemptionInformation = ({
       </p>
       <p data-testid="redemption-note">{t("redemptionExplain")}</p> */}
       <VestingTable
-        associated={new BigNumber(lien)}
-        locked={new BigNumber(totalLockedBalance)}
-        vested={new BigNumber(totalVestedBalance)}
+        associated={lien}
+        locked={totalLockedBalance}
+        vested={totalVestedBalance}
       />
       {filteredTranches.length ? <h2>{t("Tranche breakdown")}</h2> : null}
+      {zeroTranche && (
+        <Tranche0Table
+          trancheId={0}
+          total={
+            trancheBalances.find(
+              ({ id }) => id.toString() === zeroTranche.id.toString()
+            )!.locked
+          }
+        />
+      )}
       {filteredTranches.map((tr) => (
         <TrancheTable
           key={tr.tranche_id}
           tranche={tr}
-          lien={new BigNumber(lien)}
+          lien={lien}
           locked={
             trancheBalances.find(
               ({ id }) => id.toString() === tr.tranche_id.toString()
@@ -108,8 +129,8 @@ export const RedemptionInformation = ({
               ({ id }) => id.toString() === tr.tranche_id.toString()
             )!.vested
           }
-          totalVested={new BigNumber(totalVestedBalance)}
-          totalLocked={new BigNumber(totalLockedBalance)}
+          totalVested={totalVestedBalance}
+          totalLocked={totalLockedBalance}
           onClick={() => history.push(`/vesting/${tr.tranche_id}`)}
         />
       ))}

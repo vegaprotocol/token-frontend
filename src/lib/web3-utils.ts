@@ -1,5 +1,6 @@
 import { BigNumber } from "../lib/bignumber";
 import { Tranche } from "./vega-web3/vega-web3-types";
+import { EventEmitter } from "events";
 
 export type EthereumChainId = "0x1" | "0x3" | "0x4" | "0x5" | "0x2a";
 export type EthereumChainName =
@@ -25,38 +26,76 @@ export const EthereumChainIds: Record<EthereumChainName, EthereumChainId> = {
   Kovan: "0x2a",
 };
 
-export const Addresses = {
-  [EthereumChainIds.Mainnet]: {
-    vestingAddress: "0x23d1bFE8fA50a167816fBD79D7932577c06011f4",
-    vegaTokenAddress: "0xcB84d72e61e383767C4DFEb2d8ff7f4FB89abc6e",
-    claimAddress: "0xd1Bdf85dB6Af63f45211dB95928d938abCc52dC8",
-    lockedAddress: "0x78344c7305d73a7a0ac3c94cd9960f4449a1814e",
-    stakingBridge: "0x195064D33f09e0c42cF98E665D9506e0dC17de68",
-  },
-  [EthereumChainIds.Ropsten]: {
-    vestingAddress: "0xfc9Ad8fE9E0b168999Ee7547797BC39D55d607AA",
-    vegaTokenAddress: "0xFa521aDcc11925266A518CdE33386FcD9cF2A4A6",
-    claimAddress: "0x695eD7f6AcA81201d1D92107f120579CaAe2E5F2",
-    lockedAddress: "0x0356782bfb61cf0b0463746bc6fe8766aacae8f0",
-    stakingBridge: "0x1B57E5393d949242a9AD6E029E2f8A684BFbBC08",
-  },
-};
+export interface EpochDetails {
+  id: string;
+  startSeconds: BigNumber;
+  endSeconds: BigNumber;
+}
 
-export type PromiEvent = typeof Promise & {
-  on: (event: string, listener: (...args: any[]) => void) => PromiEvent;
-  once: (event: string, listener: (...args: any[]) => void) => PromiEvent;
-};
+export declare class PromiEvent<T>
+  extends EventEmitter
+  implements PromiseLike<T>
+{
+  constructor(
+    executor: (
+      resolve: PromiEvent.Resolve<T>,
+      reject: PromiEvent.Reject
+    ) => void
+  );
+
+  public then<TResult1, TResult2>(
+    onfulfilled?:
+      | ((value: T) => TResult1 | PromiseLike<TResult1>)
+      | undefined
+      | null,
+    onrejected?:
+      | ((reason: any) => TResult2 | PromiseLike<TResult2>)
+      | undefined
+      | null
+  ): Promise<TResult1 | TResult2>;
+
+  public catch<TResult>(
+    onRejected?:
+      | ((reason: any) => TResult | PromiseLike<TResult>)
+      | undefined
+      | null
+  ): Promise<T | TResult>;
+
+  public off(): this;
+
+  public finally(onfinally?: (() => void) | null | undefined): Promise<T>;
+
+  static resolve<T>(value: T): PromiEvent<T>;
+  static reject<T>(reason: any): PromiEvent<T>;
+}
+
+declare namespace PromiEvent {
+  export type Resolve<T> = (value?: T | PromiseLike<T>) => void;
+  export type Reject = (reason?: any) => void;
+}
+
+export interface WrappedPromiEvent<T> {
+  promiEvent: PromiEvent<T>;
+}
 
 export interface IStaking {
   stakeBalance(address: string, vegaKey: string): Promise<BigNumber>;
   totalStaked(): Promise<BigNumber>;
-  removeStake(address: string, amount: string, vegaKey: string): PromiEvent;
+  removeStake(
+    address: string,
+    amount: string,
+    vegaKey: string
+  ): WrappedPromiEvent<void>;
   checkRemoveStake(
     address: string,
     amount: string,
     vegaKey: string
   ): Promise<any>;
-  addStake(address: string, amount: string, vegaKey: string): PromiEvent;
+  addStake(
+    address: string,
+    amount: string,
+    vegaKey: string
+  ): WrappedPromiEvent<void>;
   checkAddStake(address: string, amount: string, vegaKey: string): Promise<any>;
 }
 
@@ -72,7 +111,7 @@ export interface IVegaStaking extends IStaking {
     amount: string,
     newAddress: string,
     vegaKey: string
-  ): PromiEvent;
+  ): WrappedPromiEvent<string>;
 }
 
 export interface IVegaVesting extends IStaking {
@@ -84,12 +123,15 @@ export interface IVegaVesting extends IStaking {
     address: string,
     tranche: number
   ): Promise<BigNumber>;
-  withdrawFromTranche(account: string, trancheId: number): PromiEvent;
+  withdrawFromTranche(
+    account: string,
+    trancheId: number
+  ): WrappedPromiEvent<void>;
   checkWithdrawFromTranche(account: string, trancheId: number): Promise<any>;
 }
 
 export interface IVegaClaim {
-  commit(claimCode: string, account: string): PromiEvent;
+  commit(claimCode: string, account: string): WrappedPromiEvent<void>;
 
   checkCommit(claimCode: string, account: string): Promise<any>;
 
@@ -111,7 +153,7 @@ export interface IVegaClaim {
     country: string;
     targeted: boolean;
     account: string;
-  }): PromiEvent;
+  }): WrappedPromiEvent<void>;
 
   checkClaim({
     claimCode,
@@ -150,6 +192,70 @@ export interface IVegaToken {
   decimals(): Promise<number>;
   tokenData(): Promise<{ totalSupply: BigNumber; decimals: number }>;
   balanceOf(address: string): Promise<BigNumber>;
-  approve(address: string, spender: string): PromiEvent;
+  approve(
+    address: string,
+    spender: string
+  ): Promise<WrappedPromiEvent<boolean>>;
   allowance(address: string, spender: string): Promise<BigNumber>;
 }
+
+export interface IVegaLPStaking {
+  stakedBalance(account: string): Promise<{
+    pending: BigNumber;
+    earningRewards: BigNumber;
+    total: BigNumber;
+  }>;
+  rewardsBalance(account: string): Promise<BigNumber>;
+  awardContractAddress(): Promise<string>;
+  slpContractAddress(): Promise<string>;
+  rewardPerEpoch(): Promise<BigNumber>;
+  estimateAPY(): Promise<BigNumber>;
+  totalStaked(): Promise<BigNumber>;
+  totalUnstaked(account: string): Promise<BigNumber>;
+  stake(amount: string, account: string): Promise<WrappedPromiEvent<boolean>>;
+  unstake(account: string): WrappedPromiEvent<void>;
+  withdrawRewards(address: string): WrappedPromiEvent<void>;
+  allowance(account: string): Promise<BigNumber>;
+  approve(
+    address: string,
+    spender: string
+  ): Promise<WrappedPromiEvent<boolean>>;
+  liquidityTokensInRewardPool(): Promise<BigNumber>;
+  currentEpochDetails(): Promise<EpochDetails>;
+}
+
+export interface TxError {
+  message: string;
+  code: number;
+  data?: unknown;
+}
+
+/**
+ * Error codes returned from Metamask that we can safely not capture in Sentry
+ */
+const IgnoreCodes = {
+  ALREADY_PROCESSING: 32002,
+  USER_REJECTED: 4001,
+};
+
+/**
+ * Check if the error from web3/metamask is something expected we can handle
+ * and thus not capture in Sentry
+ */
+export const isUnexpectedError = (error: Error | TxError) => {
+  if ("code" in error && Object.values(IgnoreCodes).includes(error.code)) {
+    return false;
+  }
+  return true;
+};
+
+/**
+ * Check if the error from web3/metamask is the user rejecting connection or
+ * a transaction confirmation prompt
+ */
+export const isUserRejection = (error: Error | TxError) => {
+  if ("code" in error && error.code === IgnoreCodes.USER_REJECTED) {
+    return true;
+  }
+  return false;
+};

@@ -1,5 +1,4 @@
 import React from "react";
-import { gql, useQuery } from "@apollo/client";
 import { Link, useRouteMatch } from "react-router-dom";
 import { BulletHeader } from "../../components/bullet-header";
 import { Callout } from "../../components/callout";
@@ -7,54 +6,18 @@ import {
   AppStateActionType,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
-import { Links } from "../../lib/external-links";
 import { NodeList, NodeListItemProps } from "./node-list";
 import { Staking as StakingQueryResult } from "./__generated__/Staking";
 import { BigNumber } from "../../lib/bignumber";
 import { Trans, useTranslation } from "react-i18next";
-import { Tick } from "../../components/icons";
+import { Tick, Error } from "../../components/icons";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { useVegaUser } from "../../hooks/use-vega-user";
+import { Links } from "../../config";
 
-export const STAKING_QUERY = gql`
-  query Staking($partyId: ID!) {
-    party(id: $partyId) {
-      id
-      delegations {
-        amount
-        node {
-          id
-        }
-      }
-    }
-    nodes {
-      id
-      pubkey
-      infoUrl
-      location
-      stakedByOperator
-      stakedByDelegates
-      stakedTotal
-      pendingStake
-      epochData {
-        total
-        offline
-        online
-      }
-      status
-    }
-    nodeData {
-      stakedTotal
-      totalNodes
-      inactiveNodes
-      validatingNodes
-      uptime
-    }
-  }
-`;
-
-export const Staking = () => {
+export const Staking = ({ data }: { data?: StakingQueryResult }) => {
   const { t } = useTranslation();
+
   return (
     <>
       <section>
@@ -65,11 +28,15 @@ export const Staking = () => {
       </section>
       <section>
         <BulletHeader tag="h2">{t("stakingStep2")}</BulletHeader>
-        <StakingStepAssociate />
+        <StakingStepAssociate
+          associated={
+            new BigNumber(data?.party?.stake.currentStakeAvailable || "0")
+          }
+        />
       </section>
       <section>
         <BulletHeader tag="h2">{t("stakingStep3")}</BulletHeader>
-        <StakingStepSelectNode />
+        <StakingStepSelectNode data={data} />
       </section>
     </>
   );
@@ -78,15 +45,15 @@ export const Staking = () => {
 export const StakingStepConnectWallets = () => {
   const { t } = useTranslation();
   const {
-    appState: { address, currVegaKey },
+    appState: { ethAddress, currVegaKey },
     appDispatch,
   } = useAppState();
 
-  if (currVegaKey && address) {
+  if (currVegaKey && ethAddress) {
     return (
-      <Callout intent="success" icon={<Tick />}>
+      <Callout intent="success" icon={<Tick />} title={"Connected"}>
         <p>
-          {t("Connected Ethereum address")} {truncateMiddle(address)}
+          {t("Connected Ethereum address")} {truncateMiddle(ethAddress)}
         </p>
         <p>{t("stakingVegaWalletConnected", { key: currVegaKey.pubShort })}</p>
       </Callout>
@@ -100,9 +67,9 @@ export const StakingStepConnectWallets = () => {
           i18nKey="stakingStep1Text"
           components={{
             vegaWalletLink: (
-              // eslint-disable-next-line
+              // eslint-disable-next-line jsx-a11y/anchor-has-content
               <a
-                href={Links.VEGA_WALLET_RELEASES}
+                href={Links.WALLET_RELEASES}
                 target="_blank"
                 rel="noreferrer"
               />
@@ -110,8 +77,12 @@ export const StakingStepConnectWallets = () => {
           }}
         />
       </p>
-      {address ? (
-        <p>Ethereum wallet connected: {truncateMiddle(address)}</p>
+      {ethAddress ? (
+        <Callout
+          icon={<Tick />}
+          intent="success"
+          title={`Ethereum wallet connected: ${truncateMiddle(ethAddress)}`}
+        />
       ) : (
         <p>
           <button
@@ -129,7 +100,11 @@ export const StakingStepConnectWallets = () => {
         </p>
       )}
       {currVegaKey ? (
-        <p>Vega wallet connected: {currVegaKey.pubShort}</p>
+        <Callout
+          icon={<Tick />}
+          intent="success"
+          title={`Vega wallet connected: ${currVegaKey.pubShort}`}
+        />
       ) : (
         <p>
           <button
@@ -150,27 +125,49 @@ export const StakingStepConnectWallets = () => {
   );
 };
 
-export const StakingStepAssociate = () => {
+export const StakingStepAssociate = ({
+  associated,
+}: {
+  associated: BigNumber;
+}) => {
   const match = useRouteMatch();
   const { t } = useTranslation();
   const {
-    appState: { lien },
+    appState: { ethAddress, currVegaKey },
   } = useAppState();
-  const associated = new BigNumber(lien || 0);
 
+  if (!ethAddress) {
+    return (
+      <Callout
+        intent="error"
+        icon={<Error />}
+        title={t("stakingAssociateConnectEth")}
+      />
+    );
+  } else if (!currVegaKey) {
+    return (
+      <Callout
+        intent="error"
+        icon={<Error />}
+        title={t("stakingAssociateConnectVega")}
+      />
+    );
+  }
   if (associated.isGreaterThan(0)) {
     return (
-      <Callout intent="success" icon={<Tick />}>
+      <Callout
+        intent="success"
+        icon={<Tick />}
+        title={t("stakingHasAssociated", { tokens: associated.toString() })}
+      >
         <p>
-          <Trans
-            i18nKey="stakingHasAssociated"
-            values={{ tokens: associated.toString() }}
-            components={{
-              associateLink: <Link to="/staking/associate" />,
-              disassociateLink: <Link to="/staking/disassociate" />,
-            }}
-          />
+          <Link to="/staking/associate">
+            <button className="fill">{t("stakingAssociateMoreButton")}</button>
+          </Link>
         </p>
+        <Link to="/staking/disassociate">
+          <button className="fill">{t("stakingDisassociateButton")}</button>
+        </Link>
       </Callout>
     );
   }
@@ -187,13 +184,13 @@ export const StakingStepAssociate = () => {
   );
 };
 
-export const StakingStepSelectNode = () => {
+export const StakingStepSelectNode = ({
+  data,
+}: {
+  data?: StakingQueryResult;
+}) => {
   const { t } = useTranslation();
   const { currVegaKey } = useVegaUser();
-  const { data, loading, error } = useQuery<StakingQueryResult>(STAKING_QUERY, {
-    variables: { partyId: currVegaKey?.pub || "" },
-    skip: !currVegaKey?.pub,
-  });
 
   const nodes = React.useMemo<NodeListItemProps[]>(() => {
     if (!data?.nodes) return [];
@@ -223,15 +220,17 @@ export const StakingStepSelectNode = () => {
       return {
         id: node.id,
         stakedTotal,
+        stakedOnNode,
         stakedTotalPercentage,
         userStake,
         userStakePercentage,
       };
     });
-
     const sortedByStake = nodesWithPercentages.sort((a, b) => {
-      if (a.stakedTotal.isLessThan(b.stakedTotal)) return -1;
-      if (a.stakedTotal.isGreaterThan(b.stakedTotal)) return 1;
+      if (a.stakedOnNode.isLessThan(b.stakedOnNode)) return 1;
+      if (a.stakedOnNode.isGreaterThan(b.stakedOnNode)) return -1;
+      if (a.id < b.id) return 1;
+      if (a.id > b.id) return -1;
       return 0;
     });
 
@@ -240,18 +239,6 @@ export const StakingStepSelectNode = () => {
 
   if (!currVegaKey) {
     return <p className="text-muted">{t("connectVegaWallet")}</p>;
-  }
-
-  if (error) {
-    return (
-      <Callout intent="error" title={t("Something went wrong")}>
-        <pre>{error.message}</pre>
-      </Callout>
-    );
-  }
-
-  if (loading) {
-    return <div>{t("Loading")}</div>;
   }
 
   return <NodeList nodes={nodes} />;

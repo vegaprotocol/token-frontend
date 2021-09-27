@@ -1,18 +1,14 @@
 import React from "react";
-import Web3 from "web3";
-import { useAppState } from "../contexts/app-state/app-state-context";
 import { IVegaClaim } from "../lib/web3-utils";
 // @ts-ignore
 import VegaClaim from "../lib/VEGA_WEB3/vega-claim";
+import { ADDRESSES } from "../config";
+import { useWeb3 } from "./use-web3";
 
 export const useVegaClaim = () => {
-  const {
-    provider,
-    appState: { contractAddresses },
-  } = useAppState();
+  const web3 = useWeb3();
   const claim = React.useMemo<IVegaClaim>(() => {
-    const web3 = new Web3(provider);
-    return new VegaClaim(web3, contractAddresses.claimAddress);
-  }, [contractAddresses.claimAddress, provider]);
+    return new VegaClaim(web3, ADDRESSES.claimAddress);
+  }, [web3]);
   return claim;
 };

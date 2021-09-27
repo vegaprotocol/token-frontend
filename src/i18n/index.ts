@@ -1,20 +1,19 @@
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
-import english from "./en";
+import { Flags } from "../config";
+import dev from "./translations/dev.json";
+import en from "./translations/en-US.json";
+import fr from "./translations/fr-FR.json";
+import ru from "./translations/ru-RU.json";
+import zh from "./translations/zh-CN.json";
+import zu from "./translations/zu-ZA.json";
 
-const en = {
-  translations: english,
-};
+const isInContextTranslation = Flags.IN_CONTEXT_TRANSLATION;
 
-const foo = {
-  translations: Object.keys(en.translations).reduce(
-    (acc: Record<string, string>, key: string) => {
-      acc[key] = "foo";
-      return acc;
-    },
-    {}
-  ),
+const psuedoLanguage = {
+  keys: zu,
+  locale: "zu-ZA",
 };
 
 i18n
@@ -23,16 +22,23 @@ i18n
   .init({
     // we init with resources
     resources: {
-      en,
-      foo,
+      en: {
+        translations: {
+          ...dev,
+          ...en,
+        },
+      },
+      fr: { translations: fr },
+      ru: { translations: ru },
+      zh: { translations: zh },
+      ...(isInContextTranslation ? { zu: { translations: zu } } : {}),
     },
+    lng: isInContextTranslation ? psuedoLanguage.locale : undefined,
     fallbackLng: "en",
     debug: true,
-
     // have a common namespace used around the full app
     ns: ["translations"],
     defaultNS: "translations",
-
     keySeparator: false, // we use content as keys
 
     interpolation: {

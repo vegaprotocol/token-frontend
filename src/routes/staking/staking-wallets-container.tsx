@@ -8,7 +8,7 @@ import {
 import { useEthUser } from "../../hooks/use-eth-user";
 import { useVegaUser } from "../../hooks/use-vega-user";
 
-export const StakingContainer = ({
+export const StakingWalletsContainer = ({
   children,
 }: {
   children: (data: {
@@ -18,11 +18,19 @@ export const StakingContainer = ({
 }) => {
   const { t } = useTranslation();
   const { appDispatch } = useAppState();
-  const { address } = useEthUser();
+  const { ethAddress } = useEthUser();
   const { currVegaKey } = useVegaUser();
 
-  if (!address) {
-    return <EthConnectPrompt />;
+  if (!ethAddress) {
+    return (
+      <EthConnectPrompt>
+        <p>
+          {t(
+            "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes."
+          )}
+        </p>
+      </EthConnectPrompt>
+    );
   }
 
   if (!currVegaKey) {
@@ -30,7 +38,7 @@ export const StakingContainer = ({
       <>
         <p>
           {t(
-            "Use the Ethereum wallet you want to send your tokens to. You'll also need enough Ethereum to pay gas."
+            "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes."
           )}
         </p>
         <button
@@ -47,5 +55,5 @@ export const StakingContainer = ({
     );
   }
 
-  return children({ address, currVegaKey });
+  return children({ address: ethAddress, currVegaKey });
 };

@@ -6,8 +6,8 @@ export const Callout = ({
   intent,
   icon,
 }: {
-  children: React.ReactNode;
-  title?: string;
+  children?: React.ReactNode;
+  title?: React.ReactElement | string;
   intent?: "success" | "error" | "warn";
   icon?: React.ReactNode;
 }) => {

@@ -9,6 +9,8 @@ import { useVegaVesting } from "./use-vega-vesting";
 import { BigNumber } from "../lib/bignumber";
 import { useGetUserTrancheBalances } from "./use-get-user-tranche-balances";
 import * as Sentry from "@sentry/react";
+import { ADDRESSES } from "../config";
+import { isUserRejection } from "../lib/web3-utils";
 
 export function useEthUser() {
   const { appState, appDispatch, provider } = useAppState();
@@ -16,7 +18,7 @@ export function useEthUser() {
   const staking = useVegaStaking();
   const vesting = useVegaVesting();
   const connectTimer = React.useRef<any>();
-  const getUserTrancheBalances = useGetUserTrancheBalances(appState.address);
+  const getUserTrancheBalances = useGetUserTrancheBalances(appState.ethAddress);
   const [triedToConnect, setTriedToConnect] = React.useState<boolean>(false);
 
   const connect = React.useCallback(async () => {
@@ -46,7 +48,9 @@ export function useEthUser() {
       });
       Sentry.setUser({ id: accounts[0] });
     } catch (e) {
-      Sentry.captureException(e);
+      if (!isUserRejection(e)) {
+        Sentry.captureException(e);
+      }
       appDispatch({ type: AppStateActionType.CONNECT_FAIL, error: e });
     }
   }, [appDispatch, provider]);
@@ -56,11 +60,11 @@ export function useEthUser() {
     if (
       !triedToConnect &&
       // We don't have an address we are not connected
-      !appState.address &&
+      !appState.ethAddress &&
       // If we have an error we don't want to try reconnecting
       !appState.error &&
       // If we are connecting we don't want to try to connect
-      !appState.connecting
+      !appState.ethWalletConnecting
     ) {
       try {
         setTriedToConnect(true);
@@ -70,8 +74,8 @@ export function useEthUser() {
       }
     }
   }, [
-    appState.address,
-    appState.connecting,
+    appState.ethAddress,
+    appState.ethWalletConnecting,
     appState.error,
     connect,
     triedToConnect,
@@ -80,36 +84,29 @@ export function useEthUser() {
   // update balances on connect to Ethereum
   React.useEffect(() => {
     const updateBalances = async () => {
-      const [balance, walletBalance, lien, allowance] = await Promise.all([
-        vesting.getUserBalanceAllTranches(appState.address),
-        token.balanceOf(appState.address),
-        vesting.getLien(appState.address),
-        token.allowance(
-          appState.address,
-          appState.contractAddresses.stakingBridge
-        ),
-      ]);
-      appDispatch({
-        type: AppStateActionType.UPDATE_ACCOUNT_BALANCES,
-        balance: new BigNumber(balance),
-        walletBalance,
-        lien,
-        allowance,
-      });
+      try {
+        const [balance, walletBalance, lien, allowance] = await Promise.all([
+          vesting.getUserBalanceAllTranches(appState.ethAddress),
+          token.balanceOf(appState.ethAddress),
+          vesting.getLien(appState.ethAddress),
+          token.allowance(appState.ethAddress, ADDRESSES.stakingBridge),
+        ]);
+        appDispatch({
+          type: AppStateActionType.UPDATE_ACCOUNT_BALANCES,
+          balance: new BigNumber(balance),
+          walletBalance,
+          lien,
+          allowance,
+        });
+      } catch (err) {
+        Sentry.captureException(err);
+      }
     };
 
-    if (appState.address) {
+    if (appState.ethAddress) {
       updateBalances();
     }
-  }, [
-    appDispatch,
-    appState.address,
-    appState.contractAddresses.stakingBridge,
-    provider,
-    staking,
-    token,
-    vesting,
-  ]);
+  }, [appDispatch, appState.ethAddress, provider, staking, token, vesting]);
 
   // Updates on address change, getUserTrancheBalance has address as a dep
   React.useEffect(() => {
@@ -126,7 +123,7 @@ export function useEthUser() {
   }, []);
 
   return {
-    address: appState.address,
+    ethAddress: appState.ethAddress,
     connect,
   };
 }

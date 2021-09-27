@@ -1,8 +1,8 @@
-import BigNumber from "bignumber.js";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { TokenInput } from "../../../components/token-input";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
+import { BigNumber } from "../../../lib/bignumber";
 
 export const ContractDisassociate = ({
   perform,
@@ -14,18 +14,14 @@ export const ContractDisassociate = ({
   setAmount: React.Dispatch<string>;
 }) => {
   const {
-    appState: { lien },
+    appState: { vestingAssociatedBalance },
   } = useAppState();
   const { t } = useTranslation();
-  const maximum = React.useMemo(() => new BigNumber(lien), [lien]);
-  const isDisabled = React.useMemo<boolean>(
-    () =>
-      !amount ||
-      new BigNumber(amount).isLessThanOrEqualTo("0") ||
-      new BigNumber(amount).isGreaterThan(maximum),
-    [amount, maximum]
+  const maximum = React.useMemo(
+    () => new BigNumber(vestingAssociatedBalance!),
+    [vestingAssociatedBalance]
   );
-  if (new BigNumber(lien).isEqualTo("0")) {
+  if (new BigNumber(vestingAssociatedBalance!).isEqualTo("0")) {
     return (
       <div className="disassociate-page__error">
         {t(
@@ -36,15 +32,14 @@ export const ContractDisassociate = ({
   }
   return (
     <>
-      <TokenInput maximum={maximum} amount={amount} setAmount={setAmount} />
-      <button
-        style={{ marginTop: 10, width: "100%" }}
-        data-testid="disassociate-button"
-        disabled={isDisabled}
-        onClick={perform}
-      >
-        {t("Disassociate VEGA Tokens from key")}
-      </button>
+      <TokenInput
+        submitText={t("Disassociate VEGA Tokens from key")}
+        perform={perform}
+        maximum={maximum}
+        amount={amount}
+        setAmount={setAmount}
+        currency={t("VEGA Tokens")}
+      />
     </>
   );
 };

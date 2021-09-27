@@ -12,11 +12,13 @@ export const AssociateTransaction = ({
   vegaKey,
   state,
   dispatch,
+  requiredConfirmations,
 }: {
   amount: string;
   vegaKey: string;
   state: TransactionState;
   dispatch: React.Dispatch<TransactionAction>;
+  requiredConfirmations: number;
 }) => {
   const { t } = useTranslation();
   return (
@@ -38,9 +40,9 @@ export const AssociateTransaction = ({
         "Associating {{amount}} VEGA tokens with Vega key {{vegaKey}}",
         { amount, vegaKey }
       )}
-      pendingFooter={t(
-        "The Vega network requires 30 Confirmations (approx 5 minutes) on Ethereum before crediting your Vega key with your tokens. This page will update once complete or you can come back and check your Vega wallet to see if it is ready to use."
-      )}
+      pendingFooter={t("pendingAssociationText", {
+        confirmations: requiredConfirmations,
+      })}
       state={state}
       reset={() => dispatch({ type: TransactionActionType.TX_RESET })}
     />

@@ -20,6 +20,7 @@ $ns: "key-value-table";
   border-spacing: 0;
   margin-bottom: 10px;
   table-layout: fixed;
+  word-break: break-all;
 
   tr {
     border-bottom: 1px solid $white;
@@ -27,6 +28,10 @@ $ns: "key-value-table";
     &:first-child {
       border-top: 1px solid $white;
     }
+  }
+
+  th {
+    word-break: break-word;
   }
 
   th,

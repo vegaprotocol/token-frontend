@@ -1,0 +1,29 @@
+@import "../../styles/colors";
+@import "../../styles/fonts";
+
+.proposal {
+  &__sub-title {
+    padding-bottom: 4px;
+    border-bottom: 1px solid $white;
+    margin-bottom: 2px;
+  }
+  
+  &__top-title {
+    margin: 0px;
+  }
+
+    &__row {
+    display: flex;
+    align-items: flex-end;
+  }
+
+    &__item-left {
+    margin: 1px;
+    color: $gray1
+  }
+
+  &__item-right {
+    margin: 1px;
+  }
+
+}

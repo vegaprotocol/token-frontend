@@ -1,5 +1,10 @@
 import React from "react";
-import type { PromiEvent } from "../lib/web3-utils";
+import {
+  isUnexpectedError,
+  isUserRejection,
+  PromiEvent,
+  WrappedPromiEvent,
+} from "../lib/web3-utils";
 import {
   initialState,
   TransactionActionType,
@@ -9,15 +14,29 @@ import { useTranslation } from "react-i18next";
 import * as Sentry from "@sentry/react";
 
 export const useTransaction = (
-  performTransaction: (...args: any[]) => PromiEvent,
-  checkTransaction?: (...args: any[]) => Promise<any>
+  performTransaction:
+    | ((...args: any[]) => WrappedPromiEvent<any>)
+    | ((...args: any[]) => Promise<WrappedPromiEvent<any>>),
+  checkTransaction?: (...args: any[]) => Promise<any>,
+  requiredConfirmations: number | null = null
 ) => {
   const { t } = useTranslation();
-  const [state, dispatch] = React.useReducer(transactionReducer, initialState);
+  const [state, dispatch] = React.useReducer(transactionReducer, {
+    ...initialState,
+    requiredConfirmations,
+  });
 
   const handleError = React.useCallback(
     (err: Error) => {
-      Sentry.captureException(err);
+      if (isUnexpectedError(err)) {
+        Sentry.captureException(err);
+      }
+
+      if (isUserRejection(err)) {
+        dispatch({ type: TransactionActionType.TX_RESET });
+        return;
+      }
+
       const defaultMessage = t("Something went wrong");
       const errorSubstitutions = {
         unknown: defaultMessage,
@@ -33,23 +52,67 @@ export const useTransaction = (
   );
 
   const perform = React.useCallback(async () => {
-    dispatch({ type: TransactionActionType.TX_REQUESTED });
+    dispatch({
+      type: TransactionActionType.TX_REQUESTED,
+    });
     try {
       if (typeof checkTransaction === "function") {
         await checkTransaction();
       }
-      performTransaction()
+      const sub = performTransaction();
+      let promiEvent: PromiEvent<any>;
+      if ("promiEvent" in sub) {
+        promiEvent = sub.promiEvent;
+      } else {
+        promiEvent = (await sub).promiEvent;
+      }
+
+      promiEvent
         .on("transactionHash", (hash: string) => {
-          dispatch({ type: TransactionActionType.TX_SUBMITTED, txHash: hash });
+          dispatch({
+            type: TransactionActionType.TX_SUBMITTED,
+            txHash: hash,
+          });
+        })
+        .on("confirmation", (count: number) => {
+          if (requiredConfirmations && count >= requiredConfirmations) {
+            dispatch({
+              type: TransactionActionType.TX_COMPLETE,
+              receipt: {},
+              confirmations: count,
+            });
+            promiEvent.off();
+          } else {
+            dispatch({
+              type: TransactionActionType.TX_CONFIRMATION,
+              confirmations: count,
+            });
+          }
         })
         .on("receipt", (receipt: any) => {
-          dispatch({ type: TransactionActionType.TX_COMPLETE, receipt });
+          if (!requiredConfirmations) {
+            promiEvent.off();
+            dispatch({
+              type: TransactionActionType.TX_COMPLETE,
+              receipt,
+              confirmations: 1,
+            });
+          }
         })
-        .on("error", (err: Error) => handleError(err));
+        .on("error", (err: Error) => {
+          promiEvent.off();
+          handleError(err);
+        });
     } catch (err) {
+      console.log(err);
       handleError(err);
     }
-  }, [performTransaction, checkTransaction, dispatch, handleError]);
+  }, [
+    checkTransaction,
+    performTransaction,
+    requiredConfirmations,
+    handleError,
+  ]);
 
   return {
     state,

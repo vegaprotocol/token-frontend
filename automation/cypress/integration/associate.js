@@ -8,8 +8,6 @@ describe("Associate", () => {
 
     // When visiting the associate page
     cy.visit("/staking/associate");
-    cy.get('[data-testid="connect"]').click();
-    cy.get('[data-testid="connect-overlay"]').click();
     cy.get('[data-testid="connect-vega"]').click();
     cy.get('[data-testid="wallet-name"]').type("wallet");
     cy.get('[data-testid="wallet-password"]').type("wallet");
@@ -32,8 +30,6 @@ describe("Associate", () => {
     mock(cy);
     // When visiting the associate page
     cy.visit("/staking/associate?method=Wallet");
-    cy.get('[data-testid="connect"]').click();
-    cy.get('[data-testid="connect-overlay"]').click();
     cy.get('[data-testid="connect-vega"]').click();
     cy.get('[data-testid="wallet-name"]').type("wallet");
     cy.get('[data-testid="wallet-password"]').type("wallet");
@@ -50,8 +46,6 @@ describe("Associate", () => {
     mock(cy);
     // When visiting the associate page
     cy.visit("/staking/associate?method=Contract");
-    cy.get('[data-testid="connect"]').click();
-    cy.get('[data-testid="connect-overlay"]').click();
     cy.get('[data-testid="connect-vega"]').click();
     cy.get('[data-testid="wallet-name"]').type("wallet");
     cy.get('[data-testid="wallet-password"]').type("wallet");
@@ -68,8 +62,6 @@ describe("Associate", () => {
     mock(cy);
     // When visiting the associate page
     cy.visit("/staking/associate");
-    cy.get('[data-testid="connect"]').click();
-    cy.get('[data-testid="connect-overlay"]').click();
     cy.get('[data-testid="connect-vega"]').click();
     cy.get('[data-testid="wallet-name"]').type("wallet");
     cy.get('[data-testid="wallet-password"]').type("wallet");

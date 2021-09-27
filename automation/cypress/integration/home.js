@@ -4,16 +4,17 @@ describe("Home", () => {
   it("Displays the expected information", () => {
     mock(cy);
     cy.visit("/");
-    cy.contains("Connect to an Ethereum wallet").click();
-    cy.get('[data-testid="connect-overlay"]').click();
-    cy.get('[data-testid="token-address"]').should("have.text", "0xFa52…A4A6");
+    cy.get('[data-testid="token-address"]').should("have.text", "0x5b63…93eb");
     cy.get('[data-testid="token-contract"]').should("have.text", "0xfc9A…07AA");
-    cy.get('[data-testid="total-supply"]').should("have.text", "1000000000");
+    cy.get('[data-testid="total-supply"]').should(
+      "have.text",
+      "1,000,000,000.00"
+    );
     cy.get('[data-testid="associated"]').should("have.text", "0.0004");
-    cy.get('[data-testid="staked"]').should("have.text", "0");
+    cy.get('[data-testid="staked"]').should("have.text", "0.00");
 
-    cy.contains("Read about staking on Vega").then((link) => {
-      cy.request(link.prop("href"));
-    });
+    // cy.contains("Read about staking on Vega").then((link) => {
+    //   cy.request(link.prop("href"));
+    // });
   });
 });
