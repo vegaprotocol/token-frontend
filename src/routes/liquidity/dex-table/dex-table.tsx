@@ -86,6 +86,16 @@ export const DexTokensSection = ({
           </td>
         </KeyValueTableRow>
         <KeyValueTableRow>
+          <th>{t("slpTokenContractAddress")}</th>
+          <td>
+            <EtherscanLink
+              chainId={appState.chainId}
+              address={values.lpTokenContractAddress}
+              text={values.lpTokenContractAddress}
+            />
+          </td>
+        </KeyValueTableRow>
+        <KeyValueTableRow>
           <th>{t("lpTokensEstimateAPY")}</th>
           <td>{values.estimateAPY.decimalPlaces(2).toString()}%</td>
         </KeyValueTableRow>

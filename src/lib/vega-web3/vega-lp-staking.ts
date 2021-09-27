@@ -32,7 +32,7 @@ export default class VegaLPStaking implements IVegaLPStaking {
     // These are all "memoized"
     this.lpContract = (async (): Promise<Contract> => {
       const lpTokenAddress = await self.contract.methods
-        .lp_token_address()
+        .trusted_lp_token()
         .call();
 
       return new self.web3.eth.Contract(erc20Abi as AbiItem[], lpTokenAddress);
@@ -46,7 +46,7 @@ export default class VegaLPStaking implements IVegaLPStaking {
 
     this.awardContract = (async (): Promise<Contract> => {
       const awardTokenAddress = await self.contract.methods
-        .award_token_address()
+        .trusted_reward_token()
         .call();
 
       return new self.web3.eth.Contract(
@@ -142,6 +142,12 @@ export default class VegaLPStaking implements IVegaLPStaking {
     const awardContract = await this.awardContract;
     // @ts-ignore // Contract._address is private
     return awardContract._address as string;
+  }
+
+  async slpContractAddress() {
+    const lpContract = await this.lpContract;
+    // @ts-ignore // Contract._address is private
+    return lpContract._address as string;
   }
 
   async rewardPerEpoch(): Promise<BigNumber> {

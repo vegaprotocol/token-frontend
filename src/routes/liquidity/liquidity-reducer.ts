@@ -6,6 +6,7 @@ export interface LpContractData {
   rewardPerEpoch: BigNumber;
   rewardPoolBalance: BigNumber;
   awardContractAddress: string;
+  lpTokenContractAddress: string;
   estimateAPY: BigNumber;
   epochDetails: EpochDetails;
   connectedWalletData: {
