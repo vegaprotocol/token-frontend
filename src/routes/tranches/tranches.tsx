@@ -1,7 +1,6 @@
 import "./tranches.scss";
 import { useRouteMatch } from "react-router-dom";
 import { TrancheLabel } from "./tranche-label";
-import { TrancheDates } from "./tranche-dates";
 import { useTranslation } from "react-i18next";
 import React from "react";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
@@ -10,10 +9,6 @@ import { ADDRESSES } from "../../config";
 import { TrancheItem } from "../redemption/tranche-item";
 
 const trancheMinimum = 10;
-
-const isTestingTranche = (t: Tranche) =>
-  !t.total_added.isEqualTo(0) &&
-  t.total_added.isLessThanOrEqualTo(trancheMinimum);
 
 const shouldShowTranche = (t: Tranche) =>
   !t.total_added.isLessThanOrEqualTo(trancheMinimum);
