@@ -25,23 +25,6 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
   const { appState } = useAppState();
   const filteredTranches = tranches?.filter(shouldShowTranche) || [];
 
-  const getContent = (tranche: Tranche) => {
-    if (isTestingTranche(tranche)) {
-      return (
-        <p className="tranches__secondary-header">{t("trancheExtraInfo")}</p>
-      );
-    } else if (tranche.tranche_id === 10) {
-      return (
-        <p className="tranches__secondary-header">
-          {t("trancheExtraInfoTranche10")}
-        </p>
-      );
-    }
-    return (
-      <TrancheDates start={tranche.tranche_start} end={tranche.tranche_end} />
-    );
-  };
-
   return (
     <>
       {tranches?.length ? (
@@ -56,12 +39,13 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                   locked={tranche.locked_amount}
                   unlocked={total.minus(tranche.locked_amount)}
                   total={total}
-                  secondaryHeader={getContent(tranche)}
-                />
-                <TrancheLabel
-                  contract={ADDRESSES.vestingAddress}
-                  chainId={appState.chainId}
-                  id={tranche.tranche_id}
+                  secondaryHeader={
+                    <TrancheLabel
+                      contract={ADDRESSES.vestingAddress}
+                      chainId={appState.chainId}
+                      id={tranche.tranche_id}
+                    />
+                  }
                 />
               </React.Fragment>
             );
