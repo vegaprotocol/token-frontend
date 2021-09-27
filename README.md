@@ -13,12 +13,13 @@
 # Development
 
 Install:
-`yarn`
+`yarn install`
 
 Add .env file in root:
 
 ```bash
 // .env
+REACT_APP_ENV=development
 REACT_APP_CHAIN=0x3
 REACT_APP_VEGA_URL="https://n04.d.vega.xyz/query"
 ```

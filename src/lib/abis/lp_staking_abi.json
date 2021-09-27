@@ -3,27 +3,27 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "lp_token",
+        "name": "lp_token_address",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "award_token",
+        "name": "reward_token_address",
         "type": "address"
       },
       {
         "internalType": "uint8",
-        "name": "epoch_count",
+        "name": "_epoch_count",
         "type": "uint8"
       },
       {
         "internalType": "uint256",
-        "name": "epoch_length_seconds",
+        "name": "_epoch_seconds",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "epoch_rewards",
+        "name": "_epoch_reward",
         "type": "uint256"
       }
     ],
@@ -32,12 +32,12 @@
   },
   {
     "inputs": [],
-    "name": "award_token_address",
+    "name": "epoch_count",
     "outputs": [
       {
-        "internalType": "address",
+        "internalType": "uint8",
         "name": "",
-        "type": "address"
+        "type": "uint8"
       }
     ],
     "stateMutability": "view",
@@ -80,32 +80,14 @@
     "name": "epochs",
     "outputs": [
       {
-        "internalType": "uint256",
-        "name": "balance",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "minimum_balance",
-        "type": "uint256"
-      },
-      {
         "internalType": "uint8",
         "name": "epoch_number",
         "type": "uint8"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "final_epoch",
-    "outputs": [
+      },
       {
-        "internalType": "uint8",
-        "name": "",
-        "type": "uint8"
+        "internalType": "uint240",
+        "name": "balance",
+        "type": "uint240"
       }
     ],
     "stateMutability": "view",
@@ -115,71 +97,19 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "account",
-        "type": "address"
-      }
-    ],
-    "name": "get_available_reward",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "get_current_epoch_number",
-    "outputs": [
-      {
-        "internalType": "uint8",
-        "name": "",
-        "type": "uint8"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "lp_token_address",
-    "outputs": [
-      {
-        "internalType": "address",
         "name": "",
         "type": "address"
       }
     ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "precision",
+    "name": "prerewards",
     "outputs": [
       {
-        "internalType": "uint256",
+        "internalType": "uint240",
         "name": "",
-        "type": "uint256"
+        "type": "uint240"
       }
     ],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "value",
-        "type": "uint256"
-      }
-    ],
-    "name": "stake",
-    "outputs": [],
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -210,12 +140,67 @@
   },
   {
     "inputs": [],
-    "name": "total_staked",
+    "name": "trusted_lp_token",
     "outputs": [
       {
-        "internalType": "uint256",
+        "internalType": "contract IERC20",
         "name": "",
-        "type": "uint256"
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "trusted_reward_token",
+    "outputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "users",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "has_prerewards",
+        "type": "bool"
+      },
+      {
+        "internalType": "uint8",
+        "name": "epoch_start",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint240",
+        "name": "balance",
+        "type": "uint240"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "get_current_epoch_number",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
       }
     ],
     "stateMutability": "view",
@@ -241,30 +226,18 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "unstake",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "address",
-        "name": "",
+        "name": "user",
         "type": "address"
       }
     ],
-    "name": "users",
+    "name": "get_available_reward",
     "outputs": [
       {
-        "internalType": "uint8",
-        "name": "last_epoch_withdrawn",
-        "type": "uint8"
-      },
-      {
         "internalType": "uint256",
-        "name": "balance",
+        "name": "",
         "type": "uint256"
       }
     ],
@@ -273,7 +246,109 @@
   },
   {
     "inputs": [],
+    "name": "total_staked",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "internalType": "uint240",
+            "name": "amount",
+            "type": "uint240"
+          }
+        ],
+        "internalType": "struct LP_Staking2.Prereward[]",
+        "name": "arr",
+        "type": "tuple[]"
+      }
+    ],
+    "name": "init_prerewards",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint240",
+        "name": "value",
+        "type": "uint240"
+      }
+    ],
+    "name": "stake",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "unstake",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "withdraw_rewards",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address[]",
+        "name": "_users",
+        "type": "address[]"
+      }
+    ],
+    "name": "emergency_refund",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "new_controller",
+        "type": "address"
+      }
+    ],
+    "name": "set_controller",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
