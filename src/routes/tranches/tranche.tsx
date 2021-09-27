@@ -8,6 +8,8 @@ import { Tranche as TrancheType } from "../../lib/vega-web3/vega-web3-types";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { EtherscanLink } from "../../components/etherscan-link";
 import { TrancheItem } from "../redemption/tranche-item";
+import { TrancheLabel } from "./tranche-label";
+import { ADDRESSES } from "../../config";
 
 export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
   const { t } = useTranslation();
@@ -29,6 +31,13 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
         locked={tranche.locked_amount}
         unlocked={total.minus(tranche.locked_amount)}
         total={total}
+        secondaryHeader={
+          <TrancheLabel
+            contract={ADDRESSES.vestingAddress}
+            chainId={appState.chainId}
+            id={tranche.tranche_id}
+          />
+        }
       />
       <div className="tranche__redeemed">
         <span>{t("alreadyRedeemed")}</span>
