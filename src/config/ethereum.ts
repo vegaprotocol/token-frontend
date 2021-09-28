@@ -47,8 +47,8 @@ const Addresses = {
 
 const RewardsAddresses = {
   [EthereumChainIds.Mainnet]: {
-    "SushiSwap VEGA/ETH": "0x29C827Ce49aCCF68A1a278C67C9D30c52fBbC348",
-    "SushiSwap VEGA/USDC": "0x42b7B8f8F83fA5cbf0176f8c24Ad51EbcD4B5F17",
+    "SushiSwap VEGA/ETH": "0x285de24077440c53b1661287D170e3ae22de0a44",
+    "SushiSwap VEGA/USDC": "0x49407c243c26f109b3c77c41dd83742164c20b5f",
   } as { [key: string]: string },
   [EthereumChainIds.Ropsten]: {
     "SushiSwap VEGA/ETH": "0xa93dd6912897c5fe8503a82234d829bc7905714b",
@@ -58,9 +58,9 @@ const RewardsAddresses = {
 
 const RewardsPoolAddresses = {
   [EthereumChainIds.Mainnet]: {
-    "0x29C827Ce49aCCF68A1a278C67C9D30c52fBbC348":
+    "0x285de24077440c53b1661287D170e3ae22de0a44":
       "0x29c827ce49accf68a1a278c67c9d30c52fbbc348",
-    "0x42b7B8f8F83fA5cbf0176f8c24Ad51EbcD4B5F17":
+    "0x49407c243c26f109b3c77c41dd83742164c20b5f":
       "0x42b7B8f8F83fA5cbf0176f8c24Ad51EbcD4B5F17",
   } as { [key: string]: string },
   [EthereumChainIds.Ropsten]: {
