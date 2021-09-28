@@ -49,7 +49,7 @@ export const DexTokensSection = ({
       <h3>{name}</h3>
       {Number(values.stakingStart) > Date.now() / 1000 && (
         <p>
-          If you have been providing liquidity on SuhiSwap before the deployment
+          If you have been providing liquidity on SushiSwap before the deployment
           of the staking contract, then your retroactive rewards will be
           displayed and redeemable after{" "}
           {format(
