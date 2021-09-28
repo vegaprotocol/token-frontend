@@ -69,6 +69,7 @@ export const TokenInput = ({
   approve,
   requireApproval = false,
   maximum = new BigNumber("0"),
+  minimum = new BigNumber("0"),
   approveTxState,
   approveTxDispatch,
 }: {
@@ -80,6 +81,7 @@ export const TokenInput = ({
 
   requireApproval?: boolean;
   maximum?: BigNumber;
+  minimum?: BigNumber;
   allowance?: BigNumber;
   approve?: () => void;
   approveText?: string;
@@ -110,12 +112,14 @@ export const TokenInput = ({
         new BigNumber(amount).isGreaterThan(maximum)
       );
     }
+
     return (
       !amount ||
       new BigNumber(amount).isLessThanOrEqualTo("0") ||
-      new BigNumber(amount).isGreaterThan(maximum)
+      new BigNumber(amount).isGreaterThan(maximum) ||
+      new BigNumber(amount).isLessThan(minimum)
     );
-  }, [amount, isApproved, maximum, requireApproval]);
+  }, [amount, isApproved, maximum, requireApproval, minimum]);
   let approveContent = null;
 
   if (showApproveButton) {
