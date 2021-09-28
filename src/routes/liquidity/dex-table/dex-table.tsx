@@ -12,6 +12,7 @@ import {
   KeyValueTableRow,
 } from "../../../components/key-value-table";
 import { EpochCountdown } from "../../../components/epoch-countdown";
+import { format } from "date-fns";
 
 interface DexTokensSectionProps {
   name: string;
@@ -46,6 +47,17 @@ export const DexTokensSection = ({
   return (
     <section className="dex-table">
       <h3>{name}</h3>
+      {Number(values.stakingStart) > Date.now() / 1000 && (
+        <p>
+          If you have been providing liquidity on SuhiSwap before the deployment
+          of the staking contract, then your retroactive rewards will be
+          displayed and redeemable after{" "}
+          {format(
+            new Date(Number(values.stakingStart) * 1000),
+            "yyyy.MM.dd HH:mm"
+          )}
+        </p>
+      )}
       <KeyValueTable className="dex-tokens-section__table">
         <KeyValueTableRow>
           <th>{t("liquidityTokenSushiAddress")}</th>
