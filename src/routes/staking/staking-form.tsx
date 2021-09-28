@@ -187,6 +187,8 @@ export const StakingForm = ({
             setAmount={setAmount}
             maximum={maxDelegation}
             currency={t("VEGA Tokens")}
+            // TODO: get actual min amount
+            minimum={new BigNumber(0)}
           />
         </>
       )}

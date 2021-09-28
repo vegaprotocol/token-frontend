@@ -13,29 +13,37 @@ import {
 import { useAddStake } from "./hooks";
 import { StakingWalletsContainer } from "../staking-wallets-container";
 import { useEthereumConfig } from "../../../hooks/use-ethereum-config";
+import { BigNumber } from "../../../lib/bignumber";
 
 export const NetworkParamsContainer = ({
   children,
 }: {
-  children: (data: { confirmations: number }) => React.ReactElement;
+  children: (data: {
+    confirmations: number;
+    minDelegation: BigNumber;
+  }) => React.ReactElement;
 }) => {
   const config = useEthereumConfig();
   if (!config) {
     return null;
   }
-  return children({ confirmations: config.confirmations });
+  return children({
+    confirmations: config.confirmations,
+    minDelegation: new BigNumber(2000),
+  });
 };
 
 export const AssociateContainer = () => {
   return (
     <NetworkParamsContainer>
-      {(data) => (
+      {({ confirmations, minDelegation }) => (
         <StakingWalletsContainer>
           {({ address, currVegaKey }) => (
             <AssociatePage
               address={address}
               vegaKey={currVegaKey}
-              requiredConfirmations={data.confirmations}
+              requiredConfirmations={confirmations}
+              minDelegation={minDelegation}
             />
           )}
         </StakingWalletsContainer>
@@ -48,10 +56,12 @@ export const AssociatePage = ({
   address,
   vegaKey,
   requiredConfirmations,
+  minDelegation,
 }: {
   address: string;
   vegaKey: VegaKeyExtended;
   requiredConfirmations: number;
+  minDelegation: BigNumber;
 }) => {
   const { t } = useTranslation();
   const params = useSearchParams();
@@ -105,6 +115,7 @@ export const AssociatePage = ({
             perform={txPerform}
             amount={amount}
             setAmount={setAmount}
+            minDelegation={minDelegation}
           />
         ) : (
           <WalletAssociate
@@ -113,6 +124,7 @@ export const AssociatePage = ({
             perform={txPerform}
             amount={amount}
             setAmount={setAmount}
+            minDelegation={minDelegation}
           />
         ))}
     </section>
