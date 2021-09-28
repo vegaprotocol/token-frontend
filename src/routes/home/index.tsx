@@ -4,7 +4,7 @@ import { Trans, useTranslation } from "react-i18next";
 import { RouteChildProps } from "..";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { TokenDetails } from "./token-details";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 import React from "react";
 import { NodeData } from "./__generated__/NodeData";
@@ -26,7 +26,6 @@ export const TOTAL_STAKED_QUERY = gql`
 const Home = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
   const { t } = useTranslation();
-  const history = useHistory();
   const { appState } = useAppState();
   const { data } = useQuery<NodeData>(TOTAL_STAKED_QUERY);
   const totalStaked = React.useMemo(() => {
@@ -63,9 +62,11 @@ const Home = ({ name }: RouteChildProps) => {
               "Once unlocked they can be redeemed from the contract so that you can transfer them between wallets."
             )}
           </p>
-          <button onClick={() => history.push("/vesting")} className="fill">
-            {t("Check to see if you can redeem unlocked VEGA tokens")}
-          </button>
+          <Link to={Routes.VESTING}>
+            <button className="fill">
+              {t("Check to see if you can redeem unlocked VEGA tokens")}
+            </button>
+          </Link>
         </>
       )}
       <h2>{t("USE YOUR VEGA TOKENS")}</h2>
@@ -107,12 +108,11 @@ const Home = ({ name }: RouteChildProps) => {
                 )}
               </p>
               <p>
-                <button
-                  className="button-secondary"
-                  onClick={() => history.push("/governance")}
-                >
-                  {t("View Governance proposals")}
-                </button>
+                <Link to={Routes.GOVERNANCE}>
+                  <button className="button-secondary">
+                    {t("View Governance proposals")}
+                  </button>
+                </Link>
               </p>
             </div>
           </div>
@@ -123,12 +123,11 @@ const Home = ({ name }: RouteChildProps) => {
                 "VEGA token holders can nominate a validator node and receive staking rewards."
               )}
             </p>
-            <button
-              className="button-secondary"
-              onClick={() => history.push("/staking")}
-            >
-              {t("Nominate a validator")}
-            </button>
+            <Link to={Routes.STAKING}>
+              <button className="button-secondary">
+                {t("Nominate a validator")}
+              </button>
+            </Link>
           </div>
         </>
       )}
