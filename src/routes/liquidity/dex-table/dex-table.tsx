@@ -42,7 +42,7 @@ export const DexTokensSection = ({
   );
   const stakingStartTime = React.useMemo(() => {
     return Number(values.stakingStart || 0) * 1000 + 1000 * 60 * 60 * 24;
-  }, [values.stakingStart]);
+  }, [values?.stakingStart]);
   if (!values) {
     return <p>{t("Loading")}...</p>;
   }
@@ -52,9 +52,9 @@ export const DexTokensSection = ({
       <h3>{name}</h3>
       {stakingStartTime > Date.now() / 1000 && (
         <p>
-          If you have been providing liquidity on SushiSwap before the deployment
-          of the staking contract, then your retroactive rewards will be
-          displayed and redeemable after{" "}
+          If you have been providing liquidity on SushiSwap before the
+          deployment of the staking contract, then your retroactive rewards will
+          be displayed and redeemable after{" "}
           {format(new Date(stakingStartTime), "yyyy.MM.dd HH:mm")}
         </p>
       )}
