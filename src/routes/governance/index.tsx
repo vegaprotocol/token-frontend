@@ -14,7 +14,7 @@ import { ProposalsList } from "./proposals-list";
 import { EthWallet } from "../../components/eth-wallet";
 import { VegaWallet } from "../../components/vega-wallet";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
-import { AssociateContainer } from "../staking/associate/associate-page";
+import { AssociateContainer } from "../staking/associate/associate-page-container";
 import { DisassociateContainer } from "../staking/disassociate/disassociate-page";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";

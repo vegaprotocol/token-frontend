@@ -8,7 +8,7 @@ import { TemplateSidebar } from "../../components/page-templates/template-sideba
 import { VegaWallet } from "../../components/vega-wallet";
 import { Flags } from "../../config";
 import { useDocumentTitle } from "../../hooks/use-document-title";
-import { AssociateContainer } from "./associate/associate-page";
+import { AssociateContainer } from "./associate/associate-page-container";
 import { DisassociateContainer } from "./disassociate/disassociate-page";
 import { Staking } from "./staking";
 import { StakingNodeContainer } from "./staking-node";

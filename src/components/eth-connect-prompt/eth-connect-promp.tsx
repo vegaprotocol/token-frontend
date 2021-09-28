@@ -21,6 +21,8 @@ export const EthConnectPrompt = ({ children }: EthConnectPrompProps) => {
             isOpen: true,
           })
         }
+        className="fill"
+        type="button"
       >
         {t("Connect to an Ethereum wallet")}
       </button>
