@@ -2,20 +2,6 @@
 @import "../../styles/fonts";
 
 .tranche-table {
-  margin-bottom: 30px;
-
-  table {
-    width: 100%;
-  }
-
-  td {
-    color: $text-color-deemphasise;
-  }
-
-  td:first-child {
-    color: $white;
-  }
-
   &__label {
     display: inline-block;
     text-transform: uppercase;
@@ -24,6 +10,9 @@
     padding: 3px;
   }
 
+  &__footer {
+    text-align: right;
+  }
   &__header {
     border-bottom: 1px solid white;
     padding-bottom: 5px;
