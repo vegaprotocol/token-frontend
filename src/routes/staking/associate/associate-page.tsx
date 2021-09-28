@@ -14,6 +14,7 @@ import { useAddStake } from "./hooks";
 import { StakingWalletsContainer } from "../staking-wallets-container";
 import { useEthereumConfig } from "../../../hooks/use-ethereum-config";
 import { BigNumber } from "../../../lib/bignumber";
+import { useMinDelegation } from "../../../hooks/use-min-delegation";
 
 export const NetworkParamsContainer = ({
   children,
@@ -24,12 +25,15 @@ export const NetworkParamsContainer = ({
   }) => React.ReactElement;
 }) => {
   const config = useEthereumConfig();
-  if (!config) {
+  const minDelegation = useMinDelegation();
+
+  if (!config || !minDelegation) {
     return null;
   }
+
   return children({
     confirmations: config.confirmations,
-    minDelegation: new BigNumber(2000),
+    minDelegation,
   });
 };
 
