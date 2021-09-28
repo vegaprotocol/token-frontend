@@ -206,6 +206,7 @@ export const StakingStepSelectNode = ({
       const userStake = data.party?.delegations?.length
         ? data.party?.delegations
             ?.filter((d) => d.node.id === node.id)
+            ?.filter((d) => d.epoch === Number(data.epoch.id))
             .reduce((sum, d) => {
               const value = new BigNumber(d.amount);
               return sum.plus(value);

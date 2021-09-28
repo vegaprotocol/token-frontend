@@ -47,7 +47,9 @@ export const StakingNode = ({
 
   const currentDelegationAmount = React.useMemo(() => {
     if (!data?.party?.delegations) return new BigNumber(0);
-    const amounts = data.party.delegations.map((d) => new BigNumber(d.amount));
+    const amounts = data.party.delegations
+      .filter(({ epoch }) => epoch.toString() === data.epoch.id)
+      .map((d) => new BigNumber(d.amount));
     return BigNumber.sum.apply(null, [new BigNumber(0), ...amounts]);
   }, [data]);
   const unstaked = React.useMemo(() => {
