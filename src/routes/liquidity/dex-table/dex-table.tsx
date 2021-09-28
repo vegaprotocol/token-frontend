@@ -40,6 +40,9 @@ export const DexTokensSection = ({
     () => REWARDS_POOL_ADDRESSES[contractAddress],
     [contractAddress]
   );
+  const stakingStartTime = React.useMemo(() => {
+    return Number(values.stakingStart || 0) * 1000 + 1000 * 60 * 60 * 24;
+  }, [values.stakingStart]);
   if (!values) {
     return <p>{t("Loading")}...</p>;
   }
@@ -47,15 +50,12 @@ export const DexTokensSection = ({
   return (
     <section className="dex-table">
       <h3>{name}</h3>
-      {Number(values.stakingStart) > Date.now() / 1000 && (
+      {stakingStartTime > Date.now() / 1000 && (
         <p>
           If you have been providing liquidity on SushiSwap before the deployment
           of the staking contract, then your retroactive rewards will be
           displayed and redeemable after{" "}
-          {format(
-            new Date(Number(values.stakingStart) * 1000),
-            "yyyy.MM.dd HH:mm"
-          )}
+          {format(new Date(stakingStartTime), "yyyy.MM.dd HH:mm")}
         </p>
       )}
       <KeyValueTable className="dex-tokens-section__table">
