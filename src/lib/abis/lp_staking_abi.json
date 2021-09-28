@@ -25,6 +25,11 @@
         "internalType": "uint256",
         "name": "_epoch_reward",
         "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_rewards_refund",
+        "type": "address"
       }
     ],
     "stateMutability": "nonpayable",
@@ -85,9 +90,9 @@
         "type": "uint8"
       },
       {
-        "internalType": "uint240",
+        "internalType": "uint248",
         "name": "balance",
-        "type": "uint240"
+        "type": "uint248"
       }
     ],
     "stateMutability": "view",
@@ -104,9 +109,9 @@
     "name": "prerewards",
     "outputs": [
       {
-        "internalType": "uint240",
+        "internalType": "uint256",
         "name": "",
-        "type": "uint240"
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -185,9 +190,9 @@
         "type": "uint8"
       },
       {
-        "internalType": "uint240",
+        "internalType": "uint168",
         "name": "balance",
-        "type": "uint240"
+        "type": "uint168"
       }
     ],
     "stateMutability": "view",
@@ -267,14 +272,19 @@
             "type": "address"
           },
           {
-            "internalType": "uint240",
-            "name": "amount",
-            "type": "uint240"
+            "internalType": "uint104",
+            "name": "share",
+            "type": "uint104"
           }
         ],
-        "internalType": "struct LP_Staking2.Prereward[]",
-        "name": "arr",
+        "internalType": "struct LP_Staking.Prereward[]",
+        "name": "_users",
         "type": "tuple[]"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_prerewards_total",
+        "type": "uint256"
       }
     ],
     "name": "init_prerewards",
@@ -285,9 +295,9 @@
   {
     "inputs": [
       {
-        "internalType": "uint240",
+        "internalType": "uint168",
         "name": "value",
-        "type": "uint240"
+        "type": "uint168"
       }
     ],
     "name": "stake",
