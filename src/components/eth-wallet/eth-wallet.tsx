@@ -46,7 +46,7 @@ export const EthWallet = () => {
             }
             data-testid="connect"
           >
-            {t("Connect")}
+            {t("Connect to an Ethereum wallet")}
           </button>
         )}
       </WalletCardContent>
