@@ -9,6 +9,7 @@ export interface LpContractData {
   lpTokenContractAddress: string;
   estimateAPY: BigNumber;
   epochDetails: EpochDetails;
+  stakingStart: string;
   connectedWalletData: {
     availableLPTokens: BigNumber;
     stakedLPTokens: BigNumber;
