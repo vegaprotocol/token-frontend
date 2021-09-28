@@ -26,20 +26,23 @@ export const useGetLiquidityBalances = (
           awardContractAddress,
           lpTokenContractAddress,
           epochDetails,
+          stakingStart,
         ] = await Promise.all<
           BigNumber,
           BigNumber,
           BigNumber,
           string,
           string,
-          EpochDetails
+          EpochDetails,
+          string
         >([
-          await lpStaking.rewardPerEpoch(),
-          await lpStaking.totalStaked(),
-          await lpStaking.estimateAPY(),
-          await lpStaking.awardContractAddress(),
-          await lpStaking.slpContractAddress(),
-          await lpStaking.currentEpochDetails(),
+          lpStaking.rewardPerEpoch(),
+          lpStaking.totalStaked(),
+          lpStaking.estimateAPY(),
+          lpStaking.awardContractAddress(),
+          lpStaking.slpContractAddress(),
+          lpStaking.currentEpochDetails(),
+          lpStaking.stakingStart(),
         ]);
         let connectedWalletData = null;
         if (ethAddress) {
@@ -73,6 +76,7 @@ export const useGetLiquidityBalances = (
           contractData: {
             epochDetails,
             rewardPerEpoch,
+            stakingStart,
             rewardPoolBalance,
             estimateAPY,
             awardContractAddress,

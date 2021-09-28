@@ -12,6 +12,7 @@ import {
   KeyValueTableRow,
 } from "../../../components/key-value-table";
 import { EpochCountdown } from "../../../components/epoch-countdown";
+import { format } from "date-fns";
 
 interface DexTokensSectionProps {
   name: string;
@@ -39,6 +40,9 @@ export const DexTokensSection = ({
     () => REWARDS_POOL_ADDRESSES[contractAddress],
     [contractAddress]
   );
+  const stakingStartTime = React.useMemo(() => {
+    return Number(values.stakingStart || 0) * 1000 + 1000 * 60 * 60 * 24;
+  }, [values.stakingStart]);
   if (!values) {
     return <p>{t("Loading")}...</p>;
   }
@@ -46,6 +50,14 @@ export const DexTokensSection = ({
   return (
     <section className="dex-table">
       <h3>{name}</h3>
+      {stakingStartTime > Date.now() / 1000 && (
+        <p>
+          If you have been providing liquidity on SushiSwap before the deployment
+          of the staking contract, then your retroactive rewards will be
+          displayed and redeemable after{" "}
+          {format(new Date(stakingStartTime), "yyyy.MM.dd HH:mm")}
+        </p>
+      )}
       <KeyValueTable className="dex-tokens-section__table">
         <KeyValueTableRow>
           <th>{t("liquidityTokenSushiAddress")}</th>
