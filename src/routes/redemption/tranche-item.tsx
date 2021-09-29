@@ -41,22 +41,14 @@ export const TrancheItem = ({
   return (
     <section data-testid="tranche-item" className="tranche-item">
       <div className="tranche-item__header">
-        {link ? (
+        {link && (
           <Link to={link}>
             <span className="tranche-item__label">
               {t("Tranche")} {tranche.tranche_id}
             </span>
           </Link>
-        ) : (
-          <span className="tranche-item__label">
-            {t("Tranche")} {tranche.tranche_id}
-          </span>
         )}
-        {secondaryHeader ? (
-          <span className="tranche-item__secondary-label">
-            {secondaryHeader}
-          </span>
-        ) : null}
+        {secondaryHeader}
         <span>{total.toString()}</span>
       </div>
       <table>
@@ -78,19 +70,17 @@ export const TrancheItem = ({
           <div
             className="tranche-item__progress-bar--locked"
             style={{
-              flex:
-                isNaN(lockedPercentage.toNumber())
-                  ? 0
-                  : lockedPercentage.toNumber(),
+              flex: isNaN(lockedPercentage.toNumber())
+                ? 0
+                : lockedPercentage.toNumber(),
             }}
           ></div>
           <div
             className="tranche-item__progress-bar--unlocked"
             style={{
-              flex:
-                isNaN(unlockedPercentage.toNumber())
-                  ? 0
-                  : unlockedPercentage.toNumber(),
+              flex: isNaN(unlockedPercentage.toNumber())
+                ? 0
+                : unlockedPercentage.toNumber(),
             }}
           ></div>
         </div>

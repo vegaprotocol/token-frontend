@@ -3,7 +3,7 @@
 
 .tranche-item {
   margin-bottom: 15px;
-  
+
   &__header {
     border-bottom: white;
     border-width: 1px;
@@ -35,17 +35,6 @@
     background-color: $white;
     color: $black;
     padding: 5px;
-  }
-
-  &__secondary-label {
-    display: inline-block;
-    text-transform: uppercase;
-    background-color: $black;
-    color: $white;
-    border-style: solid;
-    margin-left: 5px;
-    padding: 3px;
-    border-width: 2px;
   }
 
   &__footer {
