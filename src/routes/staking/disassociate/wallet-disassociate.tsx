@@ -18,7 +18,7 @@ export const WalletDisassociate = ({
   } = useAppState();
   const { t } = useTranslation();
   const maximum = React.useMemo(
-    () => new BigNumber(walletAssociatedBalance!),
+    () => new BigNumber(walletAssociatedBalance || 0),
     [walletAssociatedBalance]
   );
 

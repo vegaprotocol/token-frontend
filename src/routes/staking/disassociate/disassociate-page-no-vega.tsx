@@ -1,50 +1,22 @@
 import "./disassociate-page.scss";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { ConnectedVegaKey } from "../../../components/connected-vega-key";
 import {
   StakingMethod,
   StakingMethodRadio,
 } from "../../../components/staking-method-radio";
-import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
 import { useSearchParams } from "../../../hooks/use-search-params";
-import { TxState } from "../../../hooks/transaction-reducer";
-import { WalletDisassociate } from "./wallet-disassociate";
 import { ContractDisassociate } from "./contract-disassociate";
-import { DisassociateTransaction } from "./disassociate-transaction";
-import { useRemoveStake } from "./hooks";
+import { ConnectToVega } from "../connect-to-vega";
 
-
-export const DisassociatePage = ({
-  address,
-  vegaKey,
-}: {
-  address: string;
-  vegaKey: VegaKeyExtended;
-}) => {
+export const DisassociatePageNoVega = () => {
   const { t } = useTranslation();
   const params = useSearchParams();
   const [amount, setAmount] = React.useState<string>("");
   const [selectedStakingMethod, setSelectedStakingMethod] = React.useState<
     StakingMethod | ""
   >(params.method as StakingMethod | "");
-  const {
-    state: txState,
-    dispatch: txDispatch,
-    perform: txPerform,
-  } = useRemoveStake(address, amount, vegaKey.pub, selectedStakingMethod);
 
-  if (txState.txState !== TxState.Default) {
-    return (
-      <DisassociateTransaction
-        state={txState}
-        amount={amount}
-        vegaKey={vegaKey.pub}
-        stakingMethod={selectedStakingMethod as StakingMethod}
-        dispatch={txDispatch}
-      />
-    );
-  }
   return (
     <section className="disassociate-page" data-testid="disassociate-page">
       <p>
@@ -59,7 +31,7 @@ export const DisassociatePage = ({
         )}
       </p>
       <h1>{t("What Vega wallet are you removing Tokens from?")}</h1>
-      <ConnectedVegaKey pubKey={vegaKey.pub} />
+      <ConnectToVega />
       <h1>{t("What tokens would you like to return?")}</h1>
       <StakingMethodRadio
         setSelectedStakingMethod={setSelectedStakingMethod}
@@ -67,16 +39,12 @@ export const DisassociatePage = ({
       />
       {selectedStakingMethod &&
         (selectedStakingMethod === StakingMethod.Wallet ? (
-          <WalletDisassociate
-            setAmount={setAmount}
-            amount={amount}
-            perform={txPerform}
-          />
+          <ConnectToVega />
         ) : (
           <ContractDisassociate
             setAmount={setAmount}
             amount={amount}
-            perform={txPerform}
+            perform={() => {}}
           />
         ))}
     </section>
