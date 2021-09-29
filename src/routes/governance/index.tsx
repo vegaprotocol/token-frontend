@@ -15,13 +15,13 @@ import { EthWallet } from "../../components/eth-wallet";
 import { VegaWallet } from "../../components/vega-wallet";
 import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
 import { AssociateContainer } from "../staking/associate/associate-page-container";
-import { DisassociateContainer } from "../staking/disassociate/disassociate-page";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 import { updateProposals } from "./update-proposals";
 import { Proposal } from "./proposal";
 import { Flags } from "../../config";
 import { TemplateDefault } from "../../components/page-templates/template-default";
+import { DisassociateContainer } from "../staking/disassociate/disassociate-page-container";
 
 export const PROPOSALS_FRAGMENT = gql`
   fragment ProposalFields on Proposal {

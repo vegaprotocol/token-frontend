@@ -19,7 +19,7 @@ export const ContractAssociate = ({
   perform: () => void;
   amount: string;
   setAmount: React.Dispatch<string>;
-  vegaKey: VegaKeyExtended;
+  vegaKey: VegaKeyExtended | null;
 }) => {
   const { t } = useTranslation();
   const {
@@ -53,7 +53,7 @@ export const ContractAssociate = ({
             "You can associate tokens while they are held in the vesting contract, when they unlock you will need to dissociate them before they can be redeemed."
           )}
         </Callout>
-        <AssociateInfo pubKey={vegaKey.pub} />
+        <AssociateInfo pubKey={vegaKey ? vegaKey.pub : null} />
         <TokenInput
           submitText={t("Associate VEGA Tokens with key")}
           perform={perform}
