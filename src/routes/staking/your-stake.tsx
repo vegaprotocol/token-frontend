@@ -5,29 +5,17 @@ import {
   KeyValueTableRow,
 } from "../../components/key-value-table";
 import { BigNumber } from "../../lib/bignumber";
-import { Staking_party_delegations } from "./__generated__/Staking";
 
 export interface YourStakeProps {
-  currentEpoch: string;
-  delegations: Staking_party_delegations[];
+  stakeThisEpoch: BigNumber;
+  stakeNextEpoch: BigNumber;
 }
 
-export const YourStake = ({ currentEpoch, delegations }: YourStakeProps) => {
+export const YourStake = ({
+  stakeThisEpoch,
+  stakeNextEpoch,
+}: YourStakeProps) => {
   const { t } = useTranslation();
-
-  const stakeThisEpoch = React.useMemo(() => {
-    const amountsThisEpoch = delegations
-      .filter((d) => d.epoch === Number(currentEpoch))
-      .map((d) => new BigNumber(d.amount));
-    return BigNumber.sum.apply(null, [new BigNumber(0), ...amountsThisEpoch]);
-  }, [delegations, currentEpoch]);
-
-  const stakeNextEpoch = React.useMemo(() => {
-    const amountsNextEpoch = delegations
-      .filter((d) => d.epoch === Number(currentEpoch) + 1)
-      .map((d) => new BigNumber(d.amount));
-    return BigNumber.sum.apply(null, [new BigNumber(0), ...amountsNextEpoch]);
-  }, [delegations, currentEpoch]);
 
   return (
     <div data-testid="your-stake">
