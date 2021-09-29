@@ -110,8 +110,10 @@ export function useEthUser() {
 
   // Updates on address change, getUserTrancheBalance has address as a dep
   React.useEffect(() => {
-    getUserTrancheBalances();
-  }, [getUserTrancheBalances]);
+    if (appState.ethAddress) {
+      getUserTrancheBalances();
+    }
+  }, [appState.ethAddress, getUserTrancheBalances]);
 
   // Clear connect timer on unmount
   React.useEffect(() => {
