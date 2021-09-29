@@ -1,17 +1,20 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { ContractAssociate } from "./contract-associate";
-import {
-  useAppState
-} from "../../../contexts/app-state/app-state-context";
+import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { useSearchParams } from "../../../hooks/use-search-params";
 import {
   StakingMethod,
   StakingMethodRadio,
 } from "../../../components/staking-method-radio";
 import { ConnectToVega } from "../connect-to-vega";
+import { BigNumber } from "../../../lib/bignumber";
 
-export const AssociatePageNoVega = () => {
+export const AssociatePageNoVega = ({
+  minDelegation,
+}: {
+  minDelegation: BigNumber;
+}) => {
   const { t } = useTranslation();
   const params = useSearchParams();
   const [amount, setAmount] = React.useState<string>("");
@@ -52,6 +55,7 @@ export const AssociatePageNoVega = () => {
             perform={() => {}}
             amount={amount}
             setAmount={setAmount}
+            minDelegation={minDelegation}
           />
         ) : (
           <ConnectToVega />
