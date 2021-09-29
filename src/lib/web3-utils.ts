@@ -222,6 +222,7 @@ export interface IVegaLPStaking {
   ): Promise<WrappedPromiEvent<boolean>>;
   liquidityTokensInRewardPool(): Promise<BigNumber>;
   currentEpochDetails(): Promise<EpochDetails>;
+  stakingStart(): Promise<string>;
 }
 
 export interface TxError {

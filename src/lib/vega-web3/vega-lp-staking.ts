@@ -66,6 +66,10 @@ export default class VegaLPStaking implements IVegaLPStaking {
     return this.contract.methods.get_current_epoch_number().call();
   }
 
+  stakingStart(): Promise<string> {
+    return this.contract.methods.staking_start().call();
+  }
+
   async currentEpochDetails(): Promise<EpochDetails> {
     const id = await this.currentEpoch();
     const startSeconds = await this.contract.methods.staking_start().call();

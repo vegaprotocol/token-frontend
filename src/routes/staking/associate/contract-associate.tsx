@@ -15,11 +15,13 @@ export const ContractAssociate = ({
   amount,
   setAmount,
   vegaKey,
+  minDelegation,
 }: {
   perform: () => void;
   amount: string;
   setAmount: React.Dispatch<string>;
   vegaKey: VegaKeyExtended | null;
+  minDelegation: BigNumber;
 }) => {
   const { t } = useTranslation();
   const {
@@ -61,6 +63,7 @@ export const ContractAssociate = ({
           amount={amount}
           setAmount={setAmount}
           currency={t("VEGA Tokens")}
+          minimum={minDelegation}
         />
       </>
     );

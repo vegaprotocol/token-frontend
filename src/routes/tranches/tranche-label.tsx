@@ -36,13 +36,13 @@ export const TrancheLabel = ({
     // Only some tranches have titles worth showing
     if (TRANCHE_LABELS[id]) {
       return (
-        <div className="tranche-labels">
+        <>
           {TRANCHE_LABELS[id].map((t, i) => (
             <strong className="tranche-label" key={`tranche-${id}-${i}`}>
               {t}
             </strong>
           ))}
-        </div>
+        </>
       );
     }
   }
