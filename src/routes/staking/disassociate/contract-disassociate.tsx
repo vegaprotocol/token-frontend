@@ -14,14 +14,14 @@ export const ContractDisassociate = ({
   setAmount: React.Dispatch<string>;
 }) => {
   const {
-    appState: { vestingAssociatedBalance },
+    appState: { lien },
   } = useAppState();
   const { t } = useTranslation();
   const maximum = React.useMemo(
-    () => new BigNumber(vestingAssociatedBalance!),
-    [vestingAssociatedBalance]
+    () => new BigNumber(lien!),
+    [lien]
   );
-  if (new BigNumber(vestingAssociatedBalance!).isEqualTo("0")) {
+  if (new BigNumber(lien!).isEqualTo("0")) {
     return (
       <div className="disassociate-page__error">
         {t(
