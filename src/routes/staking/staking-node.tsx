@@ -12,14 +12,18 @@ import { BigNumber } from "../../lib/bignumber";
 import { Staking as StakingQueryResult } from "./__generated__/Staking";
 import { StakingNodesContainer } from "./staking-nodes-container";
 import { Colors } from "../../config";
+import { ConnectToVega } from "./connect-to-vega";
 
 export const StakingNodeContainer = () => {
   return (
     <StakingWalletsContainer>
       {({ currVegaKey }) => (
+        currVegaKey ?
         <StakingNodesContainer>
           {({ data }) => <StakingNode vegaKey={currVegaKey} data={data} />}
         </StakingNodesContainer>
+        :
+        <ConnectToVega />
       )}
     </StakingWalletsContainer>
   );
