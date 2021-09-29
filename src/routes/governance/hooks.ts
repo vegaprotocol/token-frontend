@@ -1,10 +1,8 @@
 import React from "react";
 
 import type { Proposals_proposals } from "./__generated__/proposals";
-import { useNetworkParam } from "./use-network-param";
-import {
-  useAppState,
-} from "../../contexts/app-state/app-state-context";
+import { useNetworkParam } from "../../hooks/use-network-param";
+import { useAppState } from "../../contexts/app-state/app-state-context";
 
 const useProposalNetworkParams = ({
   proposal,
@@ -27,7 +25,7 @@ const useProposalNetworkParams = ({
       requiredParticipation: 100,
     };
   }
-  
+
   const [
     updateMarketMajority,
     updateMarketParticipation,
@@ -111,7 +109,7 @@ export const useVoteInformation = ({
   const totalTokensPercentage = React.useMemo(() => {
     return Number((100 * totalTokensVoted) / +totalSupply).toFixed(4);
   }, [totalTokensVoted, totalSupply]);
-  
+
   const willPass = React.useMemo(
     () => participationMet && yesPercentage > requiredMajorityPercentage,
     [participationMet, requiredMajorityPercentage, yesPercentage]

@@ -1,6 +1,6 @@
 import React from "react";
 import * as Sentry from "@sentry/react";
-import { useNetworkParam } from "../routes/governance/use-network-param";
+import { useNetworkParam } from "./use-network-param";
 
 export const ETH_NETWORK_PARAM = "blockchains.ethereumConfig";
 

@@ -20,12 +20,14 @@ export const WalletAssociate = ({
   amount,
   setAmount,
   address,
+  minDelegation,
 }: {
   perform: () => void;
   amount: string;
   setAmount: React.Dispatch<string>;
   vegaKey: VegaKeyExtended;
   address: string;
+  minDelegation: BigNumber;
 }) => {
   const { t } = useTranslation();
   const {
@@ -97,6 +99,7 @@ export const WalletAssociate = ({
           approveTxState={approveState}
           approveTxDispatch={approveDispatch}
           currency={t("VEGA Tokens")}
+          minimum={minDelegation}
         />
       </>
     );
