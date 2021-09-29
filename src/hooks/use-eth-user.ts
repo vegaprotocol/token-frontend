@@ -10,7 +10,7 @@ import { BigNumber } from "../lib/bignumber";
 import { useGetUserTrancheBalances } from "./use-get-user-tranche-balances";
 import * as Sentry from "@sentry/react";
 import { ADDRESSES } from "../config";
-import { isUserRejection } from "../lib/web3-utils";
+import { isUnexpectedError } from "../lib/web3-utils";
 
 export function useEthUser() {
   const { appState, appDispatch, provider } = useAppState();
@@ -48,7 +48,7 @@ export function useEthUser() {
       });
       Sentry.setUser({ id: accounts[0] });
     } catch (e) {
-      if (!isUserRejection(e)) {
+      if (isUnexpectedError(e)) {
         Sentry.captureException(e);
       }
       appDispatch({ type: AppStateActionType.CONNECT_FAIL, error: e });

@@ -255,7 +255,7 @@ export const isUnexpectedError = (error: Error | TxError) => {
  * a transaction confirmation prompt
  */
 export const isUserRejection = (error: Error | TxError) => {
-  if ("code" in error && Object.values(IgnoreCodes).includes(error.code)) {
+  if ("code" in error && error.code === IgnoreCodes.USER_REJECTED) {
     return true;
   }
   return false;
