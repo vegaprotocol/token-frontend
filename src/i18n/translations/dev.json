@@ -391,5 +391,6 @@
   "stakeNodeNone": "You need to associate some VEGA before you can stake",
   "redeemComingSoon": "Redeem is coming soon",
   "associatedVega": "Associated $VEGA",
-  "blockCountdown": "Waiting for {{amount}} more confirmations..."
+  "blockCountdown": "Waiting for {{amount}} more confirmations...",
+  "stakingNodeNotFound": "Could not find a node with id {{node}}"
 }

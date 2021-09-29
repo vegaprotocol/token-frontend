@@ -67,7 +67,7 @@ export const StakingNode = ({
   if (!nodeInfo) {
     return (
       <span style={{ color: Colors.RED }}>
-        Could not find a node with id {node}
+        {t("stakingNodeNotFound", { node })}
       </span>
     );
   }
