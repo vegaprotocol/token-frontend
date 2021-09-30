@@ -36,11 +36,23 @@ export interface PartyDelegations_party {
   delegations: PartyDelegations_party_delegations[] | null;
 }
 
+export interface PartyDelegations_epoch {
+  __typename: "Epoch";
+  /**
+   * Presumably this is an integer or something. If there's no such thing, disregard
+   */
+  id: string;
+}
+
 export interface PartyDelegations {
   /**
    * An entity that is trading on the VEGA network
    */
   party: PartyDelegations_party | null;
+  /**
+   * get data for a specific epoch, if id omitted it gets the current epoch
+   */
+  epoch: PartyDelegations_epoch;
 }
 
 export interface PartyDelegationsVariables {

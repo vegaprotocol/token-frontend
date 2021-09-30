@@ -84,7 +84,7 @@ export function createClient() {
       Party: {
         fields: {
           stake: {
-            read(stake: Parties_parties_stake) {
+            read(stake) {
               if (stake) {
                 return {
                   ...stake,
