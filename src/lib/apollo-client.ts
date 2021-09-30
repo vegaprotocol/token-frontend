@@ -11,7 +11,6 @@ import { RetryLink } from "@apollo/client/link/retry";
 import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
 import BigNumber from "bignumber.js";
-import { Parties_parties_stake } from "../routes/governance/__generated__/Parties";
 import { addDecimal } from "./decimals";
 
 export function createClient() {
