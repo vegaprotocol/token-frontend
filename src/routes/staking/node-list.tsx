@@ -2,6 +2,7 @@ import "./node-list.scss";
 import { Link, useRouteMatch } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { BigNumber } from "../../lib/bignumber";
+import { formatNumber } from "../../lib/format-number";
 
 interface NodeListProps {
   nodes: NodeListItemProps[];
@@ -42,12 +43,12 @@ export const NodeListItem = ({
         <tbody>
           <tr>
             <th>{t("Total stake")}</th>
-            <td>{stakedOnNode.toString()}</td>
+            <td>{formatNumber(stakedOnNode)}</td>
             <td>{stakedTotalPercentage}</td>
           </tr>
           <tr>
             <th>{t("Your stake")}</th>
-            <td>{userStake.toString()}</td>
+            <td>{formatNumber(userStake)}</td>
             <td>{userStakePercentage}</td>
           </tr>
         </tbody>
