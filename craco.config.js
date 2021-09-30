@@ -16,6 +16,15 @@ module.exports = function (options) {
   return {
     webpack: {
       configure: (webpackConfig) => {
+        const definePlugin = webpackConfig.plugins.find(
+          (webpackPlugin) => webpackPlugin instanceof webpack.DefinePlugin
+        );
+        definePlugin.definitions["process.env"] = {
+          ...definePlugin.definitions["process.env"],
+          BRANCH: JSON.stringify(process.env.BRANCH || ""),
+          HEAD: JSON.stringify(process.env.HEAD || ""),
+          COMMIT_REF: JSON.stringify(process.env.COMMIT_REF || ""),
+        };
         const htmlWebpackPluginInstance = webpackConfig.plugins.find(
           (webpackPlugin) => webpackPlugin instanceof HtmlWebpackPlugin
         );
