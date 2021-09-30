@@ -16,7 +16,7 @@ if (dsn) {
     dsn,
     integrations: [new Integrations.BrowserTracing()],
     tracesSampleRate: 0.1,
-    environment: process.env.REACT_APP_ENV,
+    environment: process.env.REACT_APP_ENV || "development",
     beforeSend(event) {
       if (event.request?.url?.includes("/claim?")) {
         return {
