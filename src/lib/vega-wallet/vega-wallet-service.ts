@@ -127,10 +127,10 @@ export class VegaWalletService implements IVegaWalletService {
         headers: { authorization: `Bearer ${this.token}` },
       });
 
-      // forbidden, clear token
-      if (res.status === 403) {
-        this.clearToken();
-        return [Errors.SESSION_EXPIRED, undefined];
+      const err = this.verifyResponse(res);
+
+      if (err) {
+        return [err, undefined];
       }
 
       const json = await res.json();
@@ -156,10 +156,10 @@ export class VegaWalletService implements IVegaWalletService {
         headers: { authorization: `Bearer ${this.token}` },
       });
 
-      // forbidden, clear token
-      if (res.status === 403) {
-        this.clearToken();
-        return [Errors.SESSION_EXPIRED, undefined];
+      const err = this.verifyResponse(res);
+
+      if (err) {
+        return [err, undefined];
       }
 
       const json = await res.json();
@@ -182,6 +182,21 @@ export class VegaWalletService implements IVegaWalletService {
   private clearToken() {
     this.token = "";
     localStorage.removeItem("vega_wallet_token");
+  }
+
+  /**
+   * Parses the response object to either return an error string or null if
+   * everything looks good. Clears token 403 response returned
+   */
+  private verifyResponse(res: Response): string | null {
+    if (res.status === 403) {
+      this.clearToken();
+      return Errors.SESSION_EXPIRED;
+    } else if (!res.ok) {
+      return Errors.COMMAND_FAILED;
+    }
+
+    return null;
   }
 }
 
