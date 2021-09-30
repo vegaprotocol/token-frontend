@@ -95,10 +95,11 @@ export const DexTokensSection = ({
             />
           </td>
         </KeyValueTableRow>
-        <KeyValueTableRow>
+        {/* TODO: Re-add this row when APY calculation is correct */}
+        {/* <KeyValueTableRow>
           <th>{t("lpTokensEstimateAPY")}</th>
           <td>{values.estimateAPY.decimalPlaces(2).toString()}%</td>
-        </KeyValueTableRow>
+        </KeyValueTableRow> */}
         <KeyValueTableRow>
           <th>{t("lpTokensInRewardPool")}</th>
           <td>
