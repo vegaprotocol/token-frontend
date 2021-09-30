@@ -34,7 +34,7 @@ const Addresses = {
     stakingBridge: "0x195064D33f09e0c42cF98E665D9506e0dC17de68",
   } as { [key: string]: string },
   [EthereumChainIds.Ropsten]: {
-    vestingAddress: "0xfc9Ad8fE9E0b168999Ee7547797BC39D55d607AA",
+    vestingAddress: "0x96a6f229BbbcA08095f0bC30088fcDfaeEDb07Ef",
     vegaTokenAddress:
       appEnv === "staging"
         ? "0x45984C4E9F3D55325fc6Fd2E260881EE3Ce9bbCD"
