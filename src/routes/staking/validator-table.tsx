@@ -57,7 +57,7 @@ export const ValidatorTable = ({
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("OWN STAKE (THIS EPOCH)")}</th>
-          <td>{stakeThisEpoch}</td>
+          <td>{stakeThisEpoch.toString()}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("NOMINATED (THIS EPOCH)")}</th>
