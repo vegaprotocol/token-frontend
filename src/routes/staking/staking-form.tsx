@@ -36,6 +36,9 @@ export const PARTY_DELEGATIONS_QUERY = gql`
         epoch
       }
     }
+    epoch {
+      id
+    }
   }
 `;
 
@@ -126,10 +129,13 @@ export const StakingForm = ({
           .query<PartyDelegations, PartyDelegationsVariables>({
             query: PARTY_DELEGATIONS_QUERY,
             variables: { partyId: pubkey },
+            fetchPolicy: "network-only",
           })
           .then((res) => {
             const delegation = res.data.party?.delegations?.find((d) => {
-              return d.node.id === nodeId; // && d.epoch === the next epoch?
+              return (
+                d.node.id === nodeId && d.epoch.toString() === res.data.epoch.id
+              );
             });
 
             if (delegation) {
