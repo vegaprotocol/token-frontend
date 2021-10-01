@@ -5,6 +5,9 @@ import type { Contract } from "web3-eth-contract";
 import claimAbi from "../abis/claim_abi.json";
 import { IVegaClaim, WrappedPromiEvent } from "../web3-utils";
 
+export const UNSPENT_CODE = "0x0000000000000000000000000000000000000000";
+export const SPENT_CODE = "0x0000000000000000000000000000000000000001";
+
 /**
  * Example:
  * ```
@@ -57,97 +60,97 @@ export default class VegaClaim implements IVegaClaim {
    * @return {Promise<boolean>}
    */
   public claim({
-    claimCode,
-    denomination,
-    trancheId,
+    amount,
+    tranche,
     expiry,
-    nonce,
+    target,
     country,
-    targeted,
+    v,
+    r,
+    s,
     account,
   }: {
-    claimCode: string;
-    denomination: BigNumber;
-    trancheId: number;
+    amount: BigNumber;
+    tranche: number;
     expiry: number;
-    nonce: string;
+    target?: string;
     country: string;
-    targeted: boolean;
+    v: number;
+    r: string;
+    s: string;
     account: string;
   }): WrappedPromiEvent<void> {
-    // TODO how do I send args as tuple?
     return {
       promiEvent: this.contract.methods[
-        targeted ? "claim_targeted" : "claim_untargeted"
+        target != null ? "claim_targeted" : "claim_untargeted"
       ](
-        claimCode,
-        denomination.toString(),
-        trancheId,
-        expiry,
-        nonce,
-        Web3.utils.asciiToHex(country)
+        { r, s, v },
+        { amount, tranche, expiry },
+        Web3.utils.asciiToHex(country),
+        target
       ).send({ from: account }),
     };
   }
 
   public checkClaim({
-    claimCode,
-    denomination,
-    trancheId,
+    amount,
+    tranche,
     expiry,
-    nonce,
+    target,
     country,
-    targeted,
+    v,
+    r,
+    s,
     account,
   }: {
-    claimCode: string;
-    denomination: BigNumber;
-    trancheId: number;
+    amount: BigNumber;
+    tranche: number;
     expiry: number;
-    nonce: string;
+    target?: string;
     country: string;
-    targeted: boolean;
+    v: number;
+    r: string;
+    s: string;
     account: string;
-  }): Promise<any> {
-    // TODO how do I send args as tuple?
-    return this.contract.methods[
-      targeted ? "claim_targeted" : "claim_untargeted"
-    ](
-      claimCode,
-      denomination.toString(),
-      trancheId,
-      expiry,
-      nonce,
-      Web3.utils.asciiToHex(country)
-    ).call({ from: account });
+  }): WrappedPromiEvent<void> {
+    return {
+      promiEvent: this.contract.methods[
+        target != null ? "claim_targeted" : "claim_untargeted"
+      ](
+        { r, s, v },
+        { amount, tranche, expiry },
+        Web3.utils.asciiToHex(country),
+        target
+      ).call({ from: account }),
+    };
   }
 
   /**
    * Check if this code was already committed to by this account
    * @return {Promise<boolean>}
    */
-  async isCommitted({ account }: { account: string }): Promise<boolean> {
-    return (await this.contract.methods.commitments(account).call()) === "0x0";
+  async isCommitted({ s, account }: { s: string, account: string }): Promise<string> {
+    return (await this.contract.methods.commitments(s).call());
   }
 
   /**
-   * Checks if a code is passed its' expiry date
+   * Checks if a code is past its' expiry date
    * @param expiry Expiry of the code
    * @returns Promise<boolean>
    */
   async isExpired(expiry: number): Promise<boolean> {
     return (
-      expiry > 0 && expiry < (await this.web3.eth.getBlock("latest")).timestamp
+      expiry < (await this.web3.eth.getBlock("latest")).timestamp
     );
   }
 
   /**
    * Utility method to check if the nonce has already been used. If it has the code has already been claimed.
-   * @param nonce The nonce of the code
+   * @param s The s part of the signature
    * @return {string}
    */
-  async isUsed(account: string): Promise<boolean> {
-    return (await this.contract.methods.commitments(account).call()) === "0x1";
+  async isUsed(s: string): Promise<boolean> {
+    return (await this.contract.methods.commitments(s).call()) === SPENT_CODE;
   }
 
   /**
