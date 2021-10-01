@@ -38,22 +38,16 @@ export default class VegaClaim implements IVegaClaim {
    * otherwise the action is pointless
    * @return {Promise<boolean>}
    */
-  public commit(claimCode: string, account: string): WrappedPromiEvent<void> {
-    const hash = this.deriveCommitment(claimCode, account);
-
+  public commit(s: string, account: string): WrappedPromiEvent<void> {
     return {
       promiEvent: this.contract.methods
-        .commit_untargeted_code(hash)
+        .commit_untargeted(s)
         .send({ from: account }),
     };
   }
 
-  public checkCommit(claimCode: string, account: string): Promise<any> {
-    const hash = this.deriveCommitment(claimCode, account);
-
-    return this.contract.methods
-      .commit_untargeted_code(hash)
-      .call({ from: account });
+  public checkCommit(s: string, account: string): Promise<any> {
+    return this.contract.methods.commit_untargeted(s).call({ from: account });
   }
 
   /**
@@ -81,9 +75,10 @@ export default class VegaClaim implements IVegaClaim {
     targeted: boolean;
     account: string;
   }): WrappedPromiEvent<void> {
+    // TODO how do I send args as tuple?
     return {
       promiEvent: this.contract.methods[
-        targeted ? "redeem_targeted" : "redeem_untargeted_code"
+        targeted ? "claim_targeted" : "claim_untargeted"
       ](
         claimCode,
         denomination.toString(),
@@ -114,8 +109,9 @@ export default class VegaClaim implements IVegaClaim {
     targeted: boolean;
     account: string;
   }): Promise<any> {
+    // TODO how do I send args as tuple?
     return this.contract.methods[
-      targeted ? "redeem_targeted" : "redeem_untargeted_code"
+      targeted ? "claim_targeted" : "claim_untargeted"
     ](
       claimCode,
       denomination.toString(),
@@ -130,16 +126,8 @@ export default class VegaClaim implements IVegaClaim {
    * Check if this code was already committed to by this account
    * @return {Promise<boolean>}
    */
-  async isCommitted({
-    claimCode,
-    account,
-  }: {
-    claimCode: string;
-    account: string;
-  }): Promise<boolean> {
-    const hash = this.deriveCommitment(claimCode, account);
-
-    return await this.contract.methods.commits(hash).call();
+  async isCommitted({ account }: { account: string }): Promise<boolean> {
+    return (await this.contract.methods.commitments(account).call()) === "0x0";
   }
 
   /**
@@ -158,8 +146,8 @@ export default class VegaClaim implements IVegaClaim {
    * @param nonce The nonce of the code
    * @return {string}
    */
-  isUsed(nonce: string): Promise<boolean> {
-    return this.contract.methods.nonces(nonce).call();
+  async isUsed(account: string): Promise<boolean> {
+    return (await this.contract.methods.commitments(account).call()) === "0x1";
   }
 
   /**
@@ -172,22 +160,5 @@ export default class VegaClaim implements IVegaClaim {
       .allowed_countries(Web3.utils.asciiToHex(country))
       .call();
     return !isAllowed;
-  }
-
-  /**
-   * Utility method to derive the commitment hash from code and account
-   * @param  {string} claimCode
-   * @param  {string} account
-   * @return {string}
-   */
-  deriveCommitment(claimCode: string, account: string): string {
-    // FIXME: Consider direct soliditySha3Raw if the contract changes encoding
-    // @ts-ignore
-    return this.web3.utils.sha3Raw(
-      this.web3.eth.abi.encodeParameters(
-        ["bytes", "address"],
-        [claimCode, account]
-      )
-    );
   }
 }
