@@ -118,7 +118,7 @@ export function claimReducer(
               v: Number(action.data.v),
             },
             claim: {
-              amount: new BigNumber(addDecimal(denomination, 18)),
+              amount: new BigNumber(addDecimal(denomination, action.decimals)),
               target: action.data.target ?? null,
               tranche: Number(action.data.trancheId),
               expiry: Number(action.data.expiry),

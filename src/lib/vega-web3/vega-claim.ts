@@ -26,13 +26,15 @@ export const SPENT_CODE = "0x0000000000000000000000000000000000000001";
 export default class VegaClaim implements IVegaClaim {
   private web3: Web3;
   private contract: Contract;
+  decimals: number;
 
-  constructor(web3: Web3, claimAddress: string) {
+  constructor(web3: Web3, claimAddress: string, decimals: number) {
     this.web3 = web3;
     this.contract = new this.web3.eth.Contract(
       claimAbi as AbiItem[],
       claimAddress
     );
+    this.decimals = decimals;
   }
 
   /**
@@ -87,7 +89,7 @@ export default class VegaClaim implements IVegaClaim {
       ](
         ...[
           { r, s, v },
-          { amount: removeDecimal(amount, 18), tranche, expiry },
+          { amount: removeDecimal(amount, this.decimals), tranche, expiry },
           Web3.utils.asciiToHex(country),
           target,
         ].filter(Boolean)
@@ -121,7 +123,7 @@ export default class VegaClaim implements IVegaClaim {
     ](
       ...[
         { r, s, v },
-        { amount: removeDecimal(amount, 18), tranche, expiry },
+        { amount: removeDecimal(amount, this.decimals), tranche, expiry },
         Web3.utils.asciiToHex(country),
         target,
       ].filter(Boolean)
