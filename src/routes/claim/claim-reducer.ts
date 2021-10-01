@@ -128,11 +128,10 @@ export function claimReducer(
       }
     case ClaimActionType.SET_INITIAL_CLAIM_STATUS:
       let status = ClaimStatus.Ready;
-
-      if (action.committed) {
-        status = ClaimStatus.Committed;
-      } else if (action.used) {
+      if (action.used) {
         status = ClaimStatus.Used;
+      } else if (action.committed) {
+        status = ClaimStatus.Committed;
       } else if (action.expired) {
         status = ClaimStatus.Expired;
       }
