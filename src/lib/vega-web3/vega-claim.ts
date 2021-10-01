@@ -4,6 +4,7 @@ import { AbiItem } from "web3-utils";
 import type { Contract } from "web3-eth-contract";
 import claimAbi from "../abis/claim_abi.json";
 import { IVegaClaim, WrappedPromiEvent } from "../web3-utils";
+import { removeDecimal } from "../decimals";
 
 export const UNSPENT_CODE = "0x0000000000000000000000000000000000000000";
 export const SPENT_CODE = "0x0000000000000000000000000000000000000001";
@@ -84,10 +85,12 @@ export default class VegaClaim implements IVegaClaim {
       promiEvent: this.contract.methods[
         target != null ? "claim_targeted" : "claim_untargeted"
       ](
-        { r, s, v },
-        { amount, tranche, expiry },
-        Web3.utils.asciiToHex(country),
-        target
+        ...[
+          { r, s, v },
+          { amount: removeDecimal(amount, 18), tranche, expiry },
+          Web3.utils.asciiToHex(country),
+          target,
+        ].filter(Boolean)
       ).send({ from: account }),
     };
   }
@@ -116,10 +119,12 @@ export default class VegaClaim implements IVegaClaim {
     return this.contract.methods[
       target != null ? "claim_targeted" : "claim_untargeted"
     ](
-      { r, s, v },
-      { amount, tranche, expiry },
-      Web3.utils.asciiToHex(country),
-      target
+      ...[
+        { r, s, v },
+        { amount: removeDecimal(amount, 18), tranche, expiry },
+        Web3.utils.asciiToHex(country),
+        target,
+      ].filter(Boolean)
     ).call({ from: account });
   }
 
