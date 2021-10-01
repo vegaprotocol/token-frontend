@@ -121,7 +121,7 @@ export const ClaimFlow = ({
       />
     );
   }
-
+  console.log(state.claimData);
   return (
     <>
       <section>
