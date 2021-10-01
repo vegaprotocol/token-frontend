@@ -1,6 +1,3 @@
-import { EthereumChainId } from "../../config";
-import { PromiEvent } from "web3-core";
-import VegaClaim from "./vega-claim";
 import { BigNumber } from "../bignumber";
 
 export interface Tranche {
@@ -52,7 +49,7 @@ export enum TrancheEvents {
   BalanceRemoved = "Tranche_Balance_Removed",
 }
 
-export interface IVegaClaim {
+export interface IVegaClaimData {
   amount: BigNumber;
   tranche: number;
   expiry: number;
@@ -62,20 +59,11 @@ export interface IVegaClaim {
 export interface IVegaClaimSignature {
   v: number;
   r: string;
-  s: number;
+  s: string;
 }
 
-export interface ITokenParams {
-  claim: IVegaClaim;
+export interface IClaimTokenParams {
+  claim: IVegaClaimData;
   signature: IVegaClaimSignature;
-  country: string;
-}
-
-export interface IVegaWeb3 {
-  claim: VegaClaim;
-  chainId: EthereumChainId;
-  getAllTranches(): Promise<Tranche[]>;
-  getUserBalanceAllTranches(account: string): Promise<string>;
-  validateCode(params: ITokenParams): Promise<boolean>;
-  commitClaim(): PromiEvent<any>;
+  country: string | null;
 }

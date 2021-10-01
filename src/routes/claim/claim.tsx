@@ -54,7 +54,7 @@ const Claim = ({
     return <ClaimError />;
   }
 
-  if (state.s) {
+  if (state.claimData?.signature.s) {
     return (
       <ClaimFlow
         state={state}

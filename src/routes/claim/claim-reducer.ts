@@ -1,5 +1,6 @@
 import { BigNumber } from "../../lib/bignumber";
 import { addDecimal } from "../../lib/decimals";
+import { IClaimTokenParams } from "../../lib/vega-web3/vega-web3-types";
 
 export enum ClaimStatus {
   Ready,
@@ -11,15 +12,9 @@ export enum ClaimStatus {
 
 export interface ClaimState {
   // From URL
-  denomination: BigNumber | null; // amount
   denominationFormatted: BigNumber; // amount formatted with decimal places
-  target: string | null; // ETH address
-  trancheId: number | null;
-  expiry: number | null; // timestamp in seconds
-  s: string | null;
-  r: string | null;
-  v: string | null;
-  countryCode: string | null;
+  claimData: IClaimTokenParams | null;
+
   loading: boolean;
   error: Error | null;
   claimStatus: ClaimStatus;
@@ -28,15 +23,8 @@ export interface ClaimState {
 }
 
 export const initialClaimState: ClaimState = {
-  denomination: null,
+  claimData: null,
   denominationFormatted: new BigNumber(0),
-  target: null,
-  trancheId: null,
-  expiry: null,
-  s: null,
-  r: null,
-  v: null,
-  countryCode: null,
   loading: true,
   error: null,
   claimStatus: ClaimStatus.Ready,
@@ -124,16 +112,22 @@ export function claimReducer(
         const denomination = new BigNumber(action.data.amount);
         return {
           ...state,
-          denomination,
-          denominationFormatted: new BigNumber(
-            addDecimal(denomination, Number(action.data.amount))
-          ),
-          target: action.data.target ?? null,
-          trancheId: Number(action.data.trancheId),
-          expiry: Number(action.data.expiry),
-          s: action.data.s,
-          r: action.data.r,
-          v: action.data.v,
+          claimData: {
+            country: null,
+            signature: {
+              s: action.data.s,
+              r: action.data.r,
+              v: Number(action.data.v),
+            },
+            claim: {
+              amount: new BigNumber(
+                addDecimal(denomination, Number(action.data.amount))
+              ),
+              target: action.data.target ?? null,
+              tranche: Number(action.data.trancheId),
+              expiry: Number(action.data.expiry),
+            },
+          },
         };
       }
     case ClaimActionType.SET_INITIAL_CLAIM_STATUS:
@@ -157,10 +151,15 @@ export function claimReducer(
         claimStatus: action.status,
       };
     case ClaimActionType.SET_COUNTRY:
-      return {
-        ...state,
-        countryCode: action.countryCode,
-      };
+      return state.claimData
+        ? {
+            ...state,
+            claimData: {
+              ...state.claimData,
+              country: action.countryCode,
+            },
+          }
+        : state;
     case ClaimActionType.SET_LOADING:
       return {
         ...state,
