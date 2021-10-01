@@ -86,7 +86,7 @@ export const UntargetedClaim = ({
         labelFor="country-selector"
       >
         <CountrySelector
-          code={state.claimData?.signature.s!}
+          code={state.claimData?.country!}
           onSelectCountry={(countryCode) =>
             dispatch({ type: ClaimActionType.SET_COUNTRY, countryCode })
           }
