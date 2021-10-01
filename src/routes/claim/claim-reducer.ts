@@ -12,7 +12,6 @@ export enum ClaimStatus {
 
 export interface ClaimState {
   // From URL
-  denominationFormatted: BigNumber; // amount formatted with decimal places
   claimData: IClaimTokenParams | null;
 
   loading: boolean;
@@ -24,7 +23,6 @@ export interface ClaimState {
 
 export const initialClaimState: ClaimState = {
   claimData: null,
-  denominationFormatted: new BigNumber(0),
   loading: true,
   error: null,
   claimStatus: ClaimStatus.Ready,
