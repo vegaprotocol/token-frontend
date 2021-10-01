@@ -27,58 +27,57 @@ class MockedVegaClaim implements IVegaClaim {
   }
 
   claim({
-    claimCode,
-    denomination,
-    trancheId,
+    amount,
+    tranche,
     expiry,
-    nonce,
+    target,
     country,
-    targeted,
+    v,
+    r,
+    s,
     account,
   }: {
-    claimCode: string;
-    denomination: BigNumber;
-    trancheId: number;
+    amount: BigNumber;
+    tranche: number;
     expiry: number;
-    nonce: string;
+    target?: string;
     country: string;
-    targeted: boolean;
+    v: number;
+    r: string;
+    s: string;
     account: string;
   }): WrappedPromiEvent<void> {
     return promiEventFactory(uuidv4(), "claim");
   }
 
   checkClaim({
-    claimCode,
-    denomination,
-    trancheId,
+    amount,
+    tranche,
     expiry,
-    nonce,
+    target,
     country,
-    targeted,
+    v,
+    r,
+    s,
     account,
   }: {
-    claimCode: string;
-    denomination: BigNumber;
-    trancheId: number;
+    amount: BigNumber;
+    tranche: number;
     expiry: number;
-    nonce: string;
+    target?: string;
     country: string;
-    targeted: boolean;
+    v: number;
+    r: string;
+    s: string;
     account: string;
   }): Promise<any> {
     return Promise.resolve(true);
   }
 
-  isCommitted({
-    claimCode,
-    account,
-  }: {
-    claimCode: string;
-    account: string;
-  }): Promise<boolean> {
+  isCommitted({ s, account }: { s: string; account: string }): Promise<string> {
     return this.performFetch("committed");
   }
+
   isExpired(expiry: number): Promise<boolean> {
     return this.performFetch("expired", { expiry });
   }

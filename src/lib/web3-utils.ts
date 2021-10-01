@@ -179,13 +179,7 @@ export interface IVegaClaim {
     account: string;
   }): Promise<void>;
 
-  isCommitted({
-    s,
-    account,
-  }: {
-    s: string;
-    account: string;
-  }): Promise<string>;
+  isCommitted({ s, account }: { s: string; account: string }): Promise<string>;
 
   isExpired(expiry: number): Promise<boolean>;
   isUsed(s: string): Promise<boolean>;
