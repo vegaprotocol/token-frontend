@@ -27,6 +27,7 @@ import {
 } from "../../components/key-value-table";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { formatNumber } from "../../lib/format-number";
+import { UNSPENT_CODE } from "../../lib/vega-web3/vega-claim";
 
 interface ClaimFlowProps {
   state: ClaimState;
@@ -62,9 +63,10 @@ export const ClaimFlow = ({
           claim.isExpired(state.claimData?.claim.expiry!),
           claim.isUsed(code!),
         ]);
+        console.log(committed, expired, used);
         dispatch({
           type: ClaimActionType.SET_INITIAL_CLAIM_STATUS,
-          committed: !!committed,
+          committed: committed !== UNSPENT_CODE,
           expired,
           used,
         });
