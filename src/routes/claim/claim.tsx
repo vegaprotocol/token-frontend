@@ -25,17 +25,19 @@ const Claim = ({
   const [state, dispatch] = React.useReducer(claimReducer, initialClaimState);
   const getUserTrancheBalances = useGetUserTrancheBalances(address);
   const refreshBalances = useRefreshBalances(address);
+
   React.useEffect(() => {
     dispatch({
       type: ClaimActionType.SET_DATA_FROM_URL,
       decimals: appState.decimals,
       data: {
-        nonce: params.n,
-        trancheId: params.t,
-        expiry: params.ex,
-        target: params.targ,
-        denomination: params.d,
-        code: params.r,
+        amount: params.amount,
+        trancheId: params.tranche,
+        expiry: params.expiry,
+        s: params.s,
+        r: params.r,
+        v: params.v,
+        target: params.target,
       },
     });
   }, [appState.decimals, dispatch, params]);
@@ -52,7 +54,7 @@ const Claim = ({
     return <ClaimError />;
   }
 
-  if (state.code) {
+  if (state.s) {
     return (
       <ClaimFlow
         state={state}

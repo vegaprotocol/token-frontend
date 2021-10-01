@@ -46,7 +46,7 @@ export const ClaimFlow = ({
     (tranche) => tranche.tranche_id === state.trancheId
   );
   const claim = useVegaClaim();
-  const code = state.code!;
+  const code = state.s!;
   const shortCode = truncateMiddle(code);
 
   // Check that the claim is valid, by checking if its already committed, expired, or used
