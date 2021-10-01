@@ -16,8 +16,9 @@ export interface ClaimState {
   target: string | null; // ETH address
   trancheId: number | null;
   expiry: number | null; // timestamp in seconds
-  code: string | null;
-  nonce: string | null;
+  s: string | null;
+  r: string | null;
+  v: string | null;
   countryCode: string | null;
   loading: boolean;
   error: Error | null;
@@ -32,8 +33,9 @@ export const initialClaimState: ClaimState = {
   target: null,
   trancheId: null,
   expiry: null,
-  code: null,
-  nonce: null,
+  s: null,
+  r: null,
+  v: null,
   countryCode: null,
   loading: true,
   error: null,
@@ -58,12 +60,13 @@ export type ClaimAction =
       type: ClaimActionType.SET_DATA_FROM_URL;
       decimals: number;
       data: {
-        denomination: string;
-        target?: string;
+        amount: string;
         trancheId: string;
         expiry: string;
-        code: string;
-        nonce: string;
+        s: string;
+        r: string;
+        v: string;
+        target: string;
       };
     }
   | {
@@ -106,29 +109,31 @@ export function claimReducer(
       // We need all of these otherwise the code is invalid
       if (
         // Do not need target as keys can be for the holder only
-        !action.data.denomination ||
-        !action.data.trancheId ||
+        !action.data.s ||
+        !action.data.r ||
+        !action.data.v ||
+        !action.data.amount ||
         !action.data.expiry ||
-        !action.data.code ||
-        !action.data.nonce
+        !action.data.trancheId
       ) {
         return {
           ...state,
           error: new Error("Invalid code"),
         };
       } else {
-        const denomination = new BigNumber(action.data.denomination);
+        const denomination = new BigNumber(action.data.amount);
         return {
           ...state,
           denomination,
           denominationFormatted: new BigNumber(
-            addDecimal(denomination, action.decimals)
+            addDecimal(denomination, Number(action.data.amount))
           ),
           target: action.data.target ?? null,
           trancheId: Number(action.data.trancheId),
           expiry: Number(action.data.expiry),
-          code: action.data.code,
-          nonce: action.data.nonce,
+          s: action.data.s,
+          r: action.data.r,
+          v: action.data.v,
         };
       }
     case ClaimActionType.SET_INITIAL_CLAIM_STATUS:
