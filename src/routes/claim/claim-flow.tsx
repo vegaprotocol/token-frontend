@@ -101,7 +101,7 @@ export const ClaimFlow = ({
     return (
       <Complete
         address={address}
-        balanceFormatted={state.denominationFormatted}
+        balanceFormatted={state.claimData?.claim.amount!}
         commitTxHash={state.commitTxHash}
         claimTxHash={state.claimTxHash}
       />
@@ -133,7 +133,7 @@ export const ClaimFlow = ({
                     ? truncateMiddle(state.claimData?.claim.target)
                     : t("the holder"),
                   code: shortCode,
-                  amount: state.denominationFormatted,
+                  amount: state.claimData?.claim.amount,
                   linkText: `${t("Tranche")} ${currentTranche.tranche_id}`,
                   expiry: state.claimData?.claim.expiry
                     ? t("claimExpiry", {
@@ -162,7 +162,7 @@ export const ClaimFlow = ({
               </KeyValueTableRow>
               <KeyValueTableRow>
                 <th>{t("Amount of VEGA")}</th>
-                <td>{formatNumber(state.denominationFormatted)}</td>
+                <td>{formatNumber(state.claimData?.claim.amount!)}</td>
               </KeyValueTableRow>
               <KeyValueTableRow>
                 <th>{t("Claim expires")}</th>
