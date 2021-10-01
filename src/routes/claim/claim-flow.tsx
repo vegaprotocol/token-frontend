@@ -43,10 +43,10 @@ export const ClaimFlow = ({
 }: ClaimFlowProps) => {
   const { t } = useTranslation();
   const currentTranche = tranches.find(
-    (tranche) => tranche.tranche_id === state.trancheId
+    (tranche) => tranche.tranche_id === state.claimData?.claim.tranche
   );
   const claim = useVegaClaim();
-  const code = state.s!;
+  const code = state.claimData?.signature.s!;
   const shortCode = truncateMiddle(code);
 
   // Check that the claim is valid, by checking if its already committed, expired, or used
@@ -56,15 +56,15 @@ export const ClaimFlow = ({
       try {
         const [committed, expired, used] = await Promise.all([
           claim.isCommitted({
-            claimCode: code,
+            s: code,
             account: address,
           }),
-          claim.isExpired(state.expiry!),
-          claim.isUsed(state.nonce!),
+          claim.isExpired(state.claimData?.claim.expiry!),
+          claim.isUsed(code!),
         ]);
         dispatch({
           type: ClaimActionType.SET_INITIAL_CLAIM_STATUS,
-          committed,
+          committed: !!committed,
           expired,
           used,
         });
@@ -79,7 +79,7 @@ export const ClaimFlow = ({
       }
     };
     run();
-  }, [address, claim, dispatch, state.nonce, state.expiry, code]);
+  }, [address, claim, code, dispatch, state.claimData?.claim.expiry]);
 
   if (!currentTranche) {
     return <TrancheNotFound />;
@@ -108,11 +108,14 @@ export const ClaimFlow = ({
     );
   }
 
-  if (state.target && state.target.toLowerCase() !== address.toLowerCase()) {
+  if (
+    state.claimData?.claim.target &&
+    state.claimData?.claim.target.toLowerCase() !== address.toLowerCase()
+  ) {
     return (
       <TargetAddressMismatch
         connectedAddress={address}
-        expectedAddress={state.target}
+        expectedAddress={state.claimData.claim.target}
       />
     );
   }
@@ -126,15 +129,18 @@ export const ClaimFlow = ({
               <Trans
                 i18nKey="claim"
                 values={{
-                  user: state.target
-                    ? truncateMiddle(state.target)
+                  user: state.claimData?.claim.target
+                    ? truncateMiddle(state.claimData?.claim.target)
                     : t("the holder"),
                   code: shortCode,
                   amount: state.denominationFormatted,
                   linkText: `${t("Tranche")} ${currentTranche.tranche_id}`,
-                  expiry: state.expiry
+                  expiry: state.claimData?.claim.expiry
                     ? t("claimExpiry", {
-                        date: format(state.expiry * 1000, "dd/MM/yyyy"),
+                        date: format(
+                          state.claimData?.claim.expiry * 1000,
+                          "dd/MM/yyyy"
+                        ),
                       })
                     : t("claimNoExpiry"),
                 }}
@@ -161,8 +167,8 @@ export const ClaimFlow = ({
               <KeyValueTableRow>
                 <th>{t("Claim expires")}</th>
                 <td>
-                  {state.expiry
-                    ? format(state.expiry * 1000, "dd/MM/yyyy")
+                  {state.claimData?.claim.expiry
+                    ? format(state.claimData?.claim.expiry * 1000, "dd/MM/yyyy")
                     : "No expiry"}
                 </td>
               </KeyValueTableRow>
@@ -180,32 +186,23 @@ export const ClaimFlow = ({
       </section>
       <section>
         {/* If targeted we do not need to commit reveal, as there is no change of front running the mem pool */}
-        {state.target ? (
+        {state.claimData?.claim.target ? (
           <TargetedClaim
             address={address}
-            claimCode={state.code!}
-            denomination={state.denomination!}
-            expiry={state.expiry!}
-            nonce={state.nonce!}
-            trancheId={state.trancheId!}
-            targeted={!!state.target}
+            claimData={state.claimData}
             state={state}
             dispatch={dispatch}
           />
         ) : (
-          <UntargetedClaim
-            address={address}
-            claimCode={state.code!}
-            denomination={state.denomination!}
-            denominationFormatted={state.denominationFormatted}
-            expiry={state.expiry!}
-            nonce={state.nonce!}
-            trancheId={state.trancheId!}
-            targeted={!!state.target}
-            committed={state.claimStatus === ClaimStatus.Committed}
-            state={state}
-            dispatch={dispatch}
-          />
+          state.claimData && (
+            <UntargetedClaim
+              address={address}
+              committed={state.claimStatus === ClaimStatus.Committed}
+              claimData={state.claimData}
+              state={state}
+              dispatch={dispatch}
+            />
+          )
         )}
       </section>
     </>
