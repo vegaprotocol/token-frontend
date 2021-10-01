@@ -112,25 +112,29 @@ export default class VegaClaim implements IVegaClaim {
     r: string;
     s: string;
     account: string;
-  }): WrappedPromiEvent<void> {
-    return {
-      promiEvent: this.contract.methods[
-        target != null ? "claim_targeted" : "claim_untargeted"
-      ](
-        { r, s, v },
-        { amount, tranche, expiry },
-        Web3.utils.asciiToHex(country),
-        target
-      ).call({ from: account }),
-    };
+  }): Promise<void> {
+    return this.contract.methods[
+      target != null ? "claim_targeted" : "claim_untargeted"
+    ](
+      { r, s, v },
+      { amount, tranche, expiry },
+      Web3.utils.asciiToHex(country),
+      target
+    ).call({ from: account });
   }
 
   /**
    * Check if this code was already committed to by this account
    * @return {Promise<boolean>}
    */
-  async isCommitted({ s, account }: { s: string, account: string }): Promise<string> {
-    return (await this.contract.methods.commitments(s).call());
+  async isCommitted({
+    s,
+    account,
+  }: {
+    s: string;
+    account: string;
+  }): Promise<string> {
+    return await this.contract.methods.commitments(s).call();
   }
 
   /**
@@ -139,9 +143,7 @@ export default class VegaClaim implements IVegaClaim {
    * @returns Promise<boolean>
    */
   async isExpired(expiry: number): Promise<boolean> {
-    return (
-      expiry < (await this.web3.eth.getBlock("latest")).timestamp
-    );
+    return expiry < (await this.web3.eth.getBlock("latest")).timestamp;
   }
 
   /**
