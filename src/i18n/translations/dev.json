@@ -290,7 +290,7 @@
   "nodeQueryFailed": "Could not get data for node {{node}}",
   "Adding {{amount}} VEGA to node {{node}}": "Adding {{amount}} VEGA to node {{node}}",
   "Removing {{amount}} VEGA from node {{node}}": "Removing {{amount}} VEGA from node {{node}}",
-  "This should take approximately 3 minutes to confirm, and then will be credited at the beginning of the next epoch": "This should take approximately 3 minutes to confirm, and then will be credited at the beginning of the next epoch",
+  "timeForConfirmation": "This should take a few seconds to confirm, and then will be credited at the beginning of the next epoch",
   "{{amount}} VEGA has been added to node {{node}}": "{{amount}} VEGA has been added to node {{node}}",
   "{{amount}} VEGA has been removed from {{node}}": "{{amount}} VEGA Has been removed from {{node}}",
   "It will be applied in the next epoch": "It will be applied in the next epoch",
