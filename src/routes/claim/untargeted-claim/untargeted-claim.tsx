@@ -5,7 +5,6 @@ import { FormGroup } from "../../../components/form-group";
 import { TxState } from "../../../hooks/transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { useVegaClaim } from "../../../hooks/use-vega-claim";
-import { BigNumber } from "../../../lib/bignumber";
 import { BulletHeader } from "../../../components/bullet-header";
 import {
   ClaimAction,
@@ -15,64 +14,39 @@ import {
 } from "../claim-reducer";
 import { ClaimStep1 } from "../claim-step-1";
 import { ClaimStep2 } from "../claim-step-2";
+import { IClaimTokenParams } from "../../../lib/vega-web3/vega-web3-types";
+import { useClaim } from "../hooks";
 
 interface UntargetedClaimProps {
   address: string;
-  claimCode: string;
-  denomination: BigNumber;
-  denominationFormatted: BigNumber;
-  trancheId: number;
-  expiry: number;
-  nonce: string;
-  targeted: boolean;
-  committed: boolean;
+  claimData: IClaimTokenParams;
   state: ClaimState;
+  committed: boolean;
   dispatch: React.Dispatch<ClaimAction>;
 }
 
 export const UntargetedClaim = ({
   address,
-  claimCode,
-  denomination,
-  denominationFormatted,
-  trancheId,
-  expiry,
-  nonce,
-  targeted,
   committed,
+  claimData,
   state,
   dispatch,
 }: UntargetedClaimProps) => {
   const claim = useVegaClaim();
-
   const {
     state: commitState,
     dispatch: commitDispatch,
     perform: commitClaim,
   } = useTransaction(
-    () => claim.commit(claimCode, address),
-    () => claim.checkCommit(claimCode, address)
+    () => claim.commit(claimData.signature.s, address),
+    () => claim.checkCommit(claimData.signature.s, address)
   );
-  const claimArgs = {
-    claimCode,
-    denomination,
-    trancheId,
-    expiry,
-    nonce,
-    country: state.countryCode!,
-    targeted,
-    account: address,
-  };
   const {
     state: revealState,
     dispatch: revealDispatch,
     perform: commitReveal,
-  } = useTransaction(
-    () => claim.claim(claimArgs),
-    () => claim.checkClaim(claimArgs)
-  );
+  } = useClaim(claimData, address);
   const { t } = useTranslation();
-
   React.useEffect(() => {
     if (commitState.txData.hash) {
       dispatch({
@@ -112,7 +86,7 @@ export const UntargetedClaim = ({
         labelFor="country-selector"
       >
         <CountrySelector
-          code={state.countryCode}
+          code={state.claimData?.country!}
           onSelectCountry={(countryCode) =>
             dispatch({ type: ClaimActionType.SET_COUNTRY, countryCode })
           }
@@ -121,9 +95,9 @@ export const UntargetedClaim = ({
       <BulletHeader tag="h2">
         {t("Step")} 2. {t("commitTitle")}
       </BulletHeader>
-      {state.countryCode ? (
+      {state.claimData?.country ? (
         <ClaimStep1
-          countryCode={state.countryCode}
+          countryCode={state.claimData.country}
           txState={commitState}
           txDispatch={commitDispatch}
           completed={committed}
@@ -139,7 +113,7 @@ export const UntargetedClaim = ({
         <ClaimStep2
           txState={revealState}
           txDispatch={revealDispatch}
-          amount={denominationFormatted}
+          amount={state.claimData?.claim.amount!}
           onSubmit={commitReveal}
         />
       ) : (

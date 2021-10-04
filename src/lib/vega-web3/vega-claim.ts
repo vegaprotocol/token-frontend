@@ -4,6 +4,10 @@ import { AbiItem } from "web3-utils";
 import type { Contract } from "web3-eth-contract";
 import claimAbi from "../abis/claim_abi.json";
 import { IVegaClaim, WrappedPromiEvent } from "../web3-utils";
+import { removeDecimal } from "../decimals";
+
+export const UNSPENT_CODE = "0x0000000000000000000000000000000000000000";
+export const SPENT_CODE = "0x0000000000000000000000000000000000000001";
 
 /**
  * Example:
@@ -22,13 +26,15 @@ import { IVegaClaim, WrappedPromiEvent } from "../web3-utils";
 export default class VegaClaim implements IVegaClaim {
   private web3: Web3;
   private contract: Contract;
+  decimals: number;
 
-  constructor(web3: Web3, claimAddress: string) {
+  constructor(web3: Web3, claimAddress: string, decimals: number) {
     this.web3 = web3;
     this.contract = new this.web3.eth.Contract(
       claimAbi as AbiItem[],
       claimAddress
     );
+    this.decimals = decimals;
   }
 
   /**
@@ -38,22 +44,16 @@ export default class VegaClaim implements IVegaClaim {
    * otherwise the action is pointless
    * @return {Promise<boolean>}
    */
-  public commit(claimCode: string, account: string): WrappedPromiEvent<void> {
-    const hash = this.deriveCommitment(claimCode, account);
-
+  public commit(s: string, account: string): WrappedPromiEvent<void> {
     return {
       promiEvent: this.contract.methods
-        .commit_untargeted_code(hash)
+        .commit_untargeted(s)
         .send({ from: account }),
     };
   }
 
-  public checkCommit(claimCode: string, account: string): Promise<any> {
-    const hash = this.deriveCommitment(claimCode, account);
-
-    return this.contract.methods
-      .commit_untargeted_code(hash)
-      .call({ from: account });
+  public checkCommit(s: string, account: string): Promise<any> {
+    return this.contract.methods.commit_untargeted(s).call({ from: account });
   }
 
   /**
@@ -63,66 +63,70 @@ export default class VegaClaim implements IVegaClaim {
    * @return {Promise<boolean>}
    */
   public claim({
-    claimCode,
-    denomination,
-    trancheId,
+    amount,
+    tranche,
     expiry,
-    nonce,
+    target,
     country,
-    targeted,
+    v,
+    r,
+    s,
     account,
   }: {
-    claimCode: string;
-    denomination: BigNumber;
-    trancheId: number;
+    amount: BigNumber;
+    tranche: number;
     expiry: number;
-    nonce: string;
+    target?: string;
     country: string;
-    targeted: boolean;
+    v: number;
+    r: string;
+    s: string;
     account: string;
   }): WrappedPromiEvent<void> {
     return {
       promiEvent: this.contract.methods[
-        targeted ? "redeem_targeted" : "redeem_untargeted_code"
+        target != null ? "claim_targeted" : "claim_untargeted"
       ](
-        claimCode,
-        denomination.toString(),
-        trancheId,
-        expiry,
-        nonce,
-        Web3.utils.asciiToHex(country)
+        ...[
+          { r, s, v },
+          { amount: removeDecimal(amount, this.decimals), tranche, expiry },
+          Web3.utils.asciiToHex(country),
+          target,
+        ].filter(Boolean)
       ).send({ from: account }),
     };
   }
 
   public checkClaim({
-    claimCode,
-    denomination,
-    trancheId,
+    amount,
+    tranche,
     expiry,
-    nonce,
+    target,
     country,
-    targeted,
+    v,
+    r,
+    s,
     account,
   }: {
-    claimCode: string;
-    denomination: BigNumber;
-    trancheId: number;
+    amount: BigNumber;
+    tranche: number;
     expiry: number;
-    nonce: string;
+    target?: string;
     country: string;
-    targeted: boolean;
+    v: number;
+    r: string;
+    s: string;
     account: string;
-  }): Promise<any> {
+  }): Promise<void> {
     return this.contract.methods[
-      targeted ? "redeem_targeted" : "redeem_untargeted_code"
+      target != null ? "claim_targeted" : "claim_untargeted"
     ](
-      claimCode,
-      denomination.toString(),
-      trancheId,
-      expiry,
-      nonce,
-      Web3.utils.asciiToHex(country)
+      ...[
+        { r, s, v },
+        { amount: removeDecimal(amount, this.decimals), tranche, expiry },
+        Web3.utils.asciiToHex(country),
+        target,
+      ].filter(Boolean)
     ).call({ from: account });
   }
 
@@ -131,35 +135,31 @@ export default class VegaClaim implements IVegaClaim {
    * @return {Promise<boolean>}
    */
   async isCommitted({
-    claimCode,
+    s,
     account,
   }: {
-    claimCode: string;
+    s: string;
     account: string;
-  }): Promise<boolean> {
-    const hash = this.deriveCommitment(claimCode, account);
-
-    return await this.contract.methods.commits(hash).call();
+  }): Promise<string> {
+    return await this.contract.methods.commitments(s).call();
   }
 
   /**
-   * Checks if a code is passed its' expiry date
+   * Checks if a code is past its' expiry date
    * @param expiry Expiry of the code
    * @returns Promise<boolean>
    */
   async isExpired(expiry: number): Promise<boolean> {
-    return (
-      expiry > 0 && expiry < (await this.web3.eth.getBlock("latest")).timestamp
-    );
+    return expiry < (await this.web3.eth.getBlock("latest")).timestamp;
   }
 
   /**
    * Utility method to check if the nonce has already been used. If it has the code has already been claimed.
-   * @param nonce The nonce of the code
+   * @param s The s part of the signature
    * @return {string}
    */
-  isUsed(nonce: string): Promise<boolean> {
-    return this.contract.methods.nonces(nonce).call();
+  async isUsed(s: string): Promise<boolean> {
+    return (await this.contract.methods.commitments(s).call()) === SPENT_CODE;
   }
 
   /**
@@ -172,22 +172,5 @@ export default class VegaClaim implements IVegaClaim {
       .allowed_countries(Web3.utils.asciiToHex(country))
       .call();
     return !isAllowed;
-  }
-
-  /**
-   * Utility method to derive the commitment hash from code and account
-   * @param  {string} claimCode
-   * @param  {string} account
-   * @return {string}
-   */
-  deriveCommitment(claimCode: string, account: string): string {
-    // FIXME: Consider direct soliditySha3Raw if the contract changes encoding
-    // @ts-ignore
-    return this.web3.utils.sha3Raw(
-      this.web3.eth.abi.encodeParameters(
-        ["bytes", "address"],
-        [claimCode, account]
-      )
-    );
   }
 }

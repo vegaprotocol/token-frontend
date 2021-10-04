@@ -1,5 +1,6 @@
 import { BigNumber } from "../../lib/bignumber";
 import { addDecimal } from "../../lib/decimals";
+import { IClaimTokenParams } from "../../lib/vega-web3/vega-web3-types";
 
 export enum ClaimStatus {
   Ready,
@@ -11,14 +12,8 @@ export enum ClaimStatus {
 
 export interface ClaimState {
   // From URL
-  denomination: BigNumber | null; // amount
-  denominationFormatted: BigNumber; // amount formatted with decimal places
-  target: string | null; // ETH address
-  trancheId: number | null;
-  expiry: number | null; // timestamp in seconds
-  code: string | null;
-  nonce: string | null;
-  countryCode: string | null;
+  claimData: IClaimTokenParams | null;
+
   loading: boolean;
   error: Error | null;
   claimStatus: ClaimStatus;
@@ -27,14 +22,7 @@ export interface ClaimState {
 }
 
 export const initialClaimState: ClaimState = {
-  denomination: null,
-  denominationFormatted: new BigNumber(0),
-  target: null,
-  trancheId: null,
-  expiry: null,
-  code: null,
-  nonce: null,
-  countryCode: null,
+  claimData: null,
   loading: true,
   error: null,
   claimStatus: ClaimStatus.Ready,
@@ -58,12 +46,13 @@ export type ClaimAction =
       type: ClaimActionType.SET_DATA_FROM_URL;
       decimals: number;
       data: {
-        denomination: string;
-        target?: string;
+        amount: string;
         trancheId: string;
         expiry: string;
-        code: string;
-        nonce: string;
+        s: string;
+        r: string;
+        v: string;
+        target: string;
       };
     }
   | {
@@ -106,38 +95,43 @@ export function claimReducer(
       // We need all of these otherwise the code is invalid
       if (
         // Do not need target as keys can be for the holder only
-        !action.data.denomination ||
-        !action.data.trancheId ||
+        !action.data.s ||
+        !action.data.r ||
+        !action.data.v ||
+        !action.data.amount ||
         !action.data.expiry ||
-        !action.data.code ||
-        !action.data.nonce
+        !action.data.trancheId
       ) {
         return {
           ...state,
           error: new Error("Invalid code"),
         };
       } else {
-        const denomination = new BigNumber(action.data.denomination);
+        const denomination = new BigNumber(action.data.amount);
         return {
           ...state,
-          denomination,
-          denominationFormatted: new BigNumber(
-            addDecimal(denomination, action.decimals)
-          ),
-          target: action.data.target ?? null,
-          trancheId: Number(action.data.trancheId),
-          expiry: Number(action.data.expiry),
-          code: action.data.code,
-          nonce: action.data.nonce,
+          claimData: {
+            country: null,
+            signature: {
+              s: action.data.s,
+              r: action.data.r,
+              v: Number(action.data.v),
+            },
+            claim: {
+              amount: new BigNumber(addDecimal(denomination, action.decimals)),
+              target: action.data.target ?? null,
+              tranche: Number(action.data.trancheId),
+              expiry: Number(action.data.expiry),
+            },
+          },
         };
       }
     case ClaimActionType.SET_INITIAL_CLAIM_STATUS:
       let status = ClaimStatus.Ready;
-
-      if (action.committed) {
-        status = ClaimStatus.Committed;
-      } else if (action.used) {
+      if (action.used) {
         status = ClaimStatus.Used;
+      } else if (action.committed) {
+        status = ClaimStatus.Committed;
       } else if (action.expired) {
         status = ClaimStatus.Expired;
       }
@@ -152,10 +146,15 @@ export function claimReducer(
         claimStatus: action.status,
       };
     case ClaimActionType.SET_COUNTRY:
-      return {
-        ...state,
-        countryCode: action.countryCode,
-      };
+      return state.claimData
+        ? {
+            ...state,
+            claimData: {
+              ...state.claimData,
+              country: action.countryCode,
+            },
+          }
+        : state;
     case ClaimActionType.SET_LOADING:
       return {
         ...state,

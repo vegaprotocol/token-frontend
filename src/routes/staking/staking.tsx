@@ -189,11 +189,13 @@ export const StakingStepSelectNode = ({
       const stakedTotalPercentage =
         stakedTotal.isEqualTo(0) || stakedOnNode.isEqualTo(0)
           ? "-"
-          : stakedOnNode.dividedBy(stakedTotal).times(100).toString() + "%";
+          : stakedOnNode.dividedBy(stakedTotal).times(100).dp(2).toString() +
+            "%";
 
       const userStake = data.party?.delegations?.length
         ? data.party?.delegations
             ?.filter((d) => d.node.id === node.id)
+            ?.filter((d) => d.epoch === Number(data.epoch.id))
             .reduce((sum, d) => {
               const value = new BigNumber(d.amount);
               return sum.plus(value);
@@ -203,7 +205,7 @@ export const StakingStepSelectNode = ({
       const userStakePercentage =
         userStake.isEqualTo(0) || stakedOnNode.isEqualTo(0)
           ? "-"
-          : userStake.dividedBy(stakedOnNode).times(100).toString() + "%";
+          : userStake.dividedBy(stakedOnNode).times(100).dp(2).toString() + "%";
 
       return {
         id: node.id,

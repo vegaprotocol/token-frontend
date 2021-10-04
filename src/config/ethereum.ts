@@ -34,12 +34,12 @@ const Addresses = {
     stakingBridge: "0x195064D33f09e0c42cF98E665D9506e0dC17de68",
   } as { [key: string]: string },
   [EthereumChainIds.Ropsten]: {
-    vestingAddress: "0xfc9Ad8fE9E0b168999Ee7547797BC39D55d607AA",
+    vestingAddress: "0x96a6f229BbbcA08095f0bC30088fcDfaeEDb07Ef",
     vegaTokenAddress:
       appEnv === "staging"
         ? "0x45984C4E9F3D55325fc6Fd2E260881EE3Ce9bbCD"
         : "0x5b634a05754283b6d9d7938dcca9d646425593eb",
-    claimAddress: "0x695eD7f6AcA81201d1D92107f120579CaAe2E5F2",
+    claimAddress: "0x5E3B1Fe757a3C41a9Ae0B903976CaDd415eb2e7b",
     lockedAddress: "0x0356782bfb61cf0b0463746bc6fe8766aacae8f0",
     stakingBridge: "0x7bd4a4789394fe5a93fc67ef64c47beb013e5450",
   } as { [key: string]: string },

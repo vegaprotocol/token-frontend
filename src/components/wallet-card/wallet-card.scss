@@ -35,8 +35,14 @@
     text-transform: uppercase;
     padding: 2px;
 
+    span:first-child {
+      max-width: 140px;
+    }
+
     span:last-child {
       font-family: $font-mono;
+      flex: 1 1 0;
+      text-align: right;
     }
 
     &--dark {

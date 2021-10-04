@@ -24,6 +24,7 @@
     "@types/react-router-dom": "^5.1.8",
     "bignumber.js": "^9.0.1",
     "date-fns": "^2.23.0",
+    "env-cmd": "^10.1.0",
     "faker": "^5.5.3",
     "graphql": "^15.5.1",
     "i18next": "^20.3.5",
@@ -50,7 +51,7 @@
     "build": "craco build",
     "test": "REACT_APP_CHAIN=0x1 craco test",
     "eject": "react-scripts eject",
-    "generate": "REACT_APP_VEGA_URL='https://n04.d.vega.xyz/query' yarn apollo codegen:generate --target=typescript --globalTypesFile=src/__generated__/globalTypes.ts"
+    "generate": "env-cmd yarn apollo codegen:generate --target=typescript --globalTypesFile=src/__generated__/globalTypes.ts"
   },
   "eslintConfig": {
     "extends": [

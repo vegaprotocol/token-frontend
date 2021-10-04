@@ -27,6 +27,7 @@ import { useVegaUser } from "../../hooks/use-vega-user";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { BigNumber } from "../../lib/bignumber";
 import { truncateMiddle } from "../../lib/truncate-middle";
+import { keyBy, uniq } from "lodash";
 
 const DELEGATIONS_QUERY = gql`
   query Delegations($partyId: ID!) {
@@ -136,6 +137,14 @@ const VegaWalletConnected = ({
   const [delegations, setDelegations] = React.useState<
     Delegations_party_delegations[]
   >([]);
+  const [delegatedNodes, setDelegatedNodes] = React.useState<
+    {
+      nodeId: string;
+      hasStakePending: boolean;
+      currentEpochStake?: BigNumber;
+      nextEpochStake?: BigNumber;
+    }[]
+  >([]);
   const [currentStakeAvailable, setCurrentStakeAvailable] =
     React.useState<BigNumber>(new BigNumber(0));
 
@@ -148,6 +157,7 @@ const VegaWalletConnected = ({
           .query<Delegations, DelegationsVariables>({
             query: DELEGATIONS_QUERY,
             variables: { partyId: currVegaKey.pub },
+            fetchPolicy: "network-only",
           })
           .then((res) => {
             const filter =
@@ -161,8 +171,42 @@ const VegaWalletConnected = ({
             setCurrentStakeAvailable(
               new BigNumber(res.data.party?.stake.currentStakeAvailable || 0)
             );
+            const delegatedNextEpoch = keyBy(
+              res.data.party?.delegations?.filter((d) => {
+                return d.epoch.toString() === res.data.epoch.id;
+              }) || [],
+              "node.id"
+            );
+            const delegatedThisEpoch = keyBy(
+              res.data.party?.delegations?.filter((d) => {
+                return d.epoch === Number(res.data.epoch.id) - 1;
+              }) || [],
+              "node.id"
+            );
+            const nodesDelegated = uniq([
+              ...Object.keys(delegatedNextEpoch),
+              ...Object.keys(delegatedThisEpoch),
+            ]);
+
+            const delegatedAmounts = nodesDelegated.map((d) => ({
+              nodeId: d,
+              hasStakePending: !!(
+                delegatedThisEpoch[d]?.amount &&
+                delegatedNextEpoch[d]?.amount &&
+                delegatedThisEpoch[d]?.amount !== delegatedNextEpoch[d]?.amount
+              ),
+              currentEpochStake:
+                delegatedThisEpoch[d] &&
+                new BigNumber(delegatedThisEpoch[d].amount),
+              nextEpochStake:
+                delegatedNextEpoch[d] &&
+                new BigNumber(delegatedNextEpoch[d].amount),
+            }));
+
+            setDelegatedNodes(delegatedAmounts);
           })
           .catch((err: Error) => {
+            Sentry.captureException(err);
             // If query fails stop interval. Its almost certain that the query
             // will just continue to fail
             clearInterval(interval);
@@ -224,13 +268,25 @@ const VegaWalletConnected = ({
         value={unstaked}
         valueSuffix={t("VEGA")}
       />
-      {delegations.map((d) => (
-        <WalletCardRow
-          key={d.node.id}
-          label={truncateMiddle(d.node.id)}
-          value={new BigNumber(d.amount)}
-          valueSuffix={t("VEGA")}
-        />
+      {delegatedNodes.map((d) => (
+        <div key={d.nodeId}>
+          {d.currentEpochStake && (
+            <WalletCardRow
+              label={`${truncateMiddle(d.nodeId)} ${
+                d.hasStakePending ? "(This epoch)" : ""
+              }`}
+              value={d.currentEpochStake}
+              valueSuffix={t("VEGA")}
+            />
+          )}
+          {d.hasStakePending && (
+            <WalletCardRow
+              label={`${truncateMiddle(d.nodeId)} (Next epoch)`}
+              value={d.nextEpochStake}
+              valueSuffix={t("VEGA")}
+            />
+          )}
+        </div>
       ))}
       {expanded && (
         <ul className="vega-wallet__key-list">

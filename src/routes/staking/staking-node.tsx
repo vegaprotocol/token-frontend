@@ -51,7 +51,9 @@ export const StakingNode = ({
 
   const currentDelegationAmount = React.useMemo(() => {
     if (!data?.party?.delegations) return new BigNumber(0);
-    const amounts = data.party.delegations.map((d) => new BigNumber(d.amount));
+    const amounts = data.party.delegations
+      .filter(({ epoch }) => epoch.toString() === data.epoch.id)
+      .map((d) => new BigNumber(d.amount));
     return BigNumber.sum.apply(null, [new BigNumber(0), ...amounts]);
   }, [data]);
   const unstaked = React.useMemo(() => {
@@ -63,6 +65,26 @@ export const StakingNode = ({
   const nodeInfo = React.useMemo(() => {
     return data?.nodes?.find(({ id }) => id === node);
   }, [node, data]);
+
+  const currentEpoch = React.useMemo(() => {
+    return data?.epoch.id!;
+  }, [data?.epoch.id]);
+
+  const stakeThisEpoch = React.useMemo(() => {
+    const delegations = data?.party?.delegations || [];
+    const amountsThisEpoch = delegations
+      .filter((d) => d.epoch === Number(currentEpoch) - 1)
+      .map((d) => new BigNumber(d.amount));
+    return BigNumber.sum.apply(null, [new BigNumber(0), ...amountsThisEpoch]);
+  }, [data?.party?.delegations, currentEpoch]);
+
+  const stakeNextEpoch = React.useMemo(() => {
+    const delegations = data?.party?.delegations || [];
+    const amountsNextEpoch = delegations
+      .filter((d) => d.epoch === Number(currentEpoch))
+      .map((d) => new BigNumber(d.amount));
+    return BigNumber.sum.apply(null, [new BigNumber(0), ...amountsNextEpoch]);
+  }, [currentEpoch, data?.party?.delegations]);
 
   if (!nodeInfo) {
     return (
@@ -81,6 +103,7 @@ export const StakingNode = ({
       <ValidatorTable
         node={nodeInfo}
         stakedTotal={data?.nodeData?.stakedTotal || "0"}
+        stakeThisEpoch={stakeThisEpoch}
       />
       {data?.epoch.timestamps.start && data?.epoch.timestamps.expiry && (
         <EpochCountdown
@@ -91,8 +114,8 @@ export const StakingNode = ({
         />
       )}
       <YourStake
-        currentEpoch={data?.epoch.id!}
-        delegations={data?.party?.delegations || []}
+        stakeNextEpoch={stakeNextEpoch}
+        stakeThisEpoch={stakeThisEpoch}
       />
       <StakingForm
         pubkey={vegaKey.pub}
