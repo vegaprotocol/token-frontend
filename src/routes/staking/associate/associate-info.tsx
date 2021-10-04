@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { ConnectedVegaKey } from "../../../components/connected-vega-key";
 
-export const AssociateInfo = ({ pubKey }: { pubKey: string }) => {
+export const AssociateInfo = ({ pubKey }: { pubKey: string | null }) => {
   const { t } = useTranslation();
   return (
     <>

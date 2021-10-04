@@ -141,7 +141,7 @@
   "viewKeys": "View keys",
   "vegaKey": "Vega key",
   "noService": "Looks like the Vega wallet service isn't running. Please start it and refresh the page",
-  "connectVegaWallet": "Connect to Vega Wallet to control associated stake",
+  "connectVegaWallet": "Connect to see your VEGA balance",
   "disconnect": "Disconnect",
   "awaitingDisconnect": "Disconnecting...",
   "Checking Vega wallet status": "Checking Vega wallet status",
@@ -391,5 +391,6 @@
   "stakeNodeNone": "You need to associate some VEGA before you can stake",
   "redeemComingSoon": "Redeem is coming soon",
   "associatedVega": "Associated $VEGA",
-  "blockCountdown": "Waiting for {{amount}} more confirmations..."
+  "blockCountdown": "Waiting for {{amount}} more confirmations...",
+  "stakingNodeNotFound": "Could not find a node with id {{node}}"
 }

@@ -14,6 +14,7 @@ import { Tick, Error } from "../../components/icons";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { useVegaUser } from "../../hooks/use-vega-user";
 import { Links } from "../../config";
+import { ConnectToVega } from "./connect-to-vega";
 
 export const Staking = ({ data }: { data?: StakingQueryResult }) => {
   const { t } = useTranslation();
@@ -106,20 +107,7 @@ export const StakingStepConnectWallets = () => {
           title={`Vega wallet connected: ${currVegaKey.pubShort}`}
         />
       ) : (
-        <p>
-          <button
-            onClick={() =>
-              appDispatch({
-                type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,
-                isOpen: true,
-              })
-            }
-            className="fill"
-            type="button"
-          >
-            {t("connectVegaWallet")}
-          </button>
-        </p>
+        <ConnectToVega />
       )}
     </>
   );
