@@ -9,6 +9,7 @@ import {
 import { BigNumber } from "../../lib/bignumber";
 import { Link } from "react-router-dom";
 import { TrancheItem } from "./tranche-item";
+import { Routes } from "../router-config";
 
 export interface TrancheTableProps {
   tranche: {
@@ -112,6 +113,7 @@ export const TrancheTable = ({
   }
   return (
     <TrancheItem
+      link={`${Routes.TRANCHES}/${tranche.tranche_id}`}
       tranche={tranche}
       locked={locked}
       unlocked={vested}
