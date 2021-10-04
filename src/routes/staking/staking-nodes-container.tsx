@@ -73,6 +73,8 @@ export const StakingNodesContainer = ({
   const { data, loading, error } = useQuery<StakingQueryResult>(STAKING_QUERY, {
     variables: { partyId: currVegaKey?.pub || "" },
     skip: !currVegaKey?.pub,
+    pollInterval: 10000,
+    fetchPolicy: "network-only",
   });
   const minDelegation = useMinDelegation();
   if (error) {

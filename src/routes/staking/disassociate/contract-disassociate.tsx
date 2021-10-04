@@ -1,8 +1,7 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { TokenInput } from "../../../components/token-input";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
-import { BigNumber } from "../../../lib/bignumber";
+import { useTranslation } from "react-i18next";
 
 export const ContractDisassociate = ({
   perform,
@@ -14,14 +13,11 @@ export const ContractDisassociate = ({
   setAmount: React.Dispatch<string>;
 }) => {
   const {
-    appState: { vestingAssociatedBalance },
+    appState: { lien },
   } = useAppState();
   const { t } = useTranslation();
-  const maximum = React.useMemo(
-    () => new BigNumber(vestingAssociatedBalance!),
-    [vestingAssociatedBalance]
-  );
-  if (new BigNumber(vestingAssociatedBalance!).isEqualTo("0")) {
+  
+  if (lien.isEqualTo("0")) {
     return (
       <div className="disassociate-page__error">
         {t(
@@ -30,12 +26,13 @@ export const ContractDisassociate = ({
       </div>
     );
   }
+
   return (
     <>
       <TokenInput
         submitText={t("Disassociate VEGA Tokens from key")}
         perform={perform}
-        maximum={maximum}
+        maximum={lien}
         amount={amount}
         setAmount={setAmount}
         currency={t("VEGA Tokens")}

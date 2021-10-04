@@ -7,8 +7,12 @@ import { Integrations } from "@sentry/tracing";
 
 import App from "./app";
 import reportWebVitals from "./reportWebVitals";
+import packageJson from "../package.json";
 
 const dsn = process.env.REACT_APP_SENTRY_DSN || false;
+const environment = process.env.REACT_APP_ENV || "local";
+const commit = process.env.COMMIT_REF || "local";
+const branch = process.env.BRANCH || "unknown";
 
 /* istanbul ignore next */
 if (dsn) {
@@ -16,6 +20,9 @@ if (dsn) {
     dsn,
     integrations: [new Integrations.BrowserTracing()],
     tracesSampleRate: 0.1,
+    enabled: environment !== "local",
+    environment,
+    release: packageJson.version,
     beforeSend(event) {
       if (event.request?.url?.includes("/claim?")) {
         return {
@@ -26,6 +33,9 @@ if (dsn) {
       return event;
     },
   });
+
+  Sentry.setTag("branch", branch);
+  Sentry.setTag("commit", commit);
 }
 
 ReactDOM.render(

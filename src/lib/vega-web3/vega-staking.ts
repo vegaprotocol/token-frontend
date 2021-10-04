@@ -11,11 +11,11 @@ export default class StakingAbi implements IVegaStaking {
   private contract: Contract;
   private decimals: number;
 
-  constructor(web3: Web3, claimAddress: string, decimals: number) {
+  constructor(web3: Web3, address: string, decimals: number) {
     this.web3 = web3;
     this.contract = new this.web3.eth.Contract(
       stakingAbi as AbiItem[],
-      claimAddress
+      address
     );
     this.decimals = decimals;
   }

@@ -1,27 +1,29 @@
 import { useTranslation } from "react-i18next";
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
 import {
-  AppStateActionType,
-  useAppState,
   VegaKeyExtended,
 } from "../../contexts/app-state/app-state-context";
 import { useEthUser } from "../../hooks/use-eth-user";
 import { useVegaUser } from "../../hooks/use-vega-user";
+import { ConnectToVega } from "./connect-to-vega";
 
 export const StakingWalletsContainer = ({
+  needsEthereum,
+  needsVega,
   children,
 }: {
+  needsEthereum?: boolean,
+  needsVega?: boolean,
   children: (data: {
     address: string;
-    currVegaKey: VegaKeyExtended;
+    currVegaKey: VegaKeyExtended | null;
   }) => React.ReactElement;
 }) => {
   const { t } = useTranslation();
-  const { appDispatch } = useAppState();
   const { ethAddress } = useEthUser();
   const { currVegaKey } = useVegaUser();
 
-  if (!ethAddress) {
+  if (!ethAddress && needsEthereum) {
     return (
       <EthConnectPrompt>
         <p>
@@ -33,7 +35,7 @@ export const StakingWalletsContainer = ({
     );
   }
 
-  if (!currVegaKey) {
+  if (!currVegaKey && needsVega) {
     return (
       <>
         <p>
@@ -41,16 +43,7 @@ export const StakingWalletsContainer = ({
             "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes."
           )}
         </p>
-        <button
-          onClick={() =>
-            appDispatch({
-              type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,
-              isOpen: true,
-            })
-          }
-        >
-          {t("connectVegaWallet")}
-        </button>
+        <ConnectToVega />
       </>
     );
   }

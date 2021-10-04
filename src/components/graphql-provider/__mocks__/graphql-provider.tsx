@@ -121,6 +121,10 @@ const MOCK_PARTY_DELEGATIONS: MockedResponse<PartyDelegations> = {
   },
   result: {
     data: {
+      epoch: {
+        __typename: "Epoch",
+        id: "1",
+      },
       party: {
         __typename: "Party",
         delegations: [

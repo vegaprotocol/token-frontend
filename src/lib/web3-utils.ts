@@ -131,59 +131,58 @@ export interface IVegaVesting extends IStaking {
 }
 
 export interface IVegaClaim {
-  commit(claimCode: string, account: string): WrappedPromiEvent<void>;
+  commit(s: string, account: string): WrappedPromiEvent<void>;
 
-  checkCommit(claimCode: string, account: string): Promise<any>;
+  checkCommit(s: string, account: string): Promise<boolean>;
 
   claim({
-    claimCode,
-    denomination,
-    trancheId,
+    amount,
+    tranche,
     expiry,
-    nonce,
+    target,
     country,
-    targeted,
+    v,
+    r,
+    s,
     account,
   }: {
-    claimCode: string;
-    denomination: BigNumber;
-    trancheId: number;
+    amount: BigNumber;
+    tranche: number;
     expiry: number;
-    nonce: string;
+    target?: string;
     country: string;
-    targeted: boolean;
+    v: number;
+    r: string;
+    s: string;
     account: string;
   }): WrappedPromiEvent<void>;
 
   checkClaim({
-    claimCode,
-    denomination,
-    trancheId,
+    amount,
+    tranche,
     expiry,
-    nonce,
+    target,
     country,
-    targeted,
+    v,
+    r,
+    s,
     account,
   }: {
-    claimCode: string;
-    denomination: BigNumber;
-    trancheId: number;
+    amount: BigNumber;
+    tranche: number;
     expiry: number;
-    nonce: string;
+    target?: string;
     country: string;
-    targeted: boolean;
+    v: number;
+    r: string;
+    s: string;
     account: string;
-  }): Promise<any>;
-  isCommitted({
-    claimCode,
-    account,
-  }: {
-    claimCode: string;
-    account: string;
-  }): Promise<boolean>;
+  }): Promise<void>;
+
+  isCommitted({ s, account }: { s: string; account: string }): Promise<string>;
 
   isExpired(expiry: number): Promise<boolean>;
-  isUsed(nonce: string): Promise<boolean>;
+  isUsed(s: string): Promise<boolean>;
   isCountryBlocked(country: string): Promise<boolean>;
 }
 

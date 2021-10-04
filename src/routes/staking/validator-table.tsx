@@ -12,9 +12,14 @@ import { Staking_nodes } from "./__generated__/Staking";
 export interface ValidatorTableProps {
   node: Staking_nodes;
   stakedTotal: string;
+  stakeThisEpoch: BigNumber;
 }
 
-export const ValidatorTable = ({ node, stakedTotal }: ValidatorTableProps) => {
+export const ValidatorTable = ({
+  node,
+  stakedTotal,
+  stakeThisEpoch,
+}: ValidatorTableProps) => {
   const { t } = useTranslation();
 
   const stakePercentage = React.useMemo(() => {
@@ -52,7 +57,7 @@ export const ValidatorTable = ({ node, stakedTotal }: ValidatorTableProps) => {
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("OWN STAKE (THIS EPOCH)")}</th>
-          <td>{node.stakedByOperator}</td>
+          <td>{stakeThisEpoch.toString()}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("NOMINATED (THIS EPOCH)")}</th>

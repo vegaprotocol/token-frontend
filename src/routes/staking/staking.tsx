@@ -14,6 +14,7 @@ import { Tick, Error } from "../../components/icons";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { useVegaUser } from "../../hooks/use-vega-user";
 import { Links } from "../../config";
+import { ConnectToVega } from "./connect-to-vega";
 
 export const Staking = ({ data }: { data?: StakingQueryResult }) => {
   const { t } = useTranslation();
@@ -106,20 +107,7 @@ export const StakingStepConnectWallets = () => {
           title={`Vega wallet connected: ${currVegaKey.pubShort}`}
         />
       ) : (
-        <p>
-          <button
-            onClick={() =>
-              appDispatch({
-                type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,
-                isOpen: true,
-              })
-            }
-            className="fill"
-            type="button"
-          >
-            {t("connectVegaWallet")}
-          </button>
-        </p>
+        <ConnectToVega />
       )}
     </>
   );
@@ -201,11 +189,13 @@ export const StakingStepSelectNode = ({
       const stakedTotalPercentage =
         stakedTotal.isEqualTo(0) || stakedOnNode.isEqualTo(0)
           ? "-"
-          : stakedOnNode.dividedBy(stakedTotal).times(100).toString() + "%";
+          : stakedOnNode.dividedBy(stakedTotal).times(100).dp(2).toString() +
+            "%";
 
       const userStake = data.party?.delegations?.length
         ? data.party?.delegations
             ?.filter((d) => d.node.id === node.id)
+            ?.filter((d) => d.epoch === Number(data.epoch.id))
             .reduce((sum, d) => {
               const value = new BigNumber(d.amount);
               return sum.plus(value);
@@ -215,7 +205,7 @@ export const StakingStepSelectNode = ({
       const userStakePercentage =
         userStake.isEqualTo(0) || stakedOnNode.isEqualTo(0)
           ? "-"
-          : userStake.dividedBy(stakedOnNode).times(100).toString() + "%";
+          : userStake.dividedBy(stakedOnNode).times(100).dp(2).toString() + "%";
 
       return {
         id: node.id,

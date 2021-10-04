@@ -29,17 +29,17 @@ const Addresses = {
   [EthereumChainIds.Mainnet]: {
     vestingAddress: "0x23d1bFE8fA50a167816fBD79D7932577c06011f4",
     vegaTokenAddress: "0xcB84d72e61e383767C4DFEb2d8ff7f4FB89abc6e",
-    claimAddress: "0xd1Bdf85dB6Af63f45211dB95928d938abCc52dC8",
+    claimAddress: "0xd0db7b4c528c3a14648ced7064dd528595d5b273",
     lockedAddress: "0x78344c7305d73a7a0ac3c94cd9960f4449a1814e",
     stakingBridge: "0x195064D33f09e0c42cF98E665D9506e0dC17de68",
   } as { [key: string]: string },
   [EthereumChainIds.Ropsten]: {
-    vestingAddress: "0xfc9Ad8fE9E0b168999Ee7547797BC39D55d607AA",
+    vestingAddress: "0x96a6f229BbbcA08095f0bC30088fcDfaeEDb07Ef",
     vegaTokenAddress:
       appEnv === "staging"
         ? "0x45984C4E9F3D55325fc6Fd2E260881EE3Ce9bbCD"
         : "0x5b634a05754283b6d9d7938dcca9d646425593eb",
-    claimAddress: "0x695eD7f6AcA81201d1D92107f120579CaAe2E5F2",
+    claimAddress: "0x5E3B1Fe757a3C41a9Ae0B903976CaDd415eb2e7b",
     lockedAddress: "0x0356782bfb61cf0b0463746bc6fe8766aacae8f0",
     stakingBridge: "0x7bd4a4789394fe5a93fc67ef64c47beb013e5450",
   } as { [key: string]: string },
