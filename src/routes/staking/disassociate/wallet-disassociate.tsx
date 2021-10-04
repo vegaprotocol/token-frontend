@@ -1,4 +1,3 @@
-import { BigNumber } from "../../../lib/bignumber";
 import React from "react";
 import { TokenInput } from "../../../components/token-input";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
@@ -17,12 +16,8 @@ export const WalletDisassociate = ({
     appState: { walletAssociatedBalance },
   } = useAppState();
   const { t } = useTranslation();
-  const maximum = React.useMemo(
-    () => new BigNumber(walletAssociatedBalance || 0),
-    [walletAssociatedBalance]
-  );
-
-  if (new BigNumber(walletAssociatedBalance!).isEqualTo("0")) {
+  
+  if (!walletAssociatedBalance || walletAssociatedBalance.isEqualTo("0")) {
     return (
       <div className="disassociate-page__error">
         {t(
@@ -37,7 +32,7 @@ export const WalletDisassociate = ({
       <TokenInput
         submitText={t("Disassociate VEGA Tokens from key")}
         perform={perform}
-        maximum={maximum}
+        maximum={walletAssociatedBalance}
         amount={amount}
         setAmount={setAmount}
         currency={t("VEGA Tokens")}

@@ -1,13 +1,15 @@
 import "./disassociate-page.scss";
-import React from "react";
-import { useTranslation } from "react-i18next";
+
 import {
   StakingMethod,
   StakingMethodRadio,
 } from "../../../components/staking-method-radio";
-import { useSearchParams } from "../../../hooks/use-search-params";
-import { ContractDisassociate } from "./contract-disassociate";
+
 import { ConnectToVega } from "../connect-to-vega";
+import { ContractDisassociate } from "./contract-disassociate";
+import React from "react";
+import { useSearchParams } from "../../../hooks/use-search-params";
+import { useTranslation } from "react-i18next";
 
 export const DisassociatePageNoVega = () => {
   const { t } = useTranslation();
@@ -30,9 +32,9 @@ export const DisassociatePageNoVega = () => {
           "Any Tokens that have been nominated to a node will sacrifice any Rewards they are due for the current epoch. If you do not wish to sacrifices fees you should remove stake from a node at the end of an epoch before disassocation."
         )}
       </p>
-      <h1>{t("What Vega wallet are you removing Tokens from?")}</h1>
+      <h2>{t("What Vega wallet are you removing Tokens from?")}</h2>
       <ConnectToVega />
-      <h1>{t("What tokens would you like to return?")}</h1>
+      <h2>{t("What tokens would you like to return?")}</h2>
       <StakingMethodRadio
         setSelectedStakingMethod={setSelectedStakingMethod}
         selectedStakingMethod={selectedStakingMethod}
