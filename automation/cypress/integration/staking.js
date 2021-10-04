@@ -108,7 +108,7 @@ describe("staking", () => {
       `Adding ${amount} VEGA to node ${nodeId}`
     );
     cy.get('[data-testid="callout"]').contains(
-      "This should take approximately 3 minutes to confirm"
+      "This should take a few seconds to confirm"
     );
 
     cy.get('[data-testid="callout"] h3').should(
@@ -151,7 +151,7 @@ describe("staking", () => {
       `Removing ${amount} VEGA from node ${nodeId}`
     );
     cy.get('[data-testid="callout"]').contains(
-      "This should take approximately 3 minutes to confirm"
+      "This should take a few seconds to confirm"
     );
 
     cy.get('[data-testid="callout"] h3').should(
