@@ -290,7 +290,7 @@
   "nodeQueryFailed": "crwdns5063:0{{node}}crwdne5063:0",
   "Adding {{amount}} VEGA to node {{node}}": "crwdns5065:0{{amount}}crwdnd5065:0{{node}}crwdne5065:0",
   "Removing {{amount}} VEGA from node {{node}}": "crwdns5067:0{{amount}}crwdnd5067:0{{node}}crwdne5067:0",
-  "This should take approximately 3 minutes to confirm, and then will be credited at the beginning of the next epoch": "crwdns5069:0crwdne5069:0",
+  "timeForConfirmation": "crwdns6153:0crwdne6153:0",
   "{{amount}} VEGA has been added to node {{node}}": "crwdns5071:0{{amount}}crwdnd5071:0{{node}}crwdne5071:0",
   "{{amount}} VEGA has been removed from {{node}}": "crwdns5073:0{{amount}}crwdnd5073:0{{node}}crwdne5073:0",
   "It will be applied in the next epoch": "crwdns5075:0crwdne5075:0",
