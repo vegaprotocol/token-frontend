@@ -1,5 +1,7 @@
-import { useTranslation } from "react-i18next";
+import { Button, Popover, PopoverInteractionKind } from "@blueprintjs/core";
+
 import { EthereumChainId } from "../../config";
+import { useTranslation } from "react-i18next";
 
 const etherscanUrls: Record<EthereumChainId, string> = {
   "0x1": "https://etherscan.io",
@@ -53,15 +55,32 @@ export const EtherscanLink = ({
     return <span>{hash}</span>;
   }
 
+  const getContents = (): JSX.Element => {
+    return (
+        <div>
+          <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 15 }}>
+            <Button  onClick={() => {navigator.clipboard.writeText(linkText)}}>
+              Copy to clipboard
+            </Button>
+          </div>
+        </div>
+    )
+  }
   return (
-    <a
-      href={txLink}
-      target="_blank"
-      rel="noreferrer"
-      className="etherscan-link"
+    <Popover
+      hoverOpenDelay={500}
+      interactionKind={PopoverInteractionKind.HOVER}
     >
-      {linkText}
-    </a>
+      <a
+         href={txLink}
+         target="_blank"
+         rel="noreferrer"
+         className="etherscan-link"
+       >
+         {linkText}
+       </a>
+        {getContents()}
+    </Popover>
   );
 };
 
