@@ -1,17 +1,17 @@
 import "./token-details.scss";
 
+import { ADDRESSES, Flags } from "../../../config";
 import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
-import { useTranslation } from "react-i18next";
-import { useAppState } from "../../../contexts/app-state/app-state-context";
-import { TokenDetailsCirculating } from "./token-details-circulating";
-import { truncateMiddle } from "../../../lib/truncate-middle";
-import { ADDRESSES, Flags } from "../../../config";
-import { formatNumber } from "../../../lib/format-number";
+
 import { BigNumber } from "../../../lib/bignumber";
 import { EtherscanLink } from "../../../components/etherscan-link";
+import { TokenDetailsCirculating } from "./token-details-circulating";
+import { formatNumber } from "../../../lib/format-number";
+import { useAppState } from "../../../contexts/app-state/app-state-context";
+import { useTranslation } from "react-i18next";
 
 export const TokenDetails = ({
   totalSupply,
@@ -32,7 +32,7 @@ export const TokenDetails = ({
           <EtherscanLink
             chainId={appState.chainId}
             address={ADDRESSES.vegaTokenAddress}
-            text={truncateMiddle(ADDRESSES.vegaTokenAddress)}
+            text={ADDRESSES.vegaTokenAddress}
           />
         </td>
       </KeyValueTableRow>
@@ -42,7 +42,7 @@ export const TokenDetails = ({
           <EtherscanLink
             chainId={appState.chainId}
             address={ADDRESSES.vestingAddress}
-            text={truncateMiddle(ADDRESSES.vestingAddress)}
+            text={ADDRESSES.vestingAddress}
           />
         </td>
       </KeyValueTableRow>
@@ -60,7 +60,7 @@ export const TokenDetails = ({
       )}
       {Flags.STAKING_DISABLED ? null : (
         <KeyValueTableRow>
-          <th style={{ whiteSpace: "nowrap" }}>
+          <th>
             {t("$VEGA associated with a Vega key")}
           </th>
           <td data-testid="associated">
