@@ -14,7 +14,6 @@ import { ConnectToVega } from "./connect-to-vega";
 import { Links } from "../../config";
 import React from "react";
 import { Staking as StakingQueryResult } from "./__generated__/Staking";
-import { truncateMiddle } from "../../lib/truncate-middle";
 import { useVegaUser } from "../../hooks/use-vega-user";
 
 export const Staking = ({ data }: { data?: StakingQueryResult }) => {

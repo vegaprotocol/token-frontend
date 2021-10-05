@@ -1,6 +1,6 @@
 import "./etherscan-link.scss"
 
-import { Button, Popover, PopoverInteractionKind } from "@blueprintjs/core";
+import { Popover, PopoverInteractionKind } from "@blueprintjs/core";
 
 import { EthereumChainId } from "../../config";
 import { useTranslation } from "react-i18next";
