@@ -1,12 +1,7 @@
-enum AppEnvs {
-  DEV = "DEV",
-  STAG = "STAG",
-  TEST = "TEST",
-  PROD = "PROD",
-}
+import { Networks } from "./vega";
 
 const appChainId = process.env.REACT_APP_CHAIN as EthereumChainId;
-const appEnv = process.env.REACT_APP_ENV as AppEnvs;
+const appEnv = process.env.REACT_APP_ENV as Networks;
 
 export type EthereumChainId = "0x1" | "0x3" | "0x4" | "0x5" | "0x2a";
 export type EthereumChainName =
@@ -40,29 +35,29 @@ interface VegaContracts {
   stakingBridge: string;
 }
 
-const EnvironmentConfig: { [key in AppEnvs]: VegaContracts } = {
-  [AppEnvs.DEV]: {
+const EnvironmentConfig: { [key in Networks]: VegaContracts } = {
+  [Networks.DEVNET]: {
     vestingAddress: "0x96a6f229BbbcA08095f0bC30088fcDfaeEDb07Ef",
     vegaTokenAddress: "0x5b634a05754283b6d9d7938dcca9d646425593eb",
     claimAddress: "0x5E3B1Fe757a3C41a9Ae0B903976CaDd415eb2e7b",
     lockedAddress: "0x0356782bfb61cf0b0463746bc6fe8766aacae8f0",
     stakingBridge: "0x7bd4a4789394fe5a93fc67ef64c47beb013e5450",
   },
-  [AppEnvs.STAG]: {
+  [Networks.STAGNET]: {
     vestingAddress: "0xd512DAb65BFF87B4725F26320Ce667C4Bf3d54a9",
     vegaTokenAddress: "0x45984C4E9F3D55325fc6Fd2E260881EE3Ce9bbCD",
     claimAddress: "0x5E3B1Fe757a3C41a9Ae0B903976CaDd415eb2e7b", // TODO not deployed to this env
     lockedAddress: "0x0356782bfb61cf0b0463746bc6fe8766aacae8f0", // TODO not deployed to this env
     stakingBridge: "0x58Bc16298ff65Eca070b105ce70A5C628DE31900",
   },
-  [AppEnvs.TEST]: {
+  [Networks.TESTNET]: {
     vestingAddress: "0x96a6f229BbbcA08095f0bC30088fcDfaeEDb07Ef", // TODO not deployed to this env
     vegaTokenAddress: "0x5b634a05754283b6d9d7938dcca9d646425593eb", // TODO WRONG!
     claimAddress: "0x5E3B1Fe757a3C41a9Ae0B903976CaDd415eb2e7b", // TODO not deployed to this env
     lockedAddress: "0x0356782bfb61cf0b0463746bc6fe8766aacae8f0", // TODO not deployed to this env
     stakingBridge: "0x7bd4a4789394fe5a93fc67ef64c47beb013e5450", // TODO not deployed to this env
   },
-  [AppEnvs.PROD]: {
+  [Networks.MAINNET]: {
     vestingAddress: "0x23d1bFE8fA50a167816fBD79D7932577c06011f4",
     vegaTokenAddress: "0xcB84d72e61e383767C4DFEb2d8ff7f4FB89abc6e",
     claimAddress: "0xd0db7b4c528c3a14648ced7064dd528595d5b273",
@@ -72,7 +67,7 @@ const EnvironmentConfig: { [key in AppEnvs]: VegaContracts } = {
 };
 
 const Addresses = {
-  [EthereumChainIds.Mainnet]: EnvironmentConfig.PROD,
+  [EthereumChainIds.Mainnet]: EnvironmentConfig.MAINNET,
   [EthereumChainIds.Ropsten]: EnvironmentConfig[appEnv],
 };
 
