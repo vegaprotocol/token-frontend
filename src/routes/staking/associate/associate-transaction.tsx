@@ -1,15 +1,12 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { TransactionCallout } from "../../../components/transaction-callout";
-import { TransactionComplete } from "../../../components/transaction-callout/transaction-complete";
-import { EthereumChainId } from "../../../config";
 import {
   TransactionAction,
   TransactionActionType,
   TransactionState,
   TxState,
 } from "../../../hooks/transaction-reducer";
-import { truncateMiddle } from "../../../lib/truncate-middle";
 import { Routes } from "../../router-config";
 import { PartyStakeLinkings_party_stake_linkings } from "./__generated__/PartyStakeLinkings";
 
@@ -20,7 +17,6 @@ export const AssociateTransaction = ({
   dispatch,
   requiredConfirmations,
   linking,
-  chainId,
 }: {
   amount: string;
   vegaKey: string;
@@ -28,29 +24,13 @@ export const AssociateTransaction = ({
   dispatch: React.Dispatch<TransactionAction>;
   requiredConfirmations: number;
   linking: PartyStakeLinkings_party_stake_linkings | null;
-  chainId: EthereumChainId;
 }) => {
   const { t } = useTranslation();
 
-  if (state.txState === TxState.Complete && linking) {
-    return (
-      <TransactionComplete
-        hash={state.txData.hash!}
-        chainId={chainId}
-        heading={t("Done")}
-        body={t(
-          "Vega key {{vegaKey}} can now participate in governance and Nominate a validator with it’s stake.",
-          { vegaKey: truncateMiddle(vegaKey) }
-        )}
-        footer={
-          <Link to={Routes.STAKING}>
-            <button className="fill">
-              {t("Nominate Stake to Validator Node")}
-            </button>
-          </Link>
-        }
-      />
-    );
+  let derivedTxState: TxState = state.txState;
+
+  if (state.txState === TxState.Complete && !linking) {
+    derivedTxState = TxState.Pending;
   }
 
   return (
@@ -61,7 +41,7 @@ export const AssociateTransaction = ({
         { vegaKey }
       )}
       completeFooter={
-        <Link to="/staking">
+        <Link to={Routes.STAKING}>
           <button className="fill">
             {t("Nominate Stake to Validator Node")}
           </button>
@@ -75,7 +55,10 @@ export const AssociateTransaction = ({
       pendingFooter={t("pendingAssociationText", {
         confirmations: requiredConfirmations,
       })}
-      state={state}
+      state={{
+        ...state,
+        txState: derivedTxState,
+      }}
       reset={() => dispatch({ type: TransactionActionType.TX_RESET })}
     />
   );
