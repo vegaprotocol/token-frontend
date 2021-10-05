@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { StakeLinkingStatus } from "./../../../../__generated__/globalTypes";
+
 // ====================================================
 // GraphQL query operation: PartyStakeLinkings
 // ====================================================
@@ -14,6 +16,10 @@ export interface PartyStakeLinkings_party_stake_linkings {
    * The transaction hash (ethereum) which initiated the link/unlink
    */
   txHash: string;
+  /**
+   * The status of the linking
+   */
+  status: StakeLinkingStatus;
 }
 
 export interface PartyStakeLinkings_party_stake {
