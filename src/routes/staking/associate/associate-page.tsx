@@ -13,13 +13,12 @@ import {
   StakingMethod,
   StakingMethodRadio,
 } from "../../../components/staking-method-radio";
-import { useAddStake } from "./hooks";
+import { useAddStake, usePollForStakeLinking } from "./hooks";
 import { BigNumber } from "../../../lib/bignumber";
-import { useQuery, gql } from "@apollo/client";
-import {
-  PartyStakeLinkings,
-  PartyStakeLinkingsVariables,
-} from "./__generated__/PartyStakeLinkings";
+import { TransactionComplete } from "../../../components/transaction-callout/transaction-complete";
+import { Link } from "react-router-dom";
+import { Routes } from "../../router-config";
+import { truncateMiddle } from "../../../lib/truncate-middle";
 
 export const AssociatePage = ({
   address,
@@ -41,11 +40,7 @@ export const AssociatePage = ({
     StakingMethod | ""
   >(stakingMethod);
 
-  const {
-    state: txState,
-    dispatch: txDispatch,
-    perform: txPerform,
-  } = useAddStake(
+  const { state: txState, perform: txPerform } = useAddStake(
     address,
     amount,
     vegaKey.pub,
@@ -56,23 +51,71 @@ export const AssociatePage = ({
   const linking = usePollForStakeLinking(vegaKey.pub, txState.txData.hash);
 
   const {
-    appState: { walletBalance, totalVestedBalance },
+    appState: { chainId, walletBalance, totalVestedBalance },
   } = useAppState();
 
   const zeroVesting = totalVestedBalance.isEqualTo(0);
   const zeroVega = walletBalance.isEqualTo(0);
 
-  if (txState.txState !== TxState.Default) {
+  if (txState.txState === TxState.Complete && linking) {
     return (
-      <AssociateTransaction
-        amount={amount}
-        vegaKey={vegaKey.pub}
-        state={txState}
-        dispatch={txDispatch}
-        requiredConfirmations={requiredConfirmations}
+      <TransactionComplete
+        hash={txState.txData.hash!}
+        chainId={chainId}
+        heading={t("Done")}
+        body={t(
+          "Vega key {{vegaKey}} can now participate in governance and Nominate a validator with it’s stake.",
+          { vegaKey: truncateMiddle(vegaKey.pub) }
+        )}
+        footer={
+          <Link to={Routes.STAKING}>
+            <button className="fill">
+              {t("Nominate Stake to Validator Node")}
+            </button>
+          </Link>
+        }
       />
     );
   }
+
+  if (
+    txState.txState === TxState.Pending ||
+    (txState.txState === TxState.Complete && !linking)
+  ) {
+    return (
+      <div>
+        <h1>Pending!</h1>
+      </div>
+    );
+  }
+
+  if (txState.txState === TxState.Error) {
+    return (
+      <div>
+        <h1>Error!</h1>
+      </div>
+    );
+  }
+
+  if (txState.txState === TxState.Requested) {
+    return (
+      <div>
+        <h1>Use Metamask!</h1>
+      </div>
+    );
+  }
+
+  // if (txState.txState !== TxState.Default) {
+  //   return (
+  //     <AssociateTransaction
+  //       amount={amount}
+  //       vegaKey={vegaKey.pub}
+  //       state={txState}
+  //       dispatch={txDispatch}
+  //       requiredConfirmations={requiredConfirmations}
+  //     />
+  //   );
+  // }
 
   return (
     <section data-testid="associate">
@@ -99,7 +142,7 @@ export const AssociatePage = ({
             perform={txPerform}
             amount={amount}
             setAmount={setAmount}
-            minDelegation={minDelegation}
+            minDelegation={new BigNumber(0)}
           />
         ) : (
           <WalletAssociate
@@ -108,59 +151,9 @@ export const AssociatePage = ({
             perform={txPerform}
             amount={amount}
             setAmount={setAmount}
-            minDelegation={minDelegation}
+            minDelegation={new BigNumber(0)}
           />
         ))}
     </section>
   );
 };
-
-const PARTY_STAKE_LINKINGS = gql`
-  query PartyStakeLinkings($partyId: ID!) {
-    party(id: $partyId) {
-      stake {
-        linkings {
-          id
-          txHash
-        }
-      }
-    }
-  }
-`;
-
-function usePollForStakeLinking(partyId: string, txHash: string | null) {
-  // Query for linkings under current connected party (vega key)
-  const { data, startPolling, stopPolling } = useQuery<
-    PartyStakeLinkings,
-    PartyStakeLinkingsVariables
-  >(PARTY_STAKE_LINKINGS, {
-    variables: { partyId },
-  });
-
-  // Everytime we get data, find the matching linking by txHash
-  const linking = React.useMemo(() => {
-    const linkings = data?.party?.stake.linkings;
-
-    if (linkings?.length) return;
-
-    const matchingLinking = linkings?.find((l) => l.txHash === txHash);
-
-    return matchingLinking;
-  }, [data, txHash]);
-
-  // Start and stop polling if we have a linking/txHash or if unmount
-  React.useEffect(() => {
-    // If we have the txHash of the transaction but no found linking start polling
-    if (!linking && txHash) {
-      startPolling(1000);
-    } else {
-      stopPolling();
-    }
-
-    return () => {
-      stopPolling();
-    };
-  }, [startPolling, stopPolling, linking, txHash]);
-
-  return linking;
-}
