@@ -1,0 +1,169 @@
+export enum Networks {
+  TESTNET = "TESTNET",
+  STAGNET = "STAGNET",
+  DEVNET = "DEVNET",
+  MAINNET = "MAINNET",
+}
+
+interface VegaNode {
+  url: string;
+  api: {
+    GraphQL: boolean;
+  };
+}
+
+type VegaNets = {
+  [N in Networks]: {
+    nodes: VegaNode[];
+  };
+};
+
+export type NetworkConfig = {
+  [N in Networks]: string[];
+};
+
+// Ideally we'd keep this in a json file
+export const VegaNetworks: VegaNets = {
+  [Networks.DEVNET]: {
+    nodes: [
+      {
+        url: "https://n01.d.vega.xyz",
+        api: {
+          GraphQL: false,
+        },
+      },
+      {
+        url: "https://n02.d.vega.xyz",
+        api: {
+          GraphQL: false,
+        },
+      },
+      {
+        url: "https://n03.d.vega.xyz",
+        api: {
+          GraphQL: false,
+        },
+      },
+      {
+        url: "https://n04.d.vega.xyz",
+        api: {
+          GraphQL: true,
+        },
+      },
+    ],
+  },
+  [Networks.STAGNET]: {
+    nodes: [
+      {
+        url: "https://n01.s.vega.xyz",
+        api: {
+          GraphQL: false,
+        },
+      },
+      {
+        url: "https://n02.s.vega.xyz",
+        api: {
+          GraphQL: false,
+        },
+      },
+      {
+        url: "https://n03.s.vega.xyz",
+        api: {
+          GraphQL: true,
+        },
+      },
+      {
+        url: "https://n04.s.vega.xyz",
+        api: {
+          GraphQL: false,
+        },
+      },
+      {
+        url: "https://n05.s.vega.xyz",
+        api: {
+          GraphQL: false,
+        },
+      },
+    ],
+  },
+  [Networks.TESTNET]: {
+    nodes: [
+      {
+        url: "https://lb.testnet.vega.xyz",
+        api: {
+          GraphQL: true,
+        },
+      },
+      {
+        url: "https://n01.testnet.vega.xyz",
+        api: {
+          GraphQL: false,
+        },
+      },
+      {
+        url: "https://n02.testnet.vega.xyz",
+        api: {
+          GraphQL: false,
+        },
+      },
+      {
+        url: "https://n03.testnet.vega.xyz",
+        api: {
+          GraphQL: false,
+        },
+      },
+      {
+        url: "https://n04.testnet.vega.xyz",
+        api: {
+          GraphQL: false,
+        },
+      },
+      {
+        url: "https://n05.testnet.vega.xyz",
+        api: {
+          GraphQL: false,
+        },
+      },
+      {
+        url: "https://n06.testnet.vega.xyz",
+        api: {
+          GraphQL: true,
+        },
+      },
+      {
+        url: "https://n07.testnet.vega.xyz",
+        api: {
+          GraphQL: true,
+        },
+      },
+      {
+        url: "https://n08.testnet.vega.xyz",
+        api: {
+          GraphQL: true,
+        },
+      },
+      {
+        url: "https://n09.testnet.vega.xyz",
+        api: {
+          GraphQL: true,
+        },
+      },
+    ],
+  },
+  [Networks.MAINNET]: {
+    nodes: [],
+  },
+};
+
+export const GraphQLNodes = Object.keys(VegaNetworks).reduce(
+  (obj: Record<string, string[]>, network) => {
+    // @ts-ignore
+    const rawNodes: VegaNode[] = VegaNetworks[network].nodes;
+    const nodesWithGraphQL = rawNodes
+      .filter((n) => n.api.GraphQL)
+      .map((n) => n.url);
+    obj[network] = nodesWithGraphQL;
+    return obj;
+  },
+  {}
+) as NetworkConfig;
