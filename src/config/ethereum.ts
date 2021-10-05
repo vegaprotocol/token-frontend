@@ -57,7 +57,7 @@ const EnvironmentConfig: { [key in AppEnvs]: VegaContracts } = {
   },
   [AppEnvs.TEST]: {
     vestingAddress: "0x96a6f229BbbcA08095f0bC30088fcDfaeEDb07Ef", // TODO not deployed to this env
-    vegaTokenAddress: "", // TODO WRONG!
+    vegaTokenAddress: "0x5b634a05754283b6d9d7938dcca9d646425593eb", // TODO WRONG!
     claimAddress: "0x5E3B1Fe757a3C41a9Ae0B903976CaDd415eb2e7b", // TODO not deployed to this env
     lockedAddress: "0x0356782bfb61cf0b0463746bc6fe8766aacae8f0", // TODO not deployed to this env
     stakingBridge: "0x7bd4a4789394fe5a93fc67ef64c47beb013e5450", // TODO not deployed to this env
