@@ -51,7 +51,7 @@ export const AssociatePage = ({
   const linking = usePollForStakeLinking(vegaKey.pub, txState.txData.hash);
 
   const {
-    appState: { chainId, walletBalance, totalVestedBalance },
+    appState: { walletBalance, totalVestedBalance },
   } = useAppState();
 
   const zeroVesting = totalVestedBalance.isEqualTo(0);
@@ -66,7 +66,6 @@ export const AssociatePage = ({
         dispatch={txDispatch}
         requiredConfirmations={requiredConfirmations}
         linking={linking}
-        chainId={chainId}
       />
     );
   }
