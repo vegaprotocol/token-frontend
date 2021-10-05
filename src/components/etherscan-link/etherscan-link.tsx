@@ -14,6 +14,7 @@ const etherscanUrls: Record<EthereumChainId, string> = {
 interface BaseEtherscanLinkProps {
   chainId: EthereumChainId | null;
   text?: string;
+  copyToClipboard?: boolean;
 }
 
 interface EtherscanAddressLinkProps extends BaseEtherscanLinkProps {
@@ -34,6 +35,7 @@ type EtherscanLinkProps =
 export const EtherscanLink = ({
   chainId,
   text,
+  copyToClipboard = true,
   ...props
 }: EtherscanLinkProps) => {
   let hash: string;
@@ -57,20 +59,31 @@ export const EtherscanLink = ({
 
   const getContents = (): JSX.Element => {
     return (
-        <div>
-          <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 15 }}>
-            <Button  onClick={() => {navigator.clipboard.writeText(linkText)}}>
-              Copy to clipboard
-            </Button>
-          </div>
-        </div>
+      <Button onClick={() => {navigator.clipboard.writeText(linkText)}}>
+        {t("copyToClipboard")}
+      </Button>
     )
   }
+
   return (
-    <Popover
-      hoverOpenDelay={500}
-      interactionKind={PopoverInteractionKind.HOVER}
-    >
+    copyToClipboard
+    ? (
+      <Popover
+        hoverOpenDelay={500}
+        interactionKind={PopoverInteractionKind.HOVER}
+      >
+        <a
+          href={txLink}
+          target="_blank"
+          rel="noreferrer"
+          className="etherscan-link"
+        >
+          {linkText}
+        </a>
+          {getContents()}
+      </Popover>
+    )
+    : (
       <a
          href={txLink}
          target="_blank"
@@ -78,9 +91,8 @@ export const EtherscanLink = ({
          className="etherscan-link"
        >
          {linkText}
-       </a>
-        {getContents()}
-    </Popover>
+      </a>
+    )
   );
 };
 
