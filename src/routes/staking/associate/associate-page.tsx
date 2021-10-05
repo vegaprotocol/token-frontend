@@ -15,10 +15,6 @@ import {
 } from "../../../components/staking-method-radio";
 import { useAddStake, usePollForStakeLinking } from "./hooks";
 import { BigNumber } from "../../../lib/bignumber";
-import { TransactionComplete } from "../../../components/transaction-callout/transaction-complete";
-import { Link } from "react-router-dom";
-import { Routes } from "../../router-config";
-import { truncateMiddle } from "../../../lib/truncate-middle";
 
 export const AssociatePage = ({
   address,
@@ -40,7 +36,11 @@ export const AssociatePage = ({
     StakingMethod | ""
   >(stakingMethod);
 
-  const { state: txState, perform: txPerform } = useAddStake(
+  const {
+    state: txState,
+    dispatch: txDispatch,
+    perform: txPerform,
+  } = useAddStake(
     address,
     amount,
     vegaKey.pub,
@@ -57,65 +57,19 @@ export const AssociatePage = ({
   const zeroVesting = totalVestedBalance.isEqualTo(0);
   const zeroVega = walletBalance.isEqualTo(0);
 
-  if (txState.txState === TxState.Complete && linking) {
+  if (txState.txState !== TxState.Default) {
     return (
-      <TransactionComplete
-        hash={txState.txData.hash!}
+      <AssociateTransaction
+        amount={amount}
+        vegaKey={vegaKey.pub}
+        state={txState}
+        dispatch={txDispatch}
+        requiredConfirmations={requiredConfirmations}
+        linking={linking}
         chainId={chainId}
-        heading={t("Done")}
-        body={t(
-          "Vega key {{vegaKey}} can now participate in governance and Nominate a validator with it’s stake.",
-          { vegaKey: truncateMiddle(vegaKey.pub) }
-        )}
-        footer={
-          <Link to={Routes.STAKING}>
-            <button className="fill">
-              {t("Nominate Stake to Validator Node")}
-            </button>
-          </Link>
-        }
       />
     );
   }
-
-  if (
-    txState.txState === TxState.Pending ||
-    (txState.txState === TxState.Complete && !linking)
-  ) {
-    return (
-      <div>
-        <h1>Pending!</h1>
-      </div>
-    );
-  }
-
-  if (txState.txState === TxState.Error) {
-    return (
-      <div>
-        <h1>Error!</h1>
-      </div>
-    );
-  }
-
-  if (txState.txState === TxState.Requested) {
-    return (
-      <div>
-        <h1>Use Metamask!</h1>
-      </div>
-    );
-  }
-
-  // if (txState.txState !== TxState.Default) {
-  //   return (
-  //     <AssociateTransaction
-  //       amount={amount}
-  //       vegaKey={vegaKey.pub}
-  //       state={txState}
-  //       dispatch={txDispatch}
-  //       requiredConfirmations={requiredConfirmations}
-  //     />
-  //   );
-  // }
 
   return (
     <section data-testid="associate">
