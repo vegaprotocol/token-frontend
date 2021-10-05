@@ -1,3 +1,5 @@
+import "./etherscan-link.scss"
+
 import { Button, Popover, PopoverInteractionKind } from "@blueprintjs/core";
 
 import { EthereumChainId } from "../../config";
@@ -59,9 +61,9 @@ export const EtherscanLink = ({
 
   const getContents = (): JSX.Element => {
     return (
-      <Button onClick={() => {navigator.clipboard.writeText(linkText)}}>
+      <button className="etherscan-link__copy-to-clipboard" onClick={() => {navigator.clipboard.writeText(linkText)}}>
         {t("copyToClipboard")}
-      </Button>
+      </button>
     )
   }
 
