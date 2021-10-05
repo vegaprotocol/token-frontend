@@ -47,7 +47,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
       {tranche.users.length ? (
         <ul className="tranche__user-list">
           {tranche.users.map((user, i) => {
-            const locked: BigNumber = user.total_tokens.minus(
+            const unlocked: BigNumber = user.total_tokens.minus(
               user.remaining_tokens
             );
             return (
@@ -62,8 +62,8 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
                   <span>{t("Unlocked")}</span>
                 </div>
                 <div className="tranche__progress-contents">
-                  <span>{locked.toString()}</span>
                   <span>{user.remaining_tokens.toString()}</span>
+                  <span>{unlocked.toString()}</span>
                 </div>
               </li>
             );
