@@ -22,7 +22,6 @@ export type NetworkConfig = {
   [N in Networks]: string[];
 };
 
-// Ideally we'd keep this in a json file
 export const VegaNetworks: VegaNets = {
   [Networks.DEVNET]: {
     nodes: [
