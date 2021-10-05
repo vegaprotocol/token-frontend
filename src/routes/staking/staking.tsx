@@ -1,20 +1,21 @@
-import React from "react";
-import { Link, useRouteMatch } from "react-router-dom";
-import { BulletHeader } from "../../components/bullet-header";
-import { Callout } from "../../components/callout";
 import {
   AppStateActionType,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
+import { Error, Tick } from "../../components/icons";
+import { Link, useRouteMatch } from "react-router-dom";
 import { NodeList, NodeListItemProps } from "./node-list";
-import { Staking as StakingQueryResult } from "./__generated__/Staking";
-import { BigNumber } from "../../lib/bignumber";
 import { Trans, useTranslation } from "react-i18next";
-import { Tick, Error } from "../../components/icons";
+
+import { BigNumber } from "../../lib/bignumber";
+import { BulletHeader } from "../../components/bullet-header";
+import { Callout } from "../../components/callout";
+import { ConnectToVega } from "./connect-to-vega";
+import { Links } from "../../config";
+import React from "react";
+import { Staking as StakingQueryResult } from "./__generated__/Staking";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { useVegaUser } from "../../hooks/use-vega-user";
-import { Links } from "../../config";
-import { ConnectToVega } from "./connect-to-vega";
 
 export const Staking = ({ data }: { data?: StakingQueryResult }) => {
   const { t } = useTranslation();
@@ -54,9 +55,9 @@ export const StakingStepConnectWallets = () => {
     return (
       <Callout intent="success" icon={<Tick />} title={"Connected"}>
         <p>
-          {t("Connected Ethereum address")} {truncateMiddle(ethAddress)}
+          {t("Connected Ethereum address")} {ethAddress}
         </p>
-        <p>{t("stakingVegaWalletConnected", { key: currVegaKey.pubShort })}</p>
+        <p>{t("stakingVegaWalletConnected", { key: currVegaKey.pub })}</p>
       </Callout>
     );
   }
@@ -82,7 +83,7 @@ export const StakingStepConnectWallets = () => {
         <Callout
           icon={<Tick />}
           intent="success"
-          title={`Ethereum wallet connected: ${truncateMiddle(ethAddress)}`}
+          title={`Ethereum wallet connected: ${ethAddress}`}
         />
       ) : (
         <p>
