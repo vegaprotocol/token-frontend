@@ -61,7 +61,10 @@ export const EtherscanLink = ({
 
   const getContents = (): JSX.Element => {
     return (
-      <button className="etherscan-link__copy-to-clipboard" onClick={() => {navigator.clipboard.writeText(linkText)}}>
+      <button
+        className="etherscan-link__copy-to-clipboard"
+        onClick={() => {navigator.clipboard.writeText(linkText)}}
+      >
         {t("copyToClipboard")}
       </button>
     )
