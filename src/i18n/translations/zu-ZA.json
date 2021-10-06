@@ -248,7 +248,7 @@
   "Associate VEGA Tokens with key": "crwdns4987:0crwdne4987:0",
   "Wallet": "crwdns4989:0crwdne4989:0",
   "Nominate Stake to Validator Node": "crwdns4991:0crwdne4991:0",
-  "Associating Tokens": "crwdns4993:0crwdne4993:0",
+  "Associating Tokens": "crwdns6155:0crwdne6155:0",
   "Done": "crwdns4995:0crwdne4995:0",
   "Associating {{amount}} VEGA tokens with Vega key {{vegaKey}}": "crwdns4997:0{{amount}}crwdnd4997:0{{vegaKey}}crwdne4997:0",
   "pendingAssociationText": "crwdns5329:0{{confirmations}}crwdne5329:0",
