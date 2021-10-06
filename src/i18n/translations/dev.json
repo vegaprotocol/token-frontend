@@ -392,5 +392,6 @@
   "redeemComingSoon": "Redeem is coming soon",
   "associatedVega": "Associated $VEGA",
   "blockCountdown": "Waiting for {{amount}} more confirmations...",
-  "stakingNodeNotFound": "Could not find a node with id {{node}}"
+  "stakingNodeNotFound": "Could not find a node with id {{node}}",
+  "viewAllTranches": "View all tranches"
 }
