@@ -58,7 +58,6 @@ interface StakingFormProps {
   pubkey: string;
   availableStakeToAdd: BigNumber;
   availableStakeToRemove: BigNumber;
-  minDelegation: BigNumber;
 }
 
 export const StakingForm = ({
@@ -66,7 +65,6 @@ export const StakingForm = ({
   pubkey,
   availableStakeToAdd,
   availableStakeToRemove,
-  minDelegation,
 }: StakingFormProps) => {
   const params = useSearchParams();
   const history = useHistory();
@@ -197,7 +195,6 @@ export const StakingForm = ({
             setAmount={setAmount}
             maximum={maxDelegation}
             currency={t("VEGA Tokens")}
-            minimum={minDelegation}
           />
         </>
       )}

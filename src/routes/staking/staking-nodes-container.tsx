@@ -6,8 +6,6 @@ import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { useVegaUser } from "../../hooks/use-vega-user";
 import { Staking as StakingQueryResult } from "./__generated__/Staking";
-import { useMinDelegation } from "../../hooks/use-min-delegation";
-import { BigNumber } from "../../lib/bignumber";
 
 export const STAKING_QUERY = gql`
   query Staking($partyId: ID!) {
@@ -61,12 +59,7 @@ export const STAKING_QUERY = gql`
 export const StakingNodesContainer = ({
   children,
 }: {
-  children: ({
-    data,
-  }: {
-    data?: StakingQueryResult;
-    minDelegation: BigNumber;
-  }) => React.ReactElement;
+  children: ({ data }: { data?: StakingQueryResult }) => React.ReactElement;
 }) => {
   const { t } = useTranslation();
   const { currVegaKey } = useVegaUser();
@@ -76,19 +69,18 @@ export const StakingNodesContainer = ({
     pollInterval: 10000,
     fetchPolicy: "network-only",
   });
-  const minDelegation = useMinDelegation();
   if (error) {
     return (
       <Callout intent="error" title={t("Something went wrong")}>
         <pre>{error.message}</pre>
       </Callout>
     );
-  } else if (loading || !minDelegation) {
+  } else if (loading) {
     return (
       <SplashScreen>
         <SplashLoader />
       </SplashScreen>
     );
   }
-  return children({ data, minDelegation });
+  return children({ data });
 };

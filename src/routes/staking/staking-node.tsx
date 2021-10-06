@@ -17,20 +17,15 @@ import { ConnectToVega } from "./connect-to-vega";
 export const StakingNodeContainer = () => {
   return (
     <StakingWalletsContainer>
-      {({ currVegaKey }) => (
-        currVegaKey ?
-        <StakingNodesContainer>
-          {({ data, minDelegation }) => (
-            <StakingNode
-              vegaKey={currVegaKey}
-              data={data}
-              minDelegation={minDelegation}
-            />
-          )}
-        </StakingNodesContainer>
-        :
-        <ConnectToVega />
-      )}
+      {({ currVegaKey }) =>
+        currVegaKey ? (
+          <StakingNodesContainer>
+            {({ data }) => <StakingNode vegaKey={currVegaKey} data={data} />}
+          </StakingNodesContainer>
+        ) : (
+          <ConnectToVega />
+        )
+      }
     </StakingWalletsContainer>
   );
 };
@@ -38,14 +33,9 @@ export const StakingNodeContainer = () => {
 interface StakingNodeProps {
   vegaKey: VegaKeyExtended;
   data?: StakingQueryResult;
-  minDelegation: BigNumber;
 }
 
-export const StakingNode = ({
-  vegaKey,
-  data,
-  minDelegation,
-}: StakingNodeProps) => {
+export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
   const { node } = useParams<{ node: string }>();
   const { t } = useTranslation();
 
@@ -122,7 +112,6 @@ export const StakingNode = ({
         nodeId={node}
         availableStakeToAdd={unstaked}
         availableStakeToRemove={currentDelegationAmount}
-        minDelegation={minDelegation}
       />
     </>
   );

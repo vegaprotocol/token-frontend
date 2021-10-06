@@ -8,13 +8,8 @@ import {
   StakingMethodRadio,
 } from "../../../components/staking-method-radio";
 import { ConnectToVega } from "../connect-to-vega";
-import { BigNumber } from "../../../lib/bignumber";
 
-export const AssociatePageNoVega = ({
-  minDelegation,
-}: {
-  minDelegation: BigNumber;
-}) => {
+export const AssociatePageNoVega = () => {
   const { t } = useTranslation();
   const params = useSearchParams();
   const [amount, setAmount] = React.useState<string>("");
@@ -55,7 +50,6 @@ export const AssociatePageNoVega = ({
             perform={() => {}}
             amount={amount}
             setAmount={setAmount}
-            minDelegation={minDelegation}
           />
         ) : (
           <ConnectToVega />

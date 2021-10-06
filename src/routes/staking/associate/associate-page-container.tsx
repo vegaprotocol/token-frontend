@@ -4,34 +4,27 @@ import { StakingWalletsContainer } from "../staking-wallets-container";
 import { useEthereumConfig } from "../../../hooks/use-ethereum-config";
 import { AssociatePage } from "./associate-page";
 import { AssociatePageNoVega } from "./associate-page-no-vega";
-import { useMinDelegation } from "../../../hooks/use-min-delegation";
-import { BigNumber } from "../../../lib/bignumber";
 
 export const NetworkParamsContainer = ({
   children,
 }: {
-  children: (data: {
-    confirmations: number;
-    minDelegation: BigNumber;
-  }) => React.ReactElement;
+  children: (data: { confirmations: number }) => React.ReactElement;
 }) => {
   const config = useEthereumConfig();
-  const minDelegation = useMinDelegation();
 
-  if (!config || !minDelegation) {
+  if (!config) {
     return null;
   }
 
   return children({
     confirmations: config.confirmations,
-    minDelegation,
   });
 };
 
 export const AssociateContainer = () => {
   return (
     <NetworkParamsContainer>
-      {({ confirmations, minDelegation }) => (
+      {({ confirmations }) => (
         <StakingWalletsContainer>
           {({ address, currVegaKey }) =>
             currVegaKey ? (
@@ -39,10 +32,9 @@ export const AssociateContainer = () => {
                 address={address}
                 vegaKey={currVegaKey}
                 requiredConfirmations={confirmations}
-                minDelegation={minDelegation}
               />
             ) : (
-              <AssociatePageNoVega minDelegation={minDelegation} />
+              <AssociatePageNoVega />
             )
           }
         </StakingWalletsContainer>
