@@ -392,5 +392,6 @@
   "redeemComingSoon": "crwdns5325:0crwdne5325:0",
   "associatedVega": "crwdns5327:0$VEGAcrwdne5327:0",
   "blockCountdown": "crwdns6137:0{{amount}}crwdne6137:0",
-  "stakingNodeNotFound": "crwdns6151:0{{node}}crwdne6151:0"
+  "stakingNodeNotFound": "crwdns6151:0{{node}}crwdne6151:0",
+  "viewAllTranches": "crwdns6157:0crwdne6157:0"
 }
