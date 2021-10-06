@@ -50,6 +50,9 @@ export interface AppState {
   /** Error if connecting to Metamask failed */
   error: Error | null;
 
+  /** Whether or not we are connected to an Ethereum wallet */
+  ethWalletConnected: boolean;
+
   /** Whether or not we are awaiting the user to connect in Metamask */
   ethWalletConnecting: boolean;
 
