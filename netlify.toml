@@ -23,9 +23,7 @@
 
 # The translation flag for each of these is defined in the netlify UI so they can be independant based on the branch
 [context.develop.environment]
-  REACT_APP_ENV = "DEVNET"
   REACT_APP_CHAIN = "0x3"
 
 [context.deploy-preview.environment]
-  REACT_APP_ENV = "DEVNET"
   REACT_APP_CHAIN = "0x3"
