@@ -18,14 +18,14 @@ import React from "react";
 export const EthWallet = () => {
   const { t } = useTranslation();
   const { appDispatch } = useAppState();
-  const { ethAddress, ethWalletConnected, disconnect } = useEthUser();
+  const { ethAddress, disconnect } = useEthUser();
   const [disconnecting] = React.useState(false);
 
   return (
     <WalletCard>
       <WalletCardHeader>
         <span>{t("ethereumKey")}</span>
-        {ethWalletConnected && (
+        {ethAddress && (
           <>
             <span className="vega-wallet__curr-key">
               {truncateMiddle(ethAddress)}
@@ -34,7 +34,7 @@ export const EthWallet = () => {
         )}
       </WalletCardHeader>
       <WalletCardContent>
-        {ethWalletConnected ? (
+        {ethAddress ? (
           <ConnectedKey />
         ) : (
           <button
@@ -51,7 +51,7 @@ export const EthWallet = () => {
             {t("Connect to an Ethereum wallet")}
           </button>
         )}
-        {ethWalletConnected && (
+        {ethAddress && (
           <WalletCardActions>
             <button
               className="button-link button-link--dark"
