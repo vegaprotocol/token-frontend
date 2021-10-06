@@ -51,9 +51,13 @@ export function useEthUser() {
       if (isUnexpectedError(e)) {
         Sentry.captureException(e);
       }
-      appDispatch({ type: AppStateActionType.CONNECT_FAIL, error: e });
+      appDispatch({ type: AppStateActionType.CONNECT_FAIL, error: e as Error });
     }
   }, [appDispatch, provider]);
+
+  const disconnect = React.useCallback(() => {
+    appDispatch({ type: AppStateActionType.DISCONNECT });
+  }, [appDispatch]);
 
   // Auto connect if possible
   React.useEffect(() => {
@@ -125,7 +129,9 @@ export function useEthUser() {
   }, []);
 
   return {
+    ethWalletConnected: appState.ethWalletConnected,
     ethAddress: appState.ethAddress,
     connect,
+    disconnect,
   };
 }
