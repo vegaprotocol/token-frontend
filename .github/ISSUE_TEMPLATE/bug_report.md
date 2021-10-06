@@ -51,10 +51,12 @@ Copy the link from [here](https://www.whatsmybrowser.org/) and paste it here:
 ## ETH Wallet software:
 
 What ETH wallet software did you use? e.g. Metamask.
+What's your address?
 
 ## Vega Wallet software version:
 
 What version wallet software did you use? Run the following:
+What's your pubkey?
 
 ```
 go-wallet version
