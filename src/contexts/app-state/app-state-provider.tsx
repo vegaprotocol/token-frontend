@@ -26,7 +26,6 @@ const initialAppState: AppState = {
   decimals: 0,
   totalSupply: new BigNumber(0),
   ethAddress: "",
-  ethWalletConnected: false,
   ethWalletConnecting: false,
   error: null,
   balanceFormatted: new BigNumber(0),
@@ -60,7 +59,6 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
       return {
         ...state,
         ethAddress: action.address,
-        ethWalletConnected: true,
         ethWalletConnecting: false,
         ethWalletOverlay: false,
       };
@@ -69,14 +67,12 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         ...state,
         error: action.error,
         ethAddress: "",
-        ethWalletConnected: false,
         ethWalletConnecting: false,
       };
     case AppStateActionType.DISCONNECT:
       return {
         ...state,
         error: null,
-        ethWalletConnected: false,
         ethWalletConnecting: false,
         ethAddress: "",
       };

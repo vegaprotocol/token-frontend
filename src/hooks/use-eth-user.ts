@@ -48,7 +48,7 @@ export function useEthUser() {
       });
       Sentry.setUser({ id: accounts[0] });
     } catch (e) {
-      if (isUnexpectedError(e)) {
+      if (isUnexpectedError(e as Error)) {
         Sentry.captureException(e);
       }
       appDispatch({ type: AppStateActionType.CONNECT_FAIL, error: e as Error });
@@ -129,7 +129,6 @@ export function useEthUser() {
   }, []);
 
   return {
-    ethWalletConnected: appState.ethWalletConnected,
     ethAddress: appState.ethAddress,
     connect,
     disconnect,
