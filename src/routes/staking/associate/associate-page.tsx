@@ -14,18 +14,15 @@ import {
   StakingMethodRadio,
 } from "../../../components/staking-method-radio";
 import { useAddStake, usePollForStakeLinking } from "./hooks";
-import { BigNumber } from "../../../lib/bignumber";
 
 export const AssociatePage = ({
   address,
   vegaKey,
   requiredConfirmations,
-  minDelegation,
 }: {
   address: string;
   vegaKey: VegaKeyExtended;
   requiredConfirmations: number;
-  minDelegation: BigNumber;
 }) => {
   const { t } = useTranslation();
   const params = useSearchParams();
@@ -95,7 +92,6 @@ export const AssociatePage = ({
             perform={txPerform}
             amount={amount}
             setAmount={setAmount}
-            minDelegation={new BigNumber(0)}
           />
         ) : (
           <WalletAssociate
@@ -104,7 +100,6 @@ export const AssociatePage = ({
             perform={txPerform}
             amount={amount}
             setAmount={setAmount}
-            minDelegation={new BigNumber(0)}
           />
         ))}
     </section>
