@@ -8,9 +8,7 @@ assignees: ""
 
 # 🛑 STOP 🛑
 
-Before you file this bug please ensure that this is a front end bug. Go through the following checklist:
-
-Please make the following checks:
+Before you file this bug please ensure that this is a **front end** bug. Go through the following checklist:
 
 1. Ropsten is functional, [click here](https://ropsten.etherscan.io/) and make sure the last block was less than 1 min ago otherwise it indicates Ropsten issues. Please retest when Ropsten is stable.
 2. The network you are testing on is stable [click here](https://stats.vega.trading/) and make sure block times are less than 2 seconds and the status is connected. Please retest when stable in if not.
@@ -20,10 +18,12 @@ If you are certain everything is as it should be above then please complete the 
 
 # Bug report
 
-**Describe the bug**
+## Describe the bug
+
 A clear and concise description of what the bug is.
 
-**To Reproduce**
+## To Reproduce
+
 Steps to reproduce the behavior:
 
 1. Go to '...'
@@ -31,17 +31,94 @@ Steps to reproduce the behavior:
 3. Scroll down to '....'
 4. See error
 
-**Expected behavior**
+## Expected behavior
+
 A clear and concise description of what you expected to happen.
 
-**Screenshots**
+## Screenshots
+
 If applicable, add screenshots to help explain your problem. The more the better 🙏.
 
-**Your browser information:**
+## Your browser information:
+
 Copy the link from [here](https://www.whatsmybrowser.org/) and paste it here:
 
-**Wallet software:**
+## Wallet software:
+
 What wallet software did you use? e.g. Metamask.
 
-**Additional context**
+## Run the following GQL query on the playground above (depending on the env you are using):
+
+This **really** helps as it means in case of network resets we can still check your bug.
+
+### Query:
+
+```
+query SuperQuery {
+    party(id: "[YOUR VEGA WALLET KEY]") {
+      id
+    	rewardDetails {
+        totalAmount
+        rewards {
+          amount
+          assetId
+          partyId
+          percentageOfTotal
+          epoch
+        }
+      }
+    	delegations {
+        epoch
+        amount
+        node {
+          id
+        }
+        party {
+          id
+        }
+      }
+      stake {
+        linkings {
+          id
+          amount
+          status
+          txHash
+          timestamp
+        }
+        currentStakeAvailable
+      }
+    }
+  epoch {
+    id
+    timestamps {
+      expiry
+      end
+      start
+    }
+  }
+  nodes {
+      id
+      pubkey
+      infoUrl
+      location
+      stakedByOperator
+      stakedByDelegates
+      stakedTotal
+      pendingStake
+      epochData {
+        total
+        offline
+        online
+      }
+      status
+    }
+}
+```
+
+### Result:
+
+**Add the result here**
+
+## Additional context
+
 Add any other context about the problem here. Or just anything you think we should know.
