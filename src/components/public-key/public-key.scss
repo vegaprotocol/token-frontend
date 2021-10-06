@@ -1,0 +1,33 @@
+@import '../../styles/fonts';
+@import '../../styles/colors';
+// Truncates public keys dynamically by the width available
+// with a fixed number of characters from the end visible
+// Current implementation shows 5 characters in .end
+
+$line-height: 1.6em;
+
+.public-key {
+  font-family: $font-mono;
+}
+
+.copy-public-key__input,
+.copy-public-key__text {
+  color: $text-color-deemphasise;
+  font-family: $font-mono;
+  white-space: nowrap;
+}
+
+.copy-public-key__input {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  display: block;
+  padding: 0;
+  padding-right: 3px;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+}
