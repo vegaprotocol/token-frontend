@@ -9,6 +9,7 @@ import {
 } from "../../contexts/app-state/app-state-context";
 import {
   WalletCard,
+  WalletCardActions,
   WalletCardContent,
   WalletCardHeader,
   WalletCardRow,
@@ -299,7 +300,7 @@ const VegaWalletConnected = ({
             ))}
         </ul>
       )}
-      <div className="vega-wallet__actions">
+      <WalletCardActions>
         {vegaKeys.length > 1 ? (
           <button
             className="button-link button-link--dark"
@@ -316,7 +317,7 @@ const VegaWalletConnected = ({
         >
           {disconnecting ? t("awaitingDisconnect") : t("disconnect")}
         </button>
-      </div>
+      </WalletCardActions>
     </>
   ) : (
     <WalletCardContent>{t("noKeys")}</WalletCardContent>

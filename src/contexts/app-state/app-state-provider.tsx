@@ -26,6 +26,7 @@ const initialAppState: AppState = {
   decimals: 0,
   totalSupply: new BigNumber(0),
   ethAddress: "",
+  ethWalletConnected: false,
   ethWalletConnecting: false,
   error: null,
   balanceFormatted: new BigNumber(0),

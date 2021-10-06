@@ -88,3 +88,11 @@ export const WalletCardRow = ({
     </div>
   );
 };
+
+export const WalletCardActions = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  return <div className="wallet-card__actions">{children}</div>;
+};

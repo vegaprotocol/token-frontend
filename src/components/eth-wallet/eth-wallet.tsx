@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/react";
 import { useTranslation } from "react-i18next";
 import {
   AppStateActionType,
@@ -6,6 +7,7 @@ import {
 import { truncateMiddle } from "../../lib/truncate-middle";
 import {
   WalletCard,
+  WalletCardActions,
   WalletCardContent,
   WalletCardHeader,
   WalletCardRow,
@@ -16,8 +18,26 @@ import React from "react";
 
 export const EthWallet = () => {
   const { t } = useTranslation();
-  const { appDispatch } = useAppState();
+  const { appState, appDispatch, provider } = useAppState();
   const { ethAddress } = useEthUser();
+  const [disconnecting, setDisconnecting] = React.useState(false);
+
+  function handleDisconnect() {
+    setDisconnecting(true);
+    provider
+      .request({
+        method: "wallet_requestPermissions",
+        params: [{ eth_accounts: {} }],
+      })
+      .then((res: any) => {
+        console.log(res);
+        setDisconnecting(false);
+      })
+      .catch((err: Error) => {
+        Sentry.captureException(err);
+        setDisconnecting(false);
+      });
+  }
 
   return (
     <WalletCard>
@@ -48,6 +68,17 @@ export const EthWallet = () => {
           >
             {t("Connect to an Ethereum wallet")}
           </button>
+        )}
+        {appState.ethAddress && (
+          <WalletCardActions>
+            <button
+              className="button-link button-link--dark"
+              onClick={handleDisconnect}
+              type="button"
+            >
+              {disconnecting ? t("awaitingDisconnect") : t("disconnect")}
+            </button>
+          </WalletCardActions>
         )}
       </WalletCardContent>
     </WalletCard>
