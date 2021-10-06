@@ -1,4 +1,3 @@
-import * as Sentry from "@sentry/react";
 import { useTranslation } from "react-i18next";
 import {
   AppStateActionType,
@@ -18,32 +17,15 @@ import React from "react";
 
 export const EthWallet = () => {
   const { t } = useTranslation();
-  const { appState, appDispatch, provider } = useAppState();
-  const { ethAddress } = useEthUser();
-  const [disconnecting, setDisconnecting] = React.useState(false);
-
-  function handleDisconnect() {
-    setDisconnecting(true);
-    provider
-      .request({
-        method: "wallet_requestPermissions",
-        params: [{ eth_accounts: {} }],
-      })
-      .then((res: any) => {
-        console.log(res);
-        setDisconnecting(false);
-      })
-      .catch((err: Error) => {
-        Sentry.captureException(err);
-        setDisconnecting(false);
-      });
-  }
+  const { appDispatch } = useAppState();
+  const { ethAddress, ethWalletConnected, disconnect } = useEthUser();
+  const [disconnecting] = React.useState(false);
 
   return (
     <WalletCard>
       <WalletCardHeader>
         <span>{t("ethereumKey")}</span>
-        {ethAddress && (
+        {ethWalletConnected && (
           <>
             <span className="vega-wallet__curr-key">
               {truncateMiddle(ethAddress)}
@@ -52,7 +34,7 @@ export const EthWallet = () => {
         )}
       </WalletCardHeader>
       <WalletCardContent>
-        {ethAddress ? (
+        {ethWalletConnected ? (
           <ConnectedKey />
         ) : (
           <button
@@ -69,11 +51,11 @@ export const EthWallet = () => {
             {t("Connect to an Ethereum wallet")}
           </button>
         )}
-        {appState.ethAddress && (
+        {ethWalletConnected && (
           <WalletCardActions>
             <button
               className="button-link button-link--dark"
-              onClick={handleDisconnect}
+              onClick={disconnect}
               type="button"
             >
               {disconnecting ? t("awaitingDisconnect") : t("disconnect")}
