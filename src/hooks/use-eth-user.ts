@@ -15,7 +15,6 @@ export function useEthUser() {
   const { token, staking, vesting } = useContracts();
   const connectTimer = React.useRef<any>();
   const getUserTrancheBalances = useGetUserTrancheBalances(appState.ethAddress);
-  const [triedToConnect, setTriedToConnect] = React.useState<boolean>(false);
 
   const connect = React.useCallback(async () => {
     let connected = false;
@@ -36,6 +35,13 @@ export function useEthUser() {
         method: "eth_requestAccounts",
       });
 
+      if (!localStorage.getItem("connected")) {
+        await provider.request({
+          method: "wallet_requestPermissions",
+          params: [{ eth_accounts: {} }],
+        });
+      }
+
       connected = true;
 
       appDispatch({
@@ -43,6 +49,7 @@ export function useEthUser() {
         address: accounts[0],
       });
       Sentry.setUser({ id: accounts[0] });
+      localStorage.setItem("connected", "true");
     } catch (e) {
       if (isUnexpectedError(e as Error)) {
         Sentry.captureException(e);
@@ -53,32 +60,24 @@ export function useEthUser() {
 
   const disconnect = React.useCallback(() => {
     appDispatch({ type: AppStateActionType.DISCONNECT });
+    localStorage.removeItem("connected");
   }, [appDispatch]);
 
   // Auto connect if possible
   React.useEffect(() => {
     if (
-      !triedToConnect &&
-      // We don't have an address we are not connected
+      localStorage.getItem("connected") &&
       !appState.ethAddress &&
-      // If we have an error we don't want to try reconnecting
       !appState.error &&
-      // If we are connecting we don't want to try to connect
       !appState.ethWalletConnecting
     ) {
-      try {
-        setTriedToConnect(true);
-        connect();
-      } catch (e) {
-        Sentry.captureException(e);
-      }
+      connect();
     }
   }, [
     appState.ethAddress,
     appState.ethWalletConnecting,
     appState.error,
     connect,
-    triedToConnect,
   ]);
 
   // update balances on connect to Ethereum
