@@ -8,9 +8,9 @@ import {
   AppStateActionType,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
-import { useVegaStaking } from "../../hooks/use-vega-staking";
 import { useVegaWallet } from "../../hooks/use-vega-wallet";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
+import { useContracts } from "../../contexts/contracts/contracts-context";
 
 interface FormFields {
   url: string;
@@ -29,7 +29,7 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
     appState: { ethAddress: address },
   } = useAppState();
   const vegaWallet = useVegaWallet();
-  const staking = useVegaStaking();
+  const { staking } = useContracts();
   const vesting = useVegaVesting();
 
   const [loading, setLoading] = React.useState(false);

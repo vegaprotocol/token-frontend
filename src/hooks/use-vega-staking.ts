@@ -6,7 +6,7 @@ import StakingAbi from "../lib/VEGA_WEB3/vega-staking";
 import { ADDRESSES } from "../config";
 import { useWeb3 } from "../contexts/web3-context/web3-context";
 
-export const useVegaStaking = () => {
+export const useVegaStakingOLD = () => {
   const {
     appState: { decimals },
   } = useAppState();

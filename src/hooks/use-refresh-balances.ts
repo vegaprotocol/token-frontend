@@ -7,15 +7,13 @@ import {
 } from "../contexts/app-state/app-state-context";
 import { Flags } from "../config";
 import { BigNumber } from "../lib/bignumber";
-import { useVegaStaking } from "./use-vega-staking";
-import { useVegaToken } from "./use-vega-token";
+import { useContracts } from "../contexts/contracts/contracts-context";
 import { useVegaVesting } from "./use-vega-vesting";
 
 export const useRefreshBalances = (address: string) => {
   const { appState, appDispatch } = useAppState();
   const vesting = useVegaVesting();
-  const staking = useVegaStaking();
-  const token = useVegaToken();
+  const { token, staking } = useContracts();
 
   return React.useCallback(async () => {
     try {
