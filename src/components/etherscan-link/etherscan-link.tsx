@@ -3,6 +3,7 @@ import "./etherscan-link.scss"
 import { Popover, PopoverInteractionKind } from "@blueprintjs/core";
 
 import { EthereumChainId } from "../../config";
+import { useCopyToClipboard } from "../../hooks/use-copy-to-clipboard";
 import { useTranslation } from "react-i18next";
 
 const etherscanUrls: Record<EthereumChainId, string> = {
@@ -43,6 +44,7 @@ export const EtherscanLink = ({
   let hash: string;
   let txLink: string | null;
   const { t } = useTranslation();
+  const { copy, copied } = useCopyToClipboard()
   const linkText = text ? text : t("View on Etherscan (opens in a new tab)");
   const createLink = etherscanLinkCreator(chainId);
 
@@ -63,9 +65,13 @@ export const EtherscanLink = ({
     return (
       <button
         className="etherscan-link__copy-to-clipboard"
-        onClick={() => {navigator.clipboard.writeText(linkText)}}
+        onClick={() => {copy(linkText)}}
       >
-        {t("copyToClipboard")}
+        {
+          copied
+          ? t("copied!")
+          : t("copyToClipboard")
+        }
       </button>
     )
   }
