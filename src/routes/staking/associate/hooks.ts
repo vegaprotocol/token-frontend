@@ -1,7 +1,6 @@
 import React from "react";
 import * as Sentry from "@sentry/react";
 import { useTransaction } from "../../../hooks/use-transaction";
-import { useVegaVesting } from "../../../hooks/use-vega-vesting";
 import { TxState } from "../../../hooks/transaction-reducer";
 import { StakingMethod } from "../../../components/staking-method-radio";
 import { useRefreshBalances } from "../../../hooks/use-refresh-balances";
@@ -21,8 +20,7 @@ export const useAddStake = (
   stakingMethod: StakingMethod | "",
   confirmations: number
 ) => {
-  const vesting = useVegaVesting();
-  const { staking } = useContracts();
+  const { staking, vesting } = useContracts();
   const contractAdd = useTransaction(
     () => vesting.addStake(address!, amount, vegaKey),
     () => vesting.checkAddStake(address!, amount, vegaKey),

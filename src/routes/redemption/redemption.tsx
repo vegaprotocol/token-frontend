@@ -1,4 +1,4 @@
-import "./redemption.scss"
+import "./redemption.scss";
 
 import {
   RedemptionActionType,
@@ -20,12 +20,12 @@ import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useEthUser } from "../../hooks/use-eth-user";
 import { useTranches } from "../../hooks/use-tranches";
 import { useTranslation } from "react-i18next";
-import { useVegaVesting } from "../../hooks/use-vega-vesting";
+import { useContracts } from "../../contexts/contracts/contracts-context";
 
 const RedemptionRouter = () => {
   const { t } = useTranslation();
   const match = useRouteMatch();
-  const vesting = useVegaVesting();
+  const { vesting } = useContracts();
   const [state, dispatch] = React.useReducer(
     redemptionReducer,
     initialRedemptionState
@@ -65,17 +65,15 @@ const RedemptionRouter = () => {
   if (!trancheBalances.length) {
     return (
       <>
-      <Callout>
-        <p>{t("You have no VEGA tokens currently vesting.")}</p>
-      </Callout>
+        <Callout>
+          <p>{t("You have no VEGA tokens currently vesting.")}</p>
+        </Callout>
 
-      <div className="redemption__eth-connect">
-        <EthConnectPrompt />
-      </div>
-      
-      <Link to={Routes.TRANCHES} >
-        {t("viewAllTranches")}
-      </Link>
+        <div className="redemption__eth-connect">
+          <EthConnectPrompt />
+        </div>
+
+        <Link to={Routes.TRANCHES}>{t("viewAllTranches")}</Link>
       </>
     );
   }

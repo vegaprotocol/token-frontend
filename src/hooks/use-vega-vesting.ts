@@ -6,7 +6,7 @@ import { useWeb3 } from "../contexts/web3-context/web3-context";
 import VegaVesting from "../lib/VEGA_WEB3/vega-vesting";
 import { IVegaVesting } from "../lib/web3-utils";
 
-export function useVegaVesting() {
+export function useVegaVestingOLD() {
   const {
     appState: { decimals },
   } = useAppState();

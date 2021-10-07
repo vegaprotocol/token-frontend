@@ -1,7 +1,6 @@
 import React from "react";
 import { StakingMethod } from "../../../components/staking-method-radio";
 import { useTransaction } from "../../../hooks/use-transaction";
-import { useVegaVesting } from "../../../hooks/use-vega-vesting";
 import { TxState } from "../../../hooks/transaction-reducer";
 import { useRefreshBalances } from "../../../hooks/use-refresh-balances";
 import { useContracts } from "../../../contexts/contracts/contracts-context";
@@ -12,8 +11,7 @@ export const useRemoveStake = (
   vegaKey: string,
   stakingMethod: StakingMethod | ""
 ) => {
-  const vesting = useVegaVesting();
-  const { staking } = useContracts();
+  const { staking, vesting } = useContracts();
   const contractRemove = useTransaction(
     () => vesting.removeStake(address!, amount, vegaKey),
     () => vesting.checkRemoveStake(address!, amount, vegaKey)

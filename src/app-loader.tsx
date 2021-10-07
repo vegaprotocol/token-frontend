@@ -8,13 +8,11 @@ import {
 } from "./contexts/app-state/app-state-context";
 import { Errors as VegaWalletServiceErrors } from "./lib/vega-wallet/vega-wallet-service";
 import { useContracts } from "./contexts/contracts/contracts-context";
-import { useVegaVesting } from "./hooks/use-vega-vesting";
 import { useVegaWallet } from "./hooks/use-vega-wallet";
 
 export const AppLoader = ({ children }: { children: React.ReactElement }) => {
   const { appState, appDispatch } = useAppState();
-  const { token, staking } = useContracts();
-  const vesting = useVegaVesting();
+  const { token, staking, vesting } = useContracts();
   const vegaWalletService = useVegaWallet();
   const [balancesLoaded, setBalancesLoaded] = React.useState(false);
   const [vegaKeysLoaded, setVegaKeysLoaded] = React.useState(false);

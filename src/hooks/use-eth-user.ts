@@ -4,7 +4,6 @@ import {
   useAppState,
 } from "../contexts/app-state/app-state-context";
 import { useContracts } from "../contexts/contracts/contracts-context";
-import { useVegaVesting } from "./use-vega-vesting";
 import { BigNumber } from "../lib/bignumber";
 import { useGetUserTrancheBalances } from "./use-get-user-tranche-balances";
 import * as Sentry from "@sentry/react";
@@ -13,8 +12,7 @@ import { isUnexpectedError } from "../lib/web3-utils";
 
 export function useEthUser() {
   const { appState, appDispatch, provider } = useAppState();
-  const { token, staking } = useContracts();
-  const vesting = useVegaVesting();
+  const { token, staking, vesting } = useContracts();
   const connectTimer = React.useRef<any>();
   const getUserTrancheBalances = useGetUserTrancheBalances(appState.ethAddress);
   const [triedToConnect, setTriedToConnect] = React.useState<boolean>(false);
