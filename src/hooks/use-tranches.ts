@@ -1,10 +1,10 @@
 import React from "react";
 import * as Sentry from "@sentry/react";
 import { Tranche } from "../lib/vega-web3/vega-web3-types";
-import { useVegaVesting } from "./use-vega-vesting";
+import { useContracts } from "../contexts/contracts/contracts-context";
 
 export function useTranches() {
-  const vesting = useVegaVesting();
+  const { vesting } = useContracts();
   const [tranches, setTranches] = React.useState<Tranche[]>([]);
 
   React.useEffect(() => {

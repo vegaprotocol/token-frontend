@@ -12,11 +12,11 @@ import {
 import { useGetUserTrancheBalances } from "../../../hooks/use-get-user-tranche-balances";
 import { useRefreshBalances } from "../../../hooks/use-refresh-balances";
 import { useTransaction } from "../../../hooks/use-transaction";
-import { useVegaVesting } from "../../../hooks/use-vega-vesting";
 import { BigNumber } from "../../../lib/bignumber";
 import { Routes } from "../../router-config";
 import { RedemptionState } from "../redemption-reducer";
 import { TrancheTable } from "../tranche-table";
+import { useContracts } from "../../../contexts/contracts/contracts-context";
 
 export const RedeemFromTranche = ({
   state,
@@ -25,7 +25,7 @@ export const RedeemFromTranche = ({
   state: RedemptionState;
   address: string;
 }) => {
-  const vesting = useVegaVesting();
+  const { vesting } = useContracts();
   const { t } = useTranslation();
   const {
     appState: { lien, totalVestedBalance, trancheBalances, totalLockedBalance },
