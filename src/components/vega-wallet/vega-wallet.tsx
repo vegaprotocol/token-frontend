@@ -150,6 +150,8 @@ const VegaWalletConnected = ({
 
   React.useEffect(() => {
     let interval: any;
+    let mounted = true;
+
     if (currVegaKey?.pub) {
       // start polling for delegation
       interval = setInterval(() => {
@@ -160,6 +162,7 @@ const VegaWalletConnected = ({
             fetchPolicy: "network-only",
           })
           .then((res) => {
+            if (!mounted) return;
             const filter =
               res.data.party?.delegations?.filter((d) => {
                 return d.epoch.toString() === res.data.epoch.id;
@@ -214,8 +217,12 @@ const VegaWalletConnected = ({
       }, 1000);
     }
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      mounted = false;
+    };
   }, [client, currVegaKey?.pub]);
+
   const handleDisconnect = React.useCallback(
     async function () {
       try {
