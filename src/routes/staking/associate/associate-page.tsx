@@ -14,6 +14,7 @@ import {
   StakingMethodRadio,
 } from "../../../components/staking-method-radio";
 import { useAddStake, usePollForStakeLinking } from "./hooks";
+import { Callout } from "../../../components/callout";
 
 export const AssociatePage = ({
   address,
@@ -74,7 +75,11 @@ export const AssociatePage = ({
           "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes."
         )}
       </p>
-      {zeroVesting && zeroVega ? null : (
+      {zeroVesting && zeroVega ? (
+        <Callout intent="error">
+          <p>{t("associateNoVega")}</p>
+        </Callout>
+      ) : (
         <>
           <h2 data-testid="associate-subheader">
             {t("Where would you like to stake from?")}
