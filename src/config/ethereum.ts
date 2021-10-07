@@ -1,5 +1,7 @@
+import { Networks } from "./vega";
+
 const appChainId = process.env.REACT_APP_CHAIN as EthereumChainId;
-const appEnv = process.env.REACT_APP_ENV;
+const appEnv = process.env.REACT_APP_ENV as Networks;
 
 export type EthereumChainId = "0x1" | "0x3" | "0x4" | "0x5" | "0x2a";
 export type EthereumChainName =
@@ -25,26 +27,51 @@ export const EthereumChainIds: Record<EthereumChainName, EthereumChainId> = {
   Kovan: "0x2a",
 };
 
-const Addresses = {
-  [EthereumChainIds.Mainnet]: {
+interface VegaContracts {
+  vestingAddress: string;
+  vegaTokenAddress: string;
+  claimAddress: string;
+  lockedAddress: string;
+  stakingBridge: string;
+}
+
+const EnvironmentConfig: { [key in Networks]: VegaContracts } = {
+  [Networks.DEVNET]: {
+    vegaTokenAddress: "0xc93137f9F4B820Ca85FfA3C7e84cCa6Ebc7bB517",
+    claimAddress: "0x8Cef746ab7C83B61F6461cC92882bD61AB65a994",
+    lockedAddress: "0x0",
+    vestingAddress: "0xd751FF6264234cAfAE88e4BF6003878fAB9630a7",
+    stakingBridge: "0x3cCe40e1e47cedf76c03db3E48507f421b575523",
+  },
+  [Networks.STAGNET]: {
+    vestingAddress: "0xd512DAb65BFF87B4725F26320Ce667C4Bf3d54a9",
+    vegaTokenAddress: "0x45984C4E9F3D55325fc6Fd2E260881EE3Ce9bbCD",
+    claimAddress: "0x0", // TODO not deployed to this env
+    lockedAddress: "0x0", // TODO not deployed to this env
+    stakingBridge: "0x58Bc16298ff65Eca070b105ce70A5C628DE31900",
+  },
+  [Networks.TESTNET]: {
+    vestingAddress: "0x0", // TODO not deployed to this env
+    vegaTokenAddress: "0x0", // TODO WRONG!
+    claimAddress: "0x0", // TODO not deployed to this env
+    lockedAddress: "0x0", // TODO not deployed to this env
+    stakingBridge: "0x0", // TODO not deployed to this env
+  },
+  [Networks.MAINNET]: {
     vestingAddress: "0x23d1bFE8fA50a167816fBD79D7932577c06011f4",
     vegaTokenAddress: "0xcB84d72e61e383767C4DFEb2d8ff7f4FB89abc6e",
     claimAddress: "0xd0db7b4c528c3a14648ced7064dd528595d5b273",
     lockedAddress: "0x78344c7305d73a7a0ac3c94cd9960f4449a1814e",
     stakingBridge: "0x195064D33f09e0c42cF98E665D9506e0dC17de68",
-  } as { [key: string]: string },
-  [EthereumChainIds.Ropsten]: {
-    vestingAddress: "0x96a6f229BbbcA08095f0bC30088fcDfaeEDb07Ef",
-    vegaTokenAddress:
-      appEnv === "staging"
-        ? "0x45984C4E9F3D55325fc6Fd2E260881EE3Ce9bbCD"
-        : "0x5b634a05754283b6d9d7938dcca9d646425593eb",
-    claimAddress: "0x5E3B1Fe757a3C41a9Ae0B903976CaDd415eb2e7b",
-    lockedAddress: "0x0356782bfb61cf0b0463746bc6fe8766aacae8f0",
-    stakingBridge: "0x7bd4a4789394fe5a93fc67ef64c47beb013e5450",
-  } as { [key: string]: string },
+  },
 };
 
+const Addresses = {
+  [EthereumChainIds.Mainnet]: EnvironmentConfig.MAINNET,
+  [EthereumChainIds.Ropsten]: EnvironmentConfig[appEnv],
+};
+
+// No concept of dev/staging/test for these right now.
 const RewardsAddresses = {
   [EthereumChainIds.Mainnet]: {
     "SushiSwap VEGA/ETH": "0x285de24077440c53b1661287D170e3ae22de0a44",

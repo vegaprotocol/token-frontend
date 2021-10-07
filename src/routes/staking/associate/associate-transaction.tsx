@@ -1,11 +1,19 @@
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { Callout } from "../../../components/callout";
+import { EtherscanLink } from "../../../components/etherscan-link";
+import { Loader } from "../../../components/loader";
 import { TransactionCallout } from "../../../components/transaction-callout";
+import { EthereumChainId } from "../../../config";
 import {
   TransactionAction,
   TransactionActionType,
   TransactionState,
+  TxState,
 } from "../../../hooks/transaction-reducer";
+import { Routes } from "../../router-config";
+import { PartyStakeLinkings_party_stake_linkings } from "./__generated__/PartyStakeLinkings";
 
 export const AssociateTransaction = ({
   amount,
@@ -13,14 +21,70 @@ export const AssociateTransaction = ({
   state,
   dispatch,
   requiredConfirmations,
+  linking,
+  chainId,
 }: {
   amount: string;
   vegaKey: string;
   state: TransactionState;
   dispatch: React.Dispatch<TransactionAction>;
   requiredConfirmations: number;
+  linking: PartyStakeLinkings_party_stake_linkings | null;
+  chainId: EthereumChainId;
 }) => {
   const { t } = useTranslation();
+
+  const remainingConfirmations = React.useMemo(() => {
+    return Math.max(
+      0,
+      requiredConfirmations - (state.txData.confirmations || 0)
+    );
+  }, [state.txData.confirmations, requiredConfirmations]);
+
+  const title = React.useMemo(() => {
+    const defaultTitle = t("Associating Tokens");
+
+    if (state.txData.confirmations || 0 >= requiredConfirmations) {
+      return `${defaultTitle}. ${t("associationPendingWaitingForVega")}`;
+    } else {
+      return `${defaultTitle}. ${t("blockCountdown", {
+        amount: remainingConfirmations,
+      })}`;
+    }
+  }, [
+    remainingConfirmations,
+    requiredConfirmations,
+    state.txData.confirmations,
+    t,
+  ]);
+
+  let derivedTxState: TxState = state.txState;
+
+  if (state.txState === TxState.Complete && !linking) {
+    derivedTxState = TxState.Pending;
+  }
+
+  if (derivedTxState === TxState.Pending) {
+    return (
+      <Callout icon={<Loader />} title={title}>
+        <p data-testid="transaction-pending-body">
+          {t("Associating {{amount}} VEGA tokens with Vega key {{vegaKey}}", {
+            amount,
+            vegaKey,
+          })}
+        </p>
+        <p>
+          <EtherscanLink tx={state.txData.hash!} chainId={chainId} />
+        </p>
+        <p data-testid="transaction-pending-footer">
+          {t("pendingAssociationText", {
+            confirmations: requiredConfirmations,
+          })}
+        </p>
+      </Callout>
+    );
+  }
+
   return (
     <TransactionCallout
       completeHeading={t("Done")}
@@ -29,7 +93,7 @@ export const AssociateTransaction = ({
         { vegaKey }
       )}
       completeFooter={
-        <Link to="/staking">
+        <Link to={Routes.STAKING}>
           <button className="fill">
             {t("Nominate Stake to Validator Node")}
           </button>
@@ -43,7 +107,10 @@ export const AssociateTransaction = ({
       pendingFooter={t("pendingAssociationText", {
         confirmations: requiredConfirmations,
       })}
-      state={state}
+      state={{
+        ...state,
+        txState: derivedTxState,
+      }}
       reset={() => dispatch({ type: TransactionActionType.TX_RESET })}
     />
   );

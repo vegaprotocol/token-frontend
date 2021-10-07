@@ -1,21 +1,26 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
+import "./redemption.scss"
+
+import {
+  RedemptionActionType,
+  initialRedemptionState,
+  redemptionReducer,
+} from "./redemption-reducer";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
+
 import { Callout } from "../../components/callout";
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
+import { Link } from "react-router-dom";
+import React from "react";
+import { RedeemFromTranche } from "./tranche";
+import { RedemptionInformation } from "./home/redemption-information";
+import { Routes } from "../router-config";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useEthUser } from "../../hooks/use-eth-user";
 import { useTranches } from "../../hooks/use-tranches";
+import { useTranslation } from "react-i18next";
 import { useVegaVesting } from "../../hooks/use-vega-vesting";
-import { RedemptionInformation } from "./home/redemption-information";
-import {
-  initialRedemptionState,
-  RedemptionActionType,
-  redemptionReducer,
-} from "./redemption-reducer";
-import { RedeemFromTranche } from "./tranche";
 
 const RedemptionRouter = () => {
   const { t } = useTranslation();
@@ -59,9 +64,19 @@ const RedemptionRouter = () => {
 
   if (!trancheBalances.length) {
     return (
+      <>
       <Callout>
         <p>{t("You have no VEGA tokens currently vesting.")}</p>
       </Callout>
+
+      <div className="redemption__eth-connect">
+        <EthConnectPrompt />
+      </div>
+      
+      <Link to={Routes.TRANCHES} >
+        {t("viewAllTranches")}
+      </Link>
+      </>
     );
   }
 

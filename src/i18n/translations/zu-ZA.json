@@ -243,12 +243,14 @@
   "Connected Vega key": "crwdns4977:0crwdne4977:0",
   "What Vega wallet/key is going to control your stake?": "crwdns4979:0crwdne4979:0",
   "Where would you like to stake from?": "crwdns4981:0crwdne4981:0",
+  "associateNoVega": "crwdns6159:0crwdne6159:0",
   "You can associate tokens while they are held in the vesting contract, when they unlock you will need to dissociate them before they can be redeemed.": "crwdns4983:0crwdne4983:0",
   "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes.": "crwdns4985:0crwdne4985:0",
   "Associate VEGA Tokens with key": "crwdns4987:0crwdne4987:0",
   "Wallet": "crwdns4989:0crwdne4989:0",
   "Nominate Stake to Validator Node": "crwdns4991:0crwdne4991:0",
-  "Associating Tokens": "crwdns4993:0crwdne4993:0",
+  "Associating Tokens": "crwdns6155:0crwdne6155:0",
+  "associationPendingWaitingForVega": "crwdns6161:0crwdne6161:0",
   "Done": "crwdns4995:0crwdne4995:0",
   "Associating {{amount}} VEGA tokens with Vega key {{vegaKey}}": "crwdns4997:0{{amount}}crwdnd4997:0{{vegaKey}}crwdne4997:0",
   "pendingAssociationText": "crwdns5329:0{{confirmations}}crwdne5329:0",
@@ -392,5 +394,6 @@
   "redeemComingSoon": "crwdns5325:0crwdne5325:0",
   "associatedVega": "crwdns5327:0$VEGAcrwdne5327:0",
   "blockCountdown": "crwdns6137:0{{amount}}crwdne6137:0",
-  "stakingNodeNotFound": "crwdns6151:0{{node}}crwdne6151:0"
+  "stakingNodeNotFound": "crwdns6151:0{{node}}crwdne6151:0",
+  "viewAllTranches": "crwdns6157:0crwdne6157:0"
 }

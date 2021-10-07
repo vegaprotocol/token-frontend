@@ -243,12 +243,14 @@
   "Connected Vega key": "Connected Vega key",
   "What Vega wallet/key is going to control your stake?": "What Vega wallet/key is going to control your stake?",
   "Where would you like to stake from?": "Where would you like to stake from?",
+  "associateNoVega": "Your connected Ethereum address does not have any VEGA",
   "You can associate tokens while they are held in the vesting contract, when they unlock you will need to dissociate them before they can be redeemed.": "You can associate tokens while they are held in the vesting contract, when they unlock you will need to dissociate them before they can be redeemed.",
   "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes.": "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes.",
   "Associate VEGA Tokens with key": "Associate VEGA Tokens with key",
   "Wallet": "Wallet",
   "Nominate Stake to Validator Node": "Nominate Stake to Validator Node",
-  "Associating Tokens": "Associating Tokens",
+  "Associating Tokens": "Associating with Vega key",
+  "associationPendingWaitingForVega": "Waiting for Vega to credit key...",
   "Done": "Done",
   "Associating {{amount}} VEGA tokens with Vega key {{vegaKey}}": "Associating {{amount}} VEGA tokens with Vega key {{vegaKey}}",
   "pendingAssociationText": "The Vega network requires {{confirmations}} Confirmations (approx 5 minutes) on Ethereum before crediting your Vega key with your tokens. This page will update once complete or you can come back and check your Vega wallet to see if it is ready to use.",
@@ -393,5 +395,6 @@
   "associatedVega": "Associated $VEGA",
   "blockCountdown": "Waiting for {{amount}} more confirmations...",
   "stakingNodeNotFound": "Could not find a node with id {{node}}",
-  "copyToClipboard": "Copy to clipboard"
+  "copyToClipboard": "Copy to clipboard",
+  "viewAllTranches": "View all tranches"
 }
