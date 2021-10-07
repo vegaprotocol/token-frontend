@@ -1,5 +1,6 @@
 import { Overlay } from "@blueprintjs/core";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
+import { Links } from "../../config";
 import {
   AppStateActionType,
   useAppState,
@@ -24,6 +25,21 @@ export const VegaWalletModal = () => {
       <div className="modal">
         <Modal>
           <h2>{t("connectVegaWallet")}</h2>
+          <p>
+            <Trans
+              i18nKey="vegaWalletRunning"
+              components={{
+                walletLink: (
+                  // eslint-disable-next-line jsx-a11y/anchor-has-content
+                  <a
+                    href={Links.WALLET_RELEASES}
+                    target="_blank"
+                    rel="nofollow noreferrer"
+                  />
+                ),
+              }}
+            />
+          </p>
           <VegaWalletForm
             onConnect={() =>
               appDispatch({
