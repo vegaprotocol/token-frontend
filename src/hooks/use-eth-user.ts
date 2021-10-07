@@ -13,6 +13,8 @@ import { ADDRESSES } from "../config";
 import { isUnexpectedError } from "../lib/web3-utils";
 import { useLocalStorage } from "./use-local-storage";
 
+const CONNECTED_STORAGE_KEY = "ethereum_wallet_connected";
+
 export function useEthUser() {
   const { appState, appDispatch, provider } = useAppState();
   const token = useVegaToken();
@@ -20,8 +22,10 @@ export function useEthUser() {
   const vesting = useVegaVesting();
   const connectTimer = React.useRef<any>();
   const getUserTrancheBalances = useGetUserTrancheBalances(appState.ethAddress);
-  const [hasConnected, setHasConnected] = useLocalStorage("connected", false);
-  console.log(hasConnected);
+  const [hasConnected, setHasConnected] = useLocalStorage(
+    CONNECTED_STORAGE_KEY,
+    false
+  );
 
   const connect = React.useCallback(async () => {
     let connected = false;
