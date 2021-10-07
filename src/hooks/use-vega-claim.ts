@@ -6,7 +6,7 @@ import { ADDRESSES } from "../config";
 import { useAppState } from "../contexts/app-state/app-state-context";
 import { useWeb3 } from "../contexts/web3-context/web3-context";
 
-export const useVegaClaim = () => {
+export const useVegaClaimOLD = () => {
   const { web3 } = useWeb3();
   const {
     appState: { decimals },
