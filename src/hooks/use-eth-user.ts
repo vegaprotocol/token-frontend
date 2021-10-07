@@ -3,8 +3,7 @@ import {
   AppStateActionType,
   useAppState,
 } from "../contexts/app-state/app-state-context";
-import { useVegaStaking } from "./use-vega-staking";
-import { useVegaToken } from "./use-vega-token";
+import { useContracts } from "../contexts/contracts/contracts-context";
 import { useVegaVesting } from "./use-vega-vesting";
 import { BigNumber } from "../lib/bignumber";
 import { useGetUserTrancheBalances } from "./use-get-user-tranche-balances";
@@ -14,8 +13,7 @@ import { isUnexpectedError } from "../lib/web3-utils";
 
 export function useEthUser() {
   const { appState, appDispatch, provider } = useAppState();
-  const token = useVegaToken();
-  const staking = useVegaStaking();
+  const { token, staking } = useContracts();
   const vesting = useVegaVesting();
   const connectTimer = React.useRef<any>();
   const getUserTrancheBalances = useGetUserTrancheBalances(appState.ethAddress);

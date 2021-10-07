@@ -9,7 +9,7 @@ import { BigNumber } from "../../../lib/bignumber";
 import { AssociateInfo } from "./associate-info";
 import React from "react";
 import { useTransaction } from "../../../hooks/use-transaction";
-import { useVegaToken } from "../../../hooks/use-vega-token";
+import { useContracts } from "../../../contexts/contracts/contracts-context";
 import { TxState } from "../../../hooks/transaction-reducer";
 import { TokenInput } from "../../../components/token-input";
 import { ADDRESSES } from "../../../config";
@@ -33,7 +33,7 @@ export const WalletAssociate = ({
     appState: { walletBalance, allowance, walletAssociatedBalance },
   } = useAppState();
 
-  const token = useVegaToken();
+  const { token } = useContracts();
 
   const {
     state: approveState,

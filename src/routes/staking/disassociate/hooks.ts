@@ -2,9 +2,9 @@ import React from "react";
 import { StakingMethod } from "../../../components/staking-method-radio";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { useVegaVesting } from "../../../hooks/use-vega-vesting";
-import { useVegaStaking } from "../../../hooks/use-vega-staking";
 import { TxState } from "../../../hooks/transaction-reducer";
 import { useRefreshBalances } from "../../../hooks/use-refresh-balances";
+import { useContracts } from "../../../contexts/contracts/contracts-context";
 
 export const useRemoveStake = (
   address: string,
@@ -13,7 +13,7 @@ export const useRemoveStake = (
   stakingMethod: StakingMethod | ""
 ) => {
   const vesting = useVegaVesting();
-  const staking = useVegaStaking();
+  const { staking } = useContracts();
   const contractRemove = useTransaction(
     () => vesting.removeStake(address!, amount, vegaKey),
     () => vesting.checkRemoveStake(address!, amount, vegaKey)

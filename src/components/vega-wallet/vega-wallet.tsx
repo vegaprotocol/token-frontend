@@ -16,7 +16,6 @@ import {
 import { useTranslation } from "react-i18next";
 import { useVegaWallet } from "../../hooks/use-vega-wallet";
 import { VegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
-import { useVegaStaking } from "../../hooks/use-vega-staking";
 import { gql, useApolloClient } from "@apollo/client";
 import {
   Delegations,
@@ -28,6 +27,7 @@ import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { BigNumber } from "../../lib/bignumber";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { keyBy, uniq } from "lodash";
+import { useContracts } from "../../contexts/contracts/contracts-context";
 
 const DELEGATIONS_QUERY = gql`
   query Delegations($partyId: ID!) {
@@ -130,7 +130,7 @@ const VegaWalletConnected = ({
   } = useAppState();
 
   const [disconnecting, setDisconnecting] = React.useState(false);
-  const staking = useVegaStaking();
+  const { staking } = useContracts();
   const vesting = useVegaVesting();
   const [expanded, setExpanded] = React.useState(false);
   const client = useApolloClient();

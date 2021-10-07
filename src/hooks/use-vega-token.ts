@@ -5,7 +5,7 @@ import { useWeb3 } from "../contexts/web3-context/web3-context";
 import VegaToken from "../lib/VEGA_WEB3/vega-token";
 import { IVegaToken } from "../lib/web3-utils";
 
-export function useVegaToken() {
+export function useVegaTokenOLD() {
   const { web3 } = useWeb3();
   return React.useMemo<IVegaToken>(() => {
     return new VegaToken(web3, ADDRESSES.vegaTokenAddress);
