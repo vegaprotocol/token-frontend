@@ -4,7 +4,6 @@ import { CountrySelector } from "../../../components/country-selector";
 import { FormGroup } from "../../../components/form-group";
 import { TxState } from "../../../hooks/transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
-import { useVegaClaim } from "../../../hooks/use-vega-claim";
 import { BulletHeader } from "../../../components/bullet-header";
 import {
   ClaimAction,
@@ -15,6 +14,7 @@ import {
 import { ClaimStep1 } from "../claim-step-1";
 import { ClaimStep2 } from "../claim-step-2";
 import { IClaimTokenParams } from "../../../lib/vega-web3/vega-web3-types";
+import { useContracts } from "../../../contexts/contracts/contracts-context";
 import { useClaim } from "../hooks";
 
 interface UntargetedClaimProps {
@@ -32,7 +32,7 @@ export const UntargetedClaim = ({
   state,
   dispatch,
 }: UntargetedClaimProps) => {
-  const claim = useVegaClaim();
+  const { claim } = useContracts();
   const {
     state: commitState,
     dispatch: commitDispatch,

@@ -14,6 +14,8 @@ import VegaToken from "../../lib/VEGA_WEB3/vega-token";
 import StakingAbi from "../../lib/VEGA_WEB3/vega-staking";
 // @ts-ignore
 import VegaVesting from "../../lib/VEGA_WEB3/vega-vesting";
+// @ts-ignore
+import VegaClaim from "../../lib/VEGA_WEB3/vega-claim";
 
 export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
   const { web3 } = useWeb3();
@@ -26,6 +28,7 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
       token: new VegaToken(web3, ADDRESSES.vegaTokenAddress),
       staking: new StakingAbi(web3, ADDRESSES.stakingBridge, decimals),
       vesting: new VegaVesting(web3, ADDRESSES.vestingAddress, decimals),
+      claim: new VegaClaim(web3, ADDRESSES.claimAddress, decimals),
     };
   }, [web3, decimals]);
 

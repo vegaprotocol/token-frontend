@@ -9,9 +9,9 @@ import {
   TransactionState,
   TxState,
 } from "../../../hooks/transaction-reducer";
-import { useVegaClaim } from "../../../hooks/use-vega-claim";
 import { Redirect } from "react-router";
 import { Routes } from "../../router-config";
+import { useContracts } from "../../../contexts/contracts/contracts-context";
 
 export interface ICountry {
   name: string;
@@ -37,7 +37,7 @@ export const ClaimForm = ({
   onSubmit: () => void;
 }) => {
   const [countryCheck, setCountryCheck] = React.useState(CountryCheck.Default);
-  const claim = useVegaClaim();
+  const { claim } = useContracts();
   const { t } = useTranslation();
 
   const handleOnClick = React.useCallback(async () => {
