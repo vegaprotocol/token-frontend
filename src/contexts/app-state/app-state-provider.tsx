@@ -8,14 +8,13 @@ import {
   VegaWalletStatus,
 } from "./app-state-context";
 
+import { useWeb3 } from "../web3-context/web3-context";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { BigNumber } from "../../lib/bignumber";
 import * as Sentry from "@sentry/react";
 import { Severity } from "@sentry/react";
 
 interface AppStateProviderProps {
-  provider: any;
-  chainId: EthereumChainId;
   children: React.ReactNode;
 }
 
@@ -203,11 +202,8 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
   }
 }
 
-export function AppStateProvider({
-  children,
-  provider,
-  chainId,
-}: AppStateProviderProps) {
+export function AppStateProvider({ children }: AppStateProviderProps) {
+  const { chainId, provider } = useWeb3();
   const [state, dispatch] = React.useReducer(appStateReducer, {
     ...initialAppState,
     chainId,
