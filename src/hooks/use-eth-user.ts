@@ -9,12 +9,15 @@ import { useGetUserTrancheBalances } from "./use-get-user-tranche-balances";
 import * as Sentry from "@sentry/react";
 import { ADDRESSES } from "../config";
 import { isUnexpectedError } from "../lib/web3-utils";
+import { useLocalStorage } from "./use-local-storage";
 
 export function useEthUser() {
   const { appState, appDispatch, provider } = useAppState();
   const { token, staking, vesting } = useContracts();
   const connectTimer = React.useRef<any>();
   const getUserTrancheBalances = useGetUserTrancheBalances(appState.ethAddress);
+  const [hasConnected, setHasConnected] = useLocalStorage("connected", false);
+  console.log(hasConnected);
 
   const connect = React.useCallback(async () => {
     let connected = false;
@@ -35,7 +38,7 @@ export function useEthUser() {
         method: "eth_requestAccounts",
       });
 
-      if (!localStorage.getItem("connected")) {
+      if (!hasConnected) {
         await provider.request({
           method: "wallet_requestPermissions",
           params: [{ eth_accounts: {} }],
@@ -49,24 +52,24 @@ export function useEthUser() {
         address: accounts[0],
       });
       Sentry.setUser({ id: accounts[0] });
-      localStorage.setItem("connected", "true");
+      setHasConnected(true);
     } catch (e) {
       if (isUnexpectedError(e as Error)) {
         Sentry.captureException(e);
       }
       appDispatch({ type: AppStateActionType.CONNECT_FAIL, error: e as Error });
     }
-  }, [appDispatch, provider]);
+  }, [appDispatch, provider, hasConnected, setHasConnected]);
 
   const disconnect = React.useCallback(() => {
     appDispatch({ type: AppStateActionType.DISCONNECT });
-    localStorage.removeItem("connected");
-  }, [appDispatch]);
+    setHasConnected(false);
+  }, [appDispatch, setHasConnected]);
 
   // Auto connect if possible
   React.useEffect(() => {
     if (
-      localStorage.getItem("connected") &&
+      hasConnected &&
       !appState.ethAddress &&
       !appState.error &&
       !appState.ethWalletConnecting
@@ -74,6 +77,7 @@ export function useEthUser() {
       connect();
     }
   }, [
+    hasConnected,
     appState.ethAddress,
     appState.ethWalletConnecting,
     appState.error,
