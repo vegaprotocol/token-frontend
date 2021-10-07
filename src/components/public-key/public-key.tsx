@@ -4,6 +4,7 @@ import * as React from 'react'
 
 import { Tooltip } from '@blueprintjs/core'
 import { useCopyToClipboard } from '../../hooks/use-copy-to-clipboard'
+import { useTranslation } from 'react-i18next'
 
 const END_CHARACTERS = 6
 export const CHAR_WIDTH_DELTA = 0.6
@@ -48,6 +49,7 @@ export function CopyPublicKey({
   const input = React.useRef<HTMLInputElement | null>(null)
   const [hovered, setHovered] = React.useState(false)
   const { copy, copied } = useCopyToClipboard()
+  const { t } = useTranslation();
 
   // NOTE: this calculation probably only works for the 'Roboto Mono' font
   const charWidth = fontSize * CHAR_WIDTH_DELTA
@@ -64,7 +66,7 @@ export function CopyPublicKey({
   return (
     <Tooltip
       isOpen={copied}
-      content={"copied"}
+      content={t("Copied!")}
       targetTagName='div'
       wrapperTagName='div'>
       <div

@@ -31,3 +31,12 @@ $line-height: 1.6em;
     outline: none;
   }
 }
+
+input[type="text"]{
+  width: 100%;
+  padding: 2px;
+  border-radius: 4px;
+  background-color: #3f3f3f;
+  color: white;
+  border: 0;
+}
