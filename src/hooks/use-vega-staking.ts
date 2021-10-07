@@ -4,13 +4,13 @@ import { IVegaStaking } from "../lib/web3-utils";
 // @ts-ignore
 import StakingAbi from "../lib/VEGA_WEB3/vega-staking";
 import { ADDRESSES } from "../config";
-import { useWeb3 } from "./use-web3";
+import { useWeb3 } from "../contexts/web3-context/web3-context";
 
 export const useVegaStaking = () => {
   const {
     appState: { decimals },
   } = useAppState();
-  const web3 = useWeb3();
+  const { web3 } = useWeb3();
   return React.useMemo<IVegaStaking>(() => {
     return new StakingAbi(web3, ADDRESSES.stakingBridge, decimals);
   }, [web3, decimals]);

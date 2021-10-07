@@ -1,5 +1,4 @@
 import React from "react";
-import { EthereumChainId } from "../../config";
 import {
   AppState,
   AppStateContext,
@@ -19,7 +18,6 @@ interface AppStateProviderProps {
 }
 
 const initialAppState: AppState = {
-  chainId: process.env.REACT_APP_CHAIN as EthereumChainId,
   // set in app-loader TODO: update when user stakes/unstakes/associates/disassociates
   totalAssociated: new BigNumber(0),
   decimals: 0,
@@ -203,11 +201,8 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
 }
 
 export function AppStateProvider({ children }: AppStateProviderProps) {
-  const { chainId, provider } = useWeb3();
-  const [state, dispatch] = React.useReducer(appStateReducer, {
-    ...initialAppState,
-    chainId,
-  });
+  const { provider } = useWeb3();
+  const [state, dispatch] = React.useReducer(appStateReducer, initialAppState);
 
   React.useEffect(() => {
     provider.on("accountsChanged", (accounts: string[]) => {

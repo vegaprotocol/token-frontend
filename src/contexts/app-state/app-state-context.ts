@@ -1,5 +1,4 @@
 import React from "react";
-import { EthereumChainId } from "../../config";
 import type { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { BigNumber } from "../../lib/bignumber";
 
@@ -53,9 +52,6 @@ export interface AppState {
 
   /** Whether or not we are awaiting the user to connect in Metamask */
   ethWalletConnecting: boolean;
-
-  /** Current chainId in Metamask */
-  chainId: EthereumChainId;
 
   /** Users vesting balance across all tranches */
   balanceFormatted: BigNumber;
