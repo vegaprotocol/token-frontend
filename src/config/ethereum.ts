@@ -37,11 +37,11 @@ interface VegaContracts {
 
 const EnvironmentConfig: { [key in Networks]: VegaContracts } = {
   [Networks.DEVNET]: {
-    vestingAddress: "0x96a6f229BbbcA08095f0bC30088fcDfaeEDb07Ef",
-    vegaTokenAddress: "0x5b634a05754283b6d9d7938dcca9d646425593eb",
-    claimAddress: "0x5E3B1Fe757a3C41a9Ae0B903976CaDd415eb2e7b",
-    lockedAddress: "0x0356782bfb61cf0b0463746bc6fe8766aacae8f0",
-    stakingBridge: "0x7bd4a4789394fe5a93fc67ef64c47beb013e5450",
+    vegaTokenAddress: "0xc93137f9F4B820Ca85FfA3C7e84cCa6Ebc7bB517",
+    claimAddress: "0x8Cef746ab7C83B61F6461cC92882bD61AB65a994",
+    lockedAddress: "0x0",
+    vestingAddress: "0xd751FF6264234cAfAE88e4BF6003878fAB9630a7",
+    stakingBridge: "0x3cCe40e1e47cedf76c03db3E48507f421b575523",
   },
   [Networks.STAGNET]: {
     vestingAddress: "0xd512DAb65BFF87B4725F26320Ce667C4Bf3d54a9",
