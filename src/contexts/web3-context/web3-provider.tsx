@@ -17,6 +17,12 @@ enum ProviderStatus {
   Invalid,
 }
 
+/**
+ * Provides a raw web3 provider (usually window.ethereum injected by a chrome extension), a Web3
+ * instance and the current chainId to its children. Also sets up an listener for the
+ * changeChanged event and handles rendering logic to only render children if the configured
+ * chainId matches what is set in the users logic.
+ */
 export const Web3Provider = ({ children }: { children: JSX.Element }) => {
   const { t } = useTranslation();
   const provider = React.useRef<any>(null);

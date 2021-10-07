@@ -17,6 +17,9 @@ import VegaVesting from "../../lib/VEGA_WEB3/vega-vesting";
 // @ts-ignore
 import VegaClaim from "../../lib/VEGA_WEB3/vega-claim";
 
+/**
+ * Provides Vega Ethereum contract instances to its children.
+ */
 export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
   const { web3 } = useWeb3();
   const {
