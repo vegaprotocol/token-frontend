@@ -12,6 +12,7 @@ import { ADDRESSES, Flags } from "../../../config";
 import { formatNumber } from "../../../lib/format-number";
 import { BigNumber } from "../../../lib/bignumber";
 import { EtherscanLink } from "../../../components/etherscan-link";
+import { useWeb3 } from "../../../contexts/web3-context/web3-context";
 
 export const TokenDetails = ({
   totalSupply,
@@ -22,6 +23,7 @@ export const TokenDetails = ({
 }) => {
   const { t } = useTranslation();
 
+  const { chainId } = useWeb3();
   const { appState } = useAppState();
 
   return (
@@ -30,7 +32,7 @@ export const TokenDetails = ({
         <th>{t("Token address")}</th>
         <td data-testid="token-address">
           <EtherscanLink
-            chainId={appState.chainId}
+            chainId={chainId}
             address={ADDRESSES.vegaTokenAddress}
             text={truncateMiddle(ADDRESSES.vegaTokenAddress)}
           />
@@ -40,7 +42,7 @@ export const TokenDetails = ({
         <th>{t("Vesting contract")}</th>
         <td data-testid="token-contract">
           <EtherscanLink
-            chainId={appState.chainId}
+            chainId={chainId}
             address={ADDRESSES.vestingAddress}
             text={truncateMiddle(ADDRESSES.vestingAddress)}
           />

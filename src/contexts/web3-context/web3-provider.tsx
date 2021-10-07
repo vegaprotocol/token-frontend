@@ -19,8 +19,8 @@ enum ProviderStatus {
 
 export const Web3Provider = ({ children }: { children: JSX.Element }) => {
   const { t } = useTranslation();
-  const provider = React.useRef<any>();
-  const web3 = React.useRef<any>();
+  const provider = React.useRef<any>(null);
+  const web3 = React.useRef<Web3 | null>(null);
   const [status, setStatus] = React.useState(ProviderStatus.Pending);
   const [chainId, setChainId] = React.useState<EthereumChainId | null>(null);
 
@@ -98,7 +98,12 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
   }
 
   // Still waiting for the provider to be detected and the chainId fetched
-  if (status === ProviderStatus.Pending || chainId === null) {
+  if (
+    status === ProviderStatus.Pending ||
+    chainId === null ||
+    provider.current === null ||
+    web3.current === null
+  ) {
     return (
       <SplashScreen>
         <SplashLoader />

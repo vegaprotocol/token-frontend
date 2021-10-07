@@ -15,6 +15,7 @@ import {
 } from "../../../components/staking-method-radio";
 import { useAddStake, usePollForStakeLinking } from "./hooks";
 import { Callout } from "../../../components/callout";
+import { useWeb3 } from "../../../contexts/web3-context/web3-context";
 
 export const AssociatePage = ({
   address,
@@ -48,8 +49,9 @@ export const AssociatePage = ({
 
   const linking = usePollForStakeLinking(vegaKey.pub, txState.txData.hash);
 
+  const { chainId } = useWeb3();
   const {
-    appState: { chainId, walletBalance, totalVestedBalance, totalLockedBalance },
+    appState: { walletBalance, totalVestedBalance, totalLockedBalance },
   } = useAppState();
 
   const zeroVesting = totalVestedBalance.plus(totalLockedBalance).isEqualTo(0);
