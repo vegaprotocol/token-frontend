@@ -8,12 +8,17 @@ import {
 } from "./contexts/app-state/app-state-context";
 import { Errors as VegaWalletServiceErrors } from "./lib/vega-wallet/vega-wallet-service";
 import { useContracts } from "./contexts/contracts/contracts-context";
-import { useVegaWallet } from "./hooks/use-vega-wallet";
+import { useVegaWalletService } from "./hooks/use-vega-wallet-service";
+import {
+  useVegaWallet,
+  VegaWalletActionType,
+} from "./contexts/vega-wallet/vega-wallet-context";
 
 export const AppLoader = ({ children }: { children: React.ReactElement }) => {
   const { appState, appDispatch } = useAppState();
+  const { vegaWalletDispatch } = useVegaWallet();
   const { token, staking, vesting } = useContracts();
-  const vegaWalletService = useVegaWallet();
+  const vegaWalletService = useVegaWalletService();
   const [balancesLoaded, setBalancesLoaded] = React.useState(false);
   const [vegaKeysLoaded, setVegaKeysLoaded] = React.useState(false);
 
@@ -64,7 +69,7 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
       }
 
       if (err === VegaWalletServiceErrors.SERVICE_UNAVAILABLE) {
-        appDispatch({ type: AppStateActionType.VEGA_WALLET_DOWN });
+        vegaWalletDispatch({ type: VegaWalletActionType.DOWN });
         return;
       }
 
@@ -82,8 +87,8 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
         );
       }
 
-      appDispatch({
-        type: AppStateActionType.VEGA_WALLET_INIT,
+      vegaWalletDispatch({
+        type: VegaWalletActionType.INIT,
         keys,
         walletAssociatedBalance,
         vestingAssociatedBalance,
@@ -92,7 +97,7 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
 
     run();
   }, [
-    appDispatch,
+    vegaWalletDispatch,
     appState.ethAddress,
     staking,
     vesting,

@@ -3,7 +3,7 @@ import { TransactionError } from "./transaction-error";
 import { TransactionPending } from "./transaction-pending";
 import { TransactionRequested } from "./transaction-requested";
 import { TransactionComplete } from "./transaction-complete";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { useWeb3 } from "../../contexts/web3/web3-context";
 
 export const TransactionCallout = ({
   state,

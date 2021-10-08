@@ -11,27 +11,6 @@ export enum ProviderStatus {
   None,
 }
 
-export enum VegaWalletStatus {
-  /** Detecting if Vega wallet service is running */
-  Pending,
-  /** Vega wallet service is running */
-  Ready,
-  /** No Vega wallet not running */
-  None,
-}
-
-export interface VegaKey {
-  pub: string;
-  algo: string;
-  tainted: boolean;
-  meta: Array<{ key: string; value: string }> | null;
-}
-
-export interface VegaKeyExtended extends VegaKey {
-  alias: string;
-  pubShort: string;
-}
-
 export interface UserTrancheBalance {
   /** ID of tranche */
   id: number;
@@ -92,15 +71,6 @@ export interface AppState {
   /** Whether or not the connect to VEGA wallet overaly is open */
   vegaWalletOverlay: boolean;
 
-  /** Whether or not a Vega wallet service is running, can be Pending, Ready or None */
-  vegaWalletStatus: VegaWalletStatus;
-
-  /** Array of Vega key objects provided by the Vega wallet service */
-  vegaKeys: VegaKeyExtended[] | null;
-
-  /** Current selected Vega key */
-  currVegaKey: VegaKeyExtended | null;
-
   /** Amount of tokens associated with the current Vega key from wallet*/
   walletAssociatedBalance: BigNumber | null;
 
@@ -154,20 +124,6 @@ export type AppStateAction =
       lien: BigNumber;
       allowance: BigNumber;
     }
-  | {
-      type: AppStateActionType.VEGA_WALLET_INIT;
-      keys: VegaKey[] | null | undefined;
-      walletAssociatedBalance: BigNumber | null;
-      vestingAssociatedBalance: BigNumber | null;
-    }
-  | {
-      type: AppStateActionType.VEGA_WALLET_SET_KEY;
-      key: VegaKeyExtended;
-      walletAssociatedBalance: BigNumber | null;
-      vestingAssociatedBalance: BigNumber | null;
-    }
-  | { type: AppStateActionType.VEGA_WALLET_DOWN }
-  | { type: AppStateActionType.VEGA_WALLET_DISCONNECT }
   | {
       type: AppStateActionType.SET_TOKEN;
       decimals: number;

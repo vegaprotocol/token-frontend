@@ -11,7 +11,7 @@ import {
   KeyValueTableRow,
 } from "../../../components/key-value-table";
 import { EpochCountdown } from "../../../components/epoch-countdown";
-import { useWeb3 } from "../../../contexts/web3-context/web3-context";
+import { useWeb3 } from "../../../contexts/web3/web3-context";
 
 interface DexTokensSectionProps {
   name: string;

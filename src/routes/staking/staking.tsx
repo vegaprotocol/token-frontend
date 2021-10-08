@@ -14,7 +14,7 @@ import { ConnectToVega } from "./connect-to-vega";
 import { Links } from "../../config";
 import React from "react";
 import { Staking as StakingQueryResult } from "./__generated__/Staking";
-import { useVegaUser } from "../../hooks/use-vega-user";
+import { useVegaWallet } from "../../contexts/vega-wallet/vega-wallet-context";
 
 export const Staking = ({ data }: { data?: StakingQueryResult }) => {
   const { t } = useTranslation();
@@ -45,18 +45,23 @@ export const Staking = ({ data }: { data?: StakingQueryResult }) => {
 
 export const StakingStepConnectWallets = () => {
   const { t } = useTranslation();
+  const { vegaWalletState } = useVegaWallet();
   const {
-    appState: { ethAddress, currVegaKey },
+    appState: { ethAddress },
     appDispatch,
   } = useAppState();
 
-  if (currVegaKey && ethAddress) {
+  if (vegaWalletState.currKey && ethAddress) {
     return (
       <Callout intent="success" icon={<Tick />} title={"Connected"}>
         <p>
           {t("Connected Ethereum address")} {ethAddress}
         </p>
-        <p>{t("stakingVegaWalletConnected", { key: currVegaKey.pub })}</p>
+        <p>
+          {t("stakingVegaWalletConnected", {
+            key: vegaWalletState.currKey.pubShort,
+          })}
+        </p>
       </Callout>
     );
   }
@@ -100,11 +105,11 @@ export const StakingStepConnectWallets = () => {
           </button>
         </p>
       )}
-      {currVegaKey ? (
+      {vegaWalletState.currKey ? (
         <Callout
           icon={<Tick />}
           intent="success"
-          title={`Vega wallet connected: ${currVegaKey.pubShort}`}
+          title={`Vega wallet connected: ${vegaWalletState.currKey.pubShort}`}
         />
       ) : (
         <ConnectToVega />
@@ -120,8 +125,9 @@ export const StakingStepAssociate = ({
 }) => {
   const match = useRouteMatch();
   const { t } = useTranslation();
+  const { vegaWalletState } = useVegaWallet();
   const {
-    appState: { ethAddress, currVegaKey },
+    appState: { ethAddress },
   } = useAppState();
 
   if (!ethAddress) {
@@ -132,7 +138,7 @@ export const StakingStepAssociate = ({
         title={t("stakingAssociateConnectEth")}
       />
     );
-  } else if (!currVegaKey) {
+  } else if (!vegaWalletState.currKey) {
     return (
       <Callout
         intent="error"
@@ -178,7 +184,7 @@ export const StakingStepSelectNode = ({
   data?: StakingQueryResult;
 }) => {
   const { t } = useTranslation();
-  const { currVegaKey } = useVegaUser();
+  const { vegaWalletState } = useVegaWallet();
 
   const nodes = React.useMemo<NodeListItemProps[]>(() => {
     if (!data?.nodes) return [];
@@ -227,7 +233,7 @@ export const StakingStepSelectNode = ({
     return sortedByStake;
   }, [data]);
 
-  if (!currVegaKey) {
+  if (!vegaWalletState.currKey) {
     return <p className="text-muted">{t("connectVegaWallet")}</p>;
   }
 

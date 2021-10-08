@@ -1,4 +1,4 @@
-import { VegaKey } from "../../contexts/app-state/app-state-context";
+import { VegaKey } from "../../contexts/vega-wallet/vega-wallet-context";
 import { VOTE_VALUE_MAP } from "../../routes/governance/vote-types";
 import { VoteValue } from "../../__generated__/globalTypes";
 import { LocalStorage } from "../storage";

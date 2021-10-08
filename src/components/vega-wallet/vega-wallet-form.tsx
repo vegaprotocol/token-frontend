@@ -4,12 +4,13 @@ import React from "react";
 import * as Sentry from "@sentry/react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import {
-  AppStateActionType,
-  useAppState,
-} from "../../contexts/app-state/app-state-context";
-import { useVegaWallet } from "../../hooks/use-vega-wallet";
+import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useVegaWalletService } from "../../hooks/use-vega-wallet-service";
 import { useContracts } from "../../contexts/contracts/contracts-context";
+import {
+  useVegaWallet,
+  VegaWalletActionType,
+} from "../../contexts/vega-wallet/vega-wallet-context";
 
 interface FormFields {
   url: string;
@@ -24,11 +25,11 @@ interface VegaWalletFormProps {
 export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
   const { t } = useTranslation();
   const {
-    appDispatch,
     appState: { ethAddress: address },
   } = useAppState();
-  const vegaWallet = useVegaWallet();
+  const { vegaWalletDispatch } = useVegaWallet();
   const { staking, vesting } = useContracts();
+  const vegaWalletService = useVegaWalletService();
 
   const [loading, setLoading] = React.useState(false);
   const {
@@ -38,7 +39,7 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
     setError,
   } = useForm<FormFields>({
     defaultValues: {
-      url: vegaWallet.url,
+      url: vegaWalletService.url,
     },
   });
 
@@ -46,7 +47,7 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
     setLoading(true);
 
     try {
-      const [tokenErr] = await vegaWallet.getToken({
+      const [tokenErr] = await vegaWalletService.getToken({
         wallet: fields.wallet,
         passphrase: fields.passphrase,
       });
@@ -57,7 +58,7 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
         return;
       }
 
-      const [keysErr, keys] = await vegaWallet.getKeys();
+      const [keysErr, keys] = await vegaWalletService.getKeys();
 
       if (keysErr) {
         setError("passphrase", { message: t(keysErr) });
@@ -78,8 +79,8 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
         );
       }
 
-      appDispatch({
-        type: AppStateActionType.VEGA_WALLET_INIT,
+      vegaWalletDispatch({
+        type: VegaWalletActionType.INIT,
         keys,
         walletAssociatedBalance,
         vestingAssociatedBalance,

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Callout } from "../../components/callout";
 import { EtherscanLink } from "../../components/etherscan-link";
 import { Tick } from "../../components/icons";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { useWeb3 } from "../../contexts/web3/web3-context";
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
 import { Routes } from "../router-config";

@@ -8,9 +8,11 @@ import {
 import { Flags } from "../config";
 import { BigNumber } from "../lib/bignumber";
 import { useContracts } from "../contexts/contracts/contracts-context";
+import { useVegaWallet } from "../contexts/vega-wallet/vega-wallet-context";
 
 export const useRefreshBalances = (address: string) => {
-  const { appState, appDispatch } = useAppState();
+  const { appDispatch } = useAppState();
+  const { vegaWalletState } = useVegaWallet();
   const { token, staking, vesting } = useContracts();
 
   return React.useCallback(async () => {
@@ -30,11 +32,11 @@ export const useRefreshBalances = (address: string) => {
           ? new BigNumber(0)
           : token.allowance(address, ADDRESSES.stakingBridge),
         // Refresh connected vega key balances as well if we are connected to a vega key
-        appState.currVegaKey?.pub
-          ? staking.stakeBalance(address, appState.currVegaKey.pub)
+        vegaWalletState.currKey?.pub
+          ? staking.stakeBalance(address, vegaWalletState.currKey.pub)
           : null,
-        appState.currVegaKey?.pub
-          ? vesting.stakeBalance(address, appState.currVegaKey.pub)
+        vegaWalletState.currKey?.pub
+          ? vesting.stakeBalance(address, vegaWalletState.currKey.pub)
           : null,
       ]);
       appDispatch({
@@ -52,7 +54,7 @@ export const useRefreshBalances = (address: string) => {
   }, [
     address,
     appDispatch,
-    appState.currVegaKey?.pub,
+    vegaWalletState.currKey?.pub,
     staking,
     token,
     vesting,

@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import {
   AppStateActionType,
   useAppState,
-  VegaKeyExtended,
 } from "../../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../../lib/bignumber";
 import { AssociateInfo } from "./associate-info";
@@ -13,6 +12,7 @@ import { useContracts } from "../../../contexts/contracts/contracts-context";
 import { TxState } from "../../../hooks/transaction-reducer";
 import { TokenInput } from "../../../components/token-input";
 import { ADDRESSES } from "../../../config";
+import { VegaKeyExtended } from "../../../contexts/vega-wallet/vega-wallet-context";
 
 export const WalletAssociate = ({
   perform,

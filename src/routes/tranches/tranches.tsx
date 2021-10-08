@@ -6,7 +6,7 @@ import React from "react";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { ADDRESSES } from "../../config";
 import { TrancheItem } from "../redemption/tranche-item";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { useWeb3 } from "../../contexts/web3/web3-context";
 
 const trancheMinimum = 10;
 

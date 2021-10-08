@@ -9,8 +9,9 @@ import { EthWalletModal } from "./components/eth-wallet/eth-wallet-modal";
 // @ts-ignore
 import { GraphQlProvider } from "./components/GRAPHQL_PROVIDER/graphql-provider";
 import { AppLoader } from "./app-loader";
-import { Web3Provider } from "./contexts/web3-context/web3-provider";
+import { Web3Provider } from "./contexts/web3/web3-provider";
 import { ContractsProvider } from "./contexts/contracts/contracts-provider";
+import { VegaWalletProvider } from "./contexts/vega-wallet/vega-wallet-provider";
 
 function App() {
   return (
@@ -18,18 +19,20 @@ function App() {
       <Router>
         <Web3Provider>
           <AppStateProvider>
-            <ContractsProvider>
-              <AppLoader>
-                <>
-                  <div className="app">
-                    <Nav />
-                    <AppRouter />
-                  </div>
-                  <VegaWalletModal />
-                  <EthWalletModal />
-                </>
-              </AppLoader>
-            </ContractsProvider>
+            <VegaWalletProvider>
+              <ContractsProvider>
+                <AppLoader>
+                  <>
+                    <div className="app">
+                      <Nav />
+                      <AppRouter />
+                    </div>
+                    <VegaWalletModal />
+                    <EthWalletModal />
+                  </>
+                </AppLoader>
+              </ContractsProvider>
+            </VegaWalletProvider>
           </AppStateProvider>
         </Web3Provider>
       </Router>

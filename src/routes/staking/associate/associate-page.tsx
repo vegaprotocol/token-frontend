@@ -2,10 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { ContractAssociate } from "./contract-associate";
 import { WalletAssociate } from "./wallet-associate";
-import {
-  useAppState,
-  VegaKeyExtended,
-} from "../../../contexts/app-state/app-state-context";
+import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { TxState } from "../../../hooks/transaction-reducer";
 import { AssociateTransaction } from "./associate-transaction";
 import { useSearchParams } from "../../../hooks/use-search-params";
@@ -15,7 +12,8 @@ import {
 } from "../../../components/staking-method-radio";
 import { useAddStake, usePollForStakeLinking } from "./hooks";
 import { Callout } from "../../../components/callout";
-import { useWeb3 } from "../../../contexts/web3-context/web3-context";
+import { useWeb3 } from "../../../contexts/web3/web3-context";
+import { VegaKeyExtended } from "../../../contexts/vega-wallet/vega-wallet-context";
 
 export const AssociatePage = ({
   address,

@@ -9,6 +9,7 @@ import {
   AppStateActionType,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
+import { useVegaWallet } from "../../contexts/vega-wallet/vega-wallet-context";
 import { useTranslation } from "react-i18next";
 import { Parties_parties } from "./__generated__/Parties";
 import { Callout } from "../../components/callout";
@@ -40,11 +41,10 @@ export const VoteButtons = ({
       party.stake.currentStakeAvailable === undefined
     : true;
 
-  const {
-    appState: { currVegaKey },
-    appDispatch,
-  } = useAppState();
-  const isAuth = !!currVegaKey;
+  const { vegaWalletState } = useVegaWallet();
+  const { appDispatch } = useAppState();
+
+  const isAuth = !!vegaWalletState.currKey;
 
   if (!isAuth) {
     return (
@@ -96,8 +96,7 @@ export const VoteButtons = ({
     return (
       <div className="vote-buttons__callout-container">
         <Callout intent="error" icon={<Error />} title={t("voteError")}>
-          {
-            proposalState === ProposalState.Open ?
+          {proposalState === ProposalState.Open ? (
             <button
               className="vote-buttons__link-button"
               onClick={() => {
@@ -106,9 +105,7 @@ export const VoteButtons = ({
             >
               {t("back")}
             </button>
-            :
-          null
-          }
+          ) : null}
         </Callout>
       </div>
     );
@@ -134,9 +131,7 @@ export const VoteButtons = ({
         ) : (
           ". "
         )}
-        {
-          proposalState === ProposalState.Open
-          ?
+        {proposalState === ProposalState.Open ? (
           <button
             className="vote-buttons__link-button"
             onClick={() => {
@@ -145,9 +140,7 @@ export const VoteButtons = ({
           >
             {t("changeVote")}
           </button>
-          :
-          null
-        }
+        ) : null}
       </div>
     );
   }
@@ -172,7 +165,6 @@ export const VoteButtons = ({
       </div>
     );
   }
-
 
   return <h3 className="vote-buttons__container">{t("youDidNotVote")}</h3>;
 };

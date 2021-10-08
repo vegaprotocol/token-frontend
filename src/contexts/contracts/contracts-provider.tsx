@@ -1,5 +1,5 @@
 import React from "react";
-import { useWeb3 } from "../web3-context/web3-context";
+import { useWeb3 } from "../web3/web3-context";
 import { ContractsContext } from "./contracts-context";
 import { ADDRESSES } from "../../config";
 import { useAppState } from "../app-state/app-state-context";

@@ -2,13 +2,11 @@ import "./contract-associate.scss";
 import { useTranslation } from "react-i18next";
 import { Callout } from "../../../components/callout";
 import React from "react";
-import {
-  useAppState,
-  VegaKeyExtended,
-} from "../../../contexts/app-state/app-state-context";
+import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../../lib/bignumber";
 import { AssociateInfo } from "./associate-info";
 import { TokenInput } from "../../../components/token-input";
+import { VegaKeyExtended } from "../../../contexts/vega-wallet/vega-wallet-context";
 
 export const ContractAssociate = ({
   perform,

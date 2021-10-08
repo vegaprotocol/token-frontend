@@ -4,8 +4,6 @@ import "./vega-wallet.scss";
 import {
   AppStateActionType,
   useAppState,
-  VegaKeyExtended,
-  VegaWalletStatus,
 } from "../../contexts/app-state/app-state-context";
 import {
   WalletCard,
@@ -15,7 +13,6 @@ import {
   WalletCardRow,
 } from "../wallet-card";
 import { useTranslation } from "react-i18next";
-import { useVegaWallet } from "../../hooks/use-vega-wallet";
 import { VegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
 import { gql, useApolloClient } from "@apollo/client";
 import {
@@ -23,11 +20,17 @@ import {
   DelegationsVariables,
   Delegations_party_delegations,
 } from "./__generated__/Delegations";
-import { useVegaUser } from "../../hooks/use-vega-user";
 import { BigNumber } from "../../lib/bignumber";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { keyBy, uniq } from "lodash";
 import { useContracts } from "../../contexts/contracts/contracts-context";
+import { useVegaWalletService } from "../../hooks/use-vega-wallet-service";
+import {
+  useVegaWallet,
+  VegaKeyExtended,
+  VegaWalletActionType,
+  VegaWalletStatus,
+} from "../../contexts/vega-wallet/vega-wallet-context";
 
 const DELEGATIONS_QUERY = gql`
   query Delegations($partyId: ID!) {
@@ -51,16 +54,16 @@ const DELEGATIONS_QUERY = gql`
 
 export const VegaWallet = () => {
   const { t } = useTranslation();
-  const vegaWallet = useVegaWallet();
-  const { currVegaKey, vegaKeys } = useVegaUser();
+  const vegaWalletService = useVegaWalletService();
+  const { vegaWalletState } = useVegaWallet();
 
-  const child = !vegaKeys ? (
+  const child = !vegaWalletState.keys ? (
     <VegaWalletNotConnected />
   ) : (
     <VegaWalletConnected
-      vegaWallet={vegaWallet}
-      currVegaKey={currVegaKey}
-      vegaKeys={vegaKeys}
+      vegaWallet={vegaWalletService}
+      currVegaKey={vegaWalletState.currKey}
+      vegaKeys={vegaWalletState.keys}
     />
   );
 
@@ -68,12 +71,13 @@ export const VegaWallet = () => {
     <WalletCard>
       <WalletCardHeader>
         <span>
-          {t("vegaKey")} {currVegaKey && `(${currVegaKey.alias})`}
+          {t("vegaKey")}{" "}
+          {vegaWalletState.currKey && `(${vegaWalletState.currKey.alias})`}
         </span>
-        {currVegaKey && (
+        {vegaWalletState.currKey && (
           <>
             <span className="vega-wallet__curr-key">
-              {currVegaKey.pubShort}
+              {vegaWalletState.currKey.pubShort}
             </span>
           </>
         )}
@@ -85,9 +89,10 @@ export const VegaWallet = () => {
 
 const VegaWalletNotConnected = () => {
   const { t } = useTranslation();
-  const { appState, appDispatch } = useAppState();
+  const { appDispatch } = useAppState();
+  const { vegaWalletState } = useVegaWallet();
 
-  if (appState.vegaWalletStatus === VegaWalletStatus.None) {
+  if (vegaWalletState.status === VegaWalletStatus.None) {
     return (
       <WalletCardContent>
         <div>{t("noService")}</div>
@@ -125,9 +130,9 @@ const VegaWalletConnected = ({
 }: VegaWalletConnectedProps) => {
   const { t } = useTranslation();
   const {
-    appDispatch,
     appState: { ethAddress: address },
   } = useAppState();
+  const { vegaWalletDispatch } = useVegaWallet();
 
   const [disconnecting, setDisconnecting] = React.useState(false);
   const { staking, vesting } = useContracts();
@@ -227,12 +232,12 @@ const VegaWalletConnected = ({
       try {
         setDisconnecting(true);
         await vegaWallet.revokeToken();
-        appDispatch({ type: AppStateActionType.VEGA_WALLET_DISCONNECT });
+        vegaWalletDispatch({ type: VegaWalletActionType.DISCONNECT });
       } catch (err) {
         Sentry.captureException(err);
       }
     },
-    [appDispatch, vegaWallet]
+    [vegaWalletDispatch, vegaWallet]
   );
 
   const unstaked = React.useMemo(() => {
@@ -251,15 +256,15 @@ const VegaWalletConnected = ({
         walletAssociatedBalance = await staking.stakeBalance(address, k.pub);
         vestingAssociatedBalance = await vesting.stakeBalance(address, k.pub);
       }
-      appDispatch({
-        type: AppStateActionType.VEGA_WALLET_SET_KEY,
+      vegaWalletDispatch({
+        type: VegaWalletActionType.SET_KEY,
         key: k,
         walletAssociatedBalance,
         vestingAssociatedBalance,
       });
       setExpanded(false);
     },
-    [address, appDispatch, staking, vesting]
+    [address, vegaWalletDispatch, staking, vesting]
   );
 
   return vegaKeys.length ? (

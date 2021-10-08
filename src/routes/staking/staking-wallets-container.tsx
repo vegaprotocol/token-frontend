@@ -1,10 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
 import {
+  useVegaWallet,
   VegaKeyExtended,
-} from "../../contexts/app-state/app-state-context";
+} from "../../contexts/vega-wallet/vega-wallet-context";
 import { useEthUser } from "../../hooks/use-eth-user";
-import { useVegaUser } from "../../hooks/use-vega-user";
 import { ConnectToVega } from "./connect-to-vega";
 
 export const StakingWalletsContainer = ({
@@ -12,8 +12,8 @@ export const StakingWalletsContainer = ({
   needsVega,
   children,
 }: {
-  needsEthereum?: boolean,
-  needsVega?: boolean,
+  needsEthereum?: boolean;
+  needsVega?: boolean;
   children: (data: {
     address: string;
     currVegaKey: VegaKeyExtended | null;
@@ -21,7 +21,7 @@ export const StakingWalletsContainer = ({
 }) => {
   const { t } = useTranslation();
   const { ethAddress } = useEthUser();
-  const { currVegaKey } = useVegaUser();
+  const { vegaWalletState } = useVegaWallet();
 
   if (!ethAddress && needsEthereum) {
     return (
@@ -35,7 +35,7 @@ export const StakingWalletsContainer = ({
     );
   }
 
-  if (!currVegaKey && needsVega) {
+  if (!vegaWalletState.currKey && needsVega) {
     return (
       <>
         <p>
@@ -48,5 +48,8 @@ export const StakingWalletsContainer = ({
     );
   }
 
-  return children({ address: ethAddress, currVegaKey });
+  return children({
+    address: ethAddress,
+    currVegaKey: vegaWalletState.currKey,
+  });
 };

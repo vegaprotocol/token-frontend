@@ -4,11 +4,9 @@ import {
   AppStateContext,
   AppStateAction,
   AppStateActionType,
-  VegaWalletStatus,
 } from "./app-state-context";
 
-import { useWeb3 } from "../web3-context/web3-context";
-import { truncateMiddle } from "../../lib/truncate-middle";
+import { useWeb3 } from "../web3/web3-context";
 import { BigNumber } from "../../lib/bignumber";
 import * as Sentry from "@sentry/react";
 import { Severity } from "@sentry/react";
@@ -32,9 +30,6 @@ const initialAppState: AppState = {
   tranches: null,
   ethWalletOverlay: false,
   vegaWalletOverlay: false,
-  vegaWalletStatus: VegaWalletStatus.Pending,
-  vegaKeys: null,
-  currVegaKey: null,
   walletAssociatedBalance: null,
   vestingAssociatedBalance: null,
   trancheBalances: [],
@@ -97,49 +92,6 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         lien: action.lien,
         walletAssociatedBalance: action.walletAssociatedBalance,
         vestingAssociatedBalance: action.vestingAssociatedBalance,
-      };
-    }
-    case AppStateActionType.VEGA_WALLET_INIT: {
-      if (!action.keys) {
-        return { ...state, vegaWalletStatus: VegaWalletStatus.Ready };
-      }
-
-      const vegaKeys = action.keys.map((k) => {
-        const alias = k.meta?.find((m) => m.key === "alias");
-        return {
-          ...k,
-          alias: alias?.value || "No alias",
-          pubShort: truncateMiddle(k.pub),
-        };
-      });
-      return {
-        ...state,
-        vegaKeys,
-        currVegaKey: vegaKeys.length ? vegaKeys[0] : null,
-        vegaWalletStatus: VegaWalletStatus.Ready,
-        walletAssociatedBalance: action.walletAssociatedBalance,
-        vestingAssociatedBalance: action.vestingAssociatedBalance,
-      };
-    }
-    case AppStateActionType.VEGA_WALLET_SET_KEY: {
-      return {
-        ...state,
-        currVegaKey: action.key,
-        walletAssociatedBalance: action.walletAssociatedBalance,
-        vestingAssociatedBalance: action.vestingAssociatedBalance,
-      };
-    }
-    case AppStateActionType.VEGA_WALLET_DOWN: {
-      return {
-        ...state,
-        vegaWalletStatus: VegaWalletStatus.None,
-      };
-    }
-    case AppStateActionType.VEGA_WALLET_DISCONNECT: {
-      return {
-        ...state,
-        currVegaKey: null,
-        vegaKeys: null,
       };
     }
     case AppStateActionType.SET_TOKEN: {

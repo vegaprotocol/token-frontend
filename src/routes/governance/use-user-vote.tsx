@@ -1,7 +1,6 @@
 import { captureException } from "@sentry/minimal";
 import * as React from "react";
-import { useAppState } from "../../contexts/app-state/app-state-context";
-import { useVegaWallet } from "../../hooks/use-vega-wallet";
+import { useVegaWalletService } from "../../hooks/use-vega-wallet-service";
 import {
   hasErrorProperty,
   VoteSubmissionInput,
@@ -9,6 +8,7 @@ import {
 import { VoteValue } from "../../__generated__/globalTypes";
 import { VOTE_VALUE_MAP } from "./vote-types";
 import { gql, useApolloClient } from "@apollo/client";
+import { useVegaWallet } from "../../contexts/vega-wallet/vega-wallet-context";
 
 export const VOTES_SUBSCRIPTION_QUERY = gql`
   subscription votesSub($partyId: ID!) {
@@ -63,15 +63,15 @@ export function useUserVote(
   const no = React.useMemo(() => noVotes || [], [noVotes]);
   const client = useApolloClient();
   const {
-    appState: { currVegaKey },
-  } = useAppState();
-  const vegaWallet = useVegaWallet();
+    vegaWalletState: { currKey },
+  } = useVegaWallet();
+  const vegaWalletService = useVegaWalletService();
   const subRef = React.useRef<any>(null);
   const [votePending, setVotePending] = React.useState(false);
 
   const myVote = React.useMemo(() => {
-    if (currVegaKey) return getMyVote(currVegaKey.pub, yes, no);
-  }, [currVegaKey, yes, no]);
+    if (currKey) return getMyVote(currKey.pub, yes, no);
+  }, [currKey, yes, no]);
 
   const initialState = React.useMemo(() => {
     if (myVote === null || myVote === undefined) {
@@ -84,20 +84,20 @@ export function useUserVote(
   const [voteState, setVoteState] = React.useState(initialState);
 
   async function castVote(value: VoteValue) {
-    if (!proposalId || !currVegaKey) return;
+    if (!proposalId || !currKey) return;
 
     setVotePending(true);
     setVoteState(value === VoteValue.Yes ? VoteState.Yes : VoteState.No);
 
     try {
       const variables: VoteSubmissionInput = {
-        pubKey: currVegaKey.pub,
+        pubKey: currKey.pub,
         voteSubmission: {
           value: VOTE_VALUE_MAP[value],
           proposalId,
         },
       };
-      const res = await vegaWallet.commandSync(variables);
+      const res = await vegaWalletService.commandSync(variables);
 
       if (hasErrorProperty(res)) {
         throw new Error(res.error);
@@ -111,12 +111,12 @@ export function useUserVote(
     subRef.current = client
       .subscribe({
         query: VOTES_SUBSCRIPTION_QUERY,
-        variables: { partyId: currVegaKey.pub },
+        variables: { partyId: currKey.pub },
       })
       .subscribe({
         next: ({ data }) => {
           const userVote = data.busEvents.find((e: any) => {
-            if (e.type === "Vote" && e.event.party.id === currVegaKey.pub) {
+            if (e.type === "Vote" && e.event.party.id === currKey.pub) {
               return true;
             }
 

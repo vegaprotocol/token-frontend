@@ -11,7 +11,7 @@ import { EtherscanLink } from "../../../components/etherscan-link";
 import { TokenDetailsCirculating } from "./token-details-circulating";
 import { formatNumber } from "../../../lib/format-number";
 import { useTranslation } from "react-i18next";
-import { useWeb3 } from "../../../contexts/web3-context/web3-context";
+import { useWeb3 } from "../../../contexts/web3/web3-context";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { useTranches } from "../../../hooks/use-tranches";
 

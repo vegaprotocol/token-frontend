@@ -6,14 +6,13 @@ import {
   StakingMethod,
   StakingMethodRadio,
 } from "../../../components/staking-method-radio";
-import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
 import { useSearchParams } from "../../../hooks/use-search-params";
 import { TxState } from "../../../hooks/transaction-reducer";
 import { WalletDisassociate } from "./wallet-disassociate";
 import { ContractDisassociate } from "./contract-disassociate";
 import { DisassociateTransaction } from "./disassociate-transaction";
 import { useRemoveStake } from "./hooks";
-
+import { VegaKeyExtended } from "../../../contexts/vega-wallet/vega-wallet-context";
 
 export const DisassociatePage = ({
   address,

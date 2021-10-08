@@ -25,7 +25,7 @@ import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useHistory } from "react-router-dom";
 import { useSearchParams } from "../../hooks/use-search-params";
 import { useTranslation } from "react-i18next";
-import { useVegaWallet } from "../../hooks/use-vega-wallet";
+import { useVegaWalletService } from "../../hooks/use-vega-wallet-service";
 
 export const PARTY_DELEGATIONS_QUERY = gql`
   query PartyDelegations($partyId: ID!) {
@@ -71,7 +71,7 @@ export const StakingForm = ({
   const client = useApolloClient();
   const { appState } = useAppState();
   const [formState, setFormState] = React.useState(FormState.Default);
-  const vegaWallet = useVegaWallet();
+  const vegaWalletService = useVegaWalletService();
   const { t } = useTranslation();
   const [action, setAction] = React.useState<StakeAction>(params.action);
   const [amount, setAmount] = React.useState("");
@@ -105,7 +105,7 @@ export const StakingForm = ({
     };
     try {
       const command = action === "Add" ? delegateInput : undelegateInput;
-      const [err] = await vegaWallet.commandSync(command);
+      const [err] = await vegaWalletService.commandSync(command);
 
       if (err) {
         setFormState(FormState.Failure);

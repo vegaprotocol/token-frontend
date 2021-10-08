@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Routes } from "../router-config";
 import { Tranche as TrancheType } from "../../lib/vega-web3/vega-web3-types";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { useWeb3 } from "../../contexts/web3/web3-context";
 import { EtherscanLink } from "../../components/etherscan-link";
 import { TrancheItem } from "../redemption/tranche-item";
 import { TrancheLabel } from "./tranche-label";
