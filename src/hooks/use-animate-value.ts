@@ -9,8 +9,23 @@ export function useAnimateValue(
   elRef: React.MutableRefObject<HTMLElement | null>,
   value?: BigNumber | null
 ) {
+  const shouldAnimate = React.useRef(false);
   const previous = usePrevious(value);
-  if (value && previous && value.isLessThan(previous)) {
+
+  React.useEffect(() => {
+    const timeout = setTimeout(() => {
+      shouldAnimate.current = true;
+    }, 800);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  if (
+    shouldAnimate.current &&
+    value &&
+    previous &&
+    !value.isEqualTo(previous) &&
+    value.isLessThan(previous)
+  ) {
     elRef.current?.animate(
       [
         { backgroundColor: Colors.VEGA_RED, color: Colors.WHITE },
@@ -19,7 +34,13 @@ export function useAnimateValue(
       ],
       FLASH_DURATION
     );
-  } else if (value && previous && value.isGreaterThan(previous)) {
+  } else if (
+    shouldAnimate.current &&
+    value &&
+    previous &&
+    !value.isEqualTo(previous) &&
+    value.isGreaterThan(previous)
+  ) {
     elRef.current?.animate(
       [
         { backgroundColor: Colors.VEGA_GREEN, color: Colors.WHITE },
