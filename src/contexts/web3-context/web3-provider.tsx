@@ -85,7 +85,12 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
     }
 
     return () => {
-      provider.current && provider.current.removeAllListeners("chainChanged");
+      if (
+        provider.current &&
+        provider.current.removeAllListeners === "function"
+      ) {
+        provider.current.removeAllListeners("chainChanged");
+      }
     };
   }, [chainId, status]);
 
