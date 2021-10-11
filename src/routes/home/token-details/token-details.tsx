@@ -72,14 +72,14 @@ export const TokenDetails = ({
         <KeyValueTableRow>
           <th>{t("$VEGA associated with a Vega key")}</th>
           <td data-testid="associated">
-            {formatNumber(appState.totalAssociated)}
+            {formatNumber(appState.totalAssociated, 2)}
           </td>
         </KeyValueTableRow>
       )}
       {Flags.STAKING_DISABLED ? null : (
         <KeyValueTableRow>
           <th>{t("Staked on Vega validator")}</th>
-          <td data-testid="staked">{formatNumber(totalStaked)}</td>
+          <td data-testid="staked">{formatNumber(totalStaked, 2)}</td>
         </KeyValueTableRow>
       )}
     </KeyValueTable>
