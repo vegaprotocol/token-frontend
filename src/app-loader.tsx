@@ -90,9 +90,7 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
       });
     }
 
-    if (!vegaKeysLoaded) {
-      run();
-    }
+    run();
   }, [
     appDispatch,
     appState.ethAddress,
