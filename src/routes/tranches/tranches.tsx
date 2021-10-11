@@ -25,15 +25,14 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
       {tranches?.length ? (
         <ul className="tranches__list">
           {(showAll ? tranches : filteredTranches).map((tranche) => {
-            const total = tranche.total_added.minus(tranche.total_removed);
             return (
               <React.Fragment key={tranche.tranche_id}>
                 <TrancheItem
                   link={`${match.path}/${tranche.tranche_id}`}
                   tranche={tranche}
                   locked={tranche.locked_amount}
-                  unlocked={total.minus(tranche.locked_amount)}
-                  total={total}
+                  unlocked={tranche.total_added.minus(tranche.locked_amount)}
+                  total={tranche.total_added}
                   secondaryHeader={
                     <TrancheLabel
                       contract={ADDRESSES.vestingAddress}
