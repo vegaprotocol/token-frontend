@@ -1,4 +1,4 @@
-// TODO fine for now however will leak state between tests (we don't really have) in future. Ideally should use a provider
+// TODO: fine for now however will leak state between tests (we don't really have) in future. Ideally should use a provider
 export const LocalStorage = {
   getItem: (key: string) => {
     try {
