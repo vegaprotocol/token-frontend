@@ -42,12 +42,16 @@ export const TrancheItem = ({
   return (
     <section data-testid="tranche-item" className="tranche-item">
       <div className="tranche-item__header">
-        {link && (
+        {link ? (
           <Link to={link}>
             <span className="tranche-item__label">
               {t("Tranche")} {tranche.tranche_id}
             </span>
           </Link>
+        ) : (
+          <span className="tranche-item__label">
+            {t("Tranche")} {tranche.tranche_id}
+          </span>
         )}
         {secondaryHeader}
         <span>{formatNumber(total, 2)}</span>
