@@ -14,6 +14,13 @@ $ns: "key-value-table";
   margin-bottom: 7px;
 }
 
+.#{$ns}__row {
+  @media (max-width: 640px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 .#{$ns} {
   width: 100%;
   border-collapse: collapse;

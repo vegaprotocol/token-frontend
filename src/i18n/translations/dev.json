@@ -396,5 +396,7 @@
   "associatedVega": "Associated $VEGA",
   "blockCountdown": "Waiting for {{amount}} more confirmations...",
   "stakingNodeNotFound": "Could not find a node with id {{node}}",
+  "copyToClipboard": "Copy to clipboard",
+  "copied!": "Copied!",
   "viewAllTranches": "View all tranches"
 }

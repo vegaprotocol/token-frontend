@@ -1,5 +1,10 @@
-import { useTranslation } from "react-i18next";
+import "./etherscan-link.scss"
+
+import { Popover, PopoverInteractionKind } from "@blueprintjs/core";
+
 import { EthereumChainId } from "../../config";
+import { useCopyToClipboard } from "../../hooks/use-copy-to-clipboard";
+import { useTranslation } from "react-i18next";
 
 const etherscanUrls: Record<EthereumChainId, string> = {
   "0x1": "https://etherscan.io",
@@ -12,6 +17,7 @@ const etherscanUrls: Record<EthereumChainId, string> = {
 interface BaseEtherscanLinkProps {
   chainId: EthereumChainId | null;
   text?: string;
+  copyToClipboard?: boolean;
 }
 
 interface EtherscanAddressLinkProps extends BaseEtherscanLinkProps {
@@ -32,11 +38,13 @@ type EtherscanLinkProps =
 export const EtherscanLink = ({
   chainId,
   text,
+  copyToClipboard = true,
   ...props
 }: EtherscanLinkProps) => {
   let hash: string;
   let txLink: string | null;
   const { t } = useTranslation();
+  const { copy, copied } = useCopyToClipboard()
   const linkText = text ? text : t("View on Etherscan (opens in a new tab)");
   const createLink = etherscanLinkCreator(chainId);
 
@@ -53,15 +61,49 @@ export const EtherscanLink = ({
     return <span>{hash}</span>;
   }
 
+  const getContents = (): JSX.Element => {
+    return (
+      <button
+        className="etherscan-link__copy-to-clipboard"
+        onClick={() => {copy(linkText)}}
+      >
+        {
+          copied
+          ? t("copied!")
+          : t("copyToClipboard")
+        }
+      </button>
+    )
+  }
+
   return (
-    <a
-      href={txLink}
-      target="_blank"
-      rel="noreferrer"
-      className="etherscan-link"
-    >
-      {linkText}
-    </a>
+    copyToClipboard
+    ? (
+      <Popover
+        hoverOpenDelay={500}
+        interactionKind={PopoverInteractionKind.HOVER}
+      >
+        <a
+          href={txLink}
+          target="_blank"
+          rel="noreferrer"
+          className="etherscan-link"
+        >
+          {linkText}
+        </a>
+          {getContents()}
+      </Popover>
+    )
+    : (
+      <a
+         href={txLink}
+         target="_blank"
+         rel="noreferrer"
+         className="etherscan-link"
+       >
+         {linkText}
+      </a>
+    )
   );
 };
 
