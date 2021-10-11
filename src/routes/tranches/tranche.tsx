@@ -23,14 +23,13 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
     return <Redirect to={Routes.NOT_FOUND} />;
   }
 
-  const total = tranche.total_added.minus(tranche.total_removed);
   return (
     <>
       <TrancheItem
         tranche={tranche}
         locked={tranche.locked_amount}
-        unlocked={total.minus(tranche.locked_amount)}
-        total={total}
+        unlocked={tranche.total_added.minus(tranche.locked_amount)}
+        total={tranche.total_added}
         secondaryHeader={
           <TrancheLabel
             contract={ADDRESSES.vestingAddress}
