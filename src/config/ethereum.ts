@@ -46,7 +46,7 @@ const EnvironmentConfig: { [key in Networks]: VegaContracts } = {
   [Networks.STAGNET]: {
     vestingAddress: "0xd512DAb65BFF87B4725F26320Ce667C4Bf3d54a9",
     vegaTokenAddress: "0x45984C4E9F3D55325fc6Fd2E260881EE3Ce9bbCD",
-    claimAddress: "0x0", // TODO not deployed to this env
+    claimAddress: "0x8Cef746ab7C83B61F6461cC92882bD61AB65a994", // TODO not deployed to this env
     lockedAddress: "0x0", // TODO not deployed to this env
     stakingBridge: "0x58Bc16298ff65Eca070b105ce70A5C628DE31900",
   },
