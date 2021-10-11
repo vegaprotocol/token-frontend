@@ -9,15 +9,16 @@ import { EthWalletModal } from "./components/eth-wallet/eth-wallet-modal";
 // @ts-ignore
 import { GraphQlProvider } from "./components/GRAPHQL_PROVIDER/graphql-provider";
 import { AppLoader } from "./app-loader";
-import { Web3Provider } from "./components/web3-provider";
+import { Web3Provider } from "./contexts/web3-context/web3-provider";
+import { ContractsProvider } from "./contexts/contracts/contracts-provider";
 
 function App() {
   return (
     <GraphQlProvider>
       <Router>
         <Web3Provider>
-          {({ provider, chainId }) => (
-            <AppStateProvider provider={provider} chainId={chainId}>
+          <AppStateProvider>
+            <ContractsProvider>
               <AppLoader>
                 <>
                   <div className="app">
@@ -28,8 +29,8 @@ function App() {
                   <EthWalletModal />
                 </>
               </AppLoader>
-            </AppStateProvider>
-          )}
+            </ContractsProvider>
+          </AppStateProvider>
         </Web3Provider>
       </Router>
     </GraphQlProvider>

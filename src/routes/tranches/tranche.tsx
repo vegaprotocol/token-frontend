@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { BigNumber } from "../../lib/bignumber";
 import { Routes } from "../router-config";
 import { Tranche as TrancheType } from "../../lib/vega-web3/vega-web3-types";
-import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { EtherscanLink } from "../../components/etherscan-link";
 import { TrancheItem } from "../redemption/tranche-item";
 import { TrancheLabel } from "./tranche-label";
@@ -14,7 +14,7 @@ import { ADDRESSES } from "../../config";
 export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
   const { t } = useTranslation();
   const { trancheId } = useParams<{ trancheId: string }>();
-  const { appState } = useAppState();
+  const { chainId } = useWeb3();
   const tranche = tranches.find(
     (tranche) => tranche.tranche_id === parseInt(trancheId)
   );
@@ -23,18 +23,17 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
     return <Redirect to={Routes.NOT_FOUND} />;
   }
 
-  const total = tranche.total_added.minus(tranche.total_removed);
   return (
     <>
       <TrancheItem
         tranche={tranche}
         locked={tranche.locked_amount}
-        unlocked={total.minus(tranche.locked_amount)}
-        total={total}
+        unlocked={tranche.total_added.minus(tranche.locked_amount)}
+        total={tranche.total_added}
         secondaryHeader={
           <TrancheLabel
             contract={ADDRESSES.vestingAddress}
-            chainId={appState.chainId}
+            chainId={chainId}
             id={tranche.tranche_id}
           />
         }
@@ -53,7 +52,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
             return (
               <li className="tranche__user-list--item" key={i}>
                 <EtherscanLink
-                  chainId={appState.chainId}
+                  chainId={chainId}
                   address={user.address}
                   text={user.address}
                 />

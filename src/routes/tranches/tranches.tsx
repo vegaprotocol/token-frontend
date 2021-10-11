@@ -4,9 +4,9 @@ import { TrancheLabel } from "./tranche-label";
 import { useTranslation } from "react-i18next";
 import React from "react";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
-import { useAppState } from "../../contexts/app-state/app-state-context";
 import { ADDRESSES } from "../../config";
 import { TrancheItem } from "../redemption/tranche-item";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
 
 const trancheMinimum = 10;
 
@@ -17,7 +17,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
   const [showAll, setShowAll] = React.useState<boolean>(false);
   const { t } = useTranslation();
   const match = useRouteMatch();
-  const { appState } = useAppState();
+  const { chainId } = useWeb3();
   const filteredTranches = tranches?.filter(shouldShowTranche) || [];
 
   return (
@@ -37,7 +37,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                   secondaryHeader={
                     <TrancheLabel
                       contract={ADDRESSES.vestingAddress}
-                      chainId={appState.chainId}
+                      chainId={chainId}
                       id={tranche.tranche_id}
                     />
                   }

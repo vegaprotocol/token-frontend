@@ -2,7 +2,6 @@ import "./dex-table.scss";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { EtherscanLink } from "../../../components/etherscan-link";
-import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { Link } from "react-router-dom";
 import { Routes } from "../../router-config";
 import { LiquidityState, LiquidityAction } from "../liquidity-reducer";
@@ -12,6 +11,7 @@ import {
   KeyValueTableRow,
 } from "../../../components/key-value-table";
 import { EpochCountdown } from "../../../components/epoch-countdown";
+import { useWeb3 } from "../../../contexts/web3-context/web3-context";
 
 interface DexTokensSectionProps {
   name: string;
@@ -29,7 +29,7 @@ export const DexTokensSection = ({
   state,
   showInteractionButton = true,
 }: DexTokensSectionProps) => {
-  const { appState } = useAppState();
+  const { chainId } = useWeb3();
   const { t } = useTranslation();
   const values = React.useMemo(
     () => state.contractData[contractAddress],
@@ -63,7 +63,7 @@ export const DexTokensSection = ({
           <th>{t("liquidityTokenContractAddress")}</th>
           <td>
             <EtherscanLink
-              chainId={appState.chainId}
+              chainId={chainId}
               address={contractAddress}
               text={contractAddress}
             />
@@ -79,7 +79,7 @@ export const DexTokensSection = ({
           <th>{t("rewardTokenContractAddress")}</th>
           <td>
             <EtherscanLink
-              chainId={appState.chainId}
+              chainId={chainId}
               address={values.awardContractAddress}
               text={values.awardContractAddress}
             />
@@ -89,7 +89,7 @@ export const DexTokensSection = ({
           <th>{t("slpTokenContractAddress")}</th>
           <td>
             <EtherscanLink
-              chainId={appState.chainId}
+              chainId={chainId}
               address={values.lpTokenContractAddress}
               text={values.lpTokenContractAddress}
             />

@@ -3,7 +3,7 @@ import { TransactionError } from "./transaction-error";
 import { TransactionPending } from "./transaction-pending";
 import { TransactionRequested } from "./transaction-requested";
 import { TransactionComplete } from "./transaction-complete";
-import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
 
 export const TransactionCallout = ({
   state,
@@ -24,9 +24,7 @@ export const TransactionCallout = ({
   pendingBody?: React.ReactElement | string;
   pendingFooter?: React.ReactElement | string;
 }) => {
-  const {
-    appState: { chainId },
-  } = useAppState();
+  const { chainId } = useWeb3();
   // TODO use switch to kill dead code branches
   if (state.txState === TxState.Error) {
     return (

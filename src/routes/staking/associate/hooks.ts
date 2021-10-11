@@ -1,9 +1,7 @@
 import React from "react";
 import * as Sentry from "@sentry/react";
 import { useTransaction } from "../../../hooks/use-transaction";
-import { useVegaVesting } from "../../../hooks/use-vega-vesting";
 import { TxState } from "../../../hooks/transaction-reducer";
-import { useVegaStaking } from "../../../hooks/use-vega-staking";
 import { StakingMethod } from "../../../components/staking-method-radio";
 import { useRefreshBalances } from "../../../hooks/use-refresh-balances";
 import { useApolloClient, gql } from "@apollo/client";
@@ -13,6 +11,7 @@ import {
   PartyStakeLinkingsVariables,
   PartyStakeLinkings_party_stake_linkings,
 } from "./__generated__/PartyStakeLinkings";
+import { useContracts } from "../../../contexts/contracts/contracts-context";
 
 export const useAddStake = (
   address: string,
@@ -21,8 +20,7 @@ export const useAddStake = (
   stakingMethod: StakingMethod | "",
   confirmations: number
 ) => {
-  const vesting = useVegaVesting();
-  const staking = useVegaStaking();
+  const { staking, vesting } = useContracts();
   const contractAdd = useTransaction(
     () => vesting.addStake(address!, amount, vegaKey),
     () => vesting.checkAddStake(address!, amount, vegaKey),

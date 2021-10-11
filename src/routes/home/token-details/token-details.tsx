@@ -10,8 +10,8 @@ import { BigNumber } from "../../../lib/bignumber";
 import { EtherscanLink } from "../../../components/etherscan-link";
 import { TokenDetailsCirculating } from "./token-details-circulating";
 import { formatNumber } from "../../../lib/format-number";
-import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { useTranslation } from "react-i18next";
+import { useWeb3 } from "../../../contexts/web3-context/web3-context";
 
 export const TokenDetails = ({
   totalSupply,
@@ -22,6 +22,7 @@ export const TokenDetails = ({
 }) => {
   const { t } = useTranslation();
 
+  const { chainId } = useWeb3();
   const { appState } = useAppState();
 
   return (
@@ -30,7 +31,7 @@ export const TokenDetails = ({
         <th>{t("Token address")}</th>
         <td data-testid="token-address">
           <EtherscanLink
-            chainId={appState.chainId}
+            chainId={chainId}
             address={ADDRESSES.vegaTokenAddress}
             text={ADDRESSES.vegaTokenAddress}
           />
@@ -40,7 +41,7 @@ export const TokenDetails = ({
         <th>{t("Vesting contract")}</th>
         <td data-testid="token-contract">
           <EtherscanLink
-            chainId={appState.chainId}
+            chainId={chainId}
             address={ADDRESSES.vestingAddress}
             text={ADDRESSES.vestingAddress}
           />

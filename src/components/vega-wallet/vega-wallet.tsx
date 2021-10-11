@@ -9,6 +9,7 @@ import {
 } from "../../contexts/app-state/app-state-context";
 import {
   WalletCard,
+  WalletCardActions,
   WalletCardContent,
   WalletCardHeader,
   WalletCardRow,
@@ -16,7 +17,6 @@ import {
 import { useTranslation } from "react-i18next";
 import { useVegaWallet } from "../../hooks/use-vega-wallet";
 import { VegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
-import { useVegaStaking } from "../../hooks/use-vega-staking";
 import { gql, useApolloClient } from "@apollo/client";
 import {
   Delegations,
@@ -24,10 +24,10 @@ import {
   Delegations_party_delegations,
 } from "./__generated__/Delegations";
 import { useVegaUser } from "../../hooks/use-vega-user";
-import { useVegaVesting } from "../../hooks/use-vega-vesting";
 import { BigNumber } from "../../lib/bignumber";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { keyBy, uniq } from "lodash";
+import { useContracts } from "../../contexts/contracts/contracts-context";
 
 const DELEGATIONS_QUERY = gql`
   query Delegations($partyId: ID!) {
@@ -130,8 +130,7 @@ const VegaWalletConnected = ({
   } = useAppState();
 
   const [disconnecting, setDisconnecting] = React.useState(false);
-  const staking = useVegaStaking();
-  const vesting = useVegaVesting();
+  const { staking, vesting } = useContracts();
   const [expanded, setExpanded] = React.useState(false);
   const client = useApolloClient();
   const [delegations, setDelegations] = React.useState<
@@ -150,6 +149,8 @@ const VegaWalletConnected = ({
 
   React.useEffect(() => {
     let interval: any;
+    let mounted = true;
+
     if (currVegaKey?.pub) {
       // start polling for delegation
       interval = setInterval(() => {
@@ -160,6 +161,7 @@ const VegaWalletConnected = ({
             fetchPolicy: "network-only",
           })
           .then((res) => {
+            if (!mounted) return;
             const filter =
               res.data.party?.delegations?.filter((d) => {
                 return d.epoch.toString() === res.data.epoch.id;
@@ -214,8 +216,12 @@ const VegaWalletConnected = ({
       }, 1000);
     }
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      mounted = false;
+    };
   }, [client, currVegaKey?.pub]);
+
   const handleDisconnect = React.useCallback(
     async function () {
       try {
@@ -299,7 +305,7 @@ const VegaWalletConnected = ({
             ))}
         </ul>
       )}
-      <div className="vega-wallet__actions">
+      <WalletCardActions>
         {vegaKeys.length > 1 ? (
           <button
             className="button-link button-link--dark"
@@ -316,7 +322,7 @@ const VegaWalletConnected = ({
         >
           {disconnecting ? t("awaitingDisconnect") : t("disconnect")}
         </button>
-      </div>
+      </WalletCardActions>
     </>
   ) : (
     <WalletCardContent>{t("noKeys")}</WalletCardContent>
