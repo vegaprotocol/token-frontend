@@ -12,13 +12,14 @@ export const useRemoveStake = (
   stakingMethod: StakingMethod | ""
 ) => {
   const { staking, vesting } = useContracts();
-  const contractRemove = useTransaction(
-    () => vesting.removeStake(address!, amount, vegaKey),
-    () => vesting.checkRemoveStake(address!, amount, vegaKey)
+  // Cannot use call on these as they check wallet balance
+  // which if staked > wallet balance means you cannot unstaked
+  // even worse if you stake everything then you can't unstake anything!
+  const contractRemove = useTransaction(() =>
+    vesting.removeStake(address!, amount, vegaKey)
   );
-  const walletRemove = useTransaction(
-    () => staking.removeStake(address!, amount, vegaKey),
-    () => staking.checkRemoveStake(address!, amount, vegaKey)
+  const walletRemove = useTransaction(() =>
+    staking.removeStake(address!, amount, vegaKey)
   );
   const refreshBalances = useRefreshBalances(address);
 
