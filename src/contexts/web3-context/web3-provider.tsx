@@ -87,7 +87,7 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
     return () => {
       if (
         provider.current &&
-        provider.current.removeAllListeners === "function"
+        typeof provider.current.removeAllListeners === "function"
       ) {
         provider.current.removeAllListeners("chainChanged");
       }
