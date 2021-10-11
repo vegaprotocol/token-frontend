@@ -63,7 +63,7 @@ export const ClaimFlow = ({
           claim.isExpired(state.claimData?.claim.expiry!),
           claim.isUsed(code!),
         ]);
-        console.log(committed, expired, used);
+
         dispatch({
           type: ClaimActionType.SET_INITIAL_CLAIM_STATUS,
           committed: committed !== UNSPENT_CODE,
@@ -121,7 +121,7 @@ export const ClaimFlow = ({
       />
     );
   }
-  console.log(state.claimData);
+
   return (
     <>
       <section>

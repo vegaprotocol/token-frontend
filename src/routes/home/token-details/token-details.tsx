@@ -8,11 +8,15 @@ import {
 
 import { BigNumber } from "../../../lib/bignumber";
 import { EtherscanLink } from "../../../components/etherscan-link";
-import { TokenDetailsCirculating } from "./token-details-circulating";
+import {
+  TokenDetailsCirculating,
+  TokenDetailsTotalRedeemed,
+} from "./token-details-circulating";
 import { formatNumber } from "../../../lib/format-number";
 import { useTranslation } from "react-i18next";
 import { useWeb3 } from "../../../contexts/web3-context/web3-context";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
+import { useTranches } from "../../../hooks/use-tranches";
 
 export const TokenDetails = ({
   totalSupply,
@@ -25,7 +29,7 @@ export const TokenDetails = ({
 
   const { chainId } = useWeb3();
   const { appState } = useAppState();
-
+  const tranches = useTranches();
   return (
     <KeyValueTable className={"token-details"}>
       <KeyValueTableRow>
@@ -56,7 +60,11 @@ export const TokenDetails = ({
           </KeyValueTableRow>
           <KeyValueTableRow>
             <th>{t("Circulating supply")}</th>
-            <TokenDetailsCirculating tranches={appState.tranches} />
+            <TokenDetailsCirculating tranches={tranches} />
+          </KeyValueTableRow>
+          <KeyValueTableRow>
+            <th>{t("Total redeemed")}</th>
+            <TokenDetailsTotalRedeemed tranches={tranches} />
           </KeyValueTableRow>
         </>
       )}
