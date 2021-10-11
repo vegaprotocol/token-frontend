@@ -62,10 +62,6 @@ export const TokenDetails = ({
             <th>{t("Circulating supply")}</th>
             <TokenDetailsCirculating tranches={tranches} />
           </KeyValueTableRow>
-          <KeyValueTableRow>
-            <th>{t("Total redeemed")}</th>
-            <TokenDetailsTotalRedeemed tranches={tranches} />
-          </KeyValueTableRow>
         </>
       )}
       {Flags.STAKING_DISABLED ? null : (
