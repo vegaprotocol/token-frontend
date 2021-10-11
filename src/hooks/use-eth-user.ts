@@ -18,9 +18,11 @@ export function useEthUser() {
   const { token, staking, vesting } = useContracts();
   const connectTimer = React.useRef<any>();
   const getUserTrancheBalances = useGetUserTrancheBalances(appState.ethAddress);
-  const [hasConnected, setHasConnected] = useLocalStorage(
+  const [hasConnected, setHasConnected] = useLocalStorage<boolean | null>(
     CONNECTED_STORAGE_KEY,
-    false
+    // null indicates not set (initial app start), false indicates
+    // user disconnected, and true indicates user connected
+    null
   );
 
   const connect = React.useCallback(async () => {
@@ -42,7 +44,7 @@ export function useEthUser() {
         method: "eth_requestAccounts",
       });
 
-      if (!hasConnected) {
+      if (hasConnected !== null && !hasConnected) {
         await provider.request({
           method: "wallet_requestPermissions",
           params: [{ eth_accounts: {} }],
