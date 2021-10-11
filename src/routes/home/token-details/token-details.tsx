@@ -8,10 +8,7 @@ import {
 
 import { BigNumber } from "../../../lib/bignumber";
 import { EtherscanLink } from "../../../components/etherscan-link";
-import {
-  TokenDetailsCirculating,
-  TokenDetailsTotalRedeemed,
-} from "./token-details-circulating";
+import { TokenDetailsCirculating } from "./token-details-circulating";
 import { formatNumber } from "../../../lib/format-number";
 import { useTranslation } from "react-i18next";
 import { useWeb3 } from "../../../contexts/web3-context/web3-context";
