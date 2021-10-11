@@ -51,12 +51,22 @@ export function useEthUser() {
 
       connected = true;
 
-      appDispatch({
-        type: AppStateActionType.CONNECT_SUCCESS,
-        address: accounts[0],
-      });
-      Sentry.setUser({ id: accounts[0] });
-      setHasConnected(true);
+      if (
+        accounts[0] &&
+        typeof accounts[0] === "string" &&
+        accounts[0].length
+      ) {
+        appDispatch({
+          type: AppStateActionType.CONNECT_SUCCESS,
+          address: accounts[0],
+        });
+        Sentry.setUser({ id: accounts[0] });
+        setHasConnected(true);
+      } else {
+        Sentry.captureMessage(
+          `Invalid eth_requestAccounts return value. Received: ${accounts[0]}`
+        );
+      }
     } catch (e) {
       if (isUnexpectedError(e as Error)) {
         Sentry.captureException(e);
