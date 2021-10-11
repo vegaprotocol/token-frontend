@@ -12,6 +12,7 @@ import { TokenDetailsCirculating } from "./token-details-circulating";
 import { formatNumber } from "../../../lib/format-number";
 import { useTranslation } from "react-i18next";
 import { useWeb3 } from "../../../contexts/web3-context/web3-context";
+import { useAppState } from "../../../contexts/app-state/app-state-context";
 
 export const TokenDetails = ({
   totalSupply,
@@ -61,9 +62,7 @@ export const TokenDetails = ({
       )}
       {Flags.STAKING_DISABLED ? null : (
         <KeyValueTableRow>
-          <th>
-            {t("$VEGA associated with a Vega key")}
-          </th>
+          <th>{t("$VEGA associated with a Vega key")}</th>
           <td data-testid="associated">
             {formatNumber(appState.totalAssociated)}
           </td>
