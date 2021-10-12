@@ -3,9 +3,11 @@ import Web3 from "web3";
 import { EthereumChainId } from "../../config";
 
 interface Web3ContextShape {
+  connect: () => Promise<void>;
   provider: any;
   web3: Web3;
   chainId: EthereumChainId;
+  ethAddress: string;
 }
 
 export const Web3Context = React.createContext<Web3ContextShape | undefined>(

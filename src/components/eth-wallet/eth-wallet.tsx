@@ -1,8 +1,5 @@
 import { useTranslation } from "react-i18next";
-import {
-  AppStateActionType,
-  useAppState,
-} from "../../contexts/app-state/app-state-context";
+import { useAppState } from "../../contexts/app-state/app-state-context";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import {
   WalletCard,
@@ -14,10 +11,11 @@ import {
 import { useEthUser } from "../../hooks/use-eth-user";
 import { Colors, Flags } from "../../config";
 import React from "react";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
 
 export const EthWallet = () => {
   const { t } = useTranslation();
-  const { appDispatch } = useAppState();
+  const { connect } = useWeb3();
   const { ethAddress, disconnect } = useEthUser();
   const [disconnecting] = React.useState(false);
 
@@ -40,12 +38,7 @@ export const EthWallet = () => {
           <button
             type="button"
             className="button-link"
-            onClick={() =>
-              appDispatch({
-                type: AppStateActionType.SET_ETH_WALLET_OVERLAY,
-                isOpen: true,
-              })
-            }
+            onClick={connect}
             data-testid="connect"
           >
             {t("Connect to an Ethereum wallet")}

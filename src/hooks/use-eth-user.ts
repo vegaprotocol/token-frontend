@@ -14,7 +14,7 @@ import { useLocalStorage } from "./use-local-storage";
 const CONNECTED_STORAGE_KEY = "ethereum_wallet_connected";
 
 export function useEthUser() {
-  const { appState, appDispatch, provider } = useAppState();
+  const { appState, appDispatch } = useAppState();
   const { token, staking, vesting } = useContracts();
   const connectTimer = React.useRef<any>();
   const getUserTrancheBalances = useGetUserTrancheBalances(appState.ethAddress);
@@ -25,57 +25,57 @@ export function useEthUser() {
     null
   );
 
-  const connect = React.useCallback(async () => {
-    let connected = false;
+  // const connect = React.useCallback(async () => {
+  //   let connected = false;
 
-    // only show set connecting state if some time has passed to
-    // avoid UI flickering if you have already permitted the website
-    // to connect to metamask
-    connectTimer.current = setTimeout(() => {
-      if (!connected) {
-        appDispatch({ type: AppStateActionType.CONNECT });
-      }
-    }, 300);
+  //   // only show set connecting state if some time has passed to
+  //   // avoid UI flickering if you have already permitted the website
+  //   // to connect to metamask
+  //   connectTimer.current = setTimeout(() => {
+  //     if (!connected) {
+  //       appDispatch({ type: AppStateActionType.CONNECT });
+  //     }
+  //   }, 300);
 
-    try {
-      appDispatch({ type: AppStateActionType.CONNECT });
+  //   try {
+  //     appDispatch({ type: AppStateActionType.CONNECT });
 
-      const accounts = await provider.request({
-        method: "eth_requestAccounts",
-      });
+  //     const accounts = await provider.request({
+  //       method: "eth_requestAccounts",
+  //     });
 
-      if (hasConnected !== null && !hasConnected) {
-        await provider.request({
-          method: "wallet_requestPermissions",
-          params: [{ eth_accounts: {} }],
-        });
-      }
+  //     if (hasConnected !== null && !hasConnected) {
+  //       await provider.request({
+  //         method: "wallet_requestPermissions",
+  //         params: [{ eth_accounts: {} }],
+  //       });
+  //     }
 
-      connected = true;
+  //     connected = true;
 
-      if (
-        accounts[0] &&
-        typeof accounts[0] === "string" &&
-        accounts[0].length
-      ) {
-        appDispatch({
-          type: AppStateActionType.CONNECT_SUCCESS,
-          address: accounts[0],
-        });
-        Sentry.setUser({ id: accounts[0] });
-        setHasConnected(true);
-      } else {
-        Sentry.captureMessage(
-          `Invalid eth_requestAccounts return value. Received: ${accounts[0]}`
-        );
-      }
-    } catch (e) {
-      if (isUnexpectedError(e as Error)) {
-        Sentry.captureException(e);
-      }
-      appDispatch({ type: AppStateActionType.CONNECT_FAIL, error: e as Error });
-    }
-  }, [appDispatch, provider, hasConnected, setHasConnected]);
+  //     if (
+  //       accounts[0] &&
+  //       typeof accounts[0] === "string" &&
+  //       accounts[0].length
+  //     ) {
+  //       appDispatch({
+  //         type: AppStateActionType.CONNECT_SUCCESS,
+  //         address: accounts[0],
+  //       });
+  //       Sentry.setUser({ id: accounts[0] });
+  //       setHasConnected(true);
+  //     } else {
+  //       Sentry.captureMessage(
+  //         `Invalid eth_requestAccounts return value. Received: ${accounts[0]}`
+  //       );
+  //     }
+  //   } catch (e) {
+  //     if (isUnexpectedError(e as Error)) {
+  //       Sentry.captureException(e);
+  //     }
+  //     appDispatch({ type: AppStateActionType.CONNECT_FAIL, error: e as Error });
+  //   }
+  // }, [appDispatch, provider, hasConnected, setHasConnected]);
 
   const disconnect = React.useCallback(() => {
     appDispatch({ type: AppStateActionType.DISCONNECT });
@@ -83,22 +83,22 @@ export function useEthUser() {
   }, [appDispatch, setHasConnected]);
 
   // Auto connect if possible
-  React.useEffect(() => {
-    if (
-      hasConnected &&
-      !appState.ethAddress &&
-      !appState.error &&
-      !appState.ethWalletConnecting
-    ) {
-      connect();
-    }
-  }, [
-    hasConnected,
-    appState.ethAddress,
-    appState.ethWalletConnecting,
-    appState.error,
-    connect,
-  ]);
+  // React.useEffect(() => {
+  //   if (
+  //     hasConnected &&
+  //     !appState.ethAddress &&
+  //     !appState.error &&
+  //     !appState.ethWalletConnecting
+  //   ) {
+  //     connect();
+  //   }
+  // }, [
+  //   hasConnected,
+  //   appState.ethAddress,
+  //   appState.ethWalletConnecting,
+  //   appState.error,
+  //   connect,
+  // ]);
 
   // update balances on connect to Ethereum
   React.useEffect(() => {
@@ -125,7 +125,7 @@ export function useEthUser() {
     if (appState.ethAddress) {
       updateBalances();
     }
-  }, [appDispatch, appState.ethAddress, provider, staking, token, vesting]);
+  }, [appDispatch, appState.ethAddress, staking, token, vesting]);
 
   // Updates on address change, getUserTrancheBalance has address as a dep
   React.useEffect(() => {
@@ -145,7 +145,7 @@ export function useEthUser() {
 
   return {
     ethAddress: appState.ethAddress,
-    connect,
+    // connect,
     disconnect,
   };
 }
