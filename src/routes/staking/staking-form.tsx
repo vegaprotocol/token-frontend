@@ -1,29 +1,31 @@
 import "./staking-form.scss";
 
-import React from "react";
 import * as Sentry from "@sentry/react";
-import { FormGroup, Radio, RadioGroup } from "@blueprintjs/core";
-import { useTranslation } from "react-i18next";
-import { useVegaWallet } from "../../hooks/use-vega-wallet";
-import { gql, useApolloClient } from "@apollo/client";
-import {
-  PartyDelegations,
-  PartyDelegationsVariables,
-} from "./__generated__/PartyDelegations";
-import { TokenInput } from "../../components/token-input";
+
 import {
   DelegateSubmissionInput,
   UndelegateSubmissionInput,
 } from "../../lib/vega-wallet/vega-wallet-service";
-import { StakeSuccess } from "./stake-success";
-import { StakePending } from "./stake-pending";
-import { StakeFailure } from "./stake-failure";
-import { useHistory } from "react-router-dom";
-import { useSearchParams } from "../../hooks/use-search-params";
-import { removeDecimal } from "../../lib/decimals";
-import { useAppState } from "../../contexts/app-state/app-state-context";
+import { FormGroup, Radio, RadioGroup } from "@blueprintjs/core";
+import {
+  PartyDelegations,
+  PartyDelegationsVariables,
+} from "./__generated__/PartyDelegations";
+import { gql, useApolloClient } from "@apollo/client";
+
 import { BigNumber } from "../../lib/bignumber";
 import { Colors } from "../../config";
+import React from "react";
+import { StakeFailure } from "./stake-failure";
+import { StakePending } from "./stake-pending";
+import { StakeSuccess } from "./stake-success";
+import { TokenInput } from "../../components/token-input";
+import { removeDecimal } from "../../lib/decimals";
+import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useHistory } from "react-router-dom";
+import { useSearchParams } from "../../hooks/use-search-params";
+import { useTranslation } from "react-i18next";
+import { useVegaWallet } from "../../hooks/use-vega-wallet";
 
 export const PARTY_DELEGATIONS_QUERY = gql`
   query PartyDelegations($partyId: ID!) {
@@ -56,7 +58,6 @@ interface StakingFormProps {
   pubkey: string;
   availableStakeToAdd: BigNumber;
   availableStakeToRemove: BigNumber;
-  minDelegation: BigNumber;
 }
 
 export const StakingForm = ({
@@ -64,7 +65,6 @@ export const StakingForm = ({
   pubkey,
   availableStakeToAdd,
   availableStakeToRemove,
-  minDelegation,
 }: StakingFormProps) => {
   const params = useSearchParams();
   const history = useHistory();
@@ -195,7 +195,6 @@ export const StakingForm = ({
             setAmount={setAmount}
             maximum={maxDelegation}
             currency={t("VEGA Tokens")}
-            minimum={minDelegation}
           />
         </>
       )}

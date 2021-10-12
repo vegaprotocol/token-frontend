@@ -3,7 +3,6 @@ import { format } from "date-fns";
 import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { useVegaClaim } from "../../hooks/use-vega-claim";
 import {
   ClaimAction,
   ClaimActionType,
@@ -28,6 +27,7 @@ import {
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { formatNumber } from "../../lib/format-number";
 import { UNSPENT_CODE } from "../../lib/vega-web3/vega-claim";
+import { useContracts } from "../../contexts/contracts/contracts-context";
 
 interface ClaimFlowProps {
   state: ClaimState;
@@ -46,7 +46,7 @@ export const ClaimFlow = ({
   const currentTranche = tranches.find(
     (tranche) => tranche.tranche_id === state.claimData?.claim.tranche
   );
-  const claim = useVegaClaim();
+  const { claim } = useContracts();
   const code = state.claimData?.signature.s!;
   const shortCode = truncateMiddle(code);
 
@@ -63,7 +63,7 @@ export const ClaimFlow = ({
           claim.isExpired(state.claimData?.claim.expiry!),
           claim.isUsed(code!),
         ]);
-        console.log(committed, expired, used);
+
         dispatch({
           type: ClaimActionType.SET_INITIAL_CLAIM_STATUS,
           committed: committed !== UNSPENT_CODE,
@@ -74,7 +74,7 @@ export const ClaimFlow = ({
         Sentry.captureException(e);
         dispatch({
           type: ClaimActionType.ERROR,
-          error: e,
+          error: e as Error,
         });
       } finally {
         dispatch({ type: ClaimActionType.SET_LOADING, loading: false });
@@ -121,7 +121,7 @@ export const ClaimFlow = ({
       />
     );
   }
-  console.log(state.claimData);
+
   return (
     <>
       <section>

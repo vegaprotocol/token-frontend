@@ -1,17 +1,19 @@
 import "./token-details.scss";
 
+import { ADDRESSES, Flags } from "../../../config";
 import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
-import { useTranslation } from "react-i18next";
-import { useAppState } from "../../../contexts/app-state/app-state-context";
-import { TokenDetailsCirculating } from "./token-details-circulating";
-import { truncateMiddle } from "../../../lib/truncate-middle";
-import { ADDRESSES, Flags } from "../../../config";
-import { formatNumber } from "../../../lib/format-number";
+
 import { BigNumber } from "../../../lib/bignumber";
 import { EtherscanLink } from "../../../components/etherscan-link";
+import { TokenDetailsCirculating } from "./token-details-circulating";
+import { formatNumber } from "../../../lib/format-number";
+import { useTranslation } from "react-i18next";
+import { useWeb3 } from "../../../contexts/web3-context/web3-context";
+import { useAppState } from "../../../contexts/app-state/app-state-context";
+import { useTranches } from "../../../hooks/use-tranches";
 
 export const TokenDetails = ({
   totalSupply,
@@ -22,17 +24,18 @@ export const TokenDetails = ({
 }) => {
   const { t } = useTranslation();
 
+  const { chainId } = useWeb3();
   const { appState } = useAppState();
-
+  const tranches = useTranches();
   return (
     <KeyValueTable className={"token-details"}>
       <KeyValueTableRow>
         <th>{t("Token address")}</th>
         <td data-testid="token-address">
           <EtherscanLink
-            chainId={appState.chainId}
+            chainId={chainId}
             address={ADDRESSES.vegaTokenAddress}
-            text={truncateMiddle(ADDRESSES.vegaTokenAddress)}
+            text={ADDRESSES.vegaTokenAddress}
           />
         </td>
       </KeyValueTableRow>
@@ -40,9 +43,9 @@ export const TokenDetails = ({
         <th>{t("Vesting contract")}</th>
         <td data-testid="token-contract">
           <EtherscanLink
-            chainId={appState.chainId}
+            chainId={chainId}
             address={ADDRESSES.vestingAddress}
-            text={truncateMiddle(ADDRESSES.vestingAddress)}
+            text={ADDRESSES.vestingAddress}
           />
         </td>
       </KeyValueTableRow>
@@ -54,24 +57,22 @@ export const TokenDetails = ({
           </KeyValueTableRow>
           <KeyValueTableRow>
             <th>{t("Circulating supply")}</th>
-            <TokenDetailsCirculating tranches={appState.tranches} />
+            <TokenDetailsCirculating tranches={tranches} />
           </KeyValueTableRow>
         </>
       )}
       {Flags.STAKING_DISABLED ? null : (
         <KeyValueTableRow>
-          <th style={{ whiteSpace: "nowrap" }}>
-            {t("$VEGA associated with a Vega key")}
-          </th>
+          <th>{t("$VEGA associated with a Vega key")}</th>
           <td data-testid="associated">
-            {formatNumber(appState.totalAssociated)}
+            {formatNumber(appState.totalAssociated, 2)}
           </td>
         </KeyValueTableRow>
       )}
       {Flags.STAKING_DISABLED ? null : (
         <KeyValueTableRow>
           <th>{t("Staked on Vega validator")}</th>
-          <td data-testid="staked">{formatNumber(totalStaked)}</td>
+          <td data-testid="staked">{formatNumber(totalStaked, 2)}</td>
         </KeyValueTableRow>
       )}
     </KeyValueTable>

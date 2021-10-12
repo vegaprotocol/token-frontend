@@ -3,23 +3,25 @@ import {
   AppStateActionType,
   useAppState,
 } from "../contexts/app-state/app-state-context";
-import { useVegaStaking } from "./use-vega-staking";
-import { useVegaToken } from "./use-vega-token";
-import { useVegaVesting } from "./use-vega-vesting";
+import { useContracts } from "../contexts/contracts/contracts-context";
 import { BigNumber } from "../lib/bignumber";
 import { useGetUserTrancheBalances } from "./use-get-user-tranche-balances";
 import * as Sentry from "@sentry/react";
 import { ADDRESSES } from "../config";
 import { isUnexpectedError } from "../lib/web3-utils";
+import { useLocalStorage } from "./use-local-storage";
+
+const CONNECTED_STORAGE_KEY = "ethereum_wallet_connected";
 
 export function useEthUser() {
   const { appState, appDispatch, provider } = useAppState();
-  const token = useVegaToken();
-  const staking = useVegaStaking();
-  const vesting = useVegaVesting();
+  const { token, staking, vesting } = useContracts();
   const connectTimer = React.useRef<any>();
   const getUserTrancheBalances = useGetUserTrancheBalances(appState.ethAddress);
-  const [triedToConnect, setTriedToConnect] = React.useState<boolean>(false);
+  const [hasConnected, setHasConnected] = useLocalStorage(
+    CONNECTED_STORAGE_KEY,
+    false
+  );
 
   const connect = React.useCallback(async () => {
     let connected = false;
@@ -40,45 +42,60 @@ export function useEthUser() {
         method: "eth_requestAccounts",
       });
 
+      if (!hasConnected) {
+        await provider.request({
+          method: "wallet_requestPermissions",
+          params: [{ eth_accounts: {} }],
+        });
+      }
+
       connected = true;
 
-      appDispatch({
-        type: AppStateActionType.CONNECT_SUCCESS,
-        address: accounts[0],
-      });
-      Sentry.setUser({ id: accounts[0] });
+      if (
+        accounts[0] &&
+        typeof accounts[0] === "string" &&
+        accounts[0].length
+      ) {
+        appDispatch({
+          type: AppStateActionType.CONNECT_SUCCESS,
+          address: accounts[0],
+        });
+        Sentry.setUser({ id: accounts[0] });
+        setHasConnected(true);
+      } else {
+        Sentry.captureMessage(
+          `Invalid eth_requestAccounts return value. Received: ${accounts[0]}`
+        );
+      }
     } catch (e) {
-      if (isUnexpectedError(e)) {
+      if (isUnexpectedError(e as Error)) {
         Sentry.captureException(e);
       }
-      appDispatch({ type: AppStateActionType.CONNECT_FAIL, error: e });
+      appDispatch({ type: AppStateActionType.CONNECT_FAIL, error: e as Error });
     }
-  }, [appDispatch, provider]);
+  }, [appDispatch, provider, hasConnected, setHasConnected]);
+
+  const disconnect = React.useCallback(() => {
+    appDispatch({ type: AppStateActionType.DISCONNECT });
+    setHasConnected(false);
+  }, [appDispatch, setHasConnected]);
 
   // Auto connect if possible
   React.useEffect(() => {
     if (
-      !triedToConnect &&
-      // We don't have an address we are not connected
+      hasConnected &&
       !appState.ethAddress &&
-      // If we have an error we don't want to try reconnecting
       !appState.error &&
-      // If we are connecting we don't want to try to connect
       !appState.ethWalletConnecting
     ) {
-      try {
-        setTriedToConnect(true);
-        connect();
-      } catch (e) {
-        Sentry.captureException(e);
-      }
+      connect();
     }
   }, [
+    hasConnected,
     appState.ethAddress,
     appState.ethWalletConnecting,
     appState.error,
     connect,
-    triedToConnect,
   ]);
 
   // update balances on connect to Ethereum
@@ -127,5 +144,6 @@ export function useEthUser() {
   return {
     ethAddress: appState.ethAddress,
     connect,
+    disconnect,
   };
 }

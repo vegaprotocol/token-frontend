@@ -1,10 +1,9 @@
 import React from "react";
 import { StakingMethod } from "../../../components/staking-method-radio";
 import { useTransaction } from "../../../hooks/use-transaction";
-import { useVegaVesting } from "../../../hooks/use-vega-vesting";
-import { useVegaStaking } from "../../../hooks/use-vega-staking";
 import { TxState } from "../../../hooks/transaction-reducer";
 import { useRefreshBalances } from "../../../hooks/use-refresh-balances";
+import { useContracts } from "../../../contexts/contracts/contracts-context";
 
 export const useRemoveStake = (
   address: string,
@@ -12,15 +11,15 @@ export const useRemoveStake = (
   vegaKey: string,
   stakingMethod: StakingMethod | ""
 ) => {
-  const vesting = useVegaVesting();
-  const staking = useVegaStaking();
-  const contractRemove = useTransaction(
-    () => vesting.removeStake(address!, amount, vegaKey),
-    () => vesting.checkRemoveStake(address!, amount, vegaKey)
+  const { staking, vesting } = useContracts();
+  // Cannot use call on these as they check wallet balance
+  // which if staked > wallet balance means you cannot unstaked
+  // even worse if you stake everything then you can't unstake anything!
+  const contractRemove = useTransaction(() =>
+    vesting.removeStake(address!, amount, vegaKey)
   );
-  const walletRemove = useTransaction(
-    () => staking.removeStake(address!, amount, vegaKey),
-    () => staking.checkRemoveStake(address!, amount, vegaKey)
+  const walletRemove = useTransaction(() =>
+    staking.removeStake(address!, amount, vegaKey)
   );
   const refreshBalances = useRefreshBalances(address);
 

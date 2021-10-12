@@ -1,12 +1,14 @@
 import React from "react";
 // @ts-ignore
 import detectEthereumProvider from "DETECT_PROVIDER_PATH/detect-provider";
-import { SplashScreen } from "../splash-screen";
-import { SplashLoader } from "../splash-loader";
+import { SplashScreen } from "../../components/splash-screen";
+import { SplashLoader } from "../../components/splash-loader";
 import { useTranslation } from "react-i18next";
 import { EthereumChainId, EthereumChainNames } from "../../config";
 import * as Sentry from "@sentry/react";
 import { Severity } from "@sentry/react";
+import { Web3Context } from "./web3-context";
+import Web3 from "web3";
 
 enum ProviderStatus {
   Pending,
@@ -15,13 +17,16 @@ enum ProviderStatus {
   Invalid,
 }
 
-export const Web3Provider = ({
-  children,
-}: {
-  children: (data: { provider: any; chainId: EthereumChainId }) => JSX.Element;
-}) => {
+/**
+ * Provides a raw web3 provider (usually window.ethereum injected by a chrome extension), a Web3
+ * instance and the current chainId to its children. Also sets up an listener for the
+ * changeChanged event and handles rendering logic to only render children if the configured
+ * chainId matches what is set in the users logic.
+ */
+export const Web3Provider = ({ children }: { children: JSX.Element }) => {
   const { t } = useTranslation();
-  const provider = React.useRef<any>();
+  const provider = React.useRef<any>(null);
+  const web3 = React.useRef<Web3 | null>(null);
   const [status, setStatus] = React.useState(ProviderStatus.Pending);
   const [chainId, setChainId] = React.useState<EthereumChainId | null>(null);
 
@@ -32,6 +37,7 @@ export const Web3Provider = ({
         // Extra check helps with Opera's legacy web3 - it properly falls through to NOT_DETECTED
         if (res && res.request) {
           provider.current = res;
+          web3.current = new Web3(res);
           setStatus(ProviderStatus.Ready);
         } else {
           setStatus(ProviderStatus.Invalid);
@@ -42,6 +48,7 @@ export const Web3Provider = ({
       });
   }, []);
 
+  // Get and set the chainId if the provider is ready
   React.useEffect(() => {
     const getChainId = async () => {
       const chainId = await provider.current.request({
@@ -55,6 +62,7 @@ export const Web3Provider = ({
     }
   }, [status]);
 
+  // Bind a listener for chainChanged if the provider is ready
   React.useEffect(() => {
     const bindChainChangeListener = () => {
       provider.current.on("chainChanged", (newChainId: EthereumChainId) => {
@@ -75,11 +83,19 @@ export const Web3Provider = ({
     if (status === ProviderStatus.Ready) {
       bindChainChangeListener();
     }
+
     return () => {
-      provider.current && provider.current.removeAllListeners("chainChanged");
+      if (
+        provider.current &&
+        typeof provider.current.removeAllListeners === "function"
+      ) {
+        provider.current.removeAllListeners("chainChanged");
+      }
     };
   }, [chainId, status]);
 
+  // App cant work without a web3 provider so return with a splash
+  // screen preventing further actions
   if (status === ProviderStatus.None || status === ProviderStatus.Invalid) {
     return (
       <SplashScreen>
@@ -92,7 +108,13 @@ export const Web3Provider = ({
     );
   }
 
-  if (status === ProviderStatus.Pending || chainId === null) {
+  // Still waiting for the provider to be detected and the chainId fetched
+  if (
+    status === ProviderStatus.Pending ||
+    chainId === null ||
+    provider.current === null ||
+    web3.current === null
+  ) {
     return (
       <SplashScreen>
         <SplashLoader />
@@ -100,6 +122,8 @@ export const Web3Provider = ({
     );
   }
 
+  // Chain ID retrieved from provider isn't the same as what the app is
+  // configured to work with. Prevent further actions with splash screen
   if (chainId !== process.env.REACT_APP_CHAIN) {
     const currentChain = EthereumChainNames[chainId];
     const desiredChain =
@@ -121,5 +145,15 @@ export const Web3Provider = ({
     );
   }
 
-  return children({ provider: provider.current, chainId });
+  return (
+    <Web3Context.Provider
+      value={{
+        provider: provider.current,
+        web3: web3.current,
+        chainId,
+      }}
+    >
+      {children}
+    </Web3Context.Provider>
+  );
 };

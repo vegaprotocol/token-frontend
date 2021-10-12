@@ -3,18 +3,20 @@ import { formatNumber } from "../../../lib/format-number";
 import { Tranche } from "../../../lib/vega-web3/vega-web3-types";
 
 /**
- * Add together the reedeemed tokens from all tranches
+ * Add together the circulating tokens from all tranches
  *
  * @param tranches All of the tranches to sum
  * @param decimals decimal places for the formatted result
- * @return Total redeemed vouchers, formatted as a string
+ * @return The total circulating tokens from all tranches
  */
-export function sumRedeemedTokens(tranches: Tranche[] | null): BigNumber {
+export function sumCirculatingTokens(tranches: Tranche[] | null): BigNumber {
   let totalCirculating: BigNumber = new BigNumber(0);
 
   tranches?.forEach(
     (tranche) =>
-      (totalCirculating = totalCirculating.plus(tranche.total_removed))
+      (totalCirculating = totalCirculating
+        .plus(tranche.total_added)
+        .minus(tranche.locked_amount))
   );
 
   return totalCirculating;
@@ -33,8 +35,10 @@ export const TokenDetailsCirculating = ({
 }: {
   tranches: Tranche[] | null;
 }) => {
-  const totalCirculating = sumRedeemedTokens(tranches);
+  const totalCirculating = sumCirculatingTokens(tranches);
   return (
-    <td data-testid="circulating-supply">{formatNumber(totalCirculating)}</td>
+    <td data-testid="circulating-supply">
+      {formatNumber(totalCirculating, 2)}
+    </td>
   );
 };

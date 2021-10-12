@@ -9,7 +9,7 @@ import { BigNumber } from "../../../lib/bignumber";
 import { AssociateInfo } from "./associate-info";
 import React from "react";
 import { useTransaction } from "../../../hooks/use-transaction";
-import { useVegaToken } from "../../../hooks/use-vega-token";
+import { useContracts } from "../../../contexts/contracts/contracts-context";
 import { TxState } from "../../../hooks/transaction-reducer";
 import { TokenInput } from "../../../components/token-input";
 import { ADDRESSES } from "../../../config";
@@ -20,31 +20,26 @@ export const WalletAssociate = ({
   amount,
   setAmount,
   address,
-  minDelegation,
 }: {
   perform: () => void;
   amount: string;
   setAmount: React.Dispatch<string>;
   vegaKey: VegaKeyExtended;
   address: string;
-  minDelegation: BigNumber;
 }) => {
   const { t } = useTranslation();
   const {
     appDispatch,
     appState: { walletBalance, allowance, walletAssociatedBalance },
   } = useAppState();
-  const token = useVegaToken();
+
+  const { token } = useContracts();
+
   const {
     state: approveState,
     perform: approve,
     dispatch: approveDispatch,
   } = useTransaction(() => token.approve(address, ADDRESSES.stakingBridge));
-  const maximum = React.useMemo(
-    () =>
-      BigNumber.min(new BigNumber(walletBalance), new BigNumber(allowance!)),
-    [allowance, walletBalance]
-  );
 
   // Once they have approved deposits then we need to refresh their allowance
   React.useEffect(() => {
@@ -64,6 +59,7 @@ export const WalletAssociate = ({
   }, [address, appDispatch, approveState.txState, token]);
 
   let pageContent = null;
+
   if (walletBalance.isEqualTo("0")) {
     pageContent = (
       <div className="wallet-associate__error">
@@ -95,11 +91,10 @@ export const WalletAssociate = ({
           perform={perform}
           amount={amount}
           setAmount={setAmount}
-          maximum={maximum}
+          maximum={walletBalance}
           approveTxState={approveState}
           approveTxDispatch={approveDispatch}
           currency={t("VEGA Tokens")}
-          minimum={minDelegation}
         />
       </>
     );

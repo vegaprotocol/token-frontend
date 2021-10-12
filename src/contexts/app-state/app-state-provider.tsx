@@ -1,5 +1,4 @@
 import React from "react";
-import { EthereumChainId } from "../../config";
 import {
   AppState,
   AppStateContext,
@@ -8,19 +7,17 @@ import {
   VegaWalletStatus,
 } from "./app-state-context";
 
+import { useWeb3 } from "../web3-context/web3-context";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { BigNumber } from "../../lib/bignumber";
 import * as Sentry from "@sentry/react";
 import { Severity } from "@sentry/react";
 
 interface AppStateProviderProps {
-  provider: any;
-  chainId: EthereumChainId;
   children: React.ReactNode;
 }
 
 const initialAppState: AppState = {
-  chainId: process.env.REACT_APP_CHAIN as EthereumChainId,
   // set in app-loader TODO: update when user stakes/unstakes/associates/disassociates
   totalAssociated: new BigNumber(0),
   decimals: 0,
@@ -73,6 +70,7 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
       return {
         ...state,
         error: null,
+        ethWalletConnecting: false,
         ethAddress: "",
       };
     case AppStateActionType.ACCOUNTS_CHANGED: {
@@ -203,15 +201,9 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
   }
 }
 
-export function AppStateProvider({
-  children,
-  provider,
-  chainId,
-}: AppStateProviderProps) {
-  const [state, dispatch] = React.useReducer(appStateReducer, {
-    ...initialAppState,
-    chainId,
-  });
+export function AppStateProvider({ children }: AppStateProviderProps) {
+  const { provider } = useWeb3();
+  const [state, dispatch] = React.useReducer(appStateReducer, initialAppState);
 
   React.useEffect(() => {
     provider.on("accountsChanged", (accounts: string[]) => {

@@ -3,12 +3,12 @@ import {
   AppStateActionType,
   useAppState,
 } from "../contexts/app-state/app-state-context";
-import { useVegaVesting } from "./use-vega-vesting";
 import * as Sentry from "@sentry/react";
 import BigNumber from "bignumber.js";
+import { useContracts } from "../contexts/contracts/contracts-context";
 
 export const useGetUserTrancheBalances = (address: string) => {
-  const vesting = useVegaVesting();
+  const { vesting } = useContracts();
   const { appDispatch } = useAppState();
   return React.useCallback(async () => {
     appDispatch({
@@ -46,7 +46,7 @@ export const useGetUserTrancheBalances = (address: string) => {
       Sentry.captureException(e);
       appDispatch({
         type: AppStateActionType.SET_TRANCHE_ERROR,
-        error: e,
+        error: e as Error,
       });
     }
   }, [address, appDispatch, vesting]);

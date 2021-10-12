@@ -13,19 +13,18 @@ import {
   StakingMethod,
   StakingMethodRadio,
 } from "../../../components/staking-method-radio";
-import { useAddStake } from "./hooks";
-import { BigNumber } from "../../../lib/bignumber";
+import { useAddStake, usePollForStakeLinking } from "./hooks";
+import { Callout } from "../../../components/callout";
+import { useWeb3 } from "../../../contexts/web3-context/web3-context";
 
 export const AssociatePage = ({
   address,
   vegaKey,
   requiredConfirmations,
-  minDelegation,
 }: {
   address: string;
   vegaKey: VegaKeyExtended;
   requiredConfirmations: number;
-  minDelegation: BigNumber;
 }) => {
   const { t } = useTranslation();
   const params = useSearchParams();
@@ -48,13 +47,15 @@ export const AssociatePage = ({
     requiredConfirmations
   );
 
+  const linking = usePollForStakeLinking(vegaKey.pub, txState.txData.hash);
+
+  const { chainId } = useWeb3();
   const {
-    appState: { walletBalance, totalVestedBalance },
+    appState: { walletBalance, totalVestedBalance, totalLockedBalance },
   } = useAppState();
 
-  const zeroVesting = totalVestedBalance.isEqualTo(0);
+  const zeroVesting = totalVestedBalance.plus(totalLockedBalance).isEqualTo(0);
   const zeroVega = walletBalance.isEqualTo(0);
-
   if (txState.txState !== TxState.Default) {
     return (
       <AssociateTransaction
@@ -63,9 +64,12 @@ export const AssociatePage = ({
         state={txState}
         dispatch={txDispatch}
         requiredConfirmations={requiredConfirmations}
+        linking={linking}
+        chainId={chainId}
       />
     );
   }
+
   return (
     <section data-testid="associate">
       <p data-testid="associate-information">
@@ -73,7 +77,11 @@ export const AssociatePage = ({
           "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes."
         )}
       </p>
-      {zeroVesting && zeroVega ? null : (
+      {zeroVesting && zeroVega ? (
+        <Callout intent="error">
+          <p>{t("associateNoVega")}</p>
+        </Callout>
+      ) : (
         <>
           <h2 data-testid="associate-subheader">
             {t("Where would you like to stake from?")}
@@ -91,7 +99,6 @@ export const AssociatePage = ({
             perform={txPerform}
             amount={amount}
             setAmount={setAmount}
-            minDelegation={minDelegation}
           />
         ) : (
           <WalletAssociate
@@ -100,7 +107,6 @@ export const AssociatePage = ({
             perform={txPerform}
             amount={amount}
             setAmount={setAmount}
-            minDelegation={minDelegation}
           />
         ))}
     </section>

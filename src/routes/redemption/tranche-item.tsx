@@ -5,6 +5,7 @@ import { BigNumber } from "../../lib/bignumber";
 import { Link } from "react-router-dom";
 
 import "./tranche-item.scss";
+import { formatNumber } from "../../lib/format-number";
 
 export interface TrancheItemProps {
   tranche: {
@@ -41,15 +42,19 @@ export const TrancheItem = ({
   return (
     <section data-testid="tranche-item" className="tranche-item">
       <div className="tranche-item__header">
-        {link && (
+        {link ? (
           <Link to={link}>
             <span className="tranche-item__label">
               {t("Tranche")} {tranche.tranche_id}
             </span>
           </Link>
+        ) : (
+          <span className="tranche-item__label">
+            {t("Tranche")} {tranche.tranche_id}
+          </span>
         )}
         {secondaryHeader}
-        <span>{total.toString()}</span>
+        <span>{formatNumber(total, 2)}</span>
       </div>
       <table>
         <tbody>
@@ -89,8 +94,8 @@ export const TrancheItem = ({
           <span>{t("Unlocked")}</span>
         </div>
         <div className="tranche-item__progress-contents">
-          <span>{locked.toString()}</span>
-          <span>{unlocked.toString()}</span>
+          <span>{formatNumber(locked, 2)}</span>
+          <span>{formatNumber(unlocked, 2)}</span>
         </div>
       </div>
 

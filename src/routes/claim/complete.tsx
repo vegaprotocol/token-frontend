@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Callout } from "../../components/callout";
 import { EtherscanLink } from "../../components/etherscan-link";
 import { Tick } from "../../components/icons";
-import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
 import { Routes } from "../router-config";
@@ -20,9 +20,8 @@ export const Complete = ({
   claimTxHash: string | null;
 }) => {
   const { t } = useTranslation();
-  const {
-    appState: { chainId },
-  } = useAppState();
+  const { chainId } = useWeb3();
+
   return (
     <>
       <Callout intent="success" title="Claim complete" icon={<Tick />}>

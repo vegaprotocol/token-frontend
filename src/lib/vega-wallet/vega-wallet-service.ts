@@ -1,9 +1,11 @@
 import { VegaKey } from "../../contexts/app-state/app-state-context";
 import { VOTE_VALUE_MAP } from "../../routes/governance/vote-types";
 import { VoteValue } from "../../__generated__/globalTypes";
+import { LocalStorage } from "../storage";
 import { GenericErrorResponse } from "./vega-wallet-types";
 
 const DEFAULT_WALLET_URL = "http://localhost:1789/api/v1";
+const TOKEN_STORAGE_KEY = "vega_wallet_token";
 
 const Endpoints = {
   STATUS: "status",
@@ -68,8 +70,8 @@ export class VegaWalletService implements IVegaWalletService {
   statusPoll: any;
 
   constructor() {
-    this.url = localStorage.getItem("vega_wallet_url") || DEFAULT_WALLET_URL;
-    this.token = localStorage.getItem("vega_wallet_token") || "";
+    this.url = DEFAULT_WALLET_URL;
+    this.token = LocalStorage.getItem(TOKEN_STORAGE_KEY) || "";
   }
 
   async getToken(params: {
@@ -176,12 +178,12 @@ export class VegaWalletService implements IVegaWalletService {
 
   private setToken(token: string) {
     this.token = token;
-    localStorage.setItem("vega_wallet_token", token);
+    LocalStorage.setItem(TOKEN_STORAGE_KEY, token);
   }
 
   private clearToken() {
     this.token = "";
-    localStorage.removeItem("vega_wallet_token");
+    LocalStorage.removeItem(TOKEN_STORAGE_KEY);
   }
 
   /**

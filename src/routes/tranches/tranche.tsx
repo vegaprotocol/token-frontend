@@ -2,39 +2,49 @@ import "./tranche.scss";
 import { useParams } from "react-router";
 import { Redirect } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { BigNumber } from "../../lib/bignumber";
 import { Routes } from "../router-config";
 import { Tranche as TrancheType } from "../../lib/vega-web3/vega-web3-types";
-import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { EtherscanLink } from "../../components/etherscan-link";
 import { TrancheItem } from "../redemption/tranche-item";
 import { TrancheLabel } from "./tranche-label";
 import { ADDRESSES } from "../../config";
+import React from "react";
+import { BigNumber } from "../../lib/bignumber";
+import { formatNumber } from "../../lib/format-number";
 
 export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
   const { t } = useTranslation();
   const { trancheId } = useParams<{ trancheId: string }>();
-  const { appState } = useAppState();
+  const { chainId } = useWeb3();
   const tranche = tranches.find(
     (tranche) => tranche.tranche_id === parseInt(trancheId)
   );
+
+  const lockedData = React.useMemo(() => {
+    if (!tranche) return null;
+    const locked = tranche.locked_amount.div(tranche.total_added);
+    return {
+      locked,
+      unlocked: new BigNumber(1).minus(locked),
+    };
+  }, [tranche]);
 
   if (!tranche) {
     return <Redirect to={Routes.NOT_FOUND} />;
   }
 
-  const total = tranche.total_added.minus(tranche.total_removed);
   return (
     <>
       <TrancheItem
         tranche={tranche}
         locked={tranche.locked_amount}
-        unlocked={total.minus(tranche.locked_amount)}
-        total={total}
+        unlocked={tranche.total_added.minus(tranche.locked_amount)}
+        total={tranche.total_added}
         secondaryHeader={
           <TrancheLabel
             contract={ADDRESSES.vestingAddress}
-            chainId={appState.chainId}
+            chainId={chainId}
             id={tranche.tranche_id}
           />
         }
@@ -47,13 +57,12 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
       {tranche.users.length ? (
         <ul className="tranche__user-list">
           {tranche.users.map((user, i) => {
-            const unlocked: BigNumber = user.total_tokens.minus(
-              user.remaining_tokens
-            );
+            const unlocked = user.remaining_tokens.times(lockedData?.unlocked);
+            const locked = user.remaining_tokens.times(lockedData?.locked);
             return (
               <li className="tranche__user-list--item" key={i}>
                 <EtherscanLink
-                  chainId={appState.chainId}
+                  chainId={chainId}
                   address={user.address}
                   text={user.address}
                 />
@@ -62,8 +71,8 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
                   <span>{t("Unlocked")}</span>
                 </div>
                 <div className="tranche__progress-contents">
-                  <span>{user.remaining_tokens.toString()}</span>
-                  <span>{unlocked.toString()}</span>
+                  <span>{formatNumber(locked)}</span>
+                  <span>{formatNumber(unlocked)}</span>
                 </div>
               </li>
             );

@@ -1,7 +1,7 @@
-import { useTranslation } from "react-i18next";
 import { Callout } from "../../components/callout";
 import { Loader } from "../../components/loader";
 import { StakeAction } from "./staking-form";
+import { useTranslation } from "react-i18next";
 
 interface StakePendingProps {
   action: StakeAction;
@@ -19,9 +19,7 @@ export const StakePending = ({ action, amount, nodeId }: StakePendingProps) => {
   return (
     <Callout icon={<Loader />} title={title}>
       <p>
-        {t(
-          "This should take approximately 3 minutes to confirm, and then will be credited at the beginning of the next epoch"
-        )}
+        {t("timeForConfirmation")}
       </p>
     </Callout>
   );

@@ -6,6 +6,7 @@ import {
 import { truncateMiddle } from "../../lib/truncate-middle";
 import {
   WalletCard,
+  WalletCardActions,
   WalletCardContent,
   WalletCardHeader,
   WalletCardRow,
@@ -17,7 +18,8 @@ import React from "react";
 export const EthWallet = () => {
   const { t } = useTranslation();
   const { appDispatch } = useAppState();
-  const { ethAddress } = useEthUser();
+  const { ethAddress, disconnect } = useEthUser();
+  const [disconnecting] = React.useState(false);
 
   return (
     <WalletCard>
@@ -48,6 +50,17 @@ export const EthWallet = () => {
           >
             {t("Connect to an Ethereum wallet")}
           </button>
+        )}
+        {ethAddress && (
+          <WalletCardActions>
+            <button
+              className="button-link button-link--dark"
+              onClick={disconnect}
+              type="button"
+            >
+              {disconnecting ? t("awaitingDisconnect") : t("disconnect")}
+            </button>
+          </WalletCardActions>
         )}
       </WalletCardContent>
     </WalletCard>

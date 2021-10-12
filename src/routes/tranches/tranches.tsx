@@ -4,9 +4,9 @@ import { TrancheLabel } from "./tranche-label";
 import { useTranslation } from "react-i18next";
 import React from "react";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
-import { useAppState } from "../../contexts/app-state/app-state-context";
 import { ADDRESSES } from "../../config";
 import { TrancheItem } from "../redemption/tranche-item";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
 
 const trancheMinimum = 10;
 
@@ -17,7 +17,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
   const [showAll, setShowAll] = React.useState<boolean>(false);
   const { t } = useTranslation();
   const match = useRouteMatch();
-  const { appState } = useAppState();
+  const { chainId } = useWeb3();
   const filteredTranches = tranches?.filter(shouldShowTranche) || [];
 
   return (
@@ -25,19 +25,18 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
       {tranches?.length ? (
         <ul className="tranches__list">
           {(showAll ? tranches : filteredTranches).map((tranche) => {
-            const total = tranche.total_added.minus(tranche.total_removed);
             return (
               <React.Fragment key={tranche.tranche_id}>
                 <TrancheItem
                   link={`${match.path}/${tranche.tranche_id}`}
                   tranche={tranche}
                   locked={tranche.locked_amount}
-                  unlocked={total.minus(tranche.locked_amount)}
-                  total={total}
+                  unlocked={tranche.total_added.minus(tranche.locked_amount)}
+                  total={tranche.total_added}
                   secondaryHeader={
                     <TrancheLabel
                       contract={ADDRESSES.vestingAddress}
-                      chainId={appState.chainId}
+                      chainId={chainId}
                       id={tranche.tranche_id}
                     />
                   }
