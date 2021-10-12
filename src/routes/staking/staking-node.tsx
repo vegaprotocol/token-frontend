@@ -63,18 +63,24 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
   const stakeThisEpoch = React.useMemo(() => {
     const delegations = data?.party?.delegations || [];
     const amountsThisEpoch = delegations
-      .filter((d) => d.epoch === Number(currentEpoch) - 1)
+      .filter((d) => d.node.id === node)
+      .filter((d) => d.epoch === Number(currentEpoch))
       .map((d) => new BigNumber(d.amount));
     return BigNumber.sum.apply(null, [new BigNumber(0), ...amountsThisEpoch]);
-  }, [data?.party?.delegations, currentEpoch]);
+  }, [data?.party?.delegations, node, currentEpoch]);
 
   const stakeNextEpoch = React.useMemo(() => {
     const delegations = data?.party?.delegations || [];
     const amountsNextEpoch = delegations
-      .filter((d) => d.epoch === Number(currentEpoch))
+      .filter((d) => d.node.id === node)
+      .filter((d) => d.epoch === Number(currentEpoch) + 1)
       .map((d) => new BigNumber(d.amount));
+
+    if (!amountsNextEpoch.length) {
+      return stakeThisEpoch;
+    }
     return BigNumber.sum.apply(null, [new BigNumber(0), ...amountsNextEpoch]);
-  }, [currentEpoch, data?.party?.delegations]);
+  }, [currentEpoch, data?.party?.delegations, node, stakeThisEpoch]);
 
   if (!nodeInfo) {
     return (
