@@ -214,7 +214,6 @@ export type AppStateAction =
 type AppStateContextShape = {
   appState: AppState;
   appDispatch: React.Dispatch<AppStateAction>;
-  provider: any; // TODO: type this
 };
 
 export const AppStateContext = React.createContext<
