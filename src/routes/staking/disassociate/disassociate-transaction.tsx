@@ -7,7 +7,8 @@ import {
   TransactionState,
 } from "../../../hooks/transaction-reducer";
 import { TransactionCallout } from "../../../components/transaction-callout";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Routes } from "../../router-config";
 
 export const DisassociateTransaction = ({
   amount,
@@ -23,7 +24,6 @@ export const DisassociateTransaction = ({
   stakingMethod: StakingMethod;
 }) => {
   const { t } = useTranslation();
-  const history = useHistory();
   return (
     <TransactionCallout
       completeHeading={t("Done")}
@@ -37,12 +37,9 @@ export const DisassociateTransaction = ({
             })
       }
       completeFooter={
-        <button
-          style={{ width: "100%" }}
-          onClick={() => history.push("/vesting")}
-        >
-          {t("Redeem tokens")}
-        </button>
+        <Link to={Routes.STAKING}>
+          <button className="fill">{t("backToStaking")}</button>
+        </Link>
       }
       pendingHeading={t("Dissociating Tokens")}
       pendingBody={t(
