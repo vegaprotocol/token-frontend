@@ -9,7 +9,7 @@ import {
   useAppState,
 } from "../../contexts/app-state/app-state-context";
 import { useVegaWallet } from "../../hooks/use-vega-wallet";
-import { useContracts } from "../../contexts/contracts/contracts-context";
+import { useRefreshAssociatedBalances } from "../../hooks/use-refresh-associated-balances";
 
 interface FormFields {
   url: string;
@@ -28,7 +28,7 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
     appState: { ethAddress: address },
   } = useAppState();
   const vegaWallet = useVegaWallet();
-  const { staking, vesting } = useContracts();
+  const refreshAssociatedBalances = useRefreshAssociatedBalances();
 
   const [loading, setLoading] = React.useState(false);
   const {
@@ -65,24 +65,13 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
         return;
       }
 
-      let walletAssociatedBalance = null;
-      let vestingAssociatedBalance = null;
       if (address && keys && keys.length) {
-        walletAssociatedBalance = await staking.stakeBalance(
-          address,
-          keys[0].pub
-        );
-        vestingAssociatedBalance = await vesting.stakeBalance(
-          address,
-          keys[0].pub
-        );
+        await refreshAssociatedBalances(address, keys[0].pub);
       }
 
       appDispatch({
         type: AppStateActionType.VEGA_WALLET_INIT,
         keys,
-        walletAssociatedBalance,
-        vestingAssociatedBalance,
       });
       setLoading(false);
       onConnect();

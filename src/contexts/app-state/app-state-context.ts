@@ -133,6 +133,7 @@ export enum AppStateActionType {
   SET_ETH_WALLET_OVERLAY,
   SET_DRAWER,
   SET_TRANCHE_ERROR,
+  REFRESH_ASSOCIATED_BALANCES,
 }
 
 export type AppStateAction =
@@ -157,14 +158,10 @@ export type AppStateAction =
   | {
       type: AppStateActionType.VEGA_WALLET_INIT;
       keys: VegaKey[] | null | undefined;
-      walletAssociatedBalance: BigNumber | null;
-      vestingAssociatedBalance: BigNumber | null;
     }
   | {
       type: AppStateActionType.VEGA_WALLET_SET_KEY;
       key: VegaKeyExtended;
-      walletAssociatedBalance: BigNumber | null;
-      vestingAssociatedBalance: BigNumber | null;
     }
   | { type: AppStateActionType.VEGA_WALLET_DOWN }
   | { type: AppStateActionType.VEGA_WALLET_DISCONNECT }
@@ -207,6 +204,11 @@ export type AppStateAction =
   | {
       type: AppStateActionType.SET_DRAWER;
       isOpen: boolean;
+    }
+  | {
+      type: AppStateActionType.REFRESH_ASSOCIATED_BALANCES;
+      walletAssociatedBalance: BigNumber;
+      vestingAssociatedBalance: BigNumber;
     };
 
 type AppStateContextShape = {
