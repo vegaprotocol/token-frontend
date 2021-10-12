@@ -9,11 +9,13 @@ import {
 import { Errors as VegaWalletServiceErrors } from "./lib/vega-wallet/vega-wallet-service";
 import { useContracts } from "./contexts/contracts/contracts-context";
 import { useVegaWallet } from "./hooks/use-vega-wallet";
+import { useRefreshAssociatedBalances } from "./hooks/use-refresh-associated-balances";
 
 export const AppLoader = ({ children }: { children: React.ReactElement }) => {
   const { appState, appDispatch } = useAppState();
   const { token, staking, vesting } = useContracts();
   const vegaWalletService = useVegaWallet();
+  const setAssociatedBalances = useRefreshAssociatedBalances();
   const [balancesLoaded, setBalancesLoaded] = React.useState(false);
   const [vegaKeysLoaded, setVegaKeysLoaded] = React.useState(false);
 
@@ -68,25 +70,13 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
         return;
       }
 
-      let walletAssociatedBalance = null;
-      let vestingAssociatedBalance = null;
-
       if (appState.ethAddress && keys && keys.length) {
-        walletAssociatedBalance = await staking.stakeBalance(
-          appState.ethAddress,
-          keys[0].pub
-        );
-        vestingAssociatedBalance = await vesting.stakeBalance(
-          appState.ethAddress,
-          keys[0].pub
-        );
+        await setAssociatedBalances(appState.ethAddress, keys[0].pub);
       }
 
       appDispatch({
         type: AppStateActionType.VEGA_WALLET_INIT,
         keys,
-        walletAssociatedBalance,
-        vestingAssociatedBalance,
       });
     }
 
@@ -94,10 +84,9 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
   }, [
     appDispatch,
     appState.ethAddress,
-    staking,
-    vesting,
     vegaWalletService,
     vegaKeysLoaded,
+    setAssociatedBalances,
   ]);
 
   if (!loaded) {

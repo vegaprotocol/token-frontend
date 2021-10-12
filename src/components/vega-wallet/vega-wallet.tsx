@@ -27,7 +27,7 @@ import { useVegaUser } from "../../hooks/use-vega-user";
 import { BigNumber } from "../../lib/bignumber";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { keyBy, uniq } from "lodash";
-import { useContracts } from "../../contexts/contracts/contracts-context";
+import { useRefreshAssociatedBalances } from "../../hooks/use-refresh-associated-balances";
 
 const DELEGATIONS_QUERY = gql`
   query Delegations($partyId: ID!) {
@@ -128,9 +128,9 @@ const VegaWalletConnected = ({
     appDispatch,
     appState: { ethAddress: address },
   } = useAppState();
+  const setAssociatedBalances = useRefreshAssociatedBalances();
 
   const [disconnecting, setDisconnecting] = React.useState(false);
-  const { staking, vesting } = useContracts();
   const [expanded, setExpanded] = React.useState(false);
   const client = useApolloClient();
   const [delegations, setDelegations] = React.useState<
@@ -256,21 +256,16 @@ const VegaWalletConnected = ({
 
   const changeKey = React.useCallback(
     async (k: VegaKeyExtended) => {
-      let walletAssociatedBalance: BigNumber | null = null;
-      let vestingAssociatedBalance: BigNumber | null = null;
       if (address) {
-        walletAssociatedBalance = await staking.stakeBalance(address, k.pub);
-        vestingAssociatedBalance = await vesting.stakeBalance(address, k.pub);
+        await setAssociatedBalances(address, k.pub);
       }
       appDispatch({
         type: AppStateActionType.VEGA_WALLET_SET_KEY,
         key: k,
-        walletAssociatedBalance,
-        vestingAssociatedBalance,
       });
       setExpanded(false);
     },
-    [address, appDispatch, staking, vesting]
+    [address, appDispatch, setAssociatedBalances]
   );
 
   return vegaKeys.length ? (

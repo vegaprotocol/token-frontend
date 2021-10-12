@@ -117,16 +117,12 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         vegaKeys,
         currVegaKey: vegaKeys.length ? vegaKeys[0] : null,
         vegaWalletStatus: VegaWalletStatus.Ready,
-        walletAssociatedBalance: action.walletAssociatedBalance,
-        vestingAssociatedBalance: action.vestingAssociatedBalance,
       };
     }
     case AppStateActionType.VEGA_WALLET_SET_KEY: {
       return {
         ...state,
         currVegaKey: action.key,
-        walletAssociatedBalance: action.walletAssociatedBalance,
-        vestingAssociatedBalance: action.vestingAssociatedBalance,
       };
     }
     case AppStateActionType.VEGA_WALLET_DOWN: {
@@ -196,6 +192,13 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         drawerOpen: action.isOpen,
         ethWalletOverlay: false,
         vegaWalletOverlay: false,
+      };
+    }
+    case AppStateActionType.REFRESH_ASSOCIATED_BALANCES: {
+      return {
+        ...state,
+        walletAssociatedBalance: action.walletAssociatedBalance,
+        vestingAssociatedBalance: action.vestingAssociatedBalance,
       };
     }
   }
