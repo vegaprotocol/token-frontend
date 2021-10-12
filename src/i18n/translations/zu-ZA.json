@@ -270,7 +270,7 @@
   "You have no VEGA tokens currently staked through your connected Eth wallet.": "crwdns5025:0crwdne5025:0",
   "Dissociating Tokens": "crwdns5027:0crwdne5027:0",
   "Dissociating  {{amount}} VEGA tokens from Vega key {{vegaKey}}": "crwdns5029:0{{amount}}crwdnd5029:0{{vegaKey}}crwdne5029:0",
-  "Redeem tokens": "crwdns5031:0crwdne5031:0",
+  "backToStaking": "crwdns6169:0crwdne6169:0",
   "{{amount}} VEGA tokens have been returned to Vesting contract": "crwdns5033:0{{amount}}crwdne5033:0",
   "{{amount}} VEGA tokens have been returned to Ethereum wallet": "crwdns5035:0{{amount}}crwdne5035:0",
   "Disassociate VEGA Tokens from key": "crwdns5037:0crwdne5037:0",
