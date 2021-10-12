@@ -2,6 +2,7 @@ import { Networks } from "./vega";
 
 const appChainId = process.env.REACT_APP_CHAIN as EthereumChainId;
 const appEnv = process.env.REACT_APP_ENV as Networks;
+const infuraId = process.env.REACT_APP_INFURA_ID;
 
 export type EthereumChainId = "0x1" | "0x3" | "0x4" | "0x5" | "0x2a";
 export type EthereumChainName =
@@ -99,12 +100,20 @@ const RewardsPoolAddresses = {
   } as { [key: string]: string },
 };
 
+const InfuraUrls = {
+  [EthereumChainIds.Mainnet]: `https://mainnet.infura.io/v3/${infuraId}`,
+  [EthereumChainIds.Ropsten]: `https://ropsten.infura.io/v3/${infuraId}`,
+};
+
 /** Contract addresses for the different contracts in the VEGA ecosystem */
 export const ADDRESSES = Addresses[appChainId];
 
 /** Contract addresses for liquidity rewards for different markets */
 export const REWARDS_ADDRESSES = RewardsAddresses[appChainId];
 export const REWARDS_POOL_ADDRESSES = RewardsPoolAddresses[appChainId];
+
+/** Infura endpoins */
+export const INFURA_URL = InfuraUrls[appChainId];
 
 /**
  * The Chain ID the environment is configured for.
