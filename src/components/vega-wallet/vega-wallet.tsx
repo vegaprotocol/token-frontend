@@ -206,9 +206,15 @@ const VegaWalletConnected = ({
                   delegatedNextEpoch[d] &&
                   new BigNumber(delegatedNextEpoch[d].amount),
               }))
-              .sort((a, b) =>
-                b.currentEpochStake.minus(a.currentEpochStake).toNumber()
-              );
+              .sort((a, b) => {
+                if (a.currentEpochStake.isLessThan(b.currentEpochStake))
+                  return 1;
+                if (a.currentEpochStake.isGreaterThan(b.currentEpochStake))
+                  return -1;
+                if (a.nodeId < b.nodeId) return 1;
+                if (a.nodeId > b.nodeId) return -1;
+                return 0;
+              });
 
             setDelegatedNodes(delegatedAmounts);
           })
