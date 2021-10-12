@@ -219,7 +219,6 @@ const VegaWalletConnected = ({
             setDelegatedNodes(delegatedAmounts);
           })
           .catch((err: Error) => {
-            console.log(err);
             Sentry.captureException(err);
             // If query fails stop interval. Its almost certain that the query
             // will just continue to fail
