@@ -1,21 +1,11 @@
 import React from "react";
 // @ts-ignore
-import detectEthereumProvider from "DETECT_PROVIDER_PATH/detect-provider";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 import { useTranslation } from "react-i18next";
-import { EthereumChainId, EthereumChainNames } from "../../config";
-import * as Sentry from "@sentry/react";
-import { Severity } from "@sentry/react";
+import { EthereumChainId, EthereumChainNames, INFURA_URL } from "../../config";
 import { Web3Context } from "./web3-context";
 import Web3 from "web3";
-
-enum ProviderStatus {
-  Pending,
-  Ready,
-  None,
-  Invalid,
-}
 
 /**
  * Provides a raw web3 provider (usually window.ethereum injected by a chrome extension), a Web3
@@ -25,96 +15,71 @@ enum ProviderStatus {
  */
 export const Web3Provider = ({ children }: { children: JSX.Element }) => {
   const { t } = useTranslation();
-  const provider = React.useRef<any>(null);
-  const web3 = React.useRef<Web3 | null>(null);
-  const [status, setStatus] = React.useState(ProviderStatus.Pending);
+  const provider = React.useRef<any>(
+    new Web3.providers.HttpProvider(INFURA_URL)
+  );
+  const web3 = React.useRef<Web3>(new Web3(provider.current));
   const [chainId, setChainId] = React.useState<EthereumChainId | null>(null);
-
-  // Detect provider
-  React.useEffect(() => {
-    detectEthereumProvider()
-      .then((res: any) => {
-        // Extra check helps with Opera's legacy web3 - it properly falls through to NOT_DETECTED
-        if (res && res.request) {
-          provider.current = res;
-          web3.current = new Web3(res);
-          setStatus(ProviderStatus.Ready);
-        } else {
-          setStatus(ProviderStatus.Invalid);
-        }
-      })
-      .catch(() => {
-        setStatus(ProviderStatus.None);
-      });
-  }, []);
 
   // Get and set the chainId if the provider is ready
   React.useEffect(() => {
     const getChainId = async () => {
-      const chainId = await provider.current.request({
-        method: "eth_chainId",
-      });
-      setChainId(chainId);
+      const chainId = await web3.current.eth.getChainId();
+      console.log(chainId);
+      setChainId(`0x${chainId}` as EthereumChainId);
     };
 
-    if (status === ProviderStatus.Ready) {
-      getChainId();
-    }
-  }, [status]);
+    getChainId();
+  }, []);
 
   // Bind a listener for chainChanged if the provider is ready
-  React.useEffect(() => {
-    const bindChainChangeListener = () => {
-      provider.current.on("chainChanged", (newChainId: EthereumChainId) => {
-        Sentry.addBreadcrumb({
-          type: "ChainChanged",
-          level: Severity.Log,
-          message: "User changed chain in wallet provider",
-          data: {
-            old: chainId,
-            new: newChainId,
-          },
-          timestamp: Date.now(),
-        });
-        setChainId(newChainId);
-      });
-    };
+  // React.useEffect(() => {
+  //   const bindChainChangeListener = () => {
+  //     provider.current.on("chainChanged", (newChainId: EthereumChainId) => {
+  //       Sentry.addBreadcrumb({
+  //         type: "ChainChanged",
+  //         level: Severity.Log,
+  //         message: "User changed chain in wallet provider",
+  //         data: {
+  //           old: chainId,
+  //           new: newChainId,
+  //         },
+  //         timestamp: Date.now(),
+  //       });
+  //       setChainId(newChainId);
+  //     });
+  //   };
 
-    if (status === ProviderStatus.Ready) {
-      bindChainChangeListener();
-    }
+  //   if (status === ProviderStatus.Ready) {
+  //     bindChainChangeListener();
+  //   }
 
-    return () => {
-      if (
-        provider.current &&
-        typeof provider.current.removeAllListeners === "function"
-      ) {
-        provider.current.removeAllListeners("chainChanged");
-      }
-    };
-  }, [chainId, status]);
+  //   return () => {
+  //     if (
+  //       provider.current &&
+  //       typeof provider.current.removeAllListeners === "function"
+  //     ) {
+  //       provider.current.removeAllListeners("chainChanged");
+  //     }
+  //   };
+  // }, [chainId, status]);
 
   // App cant work without a web3 provider so return with a splash
   // screen preventing further actions
-  if (status === ProviderStatus.None || status === ProviderStatus.Invalid) {
-    return (
-      <SplashScreen>
-        <div>
-          {status === ProviderStatus.Invalid
-            ? t("invalidWeb3Provider")
-            : t("invalidWeb3Browser")}
-        </div>
-      </SplashScreen>
-    );
-  }
+  // if (status === ProviderStatus.None || status === ProviderStatus.Invalid) {
+  //   return (
+  //     <SplashScreen>
+  //       <div>
+  //         {status === ProviderStatus.Invalid
+  //           ? t("invalidWeb3Provider")
+  //           : t("invalidWeb3Browser")}
+  //       </div>
+  //     </SplashScreen>
+  //   );
+  // }
 
   // Still waiting for the provider to be detected and the chainId fetched
-  if (
-    status === ProviderStatus.Pending ||
-    chainId === null ||
-    provider.current === null ||
-    web3.current === null
-  ) {
+  if (chainId === null || provider.current === null || web3.current === null) {
     return (
       <SplashScreen>
         <SplashLoader />
