@@ -1,14 +1,12 @@
 import "./eth-wallet-connect.scss";
 import { useTranslation } from "react-i18next";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import { useEthUser } from "../../hooks/use-eth-user";
 
 export const EthWalletConnect = () => {
   const { t } = useTranslation();
   const {
     appState: { ethWalletConnecting },
   } = useAppState();
-  const { connect } = useEthUser();
 
   if (ethWalletConnecting) {
     return <div>{t("Awaiting action in wallet...")}</div>;
@@ -19,7 +17,7 @@ export const EthWalletConnect = () => {
       <div>
         <button
           type="button"
-          onClick={connect}
+          onClick={() => console.log("TODO: Remove this comonent not used")}
           data-testid="connect-overlay"
           className="eth-wallet-connect__button"
         >

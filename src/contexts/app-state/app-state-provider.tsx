@@ -7,7 +7,6 @@ import {
   VegaWalletStatus,
 } from "./app-state-context";
 
-import { useWeb3 } from "../web3-context/web3-context";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { BigNumber } from "../../lib/bignumber";
 
@@ -203,38 +202,13 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
 }
 
 export function AppStateProvider({ children }: AppStateProviderProps) {
-  const { provider } = useWeb3();
   const [state, dispatch] = React.useReducer(appStateReducer, initialAppState);
-
-  // React.useEffect(() => {
-  //   provider.on("accountsChanged", (accounts: string[]) => {
-  //     Sentry.addBreadcrumb({
-  //       type: "AccountsChanged",
-  //       level: Severity.Log,
-  //       message: "User changed accounts in wallet provider",
-  //       data: {
-  //         old: state.ethAddress,
-  //         new: accounts[0],
-  //       },
-  //       timestamp: Date.now(),
-  //     });
-  //     Sentry.setUser({ id: accounts[0] });
-  //     dispatch({
-  //       type: AppStateActionType.ACCOUNTS_CHANGED,
-  //       address: accounts[0],
-  //     });
-  //   });
-  //   return () => {
-  //     provider.removeAllListeners("accountsChanged");
-  //   };
-  // }, [provider, state.ethAddress]);
 
   return (
     <AppStateContext.Provider
       value={{
         appState: state,
         appDispatch: dispatch,
-        provider,
       }}
     >
       {children}
