@@ -11,13 +11,14 @@ import { GraphQlProvider } from "./components/GRAPHQL_PROVIDER/graphql-provider"
 import { AppLoader } from "./app-loader";
 import { Web3Provider } from "./contexts/web3-context/web3-provider";
 import { ContractsProvider } from "./contexts/contracts/contracts-provider";
+import { useWeb3 } from "./contexts/web3-context/web3-context";
 
 function App() {
   return (
     <GraphQlProvider>
       <Router>
         <Web3Provider>
-          <AppStateProvider>
+          {/* <AppStateProvider>
             <ContractsProvider>
               <AppLoader>
                 <>
@@ -30,11 +31,17 @@ function App() {
                 </>
               </AppLoader>
             </ContractsProvider>
-          </AppStateProvider>
+          </AppStateProvider> */}
+          <Child />
         </Web3Provider>
       </Router>
     </GraphQlProvider>
   );
+}
+
+function Child() {
+  const { chainId } = useWeb3();
+  return <div>Chain: {chainId}</div>;
 }
 
 export default App;

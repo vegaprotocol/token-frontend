@@ -4,7 +4,7 @@ import { EthereumChainId } from "../../config";
 
 interface Web3ContextShape {
   provider: any;
-  web3: Web3;
+  web3: Web3 | null;
   chainId: EthereumChainId;
 }
 
