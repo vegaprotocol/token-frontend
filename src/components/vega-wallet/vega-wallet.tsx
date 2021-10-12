@@ -175,13 +175,13 @@ const VegaWalletConnected = ({
             );
             const delegatedNextEpoch = keyBy(
               res.data.party?.delegations?.filter((d) => {
-                return d.epoch.toString() === res.data.epoch.id;
+                return d.epoch === Number(res.data.epoch.id) + 1;
               }) || [],
               "node.id"
             );
             const delegatedThisEpoch = keyBy(
               res.data.party?.delegations?.filter((d) => {
-                return d.epoch === Number(res.data.epoch.id) - 1;
+                return d.epoch === Number(res.data.epoch.id);
               }) || [],
               "node.id"
             );
@@ -190,24 +190,30 @@ const VegaWalletConnected = ({
               ...Object.keys(delegatedThisEpoch),
             ]);
 
-            const delegatedAmounts = nodesDelegated.map((d) => ({
-              nodeId: d,
-              hasStakePending: !!(
-                delegatedThisEpoch[d]?.amount &&
-                delegatedNextEpoch[d]?.amount &&
-                delegatedThisEpoch[d]?.amount !== delegatedNextEpoch[d]?.amount
-              ),
-              currentEpochStake:
-                delegatedThisEpoch[d] &&
-                new BigNumber(delegatedThisEpoch[d].amount),
-              nextEpochStake:
-                delegatedNextEpoch[d] &&
-                new BigNumber(delegatedNextEpoch[d].amount),
-            }));
+            const delegatedAmounts = nodesDelegated
+              .map((d) => ({
+                nodeId: d,
+                hasStakePending: !!(
+                  delegatedThisEpoch[d]?.amount &&
+                  delegatedNextEpoch[d]?.amount &&
+                  delegatedThisEpoch[d]?.amount !==
+                    delegatedNextEpoch[d]?.amount
+                ),
+                currentEpochStake:
+                  delegatedThisEpoch[d] &&
+                  new BigNumber(delegatedThisEpoch[d].amount),
+                nextEpochStake:
+                  delegatedNextEpoch[d] &&
+                  new BigNumber(delegatedNextEpoch[d].amount),
+              }))
+              .sort((a, b) =>
+                b.currentEpochStake.minus(a.currentEpochStake).toNumber()
+              );
 
             setDelegatedNodes(delegatedAmounts);
           })
           .catch((err: Error) => {
+            console.log(err);
             Sentry.captureException(err);
             // If query fails stop interval. Its almost certain that the query
             // will just continue to fail
