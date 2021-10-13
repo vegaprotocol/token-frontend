@@ -44,7 +44,7 @@ const web3Modal = new Web3Modal({
 export const Web3Provider = ({ children }: { children: JSX.Element }) => {
   const { t } = useTranslation();
   const isStartup = React.useRef(true);
-  // Default to http provider using infura, later we reset this using
+  // Default to HttpProvider with Infura, later we reset this using
   // the users connected wallet
   const [provider, setProvider] = React.useState<any>(
     new Web3.providers.HttpProvider(INFURA_URL)
@@ -53,6 +53,8 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
   const [chainId, setChainId] = React.useState<EthereumChainId | null>(null);
   const [ethAddress, setEthAddress] = React.useState("");
 
+  // On connect replace the default provider and web3 instances (which uses an HttpProvider
+  // with Infura) with an instance provided by the Web3Modal package
   const connect = React.useCallback(async () => {
     const newProvider = await web3Modal.connect();
     const newWeb3 = new Web3(newProvider);
@@ -64,6 +66,8 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
     setEthAddress(accounts[0]);
   }, []);
 
+  // On disconnect we clear the connected address but also reset the provider and
+  // web3 instances to using the default Http provider using Infura
   const disconnect = React.useCallback(async () => {
     await web3Modal.clearCachedProvider();
     const newProvider = new Web3.providers.HttpProvider(INFURA_URL);
@@ -75,6 +79,8 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
     setEthAddress("");
   }, []);
 
+  // If its initial startup either: connect with users wallet which will in turn
+  // get a chainId, or get the chainId from the default provider
   React.useEffect(() => {
     const run = async () => {
       if (web3Modal.cachedProvider) {
