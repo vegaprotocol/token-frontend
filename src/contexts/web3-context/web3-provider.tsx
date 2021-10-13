@@ -36,10 +36,10 @@ const web3Modal = new Web3Modal({
 });
 
 /**
- * Provides a raw web3 provider (usually window.ethereum injected by a chrome extension), a Web3
- * instance and the current chainId to its children. Also sets up an listener for the
- * changeChanged event and handles rendering logic to only render children if the configured
- * chainId matches what is set in the users logic.
+ * Provider contating logic for connecting to the Ethereum network via different Web3 providers
+ * which in turn are supplied by the providerOptions object passed to Web3Modal above. Passes
+ * down connect and disconnect methods, current address, chainId and the provider itself
+ * to the context's consumers
  */
 export const Web3Provider = ({ children }: { children: JSX.Element }) => {
   const { t } = useTranslation();
