@@ -65,13 +65,9 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
   }, []);
 
   const disconnect = React.useCallback(async () => {
-    if (provider.close) {
-      await provider.close();
-    }
-
     await web3Modal.clearCachedProvider();
     setEthAddress("");
-  }, [provider]);
+  }, []);
 
   // Get and set the chainId if the provider is ready
   React.useEffect(() => {
@@ -112,7 +108,7 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
           level: Sentry.Severity.Log,
           message: "User changed accounts in wallet provider",
           data: {
-            old: ethAddress, // state.ethAddress,
+            old: ethAddress,
             new: accounts[0],
           },
           timestamp: Date.now(),
