@@ -61,7 +61,7 @@ export const ValidatorTable = ({
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("NOMINATED (THIS EPOCH)")}</th>
-          <td>{node.stakedByDelegates}</td>
+          <td>{node.stakedByDelegatesFormatted}</td>
         </KeyValueTableRow>
       </KeyValueTable>
     </>
