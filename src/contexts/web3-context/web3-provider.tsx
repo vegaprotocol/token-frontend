@@ -46,38 +46,47 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
 
   // Default to http provider using infura, later we reset this using
   // the users connected wallet
-  const provider = React.useRef<any>(
+  const [provider, setProvider] = React.useState<any>(
     new Web3.providers.HttpProvider(INFURA_URL)
   );
-  const web3 = React.useRef<Web3>(new Web3(provider.current));
+  const [web3, setWeb3] = React.useState<Web3>(new Web3(provider));
   const [chainId, setChainId] = React.useState<EthereumChainId | null>(null);
   const [ethAddress, setEthAddress] = React.useState("");
 
   const connect = React.useCallback(async () => {
-    provider.current = await web3Modal.connect();
-    web3.current = new Web3(provider.current);
+    const newProvider = await web3Modal.connect();
+    const newWeb3 = new Web3(newProvider);
+    setProvider(newProvider);
+    setWeb3(newWeb3);
 
-    const accounts = await provider.current.request({
-      method: "eth_requestAccounts",
-    });
+    const accounts = await newWeb3.eth.getAccounts();
 
     setEthAddress(accounts[0]);
   }, []);
 
+  const disconnect = React.useCallback(async () => {
+    if (provider.close) {
+      await provider.close();
+    }
+
+    await web3Modal.clearCachedProvider();
+    setEthAddress("");
+  }, [provider]);
+
   // Get and set the chainId if the provider is ready
   React.useEffect(() => {
     const getChainId = async () => {
-      const chainId = await web3.current.eth.getChainId();
+      const chainId = await web3.eth.getChainId();
       setChainId(`0x${chainId}` as EthereumChainId);
     };
 
     getChainId();
-  }, []);
+  }, [web3]);
 
   // Bind a listener for chainChanged if the provider is ready
   React.useEffect(() => {
     const bindListeners = () => {
-      provider.current.on("chainChanged", (newChainId: EthereumChainId) => {
+      provider.on("chainChanged", (newChainId: EthereumChainId) => {
         Sentry.addBreadcrumb({
           type: "ChainChanged",
           level: Sentry.Severity.Log,
@@ -91,7 +100,7 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
         setChainId(newChainId);
       });
 
-      provider.current.on("accountsChanged", (accounts: string[]) => {
+      provider.on("accountsChanged", (accounts: string[]) => {
         Sentry.addBreadcrumb({
           type: "AccountsChanged",
           level: Sentry.Severity.Log,
@@ -112,14 +121,11 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
     }
 
     return () => {
-      if (
-        provider.current &&
-        typeof provider.current.removeAllListeners === "function"
-      ) {
-        provider.current.removeAllListeners();
+      if (provider && typeof provider.removeAllListeners === "function") {
+        provider.removeAllListeners();
       }
     };
-  }, [chainId, ethAddress]);
+  }, [chainId, ethAddress, provider]);
 
   // App cant work without a web3 provider so return with a splash
   // screen preventing further actions
@@ -171,8 +177,9 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
     <Web3Context.Provider
       value={{
         connect,
-        provider: provider.current,
-        web3: web3.current,
+        disconnect,
+        provider,
+        web3,
         chainId,
         ethAddress,
       }}

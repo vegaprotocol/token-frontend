@@ -8,15 +8,13 @@ import {
   WalletCardHeader,
   WalletCardRow,
 } from "../wallet-card";
-import { useEthUser } from "../../hooks/use-eth-user";
 import { Colors, Flags } from "../../config";
 import React from "react";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
 
 export const EthWallet = () => {
   const { t } = useTranslation();
-  const { connect, ethAddress } = useWeb3();
-  const { disconnect } = useEthUser();
+  const { connect, disconnect, ethAddress } = useWeb3();
   const [disconnecting] = React.useState(false);
 
   return (
