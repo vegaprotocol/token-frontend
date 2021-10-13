@@ -156,7 +156,10 @@ export const StakingForm = ({
     return <StakePending action={action} amount={amount} nodeId={nodeId} />;
   } else if (formState === FormState.Success) {
     return <StakeSuccess action={action} amount={amount} nodeId={nodeId} />;
-  } else if (availableStakeToAdd.isEqualTo(0)) {
+  } else if (
+    availableStakeToAdd.isEqualTo(0) &&
+    availableStakeToRemove.isEqualTo(0)
+  ) {
     return <span style={{ color: Colors.RED }}>{t("stakeNodeNone")}</span>;
   }
 
@@ -177,8 +180,14 @@ export const StakingForm = ({
           selectedValue={action}
           inline={true}
         >
-          <Radio value="Add" label="Add" data-testid="add-stake-radio" />
           <Radio
+            disabled={availableStakeToAdd.isEqualTo(0)}
+            value="Add"
+            label="Add"
+            data-testid="add-stake-radio"
+          />
+          <Radio
+            disabled={availableStakeToRemove.isEqualTo(0)}
             value="Remove"
             label="Remove"
             data-testid="remove-stake-radio"
