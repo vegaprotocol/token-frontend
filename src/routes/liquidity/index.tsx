@@ -11,10 +11,10 @@ import { LiquidityWithdraw } from "./withdraw";
 import { Redirect } from "react-router";
 import { initialLiquidityState, liquidityReducer } from "./liquidity-reducer";
 import * as Sentry from "@sentry/react";
-import { useEthUser } from "../../hooks/use-eth-user";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 import { useGetLiquidityBalances } from "./hooks";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
 
 const RedemptionIndex = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
@@ -26,7 +26,7 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
     liquidityReducer,
     initialLiquidityState
   );
-  const { ethAddress } = useEthUser();
+  const { ethAddress } = useWeb3();
   const [loading, setLoading] = React.useState(true);
   const { getBalances, lpStakingUSDC, lpStakingEth } = useGetLiquidityBalances(
     dispatch,

@@ -1,5 +1,4 @@
 import React from "react";
-import { useEthUser } from "../../../hooks/use-eth-user";
 import { useVegaLPStaking } from "../../../hooks/use-vega-lp-staking";
 import { BigNumber } from "../../../lib/bignumber";
 import * as Sentry from "@sentry/react";
@@ -21,6 +20,7 @@ import { EthConnectPrompt } from "../../../components/eth-connect-prompt";
 import { useGetLiquidityBalances } from "../hooks";
 import { Callout } from "../../../components/callout";
 import { Error } from "../../../components/icons";
+import { useWeb3 } from "../../../contexts/web3-context/web3-context";
 
 export const LiquidityDepositPage = ({
   lpTokenAddress,
@@ -47,7 +47,7 @@ export const LiquidityDepositPage = ({
     dispatch: txStakeDispatch,
     perform: txStakePerform,
   } = useTransaction(() => lpStaking.stake(amount, ethAddress));
-  const { ethAddress } = useEthUser();
+  const { ethAddress } = useWeb3();
   const { getBalances, lpStakingEth, lpStakingUSDC } = useGetLiquidityBalances(
     dispatch,
     ethAddress
