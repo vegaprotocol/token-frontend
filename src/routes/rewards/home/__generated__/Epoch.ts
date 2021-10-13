@@ -17,6 +17,10 @@ export interface Epoch_epoch_timestamps {
    * RFC3339 timestamp - Vega time of epoch end, null if not ended
    */
   end: string | null;
+  /**
+   * RFC3339 timestamp - Vega time of epoch expiry
+   */
+  expiry: string | null;
 }
 
 export interface Epoch_epoch {
