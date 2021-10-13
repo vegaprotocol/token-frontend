@@ -10,6 +10,7 @@ import {
 } from "../../contexts/app-state/app-state-context";
 import { useVegaWallet } from "../../hooks/use-vega-wallet";
 import { useRefreshAssociatedBalances } from "../../hooks/use-refresh-associated-balances";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
 
 interface FormFields {
   url: string;
@@ -23,10 +24,8 @@ interface VegaWalletFormProps {
 
 export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
   const { t } = useTranslation();
-  const {
-    appDispatch,
-    appState: { ethAddress: address },
-  } = useAppState();
+  const { ethAddress } = useWeb3();
+  const { appDispatch } = useAppState();
   const vegaWallet = useVegaWallet();
   const refreshAssociatedBalances = useRefreshAssociatedBalances();
 
@@ -65,8 +64,8 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
         return;
       }
 
-      if (address && keys && keys.length) {
-        await refreshAssociatedBalances(address, keys[0].pub);
+      if (ethAddress && keys && keys.length) {
+        await refreshAssociatedBalances(ethAddress, keys[0].pub);
       }
 
       appDispatch({

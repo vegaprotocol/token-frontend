@@ -28,6 +28,7 @@ import { BigNumber } from "../../lib/bignumber";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { keyBy, uniq } from "lodash";
 import { useRefreshAssociatedBalances } from "../../hooks/use-refresh-associated-balances";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
 
 const DELEGATIONS_QUERY = gql`
   query Delegations($partyId: ID!) {
@@ -126,12 +127,9 @@ const VegaWalletConnected = ({
   vegaKeys,
 }: VegaWalletConnectedProps) => {
   const { t } = useTranslation();
-  const {
-    appDispatch,
-    appState: { ethAddress: address },
-  } = useAppState();
+  const { ethAddress } = useWeb3();
+  const { appDispatch } = useAppState();
   const setAssociatedBalances = useRefreshAssociatedBalances();
-
   const [disconnecting, setDisconnecting] = React.useState(false);
   const [expanded, setExpanded] = React.useState(false);
   const client = useApolloClient();
@@ -262,8 +260,8 @@ const VegaWalletConnected = ({
 
   const changeKey = React.useCallback(
     async (k: VegaKeyExtended) => {
-      if (address) {
-        await setAssociatedBalances(address, k.pub);
+      if (ethAddress) {
+        await setAssociatedBalances(ethAddress, k.pub);
       }
       appDispatch({
         type: AppStateActionType.VEGA_WALLET_SET_KEY,
@@ -271,7 +269,7 @@ const VegaWalletConnected = ({
       });
       setExpanded(false);
     },
-    [address, appDispatch, setAssociatedBalances]
+    [ethAddress, appDispatch, setAssociatedBalances]
   );
 
   return vegaKeys.length ? (

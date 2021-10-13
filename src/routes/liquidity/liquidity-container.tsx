@@ -3,9 +3,9 @@ import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
 import { Links, REWARDS_ADDRESSES } from "../../config";
-import { useEthUser } from "../../hooks/use-eth-user";
 import { DexTokensSection } from "./dex-table";
 import { LiquidityAction, LiquidityState } from "./liquidity-reducer";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
 
 export const LiquidityContainer = ({
   state,
@@ -15,7 +15,7 @@ export const LiquidityContainer = ({
   dispatch: React.Dispatch<LiquidityAction>;
 }) => {
   const { t } = useTranslation();
-  const { ethAddress } = useEthUser();
+  const { ethAddress } = useWeb3();
   return (
     <section className="liquidity-container">
       <Trans

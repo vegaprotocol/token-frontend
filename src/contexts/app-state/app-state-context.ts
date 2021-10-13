@@ -2,15 +2,6 @@ import React from "react";
 import type { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { BigNumber } from "../../lib/bignumber";
 
-export enum ProviderStatus {
-  /** Detecting if a Web3 provider is available */
-  Pending,
-  /** Web3 provider is available */
-  Ready,
-  /** No Web3 provider not available */
-  None,
-}
-
 export enum VegaWalletStatus {
   /** Detecting if Vega wallet service is running */
   Pending,
@@ -44,9 +35,6 @@ export interface UserTrancheBalance {
 }
 
 export interface AppState {
-  /** Ethereum address provided by Metamask */
-  ethAddress: string;
-
   /** Error if connecting to Metamask failed */
   error: Error | null;
 
@@ -115,11 +103,6 @@ export interface AppState {
 }
 
 export enum AppStateActionType {
-  CONNECT,
-  DISCONNECT,
-  CONNECT_SUCCESS,
-  CONNECT_FAIL,
-  ACCOUNTS_CHANGED,
   UPDATE_ACCOUNT_BALANCES,
   VEGA_WALLET_INIT,
   VEGA_WALLET_SET_KEY,
@@ -137,17 +120,6 @@ export enum AppStateActionType {
 }
 
 export type AppStateAction =
-  | { type: AppStateActionType.CONNECT }
-  | { type: AppStateActionType.DISCONNECT }
-  | {
-      type: AppStateActionType.CONNECT_SUCCESS;
-      address: string;
-    }
-  | { type: AppStateActionType.CONNECT_FAIL; error: Error }
-  | {
-      type: AppStateActionType.ACCOUNTS_CHANGED;
-      address: string;
-    }
   | {
       type: AppStateActionType.UPDATE_ACCOUNT_BALANCES;
       balance: BigNumber;

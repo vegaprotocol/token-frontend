@@ -8,16 +8,17 @@ import { BigNumber } from "../lib/bignumber";
 import { useGetUserTrancheBalances } from "./use-get-user-tranche-balances";
 import * as Sentry from "@sentry/react";
 import { ADDRESSES } from "../config";
-import { isUnexpectedError } from "../lib/web3-utils";
 import { useLocalStorage } from "./use-local-storage";
+import { useWeb3 } from "../contexts/web3-context/web3-context";
 
 const CONNECTED_STORAGE_KEY = "ethereum_wallet_connected";
 
 export function useEthUser() {
-  const { appState, appDispatch } = useAppState();
+  const { ethAddress } = useWeb3();
+  const { appDispatch } = useAppState();
   const { token, staking, vesting } = useContracts();
   const connectTimer = React.useRef<any>();
-  const getUserTrancheBalances = useGetUserTrancheBalances(appState.ethAddress);
+  const getUserTrancheBalances = useGetUserTrancheBalances(ethAddress);
   const [hasConnected, setHasConnected] = useLocalStorage<boolean | null>(
     CONNECTED_STORAGE_KEY,
     // null indicates not set (initial app start), false indicates
@@ -77,8 +78,9 @@ export function useEthUser() {
   //   }
   // }, [appDispatch, provider, hasConnected, setHasConnected]);
 
+  // TODO: Fix this
   const disconnect = React.useCallback(() => {
-    appDispatch({ type: AppStateActionType.DISCONNECT });
+    // appDispatch({ type: AppStateActionType.DISCONNECT });
     setHasConnected(false);
   }, [appDispatch, setHasConnected]);
 
@@ -86,7 +88,7 @@ export function useEthUser() {
   // React.useEffect(() => {
   //   if (
   //     hasConnected &&
-  //     !appState.ethAddress &&
+  //     !ethAddress &&
   //     !appState.error &&
   //     !appState.ethWalletConnecting
   //   ) {
@@ -94,7 +96,7 @@ export function useEthUser() {
   //   }
   // }, [
   //   hasConnected,
-  //   appState.ethAddress,
+  //   ethAddress,
   //   appState.ethWalletConnecting,
   //   appState.error,
   //   connect,
@@ -105,10 +107,10 @@ export function useEthUser() {
     const updateBalances = async () => {
       try {
         const [balance, walletBalance, lien, allowance] = await Promise.all([
-          vesting.getUserBalanceAllTranches(appState.ethAddress),
-          token.balanceOf(appState.ethAddress),
-          vesting.getLien(appState.ethAddress),
-          token.allowance(appState.ethAddress, ADDRESSES.stakingBridge),
+          vesting.getUserBalanceAllTranches(ethAddress),
+          token.balanceOf(ethAddress),
+          vesting.getLien(ethAddress),
+          token.allowance(ethAddress, ADDRESSES.stakingBridge),
         ]);
         appDispatch({
           type: AppStateActionType.UPDATE_ACCOUNT_BALANCES,
@@ -122,17 +124,17 @@ export function useEthUser() {
       }
     };
 
-    if (appState.ethAddress) {
+    if (ethAddress) {
       updateBalances();
     }
-  }, [appDispatch, appState.ethAddress, staking, token, vesting]);
+  }, [appDispatch, ethAddress, staking, token, vesting]);
 
   // Updates on address change, getUserTrancheBalance has address as a dep
   React.useEffect(() => {
-    if (appState.ethAddress) {
+    if (ethAddress) {
       getUserTrancheBalances();
     }
-  }, [appState.ethAddress, getUserTrancheBalances]);
+  }, [ethAddress, getUserTrancheBalances]);
 
   // Clear connect timer on unmount
   React.useEffect(() => {
@@ -144,7 +146,6 @@ export function useEthUser() {
   }, []);
 
   return {
-    ethAddress: appState.ethAddress,
     // connect,
     disconnect,
   };
