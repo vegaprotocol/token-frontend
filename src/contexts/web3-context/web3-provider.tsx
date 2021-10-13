@@ -9,8 +9,6 @@ import Web3 from "web3";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
-console.log(process.env.REACT_APP_INFURA_ID);
-
 const web3Modal = new Web3Modal({
   cacheProvider: true,
   theme: "dark",
