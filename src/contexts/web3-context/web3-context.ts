@@ -4,6 +4,7 @@ import { EthereumChainId } from "../../config";
 
 interface Web3ContextShape {
   connect: () => Promise<void>;
+  disconnect: () => Promise<void>;
   provider: any;
   web3: Web3;
   chainId: EthereumChainId;
