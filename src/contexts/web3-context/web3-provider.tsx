@@ -83,6 +83,12 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
     getChainId();
   }, [web3]);
 
+  React.useEffect(() => {
+    if (web3Modal.cachedProvider) {
+      connect();
+    }
+  }, [connect]);
+
   // Bind a listener for chainChanged if the provider is ready
   React.useEffect(() => {
     const bindListeners = () => {
