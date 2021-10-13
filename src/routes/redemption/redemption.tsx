@@ -17,10 +17,10 @@ import { Routes } from "../router-config";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import { useEthUser } from "../../hooks/use-eth-user";
 import { useTranches } from "../../hooks/use-tranches";
 import { useTranslation } from "react-i18next";
 import { useContracts } from "../../contexts/contracts/contracts-context";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
 
 const RedemptionRouter = () => {
   const { t } = useTranslation();
@@ -33,7 +33,7 @@ const RedemptionRouter = () => {
   const {
     appState: { trancheBalances },
   } = useAppState();
-  const { ethAddress } = useEthUser();
+  const { ethAddress } = useWeb3();
   const tranches = useTranches();
 
   React.useEffect(() => {

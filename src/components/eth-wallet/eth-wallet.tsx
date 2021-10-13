@@ -15,8 +15,8 @@ import { useWeb3 } from "../../contexts/web3-context/web3-context";
 
 export const EthWallet = () => {
   const { t } = useTranslation();
-  const { connect } = useWeb3();
-  const { ethAddress, disconnect } = useEthUser();
+  const { connect, ethAddress } = useWeb3();
+  const { disconnect } = useEthUser();
   const [disconnecting] = React.useState(false);
 
   return (

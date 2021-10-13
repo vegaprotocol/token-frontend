@@ -7,6 +7,8 @@ interface Web3ContextShape {
   provider: any;
   web3: Web3;
   chainId: EthereumChainId;
+
+  /** Ethereum address provided by injected provider/wallet connect */
   ethAddress: string;
 }
 

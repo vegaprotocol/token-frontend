@@ -15,6 +15,7 @@ import { Links } from "../../config";
 import React from "react";
 import { Staking as StakingQueryResult } from "./__generated__/Staking";
 import { useVegaUser } from "../../hooks/use-vega-user";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
 
 export const Staking = ({ data }: { data?: StakingQueryResult }) => {
   const { t } = useTranslation();
@@ -45,8 +46,9 @@ export const Staking = ({ data }: { data?: StakingQueryResult }) => {
 
 export const StakingStepConnectWallets = () => {
   const { t } = useTranslation();
+  const { ethAddress } = useWeb3();
   const {
-    appState: { ethAddress, currVegaKey },
+    appState: { currVegaKey },
     appDispatch,
   } = useAppState();
 
@@ -120,8 +122,9 @@ export const StakingStepAssociate = ({
 }) => {
   const match = useRouteMatch();
   const { t } = useTranslation();
+  const { ethAddress } = useWeb3();
   const {
-    appState: { ethAddress, currVegaKey },
+    appState: { currVegaKey },
   } = useAppState();
 
   if (!ethAddress) {

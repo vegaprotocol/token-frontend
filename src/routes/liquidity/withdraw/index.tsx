@@ -1,7 +1,6 @@
 import "./withdraw.scss";
 
 import React from "react";
-import { useEthUser } from "../../../hooks/use-eth-user";
 import { useVegaLPStaking } from "../../../hooks/use-vega-lp-staking";
 import { useParams } from "react-router";
 import { REWARDS_ADDRESSES } from "../../../config";
@@ -24,6 +23,7 @@ import { Callout } from "../../../components/callout";
 import { Error } from "../../../components/icons";
 import { Link } from "react-router-dom";
 import { Routes } from "../../router-config";
+import { useWeb3 } from "../../../contexts/web3-context/web3-context";
 
 export const LiquidityWithdrawPage = ({
   lpTokenAddress,
@@ -36,7 +36,7 @@ export const LiquidityWithdrawPage = ({
 }) => {
   const { t } = useTranslation();
   const lpStaking = useVegaLPStaking({ address: lpTokenAddress });
-  const { ethAddress } = useEthUser();
+  const { ethAddress } = useWeb3();
   const {
     state: txUnstakeState,
     dispatch: txUnstakeDispatch,

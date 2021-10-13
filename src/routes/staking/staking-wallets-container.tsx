@@ -1,9 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
-import {
-  VegaKeyExtended,
-} from "../../contexts/app-state/app-state-context";
-import { useEthUser } from "../../hooks/use-eth-user";
+import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { useVegaUser } from "../../hooks/use-vega-user";
 import { ConnectToVega } from "./connect-to-vega";
 
@@ -12,15 +10,15 @@ export const StakingWalletsContainer = ({
   needsVega,
   children,
 }: {
-  needsEthereum?: boolean,
-  needsVega?: boolean,
+  needsEthereum?: boolean;
+  needsVega?: boolean;
   children: (data: {
     address: string;
     currVegaKey: VegaKeyExtended | null;
   }) => React.ReactElement;
 }) => {
   const { t } = useTranslation();
-  const { ethAddress } = useEthUser();
+  const { ethAddress } = useWeb3();
   const { currVegaKey } = useVegaUser();
 
   if (!ethAddress && needsEthereum) {
