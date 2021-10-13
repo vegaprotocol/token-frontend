@@ -15,6 +15,7 @@ export interface Staking_party_stake {
    * The stake currently available for the party
    */
   currentStakeAvailable: string;
+  currentStakeAvailableFormatted: string;
 }
 
 export interface Staking_party_delegations_node {

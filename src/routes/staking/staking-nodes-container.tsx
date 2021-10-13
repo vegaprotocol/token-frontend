@@ -12,6 +12,7 @@ export const STAKING_QUERY = gql`
     party(id: $partyId) {
       stake {
         currentStakeAvailable
+        currentStakeAvailableFormatted @client
       }
       id
       delegations {

@@ -31,7 +31,9 @@ export const Staking = ({ data }: { data?: StakingQueryResult }) => {
         <BulletHeader tag="h2">{t("stakingStep2")}</BulletHeader>
         <StakingStepAssociate
           associated={
-            new BigNumber(data?.party?.stake.currentStakeAvailable || "0")
+            new BigNumber(
+              data?.party?.stake.currentStakeAvailableFormatted || "0"
+            )
           }
         />
       </section>
