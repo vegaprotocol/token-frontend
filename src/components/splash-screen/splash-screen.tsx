@@ -9,6 +9,7 @@ export const SplashScreen = ({ children }: { children: React.ReactNode }) => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        textAlign: "center",
       }}
     >
       {children}
