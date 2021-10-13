@@ -19,14 +19,11 @@ const initialAppState: AppState = {
   totalAssociated: new BigNumber(0),
   decimals: 0,
   totalSupply: new BigNumber(0),
-  ethWalletConnecting: false,
-  error: null,
   balanceFormatted: new BigNumber(0),
   walletBalance: new BigNumber(0),
   lien: new BigNumber(0),
   allowance: new BigNumber(0),
   tranches: null,
-  ethWalletOverlay: false,
   vegaWalletOverlay: false,
   vegaWalletStatus: VegaWalletStatus.Pending,
   vegaKeys: null,
@@ -42,39 +39,6 @@ const initialAppState: AppState = {
 
 function appStateReducer(state: AppState, action: AppStateAction): AppState {
   switch (action.type) {
-    // case AppStateActionType.CONNECT:
-    //   return {
-    //     ...state,
-    //     error: null,
-    //     ethWalletConnecting: true,
-    //   };
-    // case AppStateActionType.CONNECT_SUCCESS:
-    //   return {
-    //     ...state,
-    //     ethAddress: action.address,
-    //     ethWalletConnecting: false,
-    //     ethWalletOverlay: false,
-    //   };
-    // case AppStateActionType.CONNECT_FAIL:
-    //   return {
-    //     ...state,
-    //     error: action.error,
-    //     ethAddress: "",
-    //     ethWalletConnecting: false,
-    //   };
-    // case AppStateActionType.DISCONNECT:
-    //   return {
-    //     ...state,
-    //     error: null,
-    //     ethWalletConnecting: false,
-    //     ethAddress: "",
-    //   };
-    // case AppStateActionType.ACCOUNTS_CHANGED: {
-    //   return {
-    //     ...state,
-    //     ethAddress: action.address,
-    //   };
-    // }
     case AppStateActionType.UPDATE_ACCOUNT_BALANCES: {
       return {
         ...state,
@@ -175,18 +139,10 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         drawerOpen: action.isOpen ? false : state.drawerOpen,
       };
     }
-    case AppStateActionType.SET_ETH_WALLET_OVERLAY: {
-      return {
-        ...state,
-        ethWalletOverlay: action.isOpen,
-        drawerOpen: action.isOpen ? false : state.drawerOpen,
-      };
-    }
     case AppStateActionType.SET_DRAWER: {
       return {
         ...state,
         drawerOpen: action.isOpen,
-        ethWalletOverlay: false,
         vegaWalletOverlay: false,
       };
     }
