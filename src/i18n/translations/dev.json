@@ -70,8 +70,6 @@
   "codeUsed": "Code already used",
   "codeUsedText": "Looks like that code has already been used",
   "codeExpired": "Code expired",
-  "invalidWeb3Browser": "You need a web3 capable browser to use this site",
-  "invalidWeb3Provider": "Incompatible web3 provider detected. Please try another browser / extension.",
   "Vesting Balance": "Vesting Balance",
   "VEGA": "VEGA",
   "SLP": "SLP",
