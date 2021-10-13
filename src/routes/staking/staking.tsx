@@ -1,7 +1,4 @@
-import {
-  AppStateActionType,
-  useAppState,
-} from "../../contexts/app-state/app-state-context";
+import { useAppState } from "../../contexts/app-state/app-state-context";
 import { Error, Tick } from "../../components/icons";
 import { Link, useRouteMatch } from "react-router-dom";
 import { NodeList, NodeListItemProps } from "./node-list";
@@ -48,10 +45,9 @@ export const Staking = ({ data }: { data?: StakingQueryResult }) => {
 
 export const StakingStepConnectWallets = () => {
   const { t } = useTranslation();
-  const { ethAddress } = useWeb3();
+  const { connect, ethAddress } = useWeb3();
   const {
     appState: { currVegaKey },
-    appDispatch,
   } = useAppState();
 
   if (currVegaKey && ethAddress) {
@@ -90,16 +86,7 @@ export const StakingStepConnectWallets = () => {
         />
       ) : (
         <p>
-          <button
-            onClick={() =>
-              appDispatch({
-                type: AppStateActionType.SET_ETH_WALLET_OVERLAY,
-                isOpen: true,
-              })
-            }
-            className="fill"
-            type="button"
-          >
+          <button onClick={connect} className="fill" type="button">
             {t("Connect to an Ethereum wallet")}
           </button>
         </p>

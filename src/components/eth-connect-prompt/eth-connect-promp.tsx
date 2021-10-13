@@ -1,29 +1,17 @@
 import { useTranslation } from "react-i18next";
-import {
-  AppStateActionType,
-  useAppState,
-} from "../../contexts/app-state/app-state-context";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
 
 interface EthConnectPrompProps {
   children?: React.ReactNode;
 }
 
 export const EthConnectPrompt = ({ children }: EthConnectPrompProps) => {
-  const { appDispatch } = useAppState();
   const { t } = useTranslation();
+  const { connect } = useWeb3();
   return (
     <>
       {children}
-      <button
-        onClick={() =>
-          appDispatch({
-            type: AppStateActionType.SET_ETH_WALLET_OVERLAY,
-            isOpen: true,
-          })
-        }
-        className="fill"
-        type="button"
-      >
+      <button onClick={connect} className="fill" type="button">
         {t("Connect to an Ethereum wallet")}
       </button>
     </>
