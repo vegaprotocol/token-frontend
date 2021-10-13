@@ -43,7 +43,7 @@ const web3Modal = new Web3Modal({
  */
 export const Web3Provider = ({ children }: { children: JSX.Element }) => {
   const { t } = useTranslation();
-
+  const isStartup = React.useRef(true);
   // Default to http provider using infura, later we reset this using
   // the users connected wallet
   const [provider, setProvider] = React.useState<any>(
@@ -58,32 +58,38 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
     const newWeb3 = new Web3(newProvider);
     setProvider(newProvider);
     setWeb3(newWeb3);
-
+    const chainId = await newWeb3.eth.getChainId();
     const accounts = await newWeb3.eth.getAccounts();
-
+    setChainId(`0x${chainId}` as EthereumChainId);
     setEthAddress(accounts[0]);
   }, []);
 
   const disconnect = React.useCallback(async () => {
     await web3Modal.clearCachedProvider();
+    const newProvider = new Web3.providers.HttpProvider(INFURA_URL);
+    const newWeb3 = new Web3(newProvider);
+    setProvider(newProvider);
+    setWeb3(newWeb3);
+    const chainId = await newWeb3.eth.getChainId();
+    setChainId(`0x${chainId}` as EthereumChainId);
     setEthAddress("");
   }, []);
 
-  // Get and set the chainId if the provider is ready
   React.useEffect(() => {
-    const getChainId = async () => {
-      const chainId = await web3.eth.getChainId();
-      setChainId(`0x${chainId}` as EthereumChainId);
+    const run = async () => {
+      if (web3Modal.cachedProvider) {
+        connect();
+      } else {
+        const chainId = await web3.eth.getChainId();
+        setChainId(`0x${chainId}` as EthereumChainId);
+      }
     };
 
-    getChainId();
-  }, [web3]);
-
-  React.useEffect(() => {
-    if (web3Modal.cachedProvider) {
-      connect();
+    if (isStartup.current) {
+      run();
+      isStartup.current = false;
     }
-  }, [connect]);
+  }, [connect, web3]);
 
   // Bind a listener for chainChanged if the provider is ready
   React.useEffect(() => {
@@ -118,7 +124,7 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
       });
     };
 
-    if (ethAddress) {
+    if (ethAddress && typeof provider.on === "function") {
       bindListeners();
     }
 
@@ -128,20 +134,6 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
       }
     };
   }, [chainId, ethAddress, provider]);
-
-  // App cant work without a web3 provider so return with a splash
-  // screen preventing further actions
-  // if (status === ProviderStatus.None || status === ProviderStatus.Invalid) {
-  //   return (
-  //     <SplashScreen>
-  //       <div>
-  //         {status === ProviderStatus.Invalid
-  //           ? t("invalidWeb3Provider")
-  //           : t("invalidWeb3Browser")}
-  //       </div>
-  //     </SplashScreen>
-  //   );
-  // }
 
   // Wait for fetching chain ID to ensure HttpProvider is running
   if (chainId === null) {
@@ -170,6 +162,9 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
               chain: desiredChain,
             })}
           </p>
+          <button onClick={disconnect} type="button">
+            {t("disconnect")}
+          </button>
         </div>
       </SplashScreen>
     );
