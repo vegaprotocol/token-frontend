@@ -13,7 +13,7 @@ const web3Modal = new Web3Modal({
   cacheProvider: true,
   theme: "dark",
   providerOptions: {
-    // Example with injected providers
+    // Injected providers. E.G. browser extensions such as Metamask
     injected: {
       display: {
         name: "Injected",
@@ -21,7 +21,7 @@ const web3Modal = new Web3Modal({
       },
       package: null,
     },
-    // Example with WalletConnect provider
+    // Bridge to mobile wallets
     walletconnect: {
       display: {
         name: "Mobile",
