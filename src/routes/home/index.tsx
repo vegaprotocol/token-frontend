@@ -19,6 +19,7 @@ export const TOTAL_STAKED_QUERY = gql`
   query NodeData {
     nodeData {
       stakedTotal
+      stakedTotalFormatted @client
     }
   }
 `;

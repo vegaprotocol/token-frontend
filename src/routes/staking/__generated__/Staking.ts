@@ -132,6 +132,10 @@ export interface Staking_nodes {
    * Amount of stake on the next epoch
    */
   pendingStake: string;
+  stakedByOperatorFormatted: string;
+  stakedByDelegatesFormatted: string;
+  stakedTotalFormatted: string;
+  pendingStakeFormatted: string;
   epochData: Staking_nodes_epochData | null;
   status: NodeStatus;
 }

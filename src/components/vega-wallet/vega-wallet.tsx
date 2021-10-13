@@ -36,6 +36,7 @@ const DELEGATIONS_QUERY = gql`
     }
     party(id: $partyId) {
       delegations {
+        amountFormatted @client
         amount
         node {
           id
@@ -44,6 +45,7 @@ const DELEGATIONS_QUERY = gql`
       }
       stake {
         currentStakeAvailable
+        currentStakeAvailableFormatted @client
       }
     }
   }
@@ -167,6 +169,8 @@ const VegaWalletConnected = ({
                 return d.epoch.toString() === res.data.epoch.id;
               }) || [];
             const sortedDelegations = [...filter].sort((a, b) => {
+              // @ts-ignore
+              console.log(b.amountFormatted);
               return new BigNumber(b.amount).minus(a.amount).toNumber();
             });
             setDelegations(sortedDelegations);
