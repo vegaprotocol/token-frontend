@@ -4,3 +4,22 @@ extend type Proposal {
   "Generated name for the proposal"
   name: String!
 }
+
+extend type Node {
+  pendingStakeFormatted: String!
+  stakedByOperatorFormatted: String!
+  stakedByDelegatesFormatted: String!
+  stakedTotalFormatted: String!
+}
+
+extend type Delegation {
+  amountFormatted: String!
+}
+
+extend type NodeData {
+  stakedTotalFormatted: String!
+}
+
+extend type PartyStake {
+  currentStakeAvailableFormatted: String!
+}

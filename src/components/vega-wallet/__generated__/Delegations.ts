@@ -25,6 +25,7 @@ export interface Delegations_party_delegations_node {
 
 export interface Delegations_party_delegations {
   __typename: "Delegation";
+  amountFormatted: string;
   /**
    * Amount delegated
    */
@@ -45,6 +46,7 @@ export interface Delegations_party_stake {
    * The stake currently available for the party
    */
   currentStakeAvailable: string;
+  currentStakeAvailableFormatted: string;
 }
 
 export interface Delegations_party {
