@@ -16,6 +16,7 @@ export const STAKING_QUERY = gql`
       id
       delegations {
         amount
+        amountFormatted @client
         epoch
         node {
           id

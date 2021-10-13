@@ -169,9 +169,9 @@ const VegaWalletConnected = ({
                 return d.epoch.toString() === res.data.epoch.id;
               }) || [];
             const sortedDelegations = [...filter].sort((a, b) => {
-              // @ts-ignore
-              console.log(b.amountFormatted);
-              return new BigNumber(b.amount).minus(a.amount).toNumber();
+              return new BigNumber(b.amountFormatted)
+                .minus(a.amountFormatted)
+                .toNumber();
             });
             setDelegations(sortedDelegations);
             setCurrentStakeAvailable(
@@ -198,17 +198,17 @@ const VegaWalletConnected = ({
               .map((d) => ({
                 nodeId: d,
                 hasStakePending: !!(
-                  delegatedThisEpoch[d]?.amount &&
-                  delegatedNextEpoch[d]?.amount &&
-                  delegatedThisEpoch[d]?.amount !==
-                    delegatedNextEpoch[d]?.amount
+                  delegatedThisEpoch[d]?.amountFormatted &&
+                  delegatedNextEpoch[d]?.amountFormatted &&
+                  delegatedThisEpoch[d]?.amountFormatted !==
+                    delegatedNextEpoch[d]?.amountFormatted
                 ),
                 currentEpochStake:
                   delegatedThisEpoch[d] &&
-                  new BigNumber(delegatedThisEpoch[d].amount),
+                  new BigNumber(delegatedThisEpoch[d].amountFormatted),
                 nextEpochStake:
                   delegatedNextEpoch[d] &&
-                  new BigNumber(delegatedNextEpoch[d].amount),
+                  new BigNumber(delegatedNextEpoch[d].amountFormatted),
               }))
               .sort((a, b) => {
                 if (a.currentEpochStake.isLessThan(b.currentEpochStake))
@@ -252,7 +252,7 @@ const VegaWalletConnected = ({
 
   const unstaked = React.useMemo(() => {
     const totalDelegated = delegations.reduce<BigNumber>(
-      (acc, cur) => acc.plus(cur.amount),
+      (acc, cur) => acc.plus(cur.amountFormatted),
       new BigNumber(0)
     );
     return BigNumber.max(currentStakeAvailable.minus(totalDelegated), 0);

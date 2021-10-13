@@ -21,6 +21,7 @@ export interface PartyDelegations_party_delegations {
    * Amount delegated
    */
   amount: string;
+  amountFormatted: string;
   /**
    * URL of node you are delegating to
    */

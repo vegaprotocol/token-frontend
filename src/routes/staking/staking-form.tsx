@@ -32,6 +32,7 @@ export const PARTY_DELEGATIONS_QUERY = gql`
     party(id: $partyId) {
       delegations {
         amount
+        amountFormatted @client
         node {
           id
         }
