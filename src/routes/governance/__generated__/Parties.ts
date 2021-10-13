@@ -13,6 +13,7 @@ export interface Parties_parties_stake {
    * The stake currently available for the party
    */
   currentStakeAvailable: string;
+  currentStakeAvailableFormatted: string;
 }
 
 export interface Parties_parties {

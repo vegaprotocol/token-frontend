@@ -175,7 +175,9 @@ const VegaWalletConnected = ({
             });
             setDelegations(sortedDelegations);
             setCurrentStakeAvailable(
-              new BigNumber(res.data.party?.stake.currentStakeAvailable || 0)
+              new BigNumber(
+                res.data.party?.stake.currentStakeAvailableFormatted || 0
+              )
             );
             const delegatedNextEpoch = keyBy(
               res.data.party?.delegations?.filter((d) => {

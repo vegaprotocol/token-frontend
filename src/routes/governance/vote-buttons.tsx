@@ -36,8 +36,8 @@ export const VoteButtons = ({
   const [changeVote, setChangeVote] = React.useState(false);
 
   const lacksGovernanceToken = party
-    ? +party.stake.currentStakeAvailable === 0 ||
-      party.stake.currentStakeAvailable === undefined
+    ? +party.stake.currentStakeAvailableFormatted === 0 ||
+      party.stake.currentStakeAvailableFormatted === undefined
     : true;
 
   const {
@@ -96,8 +96,7 @@ export const VoteButtons = ({
     return (
       <div className="vote-buttons__callout-container">
         <Callout intent="error" icon={<Error />} title={t("voteError")}>
-          {
-            proposalState === ProposalState.Open ?
+          {proposalState === ProposalState.Open ? (
             <button
               className="vote-buttons__link-button"
               onClick={() => {
@@ -106,9 +105,7 @@ export const VoteButtons = ({
             >
               {t("back")}
             </button>
-            :
-          null
-          }
+          ) : null}
         </Callout>
       </div>
     );
@@ -134,9 +131,7 @@ export const VoteButtons = ({
         ) : (
           ". "
         )}
-        {
-          proposalState === ProposalState.Open
-          ?
+        {proposalState === ProposalState.Open ? (
           <button
             className="vote-buttons__link-button"
             onClick={() => {
@@ -145,9 +140,7 @@ export const VoteButtons = ({
           >
             {t("changeVote")}
           </button>
-          :
-          null
-        }
+        ) : null}
       </div>
     );
   }
@@ -172,7 +165,6 @@ export const VoteButtons = ({
       </div>
     );
   }
-
 
   return <h3 className="vote-buttons__container">{t("youDidNotVote")}</h3>;
 };
