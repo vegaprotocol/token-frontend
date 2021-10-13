@@ -199,7 +199,7 @@ export const StakingStepSelectNode = ({
             ?.filter((d) => d.node.id === node.id)
             ?.filter((d) => d.epoch === Number(data.epoch.id))
             .reduce((sum, d) => {
-              const value = new BigNumber(d.amount);
+              const value = new BigNumber(d.amountFormatted);
               return sum.plus(value);
             }, new BigNumber(0))
         : new BigNumber(0);

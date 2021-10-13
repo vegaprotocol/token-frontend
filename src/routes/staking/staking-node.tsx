@@ -43,7 +43,7 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
     if (!data?.party?.delegations) return new BigNumber(0);
     const amounts = data.party.delegations
       .filter(({ epoch }) => epoch.toString() === data.epoch.id)
-      .map((d) => new BigNumber(d.amount));
+      .map((d) => new BigNumber(d.amountFormatted));
     return BigNumber.sum.apply(null, [new BigNumber(0), ...amounts]);
   }, [data]);
   const unstaked = React.useMemo(() => {
@@ -65,7 +65,7 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
     const amountsThisEpoch = delegations
       .filter((d) => d.node.id === node)
       .filter((d) => d.epoch === Number(currentEpoch))
-      .map((d) => new BigNumber(d.amount));
+      .map((d) => new BigNumber(d.amountFormatted));
     return BigNumber.sum.apply(null, [new BigNumber(0), ...amountsThisEpoch]);
   }, [data?.party?.delegations, node, currentEpoch]);
 
@@ -74,7 +74,7 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
     const amountsNextEpoch = delegations
       .filter((d) => d.node.id === node)
       .filter((d) => d.epoch === Number(currentEpoch) + 1)
-      .map((d) => new BigNumber(d.amount));
+      .map((d) => new BigNumber(d.amountFormatted));
 
     if (!amountsNextEpoch.length) {
       return stakeThisEpoch;
