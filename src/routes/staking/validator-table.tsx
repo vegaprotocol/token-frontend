@@ -24,13 +24,13 @@ export const ValidatorTable = ({
 
   const stakePercentage = React.useMemo(() => {
     const total = new BigNumber(stakedTotal);
-    const stakedOnNode = new BigNumber(node.stakedTotal);
+    const stakedOnNode = new BigNumber(node.stakedTotalFormatted);
     const stakedTotalPercentage =
       total.isEqualTo(0) || stakedOnNode.isEqualTo(0)
         ? "-"
         : stakedOnNode.dividedBy(total).times(100).toString() + "%";
     return stakedTotalPercentage;
-  }, [node.stakedTotal, stakedTotal]);
+  }, [node.stakedTotalFormatted, stakedTotal]);
 
   return (
     <>
@@ -49,7 +49,7 @@ export const ValidatorTable = ({
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("TOTAL STAKE")}</th>
-          <td>{node.stakedTotal}</td>
+          <td>{node.stakedTotalFormatted}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("STAKE SHARE")}</th>

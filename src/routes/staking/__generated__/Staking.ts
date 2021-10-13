@@ -146,6 +146,7 @@ export interface Staking_nodeData {
    * Total staked amount across all nodes
    */
   stakedTotal: string;
+  stakedTotalFormatted: string;
   /**
    * Total number of nodes
    */
