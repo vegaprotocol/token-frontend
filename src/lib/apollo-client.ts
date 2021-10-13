@@ -30,7 +30,7 @@ export function createClient() {
   const createReadField = (fieldName: string) => ({
     [`${fieldName}Formatted`]: {
       read(_: string, options: FieldFunctionOptions) {
-        const amount = options.readField("fieldName") as string;
+        const amount = options.readField(fieldName) as string;
         return amount ? formatUintToNumber(amount) : "0";
       },
     },
