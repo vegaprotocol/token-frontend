@@ -38,6 +38,10 @@ const nodes: Staking_nodes[] = [
     stakedByDelegates: "100",
     stakedTotal: "200",
     pendingStake: "100",
+    stakedByOperatorFormatted: "100",
+    stakedByDelegatesFormatted: "100",
+    stakedTotalFormatted: "200",
+    pendingStakeFormatted: "100",
     epochData: {
       __typename: "EpochData",
       total: 6,
@@ -56,6 +60,10 @@ const nodes: Staking_nodes[] = [
     stakedByDelegates: "100",
     stakedTotal: "200",
     pendingStake: "100",
+    stakedByOperatorFormatted: "100",
+    stakedByDelegatesFormatted: "100",
+    stakedTotalFormatted: "200",
+    pendingStakeFormatted: "100",
     epochData: {
       __typename: "EpochData",
       total: 6,
@@ -69,6 +77,7 @@ const nodes: Staking_nodes[] = [
 const nodeData: Staking_nodeData = {
   __typename: "NodeData",
   stakedTotal: "500",
+  stakedTotalFormatted: "500",
   totalNodes: 5,
   inactiveNodes: 3,
   validatingNodes: 1,
@@ -97,12 +106,14 @@ const MOCK_STAKING_QUERY: MockedResponse<Staking> = {
         stake: {
           __typename: "PartyStake",
           currentStakeAvailable: "0.00000000000001",
+          currentStakeAvailableFormatted: "0.00000000000001",
         },
         id: partyId,
         delegations: [
           {
             __typename: "Delegation",
             amount: "100",
+            amountFormatted: "100",
             node: nodes[0],
             epoch: 1,
           },
@@ -131,6 +142,7 @@ const MOCK_PARTY_DELEGATIONS: MockedResponse<PartyDelegations> = {
           {
             __typename: "Delegation",
             amount: "100",
+            amountFormatted: "100",
             epoch: 1,
             node: {
               __typename: "Node",
@@ -307,6 +319,7 @@ const MOCK_PARTIES: MockedResponse<Parties> = {
           stake: {
             __typename: "PartyStake",
             currentStakeAvailable: "12345",
+            currentStakeAvailableFormatted: "12345",
           },
         },
       ],
