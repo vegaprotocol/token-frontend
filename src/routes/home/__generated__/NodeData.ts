@@ -13,6 +13,7 @@ export interface NodeData_nodeData {
    * Total staked amount across all nodes
    */
   stakedTotal: string;
+  stakedTotalFormatted: string;
 }
 
 export interface NodeData {

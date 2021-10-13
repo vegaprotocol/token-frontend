@@ -39,6 +39,10 @@ export const STAKING_QUERY = gql`
       stakedByDelegates
       stakedTotal
       pendingStake
+      stakedByOperatorFormatted @client
+      stakedByDelegatesFormatted @client
+      stakedTotalFormatted @client
+      pendingStakeFormatted @client
       epochData {
         total
         offline

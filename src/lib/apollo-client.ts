@@ -1,4 +1,4 @@
-import type { Operation } from "@apollo/client";
+import { FieldFunctionOptions, Operation } from "@apollo/client";
 import {
   ApolloClient,
   from,
@@ -27,6 +27,15 @@ export function createClient() {
   const formatUintToNumber = (amount: string) =>
     addDecimal(new BigNumber(amount), 18).toString();
 
+  const createReadField = (fieldName: string) => ({
+    [`${fieldName}Formatted`]: {
+      read(_: string, options: FieldFunctionOptions) {
+        const amount = options.readField("fieldName") as string;
+        return amount ? formatUintToNumber(amount) : "0";
+      },
+    },
+  });
+
   const cache = new InMemoryCache({
     typePolicies: {
       Delegation: {
@@ -36,36 +45,16 @@ export function createClient() {
           return incoming;
         },
         fields: {
-          amount: {
-            read(amount) {
-              return amount ? formatUintToNumber(amount) : "0";
-            },
-          },
+          ...createReadField("amount"),
         },
       },
       Node: {
         keyFields: false,
         fields: {
-          pendingStake: {
-            read(amount) {
-              return amount ? formatUintToNumber(amount) : "0";
-            },
-          },
-          stakedByOperator: {
-            read(amount) {
-              return amount ? formatUintToNumber(amount) : "0";
-            },
-          },
-          stakedByDelegates: {
-            read(amount) {
-              return amount ? formatUintToNumber(amount) : "0";
-            },
-          },
-          stakedTotal: {
-            read(amount) {
-              return amount ? formatUintToNumber(amount) : "0";
-            },
-          },
+          ...createReadField("pendingStake"),
+          ...createReadField("stakedByOperator"),
+          ...createReadField("stakedByDelegates"),
+          ...createReadField("stakedTotal"),
         },
       },
       NodeData: {
@@ -73,11 +62,7 @@ export function createClient() {
           return { ...existing, ...incoming };
         },
         fields: {
-          stakedTotal: {
-            read(amount) {
-              return amount ? formatUintToNumber(amount) : "0";
-            },
-          },
+          ...createReadField("stakedTotal"),
         },
       },
       Party: {
@@ -87,7 +72,7 @@ export function createClient() {
               if (stake) {
                 return {
                   ...stake,
-                  currentStakeAvailable: formatUintToNumber(
+                  currentStakeAvailableFormatted: formatUintToNumber(
                     stake.currentStakeAvailable
                   ),
                 };
