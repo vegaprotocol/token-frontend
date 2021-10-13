@@ -184,8 +184,10 @@ export const StakingStepSelectNode = ({
     if (!data?.nodes) return [];
 
     const nodesWithPercentages = data.nodes.map((node) => {
-      const stakedTotal = new BigNumber(data?.nodeData?.stakedTotal || 0);
-      const stakedOnNode = new BigNumber(node.stakedTotal);
+      const stakedTotal = new BigNumber(
+        data?.nodeData?.stakedTotalFormatted || 0
+      );
+      const stakedOnNode = new BigNumber(node.stakedTotalFormatted);
       const stakedTotalPercentage =
         stakedTotal.isEqualTo(0) || stakedOnNode.isEqualTo(0)
           ? "-"

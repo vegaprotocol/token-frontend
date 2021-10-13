@@ -98,7 +98,7 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
       <p>Vega key: {vegaKey.pubShort}</p>
       <ValidatorTable
         node={nodeInfo}
-        stakedTotal={data?.nodeData?.stakedTotal || "0"}
+        stakedTotal={data?.nodeData?.stakedTotalFormatted || "0"}
         stakeThisEpoch={stakeThisEpoch}
       />
       {data?.epoch.timestamps.start && data?.epoch.timestamps.expiry && (

@@ -52,6 +52,7 @@ export const STAKING_QUERY = gql`
     }
     nodeData {
       stakedTotal
+      stakedTotalFormatted @client
       totalNodes
       inactiveNodes
       validatingNodes
