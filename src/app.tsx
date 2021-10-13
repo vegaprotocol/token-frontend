@@ -5,7 +5,6 @@ import { AppRouter } from "./routes";
 import { AppStateProvider } from "./contexts/app-state/app-state-provider";
 import { Nav } from "./components/nav";
 import { VegaWalletModal } from "./components/vega-wallet/vega-wallet-modal";
-import { EthWalletModal } from "./components/eth-wallet/eth-wallet-modal";
 // @ts-ignore
 import { GraphQlProvider } from "./components/GRAPHQL_PROVIDER/graphql-provider";
 import { AppLoader } from "./app-loader";
@@ -26,7 +25,6 @@ function App() {
                     <AppRouter />
                   </div>
                   <VegaWalletModal />
-                  <EthWalletModal />
                 </>
               </AppLoader>
             </ContractsProvider>
