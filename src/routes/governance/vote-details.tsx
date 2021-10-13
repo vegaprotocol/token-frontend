@@ -20,6 +20,7 @@ export const PARTIES_QUERY = gql`
       id
       stake {
         currentStakeAvailable
+        currentStakeAvailableFormatted @client
       }
     }
   }
