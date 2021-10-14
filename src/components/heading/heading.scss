@@ -1,8 +1,8 @@
 .heading {
   &__title {
     font-weight: 500;
-    padding-top: 8%;
-    font-size: 30px;
+    padding-top: 5%;
+    font-size: 40px;
     margin: 0;
     max-width: 80%;
     text-transform: uppercase;
@@ -12,7 +12,7 @@
     }
 
     @media (min-width: 960px) {
-      font-size: 88px;
+      font-size: 35px;
     }
   }
 }
