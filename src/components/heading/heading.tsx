@@ -6,6 +6,8 @@ export interface HeadingProps {
 }
 
 export const Heading = ({ title }: HeadingProps) => {
+  if (!title) return null;
+
   return (
     <>
       <header className="heading">
