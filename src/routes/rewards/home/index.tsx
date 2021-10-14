@@ -38,6 +38,7 @@ export const REWARDS_QUERY = gql`
           partyId
           epoch
           amount
+          amountFormatted @client
           percentageOfTotal
           receivedAt
         }
@@ -136,7 +137,7 @@ export const RewardsIndex = () => {
                     {formatNumber(new BigNumber(r?.percentageOfTotal || "0"))}
                   </td>
                   <td style={{ textAlign: "right" }}>
-                    {formatNumber(new BigNumber(r?.amount || "0"))}
+                    {formatNumber(new BigNumber(r?.amountFormatted || "0"))}
                   </td>
                 </tr>
               ))}

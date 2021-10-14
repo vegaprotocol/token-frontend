@@ -78,6 +78,12 @@ export function createClient() {
           ...createReadField("amount"),
         },
       },
+      Reward: {
+        keyFields: false,
+        fields: {
+          ...createReadField("amount"),
+        },
+      },
       Node: {
         keyFields: false,
         fields: {
