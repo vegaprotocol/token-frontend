@@ -62,6 +62,7 @@ export interface Rewards_party_rewardDetails {
    * The total amount of rewards received for this asset.
    */
   totalAmount: string;
+  totalAmountFormatted: string;
 }
 
 export interface Rewards_party {
