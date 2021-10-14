@@ -33,9 +33,7 @@ const Home = ({ name }: RouteChildProps) => {
   }, [data]);
 
   return (
-    <TemplateSidebar sidebar={[<EthWallet />]}>
-      <h2>{t("The $VEGA token")}</h2>
-
+    <TemplateSidebar sidebar={[<EthWallet />]} title={t("The $VEGA token")}>
       <TokenDetails
         totalSupply={appState.totalSupply}
         totalStaked={totalStaked}
