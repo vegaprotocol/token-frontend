@@ -9,6 +9,8 @@ import { EpochCountdown } from "../../../components/epoch-countdown";
 import { Rewards } from "./__generated__/Rewards";
 import { useVegaUser } from "../../../hooks/use-vega-user";
 import { Colors } from "../../../config";
+import { formatNumber } from "../../../lib/format-number";
+import { BigNumber } from "../../../lib/bignumber";
 
 export const EPOCH_QUERY = gql`
   query Epoch {
@@ -52,7 +54,7 @@ export const RewardsIndex = () => {
   const {
     data: rewardsData,
     loading: rewardsLoading,
-    error: rewardsError,
+    // error: rewardsError,
   } = useQuery<Rewards>(REWARDS_QUERY, {
     variables: { partyId: currVegaKey?.pub },
     skip: !currVegaKey?.pub,
@@ -121,16 +123,20 @@ export const RewardsIndex = () => {
           {/* TODO find reward selected from asset list */}
           {rewardsData?.party?.rewardDetails &&
             rewardsData?.party?.rewardDetails[0]?.rewards &&
-            rewardsData.party.rewardDetails[0]?.rewards.map((r) => (
-              <tr>
-                <td>
-                  <div>{r?.epoch}</div>
-                  <div className="text-deemphasise">17 Sept 2021 23:59</div>
-                </td>
-                <td style={{ textAlign: "right" }}>{r?.percentageOfTotal}</td>
-                <td style={{ textAlign: "right" }}>{r?.amount}</td>
-              </tr>
-            ))}
+            [...rewardsData.party.rewardDetails[0]?.rewards]
+              .reverse()
+              .map((r) => (
+                <tr>
+                  <td>
+                    <div>{r?.epoch}</div>
+                    <div className="text-deemphasise">{r?.receivedAt}</div>
+                  </td>
+                  <td style={{ textAlign: "right" }}>{r?.percentageOfTotal}</td>
+                  <td style={{ textAlign: "right" }}>
+                    {formatNumber(new BigNumber(r?.amount || "0"))}
+                  </td>
+                </tr>
+              ))}
         </tbody>
       </table>
     </section>
