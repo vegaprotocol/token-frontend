@@ -36,7 +36,7 @@ export const VoteButtons = ({
   const [changeVote, setChangeVote] = React.useState(false);
 
   const lacksGovernanceToken = party
-    ? +party.stake.currentStakeAvailableFormatted === 0 ||
+    ? Number(party.stake.currentStakeAvailableFormatted) === 0 ||
       party.stake.currentStakeAvailableFormatted === undefined
     : true;
 
