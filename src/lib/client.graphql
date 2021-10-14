@@ -23,3 +23,7 @@ extend type NodeData {
 extend type PartyStake {
   currentStakeAvailableFormatted: String!
 }
+
+extend type Reward {
+  amountFormatted: String!
+}

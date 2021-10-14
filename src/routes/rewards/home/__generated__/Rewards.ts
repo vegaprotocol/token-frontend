@@ -37,6 +37,7 @@ export interface Rewards_party_rewardDetails_rewards {
    * Amount received for this reward
    */
   amount: string;
+  amountFormatted: string;
   /**
    * Percentage out of the total distributed reward
    */
