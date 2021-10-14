@@ -8,7 +8,6 @@ import React from "react";
 export const Breadcrumbs = () => {
   const breadcrumbs = useBreadcrumbs();
   const isClaim = useRouteMatch("/claim");
-  console.log(breadcrumbs);
   return !isClaim && breadcrumbs.length > 1 ? (
     <div className="breadcrumbs">
       {breadcrumbs.map(({ breadcrumb, match }, index) => (
