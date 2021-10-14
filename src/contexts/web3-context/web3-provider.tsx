@@ -17,7 +17,7 @@ const web3Modal = new Web3Modal({
     injected: {
       display: {
         name: "Injected",
-        description: "Connect with the provider in your Browser",
+        description: "Connect with the provider in your browser",
       },
       package: null,
     },
@@ -25,7 +25,7 @@ const web3Modal = new Web3Modal({
     walletconnect: {
       display: {
         name: "Mobile",
-        description: "Scan qrcode with your mobile wallet",
+        description: "Scan QR code with your mobile wallet",
       },
       package: WalletConnectProvider,
       options: {
