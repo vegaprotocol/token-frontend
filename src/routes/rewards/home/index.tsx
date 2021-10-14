@@ -124,6 +124,7 @@ export const RewardsIndex = () => {
           {rewardsData?.party?.rewardDetails &&
             rewardsData?.party?.rewardDetails[0]?.rewards &&
             [...rewardsData.party.rewardDetails[0]?.rewards]
+              // TODO sort don't reverse
               .reverse()
               .map((r) => (
                 <tr>
@@ -131,7 +132,9 @@ export const RewardsIndex = () => {
                     <div>{r?.epoch}</div>
                     <div className="text-deemphasise">{r?.receivedAt}</div>
                   </td>
-                  <td style={{ textAlign: "right" }}>{r?.percentageOfTotal}</td>
+                  <td style={{ textAlign: "right" }}>
+                    {formatNumber(new BigNumber(r?.percentageOfTotal || "0"))}
+                  </td>
                   <td style={{ textAlign: "right" }}>
                     {formatNumber(new BigNumber(r?.amount || "0"))}
                   </td>
