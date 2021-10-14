@@ -27,3 +27,7 @@ extend type PartyStake {
 extend type Reward {
   amountFormatted: String!
 }
+
+extend type RewardPerAssetDetail {
+  totalAmountFormatted: String!
+}

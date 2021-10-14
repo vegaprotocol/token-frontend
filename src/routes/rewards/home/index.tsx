@@ -43,6 +43,7 @@ export const REWARDS_QUERY = gql`
           receivedAt
         }
         totalAmount
+        totalAmountFormatted @client
       }
     }
   }
@@ -102,7 +103,11 @@ export const RewardsIndex = () => {
       <p>
         Total rewards:{" "}
         {rewardsData?.party?.rewardDetails &&
-          rewardsData.party.rewardDetails[0]?.totalAmount}
+          formatNumber(
+            new BigNumber(
+              rewardsData.party.rewardDetails[0]?.totalAmountFormatted || 0
+            )
+          )}
       </p>
       <table style={{ textAlign: "left", width: "100%", color: Colors.WHITE }}>
         <thead>
@@ -134,10 +139,10 @@ export const RewardsIndex = () => {
                     <div className="text-deemphasise">{r?.receivedAt}</div>
                   </td>
                   <td style={{ textAlign: "right" }}>
-                    {formatNumber(new BigNumber(r?.percentageOfTotal || "0"))}
+                    {formatNumber(new BigNumber(r?.percentageOfTotal || 0))}
                   </td>
                   <td style={{ textAlign: "right" }}>
-                    {formatNumber(new BigNumber(r?.amountFormatted || "0"))}
+                    {formatNumber(new BigNumber(r?.amountFormatted || 0))}
                   </td>
                 </tr>
               ))}
