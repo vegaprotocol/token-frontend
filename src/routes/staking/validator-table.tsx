@@ -52,6 +52,18 @@ export const ValidatorTable = ({
           <td>{node.stakedTotalFormatted}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
+          <th>{t("PENDING STAKE")}</th>
+          <td>{node.pendingStakeFormatted}</td>
+        </KeyValueTableRow>
+        <KeyValueTableRow>
+          <th>{t("STAKED BY OPERATOR")}</th>
+          <td>{node.stakedByOperator}</td>
+        </KeyValueTableRow>
+        <KeyValueTableRow>
+          <th>{t("STAKED BY DELEGATES")}</th>
+          <td>{node.stakedByDelegatesFormatted}</td>
+        </KeyValueTableRow>
+        <KeyValueTableRow>
           <th>{t("STAKE SHARE")}</th>
           <td>{stakePercentage}</td>
         </KeyValueTableRow>
