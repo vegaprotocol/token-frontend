@@ -1,5 +1,3 @@
-import "./redemption.scss";
-
 import {
   RedemptionActionType,
   initialRedemptionState,
@@ -62,22 +60,6 @@ const RedemptionRouter = () => {
     );
   }
 
-  if (!trancheBalances.length) {
-    return (
-      <>
-        <Callout>
-          <p>{t("You have no VEGA tokens currently vesting.")}</p>
-        </Callout>
-
-        <div className="redemption__eth-connect">
-          <EthConnectPrompt />
-        </div>
-
-        <Link to={Routes.TRANCHES}>{t("viewAllTranches")}</Link>
-      </>
-    );
-  }
-
   if (!ethAddress) {
     return (
       <EthConnectPrompt>
@@ -87,6 +69,17 @@ const RedemptionRouter = () => {
           )}
         </p>
       </EthConnectPrompt>
+    );
+  }
+
+  if (!trancheBalances.length) {
+    return (
+      <>
+        <Callout>
+          <p>{t("You have no VEGA tokens currently vesting.")}</p>
+        </Callout>
+        <Link to={Routes.TRANCHES}>{t("viewAllTranches")}</Link>
+      </>
     );
   }
 
