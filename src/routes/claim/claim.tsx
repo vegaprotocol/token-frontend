@@ -12,6 +12,7 @@ import { ClaimFlow } from "./claim-flow";
 import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { useRefreshBalances } from "../../hooks/use-refresh-balances";
 import { useGetUserTrancheBalances } from "../../hooks/use-get-user-tranche-balances";
+import { useContracts } from "../../contexts/contracts/contracts-context";
 
 const Claim = ({
   address,
@@ -21,9 +22,10 @@ const Claim = ({
   tranches: Tranche[];
 }) => {
   const params = useSearchParams();
+  const { vesting } = useContracts();
   const { appState } = useAppState();
   const [state, dispatch] = React.useReducer(claimReducer, initialClaimState);
-  const getUserTrancheBalances = useGetUserTrancheBalances(address);
+  const getUserTrancheBalances = useGetUserTrancheBalances(address, vesting);
   const refreshBalances = useRefreshBalances(address);
 
   React.useEffect(() => {

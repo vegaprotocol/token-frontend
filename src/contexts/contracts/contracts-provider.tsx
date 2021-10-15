@@ -21,6 +21,7 @@ import VegaVesting from "../../lib/VEGA_WEB3/vega-vesting";
 // @ts-ignore
 import VegaClaim from "../../lib/VEGA_WEB3/vega-claim";
 import { BigNumber } from "../../lib/bignumber";
+import { useGetUserTrancheBalances } from "../../hooks/use-get-user-tranche-balances";
 
 /**
  * Provides Vega Ethereum contract instances to its children.
@@ -40,6 +41,10 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
       claim: new VegaClaim(web3, ADDRESSES.claimAddress, decimals),
     };
   }, [web3, decimals]);
+  const getUserTrancheBalances = useGetUserTrancheBalances(
+    ethAddress,
+    contracts.vesting
+  );
 
   // update balances on connect to Ethereum
   React.useEffect(() => {
@@ -67,6 +72,12 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
       updateBalances();
     }
   }, [appDispatch, contracts.token, contracts.vesting, ethAddress]);
+
+  React.useEffect(() => {
+    if (ethAddress) {
+      getUserTrancheBalances();
+    }
+  }, [ethAddress, getUserTrancheBalances]);
 
   return (
     <ContractsContext.Provider value={contracts}>

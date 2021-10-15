@@ -31,7 +31,7 @@ export const RedeemFromTranche = ({
     appState: { lien, totalVestedBalance, trancheBalances, totalLockedBalance },
   } = useAppState();
   const refreshBalances = useRefreshBalances(address);
-  const getUserTrancheBalances = useGetUserTrancheBalances(address);
+  const getUserTrancheBalances = useGetUserTrancheBalances(address, vesting);
   const { id } = useParams<{ id: string }>();
   const numberId = Number(id);
   const { userTranches } = state;
