@@ -10,6 +10,7 @@ import { BigNumber } from "../../lib/bignumber";
 import { Link } from "react-router-dom";
 import { TrancheItem } from "./tranche-item";
 import { Routes } from "../router-config";
+import { formatNumber } from "../../lib/format-number";
 
 export interface TrancheTableProps {
   tranche: {
@@ -43,11 +44,11 @@ export const Tranche0Table = ({
               {t("Tranche")} {trancheId}
             </span>
           </th>
-          <td>{total.toString()}</td>
+          <td>{formatNumber(total)}</td>
         </KeyValueTableRow>
         <KeyValueTableRow data-testid="tranche-table-locked">
           <th>{t("Locked")}</th>
-          <td>{total.toString()}</td>
+          <td>{formatNumber(total)}</td>
         </KeyValueTableRow>
       </KeyValueTable>
       <div className="tranche-table__footer" data-testid="tranche-table-footer">

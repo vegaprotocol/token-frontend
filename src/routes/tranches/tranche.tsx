@@ -51,7 +51,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
       />
       <div className="tranche__redeemed">
         <span>{t("alreadyRedeemed")}</span>
-        <span>{tranche.total_removed.toString()}</span>
+        <span>{formatNumber(tranche.total_removed)}</span>
       </div>
       <h2>{t("Holders")}</h2>
       {tranche.users.length ? (

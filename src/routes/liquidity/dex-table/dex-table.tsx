@@ -12,6 +12,7 @@ import {
 } from "../../../components/key-value-table";
 import { EpochCountdown } from "../../../components/epoch-countdown";
 import { useWeb3 } from "../../../contexts/web3-context/web3-context";
+import { formatNumber } from "../../../lib/format-number";
 
 interface DexTokensSectionProps {
   name: string;
@@ -72,7 +73,7 @@ export const DexTokensSection = ({
         <KeyValueTableRow>
           <th>{t("rewardPerEpoch")}</th>
           <td>
-            {values.rewardPerEpoch.toString()} {t("VEGA")}
+            {formatNumber(values.rewardPerEpoch)} {t("VEGA")}
           </td>
         </KeyValueTableRow>
         <KeyValueTableRow>
@@ -103,7 +104,7 @@ export const DexTokensSection = ({
         <KeyValueTableRow>
           <th>{t("lpTokensInRewardPool")}</th>
           <td>
-            {values.rewardPoolBalance.toString()} {t("SLP")}
+            {formatNumber(values.rewardPoolBalance)} {t("SLP")}
           </td>
         </KeyValueTableRow>
         {ethAddress ? (
@@ -163,7 +164,7 @@ const ConnectedRows = ({
         <th>{t("usersLpTokens")}</th>
         <td>
           <div>
-            {availableLPTokens.toString()}&nbsp;{t("SLP")}
+            {formatNumber(availableLPTokens)}&nbsp;{t("SLP")}
           </div>
           {hasDeposited ? (
             <span className="text-muted">{t("alreadyDeposited")}</span>
@@ -186,20 +187,20 @@ const ConnectedRows = ({
         </th>
         <td>
           {pendingStakedLPTokens?.isGreaterThan(0)
-            ? pendingStakedLPTokens?.toString()
-            : stakedLPTokens?.toString()}
+            ? formatNumber(pendingStakedLPTokens)
+            : formatNumber(stakedLPTokens)}
           &nbsp;{t("SLP")}
         </td>
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("usersShareOfPool")}</th>
-        <td>{shareOfPool.toString()}%</td>
+        <td>{formatNumber(shareOfPool)}%</td>
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("usersAccumulatedRewards")}</th>
         <td>
           <div>
-            {accumulatedRewards.toString()} {t("VEGA")}
+            {formatNumber(accumulatedRewards)} {t("VEGA")}
           </div>
           {(hasDeposited || hasRewards) && (
             <div style={{ marginTop: 3 }}>

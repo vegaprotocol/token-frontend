@@ -8,6 +8,7 @@ import {
 } from "../../components/key-value-table";
 import { BigNumber } from "../../lib/bignumber";
 import { Staking_nodes } from "./__generated__/Staking";
+import { formatNumber } from "../../lib/format-number";
 
 export interface ValidatorTableProps {
   node: Staking_nodes;
@@ -69,7 +70,7 @@ export const ValidatorTable = ({
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("OWN STAKE (THIS EPOCH)")}</th>
-          <td>{stakeThisEpoch.toString()}</td>
+          <td>{formatNumber(stakeThisEpoch)}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("NOMINATED (THIS EPOCH)")}</th>
