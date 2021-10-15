@@ -5,10 +5,12 @@ import {
 } from "../contexts/app-state/app-state-context";
 import * as Sentry from "@sentry/react";
 import BigNumber from "bignumber.js";
-import { useContracts } from "../contexts/contracts/contracts-context";
+import { IVegaVesting } from "../lib/web3-utils";
 
-export const useGetUserTrancheBalances = (address: string) => {
-  const { vesting } = useContracts();
+export const useGetUserTrancheBalances = (
+  address: string,
+  vesting: IVegaVesting
+) => {
   const { appDispatch } = useAppState();
   return React.useCallback(async () => {
     appDispatch({
