@@ -3,7 +3,12 @@ import * as Sentry from "@sentry/react";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 import { useTranslation } from "react-i18next";
-import { EthereumChainId, EthereumChainNames, INFURA_URL } from "../../config";
+import {
+  APP_CHAIN_ID,
+  EthereumChainId,
+  EthereumChainNames,
+  INFURA_URL,
+} from "../../config";
 import { Web3Context } from "./web3-context";
 import Web3 from "web3";
 import Web3Modal from "web3modal";
@@ -86,8 +91,13 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
       if (web3Modal.cachedProvider) {
         connect();
       } else {
-        const chainId = await web3.eth.getChainId();
-        setChainId(`0x${chainId}` as EthereumChainId);
+        try {
+          const chainId = await web3.eth.getChainId();
+          setChainId(`0x${chainId}` as EthereumChainId);
+        } catch (e) {
+          /* Fall back for Opera - just use the configured chain*/
+          setChainId(APP_CHAIN_ID as EthereumChainId);
+        }
       }
     };
 
