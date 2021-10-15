@@ -11,11 +11,14 @@ import {
 } from "../../config";
 import { Web3Context } from "./web3-context";
 import Web3 from "web3";
-import Web3Modal from "web3modal";
+import Web3Modal, { getInjectedProviderName } from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
+
+const isOpera = getInjectedProviderName() === "Opera";
 
 const web3Modal = new Web3Modal({
   cacheProvider: true,
+  disableInjectedProvider: isOpera,
   theme: "dark",
   providerOptions: {
     // Injected providers. E.G. browser extensions such as Metamask
@@ -65,9 +68,13 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
     const newWeb3 = new Web3(newProvider);
     setProvider(newProvider);
     setWeb3(newWeb3);
-    const chainId = await newWeb3.eth.getChainId();
+    try {
+      const chainId = await newWeb3.eth.getChainId();
+      setChainId(`0x${chainId}` as EthereumChainId);
+    } catch (e) {
+      setChainId(APP_CHAIN_ID as EthereumChainId);
+    }
     const accounts = await newWeb3.eth.getAccounts();
-    setChainId(`0x${chainId}` as EthereumChainId);
     setEthAddress(accounts[0]);
   }, []);
 
@@ -79,8 +86,12 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
     const newWeb3 = new Web3(newProvider);
     setProvider(newProvider);
     setWeb3(newWeb3);
-    const chainId = await newWeb3.eth.getChainId();
-    setChainId(`0x${chainId}` as EthereumChainId);
+    try {
+      const chainId = await newWeb3.eth.getChainId();
+      setChainId(`0x${chainId}` as EthereumChainId);
+    } catch (e) {
+      setChainId(APP_CHAIN_ID as EthereumChainId);
+    }
     setEthAddress("");
   }, []);
 
@@ -93,7 +104,7 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
       } else {
         try {
           const chainId = await web3.eth.getChainId();
-          setChainId(`0x${chainId}` as EthereumChainId);
+          setChainId(APP_CHAIN_ID as EthereumChainId);
         } catch (e) {
           /* Fall back for Opera - just use the configured chain*/
           setChainId(APP_CHAIN_ID as EthereumChainId);
