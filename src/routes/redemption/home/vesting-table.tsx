@@ -6,6 +6,7 @@ import {
 import { BigNumber } from "../../../lib/bignumber";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { formatNumber } from "../../../lib/format-number";
 
 export interface VestingTableProps {
   vested: BigNumber;
@@ -40,28 +41,28 @@ export const VestingTable = ({
           className="vesting-table__top-solid-border"
         >
           <th>{t("Vesting VEGA")}</th>
-          <td>{total.toString()}</td>
+          <td>{formatNumber(total)}</td>
         </KeyValueTableRow>
         <KeyValueTableRow data-testid="vesting-table-locked">
           <th>
             <div className="vesting-table__indicator-square vesting-table__indicator-square--locked"></div>
             {t("Locked")}
           </th>
-          <td>{locked.toString()}</td>
+          <td>{formatNumber(locked)}</td>
         </KeyValueTableRow>
         <KeyValueTableRow data-testid="vesting-table-unlocked">
           <th>
             <div className="vesting-table__indicator-square vesting-table__indicator-square--unlocked"></div>
             {t("Unlocked")}
           </th>
-          <td>{vested.toString()}</td>
+          <td>{formatNumber(vested)}</td>
         </KeyValueTableRow>
         <KeyValueTableRow data-testid="vesting-table-staked">
           <th>
             <div className="vesting-table__indicator-square vesting-table__indicator-square--staked"></div>
             {t("Associated")}
           </th>
-          <td>{associated.toString()}</td>
+          <td>{formatNumber(associated)}</td>
         </KeyValueTableRow>
       </KeyValueTable>
       <div className="vesting-table__progress-bar">
