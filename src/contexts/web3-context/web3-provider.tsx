@@ -56,27 +56,39 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
   // On connect replace the default provider and web3 instances (which uses an HttpProvider
   // with Infura) with an instance provided by the Web3Modal package
   const connect = React.useCallback(async () => {
-    const newProvider = await web3Modal.connect();
-    const newWeb3 = new Web3(newProvider);
-    setProvider(newProvider);
-    setWeb3(newWeb3);
-    const chainId = await newWeb3.eth.getChainId();
-    const accounts = await newWeb3.eth.getAccounts();
-    setChainId(`0x${chainId}` as EthereumChainId);
-    setEthAddress(accounts[0]);
+    try {
+      const newProvider = await web3Modal.connect();
+      const newWeb3 = new Web3(newProvider);
+      setProvider(newProvider);
+      setWeb3(newWeb3);
+      const chainId = await newWeb3.eth.getChainId();
+      const accounts = await newWeb3.eth.getAccounts();
+      setChainId(`0x${chainId}` as EthereumChainId);
+      setEthAddress(accounts[0]);
+    } catch (err) {
+      if (err === "Modal closed by user") {
+        // noop
+      } else {
+        Sentry.captureException(err);
+      }
+    }
   }, []);
 
   // On disconnect we clear the connected address but also reset the provider and
   // web3 instances to using the default Http provider using Infura
   const disconnect = React.useCallback(async () => {
-    await web3Modal.clearCachedProvider();
-    const newProvider = new Web3.providers.HttpProvider(INFURA_URL);
-    const newWeb3 = new Web3(newProvider);
-    setProvider(newProvider);
-    setWeb3(newWeb3);
-    const chainId = await newWeb3.eth.getChainId();
-    setChainId(`0x${chainId}` as EthereumChainId);
-    setEthAddress("");
+    try {
+      await web3Modal.clearCachedProvider();
+      const newProvider = new Web3.providers.HttpProvider(INFURA_URL);
+      const newWeb3 = new Web3(newProvider);
+      setProvider(newProvider);
+      setWeb3(newWeb3);
+      const chainId = await newWeb3.eth.getChainId();
+      setChainId(`0x${chainId}` as EthereumChainId);
+      setEthAddress("");
+    } catch (err) {
+      Sentry.captureException(err);
+    }
   }, []);
 
   // If its initial startup either: connect with users wallet which will in turn
