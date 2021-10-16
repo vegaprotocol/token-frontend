@@ -161,7 +161,13 @@ export const StakingForm = ({
     availableStakeToAdd.isEqualTo(0) &&
     availableStakeToRemove.isEqualTo(0)
   ) {
-    return <span style={{ color: Colors.RED }}>{t("stakeNodeNone")}</span>;
+    if (appState.lien.isGreaterThan(0)) {
+      return (
+        <span style={{ color: Colors.RED }}>{t("stakeNodeWrongVegaKey")}</span>
+      );
+    } else {
+      return <span style={{ color: Colors.RED }}>{t("stakeNodeNone")}</span>;
+    }
   }
 
   return (

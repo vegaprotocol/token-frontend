@@ -46,6 +46,7 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
       .map((d) => new BigNumber(d.amountFormatted));
     return BigNumber.sum.apply(null, [new BigNumber(0), ...amounts]);
   }, [data]);
+
   const unstaked = React.useMemo(() => {
     return new BigNumber(
       data?.party?.stake.currentStakeAvailableFormatted || 0
