@@ -104,7 +104,7 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
       } else {
         try {
           const chainId = await web3.eth.getChainId();
-          setChainId(APP_CHAIN_ID as EthereumChainId);
+          setChainId(`0x${chainId}` as EthereumChainId);
         } catch (e) {
           /* Fall back for Opera - just use the configured chain*/
           setChainId(APP_CHAIN_ID as EthereumChainId);
