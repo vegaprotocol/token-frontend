@@ -393,7 +393,7 @@
   "Wallet associated": "Wallet associated",
   "alreadyRedeemed": "Already redeemed",
   "stakeNodeNone": "You need to associate some VEGA before you can stake",
-  "stakeNodeWrongVegaKey": "Your Ethereum wallet indicates you have associated tokens for staking. However, there are none available to stake. Its possible you might be connected to the wrong Vega key, or Vega is still working on picking up your associations",
+  "stakeNodeWrongVegaKey": "Your Ethereum wallet indicates you have associated tokens for staking. However, there are none available to stake. You may be connected to the wrong Vega key, or Vega is still confirming your associations",
   "redeemComingSoon": "Redeem is coming soon",
   "associatedVega": "Associated $VEGA",
   "blockCountdown": "Waiting for {{amount}} more confirmations...",
