@@ -1,12 +1,11 @@
 import React from "react";
-import Web3 from "web3";
 import { EthereumChainId } from "../../config";
 
 interface Web3ContextShape {
   connect: () => Promise<void>;
   disconnect: () => Promise<void>;
   provider: any;
-  web3: Web3;
+  signer: any;
   chainId: EthereumChainId;
 
   /** Ethereum address provided by injected provider/wallet connect */
