@@ -16,23 +16,23 @@ export const WalletDisassociate = ({
     appState: { walletAssociatedBalance },
   } = useAppState();
   const { t } = useTranslation();
-  
-  if (!walletAssociatedBalance || walletAssociatedBalance.isEqualTo("0")) {
-    return (
-      <div className="disassociate-page__error">
-        {t(
-          "You have no VEGA tokens currently staked through your connected Vega wallet."
-        )}
-      </div>
-    );
-  }
+
+  // if (!walletAssociatedBalance || walletAssociatedBalance.isEqualTo("0")) {
+  //   return (
+  //     <div className="disassociate-page__error">
+  //       {t(
+  //         "You have no VEGA tokens currently staked through your connected Vega wallet."
+  //       )}
+  //     </div>
+  //   );
+  // }
 
   return (
     <>
       <TokenInput
         submitText={t("Disassociate VEGA Tokens from key")}
         perform={perform}
-        maximum={walletAssociatedBalance}
+        // maximum={walletAssociatedBalance}
         amount={amount}
         setAmount={setAmount}
         currency={t("VEGA Tokens")}

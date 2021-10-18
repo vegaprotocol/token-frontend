@@ -35,153 +35,154 @@ export const LiquidityWithdrawPage = ({
   state: LiquidityState;
   dispatch: React.Dispatch<LiquidityAction>;
 }) => {
-  const { t } = useTranslation();
-  const lpStaking = useVegaLPStaking({ address: lpTokenAddress });
-  const { ethAddress } = useWeb3();
-  const {
-    state: txUnstakeState,
-    dispatch: txUnstakeDispatch,
-    perform: txUnstakePerform,
-  } = useTransaction(() => lpStaking.unstake(ethAddress));
-  const {
-    state: txWithdrawState,
-    dispatch: txWithdrawDispatch,
-    perform: txWithdrawPerform,
-  } = useTransaction(() => lpStaking.withdrawRewards(ethAddress));
+  return <div>Withdraw</div>;
+  // const { t } = useTranslation();
+  // const lpStaking = useVegaLPStaking({ address: lpTokenAddress });
+  // const { ethAddress } = useWeb3();
+  // const {
+  //   state: txUnstakeState,
+  //   dispatch: txUnstakeDispatch,
+  //   perform: txUnstakePerform,
+  // } = useTransaction(() => lpStaking.unstake(ethAddress));
+  // const {
+  //   state: txWithdrawState,
+  //   dispatch: txWithdrawDispatch,
+  //   perform: txWithdrawPerform,
+  // } = useTransaction(() => lpStaking.withdrawRewards(ethAddress));
 
-  const values = React.useMemo(
-    () => state.contractData[lpTokenAddress],
-    [lpTokenAddress, state.contractData]
-  );
-  const { getBalances, lpStakingEth, lpStakingUSDC } = useGetLiquidityBalances(
-    dispatch,
-    ethAddress
-  );
-  React.useEffect(() => {
-    const run = async () => {
-      try {
-        await Promise.all([
-          getBalances(lpStakingUSDC, REWARDS_ADDRESSES["SushiSwap VEGA/USDC"]),
-          getBalances(lpStakingEth, REWARDS_ADDRESSES["SushiSwap VEGA/ETH"]),
-        ]);
-      } catch (e) {
-        Sentry.captureException(e);
-      }
-    };
-    if (txUnstakeState.txState === TxState.Complete) {
-      run();
-    }
-  }, [getBalances, lpStakingEth, lpStakingUSDC, txUnstakeState.txState]);
+  // const values = React.useMemo(
+  //   () => state.contractData[lpTokenAddress],
+  //   [lpTokenAddress, state.contractData]
+  // );
+  // const { getBalances, lpStakingEth, lpStakingUSDC } = useGetLiquidityBalances(
+  //   dispatch,
+  //   ethAddress
+  // );
+  // React.useEffect(() => {
+  //   const run = async () => {
+  //     try {
+  //       await Promise.all([
+  //         getBalances(lpStakingUSDC, REWARDS_ADDRESSES["SushiSwap VEGA/USDC"]),
+  //         getBalances(lpStakingEth, REWARDS_ADDRESSES["SushiSwap VEGA/ETH"]),
+  //       ]);
+  //     } catch (e) {
+  //       Sentry.captureException(e);
+  //     }
+  //   };
+  //   if (txUnstakeState.txState === TxState.Complete) {
+  //     run();
+  //   }
+  // }, [getBalances, lpStakingEth, lpStakingUSDC, txUnstakeState.txState]);
 
-  const hasLpTokens = React.useMemo(() => {
-    return !(
-      values.connectedWalletData?.totalStaked &&
-      values.connectedWalletData?.totalStaked.isEqualTo(0)
-    );
-  }, [values.connectedWalletData?.totalStaked]);
+  // const hasLpTokens = React.useMemo(() => {
+  //   return !(
+  //     values.connectedWalletData?.totalStaked &&
+  //     values.connectedWalletData?.totalStaked.isEqualTo(0)
+  //   );
+  // }, [values.connectedWalletData?.totalStaked]);
 
-  const hasRewardsTokens = React.useMemo(() => {
-    return !(
-      values.connectedWalletData?.accumulatedRewards &&
-      values.connectedWalletData?.accumulatedRewards.isEqualTo(0)
-    );
-  }, [values.connectedWalletData?.accumulatedRewards]);
+  // const hasRewardsTokens = React.useMemo(() => {
+  //   return !(
+  //     values.connectedWalletData?.accumulatedRewards &&
+  //     values.connectedWalletData?.accumulatedRewards.isEqualTo(0)
+  //   );
+  // }, [values.connectedWalletData?.accumulatedRewards]);
 
-  if (txUnstakeState.txState !== TxState.Default) {
-    return (
-      <>
-        <TransactionCallout
-          state={txUnstakeState}
-          completeHeading={t("withdrawAllLpSuccessCalloutTitle")}
-          completeFooter={
-            <Link to={Routes.LIQUIDITY}>
-              <button className="fill">{t("lpTxSuccessButton")}</button>
-            </Link>
-          }
-          reset={() =>
-            txUnstakeDispatch({ type: TransactionActionType.TX_RESET })
-          }
-        />
-      </>
-    );
-  } else if (txWithdrawState.txState !== TxState.Default) {
-    return (
-      <>
-        <TransactionCallout
-          state={txWithdrawState}
-          completeHeading={t("withdrawVegaLpSuccessCalloutTitle")}
-          completeFooter={
-            <Link to={Routes.LIQUIDITY}>
-              <button className="fill">{t("lpTxSuccessButton")}</button>
-            </Link>
-          }
-          reset={() =>
-            txWithdrawDispatch({ type: TransactionActionType.TX_RESET })
-          }
-        />
-      </>
-    );
-  } else if (!hasLpTokens && !hasRewardsTokens) {
-    return <section>{t("withdrawLpNoneDeposited")}</section>;
-  }
+  // if (txUnstakeState.txState !== TxState.Default) {
+  //   return (
+  //     <>
+  //       <TransactionCallout
+  //         state={txUnstakeState}
+  //         completeHeading={t("withdrawAllLpSuccessCalloutTitle")}
+  //         completeFooter={
+  //           <Link to={Routes.LIQUIDITY}>
+  //             <button className="fill">{t("lpTxSuccessButton")}</button>
+  //           </Link>
+  //         }
+  //         reset={() =>
+  //           txUnstakeDispatch({ type: TransactionActionType.TX_RESET })
+  //         }
+  //       />
+  //     </>
+  //   );
+  // } else if (txWithdrawState.txState !== TxState.Default) {
+  //   return (
+  //     <>
+  //       <TransactionCallout
+  //         state={txWithdrawState}
+  //         completeHeading={t("withdrawVegaLpSuccessCalloutTitle")}
+  //         completeFooter={
+  //           <Link to={Routes.LIQUIDITY}>
+  //             <button className="fill">{t("lpTxSuccessButton")}</button>
+  //           </Link>
+  //         }
+  //         reset={() =>
+  //           txWithdrawDispatch({ type: TransactionActionType.TX_RESET })
+  //         }
+  //       />
+  //     </>
+  //   );
+  // } else if (!hasLpTokens && !hasRewardsTokens) {
+  //   return <section>{t("withdrawLpNoneDeposited")}</section>;
+  // }
 
-  return (
-    <section>
-      {!ethAddress ? (
-        <EthConnectPrompt />
-      ) : (
-        <section>
-          <Callout
-            icon={<Error />}
-            intent="error"
-            title={t("withdrawLpCalloutTitle")}
-          >
-            <p>{t("withdrawLpCalloutBody")}</p>
-          </Callout>
-          <KeyValueTable className="dex-tokens-withdraw__table">
-            <KeyValueTableRow>
-              <th>{t("liquidityTokenWithdrawBalance")}</th>
-              <td>
-                {values.connectedWalletData?.totalStaked
-                  ? formatNumber(values.connectedWalletData.totalStaked)
-                  : 0}
-                &nbsp;
-                {t("SLP")}
-              </td>
-            </KeyValueTableRow>
-            <KeyValueTableRow>
-              <th>{t("liquidityTokenWithdrawRewards")}</th>
-              <td>
-                {values.connectedWalletData?.accumulatedRewards
-                  ? formatNumber(values.connectedWalletData.accumulatedRewards)
-                  : 0}
-                &nbsp;
-                {t("VEGA")}
-              </td>
-            </KeyValueTableRow>
-          </KeyValueTable>
-          <p className="dex-tokens-withdraw__submit">
-            <button
-              disabled={!hasRewardsTokens}
-              className="fill"
-              onClick={txWithdrawPerform}
-            >
-              {t("withdrawLpWithdrawVegaButton")}
-            </button>
-          </p>
-          <p className="dex-tokens-withdraw__submit">
-            <button
-              disabled={!hasLpTokens}
-              className="fill"
-              onClick={txUnstakePerform}
-            >
-              {t("withdrawLpWithdrawAllButton")}
-            </button>
-          </p>
-        </section>
-      )}
-    </section>
-  );
+  // return (
+  //   <section>
+  //     {!ethAddress ? (
+  //       <EthConnectPrompt />
+  //     ) : (
+  //       <section>
+  //         <Callout
+  //           icon={<Error />}
+  //           intent="error"
+  //           title={t("withdrawLpCalloutTitle")}
+  //         >
+  //           <p>{t("withdrawLpCalloutBody")}</p>
+  //         </Callout>
+  //         <KeyValueTable className="dex-tokens-withdraw__table">
+  //           <KeyValueTableRow>
+  //             <th>{t("liquidityTokenWithdrawBalance")}</th>
+  //             <td>
+  //               {values.connectedWalletData?.totalStaked
+  //                 ? formatNumber(values.connectedWalletData.totalStaked)
+  //                 : 0}
+  //               &nbsp;
+  //               {t("SLP")}
+  //             </td>
+  //           </KeyValueTableRow>
+  //           <KeyValueTableRow>
+  //             <th>{t("liquidityTokenWithdrawRewards")}</th>
+  //             <td>
+  //               {values.connectedWalletData?.accumulatedRewards
+  //                 ? formatNumber(values.connectedWalletData.accumulatedRewards)
+  //                 : 0}
+  //               &nbsp;
+  //               {t("VEGA")}
+  //             </td>
+  //           </KeyValueTableRow>
+  //         </KeyValueTable>
+  //         <p className="dex-tokens-withdraw__submit">
+  //           <button
+  //             disabled={!hasRewardsTokens}
+  //             className="fill"
+  //             onClick={txWithdrawPerform}
+  //           >
+  //             {t("withdrawLpWithdrawVegaButton")}
+  //           </button>
+  //         </p>
+  //         <p className="dex-tokens-withdraw__submit">
+  //           <button
+  //             disabled={!hasLpTokens}
+  //             className="fill"
+  //             onClick={txUnstakePerform}
+  //           >
+  //             {t("withdrawLpWithdrawAllButton")}
+  //           </button>
+  //         </p>
+  //       </section>
+  //     )}
+  //   </section>
+  // );
 };
 
 export const LiquidityWithdraw = ({
