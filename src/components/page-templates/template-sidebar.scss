@@ -1,19 +1,28 @@
 @import "../../styles/colors";
 
 .template-sidebar {
+  border-bottom: 1px solid white;
+
   @media (min-width: 960px) {
     display: grid;
     grid-template-rows: auto 1fr;
     grid-template-columns: 1fr 400px;
   }
 
-  header,
-  main,
+  .content {
+    padding: 20px;
+  }
+
   aside {
     padding: 20px;
   }
 
+  aside {
+    border-left: 1px solid white;
+  }
+
   header {
+    border-bottom: 1px solid white;
     grid-column: 1 / 3;
     grid-row: 1 / 1;
   }

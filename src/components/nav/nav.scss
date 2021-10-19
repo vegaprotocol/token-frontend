@@ -3,6 +3,23 @@
 .nav {
   padding: 20px;
 
+  h1 {
+    padding: 0;
+    padding-left: 8px;
+    margin: 0;
+    color: $black;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   &__inner {
     max-width: 1020px;
     margin: 0 auto;
@@ -35,6 +52,9 @@
 
     &-container {
       height: 30px;
+      display: inline-flex;
+      margin-left: 8px;
+
       @media (min-width: 960px) {
         height: 60px;
       }
@@ -94,8 +114,8 @@
   display: flex;
 
   .active {
-    background: $vega-yellow3;
-    color: $black;
+    background: $black;
+    color: $white;
   }
 
   > a {
@@ -110,9 +130,9 @@
   text-transform: uppercase;
 
   > a {
-    background: $black;
+    background: transparent;
     padding: 3px 10px;
-    color: $white;
+    color: $black;
   }
 }
 

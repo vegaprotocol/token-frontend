@@ -15,8 +15,10 @@ export function TemplateSidebar({
 }: TemplateSidebarProps) {
   return (
     <div className="template-sidebar">
-      <Heading title={title} />
-      <main>{children}</main>
+      <main>
+        <Heading title={title} />
+        <section className="content">{children}</section>
+      </main>
       <aside>
         {sidebar.map((Component, i) => (
           <section key={i}>{Component}</section>
