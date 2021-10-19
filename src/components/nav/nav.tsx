@@ -1,7 +1,6 @@
 import "./nav.scss";
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import vegaWhite from "../../images/vega_white.png";
 import debounce from "lodash/debounce";
 import { Drawer } from "@blueprintjs/core";
 import { Routes } from "../../routes/router-config";
@@ -12,7 +11,6 @@ import {
 } from "../../contexts/app-state/app-state-context";
 import { EthWallet } from "../eth-wallet";
 import { useTranslation } from "react-i18next";
-import { Breadcrumbs } from "./breadcrumbs";
 import { Flags } from "../../config";
 
 export const Nav = () => {

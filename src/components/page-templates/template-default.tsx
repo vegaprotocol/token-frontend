@@ -12,7 +12,7 @@ export function TemplateDefault({ title, children }: TemplateDefaultProps) {
     <div className="template-default">
       <main>
         <Heading title={title} />
-        <section className="content">{children}</section>
+        {children}
       </main>
     </div>
   );

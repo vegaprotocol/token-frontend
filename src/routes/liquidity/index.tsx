@@ -15,6 +15,8 @@ import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 import { useGetLiquidityBalances } from "./hooks";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { VegaWallet } from "../../components/vega-wallet";
+import { EthWallet } from "../../components/eth-wallet";
 
 const RedemptionIndex = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
@@ -75,7 +77,7 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
     );
   }
   return (
-    <TemplateSidebar title={title} sidebar={[]}>
+    <TemplateSidebar title={title} sidebar={[<EthWallet />, <VegaWallet />]}>
       {Flags.DEX_STAKING_DISABLED ? (
         <p>{t("liquidityComingSoon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</p>
       ) : (

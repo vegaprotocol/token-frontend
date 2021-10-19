@@ -14,6 +14,7 @@ import { EthWallet } from "../../components/eth-wallet";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { Flags, Links } from "../../config";
 import { BigNumber } from "../../lib/bignumber";
+import { VegaWallet } from "../../components/vega-wallet";
 
 export const TOTAL_STAKED_QUERY = gql`
   query NodeData {
@@ -34,7 +35,10 @@ const Home = ({ name }: RouteChildProps) => {
   }, [data]);
 
   return (
-    <TemplateSidebar sidebar={[<EthWallet />]} title={t("The $VEGA token")}>
+    <TemplateSidebar
+      sidebar={[<EthWallet />, <VegaWallet />]}
+      title={t("The $VEGA token")}
+    >
       <TokenDetails
         totalSupply={appState.totalSupply}
         totalStaked={totalStaked}

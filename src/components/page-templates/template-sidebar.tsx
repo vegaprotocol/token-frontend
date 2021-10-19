@@ -17,7 +17,7 @@ export function TemplateSidebar({
     <div className="template-sidebar">
       <main>
         <Heading title={title} />
-        <section className="content">{children}</section>
+        {children}
       </main>
       <aside>
         {sidebar.map((Component, i) => (
