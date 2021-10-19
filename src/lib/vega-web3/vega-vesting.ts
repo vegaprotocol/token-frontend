@@ -7,7 +7,6 @@ import { IVegaVesting } from "../web3-utils";
 import { getTranchesFromHistory } from "./tranche-helpers";
 import { Tranche } from "./vega-web3-types";
 import { addDecimal, removeDecimal } from "../decimals";
-import { ADDRESSES } from "../../config";
 
 // @ts-ignore
 export default class VegaVesting implements IVegaVesting {

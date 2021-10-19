@@ -28,6 +28,14 @@ export const EthereumChainIds: Record<EthereumChainName, EthereumChainId> = {
   Kovan: "0x2a",
 };
 
+export const ChainIdMap: Record<EthereumChainId, number> = {
+  "0x1": 1,
+  "0x3": 3,
+  "0x4": 4,
+  "0x5": 5,
+  "0x2a": 42,
+};
+
 interface VegaContracts {
   vestingAddress: string;
   vegaTokenAddress: string;

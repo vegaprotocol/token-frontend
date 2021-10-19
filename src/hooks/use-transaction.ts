@@ -50,17 +50,13 @@ export const useTransaction = (
 
     try {
       const tx = await performTransaction();
-      console.log(tx);
 
       dispatch({
         type: TransactionActionType.TX_SUBMITTED,
         txHash: tx.hash,
       });
 
-      console.log("waiting for", requiredConfirmations);
-
       const receipt = await tx.wait(requiredConfirmations);
-      console.log(receipt);
 
       dispatch({
         type: TransactionActionType.TX_COMPLETE,
@@ -68,7 +64,6 @@ export const useTransaction = (
         confirmations: receipt.confirmations,
       });
     } catch (err) {
-      console.log(err);
       handleError(err as Error);
     }
   }, [performTransaction, requiredConfirmations, handleError]);
