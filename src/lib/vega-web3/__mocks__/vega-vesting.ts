@@ -128,7 +128,8 @@ class MockedVesting implements IVegaVesting {
 
   async getAllTranches(): Promise<Tranche[]> {
     const events = await this.performFetch("events");
-    return getTranchesFromHistory(events, this.decimals);
+    return [];
+    // return getTranchesFromHistory(events, this.decimals);
   }
 }
 
