@@ -56,10 +56,7 @@ export const ClaimFlow = ({
       dispatch({ type: ClaimActionType.SET_LOADING, loading: true });
       try {
         const [committed, expired, used] = await Promise.all([
-          claim.isCommitted({
-            s: code,
-            account: address,
-          }),
+          claim.isCommitted({ s: code }),
           claim.isExpired(state.claimData?.claim.expiry!),
           claim.isUsed(code!),
         ]);

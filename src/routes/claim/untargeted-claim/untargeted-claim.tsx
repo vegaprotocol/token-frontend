@@ -37,7 +37,7 @@ export const UntargetedClaim = ({
     state: commitState,
     dispatch: commitDispatch,
     perform: commitClaim,
-  } = useTransaction(() => claim.commit(claimData.signature.s, address));
+  } = useTransaction(() => claim.commit(claimData.signature.s));
   const {
     state: revealState,
     dispatch: revealDispatch,

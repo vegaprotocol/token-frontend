@@ -106,9 +106,7 @@ export interface IVegaVesting extends IStaking {
 }
 
 export interface IVegaClaim {
-  commit(s: string, account: string): Promise<any>;
-
-  checkCommit(s: string, account: string): Promise<boolean>;
+  commit(s: string): Promise<any>;
 
   claim({
     amount,
@@ -119,7 +117,6 @@ export interface IVegaClaim {
     v,
     r,
     s,
-    account,
   }: {
     amount: BigNumber;
     tranche: number;
@@ -129,32 +126,9 @@ export interface IVegaClaim {
     v: number;
     r: string;
     s: string;
-    account: string;
   }): Promise<any>;
 
-  checkClaim({
-    amount,
-    tranche,
-    expiry,
-    target,
-    country,
-    v,
-    r,
-    s,
-    account,
-  }: {
-    amount: BigNumber;
-    tranche: number;
-    expiry: number;
-    target?: string;
-    country: string;
-    v: number;
-    r: string;
-    s: string;
-    account: string;
-  }): Promise<void>;
-
-  isCommitted({ s, account }: { s: string; account: string }): Promise<string>;
+  isCommitted({ s }: { s: string }): Promise<string>;
 
   isExpired(expiry: number): Promise<boolean>;
   isUsed(s: string): Promise<boolean>;
