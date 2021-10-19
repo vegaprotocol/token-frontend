@@ -1,6 +1,8 @@
 @import "../../styles/colors";
 
 .template-sidebar {
+  border-bottom: 1px solid $white;
+
   @media (min-width: 960px) {
     display: grid;
     grid-template-rows: auto 1fr;
