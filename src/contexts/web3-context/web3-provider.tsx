@@ -122,11 +122,20 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
     }
   }, [provider, connect]);
 
-  // Bind a listener for chainChanged if the provider is ready
+  // Bind events on the raw provider. Ethers doesnt provide these
+  // https://github.com/ethers-io/ethers.js/issues/1396#issuecomment-806380431
   React.useEffect(() => {
-    // only bind listeners if we have connected a signer
-    if (signer !== null && ethAddress) {
-      signer.provider?.on("chainChanged", (newChainId: EthereumChainId) => {
+    // only bind accountsChanged and chainChaned listenrs if we've
+    // connected
+    if (
+      ethAddress &&
+      provider instanceof ethers.providers.Web3Provider &&
+      provider.provider &&
+      // @ts-ignore
+      typeof provider.provider.on === "function"
+    ) {
+      // @ts-ignore
+      provider.provider.on("chainChanged", (newChainId: EthereumChainId) => {
         Sentry.addBreadcrumb({
           type: "ChainChanged",
           level: Sentry.Severity.Log,
@@ -140,7 +149,8 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
         setChainId(newChainId);
       });
 
-      signer.provider?.on("accountsChanged", (accounts: string[]) => {
+      // @ts-ignore
+      provider.provider.on("accountsChanged", (accounts: string[]) => {
         Sentry.addBreadcrumb({
           type: "AccountsChanged",
           level: Sentry.Severity.Log,
@@ -157,11 +167,17 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
     }
 
     return () => {
-      if (signer) {
-        signer.provider?.removeAllListeners();
+      if (
+        provider instanceof ethers.providers.Web3Provider &&
+        provider.provider &&
+        // @ts-ignore
+        typeof provider.provider.removeAllListeners === "function"
+      ) {
+        // @ts-ignore
+        provider.provider.removeAllListeners();
       }
     };
-  }, [chainId, ethAddress, signer]);
+  }, [chainId, ethAddress, provider]);
 
   // Wait for fetching chain ID to ensure HttpProvider is running
   if (chainId === null) {
