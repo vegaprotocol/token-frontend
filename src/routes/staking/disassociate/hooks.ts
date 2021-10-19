@@ -18,9 +18,8 @@ export const useRemoveStake = (
   const contractRemove = useTransaction(() =>
     vesting.removeStake(amount, vegaKey)
   );
-  const walletRemove = useTransaction(
-    () => staking.removeStake(amount, vegaKey),
-    5
+  const walletRemove = useTransaction(() =>
+    staking.removeStake(amount, vegaKey)
   );
   const refreshBalances = useRefreshBalances(address);
 

@@ -1,6 +1,5 @@
 import { BigNumber } from "../lib/bignumber";
 import { Tranche } from "./vega-web3/vega-web3-types";
-import { EventEmitter } from "events";
 
 export type EthereumChainId = "0x1" | "0x3" | "0x4" | "0x5" | "0x2a";
 export type EthereumChainName =
@@ -32,52 +31,6 @@ export interface EpochDetails {
   endSeconds: BigNumber;
 }
 
-export declare class PromiEvent<T>
-  extends EventEmitter
-  implements PromiseLike<T>
-{
-  constructor(
-    executor: (
-      resolve: PromiEvent.Resolve<T>,
-      reject: PromiEvent.Reject
-    ) => void
-  );
-
-  public then<TResult1, TResult2>(
-    onfulfilled?:
-      | ((value: T) => TResult1 | PromiseLike<TResult1>)
-      | undefined
-      | null,
-    onrejected?:
-      | ((reason: any) => TResult2 | PromiseLike<TResult2>)
-      | undefined
-      | null
-  ): Promise<TResult1 | TResult2>;
-
-  public catch<TResult>(
-    onRejected?:
-      | ((reason: any) => TResult | PromiseLike<TResult>)
-      | undefined
-      | null
-  ): Promise<T | TResult>;
-
-  public off(): this;
-
-  public finally(onfinally?: (() => void) | null | undefined): Promise<T>;
-
-  static resolve<T>(value: T): PromiEvent<T>;
-  static reject<T>(reason: any): PromiEvent<T>;
-}
-
-declare namespace PromiEvent {
-  export type Resolve<T> = (value?: T | PromiseLike<T>) => void;
-  export type Reject = (reason?: any) => void;
-}
-
-export interface WrappedPromiEvent<T> {
-  promiEvent: PromiEvent<T>;
-}
-
 export interface IStaking {
   stakeBalance(address: string, vegaKey: string): Promise<BigNumber>;
   totalStaked(): Promise<BigNumber>;
@@ -102,7 +55,7 @@ export interface IVegaVesting extends IStaking {
     address: string,
     tranche: number
   ): Promise<BigNumber>;
-  withdrawFromTranche(account: string, trancheId: number): Promise<any>;
+  withdrawFromTranche(trancheId: number): Promise<any>;
 }
 
 export interface IVegaClaim {
@@ -161,7 +114,7 @@ export interface IVegaLPStaking {
   unstake(): Promise<any>;
   withdrawRewards(): Promise<any>;
   allowance(account: string): Promise<BigNumber>;
-  approve(spender: string): Promise<WrappedPromiEvent<boolean>>;
+  approve(spender: string): Promise<any>;
   liquidityTokensInRewardPool(): Promise<BigNumber>;
   currentEpochDetails(): Promise<EpochDetails>;
   stakingStart(): Promise<string>;

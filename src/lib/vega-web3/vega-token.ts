@@ -10,12 +10,12 @@ export default class VegaToken implements IVegaToken {
 
   constructor(
     provider: ethers.providers.Web3Provider,
-    signer: any,
+    signer: ethers.Signer,
     tokenAddress: string
   ) {
     this.contract = new ethers.Contract(
       tokenAddress,
-      tokenAbi as any,
+      tokenAbi,
       signer || provider
     );
   }

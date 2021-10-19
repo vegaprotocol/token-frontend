@@ -24,7 +24,7 @@ export default class VegaLPStaking implements IVegaLPStaking {
     this.address = lpStakeAddress;
     this.contract = new ethers.Contract(
       lpStakeAddress,
-      lpStakeAbi as any,
+      lpStakeAbi,
       signer || provider
     );
 
@@ -35,7 +35,7 @@ export default class VegaLPStaking implements IVegaLPStaking {
     this.lpContract = (async (): Promise<ethers.Contract> => {
       const lpTokenAddress = await self.contract.trusted_lp_token();
 
-      return new ethers.Contract(lpTokenAddress, erc20Abi as any, provider);
+      return new ethers.Contract(lpTokenAddress, erc20Abi, provider);
     })();
 
     this.lpDecimals = (async (): Promise<number> => {
@@ -45,7 +45,7 @@ export default class VegaLPStaking implements IVegaLPStaking {
     this.awardContract = (async (): Promise<ethers.Contract> => {
       const awardTokenAddress = await self.contract.trusted_reward_token();
 
-      return new ethers.Contract(awardTokenAddress, erc20Abi as any, provider);
+      return new ethers.Contract(awardTokenAddress, erc20Abi, provider);
     })();
 
     this.awardDecimals = (async (): Promise<number> => {

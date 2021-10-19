@@ -1,5 +1,5 @@
 import { BigNumber } from "../../bignumber";
-import { IVegaStaking, WrappedPromiEvent } from "../../web3-utils";
+import { IVegaStaking } from "../../web3-utils";
 import { promiEventFactory, uuidv4 } from "./promi-manager";
 import Web3 from "web3";
 import { addDecimal } from "../../decimals";
@@ -13,29 +13,30 @@ class MockedVegaStaking implements IVegaStaking {
     this.decimals = decimals;
   }
 
-  // @ts-ignore
-  addStake(amount: string, vegaKey: string): WrappedPromiEvent<void> {
+  addStake(amount: string, vegaKey: string): Promise<void> {
+    // @ts-ignore
     return promiEventFactory(uuidv4(), "add-stake");
   }
 
-  // @ts-ignore
   removeStake(amount: string, vegaKey: string): Promise<any> {
     // @ts-ignore
     return promiEventFactory(uuidv4(), "remove-stake");
   }
-  // @ts-ignore
+
   transferStake(
-    address: string,
     amount: string,
     newAddress: string,
     vegaKey: string
-  ): WrappedPromiEvent<string> {
+  ): Promise<any> {
+    // @ts-ignore
     return promiEventFactory(uuidv4(), "transfer-stake");
   }
+
   async stakeBalance(address: string, vegaKey: string): Promise<BigNumber> {
     const res = await this.performFetch("balance");
     return new BigNumber(addDecimal(new BigNumber(res), this.decimals));
   }
+
   async totalStaked(): Promise<BigNumber> {
     const res = await this.performFetch("balance/total");
     return new BigNumber(addDecimal(new BigNumber(res), this.decimals));

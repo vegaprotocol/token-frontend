@@ -194,7 +194,6 @@ export const LiquidityDeposit = ({
 
   return (
     <LiquidityDepositPage
-      // @ts-ignore
       state={state}
       dispatch={dispatch}
       name={name}

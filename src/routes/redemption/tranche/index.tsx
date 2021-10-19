@@ -44,7 +44,7 @@ export const RedeemFromTranche = ({
     state: txState,
     perform,
     dispatch: txDispatch,
-  } = useTransaction(() => vesting.withdrawFromTranche(address, numberId));
+  } = useTransaction(() => vesting.withdrawFromTranche(numberId));
   const redeemedAmount = React.useMemo(() => {
     return (
       trancheBalances.find(({ id: bId }) => bId.toString() === id.toString())

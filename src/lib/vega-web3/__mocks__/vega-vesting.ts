@@ -1,7 +1,6 @@
 import { BigNumber } from "../../../lib/bignumber";
 import { Tranche } from "../vega-web3-types";
-import { IVegaVesting, WrappedPromiEvent } from "../../web3-utils";
-import { getTranchesFromHistory } from "../tranche-helpers";
+import { IVegaVesting } from "../../web3-utils";
 import Web3 from "web3";
 import { addDecimal } from "../../decimals";
 import { promiEventFactory, uuidv4 } from "./promi-manager";
@@ -15,33 +14,13 @@ class MockedVesting implements IVegaVesting {
     this.decimals = decimals;
   }
 
-  checkRemoveStake(
-    address: string,
-    amount: string,
-    vegaKey: string
-  ): Promise<any> {
-    return Promise.resolve(true);
-  }
-
-  checkAddStake(
-    address: string,
-    amount: string,
-    vegaKey: string
-  ): Promise<any> {
-    return Promise.resolve(true);
-  }
-
-  // @ts-ignore
-  addStake(
-    address: string,
-    amount: string,
-    vegaKey: string
-  ): WrappedPromiEvent<void> {
+  addStake(amount: string, vegaKey: string): Promise<any> {
+    // @ts-ignore
     return promiEventFactory(uuidv4(), "add-stake");
   }
 
-  // @ts-ignore
-  removeStake(amount: string, vegaKey: string): WrappedPromiEvent<void> {
+  removeStake(amount: string, vegaKey: string): Promise<any> {
+    // @ts-ignore
     return promiEventFactory(uuidv4(), "remove-stake");
   }
 
@@ -78,16 +57,9 @@ class MockedVesting implements IVegaVesting {
     }
   }
 
-  // @ts-ignore
-  withdrawFromTranche(
-    account: string,
-    trancheId: number
-  ): WrappedPromiEvent<void> {
+  withdrawFromTranche(trancheId: number): Promise<any> {
+    // @ts-ignore
     return promiEventFactory(uuidv4(), "withdraw-from-tranche");
-  }
-
-  checkWithdrawFromTranche(account: string, trancheId: number): Promise<any> {
-    return Promise.resolve(true);
   }
 
   async getLien(address: string): Promise<BigNumber> {
@@ -126,10 +98,11 @@ class MockedVesting implements IVegaVesting {
     return new BigNumber(addDecimal(new BigNumber(balance), this.decimals));
   }
 
+  // TODO: Fix me
   async getAllTranches(): Promise<Tranche[]> {
-    const events = await this.performFetch("events");
-    return [];
+    // const events = await this.performFetch("events");
     // return getTranchesFromHistory(events, this.decimals);
+    return [];
   }
 }
 

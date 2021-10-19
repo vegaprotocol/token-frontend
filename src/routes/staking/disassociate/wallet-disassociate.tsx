@@ -31,7 +31,7 @@ export const WalletDisassociate = ({
     <TokenInput
       submitText={t("Disassociate VEGA Tokens from key")}
       perform={perform}
-      // maximum={walletAssociatedBalance}
+      maximum={walletAssociatedBalance}
       amount={amount}
       setAmount={setAmount}
       currency={t("VEGA Tokens")}
