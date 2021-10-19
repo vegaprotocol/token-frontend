@@ -22,158 +22,153 @@ import { Callout } from "../../../components/callout";
 import { Error } from "../../../components/icons";
 import { useWeb3 } from "../../../contexts/web3-context/web3-context";
 
-export const LiquidityDepositPage = () => {
-  return <div>TODO:</div>;
+export const LiquidityDepositPage = ({
+  lpTokenAddress,
+  name,
+  state,
+  dispatch,
+}: {
+  lpTokenAddress: string;
+  name: string;
+  state: LiquidityState;
+  dispatch: React.Dispatch<LiquidityAction>;
+}) => {
+  const { t } = useTranslation();
+  const [amount, setAmount] = React.useState("0");
+  const lpStaking = useVegaLPStaking({ address: lpTokenAddress });
+  const [allowance, setAllowance] = React.useState<BigNumber>(new BigNumber(0));
+  const {
+    state: txApprovalState,
+    dispatch: txApprovalDispatch,
+    perform: txApprovalPerform,
+  } = useTransaction(() => lpStaking.approve(lpTokenAddress));
+  const {
+    state: txStakeState,
+    dispatch: txStakeDispatch,
+    perform: txStakePerform,
+  } = useTransaction(() => lpStaking.stake(amount));
+  const { ethAddress } = useWeb3();
+  const { getBalances, lpStakingEth, lpStakingUSDC } = useGetLiquidityBalances(
+    dispatch,
+    ethAddress
+  );
+  React.useEffect(() => {
+    const run = async () => {
+      try {
+        await Promise.all([
+          getBalances(lpStakingUSDC, REWARDS_ADDRESSES["SushiSwap VEGA/USDC"]),
+          getBalances(lpStakingEth, REWARDS_ADDRESSES["SushiSwap VEGA/ETH"]),
+        ]);
+      } catch (e) {
+        Sentry.captureException(e);
+      }
+    };
+    if (txStakeState.txState === TxState.Complete) {
+      run();
+    }
+  }, [getBalances, lpStakingEth, lpStakingUSDC, txStakeState.txState]);
+  const values = React.useMemo(
+    () => state.contractData[lpTokenAddress],
+    [lpTokenAddress, state.contractData]
+  );
+  const maximum = React.useMemo(
+    () =>
+      BigNumber.min(
+        values.connectedWalletData?.availableLPTokens || 0,
+        allowance
+      ),
+    [allowance, values.connectedWalletData?.availableLPTokens]
+  );
+  const fetchAllowance = React.useCallback(async () => {
+    try {
+      const allowance = await lpStaking.allowance(ethAddress);
+      setAllowance(allowance);
+    } catch (err) {
+      Sentry.captureException(err);
+    }
+  }, [ethAddress, lpStaking]);
+  React.useEffect(() => {
+    if (txApprovalState.txState === TxState.Complete) {
+      fetchAllowance();
+    }
+  }, [lpStaking, ethAddress, fetchAllowance, txApprovalState.txState]);
+  React.useEffect(() => {
+    fetchAllowance();
+  }, [lpStaking, ethAddress, fetchAllowance]);
+  let pageContent;
+  if (txStakeState.txState !== TxState.Default) {
+    pageContent = (
+      <TransactionCallout
+        state={txStakeState}
+        completeHeading={t("depositLpSuccessCalloutTitle")}
+        completeBody={t("depositLpSuccessCalloutBody")}
+        completeFooter={
+          <Link to={Routes.LIQUIDITY}>
+            <button className="fill">{t("lpTxSuccessButton")}</button>
+          </Link>
+        }
+        reset={() => txStakeDispatch({ type: TransactionActionType.TX_RESET })}
+      />
+    );
+  } else if (
+    values.connectedWalletData?.stakedLPTokens &&
+    !values.connectedWalletData?.stakedLPTokens.isEqualTo(0)
+  ) {
+    pageContent = (
+      <p>
+        <Trans
+          i18nKey="depositLpAlreadyStaked"
+          components={{
+            withdrawLink: (
+              <Link to={`${Routes.LIQUIDITY}/${lpTokenAddress}/withdraw`} />
+            ),
+          }}
+        />
+      </p>
+    );
+  } else {
+    pageContent = (
+      <>
+        {!ethAddress && <EthConnectPrompt />}
+        <Callout
+          icon={<Error />}
+          intent="error"
+          title={t("depositLpCalloutTitle")}
+        >
+          <p>{t("depositLpCalloutBody")}</p>
+        </Callout>
+        <DexTokensSection
+          name={name}
+          contractAddress={lpTokenAddress}
+          ethAddress={ethAddress}
+          state={state}
+          showInteractionButton={false}
+        />
+        <h1>{t("depositLpTokensHeading")}</h1>
+        {values.connectedWalletData?.availableLPTokens?.isGreaterThan(0) ? (
+          <TokenInput
+            submitText={t("depositLpSubmitButton")}
+            approveText={t("depositLpApproveButton")}
+            requireApproval={true}
+            allowance={allowance}
+            perform={txStakePerform}
+            approve={txApprovalPerform}
+            amount={amount}
+            setAmount={setAmount}
+            maximum={maximum}
+            approveTxState={txApprovalState}
+            approveTxDispatch={txApprovalDispatch}
+            currency={t("SLP Tokens")}
+          />
+        ) : (
+          <p>{t("depositLpInsufficientBalance")}</p>
+        )}
+      </>
+    );
+  }
+
+  return <section>{pageContent}</section>;
 };
-
-// export const LiquidityDepositPage = ({
-//   lpTokenAddress,
-//   name,
-//   state,
-//   dispatch,
-// }: {
-//   lpTokenAddress: string;
-//   name: string;
-//   state: LiquidityState;
-//   dispatch: React.Dispatch<LiquidityAction>;
-// }) => {
-//   const { t } = useTranslation();
-//   const [amount, setAmount] = React.useState("0");
-//   const lpStaking = useVegaLPStaking({ address: lpTokenAddress });
-//   const [allowance, setAllowance] = React.useState<BigNumber>(new BigNumber(0));
-//   const {
-//     state: txApprovalState,
-//     dispatch: txApprovalDispatch,
-//     perform: txApprovalPerform,
-//   } = useTransaction(() => lpStaking.approve(ethAddress, lpTokenAddress));
-//   const {
-//     state: txStakeState,
-//     dispatch: txStakeDispatch,
-//     perform: txStakePerform,
-//   } = useTransaction(() => lpStaking.stake(amount, ethAddress));
-//   const { ethAddress } = useWeb3();
-//   const { getBalances, lpStakingEth, lpStakingUSDC } = useGetLiquidityBalances(
-//     dispatch,
-//     ethAddress
-//   );
-//   React.useEffect(() => {
-//     const run = async () => {
-//       try {
-//         await Promise.all([
-//           getBalances(lpStakingUSDC, REWARDS_ADDRESSES["SushiSwap VEGA/USDC"]),
-//           getBalances(lpStakingEth, REWARDS_ADDRESSES["SushiSwap VEGA/ETH"]),
-//         ]);
-//       } catch (e) {
-//         Sentry.captureException(e);
-//       }
-//     };
-//     if (txStakeState.txState === TxState.Complete) {
-//       run();
-//     }
-//   }, [getBalances, lpStakingEth, lpStakingUSDC, txStakeState.txState]);
-//   const values = React.useMemo(
-//     () => state.contractData[lpTokenAddress],
-//     [lpTokenAddress, state.contractData]
-//   );
-//   const maximum = React.useMemo(
-//     () =>
-//       BigNumber.min(
-//         values.connectedWalletData?.availableLPTokens || 0,
-//         allowance
-//       ),
-//     [allowance, values.connectedWalletData?.availableLPTokens]
-//   );
-//   const fetchAllowance = React.useCallback(async () => {
-//     try {
-//       const allowance = await lpStaking.allowance(ethAddress);
-//       setAllowance(allowance);
-//     } catch (err) {
-//       Sentry.captureException(err);
-//     }
-//   }, [ethAddress, lpStaking]);
-//   React.useEffect(() => {
-//     if (txApprovalState.txState === TxState.Complete) {
-//       fetchAllowance();
-//     }
-//   }, [lpStaking, ethAddress, fetchAllowance, txApprovalState.txState]);
-//   React.useEffect(() => {
-//     fetchAllowance();
-//   }, [lpStaking, ethAddress, fetchAllowance]);
-//   let pageContent;
-//   if (txStakeState.txState !== TxState.Default) {
-//     pageContent = (
-//       <TransactionCallout
-//         state={txStakeState}
-//         completeHeading={t("depositLpSuccessCalloutTitle")}
-//         completeBody={t("depositLpSuccessCalloutBody")}
-//         completeFooter={
-//           <Link to={Routes.LIQUIDITY}>
-//             <button className="fill">{t("lpTxSuccessButton")}</button>
-//           </Link>
-//         }
-//         reset={() => txStakeDispatch({ type: TransactionActionType.TX_RESET })}
-//       />
-//     );
-//   } else if (
-//     values.connectedWalletData?.stakedLPTokens &&
-//     !values.connectedWalletData?.stakedLPTokens.isEqualTo(0)
-//   ) {
-//     pageContent = (
-//       <p>
-//         <Trans
-//           i18nKey="depositLpAlreadyStaked"
-//           components={{
-//             withdrawLink: (
-//               <Link to={`${Routes.LIQUIDITY}/${lpTokenAddress}/withdraw`} />
-//             ),
-//           }}
-//         />
-//       </p>
-//     );
-//   } else {
-//     pageContent = (
-//       <>
-//         {!ethAddress && <EthConnectPrompt />}
-//         <Callout
-//           icon={<Error />}
-//           intent="error"
-//           title={t("depositLpCalloutTitle")}
-//         >
-//           <p>{t("depositLpCalloutBody")}</p>
-//         </Callout>
-//         <DexTokensSection
-//           name={name}
-//           contractAddress={lpTokenAddress}
-//           ethAddress={ethAddress}
-//           state={state}
-//           showInteractionButton={false}
-//           dispatch={dispatch}
-//         />
-//         <h1>{t("depositLpTokensHeading")}</h1>
-//         {values.connectedWalletData?.availableLPTokens?.isGreaterThan(0) ? (
-//           <TokenInput
-//             submitText={t("depositLpSubmitButton")}
-//             approveText={t("depositLpApproveButton")}
-//             requireApproval={true}
-//             allowance={allowance}
-//             perform={txStakePerform}
-//             approve={txApprovalPerform}
-//             amount={amount}
-//             setAmount={setAmount}
-//             maximum={maximum}
-//             approveTxState={txApprovalState}
-//             approveTxDispatch={txApprovalDispatch}
-//             currency={t("SLP Tokens")}
-//           />
-//         ) : (
-//           <p>{t("depositLpInsufficientBalance")}</p>
-//         )}
-//       </>
-//     );
-//   }
-
-//   return <section>{pageContent}</section>;
-// };
 
 export const LiquidityDeposit = ({
   state,
