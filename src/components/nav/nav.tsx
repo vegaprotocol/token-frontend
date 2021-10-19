@@ -138,6 +138,7 @@ const NavDrawer = () => {
           })
         }
         size="80%"
+        style={{ maxWidth: 420, border: "1px solid white" }}
       >
         <div className="nav__drawer">
           <div>

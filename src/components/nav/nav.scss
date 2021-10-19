@@ -66,6 +66,7 @@
   }
 
   &__drawer {
+    background-image: url("../../images/banner.png");
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
@@ -73,7 +74,7 @@
   }
 
   &__drawer-section {
-    padding: 5px;
+    padding: 12px;
 
     &:first-child {
       border-top: 0;
@@ -137,15 +138,24 @@
 }
 
 .nav-links--column {
+  border-top: 1px solid $white;
   flex-direction: column;
   grid-gap: 0;
   gap: 0;
 
+  .active {
+    background: $vega-yellow3;
+    color: $black;
+  }
+
   > a {
     display: block;
-    background: $white;
-    color: $black;
+    background: $black;
+    color: $white;
     padding: 20px;
-    border-top: 1px solid $black;
+  }
+
+  > a:not(:first-child) {
+    border-top: 1px solid $white;
   }
 }
