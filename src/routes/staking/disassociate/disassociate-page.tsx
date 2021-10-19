@@ -27,24 +27,24 @@ export const DisassociatePage = ({
   const [selectedStakingMethod, setSelectedStakingMethod] = React.useState<
     StakingMethod | ""
   >(params.method as StakingMethod | "");
-  const txPerform = useRemoveStake(
-    address,
-    amount,
-    vegaKey.pub,
-    selectedStakingMethod
-  );
+  const {
+    state: txState,
+    dispatch: txDispatch,
+    perform: txPerform,
+  } = useRemoveStake(address, amount, vegaKey.pub, selectedStakingMethod);
 
-  // if (txState.txState !== TxState.Default) {
-  //   return (
-  //     <DisassociateTransaction
-  //       state={txState}
-  //       amount={amount}
-  //       vegaKey={vegaKey.pub}
-  //       stakingMethod={selectedStakingMethod as StakingMethod}
-  //       dispatch={txDispatch}
-  //     />
-  //   );
-  // }
+  if (txState.txState !== TxState.Default) {
+    return (
+      <DisassociateTransaction
+        state={txState}
+        amount={amount}
+        vegaKey={vegaKey.pub}
+        stakingMethod={selectedStakingMethod as StakingMethod}
+        dispatch={txDispatch}
+      />
+    );
+  }
+
   return (
     <section className="disassociate-page" data-testid="disassociate-page">
       <p>
@@ -70,14 +70,12 @@ export const DisassociatePage = ({
           <WalletDisassociate
             setAmount={setAmount}
             amount={amount}
-            // @ts-ignore
             perform={txPerform}
           />
         ) : (
           <ContractDisassociate
             setAmount={setAmount}
             amount={amount}
-            // @ts-ignore
             perform={txPerform}
           />
         ))}

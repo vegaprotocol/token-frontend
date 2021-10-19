@@ -17,6 +17,7 @@ class MockedVegaClaim implements IVegaClaim {
     }
   }
 
+  // @ts-ignore
   commit(claimCode: string, account: string): WrappedPromiEvent<void> {
     return promiEventFactory(uuidv4(), "commit");
   }
@@ -46,7 +47,8 @@ class MockedVegaClaim implements IVegaClaim {
     r: string;
     s: string;
     account: string;
-  }): WrappedPromiEvent<void> {
+  }): Promise<any> {
+    // @ts-ignore
     return promiEventFactory(uuidv4(), "claim");
   }
 

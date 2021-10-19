@@ -22,13 +22,11 @@ export const useAddStake = (
 ) => {
   const { staking, vesting } = useContracts();
   const contractAdd = useTransaction(
-    () => vesting.addStake(address!, amount, vegaKey),
-    () => vesting.checkAddStake(address!, amount, vegaKey),
+    () => vesting.addStake(amount, vegaKey),
     confirmations
   );
   const walletAdd = useTransaction(
-    () => staking.addStake(address!, amount, vegaKey),
-    () => staking.checkAddStake(address!, amount, vegaKey),
+    () => staking.addStake(amount, vegaKey),
     confirmations
   );
   const refreshBalances = useRefreshBalances(address);

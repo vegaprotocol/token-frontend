@@ -11,8 +11,5 @@ export const useClaim = (claimData: IClaimTokenParams, address: string) => {
     account: address,
   };
   const { claim } = useContracts();
-  return useTransaction(
-    () => claim.claim(claimArgs),
-    () => claim.checkClaim(claimArgs)
-  );
+  return useTransaction(() => claim.claim(claimArgs));
 };

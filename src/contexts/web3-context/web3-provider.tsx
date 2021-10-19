@@ -5,7 +5,6 @@ import { SplashLoader } from "../../components/splash-loader";
 import { useTranslation } from "react-i18next";
 import { EthereumChainId, EthereumChainNames, INFURA_URL } from "../../config";
 import { Web3Context } from "./web3-context";
-// import Web3 from "web3";
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
@@ -54,7 +53,6 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
     )
   );
   const [signer, setSigner] = React.useState<any>();
-  // const [web3, setWeb3] = React.useState<Web3>(new Web3(provider));
   const [chainId, setChainId] = React.useState<EthereumChainId | null>(null);
   const [ethAddress, setEthAddress] = React.useState("");
 

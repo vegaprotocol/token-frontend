@@ -1,20 +1,24 @@
 import { BigNumber } from "../../lib/bignumber";
 import { ethers } from "ethers";
 import tokenAbi from "../abis/vega_token_abi.json";
-import { addDecimal, removeDecimal } from "../decimals";
-import { IVegaToken, WrappedPromiEvent } from "../web3-utils";
+import { addDecimal } from "../decimals";
+import { IVegaToken } from "../web3-utils";
 
 export default class VegaToken implements IVegaToken {
   private provider: ethers.providers.Web3Provider;
   private contract: ethers.Contract;
   private tokenAddress: string;
 
-  constructor(provider: ethers.providers.Web3Provider, tokenAddress: string) {
+  constructor(
+    provider: ethers.providers.Web3Provider,
+    signer: any,
+    tokenAddress: string
+  ) {
     this.provider = provider;
     this.contract = new ethers.Contract(
       tokenAddress,
       tokenAbi as any,
-      this.provider
+      signer || provider
     );
     this.tokenAddress = tokenAddress;
   }
@@ -71,6 +75,7 @@ export default class VegaToken implements IVegaToken {
   async balanceOf(address: string): Promise<BigNumber> {
     const decimals = await this.decimals();
     const res = await this.contract.balanceOf(address);
+    console.log(res);
     return new BigNumber(addDecimal(new BigNumber(res.toString()), decimals));
   }
 }

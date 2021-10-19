@@ -31,6 +31,7 @@ class MockedVesting implements IVegaVesting {
     return Promise.resolve(true);
   }
 
+  // @ts-ignore
   addStake(
     address: string,
     amount: string,
@@ -39,11 +40,8 @@ class MockedVesting implements IVegaVesting {
     return promiEventFactory(uuidv4(), "add-stake");
   }
 
-  removeStake(
-    address: string,
-    amount: string,
-    vegaKey: string
-  ): WrappedPromiEvent<void> {
+  // @ts-ignore
+  removeStake(amount: string, vegaKey: string): WrappedPromiEvent<void> {
     return promiEventFactory(uuidv4(), "remove-stake");
   }
 
@@ -80,6 +78,7 @@ class MockedVesting implements IVegaVesting {
     }
   }
 
+  // @ts-ignore
   withdrawFromTranche(
     account: string,
     trancheId: number

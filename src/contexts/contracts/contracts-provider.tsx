@@ -27,7 +27,7 @@ import { useGetUserTrancheBalances } from "../../hooks/use-get-user-tranche-bala
  * Provides Vega Ethereum contract instances to its children.
  */
 export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
-  const { provider, ethAddress } = useWeb3();
+  const { provider, signer, ethAddress } = useWeb3();
   const {
     appState: { decimals },
     appDispatch,
@@ -35,12 +35,22 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
 
   const contracts = React.useMemo(() => {
     return {
-      token: new VegaToken(provider, ADDRESSES.vegaTokenAddress),
-      staking: new StakingAbi(provider, ADDRESSES.stakingBridge, decimals),
-      vesting: new VegaVesting(provider, ADDRESSES.vestingAddress, decimals),
-      claim: new VegaClaim(provider, ADDRESSES.claimAddress, decimals),
+      token: new VegaToken(provider, signer, ADDRESSES.vegaTokenAddress),
+      staking: new StakingAbi(
+        provider,
+        signer,
+        ADDRESSES.stakingBridge,
+        decimals
+      ),
+      vesting: new VegaVesting(
+        provider,
+        signer,
+        ADDRESSES.vestingAddress,
+        decimals
+      ),
+      claim: new VegaClaim(provider, signer, ADDRESSES.claimAddress, decimals),
     };
-  }, [provider, decimals]);
+  }, [provider, signer, decimals]);
   const getUserTrancheBalances = useGetUserTrancheBalances(
     ethAddress,
     contracts.vesting

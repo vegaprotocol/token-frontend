@@ -2,7 +2,7 @@ import { BigNumber } from "../../lib/bignumber";
 import { ethers } from "ethers";
 import { AbiItem } from "web3-utils";
 import vestingAbi from "../abis/vesting_abi.json";
-import { IVegaVesting, WrappedPromiEvent } from "../web3-utils";
+import { IVegaVesting } from "../web3-utils";
 import { getTranchesFromHistory } from "./tranche-helpers";
 import { Tranche } from "./vega-web3-types";
 import { addDecimal, removeDecimal } from "../decimals";
@@ -15,6 +15,7 @@ export default class VegaVesting implements IVegaVesting {
 
   constructor(
     provider: ethers.providers.Web3Provider,
+    signer: any,
     vestingAddress: string,
     decimals: number
   ) {
@@ -24,7 +25,7 @@ export default class VegaVesting implements IVegaVesting {
       vestingAddress,
       // @ts-ignore
       vestingAbi as AbiItem[],
-      provider
+      signer || provider
     );
   }
 
@@ -56,37 +57,21 @@ export default class VegaVesting implements IVegaVesting {
   //     .call({ from: address });
   // }
 
-  // removeStake(
-  //   address: string,
-  //   amount: string,
-  //   vegaKey: string
-  // ): WrappedPromiEvent<void> {
-  //   const convertedAmount = removeDecimal(
-  //     new BigNumber(amount),
-  //     this.decimals
-  //   ).toString();
-  //   return {
-  //     promiEvent: this.contract.methods
-  //       .remove_stake(convertedAmount, `0x${vegaKey}`)
-  //       .send({ from: address }),
-  //   };
-  // }
+  removeStake(amount: string, vegaKey: string): Promise<any> {
+    const convertedAmount = removeDecimal(
+      new BigNumber(amount),
+      this.decimals
+    ).toString();
+    return this.contract.remove_stake(convertedAmount, `0x${vegaKey}`);
+  }
 
-  // addStake(
-  //   address: string,
-  //   amount: string,
-  //   vegaKey: string
-  // ): WrappedPromiEvent<void> {
-  //   const convertedAmount = removeDecimal(
-  //     new BigNumber(amount),
-  //     this.decimals
-  //   ).toString();
-  //   return {
-  //     promiEvent: this.contract.methods
-  //       .stake_tokens(convertedAmount, `0x${vegaKey}`)
-  //       .send({ from: address }),
-  //   };
-  // }
+  addStake(amount: string, vegaKey: string): Promise<any> {
+    const convertedAmount = removeDecimal(
+      new BigNumber(amount),
+      this.decimals
+    ).toString();
+    return this.contract.stake_tokens(convertedAmount, `0x${vegaKey}`);
+  }
 
   // checkAddStake(
   //   address: string,
@@ -144,16 +129,9 @@ export default class VegaVesting implements IVegaVesting {
     return getTranchesFromHistory(events, this.decimals);
   }
 
-  // withdrawFromTranche(
-  //   account: string,
-  //   trancheId: number
-  // ): WrappedPromiEvent<void> {
-  //   return {
-  //     promiEvent: this.contract.methods
-  //       .withdraw_from_tranche(trancheId)
-  //       .send({ from: account }),
-  //   };
-  // }
+  withdrawFromTranche(account: string, trancheId: number): Promise<any> {
+    return this.contract.withdraw_from_tranche(trancheId);
+  }
 
   // checkWithdrawFromTranche(account: string, trancheId: number): Promise<any> {
   //   return this.contract.methods
