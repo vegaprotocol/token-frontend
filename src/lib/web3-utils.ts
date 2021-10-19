@@ -82,28 +82,15 @@ export interface IStaking {
   stakeBalance(address: string, vegaKey: string): Promise<BigNumber>;
   totalStaked(): Promise<BigNumber>;
   removeStake(amount: string, vegaKey: string): Promise<any>;
-  checkRemoveStake(
-    address: string,
-    amount: string,
-    vegaKey: string
-  ): Promise<any>;
   addStake(amount: string, vegaKey: string): Promise<any>;
-  checkAddStake(address: string, amount: string, vegaKey: string): Promise<any>;
 }
 
 export interface IVegaStaking extends IStaking {
-  checkTransferStake(
-    address: string,
+  transferStake(
     amount: string,
     newAddress: string,
     vegaKey: string
   ): Promise<any>;
-  transferStake(
-    address: string,
-    amount: string,
-    newAddress: string,
-    vegaKey: string
-  ): WrappedPromiEvent<string>;
 }
 
 export interface IVegaVesting extends IStaking {
@@ -116,7 +103,6 @@ export interface IVegaVesting extends IStaking {
     tranche: number
   ): Promise<BigNumber>;
   withdrawFromTranche(account: string, trancheId: number): Promise<any>;
-  checkWithdrawFromTranche(account: string, trancheId: number): Promise<any>;
 }
 
 export interface IVegaClaim {
@@ -180,10 +166,7 @@ export interface IVegaToken {
   decimals(): Promise<number>;
   tokenData(): Promise<{ totalSupply: BigNumber; decimals: number }>;
   balanceOf(address: string): Promise<BigNumber>;
-  approve(
-    address: string,
-    spender: string
-  ): Promise<WrappedPromiEvent<boolean>>;
+  approve(spender: string): Promise<any>;
   allowance(address: string, spender: string): Promise<BigNumber>;
 }
 
@@ -200,9 +183,9 @@ export interface IVegaLPStaking {
   estimateAPY(): Promise<BigNumber>;
   totalStaked(): Promise<BigNumber>;
   totalUnstaked(account: string): Promise<BigNumber>;
-  stake(amount: string): Promise<WrappedPromiEvent<boolean>>;
-  unstake(): WrappedPromiEvent<void>;
-  withdrawRewards(): WrappedPromiEvent<void>;
+  stake(amount: string): Promise<any>;
+  unstake(): Promise<any>;
+  withdrawRewards(): Promise<any>;
   allowance(account: string): Promise<BigNumber>;
   approve(spender: string): Promise<WrappedPromiEvent<boolean>>;
   liquidityTokensInRewardPool(): Promise<BigNumber>;

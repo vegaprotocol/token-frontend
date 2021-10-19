@@ -39,7 +39,7 @@ export const WalletAssociate = ({
     state: approveState,
     perform: approve,
     dispatch: approveDispatch,
-  } = useTransaction(() => token.approve(address, ADDRESSES.stakingBridge));
+  } = useTransaction(() => token.approve(ADDRESSES.stakingBridge));
 
   // Once they have approved deposits then we need to refresh their allowance
   React.useEffect(() => {

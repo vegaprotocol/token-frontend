@@ -1,4 +1,5 @@
 import { BigNumber } from "../../lib/bignumber";
+import BN from "bn.js";
 import { ethers } from "ethers";
 import { AbiItem } from "web3-utils";
 import vestingAbi from "../abis/vesting_abi.json";
@@ -30,32 +31,18 @@ export default class VegaVesting implements IVegaVesting {
   }
 
   async stakeBalance(address: string, vegaKey: string): Promise<BigNumber> {
-    const res = await this.contract.stake_balance(address, `0x${vegaKey}`);
+    const res: BN = await this.contract.stake_balance(address, `0x${vegaKey}`);
     return new BigNumber(
       addDecimal(new BigNumber(res.toString()), this.decimals)
     );
   }
 
   async totalStaked(): Promise<BigNumber> {
-    const res = await this.contract.total_staked();
+    const res: BN = await this.contract.total_staked();
     return new BigNumber(
       addDecimal(new BigNumber(res.toString()), this.decimals)
     );
   }
-
-  // checkRemoveStake(
-  //   address: string,
-  //   amount: string,
-  //   vegaKey: string
-  // ): Promise<any> {
-  //   const convertedAmount = removeDecimal(
-  //     new BigNumber(amount),
-  //     this.decimals
-  //   ).toString();
-  //   return this.contract.methods
-  //     .remove_stake(convertedAmount, `0x${vegaKey}`)
-  //     .call({ from: address });
-  // }
 
   removeStake(amount: string, vegaKey: string): Promise<any> {
     const convertedAmount = removeDecimal(
@@ -73,24 +60,16 @@ export default class VegaVesting implements IVegaVesting {
     return this.contract.stake_tokens(convertedAmount, `0x${vegaKey}`);
   }
 
-  // checkAddStake(
-  //   address: string,
-  //   amount: string,
-  //   vegaKey: string
-  // ): Promise<any> {
-  //   const convertedAmount = removeDecimal(
-  //     new BigNumber(amount),
-  //     this.decimals
-  //   ).toString();
-  //   return this.contract.methods
-  //     .stake_tokens(convertedAmount, `0x${vegaKey}`)
-  //     .call({ from: address });
-  // }
-
   async getLien(address: string): Promise<BigNumber> {
     const { lien } = await this.contract.user_stats(address);
     return new BigNumber(
-      addDecimal(new BigNumber(lien.toString()), this.decimals)
+      addDecimal(
+        new BigNumber(
+          // lien is a bn.js bignumber convert back to bignumber.js
+          lien.toString()
+        ),
+        this.decimals
+      )
     );
   }
 
@@ -98,7 +77,10 @@ export default class VegaVesting implements IVegaVesting {
     address: string,
     tranche: number
   ): Promise<BigNumber> {
-    const amount = await this.contract.get_tranche_balance(address, tranche);
+    const amount: BN = await this.contract.get_tranche_balance(
+      address,
+      tranche
+    );
     return new BigNumber(
       addDecimal(new BigNumber(amount.toString()), this.decimals)
     );
@@ -108,14 +90,17 @@ export default class VegaVesting implements IVegaVesting {
     address: string,
     tranche: number
   ): Promise<BigNumber> {
-    const amount = await this.contract.get_vested_for_tranche(address, tranche);
+    const amount: BN = await this.contract.get_vested_for_tranche(
+      address,
+      tranche
+    );
     return new BigNumber(
       addDecimal(new BigNumber(amount.toString()), this.decimals)
     );
   }
 
   async getUserBalanceAllTranches(account: string): Promise<BigNumber> {
-    const amount = await this.contract.user_total_all_tranches(account);
+    const amount: BN = await this.contract.user_total_all_tranches(account);
     return new BigNumber(
       addDecimal(new BigNumber(amount.toString()), this.decimals)
     );
@@ -132,10 +117,4 @@ export default class VegaVesting implements IVegaVesting {
   withdrawFromTranche(account: string, trancheId: number): Promise<any> {
     return this.contract.withdraw_from_tranche(trancheId);
   }
-
-  // checkWithdrawFromTranche(account: string, trancheId: number): Promise<any> {
-  //   return this.contract.methods
-  //     .withdraw_from_tranche(trancheId)
-  //     .call({ from: account });
-  // }
 }

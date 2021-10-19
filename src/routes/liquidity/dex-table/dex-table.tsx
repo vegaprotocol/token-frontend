@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { EtherscanLink } from "../../../components/etherscan-link";
 import { Link } from "react-router-dom";
 import { Routes } from "../../router-config";
-import { LiquidityState, LiquidityAction } from "../liquidity-reducer";
+import { LiquidityState } from "../liquidity-reducer";
 import { Links, REWARDS_POOL_ADDRESSES } from "../../../config";
 import {
   KeyValueTable,
@@ -19,7 +19,6 @@ interface DexTokensSectionProps {
   contractAddress: string;
   ethAddress: string;
   state: LiquidityState;
-  dispatch: React.Dispatch<LiquidityAction>;
   showInteractionButton?: boolean;
 }
 
