@@ -7,6 +7,7 @@ import { IVegaVesting } from "../web3-utils";
 import { getTranchesFromHistory } from "./tranche-helpers";
 import { Tranche } from "./vega-web3-types";
 import { addDecimal, removeDecimal } from "../decimals";
+import { ADDRESSES } from "../../config";
 
 // @ts-ignore
 export default class VegaVesting implements IVegaVesting {
@@ -107,11 +108,21 @@ export default class VegaVesting implements IVegaVesting {
   }
 
   async getAllTranches(): Promise<Tranche[]> {
-    const events = await this.contract.getPastEvents("allEvents", {
-      fromBlock: 0,
-      toBlock: "latest",
-    });
-    return getTranchesFromHistory(events, this.decimals);
+    const createEvents = await this.contract.queryFilter(
+      this.contract.filters.Tranche_Created()
+    );
+    const addEvents = await this.contract.queryFilter(
+      this.contract.filters.Tranche_Balance_Added()
+    );
+    const removeEvents = await this.contract.queryFilter(
+      this.contract.filters.Tranche_Balance_Removed()
+    );
+    return getTranchesFromHistory(
+      createEvents,
+      addEvents,
+      removeEvents,
+      this.decimals
+    );
   }
 
   withdrawFromTranche(account: string, trancheId: number): Promise<any> {

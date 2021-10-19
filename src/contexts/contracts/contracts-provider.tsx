@@ -84,9 +84,9 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
   }, [appDispatch, contracts.token, contracts.vesting, ethAddress]);
 
   React.useEffect(() => {
-    if (ethAddress) {
-      getUserTrancheBalances();
-    }
+    // if (ethAddress) {
+    //   getUserTrancheBalances();
+    // }
   }, [ethAddress, getUserTrancheBalances]);
 
   return (
