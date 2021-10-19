@@ -45,18 +45,18 @@ const EnvironmentConfig: { [key in Networks]: VegaContracts } = {
     stakingBridge: "0x3cCe40e1e47cedf76c03db3E48507f421b575523",
   },
   [Networks.STAGNET]: {
-    vestingAddress: "0xd512DAb65BFF87B4725F26320Ce667C4Bf3d54a9",
-    vegaTokenAddress: "0x45984C4E9F3D55325fc6Fd2E260881EE3Ce9bbCD",
-    claimAddress: "0x8Cef746ab7C83B61F6461cC92882bD61AB65a994", // TODO not deployed to this env
+    vestingAddress: "0xfCe6eB272D3d4146A96bC28de71212b327F575fa",
+    vegaTokenAddress: "0x547cbA83a7eb82b546ee5C7ff0527F258Ba4546D",
+    claimAddress: "0x8Cef746ab7C83B61F6461cC92882bD61AB65a994", // TODO not deployed to this env, but random address so app doesn't error
     lockedAddress: "0x0", // TODO not deployed to this env
-    stakingBridge: "0x58Bc16298ff65Eca070b105ce70A5C628DE31900",
+    stakingBridge: "0x7D88CD817227D599815d407D929af18Bb8D57176",
   },
   [Networks.TESTNET]: {
-    vestingAddress: "0x0", // TODO not deployed to this env
-    vegaTokenAddress: "0x0", // TODO WRONG!
-    claimAddress: "0x0", // TODO not deployed to this env
+    vestingAddress: "0x6A42ed1484f0E22e2Bcc29CEbA3bf305c52F55Be",
+    vegaTokenAddress: "0xe55A846ced767ea49885B3BB9E1Bf5617E178182",
+    claimAddress: "0x8Cef746ab7C83B61F6461cC92882bD61AB65a994", // TODO not deployed to this env, but random address so app doesn't error
     lockedAddress: "0x0", // TODO not deployed to this env
-    stakingBridge: "0x0", // TODO not deployed to this env
+    stakingBridge: "0xB24e0ac9199e8f4F69eF0eD8ee266b2433AF0dF0",
   },
   [Networks.MAINNET]: {
     vestingAddress: "0x23d1bFE8fA50a167816fBD79D7932577c06011f4",
