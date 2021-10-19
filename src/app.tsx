@@ -23,6 +23,9 @@ function App() {
                   <div className="app">
                     <Nav />
                     <AppRouter />
+                    <footer>
+                      Version: {process.env.COMMIT_REF || "development"}
+                    </footer>
                   </div>
                   <VegaWalletModal />
                 </>
