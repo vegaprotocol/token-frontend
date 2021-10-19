@@ -51,6 +51,7 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
       claim: new VegaClaim(provider, signer, ADDRESSES.claimAddress, decimals),
     };
   }, [provider, signer, decimals]);
+
   const getUserTrancheBalances = useGetUserTrancheBalances(
     ethAddress,
     contracts.vesting
@@ -84,9 +85,9 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
   }, [appDispatch, contracts.token, contracts.vesting, ethAddress]);
 
   React.useEffect(() => {
-    // if (ethAddress) {
-    //   getUserTrancheBalances();
-    // }
+    if (ethAddress) {
+      getUserTrancheBalances();
+    }
   }, [ethAddress, getUserTrancheBalances]);
 
   return (
