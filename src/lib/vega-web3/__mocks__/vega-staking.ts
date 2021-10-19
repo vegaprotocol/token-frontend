@@ -34,18 +34,14 @@ class MockedVegaStaking implements IVegaStaking {
   ): Promise<any> {
     return Promise.resolve(true);
   }
-  addStake(
-    address: string,
-    amount: string,
-    vegaKey: string
-  ): WrappedPromiEvent<void> {
+  // @ts-ignore
+  addStake(amount: string, vegaKey: string): WrappedPromiEvent<void> {
     return promiEventFactory(uuidv4(), "add-stake");
   }
-  removeStake(
-    address: string,
-    amount: string,
-    vegaKey: string
-  ): WrappedPromiEvent<void> {
+
+  // @ts-ignore
+  removeStake(amount: string, vegaKey: string): Promise<any> {
+    // @ts-ignore
     return promiEventFactory(uuidv4(), "remove-stake");
   }
   transferStake(

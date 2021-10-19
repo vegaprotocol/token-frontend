@@ -1,10 +1,8 @@
 import { BigNumber } from "../../lib/bignumber";
 import { ethers } from "ethers";
 import { AbiItem } from "web3-utils";
-import type { Contract } from "web3-eth-contract";
 import claimAbi from "../abis/claim_abi.json";
-import { IVegaClaim, WrappedPromiEvent } from "../web3-utils";
-import { removeDecimal } from "../decimals";
+import { IVegaClaim } from "../web3-utils";
 
 export const UNSPENT_CODE = "0x0000000000000000000000000000000000000000";
 export const SPENT_CODE = "0x0000000000000000000000000000000000000001";
@@ -30,6 +28,7 @@ export default class VegaClaim implements IVegaClaim {
 
   constructor(
     provider: ethers.providers.Web3Provider,
+    signer: any,
     claimAddress: string,
     decimals: number
   ) {
@@ -38,11 +37,11 @@ export default class VegaClaim implements IVegaClaim {
       claimAddress,
       // @ts-ignore
       claimAbi as AbiItem[],
-      provider
+      signer || provider
     );
     this.decimals = decimals;
   }
-  commit(s: string, account: string): WrappedPromiEvent<void> {
+  commit(s: string, account: string): Promise<any> {
     throw new Error("Method not implemented.");
   }
   checkCommit(s: string, account: string): Promise<boolean> {
@@ -91,7 +90,7 @@ export default class VegaClaim implements IVegaClaim {
     r: string;
     s: string;
     account: string;
-  }): WrappedPromiEvent<void> {
+  }): Promise<any> {
     throw new Error("Method not implemented.");
   }
   checkClaim({
@@ -142,10 +141,6 @@ export default class VegaClaim implements IVegaClaim {
   //       .commit_untargeted(s)
   //       .send({ from: account }),
   //   };
-  // }
-
-  // public checkCommit(s: string, account: string): Promise<any> {
-  //   return this.contract.methods.commit_untargeted(s).call({ from: account });
   // }
 
   /**

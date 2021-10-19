@@ -16,37 +16,26 @@ export const useRemoveStake = (
   // which if staked > wallet balance means you cannot unstaked
   // even worse if you stake everything then you can't unstake anything!
   const contractRemove = useTransaction(() =>
-    vesting.removeStake(address!, amount, vegaKey)
+    vesting.removeStake(amount, vegaKey)
   );
-  // const walletRemove = useTransaction(() =>
-  //   staking.removeStake(address!, amount, vegaKey)
-  // );
-  const walletRemove = React.useCallback(async () => {
-    console.log("remove");
-    try {
-      const tx = await staking.removeStake(address!, amount, vegaKey);
-      console.log(tx);
-      // @ts-ignore
-      const receipt = await tx.wait();
-      console.log(receipt);
-    } catch (err) {
-      console.error(err);
-    }
-  }, [staking, address, amount, vegaKey]);
+  const walletRemove = useTransaction(
+    () => staking.removeStake(amount, vegaKey),
+    5
+  );
   const refreshBalances = useRefreshBalances(address);
 
-  // React.useEffect(() => {
-  //   if (
-  //     walletRemove.state.txState === TxState.Complete ||
-  //     contractRemove.state.txState === TxState.Complete
-  //   ) {
-  //     refreshBalances();
-  //   }
-  // }, [
-  //   contractRemove.state.txState,
-  //   refreshBalances,
-  //   walletRemove.state.txState,
-  // ]);
+  React.useEffect(() => {
+    if (
+      walletRemove.state.txState === TxState.Complete ||
+      contractRemove.state.txState === TxState.Complete
+    ) {
+      refreshBalances();
+    }
+  }, [
+    contractRemove.state.txState,
+    refreshBalances,
+    walletRemove.state.txState,
+  ]);
 
   return React.useMemo(() => {
     if (stakingMethod === StakingMethod.Contract) {

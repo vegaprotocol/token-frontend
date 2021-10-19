@@ -169,7 +169,7 @@ export const TokenInput = ({
       <button
         data-testid="token-input-submit-button"
         className="fill token-input__submit"
-        // disabled={isDisabled}
+        disabled={isDisabled}
         onClick={perform}
       >
         {submitText}
