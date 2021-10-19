@@ -17,7 +17,7 @@ export default class StakingAbi implements IVegaStaking {
   ) {
     this.contract = new ethers.Contract(
       address,
-      stakingAbi as any,
+      stakingAbi,
       signer || provider
     );
     this.decimals = decimals;

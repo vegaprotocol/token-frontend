@@ -1,7 +1,6 @@
 import { BigNumber } from "../../lib/bignumber";
 import { ethers } from "ethers";
 import Web3 from "web3";
-import { AbiItem } from "web3-utils";
 import claimAbi from "../abis/claim_abi.json";
 import { IVegaClaim } from "../web3-utils";
 import { removeDecimal } from "../decimals";
@@ -30,15 +29,14 @@ export default class VegaClaim implements IVegaClaim {
 
   constructor(
     provider: ethers.providers.Web3Provider,
-    signer: any,
+    signer: ethers.Signer,
     claimAddress: string,
     decimals: number
   ) {
     this.provider = provider;
     this.contract = new ethers.Contract(
       claimAddress,
-      // @ts-ignore
-      claimAbi as AbiItem[],
+      claimAbi,
       signer || provider
     );
     this.decimals = decimals;

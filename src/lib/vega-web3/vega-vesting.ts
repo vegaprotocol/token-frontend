@@ -1,31 +1,26 @@
 import { BigNumber } from "../../lib/bignumber";
 import BN from "bn.js";
 import { ethers } from "ethers";
-import { AbiItem } from "web3-utils";
 import vestingAbi from "../abis/vesting_abi.json";
 import { IVegaVesting } from "../web3-utils";
 import { getTranchesFromHistory } from "./tranche-helpers";
 import { Tranche } from "./vega-web3-types";
 import { addDecimal, removeDecimal } from "../decimals";
 
-// @ts-ignore
 export default class VegaVesting implements IVegaVesting {
-  private provider: ethers.providers.Web3Provider;
   private contract: ethers.Contract;
   private decimals: number;
 
   constructor(
     provider: ethers.providers.Web3Provider,
-    signer: any,
+    signer: ethers.Signer,
     vestingAddress: string,
     decimals: number
   ) {
     this.decimals = decimals;
-    this.provider = provider;
     this.contract = new ethers.Contract(
       vestingAddress,
-      // @ts-ignore
-      vestingAbi as AbiItem[],
+      vestingAbi,
       signer || provider
     );
   }
@@ -124,7 +119,7 @@ export default class VegaVesting implements IVegaVesting {
     );
   }
 
-  withdrawFromTranche(account: string, trancheId: number): Promise<any> {
+  withdrawFromTranche(trancheId: number): Promise<any> {
     return this.contract.withdraw_from_tranche(trancheId);
   }
 }
