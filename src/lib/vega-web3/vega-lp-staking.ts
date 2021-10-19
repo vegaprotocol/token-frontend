@@ -1,8 +1,9 @@
 import { BigNumber } from "../../lib/bignumber";
+import BN from "bn.js";
 import { ethers } from "ethers";
 import lpStakeAbi from "../abis/lp_staking_abi.json";
 import erc20Abi from "../abis/erc20_abi.json";
-import { EpochDetails, IVegaLPStaking, WrappedPromiEvent } from "../web3-utils";
+import { EpochDetails, IVegaLPStaking } from "../web3-utils";
 import { addDecimal, removeDecimal } from "../decimals";
 
 export default class VegaLPStaking implements IVegaLPStaking {
@@ -52,12 +53,14 @@ export default class VegaLPStaking implements IVegaLPStaking {
     })();
   }
 
-  currentEpoch(): Promise<string> {
-    return this.contract.get_current_epoch_number();
+  async currentEpoch(): Promise<string> {
+    const res = await this.contract.get_current_epoch_number();
+    return res.toString();
   }
 
-  stakingStart(): Promise<string> {
-    return this.contract.staking_start();
+  async stakingStart(): Promise<string> {
+    const res = await this.contract.staking_start();
+    return res.toString();
   }
 
   async currentEpochDetails(): Promise<EpochDetails> {
@@ -66,11 +69,11 @@ export default class VegaLPStaking implements IVegaLPStaking {
     const epochSeconds = await this.contract.epoch_seconds();
     const res = {
       id,
-      startSeconds: new BigNumber(startSeconds).plus(
-        new BigNumber(id).times(epochSeconds)
+      startSeconds: new BigNumber(startSeconds.toString()).plus(
+        new BigNumber(id).times(epochSeconds.toString())
       ),
-      endSeconds: new BigNumber(startSeconds).plus(
-        new BigNumber(id).plus(1).times(epochSeconds)
+      endSeconds: new BigNumber(startSeconds.toString()).plus(
+        new BigNumber(id).plus(1).times(epochSeconds.toString())
       ),
     };
 
@@ -92,7 +95,7 @@ export default class VegaLPStaking implements IVegaLPStaking {
     const isPending = currentEpoch === user.last_epoch_withdrawn;
     const value = await this.contract.total_staked_for_user(account);
     const total = new BigNumber(
-      addDecimal(new BigNumber(value), await this.lpDecimals)
+      addDecimal(new BigNumber(value.toString()), await this.lpDecimals)
     );
     return isPending
       ? {
@@ -121,38 +124,38 @@ export default class VegaLPStaking implements IVegaLPStaking {
     try {
       const value = await this.contract.get_available_reward(account);
       return new BigNumber(
-        addDecimal(new BigNumber(value), await this.awardDecimals)
+        addDecimal(new BigNumber(value.toString()), await this.awardDecimals)
       );
     } catch (e: any) {
       return new BigNumber(0);
     }
   }
 
-  async awardContractAddress() {
+  async awardContractAddress(): Promise<string> {
     const awardContract = await this.awardContract;
-    console.log(awardContract);
-    // @ts-ignore // Contract._address is private
-    return awardContract._address as string;
+    return awardContract.address;
   }
 
-  async slpContractAddress() {
+  async slpContractAddress(): Promise<string> {
     const lpContract = await this.lpContract;
-    console.log(lpContract);
-    // @ts-ignore // Contract._address is private
-    return lpContract._address as string;
+    return lpContract.address;
   }
 
   async rewardPerEpoch(): Promise<BigNumber> {
-    const rewardPerEpoch = await this.contract.epoch_reward();
+    const rewardPerEpoch: BN = await this.contract.epoch_reward();
     const decimals = await this.awardDecimals;
-    return new BigNumber(addDecimal(new BigNumber(rewardPerEpoch), decimals));
+    return new BigNumber(
+      addDecimal(new BigNumber(rewardPerEpoch.toString()), decimals)
+    );
   }
 
   async liquidityTokensInRewardPool(): Promise<BigNumber> {
     const lpContract = await this.lpContract;
     const decimals = await this.awardDecimals;
     const balance = await lpContract.balanceOf(this.address);
-    return new BigNumber(addDecimal(new BigNumber(balance), decimals));
+    return new BigNumber(
+      addDecimal(new BigNumber(balance.toString()), decimals)
+    );
   }
 
   /**
@@ -170,14 +173,16 @@ export default class VegaLPStaking implements IVegaLPStaking {
     ]);
 
     // If there is none staked the APY is 0, not infinity
-    if (new BigNumber(totalBalance).isEqualTo(0)) {
+    if (new BigNumber(totalBalance.toString()).isEqualTo(0)) {
       return new BigNumber(0);
     }
 
     const epochsPerYear = new BigNumber(60 * 60 * 24 * 365).dividedBy(
-      epochInterval
+      new BigNumber(epochInterval.toString())
     );
-    const epochApy = new BigNumber(epochReward).dividedBy(totalBalance);
+    const epochApy = new BigNumber(epochReward.toString()).dividedBy(
+      new BigNumber(totalBalance.toString())
+    );
 
     return epochApy.multipliedBy(epochsPerYear).times(100);
   }
@@ -187,9 +192,9 @@ export default class VegaLPStaking implements IVegaLPStaking {
    * @return {Promise<BigNumber>} Amount in VEGA LP units
    */
   async totalStaked(): Promise<BigNumber> {
-    const value = await this.contract.total_staked();
+    const value: BN = await this.contract.total_staked();
     return new BigNumber(
-      addDecimal(new BigNumber(value), await this.lpDecimals)
+      addDecimal(new BigNumber(value.toString()), await this.lpDecimals)
     );
   }
 
@@ -197,7 +202,9 @@ export default class VegaLPStaking implements IVegaLPStaking {
     const lpTokenContract = await this.lpContract;
     const lpTokenDecimals = await this.lpDecimals;
     const value = await lpTokenContract.balanceOf(account);
-    return new BigNumber(addDecimal(new BigNumber(value), lpTokenDecimals));
+    return new BigNumber(
+      addDecimal(new BigNumber(value.toString()), lpTokenDecimals)
+    );
   }
 
   /**
@@ -211,7 +218,7 @@ export default class VegaLPStaking implements IVegaLPStaking {
    * @param  {string}           account address
    * @return {Promise<WrappedPromiEvent<boolean>>}
    */
-  async stake(amount: string): Promise<WrappedPromiEvent<boolean>> {
+  async stake(amount: string): Promise<any> {
     const decimals = await this.lpDecimals;
     return this.contract.stake(
       removeDecimal(new BigNumber(amount), decimals).toString()
@@ -223,7 +230,7 @@ export default class VegaLPStaking implements IVegaLPStaking {
    * @param  {string}           account address
    * @return {WrappedPromiEvent<void>}
    */
-  unstake(): WrappedPromiEvent<void> {
+  unstake(): Promise<any> {
     return this.contract.unstake();
   }
 
@@ -240,11 +247,11 @@ export default class VegaLPStaking implements IVegaLPStaking {
       await this.lpContract
     ).allowance(account, this.address);
     return new BigNumber(
-      addDecimal(new BigNumber(value), await this.lpDecimals)
+      addDecimal(new BigNumber(value.toString()), await this.lpDecimals)
     );
   }
 
-  withdrawRewards(): WrappedPromiEvent<void> {
+  withdrawRewards(): Promise<any> {
     return this.contract.withdraw_rewards();
   }
 

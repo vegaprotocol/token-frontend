@@ -1,6 +1,6 @@
 import { BigNumber } from "../../bignumber";
 import { addDecimal } from "../../decimals";
-import { IVegaToken, WrappedPromiEvent } from "../../web3-utils";
+import { IVegaToken } from "../../web3-utils";
 import { promiEventFactory, uuidv4 } from "./promi-manager";
 
 const BASE_URL = "mocks/vega-token";
@@ -40,10 +40,7 @@ class MockedToken implements IVegaToken {
     return new BigNumber(addDecimal(new BigNumber(res), decimals));
   }
 
-  async approve(
-    address: string,
-    spender: string
-  ): Promise<WrappedPromiEvent<boolean>> {
+  async approve(spender: string): Promise<any> {
     return promiEventFactory(uuidv4(), "approve");
   }
 

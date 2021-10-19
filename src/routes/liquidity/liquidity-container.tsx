@@ -4,16 +4,10 @@ import { Trans, useTranslation } from "react-i18next";
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
 import { Links, REWARDS_ADDRESSES } from "../../config";
 import { DexTokensSection } from "./dex-table";
-import { LiquidityAction, LiquidityState } from "./liquidity-reducer";
+import { LiquidityState } from "./liquidity-reducer";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
 
-export const LiquidityContainer = ({
-  state,
-  dispatch,
-}: {
-  state: LiquidityState;
-  dispatch: React.Dispatch<LiquidityAction>;
-}) => {
+export const LiquidityContainer = ({ state }: { state: LiquidityState }) => {
   const { t } = useTranslation();
   const { ethAddress } = useWeb3();
   return (
@@ -62,7 +56,6 @@ export const LiquidityContainer = ({
             contractAddress={contractAddress}
             ethAddress={ethAddress}
             state={state}
-            dispatch={dispatch}
           />
         );
       })}

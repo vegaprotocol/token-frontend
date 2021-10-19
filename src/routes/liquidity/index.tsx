@@ -81,7 +81,7 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
       ) : (
         <Switch>
           <Route exact path={`${match.path}`}>
-            <LiquidityContainer state={state} dispatch={dispatch} />
+            <LiquidityContainer state={state} />
           </Route>
           <Route path={`${match.path}/:address/deposit`}>
             <LiquidityDeposit state={state} dispatch={dispatch} />

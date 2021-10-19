@@ -44,6 +44,7 @@ export const useGetLiquidityBalances = (
           lpStaking.currentEpochDetails(),
           lpStaking.stakingStart(),
         ]);
+
         let connectedWalletData = null;
         if (ethAddress) {
           const [unstaked, staked, rewards] = await Promise.all([
