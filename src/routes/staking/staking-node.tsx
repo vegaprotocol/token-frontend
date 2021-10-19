@@ -121,7 +121,7 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
         pubkey={vegaKey.pub}
         nodeId={node}
         availableStakeToAdd={unstaked}
-        availableStakeToRemove={currentDelegationAmount}
+        availableStakeToRemove={stakeNextEpoch}
       />
     </>
   );
