@@ -56,7 +56,15 @@ export const useTransaction = (
         txHash: tx.hash,
       });
 
-      const receipt = await tx.wait(requiredConfirmations);
+      let receipt: any;
+
+      for (let i = 1; i <= requiredConfirmations; i++) {
+        receipt = await tx.wait(i);
+        dispatch({
+          type: TransactionActionType.TX_CONFIRMATION,
+          confirmations: receipt.confirmations,
+        });
+      }
 
       dispatch({
         type: TransactionActionType.TX_COMPLETE,
