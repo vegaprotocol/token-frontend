@@ -93,7 +93,7 @@ const ConnectedKey = () => {
         />
       )}
       <hr style={{ borderColor: Colors.BLACK, borderTop: 1 }} />
-      {Flags.VESTING_DISABLED ? null : (
+      {Flags.REDEEM_DISABLED ? null : (
         <>
           <WalletCardRow
             label={t("VESTING VEGA TOKENS")}
@@ -113,7 +113,7 @@ const ConnectedKey = () => {
           />
         </>
       )}
-      {Flags.STAKING_DISABLED || Flags.VESTING_DISABLED ? null : (
+      {Flags.STAKING_DISABLED || Flags.REDEEM_DISABLED ? null : (
         <>
           <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
           <WalletCardRow

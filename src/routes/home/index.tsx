@@ -43,7 +43,7 @@ const Home = ({ name }: RouteChildProps) => {
         totalSupply={appState.totalSupply}
         totalStaked={totalStaked}
       />
-      {Flags.VESTING_DISABLED ? null : (
+      {Flags.REDEEM_DISABLED ? null : (
         <>
           <h2>{t("Token Vesting")}</h2>
 
