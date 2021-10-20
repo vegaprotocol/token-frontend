@@ -4,7 +4,9 @@
  */
 export const asciiToHex = (str: string) => {
   if (!str) return "0x00";
+
   var hex = "";
+
   for (var i = 0; i < str.length; i++) {
     var code = str.charCodeAt(i);
     var n = code.toString(16);
