@@ -194,7 +194,7 @@ const NavLinks = ({
       className={`nav-links nav-links--${isDesktop ? "row" : "column"}
       ${inverted ? "nav-links--inverted" : ""}`}
     >
-      {Flags.VESTING_DISABLED ? null : (
+      {Flags.REDEEM_DISABLED ? null : (
         <NavLink {...linkProps} to={Routes.VESTING}>
           {t("Vesting")}
         </NavLink>
