@@ -1,7 +1,7 @@
 import React from "react";
+import { ethers } from "ethers";
 import { IVegaLPStaking } from "../lib/web3-utils";
-// @ts-ignore
-import LPStakingAbi from "../lib/VEGA_WEB3/vega-lp-staking";
+import LPStakingAbi from "../lib/vega-web3/vega-lp-staking";
 import { useWeb3 } from "../contexts/web3-context/web3-context";
 
 /**
@@ -10,6 +10,10 @@ import { useWeb3 } from "../contexts/web3-context/web3-context";
 export const useVegaLPStaking = ({ address }: { address: string }) => {
   const { provider, signer } = useWeb3();
   return React.useMemo<IVegaLPStaking>(() => {
-    return new LPStakingAbi(provider, signer, address);
+    return new LPStakingAbi(
+      provider as ethers.providers.Web3Provider,
+      signer as ethers.Signer,
+      address
+    );
   }, [provider, signer, address]);
 };
