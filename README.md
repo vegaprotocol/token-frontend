@@ -41,6 +41,8 @@ There are a few different configuration options offered for this app:
 | `REACT_APP_DEX_STAKING_DISABLED` | Disable the dex liquidity page an show a coming soon message                                         |
 | `REACT_APP_GOVERNANCE_DISABLED`  | Disable the governance page and show a coming soon message                                           |
 | `REACT_APP_VESTING_DISABLED`     | Prevent association from the vesting contract                                                        |
+| `REACT_APP_FAIRGROUND`           | Change styling to be themed as the fairground version of the website                                 |
+| `REACT_APP_INFURA_ID`            | Infrua fallback for if the user does not have a web3 compatible browser                              |
 
 ## Example configs:
 
