@@ -18,12 +18,18 @@ class MockedVegaStaking implements IVegaStaking {
     this.decimals = decimals;
   }
 
-  addStake(amount: string, vegaKey: string): Promise<void> {
+  addStake(
+    amount: string,
+    vegaKey: string
+  ): Promise<ethers.ContractTransaction> {
     // @ts-ignore
     return promiEventFactory(uuidv4(), "add-stake");
   }
 
-  removeStake(amount: string, vegaKey: string): Promise<any> {
+  removeStake(
+    amount: string,
+    vegaKey: string
+  ): Promise<ethers.ContractTransaction> {
     // @ts-ignore
     return promiEventFactory(uuidv4(), "remove-stake");
   }
@@ -32,7 +38,7 @@ class MockedVegaStaking implements IVegaStaking {
     amount: string,
     newAddress: string,
     vegaKey: string
-  ): Promise<any> {
+  ): Promise<ethers.ContractTransaction> {
     // @ts-ignore
     return promiEventFactory(uuidv4(), "transfer-stake");
   }

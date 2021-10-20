@@ -23,7 +23,10 @@ export default class StakingAbi implements IVegaStaking {
     this.decimals = decimals;
   }
 
-  addStake(amount: string, vegaKey: string): Promise<any> {
+  addStake(
+    amount: string,
+    vegaKey: string
+  ): Promise<ethers.ContractTransaction> {
     const convertedAmount = removeDecimal(
       new BigNumber(amount),
       this.decimals
@@ -31,7 +34,10 @@ export default class StakingAbi implements IVegaStaking {
     return this.contract.stake(convertedAmount, `0x${vegaKey}`);
   }
 
-  removeStake(amount: string, vegaKey: string): Promise<any> {
+  removeStake(
+    amount: string,
+    vegaKey: string
+  ): Promise<ethers.ContractTransaction> {
     const convertedAmount = removeDecimal(
       new BigNumber(amount),
       this.decimals
@@ -43,12 +49,12 @@ export default class StakingAbi implements IVegaStaking {
     amount: string,
     newAddress: string,
     vegaKey: string
-  ): Promise<any> {
+  ): Promise<ethers.ContractTransaction> {
     const convertedAmount = removeDecimal(
       new BigNumber(amount),
       this.decimals
     ).toString();
-    return this.contract.remove_stake(
+    return this.contract.transfer_stake(
       convertedAmount,
       newAddress,
       `0x${vegaKey}`

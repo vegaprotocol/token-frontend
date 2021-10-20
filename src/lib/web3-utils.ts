@@ -1,3 +1,4 @@
+import { ethers } from "ethers";
 import { BigNumber } from "../lib/bignumber";
 import { Tranche } from "./vega-web3/vega-web3-types";
 
@@ -34,8 +35,14 @@ export interface EpochDetails {
 export interface IStaking {
   stakeBalance(address: string, vegaKey: string): Promise<BigNumber>;
   totalStaked(): Promise<BigNumber>;
-  removeStake(amount: string, vegaKey: string): Promise<any>;
-  addStake(amount: string, vegaKey: string): Promise<any>;
+  removeStake(
+    amount: string,
+    vegaKey: string
+  ): Promise<ethers.ContractTransaction>;
+  addStake(
+    amount: string,
+    vegaKey: string
+  ): Promise<ethers.ContractTransaction>;
 }
 
 export interface IVegaStaking extends IStaking {
@@ -43,7 +50,7 @@ export interface IVegaStaking extends IStaking {
     amount: string,
     newAddress: string,
     vegaKey: string
-  ): Promise<any>;
+  ): Promise<ethers.ContractTransaction>;
 }
 
 export interface IVegaVesting extends IStaking {
@@ -55,11 +62,11 @@ export interface IVegaVesting extends IStaking {
     address: string,
     tranche: number
   ): Promise<BigNumber>;
-  withdrawFromTranche(trancheId: number): Promise<any>;
+  withdrawFromTranche(trancheId: number): Promise<ethers.ContractTransaction>;
 }
 
 export interface IVegaClaim {
-  commit(s: string): Promise<any>;
+  commit(s: string): Promise<ethers.ContractTransaction>;
 
   claim({
     amount,
@@ -79,7 +86,7 @@ export interface IVegaClaim {
     v: number;
     r: string;
     s: string;
-  }): Promise<any>;
+  }): Promise<ethers.ContractTransaction>;
 
   isCommitted({ s }: { s: string }): Promise<string>;
 
@@ -93,7 +100,7 @@ export interface IVegaToken {
   decimals(): Promise<number>;
   tokenData(): Promise<{ totalSupply: BigNumber; decimals: number }>;
   balanceOf(address: string): Promise<BigNumber>;
-  approve(spender: string): Promise<any>;
+  approve(spender: string): Promise<ethers.ContractTransaction>;
   allowance(address: string, spender: string): Promise<BigNumber>;
 }
 
@@ -110,11 +117,11 @@ export interface IVegaLPStaking {
   estimateAPY(): Promise<BigNumber>;
   totalStaked(): Promise<BigNumber>;
   totalUnstaked(account: string): Promise<BigNumber>;
-  stake(amount: string): Promise<any>;
-  unstake(): Promise<any>;
-  withdrawRewards(): Promise<any>;
+  stake(amount: string): Promise<ethers.ContractTransaction>;
+  unstake(): Promise<ethers.ContractTransaction>;
+  withdrawRewards(): Promise<ethers.ContractTransaction>;
   allowance(account: string): Promise<BigNumber>;
-  approve(spender: string): Promise<any>;
+  approve(spender: string): Promise<ethers.ContractTransaction>;
   liquidityTokensInRewardPool(): Promise<BigNumber>;
   currentEpochDetails(): Promise<EpochDetails>;
   stakingStart(): Promise<string>;

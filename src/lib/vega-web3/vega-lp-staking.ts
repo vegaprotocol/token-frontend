@@ -222,7 +222,7 @@ export default class VegaLPStaking implements IVegaLPStaking {
    * @param  {string}           account address
    * @return {Promise<WrappedPromiEvent<boolean>>}
    */
-  async stake(amount: string): Promise<any> {
+  async stake(amount: string): Promise<ethers.ContractTransaction> {
     const decimals = await this.lpDecimals;
     return this.contract.stake(
       removeDecimal(new BigNumber(amount), decimals).toString()
@@ -234,7 +234,7 @@ export default class VegaLPStaking implements IVegaLPStaking {
    * @param  {string}           account address
    * @return {WrappedPromiEvent<void>}
    */
-  unstake(): Promise<any> {
+  unstake(): Promise<ethers.ContractTransaction> {
     return this.contract.unstake();
   }
 
@@ -255,16 +255,16 @@ export default class VegaLPStaking implements IVegaLPStaking {
     );
   }
 
-  withdrawRewards(): Promise<any> {
+  withdrawRewards(): Promise<ethers.ContractTransaction> {
     return this.contract.withdraw_rewards();
   }
 
-  async approve(spender: string): Promise<any> {
+  async approve(spender: string): Promise<ethers.ContractTransaction> {
     const amount = removeDecimal(
       new BigNumber(Number.MAX_SAFE_INTEGER),
       await this.lpDecimals
     );
     const contract = await this.lpContract;
-    contract.approve(spender, amount);
+    return contract.approve(spender, amount);
   }
 }

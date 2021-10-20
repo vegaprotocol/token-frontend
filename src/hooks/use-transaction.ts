@@ -7,9 +7,10 @@ import {
 } from "./transaction-reducer";
 import { useTranslation } from "react-i18next";
 import * as Sentry from "@sentry/react";
+import { ethers } from "ethers";
 
 export const useTransaction = (
-  performTransaction: () => Promise<any>,
+  performTransaction: () => Promise<ethers.ContractTransaction>,
   requiredConfirmations: number = 1
 ) => {
   const { t } = useTranslation();
@@ -56,7 +57,7 @@ export const useTransaction = (
         txHash: tx.hash,
       });
 
-      let receipt: any;
+      let receipt: ethers.ContractReceipt | null = null;
 
       for (let i = 1; i <= requiredConfirmations; i++) {
         receipt = await tx.wait(i);
@@ -64,6 +65,10 @@ export const useTransaction = (
           type: TransactionActionType.TX_CONFIRMATION,
           confirmations: receipt.confirmations,
         });
+      }
+
+      if (!receipt) {
+        throw new Error("No receipt after confirmations are met");
       }
 
       dispatch({

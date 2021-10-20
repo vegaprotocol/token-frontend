@@ -1,3 +1,5 @@
+import { ethers } from "ethers";
+
 export enum TxState {
   Default,
   Requested,
@@ -68,7 +70,7 @@ export type TransactionAction =
     }
   | {
       type: TransactionActionType.TX_COMPLETE;
-      receipt: any;
+      receipt: ethers.ContractReceipt;
       confirmations: number;
     }
   | {
