@@ -26,7 +26,7 @@ export default class VegaToken implements IVegaToken {
     return new BigNumber(addDecimal(new BigNumber(res.toString()), decimals));
   }
 
-  async approve(spender: string): Promise<any> {
+  async approve(spender: string): Promise<ethers.ContractTransaction> {
     const decimals = await this.decimals();
     const amount = removeDecimal(
       new BigNumber(Number.MAX_SAFE_INTEGER),

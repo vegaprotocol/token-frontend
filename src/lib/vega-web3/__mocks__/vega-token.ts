@@ -1,3 +1,4 @@
+import { ethers } from "ethers";
 import { BigNumber } from "../../bignumber";
 import { addDecimal } from "../../decimals";
 import { IVegaToken } from "../../web3-utils";
@@ -40,7 +41,7 @@ class MockedToken implements IVegaToken {
     return new BigNumber(addDecimal(new BigNumber(res), decimals));
   }
 
-  async approve(spender: string): Promise<any> {
+  async approve(spender: string): Promise<ethers.ContractTransaction> {
     return promiEventFactory(uuidv4(), "approve");
   }
 

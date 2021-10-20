@@ -1,3 +1,4 @@
+import { ethers } from "ethers";
 import { BigNumber } from "../../../lib/bignumber";
 import { IVegaClaim } from "../../web3-utils";
 import { promiEventFactory, uuidv4 } from "./promi-manager";
@@ -17,7 +18,7 @@ class MockedVegaClaim implements IVegaClaim {
     }
   }
 
-  commit(claimCode: string): Promise<any> {
+  commit(claimCode: string): Promise<ethers.ContractTransaction> {
     // @ts-ignore
     return promiEventFactory(uuidv4(), "commit");
   }
@@ -42,7 +43,7 @@ class MockedVegaClaim implements IVegaClaim {
     r: string;
     s: string;
     account: string;
-  }): Promise<any> {
+  }): Promise<ethers.ContractTransaction> {
     // @ts-ignore
     return promiEventFactory(uuidv4(), "claim");
   }

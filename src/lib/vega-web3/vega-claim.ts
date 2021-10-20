@@ -41,7 +41,7 @@ export default class VegaClaim implements IVegaClaim {
     );
     this.decimals = decimals;
   }
-  commit(s: string): Promise<any> {
+  commit(s: string): Promise<ethers.ContractTransaction> {
     return this.contract.commit_untargeted(s);
   }
 
@@ -69,7 +69,7 @@ export default class VegaClaim implements IVegaClaim {
     v: number;
     r: string;
     s: string;
-  }): Promise<any> {
+  }): Promise<ethers.ContractTransaction> {
     return this.contract[
       target != null ? "claim_targeted" : "claim_untargeted"
     ](

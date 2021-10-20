@@ -19,12 +19,18 @@ class MockedVesting implements IVegaVesting {
     this.decimals = decimals;
   }
 
-  addStake(amount: string, vegaKey: string): Promise<any> {
+  addStake(
+    amount: string,
+    vegaKey: string
+  ): Promise<ethers.ContractTransaction> {
     // @ts-ignore
     return promiEventFactory(uuidv4(), "add-stake");
   }
 
-  removeStake(amount: string, vegaKey: string): Promise<any> {
+  removeStake(
+    amount: string,
+    vegaKey: string
+  ): Promise<ethers.ContractTransaction> {
     // @ts-ignore
     return promiEventFactory(uuidv4(), "remove-stake");
   }
@@ -62,7 +68,7 @@ class MockedVesting implements IVegaVesting {
     }
   }
 
-  withdrawFromTranche(trancheId: number): Promise<any> {
+  withdrawFromTranche(trancheId: number): Promise<ethers.ContractTransaction> {
     // @ts-ignore
     return promiEventFactory(uuidv4(), "withdraw-from-tranche");
   }

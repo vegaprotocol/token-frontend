@@ -39,7 +39,10 @@ export default class VegaVesting implements IVegaVesting {
     );
   }
 
-  removeStake(amount: string, vegaKey: string): Promise<any> {
+  removeStake(
+    amount: string,
+    vegaKey: string
+  ): Promise<ethers.ContractTransaction> {
     const convertedAmount = removeDecimal(
       new BigNumber(amount),
       this.decimals
@@ -47,7 +50,10 @@ export default class VegaVesting implements IVegaVesting {
     return this.contract.remove_stake(convertedAmount, `0x${vegaKey}`);
   }
 
-  addStake(amount: string, vegaKey: string): Promise<any> {
+  addStake(
+    amount: string,
+    vegaKey: string
+  ): Promise<ethers.ContractTransaction> {
     const convertedAmount = removeDecimal(
       new BigNumber(amount),
       this.decimals
@@ -119,7 +125,7 @@ export default class VegaVesting implements IVegaVesting {
     );
   }
 
-  withdrawFromTranche(trancheId: number): Promise<any> {
+  withdrawFromTranche(trancheId: number): Promise<ethers.ContractTransaction> {
     return this.contract.withdraw_from_tranche(trancheId);
   }
 }
