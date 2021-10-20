@@ -104,9 +104,7 @@ export const AssociateTransaction = ({
         "Associating {{amount}} VEGA tokens with Vega key {{vegaKey}}",
         { amount, vegaKey }
       )}
-      pendingFooter={t("pendingAssociationText", {
-        confirmations: requiredConfirmations,
-      })}
+      pendingFooter={t("pendingAssociationText")}
       state={{
         ...state,
         txState: derivedTxState,
