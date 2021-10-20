@@ -17,7 +17,7 @@ import vegaWhite from "../../images/vega_white.png";
 export const Nav = () => {
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
   const isDesktop = windowWidth > 959;
-  const inverted = false;
+  const inverted = Flags.FAIRGROUND;
 
   React.useEffect(() => {
     const handleResizeDebounced = debounce(() => {
