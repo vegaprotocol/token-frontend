@@ -7,6 +7,8 @@ import {
   useAppState,
 } from "../app-state/app-state-context";
 import * as Sentry from "@sentry/react";
+import { BigNumber } from "../../lib/bignumber";
+import { useGetUserTrancheBalances } from "../../hooks/use-get-user-tranche-balances";
 
 // Note: Each contract class imported below gets swapped out for a mocked version
 // at ../../lib/vega-web3/__mocks__ at build time using webpack.NormalModuleReplacementPlugin
@@ -20,9 +22,6 @@ import StakingAbi from "../../lib/VEGA_WEB3/vega-staking";
 import VegaVesting from "../../lib/VEGA_WEB3/vega-vesting";
 // @ts-ignore
 import VegaClaim from "../../lib/VEGA_WEB3/vega-claim";
-import { BigNumber } from "../../lib/bignumber";
-import { useGetUserTrancheBalances } from "../../hooks/use-get-user-tranche-balances";
-
 /**
  * Provides Vega Ethereum contract instances to its children.
  */
