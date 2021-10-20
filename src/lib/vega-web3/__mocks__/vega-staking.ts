@@ -1,7 +1,7 @@
+import { ethers } from "ethers";
 import { BigNumber } from "../../bignumber";
 import { IVegaStaking } from "../../web3-utils";
 import { promiEventFactory, uuidv4 } from "./promi-manager";
-import Web3 from "web3";
 import { addDecimal } from "../../decimals";
 
 const BASE_URL = "mocks/staking";
@@ -9,7 +9,12 @@ const BASE_URL = "mocks/staking";
 class MockedVegaStaking implements IVegaStaking {
   private decimals: number;
 
-  constructor(web3: Web3, vestingAddress: string, decimals: number) {
+  constructor(
+    provider: ethers.providers.Web3Provider,
+    signer: ethers.Signer,
+    vestingAddress: string,
+    decimals: number
+  ) {
     this.decimals = decimals;
   }
 
