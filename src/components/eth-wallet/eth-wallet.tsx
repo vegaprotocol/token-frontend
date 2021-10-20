@@ -73,7 +73,7 @@ const ConnectedKey = () => {
   return (
     <>
       <WalletCardRow
-        label={t("VEGA in wallet")}
+        label={t("vegaInWallet", { symbol: "$VEGA" })}
         value={totalInWallet}
         dark={true}
         valueSuffix={t("VEGA")}
