@@ -1,9 +1,9 @@
 import { BigNumber } from "../../lib/bignumber";
 import { ethers } from "ethers";
-import Web3 from "web3";
 import claimAbi from "../abis/claim_abi.json";
 import { IVegaClaim } from "../web3-utils";
 import { removeDecimal } from "../decimals";
+import { asciiToHex } from "../ascii-to-hex";
 
 export const UNSPENT_CODE = "0x0000000000000000000000000000000000000000";
 export const SPENT_CODE = "0x0000000000000000000000000000000000000001";
@@ -76,7 +76,7 @@ export default class VegaClaim implements IVegaClaim {
       ...[
         { r, s, v },
         { amount: removeDecimal(amount, this.decimals), tranche, expiry },
-        Web3.utils.asciiToHex(country),
+        asciiToHex(country),
         target,
       ].filter(Boolean)
     );
@@ -115,7 +115,7 @@ export default class VegaClaim implements IVegaClaim {
    */
   async isCountryBlocked(country: string): Promise<boolean> {
     const isAllowed = await this.contract.allowed_countries(
-      Web3.utils.asciiToHex(country)
+      asciiToHex(country)
     );
     return !isAllowed;
   }

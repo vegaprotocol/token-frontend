@@ -11,7 +11,7 @@ export default class StakingAbi implements IVegaStaking {
 
   constructor(
     provider: ethers.providers.Web3Provider,
-    signer: any,
+    signer: ethers.Signer,
     address: string,
     decimals: number
   ) {
