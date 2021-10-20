@@ -108,21 +108,14 @@ export default class VegaVesting implements IVegaVesting {
   }
 
   async getAllTranches(): Promise<Tranche[]> {
-    const createEvents = await this.contract.queryFilter(
-      this.contract.filters.Tranche_Created()
-    );
-    const addEvents = await this.contract.queryFilter(
-      this.contract.filters.Tranche_Balance_Added()
-    );
-    const removeEvents = await this.contract.queryFilter(
-      this.contract.filters.Tranche_Balance_Removed()
-    );
-    return getTranchesFromHistory(
-      createEvents,
-      addEvents,
-      removeEvents,
-      this.decimals
-    );
+    const events = await Promise.all([
+      this.contract.queryFilter(this.contract.filters.Tranche_Created()),
+      this.contract.queryFilter(this.contract.filters.Tranche_Balance_Added()),
+      this.contract.queryFilter(
+        this.contract.filters.Tranche_Balance_Removed()
+      ),
+    ]);
+    return getTranchesFromHistory(...events, this.decimals);
   }
 
   withdrawFromTranche(trancheId: number): Promise<ethers.ContractTransaction> {
