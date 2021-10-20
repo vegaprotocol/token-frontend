@@ -12,7 +12,7 @@
 
 # Reporting issues
 
-If you are not on the Vega team and found an issue on token.vega.xyz, please report your bug on our [Nolt board](https://vega-testnet.nolt.io]. Include as much information as possible, including screenshots and Etherscan links. Issues raised via this repository may be closed without being investigated. 
+If you are not on the Vega team and found an issue on token.vega.xyz, please report your bug on our [Nolt board](https://vega-testnet.nolt.io). Include as much information as possible, including screenshots and Etherscan links. Issues raised via this repository may be closed without being investigated. 
 
 # Development
 
