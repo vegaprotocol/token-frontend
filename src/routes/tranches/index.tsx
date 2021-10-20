@@ -8,9 +8,7 @@ import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 import { useTranches } from "../../hooks/use-tranches";
 import { Flags } from "../../config";
-import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
-import { EthWallet } from "../../components/eth-wallet";
-import { VegaWallet } from "../../components/vega-wallet";
+import { Heading } from "../../components/heading";
 
 const TrancheRouter = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
@@ -27,10 +25,8 @@ const TrancheRouter = ({ name }: RouteChildProps) => {
   }
 
   return (
-    <TemplateSidebar
-      title={t("pageTitleTranches")}
-      sidebar={[<EthWallet />, <VegaWallet />]}
-    >
+    <>
+      <Heading title={t("pageTitleTranches")} />
       {Flags.REDEEM_DISABLED ? (
         <p>{t("redeemComingSoon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</p>
       ) : (
@@ -43,7 +39,7 @@ const TrancheRouter = ({ name }: RouteChildProps) => {
           </Route>
         </Switch>
       )}
-    </TemplateSidebar>
+    </>
   );
 };
 

@@ -9,9 +9,7 @@ import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
-import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
-import { EthWallet } from "../../components/eth-wallet";
-import { VegaWallet } from "../../components/vega-wallet";
+import { Heading } from "../../components/heading";
 
 const ClaimIndex = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
@@ -48,12 +46,10 @@ const ClaimIndex = ({ name }: RouteChildProps) => {
   }
 
   return (
-    <TemplateSidebar
-      title={t("pageTitleClaim")}
-      sidebar={[<EthWallet />, <VegaWallet />]}
-    >
+    <>
+      <Heading title={t("pageTitleClaim")} />
       {content}
-    </TemplateSidebar>
+    </>
   );
 };
 

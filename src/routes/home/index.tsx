@@ -9,12 +9,10 @@ import { gql, useQuery } from "@apollo/client";
 import React from "react";
 import { NodeData } from "./__generated__/NodeData";
 import { Routes } from "../router-config";
-import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
-import { EthWallet } from "../../components/eth-wallet";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { Flags, Links } from "../../config";
 import { BigNumber } from "../../lib/bignumber";
-import { VegaWallet } from "../../components/vega-wallet";
+import { Heading } from "../../components/heading";
 
 export const TOTAL_STAKED_QUERY = gql`
   query NodeData {
@@ -35,10 +33,8 @@ const Home = ({ name }: RouteChildProps) => {
   }, [data]);
 
   return (
-    <TemplateSidebar
-      sidebar={[<EthWallet />, <VegaWallet />]}
-      title={t("theVegaToken", { symbol: "$VEGA" })}
-    >
+    <>
+      <Heading title={t("theVegaToken", { symbol: "$VEGA" })} />
       <TokenDetails
         totalSupply={appState.totalSupply}
         totalStaked={totalStaked}
@@ -134,7 +130,7 @@ const Home = ({ name }: RouteChildProps) => {
           </div>
         </>
       )}
-    </TemplateSidebar>
+    </>
   );
 };
 
