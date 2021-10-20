@@ -110,7 +110,13 @@
       display: block;
       width: 30px;
       height: 4px;
-      background: $black;
+      background: $white;
+    }
+
+    &--inverted {
+      span {
+        background: $black;
+      }
     }
   }
 

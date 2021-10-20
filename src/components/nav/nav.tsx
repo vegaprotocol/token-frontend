@@ -17,7 +17,7 @@ import vegaWhite from "../../images/vega_white.png";
 export const Nav = () => {
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
   const isDesktop = windowWidth > 959;
-  const inverted = Flags.FAIRGROUND;
+  const inverted = false;
 
   React.useEffect(() => {
     const handleResizeDebounced = debounce(() => {
@@ -44,7 +44,7 @@ export const Nav = () => {
           {isDesktop ? (
             <NavLinks inverted={inverted} isDesktop={isDesktop} />
           ) : (
-            <NavDrawer />
+            <NavDrawer inverted={inverted} />
           )}
         </div>
       </div>
@@ -129,7 +129,7 @@ const NavHeader = ({ fairground }: { fairground: boolean }) => {
   );
 };
 
-const NavDrawer = () => {
+const NavDrawer = ({ inverted }: { inverted: boolean }) => {
   const { appState, appDispatch } = useAppState();
   return (
     <>
@@ -141,7 +141,9 @@ const NavDrawer = () => {
             isOpen: true,
           })
         }
-        className="nav__drawer-button"
+        className={`nav__drawer-button ${
+          inverted ? "nav__drawer-button--inverted" : ""
+        }`}
       >
         <span />
         <span />
