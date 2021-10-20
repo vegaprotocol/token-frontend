@@ -194,6 +194,9 @@ const NavLinks = ({
       className={`nav-links nav-links--${isDesktop ? "row" : "column"}
       ${inverted ? "nav-links--inverted" : ""}`}
     >
+      <NavLink {...linkProps} exact={true} to={Routes.HOME}>
+        {t("HOME")}
+      </NavLink>
       {Flags.REDEEM_DISABLED ? null : (
         <NavLink {...linkProps} to={Routes.VESTING}>
           {t("Vesting")}
