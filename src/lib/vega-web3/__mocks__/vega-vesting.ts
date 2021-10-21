@@ -115,6 +115,10 @@ class MockedVesting implements IVegaVesting {
     // return getTranchesFromHistory(events, this.decimals);
     return [];
   }
+
+  async userTotalStakedByVegaKey(address: string) {
+    return {};
+  }
 }
 
 export default MockedVesting;
