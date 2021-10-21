@@ -121,4 +121,44 @@ export default class VegaVesting implements IVegaVesting {
   withdrawFromTranche(trancheId: number): Promise<ethers.ContractTransaction> {
     return this.contract.withdraw_from_tranche(trancheId);
   }
+
+  async userTotalStakedByVegaKey(address: string) {
+    const lookup: { [vegaKey: string]: BigNumber } = {};
+    const addFilter = this.contract.filters.Stake_Deposited(address);
+    const removeFilter = this.contract.filters.Stake_Removed(address);
+    const addEvents = await this.contract.queryFilter(addFilter);
+    const removeEvents = await this.contract.queryFilter(removeFilter);
+
+    addEvents.forEach((e) => {
+      const vegaKey = e.args?.vega_public_key;
+      const rawAmount = new BigNumber(e.args?.amount.toString() || 0);
+      const amount = new BigNumber(addDecimal(rawAmount, this.decimals));
+
+      if (!vegaKey) return;
+      if (lookup.hasOwnProperty(vegaKey)) {
+        // Add amount to current value
+        lookup[vegaKey] = lookup[vegaKey].plus(amount);
+      } else {
+        // Create new entry
+        lookup[vegaKey] = amount;
+      }
+    });
+
+    removeEvents.forEach((e) => {
+      const vegaKey = e.args?.vega_public_key;
+      const rawAmount = new BigNumber(e.args?.amount.toString() || 0);
+      const amount = new BigNumber(addDecimal(rawAmount, this.decimals));
+
+      if (!vegaKey) return;
+      if (lookup.hasOwnProperty(vegaKey)) {
+        // Add amount to current value
+        lookup[vegaKey] = lookup[vegaKey].minus(amount);
+      } else {
+        // Minus off zero, this probably shouldn't ever happen
+        lookup[vegaKey] = new BigNumber(0).minus(amount);
+      }
+    });
+
+    return lookup;
+  }
 }

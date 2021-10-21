@@ -57,6 +57,10 @@ class MockedVegaStaking implements IVegaStaking {
     const res = await fetch(`${BASE_URL}/${url}`);
     return res.json();
   }
+
+  async userTotalStakedByVegaKey(address: string) {
+    return {};
+  }
 }
 
 export default MockedVegaStaking;

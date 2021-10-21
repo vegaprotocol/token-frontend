@@ -43,6 +43,9 @@ export interface IStaking {
     amount: string,
     vegaKey: string
   ): Promise<ethers.ContractTransaction>;
+  userTotalStakedByVegaKey(
+    address: string
+  ): Promise<{ [vegaKey: string]: BigNumber }>;
 }
 
 export interface IVegaStaking extends IStaking {
