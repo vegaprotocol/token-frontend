@@ -7,6 +7,10 @@
   display: grid;
   grid-template-rows: auto 1fr min-content;
   min-height: 100%;
+  @media (min-width: 960px) {
+    border-left: 1px solid $white;
+    border-right: 1px solid $white;
+  }
 }
 
 footer {
