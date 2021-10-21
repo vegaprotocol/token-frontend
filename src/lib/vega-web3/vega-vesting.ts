@@ -128,11 +128,14 @@ export default class VegaVesting implements IVegaVesting {
     const removeFilter = this.contract.filters.Stake_Removed(address);
     const addEvents = await this.contract.queryFilter(addFilter);
     const removeEvents = await this.contract.queryFilter(removeFilter);
+    const parseAmount = (e: ethers.Event) => {
+      const rawAmount = new BigNumber(e.args?.amount.toString() || 0);
+      return new BigNumber(addDecimal(rawAmount, this.decimals));
+    };
 
     addEvents.forEach((e) => {
       const vegaKey = e.args?.vega_public_key;
-      const rawAmount = new BigNumber(e.args?.amount.toString() || 0);
-      const amount = new BigNumber(addDecimal(rawAmount, this.decimals));
+      const amount = parseAmount(e);
 
       if (!vegaKey) return;
       if (lookup.hasOwnProperty(vegaKey)) {
@@ -146,8 +149,7 @@ export default class VegaVesting implements IVegaVesting {
 
     removeEvents.forEach((e) => {
       const vegaKey = e.args?.vega_public_key;
-      const rawAmount = new BigNumber(e.args?.amount.toString() || 0);
-      const amount = new BigNumber(addDecimal(rawAmount, this.decimals));
+      const amount = parseAmount(e);
 
       if (!vegaKey) return;
       if (lookup.hasOwnProperty(vegaKey)) {

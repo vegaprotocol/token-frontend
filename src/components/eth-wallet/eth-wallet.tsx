@@ -1,5 +1,3 @@
-import BN from "bn.js";
-import { BigNumber } from "../../lib/bignumber";
 import { useTranslation } from "react-i18next";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { truncateMiddle } from "../../lib/truncate-middle";
@@ -13,8 +11,7 @@ import {
 import { Colors, Flags } from "../../config";
 import React from "react";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
-import { useContracts } from "../../contexts/contracts/contracts-context";
-import { addDecimal } from "../../lib/decimals";
+import { useAssociations } from "../../hooks/use-associations";
 
 export const EthWallet = () => {
   const { t } = useTranslation();
@@ -77,7 +74,7 @@ const ConnectedKey = () => {
     return totalLockedBalance.plus(totalVestedBalance);
   }, [totalLockedBalance, totalVestedBalance]);
 
-  const associations = useAssociations(ethAddress);
+  const { associations } = useAssociations(ethAddress);
 
   return (
     <>
@@ -142,22 +139,3 @@ const ConnectedKey = () => {
     </>
   );
 };
-
-function useAssociations(ethAddress?: string): {
-  [vegaKey: string]: BigNumber;
-} {
-  const { vesting, staking } = useContracts();
-  const [total, setTotal] = React.useState({});
-
-  React.useEffect(() => {
-    const run = async () => {
-      if (!ethAddress) return;
-      const res = await staking.userTotalStakedByVegaKey(ethAddress);
-      setTotal(res);
-    };
-
-    run();
-  }, [ethAddress, vesting, staking]);
-
-  return total;
-}
