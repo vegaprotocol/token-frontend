@@ -11,17 +11,14 @@ import { gql, useQuery } from "@apollo/client";
 import { Proposals } from "./__generated__/proposals";
 import { Callout } from "../../components/callout";
 import { ProposalsList } from "./proposals-list";
-import { EthWallet } from "../../components/eth-wallet";
-import { VegaWallet } from "../../components/vega-wallet";
-import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
 import { AssociateContainer } from "../staking/associate/associate-page-container";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 import { updateProposals } from "./update-proposals";
 import { Proposal } from "./proposal";
 import { Flags } from "../../config";
-import { TemplateDefault } from "../../components/page-templates/template-default";
 import { DisassociateContainer } from "../staking/disassociate/disassociate-page-container";
+import { Heading } from "../../components/heading";
 
 export const PROPOSALS_FRAGMENT = gql`
   fragment ProposalFields on Proposal {
@@ -154,9 +151,10 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
 
   if (Flags.GOVERNANCE_DISABLED) {
     return (
-      <TemplateDefault title={t("pageTitleGovernance")}>
+      <>
+        <Heading title={t("pageTitleGovernance")} />
         <section>{t("Governance is coming soon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</section>
-      </TemplateDefault>
+      </>
     );
   } else if (loading) {
     return (
@@ -167,10 +165,8 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
   }
 
   return (
-    <TemplateSidebar
-      title={t("pageTitleGovernance")}
-      sidebar={[<EthWallet />, <VegaWallet />]}
-    >
+    <>
+      <Heading title={t("pageTitleGovernance")} />
       <Switch>
         <Route path={`${match.path}/associate`}>
           <AssociateContainer />
@@ -197,7 +193,7 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
           )}
         </Route>
       </Switch>
-    </TemplateSidebar>
+    </>
   );
 };
 

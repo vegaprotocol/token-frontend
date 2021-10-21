@@ -2,10 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { RouteChildProps } from "..";
-import { EthWallet } from "../../components/eth-wallet";
-import { TemplateDefault } from "../../components/page-templates/template-default";
-import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
-import { VegaWallet } from "../../components/vega-wallet";
+import { Heading } from "../../components/heading";
 import { Flags } from "../../config";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { AssociateContainer } from "./associate/associate-page-container";
@@ -31,11 +28,13 @@ const StakingRouter = ({ name }: RouteChildProps) => {
   }, [associate, disassociate, t]);
 
   return Flags.STAKING_DISABLED ? (
-    <TemplateDefault title={title}>
+    <>
+      <Heading title={title} />
       <div>{t("Staking is coming soon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</div>
-    </TemplateDefault>
+    </>
   ) : (
-    <TemplateSidebar title={title} sidebar={[<EthWallet />, <VegaWallet />]}>
+    <>
+      <Heading title={title} />
       <Switch>
         <Route path={`${match.path}/associate`}>
           <AssociateContainer />
@@ -52,7 +51,7 @@ const StakingRouter = ({ name }: RouteChildProps) => {
           </StakingNodesContainer>
         </Route>
       </Switch>
-    </TemplateSidebar>
+    </>
   );
 };
 
