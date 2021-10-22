@@ -6,6 +6,7 @@ import { IVegaVesting } from "../web3-utils";
 import { getTranchesFromHistory } from "./tranche-helpers";
 import { Tranche } from "./vega-web3-types";
 import { addDecimal, removeDecimal } from "../decimals";
+import { combineStakeEventsByVegaKey } from "./stake-helpers";
 
 export default class VegaVesting implements IVegaVesting {
   private contract: ethers.Contract;
@@ -127,35 +128,10 @@ export default class VegaVesting implements IVegaVesting {
     const removeFilter = this.contract.filters.Stake_Removed(address);
     const addEvents = await this.contract.queryFilter(addFilter);
     const removeEvents = await this.contract.queryFilter(removeFilter);
-    const parseAmount = (e: ethers.Event) => {
-      const rawAmount = new BigNumber(e.args?.amount.toString() || 0);
-      return new BigNumber(addDecimal(rawAmount, this.decimals));
-    };
-
-    const res = [...addEvents, ...removeEvents].reduce((obj, e) => {
-      const vegaKey = e.args?.vega_public_key;
-      const amount = parseAmount(e);
-      const isDeposit = e.event === "Stake_Deposited";
-      const isRemove = e.event === "Stake_Removed";
-
-      if (!isDeposit && !isRemove) return obj;
-
-      if (obj.hasOwnProperty(vegaKey)) {
-        if (isDeposit) {
-          obj[vegaKey] = obj[vegaKey].plus(amount);
-        } else {
-          obj[vegaKey] = obj[vegaKey].minus(amount);
-        }
-      } else {
-        if (isDeposit) {
-          obj[vegaKey] = amount;
-        } else {
-          obj[vegaKey] = new BigNumber(0);
-        }
-      }
-      return obj;
-    }, {} as { [vegaKey: string]: BigNumber });
-
+    const res = combineStakeEventsByVegaKey(
+      [...addEvents, ...removeEvents],
+      this.decimals
+    );
     return res;
   }
 }
