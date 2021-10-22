@@ -17,13 +17,13 @@ export function useAssociations(ethAddress?: string): {
     if (!ethAddress) return;
 
     try {
-      const stakingAssociations = await staking.userTotalStakedByVegaKey(
-        ethAddress
-      );
-      const vestingAssociations = await vesting.userTotalStakedByVegaKey(
-        ethAddress
-      );
+      const [stakingAssociations, vestingAssociations] = await Promise.all([
+        staking.userTotalStakedByVegaKey(ethAddress),
+        vesting.userTotalStakedByVegaKey(ethAddress),
+      ]);
 
+      // Merge associations via vesting and wallet, adding the values together
+      // if both types of association have been used for a single Vega key
       const result = mergeWith(
         stakingAssociations,
         vestingAssociations,
