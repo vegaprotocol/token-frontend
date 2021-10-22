@@ -122,16 +122,13 @@ const ConnectedKey = () => {
       {Flags.STAKING_DISABLED || Flags.REDEEM_DISABLED ? null : (
         <>
           <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
-          {/* <WalletCardRow
-            label={t("Associated")}
-            value={lien}
-            valueSuffix={t("VEGA")}
-          /> */}
+          <WalletCardRow label="Associated by Vega key" dark={true} />
           {Object.entries(associations).map(([key, amount]) => (
             <WalletCardRow
               key={key}
               label={truncateMiddle(key)}
               value={amount}
+              valueSuffix={t("VEGA")}
             />
           ))}
         </>
