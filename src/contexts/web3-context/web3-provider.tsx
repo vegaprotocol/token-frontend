@@ -11,12 +11,15 @@ import {
 } from "../../config";
 import { Web3Context } from "./web3-context";
 import { ethers } from "ethers";
-import Web3Modal from "web3modal";
+import Web3Modal, { getInjectedProviderName } from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
 const web3Modal = new Web3Modal({
   cacheProvider: true,
   theme: "dark",
+  // Opera doesn't seem to work, so if you're on Opera you have to use
+  // WalletConnect to connect
+  disableInjectedProvider: getInjectedProviderName() === "Opera",
   providerOptions: {
     // Injected providers. E.G. browser extensions such as Metamask
     injected: {
@@ -60,7 +63,7 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
     )
   );
   const [signer, setSigner] = React.useState<ethers.Signer | null>(null);
-  const [chainId, setChainId] = React.useState<EthereumChainId | null>(null);
+  const [chainId, setChainId] = React.useState<EthereumChainId>(APP_CHAIN_ID);
   const [ethAddress, setEthAddress] = React.useState("");
 
   // On connect replace the default provider and web3 instances (which uses an HttpProvider
