@@ -1,21 +1,21 @@
 import React from "react";
 import * as Sentry from "@sentry/react";
 import { BigNumber } from "../lib/bignumber";
-import { useContracts } from "../contexts/contracts/contracts-context";
 import mergeWith from "lodash/mergeWith";
+import {
+  AppStateActionType,
+  useAppState,
+} from "../contexts/app-state/app-state-context";
+import { IVegaStaking, IVegaVesting } from "../lib/web3-utils";
 
-export function useAssociations(ethAddress?: string): {
-  associations: {
-    [vegaKey: string]: BigNumber;
-  };
-  refetch: () => void;
-} {
-  const { vesting, staking } = useContracts();
-  const [associations, setAssociations] = React.useState({});
+export function useGetAssociationBreakdown(
+  ethAddress: string,
+  staking: IVegaStaking,
+  vesting: IVegaVesting
+): () => Promise<void> {
+  const { appDispatch } = useAppState();
 
-  const fetchAssociations = React.useCallback(async () => {
-    if (!ethAddress) return;
-
+  const getAssociationBreakdown = React.useCallback(async () => {
     try {
       const [stakingAssociations, vestingAssociations] = await Promise.all([
         staking.userTotalStakedByVegaKey(ethAddress),
@@ -34,15 +34,14 @@ export function useAssociations(ethAddress?: string): {
         }
       );
 
-      setAssociations(result);
+      appDispatch({
+        type: AppStateActionType.SET_ASSOCIATION_BREAKDOWN,
+        breakdown: result,
+      });
     } catch (err) {
       Sentry.captureException(err);
     }
-  }, [staking, vesting, ethAddress]);
+  }, [ethAddress, staking, vesting, appDispatch]);
 
-  React.useEffect(() => {
-    fetchAssociations();
-  }, [fetchAssociations]);
-
-  return { associations, refetch: fetchAssociations };
+  return getAssociationBreakdown;
 }

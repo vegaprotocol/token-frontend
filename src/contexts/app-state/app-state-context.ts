@@ -91,6 +91,12 @@ export interface AppState {
 
   /** Whether or not the mobile drawer is open. Only relevant on screens smaller than 960 */
   drawerOpen: boolean;
+
+  /**
+   * A breakdown of associations by Vega key. An object where each key is the vega key and
+   * the value is the total amount associated (staking and vesting combined) to that key.
+   */
+  associationBreakdown: { [vegaKey: string]: BigNumber };
 }
 
 export enum AppStateActionType {
@@ -107,6 +113,7 @@ export enum AppStateActionType {
   SET_DRAWER,
   SET_TRANCHE_ERROR,
   REFRESH_ASSOCIATED_BALANCES,
+  SET_ASSOCIATION_BREAKDOWN,
 }
 
 export type AppStateAction =
@@ -167,6 +174,10 @@ export type AppStateAction =
       type: AppStateActionType.REFRESH_ASSOCIATED_BALANCES;
       walletAssociatedBalance: BigNumber;
       vestingAssociatedBalance: BigNumber;
+    }
+  | {
+      type: AppStateActionType.SET_ASSOCIATION_BREAKDOWN;
+      breakdown: { [vegaKey: string]: BigNumber };
     };
 
 type AppStateContextShape = {
