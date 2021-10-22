@@ -76,7 +76,6 @@ export default class StakingAbi implements IVegaStaking {
   }
 
   async userTotalStakedByVegaKey(address: string) {
-    const obj: { [vegaKey: string]: BigNumber } = {};
     const addFilter = this.contract.filters.Stake_Deposited(address);
     const removeFilter = this.contract.filters.Stake_Removed(address);
     const addEvents = await this.contract.queryFilter(addFilter);
@@ -86,7 +85,7 @@ export default class StakingAbi implements IVegaStaking {
       return new BigNumber(addDecimal(rawAmount, this.decimals));
     };
 
-    [...addEvents, ...removeEvents].forEach((e) => {
+    const res = [...addEvents, ...removeEvents].reduce((obj, e) => {
       const vegaKey = e.args?.vega_public_key;
       const amount = parseAmount(e);
       const isDeposit = e.event === "Stake_Deposited";
@@ -104,8 +103,9 @@ export default class StakingAbi implements IVegaStaking {
           obj[vegaKey] = new BigNumber(0);
         }
       }
-    });
+      return obj;
+    }, {} as { [vegaKey: string]: BigNumber });
 
-    return obj;
+    return res;
   }
 }
