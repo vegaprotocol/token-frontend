@@ -76,7 +76,7 @@ export default class StakingAbi implements IVegaStaking {
   }
 
   async userTotalStakedByVegaKey(address: string) {
-    const lookup: { [vegaKey: string]: BigNumber } = {};
+    const obj: { [vegaKey: string]: BigNumber } = {};
     const addFilter = this.contract.filters.Stake_Deposited(address);
     const removeFilter = this.contract.filters.Stake_Removed(address);
     const addEvents = await this.contract.queryFilter(addFilter);
@@ -86,34 +86,26 @@ export default class StakingAbi implements IVegaStaking {
       return new BigNumber(addDecimal(rawAmount, this.decimals));
     };
 
-    addEvents.forEach((e) => {
+    [...addEvents, ...removeEvents].forEach((e) => {
       const vegaKey = e.args?.vega_public_key;
       const amount = parseAmount(e);
+      const isDeposit = e.event === "Stake_Deposited";
 
-      if (!vegaKey) return;
-      if (lookup.hasOwnProperty(vegaKey)) {
-        // Add amount to current value
-        lookup[vegaKey] = lookup[vegaKey].plus(amount);
+      if (obj.hasOwnProperty(vegaKey)) {
+        if (isDeposit) {
+          obj[vegaKey] = obj[vegaKey].plus(amount);
+        } else {
+          obj[vegaKey] = obj[vegaKey].minus(amount);
+        }
       } else {
-        // Create new entry
-        lookup[vegaKey] = amount;
+        if (isDeposit) {
+          obj[vegaKey] = amount;
+        } else {
+          obj[vegaKey] = new BigNumber(0);
+        }
       }
     });
 
-    removeEvents.forEach((e) => {
-      const vegaKey = e.args?.vega_public_key;
-      const amount = parseAmount(e);
-
-      if (!vegaKey) return;
-      if (lookup.hasOwnProperty(vegaKey)) {
-        // Add amount to current value
-        lookup[vegaKey] = lookup[vegaKey].minus(amount);
-      } else {
-        // Minus off zero, this probably shouldn't ever happen
-        lookup[vegaKey] = new BigNumber(0).minus(amount);
-      }
-    });
-
-    return lookup;
+    return obj;
   }
 }
