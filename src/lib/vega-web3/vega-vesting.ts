@@ -136,6 +136,9 @@ export default class VegaVesting implements IVegaVesting {
       const vegaKey = e.args?.vega_public_key;
       const amount = parseAmount(e);
       const isDeposit = e.event === "Stake_Deposited";
+      const isRemove = e.event === "Stake_Removed";
+
+      if (!isDeposit && !isRemove) return obj;
 
       if (obj.hasOwnProperty(vegaKey)) {
         if (isDeposit) {
