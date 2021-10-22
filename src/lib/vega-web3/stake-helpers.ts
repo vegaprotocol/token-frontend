@@ -6,14 +6,9 @@ export function combineStakeEventsByVegaKey(
   events: ethers.Event[],
   decimals: number
 ): { [vegaKey: string]: BigNumber } {
-  const parseAmount = (e: ethers.Event) => {
-    const rawAmount = new BigNumber(e.args?.amount.toString() || 0);
-    return new BigNumber(addDecimal(rawAmount, decimals));
-  };
-
   const res = events.reduce((obj, e) => {
     const vegaKey = e.args?.vega_public_key;
-    const amount = parseAmount(e);
+    const amount = parseEventAmount(e, decimals);
     const isDeposit = e.event === "Stake_Deposited";
     const isRemove = e.event === "Stake_Removed";
 
@@ -36,4 +31,9 @@ export function combineStakeEventsByVegaKey(
   }, {} as { [vegaKey: string]: BigNumber });
 
   return res;
+}
+
+function parseEventAmount(e: ethers.Event, decimals: number) {
+  const rawAmount = new BigNumber(e.args?.amount.toString() || 0);
+  return new BigNumber(addDecimal(rawAmount, decimals));
 }
