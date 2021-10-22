@@ -11,7 +11,6 @@ import {
 import { Colors, Flags } from "../../config";
 import React from "react";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
-import { useAssociations } from "../../hooks/use-associations";
 
 export const EthWallet = () => {
   const { t } = useTranslation();
@@ -61,7 +60,6 @@ export const EthWallet = () => {
 
 const ConnectedKey = () => {
   const { t } = useTranslation();
-  const { ethAddress } = useWeb3();
   const { appState } = useAppState();
   const { lien, walletBalance, totalLockedBalance, totalVestedBalance } =
     appState;
@@ -73,8 +71,6 @@ const ConnectedKey = () => {
   const totalInVestingContract = React.useMemo(() => {
     return totalLockedBalance.plus(totalVestedBalance);
   }, [totalLockedBalance, totalVestedBalance]);
-
-  const { associations } = useAssociations(ethAddress);
 
   return (
     <>
@@ -123,14 +119,16 @@ const ConnectedKey = () => {
         <>
           <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
           <WalletCardRow label="Associated to" dark={true} />
-          {Object.entries(associations).map(([key, amount]) => (
-            <WalletCardRow
-              key={key}
-              label={truncateMiddle(key)}
-              value={amount}
-              valueSuffix={t("VEGA")}
-            />
-          ))}
+          {Object.entries(appState.associationBreakdown).map(
+            ([key, amount]) => (
+              <WalletCardRow
+                key={key}
+                label={truncateMiddle(key)}
+                value={amount}
+                valueSuffix={t("VEGA")}
+              />
+            )
+          )}
         </>
       )}
     </>

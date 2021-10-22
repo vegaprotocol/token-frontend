@@ -12,6 +12,7 @@ import {
   PartyStakeLinkings_party_stake_linkings,
 } from "./__generated__/PartyStakeLinkings";
 import { useContracts } from "../../../contexts/contracts/contracts-context";
+import { useGetAssociationBreakdown } from "../../../hooks/use-get-association-breakdown";
 
 export const useAddStake = (
   address: string,
@@ -30,6 +31,11 @@ export const useAddStake = (
     confirmations
   );
   const refreshBalances = useRefreshBalances(address);
+  const getAssociationBreakdown = useGetAssociationBreakdown(
+    address,
+    staking,
+    vesting
+  );
 
   React.useEffect(() => {
     if (
@@ -37,8 +43,14 @@ export const useAddStake = (
       contractAdd.state.txState === TxState.Complete
     ) {
       refreshBalances();
+      getAssociationBreakdown();
     }
-  }, [contractAdd.state.txState, refreshBalances, walletAdd.state.txState]);
+  }, [
+    contractAdd.state.txState,
+    refreshBalances,
+    walletAdd.state.txState,
+    getAssociationBreakdown,
+  ]);
 
   return React.useMemo(() => {
     if (stakingMethod === StakingMethod.Contract) {
