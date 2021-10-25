@@ -13,7 +13,6 @@ import { Staking as StakingQueryResult } from "./__generated__/Staking";
 import { StakingNodesContainer } from "./staking-nodes-container";
 import { Colors } from "../../config";
 import { ConnectToVega } from "./connect-to-vega";
-import { truncateMiddle } from "../../lib/truncate-middle";
 
 export const StakingNodeContainer = () => {
   return (
