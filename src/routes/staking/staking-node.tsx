@@ -13,6 +13,7 @@ import { Staking as StakingQueryResult } from "./__generated__/Staking";
 import { StakingNodesContainer } from "./staking-nodes-container";
 import { Colors } from "../../config";
 import { ConnectToVega } from "./connect-to-vega";
+import { truncateMiddle } from "../../lib/truncate-middle";
 
 export const StakingNodeContainer = () => {
   return (
@@ -97,9 +98,10 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
   return (
     <>
       <h2 style={{ wordBreak: "break-word", marginTop: 0 }}>
-        {t("VALIDATOR {{node}}", { node })}
+        {nodeInfo.name
+          ? t("validatorTitle", { nodeName: nodeInfo.name })
+          : t("validatorTitle", { nodeName: t("validatorTitleFallback") })}
       </h2>
-      <p>Vega key: {vegaKey.pubShort}</p>
       <ValidatorTable
         node={nodeInfo}
         stakedTotal={data?.nodeData?.stakedTotalFormatted || "0"}
