@@ -13,11 +13,10 @@ interface StakeSuccessProps {
 
 export const StakeSuccess = ({ action, amount, nodeId }: StakeSuccessProps) => {
   const { t } = useTranslation();
-  const titleArgs = { amount, node: nodeId };
   const title =
     action === "Add"
-      ? t("{{amount}} VEGA has been added to node {{node}}", titleArgs)
-      : t("{{amount}} VEGA has been removed from node {{node}}", titleArgs);
+      ? t("stakeAddSuccessMessage", { amount })
+      : t("stakeRemoveSuccessMessage", { amount, node: nodeId });
 
   return (
     <Callout icon={<Tick />} intent="success" title={title}>
