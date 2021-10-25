@@ -34,6 +34,7 @@ export const STAKING_QUERY = gql`
     }
     nodes {
       id
+      name
       pubkey
       infoUrl
       location

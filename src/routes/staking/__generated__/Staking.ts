@@ -106,6 +106,7 @@ export interface Staking_nodes {
    * The node url eg n01.vega.xyz
    */
   id: string;
+  name: string;
   /**
    * Pubkey of the node operator
    */

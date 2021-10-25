@@ -204,6 +204,8 @@ export const StakingStepSelectNode = ({
 
       return {
         id: node.id,
+        name: node.name,
+        pubkey: node.pubkey,
         stakedTotal,
         stakedOnNode,
         stakedTotalPercentage,
