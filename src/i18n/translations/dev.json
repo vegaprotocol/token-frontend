@@ -152,7 +152,7 @@
   "vegaWalletConnect": "Connect",
   "vegaWalletConnecting": "Connecting...",
   "No token": "No token",
-  "Wallet service unavailable": "Wallet service not running",
+  "Wallet service unavailable": "Wallet service not running at that url",
   "Session expired": "Session expired",
   "Invalid credentials": "Wallet or passphrase incorrect",
   "noKeys": "No keys",

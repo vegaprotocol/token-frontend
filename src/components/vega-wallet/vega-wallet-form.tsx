@@ -47,6 +47,7 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
       const [tokenErr] = await vegaWalletService.getToken({
         wallet: fields.wallet,
         passphrase: fields.passphrase,
+        url: fields.url,
       });
 
       if (tokenErr) {
