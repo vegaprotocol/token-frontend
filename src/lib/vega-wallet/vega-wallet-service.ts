@@ -212,3 +212,5 @@ export function hasErrorProperty(obj: unknown): obj is GenericErrorResponse {
 
   return false;
 }
+
+export const vegaWalletService = new VegaWalletService();
