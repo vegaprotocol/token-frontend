@@ -6,6 +6,7 @@ import { GenericErrorResponse } from "./vega-wallet-types";
 
 const DEFAULT_WALLET_URL = "http://localhost:1789/api/v1";
 const TOKEN_STORAGE_KEY = "vega_wallet_token";
+const WALLET_URL_KEY = "vega_wallet_url";
 
 const Endpoints = {
   STATUS: "status",
@@ -70,14 +71,17 @@ export class VegaWalletService implements IVegaWalletService {
   statusPoll: any;
 
   constructor() {
-    this.url = DEFAULT_WALLET_URL;
+    this.url = LocalStorage.getItem(WALLET_URL_KEY) || DEFAULT_WALLET_URL;
     this.token = LocalStorage.getItem(TOKEN_STORAGE_KEY) || "";
   }
 
   async getToken(params: {
     wallet: string;
     passphrase: string;
+    url: string;
   }): Promise<[string | undefined, string | undefined]> {
+    this.setWalletUrl(params.url);
+
     try {
       const res = await fetch(`${this.url}/${Endpoints.TOKEN}`, {
         method: "post",
@@ -110,6 +114,7 @@ export class VegaWalletService implements IVegaWalletService {
 
       if (json.success) {
         this.clearToken();
+        this.clearWalletUrl();
         return [undefined, true];
       } else {
         return [undefined, false];
@@ -184,6 +189,16 @@ export class VegaWalletService implements IVegaWalletService {
   private clearToken() {
     this.token = "";
     LocalStorage.removeItem(TOKEN_STORAGE_KEY);
+  }
+
+  private setWalletUrl(url: string) {
+    this.url = url;
+    LocalStorage.setItem(WALLET_URL_KEY, url);
+  }
+
+  private clearWalletUrl() {
+    this.url = DEFAULT_WALLET_URL;
+    LocalStorage.removeItem(WALLET_URL_KEY);
   }
 
   /**
