@@ -16,7 +16,7 @@ export const WalletDisassociate = ({
     appState: { walletAssociatedBalance },
   } = useAppState();
   const { t } = useTranslation();
-  
+
   if (!walletAssociatedBalance || walletAssociatedBalance.isEqualTo("0")) {
     return (
       <div className="disassociate-page__error">
@@ -28,15 +28,13 @@ export const WalletDisassociate = ({
   }
 
   return (
-    <>
-      <TokenInput
-        submitText={t("Disassociate VEGA Tokens from key")}
-        perform={perform}
-        maximum={walletAssociatedBalance}
-        amount={amount}
-        setAmount={setAmount}
-        currency={t("VEGA Tokens")}
-      />
-    </>
+    <TokenInput
+      submitText={t("Disassociate VEGA Tokens from key")}
+      perform={perform}
+      maximum={walletAssociatedBalance}
+      amount={amount}
+      setAmount={setAmount}
+      currency={t("VEGA Tokens")}
+    />
   );
 };

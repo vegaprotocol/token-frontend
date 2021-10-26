@@ -3,13 +3,15 @@ import "./app.scss";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AppRouter } from "./routes";
 import { AppStateProvider } from "./contexts/app-state/app-state-provider";
-import { Nav } from "./components/nav";
 import { VegaWalletModal } from "./components/vega-wallet/vega-wallet-modal";
 // @ts-ignore
 import { GraphQlProvider } from "./components/GRAPHQL_PROVIDER/graphql-provider";
 import { AppLoader } from "./app-loader";
 import { Web3Provider } from "./contexts/web3-context/web3-provider";
 import { ContractsProvider } from "./contexts/contracts/contracts-provider";
+import { TemplateSidebar } from "./components/page-templates/template-sidebar";
+import { EthWallet } from "./components/eth-wallet";
+import { VegaWallet } from "./components/vega-wallet";
 
 function App() {
   return (
@@ -21,8 +23,12 @@ function App() {
               <AppLoader>
                 <>
                   <div className="app">
-                    <Nav />
-                    <AppRouter />
+                    <TemplateSidebar sidebar={[<EthWallet />, <VegaWallet />]}>
+                      <AppRouter />
+                    </TemplateSidebar>
+                    <footer>
+                      Version: {process.env.COMMIT_REF || "development"}
+                    </footer>
                   </div>
                   <VegaWalletModal />
                 </>

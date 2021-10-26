@@ -1,5 +1,6 @@
+import { ethers } from "ethers";
 import { BigNumber } from "../../../lib/bignumber";
-import { IVegaClaim, WrappedPromiEvent } from "../../web3-utils";
+import { IVegaClaim } from "../../web3-utils";
 import { promiEventFactory, uuidv4 } from "./promi-manager";
 
 const BASE_URL = "mocks/claim";
@@ -17,13 +18,9 @@ class MockedVegaClaim implements IVegaClaim {
     }
   }
 
-  commit(claimCode: string, account: string): WrappedPromiEvent<void> {
+  commit(claimCode: string): Promise<ethers.ContractTransaction> {
+    // @ts-ignore
     return promiEventFactory(uuidv4(), "commit");
-  }
-
-  checkCommit(claimCode: string, account: string): Promise<any> {
-    // TODO add test for if check fails
-    return Promise.resolve(true);
   }
 
   claim({
@@ -46,32 +43,9 @@ class MockedVegaClaim implements IVegaClaim {
     r: string;
     s: string;
     account: string;
-  }): WrappedPromiEvent<void> {
+  }): Promise<ethers.ContractTransaction> {
+    // @ts-ignore
     return promiEventFactory(uuidv4(), "claim");
-  }
-
-  checkClaim({
-    amount,
-    tranche,
-    expiry,
-    target,
-    country,
-    v,
-    r,
-    s,
-    account,
-  }: {
-    amount: BigNumber;
-    tranche: number;
-    expiry: number;
-    target?: string;
-    country: string;
-    v: number;
-    r: string;
-    s: string;
-    account: string;
-  }): Promise<any> {
-    return Promise.resolve(true);
   }
 
   isCommitted({ s, account }: { s: string; account: string }): Promise<string> {

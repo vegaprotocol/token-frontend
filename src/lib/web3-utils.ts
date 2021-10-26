@@ -1,6 +1,6 @@
+import { ethers } from "ethers";
 import { BigNumber } from "../lib/bignumber";
 import { Tranche } from "./vega-web3/vega-web3-types";
-import { EventEmitter } from "events";
 
 export type EthereumChainId = "0x1" | "0x3" | "0x4" | "0x5" | "0x2a";
 export type EthereumChainName =
@@ -32,86 +32,28 @@ export interface EpochDetails {
   endSeconds: BigNumber;
 }
 
-export declare class PromiEvent<T>
-  extends EventEmitter
-  implements PromiseLike<T>
-{
-  constructor(
-    executor: (
-      resolve: PromiEvent.Resolve<T>,
-      reject: PromiEvent.Reject
-    ) => void
-  );
-
-  public then<TResult1, TResult2>(
-    onfulfilled?:
-      | ((value: T) => TResult1 | PromiseLike<TResult1>)
-      | undefined
-      | null,
-    onrejected?:
-      | ((reason: any) => TResult2 | PromiseLike<TResult2>)
-      | undefined
-      | null
-  ): Promise<TResult1 | TResult2>;
-
-  public catch<TResult>(
-    onRejected?:
-      | ((reason: any) => TResult | PromiseLike<TResult>)
-      | undefined
-      | null
-  ): Promise<T | TResult>;
-
-  public off(): this;
-
-  public finally(onfinally?: (() => void) | null | undefined): Promise<T>;
-
-  static resolve<T>(value: T): PromiEvent<T>;
-  static reject<T>(reason: any): PromiEvent<T>;
-}
-
-declare namespace PromiEvent {
-  export type Resolve<T> = (value?: T | PromiseLike<T>) => void;
-  export type Reject = (reason?: any) => void;
-}
-
-export interface WrappedPromiEvent<T> {
-  promiEvent: PromiEvent<T>;
-}
-
 export interface IStaking {
   stakeBalance(address: string, vegaKey: string): Promise<BigNumber>;
   totalStaked(): Promise<BigNumber>;
   removeStake(
-    address: string,
     amount: string,
     vegaKey: string
-  ): WrappedPromiEvent<void>;
-  checkRemoveStake(
-    address: string,
-    amount: string,
-    vegaKey: string
-  ): Promise<any>;
+  ): Promise<ethers.ContractTransaction>;
   addStake(
-    address: string,
     amount: string,
     vegaKey: string
-  ): WrappedPromiEvent<void>;
-  checkAddStake(address: string, amount: string, vegaKey: string): Promise<any>;
+  ): Promise<ethers.ContractTransaction>;
+  userTotalStakedByVegaKey(
+    address: string
+  ): Promise<{ [vegaKey: string]: BigNumber }>;
 }
 
 export interface IVegaStaking extends IStaking {
-  checkTransferStake(
-    address: string,
-    amount: string,
-    newAddress: string,
-    vegaKey: string
-  ): Promise<any>;
   transferStake(
-    address: string,
     amount: string,
     newAddress: string,
     vegaKey: string
-  ): WrappedPromiEvent<string>;
+  ): Promise<ethers.ContractTransaction>;
 }
 
 export interface IVegaVesting extends IStaking {
@@ -123,17 +65,11 @@ export interface IVegaVesting extends IStaking {
     address: string,
     tranche: number
   ): Promise<BigNumber>;
-  withdrawFromTranche(
-    account: string,
-    trancheId: number
-  ): WrappedPromiEvent<void>;
-  checkWithdrawFromTranche(account: string, trancheId: number): Promise<any>;
+  withdrawFromTranche(trancheId: number): Promise<ethers.ContractTransaction>;
 }
 
 export interface IVegaClaim {
-  commit(s: string, account: string): WrappedPromiEvent<void>;
-
-  checkCommit(s: string, account: string): Promise<boolean>;
+  commit(s: string): Promise<ethers.ContractTransaction>;
 
   claim({
     amount,
@@ -144,7 +80,6 @@ export interface IVegaClaim {
     v,
     r,
     s,
-    account,
   }: {
     amount: BigNumber;
     tranche: number;
@@ -154,32 +89,9 @@ export interface IVegaClaim {
     v: number;
     r: string;
     s: string;
-    account: string;
-  }): WrappedPromiEvent<void>;
+  }): Promise<ethers.ContractTransaction>;
 
-  checkClaim({
-    amount,
-    tranche,
-    expiry,
-    target,
-    country,
-    v,
-    r,
-    s,
-    account,
-  }: {
-    amount: BigNumber;
-    tranche: number;
-    expiry: number;
-    target?: string;
-    country: string;
-    v: number;
-    r: string;
-    s: string;
-    account: string;
-  }): Promise<void>;
-
-  isCommitted({ s, account }: { s: string; account: string }): Promise<string>;
+  isCommitted({ s }: { s: string }): Promise<string>;
 
   isExpired(expiry: number): Promise<boolean>;
   isUsed(s: string): Promise<boolean>;
@@ -191,10 +103,7 @@ export interface IVegaToken {
   decimals(): Promise<number>;
   tokenData(): Promise<{ totalSupply: BigNumber; decimals: number }>;
   balanceOf(address: string): Promise<BigNumber>;
-  approve(
-    address: string,
-    spender: string
-  ): Promise<WrappedPromiEvent<boolean>>;
+  approve(spender: string): Promise<ethers.ContractTransaction>;
   allowance(address: string, spender: string): Promise<BigNumber>;
 }
 
@@ -211,14 +120,11 @@ export interface IVegaLPStaking {
   estimateAPY(): Promise<BigNumber>;
   totalStaked(): Promise<BigNumber>;
   totalUnstaked(account: string): Promise<BigNumber>;
-  stake(amount: string, account: string): Promise<WrappedPromiEvent<boolean>>;
-  unstake(account: string): WrappedPromiEvent<void>;
-  withdrawRewards(address: string): WrappedPromiEvent<void>;
+  stake(amount: string): Promise<ethers.ContractTransaction>;
+  unstake(): Promise<ethers.ContractTransaction>;
+  withdrawRewards(): Promise<ethers.ContractTransaction>;
   allowance(account: string): Promise<BigNumber>;
-  approve(
-    address: string,
-    spender: string
-  ): Promise<WrappedPromiEvent<boolean>>;
+  approve(spender: string): Promise<ethers.ContractTransaction>;
   liquidityTokensInRewardPool(): Promise<BigNumber>;
   currentEpochDetails(): Promise<EpochDetails>;
   stakingStart(): Promise<string>;

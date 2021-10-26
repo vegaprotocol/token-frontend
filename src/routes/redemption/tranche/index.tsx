@@ -17,6 +17,7 @@ import { Routes } from "../../router-config";
 import { RedemptionState } from "../redemption-reducer";
 import { TrancheTable } from "../tranche-table";
 import { useContracts } from "../../../contexts/contracts/contracts-context";
+import { formatNumber } from "../../../lib/format-number";
 
 export const RedeemFromTranche = ({
   state,
@@ -43,14 +44,11 @@ export const RedeemFromTranche = ({
     state: txState,
     perform,
     dispatch: txDispatch,
-  } = useTransaction(
-    () => vesting.withdrawFromTranche(address, numberId),
-    () => vesting.checkWithdrawFromTranche(address, numberId)
-  );
+  } = useTransaction(() => vesting.withdrawFromTranche(numberId));
   const redeemedAmount = React.useMemo(() => {
     return (
       trancheBalances.find(({ id: bId }) => bId.toString() === id.toString())
-        ?.vested || new BigNumber(0).toString()
+        ?.vested || new BigNumber(0)
     );
     // Do not update this value as it is updated once the tranches are refetched on success and we want the old value
     // so do not react to anything
@@ -101,7 +99,7 @@ export const RedeemFromTranche = ({
                 {t(
                   "You have redeemed {{redeemedAmount}} VEGA tokens from this tranche. They are now free to transfer from your Ethereum wallet.",
                   {
-                    redeemedAmount: redeemedAmount.toString(),
+                    redeemedAmount: formatNumber(redeemedAmount),
                   }
                 )}
               </p>

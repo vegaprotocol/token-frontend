@@ -8,9 +8,9 @@ import {
   AppStateActionType,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
-import { useVegaWallet } from "../../hooks/use-vega-wallet";
 import { useRefreshAssociatedBalances } from "../../hooks/use-refresh-associated-balances";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { vegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
 
 interface FormFields {
   url: string;
@@ -26,7 +26,6 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
   const { t } = useTranslation();
   const { ethAddress } = useWeb3();
   const { appDispatch } = useAppState();
-  const vegaWallet = useVegaWallet();
   const refreshAssociatedBalances = useRefreshAssociatedBalances();
 
   const [loading, setLoading] = React.useState(false);
@@ -37,7 +36,7 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
     setError,
   } = useForm<FormFields>({
     defaultValues: {
-      url: vegaWallet.url,
+      url: vegaWalletService.url,
     },
   });
 
@@ -45,9 +44,10 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
     setLoading(true);
 
     try {
-      const [tokenErr] = await vegaWallet.getToken({
+      const [tokenErr] = await vegaWalletService.getToken({
         wallet: fields.wallet,
         passphrase: fields.passphrase,
+        url: fields.url,
       });
 
       if (tokenErr) {
@@ -56,7 +56,7 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
         return;
       }
 
-      const [keysErr, keys] = await vegaWallet.getKeys();
+      const [keysErr, keys] = await vegaWalletService.getKeys();
 
       if (keysErr) {
         setError("passphrase", { message: t(keysErr) });

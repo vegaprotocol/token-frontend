@@ -1,126 +1,90 @@
 import { BigNumber } from "../../lib/bignumber";
-import Web3 from "web3";
-import { AbiItem } from "web3-utils";
-import type { Contract } from "web3-eth-contract";
+import BN from "bn.js";
+import { ethers } from "ethers";
 import stakingAbi from "../abis/staking_abi.json";
-import { IVegaStaking, WrappedPromiEvent } from "../web3-utils";
+import { IVegaStaking } from "../web3-utils";
 import { addDecimal, removeDecimal } from "../decimals";
+import { combineStakeEventsByVegaKey } from "./stake-helpers";
 
 export default class StakingAbi implements IVegaStaking {
-  private web3: Web3;
-  private contract: Contract;
+  private contract: ethers.Contract;
   private decimals: number;
 
-  constructor(web3: Web3, address: string, decimals: number) {
-    this.web3 = web3;
-    this.contract = new this.web3.eth.Contract(
-      stakingAbi as AbiItem[],
-      address
+  constructor(
+    provider: ethers.providers.Web3Provider,
+    signer: ethers.Signer,
+    address: string,
+    decimals: number
+  ) {
+    this.contract = new ethers.Contract(
+      address,
+      stakingAbi,
+      signer || provider
     );
     this.decimals = decimals;
   }
 
-  checkAddStake(
-    address: string,
-    amount: string,
-    vegaKey: string
-  ): Promise<any> {
-    const convertedAmount = removeDecimal(
-      new BigNumber(amount),
-      this.decimals
-    ).toString();
-    return this.contract.methods
-      .stake(convertedAmount, `0x${vegaKey}`)
-      .call({ from: address });
-  }
-
   addStake(
-    address: string,
     amount: string,
     vegaKey: string
-  ): WrappedPromiEvent<void> {
+  ): Promise<ethers.ContractTransaction> {
     const convertedAmount = removeDecimal(
       new BigNumber(amount),
       this.decimals
     ).toString();
-    return {
-      promiEvent: this.contract.methods
-        .stake(convertedAmount, `0x${vegaKey}`)
-        .send({ from: address }),
-    };
-  }
-
-  checkRemoveStake(
-    address: string,
-    amount: string,
-    vegaKey: string
-  ): Promise<any> {
-    const convertedAmount = removeDecimal(
-      new BigNumber(amount),
-      this.decimals
-    ).toString();
-    return this.contract.methods
-      .stake(convertedAmount, `0x${vegaKey}`)
-      .call({ from: address });
+    return this.contract.stake(convertedAmount, `0x${vegaKey}`);
   }
 
   removeStake(
-    address: string,
     amount: string,
     vegaKey: string
-  ): WrappedPromiEvent<void> {
+  ): Promise<ethers.ContractTransaction> {
     const convertedAmount = removeDecimal(
       new BigNumber(amount),
       this.decimals
     ).toString();
-    return {
-      promiEvent: this.contract.methods
-        .remove_stake(convertedAmount, `0x${vegaKey}`)
-        .send({ from: address }),
-    };
-  }
-
-  checkTransferStake(
-    address: string,
-    amount: string,
-    newAddress: string,
-    vegaKey: string
-  ): Promise<any> {
-    const convertedAmount = removeDecimal(
-      new BigNumber(amount),
-      this.decimals
-    ).toString();
-    return this.contract.methods
-      .remove_stake(convertedAmount, newAddress, `0x${vegaKey}`)
-      .call({ from: address });
+    return this.contract.remove_stake(convertedAmount, `0x${vegaKey}`);
   }
 
   transferStake(
-    address: string,
     amount: string,
     newAddress: string,
     vegaKey: string
-  ): WrappedPromiEvent<string> {
+  ): Promise<ethers.ContractTransaction> {
     const convertedAmount = removeDecimal(
       new BigNumber(amount),
       this.decimals
     ).toString();
-    return {
-      promiEvent: this.contract.methods
-        .remove_stake(convertedAmount, newAddress, `0x${vegaKey}`)
-        .send({ from: address }),
-    };
+    return this.contract.transfer_stake(
+      convertedAmount,
+      newAddress,
+      `0x${vegaKey}`
+    );
   }
 
   async stakeBalance(address: string, vegaKey: string): Promise<BigNumber> {
-    const res = await this.contract.methods
-      .stake_balance(address, `0x${vegaKey}`)
-      .call();
-    return new BigNumber(addDecimal(new BigNumber(res), this.decimals));
+    const res: BN = await this.contract.stake_balance(address, `0x${vegaKey}`);
+    return new BigNumber(
+      addDecimal(new BigNumber(res.toString()), this.decimals)
+    );
   }
 
   async totalStaked(): Promise<BigNumber> {
-    const res = await this.contract.methods.total_staked().call();
-    return new BigNumber(addDecimal(new BigNumber(res), this.decimals));
+    const res: BN = await this.contract.total_staked();
+    return new BigNumber(
+      addDecimal(new BigNumber(res.toString()), this.decimals)
+    );
+  }
+
+  async userTotalStakedByVegaKey(address: string) {
+    const addFilter = this.contract.filters.Stake_Deposited(address);
+    const removeFilter = this.contract.filters.Stake_Removed(address);
+    const addEvents = await this.contract.queryFilter(addFilter);
+    const removeEvents = await this.contract.queryFilter(removeFilter);
+    const res = combineStakeEventsByVegaKey(
+      [...addEvents, ...removeEvents],
+      this.decimals
+    );
+    return res;
   }
 }

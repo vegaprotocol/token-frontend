@@ -30,6 +30,7 @@ const partyId = "pub";
 const nodes: Staking_nodes[] = [
   {
     __typename: "Node",
+    name: "node-1-name",
     id: "node-id-1",
     pubkey: "pubkey",
     infoUrl: "",
@@ -52,6 +53,7 @@ const nodes: Staking_nodes[] = [
   },
   {
     __typename: "Node",
+    name: "node-2-name",
     id: "node-id-2",
     pubkey: "pubkey",
     infoUrl: "",

@@ -2,7 +2,6 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { RouteChildProps } from "..";
-import { TemplateSidebar } from "../../components/page-templates/template-sidebar";
 import { Flags, REWARDS_ADDRESSES } from "../../config";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { LiquidityDeposit } from "./deposit";
@@ -15,6 +14,7 @@ import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 import { useGetLiquidityBalances } from "./hooks";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { Heading } from "../../components/heading";
 
 const RedemptionIndex = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
@@ -75,13 +75,14 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
     );
   }
   return (
-    <TemplateSidebar title={title} sidebar={[]}>
+    <>
+      <Heading title={title} />
       {Flags.DEX_STAKING_DISABLED ? (
         <p>{t("liquidityComingSoon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</p>
       ) : (
         <Switch>
           <Route exact path={`${match.path}`}>
-            <LiquidityContainer state={state} dispatch={dispatch} />
+            <LiquidityContainer state={state} />
           </Route>
           <Route path={`${match.path}/:address/deposit`}>
             <LiquidityDeposit state={state} dispatch={dispatch} />
@@ -94,7 +95,7 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
           </Route>
         </Switch>
       )}
-    </TemplateSidebar>
+    </>
   );
 };
 

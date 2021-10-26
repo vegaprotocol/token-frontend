@@ -1,11 +1,19 @@
+@import "./styles/colors";
+
 .app {
   max-width: 1020px;
   margin: 0 auto;
-  padding-bottom: 200px;
+  padding-bottom: 150px;
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto 1fr min-content;
   min-height: 100%;
-  background-image: url("./images/banner.png");
-  background-repeat: no-repeat;
-  background-size: 100% auto;
+  @media (min-width: 960px) {
+    border-left: 1px solid $white;
+    border-right: 1px solid $white;
+  }
+}
+
+footer {
+  padding: 20px;
+  border-bottom: 1px solid $white;
 }

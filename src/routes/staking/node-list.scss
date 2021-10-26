@@ -19,6 +19,7 @@
 
   a {
     max-width: 300px;
+    text-decoration: none;
   }
 
   table {
@@ -45,5 +46,14 @@
   td {
     font-family: $font-mono;
     text-align: right;
+  }
+
+  &__item-name {
+    margin-right: 3px;
+    text-decoration: underline;
+  }
+
+  &__item-pubkey {
+    font-size: 0.8em;
   }
 }

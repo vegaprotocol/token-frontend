@@ -1,9 +1,9 @@
 import { captureException } from "@sentry/minimal";
 import * as React from "react";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import { useVegaWallet } from "../../hooks/use-vega-wallet";
 import {
   hasErrorProperty,
+  vegaWalletService,
   VoteSubmissionInput,
 } from "../../lib/vega-wallet/vega-wallet-service";
 import { VoteValue } from "../../__generated__/globalTypes";
@@ -65,7 +65,6 @@ export function useUserVote(
   const {
     appState: { currVegaKey },
   } = useAppState();
-  const vegaWallet = useVegaWallet();
   const subRef = React.useRef<any>(null);
   const [votePending, setVotePending] = React.useState(false);
 
@@ -97,7 +96,7 @@ export function useUserVote(
           proposalId,
         },
       };
-      const res = await vegaWallet.commandSync(variables);
+      const res = await vegaWalletService.commandSync(variables);
 
       if (hasErrorProperty(res)) {
         throw new Error(res.error);

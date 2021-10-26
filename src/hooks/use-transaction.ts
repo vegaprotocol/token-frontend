@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  isUnexpectedError,
-  isUserRejection,
-  PromiEvent,
-  WrappedPromiEvent,
-} from "../lib/web3-utils";
+import { isUnexpectedError, isUserRejection } from "../lib/web3-utils";
 import {
   initialState,
   TransactionActionType,
@@ -12,13 +7,11 @@ import {
 } from "./transaction-reducer";
 import { useTranslation } from "react-i18next";
 import * as Sentry from "@sentry/react";
+import { ethers } from "ethers";
 
 export const useTransaction = (
-  performTransaction:
-    | ((...args: any[]) => WrappedPromiEvent<any>)
-    | ((...args: any[]) => Promise<WrappedPromiEvent<any>>),
-  checkTransaction?: (...args: any[]) => Promise<any>,
-  requiredConfirmations: number | null = null
+  performTransaction: () => Promise<ethers.ContractTransaction>,
+  requiredConfirmations: number = 1
 ) => {
   const { t } = useTranslation();
   const [state, dispatch] = React.useReducer(transactionReducer, {
@@ -55,64 +48,38 @@ export const useTransaction = (
     dispatch({
       type: TransactionActionType.TX_REQUESTED,
     });
+
     try {
-      if (typeof checkTransaction === "function") {
-        await checkTransaction();
-      }
-      const sub = performTransaction();
-      let promiEvent: PromiEvent<any>;
-      if ("promiEvent" in sub) {
-        promiEvent = sub.promiEvent;
-      } else {
-        promiEvent = (await sub).promiEvent;
+      const tx = await performTransaction();
+
+      dispatch({
+        type: TransactionActionType.TX_SUBMITTED,
+        txHash: tx.hash,
+      });
+
+      let receipt: ethers.ContractReceipt | null = null;
+
+      for (let i = 1; i <= requiredConfirmations; i++) {
+        receipt = await tx.wait(i);
+        dispatch({
+          type: TransactionActionType.TX_CONFIRMATION,
+          confirmations: receipt.confirmations,
+        });
       }
 
-      promiEvent
-        .on("transactionHash", (hash: string) => {
-          dispatch({
-            type: TransactionActionType.TX_SUBMITTED,
-            txHash: hash,
-          });
-        })
-        .on("confirmation", (count: number) => {
-          if (requiredConfirmations && count >= requiredConfirmations) {
-            dispatch({
-              type: TransactionActionType.TX_COMPLETE,
-              receipt: {},
-              confirmations: count,
-            });
-            promiEvent.off();
-          } else {
-            dispatch({
-              type: TransactionActionType.TX_CONFIRMATION,
-              confirmations: count,
-            });
-          }
-        })
-        .on("receipt", (receipt: any) => {
-          if (!requiredConfirmations) {
-            promiEvent.off();
-            dispatch({
-              type: TransactionActionType.TX_COMPLETE,
-              receipt,
-              confirmations: 1,
-            });
-          }
-        })
-        .on("error", (err: Error) => {
-          promiEvent.off();
-          handleError(err);
-        });
+      if (!receipt) {
+        throw new Error("No receipt after confirmations are met");
+      }
+
+      dispatch({
+        type: TransactionActionType.TX_COMPLETE,
+        receipt,
+        confirmations: receipt.confirmations,
+      });
     } catch (err) {
-      console.log(err);
-      handleError(err);
+      handleError(err as Error);
     }
-  }, [
-    checkTransaction,
-    performTransaction,
-    requiredConfirmations,
-    handleError,
-  ]);
+  }, [performTransaction, requiredConfirmations, handleError]);
 
   return {
     state,

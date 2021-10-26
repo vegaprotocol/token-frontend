@@ -63,9 +63,11 @@ const ConnectedKey = () => {
   const { appState } = useAppState();
   const { lien, walletBalance, totalLockedBalance, totalVestedBalance } =
     appState;
+
   const totalInWallet = React.useMemo(() => {
     return walletBalance.plus(lien);
   }, [lien, walletBalance]);
+
   const totalInVestingContract = React.useMemo(() => {
     return totalLockedBalance.plus(totalVestedBalance);
   }, [totalLockedBalance, totalVestedBalance]);
@@ -73,7 +75,7 @@ const ConnectedKey = () => {
   return (
     <>
       <WalletCardRow
-        label={t("VEGA in wallet")}
+        label={t("vegaInWallet", { symbol: "$VEGA" })}
         value={totalInWallet}
         dark={true}
         valueSuffix={t("VEGA")}
@@ -93,7 +95,7 @@ const ConnectedKey = () => {
         />
       )}
       <hr style={{ borderColor: Colors.BLACK, borderTop: 1 }} />
-      {Flags.VESTING_DISABLED ? null : (
+      {Flags.REDEEM_DISABLED ? null : (
         <>
           <WalletCardRow
             label={t("VESTING VEGA TOKENS")}
@@ -113,14 +115,24 @@ const ConnectedKey = () => {
           />
         </>
       )}
-      {Flags.STAKING_DISABLED || Flags.VESTING_DISABLED ? null : (
+      {Flags.STAKING_DISABLED || Flags.REDEEM_DISABLED ? null : (
         <>
-          <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
-          <WalletCardRow
-            label={t("Associated")}
-            value={lien}
-            valueSuffix={t("VEGA")}
-          />
+          {Object.entries(appState.associationBreakdown).length ? (
+            <>
+              <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
+              <WalletCardRow label="Associated to" dark={true} />
+              {Object.entries(appState.associationBreakdown).map(
+                ([key, amount]) => (
+                  <WalletCardRow
+                    key={key}
+                    label={truncateMiddle(key)}
+                    value={amount}
+                    valueSuffix={t("VEGA")}
+                  />
+                )
+              )}
+            </>
+          ) : null}
         </>
       )}
     </>

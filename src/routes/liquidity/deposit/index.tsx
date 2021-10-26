@@ -41,12 +41,12 @@ export const LiquidityDepositPage = ({
     state: txApprovalState,
     dispatch: txApprovalDispatch,
     perform: txApprovalPerform,
-  } = useTransaction(() => lpStaking.approve(ethAddress, lpTokenAddress));
+  } = useTransaction(() => lpStaking.approve(lpTokenAddress));
   const {
     state: txStakeState,
     dispatch: txStakeDispatch,
     perform: txStakePerform,
-  } = useTransaction(() => lpStaking.stake(amount, ethAddress));
+  } = useTransaction(() => lpStaking.stake(amount));
   const { ethAddress } = useWeb3();
   const { getBalances, lpStakingEth, lpStakingUSDC } = useGetLiquidityBalances(
     dispatch,
@@ -143,7 +143,6 @@ export const LiquidityDepositPage = ({
           ethAddress={ethAddress}
           state={state}
           showInteractionButton={false}
-          dispatch={dispatch}
         />
         <h1>{t("depositLpTokensHeading")}</h1>
         {values.connectedWalletData?.availableLPTokens?.isGreaterThan(0) ? (

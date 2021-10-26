@@ -1,8 +1,7 @@
+import { ethers } from "ethers";
 import { BigNumber } from "../../../lib/bignumber";
 import { Tranche } from "../vega-web3-types";
-import { IVegaVesting, WrappedPromiEvent } from "../../web3-utils";
-import { getTranchesFromHistory } from "../tranche-helpers";
-import Web3 from "web3";
+import { IVegaVesting } from "../../web3-utils";
 import { addDecimal } from "../../decimals";
 import { promiEventFactory, uuidv4 } from "./promi-manager";
 
@@ -11,39 +10,28 @@ const BASE_URL = "../mocks/vesting";
 class MockedVesting implements IVegaVesting {
   private decimals: number;
 
-  constructor(web3: Web3, vestingAddress: string, decimals: number) {
+  constructor(
+    provider: ethers.providers.Web3Provider,
+    signer: ethers.Signer,
+    vestingAddress: string,
+    decimals: number
+  ) {
     this.decimals = decimals;
   }
 
-  checkRemoveStake(
-    address: string,
-    amount: string,
-    vegaKey: string
-  ): Promise<any> {
-    return Promise.resolve(true);
-  }
-
-  checkAddStake(
-    address: string,
-    amount: string,
-    vegaKey: string
-  ): Promise<any> {
-    return Promise.resolve(true);
-  }
-
   addStake(
-    address: string,
     amount: string,
     vegaKey: string
-  ): WrappedPromiEvent<void> {
+  ): Promise<ethers.ContractTransaction> {
+    // @ts-ignore
     return promiEventFactory(uuidv4(), "add-stake");
   }
 
   removeStake(
-    address: string,
     amount: string,
     vegaKey: string
-  ): WrappedPromiEvent<void> {
+  ): Promise<ethers.ContractTransaction> {
+    // @ts-ignore
     return promiEventFactory(uuidv4(), "remove-stake");
   }
 
@@ -80,15 +68,9 @@ class MockedVesting implements IVegaVesting {
     }
   }
 
-  withdrawFromTranche(
-    account: string,
-    trancheId: number
-  ): WrappedPromiEvent<void> {
+  withdrawFromTranche(trancheId: number): Promise<ethers.ContractTransaction> {
+    // @ts-ignore
     return promiEventFactory(uuidv4(), "withdraw-from-tranche");
-  }
-
-  checkWithdrawFromTranche(account: string, trancheId: number): Promise<any> {
-    return Promise.resolve(true);
   }
 
   async getLien(address: string): Promise<BigNumber> {
@@ -127,9 +109,15 @@ class MockedVesting implements IVegaVesting {
     return new BigNumber(addDecimal(new BigNumber(balance), this.decimals));
   }
 
+  // TODO: Fix me
   async getAllTranches(): Promise<Tranche[]> {
-    const events = await this.performFetch("events");
-    return getTranchesFromHistory(events, this.decimals);
+    // const events = await this.performFetch("events");
+    // return getTranchesFromHistory(events, this.decimals);
+    return [];
+  }
+
+  async userTotalStakedByVegaKey(address: string) {
+    return {};
   }
 }
 

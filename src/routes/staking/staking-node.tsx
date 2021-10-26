@@ -46,6 +46,7 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
       .map((d) => new BigNumber(d.amountFormatted));
     return BigNumber.sum.apply(null, [new BigNumber(0), ...amounts]);
   }, [data]);
+
   const unstaked = React.useMemo(() => {
     return new BigNumber(
       data?.party?.stake.currentStakeAvailableFormatted || 0
@@ -96,9 +97,10 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
   return (
     <>
       <h2 style={{ wordBreak: "break-word", marginTop: 0 }}>
-        {t("VALIDATOR {{node}}", { node })}
+        {nodeInfo.name
+          ? t("validatorTitle", { nodeName: nodeInfo.name })
+          : t("validatorTitle", { nodeName: t("validatorTitleFallback") })}
       </h2>
-      <p>Vega key: {vegaKey.pubShort}</p>
       <ValidatorTable
         node={nodeInfo}
         stakedTotal={data?.nodeData?.stakedTotalFormatted || "0"}
@@ -120,7 +122,7 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
         pubkey={vegaKey.pub}
         nodeId={node}
         availableStakeToAdd={unstaked}
-        availableStakeToRemove={currentDelegationAmount}
+        availableStakeToRemove={stakeNextEpoch}
       />
     </>
   );

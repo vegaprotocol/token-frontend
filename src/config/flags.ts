@@ -13,5 +13,6 @@ export const Flags = {
   GOVERNANCE_DISABLED: TRUTHY.includes(
     process.env.REACT_APP_GOVERNANCE_DISABLED!
   ),
-  VESTING_DISABLED: TRUTHY.includes(process.env.REACT_APP_VESTING_DISABLED!)
+  VESTING_DISABLED: TRUTHY.includes(process.env.REACT_APP_VESTING_DISABLED!),
+  FAIRGROUND: TRUTHY.includes(process.env.REACT_APP_FAIRGROUND!),
 };

@@ -14,7 +14,6 @@ import { ContractDisassociate } from "./contract-disassociate";
 import { DisassociateTransaction } from "./disassociate-transaction";
 import { useRemoveStake } from "./hooks";
 
-
 export const DisassociatePage = ({
   address,
   vegaKey,
@@ -45,6 +44,7 @@ export const DisassociatePage = ({
       />
     );
   }
+
   return (
     <section className="disassociate-page" data-testid="disassociate-page">
       <p>

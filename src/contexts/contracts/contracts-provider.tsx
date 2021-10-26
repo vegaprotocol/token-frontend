@@ -7,6 +7,9 @@ import {
   useAppState,
 } from "../app-state/app-state-context";
 import * as Sentry from "@sentry/react";
+import { BigNumber } from "../../lib/bignumber";
+import { useGetUserTrancheBalances } from "../../hooks/use-get-user-tranche-balances";
+import { useGetAssociationBreakdown } from "../../hooks/use-get-association-breakdown";
 
 // Note: Each contract class imported below gets swapped out for a mocked version
 // at ../../lib/vega-web3/__mocks__ at build time using webpack.NormalModuleReplacementPlugin
@@ -20,14 +23,12 @@ import StakingAbi from "../../lib/VEGA_WEB3/vega-staking";
 import VegaVesting from "../../lib/VEGA_WEB3/vega-vesting";
 // @ts-ignore
 import VegaClaim from "../../lib/VEGA_WEB3/vega-claim";
-import { BigNumber } from "../../lib/bignumber";
-import { useGetUserTrancheBalances } from "../../hooks/use-get-user-tranche-balances";
 
 /**
  * Provides Vega Ethereum contract instances to its children.
  */
 export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
-  const { web3, ethAddress } = useWeb3();
+  const { provider, signer, ethAddress } = useWeb3();
   const {
     appState: { decimals },
     appDispatch,
@@ -35,14 +36,30 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
 
   const contracts = React.useMemo(() => {
     return {
-      token: new VegaToken(web3, ADDRESSES.vegaTokenAddress),
-      staking: new StakingAbi(web3, ADDRESSES.stakingBridge, decimals),
-      vesting: new VegaVesting(web3, ADDRESSES.vestingAddress, decimals),
-      claim: new VegaClaim(web3, ADDRESSES.claimAddress, decimals),
+      token: new VegaToken(provider, signer, ADDRESSES.vegaTokenAddress),
+      staking: new StakingAbi(
+        provider,
+        signer,
+        ADDRESSES.stakingBridge,
+        decimals
+      ),
+      vesting: new VegaVesting(
+        provider,
+        signer,
+        ADDRESSES.vestingAddress,
+        decimals
+      ),
+      claim: new VegaClaim(provider, signer, ADDRESSES.claimAddress, decimals),
     };
-  }, [web3, decimals]);
+  }, [provider, signer, decimals]);
+
   const getUserTrancheBalances = useGetUserTrancheBalances(
     ethAddress,
+    contracts.vesting
+  );
+  const getAssociationBreakdown = useGetAssociationBreakdown(
+    ethAddress,
+    contracts.staking,
     contracts.vesting
   );
 
@@ -78,6 +95,10 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
       getUserTrancheBalances();
     }
   }, [ethAddress, getUserTrancheBalances]);
+
+  React.useEffect(() => {
+    getAssociationBreakdown();
+  }, [getAssociationBreakdown]);
 
   return (
     <ContractsContext.Provider value={contracts}>

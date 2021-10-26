@@ -1,34 +1,37 @@
-import type { EventData } from "web3-eth-contract";
+import { ethers } from "ethers";
 import { Tranche, TrancheEvents, TrancheUser } from "./vega-web3-types";
 import uniq from "lodash/uniq";
 import { BigNumber } from "../../lib/bignumber";
 import { addDecimal } from "../decimals";
 
-export function createUserTransactions(events: EventData[], decimals: number) {
+export function createUserTransactions(
+  events: ethers.Event[],
+  decimals: number
+) {
   return events.map((event) => {
     return {
       amount: new BigNumber(
-        addDecimal(new BigNumber(event.returnValues.amount), decimals)
+        addDecimal(new BigNumber(event.args?.amount.toString()), decimals)
       ),
-      user: event.returnValues.user,
-      tranche_id: parseInt(event.returnValues.tranche_id),
+      user: event.args?.user,
+      tranche_id: event.args?.tranche_id,
       tx: event.transactionHash,
     };
   });
 }
 
 export function getUsersInTranche(
-  balanceAddedEvents: EventData[],
-  balanceRemovedEvents: EventData[],
+  balanceAddedEvents: ethers.Event[],
+  balanceRemovedEvents: ethers.Event[],
   addresses: string[],
   decimals: number
 ): TrancheUser[] {
   return addresses.map((address) => {
     const userDeposits = balanceAddedEvents.filter(
-      (event) => event.returnValues.user === address
+      (event) => event.args?.user === address
     );
     const userWithdraws = balanceRemovedEvents.filter(
-      (event) => event.returnValues.user === address
+      (event) => event.args?.user === address
     );
     const deposits = createUserTransactions(userDeposits, decimals);
     const withdrawals = createUserTransactions(userWithdraws, decimals);
@@ -53,10 +56,12 @@ export function getUsersInTranche(
   });
 }
 
-export function sumFromEvents(events: EventData[], decimals: number) {
+export function sumFromEvents(events: ethers.Event[], decimals: number) {
   const amounts = events.map(
     (e) =>
-      new BigNumber(addDecimal(new BigNumber(e.returnValues.amount), decimals))
+      new BigNumber(
+        addDecimal(new BigNumber(e.args?.amount.toString()), decimals)
+      )
   );
   // Start with a 0 so if there are none there is no NaN
   return BigNumber.sum.apply(null, [new BigNumber(0), ...amounts]);
@@ -80,78 +85,80 @@ export function getLockedAmount(
   return amount;
 }
 
-export function createTransactions(events: EventData[], decimals: number) {
+export function createTransactions(events: ethers.Event[], decimals: number) {
   return events.map((event) => {
     return {
       amount: new BigNumber(
-        addDecimal(new BigNumber(event.returnValues.amount), decimals)
+        addDecimal(new BigNumber(event.args?.amount.toString()), decimals)
       ),
-      user: event.returnValues.user,
+      user: event.args?.user,
       tx: event.transactionHash,
     };
   });
 }
 
 export function getTranchesFromHistory(
-  events: EventData[],
+  createEvents: ethers.Event[],
+  addEvents: ethers.Event[],
+  removeEvents: ethers.Event[],
   decimals: number
 ): Tranche[] {
-  return events
-    .filter((event) => event.event === TrancheEvents.Created)
-    .map((event) => {
-      const tranche_id = event.returnValues.tranche_id;
-      const balanceAddedEvents = events.filter(
-        (e) =>
-          e.event === TrancheEvents.BalanceAdded &&
-          e.returnValues.tranche_id === tranche_id.toString()
-      );
-      const balanceRemovedEvents = events.filter(
-        (e) =>
-          e.event === TrancheEvents.BalanceRemoved &&
-          e.returnValues.tranche_id === tranche_id.toString()
-      );
+  return createEvents.map((event) => {
+    const tranche_id = event.args?.tranche_id;
+    const balanceAddedEvents = addEvents.filter(
+      (e) =>
+        e.event === TrancheEvents.BalanceAdded &&
+        e.args?.tranche_id === tranche_id
+    );
+    const balanceRemovedEvents = removeEvents.filter(
+      (e) =>
+        e.event === TrancheEvents.BalanceRemoved &&
+        e.args?.tranche_id === tranche_id
+    );
 
-      // get tranche start and end dates
-      const tranche_duration = parseInt(event.returnValues.duration);
-      const cliff_start = parseInt(event.returnValues.cliff_start);
-      const tranche_start = new Date(cliff_start * 1000);
-      const tranche_end = new Date((cliff_start + tranche_duration) * 1000);
+    //get tranche start and end dates
+    const tranche_duration = event.args?.duration;
+    const cliff_start = event.args?.cliff_start;
+    const tranche_start = new Date(cliff_start.mul(1000).toNumber());
+    const tranche_end = new Date(
+      cliff_start.add(tranche_duration).mul(1000).toNumber()
+    );
 
-      // get added and removed values
-      const total_added = sumFromEvents(balanceAddedEvents, decimals);
-      const total_removed = sumFromEvents(balanceRemovedEvents, decimals);
-      // get locked amount
-      const locked_amount = getLockedAmount(
-        total_added,
-        cliff_start,
-        tranche_duration
-      );
+    // get added and removed values
+    const total_added = sumFromEvents(balanceAddedEvents, decimals);
+    const total_removed = sumFromEvents(balanceRemovedEvents, decimals);
+    // get locked amount
+    const locked_amount = getLockedAmount(
+      total_added,
+      cliff_start,
+      tranche_duration
+    );
 
-      // get all deposits and withdrawals
-      const deposits = createTransactions(balanceAddedEvents, decimals);
-      const withdrawals = createTransactions(balanceRemovedEvents, decimals);
+    // get all deposits and withdrawals
+    const deposits = createTransactions(balanceAddedEvents, decimals);
+    const withdrawals = createTransactions(balanceRemovedEvents, decimals);
 
-      // get all users
-      const uniqueAddresses = uniq(
-        balanceAddedEvents.map((event) => event.returnValues.user)
-      );
-      const users = getUsersInTranche(
-        balanceAddedEvents,
-        balanceRemovedEvents,
-        uniqueAddresses,
-        decimals
-      );
+    // get all users
+    const uniqueAddresses = uniq(
+      balanceAddedEvents.map((event) => event.args?.user)
+    );
+    const users = getUsersInTranche(
+      balanceAddedEvents,
+      balanceRemovedEvents,
+      uniqueAddresses,
+      decimals
+    );
 
-      return {
-        tranche_id: parseInt(tranche_id),
-        tranche_start,
-        tranche_end,
-        total_added,
-        total_removed,
-        locked_amount,
-        deposits,
-        withdrawals,
-        users,
-      };
-    });
+    return {
+      tranche_id: parseInt(tranche_id),
+      tranche_start,
+      tranche_end,
+      total_added,
+      total_removed,
+      locked_amount,
+      deposits,
+      withdrawals,
+      users,
+    };
+  });
 }

@@ -13,6 +13,7 @@ import React from "react";
 import { Staking as StakingQueryResult } from "./__generated__/Staking";
 import { useVegaUser } from "../../hooks/use-vega-user";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { formatNumber } from "../../lib/format-number";
 
 export const Staking = ({ data }: { data?: StakingQueryResult }) => {
   const { t } = useTranslation();
@@ -138,7 +139,7 @@ export const StakingStepAssociate = ({
       <Callout
         intent="success"
         icon={<Tick />}
-        title={t("stakingHasAssociated", { tokens: associated.toString() })}
+        title={t("stakingHasAssociated", { tokens: formatNumber(associated) })}
       >
         <p>
           <Link to="/staking/associate">
@@ -203,6 +204,8 @@ export const StakingStepSelectNode = ({
 
       return {
         id: node.id,
+        name: node.name,
+        pubkey: node.pubkey,
         stakedTotal,
         stakedOnNode,
         stakedTotalPercentage,

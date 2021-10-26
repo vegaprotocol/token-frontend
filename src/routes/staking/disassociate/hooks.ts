@@ -4,6 +4,7 @@ import { useTransaction } from "../../../hooks/use-transaction";
 import { TxState } from "../../../hooks/transaction-reducer";
 import { useRefreshBalances } from "../../../hooks/use-refresh-balances";
 import { useContracts } from "../../../contexts/contracts/contracts-context";
+import { useGetAssociationBreakdown } from "../../../hooks/use-get-association-breakdown";
 
 export const useRemoveStake = (
   address: string,
@@ -16,12 +17,17 @@ export const useRemoveStake = (
   // which if staked > wallet balance means you cannot unstaked
   // even worse if you stake everything then you can't unstake anything!
   const contractRemove = useTransaction(() =>
-    vesting.removeStake(address!, amount, vegaKey)
+    vesting.removeStake(amount, vegaKey)
   );
   const walletRemove = useTransaction(() =>
-    staking.removeStake(address!, amount, vegaKey)
+    staking.removeStake(amount, vegaKey)
   );
   const refreshBalances = useRefreshBalances(address);
+  const getAssociationBreakdown = useGetAssociationBreakdown(
+    address,
+    staking,
+    vesting
+  );
 
   React.useEffect(() => {
     if (
@@ -29,11 +35,13 @@ export const useRemoveStake = (
       contractRemove.state.txState === TxState.Complete
     ) {
       refreshBalances();
+      getAssociationBreakdown();
     }
   }, [
     contractRemove.state.txState,
-    refreshBalances,
     walletRemove.state.txState,
+    refreshBalances,
+    getAssociationBreakdown,
   ]);
 
   return React.useMemo(() => {

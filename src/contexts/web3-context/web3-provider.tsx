@@ -3,15 +3,23 @@ import * as Sentry from "@sentry/react";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 import { useTranslation } from "react-i18next";
-import { EthereumChainId, EthereumChainNames, INFURA_URL } from "../../config";
+import {
+  APP_CHAIN_ID,
+  ChainIdMap,
+  EthereumChainId,
+  EthereumChainNames,
+} from "../../config";
 import { Web3Context } from "./web3-context";
-import Web3 from "web3";
-import Web3Modal from "web3modal";
+import { ethers } from "ethers";
+import Web3Modal, { getInjectedProviderName } from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
 const web3Modal = new Web3Modal({
   cacheProvider: true,
   theme: "dark",
+  // Opera doesn't seem to work, so if you're on Opera you have to use
+  // WalletConnect to connect
+  disableInjectedProvider: getInjectedProviderName() === "Opera",
   providerOptions: {
     // Injected providers. E.G. browser extensions such as Metamask
     injected: {
@@ -46,37 +54,57 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
   const isStartup = React.useRef(true);
   // Default to HttpProvider with Infura, later we reset this using
   // the users connected wallet
-  const [provider, setProvider] = React.useState<any>(
-    new Web3.providers.HttpProvider(INFURA_URL)
+  const [provider, setProvider] = React.useState<
+    ethers.providers.InfuraProvider | ethers.providers.Web3Provider
+  >(
+    new ethers.providers.InfuraProvider(
+      ChainIdMap[APP_CHAIN_ID],
+      process.env.REACT_APP_INFURA_ID
+    )
   );
-  const [web3, setWeb3] = React.useState<Web3>(new Web3(provider));
-  const [chainId, setChainId] = React.useState<EthereumChainId | null>(null);
+  const [signer, setSigner] = React.useState<ethers.Signer | null>(null);
+  const [chainId, setChainId] = React.useState<EthereumChainId>(APP_CHAIN_ID);
   const [ethAddress, setEthAddress] = React.useState("");
 
   // On connect replace the default provider and web3 instances (which uses an HttpProvider
   // with Infura) with an instance provided by the Web3Modal package
   const connect = React.useCallback(async () => {
-    const newProvider = await web3Modal.connect();
-    const newWeb3 = new Web3(newProvider);
-    setProvider(newProvider);
-    setWeb3(newWeb3);
-    const chainId = await newWeb3.eth.getChainId();
-    const accounts = await newWeb3.eth.getAccounts();
-    setChainId(`0x${chainId}` as EthereumChainId);
-    setEthAddress(accounts[0]);
+    try {
+      const rawProvider = await web3Modal.connect();
+      const newProvider = new ethers.providers.Web3Provider(rawProvider);
+      const signer = newProvider.getSigner();
+      setProvider(newProvider);
+      setSigner(signer);
+      const network = await newProvider.getNetwork();
+      const accounts = await newProvider.listAccounts();
+      setChainId(`0x${network.chainId}` as EthereumChainId);
+      setEthAddress(accounts[0]);
+    } catch (err) {
+      if (err === "Modal closed by user") {
+        // noop
+      } else {
+        Sentry.captureException(err);
+      }
+    }
   }, []);
 
   // On disconnect we clear the connected address but also reset the provider and
   // web3 instances to using the default Http provider using Infura
   const disconnect = React.useCallback(async () => {
-    await web3Modal.clearCachedProvider();
-    const newProvider = new Web3.providers.HttpProvider(INFURA_URL);
-    const newWeb3 = new Web3(newProvider);
-    setProvider(newProvider);
-    setWeb3(newWeb3);
-    const chainId = await newWeb3.eth.getChainId();
-    setChainId(`0x${chainId}` as EthereumChainId);
-    setEthAddress("");
+    try {
+      await web3Modal.clearCachedProvider();
+      const newProvider = new ethers.providers.InfuraProvider(
+        ChainIdMap[APP_CHAIN_ID],
+        process.env.REACT_APP_INFURA_ID
+      );
+      setProvider(newProvider);
+      setSigner(null);
+      const network = await newProvider.getNetwork();
+      setChainId(`0x${network.chainId}` as EthereumChainId);
+      setEthAddress("");
+    } catch (err) {
+      Sentry.captureException(err);
+    }
   }, []);
 
   // If its initial startup either: connect with users wallet which will in turn
@@ -86,8 +114,8 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
       if (web3Modal.cachedProvider) {
         connect();
       } else {
-        const chainId = await web3.eth.getChainId();
-        setChainId(`0x${chainId}` as EthereumChainId);
+        const network = await provider.getNetwork();
+        setChainId(`0x${network.chainId}` as EthereumChainId);
       }
     };
 
@@ -95,12 +123,22 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
       run();
       isStartup.current = false;
     }
-  }, [connect, web3]);
+  }, [provider, connect]);
 
-  // Bind a listener for chainChanged if the provider is ready
+  // Bind events on the raw provider. Ethers doesnt provide these
+  // https://github.com/ethers-io/ethers.js/issues/1396#issuecomment-806380431
   React.useEffect(() => {
-    const bindListeners = () => {
-      provider.on("chainChanged", (newChainId: EthereumChainId) => {
+    // only bind accountsChanged and chainChaned listenrs if we've
+    // connected
+    if (
+      ethAddress &&
+      provider instanceof ethers.providers.Web3Provider &&
+      provider.provider &&
+      // @ts-ignore
+      typeof provider.provider.on === "function"
+    ) {
+      // @ts-ignore
+      provider.provider.on("chainChanged", (newChainId: EthereumChainId) => {
         Sentry.addBreadcrumb({
           type: "ChainChanged",
           level: Sentry.Severity.Log,
@@ -114,7 +152,8 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
         setChainId(newChainId);
       });
 
-      provider.on("accountsChanged", (accounts: string[]) => {
+      // @ts-ignore
+      provider.provider.on("accountsChanged", (accounts: string[]) => {
         Sentry.addBreadcrumb({
           type: "AccountsChanged",
           level: Sentry.Severity.Log,
@@ -128,15 +167,17 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
         Sentry.setUser({ id: accounts[0] });
         setEthAddress(accounts[0]);
       });
-    };
-
-    if (ethAddress && typeof provider.on === "function") {
-      bindListeners();
     }
 
     return () => {
-      if (provider && typeof provider.removeAllListeners === "function") {
-        provider.removeAllListeners();
+      if (
+        provider instanceof ethers.providers.Web3Provider &&
+        provider.provider &&
+        // @ts-ignore
+        typeof provider.provider.removeAllListeners === "function"
+      ) {
+        // @ts-ignore
+        provider.provider.removeAllListeners();
       }
     };
   }, [chainId, ethAddress, provider]);
@@ -182,7 +223,7 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
         connect,
         disconnect,
         provider,
-        web3,
+        signer,
         chainId,
         ethAddress,
       }}

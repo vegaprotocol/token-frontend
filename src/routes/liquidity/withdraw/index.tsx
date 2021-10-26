@@ -24,6 +24,7 @@ import { Error } from "../../../components/icons";
 import { Link } from "react-router-dom";
 import { Routes } from "../../router-config";
 import { useWeb3 } from "../../../contexts/web3-context/web3-context";
+import { formatNumber } from "../../../lib/format-number";
 
 export const LiquidityWithdrawPage = ({
   lpTokenAddress,
@@ -41,12 +42,12 @@ export const LiquidityWithdrawPage = ({
     state: txUnstakeState,
     dispatch: txUnstakeDispatch,
     perform: txUnstakePerform,
-  } = useTransaction(() => lpStaking.unstake(ethAddress));
+  } = useTransaction(() => lpStaking.unstake());
   const {
     state: txWithdrawState,
     dispatch: txWithdrawDispatch,
     perform: txWithdrawPerform,
-  } = useTransaction(() => lpStaking.withdrawRewards(ethAddress));
+  } = useTransaction(() => lpStaking.withdrawRewards());
 
   const values = React.useMemo(
     () => state.contractData[lpTokenAddress],
@@ -141,14 +142,19 @@ export const LiquidityWithdrawPage = ({
             <KeyValueTableRow>
               <th>{t("liquidityTokenWithdrawBalance")}</th>
               <td>
-                {values.connectedWalletData?.totalStaked.toString() || 0}&nbsp;
+                {values.connectedWalletData?.totalStaked
+                  ? formatNumber(values.connectedWalletData.totalStaked)
+                  : 0}
+                &nbsp;
                 {t("SLP")}
               </td>
             </KeyValueTableRow>
             <KeyValueTableRow>
               <th>{t("liquidityTokenWithdrawRewards")}</th>
               <td>
-                {values.connectedWalletData?.accumulatedRewards.toString() || 0}
+                {values.connectedWalletData?.accumulatedRewards
+                  ? formatNumber(values.connectedWalletData.accumulatedRewards)
+                  : 0}
                 &nbsp;
                 {t("VEGA")}
               </td>

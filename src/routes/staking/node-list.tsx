@@ -3,6 +3,7 @@ import { Link, useRouteMatch } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
+import { truncateMiddle } from "../../lib/truncate-middle";
 
 interface NodeListProps {
   nodes: NodeListItemProps[];
@@ -20,6 +21,8 @@ export const NodeList = ({ nodes }: NodeListProps) => {
 
 export interface NodeListItemProps {
   id: string;
+  name: string;
+  pubkey: string;
   stakedOnNode: BigNumber;
   stakedTotalPercentage: string;
   userStake: BigNumber;
@@ -28,6 +31,8 @@ export interface NodeListItemProps {
 
 export const NodeListItem = ({
   id,
+  name,
+  pubkey,
   stakedOnNode,
   stakedTotalPercentage,
   userStake,
@@ -38,7 +43,20 @@ export const NodeListItem = ({
 
   return (
     <li data-testid="node-list-item">
-      <Link to={`${match.path}/${id}`}>{id}</Link>
+      <Link to={`${match.path}/${id}`}>
+        {name ? (
+          <span className="node-list__item-name">{name}</span>
+        ) : (
+          <>
+            <span className="node-list__item-name">
+              {t("validatorTitleFallback")}
+            </span>
+            <span className="node-list__item-pubkey text-muted" title={pubkey}>
+              {truncateMiddle(pubkey)}
+            </span>
+          </>
+        )}
+      </Link>
       <table>
         <tbody>
           <tr>

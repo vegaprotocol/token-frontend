@@ -1,21 +1,16 @@
 import "./template-sidebar.scss";
 import React from "react";
-import { Heading } from "../heading";
+import { Nav } from "../nav";
 
 export interface TemplateSidebarProps {
-  title?: string;
   children: React.ReactNode;
   sidebar: React.ReactNode[];
 }
 
-export function TemplateSidebar({
-  title,
-  children,
-  sidebar,
-}: TemplateSidebarProps) {
+export function TemplateSidebar({ children, sidebar }: TemplateSidebarProps) {
   return (
     <div className="template-sidebar">
-      <Heading title={title} />
+      <Nav />
       <main>{children}</main>
       <aside>
         {sidebar.map((Component, i) => (

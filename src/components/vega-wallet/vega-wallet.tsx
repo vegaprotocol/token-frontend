@@ -15,8 +15,7 @@ import {
   WalletCardRow,
 } from "../wallet-card";
 import { useTranslation } from "react-i18next";
-import { useVegaWallet } from "../../hooks/use-vega-wallet";
-import { VegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
+import { vegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
 import { gql, useApolloClient } from "@apollo/client";
 import {
   Delegations,
@@ -54,17 +53,12 @@ const DELEGATIONS_QUERY = gql`
 
 export const VegaWallet = () => {
   const { t } = useTranslation();
-  const vegaWallet = useVegaWallet();
   const { currVegaKey, vegaKeys } = useVegaUser();
 
   const child = !vegaKeys ? (
     <VegaWalletNotConnected />
   ) : (
-    <VegaWalletConnected
-      vegaWallet={vegaWallet}
-      currVegaKey={currVegaKey}
-      vegaKeys={vegaKeys}
-    />
+    <VegaWalletConnected currVegaKey={currVegaKey} vegaKeys={vegaKeys} />
   );
 
   return (
@@ -116,13 +110,11 @@ const VegaWalletNotConnected = () => {
 };
 
 interface VegaWalletConnectedProps {
-  vegaWallet: VegaWalletService;
   currVegaKey: VegaKeyExtended | null;
   vegaKeys: VegaKeyExtended[];
 }
 
 const VegaWalletConnected = ({
-  vegaWallet,
   currVegaKey,
   vegaKeys,
 }: VegaWalletConnectedProps) => {
@@ -241,13 +233,13 @@ const VegaWalletConnected = ({
     async function () {
       try {
         setDisconnecting(true);
-        await vegaWallet.revokeToken();
+        await vegaWalletService.revokeToken();
         appDispatch({ type: AppStateActionType.VEGA_WALLET_DISCONNECT });
       } catch (err) {
         Sentry.captureException(err);
       }
     },
-    [appDispatch, vegaWallet]
+    [appDispatch]
   );
 
   const unstaked = React.useMemo(() => {
