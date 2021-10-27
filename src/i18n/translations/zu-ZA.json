@@ -155,6 +155,7 @@
   "Wallet service unavailable": "crwdns6215:0crwdne6215:0",
   "Session expired": "crwdns4803:0crwdne4803:0",
   "Invalid credentials": "crwdns4805:0crwdne4805:0",
+  "Invalid wallet URL": "crwdns6233:0crwdne6233:0",
   "noKeys": "crwdns4807:0crwdne4807:0",
   "Stake VEGA tokens": "crwdns4809:0crwdne4809:0",
   "Tranche breakdown": "crwdns4811:0crwdne4811:0",
