@@ -155,6 +155,7 @@
   "Wallet service unavailable": "Wallet service not running at that url",
   "Session expired": "Session expired",
   "Invalid credentials": "Wallet or passphrase incorrect",
+  "Invalid wallet URL": "Invalid wallet URL",
   "noKeys": "No keys",
   "Stake VEGA tokens": "Stake VEGA tokens",
   "Tranche breakdown": "Tranche breakdown",

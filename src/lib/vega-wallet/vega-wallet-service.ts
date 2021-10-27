@@ -21,6 +21,7 @@ export const Errors = {
   SESSION_EXPIRED: "Session expired",
   INVALID_CREDENTIALS: "Invalid credentials",
   COMMAND_FAILED: "Command failed",
+  INVALID_URL: "Invalid wallet URL",
 };
 
 export interface DelegateSubmissionInput {
@@ -82,7 +83,14 @@ export class VegaWalletService implements IVegaWalletService {
     passphrase: string;
     url: string;
   }): Promise<[string | undefined, string | undefined]> {
-    this.setWalletUrl(params.url);
+    const urlValid = this.validateUrl(params.url);
+
+    if (urlValid) {
+      this.setWalletUrl(params.url);
+    } else {
+      return [Errors.INVALID_URL, undefined];
+    }
+
     try {
       const res = await fetch(`${this.getUrl()}/${Endpoints.TOKEN}`, {
         method: "post",
@@ -209,6 +217,15 @@ export class VegaWalletService implements IVegaWalletService {
   private handleServiceUnavailable(returnVal?: any): [string, any] {
     this.clearWalletUrl();
     return [Errors.SERVICE_UNAVAILABLE, returnVal];
+  }
+
+  private validateUrl(url: string) {
+    try {
+      new URL(url);
+    } catch (err) {
+      return false;
+    }
+    return true;
   }
 
   /**
