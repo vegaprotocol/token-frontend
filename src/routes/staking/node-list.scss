@@ -53,7 +53,8 @@
     text-decoration: underline;
   }
 
-  &__item-pubkey {
+  &__item-id {
+    text-transform: uppercase;
     font-size: 0.8em;
   }
 }
