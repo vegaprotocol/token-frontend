@@ -51,8 +51,11 @@ export const NodeListItem = ({
             <span className="node-list__item-name">
               {t("validatorTitleFallback")}
             </span>
-            <span className="node-list__item-pubkey text-muted" title={pubkey}>
-              {truncateMiddle(pubkey)}
+            <span
+              className="node-list__item-pubkey text-muted"
+              title={`ID: ${id}`}
+            >
+              {truncateMiddle(id)}
             </span>
           </>
         )}
