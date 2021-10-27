@@ -4,7 +4,7 @@ import { VoteValue } from "../../__generated__/globalTypes";
 import { LocalStorage } from "../storage";
 import { GenericErrorResponse } from "./vega-wallet-types";
 
-const DEFAULT_WALLET_URL = "http://localhost:1789/api/v1";
+const DEFAULT_WALLET_URL = "http://localhost:1789";
 const TOKEN_STORAGE_KEY = "vega_wallet_token";
 const WALLET_URL_KEY = "vega_wallet_url";
 
@@ -66,11 +66,13 @@ export interface IVegaWalletService {
 }
 
 export class VegaWalletService implements IVegaWalletService {
+  version: number;
   url: string;
   token: string;
   statusPoll: any;
 
   constructor() {
+    this.version = 1;
     this.url = LocalStorage.getItem(WALLET_URL_KEY) || DEFAULT_WALLET_URL;
     this.token = LocalStorage.getItem(TOKEN_STORAGE_KEY) || "";
   }
@@ -81,9 +83,8 @@ export class VegaWalletService implements IVegaWalletService {
     url: string;
   }): Promise<[string | undefined, string | undefined]> {
     this.setWalletUrl(params.url);
-
     try {
-      const res = await fetch(`${this.url}/${Endpoints.TOKEN}`, {
+      const res = await fetch(`${this.getUrl()}/${Endpoints.TOKEN}`, {
         method: "post",
         body: JSON.stringify(params),
       });
@@ -96,7 +97,7 @@ export class VegaWalletService implements IVegaWalletService {
         return [Errors.INVALID_CREDENTIALS, undefined];
       }
     } catch (err) {
-      return [Errors.SERVICE_UNAVAILABLE, undefined];
+      return this.handleServiceUnavailable();
     }
   }
 
@@ -106,7 +107,7 @@ export class VegaWalletService implements IVegaWalletService {
     }
 
     try {
-      const res = await fetch(`${this.url}/${Endpoints.TOKEN}`, {
+      const res = await fetch(`${this.getUrl()}/${Endpoints.TOKEN}`, {
         method: "delete",
         headers: { authorization: `Bearer ${this.token}` },
       });
@@ -120,7 +121,7 @@ export class VegaWalletService implements IVegaWalletService {
         return [undefined, false];
       }
     } catch (err) {
-      return [Errors.SERVICE_UNAVAILABLE, false];
+      return this.handleServiceUnavailable(false);
     }
   }
 
@@ -130,7 +131,7 @@ export class VegaWalletService implements IVegaWalletService {
     }
 
     try {
-      const res = await fetch(`${this.url}/${Endpoints.KEYS}`, {
+      const res = await fetch(`${this.getUrl()}/${Endpoints.KEYS}`, {
         headers: { authorization: `Bearer ${this.token}` },
       });
 
@@ -144,7 +145,7 @@ export class VegaWalletService implements IVegaWalletService {
 
       return [undefined, json.keys];
     } catch (err) {
-      return [Errors.SERVICE_UNAVAILABLE, undefined];
+      return this.handleServiceUnavailable();
     }
   }
 
@@ -154,7 +155,7 @@ export class VegaWalletService implements IVegaWalletService {
     }
 
     try {
-      const res = await fetch(`${this.url}/${Endpoints.COMMAND}`, {
+      const res = await fetch(`${this.getUrl()}/${Endpoints.COMMAND}`, {
         method: "post",
         body: JSON.stringify({
           ...body,
@@ -177,7 +178,7 @@ export class VegaWalletService implements IVegaWalletService {
         return [undefined, json];
       }
     } catch (err) {
-      return [Errors.SERVICE_UNAVAILABLE, undefined];
+      return this.handleServiceUnavailable();
     }
   }
 
@@ -199,6 +200,15 @@ export class VegaWalletService implements IVegaWalletService {
   private clearWalletUrl() {
     this.url = DEFAULT_WALLET_URL;
     LocalStorage.removeItem(WALLET_URL_KEY);
+  }
+
+  private getUrl() {
+    return `${this.url}/api/v${this.version}`;
+  }
+
+  private handleServiceUnavailable(returnVal?: any): [string, any] {
+    this.clearWalletUrl();
+    return [Errors.SERVICE_UNAVAILABLE, returnVal];
   }
 
   /**
