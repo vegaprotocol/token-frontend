@@ -13,15 +13,18 @@ interface StakeSuccessProps {
 
 export const StakeSuccess = ({ action, amount, nodeId }: StakeSuccessProps) => {
   const { t } = useTranslation();
-  const title =
-    action === "Add"
-      ? t("stakeAddSuccessMessage", { amount })
-      : t("stakeRemoveSuccessMessage", { amount, node: nodeId });
+  const isAdd = action === "Add";
+  const title = isAdd
+    ? t("stakeAddSuccessTitle", { amount })
+    : t("stakeRemoveSuccessTitle", { amount, node: nodeId });
+  const message = isAdd
+    ? t("stakeAddSuccessMessage")
+    : t("stakeRemoveSuccessMessage");
 
   return (
     <Callout icon={<Tick />} intent="success" title={title}>
       <div>
-        <p>{t("It will be applied in the next epoch")}</p>
+        <p>{message}</p>
         <p>
           <Link to={Routes.STAKING}>{t("Back to staking page")}</Link>
         </p>
