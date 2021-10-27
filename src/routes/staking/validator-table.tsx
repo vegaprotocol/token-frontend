@@ -37,6 +37,10 @@ export const ValidatorTable = ({
     <>
       <KeyValueTable data-testid="validator-table">
         <KeyValueTableRow>
+          <th>{t("id")}:</th>
+          <td className="validator-table__cell">{node.id}</td>
+        </KeyValueTableRow>
+        <KeyValueTableRow>
           <th>{t("VEGA ADDRESS / PUBLIC KEY")}</th>
           <td className="validator-table__cell">{node.pubkey}</td>
         </KeyValueTableRow>
