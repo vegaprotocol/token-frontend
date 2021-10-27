@@ -295,12 +295,14 @@
   "stakingStep3": "crwdns6171:0crwdne6171:0",
   "associateButton": "crwdns5061:0crwdne5061:0",
   "nodeQueryFailed": "crwdns5063:0{{node}}crwdne5063:0",
-  "Adding {{amount}} VEGA to node {{node}}": "crwdns5065:0{{amount}}crwdnd5065:0{{node}}crwdne5065:0",
-  "Removing {{amount}} VEGA from node {{node}}": "crwdns5067:0{{amount}}crwdnd5067:0{{node}}crwdne5067:0",
+  "stakeAddPendingTitle": "crwdns6227:0{{amount}}crwdnd6227:0{{node}}crwdne6227:0",
+  "stakeAddPendingMessage": "crwdns6229:0crwdne6229:0",
+  "stakeRemovePendingTitle": "crwdns6231:0{{amount}}crwdnd6231:0{{node}}crwdne6231:0",
   "timeForConfirmation": "crwdns6153:0crwdne6153:0",
-  "stakeAddSuccessMessage": "crwdns6211:0{{amount}}crwdne6211:0",
-  "stakeRemoveSuccessMessage": "crwdns6213:0{{amount}}crwdnd6213:0{{node}}crwdne6213:0",
-  "It will be applied in the next epoch": "crwdns5075:0crwdne5075:0",
+  "stakeAddSuccessTitle": "crwdns6217:0{{amount}}crwdne6217:0",
+  "stakeAddSuccessMessage": "crwdns6219:0crwdne6219:0",
+  "stakeRemoveSuccessTitle": "crwdns6221:0{{amount}}crwdnd6221:0{{node}}crwdne6221:0",
+  "stakeRemoveSuccessMessage": "crwdns6223:0crwdne6223:0",
   "stakeFailed": "crwdns5077:0{{node}}crwdne5077:0",
   "Remove {{amount}} VEGA tokens": "crwdns5079:0{{amount}}crwdne5079:0",
   "How much to {{action}} in next epoch?": "crwdns5081:0{{action}}crwdne5081:0",
@@ -402,5 +404,6 @@
   "stakingNodeNotFound": "crwdns6151:0{{node}}crwdne6151:0",
   "copyToClipboard": "crwdns6165:0crwdne6165:0",
   "copied!": "crwdns6167:0crwdne6167:0",
-  "viewAllTranches": "crwdns6157:0crwdne6157:0"
+  "viewAllTranches": "crwdns6157:0crwdne6157:0",
+  "id": "crwdns6225:0crwdne6225:0"
 }
