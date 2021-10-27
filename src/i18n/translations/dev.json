@@ -298,9 +298,10 @@
   "Adding {{amount}} VEGA to node {{node}}": "Adding {{amount}} VEGA to node {{node}}",
   "Removing {{amount}} VEGA from node {{node}}": "Removing {{amount}} VEGA from node {{node}}",
   "timeForConfirmation": "This should take a few seconds to confirm, and then will be credited at the beginning of the next epoch",
-  "stakeAddSuccessMessage": "At the beginning of the next epoch {{amount}} VEGA should be nominated to the Validator. *In some cases the actual amount that will be nominated may be less than intended",
-  "stakeRemoveSuccessMessage": "{{amount}} VEGA has been removed from node {{node}}",
-  "It will be applied in the next epoch": "It will be applied in the next epoch",
+  "stakeAddSuccessTitle": "At the beginning of the next epoch {{amount}} VEGA should be nominated to the Validator*",
+  "stakeAddSuccessMessage": "*It will be applied in the next epoch and in some cases the actual amount that will be nominated may be less than intended",
+  "stakeRemoveSuccessTitle": "{{amount}} VEGA has been removed from node {{node}}",
+  "stakeRemoveSuccessMessage": "It will be applied in the next epoch",
   "stakeFailed": "Failed to delegate to node {{node}}",
   "Remove {{amount}} VEGA tokens": "Remove {{amount}} VEGA tokens",
   "How much to {{action}} in next epoch?": "How much to {{action}} in next epoch?",
@@ -402,5 +403,6 @@
   "stakingNodeNotFound": "Could not find a node with id {{node}}",
   "copyToClipboard": "Copy to clipboard",
   "copied!": "Copied!",
-  "viewAllTranches": "View all tranches"
+  "viewAllTranches": "View all tranches",
+  "id": "ID"
 }
