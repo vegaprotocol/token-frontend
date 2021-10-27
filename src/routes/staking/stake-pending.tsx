@@ -12,15 +12,16 @@ interface StakePendingProps {
 export const StakePending = ({ action, amount, nodeId }: StakePendingProps) => {
   const { t } = useTranslation();
   const titleArgs = { amount, node: nodeId };
-  const title =
-    action === "Add"
-      ? t("Adding {{amount}} VEGA to node {{node}}", titleArgs)
-      : t("Removing {{amount}} VEGA from node {{node}}", titleArgs);
+  const isAdd = action === "Add";
+  const title = isAdd
+    ? t("stakeAddPendingTitle", titleArgs)
+    : t("stakeRemovePendingTitle", titleArgs);
+  const message = isAdd ? t("stakeAddPendingMessage") : null;
+
   return (
     <Callout icon={<Loader />} title={title}>
-      <p>
-        {t("timeForConfirmation")}
-      </p>
+      {message && <p>{message}</p>}
+      <p>{t("timeForConfirmation")}</p>
     </Callout>
   );
 };
