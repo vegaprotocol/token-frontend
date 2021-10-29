@@ -1,4 +1,5 @@
 export enum Networks {
+  VALIDATORNET = "VALIDATORNET",
   TESTNET = "TESTNET",
   STAGNET = "STAGNET",
   DEVNET = "DEVNET",
@@ -21,6 +22,20 @@ type VegaNets = {
 export type NetworkConfig = {
   [N in Networks]: string[];
 };
+
+const splitFilter = (a: string) => a.split(',').filter(a => a.length > 0);
+const getValidatorNetNodesFromOptionalEnvironmentVariables = () => {
+  const validatorUrls = process.env.VALIDATORNET_URLS || ""
+  const validatorUrlsWithGraphQL = process.env.VALIDATORNET_URLS_WITH_GRAPHQL || ""
+
+  const validatorUrlsList: string[] = splitFilter(validatorUrls);
+  const validatorUrlsWithGraphQLList: string[] = splitFilter(validatorUrlsWithGraphQL);
+
+  const validatorNetNodes: VegaNode[] = validatorUrlsList.map(a => ({url: a, api: {GraphQL: false}}))
+    .concat(validatorUrlsWithGraphQLList.map(a => ({url: a, api: {GraphQL: true}})));
+
+  return validatorNetNodes;
+}
 
 export const VegaNetworks: VegaNets = {
   [Networks.DEVNET]: {
@@ -149,6 +164,9 @@ export const VegaNetworks: VegaNets = {
       },
     ],
   },
+  [Networks.VALIDATORNET]: {
+    nodes: getValidatorNetNodesFromOptionalEnvironmentVariables(),
+  },
   [Networks.MAINNET]: {
     nodes: [],
   },
@@ -166,3 +184,4 @@ export const GraphQLNodes = Object.keys(VegaNetworks).reduce(
   },
   {}
 ) as NetworkConfig;
+
