@@ -52,16 +52,11 @@ const web3Modal = new Web3Modal({
 export const Web3Provider = ({ children }: { children: JSX.Element }) => {
   const { t } = useTranslation();
   const isStartup = React.useRef(true);
+
   // Default to HttpProvider with Infura, later we reset this using
   // the users connected wallet
-  const [provider, setProvider] = React.useState<
-    ethers.providers.InfuraProvider | ethers.providers.Web3Provider
-  >(
-    new ethers.providers.InfuraProvider(
-      ChainIdMap[APP_CHAIN_ID],
-      process.env.REACT_APP_INFURA_ID
-    )
-  );
+  const [provider, setProvider] =
+    React.useState<ethers.providers.BaseProvider | null>(null);
   const [signer, setSigner] = React.useState<ethers.Signer | null>(null);
   const [chainId, setChainId] = React.useState<EthereumChainId>(APP_CHAIN_ID);
   const [ethAddress, setEthAddress] = React.useState("");
@@ -114,8 +109,13 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
       if (web3Modal.cachedProvider) {
         connect();
       } else {
-        const network = await provider.getNetwork();
+        const infuraProvider = new ethers.providers.InfuraProvider(
+          ChainIdMap[APP_CHAIN_ID],
+          process.env.REACT_APP_INFURA_ID
+        );
+        const network = await infuraProvider.getNetwork();
         setChainId(`0x${network.chainId}` as EthereumChainId);
+        setProvider(infuraProvider);
       }
     };
 
@@ -123,7 +123,7 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
       run();
       isStartup.current = false;
     }
-  }, [provider, connect]);
+  }, [connect]);
 
   // Bind events on the raw provider. Ethers doesnt provide these
   // https://github.com/ethers-io/ethers.js/issues/1396#issuecomment-806380431
@@ -183,7 +183,7 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
   }, [chainId, ethAddress, provider]);
 
   // Wait for fetching chain ID to ensure HttpProvider is running
-  if (chainId === null) {
+  if (!provider || chainId === null) {
     return (
       <SplashScreen>
         <SplashLoader />

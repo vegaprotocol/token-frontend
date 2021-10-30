@@ -18,7 +18,7 @@ interface Web3ContextShape {
    * Provider to read from Ethereum chain. Defaults to using Infura, but once
    * connected to a wallet will use the wallets provider
    */
-  provider: ethers.providers.InfuraProvider | ethers.providers.Web3Provider;
+  provider: ethers.providers.BaseProvider;
 
   /**
    * Connected signer. Retrieved by calling provider.getSigner, can be null

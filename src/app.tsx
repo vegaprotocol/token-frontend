@@ -12,16 +12,17 @@ import { ContractsProvider } from "./contexts/contracts/contracts-provider";
 import { TemplateSidebar } from "./components/page-templates/template-sidebar";
 import { EthWallet } from "./components/eth-wallet";
 import { VegaWallet } from "./components/vega-wallet";
+import { DataManager } from "./data-manager";
 
 function App() {
   return (
     <GraphQlProvider>
       <Router>
         <Web3Provider>
-          <AppStateProvider>
-            <ContractsProvider>
+          <ContractsProvider>
+            <AppStateProvider>
               <AppLoader>
-                <>
+                <DataManager>
                   <div className="app">
                     <TemplateSidebar sidebar={[<EthWallet />, <VegaWallet />]}>
                       <AppRouter />
@@ -31,10 +32,10 @@ function App() {
                     </footer>
                   </div>
                   <VegaWalletModal />
-                </>
+                </DataManager>
               </AppLoader>
-            </ContractsProvider>
-          </AppStateProvider>
+            </AppStateProvider>
+          </ContractsProvider>
         </Web3Provider>
       </Router>
     </GraphQlProvider>
