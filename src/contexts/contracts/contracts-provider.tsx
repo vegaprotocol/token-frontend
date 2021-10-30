@@ -2,14 +2,8 @@ import React from "react";
 import { useWeb3 } from "../web3-context/web3-context";
 import { ContractsContext } from "./contracts-context";
 import { ADDRESSES } from "../../config";
-import {
-  AppStateActionType,
-  useAppState,
-} from "../app-state/app-state-context";
-import * as Sentry from "@sentry/react";
-import { BigNumber } from "../../lib/bignumber";
-import { useGetUserTrancheBalances } from "../../hooks/use-get-user-tranche-balances";
-import { useGetAssociationBreakdown } from "../../hooks/use-get-association-breakdown";
+import { SplashScreen } from "../../components/splash-screen";
+import { SplashLoader } from "../../components/splash-loader";
 
 // Note: Each contract class imported below gets swapped out for a mocked version
 // at ../../lib/vega-web3/__mocks__ at build time using webpack.NormalModuleReplacementPlugin
@@ -28,77 +22,46 @@ import VegaClaim from "../../lib/VEGA_WEB3/vega-claim";
  * Provides Vega Ethereum contract instances to its children.
  */
 export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
-  const { provider, signer, ethAddress } = useWeb3();
-  const {
-    appState: { decimals },
-    appDispatch,
-  } = useAppState();
+  const { provider, signer } = useWeb3();
+  const [contracts, setContracts] = React.useState<any>(null);
 
-  const contracts = React.useMemo(() => {
-    return {
-      token: new VegaToken(provider, signer, ADDRESSES.vegaTokenAddress),
-      staking: new StakingAbi(
-        provider,
-        signer,
-        ADDRESSES.stakingBridge,
-        decimals
-      ),
-      vesting: new VegaVesting(
-        provider,
-        signer,
-        ADDRESSES.vestingAddress,
-        decimals
-      ),
-      claim: new VegaClaim(provider, signer, ADDRESSES.claimAddress, decimals),
-    };
-  }, [provider, signer, decimals]);
-
-  const getUserTrancheBalances = useGetUserTrancheBalances(
-    ethAddress,
-    contracts.vesting
-  );
-  const getAssociationBreakdown = useGetAssociationBreakdown(
-    ethAddress,
-    contracts.staking,
-    contracts.vesting
-  );
-
-  // update balances on connect to Ethereum
   React.useEffect(() => {
-    const updateBalances = async () => {
-      try {
-        const [balance, walletBalance, lien, allowance] = await Promise.all([
-          contracts.vesting.getUserBalanceAllTranches(ethAddress),
-          contracts.token.balanceOf(ethAddress),
-          contracts.vesting.getLien(ethAddress),
-          contracts.token.allowance(ethAddress, ADDRESSES.stakingBridge),
-        ]);
-        appDispatch({
-          type: AppStateActionType.UPDATE_ACCOUNT_BALANCES,
-          balance: new BigNumber(balance),
-          walletBalance,
-          lien,
-          allowance,
-        });
-      } catch (err) {
-        Sentry.captureException(err);
-      }
+    const run = async () => {
+      const token = new VegaToken(provider, signer, ADDRESSES.vegaTokenAddress);
+      const decimals = await token.decimals();
+      setContracts({
+        token,
+        staking: new StakingAbi(
+          provider,
+          signer,
+          ADDRESSES.stakingBridge,
+          decimals
+        ),
+        vesting: new VegaVesting(
+          provider,
+          signer,
+          ADDRESSES.vestingAddress,
+          decimals
+        ),
+        claim: new VegaClaim(
+          provider,
+          signer,
+          ADDRESSES.claimAddress,
+          decimals
+        ),
+      });
     };
 
-    if (ethAddress) {
-      updateBalances();
-    }
-  }, [appDispatch, contracts.token, contracts.vesting, ethAddress]);
+    run();
+  }, [provider, signer]);
 
-  React.useEffect(() => {
-    if (ethAddress) {
-      getUserTrancheBalances();
-    }
-  }, [ethAddress, getUserTrancheBalances]);
-
-  React.useEffect(() => {
-    getAssociationBreakdown();
-  }, [getAssociationBreakdown]);
+  if (!contracts) {
+    return (
+      <SplashScreen>
+        <SplashLoader />
+      </SplashScreen>
+    );
+  }
 
   return (
     <ContractsContext.Provider value={contracts}>
