@@ -28,7 +28,6 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
 
   React.useEffect(() => {
     const run = async () => {
-      console.log("requesting startup info");
       try {
         const [
           supply,
