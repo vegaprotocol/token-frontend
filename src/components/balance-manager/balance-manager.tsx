@@ -1,17 +1,17 @@
 import React from "react";
 import * as Sentry from "@sentry/react";
-import { ADDRESSES } from "./config";
+import { ADDRESSES } from "../../config";
 import {
   AppStateActionType,
   useAppState,
-} from "./contexts/app-state/app-state-context";
-import { useContracts } from "./contexts/contracts/contracts-context";
-import { useWeb3 } from "./contexts/web3-context/web3-context";
-import { BigNumber } from "./lib/bignumber";
-import { useGetUserTrancheBalances } from "./hooks/use-get-user-tranche-balances";
-import { useGetAssociationBreakdown } from "./hooks/use-get-association-breakdown";
+} from "../../contexts/app-state/app-state-context";
+import { useContracts } from "../../contexts/contracts/contracts-context";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { BigNumber } from "../../lib/bignumber";
+import { useGetUserTrancheBalances } from "../../hooks/use-get-user-tranche-balances";
+import { useGetAssociationBreakdown } from "../../hooks/use-get-association-breakdown";
 
-export const DataManager = ({ children }: any) => {
+export const BalanceManager = ({ children }: any) => {
   const contracts = useContracts();
   const { ethAddress } = useWeb3();
   const { appDispatch } = useAppState();
