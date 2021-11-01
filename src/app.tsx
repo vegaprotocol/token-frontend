@@ -12,7 +12,7 @@ import { ContractsProvider } from "./contexts/contracts/contracts-provider";
 import { TemplateSidebar } from "./components/page-templates/template-sidebar";
 import { EthWallet } from "./components/eth-wallet";
 import { VegaWallet } from "./components/vega-wallet";
-import { DataManager } from "./data-manager";
+import { BalanceManager } from "./components/balance-manager";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
           <ContractsProvider>
             <AppStateProvider>
               <AppLoader>
-                <DataManager>
+                <BalanceManager>
                   <div className="app">
                     <TemplateSidebar sidebar={[<EthWallet />, <VegaWallet />]}>
                       <AppRouter />
@@ -32,7 +32,7 @@ function App() {
                     </footer>
                   </div>
                   <VegaWalletModal />
-                </DataManager>
+                </BalanceManager>
               </AppLoader>
             </AppStateProvider>
           </ContractsProvider>
