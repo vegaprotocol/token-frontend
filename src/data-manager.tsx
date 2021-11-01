@@ -62,5 +62,6 @@ export const DataManager = ({ children }: any) => {
   React.useEffect(() => {
     getAssociationBreakdown();
   }, [getAssociationBreakdown]);
+
   return children;
 };
