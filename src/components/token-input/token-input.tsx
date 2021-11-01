@@ -148,7 +148,7 @@ export const TokenInput = ({
         </button>
       );
     }
-  } else {
+  } else if (requireApproval) {
     approveContent = (
       <Callout
         icon={<Tick />}
