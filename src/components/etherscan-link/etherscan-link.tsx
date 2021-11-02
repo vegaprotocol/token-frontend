@@ -1,4 +1,4 @@
-import "./etherscan-link.scss"
+import "./etherscan-link.scss";
 
 import { Popover, PopoverInteractionKind } from "@blueprintjs/core";
 
@@ -18,6 +18,7 @@ interface BaseEtherscanLinkProps {
   chainId: EthereumChainId | null;
   text?: string;
   copyToClipboard?: boolean;
+  copyToClipboardType?: CopyToClipboardType;
 }
 
 interface EtherscanAddressLinkProps extends BaseEtherscanLinkProps {
@@ -32,6 +33,11 @@ type EtherscanLinkProps =
   | EtherscanAddressLinkProps
   | EtherscanTransactionLinkProps;
 
+export enum CopyToClipboardType {
+  TEXT,
+  LINK,
+}
+
 /**
  * Form an HTML link tag pointing to an appropriate Etherscan page
  */
@@ -39,12 +45,13 @@ export const EtherscanLink = ({
   chainId,
   text,
   copyToClipboard = true,
+  copyToClipboardType = CopyToClipboardType.TEXT,
   ...props
 }: EtherscanLinkProps) => {
   let hash: string;
   let txLink: string | null;
   const { t } = useTranslation();
-  const { copy, copied } = useCopyToClipboard()
+  const { copy, copied } = useCopyToClipboard();
   const linkText = text ? text : t("View on Etherscan (opens in a new tab)");
   const createLink = etherscanLinkCreator(chainId);
 
@@ -65,45 +72,43 @@ export const EtherscanLink = ({
     return (
       <button
         className="etherscan-link__copy-to-clipboard"
-        onClick={() => {copy(linkText)}}
+        onClick={() => {
+          copy(
+            copyToClipboardType === CopyToClipboardType.TEXT
+              ? linkText
+              : txLink || hash || ""
+          );
+        }}
       >
-        {
-          copied
-          ? t("copied!")
-          : t("copyToClipboard")
-        }
+        {copied ? t("copied!") : t("copyToClipboard")}
       </button>
-    )
-  }
+    );
+  };
 
-  return (
-    copyToClipboard
-    ? (
-      <Popover
-        hoverOpenDelay={500}
-        interactionKind={PopoverInteractionKind.HOVER}
-      >
-        <a
-          href={txLink}
-          target="_blank"
-          rel="noreferrer"
-          className="etherscan-link"
-        >
-          {linkText}
-        </a>
-          {getContents()}
-      </Popover>
-    )
-    : (
+  return copyToClipboard ? (
+    <Popover
+      hoverOpenDelay={500}
+      interactionKind={PopoverInteractionKind.HOVER}
+    >
       <a
-         href={txLink}
-         target="_blank"
-         rel="noreferrer"
-         className="etherscan-link"
-       >
-         {linkText}
+        href={txLink}
+        target="_blank"
+        rel="noreferrer"
+        className="etherscan-link"
+      >
+        {linkText}
       </a>
-    )
+      {getContents()}
+    </Popover>
+  ) : (
+    <a
+      href={txLink}
+      target="_blank"
+      rel="noreferrer"
+      className="etherscan-link"
+    >
+      {linkText}
+    </a>
   );
 };
 
