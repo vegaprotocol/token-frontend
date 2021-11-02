@@ -17,8 +17,7 @@ const etherscanUrls: Record<EthereumChainId, string> = {
 interface BaseEtherscanLinkProps {
   chainId: EthereumChainId | null;
   text?: string;
-  copyToClipboard?: boolean;
-  copyToClipboardType?: CopyToClipboardType;
+  copyToClipboard?: CopyToClipboardType;
 }
 
 interface EtherscanAddressLinkProps extends BaseEtherscanLinkProps {
@@ -34,6 +33,7 @@ type EtherscanLinkProps =
   | EtherscanTransactionLinkProps;
 
 export enum CopyToClipboardType {
+  NONE,
   TEXT,
   LINK,
 }
@@ -44,8 +44,7 @@ export enum CopyToClipboardType {
 export const EtherscanLink = ({
   chainId,
   text,
-  copyToClipboard = true,
-  copyToClipboardType = CopyToClipboardType.TEXT,
+  copyToClipboard = CopyToClipboardType.TEXT,
   ...props
 }: EtherscanLinkProps) => {
   let hash: string;
@@ -68,16 +67,23 @@ export const EtherscanLink = ({
     return <span>{hash}</span>;
   }
 
+  const generateClipboard = () => {
+    switch (copyToClipboard) {
+      case CopyToClipboardType.TEXT:
+        return linkText;
+      case CopyToClipboardType.LINK:
+        return txLink || hash || "";
+      default:
+        return "";
+    }
+  };
+
   const getContents = (): JSX.Element => {
     return (
       <button
         className="etherscan-link__copy-to-clipboard"
         onClick={() => {
-          copy(
-            copyToClipboardType === CopyToClipboardType.TEXT
-              ? linkText
-              : txLink || hash || ""
-          );
+          copy(generateClipboard());
         }}
       >
         {copied ? t("copied!") : t("copyToClipboard")}
@@ -85,7 +91,7 @@ export const EtherscanLink = ({
     );
   };
 
-  return copyToClipboard ? (
+  return copyToClipboard !== CopyToClipboardType.NONE ? (
     <Popover
       hoverOpenDelay={500}
       interactionKind={PopoverInteractionKind.HOVER}
