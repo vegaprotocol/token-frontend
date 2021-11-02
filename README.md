@@ -1,4 +1,4 @@
-# The Vega token website 
+# The Vega token website
 
 **_Control panel for your VEGA tokens_**
 
@@ -12,7 +12,7 @@
 
 # Reporting issues
 
-If you are not on the Vega team and found an issue on token.vega.xyz, please report your bug on our [Nolt board](https://vega-testnet.nolt.io). Include as much information as possible, including screenshots and Etherscan links. Issues raised via this repository may be closed without investigation. 
+If you are not on the Vega team and found an issue on token.vega.xyz, please report your bug on our [Nolt board](https://vega-testnet.nolt.io). Include as much information as possible, including screenshots and Etherscan links. Issues raised via this repository may be closed without investigation.
 
 # Development
 
@@ -35,18 +35,19 @@ Starting the app:
 
 There are a few different configuration options offered for this app:
 
-| **Flag**                         | **Purpose**                                                                                          |
-| -------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `REACT_APP_SENTRY_DSN`           | The sentry endpoint to report to. Should be off in dev but set in live.                              |
-| `REACT_APP_CHAIN`                | The ETH chain for the app to work on. Should be mainnet for live, but ropsten for preview deploys.   |
-| `REACT_APP_VEGA_URL`             | The GraphQL query endpoint of a [Vega data node](https://github.com/vegaprotocol/networks#data-node) |
-| `REACT_APP_STAKING_DISABLED`     | Disable the staking page an show a coming soon message                                               |
-| `REACT_APP_REDEEM_DISABLED`      | Disable the redeem page an show a coming soon message                                                |
-| `REACT_APP_DEX_STAKING_DISABLED` | Disable the dex liquidity page an show a coming soon message                                         |
-| `REACT_APP_GOVERNANCE_DISABLED`  | Disable the governance page and show a coming soon message                                           |
-| `REACT_APP_VESTING_DISABLED`     | Prevent association from the vesting contract                                                        |
-| `REACT_APP_FAIRGROUND`           | Change styling to be themed as the fairground version of the website                                 |
-| `REACT_APP_INFURA_ID`            | Infura fallback for if the user does not have a web3 compatible browser                              |
+| **Flag**                             | **Purpose**                                                                                              |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------------- |
+| `REACT_APP_SENTRY_DSN`               | The sentry endpoint to report to. Should be off in dev but set in live.                                  |
+| `REACT_APP_CHAIN`                    | The ETH chain for the app to work on. Should be mainnet for live, but ropsten for preview deploys.       |
+| `REACT_APP_VEGA_URL`                 | The GraphQL query endpoint of a [Vega data node](https://github.com/vegaprotocol/networks#data-node)     |
+| `REACT_APP_STAKING_DISABLED`         | Disable the staking page an show a coming soon message                                                   |
+| `REACT_APP_REDEEM_DISABLED`          | Disable the redeem page an show a coming soon message                                                    |
+| `REACT_APP_DEX_STAKING_DISABLED`     | Disable the dex liquidity page an show a coming soon message                                             |
+| `REACT_APP_GOVERNANCE_DISABLED`      | Disable the governance page and show a coming soon message                                               |
+| `REACT_APP_VESTING_DISABLED`         | Prevent association from the vesting contract                                                            |
+| `REACT_APP_FAIRGROUND`               | Change styling to be themed as the fairground version of the website                                     |
+| `REACT_APP_INFURA_ID`                | Infura fallback for if the user does not have a web3 compatible browser                                  |
+| `REACT_APP_SUPPORTED_WALLET_VERSION` | The minimum wallet semver version supported by this application otherwise an error message will be shown |
 
 ## Example configs:
 

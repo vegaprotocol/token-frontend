@@ -3,6 +3,9 @@ import { VOTE_VALUE_MAP } from "../../routes/governance/vote-types";
 import { VoteValue } from "../../__generated__/globalTypes";
 import { LocalStorage } from "../storage";
 import { GenericErrorResponse } from "./vega-wallet-types";
+import semver from "semver";
+
+const MINIMUM_WALLET_VERSION = process.env.REACT_APP_SUPPORTED_WALLET_VERSION;
 
 const DEFAULT_WALLET_URL = "http://localhost:1789";
 const TOKEN_STORAGE_KEY = "vega_wallet_token";
@@ -13,6 +16,7 @@ const Endpoints = {
   TOKEN: "auth/token",
   KEYS: "keys",
   COMMAND: "command/sync",
+  VERSION: "version",
 };
 
 export const Errors = {
@@ -22,6 +26,8 @@ export const Errors = {
   INVALID_CREDENTIALS: "Invalid credentials",
   COMMAND_FAILED: "Command failed",
   INVALID_URL: "Invalid wallet URL",
+  COULD_NOT_FIND_VERSION:
+    "Version endpoint not present on wallet. This indicates your wallet <0.9.2 which is not supported, you can check your wallet version by running `vegawallet version` in your terminal",
 };
 
 export interface DelegateSubmissionInput {
@@ -130,6 +136,29 @@ export class VegaWalletService implements IVegaWalletService {
       }
     } catch (err) {
       return this.handleServiceUnavailable(false);
+    }
+  }
+
+  isSupportedVersion(version: string): boolean {
+    if (!MINIMUM_WALLET_VERSION) {
+      return true;
+    }
+    return semver.satisfies(version, MINIMUM_WALLET_VERSION);
+  }
+
+  async getVersion(): Promise<(string | undefined)[]> {
+    try {
+      const res = await fetch(`${this.getUrl()}/${Endpoints.VERSION}`, {});
+
+      if (res.status === 404) {
+        return [Errors.COULD_NOT_FIND_VERSION, undefined];
+      }
+
+      const json = await res.json();
+
+      return [undefined, json.version];
+    } catch (err) {
+      return this.handleServiceUnavailable();
     }
   }
 
