@@ -152,6 +152,8 @@ export class VegaWalletService implements IVegaWalletService {
 
       if (res.status === 404) {
         return [Errors.COULD_NOT_FIND_VERSION, undefined];
+      } else if (!res.ok) {
+        return [Errors.COMMAND_FAILED, undefined];
       }
 
       const json = await res.json();
