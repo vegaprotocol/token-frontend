@@ -13,7 +13,11 @@ import { TransactionCallout } from "../../../components/transaction-callout";
 import { useTranslation } from "react-i18next";
 import { EthConnectPrompt } from "../../../components/eth-connect-prompt";
 import * as Sentry from "@sentry/react";
-import { LiquidityAction, LiquidityState } from "../liquidity-reducer";
+import {
+  LiquidityAction,
+  LiquidityState,
+  LpContractData,
+} from "../liquidity-reducer";
 import { useGetLiquidityBalances } from "../hooks";
 import {
   KeyValueTable,
@@ -27,12 +31,12 @@ import { useWeb3 } from "../../../contexts/web3-context/web3-context";
 import { formatNumber } from "../../../lib/format-number";
 
 export const LiquidityWithdrawPage = ({
+  contractData,
   lpTokenAddress,
-  state,
   dispatch,
 }: {
+  contractData: LpContractData;
   lpTokenAddress: string;
-  state: LiquidityState;
   dispatch: React.Dispatch<LiquidityAction>;
 }) => {
   const { t } = useTranslation();
@@ -49,10 +53,6 @@ export const LiquidityWithdrawPage = ({
     perform: txWithdrawPerform,
   } = useTransaction(() => lpStaking.withdrawRewards());
 
-  const values = React.useMemo(
-    () => state.contractData[lpTokenAddress],
-    [lpTokenAddress, state.contractData]
-  );
   const { getBalances, lpStakingEth, lpStakingUSDC } = useGetLiquidityBalances(
     dispatch,
     ethAddress
@@ -75,17 +75,17 @@ export const LiquidityWithdrawPage = ({
 
   const hasLpTokens = React.useMemo(() => {
     return !(
-      values.connectedWalletData?.totalStaked &&
-      values.connectedWalletData?.totalStaked.isEqualTo(0)
+      contractData.connectedWalletData?.totalStaked &&
+      contractData.connectedWalletData?.totalStaked.isEqualTo(0)
     );
-  }, [values.connectedWalletData?.totalStaked]);
+  }, [contractData.connectedWalletData?.totalStaked]);
 
   const hasRewardsTokens = React.useMemo(() => {
     return !(
-      values.connectedWalletData?.accumulatedRewards &&
-      values.connectedWalletData?.accumulatedRewards.isEqualTo(0)
+      contractData.connectedWalletData?.accumulatedRewards &&
+      contractData.connectedWalletData?.accumulatedRewards.isEqualTo(0)
     );
-  }, [values.connectedWalletData?.accumulatedRewards]);
+  }, [contractData.connectedWalletData?.accumulatedRewards]);
 
   if (txUnstakeState.txState !== TxState.Default) {
     return (
@@ -142,8 +142,8 @@ export const LiquidityWithdrawPage = ({
             <KeyValueTableRow>
               <th>{t("liquidityTokenWithdrawBalance")}</th>
               <td>
-                {values.connectedWalletData?.totalStaked
-                  ? formatNumber(values.connectedWalletData.totalStaked)
+                {contractData.connectedWalletData?.totalStaked
+                  ? formatNumber(contractData.connectedWalletData.totalStaked)
                   : 0}
                 &nbsp;
                 {t("SLP")}
@@ -152,8 +152,10 @@ export const LiquidityWithdrawPage = ({
             <KeyValueTableRow>
               <th>{t("liquidityTokenWithdrawRewards")}</th>
               <td>
-                {values.connectedWalletData?.accumulatedRewards
-                  ? formatNumber(values.connectedWalletData.accumulatedRewards)
+                {contractData.connectedWalletData?.accumulatedRewards
+                  ? formatNumber(
+                      contractData.connectedWalletData.accumulatedRewards
+                    )
                   : 0}
                 &nbsp;
                 {t("VEGA")}
@@ -199,13 +201,23 @@ export const LiquidityWithdraw = ({
     [address]
   );
 
+  const values = React.useMemo(
+    () => state.contractData[address],
+    [address, state.contractData]
+  );
+
   if (!isValidAddress) {
     return <section>{t("lpTokensInvalidToken", { address })}</section>;
   }
+
+  if (!values) {
+    return <p>{t("Loading")}...</p>;
+  }
+
   return (
     <LiquidityWithdrawPage
       lpTokenAddress={address}
-      state={state}
+      contractData={values}
       dispatch={dispatch}
     />
   );
