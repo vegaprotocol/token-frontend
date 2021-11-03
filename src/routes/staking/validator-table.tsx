@@ -46,7 +46,9 @@ export const ValidatorTable = ({
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("ABOUT THIS VALIDATOR")}</th>
-          <td>{node.infoUrl}</td>
+          <td>
+            <a href={node.infoUrl}>{node.infoUrl}</a>
+          </td>
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("IP ADDRESS")}</th>
