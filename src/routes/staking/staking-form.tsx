@@ -134,7 +134,8 @@ export const StakingForm = ({
           .then((res) => {
             const delegation = res.data.party?.delegations?.find((d) => {
               return (
-                d.node.id === nodeId && d.epoch.toString() === res.data.epoch.id
+                d.node.id === nodeId &&
+                d.epoch === Number(res.data.epoch.id) + 1
               );
             });
 
