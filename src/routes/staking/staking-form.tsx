@@ -204,7 +204,7 @@ export const StakingForm = ({
       {action !== undefined && (
         <>
           <h2>{t("How much to {{action}} in next epoch?", { action })}</h2>
-          <p><{t("Warning: spam protection exists")}</p>
+          <p>{t("Warning: spam protection exists")}</p>
           <TokenInput
             submitText={`${action} ${amount ? amount : ""} ${t("vegaTokens")}`}
             perform={onSubmit}
