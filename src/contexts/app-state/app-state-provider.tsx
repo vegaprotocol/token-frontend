@@ -27,6 +27,7 @@ const initialAppState: AppState = {
   vegaWalletOverlay: false,
   vegaWalletStatus: VegaWalletStatus.Pending,
   vegaKeys: null,
+  vegaWalletVersion: undefined,
   currVegaKey: null,
   walletAssociatedBalance: null,
   vestingAssociatedBalance: null,

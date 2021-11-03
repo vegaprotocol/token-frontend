@@ -80,6 +80,9 @@ export interface AppState {
   /** Current selected Vega key */
   currVegaKey: VegaKeyExtended | null;
 
+  /** Vega wallet version */
+  vegaWalletVersion: string | undefined;
+
   /** Amount of tokens associated with the current Vega key from wallet*/
   walletAssociatedBalance: BigNumber | null;
 
@@ -127,6 +130,7 @@ export type AppStateAction =
   | {
       type: AppStateActionType.VEGA_WALLET_INIT;
       keys: VegaKey[] | null | undefined;
+      version: string | undefined;
     }
   | {
       type: AppStateActionType.VEGA_WALLET_SET_KEY;
