@@ -307,6 +307,7 @@
   "stakeFailed": "Failed to delegate to node {{node}}",
   "Remove {{amount}} VEGA tokens": "Remove {{amount}} VEGA tokens",
   "How much to {{action}} in next epoch?": "How much to {{action}} in next epoch?",
+  "Warning: spam protection exists": "Warning: You can only nominate a validator with VEGA tokens that have been associated in the previous epoch. This is spam protection feature. Also, your nomination must be greater than 1.0 VEGA. If you attempt to nominate in the same epoch or with less than 1.0 VEGA it will fail.",
   "lpTokensInvalidToken": "Address {{address}} is not a valid SLP token address for VEGA",
   "lpTxSuccessButton": "Review liquidity stake",
   "depositLpTokensHeading": "How much would you like to deposit?",
