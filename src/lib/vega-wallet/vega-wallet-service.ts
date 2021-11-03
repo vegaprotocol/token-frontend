@@ -26,8 +26,6 @@ export const Errors = {
   INVALID_CREDENTIALS: "Invalid credentials",
   COMMAND_FAILED: "Command failed",
   INVALID_URL: "Invalid wallet URL",
-  COULD_NOT_FIND_VERSION:
-    "Version endpoint not present on wallet. This indicates your wallet <0.9.2 which is not supported, you can check your wallet version by running `vegawallet version` in your terminal",
 };
 
 export interface DelegateSubmissionInput {
@@ -151,7 +149,7 @@ export class VegaWalletService implements IVegaWalletService {
       const res = await fetch(`${this.getUrl()}/${Endpoints.VERSION}`, {});
 
       if (res.status === 404) {
-        return [Errors.COULD_NOT_FIND_VERSION, undefined];
+        return [undefined, undefined];
       } else if (!res.ok) {
         return [Errors.COMMAND_FAILED, undefined];
       }

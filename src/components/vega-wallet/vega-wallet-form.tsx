@@ -44,6 +44,7 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
     setLoading(true);
 
     try {
+      const [, version] = await vegaWalletService.getVersion();
       const [tokenErr] = await vegaWalletService.getToken({
         wallet: fields.wallet,
         passphrase: fields.passphrase,
@@ -71,7 +72,9 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
       appDispatch({
         type: AppStateActionType.VEGA_WALLET_INIT,
         keys,
+        version,
       });
+
       setLoading(false);
       onConnect();
     } catch (err) {
