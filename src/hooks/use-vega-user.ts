@@ -6,5 +6,6 @@ export function useVegaUser() {
   return {
     vegaKeys: appState.vegaKeys,
     currVegaKey: appState.currVegaKey,
+    version: appState.vegaWalletVersion,
   };
 }

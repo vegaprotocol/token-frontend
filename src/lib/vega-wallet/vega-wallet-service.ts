@@ -5,7 +5,8 @@ import { LocalStorage } from "../storage";
 import { GenericErrorResponse } from "./vega-wallet-types";
 import semver from "semver";
 
-const MINIMUM_WALLET_VERSION = process.env.REACT_APP_SUPPORTED_WALLET_VERSION;
+export const MINIMUM_WALLET_VERSION =
+  process.env.REACT_APP_SUPPORTED_WALLET_VERSION;
 
 const DEFAULT_WALLET_URL = "http://localhost:1789";
 const TOKEN_STORAGE_KEY = "vega_wallet_token";

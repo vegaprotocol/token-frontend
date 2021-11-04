@@ -1,6 +1,9 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { AppStateActionType, useAppState } from "../../contexts/app-state/app-state-context";
+import {
+  AppStateActionType,
+  useAppState,
+} from "../../contexts/app-state/app-state-context";
 
 export const ConnectToVega = () => {
   const { appDispatch } = useAppState();
@@ -18,4 +21,4 @@ export const ConnectToVega = () => {
       {t("connectVegaWallet")}
     </button>
   );
-}
+};
