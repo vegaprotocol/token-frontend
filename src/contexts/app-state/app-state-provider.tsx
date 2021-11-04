@@ -79,6 +79,7 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         vegaKeys,
         currVegaKey: vegaKeys.length ? vegaKeys[0] : null,
         vegaWalletStatus: VegaWalletStatus.Ready,
+        vegaWalletVersion: action.version,
       };
     }
     case AppStateActionType.VEGA_WALLET_SET_KEY: {

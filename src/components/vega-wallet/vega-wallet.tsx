@@ -15,7 +15,10 @@ import {
   WalletCardRow,
 } from "../wallet-card";
 import { useTranslation } from "react-i18next";
-import { vegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
+import {
+  MINIMUM_WALLET_VERSION,
+  vegaWalletService,
+} from "../../lib/vega-wallet/vega-wallet-service";
 import { gql, useApolloClient } from "@apollo/client";
 import {
   Delegations,
@@ -28,6 +31,7 @@ import { truncateMiddle } from "../../lib/truncate-middle";
 import { keyBy, uniq } from "lodash";
 import { useRefreshAssociatedBalances } from "../../hooks/use-refresh-associated-balances";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { Colors } from "../../config";
 
 const DELEGATIONS_QUERY = gql`
   query Delegations($partyId: ID!) {
@@ -53,12 +57,16 @@ const DELEGATIONS_QUERY = gql`
 
 export const VegaWallet = () => {
   const { t } = useTranslation();
-  const { currVegaKey, vegaKeys } = useVegaUser();
+  const { currVegaKey, vegaKeys, version } = useVegaUser();
 
   const child = !vegaKeys ? (
     <VegaWalletNotConnected />
   ) : (
-    <VegaWalletConnected currVegaKey={currVegaKey} vegaKeys={vegaKeys} />
+    <VegaWalletConnected
+      currVegaKey={currVegaKey}
+      vegaKeys={vegaKeys}
+      version={version}
+    />
   );
 
   return (
@@ -76,6 +84,7 @@ export const VegaWallet = () => {
         )}
       </WalletCardHeader>
       <WalletCardContent>{child}</WalletCardContent>
+      <WalletCardHeader>{version}</WalletCardHeader>
     </WalletCard>
   );
 };
@@ -112,11 +121,13 @@ const VegaWalletNotConnected = () => {
 interface VegaWalletConnectedProps {
   currVegaKey: VegaKeyExtended | null;
   vegaKeys: VegaKeyExtended[];
+  version: string | undefined;
 }
 
 const VegaWalletConnected = ({
   currVegaKey,
   vegaKeys,
+  version,
 }: VegaWalletConnectedProps) => {
   const { t } = useTranslation();
   const { ethAddress } = useWeb3();
@@ -264,6 +275,58 @@ const VegaWalletConnected = ({
     [ethAddress, appDispatch, setAssociatedBalances]
   );
 
+  const disconnect = (
+    <WalletCardActions>
+      {vegaKeys.length > 1 ? (
+        <button
+          className="button-link button-link--dark"
+          onClick={() => setExpanded((x) => !x)}
+          type="button"
+        >
+          {expanded ? "Hide keys" : "Change key"}
+        </button>
+      ) : null}
+      <button
+        className="button-link button-link--dark"
+        onClick={handleDisconnect}
+        type="button"
+      >
+        {disconnecting ? t("awaitingDisconnect") : t("disconnect")}
+      </button>
+    </WalletCardActions>
+  );
+
+  if (!version) {
+    return (
+      <>
+        <div
+          style={{
+            color: Colors.RED,
+          }}
+        >
+          {t("noVersionFound")}
+        </div>
+        {disconnect}
+      </>
+    );
+  } else if (!vegaWalletService.isSupportedVersion(version)) {
+    return (
+      <>
+        <div
+          style={{
+            color: Colors.RED,
+          }}
+        >
+          {t("unsupportedVersion", {
+            version,
+            requiredVersion: MINIMUM_WALLET_VERSION,
+          })}
+        </div>
+        {disconnect}
+      </>
+    );
+  }
+
   return vegaKeys.length ? (
     <>
       <WalletCardRow
@@ -307,24 +370,7 @@ const VegaWalletConnected = ({
             ))}
         </ul>
       )}
-      <WalletCardActions>
-        {vegaKeys.length > 1 ? (
-          <button
-            className="button-link button-link--dark"
-            onClick={() => setExpanded((x) => !x)}
-            type="button"
-          >
-            {expanded ? "Hide keys" : "Change key"}
-          </button>
-        ) : null}
-        <button
-          className="button-link button-link--dark"
-          onClick={handleDisconnect}
-          type="button"
-        >
-          {disconnecting ? t("awaitingDisconnect") : t("disconnect")}
-        </button>
-      </WalletCardActions>
+      {disconnect}
     </>
   ) : (
     <WalletCardContent>{t("noKeys")}</WalletCardContent>
