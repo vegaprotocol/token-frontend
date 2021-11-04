@@ -262,7 +262,7 @@
   "pendingAssociationText": "crwdns6181:0crwdne6181:0",
   "Vega key {{vegaKey}} can now participate in governance and Nominate a validator with it’s stake.": "crwdns5001:0{{vegaKey}}crwdne5001:0",
   "You have no VEGA tokens in your connected wallet. You will need to buy some VEGA tokens from an exchange in order to stake using this method.": "crwdns5003:0crwdne5003:0",
-  "All VEGA tokens in the connected wallet is already associated with a Vega wallet/key": "crwdns5005:0crwdne5005:0",
+  "All VEGA tokens in the connected wallet is already associated with a Vega wallet/key": "crwdns6235:0crwdne6235:0",
   "VEGA tokens are approved for staking": "crwdns5007:0crwdne5007:0",
   "Approve VEGA tokens for staking on Vega": "crwdns5009:0crwdne5009:0",
   "You have no VEGA tokens currently vesting.": "crwdns5011:0crwdne5011:0",
