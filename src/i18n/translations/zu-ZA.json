@@ -307,6 +307,7 @@
   "stakeFailed": "crwdns5077:0{{node}}crwdne5077:0",
   "Remove {{amount}} VEGA tokens": "crwdns5079:0{{amount}}crwdne5079:0",
   "How much to {{action}} in next epoch?": "crwdns5081:0{{action}}crwdne5081:0",
+  "Warning, spam protection exists": "crwdns6237:0crwdne6237:0",
   "lpTokensInvalidToken": "crwdns5263:0{{address}}crwdne5263:0",
   "lpTxSuccessButton": "crwdns5085:0crwdne5085:0",
   "depositLpTokensHeading": "crwdns5087:0crwdne5087:0",
