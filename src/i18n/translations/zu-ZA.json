@@ -407,5 +407,7 @@
   "copyToClipboard": "crwdns6165:0crwdne6165:0",
   "copied!": "crwdns6167:0crwdne6167:0",
   "viewAllTranches": "crwdns6157:0crwdne6157:0",
-  "id": "crwdns6225:0crwdne6225:0"
+  "id": "crwdns6225:0crwdne6225:0",
+  "noVersionFound": "crwdns6239:0crwdne6239:0",
+  "unsupportedVersion": "crwdns6241:0{{version}}crwdnd6241:0{{requiredVersion}}crwdne6241:0"
 }
