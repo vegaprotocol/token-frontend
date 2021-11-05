@@ -76,6 +76,13 @@ const ConnectedKey = () => {
     appState.associationBreakdown
   ).filter(([, amount]) => amount.isGreaterThan(0));
 
+  const removeLeadingAddressSymbol = (key: string) => {
+    if (key && key.length > 2 && key.slice(0, 2) === "0x") {
+      return truncateMiddle(key.substring(2));
+    }
+    return truncateMiddle(key);
+  };
+
   return (
     <>
       <WalletCardRow
@@ -129,7 +136,7 @@ const ConnectedKey = () => {
                 return (
                   <WalletCardRow
                     key={key}
-                    label={truncateMiddle(key)}
+                    label={removeLeadingAddressSymbol(key)}
                     value={amount}
                     valueSuffix={t("VEGA")}
                   />

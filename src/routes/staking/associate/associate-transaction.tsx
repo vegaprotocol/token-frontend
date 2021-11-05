@@ -44,8 +44,7 @@ export const AssociateTransaction = ({
 
   const title = React.useMemo(() => {
     const defaultTitle = t("Associating Tokens");
-
-    if (state.txData.confirmations || 0 >= requiredConfirmations) {
+    if (remainingConfirmations <= 0) {
       return `${defaultTitle}. ${t("associationPendingWaitingForVega")}`;
     } else {
       return `${defaultTitle}. ${t("blockCountdown", {
@@ -54,9 +53,7 @@ export const AssociateTransaction = ({
     }
   }, [
     remainingConfirmations,
-    requiredConfirmations,
-    state.txData.confirmations,
-    t,
+    t
   ]);
 
   let derivedTxState: TxState = state.txState;
