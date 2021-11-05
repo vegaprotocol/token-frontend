@@ -27,5 +27,13 @@
     > :last-child {
       margin-bottom: 0;
     }
+
+    button {
+      background-color: $light-gray3;
+
+      &:hover {
+        background-color: $light-gray1;
+      }
+    }
   }
 }

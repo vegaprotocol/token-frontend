@@ -13,6 +13,7 @@ import { TemplateSidebar } from "./components/page-templates/template-sidebar";
 import { EthWallet } from "./components/eth-wallet";
 import { VegaWallet } from "./components/vega-wallet";
 import { BalanceManager } from "./components/balance-manager";
+import { StartupModal } from "./components/startup-modal";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
                     </footer>
                   </div>
                   <VegaWalletModal />
+                  <StartupModal />
                 </BalanceManager>
               </AppLoader>
             </AppStateProvider>
