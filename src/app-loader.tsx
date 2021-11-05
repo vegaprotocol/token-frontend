@@ -60,8 +60,6 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
     async function run() {
       const [keysErr, keys] = await vegaWalletService.getKeys();
       const [versionErr, version] = await vegaWalletService.getVersion();
-      if (version) {
-      }
       // attempt to load keys complete
       setVegaKeysLoaded(true);
 
