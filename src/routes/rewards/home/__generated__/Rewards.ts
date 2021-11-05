@@ -19,20 +19,48 @@ export interface Rewards_party_rewardDetails_asset {
   symbol: string;
 }
 
+export interface Rewards_party_rewardDetails_rewards_asset {
+  __typename: "Asset";
+  /**
+   * The id of the asset
+   */
+  id: string;
+  /**
+   * The symbol of the asset (e.g: GBP)
+   */
+  symbol: string;
+}
+
+export interface Rewards_party_rewardDetails_rewards_party {
+  __typename: "Party";
+  /**
+   * Party identifier
+   */
+  id: string;
+}
+
+export interface Rewards_party_rewardDetails_rewards_epoch {
+  __typename: "Epoch";
+  /**
+   * Presumably this is an integer or something. If there's no such thing, disregard
+   */
+  id: string;
+}
+
 export interface Rewards_party_rewardDetails_rewards {
   __typename: "Reward";
   /**
    * The asset for which this reward is associated
    */
-  assetId: string;
+  asset: Rewards_party_rewardDetails_rewards_asset;
   /**
    * Party receiving the reward
    */
-  partyId: string;
+  party: Rewards_party_rewardDetails_rewards_party;
   /**
    * Epoch for which this reward was distributed
    */
-  epoch: number;
+  epoch: Rewards_party_rewardDetails_rewards_epoch;
   /**
    * Amount received for this reward
    */
@@ -67,6 +95,10 @@ export interface Rewards_party_rewardDetails {
 
 export interface Rewards_party {
   __typename: "Party";
+  /**
+   * Party identifier
+   */
+  id: string;
   /**
    * return reward information
    */

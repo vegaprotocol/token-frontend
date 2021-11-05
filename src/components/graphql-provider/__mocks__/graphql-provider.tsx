@@ -24,6 +24,9 @@ import { Parties } from "../../../routes/governance/__generated__/Parties";
 import { PARTIES_QUERY } from "../../../routes/governance/vote-details";
 import { generateProposal } from "../../../routes/governance/test-helpers/generate-proposals";
 import { STAKING_QUERY } from "../../../routes/staking/staking-nodes-container";
+import { Rewards } from "../../../routes/rewards/home/__generated__/Rewards";
+import { EPOCH_QUERY, REWARDS_QUERY } from "../../../routes/rewards/home";
+import { Epoch } from "../../../routes/rewards/home/__generated__/Epoch";
 
 const partyId = "pub";
 
@@ -329,6 +332,78 @@ const MOCK_PARTIES: MockedResponse<Parties> = {
   },
 };
 
+const MOCK_REWARDS: MockedResponse<Rewards> = {
+  request: {
+    query: REWARDS_QUERY,
+    variables: {
+      partyId:
+        "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
+    },
+  },
+  result: {
+    data: {
+      party: {
+        __typename: "Party",
+        id: "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
+        rewardDetails: [
+          {
+            __typename: "RewardPerAssetDetail",
+            asset: {
+              __typename: "Asset",
+              id: "asset-id",
+              symbol: "asset-symbol",
+            },
+            rewards: [
+              {
+                __typename: "Reward",
+                asset: {
+                  __typename: "Asset",
+                  id: "assset-id",
+                  symbol: "asset-symbol",
+                },
+                party: {
+                  __typename: "Party",
+                  id: "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
+                },
+                epoch: {
+                  __typename: "Epoch",
+                  id: "1",
+                },
+                amount: "100",
+                amountFormatted: "100.00",
+                percentageOfTotal: "50",
+                receivedAt: "2020-01-01T00:00:00",
+              },
+            ],
+            totalAmount: "100",
+            totalAmountFormatted: "100.00",
+          },
+        ],
+      },
+    },
+  },
+};
+
+const MOCK_EPOCH: MockedResponse<Epoch> = {
+  request: {
+    query: EPOCH_QUERY,
+  },
+  result: {
+    data: {
+      epoch: {
+        __typename: "Epoch",
+        id: "1",
+        timestamps: {
+          __typename: "EpochTimestamps",
+          start: "2020-01-01T00:00:00",
+          end: "2020-01-01T00:00:00",
+          expiry: "2020-01-01T00:00:00",
+        },
+      },
+    },
+  },
+};
+
 export const GraphQlProvider = ({
   children,
 }: {
@@ -342,6 +417,8 @@ export const GraphQlProvider = ({
         MOCK_PROPOSALS,
         MOCK_PROPOSALS_SUBSCRIPTION,
         MOCK_PARTIES,
+        MOCK_REWARDS,
+        MOCK_EPOCH,
       ]}
     >
       {children}
