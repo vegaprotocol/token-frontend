@@ -1,4 +1,5 @@
-import { Overlay } from "@blueprintjs/core";
+import React from "react";
+import { Checkbox, Overlay } from "@blueprintjs/core";
 import { Trans, useTranslation } from "react-i18next";
 import { Links } from "../../config";
 import { useLocalStorage } from "../../hooks/use-local-storage";
@@ -8,14 +9,18 @@ const MODAL_CLOSED_KEY = "vega_modal_closed";
 
 export const StartupModal = () => {
   const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useLocalStorage(MODAL_CLOSED_KEY, true);
+  const [storeDismiss, setStoreDismiss] = React.useState(false);
+  const [storedIsOpen, setStoredIsOpen] = useLocalStorage(
+    MODAL_CLOSED_KEY,
+    true
+  );
+  const [isOpen, setIsOpen] = React.useState(storedIsOpen);
 
   return (
     <Overlay
       isOpen={isOpen}
       transitionDuration={0}
-      // Make user explicitly click button to accept to not show message again
-      canOutsideClickClose={false}
+      onClose={() => setIsOpen(false)}
     >
       <div className="modal">
         <Modal>
@@ -29,8 +34,34 @@ export const StartupModal = () => {
               }}
             />
           </p>
-          <button onClick={() => setIsOpen(false)}>
-            {t("startupModalButton")}
+          <p>
+            <Checkbox
+              checked={storeDismiss}
+              label={t("startupModalButton")}
+              onChange={(e) => {
+                setStoreDismiss((x) => !x);
+              }}
+            />
+            {/* <label>
+              <input
+                type="checkbox"
+                checked={storeDismiss}
+                onChange={(e) => {
+                  setStoreDismiss((x) => !x);
+                }}
+              />{" "}
+              {t("startupModalButton")}
+            </label> */}
+          </p>
+          <button
+            onClick={() => {
+              if (storeDismiss) {
+                setStoredIsOpen(false);
+              }
+              setIsOpen(false);
+            }}
+          >
+            Dismiss
           </button>
         </Modal>
       </div>

@@ -15,4 +15,5 @@ export const Flags = {
   ),
   VESTING_DISABLED: TRUTHY.includes(process.env.REACT_APP_VESTING_DISABLED!),
   FAIRGROUND: TRUTHY.includes(process.env.REACT_APP_FAIRGROUND!),
+  STARTUP_MODAL: TRUTHY.includes(process.env.REACT_APP_STARTUP_MODAL!),
 };

@@ -14,6 +14,7 @@ import { EthWallet } from "./components/eth-wallet";
 import { VegaWallet } from "./components/vega-wallet";
 import { BalanceManager } from "./components/balance-manager";
 import { StartupModal } from "./components/startup-modal";
+import { Flags } from "./config";
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
                     </footer>
                   </div>
                   <VegaWalletModal />
-                  <StartupModal />
+                  {Flags.STARTUP_MODAL && <StartupModal />}
                 </BalanceManager>
               </AppLoader>
             </AppStateProvider>
