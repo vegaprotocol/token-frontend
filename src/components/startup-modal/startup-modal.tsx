@@ -37,21 +37,11 @@ export const StartupModal = () => {
           <p>
             <Checkbox
               checked={storeDismiss}
-              label={t("startupModalButton")}
+              label={t("startupModalDimissCheckboxLabel")}
               onChange={(e) => {
                 setStoreDismiss((x) => !x);
               }}
             />
-            {/* <label>
-              <input
-                type="checkbox"
-                checked={storeDismiss}
-                onChange={(e) => {
-                  setStoreDismiss((x) => !x);
-                }}
-              />{" "}
-              {t("startupModalButton")}
-            </label> */}
           </p>
           <button
             onClick={() => {
@@ -61,7 +51,7 @@ export const StartupModal = () => {
               setIsOpen(false);
             }}
           >
-            Dismiss
+            {t("dismiss")}
           </button>
         </Modal>
       </div>

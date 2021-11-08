@@ -412,5 +412,6 @@
   "unsupportedVersion": "Looks like you're running an outdated version of GoWallet. You're running {{version}} but {{requiredVersion}} is required.",
   "startupModalTitle": "A note about staking Vega tokens",
   "startupModalPara": "There are some known issues when staking Vega tokens. We encourage you to <knownIssuesLink>read this FAQs page</knownIssuesLink>.",
-  "startupModalButton": "Don't show me this message again"
+  "startupModalDimissCheckboxLabel": "Don't show me this message again",
+  "dismiss": "Dismiss"
 }
