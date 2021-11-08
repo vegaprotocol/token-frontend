@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { EthereumChainId } from "../../config";
 import { Callout } from "../callout";
 import { EtherscanLink } from "../etherscan-link";
+import { CopyToClipboardType } from "../etherscan-link/etherscan-link";
 import { Loader } from "../loader";
 
 export const TransactionPending = ({
@@ -31,18 +32,22 @@ export const TransactionPending = ({
   }, [confirmations, requiredConfirmations]);
   const title = React.useMemo(() => {
     const defaultTitle = heading || t("Transaction in progress");
-    if (requiredConfirmations) {
+    if (remainingConfirmations > 0) {
       return `${defaultTitle}. ${t("blockCountdown", {
         amount: remainingConfirmations,
       })}`;
     }
     return defaultTitle;
-  }, [heading, remainingConfirmations, requiredConfirmations, t]);
+  }, [heading, remainingConfirmations, t]);
   return (
     <Callout icon={<Loader />} title={title}>
       {body && <p data-testid="transaction-pending-body">{body}</p>}
       <p>
-        <EtherscanLink tx={hash} chainId={chainId} />
+        <EtherscanLink
+          tx={hash}
+          chainId={chainId}
+          copyToClipboard={CopyToClipboardType.LINK}
+        />
       </p>
       {footer && <p data-testid="transaction-pending-footer">{footer}</p>}
     </Callout>

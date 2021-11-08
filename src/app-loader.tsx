@@ -58,17 +58,20 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
   // Attempte to get vega keys on startup
   React.useEffect(() => {
     async function run() {
-      const [err, keys] = await vegaWalletService.getKeys();
-
+      const [keysErr, keys] = await vegaWalletService.getKeys();
+      const [versionErr, version] = await vegaWalletService.getVersion();
       // attempt to load keys complete
       setVegaKeysLoaded(true);
 
-      if (err === VegaWalletServiceErrors.NO_TOKEN) {
+      if (keysErr === VegaWalletServiceErrors.NO_TOKEN) {
         // Do nothing so user has to auth again, but our load for vega keys is complete
         return;
       }
 
-      if (err === VegaWalletServiceErrors.SERVICE_UNAVAILABLE) {
+      if (
+        keysErr === VegaWalletServiceErrors.SERVICE_UNAVAILABLE ||
+        versionErr === VegaWalletServiceErrors.SERVICE_UNAVAILABLE
+      ) {
         appDispatch({ type: AppStateActionType.VEGA_WALLET_DOWN });
         return;
       }
@@ -80,6 +83,7 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
       appDispatch({
         type: AppStateActionType.VEGA_WALLET_INIT,
         keys,
+        version,
       });
     }
 

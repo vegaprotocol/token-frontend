@@ -72,6 +72,17 @@ const ConnectedKey = () => {
     return totalLockedBalance.plus(totalVestedBalance);
   }, [totalLockedBalance, totalVestedBalance]);
 
+  const associationsByVegaKey = Object.entries(
+    appState.associationBreakdown
+  ).filter(([, amount]) => amount.isGreaterThan(0));
+
+  const removeLeadingAddressSymbol = (key: string) => {
+    if (key && key.length > 2 && key.slice(0, 2) === "0x") {
+      return truncateMiddle(key.substring(2));
+    }
+    return truncateMiddle(key);
+  };
+
   return (
     <>
       <WalletCardRow
@@ -117,20 +128,20 @@ const ConnectedKey = () => {
       )}
       {Flags.STAKING_DISABLED || Flags.REDEEM_DISABLED ? null : (
         <>
-          {Object.entries(appState.associationBreakdown).length ? (
+          {associationsByVegaKey.length ? (
             <>
               <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
               <WalletCardRow label="Associated to" dark={true} />
-              {Object.entries(appState.associationBreakdown).map(
-                ([key, amount]) => (
+              {associationsByVegaKey.map(([key, amount]) => {
+                return (
                   <WalletCardRow
                     key={key}
-                    label={truncateMiddle(key)}
+                    label={removeLeadingAddressSymbol(key)}
                     value={amount}
                     valueSuffix={t("VEGA")}
                   />
-                )
-              )}
+                );
+              })}
             </>
           ) : null}
         </>

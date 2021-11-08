@@ -60,11 +60,11 @@ const EnvironmentConfig: { [key in Networks]: VegaContracts } = {
     stakingBridge: "0x7D88CD817227D599815d407D929af18Bb8D57176",
   },
   [Networks.TESTNET]: {
-    vestingAddress: "0x6A42ed1484f0E22e2Bcc29CEbA3bf305c52F55Be",
-    vegaTokenAddress: "0xe55A846ced767ea49885B3BB9E1Bf5617E178182",
+    vestingAddress: "0xe2deBB240b43EDfEBc9c38B67c0894B9A92Bf07c",
+    vegaTokenAddress: "0xDc335304979D378255015c33AbFf09B60c31EBAb",
     claimAddress: "0x8Cef746ab7C83B61F6461cC92882bD61AB65a994", // TODO not deployed to this env, but random address so app doesn't error
     lockedAddress: "0x0", // TODO not deployed to this env
-    stakingBridge: "0xB24e0ac9199e8f4F69eF0eD8ee266b2433AF0dF0",
+    stakingBridge: "0xF5A3830F002BE78dd801214F5316b677E0355c60",
   },
   [Networks.MAINNET]: {
     vestingAddress: "0x23d1bFE8fA50a167816fBD79D7932577c06011f4",
@@ -120,7 +120,7 @@ export const ADDRESSES = Addresses[appChainId];
 export const REWARDS_ADDRESSES = RewardsAddresses[appChainId];
 export const REWARDS_POOL_ADDRESSES = RewardsPoolAddresses[appChainId];
 
-/** Infura endpoins */
+/** Infura endpoints */
 export const INFURA_URL = InfuraUrls[appChainId];
 
 /**

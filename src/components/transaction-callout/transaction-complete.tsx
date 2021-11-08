@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { EthereumChainId } from "../../config";
 import { Callout } from "../callout";
 import { EtherscanLink } from "../etherscan-link";
+import { CopyToClipboardType } from "../etherscan-link/etherscan-link";
 import { Tick } from "../icons";
 
 export const TransactionComplete = ({
@@ -22,7 +23,11 @@ export const TransactionComplete = ({
     <Callout icon={<Tick />} intent="success" title={heading || t("Complete")}>
       {body && <p data-testid="transaction-complete-body">{body}</p>}
       <p>
-        <EtherscanLink tx={hash} chainId={chainId} />
+        <EtherscanLink
+          tx={hash}
+          chainId={chainId}
+          copyToClipboard={CopyToClipboardType.LINK}
+        />
       </p>
       {footer && <p data-testid="transaction-complete-footer">{footer}</p>}
     </Callout>

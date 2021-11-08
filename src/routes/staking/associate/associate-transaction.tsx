@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Callout } from "../../../components/callout";
 import { EtherscanLink } from "../../../components/etherscan-link";
+import { CopyToClipboardType } from "../../../components/etherscan-link/etherscan-link";
 import { Loader } from "../../../components/loader";
 import { TransactionCallout } from "../../../components/transaction-callout";
 import { EthereumChainId } from "../../../config";
@@ -43,8 +44,7 @@ export const AssociateTransaction = ({
 
   const title = React.useMemo(() => {
     const defaultTitle = t("Associating Tokens");
-
-    if (state.txData.confirmations || 0 >= requiredConfirmations) {
+    if (remainingConfirmations <= 0) {
       return `${defaultTitle}. ${t("associationPendingWaitingForVega")}`;
     } else {
       return `${defaultTitle}. ${t("blockCountdown", {
@@ -53,9 +53,7 @@ export const AssociateTransaction = ({
     }
   }, [
     remainingConfirmations,
-    requiredConfirmations,
-    state.txData.confirmations,
-    t,
+    t
   ]);
 
   let derivedTxState: TxState = state.txState;
@@ -74,7 +72,11 @@ export const AssociateTransaction = ({
           })}
         </p>
         <p>
-          <EtherscanLink tx={state.txData.hash!} chainId={chainId} />
+          <EtherscanLink
+            tx={state.txData.hash!}
+            chainId={chainId}
+            copyToClipboard={CopyToClipboardType.LINK}
+          />
         </p>
         <p data-testid="transaction-pending-footer">
           {t("pendingAssociationText", {

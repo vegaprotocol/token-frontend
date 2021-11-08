@@ -195,7 +195,7 @@ const NavLinks = ({
       ${inverted ? "nav-links--inverted" : ""}`}
     >
       <NavLink {...linkProps} exact={true} to={Routes.HOME}>
-        {t("HOME")}
+        {t("Home")}
       </NavLink>
       {Flags.REDEEM_DISABLED ? null : (
         <NavLink {...linkProps} to={Routes.VESTING}>

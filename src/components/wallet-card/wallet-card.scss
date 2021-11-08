@@ -15,6 +15,12 @@
     padding-bottom: 4px;
     margin-bottom: 4px;
 
+    &:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
     > span {
       &:first-child {
         text-transform: uppercase;

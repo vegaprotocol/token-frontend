@@ -134,7 +134,8 @@ export const StakingForm = ({
           .then((res) => {
             const delegation = res.data.party?.delegations?.find((d) => {
               return (
-                d.node.id === nodeId && d.epoch.toString() === res.data.epoch.id
+                d.node.id === nodeId &&
+                d.epoch === Number(res.data.epoch.id) + 1
               );
             });
 
@@ -203,6 +204,7 @@ export const StakingForm = ({
       {action !== undefined && (
         <>
           <h2>{t("How much to {{action}} in next epoch?", { action })}</h2>
+          <p>{t("Warning, spam protection exists")}</p>
           <TokenInput
             submitText={`${action} ${amount ? amount : ""} ${t("vegaTokens")}`}
             perform={onSubmit}
