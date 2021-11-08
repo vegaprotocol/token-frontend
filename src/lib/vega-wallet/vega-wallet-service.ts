@@ -45,6 +45,14 @@ export interface UndelegateSubmissionInput {
     method: "METHOD_AT_END_OF_EPOCH";
   };
 }
+export interface UndelegateNowSubmission {
+  pubKey: string;
+  undelegateSubmission: {
+    nodeId: string;
+    amount: string;
+    method: "METHOD_NOW";
+  };
+}
 
 export interface VoteSubmissionInput {
   pubKey: string;
@@ -57,6 +65,7 @@ export interface VoteSubmissionInput {
 export type CommandSyncInput =
   | DelegateSubmissionInput
   | UndelegateSubmissionInput
+  | UndelegateNowSubmission
   | VoteSubmissionInput;
 
 export interface IVegaWalletService {
