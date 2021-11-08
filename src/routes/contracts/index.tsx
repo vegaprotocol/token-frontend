@@ -14,7 +14,7 @@ const Contracts = () => {
       {Object.entries(ADDRESSES).map(([key, value]) => (
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div>{key}:</div>
-          <EtherscanLink address={value} chainId={chainId} />
+          <EtherscanLink address={value} chainId={chainId} text={value} />
         </div>
       ))}
     </section>
