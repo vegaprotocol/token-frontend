@@ -4,6 +4,7 @@ import * as Sentry from "@sentry/react";
 
 import {
   DelegateSubmissionInput,
+  UndelegateNowSubmission,
   UndelegateSubmissionInput,
   vegaWalletService,
 } from "../../lib/vega-wallet/vega-wallet-service";
@@ -53,6 +54,7 @@ enum FormState {
 }
 
 export type StakeAction = "Add" | "Remove" | undefined;
+export type RemoveType = "nextEpoch" | "now";
 
 interface StakingFormProps {
   nodeId: string;
@@ -75,6 +77,7 @@ export const StakingForm = ({
   const { t } = useTranslation();
   const [action, setAction] = React.useState<StakeAction>(params.action);
   const [amount, setAmount] = React.useState("");
+  const [removeType, setRemoveType] = React.useState<RemoveType>("nextEpoch");
 
   const maxDelegation = React.useMemo(() => {
     if (action === "Add") {
@@ -103,8 +106,21 @@ export const StakingForm = ({
         method: "METHOD_AT_END_OF_EPOCH",
       },
     };
+    const undelegateNowInput: UndelegateNowSubmission = {
+      pubKey: pubkey,
+      undelegateSubmission: {
+        nodeId,
+        amount: removeDecimal(new BigNumber(amount), appState.decimals),
+        method: "METHOD_NOW",
+      },
+    };
     try {
-      const command = action === "Add" ? delegateInput : undelegateInput;
+      let command;
+      if (action === "Add") {
+        command = delegateInput;
+      } else {
+        command = removeType === "now" ? undelegateNowInput : undelegateInput;
+      }
       const [err] = await vegaWalletService.commandSync(command);
 
       if (err) {
@@ -203,16 +219,70 @@ export const StakingForm = ({
       </FormGroup>
       {action !== undefined && (
         <>
-          <h2>{t("How much to {{action}} in next epoch?", { action })}</h2>
-          <p>{t("Warning, spam protection exists")}</p>
-          <TokenInput
-            submitText={`${action} ${amount ? amount : ""} ${t("vegaTokens")}`}
-            perform={onSubmit}
-            amount={amount}
-            setAmount={setAmount}
-            maximum={maxDelegation}
-            currency={t("VEGA Tokens")}
-          />
+          {action === "Add" ? (
+            <>
+              <h2>{t("How much to Add in next epoch?")}</h2>
+              <p>{t("Warning, spam protection exists")}</p>
+              <TokenInput
+                submitText={`Add ${amount ? amount : ""} ${t("vegaTokens")}`}
+                perform={onSubmit}
+                amount={amount}
+                setAmount={setAmount}
+                maximum={maxDelegation}
+                currency={t("VEGA Tokens")}
+              />
+            </>
+          ) : (
+            <>
+              <h2>{t("How much to Remove?")}</h2>
+              {removeType === "now" ? (
+                <p>
+                  {t(
+                    "Removing stake mid epoch will forsake any staking rewards from that epoch"
+                  )}
+                </p>
+              ) : null}
+              <TokenInput
+                submitText={`Remove ${amount ? amount : ""} ${t(
+                  "vegaTokens"
+                )} ${
+                  removeType === "now"
+                    ? t("as soon as possible")
+                    : t("at the end of epoch")
+                }`}
+                perform={onSubmit}
+                amount={amount}
+                setAmount={setAmount}
+                maximum={maxDelegation}
+                currency={t("VEGA Tokens")}
+              />
+              {removeType === "now" ? (
+                <>
+                  <p>{t("Want to remove your stake before the epoch ends?")}</p>
+                  <button
+                    type="button"
+                    onClick={() => setRemoveType("nextEpoch")}
+                    className="button-link"
+                  >
+                    {t("Switch to form for removal at end of epoch")}
+                  </button>
+                </>
+              ) : (
+                <>
+                  <p>
+                    {t("Want to remove your stake at the end of the epoch?")}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setRemoveType("now")}
+                    className="button-link"
+                  >
+                    {t("Switch to form for immediate removal")}
+                  </button>
+                </>
+              )}
+            </>
+          )}
         </>
       )}
     </>
