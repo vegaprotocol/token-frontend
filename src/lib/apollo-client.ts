@@ -12,6 +12,15 @@ import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
 import BigNumber from "bignumber.js";
 import { addDecimal } from "./decimals";
+import uniqBy from "lodash/uniqBy";
+import sortBy from "lodash/sortBy";
+import { deterministicShuffle } from "./deterministic-shuffle";
+
+// Create seed in memory. Validator list order will remain the same
+// until the page is refreshed.
+const VALIDATOR_RANDOMISER_SEED = (
+  Math.floor(Math.random() * 1000) + 1
+).toString();
 
 export function createClient() {
   const base = process.env.REACT_APP_VEGA_URL;
@@ -38,6 +47,27 @@ export function createClient() {
 
   const cache = new InMemoryCache({
     typePolicies: {
+      Query: {
+        fields: {
+          nodes: {
+            // Merge function to make the validator list random but remain consistent
+            // as the user navigates around the site. If the user refreshes the list
+            // will be randomised.
+            merge: (existing = [], incoming) => {
+              // uniqBy will take the first of any matches
+              const uniq = uniqBy([...incoming, ...existing], "id");
+              // sort result so that the input is consistent
+              const sorted = sortBy(uniq, "id");
+              // randomise based on seed string
+              const random = deterministicShuffle(
+                VALIDATOR_RANDOMISER_SEED,
+                sorted
+              );
+              return random;
+            },
+          },
+        },
+      },
       Delegation: {
         keyFields: false,
         // Only get full updates

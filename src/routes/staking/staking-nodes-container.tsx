@@ -71,24 +71,52 @@ export const StakingNodesContainer = ({
 }) => {
   const { t } = useTranslation();
   const { currVegaKey } = useVegaUser();
-  const { data, loading, error } = useQuery<StakingQueryResult>(STAKING_QUERY, {
-    variables: { partyId: currVegaKey?.pub || "" },
-    skip: !currVegaKey?.pub,
-    pollInterval: 10000,
-    fetchPolicy: "network-only",
-  });
+  const { data, loading, error, refetch } = useQuery<StakingQueryResult>(
+    STAKING_QUERY,
+    {
+      variables: { partyId: currVegaKey?.pub || "" },
+      skip: !currVegaKey?.pub,
+    }
+  );
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      if (!data?.epoch.timestamps.expiry) return;
+      const now = Date.now();
+      const expiry = new Date(data.epoch.timestamps.expiry).getTime();
+
+      console.table({
+        now: new Date(now).toISOString(),
+        expiry: new Date(expiry).toISOString(),
+      });
+
+      if (now > expiry) {
+        console.log("refetching");
+        refetch();
+        clearInterval(interval);
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [data?.epoch.timestamps.expiry, refetch]);
+
   if (error) {
     return (
       <Callout intent="error" title={t("Something went wrong")}>
         <pre>{error.message}</pre>
       </Callout>
     );
-  } else if (loading) {
+  }
+
+  if (loading) {
     return (
       <SplashScreen>
         <SplashLoader />
       </SplashScreen>
     );
   }
+
   return children({ data });
 };

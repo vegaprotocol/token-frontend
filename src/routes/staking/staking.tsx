@@ -14,7 +14,6 @@ import { Staking as StakingQueryResult } from "./__generated__/Staking";
 import { useVegaUser } from "../../hooks/use-vega-user";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { formatNumber } from "../../lib/format-number";
-import shuffle from "lodash/shuffle";
 
 export const Staking = ({ data }: { data?: StakingQueryResult }) => {
   const { t } = useTranslation();
@@ -214,9 +213,8 @@ export const StakingStepSelectNode = ({
         userStakePercentage,
       };
     });
-    const randomized = shuffle(nodesWithPercentages);
 
-    return randomized;
+    return nodesWithPercentages;
   }, [data]);
 
   if (!currVegaKey) {
