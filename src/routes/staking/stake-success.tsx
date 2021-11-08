@@ -26,7 +26,7 @@ export const StakeSuccess = ({ action, amount, nodeId }: StakeSuccessProps) => {
       <div>
         <p>{message}</p>
         <p>
-          <Link to={Routes.STAKING}>{t("Back to staking page")}</Link>
+          <Link to={Routes.STAKING}>{t("backToStaking")}</Link>
         </p>
       </div>
     </Callout>
