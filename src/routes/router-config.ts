@@ -13,6 +13,7 @@ export const Routes = {
   LIQUIDITY: "/liquidity",
   NOT_PERMITTED: "/not-permitted",
   NOT_FOUND: "/not-found",
+  CONTRACTS: "/contracts",
 };
 
 const LazyTranches = React.lazy(
@@ -45,12 +46,19 @@ const LazyLiquidity = React.lazy(
   () =>
     import(
       /* webpackChunkName: "route-liquidity", webpackPrefetch: true */ "./liquidity"
-      )
+    )
 );
 const LazyGovernance = React.lazy(
   () =>
     import(
       /* webpackChunkName: "route-governance", webpackPrefetch: true */ "./governance"
+    )
+);
+
+const LazyContracts = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "route-tranches", webpackPrefetch: true */ "./contracts"
     )
 );
 
@@ -85,7 +93,7 @@ const routerConfig = [
   {
     path: Routes.LIQUIDITY,
     name: "DEX Liquidity",
-    component: LazyLiquidity
+    component: LazyLiquidity,
   },
   {
     path: Routes.GOVERNANCE,
@@ -99,10 +107,15 @@ const routerConfig = [
     component: NotPermitted,
   },
   {
+    path: Routes.CONTRACTS,
+    name: "Contracts",
+    component: LazyContracts,
+  },
+  {
     name: "NotFound",
     // Not lazy as loaded when a user first hits the site
     component: NotFound,
-  }
+  },
 ];
 
 export default routerConfig;
