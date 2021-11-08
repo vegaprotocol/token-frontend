@@ -49,12 +49,31 @@ export const useTransaction = (
       type: TransactionActionType.TX_REQUESTED,
     });
 
+    Sentry.addBreadcrumb({
+      type: "Transaction",
+      level: Sentry.Severity.Log,
+      message: "Transaction requested",
+      timestamp: Date.now(),
+    });
+
     try {
       const tx = await performTransaction();
 
       dispatch({
         type: TransactionActionType.TX_SUBMITTED,
         txHash: tx.hash,
+      });
+      Sentry.addBreadcrumb({
+        type: "Transaction",
+        level: Sentry.Severity.Log,
+        message: "Transaction submitted",
+        data: {
+          hash: tx.hash,
+          from: tx.from,
+          gasLimit: tx.gasLimit.toString(),
+          nonce: tx.nonce,
+        },
+        timestamp: Date.now(),
       });
 
       let receipt: ethers.ContractReceipt | null = null;
@@ -75,6 +94,19 @@ export const useTransaction = (
         type: TransactionActionType.TX_COMPLETE,
         receipt,
         confirmations: receipt.confirmations,
+      });
+      Sentry.addBreadcrumb({
+        type: "Transaction",
+        level: Sentry.Severity.Log,
+        message: "Transaction complete",
+        data: {
+          blockNumber: receipt.blockNumber,
+          confirmations: receipt.confirmations,
+          from: receipt.from,
+          to: receipt.to,
+          transactionHash: receipt.transactionHash,
+        },
+        timestamp: Date.now(),
       });
     } catch (err) {
       handleError(err as Error);
