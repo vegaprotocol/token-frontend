@@ -413,5 +413,7 @@
   "startupModalTitle": "A note about staking Vega tokens",
   "startupModalPara": "There are some known issues when staking Vega tokens. We encourage you to <knownIssuesLink>read this FAQs page</knownIssuesLink>.",
   "startupModalDimissCheckboxLabel": "Don't show me this message again",
-  "dismiss": "Dismiss"
+  "dismiss": "Dismiss",
+  "version": "Version",
+  "footerKnownIssues": "Known issues"
 }

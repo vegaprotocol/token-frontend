@@ -15,6 +15,7 @@ import { VegaWallet } from "./components/vega-wallet";
 import { BalanceManager } from "./components/balance-manager";
 import { StartupModal } from "./components/startup-modal";
 import { Flags } from "./config";
+import { AppFooter } from "./components/app-footer";
 
 function App() {
   return (
@@ -29,9 +30,7 @@ function App() {
                     <TemplateSidebar sidebar={[<EthWallet />, <VegaWallet />]}>
                       <AppRouter />
                     </TemplateSidebar>
-                    <footer>
-                      Version: {process.env.COMMIT_REF || "development"}
-                    </footer>
+                    <AppFooter />
                   </div>
                   <VegaWalletModal />
                   {Flags.STARTUP_MODAL && <StartupModal />}
