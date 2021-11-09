@@ -85,10 +85,6 @@ export const StakingNodesContainer = ({
       const now = Date.now();
       const expiry = new Date(data.epoch.timestamps.expiry).getTime();
 
-      console.table({
-        now: new Date(now).toISOString(),
-        expiry: new Date(expiry).toISOString(),
-      });
 
       if (now > expiry) {
         refetch();
