@@ -49,6 +49,7 @@ const DELEGATIONS_QUERY = gql`
       id
     }
     party(id: $partyId) {
+      id
       delegations {
         amountFormatted @client
         amount

@@ -30,6 +30,7 @@ import { useTranslation } from "react-i18next";
 export const PARTY_DELEGATIONS_QUERY = gql`
   query PartyDelegations($partyId: ID!) {
     party(id: $partyId) {
+      id
       delegations {
         amount
         amountFormatted @client
