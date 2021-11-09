@@ -37,20 +37,12 @@ export interface DelegateSubmissionInput {
   };
 }
 
-export interface UndelegateEndOfEpochSubmissionInput {
+export interface UndelegateSubmissionInput {
   pubKey: string;
   undelegateSubmission: {
     nodeId: string;
     amount: string;
-    method: "METHOD_AT_END_OF_EPOCH";
-  };
-}
-export interface UndelegateNowSubmission {
-  pubKey: string;
-  undelegateSubmission: {
-    nodeId: string;
-    amount: string;
-    method: "METHOD_NOW";
+    method: "METHOD_NOW" | "METHOD_AT_END_OF_EPOCH";
   };
 }
 
@@ -64,8 +56,7 @@ export interface VoteSubmissionInput {
 
 export type CommandSyncInput =
   | DelegateSubmissionInput
-  | UndelegateEndOfEpochSubmissionInput
-  | UndelegateNowSubmission
+  | UndelegateSubmissionInput
   | VoteSubmissionInput;
 
 export interface IVegaWalletService {

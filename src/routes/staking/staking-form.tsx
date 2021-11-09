@@ -4,8 +4,7 @@ import * as Sentry from "@sentry/react";
 
 import {
   DelegateSubmissionInput,
-  UndelegateNowSubmission,
-  UndelegateEndOfEpochSubmissionInput,
+  UndelegateSubmissionInput,
   vegaWalletService,
 } from "../../lib/vega-wallet/vega-wallet-service";
 import { FormGroup, Radio, RadioGroup } from "@blueprintjs/core";
@@ -54,7 +53,10 @@ enum FormState {
 }
 
 export type StakeAction = "Add" | "Remove" | undefined;
-export type RemoveType = "endOfEpoch" | "now";
+enum RemoveType {
+  endOfEpoch,
+  now,
+}
 
 interface StakingFormProps {
   nodeId: string;
@@ -77,7 +79,9 @@ export const StakingForm = ({
   const { t } = useTranslation();
   const [action, setAction] = React.useState<StakeAction>(params.action);
   const [amount, setAmount] = React.useState("");
-  const [removeType, setRemoveType] = React.useState<RemoveType>("endOfEpoch");
+  const [removeType, setRemoveType] = React.useState<RemoveType>(
+    RemoveType.endOfEpoch
+  );
 
   const maxDelegation = React.useMemo(() => {
     if (action === "Add") {
@@ -98,7 +102,7 @@ export const StakingForm = ({
         amount: removeDecimal(new BigNumber(amount), appState.decimals),
       },
     };
-    const undelegateInput: UndelegateEndOfEpochSubmissionInput = {
+    const undelegateInput: UndelegateSubmissionInput = {
       pubKey: pubkey,
       undelegateSubmission: {
         nodeId,
@@ -106,7 +110,7 @@ export const StakingForm = ({
         method: "METHOD_AT_END_OF_EPOCH",
       },
     };
-    const undelegateNowInput: UndelegateNowSubmission = {
+    const undelegateNowInput: UndelegateSubmissionInput = {
       pubKey: pubkey,
       undelegateSubmission: {
         nodeId,
@@ -119,7 +123,8 @@ export const StakingForm = ({
       if (action === "Add") {
         command = delegateInput;
       } else {
-        command = removeType === "now" ? undelegateNowInput : undelegateInput;
+        command =
+          removeType === RemoveType.now ? undelegateNowInput : undelegateInput;
       }
       const [err] = await vegaWalletService.commandSync(command);
 
@@ -235,7 +240,7 @@ export const StakingForm = ({
           ) : (
             <>
               <h2>{t("How much to Remove?")}</h2>
-              {removeType === "now" ? (
+              {removeType === RemoveType.now ? (
                 <p>
                   {t(
                     "Removing stake mid epoch will forsake any staking rewards from that epoch"
@@ -246,7 +251,7 @@ export const StakingForm = ({
                 submitText={`Remove ${amount ? amount : ""} ${t(
                   "vegaTokens"
                 )} ${
-                  removeType === "now"
+                  removeType === RemoveType.now
                     ? t("as soon as possible")
                     : t("at the end of epoch")
                 }`}
@@ -256,12 +261,12 @@ export const StakingForm = ({
                 maximum={maxDelegation}
                 currency={t("VEGA Tokens")}
               />
-              {removeType === "now" ? (
+              {removeType === RemoveType.now ? (
                 <>
                   <p>{t("Want to remove your stake before the epoch ends?")}</p>
                   <button
                     type="button"
-                    onClick={() => setRemoveType("endOfEpoch")}
+                    onClick={() => setRemoveType(RemoveType.endOfEpoch)}
                     className="button-link"
                   >
                     {t("Switch to form for removal at end of epoch")}
@@ -274,7 +279,7 @@ export const StakingForm = ({
                   </p>
                   <button
                     type="button"
-                    onClick={() => setRemoveType("now")}
+                    onClick={() => setRemoveType(RemoveType.now)}
                     className="button-link"
                   >
                     {t("Switch to form for immediate removal")}
