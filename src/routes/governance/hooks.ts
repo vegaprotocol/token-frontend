@@ -3,7 +3,7 @@ import React from "react";
 import type { Proposals_proposals } from "./__generated__/proposals";
 import { useNetworkParam } from "../../hooks/use-network-param";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import { NetworkParams } from "../../config/network-params";
+import { NetworkParams } from "../../config";
 
 const useProposalNetworkParams = ({
   proposal,

@@ -27,6 +27,8 @@ import { STAKING_QUERY } from "../../../routes/staking/staking-nodes-container";
 import { Rewards } from "../../../routes/rewards/home/__generated__/Rewards";
 import { EPOCH_QUERY, REWARDS_QUERY } from "../../../routes/rewards/home";
 import { Epoch } from "../../../routes/rewards/home/__generated__/Epoch";
+import { NETWORK_PARAMS_QUERY } from "../../../hooks/use-network-param";
+import { NetworkParams } from "../../../hooks/__generated__/NetworkParams";
 
 const partyId = "pub";
 
@@ -404,6 +406,23 @@ const MOCK_EPOCH: MockedResponse<Epoch> = {
   },
 };
 
+const MOCK_NETWORK_PARAMS: MockedResponse<NetworkParams> = {
+  request: {
+    query: NETWORK_PARAMS_QUERY,
+  },
+  result: {
+    data: {
+      networkParameters: [
+        {
+          __typename: "NetworkParameter",
+          key: "reward.asset",
+          value: "reward-asset-id",
+        },
+      ],
+    },
+  },
+};
+
 export const GraphQlProvider = ({
   children,
 }: {
@@ -419,6 +438,7 @@ export const GraphQlProvider = ({
         MOCK_PARTIES,
         MOCK_REWARDS,
         MOCK_EPOCH,
+        MOCK_NETWORK_PARAMS,
       ]}
     >
       {children}
