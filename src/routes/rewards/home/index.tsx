@@ -96,9 +96,9 @@ export const RewardsIndex = () => {
     <section className="rewards">
       <p>{t("rewardsPara1")}</p>
       <p>{t("rewardsPara2")}</p>
-      <h2>{t("activeRewardsTitle")}</h2>
+      {/* <h2>{t("activeRewardsTitle")}</h2>
       <h3>{t("stakingTitle")}</h3>
-      <p>{t("stakingPara", { amount: "TODO" })}</p>
+      <p>{t("stakingPara", { amount: "TODO" })}</p> */}
       {!loading &&
         !error &&
         data.epoch.timestamps.start &&
