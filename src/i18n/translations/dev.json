@@ -309,6 +309,7 @@
   "How much to Remove?": "How much to Remove?",
   "at the end of epoch": "at the end of epoch",
   "as soon as possible": "as soon as possible",
+  "undelegateSubmitButton": "{{amount}} {{when}}",
   "Removing stake mid epoch will forsake any staking rewards from that epoch": "Removing stake mid epoch will forsake any staking rewards from that epoch",
   "Want to remove your stake before the epoch ends?": "Want to remove your stake before the epoch ends?",
   "Want to remove your stake at the end of the epoch?": "Want to remove your stake before the epoch ends?",
