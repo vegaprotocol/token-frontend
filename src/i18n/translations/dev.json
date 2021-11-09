@@ -136,7 +136,6 @@
   "ethereumKey": "Ethereum key",
   "checkingForProvider": "Checking for provider",
   "Awaiting action in wallet...": "Awaiting action in Ethereum wallet (e.g. metamask)",
-  "Connect": "Connect to see your VEGA balance",
   "In wallet": "In wallet",
   "Not staked": "Not staked",
   "viewKeys": "View keys",
