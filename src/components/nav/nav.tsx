@@ -205,6 +205,9 @@ const NavLinks = ({
       <NavLink {...linkProps} to={Routes.STAKING}>
         {t("Staking")}
       </NavLink>
+      <NavLink {...linkProps} to={Routes.REWARDS}>
+        {t("Rewards")}
+      </NavLink>
       {Flags.GOVERNANCE_DISABLED ? null : (
         <NavLink {...linkProps} to={Routes.GOVERNANCE}>
           {t("Governance")}
