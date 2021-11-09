@@ -3,17 +3,25 @@
 
 .wallet-card {
   background-color: $white;
-  padding: 15px;
   color: $black;
   font-size: 14px;
+
+  &--inverted {
+    background-color: $black;
+    color: $white;
+    border: 1px solid $white;
+  }
 
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid $black;
-    padding-bottom: 4px;
-    margin-bottom: 4px;
+    padding: 8px;
+
+    &--inverted {
+      border-bottom: 1px solid $white;
+    }
 
     &:last-child {
       border-bottom: 0;
@@ -32,6 +40,10 @@
     }
   }
 
+  &__content {
+    margin: 4px 8px;
+  }
+
   &__row {
     display: flex;
     justify-content: space-between;
@@ -40,6 +52,7 @@
     font-size: 12px;
     text-transform: uppercase;
     padding: 2px;
+    margin: 4px 0;
 
     span:first-child {
       max-width: 140px;

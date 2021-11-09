@@ -32,6 +32,9 @@ import { keyBy, uniq } from "lodash";
 import { useRefreshAssociatedBalances } from "../../hooks/use-refresh-associated-balances";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { Colors } from "../../config";
+import { BulletHeader } from "../bullet-header";
+import { Routes } from "../../routes/router-config";
+import { Link } from "react-router-dom";
 
 const DELEGATIONS_QUERY = gql`
   query Delegations($partyId: ID!) {
@@ -50,6 +53,16 @@ const DELEGATIONS_QUERY = gql`
       stake {
         currentStakeAvailable
         currentStakeAvailableFormatted @client
+      }
+      accounts {
+        asset {
+          name
+          id
+          decimals
+          symbol
+        }
+        type
+        balance
       }
     }
   }
@@ -70,22 +83,23 @@ export const VegaWallet = () => {
   );
 
   return (
-    <WalletCard>
-      <WalletCardHeader>
-        <span>
-          {t("vegaKey")} {currVegaKey && `(${currVegaKey.alias})`}
-        </span>
-        {currVegaKey && (
-          <>
-            <span className="vega-wallet__curr-key">
-              {currVegaKey.pubShort}
-            </span>
-          </>
-        )}
-      </WalletCardHeader>
-      <WalletCardContent>{child}</WalletCardContent>
-      <WalletCardHeader>{version}</WalletCardHeader>
-    </WalletCard>
+    <section className="vega-wallet">
+      <WalletCard dark={true}>
+        <WalletCardHeader dark={true}>
+          <h1>{t("vegaWallet")}</h1>
+          {currVegaKey && (
+            <>
+              <span className="vega-wallet__curr-key">
+                {currVegaKey.pubShort}
+              </span>
+            </>
+          )}
+        </WalletCardHeader>
+        <span>{currVegaKey && `(${currVegaKey.alias})`}</span>
+        <WalletCardContent>{child}</WalletCardContent>
+        <WalletCardContent>{version}</WalletCardContent>
+      </WalletCard>
+    </section>
   );
 };
 
@@ -339,6 +353,7 @@ const VegaWalletConnected = ({
         value={unstaked}
         valueSuffix={t("VEGA")}
       />
+      <WalletCardRow label={t("stakedValidators")} />
       {delegatedNodes.map((d) => (
         <div key={d.nodeId}>
           {d.currentEpochStake && (
@@ -370,6 +385,21 @@ const VegaWalletConnected = ({
             ))}
         </ul>
       )}
+      <WalletCardActions>
+        <Link style={{ flex: 1 }} to={Routes.GOVERNANCE}>
+          <button className="button-secondary">{t("governance")}</button>
+        </Link>
+        <Link style={{ flex: 1 }} to={Routes.STAKING}>
+          <button className="button-secondary">{t("staking")}</button>
+        </Link>
+      </WalletCardActions>
+
+      <WalletCardHeader>
+        <BulletHeader style={{ border: "none" }} tag="h2">
+          {t("Assets")}
+        </BulletHeader>
+      </WalletCardHeader>
+      <WalletCardRow label={t("Available")} value={unstaked} />
       {disconnect}
     </>
   ) : (
