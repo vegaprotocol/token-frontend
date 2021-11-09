@@ -4,7 +4,6 @@ import gql from "graphql-tag";
 import { useTranslation } from "react-i18next";
 import { SplashLoader } from "../../../components/splash-loader";
 import { SplashScreen } from "../../../components/splash-screen";
-import { Epoch } from "./__generated__/Epoch";
 import { EpochCountdown } from "../../../components/epoch-countdown";
 import { Rewards } from "./__generated__/Rewards";
 import { useVegaUser } from "../../../hooks/use-vega-user";
@@ -15,19 +14,6 @@ import {
 } from "../../../contexts/app-state/app-state-context";
 import { useNetworkParam } from "../../../hooks/use-network-param";
 import { NetworkParams } from "../../../config";
-
-export const EPOCH_QUERY = gql`
-  query Epoch {
-    epoch {
-      id
-      timestamps {
-        start
-        end
-        expiry
-      }
-    }
-  }
-`;
 
 export const REWARDS_QUERY = gql`
   query Rewards($partyId: ID!) {
@@ -63,6 +49,14 @@ export const REWARDS_QUERY = gql`
         epoch
       }
     }
+    epoch {
+      id
+      timestamps {
+        start
+        end
+        expiry
+      }
+    }
   }
 `;
 
@@ -70,12 +64,7 @@ export const RewardsIndex = () => {
   const { t } = useTranslation();
   const { currVegaKey } = useVegaUser();
   const { appDispatch } = useAppState();
-  const { data, loading, error } = useQuery<Epoch>(EPOCH_QUERY);
-  const {
-    data: rewardsData,
-    loading: rewardsLoading,
-    error: rewardsError,
-  } = useQuery<Rewards>(REWARDS_QUERY, {
+  const { data, loading, error } = useQuery<Rewards>(REWARDS_QUERY, {
     variables: { partyId: currVegaKey?.pub },
     skip: !currVegaKey?.pub,
   });
@@ -85,24 +74,17 @@ export const RewardsIndex = () => {
     error: rewardAssetError,
   } = useNetworkParam([NetworkParams.REWARD_ASSET]);
 
-  if (error || rewardsError || rewardAssetError) {
+  if (error || rewardAssetError) {
     return (
       <section>
         <p>{t("Something went wrong")}</p>
         {error && <pre>{error.message}</pre>}
-        {rewardsError && <pre>{rewardsError.message}</pre>}
         {rewardAssetError && <pre>{rewardAssetError.message}</pre>}
       </section>
     );
   }
 
-  if (
-    loading ||
-    !data?.epoch ||
-    rewardsLoading ||
-    rewardAssetLoading ||
-    !rewardAssetData?.length
-  ) {
+  if (loading || !data || rewardAssetLoading || !rewardAssetData?.length) {
     return (
       <SplashScreen>
         <SplashLoader />
@@ -130,7 +112,7 @@ export const RewardsIndex = () => {
         )}
       <section>
         {currVegaKey ? (
-          <RewardInfo currVegaKey={currVegaKey} data={rewardsData} />
+          <RewardInfo currVegaKey={currVegaKey} data={data} />
         ) : (
           <button
             onClick={() =>

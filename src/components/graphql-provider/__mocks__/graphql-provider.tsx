@@ -25,8 +25,7 @@ import { PARTIES_QUERY } from "../../../routes/governance/vote-details";
 import { generateProposal } from "../../../routes/governance/test-helpers/generate-proposals";
 import { STAKING_QUERY } from "../../../routes/staking/staking-nodes-container";
 import { Rewards } from "../../../routes/rewards/home/__generated__/Rewards";
-import { EPOCH_QUERY, REWARDS_QUERY } from "../../../routes/rewards/home";
-import { Epoch } from "../../../routes/rewards/home/__generated__/Epoch";
+import { REWARDS_QUERY } from "../../../routes/rewards/home";
 import { NETWORK_PARAMS_QUERY } from "../../../hooks/use-network-param";
 import { NetworkParams } from "../../../hooks/__generated__/NetworkParams";
 
@@ -433,16 +432,6 @@ const MOCK_REWARDS: MockedResponse<Rewards> = {
           },
         ],
       },
-    },
-  },
-};
-
-const MOCK_EPOCH: MockedResponse<Epoch> = {
-  request: {
-    query: EPOCH_QUERY,
-  },
-  result: {
-    data: {
       epoch: {
         __typename: "Epoch",
         id: "1",
@@ -488,7 +477,6 @@ export const GraphQlProvider = ({
         MOCK_PROPOSALS_SUBSCRIPTION,
         MOCK_PARTIES,
         MOCK_REWARDS,
-        MOCK_EPOCH,
         MOCK_NETWORK_PARAMS,
       ]}
     >
