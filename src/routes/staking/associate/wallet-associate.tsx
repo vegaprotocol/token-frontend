@@ -60,7 +60,10 @@ export const WalletAssociate = ({
 
   let pageContent = null;
 
-  if (walletBalance.isEqualTo("0")) {
+  if (
+    walletBalance.isEqualTo("0") &&
+    new BigNumber(walletAssociatedBalance!).isEqualTo("0")
+  ) {
     pageContent = (
       <div className="wallet-associate__error">
         {t(
@@ -69,7 +72,8 @@ export const WalletAssociate = ({
       </div>
     );
   } else if (
-    new BigNumber(walletBalance).minus(walletAssociatedBalance!).isEqualTo("0")
+    walletBalance.isEqualTo("0") &&
+    !new BigNumber(walletAssociatedBalance!).isEqualTo("0")
   ) {
     pageContent = (
       <div className="wallet-associate__error">
