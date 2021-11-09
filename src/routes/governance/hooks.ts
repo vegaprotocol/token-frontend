@@ -3,6 +3,7 @@ import React from "react";
 import type { Proposals_proposals } from "./__generated__/proposals";
 import { useNetworkParam } from "../../hooks/use-network-param";
 import { useAppState } from "../../contexts/app-state/app-state-context";
+import { NetworkParams } from "../../config/network-params";
 
 const useProposalNetworkParams = ({
   proposal,
@@ -10,14 +11,14 @@ const useProposalNetworkParams = ({
   proposal: Proposals_proposals;
 }) => {
   const { data, loading } = useNetworkParam([
-    "governance.proposal.updateMarket.requiredMajority",
-    "governance.proposal.updateMarket.requiredParticipation",
-    "governance.proposal.market.requiredMajority",
-    "governance.proposal.market.requiredParticipation",
-    "governance.proposal.asset.requiredMajority",
-    "governance.proposal.asset.requiredParticipation",
-    "governance.proposal.updateNetParam.requiredMajority",
-    "governance.proposal.updateNetParam.requiredParticipation",
+    NetworkParams.GOV_UPDATE_MARKET_REQUIRED_MAJORITY,
+    NetworkParams.GOV_UPDATE_MARKET_REQUIRED_PARTICIPATION,
+    NetworkParams.GOV_NEW_MARKET_REQUIRED_MAJORITY,
+    NetworkParams.GOV_NEW_MARKET_REQUIRED_PARTICIPATION,
+    NetworkParams.GOV_ASSET_REQUIRED_MAJORITY,
+    NetworkParams.GOV_ASSET_REQUIRED_PARTICIPATION,
+    NetworkParams.GOV_UPDATE_NET_PARAM_REQUIRED_MAJORITY,
+    NetworkParams.GOV_UPDATE_NET_PARAM_REQUIRED_PARTICIPATION,
   ]);
   if (loading || !data) {
     return {

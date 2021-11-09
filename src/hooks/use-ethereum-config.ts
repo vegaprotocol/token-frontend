@@ -1,17 +1,16 @@
 import React from "react";
 import * as Sentry from "@sentry/react";
 import { useNetworkParam } from "./use-network-param";
-
-export const ETH_NETWORK_PARAM = "blockchains.ethereumConfig";
+import { NetworkParams } from "../config/network-params";
 
 export const useEthereumConfig = () => {
   const { data: ethereumConfigJSON, loading } = useNetworkParam([
-    ETH_NETWORK_PARAM,
+    NetworkParams.ETHEREUM_CONFIG,
   ]);
   const ethereumConfig = React.useMemo(() => {
     if (!ethereumConfigJSON && !loading) {
       Sentry.captureMessage(
-        `No ETH config found for network param ${ETH_NETWORK_PARAM}`
+        `No ETH config found for network param ${NetworkParams.ETHEREUM_CONFIG}`
       );
       return null;
     } else if (!ethereumConfigJSON) {
