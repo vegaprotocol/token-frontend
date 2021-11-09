@@ -1,4 +1,5 @@
 import React from "react";
+import * as Sentry from "@sentry/react";
 import {
   KeyValueTable,
   KeyValueTableRow,
@@ -10,10 +11,20 @@ interface RewardInfoProps {
 }
 
 export const RewardInfo = ({ data }: RewardInfoProps) => {
+  // Create array of rewards per epoch
   const vegaTokenRewards = React.useMemo(() => {
-    console.log(data);
     if (!data?.party || !data.party.rewardDetails?.length) return [];
 
+    // We only issue rewards as Vega tokens for now so there should only be one
+    // item in the rewardDetails array
+    if (data.party.rewardDetails.length > 1) {
+      const rewardAssets = data.party.rewardDetails
+        .map((r) => r?.asset.symbol)
+        .join(", ");
+      Sentry.captureMessage(`More than one reward asset ${rewardAssets}`);
+    }
+
+    // TODO: Get VEGA token rewards by finding by match of asset.id with network param reward.asset
     const vegaTokenRewards = data.party.rewardDetails[0];
 
     if (!vegaTokenRewards?.rewards?.length) return [];
