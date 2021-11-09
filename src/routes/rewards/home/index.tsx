@@ -69,13 +69,27 @@ export const RewardsIndex = () => {
   const {
     data: rewardsData,
     loading: rewardsLoading,
-    // error: rewardsError,
+    error: rewardsError,
   } = useQuery<Rewards>(REWARDS_QUERY, {
     variables: { partyId: currVegaKey?.pub },
     skip: !currVegaKey?.pub,
   });
-  const { data: rewardAssetData, loading: rewardAssetLoading } =
-    useNetworkParam([NetworkParams.REWARD_ASSET]);
+  const {
+    data: rewardAssetData,
+    loading: rewardAssetLoading,
+    error: rewardAssetError,
+  } = useNetworkParam([NetworkParams.REWARD_ASSET]);
+
+  if (error || rewardsError || rewardAssetError) {
+    return (
+      <section>
+        <p>Something went wrong</p>
+        {error && <pre>{error.message}</pre>}
+        {rewardsError && <pre>{rewardsError.message}</pre>}
+        {rewardAssetError && <pre>{rewardAssetError.message}</pre>}
+      </section>
+    );
+  }
 
   if (
     loading ||
