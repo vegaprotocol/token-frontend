@@ -107,25 +107,14 @@ export const StakingForm = ({
       undelegateSubmission: {
         nodeId,
         amount: removeDecimal(new BigNumber(amount), appState.decimals),
-        method: "METHOD_AT_END_OF_EPOCH",
-      },
-    };
-    const undelegateNowInput: UndelegateSubmissionInput = {
-      pubKey: pubkey,
-      undelegateSubmission: {
-        nodeId,
-        amount: removeDecimal(new BigNumber(amount), appState.decimals),
-        method: "METHOD_NOW",
+        method:
+          removeType === RemoveType.now
+            ? "METHOD_NOW"
+            : "METHOD_AT_END_OF_EPOCH",
       },
     };
     try {
-      let command;
-      if (action === "Add") {
-        command = delegateInput;
-      } else {
-        command =
-          removeType === RemoveType.now ? undelegateNowInput : undelegateInput;
-      }
+      const command = action === "Add" ? delegateInput : undelegateInput;
       const [err] = await vegaWalletService.commandSync(command);
 
       if (err) {
