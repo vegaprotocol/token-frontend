@@ -28,6 +28,8 @@ export const useTransaction = (
       if (isUserRejection(err)) {
         dispatch({ type: TransactionActionType.TX_RESET });
         return;
+      } else {
+        Sentry.captureException(err);
       }
 
       const defaultMessage = t("Something went wrong");

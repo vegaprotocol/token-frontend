@@ -201,8 +201,8 @@ const VegaWalletConnected = ({
               .map((d) => ({
                 nodeId: d,
                 hasStakePending: !!(
-                  delegatedThisEpoch[d]?.amountFormatted &&
-                  delegatedNextEpoch[d]?.amountFormatted &&
+                  (delegatedThisEpoch[d]?.amountFormatted ||
+                    delegatedNextEpoch[d]?.amountFormatted) &&
                   delegatedThisEpoch[d]?.amountFormatted !==
                     delegatedNextEpoch[d]?.amountFormatted
                 ),

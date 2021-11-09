@@ -99,6 +99,7 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         ...state,
         currVegaKey: null,
         vegaKeys: null,
+        vegaWalletVersion: undefined,
       };
     }
     case AppStateActionType.SET_TOKEN: {
