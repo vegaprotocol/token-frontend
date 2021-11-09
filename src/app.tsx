@@ -13,8 +13,17 @@ import { TemplateSidebar } from "./components/page-templates/template-sidebar";
 import { EthWallet } from "./components/eth-wallet";
 import { VegaWallet } from "./components/vega-wallet";
 import { BalanceManager } from "./components/balance-manager";
+import { Flags } from "./config";
+import React from "react";
 
 function App() {
+  const sideBar = React.useMemo(
+    () =>
+      [<EthWallet />, Flags.STAKING_DISABLED ? null : <VegaWallet />].filter(
+        Boolean
+      ),
+    []
+  );
   return (
     <GraphQlProvider>
       <Router>
@@ -24,7 +33,7 @@ function App() {
               <AppLoader>
                 <BalanceManager>
                   <div className="app">
-                    <TemplateSidebar sidebar={[<EthWallet />, <VegaWallet />]}>
+                    <TemplateSidebar sidebar={sideBar}>
                       <AppRouter />
                     </TemplateSidebar>
                     <footer>
