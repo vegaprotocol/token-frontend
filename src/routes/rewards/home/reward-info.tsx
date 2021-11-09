@@ -11,6 +11,7 @@ import {
 } from "./__generated__/Rewards";
 import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
 import { useTranslation } from "react-i18next";
+import { format } from "date-fns";
 
 interface RewardInfoProps {
   data: Rewards | undefined;
@@ -124,7 +125,7 @@ export const RewardTable = ({ reward, delegations }: RewardTableProps) => {
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("received")}</th>
-          <td>{reward.receivedAt}</td>
+          <td>{format(new Date(reward.receivedAt), "dd MMM yyyy HH:mm")}</td>
         </KeyValueTableRow>
       </KeyValueTable>
     </div>
