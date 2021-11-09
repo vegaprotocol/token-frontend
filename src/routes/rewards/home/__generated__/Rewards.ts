@@ -119,11 +119,43 @@ export interface Rewards_party {
   delegations: Rewards_party_delegations[] | null;
 }
 
+export interface Rewards_epoch_timestamps {
+  __typename: "EpochTimestamps";
+  /**
+   * RFC3339 timestamp - Vega time of epoch start, null if not started
+   */
+  start: string | null;
+  /**
+   * RFC3339 timestamp - Vega time of epoch end, null if not ended
+   */
+  end: string | null;
+  /**
+   * RFC3339 timestamp - Vega time of epoch expiry
+   */
+  expiry: string | null;
+}
+
+export interface Rewards_epoch {
+  __typename: "Epoch";
+  /**
+   * Presumably this is an integer or something. If there's no such thing, disregard
+   */
+  id: string;
+  /**
+   * Timestamps for start/end etc
+   */
+  timestamps: Rewards_epoch_timestamps;
+}
+
 export interface Rewards {
   /**
    * An entity that is trading on the VEGA network
    */
   party: Rewards_party | null;
+  /**
+   * get data for a specific epoch, if id omitted it gets the current epoch
+   */
+  epoch: Rewards_epoch;
 }
 
 export interface RewardsVariables {
