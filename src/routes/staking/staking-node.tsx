@@ -47,15 +47,6 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
     return BigNumber.sum.apply(null, [new BigNumber(0), ...amounts]);
   }, [data]);
 
-  const unstaked = React.useMemo(() => {
-    return new BigNumber(
-      data?.party?.stake.currentStakeAvailableFormatted || 0
-    ).minus(currentDelegationAmount);
-  }, [
-    currentDelegationAmount,
-    data?.party?.stake.currentStakeAvailableFormatted,
-  ]);
-
   const nodeInfo = React.useMemo(() => {
     return data?.nodes?.find(({ id }) => id === node);
   }, [node, data]);
@@ -85,6 +76,28 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
     }
     return BigNumber.sum.apply(null, [new BigNumber(0), ...amountsNextEpoch]);
   }, [currentEpoch, data?.party?.delegations, node, stakeThisEpoch]);
+
+  const unstaked = React.useMemo(() => {
+    return new BigNumber(
+      data?.party?.stake.currentStakeAvailableFormatted || 0
+    ).minus(currentDelegationAmount);
+  }, [
+    currentDelegationAmount,
+    data?.party?.stake.currentStakeAvailableFormatted,
+  ]);
+
+  const availableStakeToAdd = React.useMemo(() => {
+    const delegations = data?.party?.delegations || [];
+    // Subtract all pending delegations from the unstaked balance
+    const amountsNextEpoch = delegations
+      .filter((d) => d.epoch === Number(currentEpoch) + 1)
+      .map((d) => new BigNumber(d.amountFormatted));
+    const pendingStake = BigNumber.sum.apply(null, [
+      new BigNumber(0),
+      ...amountsNextEpoch,
+    ]);
+    return BigNumber.max(unstaked.minus(pendingStake), 0);
+  }, [currentEpoch, data?.party?.delegations, unstaked]);
 
   if (!nodeInfo) {
     return (
@@ -121,7 +134,7 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
       <StakingForm
         pubkey={vegaKey.pub}
         nodeId={node}
-        availableStakeToAdd={unstaked}
+        availableStakeToAdd={availableStakeToAdd}
         availableStakeToRemove={stakeNextEpoch}
       />
     </>
