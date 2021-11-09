@@ -91,7 +91,6 @@ export const StakingNodesContainer = ({
       });
 
       if (now > expiry) {
-        console.log("refetching");
         refetch();
         clearInterval(interval);
       }
