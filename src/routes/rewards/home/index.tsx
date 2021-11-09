@@ -57,6 +57,11 @@ export const REWARDS_QUERY = gql`
         totalAmount
         totalAmountFormatted @client
       }
+      delegations {
+        amount
+        amountFormatted @client
+        epoch
+      }
     }
   }
 `;

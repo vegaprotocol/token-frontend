@@ -93,6 +93,19 @@ export interface Rewards_party_rewardDetails {
   totalAmountFormatted: string;
 }
 
+export interface Rewards_party_delegations {
+  __typename: "Delegation";
+  /**
+   * Amount delegated
+   */
+  amount: string;
+  amountFormatted: string;
+  /**
+   * Epoch of delegation
+   */
+  epoch: number;
+}
+
 export interface Rewards_party {
   __typename: "Party";
   /**
@@ -103,6 +116,7 @@ export interface Rewards_party {
    * return reward information
    */
   rewardDetails: (Rewards_party_rewardDetails | null)[] | null;
+  delegations: Rewards_party_delegations[] | null;
 }
 
 export interface Rewards {

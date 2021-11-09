@@ -49,21 +49,43 @@ export const RewardInfo = ({ data, currVegaKey }: RewardInfoProps) => {
     <>
       <h2>Rewards for {currVegaKey?.pubShort}</h2>
       {vegaTokenRewards.map((reward, i) => {
+        console.log(reward);
+        if (!reward) return null;
+
+        let stakeForEpoch = "0";
+
+        if (data?.party?.delegations?.length) {
+          const delegationForEpoch = data.party.delegations.find(
+            (d) => d.epoch === Number(reward.epoch.id)
+          );
+          if (delegationForEpoch) {
+            stakeForEpoch = delegationForEpoch.amountFormatted;
+          }
+        }
+
         return (
           <div key={i}>
-            <h3>Epoch {reward?.epoch.id}</h3>
+            <h3>Epoch {reward.epoch.id}</h3>
             <KeyValueTable>
               <KeyValueTableRow>
+                <th>Reward type</th>
+                <td>Staking</td>
+              </KeyValueTableRow>
+              <KeyValueTableRow>
+                <th>Your stake</th>
+                <td>{stakeForEpoch.toString()}</td>
+              </KeyValueTableRow>
+              <KeyValueTableRow>
                 <th>Reward</th>
-                <td>{reward?.amountFormatted} VEGA</td>
+                <td>{reward.amountFormatted} VEGA</td>
               </KeyValueTableRow>
               <KeyValueTableRow>
                 <th>Share of reward</th>
-                <td>{reward?.percentageOfTotal}</td>
+                <td>{reward.percentageOfTotal}</td>
               </KeyValueTableRow>
               <KeyValueTableRow>
                 <th>Received</th>
-                <td>{reward?.receivedAt}</td>
+                <td>{reward.receivedAt}</td>
               </KeyValueTableRow>
             </KeyValueTable>
           </div>
