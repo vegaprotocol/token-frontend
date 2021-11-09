@@ -5,12 +5,14 @@ import {
   KeyValueTableRow,
 } from "../../../components/key-value-table";
 import { Rewards } from "./__generated__/Rewards";
+import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
 
 interface RewardInfoProps {
   data: Rewards | undefined;
+  currVegaKey: VegaKeyExtended;
 }
 
-export const RewardInfo = ({ data }: RewardInfoProps) => {
+export const RewardInfo = ({ data, currVegaKey }: RewardInfoProps) => {
   // Create array of rewards per epoch
   const vegaTokenRewards = React.useMemo(() => {
     if (!data?.party || !data.party.rewardDetails?.length) return [];
@@ -45,6 +47,7 @@ export const RewardInfo = ({ data }: RewardInfoProps) => {
 
   return (
     <>
+      <h2>Rewards for {currVegaKey?.pubShort}</h2>
       {vegaTokenRewards.map((reward, i) => {
         return (
           <div key={i}>
