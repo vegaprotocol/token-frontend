@@ -424,6 +424,14 @@ const MOCK_REWARDS: MockedResponse<Rewards> = {
             totalAmountFormatted: "130.00",
           },
         ],
+        delegations: [
+          {
+            __typename: "Delegation",
+            amount: "100",
+            amountFormatted: "100.00",
+            epoch: 1,
+          },
+        ],
       },
     },
   },

@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { AppRouter } from "./routes";
 import { AppStateProvider } from "./contexts/app-state/app-state-provider";
 import { VegaWalletModal } from "./components/vega-wallet/vega-wallet-modal";
-import { GraphQlProvider } from "./components/graphql-provider/graphql-provider";
+import { GraphQlProvider } from "./components/graphql-provider/__mocks__/graphql-provider";
 import { AppLoader } from "./app-loader";
 import { Web3Provider } from "./contexts/web3-context/web3-provider";
 import { ContractsProvider } from "./contexts/contracts/contracts-provider";
