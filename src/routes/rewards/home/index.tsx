@@ -124,9 +124,8 @@ export const RewardsIndex = () => {
           />
         )}
       <section>
-        <h2>Show rewards for a Vega key</h2>
         {currVegaKey ? (
-          <RewardInfo data={rewardsData} />
+          <RewardInfo currVegaKey={currVegaKey} data={rewardsData} />
         ) : (
           <button
             onClick={() =>
