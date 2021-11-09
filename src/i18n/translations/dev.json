@@ -411,7 +411,7 @@
   "noVersionFound": "Version could not be found, most likely your wallet version is <0.9.2 which is not supported.",
   "unsupportedVersion": "Looks like you're running an outdated version of Vega Wallet. You're running {{version}} but {{requiredVersion}} is required.",
   "startupModalTitle": "A note about staking Vega tokens",
-  "startupModalPara": "There are some known issues when staking Vega tokens. We encourage you to <knownIssuesLink>read this FAQs page</knownIssuesLink>.",
+  "startupModalPara": "The Vega token website is under constant development, so you might run into a few issues. Please visit the <knownIssuesLink>FAQs page</knownIssuesLink> for a list of those we're aware of. You can also find the link at the bottom of each page.",
   "startupModalDimissCheckboxLabel": "Don't show me this message again",
   "dismiss": "Dismiss",
   "version": "Version",
