@@ -26,33 +26,39 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
   const [contracts, setContracts] = React.useState<any>(null);
 
   React.useEffect(() => {
+    let cancelled = false;
     const run = async () => {
       const token = new VegaToken(provider, signer, ADDRESSES.vegaTokenAddress);
       const decimals = await token.decimals();
-      setContracts({
-        token,
-        staking: new StakingAbi(
-          provider,
-          signer,
-          ADDRESSES.stakingBridge,
-          decimals
-        ),
-        vesting: new VegaVesting(
-          provider,
-          signer,
-          ADDRESSES.vestingAddress,
-          decimals
-        ),
-        claim: new VegaClaim(
-          provider,
-          signer,
-          ADDRESSES.claimAddress,
-          decimals
-        ),
-      });
+      if (!cancelled) {
+        setContracts({
+          token,
+          staking: new StakingAbi(
+            provider,
+            signer,
+            ADDRESSES.stakingBridge,
+            decimals
+          ),
+          vesting: new VegaVesting(
+            provider,
+            signer,
+            ADDRESSES.vestingAddress,
+            decimals
+          ),
+          claim: new VegaClaim(
+            provider,
+            signer,
+            ADDRESSES.claimAddress,
+            decimals
+          ),
+        });
+      }
     };
 
     run();
+    return () => {
+      cancelled = true;
+    };
   }, [provider, signer]);
 
   if (!contracts) {
