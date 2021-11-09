@@ -5,7 +5,7 @@ import * as Sentry from "@sentry/react";
 import {
   DelegateSubmissionInput,
   UndelegateNowSubmission,
-  UndelegateSubmissionInput,
+  UndelegateEndOfEpochSubmissionInput,
   vegaWalletService,
 } from "../../lib/vega-wallet/vega-wallet-service";
 import { FormGroup, Radio, RadioGroup } from "@blueprintjs/core";
@@ -54,7 +54,7 @@ enum FormState {
 }
 
 export type StakeAction = "Add" | "Remove" | undefined;
-export type RemoveType = "nextEpoch" | "now";
+export type RemoveType = "endOfEpoch" | "now";
 
 interface StakingFormProps {
   nodeId: string;
@@ -77,7 +77,7 @@ export const StakingForm = ({
   const { t } = useTranslation();
   const [action, setAction] = React.useState<StakeAction>(params.action);
   const [amount, setAmount] = React.useState("");
-  const [removeType, setRemoveType] = React.useState<RemoveType>("nextEpoch");
+  const [removeType, setRemoveType] = React.useState<RemoveType>("endOfEpoch");
 
   const maxDelegation = React.useMemo(() => {
     if (action === "Add") {
@@ -98,7 +98,7 @@ export const StakingForm = ({
         amount: removeDecimal(new BigNumber(amount), appState.decimals),
       },
     };
-    const undelegateInput: UndelegateSubmissionInput = {
+    const undelegateInput: UndelegateEndOfEpochSubmissionInput = {
       pubKey: pubkey,
       undelegateSubmission: {
         nodeId,
@@ -261,7 +261,7 @@ export const StakingForm = ({
                   <p>{t("Want to remove your stake before the epoch ends?")}</p>
                   <button
                     type="button"
-                    onClick={() => setRemoveType("nextEpoch")}
+                    onClick={() => setRemoveType("endOfEpoch")}
                     className="button-link"
                   >
                     {t("Switch to form for removal at end of epoch")}

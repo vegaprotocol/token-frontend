@@ -37,7 +37,7 @@ export interface DelegateSubmissionInput {
   };
 }
 
-export interface UndelegateSubmissionInput {
+export interface UndelegateEndOfEpochSubmissionInput {
   pubKey: string;
   undelegateSubmission: {
     nodeId: string;
@@ -64,7 +64,7 @@ export interface VoteSubmissionInput {
 
 export type CommandSyncInput =
   | DelegateSubmissionInput
-  | UndelegateSubmissionInput
+  | UndelegateEndOfEpochSubmissionInput
   | UndelegateNowSubmission
   | VoteSubmissionInput;
 
