@@ -88,7 +88,7 @@ export const RewardsIndex = () => {
   if (error || rewardsError || rewardAssetError) {
     return (
       <section>
-        <p>Something went wrong</p>
+        <p>{t("Something went wrong")}</p>
         {error && <pre>{error.message}</pre>}
         {rewardsError && <pre>{rewardsError.message}</pre>}
         {rewardAssetError && <pre>{rewardAssetError.message}</pre>}
