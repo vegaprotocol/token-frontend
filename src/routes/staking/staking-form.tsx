@@ -248,13 +248,13 @@ export const StakingForm = ({
                 </p>
               ) : null}
               <TokenInput
-                submitText={`Remove ${amount ? amount : ""} ${t(
-                  "vegaTokens"
-                )} ${
-                  removeType === RemoveType.now
-                    ? t("as soon as possible")
-                    : t("at the end of epoch")
-                }`}
+                submitText={t("undelegateSubmitButton", {
+                  amount: t("Remove {{amount}} VEGA tokens", { amount }),
+                  when:
+                    removeType === RemoveType.now
+                      ? t("as soon as possible")
+                      : t("at the end of epoch"),
+                })}
                 perform={onSubmit}
                 amount={amount}
                 setAmount={setAmount}
