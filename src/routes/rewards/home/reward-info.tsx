@@ -51,9 +51,7 @@ export const RewardInfo = ({ data, currVegaKey }: RewardInfoProps) => {
     return sorted;
   }, [data]);
 
-  if (!vegaTokenRewards.length) {
-    return <p>{t("noRewards")}</p>;
-  }
+  console.log(vegaTokenRewards.length);
 
   return (
     <>
@@ -63,16 +61,20 @@ export const RewardInfo = ({ data, currVegaKey }: RewardInfoProps) => {
           key: currVegaKey.pubShort,
         })}
       </h2>
-      {vegaTokenRewards.map((reward, i) => {
-        if (!reward) return null;
-        return (
-          <RewardTable
-            key={i}
-            reward={reward}
-            delegations={data?.party?.delegations || []}
-          />
-        );
-      })}
+      {vegaTokenRewards.length ? (
+        vegaTokenRewards.map((reward, i) => {
+          if (!reward) return null;
+          return (
+            <RewardTable
+              key={i}
+              reward={reward}
+              delegations={data?.party?.delegations || []}
+            />
+          );
+        })
+      ) : (
+        <p>{t("noRewards")}</p>
+      )}
     </>
   );
 };
