@@ -85,6 +85,6 @@
     "yarn": "^1.22.11"
   },
   "resolutions": {
-    "graphql": "15.5.1"
+    "graphql": "15.7.2"
   }
 }
