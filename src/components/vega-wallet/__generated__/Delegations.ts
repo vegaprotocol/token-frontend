@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { AccountType } from "./../../../__generated__/globalTypes";
+
 // ====================================================
 // GraphQL query operation: Delegations
 // ====================================================
@@ -49,6 +51,42 @@ export interface Delegations_party_stake {
   currentStakeAvailableFormatted: string;
 }
 
+export interface Delegations_party_accounts_asset {
+  __typename: "Asset";
+  /**
+   * The full name of the asset (e.g: Great British Pound)
+   */
+  name: string;
+  /**
+   * The id of the asset
+   */
+  id: string;
+  /**
+   * The precision of the asset
+   */
+  decimals: number;
+  /**
+   * The symbol of the asset (e.g: GBP)
+   */
+  symbol: string;
+}
+
+export interface Delegations_party_accounts {
+  __typename: "Account";
+  /**
+   * Asset, the 'currency'
+   */
+  asset: Delegations_party_accounts_asset;
+  /**
+   * Account type (General, Margin, etc)
+   */
+  type: AccountType;
+  /**
+   * Balance as string - current account balance (approx. as balances can be updated several times per second)
+   */
+  balance: string;
+}
+
 export interface Delegations_party {
   __typename: "Party";
   delegations: Delegations_party_delegations[] | null;
@@ -56,6 +94,10 @@ export interface Delegations_party {
    * The staking informations for this Party
    */
   stake: Delegations_party_stake;
+  /**
+   * Collateral accounts relating to a party
+   */
+  accounts: Delegations_party_accounts[] | null;
 }
 
 export interface Delegations {
