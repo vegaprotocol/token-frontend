@@ -29,7 +29,7 @@ export const RewardInfo = ({ data }: RewardInfoProps) => {
 
     if (!vegaTokenRewards?.rewards?.length) return [];
 
-    const sorted = vegaTokenRewards.rewards.sort((a, b) => {
+    const sorted = Array.from(vegaTokenRewards.rewards).sort((a, b) => {
       if (!a || !b) return 0;
       if (Number(a?.epoch.id) > Number(b?.epoch.id)) return -1;
       if (Number(a?.epoch.id) < Number(b?.epoch.id)) return 1;

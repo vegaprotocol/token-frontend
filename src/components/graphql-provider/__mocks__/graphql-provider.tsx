@@ -30,7 +30,8 @@ import { Epoch } from "../../../routes/rewards/home/__generated__/Epoch";
 import { NETWORK_PARAMS_QUERY } from "../../../hooks/use-network-param";
 import { NetworkParams } from "../../../hooks/__generated__/NetworkParams";
 
-const partyId = "pub";
+const PARTY_ID = "pub";
+const REWARD_ASSET_ID = "reward-asset-id";
 
 const nodes: Staking_nodes[] = [
   {
@@ -94,7 +95,7 @@ const nodeData: Staking_nodeData = {
 const MOCK_STAKING_QUERY: MockedResponse<Staking> = {
   request: {
     query: STAKING_QUERY,
-    variables: { partyId },
+    variables: { partyId: PARTY_ID },
   },
   result: {
     data: {
@@ -115,7 +116,7 @@ const MOCK_STAKING_QUERY: MockedResponse<Staking> = {
           currentStakeAvailable: "0.00000000000001",
           currentStakeAvailableFormatted: "0.00000000000001",
         },
-        id: partyId,
+        id: PARTY_ID,
         delegations: [
           {
             __typename: "Delegation",
@@ -135,7 +136,7 @@ const MOCK_STAKING_QUERY: MockedResponse<Staking> = {
 const MOCK_PARTY_DELEGATIONS: MockedResponse<PartyDelegations> = {
   request: {
     query: PARTY_DELEGATIONS_QUERY,
-    variables: { partyId },
+    variables: { partyId: PARTY_ID },
   },
   result: {
     data: {
@@ -339,6 +340,7 @@ const MOCK_REWARDS: MockedResponse<Rewards> = {
     query: REWARDS_QUERY,
     variables: {
       partyId:
+        // TODO: Figure out a better way to sync up vega key with party id for mocking
         "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
     },
   },
@@ -346,13 +348,14 @@ const MOCK_REWARDS: MockedResponse<Rewards> = {
     data: {
       party: {
         __typename: "Party",
+        // TODO: Figure out a better way to sync up vega key with party id for mocking
         id: "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
         rewardDetails: [
           {
             __typename: "RewardPerAssetDetail",
             asset: {
               __typename: "Asset",
-              id: "asset-id",
+              id: REWARD_ASSET_ID,
               symbol: "asset-symbol",
             },
             rewards: [
@@ -360,7 +363,7 @@ const MOCK_REWARDS: MockedResponse<Rewards> = {
                 __typename: "Reward",
                 asset: {
                   __typename: "Asset",
-                  id: "assset-id",
+                  id: REWARD_ASSET_ID,
                   symbol: "asset-symbol",
                 },
                 party: {
@@ -376,9 +379,49 @@ const MOCK_REWARDS: MockedResponse<Rewards> = {
                 percentageOfTotal: "50",
                 receivedAt: "2020-01-01T00:00:00",
               },
+              {
+                __typename: "Reward",
+                asset: {
+                  __typename: "Asset",
+                  id: REWARD_ASSET_ID,
+                  symbol: "asset-symbol",
+                },
+                party: {
+                  __typename: "Party",
+                  id: "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
+                },
+                epoch: {
+                  __typename: "Epoch",
+                  id: "3",
+                },
+                amount: "110",
+                amountFormatted: "110.00",
+                percentageOfTotal: "50",
+                receivedAt: "2020-01-01T00:00:00",
+              },
+              {
+                __typename: "Reward",
+                asset: {
+                  __typename: "Asset",
+                  id: REWARD_ASSET_ID,
+                  symbol: "asset-symbol",
+                },
+                party: {
+                  __typename: "Party",
+                  id: "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
+                },
+                epoch: {
+                  __typename: "Epoch",
+                  id: "2",
+                },
+                amount: "120",
+                amountFormatted: "120.00",
+                percentageOfTotal: "50",
+                receivedAt: "2020-01-01T00:00:00",
+              },
             ],
-            totalAmount: "100",
-            totalAmountFormatted: "100.00",
+            totalAmount: "130",
+            totalAmountFormatted: "130.00",
           },
         ],
       },
