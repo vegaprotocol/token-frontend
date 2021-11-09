@@ -198,7 +198,6 @@
   "daysLeft": "{{daysLeft}} left to vote.",
   "voteFor": "Vote for",
   "voteAgainst": "Vote against",
-  "connectToVote": "Connect to VEGA wallet",
   "noGovernanceTokens": "You need some VEGA tokens to participate in governance",
   "youVoted": "You voted",
   "forThisProposal": " this proposal on",

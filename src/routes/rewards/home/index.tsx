@@ -122,7 +122,7 @@ export const RewardsIndex = () => {
               })
             }
           >
-            Connect Vega key
+            {t("Connect to Vega wallet")}
           </button>
         )}
       </section>
