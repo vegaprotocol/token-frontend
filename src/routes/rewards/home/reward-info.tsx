@@ -51,8 +51,6 @@ export const RewardInfo = ({ data, currVegaKey }: RewardInfoProps) => {
     return sorted;
   }, [data]);
 
-  console.log(vegaTokenRewards.length);
-
   return (
     <>
       <h2>
