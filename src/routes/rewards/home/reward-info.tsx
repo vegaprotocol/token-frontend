@@ -10,6 +10,7 @@ import {
   Rewards_party_rewardDetails_rewards,
 } from "./__generated__/Rewards";
 import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
+import { useTranslation } from "react-i18next";
 
 interface RewardInfoProps {
   data: Rewards | undefined;
@@ -21,6 +22,7 @@ interface RewardInfoProps {
 const DEFAULT_REWARD_TYPE = "Staking";
 
 export const RewardInfo = ({ data, currVegaKey }: RewardInfoProps) => {
+  const { t } = useTranslation();
   // Create array of rewards per epoch
   const vegaTokenRewards = React.useMemo(() => {
     if (!data?.party || !data.party.rewardDetails?.length) return [];
@@ -50,12 +52,17 @@ export const RewardInfo = ({ data, currVegaKey }: RewardInfoProps) => {
   }, [data]);
 
   if (!vegaTokenRewards.length) {
-    return <p>This Vega key has not received any rewards.</p>;
+    return <p>{t("noRewards")}</p>;
   }
 
   return (
     <>
-      <h2>Rewards for {currVegaKey?.pubShort}</h2>
+      <h2>
+        {t("rewardsForVegaKey", {
+          alias: currVegaKey.alias,
+          key: currVegaKey.pubShort,
+        })}
+      </h2>
       {vegaTokenRewards.map((reward, i) => {
         if (!reward) return null;
         return (
@@ -76,6 +83,8 @@ interface RewardTableProps {
 }
 
 export const RewardTable = ({ reward, delegations }: RewardTableProps) => {
+  const { t } = useTranslation();
+
   // Get your stake for epoch in which you have rewards
   const stakeForEpoch = React.useMemo(() => {
     if (!delegations.length) return "0";
@@ -93,26 +102,28 @@ export const RewardTable = ({ reward, delegations }: RewardTableProps) => {
 
   return (
     <div>
-      <h3>Epoch {reward.epoch.id}</h3>
+      <h3>
+        {t("Epoch")} {reward.epoch.id}
+      </h3>
       <KeyValueTable>
         <KeyValueTableRow>
-          <th>Reward type</th>
+          <th>{t("rewardType")}</th>
           <td>{DEFAULT_REWARD_TYPE}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
-          <th>Your stake</th>
+          <th>{t("yourStake")}</th>
           <td>{stakeForEpoch.toString()}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
-          <th>Reward</th>
+          <th>{t("reward")}</th>
           <td>{reward.amountFormatted} VEGA</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
-          <th>Share of reward</th>
+          <th>{t("shareOfReward")}</th>
           <td>{reward.percentageOfTotal}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
-          <th>Received</th>
+          <th>{t("received")}</th>
           <td>{reward.receivedAt}</td>
         </KeyValueTableRow>
       </KeyValueTable>

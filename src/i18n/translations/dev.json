@@ -415,6 +415,13 @@
   "rewardsPara1": "Rewards are paid out from the treasury at the ned of an epoch.",
   "rewardsPara2": "This page lists all the rewards that a Vega key has received.",
   "activeRewardsTitle": "Active rewards",
+  "noRewards": "This Vega key has not received any rewards.",
   "stakingTitle": "Staking",
-  "stakingPara": "{{amount}} VEGA to be shared across all validators (their nominators) each epoch."
+  "stakingPara": "{{amount}} VEGA to be shared across all validators (their nominators) each epoch.",
+  "rewardsForVegaKey": "Rewards for Vega key ({{alias}}) {{key}}",
+  "rewardType": "Reward type",
+  "yourStake": "Your stake",
+  "reward": "Reward",
+  "shareOfReward": "Share of reward",
+  "received": "Received"
 }
