@@ -13,6 +13,8 @@ import {
   AppStateActionType,
   useAppState,
 } from "../../../contexts/app-state/app-state-context";
+import { useNetworkParam } from "../../../hooks/use-network-param";
+import { NetworkParams } from "../../../config";
 
 export const EPOCH_QUERY = gql`
   query Epoch {
@@ -72,8 +74,16 @@ export const RewardsIndex = () => {
     variables: { partyId: currVegaKey?.pub },
     skip: !currVegaKey?.pub,
   });
+  const { data: rewardAssetData, loading: rewardAssetLoading } =
+    useNetworkParam([NetworkParams.REWARD_ASSET]);
 
-  if (loading || !data?.epoch || rewardsLoading) {
+  if (
+    loading ||
+    !data?.epoch ||
+    rewardsLoading ||
+    rewardAssetLoading ||
+    !rewardAssetData?.length
+  ) {
     return (
       <SplashScreen>
         <SplashLoader />
