@@ -408,5 +408,9 @@
   "viewAllTranches": "View all tranches",
   "id": "ID",
   "noVersionFound": "Version could not be found, most likely your wallet version is <0.9.2 which is not supported.",
-  "unsupportedVersion": "Looks like you're running an outdated version of GoWallet. You're running {{version}} but {{requiredVersion}} is required."
+  "unsupportedVersion": "Looks like you're running an outdated version of GoWallet. You're running {{version}} but {{requiredVersion}} is required.",
+  "vegaWallet": "Vega Wallet",
+  "stakedValidators": "Staked Validators",
+  "governance": "Governance",
+  "staking": "Staking"
 }

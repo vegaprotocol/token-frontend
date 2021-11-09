@@ -6,18 +6,30 @@ import { useAnimateValue } from "../../hooks/use-animate-value";
 
 interface WalletCardProps {
   children: React.ReactNode;
+  dark?: boolean;
 }
 
-export const WalletCard = ({ children }: WalletCardProps) => (
-  <div className="wallet-card invert">{children}</div>
+export const WalletCard = ({ dark, children }: WalletCardProps) => (
+  <div className={`wallet-card ${dark ? "wallet-card--inverted" : ""}`}>
+    {children}
+  </div>
 );
 
 interface WalletCardHeaderProps {
   children: React.ReactNode;
+  dark?: boolean;
 }
 
-export const WalletCardHeader = ({ children }: WalletCardHeaderProps) => {
-  return <div className="wallet-card__header">{children}</div>;
+export const WalletCardHeader = ({ children, dark }: WalletCardHeaderProps) => {
+  return (
+    <div
+      className={`wallet-card__header ${
+        dark ? "wallet-card__header--inverted" : ""
+      }`}
+    >
+      {children}
+    </div>
+  );
 };
 
 interface WalletCardContentProps {
