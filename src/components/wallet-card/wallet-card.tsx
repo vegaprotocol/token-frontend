@@ -3,6 +3,7 @@ import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
 import "./wallet-card.scss";
 import { useAnimateValue } from "../../hooks/use-animate-value";
+import vegaWhite from "../../images/vega_white.png";
 
 interface WalletCardProps {
   children: React.ReactNode;
@@ -73,4 +74,24 @@ export const WalletCardActions = ({
   children: React.ReactNode;
 }) => {
   return <div className="wallet-card__actions">{children}</div>;
+};
+
+export const WalletCardAsset = () => {
+  return (
+    <div className="wallet-card__asset">
+      <img alt="Vega" src={vegaWhite} />
+      <div className="wallet-card__asset-header">
+        <div className="wallet-card__asset-heading">
+          <h1>VEGA</h1>
+          <h2>COLLATERAL</h2>
+        </div>
+        <div className="wallet-card__asset-balance">
+          <span className="wallet-card__asset-balance--integer">211.</span>
+          <span className="wallet-card__asset-balance--decimal">
+            839204756388305833
+          </span>
+        </div>
+      </div>
+    </div>
+  );
 };

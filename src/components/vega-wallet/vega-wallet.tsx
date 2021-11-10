@@ -10,6 +10,7 @@ import {
 import {
   WalletCard,
   WalletCardActions,
+  WalletCardAsset,
   WalletCardContent,
   WalletCardHeader,
   WalletCardRow,
@@ -401,6 +402,7 @@ const VegaWalletConnected = ({
           {t("Assets")}
         </BulletHeader>
       </WalletCardHeader>
+      <WalletCardAsset />
       <WalletCardRow label={t("Available")} value={unstaked} />
       {disconnect}
     </>
