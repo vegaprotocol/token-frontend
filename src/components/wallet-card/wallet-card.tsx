@@ -109,7 +109,9 @@ export const WalletCardAsset = ({
       <img
         alt="Vega"
         src={image}
-        className={`${border ? "wallet-card__asset-image--border" : ""}`}
+        className={`wallet-card__asset-image ${
+          border ? "wallet-card__asset-image--border" : ""
+        }`}
       />
       <div className="wallet-card__asset-header">
         <div className="wallet-card__asset-heading">

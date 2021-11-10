@@ -4,13 +4,18 @@ import { truncateMiddle } from "../../lib/truncate-middle";
 import {
   WalletCard,
   WalletCardActions,
+  WalletCardAsset,
   WalletCardContent,
   WalletCardHeader,
   WalletCardRow,
 } from "../wallet-card";
 import { Colors, Flags } from "../../config";
 import React from "react";
+import vegaWhite from "../../images/vega_white.png";
+import vegaVesting from "../../images/vega_vesting.png";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { Routes } from "../../routes/router-config";
+import { Link } from "react-router-dom";
 
 export const EthWallet = () => {
   const { t } = useTranslation();
@@ -83,10 +88,33 @@ const ConnectedKey = () => {
 
   return (
     <>
-      <WalletCardRow
-        label={t("vegaInWallet", { symbol: "$VEGA" })}
-        value={totalInWallet}
-        valueSuffix={t("VEGA")}
+      <WalletCardAsset
+        image={vegaVesting}
+        decimals={appState.decimals}
+        name="VEGA"
+        symbol="In vesting contract"
+        balance={totalInVestingContract}
+      />
+      {Flags.REDEEM_DISABLED ? null : (
+        <>
+          <WalletCardRow
+            label={t("Locked")}
+            value={totalLockedBalance}
+            valueSuffix={t("VEGA")}
+          />
+          <WalletCardRow
+            label={t("Unlocked")}
+            value={totalVestedBalance}
+            valueSuffix={t("VEGA")}
+          />
+        </>
+      )}
+      <WalletCardAsset
+        image={vegaWhite}
+        decimals={appState.decimals}
+        name="VEGA"
+        symbol="In Wallet"
+        balance={totalInWallet}
       />
       {Flags.STAKING_DISABLED ? null : (
         <WalletCardRow
@@ -101,26 +129,6 @@ const ConnectedKey = () => {
           value={lien}
           valueSuffix={t("VEGA")}
         />
-      )}
-      <hr style={{ borderColor: Colors.BLACK, borderTop: 1 }} />
-      {Flags.REDEEM_DISABLED ? null : (
-        <>
-          <WalletCardRow
-            label={t("VESTING VEGA TOKENS")}
-            valueSuffix={t("VEGA")}
-            value={totalInVestingContract}
-          />
-          <WalletCardRow
-            label={t("Locked")}
-            value={totalLockedBalance}
-            valueSuffix={t("VEGA")}
-          />
-          <WalletCardRow
-            label={t("Unlocked")}
-            value={totalVestedBalance}
-            valueSuffix={t("VEGA")}
-          />
-        </>
       )}
       {Flags.STAKING_DISABLED || Flags.REDEEM_DISABLED ? null : (
         <>
@@ -142,6 +150,18 @@ const ConnectedKey = () => {
           ) : null}
         </>
       )}
+      <WalletCardActions>
+        <Link style={{ flex: 1 }} to={Routes.GOVERNANCE}>
+          <button className="button-secondary button-secondary--light">
+            {t("governance")}
+          </button>
+        </Link>
+        <Link style={{ flex: 1 }} to={Routes.STAKING}>
+          <button className="button-secondary button-secondary--light">
+            {t("staking")}
+          </button>
+        </Link>
+      </WalletCardActions>
     </>
   );
 };
