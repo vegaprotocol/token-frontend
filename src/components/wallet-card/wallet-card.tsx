@@ -45,18 +45,22 @@ export const WalletCardRow = ({
   value,
   valueSuffix,
   dark = false,
+  bold = false,
 }: {
   label: string;
   value?: BigNumber | null;
   valueSuffix?: string;
   dark?: boolean;
+  bold?: boolean;
 }) => {
   const ref = React.useRef<HTMLDivElement | null>(null);
   useAnimateValue(ref, value);
 
   return (
     <div
-      className={`wallet-card__row ${dark ? "wallet-card__row--dark" : ""}`}
+      className={`wallet-card__row ${dark ? "wallet-card__row--dark" : ""} ${
+        bold ? "wallet-card__row--bold" : ""
+      }`}
       ref={ref}
     >
       <span>{label}</span>

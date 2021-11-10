@@ -78,6 +78,10 @@
     &--dark {
       color: $text-color-emphasise;
     }
+
+    &--bold {
+      font-weight: 700;
+    }
   }
 
   &__actions {
