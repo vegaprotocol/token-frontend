@@ -430,14 +430,9 @@ const VegaWalletConnected = ({
         symbol="associated"
         balance={currentStakeAvailable}
       />
-      <WalletCardRow
-        label={t("unstaked")}
-        value={unstaked}
-        valueSuffix={t("VEGA")}
-        dark={true}
-      />
+      <WalletCardRow label={t("unstaked")} value={unstaked} dark={true} />
       {delegatedNodes.length ? (
-        <WalletCardRow label={t("stakedValidators")} dark={true} />
+        <WalletCardRow label={t("stakedValidators")} dark={true} bold={true} />
       ) : null}
       {delegatedNodes.map((d) => (
         <div key={d.nodeId}>
