@@ -36,6 +36,7 @@ import { Colors } from "../../config";
 import { BulletHeader } from "../bullet-header";
 import { Routes } from "../../routes/router-config";
 import { Link } from "react-router-dom";
+import vegaWhite from "../../images/vega_white.png";
 
 const DELEGATIONS_QUERY = gql`
   query Delegations($partyId: ID!) {
@@ -402,7 +403,13 @@ const VegaWalletConnected = ({
           {t("Assets")}
         </BulletHeader>
       </WalletCardHeader>
-      <WalletCardAsset />
+      <WalletCardAsset
+        name="Vega"
+        symbol="Collateral"
+        image={vegaWhite}
+        balance={new BigNumber(211.839204756388305833)}
+        decimals={18}
+      />
       <WalletCardRow label={t("Available")} value={unstaked} />
       {disconnect}
     </>
