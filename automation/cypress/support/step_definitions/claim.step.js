@@ -20,7 +20,6 @@ Then("I can see the 404 error page", () => {
   );
 });
 
-// Then("I can see the url contains {string}");
 Then("I can see the url contains {string}", (url) => {
   cy.url().should("include", `${url}`);
 });
