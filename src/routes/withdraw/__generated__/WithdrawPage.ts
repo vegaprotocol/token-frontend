@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { AccountType } from "./../../../../__generated__/globalTypes";
+import { AccountType } from "./../../../__generated__/globalTypes";
 
 // ====================================================
 // GraphQL query operation: WithdrawPage
@@ -19,6 +19,10 @@ export interface WithdrawPage_party_accounts_asset {
    * The symbol of the asset (e.g: GBP)
    */
   symbol: string;
+  /**
+   * The precision of the asset
+   */
+  decimals: number;
 }
 
 export interface WithdrawPage_party_accounts {
