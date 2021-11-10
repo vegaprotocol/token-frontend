@@ -38,6 +38,7 @@ import { BulletHeader } from "../bullet-header";
 import { Routes } from "../../routes/router-config";
 import { Link } from "react-router-dom";
 import vegaWhite from "../../images/vega_white.png";
+import vegaBlack from "../../images/vega_black.png";
 import noIcon from "../../images/token-no-icon.png";
 import { addDecimal } from "../../lib/decimals";
 import { AccountType } from "../../__generated__/globalTypes";
@@ -420,11 +421,12 @@ const VegaWalletConnected = ({
   return vegaKeys.length ? (
     <>
       <WalletCardAsset
-        image={vegaWhite}
+        image={vegaBlack}
         decimals={decimals}
         name="VEGA"
         symbol="associated"
         balance={currentStakeAvailable}
+        border={true}
       />
       <WalletCardRow label={t("unstaked")} value={unstaked} dark={true} />
       {delegatedNodes.length ? (

@@ -85,6 +85,7 @@ export interface WalletCardAssetProps {
   symbol: string;
   balance: BigNumber;
   decimals: number;
+  border?: boolean;
 }
 
 export const WalletCardAsset = ({
@@ -93,6 +94,7 @@ export const WalletCardAsset = ({
   symbol,
   balance,
   decimals,
+  border,
 }: WalletCardAssetProps) => {
   const [integers, decimalsPlaces] = React.useMemo(() => {
     // @ts-ignore
@@ -104,7 +106,11 @@ export const WalletCardAsset = ({
   }, [balance, decimals]);
   return (
     <div className="wallet-card__asset">
-      <img alt="Vega" src={image} />
+      <img
+        alt="Vega"
+        src={image}
+        className={`${border ? "wallet-card__asset-image--border" : ""}`}
+      />
       <div className="wallet-card__asset-header">
         <div className="wallet-card__asset-heading">
           <h1>{name}</h1>
