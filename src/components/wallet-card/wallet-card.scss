@@ -74,4 +74,43 @@
     gap: 5px;
     margin-top: 10px;
   }
+
+  &__asset {
+    display: flex;
+    flex-wrap: wrap;
+
+    img {
+      height: 24px;
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-size: 18px;
+      margin: 0;
+      padding: 0 8px;
+    }
+
+    h2 {
+      font-size: 18px;
+      color: $text-color-deemphasise;
+    }
+
+    &-heading {
+      display: flex;
+    }
+
+    &-balance {
+      padding: 0 8px;
+      font-size: 20px;
+      flex-basis: 100%;
+
+      &--integer {
+        color: $white;
+      }
+
+      &--decimal {
+        color: $text-color-deemphasise;
+      }
+    }
+  }
 }
