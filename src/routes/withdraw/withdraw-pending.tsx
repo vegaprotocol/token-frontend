@@ -1,13 +1,13 @@
 import { Heading } from "../../components/heading";
-import { VegaWalletPrompt } from "../../components/vega-wallet-prompt";
+import { VegaWalletContainer } from "../../components/vega-wallet-container";
 
 export const WithdrawPending = () => {
   return (
     <>
       <Heading title="Incomplete withdrawals" />
-      <VegaWalletPrompt>
+      <VegaWalletContainer>
         {(currVegaKey) => <div>{currVegaKey.pub}</div>}
-      </VegaWalletPrompt>
+      </VegaWalletContainer>
     </>
   );
 };

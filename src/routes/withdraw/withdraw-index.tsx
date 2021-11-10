@@ -2,13 +2,9 @@ import React from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Callout } from "../../components/callout";
 import { Heading } from "../../components/heading";
-import { VegaWalletPrompt } from "../../components/vega-wallet-prompt";
+import { VegaWalletContainer } from "../../components/vega-wallet-container";
 import { useTranslation } from "react-i18next";
-import {
-  AppStateActionType,
-  useAppState,
-  VegaKeyExtended,
-} from "../../contexts/app-state/app-state-context";
+import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 import {
@@ -26,9 +22,9 @@ export const WithdrawIndex = () => {
         Staking rewards are paid into a Vega wallet. They can be withdrawn using
         the VEGA-ERC20 bridge.
       </p>
-      <VegaWalletPrompt>
+      <VegaWalletContainer>
         {(currVegaKey) => <WithdrawContainer currVegaKey={currVegaKey} />}
-      </VegaWalletPrompt>
+      </VegaWalletContainer>
       <Callout title="How do ERC20 withdrawals work on Vega">
         <p>
           To withdraw from Vega the network needs to agree that a party can
@@ -55,6 +51,24 @@ const WITHDRAW_PAGE_QUERY = gql`
           decimals
         }
       }
+      withdrawals {
+        id
+        amount
+        asset {
+          id
+          symbol
+          decimals
+        }
+        status
+        createdTimestamp
+        withdrawnTimestamp
+        txHash
+        details {
+          ... on Erc20WithdrawalDetails {
+            receiverAddress
+          }
+        }
+      }
     }
   }
 `;
@@ -65,34 +79,17 @@ interface WithdrawContainerProps {
 
 export const WithdrawContainer = ({ currVegaKey }: WithdrawContainerProps) => {
   const { t } = useTranslation();
-  const { appDispatch } = useAppState();
   const { data, loading, error } = useQuery<
     WithdrawPage,
     WithdrawPageVariables
   >(WITHDRAW_PAGE_QUERY, {
     variables: { partyId: currVegaKey?.pub! },
-    skip: !currVegaKey,
   });
 
   const accounts = React.useMemo(() => {
     if (!data?.party?.accounts) return [];
     return data.party.accounts.filter((a) => a.type === AccountType.General);
   }, [data]);
-
-  if (!currVegaKey) {
-    return (
-      <button
-        onClick={() =>
-          appDispatch({
-            type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,
-            isOpen: true,
-          })
-        }
-      >
-        {t("connectVegaWallet")}
-      </button>
-    );
-  }
 
   if (error) {
     return (
@@ -111,5 +108,5 @@ export const WithdrawContainer = ({ currVegaKey }: WithdrawContainerProps) => {
     );
   }
 
-  return <WithdrawForm accounts={accounts} />;
+  return <WithdrawForm accounts={accounts} currVegaKey={currVegaKey} />;
 };

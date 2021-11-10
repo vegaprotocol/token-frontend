@@ -7,11 +7,11 @@ import {
 } from "../../contexts/app-state/app-state-context";
 import { useVegaUser } from "../../hooks/use-vega-user";
 
-interface VegaWalletPromptProps {
+interface VegaWalletContainerProps {
   children: (key: VegaKeyExtended) => React.ReactElement;
 }
 
-export const VegaWalletPrompt = ({ children }: VegaWalletPromptProps) => {
+export const VegaWalletContainer = ({ children }: VegaWalletContainerProps) => {
   const { t } = useTranslation();
   const { currVegaKey } = useVegaUser();
   const { appDispatch } = useAppState();

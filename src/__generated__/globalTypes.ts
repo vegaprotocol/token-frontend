@@ -126,6 +126,15 @@ export enum VoteValue {
   Yes = "Yes",
 }
 
+/**
+ * The status of a withdrawal
+ */
+export enum WithdrawalStatus {
+  Cancelled = "Cancelled",
+  Finalized = "Finalized",
+  Open = "Open",
+}
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================

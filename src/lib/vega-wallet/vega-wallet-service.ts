@@ -54,10 +54,24 @@ export interface VoteSubmissionInput {
   };
 }
 
+export interface WithdrawSubmissionInput {
+  pubKey: string;
+  withdrawSubmission: {
+    amount: string;
+    asset: string;
+    ext: {
+      erc20: {
+        receiverAddress: string;
+      };
+    };
+  };
+}
+
 export type CommandSyncInput =
   | DelegateSubmissionInput
   | UndelegateSubmissionInput
-  | VoteSubmissionInput;
+  | VoteSubmissionInput
+  | WithdrawSubmissionInput;
 
 export interface IVegaWalletService {
   url: string;

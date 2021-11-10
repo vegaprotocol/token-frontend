@@ -42,6 +42,7 @@ export const AmountInput = ({
         type="number"
         max={maximum.toNumber()}
         min={0}
+        step="any"
       />
       {maximum && (
         <button

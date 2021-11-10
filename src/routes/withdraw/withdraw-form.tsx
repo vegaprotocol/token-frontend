@@ -1,23 +1,29 @@
 import React from "react";
 import { WithdrawPage_party_accounts } from "./__generated__/WithdrawPage";
 import { BigNumber } from "../../lib/bignumber";
-import { FormGroup } from "../../components/form-group";
-import { HTMLSelect } from "@blueprintjs/core";
+import { HTMLSelect, FormGroup, Button } from "@blueprintjs/core";
 import { AmountInput } from "../../components/token-input";
+import { EthWalletContainer } from "../../components/eth-wallet-container";
+import { useCreateWithdrawal } from "../../hooks/use-create-withdrawal";
+import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { removeDecimal } from "../../lib/decimals";
 
 interface WithdrawFormProps {
   accounts: WithdrawPage_party_accounts[];
+  currVegaKey: VegaKeyExtended;
 }
 
-export const WithdrawForm = ({ accounts }: WithdrawFormProps) => {
-  const [amount, setAmount] = React.useState("");
-  const [selectedAsset, setSelectedAsset] = React.useState(
-    accounts[0].asset.id
-  );
+export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
+  const { ethAddress } = useWeb3();
+  const [amountStr, setAmount] = React.useState("");
+  const [account, setAccount] = React.useState(accounts[0]);
+  const submit = useCreateWithdrawal();
 
-  const account = React.useMemo(() => {
-    return accounts.find((a) => a.asset.id === selectedAsset);
-  }, [selectedAsset, accounts]);
+  const amount = React.useMemo(
+    () => new BigNumber(amountStr || 0),
+    [amountStr]
+  );
 
   const maximum = React.useMemo(() => {
     if (account) {
@@ -27,8 +33,30 @@ export const WithdrawForm = ({ accounts }: WithdrawFormProps) => {
     return new BigNumber(0);
   }, [account]);
 
+  const valid = React.useMemo(() => {
+    if (
+      !ethAddress ||
+      amount.isLessThanOrEqualTo(0) ||
+      amount.isGreaterThan(maximum)
+    ) {
+      return false;
+    }
+    return true;
+  }, [ethAddress, amount, maximum]);
+
   return (
-    <form onSubmit={() => alert("TODO: Submit")}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+
+        submit(
+          currVegaKey.pub,
+          removeDecimal(amount, account.asset.decimals),
+          account.asset.id,
+          ethAddress
+        );
+      }}
+    >
       <FormGroup label="What would you like to withdraw" labelFor="asset">
         <HTMLSelect
           name="asset"
@@ -38,22 +66,31 @@ export const WithdrawForm = ({ accounts }: WithdrawFormProps) => {
             value: a.asset.id,
           }))}
           onChange={(e) => {
-            setSelectedAsset(e.currentTarget.value);
+            const account = accounts.find(
+              (a) => a.asset.id === e.currentTarget.value
+            );
+            if (!account) throw new Error("No account");
+            setAccount(account);
           }}
           fill={true}
         />
       </FormGroup>
+      <FormGroup label="To">
+        <EthWalletContainer>
+          {(ethAddress) => <div>{ethAddress}</div>}
+        </EthWalletContainer>
+      </FormGroup>
       <FormGroup label="How much would you like to withdraw" labelFor="amount">
         <AmountInput
-          amount={amount}
+          amount={amountStr}
           setAmount={setAmount}
           maximum={maximum}
           currency={"VEGA"}
         />
       </FormGroup>
-      <button type="submit">
-        Withdraw {amount} {account?.asset.symbol} tokens
-      </button>
+      <Button type="submit" disabled={!valid}>
+        Withdraw {amountStr} {account?.asset.symbol} tokens
+      </Button>
     </form>
   );
 };
