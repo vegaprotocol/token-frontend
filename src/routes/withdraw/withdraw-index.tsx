@@ -13,7 +13,6 @@ import {
 } from "./__generated__/WithdrawPage";
 import { AccountType } from "../../__generated__/globalTypes";
 import { WithdrawForm } from "./withdraw-form";
-import { Intent } from "@blueprintjs/core";
 import { Link } from "react-router-dom";
 
 export const WithdrawIndex = () => {

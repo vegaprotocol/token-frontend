@@ -1,13 +1,10 @@
 import React from "react";
-import {
-  WithdrawPage_party_accounts,
-  WithdrawPage_party_withdrawals,
-} from "./__generated__/WithdrawPage";
+import { WithdrawPage_party_accounts } from "./__generated__/WithdrawPage";
 import { BigNumber } from "../../lib/bignumber";
 import { HTMLSelect, FormGroup, Button, Intent } from "@blueprintjs/core";
 import { AmountInput } from "../../components/token-input";
 import { EthWalletContainer } from "../../components/eth-wallet-container";
-import { useCreateWithdrawal } from "../../hooks/use-create-withdrawal";
+import { Status, useCreateWithdrawal } from "../../hooks/use-create-withdrawal";
 import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { removeDecimal } from "../../lib/decimals";
@@ -21,7 +18,7 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
   const { ethAddress } = useWeb3();
   const [amountStr, setAmount] = React.useState("");
   const [account, setAccount] = React.useState(accounts[0]);
-  const submit = useCreateWithdrawal();
+  const [status, submit] = useCreateWithdrawal(currVegaKey.pub);
 
   const amount = React.useMemo(
     () => new BigNumber(amountStr || 0),
@@ -49,11 +46,11 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
 
   return (
     <form
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
+        if (!valid) return;
 
         submit(
-          currVegaKey.pub,
           removeDecimal(amount, account.asset.decimals),
           account.asset.id,
           ethAddress
@@ -93,10 +90,13 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
       </FormGroup>
       <Button
         type="submit"
-        disabled={!valid}
+        disabled={!valid || status === Status.Pending}
         intent={valid ? Intent.SUCCESS : Intent.DANGER}
+        loading={status === Status.Submitted || status === Status.Pending}
       >
-        Withdraw {amountStr} {account?.asset.symbol} tokens
+        {status === Status.Pending
+          ? "Preparing"
+          : `Withdraw ${amountStr} ${account?.asset.symbol} tokens`}
       </Button>
     </form>
   );
