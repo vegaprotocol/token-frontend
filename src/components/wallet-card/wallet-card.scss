@@ -37,6 +37,18 @@
         font-family: $font-mono;
       }
     }
+
+    h1 {
+      size: 32px;
+      margin: 0;
+      padding: 8px;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      padding: 8px 0;
+    }
   }
 
   &__content {
@@ -78,6 +90,8 @@
   &__asset {
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 16px;
+    margin-top: 8px;
 
     img {
       height: 24px;
@@ -92,6 +106,7 @@
     }
 
     h2 {
+      margin: 0;
       font-size: 18px;
       color: $text-color-deemphasise;
       text-transform: uppercase;

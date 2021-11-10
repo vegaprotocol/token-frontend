@@ -91,14 +91,14 @@ export const WalletCardAsset = ({
   decimals,
 }: WalletCardAssetProps) => {
   const integers = React.useMemo(() => {
-    return formatNumber(balance.integerValue(BigNumber.ROUND_DOWN), 0);
+    return balance.integerValue(BigNumber.ROUND_DOWN);
   }, [balance]);
   const decimalsPlaces = React.useMemo(() => {
     return balance
       .minus(integers)
-      .times(10 ** 17)
+      .times(10 ** decimals)
       .toString();
-  }, [balance, integers]);
+  }, [balance, decimals, integers]);
   return (
     <div className="wallet-card__asset">
       <img alt="Vega" src={image} />
@@ -109,7 +109,7 @@ export const WalletCardAsset = ({
         </div>
         <div className="wallet-card__asset-balance">
           <span className="wallet-card__asset-balance--integer">
-            {integers}.
+            {formatNumber(integers, 0)}.
           </span>
           <span className="wallet-card__asset-balance--decimal">
             {decimalsPlaces}

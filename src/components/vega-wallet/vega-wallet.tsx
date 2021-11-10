@@ -11,6 +11,7 @@ import {
   WalletCard,
   WalletCardActions,
   WalletCardAsset,
+  WalletCardAssetProps,
   WalletCardContent,
   WalletCardHeader,
   WalletCardRow,
@@ -32,11 +33,14 @@ import { truncateMiddle } from "../../lib/truncate-middle";
 import { keyBy, uniq } from "lodash";
 import { useRefreshAssociatedBalances } from "../../hooks/use-refresh-associated-balances";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
-import { Colors } from "../../config";
+import { ADDRESSES, Colors } from "../../config";
 import { BulletHeader } from "../bullet-header";
 import { Routes } from "../../routes/router-config";
 import { Link } from "react-router-dom";
 import vegaWhite from "../../images/vega_white.png";
+import noIcon from "../../images/token-no-icon.png";
+import { addDecimal } from "../../lib/decimals";
+import { AccountType } from "../../__generated__/globalTypes";
 
 const DELEGATIONS_QUERY = gql`
   query Delegations($partyId: ID!) {
@@ -62,6 +66,12 @@ const DELEGATIONS_QUERY = gql`
           id
           decimals
           symbol
+          source {
+            __typename
+            ... on ERC20 {
+              contractAddress
+            }
+          }
         }
         type
         balance
@@ -134,6 +144,31 @@ const VegaWalletNotConnected = () => {
   );
 };
 
+interface VegaWalletAssetsListProps {
+  accounts: WalletCardAssetProps[];
+}
+
+const VegaWalletAssetList = ({ accounts }: VegaWalletAssetsListProps) => {
+  const { t } = useTranslation();
+  if (!accounts.length) {
+    return null;
+  }
+  return (
+    <>
+      <WalletCardHeader>
+        <BulletHeader style={{ border: "none" }} tag="h2">
+          {t("Assets")}
+        </BulletHeader>
+      </WalletCardHeader>
+      {accounts.map((a) => (
+        <>
+          <WalletCardAsset {...a} />
+        </>
+      ))}
+    </>
+  );
+};
+
 interface VegaWalletConnectedProps {
   currVegaKey: VegaKeyExtended | null;
   vegaKeys: VegaKeyExtended[];
@@ -163,6 +198,7 @@ const VegaWalletConnected = ({
       nextEpochStake?: BigNumber;
     }[]
   >([]);
+  const [accounts, setAccounts] = React.useState<WalletCardAssetProps[]>([]);
   const [currentStakeAvailable, setCurrentStakeAvailable] =
     React.useState<BigNumber>(new BigNumber(0));
 
@@ -195,6 +231,45 @@ const VegaWalletConnected = ({
               new BigNumber(
                 res.data.party?.stake.currentStakeAvailableFormatted || 0
               )
+            );
+            const accounts = res.data.party?.accounts || [];
+            setAccounts(
+              accounts
+                .filter((a) => a.type === AccountType.General)
+                .map((a) => {
+                  const isVega =
+                    a.asset.source.__typename === "ERC20" &&
+                    a.asset.source.contractAddress ===
+                      ADDRESSES.vegaTokenAddress;
+
+                  return {
+                    isVega,
+                    name: a.asset.name,
+                    symbol: isVega ? a.asset.symbol : t("collateral"),
+                    decimals: a.asset.decimals,
+                    balance: new BigNumber(
+                      addDecimal(new BigNumber(a.balance), a.asset.decimals)
+                    ),
+                    image: isVega ? vegaWhite : noIcon,
+                  };
+                })
+                .sort((a, b) => {
+                  // Put VEGA at the top of the list
+                  if (a.isVega) {
+                    return -1;
+                  }
+                  if (b.isVega) {
+                    return 1;
+                  }
+                  // Secondary sort by name
+                  if (a.name < b.name) {
+                    return -1;
+                  }
+                  if (a.name > b.name) {
+                    return 1;
+                  }
+                  return 0;
+                })
             );
             const delegatedNextEpoch = keyBy(
               res.data.party?.delegations?.filter((d) => {
@@ -254,7 +329,7 @@ const VegaWalletConnected = ({
       clearInterval(interval);
       mounted = false;
     };
-  }, [client, currVegaKey?.pub]);
+  }, [client, currVegaKey?.pub, t]);
 
   const handleDisconnect = React.useCallback(
     async function () {
@@ -401,20 +476,7 @@ const VegaWalletConnected = ({
           <button className="button-secondary">{t("staking")}</button>
         </Link>
       </WalletCardActions>
-
-      <WalletCardHeader>
-        <BulletHeader style={{ border: "none" }} tag="h2">
-          {t("Assets")}
-        </BulletHeader>
-      </WalletCardHeader>
-      <WalletCardAsset
-        name="Vega"
-        symbol="Collateral"
-        image={vegaWhite}
-        balance={new BigNumber(211.839204756388305833)}
-        decimals={18}
-      />
-      <WalletCardRow label={t("Available")} value={unstaked} dark={true} />
+      <VegaWalletAssetList accounts={accounts} />
       {disconnect}
     </>
   ) : (

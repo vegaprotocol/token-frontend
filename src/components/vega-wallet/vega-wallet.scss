@@ -13,6 +13,10 @@
     }
   }
 
+  &__curr-key {
+    padding: 0 8px;
+  }
+
   &__key-list {
     list-style: none;
     margin: 10px 0 5px 0;
@@ -30,16 +34,5 @@
         color: $black;
       }
     }
-  }
-
-  h1 {
-    size: 32px;
-    margin: 0;
-    padding: 8px;
-    text-transform: uppercase;
-  }
-
-  h2 {
-    margin: 0;
   }
 }
