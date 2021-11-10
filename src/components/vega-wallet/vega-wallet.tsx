@@ -98,7 +98,10 @@ export const VegaWallet = () => {
     <section className="vega-wallet">
       <WalletCard dark={true}>
         <WalletCardHeader dark={true}>
-          <h1>{t("vegaWallet")}</h1>
+          <div>
+            <h1>{t("vegaWallet")}</h1>
+            <span>{currVegaKey && `(${currVegaKey.alias})`}</span>
+          </div>
           {currVegaKey && (
             <>
               <span className="vega-wallet__curr-key">
@@ -107,7 +110,6 @@ export const VegaWallet = () => {
             </>
           )}
         </WalletCardHeader>
-        <span>{currVegaKey && `(${currVegaKey.alias})`}</span>
         <WalletCardContent>{child}</WalletCardContent>
         <WalletCardContent>{version}</WalletCardContent>
       </WalletCard>
@@ -161,9 +163,7 @@ const VegaWalletAssetList = ({ accounts }: VegaWalletAssetsListProps) => {
         </BulletHeader>
       </WalletCardHeader>
       {accounts.map((a) => (
-        <>
-          <WalletCardAsset {...a} />
-        </>
+        <WalletCardAsset {...a} />
       ))}
     </>
   );
@@ -182,7 +182,10 @@ const VegaWalletConnected = ({
 }: VegaWalletConnectedProps) => {
   const { t } = useTranslation();
   const { ethAddress } = useWeb3();
-  const { appDispatch } = useAppState();
+  const {
+    appDispatch,
+    appState: { decimals },
+  } = useAppState();
   const setAssociatedBalances = useRefreshAssociatedBalances();
   const [disconnecting, setDisconnecting] = React.useState(false);
   const [expanded, setExpanded] = React.useState(false);
@@ -420,11 +423,12 @@ const VegaWalletConnected = ({
 
   return vegaKeys.length ? (
     <>
-      <WalletCardRow
-        label={t("associatedVega")}
-        value={currentStakeAvailable}
-        valueSuffix={t("VEGA")}
-        dark={true}
+      <WalletCardAsset
+        image={vegaWhite}
+        decimals={decimals}
+        name="VEGA"
+        symbol="associated"
+        balance={currentStakeAvailable}
       />
       <WalletCardRow
         label={t("unstaked")}
