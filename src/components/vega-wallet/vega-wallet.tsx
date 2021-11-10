@@ -353,7 +353,9 @@ const VegaWalletConnected = ({
         value={unstaked}
         valueSuffix={t("VEGA")}
       />
-      <WalletCardRow label={t("stakedValidators")} />
+      {delegatedNodes.length ? (
+        <WalletCardRow label={t("stakedValidators")} />
+      ) : null}
       {delegatedNodes.map((d) => (
         <div key={d.nodeId}>
           {d.currentEpochStake && (
