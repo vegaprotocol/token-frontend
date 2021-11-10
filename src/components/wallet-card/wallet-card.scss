@@ -12,6 +12,12 @@
     border: 1px solid $white;
   }
 
+  &__price {
+    &--decimal {
+      color: $text-color-deemphasise;
+    }
+  }
+
   &__header {
     display: flex;
     justify-content: space-between;
