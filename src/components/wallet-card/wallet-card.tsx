@@ -64,9 +64,11 @@ export const WalletCardRow = ({
       ref={ref}
     >
       <span>{label}</span>
-      <span>
-        {value ? formatNumber(value) : ""} {valueSuffix}
-      </span>
+      {value && (
+        <span>
+          {value ? formatNumber(value) : ""} {valueSuffix}
+        </span>
+      )}
     </div>
   );
 };

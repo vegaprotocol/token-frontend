@@ -97,16 +97,8 @@ const ConnectedKey = () => {
       />
       {Flags.REDEEM_DISABLED ? null : (
         <>
-          <WalletCardRow
-            label={t("Locked")}
-            value={totalLockedBalance}
-            valueSuffix={t("VEGA")}
-          />
-          <WalletCardRow
-            label={t("Unlocked")}
-            value={totalVestedBalance}
-            valueSuffix={t("VEGA")}
-          />
+          <WalletCardRow label={t("Locked")} value={totalLockedBalance} />
+          <WalletCardRow label={t("Unlocked")} value={totalVestedBalance} />
         </>
       )}
       <WalletCardAsset
@@ -117,32 +109,23 @@ const ConnectedKey = () => {
         balance={totalInWallet}
       />
       {Flags.STAKING_DISABLED ? null : (
-        <WalletCardRow
-          label={t("Not Associated")}
-          value={walletBalance}
-          valueSuffix={t("VEGA")}
-        />
+        <WalletCardRow label={t("Not Associated")} value={walletBalance} />
       )}
       {Flags.STAKING_DISABLED ? null : (
-        <WalletCardRow
-          label={t("Associated")}
-          value={lien}
-          valueSuffix={t("VEGA")}
-        />
+        <WalletCardRow label={t("Associated")} value={lien} />
       )}
       {Flags.STAKING_DISABLED || Flags.REDEEM_DISABLED ? null : (
         <>
           {associationsByVegaKey.length ? (
             <>
               <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
-              <WalletCardRow label="Associated to" dark={true} />
+              <WalletCardRow label="Associated with Vega keys" bold={true} />
               {associationsByVegaKey.map(([key, amount]) => {
                 return (
                   <WalletCardRow
                     key={key}
                     label={removeLeadingAddressSymbol(key)}
                     value={amount}
-                    valueSuffix={t("VEGA")}
                   />
                 );
               })}
