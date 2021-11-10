@@ -413,5 +413,7 @@
   "vegaWallet": "Vega Wallet",
   "stakedValidators": "Staked Validators",
   "governance": "Governance",
-  "staking": "Staking"
+  "staking": "Staking",
+  "assets": "Assets",
+  "collateral": "Collateral"
 }
