@@ -94,15 +94,14 @@ export const WalletCardAsset = ({
   balance,
   decimals,
 }: WalletCardAssetProps) => {
-  const integers = React.useMemo(() => {
-    return balance.integerValue(BigNumber.ROUND_DOWN);
-  }, [balance]);
-  const decimalsPlaces = React.useMemo(() => {
-    return balance
-      .minus(integers)
-      .times(10 ** decimals)
-      .toString();
-  }, [balance, decimals, integers]);
+  const [integers, decimalsPlaces] = React.useMemo(() => {
+    // @ts-ignore
+    const separator = BigNumber.config().FORMAT.decimalSeparator as string;
+    const [integers, decimalsPlaces] = formatNumber(balance, decimals)
+      .toString()
+      .split(separator);
+    return [integers, decimalsPlaces];
+  }, [balance, decimals]);
   return (
     <div className="wallet-card__asset">
       <img alt="Vega" src={image} />
@@ -113,7 +112,7 @@ export const WalletCardAsset = ({
         </div>
         <div className="wallet-card__asset-balance">
           <span className="wallet-card__asset-balance--integer">
-            {formatNumber(integers, 0)}.
+            {integers}.
           </span>
           <span className="wallet-card__asset-balance--decimal">
             {decimalsPlaces}
