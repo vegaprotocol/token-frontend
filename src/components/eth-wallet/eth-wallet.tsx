@@ -22,11 +22,9 @@ export const EthWallet = () => {
       <WalletCardHeader>
         <span>{t("ethereumKey")}</span>
         {ethAddress && (
-          <>
-            <span className="vega-wallet__curr-key">
-              {truncateMiddle(ethAddress)}
-            </span>
-          </>
+          <span className="vega-wallet__curr-key">
+            {truncateMiddle(ethAddress)}
+          </span>
         )}
       </WalletCardHeader>
       <WalletCardContent>

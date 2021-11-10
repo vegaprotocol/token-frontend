@@ -51,6 +51,20 @@ export interface Delegations_party_stake {
   currentStakeAvailableFormatted: string;
 }
 
+export interface Delegations_party_accounts_asset_source_BuiltinAsset {
+  __typename: "BuiltinAsset";
+}
+
+export interface Delegations_party_accounts_asset_source_ERC20 {
+  __typename: "ERC20";
+  /**
+   * The address of the erc20 contract
+   */
+  contractAddress: string;
+}
+
+export type Delegations_party_accounts_asset_source = Delegations_party_accounts_asset_source_BuiltinAsset | Delegations_party_accounts_asset_source_ERC20;
+
 export interface Delegations_party_accounts_asset {
   __typename: "Asset";
   /**
@@ -69,6 +83,10 @@ export interface Delegations_party_accounts_asset {
    * The symbol of the asset (e.g: GBP)
    */
   symbol: string;
+  /**
+   * The origin source of the asset (e.g: an erc20 asset)
+   */
+  source: Delegations_party_accounts_asset_source;
 }
 
 export interface Delegations_party_accounts {
