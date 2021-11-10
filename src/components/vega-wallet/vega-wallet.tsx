@@ -99,7 +99,7 @@ export const VegaWallet = () => {
     <section className="vega-wallet">
       <WalletCard dark={true}>
         <WalletCardHeader dark={true}>
-          <div>
+          <div style={{ paddingLeft: 8, paddingRight: 8 }}>
             <h1>{t("vegaWallet")}</h1>
             <span>{currVegaKey && `(${currVegaKey.alias})`}</span>
           </div>
