@@ -31,3 +31,7 @@ extend type Reward {
 extend type RewardPerAssetDetail {
   totalAmountFormatted: String!
 }
+
+extend type Account {
+  balanceFormatted: String!
+}

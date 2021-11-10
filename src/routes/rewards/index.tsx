@@ -2,7 +2,7 @@ import { Route, Switch, useRouteMatch } from "react-router";
 import { RouteChildProps } from "..";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { RewardsIndex } from "./home";
-import { Withdraw } from "./withdraw";
+import { WithdrawContainer } from "./withdraw";
 
 const RewardRouter = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
@@ -14,7 +14,7 @@ const RewardRouter = ({ name }: RouteChildProps) => {
         <RewardsIndex />
       </Route>
       <Route path={`${match.path}/withdraw`}>
-        <Withdraw />
+        <WithdrawContainer />
       </Route>
     </Switch>
   );

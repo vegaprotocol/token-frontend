@@ -107,6 +107,10 @@ export interface Delegations_party_accounts {
 
 export interface Delegations_party {
   __typename: "Party";
+  /**
+   * Party identifier
+   */
+  id: string;
   delegations: Delegations_party_delegations[] | null;
   /**
    * The staking informations for this Party

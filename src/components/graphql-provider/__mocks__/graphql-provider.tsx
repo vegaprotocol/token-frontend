@@ -145,6 +145,7 @@ const MOCK_PARTY_DELEGATIONS: MockedResponse<PartyDelegations> = {
       },
       party: {
         __typename: "Party",
+        id: PARTY_ID,
         delegations: [
           {
             __typename: "Delegation",
