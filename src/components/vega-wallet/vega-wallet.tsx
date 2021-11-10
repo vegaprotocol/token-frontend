@@ -160,7 +160,7 @@ const VegaWalletAssetList = ({ accounts }: VegaWalletAssetsListProps) => {
     <>
       <WalletCardHeader>
         <BulletHeader style={{ border: "none" }} tag="h2">
-          {t("Assets")}
+          {t("assets")}
         </BulletHeader>
       </WalletCardHeader>
       {accounts.map((a) => (
@@ -249,7 +249,7 @@ const VegaWalletConnected = ({
                   return {
                     isVega,
                     name: a.asset.name,
-                    symbol: isVega ? a.asset.symbol : t("collateral"),
+                    symbol: isVega ? t("collateral") : a.asset.symbol,
                     decimals: a.asset.decimals,
                     balance: new BigNumber(
                       addDecimal(new BigNumber(a.balance), a.asset.decimals)
