@@ -442,7 +442,6 @@ const VegaWalletConnected = ({
                 d.hasStakePending ? "(This epoch)" : ""
               }`}
               value={d.currentEpochStake}
-              valueSuffix={t("VEGA")}
               dark={true}
             />
           )}
@@ -450,7 +449,6 @@ const VegaWalletConnected = ({
             <WalletCardRow
               label={`${truncateMiddle(d.nodeId)} (Next epoch)`}
               value={d.nextEpochStake}
-              valueSuffix={t("VEGA")}
               dark={true}
             />
           )}
