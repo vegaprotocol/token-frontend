@@ -88,7 +88,6 @@ const ConnectedKey = () => {
       <WalletCardRow
         label={t("vegaInWallet", { symbol: "$VEGA" })}
         value={totalInWallet}
-        dark={true}
         valueSuffix={t("VEGA")}
       />
       {Flags.STAKING_DISABLED ? null : (
@@ -111,7 +110,6 @@ const ConnectedKey = () => {
           <WalletCardRow
             label={t("VESTING VEGA TOKENS")}
             valueSuffix={t("VEGA")}
-            dark={true}
             value={totalInVestingContract}
           />
           <WalletCardRow

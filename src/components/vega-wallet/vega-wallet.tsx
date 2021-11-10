@@ -349,14 +349,16 @@ const VegaWalletConnected = ({
         label={t("associatedVega")}
         value={currentStakeAvailable}
         valueSuffix={t("VEGA")}
+        dark={true}
       />
       <WalletCardRow
         label={t("unstaked")}
         value={unstaked}
         valueSuffix={t("VEGA")}
+        dark={true}
       />
       {delegatedNodes.length ? (
-        <WalletCardRow label={t("stakedValidators")} />
+        <WalletCardRow label={t("stakedValidators")} dark={true} />
       ) : null}
       {delegatedNodes.map((d) => (
         <div key={d.nodeId}>
@@ -367,6 +369,7 @@ const VegaWalletConnected = ({
               }`}
               value={d.currentEpochStake}
               valueSuffix={t("VEGA")}
+              dark={true}
             />
           )}
           {d.hasStakePending && (
@@ -374,6 +377,7 @@ const VegaWalletConnected = ({
               label={`${truncateMiddle(d.nodeId)} (Next epoch)`}
               value={d.nextEpochStake}
               valueSuffix={t("VEGA")}
+              dark={true}
             />
           )}
         </div>
@@ -410,7 +414,7 @@ const VegaWalletConnected = ({
         balance={new BigNumber(211.839204756388305833)}
         decimals={18}
       />
-      <WalletCardRow label={t("Available")} value={unstaked} />
+      <WalletCardRow label={t("Available")} value={unstaked} dark={true} />
       {disconnect}
     </>
   ) : (
