@@ -1,12 +1,9 @@
 name: Mocked backend tests
 
-on:
-  pull_request:
-    types: [labeled]
+on: push
 
 jobs:
   cypress-run:
-    if: contains(github.event.pull_request.labels.*.name, 'readyTest')
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
