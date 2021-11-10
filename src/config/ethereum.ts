@@ -44,7 +44,7 @@ interface VegaContracts {
   stakingBridge: string;
 }
 
-const EnvironmentConfig: { [key in Networks]: VegaContracts } = {
+export const EnvironmentConfig: { [key in Networks]: VegaContracts } = {
   [Networks.DEVNET]: {
     vegaTokenAddress: "0xc93137f9F4B820Ca85FfA3C7e84cCa6Ebc7bB517",
     claimAddress: "0x8Cef746ab7C83B61F6461cC92882bD61AB65a994",
