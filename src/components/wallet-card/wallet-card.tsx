@@ -43,18 +43,27 @@ export const WalletCardContent = ({ children }: WalletCardContentProps) => {
 export const WalletCardRow = ({
   label,
   value,
-  valueSuffix,
   dark = false,
   bold = false,
 }: {
   label: string;
   value?: BigNumber | null;
-  valueSuffix?: string;
   dark?: boolean;
   bold?: boolean;
 }) => {
   const ref = React.useRef<HTMLDivElement | null>(null);
   useAnimateValue(ref, value);
+  const [integers, decimalsPlaces] = React.useMemo(() => {
+    if (!value) {
+      return ["0", "0".repeat(18)];
+    }
+    // @ts-ignore
+    const separator = BigNumber.config().FORMAT.decimalSeparator as string;
+    const [integers, decimalsPlaces] = formatNumber(value, 18)
+      .toString()
+      .split(separator);
+    return [integers, decimalsPlaces];
+  }, [value]);
 
   return (
     <div
@@ -66,7 +75,8 @@ export const WalletCardRow = ({
       <span>{label}</span>
       {value && (
         <span>
-          {value ? formatNumber(value) : ""} {valueSuffix}
+          <span className="wallet-card__price--integer">{integers}.</span>
+          <span className="wallet-card__price--decimal">{decimalsPlaces}</span>
         </span>
       )}
     </div>
@@ -125,12 +135,8 @@ export const WalletCardAsset = ({
           <h2>{symbol}</h2>
         </div>
         <div className="wallet-card__asset-balance">
-          <span className="wallet-card__asset-balance--integer">
-            {integers}.
-          </span>
-          <span className="wallet-card__asset-balance--decimal">
-            {decimalsPlaces}
-          </span>
+          <span className="wallet-card__price--integer">{integers}.</span>
+          <span className="wallet-card__price--decimal">{decimalsPlaces}</span>
         </div>
       </div>
     </div>
