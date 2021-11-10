@@ -65,7 +65,7 @@
     justify-content: space-between;
     gap: 0 5px;
     color: $black;
-    font-size: 12px;
+    font-size: 14px;
     padding: 2px;
     margin: 4px 0;
 
@@ -105,6 +105,10 @@
     img {
       height: 24px;
       border-radius: 50%;
+    }
+
+    &-image--border {
+      border: 1px solid white;
     }
 
     h1 {
