@@ -112,7 +112,11 @@ export const RewardsIndex = () => {
         )}
       <section>
         {currVegaKey ? (
-          <RewardInfo currVegaKey={currVegaKey} data={data} />
+          <RewardInfo
+            currVegaKey={currVegaKey}
+            data={data}
+            rewardAssetId={rewardAssetData[0]}
+          />
         ) : (
           <button
             onClick={() =>

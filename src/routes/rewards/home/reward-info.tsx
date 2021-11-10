@@ -16,29 +16,38 @@ import { format } from "date-fns";
 interface RewardInfoProps {
   data: Rewards | undefined;
   currVegaKey: VegaKeyExtended;
+  rewardAssetId: string;
 }
 
 // Note: For now the only reward type is Staking. We'll need this from the API
 // at a later date
 const DEFAULT_REWARD_TYPE = "Staking";
 
-export const RewardInfo = ({ data, currVegaKey }: RewardInfoProps) => {
+export const RewardInfo = ({
+  data,
+  currVegaKey,
+  rewardAssetId,
+}: RewardInfoProps) => {
   const { t } = useTranslation();
   // Create array of rewards per epoch
   const vegaTokenRewards = React.useMemo(() => {
     if (!data?.party || !data.party.rewardDetails?.length) return [];
 
+    const vegaTokenRewards = data.party.rewardDetails.find(
+      (r) => r?.asset.id === rewardAssetId
+    );
+
     // We only issue rewards as Vega tokens for now so there should only be one
     // item in the rewardDetails array
-    if (data.party.rewardDetails.length > 1) {
+    if (!vegaTokenRewards) {
       const rewardAssets = data.party.rewardDetails
         .map((r) => r?.asset.symbol)
         .join(", ");
-      Sentry.captureMessage(`More than one reward asset ${rewardAssets}`);
+      Sentry.captureMessage(
+        `Could not find VEGA token rewards ${rewardAssets}`
+      );
+      return [];
     }
-
-    // TODO: Get VEGA token rewards by finding by match of asset.id with network param reward.asset
-    const vegaTokenRewards = data.party.rewardDetails[0];
 
     if (!vegaTokenRewards?.rewards?.length) return [];
 
@@ -50,7 +59,7 @@ export const RewardInfo = ({ data, currVegaKey }: RewardInfoProps) => {
     });
 
     return sorted;
-  }, [data]);
+  }, [data, rewardAssetId]);
 
   return (
     <>
