@@ -3,7 +3,6 @@ import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
 import "./wallet-card.scss";
 import { useAnimateValue } from "../../hooks/use-animate-value";
-import vegaWhite from "../../images/vega_white.png";
 
 interface WalletCardProps {
   children: React.ReactNode;
@@ -76,19 +75,44 @@ export const WalletCardActions = ({
   return <div className="wallet-card__actions">{children}</div>;
 };
 
-export const WalletCardAsset = () => {
+export interface WalletCardAssetProps {
+  image: string;
+  name: string;
+  symbol: string;
+  balance: BigNumber;
+  decimals: number;
+}
+
+export const WalletCardAsset = ({
+  image,
+  name,
+  symbol,
+  balance,
+  decimals,
+}: WalletCardAssetProps) => {
+  const integers = React.useMemo(() => {
+    return formatNumber(balance.integerValue(BigNumber.ROUND_DOWN), 0);
+  }, [balance]);
+  const decimalsPlaces = React.useMemo(() => {
+    return balance
+      .minus(integers)
+      .times(10 ** 17)
+      .toString();
+  }, [balance, integers]);
   return (
     <div className="wallet-card__asset">
-      <img alt="Vega" src={vegaWhite} />
+      <img alt="Vega" src={image} />
       <div className="wallet-card__asset-header">
         <div className="wallet-card__asset-heading">
-          <h1>VEGA</h1>
-          <h2>COLLATERAL</h2>
+          <h1>{name}</h1>
+          <h2>{symbol}</h2>
         </div>
         <div className="wallet-card__asset-balance">
-          <span className="wallet-card__asset-balance--integer">211.</span>
+          <span className="wallet-card__asset-balance--integer">
+            {integers}.
+          </span>
           <span className="wallet-card__asset-balance--decimal">
-            839204756388305833
+            {decimalsPlaces}
           </span>
         </div>
       </div>
