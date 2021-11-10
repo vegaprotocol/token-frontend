@@ -14,6 +14,7 @@ import {
 } from "../../../contexts/app-state/app-state-context";
 import { useNetworkParam } from "../../../hooks/use-network-param";
 import { NetworkParams } from "../../../config";
+import { Heading } from "../../../components/heading";
 
 export const REWARDS_QUERY = gql`
   query Rewards($partyId: ID!) {
@@ -94,6 +95,7 @@ export const RewardsIndex = () => {
 
   return (
     <section className="rewards">
+      <Heading title={t("pageTitleRewards")} />
       <p>{t("rewardsPara1")}</p>
       <p>{t("rewardsPara2")}</p>
       {/* <h2>{t("activeRewardsTitle")}</h2>
