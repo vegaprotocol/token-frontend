@@ -13,6 +13,8 @@ import {
 } from "./__generated__/WithdrawPage";
 import { AccountType } from "../../__generated__/globalTypes";
 import { WithdrawForm } from "./withdraw-form";
+import { Intent } from "@blueprintjs/core";
+import { Link } from "react-router-dom";
 
 export const WithdrawIndex = () => {
   return (
@@ -91,6 +93,11 @@ export const WithdrawContainer = ({ currVegaKey }: WithdrawContainerProps) => {
     return data.party.accounts.filter((a) => a.type === AccountType.General);
   }, [data]);
 
+  const hasPendingWithdrawals = React.useMemo(() => {
+    if (!data?.party?.withdrawals?.length) return false;
+    return data.party.withdrawals.some((w) => w.txHash === null);
+  }, [data]);
+
   if (error) {
     return (
       <section>
@@ -108,5 +115,20 @@ export const WithdrawContainer = ({ currVegaKey }: WithdrawContainerProps) => {
     );
   }
 
-  return <WithdrawForm accounts={accounts} currVegaKey={currVegaKey} />;
+  return (
+    <>
+      {hasPendingWithdrawals && (
+        <Callout title="You have incomplete withdrawals" intent="warn">
+          <p>
+            You have withdrawals that have been released from the Vega network
+            but not yet actioned on Ethereum
+          </p>
+          <p>
+            <Link to={"/withdraw/pending"}>View incomplete withdrawals</Link>
+          </p>
+        </Callout>
+      )}
+      <WithdrawForm accounts={accounts} currVegaKey={currVegaKey} />
+    </>
+  );
 };

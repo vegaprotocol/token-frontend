@@ -1,7 +1,10 @@
 import React from "react";
-import { WithdrawPage_party_accounts } from "./__generated__/WithdrawPage";
+import {
+  WithdrawPage_party_accounts,
+  WithdrawPage_party_withdrawals,
+} from "./__generated__/WithdrawPage";
 import { BigNumber } from "../../lib/bignumber";
-import { HTMLSelect, FormGroup, Button } from "@blueprintjs/core";
+import { HTMLSelect, FormGroup, Button, Intent } from "@blueprintjs/core";
 import { AmountInput } from "../../components/token-input";
 import { EthWalletContainer } from "../../components/eth-wallet-container";
 import { useCreateWithdrawal } from "../../hooks/use-create-withdrawal";
@@ -88,7 +91,11 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
           currency={"VEGA"}
         />
       </FormGroup>
-      <Button type="submit" disabled={!valid}>
+      <Button
+        type="submit"
+        disabled={!valid}
+        intent={valid ? Intent.SUCCESS : Intent.DANGER}
+      >
         Withdraw {amountStr} {account?.asset.symbol} tokens
       </Button>
     </form>
