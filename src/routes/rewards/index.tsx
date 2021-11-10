@@ -4,6 +4,7 @@ import { RouteChildProps } from "..";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { RewardsIndex } from "./home";
 import { Heading } from "../../components/heading";
+import { Withdraw } from "./withdraw";
 
 const RewardRouter = ({ name }: RouteChildProps) => {
   const { t } = useTranslation();
@@ -17,7 +18,9 @@ const RewardRouter = ({ name }: RouteChildProps) => {
         <Route path={match.path} exact>
           <RewardsIndex />
         </Route>
-        <Route path={`${match.path}/withdraw`}></Route>
+        <Route path={`${match.path}/withdraw`}>
+          <Withdraw />
+        </Route>
       </Switch>
     </>
   );
