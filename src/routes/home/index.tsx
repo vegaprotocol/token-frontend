@@ -27,7 +27,9 @@ const Home = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
   const { t } = useTranslation();
   const { appState } = useAppState();
-  const { data } = useQuery<NodeData>(TOTAL_STAKED_QUERY);
+  const { data } = useQuery<NodeData>(TOTAL_STAKED_QUERY, {
+    pollInterval: 5000
+  });
   const totalStaked = React.useMemo(() => {
     return new BigNumber(data?.nodeData?.stakedTotalFormatted || "0");
   }, [data]);
