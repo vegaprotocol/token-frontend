@@ -88,6 +88,7 @@ export interface WalletCardAssetProps {
   balance: BigNumber;
   decimals: number;
   border?: boolean;
+  dark?: boolean;
 }
 
 export const WalletCardAsset = ({
@@ -97,6 +98,7 @@ export const WalletCardAsset = ({
   balance,
   decimals,
   border,
+  dark,
 }: WalletCardAssetProps) => {
   const [integers, decimalsPlaces] = React.useMemo(() => {
     // @ts-ignore
@@ -107,7 +109,9 @@ export const WalletCardAsset = ({
     return [integers, decimalsPlaces];
   }, [balance, decimals]);
   return (
-    <div className="wallet-card__asset">
+    <div
+      className={`wallet-card__asset ${dark ? "wallet-card__asset--dark" : ""}`}
+    >
       <img
         alt="Vega"
         src={image}
