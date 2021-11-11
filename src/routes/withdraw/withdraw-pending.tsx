@@ -1,5 +1,4 @@
 import { ApolloError, gql, useQuery } from "@apollo/client";
-import { Button } from "@blueprintjs/core";
 import { useTranslation } from "react-i18next";
 import { EtherscanLink } from "../../components/etherscan-link";
 import { Heading } from "../../components/heading";
@@ -195,12 +194,12 @@ export const Withdrawal = ({ withdrawal }: WithdrawalProps) => {
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>Signature</th>
-          <td>
+          <td title={data?.erc20WithdrawalApproval?.signatures}>
             {error
               ? "Could not retrieve signature"
-              : loading || !data
+              : loading || !data?.erc20WithdrawalApproval?.signatures
               ? "Loading..."
-              : data.erc20WithdrawalApproval?.signatures}
+              : truncateMiddle(data.erc20WithdrawalApproval.signatures)}
           </td>
         </KeyValueTableRow>
       </KeyValueTable>
@@ -227,7 +226,6 @@ const CompleteButton = ({
 }) => {
   let text = "Finish withdraw";
   let disabled = false;
-  let loading = false;
 
   if (error) {
     text = "Coult not load approval";
@@ -238,16 +236,15 @@ const CompleteButton = ({
   } else if (txState === TxState.Pending) {
     text = "Submitting Ethereum transaction";
     disabled = true;
-    loading = true;
   } else if (txState === TxState.Error) {
     return (
       <>
         <p>Ethereum transaction failed</p>
-        <Button
+        <button
           onClick={() => dispatch({ type: TransactionActionType.TX_RESET })}
         >
           Try again
-        </Button>
+        </button>
       </>
     );
   } else if (txState === TxState.Complete) {
@@ -255,8 +252,8 @@ const CompleteButton = ({
   }
 
   return (
-    <Button onClick={onClick} fill={true} loading={loading} disabled={disabled}>
+    <button onClick={onClick} className="fill" disabled={disabled}>
       {text}
-    </Button>
+    </button>
   );
 };
