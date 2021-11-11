@@ -5,6 +5,11 @@ import {
   WithdrawSubmissionInput,
 } from "../lib/vega-wallet/vega-wallet-service";
 import { useApolloClient, gql } from "@apollo/client";
+import { sigToId } from "../lib/sig-to-id";
+import {
+  WithdrawalEvents,
+  WithdrawalEventsVariables,
+} from "./__generated__/WithdrawalEvents";
 
 export enum Status {
   Idle,
@@ -21,7 +26,7 @@ type Submit = (
 ) => Promise<void>;
 
 const WITHDRAWAL_SUB = gql`
-  subscription withdrawalEvents($partyId: ID!) {
+  subscription WithdrawalEvents($partyId: ID!) {
     busEvents(partyId: $partyId, batchSize: 0, types: [Withdrawal]) {
       eventId
       block
@@ -58,15 +63,17 @@ export function useCreateWithdrawal(pubKey: string): [Status, Submit] {
   const subRef = React.useRef<ZenObservable.Subscription | null>(null);
   const client = useApolloClient();
   const [status, setStatus] = React.useState(Status.Idle);
-
-  // TODO: validate submission input
-  const validate = (command: WithdrawSubmissionInput) => {
-    return true;
-  };
+  const [id, setId] = React.useState("");
 
   const safeSetStatus = (status: Status) => {
     if (mountedRef.current) {
       setStatus(status);
+    }
+  };
+
+  const stopSub = () => {
+    if (subRef.current) {
+      subRef.current.unsubscribe();
     }
   };
 
@@ -85,20 +92,17 @@ export function useCreateWithdrawal(pubKey: string): [Status, Submit] {
         },
       };
 
-      const valid = validate(command);
-
-      if (!valid) {
-        safeSetStatus(Status.Failure);
-        return;
-      }
-
       safeSetStatus(Status.Submitted);
 
       try {
-        const [err] = await vegaWalletService.commandSync(command);
+        const [err, res] = await vegaWalletService.commandSync(command);
 
-        if (err) {
+        if (err || !res) {
           safeSetStatus(Status.Failure);
+        } else {
+          const id = sigToId(res.signature.value);
+          setId(id);
+          // Now await subscription
         }
 
         safeSetStatus(Status.Pending);
@@ -114,28 +118,35 @@ export function useCreateWithdrawal(pubKey: string): [Status, Submit] {
     if (status === Status.Pending) {
       // start bus event sub
       subRef.current = client
-        .subscribe({
+        .subscribe<WithdrawalEvents, WithdrawalEventsVariables>({
           query: WITHDRAWAL_SUB,
           variables: { partyId: pubKey },
         })
         .subscribe(({ data }) => {
-          console.log(data);
-          // find matching withdrawal
+          if (!data?.busEvents?.length) return;
+
+          // find matching withdrawals
+          const withdrawal = data.busEvents.find((e) => {
+            if (e.event.__typename !== "Withdrawal") return false;
+            if (e.event.id === id) return true;
+            return false;
+          });
+
+          if (withdrawal) {
+            setStatus(Status.Success);
+            stopSub();
+          }
         });
     }
 
     if (status === Status.Success || status === Status.Failure) {
-      if (subRef.current) {
-        subRef.current.unsubscribe();
-      }
+      stopSub();
     }
 
     return () => {
-      if (subRef.current) {
-        subRef.current.unsubscribe();
-      }
+      stopSub();
     };
-  }, [status, client, pubKey]);
+  }, [status, client, pubKey, id]);
 
   React.useEffect(() => {
     mountedRef.current = true;

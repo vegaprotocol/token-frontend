@@ -73,6 +73,17 @@ export type CommandSyncInput =
   | VoteSubmissionInput
   | WithdrawSubmissionInput;
 
+export interface CommandSyncResponse {
+  inputData: string;
+  pubKey: string;
+  signature: {
+    algo: string;
+    value: string;
+    version: number;
+  };
+  version: number;
+}
+
 export interface IVegaWalletService {
   url: string;
   token: string;
@@ -201,7 +212,9 @@ export class VegaWalletService implements IVegaWalletService {
     }
   }
 
-  async commandSync(body: CommandSyncInput) {
+  async commandSync(
+    body: CommandSyncInput
+  ): Promise<[string | undefined, CommandSyncResponse | undefined]> {
     if (!this.token) {
       return [Errors.NO_TOKEN, undefined];
     }

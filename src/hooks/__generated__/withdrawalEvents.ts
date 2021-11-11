@@ -6,14 +6,14 @@
 import { BusEventType, WithdrawalStatus } from "./../../__generated__/globalTypes";
 
 // ====================================================
-// GraphQL subscription operation: withdrawalEvents
+// GraphQL subscription operation: WithdrawalEvents
 // ====================================================
 
-export interface withdrawalEvents_busEvents_event_TimeUpdate {
+export interface WithdrawalEvents_busEvents_event_TimeUpdate {
   __typename: "TimeUpdate" | "MarketEvent" | "TransferResponses" | "PositionResolution" | "Order" | "Trade" | "Account" | "Party" | "MarginLevels" | "Proposal" | "Vote" | "MarketData" | "NodeSignature" | "LossSocialization" | "SettlePosition" | "Market" | "Asset" | "MarketTick" | "SettleDistressed" | "AuctionEvent" | "RiskFactor" | "Deposit" | "OracleSpec" | "LiquidityProvision";
 }
 
-export interface withdrawalEvents_busEvents_event_Withdrawal_asset {
+export interface WithdrawalEvents_busEvents_event_Withdrawal_asset {
   __typename: "Asset";
   /**
    * The id of the asset
@@ -29,7 +29,7 @@ export interface withdrawalEvents_busEvents_event_Withdrawal_asset {
   decimals: number;
 }
 
-export interface withdrawalEvents_busEvents_event_Withdrawal_party {
+export interface WithdrawalEvents_busEvents_event_Withdrawal_party {
   __typename: "Party";
   /**
    * Party identifier
@@ -37,7 +37,7 @@ export interface withdrawalEvents_busEvents_event_Withdrawal_party {
   id: string;
 }
 
-export interface withdrawalEvents_busEvents_event_Withdrawal_details {
+export interface WithdrawalEvents_busEvents_event_Withdrawal_details {
   __typename: "Erc20WithdrawalDetails";
   /**
    * The ethereum address of the receiver of the asset funds
@@ -45,7 +45,7 @@ export interface withdrawalEvents_busEvents_event_Withdrawal_details {
   receiverAddress: string;
 }
 
-export interface withdrawalEvents_busEvents_event_Withdrawal {
+export interface WithdrawalEvents_busEvents_event_Withdrawal {
   __typename: "Withdrawal";
   /**
    * The Vega internal id of the withdrawal
@@ -62,11 +62,11 @@ export interface withdrawalEvents_busEvents_event_Withdrawal {
   /**
    * The asset to be withdrawn
    */
-  asset: withdrawalEvents_busEvents_event_Withdrawal_asset;
+  asset: WithdrawalEvents_busEvents_event_Withdrawal_asset;
   /**
    * The PartyID initiating the witndrawal
    */
-  party: withdrawalEvents_busEvents_event_Withdrawal_party;
+  party: WithdrawalEvents_busEvents_event_Withdrawal_party;
   /**
    * RFC3339Nano time at which the withdrawal was created
    */
@@ -82,12 +82,12 @@ export interface withdrawalEvents_busEvents_event_Withdrawal {
   /**
    * Foreign chain specific details about the withdrawal
    */
-  details: withdrawalEvents_busEvents_event_Withdrawal_details | null;
+  details: WithdrawalEvents_busEvents_event_Withdrawal_details | null;
 }
 
-export type withdrawalEvents_busEvents_event = withdrawalEvents_busEvents_event_TimeUpdate | withdrawalEvents_busEvents_event_Withdrawal;
+export type WithdrawalEvents_busEvents_event = WithdrawalEvents_busEvents_event_TimeUpdate | WithdrawalEvents_busEvents_event_Withdrawal;
 
-export interface withdrawalEvents_busEvents {
+export interface WithdrawalEvents_busEvents {
   __typename: "BusEvent";
   /**
    * the id for this event
@@ -104,16 +104,16 @@ export interface withdrawalEvents_busEvents {
   /**
    * the payload - the wrapped event
    */
-  event: withdrawalEvents_busEvents_event;
+  event: WithdrawalEvents_busEvents_event;
 }
 
-export interface withdrawalEvents {
+export interface WithdrawalEvents {
   /**
    * Subscribe to event data from the event bus
    */
-  busEvents: withdrawalEvents_busEvents[] | null;
+  busEvents: WithdrawalEvents_busEvents[] | null;
 }
 
-export interface withdrawalEventsVariables {
+export interface WithdrawalEventsVariables {
   partyId: string;
 }
