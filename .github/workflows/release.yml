@@ -20,11 +20,14 @@ jobs:
         uses: actions/setup-node@v2-beta
         with:
           node-version: ${{ matrix.node-version }}
+
       - name: get-npm-version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@master
+
       - name: echo
         run: echo ${{ steps.package-version.outputs.current-version }}
+
       - uses: TriPSs/conventional-changelog-action@v3
         id: bump
         with:
@@ -35,6 +38,7 @@ jobs:
           output-file: "CHANGELOG.md"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - uses: dexturr/release-log@master
         id: logs
         with:
@@ -44,6 +48,7 @@ jobs:
           filter: '["New Crowdin updates"]'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -53,11 +58,14 @@ jobs:
           tag_name: ${{ steps.bump.outputs.tag }}
           release_name: Release ${{ steps.bump.outputs.version }}
           body: |
-            This is a **draft release** and must be published in [netlify](https://app.netlify.com/sites/token-vega-xyz/deploys?filter=master) before it will be live
+            This is a **draft release** and must be published in [netlify](https://app.netlify.com/sites/token-vega-xyz/deploys?filter=master) before it will be live.
+
+            After this has been published remember to mark this as no longer a pre-release!
 
             ${{ steps.logs.outputs.notes }}
-          draft: true
+          draft: false
           prerelease: true
+
       - uses: act10ns/slack@v1
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
