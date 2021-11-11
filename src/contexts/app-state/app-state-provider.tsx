@@ -36,7 +36,10 @@ const initialAppState: AppState = {
   totalVestedBalance: new BigNumber(0),
   trancheError: null,
   drawerOpen: false,
-  associationBreakdown: {},
+  associationBreakdown: {
+    vestingAssociations: {},
+    stakingAssociations: {},
+  },
 };
 
 function appStateReducer(state: AppState, action: AppStateAction): AppState {
@@ -159,7 +162,7 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
     case AppStateActionType.SET_ASSOCIATION_BREAKDOWN: {
       return {
         ...state,
-        associationBreakdown: action.breakdown,
+        associationBreakdown: { ...action.breakdown },
       };
     }
   }
