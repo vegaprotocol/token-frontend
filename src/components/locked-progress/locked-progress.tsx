@@ -64,8 +64,24 @@ export const LockedProgress = ({
           light ? "tranche-item__progress-contents--light" : ""
         }`}
       >
-        <span>{leftLabel}</span>
-        <span>{rightLabel}</span>
+        <span>
+          <div
+            className="tranche-item__progress-contents-indicator tranche-item__progress-contents-indicator--left"
+            style={{
+              backgroundColor: leftColor,
+            }}
+          ></div>
+          {leftLabel}
+        </span>
+        <span>
+          {rightLabel}
+          <div
+            className="tranche-item__progress-contents-indicator tranche-item__progress-contents-indicator--right"
+            style={{
+              backgroundColor: rightColor,
+            }}
+          ></div>
+        </span>
       </div>
       <div
         className={`tranche-item__progress-contents ${
