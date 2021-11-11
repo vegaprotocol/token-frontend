@@ -254,7 +254,8 @@ const VegaWalletConnected = ({
                     balance: new BigNumber(
                       addDecimal(new BigNumber(a.balance), a.asset.decimals)
                     ),
-                    image: isVega ? vegaWhite : noIcon,
+                    image: isVega ? vegaBlack : noIcon,
+                    border: isVega,
                   };
                 })
                 .sort((a, b) => {
@@ -421,12 +422,11 @@ const VegaWalletConnected = ({
   return vegaKeys.length ? (
     <>
       <WalletCardAsset
-        image={vegaBlack}
+        image={vegaWhite}
         decimals={decimals}
         name="VEGA"
         symbol="associated"
         balance={currentStakeAvailable}
-        border={true}
         dark={true}
       />
       <WalletCardRow label={t("unstaked")} value={unstaked} dark={true} />
