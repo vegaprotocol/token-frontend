@@ -1,4 +1,4 @@
-import { gql, useQuery } from "@apollo/client";
+import { ApolloError, gql, useQuery } from "@apollo/client";
 import { Button } from "@blueprintjs/core";
 import { useTranslation } from "react-i18next";
 import { EtherscanLink } from "../../components/etherscan-link";
@@ -19,11 +19,17 @@ import {
   WithdrawsPending_party_withdrawals,
 } from "./__generated__/WithdrawsPending";
 import { format } from "date-fns";
-import { useCompleteWithdrawal } from "../../hooks/use-complete-withdrawal";
 import {
   Erc20Approval,
   Erc20ApprovalVariables,
 } from "./__generated__/Erc20Approval";
+import {
+  TransactionAction,
+  TransactionActionType,
+  TxState,
+} from "../../hooks/transaction-reducer";
+import { useContracts } from "../../contexts/contracts/contracts-context";
+import { useTransaction } from "../../hooks/use-transaction";
 
 export const WithdrawPending = () => {
   return (
@@ -127,6 +133,7 @@ const ERC20_APPROVAL_QUERY = gql`
       nonce
       signatures
       targetAddress
+      expiry
     }
   }
 `;
@@ -140,7 +147,21 @@ export const Withdrawal = ({ withdrawal }: WithdrawalProps) => {
     variables: { withdrawalId: withdrawal.id },
   });
 
-  const submit = useCompleteWithdrawal();
+  const { erc20Bridge } = useContracts();
+  const { state, perform, dispatch } = useTransaction(() => {
+    if (!data?.erc20WithdrawalApproval) {
+      throw new Error("Withdraw needs approval object");
+    }
+
+    return erc20Bridge.withdraw({
+      assetSource: data.erc20WithdrawalApproval.assetSource,
+      amount: data.erc20WithdrawalApproval.amount,
+      expiry: data.erc20WithdrawalApproval.expiry,
+      nonce: data.erc20WithdrawalApproval.nonce,
+      signatures: data.erc20WithdrawalApproval.signatures,
+      targetAddress: data.erc20WithdrawalApproval.targetAddress,
+    });
+  });
 
   return (
     <div>
@@ -183,13 +204,59 @@ export const Withdrawal = ({ withdrawal }: WithdrawalProps) => {
           </td>
         </KeyValueTableRow>
       </KeyValueTable>
-      <Button
-        onClick={submit}
-        fill={true}
-        disabled={Boolean(error || loading || !data?.erc20WithdrawalApproval)}
-      >
-        {error ? "Coult not load approval" : "Finish withdraw"}
-      </Button>
+      <CompleteButton
+        error={error}
+        txState={state.txState}
+        dispatch={dispatch}
+        onClick={perform}
+      />
     </div>
+  );
+};
+
+const CompleteButton = ({
+  error,
+  txState,
+  dispatch,
+  onClick,
+}: {
+  error: ApolloError | undefined;
+  txState: TxState;
+  dispatch: React.Dispatch<TransactionAction>;
+  onClick: () => void;
+}) => {
+  let text = "Finish withdraw";
+  let disabled = false;
+  let loading = false;
+
+  if (error) {
+    text = "Coult not load approval";
+    disabled = true;
+  } else if (txState === TxState.Requested) {
+    text = "Action required in Ethereum wallet";
+    disabled = true;
+  } else if (txState === TxState.Pending) {
+    text = "Submitting Ethereum transaction";
+    disabled = true;
+    loading = true;
+  } else if (txState === TxState.Error) {
+    return (
+      <>
+        <p>Ethereum transaction failed</p>
+        <Button
+          onClick={() => dispatch({ type: TransactionActionType.TX_RESET })}
+        >
+          Try again
+        </Button>
+      </>
+    );
+  } else if (txState === TxState.Complete) {
+    return <p>Complete</p>;
+  }
+
+  return (
+    <Button onClick={onClick} fill={true} loading={loading} disabled={disabled}>
+      {text}
+    </Button>
   );
 };

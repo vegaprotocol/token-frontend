@@ -56,8 +56,7 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
           erc20Bridge: new VegaErc20Bridge(
             provider as any,
             signer,
-            ADDRESSES.erc20Bridge,
-            decimals
+            ADDRESSES.erc20Bridge
           ),
         });
       }

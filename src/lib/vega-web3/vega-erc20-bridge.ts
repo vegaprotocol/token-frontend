@@ -3,27 +3,44 @@ import { IVegaErc20Bridge } from "../web3-utils";
 import erc20BridgeAbi from "../abis/vesting_abi.json";
 
 export class VegaErc20Bridge implements IVegaErc20Bridge {
-  private provider: ethers.providers.Web3Provider;
   private contract: ethers.Contract;
-  private decimals: number;
 
   constructor(
     provider: ethers.providers.Web3Provider,
     signer: ethers.Signer | null,
-    address: string,
-    decimals: number
+    address: string
   ) {
-    this.provider = provider;
     this.contract = new ethers.Contract(
       address,
       erc20BridgeAbi,
       signer || provider
     );
-    this.decimals = decimals;
   }
 
-  withdraw() {
-    console.log("here!!");
-    return Promise.resolve();
+  withdraw(approval: {
+    assetSource: string;
+    amount: string;
+    expiry: string;
+    nonce: string;
+    signatures: string;
+    targetAddress: string;
+  }): Promise<ethers.ContractTransaction> {
+    console.log(
+      approval.assetSource,
+      approval.amount, // No need to remove decimals as this value is already set and not manipulated by the user
+      approval.expiry,
+      approval.targetAddress,
+      approval.nonce,
+      approval.signatures
+    );
+    return Promise.resolve() as any;
+    // return this.contract.withdraw_asset(
+    //   approval.assetSource,
+    //   approval.amount, // No need to remove decimals as this value is already set and not manipulated by the user
+    //   approval.expiry,
+    //   approval.targetAddress,
+    //   approval.nonce,
+    //   approval.signatures
+    // );
   }
 }

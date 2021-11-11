@@ -30,6 +30,10 @@ export interface Erc20Approval_erc20WithdrawalApproval {
    * The target address which will receive the funds
    */
   targetAddress: string;
+  /**
+   * Timestamp in seconds for expiry of the approval
+   */
+  expiry: string;
 }
 
 export interface Erc20Approval {
