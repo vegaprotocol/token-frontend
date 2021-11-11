@@ -106,7 +106,7 @@ const WithdrawPendingContainer = ({
 
   return (
     <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
-      {[data.party.withdrawals[0]].map((w) => (
+      {data.party.withdrawals.map((w) => (
         <li key={w.id} style={{ marginBottom: 20 }}>
           <Withdrawal withdrawal={w} />
         </li>
