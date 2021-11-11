@@ -415,5 +415,7 @@
   "governance": "Governance",
   "staking": "Staking",
   "assets": "Assets",
-  "collateral": "Collateral"
+  "collateral": "Collateral",
+  "associate": "Associate",
+  "disassociate": "Disassociate"
 }

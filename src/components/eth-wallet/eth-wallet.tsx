@@ -133,18 +133,20 @@ const ConnectedKey = () => {
           ) : null}
         </>
       )}
-      <WalletCardActions>
-        <Link style={{ flex: 1 }} to={Routes.GOVERNANCE}>
-          <button className="button-secondary button-secondary--light">
-            {t("governance")}
-          </button>
-        </Link>
-        <Link style={{ flex: 1 }} to={Routes.STAKING}>
-          <button className="button-secondary button-secondary--light">
-            {t("staking")}
-          </button>
-        </Link>
-      </WalletCardActions>
+      {Flags.STAKING_DISABLED ? null : (
+        <WalletCardActions>
+          <Link style={{ flex: 1 }} to={`${Routes.STAKING}/associate`}>
+            <button className="button-secondary button-secondary--light">
+              {t("associate")}
+            </button>
+          </Link>
+          <Link style={{ flex: 1 }} to={`${Routes.STAKING}/disassociate`}>
+            <button className="button-secondary button-secondary--light">
+              {t("disassociate")}
+            </button>
+          </Link>
+        </WalletCardActions>
+      )}
     </>
   );
 };
