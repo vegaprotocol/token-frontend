@@ -4,7 +4,7 @@ import { Callout } from "../../components/callout";
 import { Error } from "../../components/icons";
 import { ADDRESSES } from "../../config";
 import "./code-used.scss";
-import vegaWhite from "../../images/vega_white.png";
+import vegaVesting from "../../images/vega_vesting.png";
 
 export const CodeUsed = ({ address }: { address: string | null }) => {
   const { t } = useTranslation();
@@ -22,7 +22,7 @@ export const CodeUsed = ({ address }: { address: string | null }) => {
           address={ADDRESSES.lockedAddress}
           symbol="VEGA-Locked"
           decimals={18}
-          image={vegaWhite}
+          image={vegaVesting}
         />
       </p>
       <div className="or">
