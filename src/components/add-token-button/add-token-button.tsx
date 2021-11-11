@@ -1,6 +1,7 @@
 import "./add-token-button.scss";
 import { useAddAssetToWallet } from "../../hooks/use-add-asset-to-wallet";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { JsonRpcProvider } from "@ethersproject/providers";
 
 export const AddTokenButton = ({
   address,
@@ -17,7 +18,11 @@ export const AddTokenButton = ({
 }) => {
   const { provider } = useWeb3();
   const addToken = useAddAssetToWallet(address, symbol, decimals, image);
-  if (!provider) {
+  if (
+    !provider ||
+    !(provider instanceof JsonRpcProvider) ||
+    !window.ethereum.isMetaMask
+  ) {
     return null;
   }
   return (
