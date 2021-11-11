@@ -40,36 +40,4 @@
   &__footer {
     text-align: right;
   }
-
-  &__progress {
-    border-left: $white;
-    border-left-style: solid;
-    border-left-width: 1px;
-    border-right: $white;
-    border-right-style: solid;
-    border-right-width: 1px;
-
-    &-contents {
-      display: flex;
-      justify-content: space-between;
-      gap: 0 5px;
-      font-family: $font-mono;
-      padding: 2px 5px 2px 5px;
-      color: $text-color-deemphasise;
-    }
-  }
-
-  &__progress-bar {
-    display: flex;
-
-    &--locked {
-      background-color: $vega-pink;
-      height: 16px;
-    }
-
-    &--unlocked {
-      background-color: $vega-green;
-      height: 16px;
-    }
-  }
 }
