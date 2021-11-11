@@ -1,6 +1,6 @@
 import "./token-details.scss";
 
-import { ADDRESSES, Flags } from "../../../config";
+import { ADDRESSES, EthereumChainId, Flags } from "../../../config";
 import {
   KeyValueTable,
   KeyValueTableRow,
@@ -14,6 +14,46 @@ import { useTranslation } from "react-i18next";
 import { useWeb3 } from "../../../contexts/web3-context/web3-context";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { useTranches } from "../../../hooks/use-tranches";
+import { AddTokenButton } from "../../../components/add-token-button";
+import vegaVesting from "../../../images/vega_vesting.png";
+import vegaWhite from "../../../images/vega_white.png";
+
+const AddTokenTableCell = ({
+  chainId,
+  address,
+  symbol,
+  decimals,
+  image,
+  text,
+}: {
+  chainId: EthereumChainId;
+  address: string;
+  symbol: string;
+  decimals: number;
+  image: string;
+  text: string;
+}) => {
+  return (
+    <div style={{ display: "flex", justifyContent: "flex-end" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          marginRight: 6,
+        }}
+      >
+        <EtherscanLink chainId={chainId} address={address} text={text} />
+      </div>
+      <AddTokenButton
+        address={address}
+        symbol={symbol}
+        decimals={decimals}
+        image={image}
+      />
+    </div>
+  );
+};
 
 export const TokenDetails = ({
   totalSupply,
@@ -32,9 +72,12 @@ export const TokenDetails = ({
       <KeyValueTableRow>
         <th>{t("Token address")}</th>
         <td data-testid="token-address">
-          <EtherscanLink
+          <AddTokenTableCell
             chainId={chainId}
+            decimals={18}
             address={ADDRESSES.vegaTokenAddress}
+            symbol="VEGA"
+            image={vegaWhite}
             text={ADDRESSES.vegaTokenAddress}
           />
         </td>
@@ -42,9 +85,12 @@ export const TokenDetails = ({
       <KeyValueTableRow>
         <th>{t("Vesting contract")}</th>
         <td data-testid="token-contract">
-          <EtherscanLink
+          <AddTokenTableCell
             chainId={chainId}
-            address={ADDRESSES.vestingAddress}
+            decimals={18}
+            address={ADDRESSES.lockedAddress}
+            symbol="VEGA-Locked"
+            image={vegaVesting}
             text={ADDRESSES.vestingAddress}
           />
         </td>
