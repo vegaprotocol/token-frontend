@@ -44,9 +44,11 @@ export const WalletCardRow = ({
   label,
   value,
   dark = false,
+  decimals = 18,
   bold = false,
 }: {
   label: string;
+  decimals?: number;
   value?: BigNumber | null;
   dark?: boolean;
   bold?: boolean;
