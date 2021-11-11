@@ -61,8 +61,8 @@ const AssociatedAmounts = ({
             total={associationAmounts.total}
             leftLabel={t("associated")}
             rightLabel={t("notAssociated")}
-            leftColor={Colors.BLACK}
-            rightColor={Colors.WHITE}
+            leftColor={Colors.WHITE}
+            rightColor={Colors.BLACK}
             light={true}
           />
         </>
