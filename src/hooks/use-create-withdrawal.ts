@@ -133,7 +133,7 @@ export function useCreateWithdrawal(pubKey: string): [Status, Submit] {
           });
 
           if (withdrawal) {
-            setStatus(Status.Success);
+            safeSetStatus(Status.Success);
             stopSub();
           }
         });

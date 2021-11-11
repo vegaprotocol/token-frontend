@@ -4,10 +4,14 @@ import { BigNumber } from "../../lib/bignumber";
 import { HTMLSelect, FormGroup, Button, Intent } from "@blueprintjs/core";
 import { AmountInput } from "../../components/token-input";
 import { EthWalletContainer } from "../../components/eth-wallet-container";
-import { Status, useCreateWithdrawal } from "../../hooks/use-create-withdrawal";
+import {
+  Status as WithdrawStatus,
+  useCreateWithdrawal,
+} from "../../hooks/use-create-withdrawal";
 import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { removeDecimal } from "../../lib/decimals";
+import { useHistory } from "react-router";
 
 interface WithdrawFormProps {
   accounts: WithdrawPage_party_accounts[];
@@ -15,6 +19,7 @@ interface WithdrawFormProps {
 }
 
 export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
+  const history = useHistory();
   const { ethAddress } = useWeb3();
   const [amountStr, setAmount] = React.useState("");
   const [account, setAccount] = React.useState(accounts[0]);
@@ -43,6 +48,12 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
     }
     return true;
   }, [ethAddress, amount, maximum]);
+
+  React.useEffect(() => {
+    if (status === WithdrawStatus.Success) {
+      history.push("/withdraw/pending");
+    }
+  }, [status, history]);
 
   return (
     <form
@@ -90,11 +101,14 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
       </FormGroup>
       <Button
         type="submit"
-        disabled={!valid || status === Status.Pending}
+        disabled={!valid || status === WithdrawStatus.Pending}
         intent={valid ? Intent.SUCCESS : Intent.DANGER}
-        loading={status === Status.Submitted || status === Status.Pending}
+        loading={
+          status === WithdrawStatus.Submitted ||
+          status === WithdrawStatus.Pending
+        }
       >
-        {status === Status.Pending
+        {status === WithdrawStatus.Pending
           ? "Preparing"
           : `Withdraw ${amountStr} ${account?.asset.symbol} tokens`}
       </Button>
