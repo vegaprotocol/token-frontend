@@ -1,4 +1,5 @@
 import React from "react";
+import { Colors } from "../../config";
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
 import "./locked-progress.scss";
@@ -9,6 +10,9 @@ export interface LockedProgressProps {
   unlocked: BigNumber;
   leftLabel: string;
   rightLabel: string;
+  leftColor?: string;
+  rightColor?: string;
+  light?: boolean;
 }
 
 export const LockedProgress = ({
@@ -17,6 +21,9 @@ export const LockedProgress = ({
   unlocked,
   leftLabel,
   rightLabel,
+  leftColor = Colors.PINK,
+  rightColor = Colors.GREEN,
+  light = false,
 }: LockedProgressProps) => {
   const lockedPercentage = React.useMemo(() => {
     return locked.div(total).times(100);
@@ -28,13 +35,18 @@ export const LockedProgress = ({
 
   return (
     <div className="tranche-item__progress">
-      <div className="tranche-item__progress-bar">
+      <div
+        className={`tranche-item__progress-bar ${
+          light ? "tranche-item__progress-bar--light" : ""
+        }`}
+      >
         <div
           className="tranche-item__progress-bar--locked"
           style={{
             flex: isNaN(lockedPercentage.toNumber())
               ? 0
               : lockedPercentage.toNumber(),
+            backgroundColor: leftColor,
           }}
         ></div>
         <div
@@ -43,14 +55,23 @@ export const LockedProgress = ({
             flex: isNaN(unlockedPercentage.toNumber())
               ? 0
               : unlockedPercentage.toNumber(),
+            backgroundColor: rightColor,
           }}
         ></div>
       </div>
-      <div className="tranche-item__progress-contents">
+      <div
+        className={`tranche-item__progress-contents ${
+          light ? "tranche-item__progress-contents--light" : ""
+        }`}
+      >
         <span>{leftLabel}</span>
         <span>{rightLabel}</span>
       </div>
-      <div className="tranche-item__progress-contents">
+      <div
+        className={`tranche-item__progress-contents ${
+          light ? "tranche-item__progress-contents--light" : ""
+        }`}
+      >
         <span>{formatNumber(locked, 2)}</span>
         <span>{formatNumber(unlocked, 2)}</span>
       </div>

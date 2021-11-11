@@ -17,19 +17,27 @@
       font-family: $font-mono;
       padding: 2px 5px 2px 5px;
       color: $text-color-deemphasise;
+
+      &--light {
+        gap: 0;
+        padding: 2px 0;
+        color: $black;
+      }
     }
   }
 
   &__progress-bar {
     display: flex;
 
+    &--light {
+      border: 1px solid $black;
+    }
+
     &--locked {
-      background-color: $vega-pink;
       height: 16px;
     }
 
     &--unlocked {
-      background-color: $vega-green;
       height: 16px;
     }
   }

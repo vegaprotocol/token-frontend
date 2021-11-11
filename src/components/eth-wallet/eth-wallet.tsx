@@ -61,6 +61,9 @@ const AssociatedAmounts = ({
             total={associationAmounts.total}
             leftLabel={t("associated")}
             rightLabel={t("notAssociated")}
+            leftColor={Colors.BLACK}
+            rightColor={Colors.WHITE}
+            light={true}
           />
         </>
       )}
@@ -118,6 +121,7 @@ const ConnectedKey = () => {
             total={totalVestedBalance.plus(totalLockedBalance)}
             leftLabel={t("Locked")}
             rightLabel={t("Unlocked")}
+            light={true}
           />
         </>
       )}
