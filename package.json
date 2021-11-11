@@ -50,6 +50,7 @@
   "scripts": {
     "start": "craco start",
     "start:mock": "REACT_APP_MOCKED=1 craco -r @cypress/instrument-cra start",
+    "postinstall": "cp .env .env.local",
     "build": "craco build",
     "test": "REACT_APP_CHAIN=0x1 craco test",
     "eject": "react-scripts eject",
