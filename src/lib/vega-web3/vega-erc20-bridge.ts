@@ -10,7 +10,6 @@ export class VegaErc20Bridge implements IVegaErc20Bridge {
     signer: ethers.Signer | null,
     address: string
   ) {
-    console.log(address);
     this.contract = new ethers.Contract(
       address,
       erc20BridgeAbi,
