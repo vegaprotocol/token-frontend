@@ -48,6 +48,7 @@ interface VegaContracts {
   claimAddress: string;
   lockedAddress: string;
   stakingBridge: string;
+  erc20Bridge: string;
 }
 
 export const EnvironmentConfig: { [key in Networks]: VegaContracts } = {
@@ -64,6 +65,7 @@ export const EnvironmentConfig: { [key in Networks]: VegaContracts } = {
     lockedAddress: "0x0",
     vestingAddress: "0xd751FF6264234cAfAE88e4BF6003878fAB9630a7",
     stakingBridge: "0x3cCe40e1e47cedf76c03db3E48507f421b575523",
+    erc20Bridge: "0x8e59E263c666d2768c0Ff41D19551Ba04916fdfC",
   },
   [Networks.STAGNET]: {
     vestingAddress: "0xfCe6eB272D3d4146A96bC28de71212b327F575fa",
@@ -71,6 +73,7 @@ export const EnvironmentConfig: { [key in Networks]: VegaContracts } = {
     claimAddress: "0x8Cef746ab7C83B61F6461cC92882bD61AB65a994", // TODO not deployed to this env, but random address so app doesn't error
     lockedAddress: "0x0", // TODO not deployed to this env
     stakingBridge: "0x7D88CD817227D599815d407D929af18Bb8D57176",
+    erc20Bridge: "0x0", // TODO,
   },
   [Networks.TESTNET]: {
     vestingAddress: "0xe2deBB240b43EDfEBc9c38B67c0894B9A92Bf07c",
@@ -78,6 +81,7 @@ export const EnvironmentConfig: { [key in Networks]: VegaContracts } = {
     claimAddress: "0x8Cef746ab7C83B61F6461cC92882bD61AB65a994", // TODO not deployed to this env, but random address so app doesn't error
     lockedAddress: "0x0", // TODO not deployed to this env
     stakingBridge: "0xF5A3830F002BE78dd801214F5316b677E0355c60",
+    erc20Bridge: "0x0", // TODO,
   },
   [Networks.MAINNET]: {
     vestingAddress: "0x23d1bFE8fA50a167816fBD79D7932577c06011f4",
@@ -85,6 +89,7 @@ export const EnvironmentConfig: { [key in Networks]: VegaContracts } = {
     claimAddress: "0x0ee1fb382caf98e86e97e51f9f42f8b4654020f3",
     lockedAddress: "0x78344c7305d73a7a0ac3c94cd9960f4449a1814e",
     stakingBridge: "0x195064D33f09e0c42cF98E665D9506e0dC17de68",
+    erc20Bridge: "0x0", // TODO,
   },
 };
 

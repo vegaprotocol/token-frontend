@@ -107,7 +107,7 @@ const WithdrawPendingContainer = ({
   return (
     <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
       {data.party.withdrawals.map((w) => (
-        <li key={w.id} style={{ marginBottom: 20 }}>
+        <li key={w.id} style={{ marginBottom: 25 }}>
           <Withdrawal withdrawal={w} />
         </li>
       ))}
@@ -183,17 +183,13 @@ export const Withdrawal = ({ withdrawal }: WithdrawalProps) => {
           </td>
         </KeyValueTableRow>
       </KeyValueTable>
-      {error ? (
-        <p>Could not load approval</p>
-      ) : (
-        <Button
-          onClick={submit}
-          fill={true}
-          disabled={loading || !data?.erc20WithdrawalApproval}
-        >
-          Finish withdraw
-        </Button>
-      )}
+      <Button
+        onClick={submit}
+        fill={true}
+        disabled={Boolean(error || loading || !data?.erc20WithdrawalApproval)}
+      >
+        {error ? "Coult not load approval" : "Finish withdraw"}
+      </Button>
     </div>
   );
 };

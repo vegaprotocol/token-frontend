@@ -130,6 +130,10 @@ export interface IVegaLPStaking {
   stakingStart(): Promise<string>;
 }
 
+export interface IVegaErc20Bridge {
+  withdraw(): Promise<any>;
+}
+
 export interface TxError {
   message: string;
   code: number;
