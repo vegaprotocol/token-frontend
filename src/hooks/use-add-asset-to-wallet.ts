@@ -23,6 +23,7 @@ export const useAddAssetToWallet = (
           options: {
             address,
             symbol: `${symbol}${
+              // Add the environment if not mainnet
               appEnv === Networks.MAINNET
                 ? ""
                 : // Remove NET as VEGA(TESTNET) is too long

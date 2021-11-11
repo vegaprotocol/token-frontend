@@ -88,7 +88,7 @@ export const TokenDetails = ({
           <AddTokenTableCell
             chainId={chainId}
             decimals={18}
-            address={ADDRESSES.vegaTokenAddress}
+            address={ADDRESSES.lockedAddress}
             symbol="VEGA🔒"
             image={vegaVesting}
             text={ADDRESSES.vestingAddress}
