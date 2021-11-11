@@ -29,6 +29,8 @@ import {
 } from "../../hooks/transaction-reducer";
 import { useContracts } from "../../contexts/contracts/contracts-context";
 import { useTransaction } from "../../hooks/use-transaction";
+import { addDecimal } from "../../lib/decimals";
+import { BigNumber } from "../../lib/bignumber";
 
 export const WithdrawPending = () => {
   return (
@@ -151,6 +153,9 @@ export const Withdrawal = ({ withdrawal }: WithdrawalProps) => {
     if (!data?.erc20WithdrawalApproval) {
       throw new Error("Withdraw needs approval object");
     }
+    if (!withdrawal.details?.receiverAddress) {
+      throw new Error("Missing receiver address");
+    }
 
     return erc20Bridge.withdraw({
       assetSource: data.erc20WithdrawalApproval.assetSource,
@@ -158,7 +163,8 @@ export const Withdrawal = ({ withdrawal }: WithdrawalProps) => {
       expiry: data.erc20WithdrawalApproval.expiry,
       nonce: data.erc20WithdrawalApproval.nonce,
       signatures: data.erc20WithdrawalApproval.signatures,
-      targetAddress: data.erc20WithdrawalApproval.targetAddress,
+      // TODO: switch when targetAddress is populated and deployed to mainnet data.erc20WithdrawalApproval.targetAddress,
+      targetAddress: withdrawal.details.receiverAddress,
     });
   });
 
@@ -167,7 +173,13 @@ export const Withdrawal = ({ withdrawal }: WithdrawalProps) => {
       <KeyValueTable>
         <KeyValueTableRow>
           <th>Withdraw</th>
-          <td>{withdrawal.amount}</td>
+          <td>
+            {addDecimal(
+              new BigNumber(withdrawal.amount),
+              withdrawal.asset.decimals
+            )}{" "}
+            {withdrawal.asset.symbol}
+          </td>
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>From</th>
