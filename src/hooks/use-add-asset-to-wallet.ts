@@ -2,6 +2,7 @@ import { ethers } from "ethers";
 import React from "react";
 import { useWeb3 } from "../contexts/web3-context/web3-context";
 import * as Sentry from "@sentry/react";
+import { appEnv, Networks } from "../config";
 
 export const useAddAssetToWallet = (
   address: string,
@@ -21,7 +22,12 @@ export const useAddAssetToWallet = (
           type: "ERC20",
           options: {
             address,
-            symbol,
+            symbol: `${symbol}${
+              appEnv === Networks.MAINNET
+                ? ""
+                : // Remove NET as VEGA(TESTNET) is too long
+                  ` ${appEnv.replace("NET", "")}`
+            }`,
             decimals,
             image,
           },

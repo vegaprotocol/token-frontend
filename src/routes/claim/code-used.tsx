@@ -20,7 +20,7 @@ export const CodeUsed = ({ address }: { address: string | null }) => {
         <AddTokenButton
           size={64}
           address={ADDRESSES.lockedAddress}
-          symbol="VEGA-Locked"
+          symbol="VEGA🔒"
           decimals={18}
           image={vegaVesting}
         />
