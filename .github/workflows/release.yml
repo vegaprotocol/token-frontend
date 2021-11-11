@@ -30,6 +30,15 @@ jobs:
           output-file: "CHANGELOG.md"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - uses: dexturr/release-log@master
+        id: logs
+        with:
+          repo: "vegaprotocol/token-frontend"
+          previous-release: "test2"
+          new-release: "1.0.0"
+          filter: '["New Crowdin updates"]'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: echo
         run: |
           echo ${{ steps.bump.outputs.tag }}
@@ -37,14 +46,11 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.bump.outputs.tag }}
           release_name: Release ${{ steps.bump.outputs.version }}
-          body: |
-            Changes in this Release
-            - First Change
-            - Second Change
+          body: ${{ steps.logs.outputs.notes }}
           draft: true
           prerelease: true
       # - uses: act10ns/slack@v1
