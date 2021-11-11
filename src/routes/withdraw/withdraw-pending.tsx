@@ -19,6 +19,11 @@ import {
   WithdrawsPending_party_withdrawals,
 } from "./__generated__/WithdrawsPending";
 import { format } from "date-fns";
+import { useCompleteWithdrawal } from "../../hooks/use-complete-withdrawal";
+import {
+  Erc20Approval,
+  Erc20ApprovalVariables,
+} from "./__generated__/Erc20Approval";
 
 export const WithdrawPending = () => {
   return (
@@ -101,7 +106,7 @@ const WithdrawPendingContainer = ({
 
   return (
     <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
-      {data.party.withdrawals.map((w) => (
+      {[data.party.withdrawals[0]].map((w) => (
         <li key={w.id} style={{ marginBottom: 20 }}>
           <Withdrawal withdrawal={w} />
         </li>
@@ -114,8 +119,29 @@ interface WithdrawalProps {
   withdrawal: WithdrawsPending_party_withdrawals;
 }
 
+const ERC20_APPROVAL_QUERY = gql`
+  query Erc20Approval($withdrawalId: ID!) {
+    erc20WithdrawalApproval(withdrawalId: $withdrawalId) {
+      assetSource
+      amount
+      nonce
+      signatures
+      targetAddress
+    }
+  }
+`;
+
 export const Withdrawal = ({ withdrawal }: WithdrawalProps) => {
   const { chainId } = useWeb3();
+  const { data, loading, error } = useQuery<
+    Erc20Approval,
+    Erc20ApprovalVariables
+  >(ERC20_APPROVAL_QUERY, {
+    variables: { withdrawalId: withdrawal.id },
+  });
+
+  const submit = useCompleteWithdrawal();
+
   return (
     <div>
       <KeyValueTable>
@@ -148,10 +174,26 @@ export const Withdrawal = ({ withdrawal }: WithdrawalProps) => {
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>Signature</th>
-          <td>!! maybe !!</td>
+          <td>
+            {error
+              ? "Could not retrieve signature"
+              : loading || !data
+              ? "Loading..."
+              : data.erc20WithdrawalApproval?.signatures}
+          </td>
         </KeyValueTableRow>
       </KeyValueTable>
-      <Button fill={true}>Finish withdraw</Button>
+      {error ? (
+        <p>Could not load approval</p>
+      ) : (
+        <Button
+          onClick={submit}
+          fill={true}
+          disabled={loading || !data?.erc20WithdrawalApproval}
+        >
+          Finish withdraw
+        </Button>
+      )}
     </div>
   );
 };
