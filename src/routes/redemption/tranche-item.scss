@@ -29,6 +29,10 @@
     color: $white;
   }
 
+  td:last-child {
+    text-align: right;
+  }
+
   &__label {
     display: inline-block;
     text-transform: uppercase;

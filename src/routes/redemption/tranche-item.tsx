@@ -55,16 +55,20 @@ export const TrancheItem = ({
           <tr>
             <td>{t("Starts unlocking")}</td>
             <td>{format(tranche.tranche_start, "d MMM yyyy")}</td>
-            <td></td>
           </tr>
           <tr>
             <td>{t("Fully unlocked")}</td>
             <td>{format(tranche.tranche_end, "d MMM yyyy")}</td>
-            <td></td>
           </tr>
         </tbody>
       </table>
-      <LockedProgress locked={locked} unlocked={unlocked} total={total} />
+      <LockedProgress
+        locked={locked}
+        unlocked={unlocked}
+        total={total}
+        leftLabel={t("Locked")}
+        rightLabel={t("Unlocked")}
+      />
 
       <div className="tranche-item__footer" data-testid="tranche-item-footer">
         {message}

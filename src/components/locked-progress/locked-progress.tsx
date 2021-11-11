@@ -1,5 +1,4 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
 import "./locked-progress.scss";
@@ -8,14 +7,17 @@ export interface LockedProgressProps {
   total: BigNumber;
   locked: BigNumber;
   unlocked: BigNumber;
+  leftLabel: string;
+  rightLabel: string;
 }
 
 export const LockedProgress = ({
   total,
   locked,
   unlocked,
+  leftLabel,
+  rightLabel,
 }: LockedProgressProps) => {
-  const { t } = useTranslation();
   const lockedPercentage = React.useMemo(() => {
     return locked.div(total).times(100);
   }, [total, locked]);
@@ -45,8 +47,8 @@ export const LockedProgress = ({
         ></div>
       </div>
       <div className="tranche-item__progress-contents">
-        <span>{t("Locked")}</span>
-        <span>{t("Unlocked")}</span>
+        <span>{leftLabel}</span>
+        <span>{rightLabel}</span>
       </div>
       <div className="tranche-item__progress-contents">
         <span>{formatNumber(locked, 2)}</span>

@@ -417,5 +417,7 @@
   "assets": "Assets",
   "collateral": "Collateral",
   "associate": "Associate",
-  "disassociate": "Disassociate"
+  "disassociate": "Disassociate",
+  "associated": "Associated",
+  "notAssociated": "Not Associated"
 }
