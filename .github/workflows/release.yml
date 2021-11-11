@@ -53,11 +53,10 @@ jobs:
           body: ${{ steps.logs.outputs.notes }}
           draft: true
           prerelease: true
-      # - uses: act10ns/slack@v1
-      #   env:
-      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      #   with:
-      #     status: ${{ job.status }}
-      #     steps: ${{ toJson(steps) }}
-      #   if: always()
+      - uses: act10ns/slack@v1
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+        if: always()
