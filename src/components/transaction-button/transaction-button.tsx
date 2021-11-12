@@ -38,6 +38,8 @@ export const TransactionButton = ({
   };
 
   const txHash = forceTxHash || txData.hash;
+  const state = forceTxState || txState;
+
   const etherscanLink = txHash && (
     <a
       href={`https://ropsten.etherscan.io/tx/${txHash}`}
@@ -48,9 +50,7 @@ export const TransactionButton = ({
     </a>
   );
 
-  if (forceTxState === TxState.Complete || txState === TxState.Complete) {
-    // If the withdrawal has already been completed the txState will be Default as the
-    // transaction ahasn'twwwwwwfhjyi7Aggfgfg
+  if (state === TxState.Complete) {
     const props = {
       ...wrapperProps,
       className: `transaction-button transaction-button--${TxState.Complete.toLowerCase()}`,
@@ -70,7 +70,7 @@ export const TransactionButton = ({
   }
 
   // User as started transaction and we are awaiting confirmation from the users wallet
-  if (txState === TxState.Requested) {
+  if (state === TxState.Requested) {
     return (
       <div {...wrapperProps}>
         <StatefulButton {...buttonProps} disabled={true}>
@@ -81,7 +81,7 @@ export const TransactionButton = ({
     );
   }
 
-  if (txState === TxState.Pending) {
+  if (state === TxState.Pending) {
     return (
       <div {...wrapperProps}>
         <StatefulButton {...buttonProps} disabled={true}>
@@ -96,7 +96,7 @@ export const TransactionButton = ({
     );
   }
 
-  if (txState === TxState.Error) {
+  if (state === TxState.Error) {
     return (
       <div {...wrapperProps}>
         <p {...textProps}>
