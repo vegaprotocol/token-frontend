@@ -73,7 +73,7 @@ export const EnvironmentConfig: { [key in Networks]: VegaContracts } = {
     claimAddress: "0x8Cef746ab7C83B61F6461cC92882bD61AB65a994", // TODO not deployed to this env, but random address so app doesn't error
     lockedAddress: "0x0", // TODO not deployed to this env
     stakingBridge: "0x7D88CD817227D599815d407D929af18Bb8D57176",
-    erc20Bridge: "0x0", // TODO,
+    erc20Bridge: "0xb4E6cF254B61332BC93ffE96bD836561F7D8F37c",
   },
   [Networks.TESTNET]: {
     vestingAddress: "0xe2deBB240b43EDfEBc9c38B67c0894B9A92Bf07c",

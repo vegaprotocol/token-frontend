@@ -99,19 +99,14 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
           currency={"VEGA"}
         />
       </FormGroup>
-      <Button
+      <button
         type="submit"
         disabled={!valid || status === WithdrawStatus.Pending}
-        intent={valid ? Intent.SUCCESS : Intent.DANGER}
-        loading={
-          status === WithdrawStatus.Submitted ||
-          status === WithdrawStatus.Pending
-        }
       >
         {status === WithdrawStatus.Pending
           ? "Preparing"
           : `Withdraw ${amountStr} ${account?.asset.symbol} tokens`}
-      </Button>
+      </button>
     </form>
   );
 };

@@ -10,6 +10,10 @@ export class VegaErc20Bridge implements IVegaErc20Bridge {
     signer: ethers.Signer | null,
     address: string
   ) {
+    if (!ethers.utils.isAddress(address)) {
+      throw new Error(`Invalid Ethereum address for Vega ERC20 bridge`);
+    }
+
     this.contract = new ethers.Contract(
       address,
       erc20BridgeAbi,

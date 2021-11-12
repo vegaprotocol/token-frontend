@@ -1,3 +1,4 @@
+import React from "react";
 import { ApolloError, gql, useQuery } from "@apollo/client";
 import { useTranslation } from "react-i18next";
 import { EtherscanLink } from "../../components/etherscan-link";
@@ -18,19 +19,13 @@ import {
   WithdrawsPending_party_withdrawals,
 } from "./__generated__/WithdrawsPending";
 import { format } from "date-fns";
-import {
-  Erc20Approval,
-  Erc20ApprovalVariables,
-} from "./__generated__/Erc20Approval";
-import {
-  TransactionAction,
-  TransactionActionType,
-  TxState,
-} from "../../hooks/transaction-reducer";
 import { useContracts } from "../../contexts/contracts/contracts-context";
 import { useTransaction } from "../../hooks/use-transaction";
 import { addDecimal } from "../../lib/decimals";
 import { BigNumber } from "../../lib/bignumber";
+import { TransactionButton } from "../../components/transaction-button";
+import { usePollERC20Approval } from "../../hooks/use-ercPoll20Approval";
+import orderBy from "lodash/orderBy";
 
 export const WithdrawPending = () => {
   return (
@@ -88,7 +83,21 @@ const WithdrawPendingContainer = ({
     WithdrawsPendingVariables
   >(WITHDRAW_PENDING_QUERY, {
     variables: { partyId: currVegaKey.pub },
+    // This must be network-only because you are navigated to this page automatically after the withdrawal is created,
+    // if you have already visited this page the query result is cached with 0 withdrawals, so we need to refetch every
+    // time to ensure the withdrawal is shown immediately
+    fetchPolicy: "network-only",
   });
+
+  const withdrawals = React.useMemo(() => {
+    if (!data?.party?.withdrawals?.length) return [];
+
+    return orderBy(
+      data.party.withdrawals,
+      [(w) => new Date(w.createdTimestamp)],
+      ["desc"]
+    );
+  }, [data]);
 
   if (error) {
     return (
@@ -107,13 +116,13 @@ const WithdrawPendingContainer = ({
     );
   }
 
-  if (!data.party?.withdrawals?.length) {
+  if (!withdrawals.length) {
     return <p>You dont have any pending withdrawals</p>;
   }
 
   return (
     <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
-      {data.party.withdrawals.map((w) => (
+      {withdrawals.map((w) => (
         <li key={w.id} style={{ marginBottom: 25 }}>
           <Withdrawal withdrawal={w} />
         </li>
@@ -126,31 +135,12 @@ interface WithdrawalProps {
   withdrawal: WithdrawsPending_party_withdrawals;
 }
 
-const ERC20_APPROVAL_QUERY = gql`
-  query Erc20Approval($withdrawalId: ID!) {
-    erc20WithdrawalApproval(withdrawalId: $withdrawalId) {
-      assetSource
-      amount
-      nonce
-      signatures
-      targetAddress
-      expiry
-    }
-  }
-`;
-
 export const Withdrawal = ({ withdrawal }: WithdrawalProps) => {
   const { chainId } = useWeb3();
-  const { data, loading, error } = useQuery<
-    Erc20Approval,
-    Erc20ApprovalVariables
-  >(ERC20_APPROVAL_QUERY, {
-    variables: { withdrawalId: withdrawal.id },
-  });
-
+  const erc20Approval = usePollERC20Approval(withdrawal.id);
   const { erc20Bridge } = useContracts();
-  const { state, perform, dispatch } = useTransaction(() => {
-    if (!data?.erc20WithdrawalApproval) {
+  const { state, perform, reset } = useTransaction(() => {
+    if (!erc20Approval) {
       throw new Error("Withdraw needs approval object");
     }
     if (!withdrawal.details?.receiverAddress) {
@@ -158,11 +148,11 @@ export const Withdrawal = ({ withdrawal }: WithdrawalProps) => {
     }
 
     return erc20Bridge.withdraw({
-      assetSource: data.erc20WithdrawalApproval.assetSource,
-      amount: data.erc20WithdrawalApproval.amount,
-      expiry: data.erc20WithdrawalApproval.expiry,
-      nonce: data.erc20WithdrawalApproval.nonce,
-      signatures: data.erc20WithdrawalApproval.signatures,
+      assetSource: erc20Approval.assetSource,
+      amount: erc20Approval.amount,
+      expiry: erc20Approval.expiry,
+      nonce: erc20Approval.nonce,
+      signatures: erc20Approval.signatures,
       // TODO: switch when targetAddress is populated and deployed to mainnet data.erc20WithdrawalApproval.targetAddress,
       targetAddress: withdrawal.details.receiverAddress,
     });
@@ -195,7 +185,6 @@ export const Withdrawal = ({ withdrawal }: WithdrawalProps) => {
                 withdrawal.details?.receiverAddress as string
               )}
             />
-            {}
           </td>
         </KeyValueTableRow>
         <KeyValueTableRow>
@@ -206,66 +195,19 @@ export const Withdrawal = ({ withdrawal }: WithdrawalProps) => {
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>Signature</th>
-          <td title={data?.erc20WithdrawalApproval?.signatures}>
-            {error
-              ? "Could not retrieve signature"
-              : loading || !data?.erc20WithdrawalApproval?.signatures
+          <td title={erc20Approval?.signatures}>
+            {!erc20Approval?.signatures
               ? "Loading..."
-              : truncateMiddle(data.erc20WithdrawalApproval.signatures)}
+              : truncateMiddle(erc20Approval.signatures)}
           </td>
         </KeyValueTableRow>
       </KeyValueTable>
-      <CompleteButton
-        error={error}
-        txState={state.txState}
-        dispatch={dispatch}
-        onClick={perform}
+      <TransactionButton
+        transactionState={state}
+        withdrawalTxHash={withdrawal.txHash}
+        start={perform}
+        reset={reset}
       />
     </div>
-  );
-};
-
-const CompleteButton = ({
-  error,
-  txState,
-  dispatch,
-  onClick,
-}: {
-  error: ApolloError | undefined;
-  txState: TxState;
-  dispatch: React.Dispatch<TransactionAction>;
-  onClick: () => void;
-}) => {
-  let text = "Finish withdraw";
-  let disabled = false;
-
-  if (error) {
-    text = "Coult not load approval";
-    disabled = true;
-  } else if (txState === TxState.Requested) {
-    text = "Action required in Ethereum wallet";
-    disabled = true;
-  } else if (txState === TxState.Pending) {
-    text = "Submitting Ethereum transaction";
-    disabled = true;
-  } else if (txState === TxState.Error) {
-    return (
-      <>
-        <p>Ethereum transaction failed</p>
-        <button
-          onClick={() => dispatch({ type: TransactionActionType.TX_RESET })}
-        >
-          Try again
-        </button>
-      </>
-    );
-  } else if (txState === TxState.Complete) {
-    return <p>Complete</p>;
-  }
-
-  return (
-    <button onClick={onClick} className="fill" disabled={disabled}>
-      {text}
-    </button>
   );
 };
