@@ -47,31 +47,31 @@ const json: Tranche[] = [
         "address": "0xE6CacAE56Cca8dFdB7910b5A13578719D4E57DA0",
         "deposits": [
           {
-            "amount": "187637.95",
+            "amount": new BigNumber("187637.95"),
             "user": "0xE6CacAE56Cca8dFdB7910b5A13578719D4E57DA0",
             "tranche_id": 1,
             "tx": "0xc4491908e3347b05f2394ac7e1006f573fe8cbc490a57cd1dadad70785e95024"
           }
         ],
         "withdrawals": [],
-        "total_tokens": "187637.95",
-        "withdrawn_tokens": "0",
-        "remaining_tokens": "187637.95"
+        "total_tokens": new BigNumber("187637.95"),
+        "withdrawn_tokens": new BigNumber("0"),
+        "remaining_tokens": new BigNumber("187637.95")
       },
       {
         "address": "0x1A71e3ED1996CAbB91bB043f880CE963D601707e",
         "deposits": [
           {
-            "amount": "112323.67",
+            "amount": new BigNumber("112323.67"),
             "user": "0x1A71e3ED1996CAbB91bB043f880CE963D601707e",
             "tranche_id": 1,
             "tx": "0xaa378d2d0d4d7b964a675bb19f19c4f7401deec6ce66b1bd98ad5b812026e53e"
           }
         ],
         "withdrawals": [],
-        "total_tokens": "112323.67",
+        "total_tokens": new BigNumber("112323.67"),
         "withdrawn_tokens": "0",
-        "remaining_tokens": "112323.67"
+        "remaining_tokens": new BigNumber("112323.67")
       }
     ]
   },
@@ -126,61 +126,61 @@ const json: Tranche[] = [
         "address": "0x7fff551249D223f723557a96a0e1aCCCC79cC934",
         "deposits": [
           {
-            "amount": "1",
+            "amount": new BigNumber("1"),
             "user": "0x7fff551249D223f723557a96a0e1aCCCC79cC934",
             "tranche_id": 2,
             "tx": "0x55fa59d71aac37428a0000042c48da677a4426a4e92447919a8199520ce20f53"
           }
         ],
         "withdrawals": [],
-        "total_tokens": "1",
-        "withdrawn_tokens": "0",
-        "remaining_tokens": "1"
+        "total_tokens": new BigNumber("1"),
+        "withdrawn_tokens": new BigNumber("0"),
+        "remaining_tokens": new BigNumber("1")
       },
       {
         "address": "0xCc5CAFD3daA3bb2c1168521F35d1eBEB6cf7c051",
         "deposits": [
           {
-            "amount": "200000",
+            "amount": new BigNumber("200000"),
             "user": "0xCc5CAFD3daA3bb2c1168521F35d1eBEB6cf7c051",
             "tranche_id": 2,
             "tx": "0x8168230eb08320a7a874ebeeea20f0def842b8059a2b05a036870e00ca624c88"
           }
         ],
         "withdrawals": [],
-        "total_tokens": "200000",
-        "withdrawn_tokens": "0",
-        "remaining_tokens": "200000"
+        "total_tokens": new BigNumber("200000"),
+        "withdrawn_tokens": new BigNumber("0"),
+        "remaining_tokens": new BigNumber("200000")
       },
       {
         "address": "0x9cd59376F896a5F2084232E386A65c17EEA4Fe9f",
         "deposits": [
           {
-            "amount": "200000",
+            "amount": new BigNumber("200000"),
             "user": "0x9cd59376F896a5F2084232E386A65c17EEA4Fe9f",
             "tranche_id": 2,
             "tx": "0x2eb27449e08a245314faaaaf0d93fafc70733586495f18cf2fb69ef979459efd"
           }
         ],
         "withdrawals": [],
-        "total_tokens": "200000",
-        "withdrawn_tokens": "0",
-        "remaining_tokens": "200000"
+        "total_tokens": new BigNumber("200000"),
+        "withdrawn_tokens": new BigNumber("0"),
+        "remaining_tokens": new BigNumber("200000")
       },
       {
         "address": "0xe45993F39183E148bC35BA02ba8aaaa807981caa",
         "deposits": [
           {
-            "amount": "200000",
+            "amount": new BigNumber("200000"),
             "user": "0xe45993F39183E148bC35BA02ba8aaaa07981caa",
             "tranche_id": 2,
             "tx": "0xbda7b70ab8ac629617e74d33575451b04d7830bc0da516e10d533efc2eef1530"
           }
         ],
         "withdrawals": [],
-        "total_tokens": "200000",
-        "withdrawn_tokens": "0",
-        "remaining_tokens": "200000"
+        "total_tokens": new BigNumber("200000"),
+        "withdrawn_tokens": new BigNumber("0"),
+        "remaining_tokens": new BigNumber("200000")
       }
     ]
   },
@@ -230,61 +230,61 @@ const json: Tranche[] = [
         "address": "0x26100B2C8168Cb0A6c869a5698265086A3DfeF98",
         "deposits": [
           {
-            "amount": "129284.449",
+            "amount": new BigNumber("129284.449"),
             "user": "0x26100B2C8168Cb0A6c869a5698265086A3DfeF98",
             "tranche_id": 3,
             "tx": "0xcc67a776a2e3b48864470eff9e0940c1814663b4fde6df60c1a099a636dcae79"
           }
         ],
         "withdrawals": [],
-        "total_tokens": "129284.449",
-        "withdrawn_tokens": "0",
-        "remaining_tokens": "129284.449"
+        "total_tokens": new BigNumber("129284.449"),
+        "withdrawn_tokens": new BigNumber("0"),
+        "remaining_tokens": new BigNumber("129284.449")
       },
       {
         "address": "0xd4632B682228Db5f38E2283869AEe8c29ee6Eec8",
         "deposits": [
           {
-            "amount": "44499.2",
+            "amount": new BigNumber("44499.2"),
             "user": "0xd4632B682228Db5f38E2283869AEe8c29ee6Eec8",
             "tranche_id": 3,
             "tx": "0x57019840d1ce05e0ef65c45801d6699e5eb1032bd8ad56493594d4866996ea82"
           }
         ],
         "withdrawals": [],
-        "total_tokens": "44499.2",
+        "total_tokens": new BigNumber("44499.2"),
         "withdrawn_tokens": "0",
-        "remaining_tokens": "44499.2"
+        "remaining_tokens": new BigNumber("44499.2")
       },
       {
         "address": "0xe2E6F37cb1f1980418012BF69f43910d6Bc73e73",
         "deposits": [
           {
-            "amount": "66748.8",
+            "amount": new BigNumber("66748.8"),
             "user": "0xe2E6F37cb1f1980418012BF69f43910d6Bc73e73",
             "tranche_id": 3,
             "tx": "0xd257a3aacd5bdf86cbea0ed3db3697f55dff9092129db6baedacaf00b50af936"
           }
         ],
         "withdrawals": [],
-        "total_tokens": "66748.8",
-        "withdrawn_tokens": "0",
-        "remaining_tokens": "66748.8"
+        "total_tokens": new BigNumber("66748.8"),
+        "withdrawn_tokens": new BigNumber("0"),
+        "remaining_tokens": new BigNumber("66748.8")
       },
       {
         "address": "0xc01F2E57554Bb392384feCA6a54c8E3A3Ca94E42",
         "deposits": [
           {
-            "amount": "54034.5",
+            "amount": new BigNumber("54034.5"),
             "user": "0xc01F2E57554Bb392384feCA6a54c8E3A3Ca94E42",
             "tranche_id": 3,
             "tx": "0xf33289a2a73a65b132accdddd600a8d2c7556c2d80784d5f8d4eea1ecacf93cc"
           }
         ],
         "withdrawals": [],
-        "total_tokens": "54034.5",
-        "withdrawn_tokens": "0",
-        "remaining_tokens": "54034.5"
+        "total_tokens": new BigNumber("54034.5"),
+        "withdrawn_tokens": new BigNumber("0"),
+        "remaining_tokens": new BigNumber("54034.5")
       }
     ]
   },
@@ -349,61 +349,61 @@ const json: Tranche[] = [
         "address": "0xa8679b60612Fb2e19d68964326CA02dCe6a08D08",
         "deposits": [
           {
-            "amount": "110499.5291",
+            "amount": new BigNumber("110499.5291"),
             "user": "0xa8679b60612Fb2e19d68964326CA02dCe6a08D08",
             "tranche_id": 4,
             "tx": "0x9d3432b818054796489848c415af5c523acb16c1540e5865010baf71964c03a7"
           }
         ],
         "withdrawals": [],
-        "total_tokens": "110499.5291",
-        "withdrawn_tokens": "0",
-        "remaining_tokens": "110499.5291"
+        "total_tokens": new BigNumber("110499.5291"),
+        "withdrawn_tokens": new BigNumber("0"),
+        "remaining_tokens": new BigNumber("110499.5291")
       },
       {
         "address": "0x8767d65677Cabaa2050b764AEf40610f2f9796F5",
         "deposits": [
           {
-            "amount": "1104995.291",
+            "amount": new BigNumber("1104995.291"),
             "user": "0x8767d65677Cabaa2050b764AEf40610f2f9796F5",
             "tranche_id": 4,
             "tx": "0xc6298f52c173a837abd051ed810b01eb5731be307376b73df6e31b4de39d0122"
           }
         ],
         "withdrawals": [],
-        "total_tokens": "1104995.291",
+        "total_tokens": new BigNumber("1104995.291"),
         "withdrawn_tokens": "0",
-        "remaining_tokens": "1104995.291"
+        "remaining_tokens": new BigNumber("1104995.291")
       },
       {
         "address": "0x91715128a71c9C734CDC20E5EdaaeA02E72e422E",
         "deposits": [
           {
-            "amount": "165749.29365",
+            "amount": new BigNumber("165749.29365"),
             "user": "0x91715128a71c9C734CDC20E5EdEEeA02E72e422E",
             "tranche_id": 4,
             "tx": "0xf828cea685a0689f27446f02d3376c3afa4398182d3b5bf1c81e949f5965d1c1"
           }
         ],
         "withdrawals": [],
-        "total_tokens": "165749.29365",
-        "withdrawn_tokens": "0",
-        "remaining_tokens": "165749.29365"
+        "total_tokens": new BigNumber("165749.29365"),
+        "withdrawn_tokens": new BigNumber("0"),
+        "remaining_tokens": new BigNumber("165749.29365")
       },
       {
         "address": "0x2895059cB5a492BEd58D1fB22713006EfaD465eA",
         "deposits": [
           {
-            "amount": "73666.3527333333",
+            "amount": new BigNumber("73666.3527333333"),
             "user": "0x2895059cB5a492BEd58D1fB22713006EfaD465eA",
             "tranche_id": 4,
             "tx": "0x260619e2129cc58ae03f6b4ecfc5a6eeab29b5998de69875accb3cb945beed04"
           }
         ],
         "withdrawals": [],
-        "total_tokens": "73666.3527333333",
-        "withdrawn_tokens": "0",
-        "remaining_tokens": "73666.3527333333"
+        "total_tokens": new BigNumber("73666.3527333333"),
+        "withdrawn_tokens": new BigNumber("0"),
+        "remaining_tokens": new BigNumber("73666.3527333333")
       }
     ]
   },
@@ -427,16 +427,16 @@ const json: Tranche[] = [
         "address": "0xF3359E5B89f7804c8c9283781Aaaa33BBd979c9D",
         "deposits": [
           {
-            "amount": "10833.29",
+            "amount": new BigNumber("10833.29"),
             "user": "0xF3359E5B89f7804c8c9283781Aaaa33BBd979c9D",
             "tranche_id": 23,
             "tx": "0x65f904ef34d6992b52f449a709d7a24411a501fd07f90aaa9255eacc994bc229"
           }
         ],
         "withdrawals": [],
-        "total_tokens": "10833.29",
-        "withdrawn_tokens": "0",
-        "remaining_tokens": "10833.29"
+        "total_tokens": new BigNumber("10833.29"),
+        "withdrawn_tokens": new BigNumber("0"),
+        "remaining_tokens": new BigNumber("10833.29")
       }
     ]
   },
@@ -460,16 +460,16 @@ const json: Tranche[] = [
         "address": "0xcE96670971ec2E1E79D0d96688adbA2FfD6F6C7f",
         "deposits": [
           {
-            "amount": "16249.93",
+            "amount": new BigNumber("16249.93"),
             "user": "0xcE96670971ec2E1E79D0d96688adbA2FfD6F6C7f",
             "tranche_id": 24,
             "tx": "0x3dbd991b7914986505d89a7c1562278dffffa2f5f444bdbf5d6bbd838e3d8d5d"
           }
         ],
         "withdrawals": [],
-        "total_tokens": "16249.93",
-        "withdrawn_tokens": "0",
-        "remaining_tokens": "16249.93"
+        "total_tokens": new BigNumber("16249.93"),
+        "withdrawn_tokens": new BigNumber("0"),
+        "remaining_tokens": new BigNumber("16249.93")
       }
     ]
   },
@@ -504,16 +504,16 @@ const json: Tranche[] = [
         "address": "0x222eA4d8D214D548221EE3622a8BE1D61f7077A2",
         "deposits": [
           {
-            "amount": "135173.4239508",
+            "amount": new BigNumber("135173.4239508"),
             "user": "0x222eA4d8D214D548221EE3622a8BE1D61f7077A2",
             "tranche_id": 26,
             "tx": "0x9fafb1e293a8246b92d85a47c8d33def9fb6468c7cbb70f1754d78914b12dbf8"
           }
         ],
         "withdrawals": [],
-        "total_tokens": "135173.4239508",
-        "withdrawn_tokens": "0",
-        "remaining_tokens": "135173.4239508"
+        "total_tokens": new BigNumber("135173.4239508"),
+        "withdrawn_tokens": new BigNumber("0"),
+        "remaining_tokens": new BigNumber("135173.4239508")
       }
     ]
   },
@@ -537,16 +537,16 @@ const json: Tranche[] = [
         "address": "0x3E7c4E57A1dc4dD4bBE81bbEFBe3Eaaaf69619Da9",
         "deposits": [
           {
-            "amount": "32499.86",
+            "amount": new BigNumber("32499.86"),
             "user": "0x3E7c4E57A1dc4dD4bBE81bbEFBe3Eaaaf69619Da9",
             "tranche_id": 27,
             "tx": "0x75a3dd4852ce8ac1c15fe42ff6cfab1455bf8a5c1cb97167cb4d6fe20bd319ae"
           }
         ],
         "withdrawals": [],
-        "total_tokens": "32499.86",
-        "withdrawn_tokens": "0",
-        "remaining_tokens": "32499.86"
+        "total_tokens": new BigNumber("32499.86"),
+        "withdrawn_tokens": new BigNumber("0"),
+        "remaining_tokens": new BigNumber("32499.86")
       }
     ]
   },
@@ -570,16 +570,16 @@ const json: Tranche[] = [
         "address": "0x12349E5B89f7804c8c9283781A23133BBd979c22",
         "deposits": [
           {
-            "amount": "10833.29",
+            "amount": new BigNumber("10833.29"),
             "user": "0x12349E5B89f7804c8c9283781A23133BBd979c22",
             "tranche_id": 28,
             "tx": "0x166d235eff44e7baa6359712345698552e6150fe90ec7cf07a1d510c275cf3e0"
           }
         ],
         "withdrawals": [],
-        "total_tokens": "10833.29",
-        "withdrawn_tokens": "0",
-        "remaining_tokens": "10833.29"
+        "total_tokens": new BigNumber("10833.29"),
+        "withdrawn_tokens": new BigNumber("0"),
+        "remaining_tokens": new BigNumber("10833.29")
       }
     ]
   },
@@ -603,16 +603,16 @@ const json: Tranche[] = [
         "address": "0xcE96670971ec2E1E79D0d96688adbA2FfD6F6C7f",
         "deposits": [
           {
-            "amount": "16249.93",
+            "amount": new BigNumber("16249.93"),
             "user": "0xcE96670971ec212379D0d12388adbA2Ffc6F6C7f",
             "tranche_id": 29,
             "tx": "0xa220ab2d05e6c81be12373ac2326e81a912da4ce55a2d8544bd95b48ad530674"
           }
         ],
         "withdrawals": [],
-        "total_tokens": "16249.93",
-        "withdrawn_tokens": "0",
-        "remaining_tokens": "16249.93"
+        "total_tokens": new BigNumber("16249.93"),
+        "withdrawn_tokens": new BigNumber("0"),
+        "remaining_tokens": new BigNumber("16249.93")
       }
     ]
   },
