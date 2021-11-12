@@ -28,6 +28,9 @@ import { TransactionButton } from "../../components/transaction-button";
 import { usePollERC20Approval } from "../../hooks/use-ercPoll20Approval";
 import orderBy from "lodash/orderBy";
 import { TxState } from "../../hooks/transaction-reducer";
+import { useNetworkParam } from "../../hooks/use-network-param";
+import { NetworkParams } from "../../config";
+import { useEthereumConfig } from "../../hooks/use-ethereum-config";
 
 export const WithdrawPending = () => {
   return (
@@ -80,6 +83,7 @@ const WithdrawPendingContainer = ({
   currVegaKey,
 }: WithdrawPendingContainerProps) => {
   const { t } = useTranslation();
+  const ethereumConfig = useEthereumConfig();
   const { data, loading, error } = useQuery<
     WithdrawsPending,
     WithdrawsPendingVariables
@@ -110,7 +114,7 @@ const WithdrawPendingContainer = ({
     );
   }
 
-  if (loading || !data) {
+  if (loading || !data || !ethereumConfig) {
     return (
       <SplashScreen>
         <SplashLoader />
@@ -126,7 +130,10 @@ const WithdrawPendingContainer = ({
     <ul className="withdrawals-list">
       {withdrawals.map((w) => (
         <li>
-          <Withdrawal withdrawal={w} />
+          <Withdrawal
+            withdrawal={w}
+            requiredConfirmations={ethereumConfig.confirmations}
+          />
         </li>
       ))}
     </ul>
@@ -135,9 +142,13 @@ const WithdrawPendingContainer = ({
 
 interface WithdrawalProps {
   withdrawal: WithdrawsPending_party_withdrawals;
+  requiredConfirmations: number;
 }
 
-export const Withdrawal = ({ withdrawal }: WithdrawalProps) => {
+export const Withdrawal = ({
+  withdrawal,
+  requiredConfirmations,
+}: WithdrawalProps) => {
   const { chainId } = useWeb3();
   const erc20Approval = usePollERC20Approval(withdrawal.id);
   const { erc20Bridge } = useContracts();
@@ -158,7 +169,7 @@ export const Withdrawal = ({ withdrawal }: WithdrawalProps) => {
       // TODO: switch when targetAddress is populated and deployed to mainnet data.erc20WithdrawalApproval.targetAddress,
       targetAddress: withdrawal.details.receiverAddress,
     });
-  }, 6);
+  }, requiredConfirmations);
 
   return (
     <div>
