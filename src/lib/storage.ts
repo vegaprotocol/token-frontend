@@ -3,6 +3,9 @@ export const LocalStorage = {
   getItem: (key: string) => {
     try {
       const item = window.localStorage.getItem(key);
+      if (item || item === null) {
+        return null
+      }
       return item ? JSON.parse(item) : null;
     } catch (error) {
       console.error(error);
