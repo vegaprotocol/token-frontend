@@ -7,5 +7,8 @@
     "lockedAddress": "0x0",
     "vestingAddress": "0xd751FF6264234cAfAE88e4BF6003878fAB9630a7",
     "stakingBridge": "0x3cCe40e1e47cedf76c03db3E48507f421b575523"
+  },
+  "env":{
+    "TAGS": "not @ignore"
   }
 }
