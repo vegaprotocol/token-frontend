@@ -1,6 +1,31 @@
 import { useAddAssetToWallet } from "../../hooks/use-add-asset-to-wallet";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
-import { JsonRpcProvider } from "@ethersproject/providers";
+
+export const AddTokenButtonLink = ({
+  address,
+  symbol,
+  decimals,
+  image,
+}: {
+  address: string;
+  symbol: string;
+  decimals: number;
+  image: string;
+}) => {
+  const { add, addSupported } = useAddAssetToWallet(
+    address,
+    symbol,
+    decimals,
+    image
+  );
+  if (!addSupported) {
+    return null;
+  }
+  return (
+    <button className="add-token-button button-link" onClick={add}>
+      Click here to add to wallet
+    </button>
+  );
+};
 
 export const AddTokenButton = ({
   address,
@@ -17,17 +42,17 @@ export const AddTokenButton = ({
   size?: number;
   className?: string;
 }) => {
-  const { provider } = useWeb3();
-  const addToken = useAddAssetToWallet(address, symbol, decimals, image);
-  if (
-    !provider ||
-    !(provider instanceof JsonRpcProvider) ||
-    !window.ethereum.isMetaMask
-  ) {
+  const { add, addSupported } = useAddAssetToWallet(
+    address,
+    symbol,
+    decimals,
+    image
+  );
+  if (!addSupported) {
     return null;
   }
   return (
-    <button className="add-token-button button-link" onClick={addToken}>
+    <button className="add-token-button button-link" onClick={add}>
       <img
         className={className}
         style={{ width: size, height: size }}

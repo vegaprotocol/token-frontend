@@ -4,8 +4,7 @@ import { formatNumber } from "../../lib/format-number";
 import "./wallet-card.scss";
 import { useAnimateValue } from "../../hooks/use-animate-value";
 import { AddTokenButton } from "../add-token-button";
-import { JsonRpcProvider } from "@ethersproject/providers";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { useAddAssetSupported } from "../../hooks/use-add-asset-to-wallet";
 
 interface WalletCardProps {
   children: React.ReactNode;
@@ -119,7 +118,6 @@ export const WalletCardAsset = ({
   address,
   subheading,
 }: WalletCardAssetProps) => {
-  const { provider } = useWeb3();
   const [integers, decimalsPlaces] = React.useMemo(() => {
     // @ts-ignore
     const separator = BigNumber.config().FORMAT.decimalSeparator as string;
@@ -128,15 +126,13 @@ export const WalletCardAsset = ({
       .split(separator);
     return [integers, decimalsPlaces];
   }, [balance, decimals]);
-  const addButton =
-    provider &&
-    provider instanceof JsonRpcProvider &&
-    window.ethereum.isMetaMask;
+  const addSupported = useAddAssetSupported();
+
   return (
     <div
       className={`wallet-card__asset ${dark ? "wallet-card__asset--dark" : ""}`}
     >
-      {address && addButton ? (
+      {address && addSupported ? (
         <AddTokenButton
           className={`wallet-card__asset-image ${
             border ? "wallet-card__asset-image--border" : ""

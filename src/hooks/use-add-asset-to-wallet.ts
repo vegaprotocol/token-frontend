@@ -3,6 +3,18 @@ import React from "react";
 import { useWeb3 } from "../contexts/web3-context/web3-context";
 import * as Sentry from "@sentry/react";
 import { appEnv, Networks } from "../config";
+import { JsonRpcProvider } from "@ethersproject/providers";
+
+export const useAddAssetSupported = () => {
+  const { provider } = useWeb3();
+  return React.useMemo(() => {
+    return (
+      provider &&
+      provider instanceof JsonRpcProvider &&
+      window.ethereum.isMetaMask
+    );
+  }, [provider]);
+};
 
 export const useAddAssetToWallet = (
   address: string,
@@ -11,8 +23,8 @@ export const useAddAssetToWallet = (
   image: string
 ) => {
   const { provider } = useWeb3();
-
-  return React.useCallback(async () => {
+  const addSupported = useAddAssetSupported();
+  const add = React.useCallback(async () => {
     try {
       await (provider as unknown as ethers.providers.JsonRpcProvider)?.send(
         "wallet_watchAsset",
@@ -38,4 +50,11 @@ export const useAddAssetToWallet = (
       Sentry.captureException(error);
     }
   }, [address, decimals, image, provider, symbol]);
+
+  return React.useMemo(() => {
+    return {
+      add,
+      addSupported,
+    };
+  }, [add, addSupported]);
 };
