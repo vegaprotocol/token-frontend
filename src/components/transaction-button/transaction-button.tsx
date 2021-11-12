@@ -8,6 +8,7 @@ import { StatefulButton } from "../stateful-button";
 interface TransactionButtonProps {
   transactionState: TransactionState;
   /** txHash from the withdrawal object, indicating whether withdrawal has been completed or not */
+  forceTxHash: string | null;
   forceTxState?: TxState;
   disabled?: boolean;
   start: () => void;
@@ -16,6 +17,7 @@ interface TransactionButtonProps {
 
 export const TransactionButton = ({
   transactionState,
+  forceTxHash,
   forceTxState,
   disabled = false,
   start,
@@ -35,13 +37,14 @@ export const TransactionButton = ({
     className: "transaction-button__text",
   };
 
-  const etherscanLink = txData.hash && (
+  const txHash = forceTxHash || txData.hash;
+  const etherscanLink = txHash && (
     <a
-      href={`https://ropsten.etherscan.io/tx/${txData.hash}`}
+      href={`https://ropsten.etherscan.io/tx/${txHash}`}
       target="_blank"
       rel="noreferrer"
     >
-      {truncateMiddle(txData.hash)}
+      {truncateMiddle(txHash)}
     </a>
   );
 

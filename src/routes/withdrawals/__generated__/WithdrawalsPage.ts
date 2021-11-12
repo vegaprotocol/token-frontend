@@ -6,10 +6,10 @@
 import { WithdrawalStatus } from "./../../../__generated__/globalTypes";
 
 // ====================================================
-// GraphQL query operation: WithdrawsPending
+// GraphQL query operation: WithdrawalsPage
 // ====================================================
 
-export interface WithdrawsPending_party_withdrawals_asset {
+export interface WithdrawalsPage_party_withdrawals_asset {
   __typename: "Asset";
   /**
    * The id of the asset
@@ -25,7 +25,7 @@ export interface WithdrawsPending_party_withdrawals_asset {
   decimals: number;
 }
 
-export interface WithdrawsPending_party_withdrawals_party {
+export interface WithdrawalsPage_party_withdrawals_party {
   __typename: "Party";
   /**
    * Party identifier
@@ -33,7 +33,7 @@ export interface WithdrawsPending_party_withdrawals_party {
   id: string;
 }
 
-export interface WithdrawsPending_party_withdrawals_details {
+export interface WithdrawalsPage_party_withdrawals_details {
   __typename: "Erc20WithdrawalDetails";
   /**
    * The ethereum address of the receiver of the asset funds
@@ -41,7 +41,7 @@ export interface WithdrawsPending_party_withdrawals_details {
   receiverAddress: string;
 }
 
-export interface WithdrawsPending_party_withdrawals {
+export interface WithdrawalsPage_party_withdrawals {
   __typename: "Withdrawal";
   /**
    * The Vega internal id of the withdrawal
@@ -54,11 +54,11 @@ export interface WithdrawsPending_party_withdrawals {
   /**
    * The asset to be withdrawn
    */
-  asset: WithdrawsPending_party_withdrawals_asset;
+  asset: WithdrawalsPage_party_withdrawals_asset;
   /**
    * The PartyID initiating the witndrawal
    */
-  party: WithdrawsPending_party_withdrawals_party;
+  party: WithdrawalsPage_party_withdrawals_party;
   /**
    * The current status of the withdrawal
    */
@@ -78,10 +78,10 @@ export interface WithdrawsPending_party_withdrawals {
   /**
    * Foreign chain specific details about the withdrawal
    */
-  details: WithdrawsPending_party_withdrawals_details | null;
+  details: WithdrawalsPage_party_withdrawals_details | null;
 }
 
-export interface WithdrawsPending_party {
+export interface WithdrawalsPage_party {
   __typename: "Party";
   /**
    * Party identifier
@@ -90,16 +90,16 @@ export interface WithdrawsPending_party {
   /**
    * The list of all withdrawals initiated by the party
    */
-  withdrawals: WithdrawsPending_party_withdrawals[] | null;
+  withdrawals: WithdrawalsPage_party_withdrawals[] | null;
 }
 
-export interface WithdrawsPending {
+export interface WithdrawalsPage {
   /**
    * An entity that is trading on the VEGA network
    */
-  party: WithdrawsPending_party | null;
+  party: WithdrawalsPage_party | null;
 }
 
-export interface WithdrawsPendingVariables {
+export interface WithdrawalsPageVariables {
   partyId: string;
 }

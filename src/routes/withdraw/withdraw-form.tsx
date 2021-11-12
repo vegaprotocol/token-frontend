@@ -14,6 +14,7 @@ import { removeDecimal } from "../../lib/decimals";
 import { useHistory } from "react-router";
 import { StatefulButton } from "../../components/stateful-button";
 import { Loader } from "../../components/loader";
+import { Routes } from "../router-config";
 
 interface WithdrawFormProps {
   accounts: WithdrawPage_party_accounts[];
@@ -55,7 +56,7 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
   // creation is complete
   React.useEffect(() => {
     if (status === WithdrawStatus.Success) {
-      history.push("/withdraw/pending");
+      history.push(Routes.WITHDRAWALS);
     }
   }, [status, history]);
 

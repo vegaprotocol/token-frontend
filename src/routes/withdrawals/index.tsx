@@ -1,4 +1,4 @@
-import "./withdraw-pending.scss";
+import "./withdrawals.scss";
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
 import { useTranslation } from "react-i18next";
@@ -14,11 +14,6 @@ import { VegaWalletContainer } from "../../components/vega-wallet-container";
 import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { truncateMiddle } from "../../lib/truncate-middle";
-import {
-  WithdrawsPending,
-  WithdrawsPendingVariables,
-  WithdrawsPending_party_withdrawals,
-} from "./__generated__/WithdrawsPending";
 import { format } from "date-fns";
 import { useContracts } from "../../contexts/contracts/contracts-context";
 import { useTransaction } from "../../hooks/use-transaction";
@@ -28,11 +23,14 @@ import { TransactionButton } from "../../components/transaction-button";
 import { usePollERC20Approval } from "../../hooks/use-ercPoll20Approval";
 import orderBy from "lodash/orderBy";
 import { TxState } from "../../hooks/transaction-reducer";
-import { useNetworkParam } from "../../hooks/use-network-param";
-import { NetworkParams } from "../../config";
 import { useEthereumConfig } from "../../hooks/use-ethereum-config";
+import {
+  WithdrawalsPage,
+  WithdrawalsPageVariables,
+  WithdrawalsPage_party_withdrawals,
+} from "./__generated__/WithdrawalsPage";
 
-export const WithdrawPending = () => {
+const Withdrawals = () => {
   return (
     <>
       <Heading title="Incomplete withdrawals" />
@@ -50,8 +48,8 @@ interface WithdrawPendingContainerProps {
   currVegaKey: VegaKeyExtended;
 }
 
-const WITHDRAW_PENDING_QUERY = gql`
-  query WithdrawsPending($partyId: ID!) {
+const WITHDRAWALS_PAGE_QUERY = gql`
+  query WithdrawalsPage($partyId: ID!) {
     party(id: $partyId) {
       id
       withdrawals {
@@ -85,9 +83,9 @@ const WithdrawPendingContainer = ({
   const { t } = useTranslation();
   const ethereumConfig = useEthereumConfig();
   const { data, loading, error } = useQuery<
-    WithdrawsPending,
-    WithdrawsPendingVariables
-  >(WITHDRAW_PENDING_QUERY, {
+    WithdrawalsPage,
+    WithdrawalsPageVariables
+  >(WITHDRAWALS_PAGE_QUERY, {
     variables: { partyId: currVegaKey.pub },
     // This must be network-only because you are navigated to this page automatically after the withdrawal is created,
     // if you have already visited this page the query result is cached with 0 withdrawals, so we need to refetch every
@@ -129,7 +127,7 @@ const WithdrawPendingContainer = ({
   return (
     <ul className="withdrawals-list">
       {withdrawals.map((w) => (
-        <li>
+        <li key={w.id}>
           <Withdrawal
             withdrawal={w}
             requiredConfirmations={ethereumConfig.confirmations}
@@ -141,7 +139,7 @@ const WithdrawPendingContainer = ({
 };
 
 interface WithdrawalProps {
-  withdrawal: WithdrawsPending_party_withdrawals;
+  withdrawal: WithdrawalsPage_party_withdrawals;
   requiredConfirmations: number;
 }
 
@@ -218,6 +216,7 @@ export const Withdrawal = ({
       <TransactionButton
         transactionState={state}
         forceTxState={withdrawal.txHash ? TxState.Complete : undefined}
+        forceTxHash={withdrawal.txHash}
         disabled={!erc20Approval}
         start={perform}
         reset={reset}
@@ -225,3 +224,5 @@ export const Withdrawal = ({
     </div>
   );
 };
+
+export default Withdrawals;
