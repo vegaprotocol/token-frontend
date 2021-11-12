@@ -49,7 +49,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
           />
         }
       />
-      <div className="tranche__redeemed">
+      <div className="tranche__redeemed" data-test-id="redeemed-tranche-tokens">
         <span>{t("alreadyRedeemed")}</span>
         <span>{formatNumber(tranche.total_removed)}</span>
       </div>

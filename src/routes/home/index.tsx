@@ -62,7 +62,7 @@ const Home = ({ name }: RouteChildProps) => {
             )}
           </p>
           <Link to={Routes.VESTING}>
-            <button className="fill">
+            <button data-test-id="check-vesting-page-btn" className="fill">
               {t("Check to see if you can redeem unlocked VEGA tokens")}
             </button>
           </Link>
@@ -85,7 +85,7 @@ const Home = ({ name }: RouteChildProps) => {
           </p>
 
           <p>
-            <a
+            <a data-test-id="get-vega-wallet-link"
               href={Links.WALLET_RELEASES}
               target="_blank"
               rel="nofollow noreferrer"
@@ -93,7 +93,7 @@ const Home = ({ name }: RouteChildProps) => {
               {t("Get a Vega wallet")}
             </a>
           </p>
-          <p>
+          <p data-test-id="associate-vega-tokens-link-on-homepage">
             <Link to={`${Routes.STAKING}/associate`}>
               {t("Associate VEGA tokens")}
             </Link>
