@@ -9,7 +9,7 @@ import {
   WalletCardHeader,
   WalletCardRow,
 } from "../wallet-card";
-import { Colors, Flags } from "../../config";
+import { ADDRESSES, Colors, Flags } from "../../config";
 import React from "react";
 import vegaWhite from "../../images/vega_white.png";
 import vegaVesting from "../../images/vega_vesting.png";
@@ -90,9 +90,11 @@ const ConnectedKey = () => {
     <>
       <WalletCardAsset
         image={vegaVesting}
+        address={ADDRESSES.lockedAddress}
         decimals={appState.decimals}
         name="VEGA"
-        symbol="In vesting contract"
+        symbol={"VEGA🔒"}
+        subheading="In vesting contract"
         balance={totalInVestingContract}
       />
       {Flags.REDEEM_DISABLED ? null : (
@@ -105,7 +107,9 @@ const ConnectedKey = () => {
         image={vegaWhite}
         decimals={appState.decimals}
         name="VEGA"
-        symbol="In Wallet"
+        address={ADDRESSES.vegaTokenAddress}
+        symbol={"VEGA"}
+        subheading="In Wallet"
         balance={totalInWallet}
       />
       {Flags.STAKING_DISABLED ? null : (

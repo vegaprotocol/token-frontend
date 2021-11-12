@@ -3,6 +3,9 @@ import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
 import "./wallet-card.scss";
 import { useAnimateValue } from "../../hooks/use-animate-value";
+import { AddTokenButton } from "../add-token-button";
+import { JsonRpcProvider } from "@ethersproject/providers";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
 
 interface WalletCardProps {
   children: React.ReactNode;
@@ -99,8 +102,10 @@ export interface WalletCardAssetProps {
   symbol: string;
   balance: BigNumber;
   decimals: number;
+  address?: string;
   border?: boolean;
   dark?: boolean;
+  subheading?: string;
 }
 
 export const WalletCardAsset = ({
@@ -111,7 +116,10 @@ export const WalletCardAsset = ({
   decimals,
   border,
   dark,
+  address,
+  subheading,
 }: WalletCardAssetProps) => {
+  const { provider } = useWeb3();
   const [integers, decimalsPlaces] = React.useMemo(() => {
     // @ts-ignore
     const separator = BigNumber.config().FORMAT.decimalSeparator as string;
@@ -120,21 +128,37 @@ export const WalletCardAsset = ({
       .split(separator);
     return [integers, decimalsPlaces];
   }, [balance, decimals]);
+  const addButton =
+    provider &&
+    provider instanceof JsonRpcProvider &&
+    window.ethereum.isMetaMask;
   return (
     <div
       className={`wallet-card__asset ${dark ? "wallet-card__asset--dark" : ""}`}
     >
-      <img
-        alt="Vega"
-        src={image}
-        className={`wallet-card__asset-image ${
-          border ? "wallet-card__asset-image--border" : ""
-        }`}
-      />
+      {address && addButton ? (
+        <AddTokenButton
+          className={`wallet-card__asset-image ${
+            border ? "wallet-card__asset-image--border" : ""
+          }`}
+          address={address}
+          symbol={symbol}
+          decimals={18}
+          image={image}
+        />
+      ) : (
+        <img
+          alt="Vega"
+          src={image}
+          className={`wallet-card__asset-image ${
+            border ? "wallet-card__asset-image--border" : ""
+          }`}
+        />
+      )}
       <div className="wallet-card__asset-header">
         <div className="wallet-card__asset-heading">
           <h1>{name}</h1>
-          <h2>{symbol}</h2>
+          <h2>{subheading || symbol}</h2>
         </div>
         <div className="wallet-card__asset-balance">
           <span className="wallet-card__price--integer">{integers}.</span>
