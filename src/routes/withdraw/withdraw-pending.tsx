@@ -158,7 +158,7 @@ export const Withdrawal = ({ withdrawal }: WithdrawalProps) => {
       // TODO: switch when targetAddress is populated and deployed to mainnet data.erc20WithdrawalApproval.targetAddress,
       targetAddress: withdrawal.details.receiverAddress,
     });
-  });
+  }, 6);
 
   return (
     <div>
@@ -207,6 +207,7 @@ export const Withdrawal = ({ withdrawal }: WithdrawalProps) => {
       <TransactionButton
         transactionState={state}
         forceTxState={withdrawal.txHash ? TxState.Complete : undefined}
+        disabled={!erc20Approval}
         start={perform}
         reset={reset}
       />

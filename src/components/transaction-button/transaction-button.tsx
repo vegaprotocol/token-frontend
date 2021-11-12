@@ -3,11 +3,13 @@ import { TransactionState, TxState } from "../../hooks/transaction-reducer";
 import { Loader } from "../loader";
 import { Error, HandUp, Tick } from "../icons";
 import { truncateMiddle } from "../../lib/truncate-middle";
+import { StatefulButton } from "../stateful-button";
 
 interface TransactionButtonProps {
   transactionState: TransactionState;
   /** txHash from the withdrawal object, indicating whether withdrawal has been completed or not */
   forceTxState?: TxState;
+  disabled?: boolean;
   start: () => void;
   reset: () => void;
 }
@@ -15,6 +17,7 @@ interface TransactionButtonProps {
 export const TransactionButton = ({
   transactionState,
   forceTxState,
+  disabled = false,
   start,
   reset,
 }: TransactionButtonProps) => {
@@ -67,10 +70,10 @@ export const TransactionButton = ({
   if (txState === TxState.Requested) {
     return (
       <div {...wrapperProps}>
-        <button {...buttonProps} disabled>
+        <StatefulButton {...buttonProps} disabled={true}>
           <HandUp />
           <span>Action required in Ethereum wallet</span>
-        </button>
+        </StatefulButton>
       </div>
     );
   }
@@ -78,10 +81,10 @@ export const TransactionButton = ({
   if (txState === TxState.Pending) {
     return (
       <div {...wrapperProps}>
-        <button {...buttonProps} disabled>
+        <StatefulButton {...buttonProps} disabled={true}>
           <Loader />
           <span>Awaiting Ethereum transaction</span>
-        </button>
+        </StatefulButton>
         <p {...txhashProps}>
           <span>Transaction</span>
           {etherscanLink}
@@ -111,9 +114,9 @@ export const TransactionButton = ({
   // Idle
   return (
     <div {...wrapperProps}>
-      <button {...buttonProps} onClick={start}>
+      <StatefulButton {...buttonProps} onClick={start} disabled={disabled}>
         Complete
-      </button>
+      </StatefulButton>
     </div>
   );
 };
