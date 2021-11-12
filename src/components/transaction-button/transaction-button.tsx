@@ -24,18 +24,11 @@ export const TransactionButton = ({
   reset,
 }: TransactionButtonProps) => {
   const { txState, txData } = transactionState;
-  const wrapperProps = {
-    className: `transaction-button transaction-button--${txState.toLowerCase()}`,
-  };
-  const buttonProps = {
-    className: "transaction-button__button fill",
-  };
-  const txhashProps = {
-    className: "transaction-button__txhash",
-  };
-  const textProps = {
-    className: "transaction-button__text",
-  };
+  const root = "transaction-button";
+  const wrapperClassName = `${root} transaction-button--${txState.toLowerCase()}`;
+  const buttonClassName = `${root}__button fill`;
+  const txhashClassName = `${root}__txhash`;
+  const textClassName = `${root}__text`;
 
   const txHash = forceTxHash || txData.hash;
   const state = forceTxState || txState;
@@ -51,17 +44,14 @@ export const TransactionButton = ({
   );
 
   if (state === TxState.Complete) {
-    const props = {
-      ...wrapperProps,
-      className: `transaction-button transaction-button--${TxState.Complete.toLowerCase()}`,
-    };
+    const className = `transaction-button transaction-button--${TxState.Complete.toLowerCase()}`;
     return (
-      <div {...props}>
-        <p {...textProps}>
+      <div className={className}>
+        <p className={textClassName}>
           <Tick />
           <span>Complete</span>
         </p>
-        <p {...txhashProps}>
+        <p className={txhashClassName}>
           <span>Transaction</span>
           {etherscanLink}
         </p>
@@ -72,8 +62,8 @@ export const TransactionButton = ({
   // User as started transaction and we are awaiting confirmation from the users wallet
   if (state === TxState.Requested) {
     return (
-      <div {...wrapperProps}>
-        <StatefulButton {...buttonProps} disabled={true}>
+      <div className={wrapperClassName}>
+        <StatefulButton className={buttonClassName} disabled={true}>
           <HandUp />
           <span>Action required in Ethereum wallet</span>
         </StatefulButton>
@@ -83,12 +73,12 @@ export const TransactionButton = ({
 
   if (state === TxState.Pending) {
     return (
-      <div {...wrapperProps}>
-        <StatefulButton {...buttonProps} disabled={true}>
+      <div className={wrapperClassName}>
+        <StatefulButton className={buttonClassName} disabled={true}>
           <Loader />
           <span>Awaiting Ethereum transaction</span>
         </StatefulButton>
-        <p {...txhashProps}>
+        <p className={txhashClassName}>
           <span>Transaction</span>
           {etherscanLink}
         </p>
@@ -98,15 +88,15 @@ export const TransactionButton = ({
 
   if (state === TxState.Error) {
     return (
-      <div {...wrapperProps}>
-        <p {...textProps}>
+      <div className={wrapperClassName}>
+        <p className={textClassName}>
           <Error />
           <span>Ethereum transaction failed</span>
           <button onClick={reset} type="button" className="button-link">
             Try again
           </button>
         </p>
-        <p {...txhashProps}>
+        <p className={txhashClassName}>
           <span>Transaction</span>
           {etherscanLink}
         </p>
@@ -116,8 +106,12 @@ export const TransactionButton = ({
 
   // Idle
   return (
-    <div {...wrapperProps}>
-      <StatefulButton {...buttonProps} onClick={start} disabled={disabled}>
+    <div className={wrapperClassName}>
+      <StatefulButton
+        className={buttonClassName}
+        onClick={start}
+        disabled={disabled}
+      >
         Complete
       </StatefulButton>
     </div>
