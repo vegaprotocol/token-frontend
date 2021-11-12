@@ -20,9 +20,18 @@ const ERC20_APPROVAL_QUERY = gql`
 `;
 
 export const usePollERC20Approval = (withdrawalId: string) => {
+  const mountedRef = React.useRef(true);
   const client = useApolloClient();
   const [erc20Approval, setErc20Approval] =
     React.useState<Erc20Approval_erc20WithdrawalApproval | null>(null);
+
+  const safeSetErc20Approval = (
+    approval: Erc20Approval_erc20WithdrawalApproval
+  ) => {
+    if (mountedRef.current) {
+      setErc20Approval(approval);
+    }
+  };
 
   React.useEffect(() => {
     const interval = setInterval(async () => {
@@ -33,18 +42,21 @@ export const usePollERC20Approval = (withdrawalId: string) => {
         });
 
         if (res.data.erc20WithdrawalApproval) {
-          setErc20Approval(res.data.erc20WithdrawalApproval);
+          safeSetErc20Approval(res.data.erc20WithdrawalApproval);
           clearInterval(interval);
         }
       } catch (err) {
-        console.log("catch", err);
+        // No op. If the erc20 withdrawal is not created yet it will error
+        // but we will just want to poll until it is. There is no bus event for
+        // erc20 approvals yet..
       }
     }, 1000);
 
     return () => {
       clearInterval(interval);
+      mountedRef.current = false;
     };
-  }, [client]);
+  }, [withdrawalId, client]);
 
   return erc20Approval;
 };

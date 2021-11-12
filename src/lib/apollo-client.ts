@@ -82,13 +82,6 @@ export function createClient() {
               );
               if (typeof balance !== "string") return "0";
               if (typeof decimals !== "number") return "0";
-              console.log(
-                options.readField("symbol", asset as Reference),
-                balance,
-                formatUintToNumber(balance, decimals),
-                "decimals",
-                decimals
-              );
               return balance && decimals
                 ? formatUintToNumber(balance, decimals)
                 : "0";

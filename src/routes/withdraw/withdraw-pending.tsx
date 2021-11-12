@@ -1,5 +1,6 @@
+import "./withdraw-pending.scss";
 import React from "react";
-import { ApolloError, gql, useQuery } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import { useTranslation } from "react-i18next";
 import { EtherscanLink } from "../../components/etherscan-link";
 import { Heading } from "../../components/heading";
@@ -121,9 +122,9 @@ const WithdrawPendingContainer = ({
   }
 
   return (
-    <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
+    <ul className="withdrawals-list">
       {withdrawals.map((w) => (
-        <li key={w.id} style={{ marginBottom: 25 }}>
+        <li>
           <Withdrawal withdrawal={w} />
         </li>
       ))}

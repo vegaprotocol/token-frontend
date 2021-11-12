@@ -1,7 +1,7 @@
 import React from "react";
 import { WithdrawPage_party_accounts } from "./__generated__/WithdrawPage";
 import { BigNumber } from "../../lib/bignumber";
-import { HTMLSelect, FormGroup, Button, Intent } from "@blueprintjs/core";
+import { HTMLSelect, FormGroup } from "@blueprintjs/core";
 import { AmountInput } from "../../components/token-input";
 import { EthWalletContainer } from "../../components/eth-wallet-container";
 import {
@@ -12,6 +12,8 @@ import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { removeDecimal } from "../../lib/decimals";
 import { useHistory } from "react-router";
+import { StatefulButton } from "../../components/stateful-button";
+import { Loader } from "../../components/loader";
 
 interface WithdrawFormProps {
   accounts: WithdrawPage_party_accounts[];
@@ -49,6 +51,8 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
     return true;
   }, [ethAddress, amount, maximum]);
 
+  // Navigate to complete withdrawals page once withdrawal
+  // creation is complete
   React.useEffect(() => {
     if (status === WithdrawStatus.Success) {
       history.push("/withdraw/pending");
@@ -99,14 +103,19 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
           currency={"VEGA"}
         />
       </FormGroup>
-      <button
+      <StatefulButton
         type="submit"
         disabled={!valid || status === WithdrawStatus.Pending}
       >
-        {status === WithdrawStatus.Pending
-          ? "Preparing"
-          : `Withdraw ${amountStr} ${account?.asset.symbol} tokens`}
-      </button>
+        {status === WithdrawStatus.Pending ? (
+          <>
+            <Loader />
+            <span>Preparing</span>
+          </>
+        ) : (
+          `Withdraw ${amountStr} ${account?.asset.symbol} tokens`
+        )}
+      </StatefulButton>
     </form>
   );
 };

@@ -1,0 +1,28 @@
+@import "../../styles/colors";
+
+$bg-color-default: rgba(133, 152, 166, 0.25);
+$color-default: #bfccd6;
+
+.stateful-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #696969;
+  background: $bg-color-default;
+  color: $color-default;
+
+  &:hover {
+    background: white;
+    color: black;
+  }
+
+  &:disabled {
+    opacity: 1;
+
+    &:hover {
+      background: $bg-color-default;
+      color: $color-default;
+    }
+  }
+}
