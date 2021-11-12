@@ -27,6 +27,7 @@ import { BigNumber } from "../../lib/bignumber";
 import { TransactionButton } from "../../components/transaction-button";
 import { usePollERC20Approval } from "../../hooks/use-ercPoll20Approval";
 import orderBy from "lodash/orderBy";
+import { TxState } from "../../hooks/transaction-reducer";
 
 export const WithdrawPending = () => {
   return (
@@ -205,7 +206,7 @@ export const Withdrawal = ({ withdrawal }: WithdrawalProps) => {
       </KeyValueTable>
       <TransactionButton
         transactionState={state}
-        withdrawalTxHash={withdrawal.txHash}
+        forceTxState={withdrawal.txHash ? TxState.Complete : undefined}
         start={perform}
         reset={reset}
       />

@@ -7,14 +7,14 @@ import { truncateMiddle } from "../../lib/truncate-middle";
 interface TransactionButtonProps {
   transactionState: TransactionState;
   /** txHash from the withdrawal object, indicating whether withdrawal has been completed or not */
-  withdrawalTxHash: string | null;
+  forceTxState?: TxState;
   start: () => void;
   reset: () => void;
 }
 
 export const TransactionButton = ({
   transactionState,
-  withdrawalTxHash,
+  forceTxState,
   start,
   reset,
 }: TransactionButtonProps) => {
@@ -32,18 +32,17 @@ export const TransactionButton = ({
     className: "transaction-button__text",
   };
 
-  const txHash = withdrawalTxHash || txData.hash;
-  const etherscanLink = txHash && (
+  const etherscanLink = txData.hash && (
     <a
-      href={`https://ropsten.etherscan.io/tx/${txHash}`}
+      href={`https://ropsten.etherscan.io/tx/${txData.hash}`}
       target="_blank"
       rel="noreferrer"
     >
-      {truncateMiddle(txHash)}
+      {truncateMiddle(txData.hash)}
     </a>
   );
 
-  if (withdrawalTxHash || txState === TxState.Complete) {
+  if (forceTxState === TxState.Complete || txState === TxState.Complete) {
     // If the withdrawal has already been completed the txState will be Default as the
     // transaction ahasn'twwwwwwfhjyi7Aggfgfg
     const props = {
