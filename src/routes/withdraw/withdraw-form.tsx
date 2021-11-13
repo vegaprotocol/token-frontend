@@ -1,7 +1,7 @@
 import React from "react";
 import { WithdrawPage_party_accounts } from "./__generated__/WithdrawPage";
 import { BigNumber } from "../../lib/bignumber";
-import { HTMLSelect, FormGroup } from "@blueprintjs/core";
+import { HTMLSelect, FormGroup, InputGroup } from "@blueprintjs/core";
 import { AmountInput } from "../../components/token-input";
 import { EthWalletContainer } from "../../components/eth-wallet-container";
 import {
@@ -93,7 +93,13 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
       </FormGroup>
       <FormGroup label="To">
         <EthWalletContainer>
-          {(ethAddress) => <div>{ethAddress}</div>}
+          {(ethAddress) => (
+            <InputGroup
+              value={ethAddress}
+              className="uneditable"
+              disabled={true}
+            />
+          )}
         </EthWalletContainer>
       </FormGroup>
       <FormGroup label="How much would you like to withdraw" labelFor="amount">
