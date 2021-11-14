@@ -4,11 +4,11 @@ const appChainId = process.env.REACT_APP_CHAIN as EthereumChainId;
 const appEnv = process.env.REACT_APP_ENV as Networks;
 const infuraId = process.env.REACT_APP_INFURA_ID;
 
-const customVegaTokenAddress = process.env.CUSTOM_TOKEN_ADDRESS 
-const customClaimAddress = process.env.CUSTOM_CLAIM_ADDRESS 
-const customLockedAddress = process.env.CUSTOM_LOCKED_ADDRESS 
-const customVestingAddress = process.env.CUSTOM_VESTING_ADDRESS 
-const customStakingBridge = process.env.CUSTOM_STAKING_BRIDGE 
+const customVegaTokenAddress = process.env.CUSTOM_TOKEN_ADDRESS as string
+const customClaimAddress = process.env.CUSTOM_CLAIM_ADDRESS as string
+const customLockedAddress = process.env.CUSTOM_LOCKED_ADDRESS as string
+const customVestingAddress = process.env.CUSTOM_VESTING_ADDRESS as string
+const customStakingBridge = process.env.CUSTOM_STAKING_BRIDGE as string
 
 export type EthereumChainId = "0x1" | "0x3" | "0x4" | "0x5" | "0x2a";
 export type EthereumChainName =
