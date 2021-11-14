@@ -34,12 +34,10 @@ const getCustomNodesFromOptionalEnvironmentVariables = () => {
   const customNodes: VegaNode[] = validatorUrlsList.map(a => ({url: a, api: {GraphQL: false}}))
     .concat(validatorUrlsWithGraphQLList.map(a => ({url: a, api: {GraphQL: true}})));
 
-  if(customNodes.length === 0) {
-    throw new Error("Environment variable CUSTOM requires at least one Data Node URL to be set for enivronment variables CUSTOM_URLS and/or CUSTOM_URLS_WITH_GRAPHQL");
-  }
-
   return customNodes;
 }
+
+const customNodes = getCustomNodesFromOptionalEnvironmentVariables()
 
 export const VegaNetworks: VegaNets = {
   [Networks.DEVNET]: {
@@ -169,7 +167,7 @@ export const VegaNetworks: VegaNets = {
     ],
   },
   [Networks.CUSTOM]: {
-    nodes: getCustomNodesFromOptionalEnvironmentVariables(),
+    nodes: customNodes,
   },
   [Networks.MAINNET]: {
     nodes: [],
