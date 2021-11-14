@@ -1,5 +1,5 @@
 export enum Networks {
-  VALIDATORNET = "VALIDATORNET",
+  CUSTOM = "CUSTOM",
   TESTNET = "TESTNET",
   STAGNET = "STAGNET",
   DEVNET = "DEVNET",
@@ -24,17 +24,21 @@ export type NetworkConfig = {
 };
 
 const splitFilter = (a: string) => a.split(',').filter(a => a.length > 0);
-const getValidatorNetNodesFromOptionalEnvironmentVariables = () => {
-  const validatorUrls = process.env.VALIDATORNET_URLS || ""
-  const validatorUrlsWithGraphQL = process.env.VALIDATORNET_URLS_WITH_GRAPHQL || ""
+const getCustomNodesFromOptionalEnvironmentVariables = () => {
+  const validatorUrls = process.env.CUSTOM_URLS || ""
+  const validatorUrlsWithGraphQL = process.env.CUSTOM_URLS_WITH_GRAPHQL || ""
 
   const validatorUrlsList: string[] = splitFilter(validatorUrls);
   const validatorUrlsWithGraphQLList: string[] = splitFilter(validatorUrlsWithGraphQL);
 
-  const validatorNetNodes: VegaNode[] = validatorUrlsList.map(a => ({url: a, api: {GraphQL: false}}))
+  const customNodes: VegaNode[] = validatorUrlsList.map(a => ({url: a, api: {GraphQL: false}}))
     .concat(validatorUrlsWithGraphQLList.map(a => ({url: a, api: {GraphQL: true}})));
 
-  return validatorNetNodes;
+  if(customNodes.length === 0) {
+    throw new Error("Environment variable CUSTOM requires at least one Data Node URL to be set for enivronment variables CUSTOM_URLS and/or CUSTOM_URLS_WITH_GRAPHQL");
+  }
+
+  return customNodes;
 }
 
 export const VegaNetworks: VegaNets = {
@@ -164,8 +168,8 @@ export const VegaNetworks: VegaNets = {
       },
     ],
   },
-  [Networks.VALIDATORNET]: {
-    nodes: getValidatorNetNodesFromOptionalEnvironmentVariables(),
+  [Networks.CUSTOM]: {
+    nodes: getCustomNodesFromOptionalEnvironmentVariables(),
   },
   [Networks.MAINNET]: {
     nodes: [],
