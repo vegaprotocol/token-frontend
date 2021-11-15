@@ -36,7 +36,7 @@ export const NetworkChange = ({proposal}: NetworkChangeProps) => {
         <div className="proposal__row">
           <p className="proposal__item-left">{t("toEnactOn")}&nbsp;</p>
           <span className="proposal__item-right">
-            {terms.enactmentDatetime}
+            {format(new Date(terms.enactmentDatetime), "d MMM yyyy")}
           </span>
         </div>
 
