@@ -179,7 +179,7 @@ export const EthWallet = () => {
         ) : (
           <button
             type="button"
-            className="button-link"
+            className="button-link button-link--dark"
             onClick={connect}
             data-testid="connect"
           >
