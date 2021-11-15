@@ -194,7 +194,7 @@
   "notMet": "Not Met",
   "governanceRequired": "Required",
   "setTo": "Currently set to ",
-  "daysLeft": " left to vote.",
+  "daysLeft": "{{daysLeft}} left to vote.",
   "voteFor": "Vote for",
   "voteAgainst": "Vote against",
   "connectToVote": "Connect to VEGA wallet",
