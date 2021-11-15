@@ -49,12 +49,12 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
     setLoading(true);
 
     try {
-      const [, version] = await vegaWalletService.getVersion();
       const [tokenErr] = await vegaWalletService.getToken({
         wallet: fields.wallet,
         passphrase: fields.passphrase,
         url: fields.url,
       });
+      const [, version] = await vegaWalletService.getVersion();
 
       if (tokenErr) {
         setError("passphrase", { message: t(tokenErr) });
