@@ -4,11 +4,12 @@ const appChainId = process.env.REACT_APP_CHAIN as EthereumChainId;
 const appEnv = process.env.REACT_APP_ENV as Networks;
 const infuraId = process.env.REACT_APP_INFURA_ID;
 
-const customVegaTokenAddress = process.env.CUSTOM_TOKEN_ADDRESS as string
-const customClaimAddress = process.env.CUSTOM_CLAIM_ADDRESS as string
-const customLockedAddress = process.env.CUSTOM_LOCKED_ADDRESS as string
-const customVestingAddress = process.env.CUSTOM_VESTING_ADDRESS as string
-const customStakingBridge = process.env.CUSTOM_STAKING_BRIDGE as string
+const customVegaTokenAddress = process.env.CUSTOM_TOKEN_ADDRESS as string;
+const customClaimAddress = process.env.CUSTOM_CLAIM_ADDRESS as string;
+const customLockedAddress = process.env.CUSTOM_LOCKED_ADDRESS as string;
+const customVestingAddress = process.env.CUSTOM_VESTING_ADDRESS as string;
+const customStakingBridge = process.env.CUSTOM_STAKING_BRIDGE as string;
+const customErc20Bridge = process.env.CUSTOM_ERC20_BRIDGE as string;
 
 export type EthereumChainId = "0x1" | "0x3" | "0x4" | "0x5" | "0x2a";
 export type EthereumChainName =
@@ -58,6 +59,7 @@ export const EnvironmentConfig: { [key in Networks]: VegaContracts } = {
     lockedAddress: customLockedAddress,
     vestingAddress: customVestingAddress,
     stakingBridge: customStakingBridge,
+    erc20Bridge: customErc20Bridge,
   },
   [Networks.DEVNET]: {
     vegaTokenAddress: "0xc93137f9F4B820Ca85FfA3C7e84cCa6Ebc7bB517",
