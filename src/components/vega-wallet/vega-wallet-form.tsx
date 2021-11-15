@@ -14,6 +14,7 @@ import {
   HOSTED_WALLET_URL,
   vegaWalletService,
 } from "../../lib/vega-wallet/vega-wallet-service";
+import { Flags } from "../../config";
 
 interface FormFields {
   url: string;
@@ -91,18 +92,20 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="vega-wallet-form">
-      <FormGroup labelFor="hostedWallet" label={t("hostedSwitchLabel")}>
-        <Switch
-          large={true}
-          name="hostedWallet"
-          checked={hostedWallet}
-          onChange={(a) => {
-            const input = a.target as HTMLInputElement;
-            setHostedWallet(input.checked);
-            setValue("url", HOSTED_WALLET_URL, { shouldValidate: false });
-          }}
-        />
-      </FormGroup>
+      {Flags.HOSTED_WALLET_ENABLED ? (
+        <FormGroup labelFor="hostedWallet" label={t("hostedSwitchLabel")}>
+          <Switch
+            large={true}
+            name="hostedWallet"
+            checked={hostedWallet}
+            onChange={(a) => {
+              const input = a.target as HTMLInputElement;
+              setHostedWallet(input.checked);
+              setValue("url", HOSTED_WALLET_URL, { shouldValidate: false });
+            }}
+          />
+        </FormGroup>
+      ) : null}
       <FormGroup
         label={t("urlLabel")}
         labelFor="url"
