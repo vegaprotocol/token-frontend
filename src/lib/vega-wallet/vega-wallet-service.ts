@@ -42,7 +42,7 @@ export interface UndelegateSubmissionInput {
   undelegateSubmission: {
     nodeId: string;
     amount: string;
-    method: "METHOD_AT_END_OF_EPOCH";
+    method: "METHOD_NOW" | "METHOD_AT_END_OF_EPOCH";
   };
 }
 

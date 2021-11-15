@@ -297,8 +297,8 @@ const VegaWalletConnected = ({
               .map((d) => ({
                 nodeId: d,
                 hasStakePending: !!(
-                  delegatedThisEpoch[d]?.amountFormatted &&
-                  delegatedNextEpoch[d]?.amountFormatted &&
+                  (delegatedThisEpoch[d]?.amountFormatted ||
+                    delegatedNextEpoch[d]?.amountFormatted) &&
                   delegatedThisEpoch[d]?.amountFormatted !==
                     delegatedNextEpoch[d]?.amountFormatted
                 ),
@@ -438,7 +438,7 @@ const VegaWalletConnected = ({
           {d.currentEpochStake && (
             <WalletCardRow
               label={`${truncateMiddle(d.nodeId)} ${
-                d.hasStakePending ? "(This epoch)" : ""
+                d.hasStakePending ? `(${t("thisEpoch")})` : ""
               }`}
               value={d.currentEpochStake}
               dark={true}
@@ -446,7 +446,7 @@ const VegaWalletConnected = ({
           )}
           {d.hasStakePending && (
             <WalletCardRow
-              label={`${truncateMiddle(d.nodeId)} (Next epoch)`}
+              label={`${truncateMiddle(d.nodeId)} (${t("nextEpoch")})`}
               value={d.nextEpochStake}
               dark={true}
             />
@@ -479,6 +479,21 @@ const VegaWalletConnected = ({
             ))}
         </ul>
       )}
+      {Flags.GOVERNANCE_DISABLED && Flags.STAKING_DISABLED ? null : (
+        <WalletCardActions>
+          {Flags.GOVERNANCE_DISABLED ? null : (
+            <Link style={{ flex: 1 }} to={Routes.GOVERNANCE}>
+              <button className="button-secondary">{t("governance")}</button>
+            </Link>
+          )}
+          {Flags.STAKING_DISABLED ? null : (
+            <Link style={{ flex: 1 }} to={Routes.STAKING}>
+              <button className="button-secondary">{t("staking")}</button>
+            </Link>
+          )}
+        </WalletCardActions>
+      )}
+      <VegaWalletAssetList accounts={accounts} />
       {disconnect}
     </>
   ) : (

@@ -57,7 +57,7 @@ export const WalletCardRow = ({
   useAnimateValue(ref, value);
   const [integers, decimalsPlaces] = React.useMemo(() => {
     if (!value) {
-      return ["0", "0".repeat(18)];
+      return ["0", "0".repeat(decimals)];
     }
     // @ts-ignore
     const separator = BigNumber.config().FORMAT.decimalSeparator as string;
@@ -65,7 +65,7 @@ export const WalletCardRow = ({
       .toString()
       .split(separator);
     return [integers, decimalsPlaces];
-  }, [value]);
+  }, [decimals, value]);
 
   return (
     <div

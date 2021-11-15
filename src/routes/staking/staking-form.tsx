@@ -53,6 +53,10 @@ enum FormState {
 }
 
 export type StakeAction = "Add" | "Remove" | undefined;
+enum RemoveType {
+  endOfEpoch,
+  now,
+}
 
 interface StakingFormProps {
   nodeId: string;
@@ -75,6 +79,9 @@ export const StakingForm = ({
   const { t } = useTranslation();
   const [action, setAction] = React.useState<StakeAction>(params.action);
   const [amount, setAmount] = React.useState("");
+  const [removeType, setRemoveType] = React.useState<RemoveType>(
+    RemoveType.endOfEpoch
+  );
 
   const maxDelegation = React.useMemo(() => {
     if (action === "Add") {
@@ -100,7 +107,10 @@ export const StakingForm = ({
       undelegateSubmission: {
         nodeId,
         amount: removeDecimal(new BigNumber(amount), appState.decimals),
-        method: "METHOD_AT_END_OF_EPOCH",
+        method:
+          removeType === RemoveType.now
+            ? "METHOD_NOW"
+            : "METHOD_AT_END_OF_EPOCH",
       },
     };
     try {
@@ -203,16 +213,70 @@ export const StakingForm = ({
       </FormGroup>
       {action !== undefined && (
         <>
-          <h2>{t("How much to {{action}} in next epoch?", { action })}</h2>
-          <p>{t("Warning, spam protection exists")}</p>
-          <TokenInput
-            submitText={`${action} ${amount ? amount : ""} ${t("vegaTokens")}`}
-            perform={onSubmit}
-            amount={amount}
-            setAmount={setAmount}
-            maximum={maxDelegation}
-            currency={t("VEGA Tokens")}
-          />
+          {action === "Add" ? (
+            <>
+              <h2>{t("How much to Add in next epoch?")}</h2>
+              <p>{t("Warning, spam protection exists")}</p>
+              <TokenInput
+                submitText={`Add ${amount ? amount : ""} ${t("vegaTokens")}`}
+                perform={onSubmit}
+                amount={amount}
+                setAmount={setAmount}
+                maximum={maxDelegation}
+                currency={t("VEGA Tokens")}
+              />
+            </>
+          ) : (
+            <>
+              <h2>{t("How much to Remove?")}</h2>
+              {removeType === RemoveType.now ? (
+                <p>
+                  {t(
+                    "Removing stake mid epoch will forsake any staking rewards from that epoch"
+                  )}
+                </p>
+              ) : null}
+              <TokenInput
+                submitText={t("undelegateSubmitButton", {
+                  amount: t("Remove {{amount}} VEGA tokens", { amount }),
+                  when:
+                    removeType === RemoveType.now
+                      ? t("as soon as possible")
+                      : t("at the end of epoch"),
+                })}
+                perform={onSubmit}
+                amount={amount}
+                setAmount={setAmount}
+                maximum={maxDelegation}
+                currency={t("VEGA Tokens")}
+              />
+              {removeType === RemoveType.now ? (
+                <>
+                  <p>{t("Want to remove your stake before the epoch ends?")}</p>
+                  <button
+                    type="button"
+                    onClick={() => setRemoveType(RemoveType.endOfEpoch)}
+                    className="button-link"
+                  >
+                    {t("Switch to form for removal at end of epoch")}
+                  </button>
+                </>
+              ) : (
+                <>
+                  <p>
+                    {t("Want to remove your stake at the end of the epoch?")}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setRemoveType(RemoveType.now)}
+                    className="button-link"
+                  >
+                    {t("Switch to form for immediate removal")}
+                  </button>
+                </>
+              )}
+            </>
+          )}
         </>
       )}
     </>

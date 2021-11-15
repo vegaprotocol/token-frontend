@@ -4,6 +4,12 @@ const appChainId = process.env.REACT_APP_CHAIN as EthereumChainId;
 const appEnv = process.env.REACT_APP_ENV as Networks;
 const infuraId = process.env.REACT_APP_INFURA_ID;
 
+const customVegaTokenAddress = process.env.CUSTOM_TOKEN_ADDRESS as string
+const customClaimAddress = process.env.CUSTOM_CLAIM_ADDRESS as string
+const customLockedAddress = process.env.CUSTOM_LOCKED_ADDRESS as string
+const customVestingAddress = process.env.CUSTOM_VESTING_ADDRESS as string
+const customStakingBridge = process.env.CUSTOM_STAKING_BRIDGE as string
+
 export type EthereumChainId = "0x1" | "0x3" | "0x4" | "0x5" | "0x2a";
 export type EthereumChainName =
   | "Mainnet"
@@ -44,7 +50,14 @@ interface VegaContracts {
   stakingBridge: string;
 }
 
-const EnvironmentConfig: { [key in Networks]: VegaContracts } = {
+export const EnvironmentConfig: { [key in Networks]: VegaContracts } = {
+  [Networks.CUSTOM]: {
+    vegaTokenAddress: customVegaTokenAddress,
+    claimAddress: customClaimAddress,
+    lockedAddress: customLockedAddress,
+    vestingAddress: customVestingAddress,
+    stakingBridge: customStakingBridge,
+  },
   [Networks.DEVNET]: {
     vegaTokenAddress: "0xc93137f9F4B820Ca85FfA3C7e84cCa6Ebc7bB517",
     claimAddress: "0x8Cef746ab7C83B61F6461cC92882bD61AB65a994",

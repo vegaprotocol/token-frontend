@@ -213,15 +213,8 @@ export const StakingStepSelectNode = ({
         userStakePercentage,
       };
     });
-    const sortedByStake = nodesWithPercentages.sort((a, b) => {
-      if (a.stakedOnNode.isLessThan(b.stakedOnNode)) return 1;
-      if (a.stakedOnNode.isGreaterThan(b.stakedOnNode)) return -1;
-      if (a.id < b.id) return 1;
-      if (a.id > b.id) return -1;
-      return 0;
-    });
 
-    return sortedByStake;
+    return nodesWithPercentages;
   }, [data]);
 
   if (!currVegaKey) {
