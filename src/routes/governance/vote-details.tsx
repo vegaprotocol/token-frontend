@@ -13,6 +13,7 @@ import { Parties } from "./__generated__/Parties";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 import { Callout } from "../../components/callout";
+import { ProposalState } from "../../__generated__/globalTypes";
 
 export const PARTIES_QUERY = gql`
   query Parties {
@@ -59,9 +60,9 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
     return data.parties.find((party) => party.id === proposal.party.id);
   }, [data, proposal.party.id]);
 
-  const daysLeft = formatDistanceToNow(
-    new Date(proposal.terms.closingDatetime)
-  );
+  const daysLeft = t("daysLeft", {
+    daysLeft: formatDistanceToNow(new Date(proposal.terms.closingDatetime)),
+  });
 
   if (loading) {
     return (
@@ -88,8 +89,7 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
             <CurrentProposalStatus proposal={proposal} />
           </span>
           .&nbsp;
-          {daysLeft}
-          {t("daysLeft")}
+          {proposal.state === ProposalState.Open ? daysLeft : null}
         </p>
         <table className="proposal-toast__table">
           <thead>
