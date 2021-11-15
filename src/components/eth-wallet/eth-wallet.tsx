@@ -113,7 +113,8 @@ const ConnectedKey = () => {
         symbol="In vesting contract"
         balance={totalInVestingContract}
       />
-      {Flags.REDEEM_DISABLED ? null : (
+      {Flags.REDEEM_DISABLED ||
+      totalVestedBalance.plus(totalLockedBalance).isEqualTo(0) ? null : (
         <>
           <LockedProgress
             locked={totalLockedBalance}
@@ -125,10 +126,12 @@ const ConnectedKey = () => {
           />
         </>
       )}
-      <AssociatedAmounts
-        associations={appState.associationBreakdown.stakingAssociations}
-        total={totalInVestingContract}
-      />
+      {Flags.STAKING_DISABLED || totalInVestingContract.isEqualTo(0) ? null : (
+        <AssociatedAmounts
+          associations={appState.associationBreakdown.stakingAssociations}
+          total={totalInVestingContract}
+        />
+      )}
       <WalletCardAsset
         image={vegaWhite}
         decimals={appState.decimals}
@@ -136,10 +139,12 @@ const ConnectedKey = () => {
         symbol="In Wallet"
         balance={totalInWallet}
       />
-      <AssociatedAmounts
-        associations={appState.associationBreakdown.vestingAssociations}
-        total={totalInWallet}
-      />
+      {Flags.STAKING_DISABLED || totalInWallet.isEqualTo(0) ? null : (
+        <AssociatedAmounts
+          associations={appState.associationBreakdown.vestingAssociations}
+          total={totalInWallet}
+        />
+      )}
       {Flags.STAKING_DISABLED ? null : (
         <WalletCardActions>
           <Link style={{ flex: 1 }} to={`${Routes.STAKING}/associate`}>
