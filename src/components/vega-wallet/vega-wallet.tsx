@@ -438,7 +438,7 @@ const VegaWalletConnected = ({
           {d.currentEpochStake && (
             <WalletCardRow
               label={`${truncateMiddle(d.nodeId)} ${
-                d.hasStakePending ? "(This epoch)" : ""
+                d.hasStakePending ? `(${t("thisEpoch")})` : ""
               }`}
               value={d.currentEpochStake}
               dark={true}
@@ -446,7 +446,7 @@ const VegaWalletConnected = ({
           )}
           {d.hasStakePending && (
             <WalletCardRow
-              label={`${truncateMiddle(d.nodeId)} (Next epoch)`}
+              label={`${truncateMiddle(d.nodeId)} (${t("nextEpoch")})`}
               value={d.nextEpochStake}
               dark={true}
             />

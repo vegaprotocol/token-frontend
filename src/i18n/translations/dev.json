@@ -418,5 +418,7 @@
   "collateral": "Collateral",
   "associate": "Associate",
   "disassociate": "Disassociate",
-  "associatedWithVegaKeys": "Associated with Vega keys"
+  "associatedWithVegaKeys": "Associated with Vega keys",
+  "thisEpoch": "This Epoch",
+  "nextEpoch": "Next epoch"
 }
