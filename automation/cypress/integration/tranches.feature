@@ -8,7 +8,6 @@ Feature: Tranches
     And I can see "Tranche 1" is displayed 
     And "Tranche 1" contains unlocked tokens
 
-@ignore
   Scenario: Click through to a tranche
     Given I am on the tranches page
     Then I can see the url contains "tranches"

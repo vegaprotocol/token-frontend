@@ -24,22 +24,24 @@ Feature: Homepage
 
   Scenario: Navigate to staking page via link on homepage body
     Given I am on the home page
-     When I click on the associate vega tokens
-     Then I am taken to the staking page
+    When I click on the associate vega tokens
+    Then I am taken to the staking page
 
   Scenario: Navigate to a not found page will return page error
-   Given I navigate to not found page
-   Then I can see the url includes "not-found"
-   And the error message is displayed "This page can not be found, please check the URL and try again." on page
+    Given I navigate to not found page
+    Then I can see the url includes "not-found"
+    And the error message is displayed "This page can not be found, please check the URL and try again." on page
 
-
-
-
-
-
-
-
-
-
-
-
+  Scenario Outline: Can navigate to <navItem> page using main nav tab
+    Given I am on the home page
+    When I click on '<navItem>' on main nav
+    And I can see '<navItem>' button is clearly highlighted after click
+    Then I am taken to the '<page>' page
+     
+     Examples:
+        | navItem       |  page        |
+        | Vesting       | vesting      |
+        | Staking       | staking      |
+        | Governance    | governance   |
+        | DEX Liquidity | dex liquidity|
+        | Home          | home         |
