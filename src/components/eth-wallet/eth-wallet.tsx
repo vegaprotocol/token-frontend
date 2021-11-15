@@ -92,7 +92,7 @@ const ConnectedKey = () => {
         image={vegaVesting}
         decimals={appState.decimals}
         name="VEGA"
-        symbol="In vesting contract"
+        symbol={t("VESTING VEGA TOKENS")}
         balance={totalInVestingContract}
       />
       {Flags.REDEEM_DISABLED ? null : (
@@ -105,7 +105,7 @@ const ConnectedKey = () => {
         image={vegaWhite}
         decimals={appState.decimals}
         name="VEGA"
-        symbol="In Wallet"
+        symbol={t("In Wallet")}
         balance={totalInWallet}
       />
       {Flags.STAKING_DISABLED ? null : (
@@ -119,7 +119,7 @@ const ConnectedKey = () => {
           {associationsByVegaKey.length ? (
             <>
               <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
-              <WalletCardRow label="Associated with Vega keys" bold={true} />
+              <WalletCardRow label={t("associatedWithVegaKeys")} bold={true} />
               {associationsByVegaKey.map(([key, amount]) => {
                 return (
                   <WalletCardRow
@@ -135,12 +135,12 @@ const ConnectedKey = () => {
       )}
       {Flags.STAKING_DISABLED ? null : (
         <WalletCardActions>
-          <Link style={{ flex: 1 }} to={`${Routes.STAKING}/associate`}>
+          <Link to={`${Routes.STAKING}/associate`}>
             <button className="button-secondary button-secondary--light">
               {t("associate")}
             </button>
           </Link>
-          <Link style={{ flex: 1 }} to={`${Routes.STAKING}/disassociate`}>
+          <Link to={`${Routes.STAKING}/disassociate`}>
             <button className="button-secondary button-secondary--light">
               {t("disassociate")}
             </button>

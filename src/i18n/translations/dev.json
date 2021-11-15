@@ -416,5 +416,6 @@
   "assets": "Assets",
   "collateral": "Collateral",
   "associate": "Associate",
-  "disassociate": "Disassociate"
+  "disassociate": "Disassociate",
+  "associatedWithVegaKeys": "Associated with Vega keys"
 }
