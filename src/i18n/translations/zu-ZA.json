@@ -221,6 +221,7 @@
   "Epoch": "crwdns4931:0crwdne4931:0",
   "Started": "crwdns4933:0crwdne4933:0",
   "Node invalid": "crwdns4935:0crwdne4935:0",
+  "Next epoch in {{endText}}": "crwdns6243:0{{endText}}crwdne6243:0",
   "Manage your stake": "crwdns4941:0crwdne4941:0",
   "Add Stake": "crwdns4943:0crwdne4943:0",
   "Remove Stake": "crwdns4945:0crwdne4945:0",
