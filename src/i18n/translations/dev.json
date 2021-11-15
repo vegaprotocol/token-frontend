@@ -145,6 +145,7 @@
   "disconnect": "Disconnect",
   "awaitingDisconnect": "Disconnecting...",
   "Checking Vega wallet status": "Checking Vega wallet status",
+  "hostedSwitchLabel": "Use hosted wallet",
   "urlLabel": "Wallet location",
   "walletLabel": "Wallet",
   "passphraseLabel": "Passphrase",

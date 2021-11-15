@@ -1,5 +1,5 @@
 import "./vega-wallet-form.scss";
-import { FormGroup, Intent } from "@blueprintjs/core";
+import { FormGroup, Intent, Switch } from "@blueprintjs/core";
 import React from "react";
 import * as Sentry from "@sentry/react";
 import { useForm } from "react-hook-form";
@@ -10,7 +10,10 @@ import {
 } from "../../contexts/app-state/app-state-context";
 import { useRefreshAssociatedBalances } from "../../hooks/use-refresh-associated-balances";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
-import { vegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
+import {
+  HOSTED_WALLET_URL,
+  vegaWalletService,
+} from "../../lib/vega-wallet/vega-wallet-service";
 
 interface FormFields {
   url: string;
@@ -29,11 +32,13 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
   const refreshAssociatedBalances = useRefreshAssociatedBalances();
 
   const [loading, setLoading] = React.useState(false);
+  const [hostedWallet, setHostedWallet] = React.useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
     setError,
+    setValue,
   } = useForm<FormFields>({
     defaultValues: {
       url: vegaWalletService.url,
@@ -86,13 +91,29 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="vega-wallet-form">
+      <FormGroup labelFor="hostedWallet" label={t("hostedSwitchLabel")}>
+        <Switch
+          large={true}
+          name="hostedWallet"
+          checked={hostedWallet}
+          onChange={(a) => {
+            const input = a.target as HTMLInputElement;
+            setHostedWallet(input.checked);
+            setValue("url", HOSTED_WALLET_URL, { shouldValidate: false });
+          }}
+        />
+      </FormGroup>
       <FormGroup
         label={t("urlLabel")}
         labelFor="url"
         intent={errors.url?.message ? Intent.DANGER : Intent.NONE}
         helperText={errors.url?.message}
       >
-        <input {...register("url", { required })} type="text" />
+        <input
+          disabled={hostedWallet}
+          {...register("url", { required })}
+          type="text"
+        />
       </FormGroup>
       <FormGroup
         label={t("walletLabel")}
