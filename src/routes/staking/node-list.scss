@@ -10,6 +10,7 @@
     word-break: break-all;
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
     margin-bottom: 15px;
 
     &:last-child {
@@ -18,12 +19,11 @@
   }
 
   a {
-    max-width: 300px;
     text-decoration: none;
+    display: flex;
   }
 
   table {
-    max-width: 330px;
     flex: 1;
     font-size: 14px;
   }
