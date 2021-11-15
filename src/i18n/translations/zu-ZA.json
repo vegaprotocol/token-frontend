@@ -194,7 +194,7 @@
   "notMet": "crwdns4877:0crwdne4877:0",
   "governanceRequired": "crwdns4879:0crwdne4879:0",
   "setTo": "crwdns4881:0crwdne4881:0",
-  "daysLeft": "crwdns4883:0crwdne4883:0",
+  "daysLeft": "crwdns6245:0{{daysLeft}}crwdne6245:0",
   "voteFor": "crwdns4885:0crwdne4885:0",
   "voteAgainst": "crwdns4887:0crwdne4887:0",
   "connectToVote": "crwdns4889:0crwdne4889:0",
