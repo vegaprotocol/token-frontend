@@ -12,7 +12,6 @@ import { TokenDetailsCirculating } from "./token-details-circulating";
 import { formatNumber } from "../../../lib/format-number";
 import { useTranslation } from "react-i18next";
 import { useWeb3 } from "../../../contexts/web3-context/web3-context";
-import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { useTranches } from "../../../hooks/use-tranches";
 
 export const TokenDetails = ({
@@ -25,7 +24,6 @@ export const TokenDetails = ({
   const { t } = useTranslation();
 
   const { chainId } = useWeb3();
-  const { appState } = useAppState();
   const tranches = useTranches();
   return (
     <KeyValueTable className={"token-details"}>
@@ -60,14 +58,6 @@ export const TokenDetails = ({
             <TokenDetailsCirculating tranches={tranches} />
           </KeyValueTableRow>
         </>
-      )}
-      {Flags.STAKING_DISABLED ? null : (
-        <KeyValueTableRow>
-          <th>{t("vegaAssociatedWithKey", { symbol: "$VEGA" })}</th>
-          <td data-testid="associated">
-            {formatNumber(appState.totalAssociated, 2)}
-          </td>
-        </KeyValueTableRow>
       )}
       {Flags.STAKING_DISABLED ? null : (
         <KeyValueTableRow>
