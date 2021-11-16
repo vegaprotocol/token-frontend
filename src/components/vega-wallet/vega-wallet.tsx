@@ -453,17 +453,6 @@ const VegaWalletConnected = ({
           )}
         </div>
       ))}
-      {expanded && (
-        <ul className="vega-wallet__key-list">
-          {vegaKeys
-            .filter((k) => currVegaKey && currVegaKey.pub !== k.pub)
-            .map((k) => (
-              <li key={k.pub} onClick={() => changeKey(k)}>
-                {k.alias} {k.pubShort}
-              </li>
-            ))}
-        </ul>
-      )}
       {Flags.GOVERNANCE_DISABLED && Flags.STAKING_DISABLED ? null : (
         <WalletCardActions>
           {Flags.GOVERNANCE_DISABLED ? null : (
@@ -479,6 +468,17 @@ const VegaWalletConnected = ({
         </WalletCardActions>
       )}
       <VegaWalletAssetList accounts={accounts} />
+      {expanded && (
+        <ul className="vega-wallet__key-list">
+          {vegaKeys
+            .filter((k) => currVegaKey && currVegaKey.pub !== k.pub)
+            .map((k) => (
+              <li key={k.pub} onClick={() => changeKey(k)}>
+                {k.alias} {k.pubShort}
+              </li>
+            ))}
+        </ul>
+      )}
       {disconnect}
     </>
   ) : (
