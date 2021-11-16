@@ -248,7 +248,7 @@
   "SLP Tokens": "SLP Tokens",
   "Connected Vega key": "Connected Vega key",
   "What Vega wallet/key is going to control your stake?": "What Vega wallet/key is going to control your stake?",
-  "Where would you like to stake from?": "Where would you like to stake from?",
+  "Where would you like to stake from?": "Where would you like to associate from?",
   "associateNoVega": "Your connected Ethereum address does not have any $VEGA",
   "You can associate tokens while they are held in the vesting contract, when they unlock you will need to dissociate them before they can be redeemed.": "You can associate tokens while they are held in the vesting contract, when they unlock you will need to dissociate them before they can be redeemed.",
   "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes.": "To participate in governance or to nominate a Validator you’ll need to associate $VEGA tokens with a Vega wallet/key. If you already have $VEGA tokens nominated to validators, your newly associated tokens will automatically be nominated to the same validators, in the same proportion.",
