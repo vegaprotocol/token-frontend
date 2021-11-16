@@ -4,7 +4,6 @@ import "./stateful-button.scss";
 export const StatefulButton = (
   props: ButtonHTMLAttributes<HTMLButtonElement>
 ) => {
-  return (
-    <button {...props} className={`stateful-button fill ${props.className}`} />
-  );
+  const classProp = props.className || "";
+  return <button {...props} className={`stateful-button fill ${classProp}`} />;
 };

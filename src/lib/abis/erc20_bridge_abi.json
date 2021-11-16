@@ -2,7 +2,7 @@
   {
     "inputs": [
       {
-        "internalType": "address",
+        "internalType": "address payable",
         "name": "erc20_asset_pool",
         "type": "address"
       },
@@ -297,7 +297,6 @@
     "inputs": [
       { "internalType": "address", "name": "asset_source", "type": "address" },
       { "internalType": "uint256", "name": "amount", "type": "uint256" },
-      { "internalType": "uint256", "name": "expiry", "type": "uint256" },
       { "internalType": "address", "name": "target", "type": "address" },
       { "internalType": "uint256", "name": "nonce", "type": "uint256" },
       { "internalType": "bytes", "name": "signatures", "type": "bytes" }

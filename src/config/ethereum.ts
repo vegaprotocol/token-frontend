@@ -67,7 +67,7 @@ export const EnvironmentConfig: { [key in Networks]: VegaContracts } = {
     lockedAddress: "0x0",
     vestingAddress: "0xd751FF6264234cAfAE88e4BF6003878fAB9630a7",
     stakingBridge: "0x3cCe40e1e47cedf76c03db3E48507f421b575523",
-    erc20Bridge: "0x8e59E263c666d2768c0Ff41D19551Ba04916fdfC",
+    erc20Bridge: "0x042573A44C7ed0c03960ce505Bd60C6d90d23795",
   },
   [Networks.STAGNET]: {
     vestingAddress: "0xfCe6eB272D3d4146A96bC28de71212b327F575fa",
