@@ -64,12 +64,12 @@ export const NodeListItem = ({
         <tbody>
           <tr>
             <th>{t("Total stake")}</th>
-            <td>{formatNumber(stakedOnNode)}</td>
+            <td>{formatNumber(stakedOnNode, 2)}</td>
             <td>{stakedTotalPercentage}</td>
           </tr>
           <tr>
             <th>{t("Your stake")}</th>
-            <td>{formatNumber(userStake)}</td>
+            <td>{formatNumber(userStake, 2)}</td>
             <td>{userStakePercentage}</td>
           </tr>
         </tbody>
