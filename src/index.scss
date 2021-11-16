@@ -131,12 +131,18 @@ button {
     color: $white;
     outline: none;
 
-    &--dark {
-      color: $black;
-    }
-
     &:hover {
       color: $vega-yellow4 !important;
+    }
+
+    &--dark {
+      text-decoration: none;
+      color: $black !important;
+
+      &:hover {
+        text-decoration: underline;
+        color: $black !important;
+      }
     }
 
     .invert & {
