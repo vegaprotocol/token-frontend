@@ -16,7 +16,6 @@ describe("Home", () => {
       "have.text",
       "1,000,000,000.00"
     );
-    cy.get('[data-testid="associated"]').should("have.text", "0.00");
     cy.get('[data-testid="staked"]').should("have.text", "0.00");
 
     // cy.contains("Read about staking on Vega").then((link) => {
