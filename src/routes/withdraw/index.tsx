@@ -90,9 +90,12 @@ export const WithdrawContainer = ({ currVegaKey }: WithdrawContainerProps) => {
 
   const accounts = React.useMemo(() => {
     if (!data?.party?.accounts) return [];
+    // You can only withdraw from general accounts
     return data.party.accounts.filter((a) => a.type === AccountType.General);
   }, [data]);
 
+  // Note there is a small period where the withdrawal might have a tx hash but is technically
+  // not complete yet as the tx hash gets set before the transaction is confirmed
   const hasPendingWithdrawals = React.useMemo(() => {
     if (!data?.party?.withdrawals?.length) return false;
     return data.party.withdrawals.some((w) => w.txHash === null);

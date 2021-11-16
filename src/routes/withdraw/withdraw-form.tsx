@@ -74,22 +74,26 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
       }}
     >
       <FormGroup label="What would you like to withdraw" labelFor="asset">
-        <HTMLSelect
-          name="asset"
-          id="asset"
-          options={accounts.map((a) => ({
-            label: `${a.asset.symbol} (${a.balanceFormatted})`,
-            value: a.asset.id,
-          }))}
-          onChange={(e) => {
-            const account = accounts.find(
-              (a) => a.asset.id === e.currentTarget.value
-            );
-            if (!account) throw new Error("No account");
-            setAccount(account);
-          }}
-          fill={true}
-        />
+        {accounts.length ? (
+          <HTMLSelect
+            name="asset"
+            id="asset"
+            options={accounts.map((a) => ({
+              label: `${a.asset.symbol} (${a.balanceFormatted})`,
+              value: a.asset.id,
+            }))}
+            onChange={(e) => {
+              const account = accounts.find(
+                (a) => a.asset.id === e.currentTarget.value
+              );
+              if (!account) throw new Error("No account");
+              setAccount(account);
+            }}
+            fill={true}
+          />
+        ) : (
+          <p className="text-muted">You don't have any assets to withdraw</p>
+        )}
       </FormGroup>
       <FormGroup label="To">
         <EthWalletContainer>
