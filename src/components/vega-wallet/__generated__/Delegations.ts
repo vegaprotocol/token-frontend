@@ -23,6 +23,7 @@ export interface Delegations_party_delegations_node {
    * The node url eg n01.vega.xyz
    */
   id: string;
+  name: string;
 }
 
 export interface Delegations_party_delegations {

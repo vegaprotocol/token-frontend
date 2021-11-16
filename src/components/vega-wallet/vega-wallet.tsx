@@ -54,6 +54,7 @@ const DELEGATIONS_QUERY = gql`
         amount
         node {
           id
+          name
         }
         epoch
       }
@@ -197,6 +198,7 @@ const VegaWalletConnected = ({
   const [delegatedNodes, setDelegatedNodes] = React.useState<
     {
       nodeId: string;
+      name: string;
       hasStakePending: boolean;
       currentEpochStake?: BigNumber;
       nextEpochStake?: BigNumber;
@@ -296,6 +298,9 @@ const VegaWalletConnected = ({
             const delegatedAmounts = nodesDelegated
               .map((d) => ({
                 nodeId: d,
+                name:
+                  delegatedThisEpoch[d].node.name ||
+                  delegatedNextEpoch[d].node.name,
                 hasStakePending: !!(
                   (delegatedThisEpoch[d]?.amountFormatted ||
                     delegatedNextEpoch[d]?.amountFormatted) &&
@@ -437,7 +442,7 @@ const VegaWalletConnected = ({
         <div key={d.nodeId}>
           {d.currentEpochStake && (
             <WalletCardRow
-              label={`${truncateMiddle(d.nodeId)} ${
+              label={`${d.name || truncateMiddle(d.nodeId)} ${
                 d.hasStakePending ? `(${t("thisEpoch")})` : ""
               }`}
               value={d.currentEpochStake}
