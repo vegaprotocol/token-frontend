@@ -54,6 +54,7 @@ export const AssociatePageNoVega = () => {
         ) : (
           <ConnectToVega />
         ))}
+      {!vegaKey ? <ConnectToVega /> : null}
     </section>
   );
 };
