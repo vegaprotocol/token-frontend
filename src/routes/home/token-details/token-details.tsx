@@ -53,7 +53,7 @@ export const TokenDetails = ({
         <>
           <KeyValueTableRow>
             <th>{t("Total supply")}</th>
-            <td data-testid="total-supply">{formatNumber(totalSupply)}</td>
+            <td data-testid="total-supply">{formatNumber(totalSupply, 2)}</td>
           </KeyValueTableRow>
           <KeyValueTableRow>
             <th>{t("Circulating supply")}</th>
