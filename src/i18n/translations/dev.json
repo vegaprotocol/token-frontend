@@ -130,7 +130,7 @@
   "A total of {{amount}} Unlocked Vega tokens.": "A total of {{amount}} Unlocked Vega tokens.",
   "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.": "The connected Ethereum wallet ({{address}}) has {{balance}} VEGA tokens in {{tranches}} tranche(s) of the vesting contract.",
   "Stake your Locked VEGA tokens!": "You can stake your VEGA tokens even while locked.",
-  "Find out more about Staking.": "Use your Vega tokens to stake a validator, earn rewards and participate in governance of the Vega network.",
+  "Find out more about Staking.": "Use your Vega tokens to nominate a validator, earn rewards and participate in governance of the Vega network.",
   "noVestingTokens": "You do not have any vesting VEGA tokens. Switch to another Ethereum address to check what can be redeemed, or view <tranchesLink>all tranches</tranchesLink>",
   "ethereumKey": "Ethereum key",
   "checkingForProvider": "Checking for provider",
