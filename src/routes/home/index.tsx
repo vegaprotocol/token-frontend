@@ -100,6 +100,19 @@ const Home = ({ name }: RouteChildProps) => {
           </p>
           <div style={{ display: "flex", gap: 36 }}>
             <div style={{ flex: 1 }}>
+              <h2>{t("Staking")}</h2>
+              <p>
+                {t(
+                  "VEGA token holders can nominate a validator node and receive staking rewards."
+                )}
+              </p>
+              <Link to={Routes.STAKING}>
+                <button className="button-secondary">
+                  {t("Nominate a validator")}
+                </button>
+              </Link>
+            </div>
+            <div style={{ flex: 1 }}>
               <h2>{t("Governance")}</h2>
               <p>
                 {t(
@@ -114,19 +127,6 @@ const Home = ({ name }: RouteChildProps) => {
                 </Link>
               </p>
             </div>
-          </div>
-          <div style={{ flex: 1 }}>
-            <h2>{t("Staking")}</h2>
-            <p>
-              {t(
-                "VEGA token holders can nominate a validator node and receive staking rewards."
-              )}
-            </p>
-            <Link to={Routes.STAKING}>
-              <button className="button-secondary">
-                {t("Nominate a validator")}
-              </button>
-            </Link>
           </div>
         </>
       )}
