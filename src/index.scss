@@ -132,13 +132,13 @@ button {
 
     &:hover {
       color: $vega-yellow4 !important;
+      text-decoration: none;
     }
 
     &--dark {
       color: $black !important;
 
       &:hover {
-        text-decoration: none;
         color: $black !important;
       }
     }
