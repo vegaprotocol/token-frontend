@@ -163,10 +163,10 @@ const NavDrawer = ({ inverted }: { inverted: boolean }) => {
         <div className="nav__drawer">
           <div>
             <div className="nav__drawer-section">
-              <VegaWallet />
+              <EthWallet />
             </div>
             <div className="nav__drawer-section">
-              <EthWallet />
+              <VegaWallet />
             </div>
           </div>
           <NavLinks inverted={false} isDesktop={false} />
