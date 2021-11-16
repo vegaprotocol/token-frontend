@@ -140,7 +140,7 @@ const VegaWalletNotConnected = () => {
           isOpen: true,
         })
       }
-      className="vega-wallet__connect button-link"
+      className="fill button-secondary"
       data-testid="connect-vega"
       type="button"
     >
