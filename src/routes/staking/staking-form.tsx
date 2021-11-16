@@ -21,11 +21,15 @@ import { StakeFailure } from "./stake-failure";
 import { StakePending } from "./stake-pending";
 import { StakeSuccess } from "./stake-success";
 import { TokenInput } from "../../components/token-input";
-import { removeDecimal } from "../../lib/decimals";
+import { addDecimal, removeDecimal } from "../../lib/decimals";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useHistory } from "react-router-dom";
 import { useSearchParams } from "../../hooks/use-search-params";
 import { useTranslation } from "react-i18next";
+import {
+  SPAM_PROTECTION_MIN_TOKENS,
+  useNetworkParam,
+} from "../../hooks/use-network-param";
 
 export const PARTY_DELEGATIONS_QUERY = gql`
   query PartyDelegations($partyId: ID!) {
@@ -84,6 +88,13 @@ export const StakingForm = ({
   const [amount, setAmount] = React.useState("");
   const [removeType, setRemoveType] = React.useState<RemoveType>(
     RemoveType.endOfEpoch
+  );
+
+  const { data } = useNetworkParam([SPAM_PROTECTION_MIN_TOKENS]);
+  const minTokens = new BigNumber(data && data.length === 1 ? data[0] : "");
+  const minTokensWithDecimals = addDecimal(
+    minTokens,
+    appState.decimals
   );
 
   const maxDelegation = React.useMemo(() => {
@@ -219,13 +230,18 @@ export const StakingForm = ({
           {action === "Add" ? (
             <>
               <h2>{t("How much to Add in next epoch?")}</h2>
-              <p>{t("Warning, spam protection exists")}</p>
+              <p>
+                {t("Warning, spam protection exists", {
+                  minTokens: minTokensWithDecimals,
+                })}
+              </p>
               <TokenInput
                 submitText={`Add ${amount ? amount : ""} ${t("vegaTokens")}`}
                 perform={onSubmit}
                 amount={amount}
                 setAmount={setAmount}
                 maximum={maxDelegation}
+                minimum={new BigNumber(minTokensWithDecimals)}
                 currency={t("VEGA Tokens")}
               />
             </>

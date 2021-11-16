@@ -12,6 +12,8 @@ export const NETWORK_PARAMS_QUERY = gql`
   }
 `;
 
+export const SPAM_PROTECTION_MIN_TOKENS = "spam.protection.delegation.min.tokens";
+
 export function useNetworkParam(params: string[]) {
   const { data, loading, error } = useQuery<NetworkParams, never>(
     NETWORK_PARAMS_QUERY

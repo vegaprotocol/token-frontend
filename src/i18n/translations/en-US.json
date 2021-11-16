@@ -33,7 +33,7 @@
   "Want to remove your stake at the end of the epoch?": "Want to remove your stake now?",
   "Switch to form for immediate removal": "Switch to remove now",
   "Switch to form for removal at end of epoch": "Switch to remove at end of epoch",
-  "Warning, spam protection exists": "Your nomination must be greater than the minimum amount as determined by the spam protection network parameter.",
+  "Warning, spam protection exists": "Your nomination must be greater than {{minTokens}} $VEGA. This is a spam protection mechanism.",
   "Check to see if you can redeem unlocked VEGA tokens": "Check to see if you can redeem unlocked $VEGA tokens",
   "Associate VEGA tokens": "Associate $VEGA tokens",
   "Nominate a validator": "Nominate validator",
