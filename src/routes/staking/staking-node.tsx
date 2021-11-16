@@ -121,6 +121,7 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
       <StakingForm
         pubkey={vegaKey.pub}
         nodeId={node}
+        nodeName={nodeInfo.name}
         availableStakeToAdd={unstaked}
         availableStakeToRemove={stakeNextEpoch}
       />

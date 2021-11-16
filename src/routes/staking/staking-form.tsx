@@ -61,6 +61,7 @@ enum RemoveType {
 interface StakingFormProps {
   nodeId: string;
   pubkey: string;
+  nodeName: string;
   availableStakeToAdd: BigNumber;
   availableStakeToRemove: BigNumber;
 }
@@ -68,6 +69,7 @@ interface StakingFormProps {
 export const StakingForm = ({
   nodeId,
   pubkey,
+  nodeName,
   availableStakeToAdd,
   availableStakeToRemove,
 }: StakingFormProps) => {
@@ -162,11 +164,11 @@ export const StakingForm = ({
   }, [formState, client, pubkey, nodeId]);
 
   if (formState === FormState.Failure) {
-    return <StakeFailure nodeId={nodeId} />;
+    return <StakeFailure nodeName={nodeName} />;
   } else if (formState === FormState.Pending) {
-    return <StakePending action={action} amount={amount} nodeId={nodeId} />;
+    return <StakePending action={action} amount={amount} nodeName={nodeName} />;
   } else if (formState === FormState.Success) {
-    return <StakeSuccess action={action} amount={amount} nodeId={nodeId} />;
+    return <StakeSuccess action={action} amount={amount} nodeName={nodeName} />;
   } else if (
     availableStakeToAdd.isEqualTo(0) &&
     availableStakeToRemove.isEqualTo(0)
