@@ -211,6 +211,7 @@ export const StakingStepSelectNode = ({
         stakedTotalPercentage,
         userStake,
         userStakePercentage,
+        epoch: data.epoch,
       };
     });
 
@@ -221,5 +222,5 @@ export const StakingStepSelectNode = ({
     return <p className="text-muted">{t("connectVegaWallet")}</p>;
   }
 
-  return <NodeList nodes={nodes} />;
+  return <NodeList nodes={nodes} epoch={data?.epoch} />;
 };
