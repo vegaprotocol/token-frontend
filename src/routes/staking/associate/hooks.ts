@@ -64,6 +64,7 @@ export const useAddStake = (
 const PARTY_STAKE_LINKINGS = gql`
   query PartyStakeLinkings($partyId: ID!) {
     party(id: $partyId) {
+      id
       stake {
         linkings {
           id
