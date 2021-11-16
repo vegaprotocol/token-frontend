@@ -126,9 +126,11 @@ const ConnectedKey = () => {
           />
         </>
       )}
-      {Flags.STAKING_DISABLED || totalInVestingContract.isEqualTo(0) ? null : (
+      {Flags.STAKING_DISABLED ||
+      !Object.keys(appState.associationBreakdown.vestingAssociations)
+        .length ? null : (
         <AssociatedAmounts
-          associations={appState.associationBreakdown.stakingAssociations}
+          associations={appState.associationBreakdown.vestingAssociations}
           total={totalInVestingContract}
         />
       )}
@@ -139,9 +141,10 @@ const ConnectedKey = () => {
         symbol="In Wallet"
         balance={totalInWallet}
       />
-      {Flags.STAKING_DISABLED || totalInWallet.isEqualTo(0) ? null : (
+      {Flags.STAKING_DISABLED ||
+      !Object.keys(appState.associationBreakdown.stakingAssociations) ? null : (
         <AssociatedAmounts
-          associations={appState.associationBreakdown.vestingAssociations}
+          associations={appState.associationBreakdown.stakingAssociations}
           total={totalInWallet}
         />
       )}
