@@ -53,8 +53,8 @@ export const RewardInfo = ({
 
     const sorted = Array.from(vegaTokenRewards.rewards).sort((a, b) => {
       if (!a || !b) return 0;
-      if (Number(a?.epoch.id) > Number(b?.epoch.id)) return -1;
-      if (Number(a?.epoch.id) < Number(b?.epoch.id)) return 1;
+      if (a.epoch > b.epoch) return -1;
+      if (a.epoch < b.epoch) return 1;
       return 0;
     });
 
@@ -100,7 +100,7 @@ export const RewardTable = ({ reward, delegations }: RewardTableProps) => {
     if (!delegations.length) return "0";
 
     const delegationForEpoch = delegations.find(
-      (d) => d.epoch === Number(reward.epoch.id)
+      (d) => d.epoch === reward.epoch
     );
 
     if (delegationForEpoch) {
@@ -108,12 +108,12 @@ export const RewardTable = ({ reward, delegations }: RewardTableProps) => {
     }
 
     return "0";
-  }, [delegations, reward.epoch.id]);
+  }, [delegations, reward.epoch]);
 
   return (
     <div>
       <h3>
-        {t("Epoch")} {reward.epoch.id}
+        {t("Epoch")} {reward.epoch}
       </h3>
       <KeyValueTable>
         <KeyValueTableRow>

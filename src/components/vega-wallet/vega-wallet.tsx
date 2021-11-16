@@ -164,8 +164,8 @@ const VegaWalletAssetList = ({ accounts }: VegaWalletAssetsListProps) => {
           {t("assets")}
         </BulletHeader>
       </WalletCardHeader>
-      {accounts.map((a) => (
-        <WalletCardAsset {...a} dark={true} />
+      {accounts.map((a, i) => (
+        <WalletCardAsset key={i} {...a} dark={true} />
       ))}
     </>
   );

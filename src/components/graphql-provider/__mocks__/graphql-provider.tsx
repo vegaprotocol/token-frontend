@@ -361,19 +361,10 @@ const MOCK_REWARDS: MockedResponse<Rewards> = {
             rewards: [
               {
                 __typename: "Reward",
-                asset: {
-                  __typename: "Asset",
-                  id: REWARD_ASSET_ID,
-                  symbol: "asset-symbol",
-                },
-                party: {
-                  __typename: "Party",
-                  id: "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
-                },
-                epoch: {
-                  __typename: "Epoch",
-                  id: "1",
-                },
+                assetId: REWARD_ASSET_ID,
+                partyId:
+                  "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
+                epoch: 1,
                 amount: "100",
                 amountFormatted: "100.00",
                 percentageOfTotal: "50",
@@ -381,19 +372,10 @@ const MOCK_REWARDS: MockedResponse<Rewards> = {
               },
               {
                 __typename: "Reward",
-                asset: {
-                  __typename: "Asset",
-                  id: REWARD_ASSET_ID,
-                  symbol: "asset-symbol",
-                },
-                party: {
-                  __typename: "Party",
-                  id: "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
-                },
-                epoch: {
-                  __typename: "Epoch",
-                  id: "3",
-                },
+                assetId: REWARD_ASSET_ID,
+                partyId:
+                  "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
+                epoch: 3,
                 amount: "110",
                 amountFormatted: "110.00",
                 percentageOfTotal: "50",
@@ -401,19 +383,10 @@ const MOCK_REWARDS: MockedResponse<Rewards> = {
               },
               {
                 __typename: "Reward",
-                asset: {
-                  __typename: "Asset",
-                  id: REWARD_ASSET_ID,
-                  symbol: "asset-symbol",
-                },
-                party: {
-                  __typename: "Party",
-                  id: "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
-                },
-                epoch: {
-                  __typename: "Epoch",
-                  id: "2",
-                },
+                assetId: REWARD_ASSET_ID,
+                partyId:
+                  "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
+                epoch: 2,
                 amount: "120",
                 amountFormatted: "120.00",
                 percentageOfTotal: "50",

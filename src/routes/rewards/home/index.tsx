@@ -26,16 +26,9 @@ export const REWARDS_QUERY = gql`
           symbol
         }
         rewards {
-          asset {
-            id
-            symbol
-          }
-          party {
-            id
-          }
-          epoch {
-            id
-          }
+          assetId
+          partyId
+          epoch
           amount
           amountFormatted @client
           percentageOfTotal
