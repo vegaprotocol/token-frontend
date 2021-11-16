@@ -4,6 +4,7 @@ import { Loader } from "../loader";
 import { Error, HandUp, Tick } from "../icons";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { StatefulButton } from "../stateful-button";
+import { useTranslation } from "react-i18next";
 
 interface TransactionButtonProps {
   transactionState: TransactionState;
@@ -23,6 +24,7 @@ export const TransactionButton = ({
   start,
   reset,
 }: TransactionButtonProps) => {
+  const { t } = useTranslation();
   const { txState, txData } = transactionState;
   const root = "transaction-button";
   const wrapperClassName = `${root} transaction-button--${txState.toLowerCase()}`;
@@ -49,10 +51,10 @@ export const TransactionButton = ({
       <div className={className}>
         <p className={textClassName}>
           <Tick />
-          <span>Complete</span>
+          <span>{t("txButtonComplete")}</span>
         </p>
         <p className={txhashClassName}>
-          <span>Transaction</span>
+          <span>{t("transaction")}</span>
           {etherscanLink}
         </p>
       </div>
@@ -65,7 +67,7 @@ export const TransactionButton = ({
       <div className={wrapperClassName}>
         <StatefulButton className={buttonClassName} disabled={true}>
           <HandUp />
-          <span>Action required in Ethereum wallet</span>
+          <span>{t("txButtonActionRequired")}</span>
         </StatefulButton>
       </div>
     );
@@ -76,10 +78,10 @@ export const TransactionButton = ({
       <div className={wrapperClassName}>
         <StatefulButton className={buttonClassName} disabled={true}>
           <Loader />
-          <span>Awaiting Ethereum transaction</span>
+          <span>{t("txButtonAwaiting")}</span>
         </StatefulButton>
         <p className={txhashClassName}>
-          <span>Transaction</span>
+          <span>{t("transaction")}</span>
           {etherscanLink}
         </p>
       </div>
@@ -91,13 +93,13 @@ export const TransactionButton = ({
       <div className={wrapperClassName}>
         <p className={textClassName}>
           <Error />
-          <span>Ethereum transaction failed</span>
+          <span>{t("txButtonFailure")}</span>
           <button onClick={reset} type="button" className="button-link">
-            Try again
+            {t("Try again")}
           </button>
         </p>
         <p className={txhashClassName}>
-          <span>Transaction</span>
+          <span>{t("transaction")}</span>
           {etherscanLink}
         </p>
       </div>
@@ -112,7 +114,7 @@ export const TransactionButton = ({
         onClick={start}
         disabled={disabled}
       >
-        Complete
+        {t("txButtonComplete")}
       </StatefulButton>
     </div>
   );

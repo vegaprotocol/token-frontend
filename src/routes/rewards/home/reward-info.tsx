@@ -1,3 +1,4 @@
+import "./reward-info.scss";
 import React from "react";
 import * as Sentry from "@sentry/react";
 import {
@@ -12,10 +13,12 @@ import {
 import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
 import { useTranslation } from "react-i18next";
 import { format } from "date-fns";
+import { HTMLSelect, FormGroup } from "@blueprintjs/core";
 
 interface RewardInfoProps {
   data: Rewards | undefined;
   currVegaKey: VegaKeyExtended;
+  vegaKeys: VegaKeyExtended[];
   rewardAssetId: string;
 }
 
@@ -26,6 +29,7 @@ const DEFAULT_REWARD_TYPE = "Staking";
 export const RewardInfo = ({
   data,
   currVegaKey,
+  vegaKeys,
   rewardAssetId,
 }: RewardInfoProps) => {
   const { t } = useTranslation();
@@ -62,13 +66,16 @@ export const RewardInfo = ({
   }, [data, rewardAssetId]);
 
   return (
-    <>
-      <h2>
-        {t("rewardsForVegaKey", {
-          alias: currVegaKey.alias,
-          key: currVegaKey.pubShort,
-        })}
-      </h2>
+    <div className="reward-info">
+      <FormGroup label="Show rewards for Vega key">
+        <HTMLSelect
+          options={vegaKeys.map((k) => ({
+            label: k.pub,
+            value: k.pub,
+          }))}
+          value={currVegaKey.pub}
+        />
+      </FormGroup>
       {vegaTokenRewards.length ? (
         vegaTokenRewards.map((reward, i) => {
           if (!reward) return null;
@@ -83,7 +90,7 @@ export const RewardInfo = ({
       ) : (
         <p>{t("noRewards")}</p>
       )}
-    </>
+    </div>
   );
 };
 
@@ -126,7 +133,9 @@ export const RewardTable = ({ reward, delegations }: RewardTableProps) => {
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("reward")}</th>
-          <td>{reward.amountFormatted} VEGA</td>
+          <td>
+            {reward.amountFormatted} {t("VEGA")}
+          </td>
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("shareOfReward")}</th>

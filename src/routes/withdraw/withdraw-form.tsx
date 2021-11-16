@@ -1,3 +1,4 @@
+import "./withdraw-form.scss";
 import React from "react";
 import { WithdrawPage_party_accounts } from "./__generated__/WithdrawPage";
 import { BigNumber } from "../../lib/bignumber";
@@ -15,6 +16,7 @@ import { useHistory } from "react-router";
 import { StatefulButton } from "../../components/stateful-button";
 import { Loader } from "../../components/loader";
 import { Routes } from "../router-config";
+import { useTranslation } from "react-i18next";
 
 interface WithdrawFormProps {
   accounts: WithdrawPage_party_accounts[];
@@ -22,6 +24,7 @@ interface WithdrawFormProps {
 }
 
 export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
+  const { t } = useTranslation();
   const history = useHistory();
   const { ethAddress } = useWeb3();
   const [amountStr, setAmount] = React.useState("");
@@ -62,6 +65,7 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
 
   return (
     <form
+      className="withdraw-form"
       onSubmit={async (e) => {
         e.preventDefault();
         if (!valid) return;
@@ -73,7 +77,7 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
         );
       }}
     >
-      <FormGroup label="What would you like to withdraw" labelFor="asset">
+      <FormGroup label={t("withdrawFormAssetLabel")} labelFor="asset">
         {accounts.length ? (
           <HTMLSelect
             name="asset"
@@ -92,10 +96,10 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
             fill={true}
           />
         ) : (
-          <p className="text-muted">You don't have any assets to withdraw</p>
+          <p className="text-muted">{t("withdrawFormNoAsset")}</p>
         )}
       </FormGroup>
-      <FormGroup label="To">
+      <FormGroup label={t("withdrawFormToLabel")}>
         <EthWalletContainer>
           {(ethAddress) => (
             <InputGroup
@@ -106,7 +110,7 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
           )}
         </EthWalletContainer>
       </FormGroup>
-      <FormGroup label="How much would you like to withdraw" labelFor="amount">
+      <FormGroup label={t("withdrawFormAmountLabel")} labelFor="amount">
         <AmountInput
           amount={amountStr}
           setAmount={setAmount}
@@ -121,10 +125,13 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
         {status === WithdrawStatus.Pending ? (
           <>
             <Loader />
-            <span>Preparing</span>
+            <span>{t("withdrawFormSubmitButtonPending")}</span>
           </>
         ) : (
-          `Withdraw ${amountStr} ${account?.asset.symbol} tokens`
+          t("withdrawFormSubmitButtonIdle", {
+            amount: amountStr,
+            symbol: account?.asset.symbol,
+          })
         )}
       </StatefulButton>
     </form>

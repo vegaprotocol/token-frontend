@@ -147,6 +147,7 @@ export const Withdrawal = ({
   withdrawal,
   requiredConfirmations,
 }: WithdrawalProps) => {
+  const { t } = useTranslation();
   const { chainId } = useWeb3();
   const erc20Approval = usePollERC20Approval(withdrawal.id);
   const { erc20Bridge } = useContracts();
@@ -172,7 +173,7 @@ export const Withdrawal = ({
     <div>
       <KeyValueTable>
         <KeyValueTableRow>
-          <th>Withdraw</th>
+          <th>{t("Withdraw")}</th>
           <td>
             {addDecimal(
               new BigNumber(withdrawal.amount),
@@ -182,11 +183,11 @@ export const Withdrawal = ({
           </td>
         </KeyValueTableRow>
         <KeyValueTableRow>
-          <th>From</th>
+          <th>{t("from")}</th>
           <td>{truncateMiddle(withdrawal.party.id)}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
-          <th>To (Ethereum)</th>
+          <th>{t("toEthereum")}</th>
           <td>
             <EtherscanLink
               chainId={chainId}
@@ -198,13 +199,13 @@ export const Withdrawal = ({
           </td>
         </KeyValueTableRow>
         <KeyValueTableRow>
-          <th>Created</th>
+          <th>{t("created")}</th>
           <td>
             {format(new Date(withdrawal.createdTimestamp), "dd MMM yyyy HH:mm")}
           </td>
         </KeyValueTableRow>
         <KeyValueTableRow>
-          <th>Signature</th>
+          <th>{t("Signature")}</th>
           <td title={erc20Approval?.signatures}>
             {!erc20Approval?.signatures
               ? "Loading..."

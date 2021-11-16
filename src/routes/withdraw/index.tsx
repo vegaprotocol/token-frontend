@@ -17,23 +17,16 @@ import { Link } from "react-router-dom";
 import { Routes } from "../router-config";
 
 const Withdraw = () => {
+  const { t } = useTranslation();
   return (
     <>
-      <Heading title="Withdraw rewards" />
-      <p>
-        Staking rewards are paid into a Vega wallet. They can be withdrawn using
-        the VEGA-ERC20 bridge.
-      </p>
+      <Heading title={t("withdrawPageHeading")} />
+      <p>{t("withdrawPageText")}</p>
       <VegaWalletContainer>
         {(currVegaKey) => <WithdrawContainer currVegaKey={currVegaKey} />}
       </VegaWalletContainer>
-      <Callout title="How do ERC20 withdrawals work on Vega">
-        <p>
-          To withdraw from Vega the network needs to agree that a party can
-          withdraw funds (to ensure they are not being used for margin etc.),
-          once this has happened it returns a signature that can be used in an
-          Ethereum transaction to send the tokens to the given Ethereum address.
-        </p>
+      <Callout title={t("withdrawPageInfoCalloutTitle")}>
+        <p>{t("withdrawPageInfoCalloutText")}</p>
       </Callout>
     </>
   );
@@ -121,13 +114,12 @@ export const WithdrawContainer = ({ currVegaKey }: WithdrawContainerProps) => {
   return (
     <>
       {hasPendingWithdrawals && (
-        <Callout title="You have incomplete withdrawals" intent="warn">
+        <Callout title={t("pendingWithdrawalsCalloutTitle")} intent="warn">
+          <p>{t("pendingWithdrawalsCalloutText")}</p>
           <p>
-            You have withdrawals that have been released from the Vega network
-            but not yet actioned on Ethereum
-          </p>
-          <p>
-            <Link to={Routes.WITHDRAWALS}>View incomplete withdrawals</Link>
+            <Link to={Routes.WITHDRAWALS}>
+              {t("pendingWithdrawalsCalloutButton")}
+            </Link>
           </p>
         </Callout>
       )}

@@ -56,7 +56,7 @@ export const REWARDS_QUERY = gql`
 
 export const RewardsIndex = () => {
   const { t } = useTranslation();
-  const { currVegaKey } = useVegaUser();
+  const { currVegaKey, vegaKeys } = useVegaUser();
   const { appDispatch } = useAppState();
   const { data, loading, error } = useQuery<Rewards>(REWARDS_QUERY, {
     variables: { partyId: currVegaKey?.pub },
@@ -78,7 +78,7 @@ export const RewardsIndex = () => {
     );
   }
 
-  if (loading || !data || rewardAssetLoading || !rewardAssetData?.length) {
+  if (loading || rewardAssetLoading || !rewardAssetData?.length) {
     return (
       <SplashScreen>
         <SplashLoader />
@@ -91,10 +91,8 @@ export const RewardsIndex = () => {
       <Heading title={t("pageTitleRewards")} />
       <p>{t("rewardsPara1")}</p>
       <p>{t("rewardsPara2")}</p>
-      {/* <h2>{t("activeRewardsTitle")}</h2>
-      <h3>{t("stakingTitle")}</h3>
-      <p>{t("stakingPara", { amount: "TODO" })}</p> */}
       {!loading &&
+        data &&
         !error &&
         data.epoch.timestamps.start &&
         data.epoch.timestamps.expiry && (
@@ -106,9 +104,10 @@ export const RewardsIndex = () => {
           />
         )}
       <section>
-        {currVegaKey ? (
+        {currVegaKey && vegaKeys?.length ? (
           <RewardInfo
             currVegaKey={currVegaKey}
+            vegaKeys={vegaKeys}
             data={data}
             rewardAssetId={rewardAssetData[0]}
           />
