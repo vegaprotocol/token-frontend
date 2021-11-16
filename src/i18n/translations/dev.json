@@ -429,5 +429,7 @@
   "disassociate": "Disassociate",
   "associatedWithVegaKeys": "Associated with Vega keys",
   "thisEpoch": "This Epoch",
-  "nextEpoch": "Next epoch"
+  "nextEpoch": "Next epoch",
+  "associated": "Associated",
+  "notAssociated": "Not Associated"
 }
