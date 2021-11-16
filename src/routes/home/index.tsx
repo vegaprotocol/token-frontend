@@ -62,7 +62,7 @@ const Home = ({ name }: RouteChildProps) => {
             )}
           </p>
           <Link to={Routes.VESTING}>
-            <button className="fill">
+            <button className="fill button-secondary">
               {t("Check to see if you can redeem unlocked VEGA tokens")}
             </button>
           </Link>
