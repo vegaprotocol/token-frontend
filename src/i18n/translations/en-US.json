@@ -1,3 +1,20 @@
 {
-  "VEGA": "VEGA"
+  "title": "$VEGA TOKEN",
+  "Connect to an Ethereum wallet": "Connect to associate your $VEGA",
+  "VEGA": "VEGA",
+  "Use the Ethereum wallet you want to send your tokens to. You'll also need enough Ethereum to pay gas.": "Use the Ethereum wallet that holds your $VEGA tokens. To redeem tokens you will also need enough ETH to pay gas fees.",
+  "ethereumKey": "Ethereum wallet",
+  "Connect": "Connect to see your associated $VEGA balance",
+  "The vesting contract holds VEGA tokens until they have become unlocked.": "The vesting contract holds $VEGA tokens until they have become unlocked.",
+  "Staked on Vega validator": "Staked $VEGA tokens",
+  "You can associate tokens while they are held in the vesting contract, when they unlock you will need to dissociate them before they can be redeemed.": "You can associate tokens while they are held in the vesting contract, when they unlock you will need to disassociate them before they can be redeemed.",
+  "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes.": "To participate in governance or to nominate a validator you’ll need to associate $VEGA tokens with a Vega wallet/key. \n<br/>\n<br/>\nIf you already have $VEGA tokens nominated to validators, your newly associated tokens will automatically be nominated to the same validators, in the same proportion. ",
+  "stakingStep2Text": "Your tokens need to be associated with a Vega wallet so that you can control your stake",
+  "stakingAssociateMoreButton": "Associate more $VEGA tokens with wallet",
+  "stakingDisassociateButton": "Disassociate $VEGA tokens from wallet",
+  "Check to see if you can redeem unlocked VEGA tokens": "Check to see if you can redeem unlocked $VEGA tokens",
+  "Associate VEGA tokens": "Associate $VEGA tokens",
+  "VEGA token holders can vote on proposed changes to the network and create proposals.": "$VEGA token holders can vote on proposed changes to the network and create proposals.",
+  "VEGA token holders can nominate a validator node and receive staking rewards.": "$VEGA token holders can nominate a validator node and receive staking rewards.",
+  "USE YOUR VEGA TOKENS": "USE YOUR $VEGA TOKENS"
 }
