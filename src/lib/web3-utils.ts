@@ -134,7 +134,6 @@ export interface IVegaErc20Bridge {
   withdraw(approval: {
     assetSource: string;
     amount: string;
-    expiry: string;
     nonce: string;
     signatures: string;
     targetAddress: string;

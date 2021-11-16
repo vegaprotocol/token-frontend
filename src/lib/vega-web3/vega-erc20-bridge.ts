@@ -24,7 +24,6 @@ export class VegaErc20Bridge implements IVegaErc20Bridge {
   withdraw(approval: {
     assetSource: string;
     amount: string;
-    expiry: string;
     nonce: string;
     signatures: string;
     targetAddress: string;
@@ -32,7 +31,6 @@ export class VegaErc20Bridge implements IVegaErc20Bridge {
     return this.contract.withdraw_asset(
       approval.assetSource,
       approval.amount, // No need to remove decimals as this value is already set and not manipulated by the user
-      approval.expiry,
       approval.targetAddress,
       approval.nonce,
       approval.signatures

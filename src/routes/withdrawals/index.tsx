@@ -161,7 +161,6 @@ export const Withdrawal = ({
     return erc20Bridge.withdraw({
       assetSource: erc20Approval.assetSource,
       amount: erc20Approval.amount,
-      expiry: erc20Approval.expiry,
       nonce: erc20Approval.nonce,
       signatures: erc20Approval.signatures,
       // TODO: switch when targetAddress is populated and deployed to mainnet data.erc20WithdrawalApproval.targetAddress,
