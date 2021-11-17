@@ -300,7 +300,7 @@
   "at the end of epoch": "crwdns6273:0crwdne6273:0",
   "undelegateSubmitButton": "crwdns6277:0{{amount}}crwdnd6277:0{{when}}crwdne6277:0",
   "Removing stake mid epoch will forsake any staking rewards from that epoch": "crwdns6279:0crwdne6279:0",
-  "Warning, spam protection exists": "crwdns6415:0$VEGAcrwdne6415:0",
+  "minimumNomination": "crwdns6567:0{{minTokens}}crwdnd6567:0$VEGAcrwdne6567:0",
   "lpTokensInvalidToken": "crwdns6417:0{{address}}crwdnd6417:0$VEGAcrwdne6417:0",
   "lpTxSuccessButton": "crwdns5085:0crwdne5085:0",
   "depositLpTokensHeading": "crwdns5087:0crwdne5087:0",
