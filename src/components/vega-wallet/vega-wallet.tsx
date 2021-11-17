@@ -114,7 +114,7 @@ export const VegaWallet = () => {
           )}
         </WalletCardHeader>
         <WalletCardContent>{child}</WalletCardContent>
-        <WalletCardContent>{version}</WalletCardContent>
+        {!version ? <WalletCardContent>{version}</WalletCardContent> : null}
       </WalletCard>
     </section>
   );
@@ -389,6 +389,7 @@ const VegaWalletConnected = ({
 
   const disconnect = (
     <WalletCardActions>
+      {version ? <div className="vega-wallet__version">{version}</div> : null}
       {vegaKeys.length > 1 ? (
         <button
           className="button-link"
