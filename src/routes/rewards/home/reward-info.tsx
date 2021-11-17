@@ -12,7 +12,6 @@ import {
 } from "./__generated__/Rewards";
 import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
 import { useTranslation } from "react-i18next";
-import { format } from "date-fns";
 import { HTMLSelect, FormGroup } from "@blueprintjs/core";
 
 interface RewardInfoProps {
@@ -141,10 +140,12 @@ export const RewardTable = ({ reward, delegations }: RewardTableProps) => {
           <th>{t("shareOfReward")}</th>
           <td>{reward.percentageOfTotal}</td>
         </KeyValueTableRow>
+        {/* 
+        // TODO: re show when the receivedAt value is something sane. 
         <KeyValueTableRow>
           <th>{t("received")}</th>
           <td>{format(new Date(reward.receivedAt), "dd MMM yyyy HH:mm")}</td>
-        </KeyValueTableRow>
+        </KeyValueTableRow> */}
       </KeyValueTable>
     </div>
   );
