@@ -8,6 +8,9 @@
 @import "./styles/reset";
 @import "./styles/web3modal";
 
+$bg-color-default: rgba(133, 152, 166, 0.25);
+$color-default: #bfccd6;
+
 *,
 *::before,
 *::after {
@@ -84,8 +87,15 @@ button {
 
   &:disabled,
   &.disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+    opacity: 1;
+    background: $bg-color-default;
+    color: $color-default;
+    border: 1px solid #696969;
+
+    &:hover {
+      background: $bg-color-default;
+      color: $color-default;
+    }
   }
 
   &.fill {
