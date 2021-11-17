@@ -29,6 +29,7 @@ import {
   WithdrawalsPageVariables,
   WithdrawalsPage_party_withdrawals,
 } from "./__generated__/WithdrawalsPage";
+import { useRefreshBalances } from "../../hooks/use-refresh-balances";
 
 const Withdrawals = () => {
   return (
@@ -81,6 +82,7 @@ const WithdrawPendingContainer = ({
   currVegaKey,
 }: WithdrawPendingContainerProps) => {
   const { t } = useTranslation();
+  const { ethAddress } = useWeb3();
   const ethereumConfig = useEthereumConfig();
   const { data, loading, error } = useQuery<
     WithdrawalsPage,
@@ -131,6 +133,7 @@ const WithdrawPendingContainer = ({
           <Withdrawal
             withdrawal={w}
             requiredConfirmations={ethereumConfig.confirmations}
+            ethAddress={ethAddress}
           />
         </li>
       ))}
@@ -141,16 +144,19 @@ const WithdrawPendingContainer = ({
 interface WithdrawalProps {
   withdrawal: WithdrawalsPage_party_withdrawals;
   requiredConfirmations: number;
+  ethAddress: string;
 }
 
 export const Withdrawal = ({
   withdrawal,
   requiredConfirmations,
+  ethAddress,
 }: WithdrawalProps) => {
   const { t } = useTranslation();
   const { chainId } = useWeb3();
   const erc20Approval = usePollERC20Approval(withdrawal.id);
   const { erc20Bridge } = useContracts();
+  const refreshBalances = useRefreshBalances(ethAddress);
   const { state, perform, reset } = useTransaction(() => {
     if (!erc20Approval) {
       throw new Error("Withdraw needs approval object");
@@ -168,6 +174,12 @@ export const Withdrawal = ({
       targetAddress: withdrawal.details.receiverAddress,
     });
   }, requiredConfirmations);
+
+  React.useEffect(() => {
+    if (state.txState === TxState.Complete) {
+      refreshBalances();
+    }
+  }, [state, refreshBalances]);
 
   return (
     <div>
