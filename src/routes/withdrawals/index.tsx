@@ -31,10 +31,11 @@ import {
 } from "./__generated__/WithdrawalsPage";
 
 const Withdrawals = () => {
+  const { t } = useTranslation();
   return (
     <>
-      <Heading title="Incomplete withdrawals" />
-      <p>These withdrawals need to be complete with an Ethereum transaction.</p>
+      <Heading title={t("withdrawalsTitle")} />
+      <p>{t("withdrawalsText")}</p>
       <VegaWalletContainer>
         {(currVegaKey) => (
           <WithdrawPendingContainer currVegaKey={currVegaKey} />
@@ -121,7 +122,7 @@ const WithdrawPendingContainer = ({
   }
 
   if (!withdrawals.length) {
-    return <p>You dont have any pending withdrawals</p>;
+    return <p>{t("withdrawalsNone")}</p>;
   }
 
   return (
