@@ -29,7 +29,7 @@ export const ValidatorTable = ({
     const stakedTotalPercentage =
       total.isEqualTo(0) || stakedOnNode.isEqualTo(0)
         ? "-"
-        : stakedOnNode.dividedBy(total).times(100).toString() + "%";
+        : stakedOnNode.dividedBy(total).times(100).dp(2).toString() + "%";
     return stakedTotalPercentage;
   }, [node.stakedTotalFormatted, stakedTotal]);
 
