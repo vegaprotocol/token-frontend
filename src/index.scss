@@ -73,7 +73,6 @@ button {
   color: $black;
   background-color: $white;
   border: 0;
-  border-radius: 4px;
   padding: 12px 32px;
   cursor: pointer;
 
@@ -120,6 +119,12 @@ button {
         color: $black;
       }
     }
+
+    &--inverted {
+      background-color: $white;
+      color: $black;
+      border: 1px solid $black;
+    }
   }
 
   &.button-link {
@@ -131,12 +136,17 @@ button {
     color: $white;
     outline: none;
 
-    &--dark {
-      color: $black;
-    }
-
     &:hover {
       color: $vega-yellow4 !important;
+      text-decoration: none;
+    }
+
+    &--dark {
+      color: $black !important;
+
+      &:hover {
+        color: $black !important;
+      }
     }
 
     .invert & {

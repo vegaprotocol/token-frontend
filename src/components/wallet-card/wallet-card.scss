@@ -5,6 +5,7 @@
   background-color: $white;
   color: $black;
   font-size: 14px;
+  border: 1px solid $white; // adding this white border on the white background makes both wallets the same size
 
   &--inverted {
     background-color: $black;
@@ -22,7 +23,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid $black;
     padding: 8px 0;
 
     &:last-child {
@@ -55,8 +55,6 @@
     }
 
     &--inverted {
-      border-bottom: 1px solid $white;
-
       h1 {
         color: $white;
       }

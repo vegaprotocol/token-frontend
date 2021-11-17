@@ -8,7 +8,8 @@ import semver from "semver";
 export const MINIMUM_WALLET_VERSION =
   process.env.REACT_APP_SUPPORTED_WALLET_VERSION;
 
-const DEFAULT_WALLET_URL = "http://localhost:1789";
+export const DEFAULT_WALLET_URL = "http://localhost:1789";
+export const HOSTED_WALLET_URL = "https://wallet.testnet.vega.xyz";
 const TOKEN_STORAGE_KEY = "vega_wallet_token";
 const WALLET_URL_KEY = "vega_wallet_url";
 

@@ -2,16 +2,16 @@ import { useTranslation } from "react-i18next";
 import { Callout } from "../../components/callout";
 
 interface StakeFailureProps {
-  nodeId: string;
+  nodeName: string;
 }
 
-export const StakeFailure = ({ nodeId }: StakeFailureProps) => {
+export const StakeFailure = ({ nodeName }: StakeFailureProps) => {
   const { t } = useTranslation();
   return (
     <Callout intent="error" title={t("Something went wrong")}>
       <p>
         {t("stakeFailed", {
-          node: nodeId,
+          node: nodeName,
         })}
       </p>
     </Callout>

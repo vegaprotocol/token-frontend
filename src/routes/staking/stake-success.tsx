@@ -8,15 +8,19 @@ import { StakeAction } from "./staking-form";
 interface StakeSuccessProps {
   action: StakeAction;
   amount: string;
-  nodeId: string;
+  nodeName: string;
 }
 
-export const StakeSuccess = ({ action, amount, nodeId }: StakeSuccessProps) => {
+export const StakeSuccess = ({
+  action,
+  amount,
+  nodeName,
+}: StakeSuccessProps) => {
   const { t } = useTranslation();
   const isAdd = action === "Add";
   const title = isAdd
     ? t("stakeAddSuccessTitle", { amount })
-    : t("stakeRemoveSuccessTitle", { amount, node: nodeId });
+    : t("stakeRemoveSuccessTitle", { amount, node: nodeName });
   const message = isAdd
     ? t("stakeAddSuccessMessage")
     : t("stakeRemoveSuccessMessage");

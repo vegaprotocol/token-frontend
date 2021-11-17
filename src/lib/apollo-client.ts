@@ -129,6 +129,7 @@ export function createClient() {
         },
       },
       Party: {
+        keyFields: ["id"],
         fields: {
           stake: {
             read(stake) {
