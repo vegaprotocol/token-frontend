@@ -97,14 +97,16 @@ export const AssociatePage = ({
         </Callout>
       ) : (
         <>
-          <h2 data-testid="associate-subheader">
-            {t("Where would you like to stake from?")}
-          </h2>
           {!zeroVesting && !zeroVega ? (
-            <StakingMethodRadio
-              setSelectedStakingMethod={setSelectedStakingMethod}
-              selectedStakingMethod={selectedStakingMethod}
-            />
+            <>
+              <h2 data-testid="associate-subheader">
+                {t("Where would you like to stake from?")}
+              </h2>
+              <StakingMethodRadio
+                setSelectedStakingMethod={setSelectedStakingMethod}
+                selectedStakingMethod={selectedStakingMethod}
+              />
+            </>
           ) : null}
         </>
       )}
