@@ -133,6 +133,14 @@ Then("I am taken to the {string} page", (pageVisited) => {
         case 'home':
             cy.url().should('equal',Cypress.config().baseUrl)
             break;
+        case 'rewards':
+            cy.url().should('include','/rewards')
+            cy.get('.heading__title-container').should('have.text','Rewards')
+            break;
+        case 'withdraw':
+            cy.url().should('include','/withdraw')
+            cy.get('.heading__title-container').should('have.text','Withdraw rewards')
+            break;
         default:
             throw new Error("no page specified in list")
         }

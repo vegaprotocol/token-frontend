@@ -6,7 +6,7 @@ Feature: Homepage
     Then I can see the token address is shown
     And the vesting address is shown
     And the total supply is shown correctly
-    And associated token field is showing '0.00'
+    # And associated token field is showing '0.00'
     And staked token field is showing as '0.00'
 
   Scenario: Links on the homepage
@@ -45,3 +45,5 @@ Feature: Homepage
         | Governance    | governance   |
         | DEX Liquidity | dex liquidity|
         | Home          | home         |
+        | Rewards       | rewards      |
+        | Withdraw      | withdraw     |
