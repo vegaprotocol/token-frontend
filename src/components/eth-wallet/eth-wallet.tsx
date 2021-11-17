@@ -94,12 +94,7 @@ const AssociatedAmounts = ({
 const ConnectedKey = () => {
   const { t } = useTranslation();
   const { appState } = useAppState();
-  const { lien, walletBalance, totalLockedBalance, totalVestedBalance } =
-    appState;
-
-  const totalInWallet = React.useMemo(() => {
-    return walletBalance.plus(lien);
-  }, [lien, walletBalance]);
+  const { walletBalance, totalLockedBalance, totalVestedBalance } = appState;
 
   const totalInVestingContract = React.useMemo(() => {
     return totalLockedBalance.plus(totalVestedBalance);
@@ -151,13 +146,13 @@ const ConnectedKey = () => {
         decimals={appState.decimals}
         name="VEGA"
         symbol="In Wallet"
-        balance={totalInWallet}
+        balance={walletBalance}
       />
       {Flags.STAKING_DISABLED ||
       !Object.keys(appState.associationBreakdown.stakingAssociations) ? null : (
         <AssociatedAmounts
           associations={appState.associationBreakdown.stakingAssociations}
-          notAssociated={totalInWallet}
+          notAssociated={walletBalance}
         />
       )}
       {Flags.STAKING_DISABLED ? null : (
