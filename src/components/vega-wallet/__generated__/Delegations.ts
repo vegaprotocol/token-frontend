@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { AccountType } from "./../../../__generated__/globalTypes";
+
 // ====================================================
 // GraphQL query operation: Delegations
 // ====================================================
@@ -21,6 +23,7 @@ export interface Delegations_party_delegations_node {
    * The node url eg n01.vega.xyz
    */
   id: string;
+  name: string;
 }
 
 export interface Delegations_party_delegations {
@@ -49,13 +52,75 @@ export interface Delegations_party_stake {
   currentStakeAvailableFormatted: string;
 }
 
+export interface Delegations_party_accounts_asset_source_BuiltinAsset {
+  __typename: "BuiltinAsset";
+}
+
+export interface Delegations_party_accounts_asset_source_ERC20 {
+  __typename: "ERC20";
+  /**
+   * The address of the erc20 contract
+   */
+  contractAddress: string;
+}
+
+export type Delegations_party_accounts_asset_source = Delegations_party_accounts_asset_source_BuiltinAsset | Delegations_party_accounts_asset_source_ERC20;
+
+export interface Delegations_party_accounts_asset {
+  __typename: "Asset";
+  /**
+   * The full name of the asset (e.g: Great British Pound)
+   */
+  name: string;
+  /**
+   * The id of the asset
+   */
+  id: string;
+  /**
+   * The precision of the asset
+   */
+  decimals: number;
+  /**
+   * The symbol of the asset (e.g: GBP)
+   */
+  symbol: string;
+  /**
+   * The origin source of the asset (e.g: an erc20 asset)
+   */
+  source: Delegations_party_accounts_asset_source;
+}
+
+export interface Delegations_party_accounts {
+  __typename: "Account";
+  /**
+   * Asset, the 'currency'
+   */
+  asset: Delegations_party_accounts_asset;
+  /**
+   * Account type (General, Margin, etc)
+   */
+  type: AccountType;
+  /**
+   * Balance as string - current account balance (approx. as balances can be updated several times per second)
+   */
+  balance: string;
+}
+
 export interface Delegations_party {
   __typename: "Party";
+  /**
+   * Party identifier
+   */
+  id: string;
   delegations: Delegations_party_delegations[] | null;
   /**
    * The staking informations for this Party
    */
   stake: Delegations_party_stake;
+  /**
+   * Collateral accounts relating to a party
+   */
+  accounts: Delegations_party_accounts[] | null;
 }
 
 export interface Delegations {

@@ -6,12 +6,16 @@ import { useTranslation } from "react-i18next";
 interface StakePendingProps {
   action: StakeAction;
   amount: string;
-  nodeId: string;
+  nodeName: string;
 }
 
-export const StakePending = ({ action, amount, nodeId }: StakePendingProps) => {
+export const StakePending = ({
+  action,
+  amount,
+  nodeName,
+}: StakePendingProps) => {
   const { t } = useTranslation();
-  const titleArgs = { amount, node: nodeId };
+  const titleArgs = { amount, node: nodeName };
   const isAdd = action === "Add";
   const title = isAdd
     ? t("stakeAddPendingTitle", titleArgs)

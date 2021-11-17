@@ -10,11 +10,11 @@ import { Staking as StakingQueryResult } from "./__generated__/Staking";
 export const STAKING_QUERY = gql`
   query Staking($partyId: ID!) {
     party(id: $partyId) {
+      id
       stake {
         currentStakeAvailable
         currentStakeAvailableFormatted @client
       }
-      id
       delegations {
         amount
         amountFormatted @client
@@ -84,7 +84,6 @@ export const StakingNodesContainer = ({
       if (!data?.epoch.timestamps.expiry) return;
       const now = Date.now();
       const expiry = new Date(data.epoch.timestamps.expiry).getTime();
-
 
       if (now > expiry) {
         refetch();

@@ -36,7 +36,10 @@ const initialAppState: AppState = {
   totalVestedBalance: new BigNumber(0),
   trancheError: null,
   drawerOpen: false,
-  associationBreakdown: {},
+  associationBreakdown: {
+    vestingAssociations: {},
+    stakingAssociations: {},
+  },
 };
 
 function appStateReducer(state: AppState, action: AppStateAction): AppState {
@@ -67,7 +70,7 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
       }
 
       const vegaKeys = action.keys.map((k) => {
-        const alias = k.meta?.find((m) => m.key === "alias");
+        const alias = k.meta?.find((m) => m.key === "name");
         return {
           ...k,
           alias: alias?.value || "No alias",
@@ -160,7 +163,7 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
     case AppStateActionType.SET_ASSOCIATION_BREAKDOWN: {
       return {
         ...state,
-        associationBreakdown: action.breakdown,
+        associationBreakdown: { ...action.breakdown },
       };
     }
   }

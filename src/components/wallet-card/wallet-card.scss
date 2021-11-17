@@ -3,17 +3,27 @@
 
 .wallet-card {
   background-color: $white;
-  padding: 15px;
   color: $black;
   font-size: 14px;
+  border: 1px solid $white; // adding this white border on the white background makes both wallets the same size
+
+  &--inverted {
+    background-color: $black;
+    color: $white;
+    border: 1px solid $white;
+  }
+
+  &__price {
+    &--decimal {
+      color: $text-color-deemphasise;
+    }
+  }
 
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid $black;
-    padding-bottom: 4px;
-    margin-bottom: 4px;
+    padding: 8px 0;
 
     &:last-child {
       border-bottom: 0;
@@ -30,29 +40,56 @@
         font-family: $font-mono;
       }
     }
+
+    h1 {
+      color: $black;
+      size: 32px;
+      padding: 0 8px;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      padding: 8px 0;
+    }
+
+    &--inverted {
+      h1 {
+        color: $white;
+      }
+    }
+  }
+
+  &__content {
+    margin: 4px 8px;
   }
 
   &__row {
     display: flex;
     justify-content: space-between;
     gap: 0 5px;
-    color: $text-color-deemphasise;
-    font-size: 12px;
-    text-transform: uppercase;
+    color: $black;
+    font-size: 14px;
     padding: 2px;
+    margin: 4px 0;
 
     span:first-child {
-      max-width: 140px;
+      max-width: 200px;
     }
 
-    span:last-child {
+    span:last-child:not(:first-child) {
       font-family: $font-mono;
       flex: 1 1 0;
       text-align: right;
     }
 
     &--dark {
-      color: $black;
+      color: $text-color-emphasise;
+    }
+
+    &--bold {
+      font-weight: bold;
     }
   }
 
@@ -60,6 +97,58 @@
     display: flex;
     justify-content: flex-end;
     gap: 5px;
-    margin-top: 10px;
+    padding: 5px 0;
+  }
+
+  &__asset {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    margin-top: 8px;
+
+    &-image {
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid $black;
+    }
+
+    &-image--border {
+      border: 1px solid white;
+    }
+
+    h1 {
+      color: $black;
+      font-size: 18px;
+      margin: 0;
+      padding: 0 8px;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 18px;
+      color: $text-color-deemphasise;
+      text-transform: uppercase;
+    }
+
+    &--dark {
+      h1 {
+        color: $white;
+      }
+    }
+
+    &-heading {
+      display: flex;
+    }
+
+    &-balance {
+      padding: 0 8px;
+      font-size: 20px;
+      flex-basis: 100%;
+
+      &--decimal {
+        color: $text-color-deemphasise;
+      }
+    }
   }
 }

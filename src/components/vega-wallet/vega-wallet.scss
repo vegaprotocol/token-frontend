@@ -13,6 +13,10 @@
     }
   }
 
+  &__curr-key {
+    padding: 0 8px;
+  }
+
   &__key-list {
     list-style: none;
     margin: 10px 0 5px 0;
@@ -27,7 +31,7 @@
       font-size: 14px;
 
       &:hover {
-        color: $black;
+        color: $white;
       }
     }
   }

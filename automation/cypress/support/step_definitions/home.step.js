@@ -8,7 +8,7 @@ Given("I am on the home page", () => {
 
 Given("I navigate to not found page", () => {
   mock(cy);
-  cy.visit("/not-found");
+  cy.visit("not-found");
 });
 
 Then("I can see the 404 error page", () => {
@@ -103,3 +103,37 @@ Then("the error message is displayed {string} on page", (errMsg) => {
     cy.contains(errMsg).should('be.visible')
 })
 
+When("I click on {string} on main nav", (pageTab) => {
+    cy.get('.nav-links > a').contains(pageTab).click()
+})
+
+When("I can see {string} button is clearly highlighted after click", (buttonHighlighted) => {
+    cy.get('.active').should('have.text',buttonHighlighted)
+})
+
+
+Then("I am taken to the {string} page", (pageVisited) => {
+        switch (pageVisited) {
+        case 'vesting':
+            cy.url().should('include','/vesting')
+            cy.get('.heading__title-container').should('have.text','Vesting')
+            break;
+        case 'staking':
+            cy.url().should('include','/staking')
+            cy.get('.heading__title-container').should('have.text','Staking')
+            break;
+        case 'governance':
+            cy.url().should('include','/governance')
+            cy.get('.heading__title-container').should('have.text','Governance')
+            break;
+        case 'dex liquidity':
+            cy.url().should('include','/liquidity')
+            cy.get('.heading__title-container').should('have.text','Incentivised Liquidity Programme')
+            break;
+        case 'home':
+            cy.url().should('equal',Cypress.config().baseUrl)
+            break;
+        default:
+            throw new Error("no page specified in list")
+        }
+    })
