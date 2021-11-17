@@ -466,5 +466,7 @@
   "Switch to form for removal at end of epoch": "Switch to remove at end of epoch",
   "Nominate a validator": "Nominate validator",
   "View Governance proposals": "View proposals",
-  "vegaWallet": "Vega Wallet"
+  "vegaWallet": "Vega Wallet",
+  "rewardsComingSoon": "Rewards is coming soon",
+  "withdrawsComingSoon": "Withdraws are coming soon"
 }
