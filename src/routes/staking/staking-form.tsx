@@ -167,7 +167,9 @@ export const StakingForm = ({
               clearInterval(interval);
             }
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            Sentry.captureException(err);
+          });
       }, 1000);
     }
 

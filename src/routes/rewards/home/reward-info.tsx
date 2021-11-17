@@ -38,7 +38,7 @@ export const RewardInfo = ({
 }: RewardInfoProps) => {
   const { t } = useTranslation();
   const { appDispatch } = useAppState();
-  console.log(data);
+
   // Create array of rewards per epoch
   const vegaTokenRewards = React.useMemo(() => {
     if (!data?.party || !data.party.rewardDetails?.length) return [];
@@ -164,8 +164,8 @@ export const RewardTable = ({ reward, delegations }: RewardTableProps) => {
             %
           </td>
         </KeyValueTableRow>
-        {/* 
-        // TODO: re show when the receivedAt value is something sane. 
+        {/*
+        // TODO: re show when the receivedAt value is something sane.
         <KeyValueTableRow>
           <th>{t("received")}</th>
           <td>{format(new Date(reward.receivedAt), "dd MMM yyyy HH:mm")}</td>
