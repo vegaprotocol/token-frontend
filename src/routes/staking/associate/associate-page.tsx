@@ -30,10 +30,9 @@ export const AssociatePage = ({
   const params = useSearchParams();
   const [amount, setAmount] = React.useState<string>("");
 
-  const stakingMethod = params.method as StakingMethod | "";
   const [selectedStakingMethod, setSelectedStakingMethod] = React.useState<
     StakingMethod | ""
-  >(stakingMethod);
+  >("");
 
   const {
     state: txState,
@@ -54,8 +53,23 @@ export const AssociatePage = ({
     appState: { walletBalance, totalVestedBalance, totalLockedBalance },
   } = useAppState();
 
-  const zeroVesting = totalVestedBalance.plus(totalLockedBalance).isEqualTo(0);
-  const zeroVega = walletBalance.isEqualTo(0);
+  const zeroVesting = React.useMemo(
+    () => totalVestedBalance.plus(totalLockedBalance).isEqualTo(0),
+    [totalLockedBalance, totalVestedBalance]
+  );
+  const zeroVega = React.useMemo(
+    () => walletBalance.isEqualTo(0),
+    [walletBalance]
+  );
+  React.useEffect(() => {
+    if (zeroVega && !zeroVesting) {
+      setSelectedStakingMethod(StakingMethod.Contract);
+    } else if (!zeroVega && zeroVesting) {
+      setSelectedStakingMethod(StakingMethod.Wallet);
+    } else {
+      setSelectedStakingMethod(params.method as StakingMethod | "");
+    }
+  }, [params.method, zeroVega, zeroVesting]);
   if (txState.txState !== TxState.Default) {
     return (
       <AssociateTransaction
@@ -86,10 +100,12 @@ export const AssociatePage = ({
           <h2 data-testid="associate-subheader">
             {t("Where would you like to stake from?")}
           </h2>
-          <StakingMethodRadio
-            setSelectedStakingMethod={setSelectedStakingMethod}
-            selectedStakingMethod={selectedStakingMethod}
-          />
+          {!zeroVesting && !zeroVega ? (
+            <StakingMethodRadio
+              setSelectedStakingMethod={setSelectedStakingMethod}
+              selectedStakingMethod={selectedStakingMethod}
+            />
+          ) : null}
         </>
       )}
       {selectedStakingMethod &&
