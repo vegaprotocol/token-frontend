@@ -411,7 +411,7 @@
   "associatedWithVegaKeys": "Associated with Vega keys",
   "thisEpoch": "This Epoch",
   "nextEpoch": "Next epoch",
-  "rewardsPara1": "Rewards are paid out from the treasury at the ned of an epoch.",
+  "rewardsPara1": "Rewards are paid out from the treasury at the end of an epoch.",
   "rewardsPara2": "This page lists all the rewards that a Vega key has received.",
   "noRewards": "This Vega key has not received any rewards.",
   "rewardType": "Reward type",
