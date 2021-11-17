@@ -12,7 +12,7 @@ export const NETWORK_PARAMS_QUERY = gql`
   }
 `;
 
-export const SPAM_PROTECTION_MIN_TOKENS = "spam.protection.delegation.min.tokens";
+export const VALIDATOR_DELEGATION_MIN_AMOUNT = "validators.delegation.minAmount";
 
 export function useNetworkParam(params: string[]) {
   const { data, loading, error } = useQuery<NetworkParams, never>(
