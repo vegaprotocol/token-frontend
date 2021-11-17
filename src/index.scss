@@ -10,6 +10,7 @@
 
 $bg-color-default: rgba(133, 152, 166, 0.25);
 $color-default: #bfccd6;
+$border-disabled: #696969;
 
 *,
 *::before,
@@ -90,7 +91,7 @@ button {
     opacity: 1;
     background: $bg-color-default;
     color: $color-default;
-    border: 1px solid #696969;
+    border: 1px solid $border-disabled;
 
     &:hover {
       background: $bg-color-default;
