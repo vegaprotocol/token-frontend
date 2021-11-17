@@ -20,6 +20,7 @@ export const VegaWalletContainer = ({ children }: VegaWalletContainerProps) => {
     return (
       <p>
         <button
+          className="fill"
           onClick={() =>
             appDispatch({
               type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,
