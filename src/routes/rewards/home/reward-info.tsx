@@ -156,13 +156,7 @@ export const RewardTable = ({ reward, delegations }: RewardTableProps) => {
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("shareOfReward")}</th>
-          <td>
-            {new BigNumber(reward.percentageOfTotal)
-              .times(100)
-              .dp(2)
-              .toString()}
-            %
-          </td>
+          <td>{new BigNumber(reward.percentageOfTotal).dp(2).toString()}%</td>
         </KeyValueTableRow>
         {/*
         // TODO: re show when the receivedAt value is something sane.
