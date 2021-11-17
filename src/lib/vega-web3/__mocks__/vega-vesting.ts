@@ -41,7 +41,8 @@ class MockedVesting implements IVegaVesting {
   }
 
   async totalStaked(): Promise<BigNumber> {
-    const res = await this.performFetch("staked/total");
+    // const res = await this.performFetch("staked/total");
+    const res = "100"
     return new BigNumber(addDecimal(new BigNumber(res), this.decimals));
   }
 

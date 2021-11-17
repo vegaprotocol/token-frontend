@@ -44,12 +44,14 @@ class MockedVegaStaking implements IVegaStaking {
   }
 
   async stakeBalance(address: string, vegaKey: string): Promise<BigNumber> {
-    const res = await this.performFetch("balance");
+    //const res = await this.performFetch("balance");
+    const res = "100"
     return new BigNumber(addDecimal(new BigNumber(res), this.decimals));
   }
 
   async totalStaked(): Promise<BigNumber> {
-    const res = await this.performFetch("balance/total");
+    // const res = await this.performFetch("balance/total");
+    const res = "100"
     return new BigNumber(addDecimal(new BigNumber(res), this.decimals));
   }
 

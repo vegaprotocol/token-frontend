@@ -69,8 +69,8 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
       }
 
       if (
-        keysErr === VegaWalletServiceErrors.SERVICE_UNAVAILABLE ||
-        versionErr === VegaWalletServiceErrors.SERVICE_UNAVAILABLE
+        (keysErr && keysErr === VegaWalletServiceErrors.SERVICE_UNAVAILABLE) ||
+        (versionErr && versionErr === VegaWalletServiceErrors.SERVICE_UNAVAILABLE)
       ) {
         appDispatch({ type: AppStateActionType.VEGA_WALLET_DOWN });
         return;

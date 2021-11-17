@@ -37,7 +37,7 @@ class MockedToken implements IVegaToken {
 
   async balanceOf(address: string): Promise<BigNumber> {
     const decimals = await this.decimals();
-    const res = await this.performFetch("balance");
+    const res = "100"
     return new BigNumber(addDecimal(new BigNumber(res), decimals));
   }
 
@@ -46,7 +46,7 @@ class MockedToken implements IVegaToken {
   }
 
   async allowance(address: string): Promise<BigNumber> {
-    const res = await this.performFetch("allowance");
+    const res = "100"
     return new BigNumber(addDecimal(new BigNumber(res), this.mockDecimals));
   }
 }

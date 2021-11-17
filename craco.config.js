@@ -9,6 +9,8 @@ module.exports = function (options) {
   const isMock = ["1", "true"].includes(process.env.REACT_APP_MOCKED);
   const detectProviderPath = isMock ? "../../__mocks__/@metamask" : "@metamask";
   const vegaWeb3Path = isMock ? "vega-web3/__mocks__" : "vega-web3";
+  const vegaWalletServicePath = isMock ? "vega-wallet/__mocks__/vega-wallet-service" : "vega-wallet/vega-wallet-service";
+  const web3ProviderPath = isMock ? "__mocks__/web3-provider" : "web3-provider";
   const useTranchesPath = isMock ? "__mocks__/use-tranches" : "use-tranches";
   const graphQlProviderPath = isMock
     ? "graphql-provider/__mocks__"
@@ -73,6 +75,24 @@ module.exports = function (options) {
             resource.request = resource.request.replace(
               /use-tranches/,
               `${useTranchesPath}`
+            );
+          }
+        ),
+        new webpack.NormalModuleReplacementPlugin(
+          /(.*)contexts\/web3-provider(\.*)/,
+          function (resource) {
+            resource.request = resource.request.replace(
+              /contexts\/web3-provider/,
+              `${web3ProviderPath}`
+            );
+          }
+        ),
+        new webpack.NormalModuleReplacementPlugin(
+          /(.*)vega-wallet\/vega-wallet-service(\.*)/,
+          function (resource) {
+            resource.request = resource.request.replace(
+              /vega-wallet\/vega-wallet-service/,
+              `${vegaWalletServicePath}`
             );
           }
         ),
