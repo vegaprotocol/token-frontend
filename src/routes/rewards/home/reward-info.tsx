@@ -17,6 +17,7 @@ import {
 } from "../../../contexts/app-state/app-state-context";
 import { useTranslation } from "react-i18next";
 import { HTMLSelect, FormGroup } from "@blueprintjs/core";
+import { BigNumber } from "../../../lib/bignumber";
 
 interface RewardInfoProps {
   data: Rewards | undefined;
@@ -37,6 +38,7 @@ export const RewardInfo = ({
 }: RewardInfoProps) => {
   const { t } = useTranslation();
   const { appDispatch } = useAppState();
+  console.log(data);
   // Create array of rewards per epoch
   const vegaTokenRewards = React.useMemo(() => {
     if (!data?.party || !data.party.rewardDetails?.length) return [];
@@ -118,15 +120,18 @@ export const RewardTable = ({ reward, delegations }: RewardTableProps) => {
   const stakeForEpoch = React.useMemo(() => {
     if (!delegations.length) return "0";
 
-    const delegationForEpoch = delegations.find(
-      (d) => d.epoch === reward.epoch
-    );
+    const delegationsForEpoch = delegations
+      .filter((d) => d.epoch === reward.epoch)
+      .map((d) => new BigNumber(d.amountFormatted));
 
-    if (delegationForEpoch) {
-      return delegationForEpoch.amountFormatted;
+    if (delegationsForEpoch.length) {
+      return BigNumber.sum.apply(null, [
+        new BigNumber(0),
+        ...delegationsForEpoch,
+      ]);
     }
 
-    return "0";
+    return new BigNumber(0);
   }, [delegations, reward.epoch]);
 
   return (
@@ -151,7 +156,13 @@ export const RewardTable = ({ reward, delegations }: RewardTableProps) => {
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("shareOfReward")}</th>
-          <td>{reward.percentageOfTotal}</td>
+          <td>
+            {new BigNumber(reward.percentageOfTotal)
+              .times(100)
+              .dp(2)
+              .toString()}
+            %
+          </td>
         </KeyValueTableRow>
         {/* 
         // TODO: re show when the receivedAt value is something sane. 
