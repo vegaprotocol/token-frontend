@@ -15,7 +15,6 @@ export const STAKING_QUERY = gql`
         currentStakeAvailable
         currentStakeAvailableFormatted @client
       }
-      id
       delegations {
         amount
         amountFormatted @client

@@ -115,9 +115,14 @@ export const useTransaction = (
     }
   }, [performTransaction, requiredConfirmations, handleError]);
 
+  const reset = () => {
+    dispatch({ type: TransactionActionType.TX_RESET });
+  };
+
   return {
     state,
     dispatch,
     perform,
+    reset,
   };
 };

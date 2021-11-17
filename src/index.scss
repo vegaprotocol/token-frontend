@@ -159,14 +159,10 @@ button {
   }
 }
 
-// FORM ELEMENTS
-select,
-input[type="text"],
-input[type="password"] {
-  width: 100%;
-  padding: 12px;
-  border-radius: 4px;
-  background-color: #3f3f3f;
-  color: white;
-  border: 0;
+.bp3-input-group.uneditable {
+  .bp3-input:disabled,
+  .bp3-input.bp3-disabled {
+    color: black;
+    background-color: white;
+  }
 }
