@@ -141,6 +141,12 @@
     color: $black;
   }
 
+  > a.active {
+    &:hover {
+      color: $black;
+    }
+  }
+
   > a {
     color: $white;
     text-decoration: none;
