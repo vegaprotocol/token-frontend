@@ -1,6 +1,6 @@
 import React from "react";
 import { useWeb3 } from "../web3-context/web3-context";
-import { ContractsContext } from "./contracts-context";
+import { ContractsContext, ContractsContextShape } from "./contracts-context";
 import { ADDRESSES } from "../../config";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
@@ -17,13 +17,15 @@ import StakingAbi from "../../lib/VEGA_WEB3/vega-staking";
 import VegaVesting from "../../lib/VEGA_WEB3/vega-vesting";
 // @ts-ignore
 import VegaClaim from "../../lib/VEGA_WEB3/vega-claim";
+import { VegaErc20Bridge } from "../../lib/vega-web3/vega-erc20-bridge";
 
 /**
  * Provides Vega Ethereum contract instances to its children.
  */
 export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
   const { provider, signer } = useWeb3();
-  const [contracts, setContracts] = React.useState<any>(null);
+  const [contracts, setContracts] =
+    React.useState<ContractsContextShape | null>(null);
 
   React.useEffect(() => {
     let cancelled = false;
@@ -50,6 +52,11 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
             signer,
             ADDRESSES.claimAddress,
             decimals
+          ),
+          erc20Bridge: new VegaErc20Bridge(
+            provider as any,
+            signer,
+            ADDRESSES.erc20Bridge
           ),
         });
       }

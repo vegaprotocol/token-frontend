@@ -55,10 +55,35 @@ export interface VoteSubmissionInput {
   };
 }
 
+export interface WithdrawSubmissionInput {
+  pubKey: string;
+  withdrawSubmission: {
+    amount: string;
+    asset: string;
+    ext: {
+      erc20: {
+        receiverAddress: string;
+      };
+    };
+  };
+}
+
 export type CommandSyncInput =
   | DelegateSubmissionInput
   | UndelegateSubmissionInput
-  | VoteSubmissionInput;
+  | VoteSubmissionInput
+  | WithdrawSubmissionInput;
+
+export interface CommandSyncResponse {
+  inputData: string;
+  pubKey: string;
+  signature: {
+    algo: string;
+    value: string;
+    version: number;
+  };
+  version: number;
+}
 
 export interface IVegaWalletService {
   url: string;
@@ -188,7 +213,9 @@ export class VegaWalletService implements IVegaWalletService {
     }
   }
 
-  async commandSync(body: CommandSyncInput) {
+  async commandSync(
+    body: CommandSyncInput
+  ): Promise<[string | undefined, CommandSyncResponse | undefined]> {
     if (!this.token) {
       return [Errors.NO_TOKEN, undefined];
     }

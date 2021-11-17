@@ -144,7 +144,7 @@ const VegaWalletNotConnected = () => {
       data-testid="connect-vega"
       type="button"
     >
-      {t("Connect")}
+      {t("connectVegaWallet")}
     </button>
   );
 };
@@ -165,8 +165,8 @@ const VegaWalletAssetList = ({ accounts }: VegaWalletAssetsListProps) => {
           {t("assets")}
         </BulletHeader>
       </WalletCardHeader>
-      {accounts.map((a) => (
-        <WalletCardAsset {...a} dark={true} />
+      {accounts.map((a, i) => (
+        <WalletCardAsset key={i} {...a} dark={true} />
       ))}
     </>
   );

@@ -1,10 +1,12 @@
-import { FieldFunctionOptions, Operation } from "@apollo/client";
 import {
   ApolloClient,
   from,
   HttpLink,
   InMemoryCache,
   split,
+  Reference,
+  FieldFunctionOptions,
+  Operation,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
 import { RetryLink } from "@apollo/client/link/retry";
@@ -33,8 +35,8 @@ export function createClient() {
   // Replace http with ws, preserving if its a secure connection eg. https => wss
   urlWS.protocol = urlWS.protocol.replace("http", "ws");
 
-  const formatUintToNumber = (amount: string) =>
-    addDecimal(new BigNumber(amount), 18).toString();
+  const formatUintToNumber = (amount: string, decimals = 18) =>
+    addDecimal(new BigNumber(amount), decimals).toString();
 
   const createReadField = (fieldName: string) => ({
     [`${fieldName}Formatted`]: {
@@ -68,6 +70,25 @@ export function createClient() {
           },
         },
       },
+      Account: {
+        fields: {
+          balanceFormatted: {
+            read(_: string, options: FieldFunctionOptions) {
+              const balance = options.readField("balance");
+              const asset = options.readField("asset");
+              const decimals = options.readField(
+                "decimals",
+                asset as Reference
+              );
+              if (typeof balance !== "string") return "0";
+              if (typeof decimals !== "number") return "0";
+              return balance && decimals
+                ? formatUintToNumber(balance, decimals)
+                : "0";
+            },
+          },
+        },
+      },
       Delegation: {
         keyFields: false,
         // Only get full updates
@@ -76,6 +97,18 @@ export function createClient() {
         },
         fields: {
           ...createReadField("amount"),
+        },
+      },
+      Reward: {
+        keyFields: false,
+        fields: {
+          ...createReadField("amount"),
+        },
+      },
+      RewardPerAssetDetail: {
+        keyFields: false,
+        fields: {
+          ...createReadField("totalAmount"),
         },
       },
       Node: {

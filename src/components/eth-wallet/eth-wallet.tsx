@@ -44,10 +44,12 @@ const AssociatedAmounts = ({
   const associationAmounts = React.useMemo(() => {
     const totals = vestingAssociationByVegaKey.map(([, amount]) => amount);
     const associated = BigNumber.sum.apply(null, [new BigNumber(0), ...totals]);
+    const notAssociated = total.minus(associated).absoluteValue();
+
     return {
       total,
       associated,
-      notAssociated: total.minus(associated),
+      notAssociated,
     };
   }, [total, vestingAssociationByVegaKey]);
 

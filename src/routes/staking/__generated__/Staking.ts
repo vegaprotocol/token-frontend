@@ -46,13 +46,13 @@ export interface Staking_party_delegations {
 export interface Staking_party {
   __typename: "Party";
   /**
-   * The staking informations for this Party
-   */
-  stake: Staking_party_stake;
-  /**
    * Party identifier
    */
   id: string;
+  /**
+   * The staking informations for this Party
+   */
+  stake: Staking_party_stake;
   delegations: Staking_party_delegations[] | null;
 }
 
