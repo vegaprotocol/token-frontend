@@ -91,11 +91,10 @@ export const StakingForm = ({
   );
 
   const { data } = useNetworkParam([SPAM_PROTECTION_MIN_TOKENS]);
-  const minTokens = new BigNumber(data && data.length === 1 ? data[0] : "");
-  const minTokensWithDecimals = addDecimal(
-    minTokens,
-    appState.decimals
-  );
+  const minTokensWithDecimals = React.useMemo(() => {
+    const minTokens = new BigNumber(data && data.length === 1 ? data[0] : "");
+    return addDecimal(minTokens, appState.decimals);
+  }, [appState.decimals, data]);
 
   const maxDelegation = React.useMemo(() => {
     if (action === "Add") {
