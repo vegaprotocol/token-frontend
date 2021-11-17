@@ -30,10 +30,17 @@ import {
   WithdrawalsPage_party_withdrawals,
 } from "./__generated__/WithdrawalsPage";
 import { useRefreshBalances } from "../../hooks/use-refresh-balances";
+import { Flags } from "../../config";
 
 const Withdrawals = () => {
   const { t } = useTranslation();
-  return (
+
+  return Flags.WITHDRAWS_DISABLED ? (
+    <>
+      <Heading title={t("withdrawPageHeading")} />
+      <div>{t("withdrawsComingSoon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</div>
+    </>
+  ) : (
     <>
       <Heading title={t("withdrawalsTitle")} />
       <p>{t("withdrawalsText")}</p>
