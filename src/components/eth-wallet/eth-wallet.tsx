@@ -28,10 +28,10 @@ const removeLeadingAddressSymbol = (key: string) => {
 
 const AssociatedAmounts = ({
   associations,
-  total,
+  notAssociated,
 }: {
   associations: { [key: string]: BigNumber };
-  total: BigNumber;
+  notAssociated: BigNumber;
 }) => {
   const { t } = useTranslation();
   const vestingAssociationByVegaKey = React.useMemo(
@@ -44,17 +44,13 @@ const AssociatedAmounts = ({
   const associationAmounts = React.useMemo(() => {
     const totals = vestingAssociationByVegaKey.map(([, amount]) => amount);
     const associated = BigNumber.sum.apply(null, [new BigNumber(0), ...totals]);
-    const notAssociated = BigNumber.max(
-      total.minus(associated),
-      new BigNumber(0)
-    );
 
     return {
-      total,
+      total: associated.plus(notAssociated),
       associated,
       notAssociated,
     };
-  }, [total, vestingAssociationByVegaKey]);
+  }, [notAssociated, vestingAssociationByVegaKey]);
 
   return (
     <>
@@ -109,6 +105,17 @@ const ConnectedKey = () => {
     return totalLockedBalance.plus(totalVestedBalance);
   }, [totalLockedBalance, totalVestedBalance]);
 
+  const notAssociatedInContract = React.useMemo(() => {
+    const totals = Object.values(
+      appState.associationBreakdown.vestingAssociations
+    );
+    const associated = BigNumber.sum.apply(null, [new BigNumber(0), ...totals]);
+    return totalInVestingContract.minus(associated);
+  }, [
+    appState.associationBreakdown.vestingAssociations,
+    totalInVestingContract,
+  ]);
+
   return (
     <>
       <WalletCardAsset
@@ -136,7 +143,7 @@ const ConnectedKey = () => {
         .length ? null : (
         <AssociatedAmounts
           associations={appState.associationBreakdown.vestingAssociations}
-          total={totalInVestingContract}
+          notAssociated={notAssociatedInContract}
         />
       )}
       <WalletCardAsset
@@ -150,7 +157,7 @@ const ConnectedKey = () => {
       !Object.keys(appState.associationBreakdown.stakingAssociations) ? null : (
         <AssociatedAmounts
           associations={appState.associationBreakdown.stakingAssociations}
-          total={totalInWallet}
+          notAssociated={totalInWallet}
         />
       )}
       {Flags.STAKING_DISABLED ? null : (
