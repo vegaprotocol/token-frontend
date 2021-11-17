@@ -34,6 +34,10 @@ export interface PartyDelegations_party_delegations {
 
 export interface PartyDelegations_party {
   __typename: "Party";
+  /**
+   * Party identifier
+   */
+  id: string;
   delegations: PartyDelegations_party_delegations[] | null;
 }
 

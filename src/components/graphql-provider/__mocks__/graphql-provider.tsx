@@ -24,8 +24,13 @@ import { Parties } from "../../../routes/governance/__generated__/Parties";
 import { PARTIES_QUERY } from "../../../routes/governance/vote-details";
 import { generateProposal } from "../../../routes/governance/test-helpers/generate-proposals";
 import { STAKING_QUERY } from "../../../routes/staking/staking-nodes-container";
+import { Rewards } from "../../../routes/rewards/home/__generated__/Rewards";
+import { REWARDS_QUERY } from "../../../routes/rewards/home";
+import { NETWORK_PARAMS_QUERY } from "../../../hooks/use-network-param";
+import { NetworkParams } from "../../../hooks/__generated__/NetworkParams";
 
-const partyId = "pub";
+const PARTY_ID = "pub";
+const REWARD_ASSET_ID = "reward-asset-id";
 
 const nodes: Staking_nodes[] = [
   {
@@ -89,7 +94,7 @@ const nodeData: Staking_nodeData = {
 const MOCK_STAKING_QUERY: MockedResponse<Staking> = {
   request: {
     query: STAKING_QUERY,
-    variables: { partyId },
+    variables: { partyId: PARTY_ID },
   },
   result: {
     data: {
@@ -110,7 +115,7 @@ const MOCK_STAKING_QUERY: MockedResponse<Staking> = {
           currentStakeAvailable: "0.00000000000001",
           currentStakeAvailableFormatted: "0.00000000000001",
         },
-        id: partyId,
+        id: PARTY_ID,
         delegations: [
           {
             __typename: "Delegation",
@@ -130,7 +135,7 @@ const MOCK_STAKING_QUERY: MockedResponse<Staking> = {
 const MOCK_PARTY_DELEGATIONS: MockedResponse<PartyDelegations> = {
   request: {
     query: PARTY_DELEGATIONS_QUERY,
-    variables: { partyId },
+    variables: { partyId: PARTY_ID },
   },
   result: {
     data: {
@@ -140,6 +145,7 @@ const MOCK_PARTY_DELEGATIONS: MockedResponse<PartyDelegations> = {
       },
       party: {
         __typename: "Party",
+        id: PARTY_ID,
         delegations: [
           {
             __typename: "Delegation",
@@ -329,6 +335,108 @@ const MOCK_PARTIES: MockedResponse<Parties> = {
   },
 };
 
+const MOCK_REWARDS: MockedResponse<Rewards> = {
+  request: {
+    query: REWARDS_QUERY,
+    variables: {
+      partyId:
+        // TODO: Figure out a better way to sync up vega key with party id for mocking
+        "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
+    },
+  },
+  result: {
+    data: {
+      party: {
+        __typename: "Party",
+        // TODO: Figure out a better way to sync up vega key with party id for mocking
+        id: "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
+        rewardDetails: [
+          {
+            __typename: "RewardPerAssetDetail",
+            asset: {
+              __typename: "Asset",
+              id: REWARD_ASSET_ID,
+              symbol: "asset-symbol",
+            },
+            rewards: [
+              {
+                __typename: "Reward",
+                assetId: REWARD_ASSET_ID,
+                partyId:
+                  "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
+                epoch: 1,
+                amount: "100",
+                amountFormatted: "100.00",
+                percentageOfTotal: "50",
+                receivedAt: "2020-01-01T00:00:00",
+              },
+              {
+                __typename: "Reward",
+                assetId: REWARD_ASSET_ID,
+                partyId:
+                  "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
+                epoch: 3,
+                amount: "110",
+                amountFormatted: "110.00",
+                percentageOfTotal: "50",
+                receivedAt: "2020-01-01T00:00:00",
+              },
+              {
+                __typename: "Reward",
+                assetId: REWARD_ASSET_ID,
+                partyId:
+                  "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
+                epoch: 2,
+                amount: "120",
+                amountFormatted: "120.00",
+                percentageOfTotal: "50",
+                receivedAt: "2020-01-01T00:00:00",
+              },
+            ],
+            totalAmount: "130",
+            totalAmountFormatted: "130.00",
+          },
+        ],
+        delegations: [
+          {
+            __typename: "Delegation",
+            amount: "100",
+            amountFormatted: "100.00",
+            epoch: 1,
+          },
+        ],
+      },
+      epoch: {
+        __typename: "Epoch",
+        id: "1",
+        timestamps: {
+          __typename: "EpochTimestamps",
+          start: "2020-01-01T00:00:00",
+          end: "2020-01-01T00:00:00",
+          expiry: "2020-01-01T00:00:00",
+        },
+      },
+    },
+  },
+};
+
+const MOCK_NETWORK_PARAMS: MockedResponse<NetworkParams> = {
+  request: {
+    query: NETWORK_PARAMS_QUERY,
+  },
+  result: {
+    data: {
+      networkParameters: [
+        {
+          __typename: "NetworkParameter",
+          key: "reward.asset",
+          value: "reward-asset-id",
+        },
+      ],
+    },
+  },
+};
+
 export const GraphQlProvider = ({
   children,
 }: {
@@ -342,6 +450,8 @@ export const GraphQlProvider = ({
         MOCK_PROPOSALS,
         MOCK_PROPOSALS_SUBSCRIPTION,
         MOCK_PARTIES,
+        MOCK_REWARDS,
+        MOCK_NETWORK_PARAMS,
       ]}
     >
       {children}

@@ -1,11 +1,11 @@
 import { ethers } from "ethers";
 
 export enum TxState {
-  Default,
-  Requested,
-  Pending,
-  Complete,
-  Error,
+  Default = "Default",
+  Requested = "Requested",
+  Pending = "Pending",
+  Complete = "Complete",
+  Error = "Error",
 }
 
 export interface TransactionState {

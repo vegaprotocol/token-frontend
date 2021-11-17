@@ -33,6 +33,10 @@ export interface PartyStakeLinkings_party_stake {
 export interface PartyStakeLinkings_party {
   __typename: "Party";
   /**
+   * Party identifier
+   */
+  id: string;
+  /**
    * The staking informations for this Party
    */
   stake: PartyStakeLinkings_party_stake;

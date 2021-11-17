@@ -4,18 +4,31 @@ import { useTranslation } from "react-i18next";
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
 import { truncateMiddle } from "../../lib/truncate-middle";
+import { Staking_epoch } from "./__generated__/Staking";
+import { EpochCountdown } from "../../components/epoch-countdown";
 
 interface NodeListProps {
   nodes: NodeListItemProps[];
+  epoch: Staking_epoch | undefined;
 }
 
-export const NodeList = ({ nodes }: NodeListProps) => {
+export const NodeList = ({ nodes, epoch }: NodeListProps) => {
   return (
-    <ul className="node-list">
-      {nodes.map((n, i) => {
-        return <NodeListItem key={i} {...n} />;
-      })}
-    </ul>
+    <>
+      {epoch && epoch.timestamps.start && epoch.timestamps.expiry && (
+        <EpochCountdown
+          containerClass="staking-node__epoch"
+          id={epoch.id}
+          startDate={new Date(epoch.timestamps.start)}
+          endDate={new Date(epoch.timestamps.expiry)}
+        />
+      )}
+      <ul className="node-list">
+        {nodes.map((n, i) => {
+          return <NodeListItem key={i} {...n} />;
+        })}
+      </ul>
+    </>
   );
 };
 
@@ -64,12 +77,12 @@ export const NodeListItem = ({
         <tbody>
           <tr>
             <th>{t("Total stake")}</th>
-            <td>{formatNumber(stakedOnNode)}</td>
+            <td>{formatNumber(stakedOnNode, 2)}</td>
             <td>{stakedTotalPercentage}</td>
           </tr>
           <tr>
             <th>{t("Your stake")}</th>
-            <td>{formatNumber(userStake)}</td>
+            <td>{formatNumber(userStake, 2)}</td>
             <td>{userStakePercentage}</td>
           </tr>
         </tbody>

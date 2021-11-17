@@ -4,6 +4,7 @@ import { Intent, ProgressBar } from "@blueprintjs/core";
 import { format, formatDistanceStrict } from "date-fns";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
+import arrow from "../../images/back.png";
 
 export const DATE_FORMAT = "yyyy.MM.dd HH:mm";
 
@@ -61,23 +62,25 @@ export function EpochCountdown({
       data-testid="epoch-countdown"
       className={`${containerClass} epoch-countdown`}
     >
-      <h3>
-        {t("Epoch")} {id}
-      </h3>
+      <div className="epoch-countdown__title">
+        <h3>
+          {t("Epoch")} {id}
+        </h3>
+        <p>{t("Next epoch in {{endText}}", { endText: endsIn })}</p>
+      </div>
       <ProgressBar
         animate={false}
         value={progress}
         stripes={false}
         intent={Intent.NONE}
       />
-      <p>
-        {t("Started")} {format(startDate, DATE_FORMAT)}
-      </p>
-      <p>
-        {Date.now() > endDate.getTime()
-          ? t("Ended on {{endText}}", { endText: format(endDate, DATE_FORMAT) })
-          : t("Ends in {{endText}}", { endText: endsIn })}
-      </p>
+      <div className="epoch-countdown__time-range">
+        <p>{format(startDate, DATE_FORMAT)}</p>
+        <div className="epoch-countdown__arrow">
+          <img alt="arrow" src={arrow} />
+        </div>
+        <p>{format(endDate, DATE_FORMAT)}</p>
+      </div>
     </div>
   );
 }
