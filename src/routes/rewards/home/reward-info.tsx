@@ -10,7 +10,11 @@ import {
   Rewards_party_delegations,
   Rewards_party_rewardDetails_rewards,
 } from "./__generated__/Rewards";
-import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
+import {
+  AppStateActionType,
+  useAppState,
+  VegaKeyExtended,
+} from "../../../contexts/app-state/app-state-context";
 import { useTranslation } from "react-i18next";
 import { HTMLSelect, FormGroup } from "@blueprintjs/core";
 
@@ -32,6 +36,7 @@ export const RewardInfo = ({
   rewardAssetId,
 }: RewardInfoProps) => {
   const { t } = useTranslation();
+  const { appDispatch } = useAppState();
   // Create array of rewards per epoch
   const vegaTokenRewards = React.useMemo(() => {
     if (!data?.party || !data.party.rewardDetails?.length) return [];
@@ -73,6 +78,14 @@ export const RewardInfo = ({
             value: k.pub,
           }))}
           value={currVegaKey.pub}
+          onChange={(e) => {
+            const key = vegaKeys.find((k) => k.pub === e.target.value);
+            if (!key) throw new Error("Selected key not in key list");
+            appDispatch({
+              type: AppStateActionType.VEGA_WALLET_SET_KEY,
+              key,
+            });
+          }}
         />
       </FormGroup>
       {vegaTokenRewards.length ? (
