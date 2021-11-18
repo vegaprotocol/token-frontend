@@ -3,4 +3,6 @@ export const Links = {
   INCENTIVE_PROGRAM_BLOG_POST:
     "https://blog.vega.xyz/sushiswap-how-to-get-vega-liquidity-rewards-9848e4cadee9",
   SUSHI_PAIRS: "https://analytics.sushi.com/pairs/",
+  NOLT: "https://vega-testnet.nolt.io",
+  GITHUB: "https://github.com/vegaprotocol/token-frontend",
 };
