@@ -236,6 +236,7 @@ export const Withdrawal = ({
         </KeyValueTableRow>
       </KeyValueTable>
       <TransactionButton
+        text={t("withdrawalsCompleteButton")}
         transactionState={state}
         forceTxState={withdrawal.txHash ? TxState.Complete : undefined}
         forceTxHash={withdrawal.txHash}

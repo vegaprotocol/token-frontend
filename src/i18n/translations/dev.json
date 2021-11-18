@@ -433,7 +433,8 @@
   "withdrawFormSubmitButtonPending": "Preparing",
   "withdrawalsTitle": "Incomplete withdrawals",
   "withdrawalsText": "These withdrawals need to be completed with an Ethereum transaction.",
-  "withdrawalsNone:": "You dont have any pending withdrawals.",
+  "withdrawalsNone": "You dont have any pending withdrawals.",
+  "withdrawalsCompleteButton": "Finish withdrawal",
   "signature": "Signature",
   "created": "Created",
   "toEthereum": "To (Ethereum)",
@@ -483,5 +484,6 @@
   "Signature": "Signature",
   "voteFailedReason": "Vote closed. Failed due to: ",
   "votePassed": "Vote passed.",
-  "subjectToFurtherActions": "Vote passed {{daysAgo}} subject to further actions."
+  "subjectToFurtherActions": "Vote passed {{daysAgo}} subject to further actions.",
+  "transactionHashPrompt": "Transaction hash will appear here once the transaction is approved in your Ethereum wallet"
 }
