@@ -111,18 +111,26 @@ const ConnectedKey = () => {
     totalInVestingContract,
   ]);
 
+  const walletWithAssociations = React.useMemo(() => {
+    const totals = Object.values(
+      appState.associationBreakdown.stakingAssociations
+    );
+    const associated = BigNumber.sum.apply(null, [new BigNumber(0), ...totals]);
+    return walletBalance.plus(associated);
+  }, [appState.associationBreakdown.stakingAssociations, walletBalance]);
+
   return (
     <>
-      <WalletCardAsset
-        image={vegaVesting}
-        decimals={appState.decimals}
-        name="VEGA"
-        symbol="In vesting contract"
-        balance={totalInVestingContract}
-      />
       {Flags.REDEEM_DISABLED ||
       totalVestedBalance.plus(totalLockedBalance).isEqualTo(0) ? null : (
         <>
+          <WalletCardAsset
+            image={vegaVesting}
+            decimals={appState.decimals}
+            name="VEGA"
+            symbol="In vesting contract"
+            balance={totalInVestingContract}
+          />
           <LockedProgress
             locked={totalLockedBalance}
             unlocked={totalVestedBalance}
@@ -146,7 +154,7 @@ const ConnectedKey = () => {
         decimals={appState.decimals}
         name="VEGA"
         symbol="In Wallet"
-        balance={walletBalance}
+        balance={walletWithAssociations}
       />
       {Flags.STAKING_DISABLED ||
       !Object.keys(appState.associationBreakdown.stakingAssociations) ? null : (
