@@ -65,7 +65,7 @@ export const RewardInfo = ({
 
   return (
     <div className="reward-info">
-      <h3>{t("Connected Vega key")}</h3>
+      <h3 className="reward-info__sub-heading">{t("Connected Vega key")}</h3>
       <p>{currVegaKey.pub}</p>
       {vegaTokenRewards.length ? (
         vegaTokenRewards.map((reward, i) => {
