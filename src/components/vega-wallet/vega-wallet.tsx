@@ -114,7 +114,6 @@ export const VegaWallet = () => {
           )}
         </WalletCardHeader>
         <WalletCardContent>{child}</WalletCardContent>
-        {!version ? <WalletCardContent>{version}</WalletCardContent> : null}
       </WalletCard>
     </section>
   );
