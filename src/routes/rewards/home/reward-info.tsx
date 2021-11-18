@@ -10,19 +10,13 @@ import {
   Rewards_party_delegations,
   Rewards_party_rewardDetails_rewards,
 } from "./__generated__/Rewards";
-import {
-  AppStateActionType,
-  useAppState,
-  VegaKeyExtended,
-} from "../../../contexts/app-state/app-state-context";
+import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
 import { useTranslation } from "react-i18next";
-import { HTMLSelect, FormGroup } from "@blueprintjs/core";
 import { BigNumber } from "../../../lib/bignumber";
 
 interface RewardInfoProps {
   data: Rewards | undefined;
   currVegaKey: VegaKeyExtended;
-  vegaKeys: VegaKeyExtended[];
   rewardAssetId: string;
 }
 
@@ -33,11 +27,9 @@ const DEFAULT_REWARD_TYPE = "Staking";
 export const RewardInfo = ({
   data,
   currVegaKey,
-  vegaKeys,
   rewardAssetId,
 }: RewardInfoProps) => {
   const { t } = useTranslation();
-  const { appDispatch } = useAppState();
 
   // Create array of rewards per epoch
   const vegaTokenRewards = React.useMemo(() => {
@@ -73,23 +65,8 @@ export const RewardInfo = ({
 
   return (
     <div className="reward-info">
-      <FormGroup label="Show rewards for Vega key">
-        <HTMLSelect
-          options={vegaKeys.map((k) => ({
-            label: k.pub,
-            value: k.pub,
-          }))}
-          value={currVegaKey.pub}
-          onChange={(e) => {
-            const key = vegaKeys.find((k) => k.pub === e.target.value);
-            if (!key) throw new Error("Selected key not in key list");
-            appDispatch({
-              type: AppStateActionType.VEGA_WALLET_SET_KEY,
-              key,
-            });
-          }}
-        />
-      </FormGroup>
+      <h3>{t("Connected Vega key")}</h3>
+      <p>{currVegaKey.pub}</p>
       {vegaTokenRewards.length ? (
         vegaTokenRewards.map((reward, i) => {
           if (!reward) return null;
