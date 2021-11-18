@@ -29,7 +29,7 @@ import { REWARDS_QUERY } from "../../../routes/rewards/home";
 import { NETWORK_PARAMS_QUERY } from "../../../hooks/use-network-param";
 import { NetworkParams } from "../../../hooks/__generated__/NetworkParams";
 
-const PARTY_ID = "pub";
+const PARTY_ID = "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527";
 const REWARD_ASSET_ID = "reward-asset-id";
 
 const nodes: Staking_nodes[] = [
