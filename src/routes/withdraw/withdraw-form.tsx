@@ -16,6 +16,7 @@ import { StatefulButton } from "../../components/stateful-button";
 import { Loader } from "../../components/loader";
 import { Routes } from "../router-config";
 import { useTranslation } from "react-i18next";
+import { EthConnectPrompt } from "../../components/eth-connect-prompt";
 
 interface WithdrawFormProps {
   accounts: WithdrawPage_party_accounts[];
@@ -99,7 +100,7 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
         )}
       </FormGroup>
       <FormGroup label={t("Connected Ethereum address")}>
-        <p>{ethAddress}</p>
+        {ethAddress ? <p>{ethAddress}</p> : <EthConnectPrompt />}
       </FormGroup>
       <FormGroup label={t("withdrawFormAmountLabel")} labelFor="amount">
         <AmountInput
