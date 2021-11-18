@@ -27,6 +27,8 @@
   table {
     flex: 1;
     font-size: 14px;
+    border-collapse: collapse;
+    margin-top: 3px;
   }
 
   tr {
@@ -43,6 +45,7 @@
   th {
     color: $text-color-deemphasise;
     font-weight: normal;
+    padding-left: 0;
   }
 
   td {
