@@ -6,6 +6,7 @@ export const Errors = {
   NO_TOKEN: "No Token"
 }
 
+export const HOSTED_WALLET_URL = 'localhost';
 export const MINIMUM_WALLET_VERSION = '0.0.0';
 
 export function hasErrorProperty(obj: unknown): obj is GenericErrorResponse {
