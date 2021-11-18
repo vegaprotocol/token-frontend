@@ -468,5 +468,6 @@
   "vegaWallet": "Vega Wallet",
   "rewardsComingSoon": "Rewards is coming soon",
   "withdrawsComingSoon": "Withdraws are coming soon",
-  "associationChoice": "You have $VEGA tokens held by the vesting contract. Would you like to associate these or $VEGA directly from wallet?"
+  "associationChoice": "You have $VEGA tokens held by the vesting contract. Would you like to associate these or $VEGA directly from wallet?",
+  "footerLinksText": "Known issues and feedback on <noltLink>Nolt</noltLink> and <githubLink>Github</githubLink>"
 }
