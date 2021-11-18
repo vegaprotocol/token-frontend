@@ -28,26 +28,26 @@ export const NetworkChange = ({proposal}: NetworkChangeProps) => {
 
         <div className="proposal__row">
           <p className="proposal__item-left">{t("proposedNewValue")}&nbsp;</p>
-          <span className="proposals__item-right">
+          <span className="proposal__item-right">
             {networkParameter.value}
           </span>
         </div>
 
         <div className="proposal__row">
           <p className="proposal__item-left">{t("toEnactOn")}&nbsp;</p>
-          <span className="proposals__item-right">
-            {terms.enactmentDatetime}
+          <span className="proposal__item-right">
+            {format(new Date(terms.enactmentDatetime), "d MMM yyyy")}
           </span>
         </div>
 
         <div className="proposal__row">
           <p className="proposal__item-left">{t("proposedBy")}&nbsp;</p>
-          <span className="proposals__item-right">{proposal.party.id}</span>
+          <span className="proposal__item-right">{proposal.party.id}</span>
         </div>
 
         <div className="proposal__row">
           <p className="proposal__item-left">{t("proposedOn")}&nbsp;</p>
-          <span className="proposals__item-right">
+          <span className="proposal__item-right">
             {format(proposedDate, "d MMM yyyy")}
           </span>
         </div>

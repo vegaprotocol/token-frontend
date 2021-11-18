@@ -7,8 +7,12 @@
     color: $black;
 
     &:focus {
-      background: $light-gray3;
+      background: $light-gray1;
       outline: none;
+    }
+
+    &:disabled {
+      background: $gray3;
     }
   }
 

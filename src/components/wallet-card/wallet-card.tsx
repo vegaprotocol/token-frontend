@@ -4,20 +4,49 @@ import { formatNumber } from "../../lib/format-number";
 import "./wallet-card.scss";
 import { useAnimateValue } from "../../hooks/use-animate-value";
 
+const useNumberParts = (
+  value: BigNumber | null | undefined,
+  decimals: number
+) => {
+  return React.useMemo(() => {
+    if (!value) {
+      return ["0", "0".repeat(decimals)];
+    }
+    // @ts-ignore
+    const separator = BigNumber.config().FORMAT.decimalSeparator as string;
+    const [integers, decimalsPlaces] = formatNumber(value, 18)
+      .toString()
+      .split(separator);
+    return [integers, decimalsPlaces];
+  }, [decimals, value]);
+};
+
 interface WalletCardProps {
   children: React.ReactNode;
+  dark?: boolean;
 }
 
-export const WalletCard = ({ children }: WalletCardProps) => (
-  <div className="wallet-card invert">{children}</div>
+export const WalletCard = ({ dark, children }: WalletCardProps) => (
+  <div className={`wallet-card ${dark ? "wallet-card--inverted" : ""}`}>
+    {children}
+  </div>
 );
 
 interface WalletCardHeaderProps {
   children: React.ReactNode;
+  dark?: boolean;
 }
 
-export const WalletCardHeader = ({ children }: WalletCardHeaderProps) => {
-  return <div className="wallet-card__header">{children}</div>;
+export const WalletCardHeader = ({ children, dark }: WalletCardHeaderProps) => {
+  return (
+    <div
+      className={`wallet-card__header ${
+        dark ? "wallet-card__header--inverted" : ""
+      }`}
+    >
+      {children}
+    </div>
+  );
 };
 
 interface WalletCardContentProps {
@@ -31,26 +60,34 @@ export const WalletCardContent = ({ children }: WalletCardContentProps) => {
 export const WalletCardRow = ({
   label,
   value,
-  valueSuffix,
   dark = false,
+  decimals = 18,
+  bold = false,
 }: {
   label: string;
+  decimals?: number;
   value?: BigNumber | null;
-  valueSuffix?: string;
   dark?: boolean;
+  bold?: boolean;
 }) => {
   const ref = React.useRef<HTMLDivElement | null>(null);
   useAnimateValue(ref, value);
+  const [integers, decimalsPlaces] = useNumberParts(value, decimals);
 
   return (
     <div
-      className={`wallet-card__row ${dark ? "wallet-card__row--dark" : ""}`}
+      className={`wallet-card__row ${dark ? "wallet-card__row--dark" : ""} ${
+        bold ? "wallet-card__row--bold" : ""
+      }`}
       ref={ref}
     >
       <span>{label}</span>
-      <span>
-        {value ? formatNumber(value) : ""} {valueSuffix}
-      </span>
+      {value && (
+        <span>
+          <span className="wallet-card__price--integer">{integers}.</span>
+          <span className="wallet-card__price--decimal">{decimalsPlaces}</span>
+        </span>
+      )}
     </div>
   );
 };
@@ -61,4 +98,50 @@ export const WalletCardActions = ({
   children: React.ReactNode;
 }) => {
   return <div className="wallet-card__actions">{children}</div>;
+};
+
+export interface WalletCardAssetProps {
+  image: string;
+  name: string;
+  symbol: string;
+  balance: BigNumber;
+  decimals: number;
+  border?: boolean;
+  dark?: boolean;
+}
+
+export const WalletCardAsset = ({
+  image,
+  name,
+  symbol,
+  balance,
+  decimals,
+  border,
+  dark,
+}: WalletCardAssetProps) => {
+  const [integers, decimalsPlaces] = useNumberParts(balance, decimals);
+
+  return (
+    <div
+      className={`wallet-card__asset ${dark ? "wallet-card__asset--dark" : ""}`}
+    >
+      <img
+        alt="Vega"
+        src={image}
+        className={`wallet-card__asset-image ${
+          border ? "wallet-card__asset-image--border" : ""
+        }`}
+      />
+      <div className="wallet-card__asset-header">
+        <div className="wallet-card__asset-heading">
+          <h1>{name}</h1>
+          <h2>{symbol}</h2>
+        </div>
+        <div className="wallet-card__asset-balance">
+          <span className="wallet-card__price--integer">{integers}.</span>
+          <span className="wallet-card__price--decimal">{decimalsPlaces}</span>
+        </div>
+      </div>
+    </div>
+  );
 };

@@ -62,7 +62,7 @@ const Home = ({ name }: RouteChildProps) => {
             )}
           </p>
           <Link to={Routes.VESTING}>
-            <button className="fill">
+            <button data-test-id="check-vesting-page-btn" className="fill button-secondary">
               {t("Check to see if you can redeem unlocked VEGA tokens")}
             </button>
           </Link>
@@ -86,6 +86,7 @@ const Home = ({ name }: RouteChildProps) => {
 
           <p>
             <a
+              data-test-id="get-vega-wallet-link"
               href={Links.WALLET_RELEASES}
               target="_blank"
               rel="nofollow noreferrer"
@@ -93,12 +94,25 @@ const Home = ({ name }: RouteChildProps) => {
               {t("Get a Vega wallet")}
             </a>
           </p>
-          <p>
+          <p data-test-id="associate-vega-tokens-link-on-homepage">
             <Link to={`${Routes.STAKING}/associate`}>
               {t("Associate VEGA tokens")}
             </Link>
           </p>
           <div style={{ display: "flex", gap: 36 }}>
+            <div style={{ flex: 1 }}>
+              <h2>{t("Staking")}</h2>
+              <p>
+                {t(
+                  "VEGA token holders can nominate a validator node and receive staking rewards."
+                )}
+              </p>
+              <Link to={Routes.STAKING}>
+                <button className="button-secondary">
+                  {t("Nominate a validator")}
+                </button>
+              </Link>
+            </div>
             <div style={{ flex: 1 }}>
               <h2>{t("Governance")}</h2>
               <p>
@@ -114,19 +128,6 @@ const Home = ({ name }: RouteChildProps) => {
                 </Link>
               </p>
             </div>
-          </div>
-          <div style={{ flex: 1 }}>
-            <h2>{t("Staking")}</h2>
-            <p>
-              {t(
-                "VEGA token holders can nominate a validator node and receive staking rewards."
-              )}
-            </p>
-            <Link to={Routes.STAKING}>
-              <button className="button-secondary">
-                {t("Nominate a validator")}
-              </button>
-            </Link>
           </div>
         </>
       )}

@@ -130,6 +130,16 @@ export interface IVegaLPStaking {
   stakingStart(): Promise<string>;
 }
 
+export interface IVegaErc20Bridge {
+  withdraw(approval: {
+    assetSource: string;
+    amount: string;
+    nonce: string;
+    signatures: string;
+    targetAddress: string;
+  }): Promise<ethers.ContractTransaction>;
+}
+
 export interface TxError {
   message: string;
   code: number;

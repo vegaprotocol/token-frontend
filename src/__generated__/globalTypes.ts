@@ -7,6 +7,21 @@
 // START Enums and Input Objects
 //==============================================================
 
+/**
+ * The various account types we have (used by collateral)
+ */
+export enum AccountType {
+  Bond = "Bond",
+  FeeInfrastructure = "FeeInfrastructure",
+  FeeLiquidity = "FeeLiquidity",
+  General = "General",
+  GlobalInsurance = "GlobalInsurance",
+  Insurance = "Insurance",
+  LockWithdraw = "LockWithdraw",
+  Margin = "Margin",
+  Settlement = "Settlement",
+}
+
 export enum BusEventType {
   Account = "Account",
   Asset = "Asset",
@@ -109,6 +124,15 @@ export enum StakeLinkingStatus {
 export enum VoteValue {
   No = "No",
   Yes = "Yes",
+}
+
+/**
+ * The status of a withdrawal
+ */
+export enum WithdrawalStatus {
+  Cancelled = "Cancelled",
+  Finalized = "Finalized",
+  Open = "Open",
 }
 
 //==============================================================

@@ -8,6 +8,9 @@ export const Routes = {
   TRANCHES: "/tranches",
   CLAIM: "/claim",
   STAKING: "/staking",
+  REWARDS: "/rewards",
+  WITHDRAW: "/withdraw",
+  WITHDRAWALS: "/withdrawals",
   GOVERNANCE: "/governance",
   VESTING: "/vesting",
   LIQUIDITY: "/liquidity",
@@ -54,11 +57,31 @@ const LazyGovernance = React.lazy(
       /* webpackChunkName: "route-governance", webpackPrefetch: true */ "./governance"
     )
 );
+const LazyRewards = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "route-rewards", webpackPrefetch: true */ "./rewards"
+    )
+);
 
 const LazyContracts = React.lazy(
   () =>
     import(
       /* webpackChunkName: "route-tranches", webpackPrefetch: true */ "./contracts"
+    )
+);
+
+const LazyWithdraw = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "route-withdraw", webpackPrefetch: true */ "./withdraw"
+    )
+);
+
+const LazyWithdrawals = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "route-withdrawals", webpackPrefetch: true */ "./withdrawals"
     )
 );
 
@@ -84,6 +107,21 @@ const routerConfig = [
     path: Routes.STAKING,
     name: "Staking",
     component: LazyStaking,
+  },
+  {
+    path: Routes.REWARDS,
+    name: "Rewards",
+    component: LazyRewards,
+  },
+  {
+    path: Routes.WITHDRAW,
+    name: "Withdraw",
+    component: LazyWithdraw,
+  },
+  {
+    path: Routes.WITHDRAWALS,
+    name: "Withdrawals",
+    component: LazyWithdrawals,
   },
   {
     path: Routes.VESTING,

@@ -8,6 +8,9 @@
 @import "./styles/reset";
 @import "./styles/web3modal";
 
+$bg-color-default: rgba(133, 152, 166, 0.25);
+$color-default: #bfccd6;
+
 *,
 *::before,
 *::after {
@@ -31,6 +34,7 @@ body,
   }
 }
 
+// TODO replace with blueprint themeing
 // TYPOGRAPHY
 h1,
 h2,
@@ -68,12 +72,12 @@ a,
   font-family: $font-pixelated;
 }
 
+// TODO replace with blueprint themeing
 // BUTTONS
 button {
   color: $black;
   background-color: $white;
   border: 0;
-  border-radius: 4px;
   padding: 12px 32px;
   cursor: pointer;
 
@@ -83,8 +87,15 @@ button {
 
   &:disabled,
   &.disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+    opacity: 1;
+    background: $bg-color-default;
+    color: $color-default;
+    border: 1px solid $text-color-emphasise;
+
+    &:hover {
+      background: $bg-color-default;
+      color: $color-default;
+    }
   }
 
   &.fill {
@@ -95,7 +106,7 @@ button {
     border: 1px solid $white;
     border-radius: 0;
     background: transparent;
-    color: white;
+    color: $white;
     width: 100%;
 
     &:hover {
@@ -105,6 +116,26 @@ button {
     &:active {
       background: $white;
       color: $black;
+    }
+
+    &--light {
+      border: 1px solid $black;
+      color: $black;
+
+      &:hover {
+        background: $light-gray4;
+      }
+
+      &:active {
+        background: $white;
+        color: $black;
+      }
+    }
+
+    &--inverted {
+      background-color: $white;
+      color: $black;
+      border: 1px solid $black;
     }
   }
 
@@ -117,12 +148,17 @@ button {
     color: $white;
     outline: none;
 
-    &--dark {
-      color: $black;
-    }
-
     &:hover {
       color: $vega-yellow4 !important;
+      text-decoration: none;
+    }
+
+    &--dark {
+      color: $black !important;
+
+      &:hover {
+        color: $black !important;
+      }
     }
 
     .invert & {
@@ -135,14 +171,29 @@ button {
   }
 }
 
-// FORM ELEMENTS
+// TODO replace with blueprint themeing
 select,
 input[type="text"],
+input[type="number"],
 input[type="password"] {
   width: 100%;
   padding: 12px;
-  border-radius: 4px;
-  background-color: #3f3f3f;
-  color: white;
-  border: 0;
+  border-radius: 0px;
+  border: 1px solid $white;
+}
+
+.bp3-dark .bp3-html-select select,
+.bp3-dark .bp3-select select {
+  border-radius: 0;
+  border: 1px solid $white;
+  background-color: $dark-gray4;
+}
+
+.bp3-dark a,
+.bp3-dark a:hover {
+  color: $white;
+}
+
+.bp3-dark .bp3-input {
+  background-color: $dark-gray4;
 }

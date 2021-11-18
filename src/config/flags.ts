@@ -1,6 +1,9 @@
 const TRUTHY = ["1", "true"];
 
 export const Flags = {
+  HOSTED_WALLET_ENABLED: TRUTHY.includes(
+    process.env.REACT_APP_HOSTED_WALLET_ENABLED!
+  ),
   IN_CONTEXT_TRANSLATION: TRUTHY.includes(
     process.env.REACT_APP_IN_CONTEXT_TRANSLATION!
   ),
@@ -15,4 +18,8 @@ export const Flags = {
   ),
   VESTING_DISABLED: TRUTHY.includes(process.env.REACT_APP_VESTING_DISABLED!),
   FAIRGROUND: TRUTHY.includes(process.env.REACT_APP_FAIRGROUND!),
+  REWARDS_DISABLED: TRUTHY.includes(process.env.REACT_APP_REWARDS_DISABLED!),
+  WITHDRAWS_DISABLED: TRUTHY.includes(
+    process.env.REACT_APP_WITHDRAWS_DISABLED!
+  ),
 };

@@ -4,13 +4,182 @@ import { truncateMiddle } from "../../lib/truncate-middle";
 import {
   WalletCard,
   WalletCardActions,
+  WalletCardAsset,
   WalletCardContent,
   WalletCardHeader,
   WalletCardRow,
 } from "../wallet-card";
 import { Colors, Flags } from "../../config";
 import React from "react";
+import vegaWhite from "../../images/vega_white.png";
+import vegaVesting from "../../images/vega_vesting.png";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { Routes } from "../../routes/router-config";
+import { Link } from "react-router-dom";
+import { LockedProgress } from "../locked-progress";
+import { BigNumber } from "../../lib/bignumber";
+
+const removeLeadingAddressSymbol = (key: string) => {
+  if (key && key.length > 2 && key.slice(0, 2) === "0x") {
+    return truncateMiddle(key.substring(2));
+  }
+  return truncateMiddle(key);
+};
+
+const AssociatedAmounts = ({
+  associations,
+  notAssociated,
+}: {
+  associations: { [key: string]: BigNumber };
+  notAssociated: BigNumber;
+}) => {
+  const { t } = useTranslation();
+  const vestingAssociationByVegaKey = React.useMemo(
+    () =>
+      Object.entries(associations).filter(([, amount]) =>
+        amount.isGreaterThan(0)
+      ),
+    [associations]
+  );
+  const associationAmounts = React.useMemo(() => {
+    const totals = vestingAssociationByVegaKey.map(([, amount]) => amount);
+    const associated = BigNumber.sum.apply(null, [new BigNumber(0), ...totals]);
+
+    return {
+      total: associated.plus(notAssociated),
+      associated,
+      notAssociated,
+    };
+  }, [notAssociated, vestingAssociationByVegaKey]);
+
+  return (
+    <>
+      {Flags.STAKING_DISABLED ? null : (
+        <>
+          <LockedProgress
+            locked={associationAmounts.associated}
+            unlocked={associationAmounts.notAssociated}
+            total={associationAmounts.total}
+            leftLabel={t("associated")}
+            rightLabel={t("notAssociated")}
+            leftColor={Colors.WHITE}
+            rightColor={Colors.BLACK}
+            light={true}
+          />
+        </>
+      )}
+      {Flags.STAKING_DISABLED || Flags.REDEEM_DISABLED ? null : (
+        <>
+          {vestingAssociationByVegaKey.length ? (
+            <>
+              <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
+              <WalletCardRow label="Associated with Vega keys" bold={true} />
+              {vestingAssociationByVegaKey.map(([key, amount]) => {
+                return (
+                  <WalletCardRow
+                    key={key}
+                    label={removeLeadingAddressSymbol(key)}
+                    value={amount}
+                  />
+                );
+              })}
+            </>
+          ) : null}
+        </>
+      )}
+    </>
+  );
+};
+
+const ConnectedKey = () => {
+  const { t } = useTranslation();
+  const { appState } = useAppState();
+  const { walletBalance, totalLockedBalance, totalVestedBalance } = appState;
+
+  const totalInVestingContract = React.useMemo(() => {
+    return totalLockedBalance.plus(totalVestedBalance);
+  }, [totalLockedBalance, totalVestedBalance]);
+
+  const notAssociatedInContract = React.useMemo(() => {
+    const totals = Object.values(
+      appState.associationBreakdown.vestingAssociations
+    );
+    const associated = BigNumber.sum.apply(null, [new BigNumber(0), ...totals]);
+    return totalInVestingContract.minus(associated);
+  }, [
+    appState.associationBreakdown.vestingAssociations,
+    totalInVestingContract,
+  ]);
+
+  const walletWithAssociations = React.useMemo(() => {
+    const totals = Object.values(
+      appState.associationBreakdown.stakingAssociations
+    );
+    const associated = BigNumber.sum.apply(null, [new BigNumber(0), ...totals]);
+    return walletBalance.plus(associated);
+  }, [appState.associationBreakdown.stakingAssociations, walletBalance]);
+
+  return (
+    <>
+      {Flags.REDEEM_DISABLED ||
+      totalVestedBalance.plus(totalLockedBalance).isEqualTo(0) ? null : (
+        <>
+          <WalletCardAsset
+            image={vegaVesting}
+            decimals={appState.decimals}
+            name="VEGA"
+            symbol="In vesting contract"
+            balance={totalInVestingContract}
+          />
+          <LockedProgress
+            locked={totalLockedBalance}
+            unlocked={totalVestedBalance}
+            total={totalVestedBalance.plus(totalLockedBalance)}
+            leftLabel={t("Locked")}
+            rightLabel={t("Unlocked")}
+            light={true}
+          />
+        </>
+      )}
+      {Flags.STAKING_DISABLED ||
+      !Object.keys(appState.associationBreakdown.vestingAssociations)
+        .length ? null : (
+        <AssociatedAmounts
+          associations={appState.associationBreakdown.vestingAssociations}
+          notAssociated={notAssociatedInContract}
+        />
+      )}
+      <WalletCardAsset
+        image={vegaWhite}
+        decimals={appState.decimals}
+        name="VEGA"
+        symbol="In Wallet"
+        balance={walletWithAssociations}
+      />
+      {Flags.STAKING_DISABLED ||
+      !Object.keys(appState.associationBreakdown.stakingAssociations) ? null : (
+        <AssociatedAmounts
+          associations={appState.associationBreakdown.stakingAssociations}
+          notAssociated={walletBalance}
+        />
+      )}
+      {Flags.STAKING_DISABLED ? null : (
+        <WalletCardActions>
+          <Link style={{ flex: 1 }} to={`${Routes.STAKING}/associate`}>
+            <button className="button-secondary button-secondary--light">
+              {t("associate")}
+            </button>
+          </Link>
+          <Link style={{ flex: 1 }} to={`${Routes.STAKING}/disassociate`}>
+            <button className="button-secondary button-secondary--light">
+              {t("disassociate")}
+            </button>
+          </Link>
+        </WalletCardActions>
+      )}
+    </>
+  );
+};
 
 export const EthWallet = () => {
   const { t } = useTranslation();
@@ -20,13 +189,11 @@ export const EthWallet = () => {
   return (
     <WalletCard>
       <WalletCardHeader>
-        <span>{t("ethereumKey")}</span>
+        <h1>{t("ethereumKey")}</h1>
         {ethAddress && (
-          <>
-            <span className="vega-wallet__curr-key">
-              {truncateMiddle(ethAddress)}
-            </span>
-          </>
+          <span className="vega-wallet__curr-key">
+            {truncateMiddle(ethAddress)}
+          </span>
         )}
       </WalletCardHeader>
       <WalletCardContent>
@@ -35,9 +202,9 @@ export const EthWallet = () => {
         ) : (
           <button
             type="button"
-            className="button-link"
+            className="fill button-secondary--inverted"
             onClick={connect}
-            data-testid="connect"
+            data-test-id="connect-to-eth-wallet-button"
           >
             {t("Connect to an Ethereum wallet")}
           </button>
@@ -55,97 +222,5 @@ export const EthWallet = () => {
         )}
       </WalletCardContent>
     </WalletCard>
-  );
-};
-
-const ConnectedKey = () => {
-  const { t } = useTranslation();
-  const { appState } = useAppState();
-  const { lien, walletBalance, totalLockedBalance, totalVestedBalance } =
-    appState;
-
-  const totalInWallet = React.useMemo(() => {
-    return walletBalance.plus(lien);
-  }, [lien, walletBalance]);
-
-  const totalInVestingContract = React.useMemo(() => {
-    return totalLockedBalance.plus(totalVestedBalance);
-  }, [totalLockedBalance, totalVestedBalance]);
-
-  const associationsByVegaKey = Object.entries(
-    appState.associationBreakdown
-  ).filter(([, amount]) => amount.isGreaterThan(0));
-
-  const removeLeadingAddressSymbol = (key: string) => {
-    if (key && key.length > 2 && key.slice(0, 2) === "0x") {
-      return truncateMiddle(key.substring(2));
-    }
-    return truncateMiddle(key);
-  };
-
-  return (
-    <>
-      <WalletCardRow
-        label={t("vegaInWallet", { symbol: "$VEGA" })}
-        value={totalInWallet}
-        dark={true}
-        valueSuffix={t("VEGA")}
-      />
-      {Flags.STAKING_DISABLED ? null : (
-        <WalletCardRow
-          label={t("Not Associated")}
-          value={walletBalance}
-          valueSuffix={t("VEGA")}
-        />
-      )}
-      {Flags.STAKING_DISABLED ? null : (
-        <WalletCardRow
-          label={t("Associated")}
-          value={lien}
-          valueSuffix={t("VEGA")}
-        />
-      )}
-      <hr style={{ borderColor: Colors.BLACK, borderTop: 1 }} />
-      {Flags.REDEEM_DISABLED ? null : (
-        <>
-          <WalletCardRow
-            label={t("VESTING VEGA TOKENS")}
-            valueSuffix={t("VEGA")}
-            dark={true}
-            value={totalInVestingContract}
-          />
-          <WalletCardRow
-            label={t("Locked")}
-            value={totalLockedBalance}
-            valueSuffix={t("VEGA")}
-          />
-          <WalletCardRow
-            label={t("Unlocked")}
-            value={totalVestedBalance}
-            valueSuffix={t("VEGA")}
-          />
-        </>
-      )}
-      {Flags.STAKING_DISABLED || Flags.REDEEM_DISABLED ? null : (
-        <>
-          {associationsByVegaKey.length ? (
-            <>
-              <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
-              <WalletCardRow label="Associated to" dark={true} />
-              {associationsByVegaKey.map(([key, amount]) => {
-                return (
-                  <WalletCardRow
-                    key={key}
-                    label={removeLeadingAddressSymbol(key)}
-                    value={amount}
-                    valueSuffix={t("VEGA")}
-                  />
-                );
-              })}
-            </>
-          ) : null}
-        </>
-      )}
-    </>
   );
 };

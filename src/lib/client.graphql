@@ -23,3 +23,15 @@ extend type NodeData {
 extend type PartyStake {
   currentStakeAvailableFormatted: String!
 }
+
+extend type Reward {
+  amountFormatted: String!
+}
+
+extend type RewardPerAssetDetail {
+  totalAmountFormatted: String!
+}
+
+extend type Account {
+  balanceFormatted: String!
+}
