@@ -428,7 +428,6 @@
   "pendingWithdrawalsCalloutButton": "View incomplete withdrawals",
   "withdrawFormAssetLabel": "What would you like to withdraw?",
   "withdrawFormNoAsset": "You don't have any assets to withdraw",
-  "withdrawFormToLabel": "To",
   "withdrawFormAmountLabel": "How much would you like to withdraw?",
   "withdrawFormSubmitButtonIdle": "Withdraw {{amount}} {{symbol}} tokens",
   "withdrawFormSubmitButtonPending": "Preparing",

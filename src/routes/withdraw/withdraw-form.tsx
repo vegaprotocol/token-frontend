@@ -2,9 +2,8 @@ import "./withdraw-form.scss";
 import React from "react";
 import { WithdrawPage_party_accounts } from "./__generated__/WithdrawPage";
 import { BigNumber } from "../../lib/bignumber";
-import { HTMLSelect, FormGroup, InputGroup } from "@blueprintjs/core";
+import { HTMLSelect, FormGroup } from "@blueprintjs/core";
 import { AmountInput } from "../../components/token-input";
-import { EthWalletContainer } from "../../components/eth-wallet-container";
 import {
   Status as WithdrawStatus,
   useCreateWithdrawal,
@@ -99,16 +98,8 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
           <p className="text-muted">{t("withdrawFormNoAsset")}</p>
         )}
       </FormGroup>
-      <FormGroup label={t("withdrawFormToLabel")}>
-        <EthWalletContainer>
-          {(ethAddress) => (
-            <InputGroup
-              value={ethAddress}
-              className="uneditable"
-              disabled={true}
-            />
-          )}
-        </EthWalletContainer>
+      <FormGroup label={t("Connected Ethereum address")}>
+        <p>{ethAddress}</p>
       </FormGroup>
       <FormGroup label={t("withdrawFormAmountLabel")} labelFor="amount">
         <AmountInput
