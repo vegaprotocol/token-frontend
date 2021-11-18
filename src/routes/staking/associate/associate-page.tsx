@@ -102,6 +102,7 @@ export const AssociatePage = ({
               <h2 data-testid="associate-subheader">
                 {t("Where would you like to stake from?")}
               </h2>
+              <p>{t("associationChoice")}</p>
               <StakingMethodRadio
                 setSelectedStakingMethod={setSelectedStakingMethod}
                 selectedStakingMethod={selectedStakingMethod}
