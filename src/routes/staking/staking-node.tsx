@@ -96,7 +96,7 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
 
   return (
     <>
-      <h2 style={{ wordBreak: "break-word", marginTop: 0 }}>
+      <h2 data-test-id="validator-node-title" style={{ wordBreak: "break-word", marginTop: 0 }}>
         {nodeInfo.name
           ? t("validatorTitle", { nodeName: nodeInfo.name })
           : t("validatorTitle", { nodeName: t("validatorTitleFallback") })}

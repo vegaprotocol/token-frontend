@@ -126,7 +126,7 @@ const VegaWalletNotConnected = () => {
   if (appState.vegaWalletStatus === VegaWalletStatus.None) {
     return (
       <WalletCardContent>
-        <div>{t("noService")}</div>
+        <div data-test-id="vega-wallet-not-connected-msg">{t("noService")}</div>
       </WalletCardContent>
     );
   }

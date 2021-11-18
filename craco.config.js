@@ -9,6 +9,7 @@ module.exports = function (options) {
   const isMock = ["1", "true"].includes(process.env.REACT_APP_MOCKED);
   const detectProviderPath = isMock ? "../../__mocks__/@metamask" : "@metamask";
   const vegaWeb3Path = isMock ? "vega-web3/__mocks__" : "vega-web3";
+  const useTranchesPath = isMock ? "__mocks__/use-tranches" : "use-tranches";
   const graphQlProviderPath = isMock
     ? "graphql-provider/__mocks__"
     : "graphql-provider";
@@ -63,6 +64,15 @@ module.exports = function (options) {
             resource.request = resource.request.replace(
               /GRAPHQL_PROVIDER/,
               `${graphQlProviderPath}`
+            );
+          }
+        ),
+        new webpack.NormalModuleReplacementPlugin(
+          /(.*)use-tranches(\.*)/,
+          function (resource) {
+            resource.request = resource.request.replace(
+              /use-tranches/,
+              `${useTranchesPath}`
             );
           }
         ),

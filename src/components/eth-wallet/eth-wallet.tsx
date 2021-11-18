@@ -204,7 +204,7 @@ export const EthWallet = () => {
             type="button"
             className="fill button-secondary--inverted"
             onClick={connect}
-            data-testid="connect"
+            data-test-id="connect-to-eth-wallet-button"
           >
             {t("Connect to an Ethereum wallet")}
           </button>
