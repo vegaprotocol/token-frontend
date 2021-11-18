@@ -428,7 +428,6 @@
   "pendingWithdrawalsCalloutButton": "crwdns6527:0crwdne6527:0",
   "withdrawFormAssetLabel": "crwdns6639:0crwdne6639:0",
   "withdrawFormNoAsset": "crwdns6531:0crwdne6531:0",
-  "withdrawFormToLabel": "crwdns6533:0crwdne6533:0",
   "withdrawFormAmountLabel": "crwdns6641:0crwdne6641:0",
   "withdrawFormSubmitButtonIdle": "crwdns6537:0{{amount}}crwdnd6537:0{{symbol}}crwdne6537:0",
   "withdrawFormSubmitButtonPending": "crwdns6539:0crwdne6539:0",
