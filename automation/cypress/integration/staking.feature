@@ -29,7 +29,7 @@ Feature: Staking page
     And the remove button is now enabled again with message "Remove 100 $VEGA tokens at the end of epoch"
     When I click to confirm removal of tokens from stake
     Then I can see the remove message is displayed
-    And next epoch credit message is displayed with message "This should take a few seconds to confirm, and then will be credited at the beginning of the next epoch"
+    And next epoch credit message is displayed with message "This will take a few seconds to confirm, and then will be credited at the beginning of the next epoch"
 
 # # ignoring this as it seems the same flow as remove stake at next epoch with the mocks
 # @ignore
