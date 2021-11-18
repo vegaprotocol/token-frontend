@@ -29,11 +29,17 @@ import {
   WithdrawalsPageVariables,
   WithdrawalsPage_party_withdrawals,
 } from "./__generated__/WithdrawalsPage";
-import { useRefreshBalances } from "../../hooks/use-refresh-balances";
+import { Flags } from "../../config";
 
 const Withdrawals = () => {
   const { t } = useTranslation();
-  return (
+
+  return Flags.WITHDRAWS_DISABLED ? (
+    <>
+      <Heading title={t("withdrawPageHeading")} />
+      <div>{t("withdrawsComingSoon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</div>
+    </>
+  ) : (
     <>
       <Heading title={t("withdrawalsTitle")} />
       <p>{t("withdrawalsText")}</p>
@@ -83,9 +89,8 @@ const WithdrawPendingContainer = ({
   currVegaKey,
 }: WithdrawPendingContainerProps) => {
   const { t } = useTranslation();
-  const { ethAddress } = useWeb3();
   const ethereumConfig = useEthereumConfig();
-  const { data, loading, error } = useQuery<
+  const { data, loading, error, refetch } = useQuery<
     WithdrawalsPage,
     WithdrawalsPageVariables
   >(WITHDRAWALS_PAGE_QUERY, {
@@ -134,7 +139,7 @@ const WithdrawPendingContainer = ({
           <Withdrawal
             withdrawal={w}
             requiredConfirmations={ethereumConfig.confirmations}
-            ethAddress={ethAddress}
+            refetchWithdrawals={refetch}
           />
         </li>
       ))}
@@ -145,19 +150,18 @@ const WithdrawPendingContainer = ({
 interface WithdrawalProps {
   withdrawal: WithdrawalsPage_party_withdrawals;
   requiredConfirmations: number;
-  ethAddress: string;
+  refetchWithdrawals: () => void;
 }
 
 export const Withdrawal = ({
   withdrawal,
   requiredConfirmations,
-  ethAddress,
+  refetchWithdrawals,
 }: WithdrawalProps) => {
   const { t } = useTranslation();
   const { chainId } = useWeb3();
   const erc20Approval = usePollERC20Approval(withdrawal.id);
   const { erc20Bridge } = useContracts();
-  const refreshBalances = useRefreshBalances(ethAddress);
   const { state, perform, reset } = useTransaction(() => {
     if (!erc20Approval) {
       throw new Error("Withdraw needs approval object");
@@ -177,10 +181,13 @@ export const Withdrawal = ({
   }, requiredConfirmations);
 
   React.useEffect(() => {
+    // Once complete we need to refetch the withdrawals so that pending withdrawal
+    // is updated to have a txHash indicating it is complete. Updating your account balance
+    // is already handled by the query in the VegaWallet that polls
     if (state.txState === TxState.Complete) {
-      refreshBalances();
+      refetchWithdrawals();
     }
-  }, [state, refreshBalances]);
+  }, [state, refetchWithdrawals]);
 
   return (
     <div>

@@ -18,4 +18,8 @@ export const Flags = {
   ),
   VESTING_DISABLED: TRUTHY.includes(process.env.REACT_APP_VESTING_DISABLED!),
   FAIRGROUND: TRUTHY.includes(process.env.REACT_APP_FAIRGROUND!),
+  REWARDS_DISABLED: TRUTHY.includes(process.env.REACT_APP_REWARDS_DISABLED!),
+  WITHDRAWS_DISABLED: TRUTHY.includes(
+    process.env.REACT_APP_WITHDRAWS_DISABLED!
+  ),
 };
