@@ -114,7 +114,6 @@ export const VegaWallet = () => {
           )}
         </WalletCardHeader>
         <WalletCardContent>{child}</WalletCardContent>
-        <WalletCardContent>{version}</WalletCardContent>
       </WalletCard>
     </section>
   );
@@ -387,8 +386,9 @@ const VegaWalletConnected = ({
     [ethAddress, appDispatch, setAssociatedBalances]
   );
 
-  const disconnect = (
+  const footer = (
     <WalletCardActions>
+      {version ? <div className="vega-wallet__version">{version}</div> : null}
       {vegaKeys.length > 1 ? (
         <button
           className="button-link"
@@ -414,7 +414,7 @@ const VegaWalletConnected = ({
         >
           {t("noVersionFound")}
         </div>
-        {disconnect}
+        {footer}
       </>
     );
   } else if (!vegaWalletService.isSupportedVersion(version)) {
@@ -430,7 +430,7 @@ const VegaWalletConnected = ({
             requiredVersion: MINIMUM_WALLET_VERSION,
           })}
         </div>
-        {disconnect}
+        {footer}
       </>
     );
   }
@@ -497,7 +497,7 @@ const VegaWalletConnected = ({
             ))}
         </ul>
       )}
-      {disconnect}
+      {footer}
     </>
   ) : (
     <WalletCardContent>{t("noKeys")}</WalletCardContent>
