@@ -27,7 +27,7 @@ import { useHistory } from "react-router-dom";
 import { useSearchParams } from "../../hooks/use-search-params";
 import { useTranslation } from "react-i18next";
 import {
-  SPAM_PROTECTION_MIN_TOKENS,
+  VALIDATOR_DELEGATION_MIN_AMOUNT,
   useNetworkParam,
 } from "../../hooks/use-network-param";
 
@@ -90,7 +90,7 @@ export const StakingForm = ({
     RemoveType.endOfEpoch
   );
 
-  const { data } = useNetworkParam([SPAM_PROTECTION_MIN_TOKENS]);
+  const { data } = useNetworkParam([VALIDATOR_DELEGATION_MIN_AMOUNT]);
   const minTokensWithDecimals = React.useMemo(() => {
     const minTokens = new BigNumber(data && data.length === 1 ? data[0] : "");
     return addDecimal(minTokens, appState.decimals);
@@ -232,7 +232,7 @@ export const StakingForm = ({
             <>
               <h2>{t("How much to Add in next epoch?")}</h2>
               <p>
-                {t("Warning, spam protection exists", {
+                {t("minimumNomination", {
                   minTokens: minTokensWithDecimals,
                 })}
               </p>

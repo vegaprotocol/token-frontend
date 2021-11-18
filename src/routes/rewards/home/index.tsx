@@ -113,6 +113,7 @@ export const RewardsIndex = () => {
           />
         ) : (
           <button
+            className="fill"
             onClick={() =>
               appDispatch({
                 type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,

@@ -15,10 +15,17 @@ import { AccountType } from "../../__generated__/globalTypes";
 import { WithdrawForm } from "./withdraw-form";
 import { Link } from "react-router-dom";
 import { Routes } from "../router-config";
+import { Flags } from "../../config";
 
 const Withdraw = () => {
   const { t } = useTranslation();
-  return (
+
+  return Flags.WITHDRAWS_DISABLED ? (
+    <>
+      <Heading title={t("withdrawPageHeading")} />
+      <div>{t("withdrawsComingSoon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</div>
+    </>
+  ) : (
     <>
       <Heading title={t("withdrawPageHeading")} />
       <p>{t("withdrawPageText")}</p>

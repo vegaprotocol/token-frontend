@@ -28,10 +28,10 @@ const removeLeadingAddressSymbol = (key: string) => {
 
 const AssociatedAmounts = ({
   associations,
-  total,
+  notAssociated,
 }: {
   associations: { [key: string]: BigNumber };
-  total: BigNumber;
+  notAssociated: BigNumber;
 }) => {
   const { t } = useTranslation();
   const vestingAssociationByVegaKey = React.useMemo(
@@ -44,14 +44,13 @@ const AssociatedAmounts = ({
   const associationAmounts = React.useMemo(() => {
     const totals = vestingAssociationByVegaKey.map(([, amount]) => amount);
     const associated = BigNumber.sum.apply(null, [new BigNumber(0), ...totals]);
-    const notAssociated = total.minus(associated).absoluteValue();
 
     return {
-      total,
+      total: associated.plus(notAssociated),
       associated,
       notAssociated,
     };
-  }, [total, vestingAssociationByVegaKey]);
+  }, [notAssociated, vestingAssociationByVegaKey]);
 
   return (
     <>
@@ -95,29 +94,43 @@ const AssociatedAmounts = ({
 const ConnectedKey = () => {
   const { t } = useTranslation();
   const { appState } = useAppState();
-  const { lien, walletBalance, totalLockedBalance, totalVestedBalance } =
-    appState;
-
-  const totalInWallet = React.useMemo(() => {
-    return walletBalance.plus(lien);
-  }, [lien, walletBalance]);
+  const { walletBalance, totalLockedBalance, totalVestedBalance } = appState;
 
   const totalInVestingContract = React.useMemo(() => {
     return totalLockedBalance.plus(totalVestedBalance);
   }, [totalLockedBalance, totalVestedBalance]);
 
+  const notAssociatedInContract = React.useMemo(() => {
+    const totals = Object.values(
+      appState.associationBreakdown.vestingAssociations
+    );
+    const associated = BigNumber.sum.apply(null, [new BigNumber(0), ...totals]);
+    return totalInVestingContract.minus(associated);
+  }, [
+    appState.associationBreakdown.vestingAssociations,
+    totalInVestingContract,
+  ]);
+
+  const walletWithAssociations = React.useMemo(() => {
+    const totals = Object.values(
+      appState.associationBreakdown.stakingAssociations
+    );
+    const associated = BigNumber.sum.apply(null, [new BigNumber(0), ...totals]);
+    return walletBalance.plus(associated);
+  }, [appState.associationBreakdown.stakingAssociations, walletBalance]);
+
   return (
     <>
-      <WalletCardAsset
-        image={vegaVesting}
-        decimals={appState.decimals}
-        name="VEGA"
-        symbol="In vesting contract"
-        balance={totalInVestingContract}
-      />
       {Flags.REDEEM_DISABLED ||
       totalVestedBalance.plus(totalLockedBalance).isEqualTo(0) ? null : (
         <>
+          <WalletCardAsset
+            image={vegaVesting}
+            decimals={appState.decimals}
+            name="VEGA"
+            symbol="In vesting contract"
+            balance={totalInVestingContract}
+          />
           <LockedProgress
             locked={totalLockedBalance}
             unlocked={totalVestedBalance}
@@ -133,7 +146,7 @@ const ConnectedKey = () => {
         .length ? null : (
         <AssociatedAmounts
           associations={appState.associationBreakdown.vestingAssociations}
-          total={totalInVestingContract}
+          notAssociated={notAssociatedInContract}
         />
       )}
       <WalletCardAsset
@@ -141,13 +154,13 @@ const ConnectedKey = () => {
         decimals={appState.decimals}
         name="VEGA"
         symbol="In Wallet"
-        balance={totalInWallet}
+        balance={walletWithAssociations}
       />
       {Flags.STAKING_DISABLED ||
       !Object.keys(appState.associationBreakdown.stakingAssociations) ? null : (
         <AssociatedAmounts
           associations={appState.associationBreakdown.stakingAssociations}
-          total={totalInWallet}
+          notAssociated={walletBalance}
         />
       )}
       {Flags.STAKING_DISABLED ? null : (
@@ -191,7 +204,7 @@ export const EthWallet = () => {
             type="button"
             className="fill button-secondary--inverted"
             onClick={connect}
-            data-testid="connect"
+            data-test-id="connect-to-eth-wallet-button"
           >
             {t("Connect to an Ethereum wallet")}
           </button>

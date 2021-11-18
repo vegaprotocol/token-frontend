@@ -114,7 +114,6 @@ export const VegaWallet = () => {
           )}
         </WalletCardHeader>
         <WalletCardContent>{child}</WalletCardContent>
-        <WalletCardContent>{version}</WalletCardContent>
       </WalletCard>
     </section>
   );
@@ -127,7 +126,7 @@ const VegaWalletNotConnected = () => {
   if (appState.vegaWalletStatus === VegaWalletStatus.None) {
     return (
       <WalletCardContent>
-        <div>{t("noService")}</div>
+        <div data-test-id="vega-wallet-not-connected-msg">{t("noService")}</div>
       </WalletCardContent>
     );
   }
@@ -328,8 +327,10 @@ const VegaWalletConnected = ({
                   )
                 )
                   return -1;
-                if (a.name < b.name) return 1;
-                if (a.name > b.name) return -1;
+                if ((!a.name && b.name) || a.name < b.name) return 1;
+                if ((!b.name && a.name) || a.name > b.name) return -1;
+                if (a.nodeId > b.nodeId) return 1;
+                if (a.nodeId < b.nodeId) return -1;
                 return 0;
               });
 
@@ -385,8 +386,9 @@ const VegaWalletConnected = ({
     [ethAddress, appDispatch, setAssociatedBalances]
   );
 
-  const disconnect = (
+  const footer = (
     <WalletCardActions>
+      {version ? <div className="vega-wallet__version">{version}</div> : null}
       {vegaKeys.length > 1 ? (
         <button
           className="button-link"
@@ -412,7 +414,7 @@ const VegaWalletConnected = ({
         >
           {t("noVersionFound")}
         </div>
-        {disconnect}
+        {footer}
       </>
     );
   } else if (!vegaWalletService.isSupportedVersion(version)) {
@@ -428,7 +430,7 @@ const VegaWalletConnected = ({
             requiredVersion: MINIMUM_WALLET_VERSION,
           })}
         </div>
-        {disconnect}
+        {footer}
       </>
     );
   }
@@ -495,7 +497,7 @@ const VegaWalletConnected = ({
             ))}
         </ul>
       )}
-      {disconnect}
+      {footer}
     </>
   ) : (
     <WalletCardContent>{t("noKeys")}</WalletCardContent>

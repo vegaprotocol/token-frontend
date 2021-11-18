@@ -6,7 +6,7 @@ Feature: Homepage
     Then I can see the token address is shown
     And the vesting address is shown
     And the total supply is shown correctly
-    And associated token field is showing '0.00'
+    # And associated token field is showing '0.00'
     And staked token field is showing as '0.00'
 
   Scenario: Links on the homepage
@@ -45,3 +45,15 @@ Feature: Homepage
         | Governance    | governance   |
         | DEX Liquidity | dex liquidity|
         | Home          | home         |
+        | Rewards       | rewards      |
+        | Withdraw      | withdraw     |
+
+  Scenario: Eth wallet not connected placeholder
+    Given I am on the home page
+    And I have not connected my eth wallet
+    Then I can see the eth wallet disconnected with message 'Connect to associate your $VEGA'
+  
+  Scenario: Vega wallet not connected placeholder
+    Given I am on the home page
+    And I have not connected my vega wallet
+    Then I can see the vega wallet disconnected with disconnect message

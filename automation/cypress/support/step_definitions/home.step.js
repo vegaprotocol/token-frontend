@@ -133,7 +133,30 @@ Then("I am taken to the {string} page", (pageVisited) => {
         case 'home':
             cy.url().should('equal',Cypress.config().baseUrl)
             break;
+        case 'rewards':
+            cy.url().should('include','/rewards')
+            cy.get('.heading__title-container').should('have.text','Rewards')
+            break;
+        case 'withdraw':
+            cy.url().should('include','/withdraw')
+            cy.get('.heading__title-container').should('have.text','Withdraw rewards')
+            break;
         default:
             throw new Error("no page specified in list")
         }
+    })
+    Then("I can see the vega wallet disconnected with disconnect message", () => {
+        cy.get('[data-test-id="vega-wallet-not-connected-msg"]').should('be.visible').and('have.text','Looks like the Vega wallet service isn\'t running. Please start it and refresh the page')
+    })
+
+    When("I have not connected my eth wallet", () => {
+        cy.log('This step does not need to be filled in as connecting wallets is not yet supported with mocks/cypress')
+
+    })
+    Then("I can see the eth wallet disconnected with message {string}", (ethWalletDisconnectedMsg) => {
+        cy.get('[data-test-id="connect-to-eth-wallet-button"]').should('be.visible').and('have.text',ethWalletDisconnectedMsg)
+    })
+
+    When("I have not connected my vega wallet", () => {
+        cy.log('This step does not need to be filled in as connecting wallets is not yet supported with mocks/cypress')
     })
