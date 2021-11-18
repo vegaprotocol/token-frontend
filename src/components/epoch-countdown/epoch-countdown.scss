@@ -36,7 +36,9 @@
   &__arrow {
     flex: 1;
     text-align: center;
+
     img {
+      width: 5px;
       transform: rotate(180deg);
     }
   }
