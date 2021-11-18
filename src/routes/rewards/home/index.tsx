@@ -107,7 +107,6 @@ export const RewardsIndex = () => {
         {currVegaKey && vegaKeys?.length ? (
           <RewardInfo
             currVegaKey={currVegaKey}
-            vegaKeys={vegaKeys}
             data={data}
             rewardAssetId={rewardAssetData[0]}
           />
