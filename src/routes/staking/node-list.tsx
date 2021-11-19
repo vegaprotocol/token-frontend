@@ -9,6 +9,7 @@ import { truncateMiddle } from "../../lib/truncate-middle";
 import { Staking_epoch, Staking_party } from "./__generated__/Staking";
 import { EpochCountdown } from "../../components/epoch-countdown";
 import { Nodes } from "./__generated__/Nodes";
+import { Callout } from "../../components/callout";
 
 const NODES_QUERY = gql`
   query Nodes {
@@ -50,6 +51,7 @@ interface NodeListProps {
 }
 
 export const NodeList = ({ epoch, party }: NodeListProps) => {
+  const { t } = useTranslation();
   const { data, error, loading } = useQuery<Nodes>(NODES_QUERY);
 
   const nodes = React.useMemo<NodeListItemProps[]>(() => {
@@ -97,8 +99,21 @@ export const NodeList = ({ epoch, party }: NodeListProps) => {
     return nodesWithPercentages;
   }, [data, epoch, party]);
 
-  if (error) return <div>Error</div>;
-  if (loading) return <div>Loading...</div>;
+  if (error) {
+    return (
+      <Callout intent="error" title={t("Something went wrong")}>
+        <pre>{error.message}</pre>
+      </Callout>
+    );
+  }
+
+  if (loading) {
+    return (
+      <div>
+        <p>{t("Loading")}</p>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -122,7 +137,6 @@ export const NodeList = ({ epoch, party }: NodeListProps) => {
 export interface NodeListItemProps {
   id: string;
   name: string;
-  pubkey: string;
   stakedOnNode: BigNumber;
   stakedTotalPercentage: string;
   userStake: BigNumber;
@@ -132,7 +146,6 @@ export interface NodeListItemProps {
 export const NodeListItem = ({
   id,
   name,
-  pubkey,
   stakedOnNode,
   stakedTotalPercentage,
   userStake,
