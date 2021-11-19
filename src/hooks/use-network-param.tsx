@@ -12,15 +12,16 @@ export const NETWORK_PARAMS_QUERY = gql`
   }
 `;
 
-export const VALIDATOR_DELEGATION_MIN_AMOUNT = "validators.delegation.minAmount";
+export const VALIDATOR_DELEGATION_MIN_AMOUNT =
+  "validators.delegation.minAmount";
 
 export function useNetworkParam(params: string[]) {
   const { data, loading, error } = useQuery<NetworkParams, never>(
     NETWORK_PARAMS_QUERY
   );
-  const foundParams = data?.networkParameters?.filter((p) =>
-    params.includes(p.key)
-  );
+  const foundParams = data?.networkParameters
+    ?.filter((p) => params.includes(p.key))
+    .sort((a, b) => params.indexOf(a.key) - params.indexOf(b.key));
   return {
     data: foundParams ? foundParams.map((f) => f.value) : null,
     loading,
