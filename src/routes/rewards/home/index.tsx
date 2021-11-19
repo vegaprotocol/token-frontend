@@ -15,6 +15,11 @@ import {
 import { useNetworkParam } from "../../../hooks/use-network-param";
 import { NetworkParams } from "../../../config";
 import { Heading } from "../../../components/heading";
+import { Callout } from "../../../components/callout";
+// @ts-ignore
+import Duration from "duration-js";
+import { formatDistance } from "date-fns";
+import { HandUp } from "../../../components/icons";
 
 export const REWARDS_QUERY = gql`
   query Rewards($partyId: ID!) {
@@ -66,7 +71,10 @@ export const RewardsIndex = () => {
     data: rewardAssetData,
     loading: rewardAssetLoading,
     error: rewardAssetError,
-  } = useNetworkParam([NetworkParams.REWARD_ASSET]);
+  } = useNetworkParam([
+    NetworkParams.REWARD_ASSET,
+    NetworkParams.REWARD_PAYOUT_DURATION,
+  ]);
 
   if (error || rewardAssetError) {
     return (
@@ -91,6 +99,16 @@ export const RewardsIndex = () => {
       <Heading title={t("pageTitleRewards")} />
       <p>{t("rewardsPara1")}</p>
       <p>{t("rewardsPara2")}</p>
+      <Callout intent="warn">
+        <p>
+          {t("rewardsPara3", {
+            duration: formatDistance(
+              0,
+              new Duration(rewardAssetData[1]).milliseconds()
+            ),
+          })}
+        </p>
+      </Callout>
       {!loading &&
         data &&
         !error &&
