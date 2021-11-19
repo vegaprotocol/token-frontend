@@ -25,7 +25,8 @@ const VALIDATOR_RANDOMISER_SEED = (
 ).toString();
 
 export function createClient() {
-  const base = process.env.REACT_APP_VEGA_URL;
+  // const base = process.env.REACT_APP_VEGA_URL;
+  const base = "https://graphql.vega.community/query";
   if (!base) {
     throw new Error("Environment variable REACT_APP_VEGA_URL must be set");
   }

@@ -193,10 +193,9 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
 
   // Chain ID retrieved from provider isn't the same as what the app is
   // configured to work with. Prevent further actions with splash screen
-  if (chainId !== process.env.REACT_APP_CHAIN) {
+  if (chainId !== "0x1") {
     const currentChain = EthereumChainNames[chainId];
-    const desiredChain =
-      EthereumChainNames[process.env.REACT_APP_CHAIN as EthereumChainId];
+    const desiredChain = EthereumChainNames["0x1"];
     return (
       <SplashScreen>
         <div>

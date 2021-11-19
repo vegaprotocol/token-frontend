@@ -10,7 +10,7 @@ import reportWebVitals from "./reportWebVitals";
 import packageJson from "../package.json";
 
 const dsn = process.env.REACT_APP_SENTRY_DSN || false;
-const environment = process.env.REACT_APP_ENV || "local";
+const environment = "MAINNET";
 const commit = process.env.COMMIT_REF || "local";
 const branch = process.env.BRANCH || "unknown";
 
@@ -20,7 +20,7 @@ if (dsn) {
     dsn,
     integrations: [new Integrations.BrowserTracing()],
     tracesSampleRate: 0.1,
-    enabled: environment !== "local",
+    enabled: false,
     environment,
     release: packageJson.version,
     beforeSend(event) {

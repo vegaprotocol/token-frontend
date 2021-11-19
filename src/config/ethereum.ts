@@ -1,7 +1,7 @@
 import { Networks } from "./vega";
 
-const appChainId = process.env.REACT_APP_CHAIN as EthereumChainId;
-const appEnv = process.env.REACT_APP_ENV as Networks;
+const appChainId = "0x1";
+const appEnv = "MAINNET";
 const infuraId = process.env.REACT_APP_INFURA_ID;
 
 const customVegaTokenAddress = process.env.CUSTOM_TOKEN_ADDRESS as string;
