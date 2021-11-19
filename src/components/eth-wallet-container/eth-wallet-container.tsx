@@ -14,7 +14,7 @@ export const EthWalletContainer = ({ children }: EthWalletContainerProps) => {
     return (
       <p>
         <button type="button" onClick={connect}>
-          {t("Connect to an Ethereum wallet")}
+          {t("connectEthWallet")}
         </button>
       </p>
     );

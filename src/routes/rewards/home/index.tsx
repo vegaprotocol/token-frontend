@@ -138,7 +138,7 @@ export const RewardsIndex = () => {
               })
             }
           >
-            {t("Connect to Vega wallet")}
+            {t("connectVegaWallet")}
           </button>
         )}
       </section>
