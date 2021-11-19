@@ -125,7 +125,6 @@ export function useCreateWithdrawal(pubKey: string): [Status, Submit] {
             clearInterval(interval);
           }
         } catch (err) {
-          debugger;
           clearInterval(interval);
         }
       }, 1000);
