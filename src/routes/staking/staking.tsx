@@ -88,7 +88,7 @@ export const StakingStepConnectWallets = () => {
       ) : (
         <p>
           <button onClick={connect} className="fill" type="button">
-            {t("Connect to an Ethereum wallet")}
+            {t("connectEthWallet")}
           </button>
         </p>
       )}

@@ -58,7 +58,7 @@ export const VoteButtons = ({
         className="vote-buttons__logged-out-button fill"
         type="button"
       >
-        {t("Connect to Vega wallet")}
+        {t("connectVegaWallet")}
       </button>
     );
   }
