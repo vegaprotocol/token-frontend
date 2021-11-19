@@ -30,6 +30,7 @@ import {
   WithdrawalsPage_party_withdrawals,
 } from "./__generated__/WithdrawalsPage";
 import { Flags } from "../../config";
+import { useRefreshBalances } from "../../hooks/use-refresh-balances";
 
 const Withdrawals = () => {
   const { t } = useTranslation();
@@ -89,7 +90,9 @@ const WithdrawPendingContainer = ({
   currVegaKey,
 }: WithdrawPendingContainerProps) => {
   const { t } = useTranslation();
+  const { ethAddress } = useWeb3();
   const ethereumConfig = useEthereumConfig();
+  const refreshBalances = useRefreshBalances(ethAddress);
   const { data, loading, error, refetch } = useQuery<
     WithdrawalsPage,
     WithdrawalsPageVariables
@@ -140,6 +143,7 @@ const WithdrawPendingContainer = ({
             withdrawal={w}
             requiredConfirmations={ethereumConfig.confirmations}
             refetchWithdrawals={refetch}
+            refetchBalances={refreshBalances}
           />
         </li>
       ))}
@@ -151,12 +155,14 @@ interface WithdrawalProps {
   withdrawal: WithdrawalsPage_party_withdrawals;
   requiredConfirmations: number;
   refetchWithdrawals: () => void;
+  refetchBalances: () => void;
 }
 
 export const Withdrawal = ({
   withdrawal,
   requiredConfirmations,
   refetchWithdrawals,
+  refetchBalances,
 }: WithdrawalProps) => {
   const { t } = useTranslation();
   const { chainId } = useWeb3();
@@ -186,8 +192,9 @@ export const Withdrawal = ({
     // is already handled by the query in the VegaWallet that polls
     if (state.txState === TxState.Complete) {
       refetchWithdrawals();
+      refetchBalances();
     }
-  }, [state, refetchWithdrawals]);
+  }, [state, refetchWithdrawals, refetchBalances]);
 
   return (
     <div>
