@@ -98,15 +98,16 @@ export const RewardsIndex = () => {
       <Heading title={t("pageTitleRewards")} />
       <p>{t("rewardsPara1")}</p>
       <p>{t("rewardsPara2")}</p>
-      <Callout intent="warn">
-        <p>
-          {t("rewardsPara3", {
-            duration: formatDistance(
-              0,
-              new Duration(rewardAssetData[1]).milliseconds()
-            ),
-          })}
-        </p>
+      <Callout
+        title={t("rewardsCallout", {
+          duration: formatDistance(
+            new Date(0),
+            new Date(new Duration(rewardAssetData[1]).milliseconds())
+          ),
+        })}
+        intent="warn"
+      >
+        <p>{t("rewardsPara3")}</p>
       </Callout>
       {!loading &&
         data &&
