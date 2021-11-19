@@ -14,7 +14,7 @@ export const StakePending = ({
   action,
   amount,
   nodeName,
-  removeType
+  removeType,
 }: StakePendingProps) => {
   const { t } = useTranslation();
   const titleArgs = { amount, node: nodeName };
@@ -30,8 +30,7 @@ export const StakePending = ({
       <p>
         {removeType === RemoveType.endOfEpoch
           ? t("timeForConfirmation")
-          : t("timeForConfirmationNow")
-        }
+          : t("timeForConfirmationNow")}
       </p>
     </Callout>
   );
