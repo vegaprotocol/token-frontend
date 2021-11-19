@@ -413,6 +413,7 @@
   "nextEpoch": "Next epoch",
   "rewardsPara1": "Rewards are paid out from the treasury at the end of an epoch.",
   "rewardsPara2": "This page lists all the rewards that your Vega key has received.",
+  "rewardsPara3": "Rewards are credited to your Vega key {{duration}} after they are earnt.",
   "noRewards": "This Vega key has not received any rewards.",
   "rewardType": "Reward type",
   "yourStake": "Your stake",
