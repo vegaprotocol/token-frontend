@@ -58,7 +58,7 @@ enum FormState {
 }
 
 export type StakeAction = "Add" | "Remove" | undefined;
-enum RemoveType {
+export enum RemoveType {
   endOfEpoch,
   now,
 }
@@ -179,9 +179,23 @@ export const StakingForm = ({
   if (formState === FormState.Failure) {
     return <StakeFailure nodeName={nodeName} />;
   } else if (formState === FormState.Pending) {
-    return <StakePending action={action} amount={amount} nodeName={nodeName} />;
+    return (
+      <StakePending
+        action={action}
+        amount={amount}
+        nodeName={nodeName}
+        removeType={removeType}
+      />
+    );
   } else if (formState === FormState.Success) {
-    return <StakeSuccess action={action} amount={amount} nodeName={nodeName} />;
+    return (
+      <StakeSuccess
+        action={action}
+        amount={amount}
+        nodeName={nodeName}
+        removeType={removeType}
+      />
+    );
   } else if (
     availableStakeToAdd.isEqualTo(0) &&
     availableStakeToRemove.isEqualTo(0)
