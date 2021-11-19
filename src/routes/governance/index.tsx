@@ -11,13 +11,11 @@ import { gql, useQuery } from "@apollo/client";
 import { Proposals } from "./__generated__/proposals";
 import { Callout } from "../../components/callout";
 import { ProposalsList } from "./proposals-list";
-import { AssociateContainer } from "../staking/associate/associate-page-container";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
 import { updateProposals } from "./update-proposals";
 import { Proposal } from "./proposal";
 import { Flags } from "../../config";
-import { DisassociateContainer } from "../staking/disassociate/disassociate-page-container";
 import { Heading } from "../../components/heading";
 
 export const PROPOSALS_FRAGMENT = gql`
@@ -168,12 +166,6 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
     <>
       <Heading title={t("pageTitleGovernance")} />
       <Switch>
-        <Route path={`${match.path}/associate`}>
-          <AssociateContainer />
-        </Route>
-        <Route path={`${match.path}/disassociate`}>
-          <DisassociateContainer />
-        </Route>
         <Route path={match.path} exact>
           {error ? (
             <Callout intent="error" title={t("Something went wrong")}>
