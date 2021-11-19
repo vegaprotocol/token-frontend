@@ -3,18 +3,20 @@ import { Callout } from "../../components/callout";
 import { Tick } from "../../components/icons";
 import { Link } from "react-router-dom";
 import { Routes } from "../router-config";
-import { StakeAction } from "./staking-form";
+import { RemoveType, StakeAction } from "./staking-form";
 
 interface StakeSuccessProps {
   action: StakeAction;
   amount: string;
   nodeName: string;
+  removeType: RemoveType
 }
 
 export const StakeSuccess = ({
   action,
   amount,
   nodeName,
+  removeType
 }: StakeSuccessProps) => {
   const { t } = useTranslation();
   const isAdd = action === "Add";
@@ -23,7 +25,7 @@ export const StakeSuccess = ({
     : t("stakeRemoveSuccessTitle", { amount, node: nodeName });
   const message = isAdd
     ? t("stakeAddSuccessMessage")
-    : t("stakeRemoveSuccessMessage");
+    : removeType === RemoveType.endOfEpoch ? t("stakeRemoveSuccessMessage") : t("stakeRemoveNowSuccessMessage")
 
   return (
     <Callout icon={<Tick />} intent="success" title={title}>
