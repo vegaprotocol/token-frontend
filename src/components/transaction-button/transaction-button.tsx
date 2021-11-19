@@ -5,6 +5,7 @@ import { Error, HandUp, Tick } from "../icons";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { StatefulButton } from "../stateful-button";
 import { useTranslation } from "react-i18next";
+import { EtherscanLink } from "../etherscan-link";
 
 interface TransactionButtonProps {
   text: string;
@@ -135,13 +136,7 @@ export const TransactionButtonFooter = ({
       <div className="transaction-button__footer">
         <p className="transaction-button__txhash">
           <span>{t("transaction")}</span>
-          <a
-            href={`https://ropsten.etherscan.io/tx/${txHash}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {truncateMiddle(txHash)}
-          </a>
+          <EtherscanLink text={truncateMiddle(txHash)} tx={txHash} />
         </p>
       </div>
     );

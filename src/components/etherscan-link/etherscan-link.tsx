@@ -5,6 +5,7 @@ import { Popover, PopoverInteractionKind } from "@blueprintjs/core";
 import { EthereumChainId } from "../../config";
 import { useCopyToClipboard } from "../../hooks/use-copy-to-clipboard";
 import { useTranslation } from "react-i18next";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
 
 const etherscanUrls: Record<EthereumChainId, string> = {
   "0x1": "https://etherscan.io",
@@ -15,7 +16,6 @@ const etherscanUrls: Record<EthereumChainId, string> = {
 };
 
 interface BaseEtherscanLinkProps {
-  chainId: EthereumChainId | null;
   text?: string;
   copyToClipboard?: CopyToClipboardType;
 }
@@ -42,11 +42,11 @@ export enum CopyToClipboardType {
  * Form an HTML link tag pointing to an appropriate Etherscan page
  */
 export const EtherscanLink = ({
-  chainId,
   text,
   copyToClipboard = CopyToClipboardType.TEXT,
   ...props
 }: EtherscanLinkProps) => {
+  const { chainId } = useWeb3();
   let hash: string;
   let txLink: string | null;
   const { t } = useTranslation();

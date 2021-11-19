@@ -160,7 +160,6 @@ export const Withdrawal = ({
   refetchBalances,
 }: WithdrawalProps) => {
   const { t } = useTranslation();
-  const { chainId } = useWeb3();
   const erc20Approval = usePollERC20Approval(withdrawal.id);
   const { erc20Bridge } = useContracts();
   const { state, perform, reset } = useTransaction(() => {
@@ -212,7 +211,6 @@ export const Withdrawal = ({
           <th>{t("toEthereum")}</th>
           <td>
             <EtherscanLink
-              chainId={chainId}
               address={withdrawal.details?.receiverAddress as string}
               text={truncateMiddle(
                 withdrawal.details?.receiverAddress as string
