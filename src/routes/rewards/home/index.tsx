@@ -19,7 +19,6 @@ import { Callout } from "../../../components/callout";
 // @ts-ignore
 import Duration from "duration-js";
 import { formatDistance } from "date-fns";
-import { HandUp } from "../../../components/icons";
 
 export const REWARDS_QUERY = gql`
   query Rewards($partyId: ID!) {
