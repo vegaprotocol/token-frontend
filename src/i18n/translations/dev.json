@@ -433,7 +433,7 @@
   "withdrawFormSubmitButtonPending": "Preparing",
   "withdrawalsTitle": "Incomplete withdrawals",
   "withdrawalsText": "These withdrawals need to be completed with an Ethereum transaction.",
-  "withdrawalsNone": "You dont have any pending withdrawals.",
+  "withdrawalsNone": "You don't have any pending withdrawals.",
   "withdrawalsCompleteButton": "Finish withdrawal",
   "signature": "Signature",
   "created": "Created",
