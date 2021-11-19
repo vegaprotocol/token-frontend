@@ -12,7 +12,7 @@ describe("Associate", () => {
     cy.get('[data-testid="wallet-name"]').type("wallet");
     cy.get('[data-testid="wallet-password"]').type("wallet");
     cy.get('[data-testid="wallet-login"]').click();
-    cy.get("[data-testid='associate-information']").should(
+    cy.get("[data-testid='associate-information1']").should(
       "have.text",
       "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes."
     );

@@ -121,7 +121,7 @@ export const WithdrawContainer = ({ currVegaKey }: WithdrawContainerProps) => {
   return (
     <>
       {hasPendingWithdrawals && (
-        <Callout title={t("pendingWithdrawalsCalloutTitle")} intent="warn">
+        <Callout title={t("pendingWithdrawalsCalloutTitle")} intent="action">
           <p>{t("pendingWithdrawalsCalloutText")}</p>
           <p>
             <Link to={Routes.WITHDRAWALS}>
