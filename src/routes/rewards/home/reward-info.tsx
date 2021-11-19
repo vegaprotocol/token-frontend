@@ -13,7 +13,6 @@ import {
 import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
 import { useTranslation } from "react-i18next";
 import { BigNumber } from "../../../lib/bignumber";
-// import { format } from "date-fns";
 
 interface RewardInfoProps {
   data: Rewards | undefined;

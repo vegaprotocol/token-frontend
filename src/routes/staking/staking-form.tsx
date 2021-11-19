@@ -15,7 +15,7 @@ import {
 import { gql, useApolloClient } from "@apollo/client";
 
 import { BigNumber } from "../../lib/bignumber";
-import { Colors } from "../../config";
+import { Colors, NetworkParams } from "../../config";
 import React from "react";
 import { StakeFailure } from "./stake-failure";
 import { StakePending } from "./stake-pending";
@@ -26,10 +26,7 @@ import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useHistory } from "react-router-dom";
 import { useSearchParams } from "../../hooks/use-search-params";
 import { useTranslation } from "react-i18next";
-import {
-  VALIDATOR_DELEGATION_MIN_AMOUNT,
-  useNetworkParam,
-} from "../../hooks/use-network-param";
+import { useNetworkParam } from "../../hooks/use-network-param";
 
 export const PARTY_DELEGATIONS_QUERY = gql`
   query PartyDelegations($partyId: ID!) {
@@ -90,7 +87,9 @@ export const StakingForm = ({
     RemoveType.endOfEpoch
   );
 
-  const { data } = useNetworkParam([VALIDATOR_DELEGATION_MIN_AMOUNT]);
+  const { data } = useNetworkParam([
+    NetworkParams.VALIDATOR_DELEGATION_MIN_AMOUNT,
+  ]);
   const minTokensWithDecimals = React.useMemo(() => {
     const minTokens = new BigNumber(data && data.length === 1 ? data[0] : "");
     return addDecimal(minTokens, appState.decimals);
