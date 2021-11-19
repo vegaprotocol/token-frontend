@@ -1,18 +1,105 @@
 import "./node-list.scss";
+import React from "react";
+import { gql, useQuery } from "@apollo/client";
 import { Link, useRouteMatch } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
 import { truncateMiddle } from "../../lib/truncate-middle";
-import { Staking_epoch } from "./__generated__/Staking";
+import { Staking_epoch, Staking_party } from "./__generated__/Staking";
 import { EpochCountdown } from "../../components/epoch-countdown";
+import { Nodes } from "./__generated__/Nodes";
+
+const NODES_QUERY = gql`
+  query Nodes {
+    nodes {
+      id
+      name
+      pubkey
+      infoUrl
+      location
+      stakedByOperator
+      stakedByDelegates
+      stakedTotal
+      pendingStake
+      stakedByOperatorFormatted @client
+      stakedByDelegatesFormatted @client
+      stakedTotalFormatted @client
+      pendingStakeFormatted @client
+      epochData {
+        total
+        offline
+        online
+      }
+      status
+    }
+    nodeData {
+      stakedTotal
+      stakedTotalFormatted @client
+      totalNodes
+      inactiveNodes
+      validatingNodes
+      uptime
+    }
+  }
+`;
 
 interface NodeListProps {
-  nodes: NodeListItemProps[];
   epoch: Staking_epoch | undefined;
+  party: Staking_party | null | undefined;
 }
 
-export const NodeList = ({ nodes, epoch }: NodeListProps) => {
+export const NodeList = ({ epoch, party }: NodeListProps) => {
+  const { data, error, loading } = useQuery<Nodes>(NODES_QUERY);
+
+  const nodes = React.useMemo<NodeListItemProps[]>(() => {
+    if (!data?.nodes) return [];
+
+    const nodesWithPercentages = data.nodes.map((node) => {
+      const stakedTotal = new BigNumber(
+        data?.nodeData?.stakedTotalFormatted || 0
+      );
+      const stakedOnNode = new BigNumber(node.stakedTotalFormatted);
+      const stakedTotalPercentage =
+        stakedTotal.isEqualTo(0) || stakedOnNode.isEqualTo(0)
+          ? "-"
+          : stakedOnNode.dividedBy(stakedTotal).times(100).dp(2).toString() +
+            "%";
+
+      const userStake = party?.delegations?.length
+        ? party?.delegations
+            ?.filter((d) => d.node.id === node.id)
+            ?.filter((d) => d.epoch === Number(epoch?.id))
+            .reduce((sum, d) => {
+              const value = new BigNumber(d.amountFormatted);
+              return sum.plus(value);
+            }, new BigNumber(0))
+        : new BigNumber(0);
+
+      const userStakePercentage =
+        userStake.isEqualTo(0) || stakedOnNode.isEqualTo(0)
+          ? "-"
+          : userStake.dividedBy(stakedOnNode).times(100).dp(2).toString() + "%";
+
+      return {
+        id: node.id,
+        name: node.name,
+        pubkey: node.pubkey,
+        stakedTotal,
+        stakedOnNode,
+        stakedTotalPercentage,
+        userStake,
+        userStakePercentage,
+        epoch,
+      };
+    });
+
+    return nodesWithPercentages;
+  }, [data, epoch, party]);
+
+  if (error) return <div>Error</div>;
+  if (loading) return <div>Loading...</div>;
+
   return (
     <>
       {epoch && epoch.timestamps.start && epoch.timestamps.expiry && (
