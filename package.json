@@ -25,6 +25,7 @@
     "bignumber.js": "^9.0.1",
     "bn.js": "^5.2.0",
     "date-fns": "^2.23.0",
+    "duration-js": "^4.0.0",
     "env-cmd": "^10.1.0",
     "ethers": "^5.4.7",
     "faker": "^5.5.3",
