@@ -35,7 +35,6 @@ export function generateProposal(
       __typename: "ProposalVotes",
       yes: {
         totalTokens: "0",
-        totalWeight: "0",
         totalNumber: "1",
         votes: [
           {
@@ -52,7 +51,6 @@ export function generateProposal(
       },
       no: {
         totalTokens: "0",
-        totalWeight: "0",
         totalNumber: "0",
         __typename: "ProposalVoteSide",
         votes: null,
