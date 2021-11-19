@@ -421,7 +421,7 @@
   "yourStake": "Your stake",
   "reward": "Reward",
   "shareOfReward": "Share of reward",
-  "received": "Received",
+  "received": "Payout time",
   "withdrawPageHeading": "Withdraw rewards",
   "withdrawPageText": "Staking rewards are credited at the end of each epoch. Rewards are paid into the connected Vega Wallet, and can be withdrawn using the ERC20 bridge. The rewards are paid out of the treasury for restricted mainnet.",
   "withdrawPageInfoCalloutTitle": "How ERC20 withdrawals work on Vega",
