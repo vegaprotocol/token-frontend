@@ -86,12 +86,9 @@ export const AssociatePage = ({
 
   return (
     <section data-testid="associate">
-      <Callout intent="warn">
-        <p data-testid="associate-information">
-          {t(
-            "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes."
-          )}
-        </p>
+      <Callout>
+        <p data-testid="associate-information1">{t("associateInfo1")}</p>
+        <p data-testid="associate-information2">{t("associateInfo2")}</p>
       </Callout>
       {zeroVesting && zeroVega ? (
         <Callout intent="error">
