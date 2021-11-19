@@ -1,6 +1,7 @@
 export const NetworkParams = {
   ETHEREUM_CONFIG: "blockchains.ethereumConfig",
   REWARD_ASSET: "reward.asset",
+  REWARD_PAYOUT_DURATION: "reward.staking.delegation.payoutDelay",
   GOV_UPDATE_MARKET_REQUIRED_MAJORITY:
     "governance.proposal.updateMarket.requiredMajority",
   GOV_UPDATE_MARKET_REQUIRED_PARTICIPATION:
