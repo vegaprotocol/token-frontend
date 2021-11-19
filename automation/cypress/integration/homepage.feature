@@ -51,7 +51,7 @@ Feature: Homepage
   Scenario: Eth wallet not connected placeholder
     Given I am on the home page
     And I have not connected my eth wallet
-    Then I can see the eth wallet disconnected with message 'Connect to associate your $VEGA'
+    Then I can see the eth wallet disconnected with message 'Connect Ethereum wallet to associate $VEGA'
   
   Scenario: Vega wallet not connected placeholder
     Given I am on the home page
