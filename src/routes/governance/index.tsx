@@ -63,7 +63,6 @@ export const PROPOSALS_FRAGMENT = gql`
     votes {
       yes {
         totalTokens
-        totalWeight
         totalNumber
         votes {
           value
@@ -75,7 +74,6 @@ export const PROPOSALS_FRAGMENT = gql`
       }
       no {
         totalTokens
-        totalWeight
         totalNumber
         votes {
           value

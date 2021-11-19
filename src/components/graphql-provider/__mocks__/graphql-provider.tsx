@@ -284,7 +284,6 @@ const MOCK_PROPOSALS_SUBSCRIPTION: MockedResponse<ProposalsSub> = {
         votes: {
           yes: {
             totalTokens: "0",
-            totalWeight: "0",
             totalNumber: "1",
             votes: [
               {
@@ -301,7 +300,6 @@ const MOCK_PROPOSALS_SUBSCRIPTION: MockedResponse<ProposalsSub> = {
           },
           no: {
             totalTokens: "0",
-            totalWeight: "0",
             totalNumber: "0",
             votes: null,
             __typename: "ProposalVoteSide",
