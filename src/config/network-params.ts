@@ -17,4 +17,5 @@ export const NetworkParams = {
     "governance.proposal.updateNetParam.requiredMajority",
   GOV_UPDATE_NET_PARAM_REQUIRED_PARTICIPATION:
     "governance.proposal.updateNetParam.requiredParticipation",
+  VALIDATOR_DELEGATION_MIN_AMOUNT: "validators.delegation.minAmount",
 };
