@@ -21,10 +21,10 @@
 
   &__message {
     padding: 5px 0 5px 7px;
-    border-left: 3px solid #ff7a1a;
+    border-left: 3px solid $vega-orange3;
 
     .icon {
-      color: #ff7a1a;
+      color: $vega-orange3;
       position: relative;
       top: 2px;
       margin-right: 5px;
