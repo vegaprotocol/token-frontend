@@ -10,7 +10,6 @@ import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
-import { useWeb3 } from "../../../contexts/web3-context/web3-context";
 import { formatNumber } from "../../../lib/format-number";
 
 interface DexTokensSectionProps {
@@ -28,7 +27,6 @@ export const DexTokensSection = ({
   state,
   showInteractionButton = true,
 }: DexTokensSectionProps) => {
-  const { chainId } = useWeb3();
   const { t } = useTranslation();
   const values = React.useMemo(
     () => state.contractData[contractAddress],
@@ -61,11 +59,7 @@ export const DexTokensSection = ({
         <KeyValueTableRow>
           <th>{t("liquidityTokenContractAddress")}</th>
           <td>
-            <EtherscanLink
-              chainId={chainId}
-              address={contractAddress}
-              text={contractAddress}
-            />
+            <EtherscanLink address={contractAddress} text={contractAddress} />
           </td>
         </KeyValueTableRow>
         <KeyValueTableRow>
@@ -78,7 +72,6 @@ export const DexTokensSection = ({
           <th>{t("rewardTokenContractAddress")}</th>
           <td>
             <EtherscanLink
-              chainId={chainId}
               address={values.awardContractAddress}
               text={values.awardContractAddress}
             />
@@ -88,7 +81,6 @@ export const DexTokensSection = ({
           <th>{t("slpTokenContractAddress")}</th>
           <td>
             <EtherscanLink
-              chainId={chainId}
               address={values.lpTokenContractAddress}
               text={values.lpTokenContractAddress}
             />
