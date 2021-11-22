@@ -100,7 +100,7 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
   const { t } = useTranslation();
   const { data, loading, error } = useQuery<Proposals, never>(PROPOSALS_QUERY, {
-    pollInterval: 10000,
+    pollInterval: 5000,
   });
 
   const proposalsData = React.useMemo(() => {
