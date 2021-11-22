@@ -5,6 +5,8 @@ import {
 } from "./__generated__/Proposals";
 import { useTranslation } from "react-i18next";
 
+const DATE_FORMAT = "d MMM yyyy HH:mm";
+
 interface NetworkChangeProps {
   proposal: Proposals_proposals;
 }
@@ -30,11 +32,16 @@ export const NetworkChange = ({ proposal }: NetworkChangeProps) => {
           <p className="proposal__item-left">{t("proposedNewValue")}&nbsp;</p>
           <span className="proposal__item-right">{networkParameter.value}</span>
         </div>
-
+        <div className="proposal__row">
+          <p className="proposal__item-left">{t("closesOn")}&nbsp;</p>
+          <span className="proposal__item-right">
+            {format(new Date(terms.closingDatetime), DATE_FORMAT)}
+          </span>
+        </div>
         <div className="proposal__row">
           <p className="proposal__item-left">{t("toEnactOn")}&nbsp;</p>
           <span className="proposal__item-right">
-            {format(new Date(terms.enactmentDatetime), "d MMM yyyy")}
+            {format(new Date(terms.enactmentDatetime), DATE_FORMAT)}
           </span>
         </div>
 
@@ -46,7 +53,7 @@ export const NetworkChange = ({ proposal }: NetworkChangeProps) => {
         <div className="proposal__row">
           <p className="proposal__item-left">{t("proposedOn")}&nbsp;</p>
           <span className="proposal__item-right">
-            {format(proposedDate, "d MMM yyyy")}
+            {format(proposedDate, DATE_FORMAT)}
           </span>
         </div>
       </section>
