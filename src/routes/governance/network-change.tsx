@@ -22,41 +22,37 @@ export const NetworkChange = ({ proposal }: NetworkChangeProps) => {
   const proposedDate = new Date(proposal.datetime).getTime();
 
   return (
-    <>
-      <section>
-        <h1>{t("newNetworkParam")}</h1>
-        <h2 className="proposal__sub-title">{t("networkChanges")}</h2>
-        <h2 className="proposal__top-title">{networkParameter.key}</h2>
+    <section>
+      <h2 className="proposal__top-title">{networkParameter.key}</h2>
 
-        <div className="proposal__row">
-          <p className="proposal__item-left">{t("proposedNewValue")}&nbsp;</p>
-          <span className="proposal__item-right">{networkParameter.value}</span>
-        </div>
-        <div className="proposal__row">
-          <p className="proposal__item-left">{t("closesOn")}&nbsp;</p>
-          <span className="proposal__item-right">
-            {format(new Date(terms.closingDatetime), DATE_FORMAT)}
-          </span>
-        </div>
-        <div className="proposal__row">
-          <p className="proposal__item-left">{t("toEnactOn")}&nbsp;</p>
-          <span className="proposal__item-right">
-            {format(new Date(terms.enactmentDatetime), DATE_FORMAT)}
-          </span>
-        </div>
+      <div className="proposal__row">
+        <p className="proposal__item-left">{t("proposedNewValue")}&nbsp;</p>
+        <span className="proposal__item-right">{networkParameter.value}</span>
+      </div>
+      <div className="proposal__row">
+        <p className="proposal__item-left">{t("closesOn")}&nbsp;</p>
+        <span className="proposal__item-right">
+          {format(new Date(terms.closingDatetime), DATE_FORMAT)}
+        </span>
+      </div>
+      <div className="proposal__row">
+        <p className="proposal__item-left">{t("toEnactOn")}&nbsp;</p>
+        <span className="proposal__item-right">
+          {format(new Date(terms.enactmentDatetime), DATE_FORMAT)}
+        </span>
+      </div>
 
-        <div className="proposal__row">
-          <p className="proposal__item-left">{t("proposedBy")}&nbsp;</p>
-          <span className="proposal__item-right">{proposal.party.id}</span>
-        </div>
+      <div className="proposal__row">
+        <p className="proposal__item-left">{t("proposedBy")}&nbsp;</p>
+        <span className="proposal__item-right">{proposal.party.id}</span>
+      </div>
 
-        <div className="proposal__row">
-          <p className="proposal__item-left">{t("proposedOn")}&nbsp;</p>
-          <span className="proposal__item-right">
-            {format(proposedDate, DATE_FORMAT)}
-          </span>
-        </div>
-      </section>
-    </>
+      <div className="proposal__row">
+        <p className="proposal__item-left">{t("proposedOn")}&nbsp;</p>
+        <span className="proposal__item-right">
+          {format(proposedDate, DATE_FORMAT)}
+        </span>
+      </div>
+    </section>
   );
 };

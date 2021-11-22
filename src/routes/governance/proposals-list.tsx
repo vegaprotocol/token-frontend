@@ -8,6 +8,7 @@ import {
   Proposals_proposals_terms_change_UpdateNetworkParameter,
 } from "./__generated__/Proposals";
 import { CurrentProposalStatus } from "./current-proposal-status";
+import { Heading } from "../../components/heading";
 
 const DATE_FORMAT = "d MMM yyyy HH:mm";
 
@@ -77,6 +78,7 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
 
   return (
     <>
+      <Heading title={t("pageTitleGovernance")} />
       <p>{t("proposedChangesToVegaNetwork")}</p>
       <p>{t("vegaTokenHoldersCanVote")}</p>
       <p>{t("requiredMajorityDescription")}</p>
