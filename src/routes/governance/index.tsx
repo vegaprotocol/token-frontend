@@ -13,7 +13,6 @@ import { Callout } from "../../components/callout";
 import { ProposalsList } from "./proposals-list";
 import { SplashScreen } from "../../components/splash-screen";
 import { SplashLoader } from "../../components/splash-loader";
-import { updateProposals } from "./update-proposals";
 import { Proposal } from "./proposal";
 import { Flags } from "../../config";
 import { Heading } from "../../components/heading";
@@ -96,33 +95,10 @@ export const PROPOSALS_QUERY = gql`
   }
 `;
 
-export const PROPOSAL_SUBSCRIPTION = gql`
-  ${PROPOSALS_FRAGMENT}
-  subscription ProposalsSub {
-    proposals {
-      ...ProposalFields
-    }
-  }
-`;
-
 const GovernanceRouter = ({ name }: RouteChildProps) => {
   const match = useRouteMatch();
   useDocumentTitle(name);
-  const { data, loading, error, subscribeToMore } = useQuery<Proposals, never>(
-    PROPOSALS_QUERY
-  );
-
-  React.useEffect(() => {
-    const unsub = subscribeToMore({
-      document: PROPOSAL_SUBSCRIPTION,
-      // @ts-ignore
-      updateQuery: (prev, data) => updateProposals(prev, data),
-    });
-
-    return () => {
-      unsub();
-    };
-  }, [subscribeToMore]);
+  const { data, loading, error } = useQuery<Proposals, never>(PROPOSALS_QUERY);
 
   const proposalsData = React.useMemo(() => {
     if (!data?.proposals?.length) {
