@@ -2,14 +2,14 @@ import { format } from "date-fns";
 import {
   Proposals_proposals,
   Proposals_proposals_terms_change_UpdateNetworkParameter,
-} from "./__generated__/proposals";
+} from "./__generated__/Proposals";
 import { useTranslation } from "react-i18next";
 
 interface NetworkChangeProps {
   proposal: Proposals_proposals;
 }
 
-export const NetworkChange = ({proposal}: NetworkChangeProps) => {
+export const NetworkChange = ({ proposal }: NetworkChangeProps) => {
   const { t } = useTranslation();
 
   const { terms } = proposal;
@@ -28,9 +28,7 @@ export const NetworkChange = ({proposal}: NetworkChangeProps) => {
 
         <div className="proposal__row">
           <p className="proposal__item-left">{t("proposedNewValue")}&nbsp;</p>
-          <span className="proposal__item-right">
-            {networkParameter.value}
-          </span>
+          <span className="proposal__item-right">{networkParameter.value}</span>
         </div>
 
         <div className="proposal__row">

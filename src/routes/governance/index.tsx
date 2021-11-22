@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 
 import { gql, useQuery } from "@apollo/client";
-import { Proposals } from "./__generated__/proposals";
+import { Proposals } from "./__generated__/Proposals";
 import { Callout } from "../../components/callout";
 import { ProposalsList } from "./proposals-list";
 import { SplashScreen } from "../../components/splash-screen";

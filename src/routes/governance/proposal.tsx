@@ -1,9 +1,7 @@
 import "./proposal.scss";
 
 import { useParams } from "react-router";
-import {
-  Proposals_proposals,
-} from "./__generated__/proposals";
+import { Proposals_proposals } from "./__generated__/Proposals";
 import { NetworkChange } from "./network-change";
 import { VoteDetails } from "./vote-details";
 
