@@ -49,8 +49,15 @@ const WITHDRAW_PAGE_QUERY = gql`
         type
         asset {
           id
+          name
           symbol
           decimals
+          source {
+            __typename
+            ... on ERC20 {
+              contractAddress
+            }
+          }
         }
       }
       withdrawals {
