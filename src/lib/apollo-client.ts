@@ -71,6 +71,7 @@ export function createClient() {
         },
       },
       Account: {
+        keyFields: ["type", "party", ["id"], "asset", ["id"]],
         fields: {
           balanceFormatted: {
             read(_: string, options: FieldFunctionOptions) {
