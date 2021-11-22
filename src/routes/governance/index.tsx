@@ -138,29 +138,26 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
   }
 
   return (
-    <>
-      <Heading title={t("pageTitleGovernance")} />
-      <Switch>
-        <Route path={match.path} exact>
-          {error ? (
-            <Callout intent="error" title={t("Something went wrong")}>
-              <pre>{error.message}</pre>
-            </Callout>
-          ) : (
-            <ProposalsList proposals={proposalsData} />
-          )}
-        </Route>
-        <Route path={`${match.path}/:proposalId`}>
-          {error ? (
-            <Callout intent="error" title={t("Something went wrong")}>
-              <pre>{error.message}</pre>
-            </Callout>
-          ) : (
-            <Proposal proposals={proposalsData} />
-          )}
-        </Route>
-      </Switch>
-    </>
+    <Switch>
+      <Route path={match.path} exact>
+        {error ? (
+          <Callout intent="error" title={t("Something went wrong")}>
+            <pre>{error.message}</pre>
+          </Callout>
+        ) : (
+          <ProposalsList proposals={proposalsData} />
+        )}
+      </Route>
+      <Route path={`${match.path}/:proposalId`}>
+        {error ? (
+          <Callout intent="error" title={t("Something went wrong")}>
+            <pre>{error.message}</pre>
+          </Callout>
+        ) : (
+          <Proposal proposals={proposalsData} />
+        )}
+      </Route>
+    </Switch>
   );
 };
 
