@@ -98,6 +98,7 @@ export const PROPOSALS_QUERY = gql`
 const GovernanceRouter = ({ name }: RouteChildProps) => {
   const match = useRouteMatch();
   useDocumentTitle(name);
+  const { t } = useTranslation();
   const { data, loading, error } = useQuery<Proposals, never>(PROPOSALS_QUERY, {
     pollInterval: 10000,
   });
@@ -120,8 +121,6 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
         ),
     ])(data.proposals);
   }, [data]);
-
-  const { t } = useTranslation();
 
   if (Flags.GOVERNANCE_DISABLED) {
     return (
