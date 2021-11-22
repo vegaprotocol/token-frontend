@@ -6,7 +6,7 @@ import { Link, useRouteMatch } from "react-router-dom";
 import {
   Proposals_proposals,
   Proposals_proposals_terms_change_UpdateNetworkParameter,
-} from "./__generated__/proposals";
+} from "./__generated__/Proposals";
 import { CurrentProposalStatus } from "./current-proposal-status";
 
 interface ProposalsListProps {

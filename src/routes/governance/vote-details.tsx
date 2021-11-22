@@ -4,7 +4,7 @@ import { formatDistanceToNow } from "date-fns";
 import { useTranslation } from "react-i18next";
 import { useVoteInformation } from "./hooks";
 import { VoteProgress } from "./vote-progress";
-import { Proposals_proposals } from "./__generated__/proposals";
+import { Proposals_proposals } from "./__generated__/Proposals";
 import { CurrentProposalStatus } from "./current-proposal-status";
 import { VoteButtons } from "./vote-buttons";
 import { useUserVote } from "./use-user-vote";
