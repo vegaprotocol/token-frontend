@@ -137,7 +137,6 @@
   "viewKeys": "crwdns4775:0crwdne4775:0",
   "vegaKey": "crwdns4777:0crwdne4777:0",
   "noService": "crwdns4779:0crwdne4779:0",
-  "connectVegaWallet": "crwdns6345:0$VEGAcrwdne6345:0",
   "disconnect": "crwdns4783:0crwdne4783:0",
   "awaitingDisconnect": "crwdns4785:0crwdne4785:0",
   "Checking Vega wallet status": "crwdns6579:0crwdne6579:0",
@@ -470,5 +469,9 @@
   "rewardsComingSoon": "crwdns6659:0crwdne6659:0",
   "withdrawsComingSoon": "crwdns6661:0crwdne6661:0",
   "associationChoice": "crwdns6663:0$VEGAcrwdnd6663:0$VEGAcrwdne6663:0",
-  "footerLinksText": "crwdns6665:0crwdne6665:0"
+  "footerLinksText": "crwdns6665:0crwdne6665:0",
+  "connectEthWallet": "crwdns6681:0crwdne6681:0",
+  "connectEthWalletToAssociate": "crwdns6683:0$VEGAcrwdne6683:0",
+  "connectVegaWallet": "crwdns6685:0crwdne6685:0",
+  "connectVegaWalletToUseAssociated": "crwdns6687:0$VEGAcrwdne6687:0"
 }
