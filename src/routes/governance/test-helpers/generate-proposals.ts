@@ -1,7 +1,7 @@
 import merge from "lodash/merge";
 import * as faker from "faker";
 
-import { Proposals_proposals } from "../__generated__/proposals";
+import { Proposals_proposals } from "../__generated__/Proposals";
 import { ProposalState, VoteValue } from "../../../__generated__/globalTypes";
 
 export function generateProposal(
