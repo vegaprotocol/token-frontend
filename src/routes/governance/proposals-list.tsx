@@ -9,6 +9,8 @@ import {
 } from "./__generated__/Proposals";
 import { CurrentProposalStatus } from "./current-proposal-status";
 
+const DATE_FORMAT = "d MMM yyyy HH:mm";
+
 interface ProposalsListProps {
   proposals: Proposals_proposals[];
 }
@@ -51,11 +53,17 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
           </p>
         </div>
         <div className="proposals-list__row">
+          <p className="proposals-list__item-left-low-key">{t("closesOn")}</p>
+          <span className="proposals-list__item-right">
+            {format(new Date(row.terms.closingDatetime), DATE_FORMAT)}
+          </span>
+        </div>
+        <div className="proposals-list__row">
           <p className="proposals-list__item-left-low-key">
             {t("proposedEnactment")}
           </p>
           <span className="proposals-list__item-right">
-            {format(enactmentDate, "d MMM yyyy")}
+            {format(enactmentDate, DATE_FORMAT)}
           </span>
         </div>
 
