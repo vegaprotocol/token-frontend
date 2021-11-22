@@ -66,7 +66,6 @@ export function useUserVote(
     if (!proposalId || !currVegaKey) return;
 
     setVotePending(true);
-    setVoteState(value === VoteValue.Yes ? VoteState.Yes : VoteState.No);
 
     try {
       const variables: VoteSubmissionInput = {
@@ -80,8 +79,12 @@ export function useUserVote(
 
       if (hasErrorProperty(res)) {
         throw new Error(res.error);
+      } else {
+        setVotePending(false);
+        setVoteState(value === VoteValue.Yes ? VoteState.Yes : VoteState.No);
       }
     } catch (err) {
+      setVotePending(false);
       setVoteState(VoteState.Failed);
       captureException(err);
     }
