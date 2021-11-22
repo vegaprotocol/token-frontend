@@ -98,7 +98,9 @@ export const PROPOSALS_QUERY = gql`
 const GovernanceRouter = ({ name }: RouteChildProps) => {
   const match = useRouteMatch();
   useDocumentTitle(name);
-  const { data, loading, error } = useQuery<Proposals, never>(PROPOSALS_QUERY);
+  const { data, loading, error } = useQuery<Proposals, never>(PROPOSALS_QUERY, {
+    pollInterval: 10000,
+  });
 
   const proposalsData = React.useMemo(() => {
     if (!data?.proposals?.length) {
