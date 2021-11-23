@@ -1,4 +1,3 @@
-import "./proposal.scss";
 import { NetworkChange } from "./network-change";
 import { VoteDetails } from "./vote-details";
 import { Heading } from "../../components/heading";

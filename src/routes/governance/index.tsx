@@ -1,3 +1,4 @@
+import "./governance.scss";
 import { RouteChildProps } from "..";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { useTranslation } from "react-i18next";

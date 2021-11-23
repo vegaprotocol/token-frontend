@@ -1,9 +1,7 @@
 import { format } from "date-fns";
-import {
-  Proposals_proposals,
-  Proposals_proposals_terms_change_UpdateNetworkParameter,
-} from "./__generated__/Proposals";
+import { Proposals_proposals } from "./__generated__/Proposals";
 import { useTranslation } from "react-i18next";
+import { ProposalChangeText } from "./proposal-change-text";
 
 const DATE_FORMAT = "d MMM yyyy HH:mm";
 
@@ -14,45 +12,38 @@ interface NetworkChangeProps {
 export const NetworkChange = ({ proposal }: NetworkChangeProps) => {
   const { t } = useTranslation();
 
-  const { terms } = proposal;
-  const networkParameter = (
-    terms.change as Proposals_proposals_terms_change_UpdateNetworkParameter
-  ).networkParameter;
+  if (proposal.terms.change.__typename !== "UpdateNetworkParameter") {
+    return null;
+  }
 
-  const proposedDate = new Date(proposal.datetime).getTime();
+  const terms = proposal.terms;
+  const networkParameter = proposal.terms.change.networkParameter;
 
   return (
     <section>
-      <h2 className="proposal__top-title">{networkParameter.key}</h2>
-
-      <div className="proposal__row">
-        <p className="proposal__item-left">{t("proposedNewValue")}&nbsp;</p>
-        <span className="proposal__item-right">{networkParameter.value}</span>
-      </div>
-      <div className="proposal__row">
-        <p className="proposal__item-left">{t("closesOn")}&nbsp;</p>
-        <span className="proposal__item-right">
-          {format(new Date(terms.closingDatetime), DATE_FORMAT)}
-        </span>
-      </div>
-      <div className="proposal__row">
-        <p className="proposal__item-left">{t("toEnactOn")}&nbsp;</p>
-        <span className="proposal__item-right">
-          {format(new Date(terms.enactmentDatetime), DATE_FORMAT)}
-        </span>
-      </div>
-
-      <div className="proposal__row">
-        <p className="proposal__item-left">{t("proposedBy")}&nbsp;</p>
-        <span className="proposal__item-right">{proposal.party.id}</span>
-      </div>
-
-      <div className="proposal__row">
-        <p className="proposal__item-left">{t("proposedOn")}&nbsp;</p>
-        <span className="proposal__item-right">
-          {format(proposedDate, DATE_FORMAT)}
-        </span>
-      </div>
+      <p style={{ margin: "20px 0 2px 0", color: "#fff" }}>
+        <ProposalChangeText networkParam={networkParameter} />
+      </p>
+      <table className="proposal-table">
+        <tbody>
+          <tr>
+            <th>{t("closesOn")}</th>
+            <td>{format(new Date(terms.closingDatetime), DATE_FORMAT)}</td>
+          </tr>
+          <tr>
+            <th>{t("toEnactOn")}</th>
+            <td>{format(new Date(terms.enactmentDatetime), DATE_FORMAT)}</td>
+          </tr>
+          <tr>
+            <th>{t("proposedBy")}</th>
+            <td>{proposal.party.id}</td>
+          </tr>
+          <tr>
+            <th>{t("proposedOn")}</th>
+            <td>{format(new Date(proposal.datetime), DATE_FORMAT)}</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
   );
 };
