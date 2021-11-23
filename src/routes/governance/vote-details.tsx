@@ -7,21 +7,8 @@ import { VoteProgress } from "./vote-progress";
 import { CurrentProposalStatus } from "./current-proposal-status";
 import { VoteButtonsContainer } from "./vote-buttons";
 import { useUserVote } from "./use-user-vote";
-import { gql } from "@apollo/client";
 import { ProposalState } from "../../__generated__/globalTypes";
 import { Proposal_proposal } from "./__generated__/Proposal";
-
-export const PARTIES_QUERY = gql`
-  query Parties {
-    parties {
-      id
-      stake {
-        currentStakeAvailable
-        currentStakeAvailableFormatted @client
-      }
-    }
-  }
-`;
 
 interface VoteDetailsProps {
   proposal: Proposal_proposal;

@@ -16,8 +16,6 @@ import { PartyDelegations } from "../../../routes/staking/__generated__/PartyDel
 import { PARTY_DELEGATIONS_QUERY } from "../../../routes/staking/staking-form";
 import { PROPOSALS_QUERY } from "../../../routes/governance/proposals-container";
 import { Proposals } from "../../../routes/governance/__generated__/Proposals";
-import { Parties } from "../../../routes/governance/__generated__/Parties";
-import { PARTIES_QUERY } from "../../../routes/governance/vote-details";
 import { generateProposal } from "../../../routes/governance/test-helpers/generate-proposals";
 import { STAKING_QUERY } from "../../../routes/staking/staking-nodes-container";
 import { Rewards } from "../../../routes/rewards/home/__generated__/Rewards";
@@ -248,27 +246,6 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
   },
 };
 
-const MOCK_PARTIES: MockedResponse<Parties> = {
-  request: {
-    query: PARTIES_QUERY,
-  },
-  result: {
-    data: {
-      parties: [
-        {
-          __typename: "Party",
-          id: "123",
-          stake: {
-            __typename: "PartyStake",
-            currentStakeAvailable: "12345",
-            currentStakeAvailableFormatted: "12345",
-          },
-        },
-      ],
-    },
-  },
-};
-
 const MOCK_REWARDS: MockedResponse<Rewards> = {
   request: {
     query: REWARDS_QUERY,
@@ -382,7 +359,6 @@ export const GraphQlProvider = ({
         MOCK_STAKING_QUERY,
         MOCK_PARTY_DELEGATIONS,
         MOCK_PROPOSALS,
-        MOCK_PARTIES,
         MOCK_REWARDS,
         MOCK_NETWORK_PARAMS,
       ]}
