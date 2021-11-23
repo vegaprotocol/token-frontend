@@ -61,7 +61,6 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
   }
   return (
     <section>
-      <h4 className="proposal__sub-title">{t("yourVote")}</h4>
       <VoteButtons
         party={party}
         voteState={voteState}
