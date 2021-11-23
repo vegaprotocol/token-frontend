@@ -19,6 +19,7 @@ import { Callout } from "../../../components/callout";
 // @ts-ignore
 import Duration from "duration-js";
 import { formatDistance } from "date-fns";
+import React from "react";
 
 export const REWARDS_QUERY = gql`
   query Rewards($partyId: ID!) {
@@ -75,6 +76,13 @@ export const RewardsIndex = () => {
     NetworkParams.REWARD_PAYOUT_DURATION,
   ]);
 
+  const payoutDuration = React.useMemo(() => {
+    if (!rewardAssetData || !rewardAssetData[1]) {
+      return 0;
+    }
+    return new Duration(rewardAssetData[1]).milliseconds();
+  }, [rewardAssetData]);
+
   if (error || rewardAssetError) {
     return (
       <section>
@@ -98,17 +106,16 @@ export const RewardsIndex = () => {
       <Heading title={t("pageTitleRewards")} />
       <p>{t("rewardsPara1")}</p>
       <p>{t("rewardsPara2")}</p>
-      <Callout
-        title={t("rewardsCallout", {
-          duration: formatDistance(
-            new Date(0),
-            new Date(new Duration(rewardAssetData[1]).milliseconds())
-          ),
-        })}
-        intent="warn"
-      >
-        <p>{t("rewardsPara3")}</p>
-      </Callout>
+      {payoutDuration ? (
+        <Callout
+          title={t("rewardsCallout", {
+            duration: formatDistance(new Date(0), payoutDuration),
+          })}
+          intent="warn"
+        >
+          <p>{t("rewardsPara3")}</p>
+        </Callout>
+      ) : null}
       {!loading &&
         data &&
         !error &&
