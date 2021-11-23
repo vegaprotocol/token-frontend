@@ -36,7 +36,11 @@ export const NetworkChange = ({ proposal }: NetworkChangeProps) => {
           </tr>
           <tr>
             <th>{t("proposedBy")}</th>
-            <td>{proposal.party.id}</td>
+            <td>
+              <span style={{ wordBreak: "break-word" }}>
+                {proposal.party.id}
+              </span>
+            </td>
           </tr>
           <tr>
             <th>{t("proposedOn")}</th>
