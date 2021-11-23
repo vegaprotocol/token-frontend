@@ -1,11 +1,11 @@
 import { Overlay } from "@blueprintjs/core";
 import { useTranslation } from "react-i18next";
-import { Links } from "../../config";
 import {
   AppStateActionType,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
 import { Modal } from "../modal";
+import { DownloadWalletPrompt } from "./download-wallet-prompt";
 import { VegaWalletForm } from "./vega-wallet-form";
 
 export const VegaWalletModal = () => {
@@ -34,17 +34,7 @@ export const VegaWalletModal = () => {
               })
             }
           />
-          <h2>{t("getWallet")}</h2>
-          <p>
-            <a href={Links.WALLET_GUIDE} target="_blank" rel="noreferrer">
-              {t("readGuide")}
-            </a>
-          </p>
-          <p>
-            <a href={Links.WALLET_RELEASES} target="_blank" rel="noreferrer">
-              {t("downloadWallet")}
-            </a>
-          </p>
+          <DownloadWalletPrompt />
         </Modal>
       </div>
     </Overlay>

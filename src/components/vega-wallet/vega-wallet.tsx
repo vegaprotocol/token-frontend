@@ -42,6 +42,7 @@ import vegaBlack from "../../images/vega_black.png";
 import noIcon from "../../images/token-no-icon.png";
 import { addDecimal } from "../../lib/decimals";
 import { AccountType } from "../../__generated__/globalTypes";
+import { DownloadWalletPrompt } from "./download-wallet-prompt";
 
 const DELEGATIONS_QUERY = gql`
   query Delegations($partyId: ID!) {
@@ -132,19 +133,22 @@ const VegaWalletNotConnected = () => {
   }
 
   return (
-    <button
-      onClick={() =>
-        appDispatch({
-          type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,
-          isOpen: true,
-        })
-      }
-      className="fill button-secondary"
-      data-testid="connect-vega"
-      type="button"
-    >
-      {t("connectVegaWalletToUseAssociated")}
-    </button>
+    <>
+      <button
+        onClick={() =>
+          appDispatch({
+            type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,
+            isOpen: true,
+          })
+        }
+        className="fill button-secondary"
+        data-testid="connect-vega"
+        type="button"
+      >
+        {t("connectVegaWalletToUseAssociated")}
+      </button>
+      <DownloadWalletPrompt />
+    </>
   );
 };
 
