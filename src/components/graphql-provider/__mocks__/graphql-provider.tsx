@@ -14,7 +14,7 @@ import {
 } from "../../../routes/staking/__generated__/Staking";
 import { PartyDelegations } from "../../../routes/staking/__generated__/PartyDelegations";
 import { PARTY_DELEGATIONS_QUERY } from "../../../routes/staking/staking-form";
-import { PROPOSALS_QUERY } from "../../../routes/governance";
+import { PROPOSALS_QUERY } from "../../../routes/governance/proposals-container";
 import { Proposals } from "../../../routes/governance/__generated__/Proposals";
 import { Parties } from "../../../routes/governance/__generated__/Parties";
 import { PARTIES_QUERY } from "../../../routes/governance/vote-details";
