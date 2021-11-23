@@ -219,7 +219,7 @@ const VegaWalletConnected = ({
           .query<Delegations, DelegationsVariables>({
             query: DELEGATIONS_QUERY,
             variables: { partyId: currVegaKey.pub },
-            fetchPolicy: "no-cache",
+            fetchPolicy: "network-only",
           })
           .then((res) => {
             if (!mounted) return;
