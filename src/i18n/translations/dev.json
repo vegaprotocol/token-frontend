@@ -217,6 +217,7 @@
   "Started": "Started",
   "Node invalid": "Node invalid",
   "Next epoch in {{endText}}": "Next epoch in {{endText}}",
+  "Awaiting next epoch": "Waiting for next epoch to start...",
   "Manage your stake": "Manage your stake",
   "Add Stake": "Add Stake",
   "Remove Stake": "Remove Stake",
