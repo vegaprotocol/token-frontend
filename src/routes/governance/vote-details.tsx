@@ -4,16 +4,12 @@ import { formatDistanceToNow } from "date-fns";
 import { useTranslation } from "react-i18next";
 import { useVoteInformation } from "./hooks";
 import { VoteProgress } from "./vote-progress";
-import { Proposals_proposals } from "./__generated__/Proposals";
 import { CurrentProposalStatus } from "./current-proposal-status";
-import { VoteButtons } from "./vote-buttons";
+import { VoteButtonsContainer } from "./vote-buttons";
 import { useUserVote } from "./use-user-vote";
-import { gql, useQuery } from "@apollo/client";
-import { Parties } from "./__generated__/Parties";
-import { SplashScreen } from "../../components/splash-screen";
-import { SplashLoader } from "../../components/splash-loader";
-import { Callout } from "../../components/callout";
+import { gql } from "@apollo/client";
 import { ProposalState } from "../../__generated__/globalTypes";
+import { Proposal_proposal } from "./__generated__/Proposal";
 
 export const PARTIES_QUERY = gql`
   query Parties {
@@ -28,7 +24,7 @@ export const PARTIES_QUERY = gql`
 `;
 
 interface VoteDetailsProps {
-  proposal: Proposals_proposals;
+  proposal: Proposal_proposal;
 }
 
 export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
@@ -50,35 +46,10 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
     proposal.votes.no.votes
   );
 
-  const { data, loading, error } = useQuery<Parties>(PARTIES_QUERY);
-
-  const party = React.useMemo(() => {
-    if (!data || !data.parties || data.parties?.length === 0) {
-      return null;
-    }
-
-    return data.parties.find((party) => party.id === proposal.party.id);
-  }, [data, proposal.party.id]);
-
   const daysLeft = t("daysLeft", {
     daysLeft: formatDistanceToNow(new Date(proposal.terms.closingDatetime)),
   });
 
-  if (loading) {
-    return (
-      <SplashScreen>
-        <SplashLoader />
-      </SplashScreen>
-    );
-  }
-
-  if (error) {
-    return (
-      <Callout intent="error" title={t("Something went wrong")}>
-        <p>{t("partiesQueryFailed")}</p>
-      </Callout>
-    );
-  }
   return (
     <section>
       <h4 className="proposal__sub-title">{t("votes")}</h4>
@@ -135,8 +106,7 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
           ({Number(requiredParticipation) * 100}% {t("governanceRequired")})
         </span>
       </div>
-      <VoteButtons
-        party={party}
+      <VoteButtonsContainer
         voteState={voteState}
         castVote={castVote}
         voteDatetime={voteDatetime}
