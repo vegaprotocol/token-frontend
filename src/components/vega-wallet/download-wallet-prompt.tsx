@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Links } from "../../config";
+import { Colors, Links } from "../../config";
 
 export const DownloadWalletPrompt = () => {
   const { t } = useTranslation();
@@ -12,7 +12,12 @@ export const DownloadWalletPrompt = () => {
         </a>
       </p>
       <p style={{ margin: 0 }}>
-        <a href={Links.WALLET_RELEASES} target="_blank" rel="noreferrer">
+        <a
+          style={{ color: Colors.DEEMPHASISE }}
+          href={Links.WALLET_RELEASES}
+          target="_blank"
+          rel="noreferrer"
+        >
           {t("downloadWallet")}
         </a>
       </p>
