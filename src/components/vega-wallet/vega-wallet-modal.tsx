@@ -13,6 +13,7 @@ export const VegaWalletModal = () => {
   const { appState, appDispatch } = useAppState();
   return (
     <Overlay
+      className="bp3-dark"
       isOpen={appState.vegaWalletOverlay}
       onClose={() =>
         appDispatch({
@@ -22,24 +23,9 @@ export const VegaWalletModal = () => {
       }
       transitionDuration={0}
     >
-      <div className="modal">
+      <div className="modal modal--dark">
         <Modal>
           <h2>{t("connectVegaWallet")}</h2>
-          <p>
-            <Trans
-              i18nKey="vegaWalletRunning"
-              components={{
-                walletLink: (
-                  // eslint-disable-next-line jsx-a11y/anchor-has-content
-                  <a
-                    href={Links.WALLET_RELEASES}
-                    target="_blank"
-                    rel="nofollow noreferrer"
-                  />
-                ),
-              }}
-            />
-          </p>
           <VegaWalletForm
             onConnect={() =>
               appDispatch({
@@ -48,6 +34,17 @@ export const VegaWalletModal = () => {
               })
             }
           />
+          <h2>Don't have a Vega wallet yet?</h2>
+          <p>
+            <a href={Links.WALLET_GUIDE} target="_blank" rel="noreferrer">
+              Read the wallet guide
+            </a>
+          </p>
+          <p>
+            <a href={Links.WALLET_RELEASES} target="_blank" rel="noreferrer">
+              Download wallet from GitHub
+            </a>
+          </p>
         </Modal>
       </div>
     </Overlay>

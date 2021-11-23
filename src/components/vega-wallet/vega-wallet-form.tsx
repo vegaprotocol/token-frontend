@@ -1,4 +1,3 @@
-import "./vega-wallet-form.scss";
 import { FormGroup, Intent, Switch } from "@blueprintjs/core";
 import React from "react";
 import * as Sentry from "@sentry/react";
@@ -116,6 +115,7 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
           disabled={hostedWallet}
           {...register("url", { required })}
           type="text"
+          className="bp3-input"
         />
       </FormGroup>
       <FormGroup
@@ -128,6 +128,7 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
           data-testid="wallet-name"
           {...register("wallet", { required })}
           type="text"
+          className="bp3-input"
         />
       </FormGroup>
       <FormGroup
@@ -140,13 +141,14 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
           data-testid="wallet-password"
           {...register("passphrase", { required })}
           type="password"
+          className="bp3-input"
         />
       </FormGroup>
       <button
         data-testid="wallet-login"
         type="submit"
         disabled={loading}
-        className="vega-wallet-form__submit"
+        className="fill"
       >
         {loading ? t("vegaWalletConnecting") : t("vegaWalletConnect")}
       </button>
