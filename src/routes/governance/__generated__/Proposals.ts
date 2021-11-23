@@ -136,10 +136,6 @@ export interface Proposals_proposals_votes_yes {
    */
   totalTokens: string;
   /**
-   * Total weight of governance token from the votes casted for this side
-   */
-  totalWeight: string;
-  /**
    * Total number of votes casted for this side
    */
   totalNumber: string;
@@ -179,10 +175,6 @@ export interface Proposals_proposals_votes_no {
    * Total tokens of governance token from the votes casted for this side
    */
   totalTokens: string;
-  /**
-   * Total weight of governance token from the votes casted for this side
-   */
-  totalWeight: string;
   /**
    * Total number of votes casted for this side
    */

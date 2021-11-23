@@ -71,6 +71,7 @@ export function createClient() {
         },
       },
       Account: {
+        keyFields: false,
         fields: {
           balanceFormatted: {
             read(_: string, options: FieldFunctionOptions) {
@@ -132,6 +133,12 @@ export function createClient() {
         keyFields: ["id"],
         fields: {
           stake: {
+            merge(existing, incoming) {
+              return {
+                ...existing,
+                ...incoming,
+              };
+            },
             read(stake) {
               if (stake) {
                 return {

@@ -206,7 +206,7 @@ export const EthWallet = () => {
             onClick={connect}
             data-test-id="connect-to-eth-wallet-button"
           >
-            {t("Connect to an Ethereum wallet")}
+            {t("connectEthWalletToAssociate")}
           </button>
         )}
         {ethAddress && (

@@ -2,7 +2,7 @@ import "./current-proposal-status.scss";
 
 import { useTranslation } from "react-i18next";
 import { useVoteInformation } from "./hooks";
-import { Proposals_proposals } from "./__generated__/proposals";
+import { Proposals_proposals } from "./__generated__/Proposals";
 import { ProposalState } from "../../__generated__/globalTypes";
 
 export const CurrentProposalStatus = ({

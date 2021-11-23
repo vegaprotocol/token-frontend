@@ -14,14 +14,8 @@ import {
 } from "../../../routes/staking/__generated__/Staking";
 import { PartyDelegations } from "../../../routes/staking/__generated__/PartyDelegations";
 import { PARTY_DELEGATIONS_QUERY } from "../../../routes/staking/staking-form";
-import {
-  PROPOSALS_QUERY,
-  PROPOSAL_SUBSCRIPTION,
-} from "../../../routes/governance";
-import { ProposalsSub } from "../../../routes/governance/__generated__/proposalsSub";
-import { Proposals } from "../../../routes/governance/__generated__/proposals";
-import { Parties } from "../../../routes/governance/__generated__/Parties";
-import { PARTIES_QUERY } from "../../../routes/governance/vote-details";
+import { PROPOSALS_QUERY } from "../../../routes/governance/proposals-container";
+import { Proposals } from "../../../routes/governance/__generated__/Proposals";
 import { generateProposal } from "../../../routes/governance/test-helpers/generate-proposals";
 import { STAKING_QUERY } from "../../../routes/staking/staking-nodes-container";
 import { Rewards } from "../../../routes/rewards/home/__generated__/Rewards";
@@ -252,89 +246,6 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
   },
 };
 
-const MOCK_PROPOSALS_SUBSCRIPTION: MockedResponse<ProposalsSub> = {
-  request: {
-    query: PROPOSAL_SUBSCRIPTION,
-  },
-  result: {
-    data: {
-      proposals: {
-        id: "dab4eb13c027c82f1f2c9208aa4fe7c04413f91e5709fa4a44a4c29f4d449266",
-        reference: "",
-        state: ProposalState.Open,
-        datetime: "2021-09-02T13:19:42.157201307Z",
-        rejectionReason: null,
-        party: {
-          id: "65ea371c556f5648640c243dd30cf7374b5501ffe3dc8603476f723dd636656e",
-          __typename: "Party",
-        },
-        terms: {
-          closingDatetime: "2022-03-01T00:00:00Z",
-          enactmentDatetime: "2022-08-30T23:00:00Z",
-          change: {
-            networkParameter: {
-              key: "market.fee.factors.makerFee",
-              value: "0.33333",
-              __typename: "NetworkParameter",
-            },
-            __typename: "UpdateNetworkParameter",
-          },
-          __typename: "ProposalTerms",
-        },
-        votes: {
-          yes: {
-            totalTokens: "0",
-            totalWeight: "0",
-            totalNumber: "1",
-            votes: [
-              {
-                value: VoteValue.Yes,
-                party: {
-                  id: "65ea371c556f5648640c243dd30cf7374b5501ffe3dc8603476f723dd636656e",
-                  __typename: "Party",
-                },
-                datetime: "2021-09-02T13:20:23.184093701Z",
-                __typename: "Vote",
-              },
-            ],
-            __typename: "ProposalVoteSide",
-          },
-          no: {
-            totalTokens: "0",
-            totalWeight: "0",
-            totalNumber: "0",
-            votes: null,
-            __typename: "ProposalVoteSide",
-          },
-          __typename: "ProposalVotes",
-        },
-        __typename: "Proposal",
-      },
-    },
-  },
-};
-
-const MOCK_PARTIES: MockedResponse<Parties> = {
-  request: {
-    query: PARTIES_QUERY,
-  },
-  result: {
-    data: {
-      parties: [
-        {
-          __typename: "Party",
-          id: "123",
-          stake: {
-            __typename: "PartyStake",
-            currentStakeAvailable: "12345",
-            currentStakeAvailableFormatted: "12345",
-          },
-        },
-      ],
-    },
-  },
-};
-
 const MOCK_REWARDS: MockedResponse<Rewards> = {
   request: {
     query: REWARDS_QUERY,
@@ -448,8 +359,6 @@ export const GraphQlProvider = ({
         MOCK_STAKING_QUERY,
         MOCK_PARTY_DELEGATIONS,
         MOCK_PROPOSALS,
-        MOCK_PROPOSALS_SUBSCRIPTION,
-        MOCK_PARTIES,
         MOCK_REWARDS,
         MOCK_NETWORK_PARAMS,
       ]}

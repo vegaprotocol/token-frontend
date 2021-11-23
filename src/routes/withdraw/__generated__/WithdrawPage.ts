@@ -9,12 +9,30 @@ import { AccountType, WithdrawalStatus } from "./../../../__generated__/globalTy
 // GraphQL query operation: WithdrawPage
 // ====================================================
 
+export interface WithdrawPage_party_accounts_asset_source_BuiltinAsset {
+  __typename: "BuiltinAsset";
+}
+
+export interface WithdrawPage_party_accounts_asset_source_ERC20 {
+  __typename: "ERC20";
+  /**
+   * The address of the erc20 contract
+   */
+  contractAddress: string;
+}
+
+export type WithdrawPage_party_accounts_asset_source = WithdrawPage_party_accounts_asset_source_BuiltinAsset | WithdrawPage_party_accounts_asset_source_ERC20;
+
 export interface WithdrawPage_party_accounts_asset {
   __typename: "Asset";
   /**
    * The id of the asset
    */
   id: string;
+  /**
+   * The full name of the asset (e.g: Great British Pound)
+   */
+  name: string;
   /**
    * The symbol of the asset (e.g: GBP)
    */
@@ -23,6 +41,10 @@ export interface WithdrawPage_party_accounts_asset {
    * The precision of the asset
    */
   decimals: number;
+  /**
+   * The origin source of the asset (e.g: an erc20 asset)
+   */
+  source: WithdrawPage_party_accounts_asset_source;
 }
 
 export interface WithdrawPage_party_accounts {

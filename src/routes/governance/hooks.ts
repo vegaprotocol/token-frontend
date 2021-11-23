@@ -1,6 +1,6 @@
 import React from "react";
 
-import type { Proposals_proposals } from "./__generated__/proposals";
+import type { Proposals_proposals } from "./__generated__/Proposals";
 import { useNetworkParam } from "../../hooks/use-network-param";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { NetworkParams } from "../../config";

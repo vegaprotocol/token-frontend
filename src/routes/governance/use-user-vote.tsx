@@ -8,24 +8,6 @@ import {
 } from "../../lib/vega-wallet/vega-wallet-service";
 import { VoteValue } from "../../__generated__/globalTypes";
 import { VOTE_VALUE_MAP } from "./vote-types";
-import { gql, useApolloClient } from "@apollo/client";
-
-export const VOTES_SUBSCRIPTION_QUERY = gql`
-  subscription votesSub($partyId: ID!) {
-    busEvents(types: [Vote], batchSize: 0, partyId: $partyId) {
-      type
-      event {
-        ... on Vote {
-          datetime
-          value
-          party {
-            id
-          }
-        }
-      }
-    }
-  }
-`;
 
 export type Vote = {
   value: VoteValue;
@@ -61,11 +43,9 @@ export function useUserVote(
 ) {
   const yes = React.useMemo(() => yesVotes || [], [yesVotes]);
   const no = React.useMemo(() => noVotes || [], [noVotes]);
-  const client = useApolloClient();
   const {
     appState: { currVegaKey },
   } = useAppState();
-  const subRef = React.useRef<any>(null);
   const [votePending, setVotePending] = React.useState(false);
 
   const myVote = React.useMemo(() => {
@@ -86,7 +66,6 @@ export function useUserVote(
     if (!proposalId || !currVegaKey) return;
 
     setVotePending(true);
-    setVoteState(value === VoteValue.Yes ? VoteState.Yes : VoteState.No);
 
     try {
       const variables: VoteSubmissionInput = {
@@ -100,49 +79,16 @@ export function useUserVote(
 
       if (hasErrorProperty(res)) {
         throw new Error(res.error);
+      } else {
+        setVotePending(false);
+        setVoteState(value === VoteValue.Yes ? VoteState.Yes : VoteState.No);
       }
     } catch (err) {
+      setVotePending(false);
       setVoteState(VoteState.Failed);
       captureException(err);
     }
-
-    // start a subscription to see if your vote passes consensus
-    subRef.current = client
-      .subscribe({
-        query: VOTES_SUBSCRIPTION_QUERY,
-        variables: { partyId: currVegaKey.pub },
-      })
-      .subscribe({
-        next: ({ data }) => {
-          const userVote = data.busEvents.find((e: any) => {
-            if (e.type === "Vote" && e.event.party.id === currVegaKey.pub) {
-              return true;
-            }
-
-            return false;
-          });
-
-          if (userVote) {
-            setVotePending(false);
-          }
-        },
-        error: (err) => {
-          captureException(err);
-          // kill the subscription if an error is returned
-          subRef.current.unsubscribe();
-        },
-      });
   }
-
-  // if the component unmounts and there is still a subscription running
-  // cancel it so its not left hanging around
-  React.useEffect(() => {
-    return () => {
-      if (subRef.current) {
-        subRef.current.unsubscribe();
-      }
-    };
-  }, []);
 
   return {
     voteState,

@@ -28,7 +28,7 @@ export const VegaWalletContainer = ({ children }: VegaWalletContainerProps) => {
             })
           }
         >
-          {t("Connect to Vega wallet")}
+          {t("connectVegaWallet")}
         </button>
       </p>
     );

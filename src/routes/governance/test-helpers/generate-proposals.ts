@@ -1,7 +1,7 @@
 import merge from "lodash/merge";
 import * as faker from "faker";
 
-import { Proposals_proposals } from "../__generated__/proposals";
+import { Proposals_proposals } from "../__generated__/Proposals";
 import { ProposalState, VoteValue } from "../../../__generated__/globalTypes";
 
 export function generateProposal(
@@ -35,7 +35,6 @@ export function generateProposal(
       __typename: "ProposalVotes",
       yes: {
         totalTokens: "0",
-        totalWeight: "0",
         totalNumber: "1",
         votes: [
           {
@@ -52,7 +51,6 @@ export function generateProposal(
       },
       no: {
         totalTokens: "0",
-        totalWeight: "0",
         totalNumber: "0",
         __typename: "ProposalVoteSide",
         votes: null,
