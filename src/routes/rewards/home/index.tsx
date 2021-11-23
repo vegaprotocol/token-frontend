@@ -1,4 +1,5 @@
 import "./index.scss";
+import React from "react";
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 import { useTranslation } from "react-i18next";
@@ -19,7 +20,6 @@ import { Callout } from "../../../components/callout";
 // @ts-ignore
 import Duration from "duration-js";
 import { formatDistance } from "date-fns";
-import React from "react";
 
 export const REWARDS_QUERY = gql`
   query Rewards($partyId: ID!) {

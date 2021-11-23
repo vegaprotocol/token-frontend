@@ -18,10 +18,9 @@
 [context.master.environment]
   REACT_APP_ENV = "MAINNET"
   REACT_APP_CHAIN = "0x1"
-  REACT_APP_STAKING_DISABLED = '1'
   REACT_APP_GOVERNANCE_DISABLED = '1'
   REACT_APP_SUPPORTED_WALLET_VERSION=">=0.9.2"
-  REACT_APP_VEGA_URL="https://graphql.vega.community/query"
+  REACT_APP_VEGA_URL="https://api.token.vega.xyz/query"
 
 # The translation flag for each of these is defined in the netlify UI so they can be independant based on the branch
 [context.develop.environment]
