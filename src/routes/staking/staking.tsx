@@ -68,11 +68,7 @@ export const StakingStepConnectWallets = () => {
           components={{
             vegaWalletLink: (
               // eslint-disable-next-line jsx-a11y/anchor-has-content
-              <a
-                href={Links.WALLET_RELEASES}
-                target="_blank"
-                rel="noreferrer"
-              />
+              <a href={Links.WALLET_GUIDE} target="_blank" rel="noreferrer" />
             ),
           }}
         />

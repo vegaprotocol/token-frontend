@@ -144,7 +144,6 @@
   "urlLabel": "Wallet location",
   "walletLabel": "Wallet",
   "passphraseLabel": "Passphrase",
-  "vegaWalletRunning": "You will need your Vega Wallet running to retrieve your keys. Don't have a Vega Wallet? <walletLink>Download one here</walletLink>",
   "vegaWalletConnect": "Connect",
   "vegaWalletConnecting": "Connecting...",
   "No token": "No token",
