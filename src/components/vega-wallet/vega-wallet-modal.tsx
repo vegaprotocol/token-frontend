@@ -34,15 +34,15 @@ export const VegaWalletModal = () => {
               })
             }
           />
-          <h2>Don't have a Vega wallet yet?</h2>
+          <h2>{t("getWallet")}</h2>
           <p>
             <a href={Links.WALLET_GUIDE} target="_blank" rel="noreferrer">
-              Read the wallet guide
+              {t("readGuide")}
             </a>
           </p>
           <p>
             <a href={Links.WALLET_RELEASES} target="_blank" rel="noreferrer">
-              Download wallet from GitHub
+              {t("downloadWallet")}
             </a>
           </p>
         </Modal>

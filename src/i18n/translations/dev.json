@@ -472,5 +472,8 @@
   "connectEthWallet": "Connect Ethereum wallet",
   "connectEthWalletToAssociate": "Connect Ethereum wallet to associate $VEGA",
   "connectVegaWallet": "Connect Vega wallet",
-  "connectVegaWalletToUseAssociated": "Connect Vega wallet to use associated $VEGA"
+  "connectVegaWalletToUseAssociated": "Connect Vega wallet to use associated $VEGA",
+  "getWallet": "Don't have a Vega wallet yet?",
+  "readGuide": "Read the wallet guide",
+  "downloadWallet": "Download wallet from GitHub"
 }
