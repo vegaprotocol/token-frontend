@@ -17,7 +17,7 @@ export const Proposal = ({ proposal }: ProposalProps) => {
 
   return (
     <>
-      <Heading title={t("newNetworkParam")} />
+      <Heading title={t("updateNetworkParam")} />
       <NetworkChange proposal={proposal} />
       <VoteDetails proposal={proposal} />
     </>
