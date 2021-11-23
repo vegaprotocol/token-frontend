@@ -1,5 +1,5 @@
 import { Overlay } from "@blueprintjs/core";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { Links } from "../../config";
 import {
   AppStateActionType,
