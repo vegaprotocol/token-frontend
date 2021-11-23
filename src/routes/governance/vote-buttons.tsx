@@ -10,18 +10,60 @@ import {
   useAppState,
 } from "../../contexts/app-state/app-state-context";
 import { useTranslation } from "react-i18next";
-import { Parties_parties } from "./__generated__/Parties";
 import { Callout } from "../../components/callout";
 import { Loader } from "../../components/loader";
 import { Error } from "../../components/icons";
+import { useQuery, gql } from "@apollo/client";
+import { useVegaUser } from "../../hooks/use-vega-user";
+import {
+  VoteButtons as VoteButtonsQueryResult,
+  VoteButtonsVariables,
+} from "./__generated__/VoteButtons";
+import { BigNumber } from "../../lib/bignumber";
 
-interface VoteButtonsProps {
+interface VoteButtonsContainerProps {
   voteState: VoteState;
   castVote: (vote: VoteValue) => void;
   voteDatetime: string | null;
   votePending: boolean;
-  party: Parties_parties | undefined | null;
   proposalState: ProposalState;
+}
+
+const VOTE_BUTTONS_QUERY = gql`
+  query VoteButtons($partyId: ID!) {
+    party(id: $partyId) {
+      stake {
+        currentStakeAvailable
+        currentStakeAvailableFormatted @client
+      }
+    }
+  }
+`;
+
+export const VoteButtonsContainer = (props: VoteButtonsContainerProps) => {
+  const { currVegaKey } = useVegaUser();
+  const { data, loading } = useQuery<
+    VoteButtonsQueryResult,
+    VoteButtonsVariables
+  >(VOTE_BUTTONS_QUERY, {
+    variables: { partyId: currVegaKey?.pub || "" },
+    skip: !currVegaKey?.pub,
+  });
+
+  if (loading || !data?.party) return null;
+
+  return (
+    <VoteButtons
+      {...props}
+      currentStakeAvailable={
+        new BigNumber(data.party.stake.currentStakeAvailableFormatted || 0)
+      }
+    />
+  );
+};
+
+interface VoteButtonsProps extends VoteButtonsContainerProps {
+  currentStakeAvailable: BigNumber;
 }
 
 export const VoteButtons = ({
@@ -29,24 +71,19 @@ export const VoteButtons = ({
   castVote,
   voteDatetime,
   votePending,
-  party,
   proposalState,
+  currentStakeAvailable,
 }: VoteButtonsProps) => {
   const { t } = useTranslation();
   const [changeVote, setChangeVote] = React.useState(false);
-
-  const lacksGovernanceToken = party
-    ? Number(party.stake.currentStakeAvailableFormatted) === 0 ||
-      party.stake.currentStakeAvailableFormatted === undefined
-    : true;
-
   const {
     appState: { currVegaKey },
     appDispatch,
   } = useAppState();
-  const isAuth = !!currVegaKey;
 
-  if (!isAuth) {
+  const lacksGovernanceToken = currentStakeAvailable.isLessThanOrEqualTo(0);
+
+  if (!currVegaKey) {
     return (
       <button
         onClick={() =>
