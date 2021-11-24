@@ -55,6 +55,10 @@ export const ValidatorTable = ({
           <td>{node.location}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
+          <th>{t("ETHEREUM ADDRESS")}</th>
+          <td>{node.ethereumAdddress}</td>
+        </KeyValueTableRow>
+        <KeyValueTableRow>
           <th>{t("TOTAL STAKE")}</th>
           <td>{node.stakedTotalFormatted}</td>
         </KeyValueTableRow>
