@@ -5,7 +5,6 @@ import {
   AppStateActionType,
   useAppState,
   VegaKeyExtended,
-  VegaWalletStatus,
 } from "../../contexts/app-state/app-state-context";
 import {
   WalletCard,
@@ -122,15 +121,7 @@ export const VegaWallet = () => {
 
 const VegaWalletNotConnected = () => {
   const { t } = useTranslation();
-  const { appState, appDispatch } = useAppState();
-
-  if (appState.vegaWalletStatus === VegaWalletStatus.None) {
-    return (
-      <WalletCardContent>
-        <div data-test-id="vega-wallet-not-connected-msg">{t("noService")}</div>
-      </WalletCardContent>
-    );
-  }
+  const { appDispatch } = useAppState();
 
   return (
     <>
