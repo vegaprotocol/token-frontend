@@ -144,7 +144,6 @@
   "urlLabel": "crwdns4789:0crwdne4789:0",
   "walletLabel": "crwdns4791:0crwdne4791:0",
   "passphraseLabel": "crwdns4793:0crwdne4793:0",
-  "vegaWalletRunning": "crwdns6581:0crwdne6581:0",
   "vegaWalletConnect": "crwdns4795:0crwdne4795:0",
   "vegaWalletConnecting": "crwdns4797:0crwdne4797:0",
   "No token": "crwdns4799:0crwdne4799:0",
@@ -474,5 +473,8 @@
   "connectEthWallet": "crwdns6681:0crwdne6681:0",
   "connectEthWalletToAssociate": "crwdns6683:0$VEGAcrwdne6683:0",
   "connectVegaWallet": "crwdns6685:0crwdne6685:0",
-  "connectVegaWalletToUseAssociated": "crwdns6687:0$VEGAcrwdne6687:0"
+  "connectVegaWalletToUseAssociated": "crwdns6687:0$VEGAcrwdne6687:0",
+  "getWallet": "crwdns6705:0crwdne6705:0",
+  "readGuide": "crwdns6707:0crwdne6707:0",
+  "downloadWallet": "crwdns6709:0crwdne6709:0"
 }
