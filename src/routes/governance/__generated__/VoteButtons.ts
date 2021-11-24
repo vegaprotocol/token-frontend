@@ -19,6 +19,10 @@ export interface VoteButtons_party_stake {
 export interface VoteButtons_party {
   __typename: "Party";
   /**
+   * Party identifier
+   */
+  id: string;
+  /**
    * The staking informations for this Party
    */
   stake: VoteButtons_party_stake;

@@ -32,6 +32,7 @@ interface VoteButtonsContainerProps {
 const VOTE_BUTTONS_QUERY = gql`
   query VoteButtons($partyId: ID!) {
     party(id: $partyId) {
+      id
       stake {
         currentStakeAvailable
         currentStakeAvailableFormatted @client

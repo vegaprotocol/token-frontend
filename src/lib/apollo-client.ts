@@ -130,7 +130,6 @@ export function createClient() {
         },
       },
       Party: {
-        keyFields: ["id"],
         fields: {
           stake: {
             merge(existing, incoming) {
