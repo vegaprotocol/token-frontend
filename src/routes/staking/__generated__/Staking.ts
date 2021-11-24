@@ -120,6 +120,10 @@ export interface Staking_nodes {
    */
   location: string;
   /**
+   * Ethereum public key of the node
+   */
+  ethereumAdddress: string;
+  /**
    * The amount the node has put up themselves
    */
   stakedByOperator: string;
