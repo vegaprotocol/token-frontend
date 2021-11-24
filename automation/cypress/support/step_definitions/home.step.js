@@ -167,7 +167,7 @@ Then("I am taken to the {string} page", (pageVisited) => {
   }
 });
 Then("I can see the vega wallet disconnected with disconnect message", () => {
-  cy.get('[data-test-id="connect-vega"]')
+  cy.get('[data-testid="connect-vega"]')
     .should("be.visible")
     .and("have.text", "Connect Vega wallet to use associated $VEGA");
 });
