@@ -36,6 +36,7 @@ jobs:
           preset: "angular"
           tag-prefix: ""
           output-file: "CHANGELOG.md"
+          skip-on-empty: false
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
