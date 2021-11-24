@@ -5,7 +5,6 @@ import {
   AppStateActionType,
   useAppState,
   VegaKeyExtended,
-  VegaWalletStatus,
 } from "../../contexts/app-state/app-state-context";
 import {
   WalletCard,
@@ -42,6 +41,7 @@ import vegaBlack from "../../images/vega_black.png";
 import noIcon from "../../images/token-no-icon.png";
 import { addDecimal } from "../../lib/decimals";
 import { AccountType } from "../../__generated__/globalTypes";
+import { DownloadWalletPrompt } from "./download-wallet-prompt";
 
 const DELEGATIONS_QUERY = gql`
   query Delegations($partyId: ID!) {
@@ -121,30 +121,25 @@ export const VegaWallet = () => {
 
 const VegaWalletNotConnected = () => {
   const { t } = useTranslation();
-  const { appState, appDispatch } = useAppState();
-
-  if (appState.vegaWalletStatus === VegaWalletStatus.None) {
-    return (
-      <WalletCardContent>
-        <div data-test-id="vega-wallet-not-connected-msg">{t("noService")}</div>
-      </WalletCardContent>
-    );
-  }
+  const { appDispatch } = useAppState();
 
   return (
-    <button
-      onClick={() =>
-        appDispatch({
-          type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,
-          isOpen: true,
-        })
-      }
-      className="fill button-secondary"
-      data-testid="connect-vega"
-      type="button"
-    >
-      {t("connectVegaWalletToUseAssociated")}
-    </button>
+    <>
+      <button
+        onClick={() =>
+          appDispatch({
+            type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,
+            isOpen: true,
+          })
+        }
+        className="fill button-secondary"
+        data-testid="connect-vega"
+        type="button"
+      >
+        {t("connectVegaWalletToUseAssociated")}
+      </button>
+      <DownloadWalletPrompt />
+    </>
   );
 };
 

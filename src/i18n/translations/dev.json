@@ -144,7 +144,6 @@
   "urlLabel": "Wallet location",
   "walletLabel": "Wallet",
   "passphraseLabel": "Passphrase",
-  "vegaWalletRunning": "You will need your Vega Wallet running to retrieve your keys. Don't have a Vega Wallet? <walletLink>Download one here</walletLink>",
   "vegaWalletConnect": "Connect",
   "vegaWalletConnecting": "Connecting...",
   "No token": "No token",
@@ -474,5 +473,8 @@
   "connectEthWallet": "Connect Ethereum wallet",
   "connectEthWalletToAssociate": "Connect Ethereum wallet to associate $VEGA",
   "connectVegaWallet": "Connect Vega wallet",
-  "connectVegaWalletToUseAssociated": "Connect Vega wallet to use associated $VEGA"
+  "connectVegaWalletToUseAssociated": "Connect Vega wallet to use associated $VEGA",
+  "getWallet": "Don't have a Vega wallet yet?",
+  "readGuide": "Read the wallet guide",
+  "downloadWallet": "Download wallet from GitHub"
 }
