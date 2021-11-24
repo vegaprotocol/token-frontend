@@ -59,7 +59,7 @@ Then("the vega wallet link is correct", () => {
   cy.get('[data-test-id="get-vega-wallet-link"]').should(
     "have.attr",
     "href",
-    "https://github.com/vegaprotocol/go-wallet/releases"
+    "https://docs.fairground.vega.xyz/docs/vega-wallet/create-wallet/"
   );
 });
 
