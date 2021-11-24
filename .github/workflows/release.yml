@@ -34,7 +34,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           git-message: "chore(release): {version}"
           preset: "angular"
-          tag-prefix: "v"
+          tag-prefix: ""
           output-file: "CHANGELOG.md"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
