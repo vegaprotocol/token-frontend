@@ -23,7 +23,7 @@ export const PARTIES_QUERY = gql`
 `;
 
 interface VoteDetailsProps {
-  proposal: Proposals_proposals;
+  proposal: Proposal_proposal;
 }
 
 export const VoteDetails = ({ proposal }: VoteDetailsProps) => {

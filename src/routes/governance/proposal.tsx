@@ -1,20 +1,15 @@
-import "./proposal.scss";
-
-import { useParams } from "react-router";
-import { Proposals_proposals } from "./__generated__/Proposals";
 import { NetworkChange } from "./network-change";
 import { VoteDetails } from "./vote-details";
 import { Heading } from "../../components/heading";
 import { useTranslation } from "react-i18next";
+import { Proposal_proposal } from "./__generated__/Proposal";
 
 interface ProposalProps {
-  proposals: Proposals_proposals[];
+  proposal: Proposal_proposal;
 }
 
-export const Proposal = ({ proposals }: ProposalProps) => {
+export const Proposal = ({ proposal }: ProposalProps) => {
   const { t } = useTranslation();
-  const { proposalId } = useParams<{ proposalId: string }>();
-  const proposal = proposals.find((proposal) => proposal.id === proposalId);
 
   if (!proposal) {
     return null;
@@ -22,7 +17,7 @@ export const Proposal = ({ proposals }: ProposalProps) => {
 
   return (
     <>
-      <Heading title={t("newNetworkParam")} />
+      <Heading title={t("updateNetworkParam")} />
       <NetworkChange proposal={proposal} />
       <VoteDetails proposal={proposal} />
     </>
