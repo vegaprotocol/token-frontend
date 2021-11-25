@@ -1,4 +1,3 @@
-import "./vote-details.scss";
 import { VoteButtonsContainer } from "./vote-buttons";
 import { useUserVote } from "./use-user-vote";
 import { Proposal_proposal } from "./__generated__/Proposal";
