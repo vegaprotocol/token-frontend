@@ -1,13 +1,14 @@
 import merge from "lodash/merge";
 import * as faker from "faker";
 
-import { Proposals_proposals } from "../__generated__/Proposals";
 import { ProposalState, VoteValue } from "../../../__generated__/globalTypes";
+import { ProposalFields } from "../__generated__/ProposalFields";
+import { DeepPartial } from "../../../lib/type-helpers";
 
 export function generateProposal(
-  override?: Partial<Proposals_proposals>
-): Proposals_proposals {
-  const defaultProposal = {
+  override: DeepPartial<ProposalFields> = {}
+): ProposalFields {
+  const defaultProposal: ProposalFields = {
     __typename: "Proposal",
     id: faker.datatype.uuid(),
     reference: "ref" + faker.datatype.uuid(),
@@ -25,7 +26,7 @@ export function generateProposal(
       change: {
         networkParameter: {
           key: faker.lorem.words(),
-          value: faker.datatype.number({ min: 0, max: 100 }),
+          value: faker.datatype.number({ min: 0, max: 100 }).toString(),
           __typename: "NetworkParameter",
         },
         __typename: "UpdateNetworkParameter",
@@ -61,5 +62,9 @@ export function generateProposal(
       },
     },
   };
-  return merge(defaultProposal, override);
+
+  return merge<ProposalFields, DeepPartial<ProposalFields>>(
+    defaultProposal,
+    override
+  );
 }
