@@ -58,15 +58,16 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
   const [provider, setProvider] =
     React.useState<ethers.providers.BaseProvider | null>(null);
   const [signer, setSigner] = React.useState<ethers.Signer | null>(null);
-  const [chainId, setChainId] = React.useState<EthereumChainId>(APP_CHAIN_ID);
+  const [chainId, setChainId] = React.useState<EthereumChainId | null>(null);
   const [ethAddress, setEthAddress] = React.useState("");
 
   // On connect replace the default provider and web3 instances (which uses an HttpProvider
   // with Infura) with an instance provided by the Web3Modal package
   const connect = React.useCallback(async () => {
     try {
+      setChainId(null);
       const rawProvider = await web3Modal.connect();
-      const newProvider = new ethers.providers.Web3Provider(rawProvider);
+      const newProvider = new ethers.providers.Web3Provider(rawProvider, "any");
       const signer = newProvider.getSigner();
       setProvider(newProvider);
       setSigner(signer);
@@ -87,6 +88,7 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
   // web3 instances to using the default Http provider using Infura
   const disconnect = React.useCallback(async () => {
     try {
+      setChainId(null);
       await web3Modal.clearCachedProvider();
       const newProvider = new ethers.providers.InfuraProvider(
         ChainIdMap[APP_CHAIN_ID],
