@@ -42,6 +42,10 @@ export function generateProposal(
             party: {
               id: faker.datatype.uuid(),
               __typename: "Party",
+              stake: {
+                __typename: "PartyStake",
+                currentStakeAvailable: "123",
+              },
             },
             datetime: faker.date.past().toISOString(),
             __typename: "Vote",

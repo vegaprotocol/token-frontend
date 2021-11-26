@@ -186,11 +186,14 @@ const votedAgainst = generateProposal({
     no: {
       votes: [
         {
-          // @ts-ignore
           value: VoteValue.No,
           // @ts-ignore
           party: {
             id: "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527",
+            stake: {
+              __typename: "PartyStake",
+              currentStakeAvailable: "123",
+            },
           },
           datetime: faker.date.past().toISOString(),
         },
@@ -365,6 +368,7 @@ export const GraphQlProvider = ({
         MOCK_STAKING_QUERY,
         MOCK_PARTY_DELEGATIONS,
         MOCK_PROPOSALS,
+        // MOCK_PROPOSAL,
         MOCK_REWARDS,
         MOCK_NETWORK_PARAMS,
       ]}
