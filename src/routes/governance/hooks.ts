@@ -4,7 +4,7 @@ import type { Proposals_proposals } from "./__generated__/Proposals";
 import { useNetworkParam } from "../../hooks/use-network-param";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { NetworkParams } from "../../config";
-import { Proposal_proposal_votes_yes_votes } from "./__generated__/Proposal";
+import { Proposal_proposal_votes_no_votes, Proposal_proposal_votes_yes_votes } from "./__generated__/Proposal";
 import { addDecimal } from "../../lib/decimals";
 import BigNumber from "bignumber.js";
 
@@ -87,7 +87,7 @@ export const useVoteInformation = ({
       return 0;
     }
     const totalNoVotes = proposal.votes.no.votes.reduce(
-      (prevValue: number, newValue: Proposal_proposal_votes_yes_votes) => {
+      (prevValue: number, newValue: Proposal_proposal_votes_no_votes) => {
         return prevValue + Number(newValue.party.stake.currentStakeAvailable);
       },
       0
