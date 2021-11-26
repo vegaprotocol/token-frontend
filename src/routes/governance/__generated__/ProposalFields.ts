@@ -105,12 +105,24 @@ export interface ProposalFields_terms {
   change: ProposalFields_terms_change;
 }
 
+export interface ProposalFields_votes_yes_votes_party_stake {
+  __typename: "PartyStake";
+  /**
+   * The stake currently available for the party
+   */
+  currentStakeAvailable: string;
+}
+
 export interface ProposalFields_votes_yes_votes_party {
   __typename: "Party";
   /**
    * Party identifier
    */
   id: string;
+  /**
+   * The staking informations for this Party
+   */
+  stake: ProposalFields_votes_yes_votes_party_stake;
 }
 
 export interface ProposalFields_votes_yes_votes {
@@ -145,12 +157,24 @@ export interface ProposalFields_votes_yes {
   votes: ProposalFields_votes_yes_votes[] | null;
 }
 
+export interface ProposalFields_votes_no_votes_party_stake {
+  __typename: "PartyStake";
+  /**
+   * The stake currently available for the party
+   */
+  currentStakeAvailable: string;
+}
+
 export interface ProposalFields_votes_no_votes_party {
   __typename: "Party";
   /**
    * Party identifier
    */
   id: string;
+  /**
+   * The staking informations for this Party
+   */
+  stake: ProposalFields_votes_no_votes_party_stake;
 }
 
 export interface ProposalFields_votes_no_votes {
