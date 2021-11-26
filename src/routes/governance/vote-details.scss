@@ -27,10 +27,12 @@
 
     th:first-child {
       color: $vega-green3;
+      width: 18%;
     }
 
     th:last-child {
       color: $vega-red3;
+      width: 18%;
     }
 
     th:first-child,
@@ -41,6 +43,10 @@
     th:last-child,
     td:last-child {
       text-align: right;
+    }
+
+    .content {
+      width: 100%
     }
   }
 
