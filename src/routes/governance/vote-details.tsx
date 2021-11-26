@@ -1,5 +1,13 @@
+import "./vote-details.scss";
+import React from "react";
+import { formatDistanceToNow } from "date-fns";
+import { useTranslation } from "react-i18next";
+import { useVoteInformation } from "./hooks";
+import { VoteProgress } from "./vote-progress";
+import { CurrentProposalStatus } from "./current-proposal-status";
 import { VoteButtonsContainer } from "./vote-buttons";
 import { useUserVote } from "./use-user-vote";
+import { ProposalState } from "../../__generated__/globalTypes";
 import { Proposal_proposal } from "./__generated__/Proposal";
 import { useTranslation } from "react-i18next";
 import { useVoteInformation } from "./hooks";
