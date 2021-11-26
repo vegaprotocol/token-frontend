@@ -220,8 +220,12 @@ const voteClosedVotedFor = generateProposal({
         {
           value: VoteValue.Yes,
           party: {
-            id: "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527",
             __typename: "Party",
+            id: "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527",
+            stake: {
+              __typename: "PartyStake",
+              currentStakeAvailable: "12345678",
+            },
           },
           datetime: faker.date.past().toISOString(),
           __typename: "Vote",
