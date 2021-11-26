@@ -4,7 +4,10 @@ import type { Proposals_proposals } from "./__generated__/Proposals";
 import { useNetworkParam } from "../../hooks/use-network-param";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { NetworkParams } from "../../config";
-import { Proposal_proposal_votes_no_votes, Proposal_proposal_votes_yes_votes } from "./__generated__/Proposal";
+import {
+  Proposal_proposal_votes_no_votes,
+  Proposal_proposal_votes_yes_votes,
+} from "./__generated__/Proposal";
 import { addDecimal } from "../../lib/decimals";
 import BigNumber from "bignumber.js";
 
