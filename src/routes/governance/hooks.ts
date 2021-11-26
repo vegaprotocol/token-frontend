@@ -124,13 +124,27 @@ export const useVoteInformation = ({
       return 0;
     }
     const totalNoVotes = proposal.votes.no.votes.reduce(
-      (oldValue: number, newValue: Proposal_proposal_votes_yes_votes) => {
-        return oldValue + Number(newValue.party.stake.currentStakeAvailable);
+      (prevValue: number, newValue: Proposal_proposal_votes_yes_votes) => {
+        return prevValue + Number(newValue.party.stake.currentStakeAvailable);
       },
       0
     );
     return addDecimal(new BigNumber(totalNoVotes), 18);
   }, [proposal.votes.no.votes]);
+
+  const totalTokensYesVotes = React.useMemo(() => {
+    if (!proposal.votes.yes.votes) {
+      return 0;
+    }
+    const totalYesVotes = proposal.votes.yes.votes.reduce(
+      (prevValue: number, newValue: Proposal_proposal_votes_yes_votes) => {
+        return prevValue + Number(newValue.party.stake.currentStakeAvailable);
+      },
+      0
+    );
+    return addDecimal(new BigNumber(totalYesVotes), 18);
+  }, [proposal.votes.yes.votes]);
+
   return {
     willPass,
     totalTokensPercentage,
@@ -144,5 +158,6 @@ export const useVoteInformation = ({
     requiredParticipation,
     majorityMet,
     totalTokensNoVotes,
+    totalTokensYesVotes,
   };
 };
