@@ -3,15 +3,11 @@ import {
   from,
   HttpLink,
   InMemoryCache,
-  split,
   Reference,
   FieldFunctionOptions,
-  Operation,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
 import { RetryLink } from "@apollo/client/link/retry";
-import { WebSocketLink } from "@apollo/client/link/ws";
-import { getMainDefinition } from "@apollo/client/utilities";
 import BigNumber from "bignumber.js";
 import { addDecimal } from "./decimals";
 import uniqBy from "lodash/uniqBy";
@@ -168,39 +164,14 @@ export function createClient() {
     credentials: "same-origin",
   });
 
-  const wsLink = new WebSocketLink({
-    uri: urlWS.href,
-    options: {
-      reconnect: true,
-    },
-  });
-
   const errorLink = onError(({ graphQLErrors, networkError }) => {
     console.log(graphQLErrors);
     console.log(networkError);
   });
 
-  const link = split(
-    // split based on operation type
-    ({ query }: Operation) => {
-      const def = getMainDefinition(query);
-      if (
-        def.kind === "OperationDefinition" &&
-        def.operation === "subscription"
-      ) {
-        // If it is a subscription, return true to send this to websocket
-        return true;
-      }
-      // Default for mutations and queries not specified above: use HTTP(s)
-      return false;
-    },
-    wsLink,
-    httpLink
-  );
-
   return new ApolloClient({
     connectToDevTools: process.env.NODE_ENV === "development",
-    link: from([errorLink, retryLink, link]),
+    link: from([errorLink, retryLink, httpLink]),
     cache,
   });
 }
