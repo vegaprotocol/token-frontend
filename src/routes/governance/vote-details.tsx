@@ -5,8 +5,9 @@ import { useTranslation } from "react-i18next";
 import { useVoteInformation } from "./hooks";
 import { CurrentProposalStatus } from "./current-proposal-status";
 import { ProposalState } from "../../__generated__/globalTypes";
+import BigNumber from "bignumber.js";
+import { formatLocaleFixedNumber } from "../../lib/format-locale-number";
 import { formatDistanceToNow } from "date-fns";
-import { VoteProgress } from "./vote-progress";
 
 interface VoteDetailsProps {
   proposal: Proposal_proposal;
@@ -20,10 +21,9 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
     noPercentage,
     yesPercentage,
     yesTokens,
+    noTokens,
     requiredMajorityPercentage,
     requiredParticipation,
-    totalTokensNoVotes,
-    totalTokensYesVotes,
   } = useVoteInformation({ proposal });
 
   const { t } = useTranslation();
@@ -65,26 +65,27 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
           </thead>
           <tbody>
             <tr>
-              <td>{yesPercentage.toFixed(2)}%</td>
+              <td>{yesPercentage.toFixed(defaultDecimals)}%</td>
               <td className="proposal-toast__summary">
-                {t("majorityRequired")} {requiredMajorityPercentage.toFixed(2)}%
+                {t("majorityRequired")}{" "}
+                {requiredMajorityPercentage.toFixed(defaultDecimals)}%
               </td>
-              <td>{noPercentage.toFixed(2)}%</td>
+              <td>{noPercentage.toFixed(defaultDecimals)}%</td>
             </tr>
             <tr>
               <td className="proposal-toast__deemphasise">
                 {" "}
-                {Number(totalTokensYesVotes).toLocaleString(undefined, {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}
+                {formatLocaleFixedNumber(
+                  new BigNumber(yesTokens),
+                  defaultDecimals
+                )}
               </td>
               <td></td>
               <td className="proposal-toast__deemphasise">
-                {Number(totalTokensNoVotes).toLocaleString(undefined, {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}
+                {formatLocaleFixedNumber(
+                  new BigNumber(noTokens),
+                  defaultDecimals
+                )}
               </td>
             </tr>
           </tbody>
@@ -100,9 +101,22 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
             {t("notMet")}
           </span>
         )}{" "}
-        {totalTokensVoted} {totalTokensPercentage}%
+        {formatLocaleFixedNumber(
+          new BigNumber(totalTokensVoted),
+          defaultDecimals
+        )}{" "}
+        {formatLocaleFixedNumber(
+          new BigNumber(totalTokensPercentage),
+          defaultDecimals
+        )}
+        %
         <span className="proposal-toast__required-participation text-deemphasise">
-          ({Number(requiredParticipation) * 100}% {t("governanceRequired")})
+          (
+          {formatLocaleFixedNumber(
+            new BigNumber(requiredParticipation),
+            defaultDecimals
+          )}
+          % {t("governanceRequired")})
         </span>
       </div>
       <VoteButtonsContainer
