@@ -1,3 +1,7 @@
+## [0.5.3](https://github.com/vegaprotocol/token-frontend/compare/0.5.2...0.5.3) (2021-11-26)
+
+
+
 ## [0.5.2](https://github.com/vegaprotocol/token-frontend/compare/0.5.1...0.5.2) (2021-11-26)
 
 
@@ -36,15 +40,6 @@
 * Revert "New translations en.json (English)" ([a04e419](https://github.com/vegaprotocol/token-frontend/commit/a04e419f202d382a5bc32e72720f8b58272a1bce))
 * Revert "add failing test (will be reverted)" ([e1ea385](https://github.com/vegaprotocol/token-frontend/commit/e1ea3853dcb6624f7363c0eddc4c35afd8e266df))
 * Revert "fix bad mocks" ([04fe590](https://github.com/vegaprotocol/token-frontend/commit/04fe59012eae9b870e0d288c7836ef2acde2d541))
-
-
-
-# [0.3.0](https://github.com/vegaprotocol/token-frontend/compare/0.2.0...0.3.0) (2021-08-18)
-
-
-### Features
-
-* add typeahead ([b958c91](https://github.com/vegaprotocol/token-frontend/commit/b958c91463ee8f27f15bad7412648db378bd4b30))
 
 
 
