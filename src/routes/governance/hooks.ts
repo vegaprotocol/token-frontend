@@ -4,6 +4,9 @@ import type { Proposals_proposals } from "./__generated__/Proposals";
 import { useNetworkParam } from "../../hooks/use-network-param";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { NetworkParams } from "../../config";
+import { Proposal_proposal_votes_yes_votes } from "./__generated__/Proposal";
+import { addDecimal } from "../../lib/decimals";
+import BigNumber from "bignumber.js";
 
 const useProposalNetworkParams = ({
   proposal,
@@ -115,6 +118,19 @@ export const useVoteInformation = ({
     () => participationMet && yesPercentage > requiredMajorityPercentage,
     [participationMet, requiredMajorityPercentage, yesPercentage]
   );
+
+  const totalTokensNoVotes = React.useMemo(() => {
+    if (!proposal.votes.no.votes) {
+      return 0;
+    }
+    const totalNoVotes = proposal.votes.no.votes.reduce(
+      (oldValue: number, newValue: Proposal_proposal_votes_yes_votes) => {
+        return oldValue + Number(newValue.party.stake.currentStakeAvailable);
+      },
+      0
+    );
+    return addDecimal(new BigNumber(totalNoVotes), 18);
+  }, [proposal.votes.no.votes]);
   return {
     willPass,
     totalTokensPercentage,
@@ -127,5 +143,6 @@ export const useVoteInformation = ({
     requiredMajorityPercentage,
     requiredParticipation,
     majorityMet,
+    totalTokensNoVotes,
   };
 };
