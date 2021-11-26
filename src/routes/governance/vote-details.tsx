@@ -1,5 +1,4 @@
 import "./vote-details.scss";
-import React from "react";
 import { formatDistanceToNow } from "date-fns";
 import { useVoteInformation } from "./hooks";
 import { VoteProgress } from "./vote-progress";
@@ -47,13 +46,13 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
       <div>
         <p className="proposal__set_to">
           {t("setTo")}
-          <span className="proposal-toast__success-text">
+          <span className="vote-details__success-text">
             <CurrentProposalStatus proposal={proposal} />
           </span>
           .&nbsp;
           {proposal.state === ProposalState.Open ? daysLeft : null}
         </p>
-        <table className="proposal-toast__table">
+        <table className="vote-details__table">
           <thead>
             <tr>
               <th>{t("for")}</th>
@@ -69,19 +68,19 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
           <tbody>
             <tr>
               <td>{yesPercentage.toFixed(defaultDecimals)}%</td>
-              <td className="proposal-toast__summary">
+              <td className="vote-details__summary">
                 {t("majorityRequired")}{" "}
                 {requiredMajorityPercentage.toFixed(defaultDecimals)}%
               </td>
               <td>{noPercentage.toFixed(defaultDecimals)}%</td>
             </tr>
             <tr>
-              <td className="proposal-toast__deemphasise">
+              <td className="text-muted">
                 {" "}
                 {formatNumber(new BigNumber(yesTokens), defaultDecimals)}
               </td>
               <td></td>
-              <td className="proposal-toast__deemphasise">
+              <td className="text-muted">
                 {formatNumber(new BigNumber(noTokens), defaultDecimals)}
               </td>
             </tr>
@@ -92,15 +91,15 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
         {t("participation")}
         {": "}
         {participationMet ? (
-          <span className="proposal-toast__participation-met">{t("met")}</span>
+          <span className="vote-details__participation-met">{t("met")}</span>
         ) : (
-          <span className="proposal-toast__participation-not-met">
+          <span className="vote-details__participation-not-met">
             {t("notMet")}
           </span>
         )}{" "}
         {formatNumber(new BigNumber(totalTokensVoted), defaultDecimals)}{" "}
         {formatNumber(new BigNumber(totalTokensPercentage), defaultDecimals)}%
-        <span className="proposal-toast__required-participation text-deemphasise">
+        <span className="vote-details__required-participation text-muted">
           ({formatNumber(new BigNumber(requiredParticipation), defaultDecimals)}
           % {t("governanceRequired")})
         </span>
