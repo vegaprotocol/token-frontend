@@ -23,6 +23,7 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
     requiredMajorityPercentage,
     requiredParticipation,
     totalTokensNoVotes,
+    totalTokensYesVotes,
   } = useVoteInformation({ proposal });
 
   const { t } = useTranslation();
@@ -71,7 +72,13 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
               <td>{noPercentage.toFixed(2)}%</td>
             </tr>
             <tr>
-              <td className="proposal-toast__deemphasise">{yesTokens}</td>
+              <td className="proposal-toast__deemphasise">
+                {" "}
+                {Number(totalTokensYesVotes).toLocaleString(undefined, {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+              </td>
               <td></td>
               <td className="proposal-toast__deemphasise">
                 {Number(totalTokensNoVotes).toLocaleString(undefined, {
