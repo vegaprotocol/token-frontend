@@ -235,7 +235,7 @@ export const Withdrawal = ({
           <th>{t("Signature")}</th>
           <td title={erc20Approval?.signatures}>
             {!erc20Approval?.signatures
-              ? "Loading..."
+              ? t("Loading")
               : truncateMiddle(erc20Approval.signatures)}
           </td>
         </KeyValueTableRow>
