@@ -1,5 +1,6 @@
 @import "../../styles/colors";
 @import "../../styles/fonts";
+@import "../../styles/fonts";
 
 .vega-wallet {
   &__connect {
@@ -14,6 +15,7 @@
   }
 
   &__curr-key {
+    font-family: $font-mono;
     padding: 0 8px;
   }
 
