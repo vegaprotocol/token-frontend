@@ -16,6 +16,7 @@ interface TransactionButtonProps {
   disabled?: boolean;
   start: () => void;
   reset: () => void;
+  completeText?: string;
 }
 
 export const TransactionButton = ({
@@ -25,6 +26,7 @@ export const TransactionButton = ({
   disabled = false,
   start,
   reset,
+  completeText,
 }: TransactionButtonProps) => {
   const { t } = useTranslation();
   const { chainId } = useWeb3();
@@ -115,7 +117,7 @@ export const TransactionButton = ({
         onClick={start}
         disabled={disabled}
       >
-        {t("txButtonComplete")}
+        {completeText || t("txButtonComplete")}
       </StatefulButton>
     </div>
   );

@@ -253,6 +253,7 @@ export const Withdrawal = ({
         disabled={!erc20Approval}
         start={perform}
         reset={reset}
+        completeText={t("finishWithdrawal")}
       />
     </div>
   );
