@@ -27,7 +27,7 @@ type Submit = (
 
 const WITHDRAWAL_QUERY = gql`
   query WithdrawalPoll($partyId: ID!) {
-    party(partyId: $partyId) {
+    party(id: $partyId) {
       id
       withdrawals {
         id
@@ -37,9 +37,6 @@ const WITHDRAWAL_QUERY = gql`
           id
           symbol
           decimals
-        }
-        party {
-          id
         }
         createdTimestamp
         withdrawnTimestamp
@@ -112,6 +109,7 @@ export function useCreateWithdrawal(pubKey: string): [Status, Submit] {
             WithdrawalPoll,
             WithdrawalPollVariables
           >({
+            fetchPolicy: "network-only",
             query: WITHDRAWAL_QUERY,
             variables: { partyId: pubKey },
           });
