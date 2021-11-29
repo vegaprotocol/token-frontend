@@ -160,37 +160,32 @@ const MOCK_PARTY_DELEGATIONS: MockedResponse<PartyDelegations> = {
 };
 
 const notVoted = generateProposal({
-  // @ts-ignore
   terms: { change: { networkParameter: { key: "not.voted" } } },
-  // @ts-ignore
   party: { id: "123" },
   votes: {
-    // @ts-ignore
     yes: { votes: null },
-    // @ts-ignore
     no: { votes: null },
   },
 });
 
 const noTokens = generateProposal({
-  // @ts-ignore
   terms: { change: { networkParameter: { key: "no.tokens" } } },
 });
 
 const votedAgainst = generateProposal({
-  // @ts-ignore
   terms: { change: { networkParameter: { key: "voted.against" } } },
-  // @ts-ignore
   party: { id: "123" },
   votes: {
     no: {
       votes: [
         {
-          // @ts-ignore
           value: VoteValue.No,
-          // @ts-ignore
           party: {
             id: "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527",
+            stake: {
+              __typename: "PartyStake",
+              currentStakeAvailable: "123",
+            },
           },
           datetime: faker.date.past().toISOString(),
         },
@@ -200,28 +195,27 @@ const votedAgainst = generateProposal({
 });
 
 const didNotVote = generateProposal({
-  // @ts-ignore
   terms: { change: { networkParameter: { key: "voted.closed.did.not.vote" } } },
   state: ProposalState.Enacted,
-  // @ts-ignore
   party: { id: "123" },
 });
 
 const voteClosedVotedFor = generateProposal({
-  // @ts-ignore
   terms: { change: { networkParameter: { key: "voted.closed.voted.for" } } },
   state: ProposalState.Enacted,
-  // @ts-ignore
   party: { id: "123" },
   votes: {
-    // @ts-ignore
     yes: {
       votes: [
         {
           value: VoteValue.Yes,
           party: {
-            id: "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527",
             __typename: "Party",
+            id: "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527",
+            stake: {
+              __typename: "PartyStake",
+              currentStakeAvailable: "12345678",
+            },
           },
           datetime: faker.date.past().toISOString(),
           __typename: "Vote",
@@ -361,6 +355,7 @@ export const GraphQlProvider = ({
         MOCK_STAKING_QUERY,
         MOCK_PARTY_DELEGATIONS,
         MOCK_PROPOSALS,
+        // MOCK_PROPOSAL,
         MOCK_REWARDS,
         MOCK_NETWORK_PARAMS,
       ]}

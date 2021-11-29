@@ -477,5 +477,7 @@
   "connectVegaWalletToUseAssociated": "Connect Vega wallet to use associated $VEGA",
   "getWallet": "Don't have a Vega wallet yet?",
   "readGuide": "Read the wallet guide",
-  "downloadWallet": "Download wallet from GitHub"
+  "downloadWallet": "Download wallet from GitHub",
+  "finishWithdrawal": "Finish withdrawal",
+  "Signature": "Signature"
 }

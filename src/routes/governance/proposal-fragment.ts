@@ -50,6 +50,9 @@ export const PROPOSALS_FRAGMENT = gql`
           value
           party {
             id
+            stake {
+              currentStakeAvailable
+            }
           }
           datetime
         }
@@ -61,6 +64,9 @@ export const PROPOSALS_FRAGMENT = gql`
           value
           party {
             id
+            stake {
+              currentStakeAvailable
+            }
           }
           datetime
         }

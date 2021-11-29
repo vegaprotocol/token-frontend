@@ -105,12 +105,24 @@ export interface Proposals_proposals_terms {
   change: Proposals_proposals_terms_change;
 }
 
+export interface Proposals_proposals_votes_yes_votes_party_stake {
+  __typename: "PartyStake";
+  /**
+   * The stake currently available for the party
+   */
+  currentStakeAvailable: string;
+}
+
 export interface Proposals_proposals_votes_yes_votes_party {
   __typename: "Party";
   /**
    * Party identifier
    */
   id: string;
+  /**
+   * The staking informations for this Party
+   */
+  stake: Proposals_proposals_votes_yes_votes_party_stake;
 }
 
 export interface Proposals_proposals_votes_yes_votes {
@@ -145,12 +157,24 @@ export interface Proposals_proposals_votes_yes {
   votes: Proposals_proposals_votes_yes_votes[] | null;
 }
 
+export interface Proposals_proposals_votes_no_votes_party_stake {
+  __typename: "PartyStake";
+  /**
+   * The stake currently available for the party
+   */
+  currentStakeAvailable: string;
+}
+
 export interface Proposals_proposals_votes_no_votes_party {
   __typename: "Party";
   /**
    * Party identifier
    */
   id: string;
+  /**
+   * The staking informations for this Party
+   */
+  stake: Proposals_proposals_votes_no_votes_party_stake;
 }
 
 export interface Proposals_proposals_votes_no_votes {
