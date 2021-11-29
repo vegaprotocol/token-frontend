@@ -100,7 +100,7 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
         {formatNumber(new BigNumber(totalTokensVoted), defaultDecimals)}{" "}
         {formatNumber(new BigNumber(totalTokensPercentage), defaultDecimals)}%
         <span className="vote-details__required-participation text-muted">
-          ({formatNumber(new BigNumber(requiredParticipation), defaultDecimals)}
+          ({formatNumber(new BigNumber(Number(requiredParticipation) * 100), defaultDecimals)}
           % {t("governanceRequired")})
         </span>
       </div>
