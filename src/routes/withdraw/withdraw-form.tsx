@@ -60,12 +60,11 @@ const EthAddressSelector = ({
   );
 
   React.useEffect(() => {
-    setValidationLoading(true);
     if (address === connectedAddress || useConnectedWallet) {
       setAddressValid(true);
-      setValidationLoading(false);
       return;
     }
+    setValidationLoading(true);
     addressValidationDebounced();
   }, [
     address,
