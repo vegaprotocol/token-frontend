@@ -98,7 +98,7 @@ const EthAddressSelector = ({
       {validationLoading ? (
         <Loader />
       ) : addressValid ? null : (
-        <Callout intent="error">
+        <Callout intent="warn">
           Looks like that address isn't a valid Ethereum address, please check
           and try again
         </Callout>
