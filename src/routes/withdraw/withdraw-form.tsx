@@ -86,6 +86,7 @@ const EthAddressSelector = ({
         leftElement={<Ethereum />}
         autoComplete="off"
         type="text"
+        required={true}
       />
       <button
         onClick={() => setUseConnectedWallet(!useConnectedWallet)}
