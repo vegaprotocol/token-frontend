@@ -300,7 +300,8 @@ const VegaWalletConnected = ({
                   (delegatedThisEpoch[d]?.amountFormatted ||
                     delegatedNextEpoch[d]?.amountFormatted) &&
                   delegatedThisEpoch[d]?.amountFormatted !==
-                    delegatedNextEpoch[d]?.amountFormatted
+                    delegatedNextEpoch[d]?.amountFormatted &&
+                  delegatedNextEpoch[d] !== undefined
                 ),
                 currentEpochStake:
                   delegatedThisEpoch[d] &&
@@ -446,7 +447,7 @@ const VegaWalletConnected = ({
       ) : null}
       {delegatedNodes.map((d) => (
         <div key={d.nodeId}>
-          {d.currentEpochStake && (
+          {d.currentEpochStake && d.currentEpochStake.isGreaterThan(0) && (
             <WalletCardRow
               label={`${d.name || truncateMiddle(d.nodeId)} ${
                 d.hasStakePending ? `(${t("thisEpoch")})` : ""
