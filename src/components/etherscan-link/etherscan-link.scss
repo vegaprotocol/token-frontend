@@ -1,6 +1,9 @@
 @import "../../styles/colors";
+@import "../../styles/fonts";
 
 .etherscan-link {
+  font-family: $font-mono;
+
   &__copy-to-clipboard {
     border: 1px solid $white;
     border-radius: 0;
