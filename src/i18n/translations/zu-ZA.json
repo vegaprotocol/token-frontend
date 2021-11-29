@@ -477,5 +477,7 @@
   "connectVegaWalletToUseAssociated": "crwdns6687:0$VEGAcrwdne6687:0",
   "getWallet": "crwdns6705:0crwdne6705:0",
   "readGuide": "crwdns6707:0crwdne6707:0",
-  "downloadWallet": "crwdns6709:0crwdne6709:0"
+  "downloadWallet": "crwdns6709:0crwdne6709:0",
+  "finishWithdrawal": "crwdns6713:0crwdne6713:0",
+  "Signature": "crwdns6715:0crwdne6715:0"
 }
