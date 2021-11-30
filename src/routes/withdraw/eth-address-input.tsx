@@ -42,13 +42,14 @@ export const EthAddressInput = ({
         required={true}
       />
       <button
+        type="button"
         onClick={() => setUseConnectedWallet(!useConnectedWallet)}
         className="button-link fill"
       >
         {useConnectedWallet ? t("enterAddress") : t("useConnectedWallet")}
       </button>
 
-      {!isValid ? null : <Callout intent="warn">{t("invalidAddress")}</Callout>}
+      {isValid ? null : <Callout intent="warn">{t("invalidAddress")}</Callout>}
     </FormGroup>
   );
 };
