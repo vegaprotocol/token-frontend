@@ -8,11 +8,6 @@ import { debounce } from "lodash";
 import { Callout } from "../../components/callout";
 import { Ethereum } from "../../components/icons";
 
-interface EthAddressInputProps {
-  address: string;
-  onChange: (newAddress: string) => void;
-}
-
 interface EthAddressSelectorProps {
   address: string;
   connectedAddress: string;
@@ -24,6 +19,7 @@ const EthAddressSelector = ({
   address,
   onChange,
 }: EthAddressSelectorProps) => {
+  const { t } = useTranslation();
   const [useConnectedWallet, setUseConnectedWallet] =
     React.useState<boolean>(false);
   const [addressValid, setAddressValid] = React.useState<boolean>(false);
@@ -78,13 +74,13 @@ const EthAddressSelector = ({
         onClick={() => setUseConnectedWallet(!useConnectedWallet)}
         className="button-link fill"
       >
-        {useConnectedWallet ? "Enter address manually" : "Use connected wallet"}
+        {useConnectedWallet ? t("enterAddress") : t("useConnectedWallet")}
       </button>
 
       {validationLoading ? (
         <Loader />
       ) : addressValid ? null : (
-        <Callout intent="warn">
+        <Callout intent="warn">{t("enterAddress")}</Callout>
           Looks like that address isn't a valid Ethereum address, please check
           and try again
         </Callout>
@@ -92,6 +88,11 @@ const EthAddressSelector = ({
     </>
   );
 };
+
+interface EthAddressInputProps {
+  address: string;
+  onChange: (newAddress: string) => void;
+}
 
 export const EthAddressInput = ({
   onChange,
