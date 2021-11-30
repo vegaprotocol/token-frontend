@@ -373,6 +373,7 @@ const VegaWalletConnected = ({
       if (ethAddress) {
         await setAssociatedBalances(ethAddress, k.pub);
       }
+      vegaWalletService.setKey(k.pub);
       appDispatch({
         type: AppStateActionType.VEGA_WALLET_SET_KEY,
         key: k,

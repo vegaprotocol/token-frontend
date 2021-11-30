@@ -77,10 +77,11 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
           pubShort: truncateMiddle(k.pub),
         };
       });
+      const selectedKey = vegaKeys.find((a) => a.pub === action.key);
       return {
         ...state,
         vegaKeys,
-        currVegaKey: vegaKeys.length ? vegaKeys[0] : null,
+        currVegaKey: selectedKey ? selectedKey : null,
         vegaWalletStatus: VegaWalletStatus.Ready,
         vegaWalletVersion: action.version,
       };

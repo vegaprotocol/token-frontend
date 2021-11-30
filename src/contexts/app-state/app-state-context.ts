@@ -134,6 +134,7 @@ export type AppStateAction =
       type: AppStateActionType.VEGA_WALLET_INIT;
       keys: VegaKey[] | null | undefined;
       version: string | undefined;
+      key: string | undefined;
     }
   | {
       type: AppStateActionType.VEGA_WALLET_SET_KEY;
