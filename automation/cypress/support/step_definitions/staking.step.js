@@ -86,10 +86,10 @@ When("I click to confirm removal of tokens from stake", () => {
   cy.get('[data-testid="token-input-submit-button"]').click();
 });
 
-Then("I can see the remove message is displayed", () => {
+Then("I can see the remove message is displayed {string}", (name) => {
   cy.get(".callout__title").should(
     "have.text",
-    `Removing 100 $VEGA from node ${nodeName}`
+    `Removing 100 $VEGA from node ${name}`
   );
 });
 
