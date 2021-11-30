@@ -1,6 +1,8 @@
 {
   "walletLabel": "Username",
   "Wallet service unavailable": "Could not connect to wallet service. Please check that the wallet service is running or try another browser (some browsers block access to localhost via http)",
+  "toEnactOn": "Proposed enactment",
+  "setTo": "Vote status: ",
   "Check to see if you can redeem unlocked VEGA tokens": "Redeem unlocked $VEGA tokens",
   "withdrawPageText": "Rewards are paid into your Vega Wallet, and can be withdrawn using the ERC20 bridge. The rewards are paid out of the treasury for restricted mainnet.",
   "stakingStep3": "Step 3. Select the validator you'd like to nominate"
