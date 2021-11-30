@@ -1,5 +1,4 @@
-import { Then, Given } from "cypress-cucumber-preprocessor/steps";
-import { mock } from "../../common/mock";
+import { Then, When } from "cypress-cucumber-preprocessor/steps";
 
 Then("I can see {string} is displayed", (trancheNanme) => {
   cy.contains(trancheNanme).should("be.visible");
