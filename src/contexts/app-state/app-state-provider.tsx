@@ -77,7 +77,8 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
           pubShort: truncateMiddle(k.pub),
         };
       });
-      const selectedKey = vegaKeys.find((a) => a.pub === action.key);
+      const selectedKey =
+        vegaKeys.find((a) => a.pub === action.key) || vegaKeys[0];
       return {
         ...state,
         vegaKeys,
