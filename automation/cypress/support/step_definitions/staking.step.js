@@ -1,5 +1,4 @@
-import { Then, Given, When } from "cypress-cucumber-preprocessor/steps";
-import { mock } from "../../common/mock";
+import { Then, When } from "cypress-cucumber-preprocessor/steps";
 
 Then("I can see the validator node list", () => {
   cy.get(".node-list").should("be.visible");
