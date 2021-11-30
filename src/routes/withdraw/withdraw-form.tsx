@@ -52,7 +52,6 @@ export const WithdrawForm = ({
 
   const valid = React.useMemo(() => {
     if (
-      !addressValid ||
       !destinationAddress ||
       amount.isLessThanOrEqualTo(0) ||
       amount.isGreaterThan(maximum)
@@ -60,7 +59,7 @@ export const WithdrawForm = ({
       return false;
     }
     return true;
-  }, [addressValid, destinationAddress, amount, maximum]);
+  }, [destinationAddress, amount, maximum]);
 
   // Navigate to complete withdrawals page once withdrawal
   // creation is complete
