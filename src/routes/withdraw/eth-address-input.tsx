@@ -1,10 +1,6 @@
 import React from "react";
 import { FormGroup, InputGroup, Intent } from "@blueprintjs/core";
-import { Loader } from "../../components/loader";
 import { useTranslation } from "react-i18next";
-import { EthWalletContainer } from "../../components/eth-wallet-container";
-import { ethers } from "ethers";
-import { debounce } from "lodash";
 import { Callout } from "../../components/callout";
 import { Ethereum } from "../../components/icons";
 
@@ -12,51 +8,26 @@ interface EthAddressSelectorProps {
   address: string;
   connectedAddress: string;
   onChange: (newAddress: string) => void;
+  isValid: boolean;
 }
 
-const EthAddressSelector = ({
+export const EthAddressInput = ({
   connectedAddress,
   address,
   onChange,
+  isValid,
 }: EthAddressSelectorProps) => {
   const { t } = useTranslation();
   const [useConnectedWallet, setUseConnectedWallet] =
-    React.useState<boolean>(false);
-  const [addressValid, setAddressValid] = React.useState<boolean>(false);
-  const [validationLoading, setValidationLoading] =
-    React.useState<boolean>(false);
+    React.useState<boolean>(true);
   React.useEffect(() => {
     if (useConnectedWallet) {
       onChange(connectedAddress);
     }
   }, [connectedAddress, onChange, useConnectedWallet]);
 
-  const validateAddress = React.useCallback(async () => {
-    setAddressValid(await ethers.utils.isAddress(address));
-    setValidationLoading(false);
-  }, [address]);
-
-  const addressValidationDebounced = React.useMemo(
-    () => debounce(validateAddress, 1000),
-    [validateAddress]
-  );
-
-  React.useEffect(() => {
-    if (address === connectedAddress || useConnectedWallet) {
-      setAddressValid(true);
-      return;
-    }
-    setValidationLoading(true);
-    addressValidationDebounced();
-  }, [
-    address,
-    addressValidationDebounced,
-    connectedAddress,
-    useConnectedWallet,
-  ]);
-
   return (
-    <>
+    <FormGroup label={t("To")} labelFor="ethAddressInput">
       <InputGroup
         data-testid="token-amount-input"
         className="token-input__input"
@@ -77,39 +48,7 @@ const EthAddressSelector = ({
         {useConnectedWallet ? t("enterAddress") : t("useConnectedWallet")}
       </button>
 
-      {validationLoading ? (
-        <Loader />
-      ) : addressValid ? null : (
-        <Callout intent="warn">{t("enterAddress")}</Callout>
-      )}
-    </>
-  );
-};
-
-interface EthAddressInputProps {
-  address: string;
-  onChange: (newAddress: string) => void;
-}
-
-export const EthAddressInput = ({
-  onChange,
-  address,
-}: EthAddressInputProps) => {
-  const { t } = useTranslation();
-  return (
-    <FormGroup
-      label={t("Connected Ethereum address")}
-      labelFor="ethAddressInput"
-    >
-      <EthWalletContainer>
-        {(connectedAddress) => (
-          <EthAddressSelector
-            address={address}
-            connectedAddress={connectedAddress}
-            onChange={onChange}
-          />
-        )}
-      </EthWalletContainer>
+      {!isValid ? null : <Callout intent="warn">{t("invalidAddress")}</Callout>}
     </FormGroup>
   );
 };

@@ -21,16 +21,22 @@ import { EthAddressInput } from "./eth-address-input";
 interface WithdrawFormProps {
   accounts: WithdrawPage_party_accounts[];
   currVegaKey: VegaKeyExtended;
+  connectedAddress: string;
 }
 
-export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
+export const WithdrawForm = ({
+  accounts,
+  currVegaKey,
+  connectedAddress,
+}: WithdrawFormProps) => {
   const { t } = useTranslation();
   const history = useHistory();
   const { ethAddress } = useWeb3();
   const [amountStr, setAmount] = React.useState("");
   const [account, setAccount] = React.useState(accounts[0]);
   const [status, submit] = useCreateWithdrawal(currVegaKey.pub);
-  const [destinationAddress, setDestinationAddress] = React.useState("");
+  const [destinationAddress, setDestinationAddress] =
+    React.useState(connectedAddress);
   const amount = React.useMemo(
     () => new BigNumber(amountStr || 0),
     [amountStr]
@@ -102,6 +108,8 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
       <EthAddressInput
         onChange={setDestinationAddress}
         address={destinationAddress}
+        connectedAddress={connectedAddress}
+        isValid={true}
       />
       <FormGroup label={t("withdrawFormAmountLabel")} labelFor="amount">
         <AmountInput
