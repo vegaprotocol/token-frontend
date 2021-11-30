@@ -81,9 +81,6 @@ const EthAddressSelector = ({
         <Loader />
       ) : addressValid ? null : (
         <Callout intent="warn">{t("enterAddress")}</Callout>
-          Looks like that address isn't a valid Ethereum address, please check
-          and try again
-        </Callout>
       )}
     </>
   );
