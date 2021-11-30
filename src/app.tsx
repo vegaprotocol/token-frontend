@@ -13,18 +13,11 @@ import { TemplateSidebar } from "./components/page-templates/template-sidebar";
 import { EthWallet } from "./components/eth-wallet";
 import { VegaWallet } from "./components/vega-wallet";
 import { BalanceManager } from "./components/balance-manager";
-import { Flags } from "./config";
 import React from "react";
 import { AppFooter } from "./components/app-footer";
 
 function App() {
-  const sideBar = React.useMemo(
-    () =>
-      [<EthWallet />, Flags.STAKING_DISABLED ? null : <VegaWallet />].filter(
-        Boolean
-      ),
-    []
-  );
+  const sideBar = React.useMemo(() => [<EthWallet />, <VegaWallet />], []);
   return (
     <GraphQlProvider>
       <Router>

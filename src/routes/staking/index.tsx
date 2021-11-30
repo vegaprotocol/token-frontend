@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { RouteChildProps } from "..";
 import { Heading } from "../../components/heading";
-import { Flags } from "../../config";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { AssociateContainer } from "./associate/associate-page-container";
 import { DisassociateContainer } from "./disassociate/disassociate-page-container";
@@ -27,12 +26,7 @@ const StakingRouter = ({ name }: RouteChildProps) => {
     return t("pageTitleStaking");
   }, [associate, disassociate, t]);
 
-  return Flags.STAKING_DISABLED ? (
-    <>
-      <Heading title={title} />
-      <div>{t("Staking is coming soon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</div>
-    </>
-  ) : (
+  return (
     <>
       <Heading title={title} />
       <Switch>
