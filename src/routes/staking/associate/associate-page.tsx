@@ -96,7 +96,7 @@ export const AssociatePage = ({
         </Callout>
       ) : (
         <>
-          {!zeroVesting && !zeroVega ? (
+          {!zeroVesting ? (
             <>
               <h2 data-testid="associate-subheader">
                 {t("Where would you like to stake from?")}
