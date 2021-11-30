@@ -6,6 +6,7 @@ import { Proposals_proposals } from "./__generated__/Proposals";
 import { CurrentProposalStatus } from "./current-proposal-status";
 import { Heading } from "../../components/heading";
 import { ProposalChangeText } from "./proposal-change-text";
+import { CurrentProposalState } from "./current-proposal-state";
 
 const DATE_FORMAT = "d MMM yyyy HH:mm";
 
@@ -45,9 +46,9 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
         <table className="proposal-table">
           <tbody>
             <tr>
-              <th>{t("status")}</th>
+              <th>{t("state")}</th>
               <td>
-                <CurrentProposalStatus proposal={row} />
+                <CurrentProposalState proposal={row} />
               </td>
             </tr>
             <tr>
