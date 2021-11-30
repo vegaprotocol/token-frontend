@@ -9,7 +9,7 @@ import {
   WalletCardHeader,
   WalletCardRow,
 } from "../wallet-card";
-import { Colors, Flags } from "../../config";
+import { Colors } from "../../config";
 import React from "react";
 import vegaWhite from "../../images/vega_white.png";
 import vegaVesting from "../../images/vega_vesting.png";
@@ -54,39 +54,31 @@ const AssociatedAmounts = ({
 
   return (
     <>
-      {Flags.STAKING_DISABLED ? null : (
+      <LockedProgress
+        locked={associationAmounts.associated}
+        unlocked={associationAmounts.notAssociated}
+        total={associationAmounts.total}
+        leftLabel={t("associated")}
+        rightLabel={t("notAssociated")}
+        leftColor={Colors.WHITE}
+        rightColor={Colors.BLACK}
+        light={true}
+      />
+      {vestingAssociationByVegaKey.length ? (
         <>
-          <LockedProgress
-            locked={associationAmounts.associated}
-            unlocked={associationAmounts.notAssociated}
-            total={associationAmounts.total}
-            leftLabel={t("associated")}
-            rightLabel={t("notAssociated")}
-            leftColor={Colors.WHITE}
-            rightColor={Colors.BLACK}
-            light={true}
-          />
+          <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
+          <WalletCardRow label="Associated with Vega keys" bold={true} />
+          {vestingAssociationByVegaKey.map(([key, amount]) => {
+            return (
+              <WalletCardRow
+                key={key}
+                label={removeLeadingAddressSymbol(key)}
+                value={amount}
+              />
+            );
+          })}
         </>
-      )}
-      {Flags.STAKING_DISABLED || Flags.REDEEM_DISABLED ? null : (
-        <>
-          {vestingAssociationByVegaKey.length ? (
-            <>
-              <hr style={{ borderStyle: "dashed", color: Colors.TEXT }} />
-              <WalletCardRow label="Associated with Vega keys" bold={true} />
-              {vestingAssociationByVegaKey.map(([key, amount]) => {
-                return (
-                  <WalletCardRow
-                    key={key}
-                    label={removeLeadingAddressSymbol(key)}
-                    value={amount}
-                  />
-                );
-              })}
-            </>
-          ) : null}
-        </>
-      )}
+      ) : null}
     </>
   );
 };
@@ -121,8 +113,7 @@ const ConnectedKey = () => {
 
   return (
     <>
-      {Flags.REDEEM_DISABLED ||
-      totalVestedBalance.plus(totalLockedBalance).isEqualTo(0) ? null : (
+      {totalVestedBalance.plus(totalLockedBalance).isEqualTo(0) ? null : (
         <>
           <WalletCardAsset
             image={vegaVesting}
@@ -141,8 +132,7 @@ const ConnectedKey = () => {
           />
         </>
       )}
-      {Flags.STAKING_DISABLED ||
-      !Object.keys(appState.associationBreakdown.vestingAssociations)
+      {!Object.keys(appState.associationBreakdown.vestingAssociations)
         .length ? null : (
         <AssociatedAmounts
           associations={appState.associationBreakdown.vestingAssociations}
@@ -156,27 +146,26 @@ const ConnectedKey = () => {
         symbol="In Wallet"
         balance={walletWithAssociations}
       />
-      {Flags.STAKING_DISABLED ||
-      !Object.keys(appState.associationBreakdown.stakingAssociations) ? null : (
+      {!Object.keys(
+        appState.associationBreakdown.stakingAssociations
+      ) ? null : (
         <AssociatedAmounts
           associations={appState.associationBreakdown.stakingAssociations}
           notAssociated={walletBalance}
         />
       )}
-      {Flags.STAKING_DISABLED ? null : (
-        <WalletCardActions>
-          <Link style={{ flex: 1 }} to={`${Routes.STAKING}/associate`}>
-            <button className="button-secondary button-secondary--light">
-              {t("associate")}
-            </button>
-          </Link>
-          <Link style={{ flex: 1 }} to={`${Routes.STAKING}/disassociate`}>
-            <button className="button-secondary button-secondary--light">
-              {t("disassociate")}
-            </button>
-          </Link>
-        </WalletCardActions>
-      )}
+      <WalletCardActions>
+        <Link style={{ flex: 1 }} to={`${Routes.STAKING}/associate`}>
+          <button className="button-secondary button-secondary--light">
+            {t("associate")}
+          </button>
+        </Link>
+        <Link style={{ flex: 1 }} to={`${Routes.STAKING}/disassociate`}>
+          <button className="button-secondary button-secondary--light">
+            {t("disassociate")}
+          </button>
+        </Link>
+      </WalletCardActions>
     </>
   );
 };

@@ -32,7 +32,7 @@ import { truncateMiddle } from "../../lib/truncate-middle";
 import { keyBy, uniq } from "lodash";
 import { useRefreshAssociatedBalances } from "../../hooks/use-refresh-associated-balances";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
-import { ADDRESSES, Colors, Flags } from "../../config";
+import { ADDRESSES, Colors } from "../../config";
 import { BulletHeader } from "../bullet-header";
 import { Routes } from "../../routes/router-config";
 import { Link } from "react-router-dom";
@@ -467,20 +467,14 @@ const VegaWalletConnected = ({
           )}
         </div>
       ))}
-      {Flags.GOVERNANCE_DISABLED && Flags.STAKING_DISABLED ? null : (
-        <WalletCardActions>
-          {Flags.GOVERNANCE_DISABLED ? null : (
-            <Link style={{ flex: 1 }} to={Routes.GOVERNANCE}>
-              <button className="button-secondary">{t("governance")}</button>
-            </Link>
-          )}
-          {Flags.STAKING_DISABLED ? null : (
-            <Link style={{ flex: 1 }} to={Routes.STAKING}>
-              <button className="button-secondary">{t("staking")}</button>
-            </Link>
-          )}
-        </WalletCardActions>
-      )}
+      <WalletCardActions>
+        <Link style={{ flex: 1 }} to={Routes.GOVERNANCE}>
+          <button className="button-secondary">{t("governance")}</button>
+        </Link>
+        <Link style={{ flex: 1 }} to={Routes.STAKING}>
+          <button className="button-secondary">{t("staking")}</button>
+        </Link>
+      </WalletCardActions>
       <VegaWalletAssetList accounts={accounts} />
       {expanded && (
         <ul className="vega-wallet__key-list">
