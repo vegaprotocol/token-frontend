@@ -3,7 +3,6 @@ import "./proposals-list.scss";
 import { useTranslation } from "react-i18next";
 import { Link, useRouteMatch } from "react-router-dom";
 import { Proposals_proposals } from "./__generated__/Proposals";
-import { CurrentProposalStatus } from "./current-proposal-status";
 import { Heading } from "../../components/heading";
 import { ProposalChangeText } from "./proposal-change-text";
 import { CurrentProposalState } from "./current-proposal-state";
