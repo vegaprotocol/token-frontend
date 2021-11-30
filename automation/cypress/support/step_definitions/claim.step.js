@@ -7,7 +7,6 @@ Given("I am on the tranches page", () => {
   cy.url().should("include", "tranches");
 });
 
-
 Then("I can see the url contains {string}", (url) => {
   cy.url().should("include", `${url}`);
 });
