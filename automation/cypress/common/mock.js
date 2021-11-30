@@ -120,7 +120,7 @@ export const mock = (cy, options = {}) => {
         },
       ],
     })
-  );
+  ).as("getKeys");
   cy.intercept(
     "http://localhost:1789/api/v1/command/sync",
     JSON.stringify(mergedOptions.vegaWallet.commandSync)
