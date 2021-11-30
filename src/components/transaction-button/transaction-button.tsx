@@ -43,7 +43,7 @@ export const TransactionButton = ({
   const etherscanLink = txHash && (
     <EtherscanLink
       chainId={chainId}
-      address={txHash}
+      tx={txHash}
       text={truncateMiddle(txHash)}
     />
   );
