@@ -76,13 +76,16 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
         return;
       }
 
+      let key = undefined;
       if (ethAddress && keys && keys.length) {
-        await setAssociatedBalances(ethAddress, keys[0].pub);
+        key = vegaWalletService.key || keys[0].pub;
+        await setAssociatedBalances(ethAddress, key);
       }
 
       appDispatch({
         type: AppStateActionType.VEGA_WALLET_INIT,
         keys,
+        key,
         version,
       });
     }
