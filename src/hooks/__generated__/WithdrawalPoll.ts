@@ -25,14 +25,6 @@ export interface WithdrawalPoll_party_withdrawals_asset {
   decimals: number;
 }
 
-export interface WithdrawalPoll_party_withdrawals_party {
-  __typename: "Party";
-  /**
-   * Party identifier
-   */
-  id: string;
-}
-
 export interface WithdrawalPoll_party_withdrawals_details {
   __typename: "Erc20WithdrawalDetails";
   /**
@@ -59,10 +51,6 @@ export interface WithdrawalPoll_party_withdrawals {
    * The asset to be withdrawn
    */
   asset: WithdrawalPoll_party_withdrawals_asset;
-  /**
-   * The PartyID initiating the witndrawal
-   */
-  party: WithdrawalPoll_party_withdrawals_party;
   /**
    * RFC3339Nano time at which the withdrawal was created
    */

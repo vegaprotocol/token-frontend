@@ -98,7 +98,7 @@ export const RewardTable = ({ reward, delegations }: RewardTableProps) => {
     if (!delegations.length) return "0";
 
     const delegationsForEpoch = delegations
-      .filter((d) => d.epoch === reward.epoch)
+      .filter((d) => d.epoch.toString() === reward.epoch.id)
       .map((d) => new BigNumber(d.amountFormatted));
 
     if (delegationsForEpoch.length) {
