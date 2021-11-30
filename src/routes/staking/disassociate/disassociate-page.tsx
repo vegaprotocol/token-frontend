@@ -27,6 +27,12 @@ export const DisassociatePage = ({
   const [selectedStakingMethod, setSelectedStakingMethod] = React.useState<
     StakingMethod | ""
   >(params.method as StakingMethod | "");
+
+  // Clear the amount when the staking method changes
+  React.useEffect(() => {
+    setAmount("");
+  }, [selectedStakingMethod]);
+
   const {
     state: txState,
     dispatch: txDispatch,

@@ -34,6 +34,11 @@ export const AssociatePage = ({
     StakingMethod | ""
   >("");
 
+  // Clear the amount when the staking method changes
+  React.useEffect(() => {
+    setAmount("");
+  }, [selectedStakingMethod]);
+
   const {
     state: txState,
     dispatch: txDispatch,
