@@ -16,6 +16,7 @@ import { WithdrawForm } from "./withdraw-form";
 import { Link } from "react-router-dom";
 import { Routes } from "../router-config";
 import { Flags } from "../../config";
+import { EthWalletContainer } from "../../components/eth-wallet-container";
 
 const Withdraw = () => {
   const { t } = useTranslation();
@@ -137,7 +138,15 @@ export const WithdrawContainer = ({ currVegaKey }: WithdrawContainerProps) => {
           </p>
         </Callout>
       )}
-      <WithdrawForm accounts={accounts} currVegaKey={currVegaKey} />
+      <EthWalletContainer>
+        {(connectedAddress) => (
+          <WithdrawForm
+            accounts={accounts}
+            currVegaKey={currVegaKey}
+            connectedAddress={connectedAddress}
+          />
+        )}
+      </EthWalletContainer>
     </>
   );
 };
