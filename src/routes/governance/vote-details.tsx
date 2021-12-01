@@ -8,7 +8,6 @@ import { useUserVote } from "./use-user-vote";
 import { ProposalState } from "../../__generated__/globalTypes";
 import { Proposal_proposal } from "./__generated__/Proposal";
 import { useTranslation } from "react-i18next";
-import BigNumber from "bignumber.js";
 import { formatNumber } from "../../lib/format-number";
 
 interface VoteDetailsProps {
@@ -58,8 +57,8 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
               <th>{t("for")}</th>
               <th>
                 <VoteProgress
-                  threshold={requiredMajorityPercentage}
-                  progress={yesPercentage}
+                  threshold={requiredMajorityPercentage.toNumber()}
+                  progress={yesPercentage.toNumber()}
                 />
               </th>
               <th>{t("against")}</th>
@@ -77,11 +76,11 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
             <tr>
               <td className="text-muted">
                 {" "}
-                {formatNumber(new BigNumber(yesTokens), defaultDecimals)}
+                {formatNumber(yesTokens, defaultDecimals)}
               </td>
               <td></td>
               <td className="text-muted">
-                {formatNumber(new BigNumber(noTokens), defaultDecimals)}
+                {formatNumber(noTokens, defaultDecimals)}
               </td>
             </tr>
           </tbody>
@@ -97,10 +96,14 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
             {t("notMet")}
           </span>
         )}{" "}
-        {formatNumber(new BigNumber(totalTokensVoted), defaultDecimals)}{" "}
-        {formatNumber(new BigNumber(totalTokensPercentage), defaultDecimals)}%
+        {formatNumber(totalTokensVoted, defaultDecimals)}{" "}
+        {formatNumber(totalTokensPercentage, defaultDecimals)}%
         <span className="vote-details__required-participation text-muted">
-          ({formatNumber(new BigNumber(Number(requiredParticipation) * 100), defaultDecimals)}
+          (
+          {formatNumber(
+            requiredParticipation.multipliedBy(100),
+            defaultDecimals
+          )}
           % {t("governanceRequired")})
         </span>
       </div>
