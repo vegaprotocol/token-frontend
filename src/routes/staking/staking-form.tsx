@@ -183,7 +183,6 @@ export const StakingForm = ({
         action={action}
         amount={amount}
         nodeName={nodeName}
-        removeType={removeType}
       />
     );
   } else if (formState === FormState.Success) {
