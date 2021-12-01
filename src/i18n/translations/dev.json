@@ -20,6 +20,7 @@
   "unstaked": "Unstaked",
   "of": "of",
   "to": "to",
+  "To": "To",
   "Deposit": "deposit",
   "Tranche": "Tranche",
   "Tranches": "Tranches",
@@ -169,6 +170,7 @@
   "proposals": "Proposals",
   "proposedEnactment": "Proposed enactment",
   "status": "Status",
+  "state": "State",
   "shouldPass": "Should pass",
   "participationNotMet": "Participation Not Met",
   "majorityNotMet": "Majority not Met",
@@ -477,5 +479,10 @@
   "connectVegaWalletToUseAssociated": "Connect Vega wallet to use associated $VEGA",
   "getWallet": "Don't have a Vega wallet yet?",
   "readGuide": "Read the wallet guide",
-  "downloadWallet": "Download wallet from GitHub"
+  "downloadWallet": "Download wallet from GitHub",
+  "finishWithdrawal": "Finish withdrawal",
+  "useConnectedWallet": "Use connected wallet",
+  "enterAddress": "Enter address manually",
+  "invalidAddress": "Looks like that address isn't a valid Ethereum address, please check and try again",
+  "Signature": "Signature"
 }

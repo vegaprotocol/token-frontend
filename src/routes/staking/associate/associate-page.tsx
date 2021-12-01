@@ -34,6 +34,11 @@ export const AssociatePage = ({
     StakingMethod | ""
   >("");
 
+  // Clear the amount when the staking method changes
+  React.useEffect(() => {
+    setAmount("");
+  }, [selectedStakingMethod]);
+
   const {
     state: txState,
     dispatch: txDispatch,
@@ -96,7 +101,7 @@ export const AssociatePage = ({
         </Callout>
       ) : (
         <>
-          {!zeroVesting && !zeroVega ? (
+          {!zeroVesting ? (
             <>
               <h2 data-testid="associate-subheader">
                 {t("Where would you like to stake from?")}

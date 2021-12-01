@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import { Proposals_proposals } from "./__generated__/Proposals";
 import { useTranslation } from "react-i18next";
 import { ProposalChangeText } from "./proposal-change-text";
+import { CurrentProposalState } from "./current-proposal-state";
 
 const DATE_FORMAT = "d MMM yyyy HH:mm";
 
@@ -26,6 +27,12 @@ export const NetworkChange = ({ proposal }: NetworkChangeProps) => {
       </p>
       <table className="proposal-table">
         <tbody>
+          <tr>
+            <th>{t("state")}</th>
+            <td>
+              <CurrentProposalState proposal={proposal} />
+            </td>
+          </tr>
           <tr>
             <th>{t("closesOn")}</th>
             <td>{format(new Date(terms.closingDatetime), DATE_FORMAT)}</td>

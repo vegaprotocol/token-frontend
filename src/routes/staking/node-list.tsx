@@ -11,7 +11,7 @@ import { EpochCountdown } from "../../components/epoch-countdown";
 import { Nodes } from "./__generated__/Nodes";
 import { Callout } from "../../components/callout";
 
-const NODES_QUERY = gql`
+export const NODES_QUERY = gql`
   query Nodes {
     nodes {
       id

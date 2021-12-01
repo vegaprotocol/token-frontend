@@ -20,6 +20,7 @@
   "unstaked": "crwdns5303:0crwdne5303:0",
   "of": "crwdns4537:0crwdne4537:0",
   "to": "crwdns4539:0crwdne4539:0",
+  "To": "crwdns6719:0crwdne6719:0",
   "Deposit": "crwdns4541:0crwdne4541:0",
   "Tranche": "crwdns4543:0crwdne4543:0",
   "Tranches": "crwdns4545:0crwdne4545:0",
@@ -169,6 +170,7 @@
   "proposals": "crwdns4835:0crwdne4835:0",
   "proposedEnactment": "crwdns4837:0crwdne4837:0",
   "status": "crwdns6699:0crwdne6699:0",
+  "state": "crwdns6717:0crwdne6717:0",
   "shouldPass": "crwdns4841:0crwdne4841:0",
   "participationNotMet": "crwdns4843:0crwdne4843:0",
   "majorityNotMet": "crwdns4845:0crwdne4845:0",
@@ -477,5 +479,10 @@
   "connectVegaWalletToUseAssociated": "crwdns6687:0$VEGAcrwdne6687:0",
   "getWallet": "crwdns6705:0crwdne6705:0",
   "readGuide": "crwdns6707:0crwdne6707:0",
-  "downloadWallet": "crwdns6709:0crwdne6709:0"
+  "downloadWallet": "crwdns6709:0crwdne6709:0",
+  "finishWithdrawal": "crwdns6713:0crwdne6713:0",
+  "useConnectedWallet": "crwdns6721:0crwdne6721:0",
+  "enterAddress": "crwdns6723:0crwdne6723:0",
+  "invalidAddress": "crwdns6725:0crwdne6725:0",
+  "Signature": "crwdns6715:0crwdne6715:0"
 }

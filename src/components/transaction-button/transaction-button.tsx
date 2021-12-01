@@ -5,6 +5,8 @@ import { Error, HandUp, Tick } from "../icons";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { StatefulButton } from "../stateful-button";
 import { useTranslation } from "react-i18next";
+import { EtherscanLink } from "../etherscan-link";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
 
 interface TransactionButtonProps {
   transactionState: TransactionState;
@@ -14,6 +16,7 @@ interface TransactionButtonProps {
   disabled?: boolean;
   start: () => void;
   reset: () => void;
+  completeText?: string;
 }
 
 export const TransactionButton = ({
@@ -23,8 +26,10 @@ export const TransactionButton = ({
   disabled = false,
   start,
   reset,
+  completeText,
 }: TransactionButtonProps) => {
   const { t } = useTranslation();
+  const { chainId } = useWeb3();
   const { txState, txData } = transactionState;
   const root = "transaction-button";
   const wrapperClassName = `${root} transaction-button--${txState.toLowerCase()}`;
@@ -36,13 +41,11 @@ export const TransactionButton = ({
   const state = forceTxState || txState;
 
   const etherscanLink = txHash && (
-    <a
-      href={`https://ropsten.etherscan.io/tx/${txHash}`}
-      target="_blank"
-      rel="noreferrer"
-    >
-      {truncateMiddle(txHash)}
-    </a>
+    <EtherscanLink
+      chainId={chainId}
+      tx={txHash}
+      text={truncateMiddle(txHash)}
+    />
   );
 
   if (state === TxState.Complete) {
@@ -114,7 +117,7 @@ export const TransactionButton = ({
         onClick={start}
         disabled={disabled}
       >
-        {t("txButtonComplete")}
+        {completeText || t("txButtonComplete")}
       </StatefulButton>
     </div>
   );

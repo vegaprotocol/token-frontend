@@ -5,8 +5,6 @@ import {
   AppStateActionType,
   useAppState,
 } from "../contexts/app-state/app-state-context";
-import { Flags } from "../config";
-import { BigNumber } from "../lib/bignumber";
 import { useContracts } from "../contexts/contracts/contracts-context";
 
 export const useRefreshBalances = (address: string) => {
@@ -26,9 +24,7 @@ export const useRefreshBalances = (address: string) => {
         vesting.getUserBalanceAllTranches(address),
         token.balanceOf(address),
         vesting.getLien(address),
-        Flags.STAKING_DISABLED
-          ? new BigNumber(0)
-          : token.allowance(address, ADDRESSES.stakingBridge),
+        token.allowance(address, ADDRESSES.stakingBridge),
         // Refresh connected vega key balances as well if we are connected to a vega key
         appState.currVegaKey?.pub
           ? staking.stakeBalance(address, appState.currVegaKey.pub)

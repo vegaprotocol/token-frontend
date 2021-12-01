@@ -107,7 +107,7 @@ export const mock = (cy, options = {}) => {
   cy.intercept(
     "http://localhost:1789/api/v1/auth/token",
     JSON.stringify({ token: "token" })
-  );
+  ).as("getToken");
   cy.intercept(
     "http://localhost:1789/api/v1/keys",
     JSON.stringify({
@@ -120,7 +120,7 @@ export const mock = (cy, options = {}) => {
         },
       ],
     })
-  );
+  ).as("getKeys");
   cy.intercept(
     "http://localhost:1789/api/v1/command/sync",
     JSON.stringify(mergedOptions.vegaWallet.commandSync)

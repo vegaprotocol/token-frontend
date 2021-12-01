@@ -22,6 +22,8 @@ import { Rewards } from "../../../routes/rewards/home/__generated__/Rewards";
 import { REWARDS_QUERY } from "../../../routes/rewards/home";
 import { NETWORK_PARAMS_QUERY } from "../../../hooks/use-network-param";
 import { NetworkParams } from "../../../hooks/__generated__/NetworkParams";
+import { NODES_QUERY } from "../../../routes/staking/node-list";
+import { Nodes } from "../../../routes/staking/__generated__/Nodes";
 
 const PARTY_ID = "pub";
 const REWARD_ASSET_ID = "reward-asset-id";
@@ -344,6 +346,18 @@ const MOCK_NETWORK_PARAMS: MockedResponse<NetworkParams> = {
   },
 };
 
+const MOCK_NODES_QUERY: MockedResponse<Nodes> = {
+  request: {
+    query: NODES_QUERY,
+  },
+  result: {
+    data: {
+      nodes,
+      nodeData,
+    },
+  },
+};
+
 export const GraphQlProvider = ({
   children,
 }: {
@@ -355,6 +369,7 @@ export const GraphQlProvider = ({
         MOCK_STAKING_QUERY,
         MOCK_PARTY_DELEGATIONS,
         MOCK_PROPOSALS,
+        MOCK_NODES_QUERY,
         // MOCK_PROPOSAL,
         MOCK_REWARDS,
         MOCK_NETWORK_PARAMS,

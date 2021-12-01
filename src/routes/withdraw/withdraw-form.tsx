@@ -9,32 +9,38 @@ import {
   useCreateWithdrawal,
 } from "../../hooks/use-create-withdrawal";
 import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { removeDecimal } from "../../lib/decimals";
 import { useHistory } from "react-router";
 import { StatefulButton } from "../../components/stateful-button";
 import { Loader } from "../../components/loader";
 import { Routes } from "../router-config";
 import { useTranslation } from "react-i18next";
-import { EthWalletContainer } from "../../components/eth-wallet-container";
+import { EthAddressInput } from "./eth-address-input";
+import { ethers } from "ethers";
 
 interface WithdrawFormProps {
   accounts: WithdrawPage_party_accounts[];
   currVegaKey: VegaKeyExtended;
+  connectedAddress: string;
 }
 
-export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
+export const WithdrawForm = ({
+  accounts,
+  currVegaKey,
+  connectedAddress,
+}: WithdrawFormProps) => {
   const { t } = useTranslation();
   const history = useHistory();
-  const { ethAddress } = useWeb3();
   const [amountStr, setAmount] = React.useState("");
   const [account, setAccount] = React.useState(accounts[0]);
   const [status, submit] = useCreateWithdrawal(currVegaKey.pub);
-
+  const [destinationAddress, setDestinationAddress] =
+    React.useState(connectedAddress);
   const amount = React.useMemo(
     () => new BigNumber(amountStr || 0),
     [amountStr]
   );
+  const [addressValid, setAddressValid] = React.useState<boolean>(true);
 
   const maximum = React.useMemo(() => {
     if (account) {
@@ -46,14 +52,14 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
 
   const valid = React.useMemo(() => {
     if (
-      !ethAddress ||
+      !destinationAddress ||
       amount.isLessThanOrEqualTo(0) ||
       amount.isGreaterThan(maximum)
     ) {
       return false;
     }
     return true;
-  }, [ethAddress, amount, maximum]);
+  }, [destinationAddress, amount, maximum]);
 
   // Navigate to complete withdrawals page once withdrawal
   // creation is complete
@@ -68,12 +74,14 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
       className="withdraw-form"
       onSubmit={async (e) => {
         e.preventDefault();
-        if (!valid) return;
+        const addressValid = await ethers.utils.isAddress(destinationAddress);
+        setAddressValid(addressValid);
+        if (!valid || !addressValid) return;
 
         submit(
           removeDecimal(amount, account.asset.decimals),
           account.asset.id,
-          ethAddress
+          destinationAddress
         );
       }}
     >
@@ -99,11 +107,12 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
           <p className="text-muted">{t("withdrawFormNoAsset")}</p>
         )}
       </FormGroup>
-      <FormGroup label={t("Connected Ethereum address")}>
-        <EthWalletContainer>
-          {(ethAddress) => <p>{ethAddress}</p>}
-        </EthWalletContainer>
-      </FormGroup>
+      <EthAddressInput
+        onChange={setDestinationAddress}
+        address={destinationAddress}
+        connectedAddress={connectedAddress}
+        isValid={addressValid}
+      />
       <FormGroup label={t("withdrawFormAmountLabel")} labelFor="amount">
         <AmountInput
           amount={amountStr}

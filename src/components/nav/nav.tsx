@@ -197,11 +197,9 @@ const NavLinks = ({
       <NavLink {...linkProps} exact={true} to={Routes.HOME}>
         {t("Home")}
       </NavLink>
-      {Flags.REDEEM_DISABLED ? null : (
-        <NavLink {...linkProps} to={Routes.VESTING}>
-          {t("Vesting")}
-        </NavLink>
-      )}
+      <NavLink {...linkProps} to={Routes.VESTING}>
+        {t("Vesting")}
+      </NavLink>
       <NavLink {...linkProps} to={Routes.STAKING}>
         {t("Staking")}
       </NavLink>
@@ -211,11 +209,9 @@ const NavLinks = ({
       <NavLink {...linkProps} to={Routes.WITHDRAW}>
         {t("Withdraw")}
       </NavLink>
-      {Flags.GOVERNANCE_DISABLED ? null : (
-        <NavLink {...linkProps} to={Routes.GOVERNANCE}>
-          {t("Governance")}
-        </NavLink>
-      )}
+      <NavLink {...linkProps} to={Routes.GOVERNANCE}>
+        {t("Governance")}
+      </NavLink>
       {Flags.DEX_STAKING_DISABLED ? null : (
         <NavLink {...linkProps} to={Routes.LIQUIDITY}>
           {t("liquidityNav")}

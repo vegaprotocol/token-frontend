@@ -51,16 +51,19 @@ export function useUserVote(
   const myVote = React.useMemo(() => {
     if (currVegaKey) return getMyVote(currVegaKey.pub, yes, no);
   }, [currVegaKey, yes, no]);
+  const [voteState, setVoteState] = React.useState<VoteState>(
+    VoteState.NotCast
+  );
 
-  const initialState = React.useMemo(() => {
+  React.useEffect(() => {
     if (myVote === null || myVote === undefined) {
-      return VoteState.NotCast;
+      setVoteState(VoteState.NotCast);
     } else {
-      return myVote.value === VoteValue.Yes ? VoteState.Yes : VoteState.No;
+      setVoteState(
+        myVote.value === VoteValue.Yes ? VoteState.Yes : VoteState.No
+      );
     }
   }, [myVote]);
-
-  const [voteState, setVoteState] = React.useState(initialState);
 
   async function castVote(value: VoteValue) {
     if (!proposalId || !currVegaKey) return;

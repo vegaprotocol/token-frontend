@@ -9,9 +9,19 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        node-version:
+          - 14.x
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        id: Node
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: ${{ matrix.node-version }}
       - name: Install root dependencies
         run: yarn install
 

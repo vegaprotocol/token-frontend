@@ -70,13 +70,16 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
         return;
       }
 
+      let key = undefined;
       if (ethAddress && keys && keys.length) {
-        await refreshAssociatedBalances(ethAddress, keys[0].pub);
+        key = vegaWalletService.key || keys[0].pub;
+        await refreshAssociatedBalances(ethAddress, key);
       }
 
       appDispatch({
         type: AppStateActionType.VEGA_WALLET_INIT,
         keys,
+        key,
         version,
       });
 
