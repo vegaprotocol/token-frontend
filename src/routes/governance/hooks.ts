@@ -87,28 +87,32 @@ export const useVoteInformation = ({
 
   const noTokens = React.useMemo(() => {
     if (!proposal.votes.no.votes) {
-      return 0;
+      return new BigNumber(0);
     }
     const totalNoVotes = proposal.votes.no.votes.reduce(
-      (prevValue: number, newValue: Proposal_proposal_votes_no_votes) => {
-        return prevValue + Number(newValue.party.stake.currentStakeAvailable);
+      (prevValue: BigNumber, newValue: Proposal_proposal_votes_no_votes) => {
+        return new BigNumber(newValue.party.stake.currentStakeAvailable).plus(
+          prevValue
+        );
       },
-      0
+      new BigNumber(0)
     );
-    return Number(addDecimal(new BigNumber(totalNoVotes), 18));
+    return new BigNumber(addDecimal(new BigNumber(totalNoVotes), 18));
   }, [proposal.votes.no.votes]);
 
   const yesTokens = React.useMemo(() => {
     if (!proposal.votes.yes.votes) {
-      return 0;
+      return new BigNumber(0);
     }
     const totalYesVotes = proposal.votes.yes.votes.reduce(
-      (prevValue: number, newValue: Proposal_proposal_votes_yes_votes) => {
-        return prevValue + Number(newValue.party.stake.currentStakeAvailable);
+      (prevValue: BigNumber, newValue: Proposal_proposal_votes_yes_votes) => {
+        return new BigNumber(newValue.party.stake.currentStakeAvailable).plus(
+          prevValue
+        );
       },
-      0
+      new BigNumber(0)
     );
-    return Number(addDecimal(new BigNumber(totalYesVotes), 18));
+    return new BigNumber(addDecimal(new BigNumber(totalYesVotes), 18));
   }, [proposal.votes.yes.votes]);
 
   const totalTokensVoted = React.useMemo(
@@ -116,11 +120,17 @@ export const useVoteInformation = ({
     [yesTokens, noTokens]
   );
   const yesPercentage = React.useMemo(
-    () => (totalTokensVoted === 0 ? 0 : (yesTokens * 100) / totalTokensVoted),
+    () =>
+      totalTokensVoted === 0
+        ? 0
+        : yesTokens.multipliedBy(100).toNumber() / totalTokensVoted,
     [totalTokensVoted, yesTokens]
   );
   const noPercentage = React.useMemo(
-    () => (totalTokensVoted === 0 ? 0 : (noTokens * 100) / totalTokensVoted),
+    () =>
+      totalTokensVoted === 0
+        ? 0
+        : noTokens.multipliedBy(100).toNumber() / totalTokensVoted,
     [noTokens, totalTokensVoted]
   );
   const participationMet = React.useMemo(() => {
