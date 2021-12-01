@@ -1,20 +1,18 @@
 import { Callout } from "../../components/callout";
 import { Loader } from "../../components/loader";
-import { RemoveType, StakeAction } from "./staking-form";
+import { StakeAction } from "./staking-form";
 import { useTranslation } from "react-i18next";
 
 interface StakePendingProps {
   action: StakeAction;
   amount: string;
   nodeName: string;
-  removeType: RemoveType;
 }
 
 export const StakePending = ({
   action,
   amount,
-  nodeName,
-  removeType,
+  nodeName
 }: StakePendingProps) => {
   const { t } = useTranslation();
   const titleArgs = { amount, node: nodeName };
@@ -27,11 +25,7 @@ export const StakePending = ({
   return (
     <Callout icon={<Loader />} title={title}>
       {message && <p>{message}</p>}
-      <p>
-        {removeType === RemoveType.endOfEpoch
-          ? t("timeForConfirmation")
-          : t("timeForConfirmationNow")}
-      </p>
+      <p>{t("timeForConfirmation")}</p>
     </Callout>
   );
 };
