@@ -125,6 +125,10 @@ export const mock = (cy, options = {}) => {
     "http://localhost:1789/api/v1/command/sync",
     JSON.stringify(mergedOptions.vegaWallet.commandSync)
   );
+  cy.intercept(
+    "http://localhost:1789/api/v1/version",
+    JSON.stringify({ version: "10.0.0" })
+  ).as("getVersion");
 
   // VEGA TOKEN
   cy.intercept(
