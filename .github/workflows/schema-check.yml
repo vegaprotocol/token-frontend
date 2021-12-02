@@ -46,7 +46,9 @@ jobs:
             @frontend
 
 
-            Breaking changes between mainnet and stagnet2 detected."
+            Breaking changes between mainnet and stagnet2 detected.
+
+            "
           status: ${{ job.status }}
           steps: ${{ toJson(steps) }}
         if: ${{ always() }}
