@@ -36,10 +36,9 @@ jobs:
 
       - uses: act10ns/slack@v1
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_FRONTEND }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         with:
-          username: "Schema Bot"
-          icon_url: "https://everythingisviral.com/wp-content/uploads/2021/05/this-is-fine-meme.jpg"
+          config: .github/slack-action-config/schema-bot.yml
           message:
             ":rotating_light: :rotating_light: :rotating_light: :rotating_light:
 
