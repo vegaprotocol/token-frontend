@@ -2,9 +2,6 @@ username: "Schema Bot"
 icon_url: ""
 
 fields:
-  - title: Job Steps
-    value: "{{#each jobSteps}}{{icon this.outcome}} {{@key}}\n{{/each}}"
-    short: false
   - title: Workflow
     value: "<{{workflowUrl}}|{{workflow}}>"
     short: true
