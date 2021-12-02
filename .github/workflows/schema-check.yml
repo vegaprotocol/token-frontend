@@ -1,0 +1,43 @@
+name: Schema Check
+
+on:
+  push:
+    branches: [feat/nightly-github-action]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        id: Node
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Create .env
+        id: create-env
+        run: echo "REACT_APP_VEGA_URL = http://n03.stagnet2.vega.xyz/query" > .env
+
+      - name: Generate based on new schema
+        run: |
+          yarn install --frozen-lockfile
+          yarn generate
+
+      - name: Generate based on new schema
+        run: |
+          yarn build
+
+      - uses: act10ns/slack@v1
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_FRONTEND }}
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+        if: ${{ always() }}
