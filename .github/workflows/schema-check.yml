@@ -42,7 +42,9 @@ jobs:
           message:
             ":rotating_light: :rotating_light: :rotating_light: :rotating_light:
 
+
             @frontend
+
 
             Breaking changes between mainnet and stagnet2 detected."
           status: ${{ job.status }}
