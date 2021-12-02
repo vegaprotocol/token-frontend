@@ -169,6 +169,7 @@
   "requiredMajorityDescription": "Each proposal needs both a required majority of votes (e.g 66% but this differs by proposal type) and to meet a minimum threshold of votes.",
   "proposals": "Proposals",
   "proposedEnactment": "Proposed enactment",
+  "enactedOn": "Enacted on",
   "status": "Status",
   "state": "State",
   "shouldPass": "Should pass",
@@ -485,5 +486,8 @@
   "useConnectedWallet": "Use connected wallet",
   "enterAddress": "Enter address manually",
   "invalidAddress": "Looks like that address isn't a valid Ethereum address, please check and try again",
-  "Signature": "Signature"
+  "Signature": "Signature",
+  "voteFailedReason": "Vote closed. Failed due to: ",
+  "votePassed": "Vote passed.",
+  "subjectToFurtherActions": "Vote passed {{daysAgo}} subject to further actions."
 }

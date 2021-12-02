@@ -45,11 +45,9 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
       <h4 className="proposal__sub-title">{t("votes")}</h4>
       <div>
         <p className="proposal__set_to">
-          {t("setTo")}
-          <span className="vote-details__success-text">
+          <span>
             <CurrentProposalStatus proposal={proposal} />
           </span>
-          .&nbsp;
           {proposal.state === ProposalState.Open ? daysLeft : null}
         </p>
         <table className="vote-details__table">

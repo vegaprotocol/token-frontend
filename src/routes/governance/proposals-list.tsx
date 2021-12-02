@@ -62,7 +62,11 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
               </td>
             </tr>
             <tr>
-              <th>{t("toEnactOn")}</th>
+              <th>
+                {compareAsc(now, new Date(row.terms.enactmentDatetime)) > 0
+                  ? t("enactedOn")
+                  : t("proposedEnactment")}
+              </th>
               <td>
                 {format(new Date(row.terms.enactmentDatetime), DATE_FORMAT)}
               </td>
