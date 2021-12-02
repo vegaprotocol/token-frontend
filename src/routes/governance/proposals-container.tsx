@@ -37,10 +37,10 @@ export const ProposalsContainer = () => {
         orderBy(
           arr,
           [
-            (p) => new Date(p.terms.closingDatetime),
             (p) => new Date(p.terms.enactmentDatetime),
+            (p) => new Date(p.terms.closingDatetime),
           ],
-          ["asc", "asc"]
+          ["desc", "desc"]
         ),
     ])(data.proposals);
   }, [data]);
