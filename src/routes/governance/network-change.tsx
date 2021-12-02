@@ -43,7 +43,11 @@ export const NetworkChange = ({ proposal }: NetworkChangeProps) => {
             <td>{format(new Date(terms.closingDatetime), DATE_FORMAT)}</td>
           </tr>
           <tr>
-            <th>{t("toEnactOn")}</th>
+            <th>
+              {compareAsc(now, new Date(terms.enactmentDatetime)) > 0
+                ? t("enactedOn")
+                : t("proposedEnactment")}
+            </th>
             <td>{format(new Date(terms.enactmentDatetime), DATE_FORMAT)}</td>
           </tr>
           <tr>
