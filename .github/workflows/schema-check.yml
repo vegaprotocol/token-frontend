@@ -1,8 +1,8 @@
 name: Schema Check
 
 on:
-  push:
-    branches: [feat/nightly-github-action]
+  schedule:
+    - cron: "0 6 * * *"
 
 jobs:
   build:
@@ -36,7 +36,7 @@ jobs:
 
       - uses: act10ns/slack@v1
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_FRONTEND }}
         with:
           config: .github/slack-action-config/schema-bot.yml
           message:
