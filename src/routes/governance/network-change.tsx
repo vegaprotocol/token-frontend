@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { compareAsc, format } from "date-fns";
 import { Proposals_proposals } from "./__generated__/Proposals";
 import { useTranslation } from "react-i18next";
 import { ProposalChangeText } from "./proposal-change-text";
@@ -19,6 +19,7 @@ export const NetworkChange = ({ proposal }: NetworkChangeProps) => {
 
   const terms = proposal.terms;
   const networkParameter = proposal.terms.change.networkParameter;
+    const now = new Date();
 
   return (
     <section>
@@ -34,7 +35,11 @@ export const NetworkChange = ({ proposal }: NetworkChangeProps) => {
             </td>
           </tr>
           <tr>
-            <th>{t("closesOn")}</th>
+            <th>
+              {compareAsc(now, new Date(terms.closingDatetime)) > 0
+                ? t("closedOn")
+                : t("closesOn")}
+            </th>
             <td>{format(new Date(terms.closingDatetime), DATE_FORMAT)}</td>
           </tr>
           <tr>

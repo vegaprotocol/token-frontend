@@ -182,6 +182,7 @@
   "proposedBy": "Proposed by",
   "toEnactOn": "Enacts on",
   "closesOn": "Closes on",
+  "closedOn": "Closed on",
   "proposedNewValue": "Proposed new value:",
   "proposalChange": "Change <code>{{key}}</code> to <code>{{value}}</code>",
   "votes": "Votes",
