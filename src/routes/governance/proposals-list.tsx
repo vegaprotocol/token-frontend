@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format, compareAsc } from "date-fns";
 import "./proposals-list.scss";
 import { useTranslation } from "react-i18next";
 import { Link, useRouteMatch } from "react-router-dom";
@@ -29,6 +29,7 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
     if (row.terms.change.__typename !== "UpdateNetworkParameter") return null;
 
     const type = row.terms.change.__typename;
+    const now = new Date();
 
     return (
       <li key={row.id}>
@@ -51,7 +52,11 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
               </td>
             </tr>
             <tr>
-              <th>{t("closesOn")}</th>
+              <th>
+                {compareAsc(now, new Date(row.terms.closingDatetime)) > 0
+                  ? t("closedOn")
+                  : t("closesOn")}
+              </th>
               <td>
                 {format(new Date(row.terms.closingDatetime), DATE_FORMAT)}
               </td>
