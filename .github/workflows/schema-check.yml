@@ -30,7 +30,7 @@ jobs:
           yarn install --frozen-lockfile
           yarn generate
 
-      - name: Generate based on new schema
+      - name: Build app, to check for type errors
         run: |
           yarn build
 
