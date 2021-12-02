@@ -2,7 +2,9 @@
 @import "../../styles/fonts";
 
 .etherscan-link {
-  font-family: $font-mono;
+  &__mono {
+    font-family: $font-mono;
+  }
 
   &__copy-to-clipboard {
     border: 1px solid $white;
@@ -21,3 +23,4 @@
     }
   }
 }
+
