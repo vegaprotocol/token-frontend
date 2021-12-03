@@ -316,8 +316,6 @@
   "depositLpSuccessCalloutBody": "You will be rewarded for each full epoch your SLP tokens are staked",
   "withdrawLpWithdrawAllButton": "Unstake SLP and Withdraw $VEGA rewards",
   "withdrawLpNoneDeposited": "You have no SLP tokens deposited or rewards accumulated",
-  "withdrawLpCalloutTitle": "Unstaking during an epoch will forfeit any rewards due for that epoch",
-  "withdrawLpCalloutBody": "If you want to add more liquidity tokens later you will need to unstake first or use a different Ethereum key.",
   "withdrawAllLpSuccessCalloutTitle": "Your SLP tokens and rewards have been sent to your Ethereum address",
   "Dissociate VEGA tokens": "Disassociate $VEGA tokens",
   "Early Investors": "Early Investors",

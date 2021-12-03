@@ -23,8 +23,6 @@ import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
-import { Callout } from "../../../components/callout";
-import { Error } from "../../../components/icons";
 import { Link } from "react-router-dom";
 import { Routes } from "../../router-config";
 import { useWeb3 } from "../../../contexts/web3-context/web3-context";
@@ -109,13 +107,6 @@ export const LiquidityWithdrawPage = ({
         <EthConnectPrompt />
       ) : (
         <section>
-          <Callout
-            icon={<Error />}
-            intent="error"
-            title={t("withdrawLpCalloutTitle")}
-          >
-            <p>{t("withdrawLpCalloutBody")}</p>
-          </Callout>
           <KeyValueTable className="dex-tokens-withdraw__table">
             <KeyValueTableRow>
               <th>{t("liquidityTokenWithdrawBalance")}</th>
