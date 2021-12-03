@@ -47,11 +47,6 @@ export const LiquidityWithdrawPage = ({
     dispatch: txUnstakeDispatch,
     perform: txUnstakePerform,
   } = useTransaction(() => lpStaking.unstake());
-  const {
-    state: txWithdrawState,
-    dispatch: txWithdrawDispatch,
-    perform: txWithdrawPerform,
-  } = useTransaction(() => lpStaking.withdrawRewards());
 
   const { getBalances, lpStakingEth, lpStakingUSDC } = useGetLiquidityBalances(
     dispatch,
@@ -104,23 +99,6 @@ export const LiquidityWithdrawPage = ({
         />
       </>
     );
-  } else if (txWithdrawState.txState !== TxState.Default) {
-    return (
-      <>
-        <TransactionCallout
-          state={txWithdrawState}
-          completeHeading={t("withdrawVegaLpSuccessCalloutTitle")}
-          completeFooter={
-            <Link to={Routes.LIQUIDITY}>
-              <button className="fill">{t("lpTxSuccessButton")}</button>
-            </Link>
-          }
-          reset={() =>
-            txWithdrawDispatch({ type: TransactionActionType.TX_RESET })
-          }
-        />
-      </>
-    );
   } else if (!hasLpTokens && !hasRewardsTokens) {
     return <section>{t("withdrawLpNoneDeposited")}</section>;
   }
@@ -162,15 +140,6 @@ export const LiquidityWithdrawPage = ({
               </td>
             </KeyValueTableRow>
           </KeyValueTable>
-          <p className="dex-tokens-withdraw__submit">
-            <button
-              disabled={!hasRewardsTokens}
-              className="fill"
-              onClick={txWithdrawPerform}
-            >
-              {t("withdrawLpWithdrawVegaButton")}
-            </button>
-          </p>
           <p className="dex-tokens-withdraw__submit">
             <button
               disabled={!hasLpTokens}
