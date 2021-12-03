@@ -367,7 +367,7 @@
   "usersPendingStakeLPTokens": "Your SLP tokens in reward pool (next epoch)",
   "usersShareOfPool": "Your share of pool",
   "usersAccumulatedRewards": "Your accumulated rewards",
-  "withdrawFromRewardPoolButton": "Withdraw rewards or unstake",
+  "withdrawFromRewardPoolButton": "Withdraw rewards and unstake",
   "liquidityTotalAvailableRewardsBalance": "Balance",
   "liquidityStakedToken": "SLP Token",
   "liquidityStakedIntro": "Withdrawing your SLP tokens from the contract will also claim the reward balance",
