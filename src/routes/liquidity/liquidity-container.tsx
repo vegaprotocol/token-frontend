@@ -19,8 +19,10 @@ export const LiquidityContainer = ({ state }: { state: LiquidityState }) => {
           <Trans
             i18nKey="lpDiscordPrompt"
             components={{
-              // eslint-disable-next-line jsx-a11y/anchor-has-content
-              discordLink: <a href={Links.DISCORD} />,
+              discordLink: (
+                // eslint-disable-next-line jsx-a11y/anchor-has-content
+                <a href={Links.DISCORD} target="_blank" rel="noreferrer" />
+              ),
             }}
           />
         </p>
