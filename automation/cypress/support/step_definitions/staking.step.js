@@ -5,9 +5,8 @@ Then("I can see the validator node list", () => {
 });
 
 When("I click on a validator from the list", () => {
-  cy.wait(["@getKeys"]).then(() => {
-    cy.get('[data-testid="node-list-item"]').first().find("a").click();
-  });
+  cy.wait(["@getKeys", "@getToken", "@getVersion"]);
+  cy.get('[data-testid="node-list-item"]').first().find("a").click();
 });
 
 Then("the validator node page is displayed {string}", (name) => {
