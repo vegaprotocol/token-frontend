@@ -94,11 +94,6 @@ export const DexTokensSection = ({
             />
           </td>
         </KeyValueTableRow>
-        {/* TODO: Re-add this row when APY calculation is correct */}
-        {/* <KeyValueTableRow>
-          <th>{t("lpTokensEstimateAPY")}</th>
-          <td>{values.estimateAPY.decimalPlaces(2).toString()}%</td>
-        </KeyValueTableRow> */}
         <KeyValueTableRow>
           <th>{t("lpTokensInRewardPool")}</th>
           <td>
@@ -113,11 +108,6 @@ export const DexTokensSection = ({
           />
         ) : null}
       </KeyValueTable>
-      {/* <EpochCountdown
-        startDate={new Date(values.epochDetails.startSeconds.toNumber() * 1000)}
-        endDate={new Date(values.epochDetails.endSeconds.toNumber() * 1000)}
-        id={values.epochDetails.id}
-      /> */}
     </section>
   );
 };
