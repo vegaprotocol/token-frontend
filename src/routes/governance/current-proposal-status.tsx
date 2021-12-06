@@ -15,10 +15,12 @@ export const CurrentProposalStatus = ({
     proposal,
   });
   const { t } = useTranslation();
+
   const daysClosedAgo = formatDistanceToNow(
     new Date(proposal.terms.closingDatetime),
     { addSuffix: true }
   );
+
   const daysEnactedAgo = formatDistanceToNow(
     new Date(proposal.terms.enactmentDatetime),
     { addSuffix: true }

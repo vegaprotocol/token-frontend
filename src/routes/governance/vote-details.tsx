@@ -44,8 +44,7 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
     <section>
       <h3 className="proposal__sub-title">{t("votes")}</h3>
       <p className="proposal__set_to">
-        {t("setTo")}
-        <span className="vote-details__success-text">
+        <span>
           <CurrentProposalStatus proposal={proposal} />
         </span>
         .&nbsp;
