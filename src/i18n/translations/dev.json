@@ -175,8 +175,6 @@
   "shouldPass": "Should pass",
   "participationNotMet": "Participation Not Met",
   "majorityNotMet": "Majority not Met",
-  "failed": "Failed",
-  "passed": "Passed",
   "noProposals": "There are no active network change proposals",
   "updateNetworkParam": "Update Network Param",
   "proposedOn": "Proposed on",
