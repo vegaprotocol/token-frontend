@@ -103,7 +103,13 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
             onChange={(a) => {
               const input = a.target as HTMLInputElement;
               setHostedWallet(input.checked);
-              setValue("url", HOSTED_WALLET_URL, { shouldValidate: false });
+              setValue(
+                "url",
+                input.checked ? HOSTED_WALLET_URL : vegaWalletService.url,
+                {
+                  shouldValidate: false,
+                }
+              );
             }}
           />
         </FormGroup>
