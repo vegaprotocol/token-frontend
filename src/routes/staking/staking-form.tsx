@@ -86,7 +86,10 @@ export const StakingForm = ({
   const [removeType, setRemoveType] = React.useState<RemoveType>(
     RemoveType.endOfEpoch
   );
-
+  // Clear the amount when the staking method changes
+  React.useEffect(() => {
+    setAmount("");
+  }, [action, setAmount]);
   const { data } = useNetworkParam([
     NetworkParams.VALIDATOR_DELEGATION_MIN_AMOUNT,
   ]);
@@ -183,7 +186,6 @@ export const StakingForm = ({
         action={action}
         amount={amount}
         nodeName={nodeName}
-        removeType={removeType}
       />
     );
   } else if (formState === FormState.Success) {

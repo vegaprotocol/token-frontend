@@ -68,6 +68,14 @@ a,
   color: $text-color-deemphasise;
 }
 
+.text-green {
+  color: $vega-green3;
+}
+
+.text-red {
+  color: $vega-red3;
+}
+
 // TODO replace with blueprint themeing
 // BUTTONS
 button {
@@ -87,6 +95,7 @@ button {
     background: $bg-color-default;
     color: $color-default;
     border: 1px solid $text-color-emphasise;
+    cursor: not-allowed;
 
     &:hover {
       background: $bg-color-default;

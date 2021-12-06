@@ -1,8 +1,7 @@
-import { captureException } from "@sentry/minimal";
+import { captureException, captureMessage } from "@sentry/minimal";
 import * as React from "react";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import {
-  hasErrorProperty,
   vegaWalletService,
   VoteSubmissionInput,
 } from "../../lib/vega-wallet/vega-wallet-service";
@@ -21,21 +20,26 @@ export enum VoteState {
   NotCast = "NotCast",
   Yes = "Yes",
   No = "No",
+  Pending = "Pending",
   Failed = "Failed",
 }
 
-export function getMyVote(pubkey: string, yesVotes?: Votes, noVotes?: Votes) {
-  const myYes = yesVotes?.find((v) => v && v.party.id === pubkey);
-  const myNo = noVotes?.find((v) => v && v.party.id === pubkey);
-  if (myYes) {
-    return myYes;
-  } else if (myNo) {
-    return myNo;
+export function getUserVote(pubkey: string, yesVotes?: Votes, noVotes?: Votes) {
+  const yesVote = yesVotes?.find((v) => v && v.party.id === pubkey);
+  const noVote = noVotes?.find((v) => v && v.party.id === pubkey);
+  if (yesVote) {
+    return yesVote;
+  } else if (noVote) {
+    return noVote;
   } else {
     return null;
   }
 }
 
+/**
+ * Finds the status of a users given vote in a given proposal and provides
+ * a function to send a vote transaction to your wallet
+ */
 export function useUserVote(
   proposalId: string | null,
   yesVotes: Votes | null,
@@ -43,32 +47,58 @@ export function useUserVote(
 ) {
   const yes = React.useMemo(() => yesVotes || [], [yesVotes]);
   const no = React.useMemo(() => noVotes || [], [noVotes]);
+
   const {
     appState: { currVegaKey },
   } = useAppState();
-  const [votePending, setVotePending] = React.useState(false);
 
-  const myVote = React.useMemo(() => {
-    if (currVegaKey) return getMyVote(currVegaKey.pub, yes, no);
-  }, [currVegaKey, yes, no]);
-  const [voteState, setVoteState] = React.useState<VoteState>(
+  const [voteState, setVoteState] = React.useState<VoteState | null>(
     VoteState.NotCast
   );
 
+  // Find the users vote everytime yes or no votes change
+  const userVote = React.useMemo(() => {
+    if (currVegaKey) {
+      return getUserVote(currVegaKey.pub, yes, no);
+    }
+    return null;
+  }, [currVegaKey, yes, no]);
+
+  // If user vote changes update the vote state
   React.useEffect(() => {
-    if (myVote === null || myVote === undefined) {
+    if (!userVote) {
       setVoteState(VoteState.NotCast);
     } else {
       setVoteState(
-        myVote.value === VoteValue.Yes ? VoteState.Yes : VoteState.No
+        userVote.value === VoteValue.Yes ? VoteState.Yes : VoteState.No
       );
     }
-  }, [myVote]);
+  }, [userVote]);
 
+  // Start a starts a timeout of 30s to set a failed message if
+  // the vote is not seen by the time the callback is invoked
+  React.useEffect(() => {
+    let timeout: any;
+
+    if (voteState === VoteState.Pending) {
+      setTimeout(() => {
+        setVoteState(VoteState.Failed);
+        captureMessage("Vote not seen after 30s");
+      }, 1000 * 30);
+    } else {
+      clearTimeout(timeout);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [voteState]);
+
+  /**
+   * Casts a vote using the users connected wallet
+   */
   async function castVote(value: VoteValue) {
     if (!proposalId || !currVegaKey) return;
 
-    setVotePending(true);
+    setVoteState(VoteState.Pending);
 
     try {
       const variables: VoteSubmissionInput = {
@@ -78,16 +108,15 @@ export function useUserVote(
           proposalId,
         },
       };
-      const res = await vegaWalletService.commandSync(variables);
+      const [err] = await vegaWalletService.commandSync(variables);
 
-      if (hasErrorProperty(res)) {
-        throw new Error(res.error);
-      } else {
-        setVotePending(false);
-        setVoteState(value === VoteValue.Yes ? VoteState.Yes : VoteState.No);
+      if (err) {
+        setVoteState(VoteState.Failed);
+        captureException(err);
       }
+
+      // Now await vote via poll in parent component
     } catch (err) {
-      setVotePending(false);
       setVoteState(VoteState.Failed);
       captureException(err);
     }
@@ -95,9 +124,8 @@ export function useUserVote(
 
   return {
     voteState,
-    votePending,
     castVote,
-    myVote,
-    voteDatetime: myVote ? myVote.datetime : null,
+    userVote,
+    voteDatetime: userVote ? new Date(userVote.datetime) : null,
   };
 }

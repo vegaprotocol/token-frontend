@@ -23,8 +23,6 @@ import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
-import { Callout } from "../../../components/callout";
-import { Error } from "../../../components/icons";
 import { Link } from "react-router-dom";
 import { Routes } from "../../router-config";
 import { useWeb3 } from "../../../contexts/web3-context/web3-context";
@@ -47,11 +45,6 @@ export const LiquidityWithdrawPage = ({
     dispatch: txUnstakeDispatch,
     perform: txUnstakePerform,
   } = useTransaction(() => lpStaking.unstake());
-  const {
-    state: txWithdrawState,
-    dispatch: txWithdrawDispatch,
-    perform: txWithdrawPerform,
-  } = useTransaction(() => lpStaking.withdrawRewards());
 
   const { getBalances, lpStakingEth, lpStakingUSDC } = useGetLiquidityBalances(
     dispatch,
@@ -104,23 +97,6 @@ export const LiquidityWithdrawPage = ({
         />
       </>
     );
-  } else if (txWithdrawState.txState !== TxState.Default) {
-    return (
-      <>
-        <TransactionCallout
-          state={txWithdrawState}
-          completeHeading={t("withdrawVegaLpSuccessCalloutTitle")}
-          completeFooter={
-            <Link to={Routes.LIQUIDITY}>
-              <button className="fill">{t("lpTxSuccessButton")}</button>
-            </Link>
-          }
-          reset={() =>
-            txWithdrawDispatch({ type: TransactionActionType.TX_RESET })
-          }
-        />
-      </>
-    );
   } else if (!hasLpTokens && !hasRewardsTokens) {
     return <section>{t("withdrawLpNoneDeposited")}</section>;
   }
@@ -131,13 +107,6 @@ export const LiquidityWithdrawPage = ({
         <EthConnectPrompt />
       ) : (
         <section>
-          <Callout
-            icon={<Error />}
-            intent="error"
-            title={t("withdrawLpCalloutTitle")}
-          >
-            <p>{t("withdrawLpCalloutBody")}</p>
-          </Callout>
           <KeyValueTable className="dex-tokens-withdraw__table">
             <KeyValueTableRow>
               <th>{t("liquidityTokenWithdrawBalance")}</th>
@@ -162,15 +131,6 @@ export const LiquidityWithdrawPage = ({
               </td>
             </KeyValueTableRow>
           </KeyValueTable>
-          <p className="dex-tokens-withdraw__submit">
-            <button
-              disabled={!hasRewardsTokens}
-              className="fill"
-              onClick={txWithdrawPerform}
-            >
-              {t("withdrawLpWithdrawVegaButton")}
-            </button>
-          </p>
           <p className="dex-tokens-withdraw__submit">
             <button
               disabled={!hasLpTokens}

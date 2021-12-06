@@ -10,7 +10,6 @@ import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
-import { EpochCountdown } from "../../../components/epoch-countdown";
 import { useWeb3 } from "../../../contexts/web3-context/web3-context";
 import { formatNumber } from "../../../lib/format-number";
 
@@ -95,11 +94,6 @@ export const DexTokensSection = ({
             />
           </td>
         </KeyValueTableRow>
-        {/* TODO: Re-add this row when APY calculation is correct */}
-        {/* <KeyValueTableRow>
-          <th>{t("lpTokensEstimateAPY")}</th>
-          <td>{values.estimateAPY.decimalPlaces(2).toString()}%</td>
-        </KeyValueTableRow> */}
         <KeyValueTableRow>
           <th>{t("lpTokensInRewardPool")}</th>
           <td>
@@ -114,11 +108,6 @@ export const DexTokensSection = ({
           />
         ) : null}
       </KeyValueTable>
-      <EpochCountdown
-        startDate={new Date(values.epochDetails.startSeconds.toNumber() * 1000)}
-        endDate={new Date(values.epochDetails.endSeconds.toNumber() * 1000)}
-        id={values.epochDetails.id}
-      />
     </section>
   );
 };
@@ -151,12 +140,7 @@ const ConnectedRows = ({
     accumulatedRewards,
   } = values.connectedWalletData;
   // Only shows the Deposit/Withdraw button IF they have tokens AND they haven't staked AND we're not on the relevant page
-  const isDepositButtonVisible =
-    showInteractionButton &&
-    availableLPTokens &&
-    availableLPTokens.isGreaterThan(0);
   const hasDeposited = totalStaked.isGreaterThan(0);
-  const hasRewards = accumulatedRewards.isGreaterThan(0);
   return (
     <>
       <KeyValueTableRow>
@@ -165,17 +149,6 @@ const ConnectedRows = ({
           <div>
             {formatNumber(availableLPTokens)}&nbsp;{t("SLP")}
           </div>
-          {hasDeposited ? (
-            <span className="text-muted">{t("alreadyDeposited")}</span>
-          ) : isDepositButtonVisible ? (
-            <div style={{ marginTop: 3 }}>
-              <Link to={`${Routes.LIQUIDITY}/${lpContractAddress}/deposit`}>
-                <button className="button-secondary">
-                  {t("depositToRewardPoolButton")}
-                </button>
-              </Link>
-            </div>
-          ) : null}
         </td>
       </KeyValueTableRow>
       <KeyValueTableRow>
@@ -201,7 +174,7 @@ const ConnectedRows = ({
           <div>
             {formatNumber(accumulatedRewards)} {t("VEGA")}
           </div>
-          {(hasDeposited || hasRewards) && (
+          {hasDeposited && (
             <div style={{ marginTop: 3 }}>
               <Link to={`${Routes.LIQUIDITY}/${lpContractAddress}/withdraw`}>
                 <button className="button-secondary">

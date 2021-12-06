@@ -91,28 +91,21 @@ export const EtherscanLink = ({
     );
   };
 
+  const linkClassName =
+    copyToClipboard === CopyToClipboardType.LINK ? "" : "etherscan-link__mono";
+
   return copyToClipboard !== CopyToClipboardType.NONE ? (
     <Popover
       hoverOpenDelay={500}
       interactionKind={PopoverInteractionKind.HOVER}
     >
-      <a
-        href={txLink}
-        target="_blank"
-        rel="noreferrer"
-        className="etherscan-link"
-      >
+      <a href={txLink} target="_blank" rel="noreferrer" className={linkClassName}>
         {linkText}
       </a>
       {getContents()}
     </Popover>
   ) : (
-    <a
-      href={txLink}
-      target="_blank"
-      rel="noreferrer"
-      className="etherscan-link"
-    >
+    <a href={txLink} target="_blank" rel="noreferrer" className={linkClassName}>
       {linkText}
     </a>
   );

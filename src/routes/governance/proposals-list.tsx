@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format, isFuture } from "date-fns";
 import "./proposals-list.scss";
 import { useTranslation } from "react-i18next";
 import { Link, useRouteMatch } from "react-router-dom";
@@ -51,13 +51,21 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
               </td>
             </tr>
             <tr>
-              <th>{t("closesOn")}</th>
+              <th>
+                {isFuture(new Date(row.terms.closingDatetime))
+                  ? t("closesOn")
+                  : t("closedOn")}
+              </th>
               <td>
                 {format(new Date(row.terms.closingDatetime), DATE_FORMAT)}
               </td>
             </tr>
             <tr>
-              <th>{t("toEnactOn")}</th>
+              <th>
+                {isFuture(new Date(row.terms.enactmentDatetime))
+                  ? t("proposedEnactment")
+                  : t("enactedOn")}
+              </th>
               <td>
                 {format(new Date(row.terms.enactmentDatetime), DATE_FORMAT)}
               </td>

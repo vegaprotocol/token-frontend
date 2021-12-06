@@ -28,7 +28,7 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
   } = useVoteInformation({ proposal });
 
   const { t } = useTranslation();
-  const { voteState, votePending, voteDatetime, castVote } = useUserVote(
+  const { voteState, voteDatetime, castVote } = useUserVote(
     proposal.id,
     proposal.votes.yes.votes,
     proposal.votes.no.votes
@@ -41,52 +41,49 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
 
   return (
     <section>
-      <h4 className="proposal__sub-title">{t("votes")}</h4>
-      <div>
-        <p className="proposal__set_to">
-          {t("setTo")}
-          <span className="vote-details__success-text">
-            <CurrentProposalStatus proposal={proposal} />
-          </span>
-          .&nbsp;
-          {proposal.state === ProposalState.Open ? daysLeft : null}
-        </p>
-        <table className="vote-details__table">
-          <thead>
-            <tr>
-              <th>{t("for")}</th>
-              <th>
-                <VoteProgress
-                  threshold={requiredMajorityPercentage.toNumber()}
-                  progress={yesPercentage.toNumber()}
-                />
-              </th>
-              <th>{t("against")}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{yesPercentage.toFixed(defaultDecimals)}%</td>
-              <td className="vote-details__summary">
-                {t("majorityRequired")}{" "}
-                {requiredMajorityPercentage.toFixed(defaultDecimals)}%
-              </td>
-              <td>{noPercentage.toFixed(defaultDecimals)}%</td>
-            </tr>
-            <tr>
-              <td className="text-muted">
-                {" "}
-                {formatNumber(yesTokens, defaultDecimals)}
-              </td>
-              <td></td>
-              <td className="text-muted">
-                {formatNumber(noTokens, defaultDecimals)}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div>
+      <h3 className="proposal__sub-title">{t("votes")}</h3>
+      <p className="proposal__set_to">
+        <span>
+          <CurrentProposalStatus proposal={proposal} />
+        </span>
+        .&nbsp;
+        {proposal.state === ProposalState.Open ? daysLeft : null}
+      </p>
+      <table className="vote-details__table">
+        <thead>
+          <tr>
+            <th>{t("for")}</th>
+            <th>
+              <VoteProgress
+                threshold={requiredMajorityPercentage}
+                progress={yesPercentage}
+              />
+            </th>
+            <th>{t("against")}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{yesPercentage.toFixed(defaultDecimals)}%</td>
+            <td className="vote-details__summary">
+              {t("majorityRequired")}{" "}
+              {requiredMajorityPercentage.toFixed(defaultDecimals)}%
+            </td>
+            <td>{noPercentage.toFixed(defaultDecimals)}%</td>
+          </tr>
+          <tr>
+            <td className="text-muted">
+              {" "}
+              {formatNumber(yesTokens, defaultDecimals)}
+            </td>
+            <td></td>
+            <td className="text-muted">
+              {formatNumber(noTokens, defaultDecimals)}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
         {t("participation")}
         {": "}
         {participationMet ? (
@@ -106,12 +103,12 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
           )}
           % {t("governanceRequired")})
         </span>
-      </div>
+      </p>
+      <h3>{t("yourVote")}</h3>
       <VoteButtonsContainer
         voteState={voteState}
         castVote={castVote}
         voteDatetime={voteDatetime}
-        votePending={votePending}
         proposalState={proposal.state}
       />
     </section>

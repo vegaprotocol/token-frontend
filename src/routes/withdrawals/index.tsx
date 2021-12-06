@@ -23,7 +23,6 @@ import { TransactionButton } from "../../components/transaction-button";
 import { usePollERC20Approval } from "../../hooks/use-ercPoll20Approval";
 import orderBy from "lodash/orderBy";
 import { TxState } from "../../hooks/transaction-reducer";
-import { useEthereumConfig } from "../../hooks/use-ethereum-config";
 import {
   WithdrawalsPage,
   WithdrawalsPageVariables,
@@ -91,7 +90,6 @@ const WithdrawPendingContainer = ({
 }: WithdrawPendingContainerProps) => {
   const { t } = useTranslation();
   const { ethAddress } = useWeb3();
-  const ethereumConfig = useEthereumConfig();
   const refreshBalances = useRefreshBalances(ethAddress);
   const { data, loading, error, refetch } = useQuery<
     WithdrawalsPage,
@@ -123,7 +121,7 @@ const WithdrawPendingContainer = ({
     );
   }
 
-  if (loading || !data || !ethereumConfig) {
+  if (loading || !data) {
     return (
       <SplashScreen>
         <SplashLoader />
@@ -141,7 +139,6 @@ const WithdrawPendingContainer = ({
         <li key={w.id}>
           <Withdrawal
             withdrawal={w}
-            requiredConfirmations={ethereumConfig.confirmations}
             refetchWithdrawals={refetch}
             refetchBalances={refreshBalances}
           />
@@ -153,14 +150,12 @@ const WithdrawPendingContainer = ({
 
 interface WithdrawalProps {
   withdrawal: WithdrawalsPage_party_withdrawals;
-  requiredConfirmations: number;
   refetchWithdrawals: () => void;
   refetchBalances: () => void;
 }
 
 export const Withdrawal = ({
   withdrawal,
-  requiredConfirmations,
   refetchWithdrawals,
   refetchBalances,
 }: WithdrawalProps) => {
@@ -184,7 +179,7 @@ export const Withdrawal = ({
       // TODO: switch when targetAddress is populated and deployed to mainnet data.erc20WithdrawalApproval.targetAddress,
       targetAddress: withdrawal.details.receiverAddress,
     });
-  }, requiredConfirmations);
+  });
 
   React.useEffect(() => {
     // Once complete we need to refetch the withdrawals so that pending withdrawal

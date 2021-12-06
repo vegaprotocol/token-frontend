@@ -1,20 +1,20 @@
-## [0.5.9](https://github.com/vegaprotocol/token-frontend/compare/0.5.8...0.5.9) (2021-12-02)
+## [0.5.22](https://github.com/vegaprotocol/token-frontend/compare/0.5.21...0.5.22) (2021-12-06)
 
 
 
-## [0.5.8](https://github.com/vegaprotocol/token-frontend/compare/0.5.7...0.5.8) (2021-12-02)
+## [0.5.21](https://github.com/vegaprotocol/token-frontend/compare/0.5.20...0.5.21) (2021-12-06)
 
 
 
-## [0.5.7](https://github.com/vegaprotocol/token-frontend/compare/0.5.6...0.5.7) (2021-12-02)
+## [0.5.20](https://github.com/vegaprotocol/token-frontend/compare/0.5.19...0.5.20) (2021-12-06)
 
 
 
-## [0.5.6](https://github.com/vegaprotocol/token-frontend/compare/0.5.5...0.5.6) (2021-12-01)
+## [0.5.19](https://github.com/vegaprotocol/token-frontend/compare/0.5.18...0.5.19) (2021-12-03)
 
 
 
-## [0.5.5](https://github.com/vegaprotocol/token-frontend/compare/0.5.4...0.5.5) (2021-12-01)
+## [0.5.18](https://github.com/vegaprotocol/token-frontend/compare/0.5.17...0.5.18) (2021-12-03)
 
 
 

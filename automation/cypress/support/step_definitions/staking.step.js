@@ -87,7 +87,7 @@ When("I click to confirm removal of tokens from stake", () => {
 Then("I can see the remove message is displayed {string}", (name) => {
   cy.get(".callout__title").should(
     "have.text",
-    `Removing 100 $VEGA from node ${name}`
+    `Removing 100 $VEGA from validator ${name}`
   );
 });
 
