@@ -45,7 +45,7 @@ export const Staking = ({ data }: { data?: StakingQueryResult }) => {
 
 export const StakingStepConnectWallets = () => {
   const { t } = useTranslation();
-  const { connect, ethAddress, chainId } = useWeb3();
+  const { connect, ethAddress } = useWeb3();
   const {
     appState: { currVegaKey },
   } = useAppState();
@@ -55,11 +55,7 @@ export const StakingStepConnectWallets = () => {
       <Callout intent="success" icon={<Tick />} title={"Connected"}>
         <p>
           {t("Connected Ethereum address")}&nbsp;
-          <EtherscanLink
-            address={ethAddress}
-            chainId={chainId}
-            text={ethAddress}
-          />
+          <EtherscanLink address={ethAddress} text={ethAddress} />
         </p>
         <p>{t("stakingVegaWalletConnected", { key: currVegaKey.pub })}</p>
       </Callout>

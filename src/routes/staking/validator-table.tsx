@@ -9,7 +9,6 @@ import {
 import { BigNumber } from "../../lib/bignumber";
 import { Staking_nodes } from "./__generated__/Staking";
 import { formatNumber } from "../../lib/format-number";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { EtherscanLink } from "../../components/etherscan-link";
 
 export interface ValidatorTableProps {
@@ -24,7 +23,6 @@ export const ValidatorTable = ({
   stakeThisEpoch,
 }: ValidatorTableProps) => {
   const { t } = useTranslation();
-  const { chainId } = useWeb3();
   const stakePercentage = React.useMemo(() => {
     const total = new BigNumber(stakedTotal);
     const stakedOnNode = new BigNumber(node.stakedTotalFormatted);
@@ -60,9 +58,8 @@ export const ValidatorTable = ({
           <th>{t("ETHEREUM ADDRESS")}</th>
           <td>
             <EtherscanLink
-              address={node.ethereumAdddress}
-              chainId={chainId}
               text={node.ethereumAdddress}
+              address={node.ethereumAdddress}
             />
           </td>
         </KeyValueTableRow>
