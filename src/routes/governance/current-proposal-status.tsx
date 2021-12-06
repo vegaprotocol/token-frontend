@@ -45,5 +45,7 @@ export const CurrentProposalStatus = ({
     return <span className="current-proposal-status__pass">{t("passed")}</span>;
   }
 
-  return <span>Unknown</span>;
+  // TODO: Find out if this is correct, can we say something better, if all the above are false
+  // Surely the proposal status is simply active and awaiting closing time?
+  return <span>Voting active</span>;
 };
