@@ -76,6 +76,7 @@ export const useVoteInformation = ({
   const {
     appState: { totalSupply },
   } = useAppState();
+
   const { requiredMajority, requiredParticipation } = useProposalNetworkParams({
     proposal,
   });

@@ -12,31 +12,5 @@
     &:first-child {
       margin-right: 10px;
     }
-
-    &__error-message {
-      margin: 5px 0 0;
-    }
-  }
-
-  &__container {
-    align-items: baseline;
-    display: flex;
-  }
-
-  &__logged-out-button {
-    margin-top: 5px;
-  }
-
-  &__callout-container {
-    margin-top: 5px;
-  }
-
-  &__link-button {
-    background: none !important;
-    border: none;
-    padding: 0 !important;
-    color: $vega-yellow3;
-    text-decoration: underline;
-    cursor: pointer;
   }
 }

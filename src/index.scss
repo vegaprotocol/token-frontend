@@ -72,6 +72,14 @@ a,
   font-family: $font-pixelated;
 }
 
+.text-green {
+  color: $vega-green3;
+}
+
+.text-red {
+  color: $vega-red3;
+}
+
 // TODO replace with blueprint themeing
 // BUTTONS
 button {
@@ -87,10 +95,11 @@ button {
 
   &:disabled,
   &.disabled {
-    opacity: 1;
+    opacity: 0.5;
     background: $bg-color-default;
     color: $color-default;
     border: 1px solid $text-color-emphasise;
+    cursor: not-allowed;
 
     &:hover {
       background: $bg-color-default;
