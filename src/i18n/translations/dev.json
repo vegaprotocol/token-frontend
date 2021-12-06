@@ -193,7 +193,6 @@
   "met": "Met",
   "notMet": "Not Met",
   "governanceRequired": "Required",
-  "setTo": "Currently set to ",
   "daysLeft": "{{daysLeft}} left to vote.",
   "toVote": "to vote",
   "voteFor": "Vote for",
