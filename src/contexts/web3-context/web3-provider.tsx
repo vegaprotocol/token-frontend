@@ -65,7 +65,6 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
   // with Infura) with an instance provided by the Web3Modal package
   const connect = React.useCallback(async () => {
     try {
-      setChainId(null);
       const rawProvider = await web3Modal.connect();
       const newProvider = new ethers.providers.Web3Provider(rawProvider, "any");
       const signer = newProvider.getSigner();
