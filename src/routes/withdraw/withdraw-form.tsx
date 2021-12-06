@@ -69,6 +69,11 @@ export const WithdrawForm = ({
     }
   }, [status, history]);
 
+  React.useMemo(async () => {
+    const addressValid = await ethers.utils.isAddress(destinationAddress);
+    setAddressValid(addressValid);
+  }, [destinationAddress]);
+
   return (
     <form
       className="withdraw-form"
@@ -123,7 +128,7 @@ export const WithdrawForm = ({
       </FormGroup>
       <StatefulButton
         type="submit"
-        disabled={!valid || status === WithdrawStatus.Pending}
+        disabled={!addressValid || !valid || status === WithdrawStatus.Pending}
       >
         {status === WithdrawStatus.Pending ? (
           <>
