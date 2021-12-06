@@ -1,4 +1,4 @@
-import { format, compareAsc } from "date-fns";
+import { format, isFuture } from "date-fns";
 import "./proposals-list.scss";
 import { useTranslation } from "react-i18next";
 import { Link, useRouteMatch } from "react-router-dom";
@@ -29,7 +29,6 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
     if (row.terms.change.__typename !== "UpdateNetworkParameter") return null;
 
     const type = row.terms.change.__typename;
-    const now = new Date();
 
     return (
       <li key={row.id}>
@@ -53,9 +52,9 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
             </tr>
             <tr>
               <th>
-                {compareAsc(now, new Date(row.terms.closingDatetime)) > 0
-                  ? t("closedOn")
-                  : t("closesOn")}
+                {isFuture(new Date(row.terms.closingDatetime))
+                  ? t("closesOn")
+                  : t("closedOn")}
               </th>
               <td>
                 {format(new Date(row.terms.closingDatetime), DATE_FORMAT)}
@@ -63,9 +62,9 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
             </tr>
             <tr>
               <th>
-                {compareAsc(now, new Date(row.terms.enactmentDatetime)) > 0
-                  ? t("enactedOn")
-                  : t("proposedEnactment")}
+                {isFuture(new Date(row.terms.enactmentDatetime))
+                  ? t("proposedEnactment")
+                  : t("enactedOn")}
               </th>
               <td>
                 {format(new Date(row.terms.enactmentDatetime), DATE_FORMAT)}
