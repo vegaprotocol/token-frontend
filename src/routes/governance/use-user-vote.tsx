@@ -75,15 +75,16 @@ export function useUserVote(
     }
   }, [userVote]);
 
-  // Start a timer to show an error if the vote isn't seen
+  // Start a starts a timeout of 30s to set a failed message if
+  // the vote is not seen by the time the callback is invoked
   React.useEffect(() => {
     let timeout: any;
 
     if (voteState === VoteState.Pending) {
       setTimeout(() => {
         setVoteState(VoteState.Failed);
-        captureMessage("Vote not seen after 1 minute");
-      }, 3000);
+        captureMessage("Vote not seen after 30s");
+      }, 1000 * 30);
     } else {
       clearTimeout(timeout);
     }
