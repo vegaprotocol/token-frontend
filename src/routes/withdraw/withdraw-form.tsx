@@ -69,9 +69,12 @@ export const WithdrawForm = ({
     }
   }, [status, history]);
 
-  React.useMemo(async () => {
-    const addressValid = await ethers.utils.isAddress(destinationAddress);
-    setAddressValid(addressValid);
+  React.useEffect(() => {
+    const run = async () => {
+      await setAddressValid(ethers.utils.isAddress(destinationAddress));
+    };
+
+    run();
   }, [destinationAddress]);
 
   return (
@@ -79,8 +82,6 @@ export const WithdrawForm = ({
       className="withdraw-form"
       onSubmit={async (e) => {
         e.preventDefault();
-        const addressValid = await ethers.utils.isAddress(destinationAddress);
-        setAddressValid(addressValid);
         if (!valid || !addressValid) return;
 
         submit(
