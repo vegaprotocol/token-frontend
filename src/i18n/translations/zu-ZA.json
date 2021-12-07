@@ -433,7 +433,8 @@
   "withdrawFormSubmitButtonPending": "crwdns6539:0crwdne6539:0",
   "withdrawalsTitle": "crwdns6561:0crwdne6561:0",
   "withdrawalsText": "crwdns6563:0crwdne6563:0",
-  "withdrawalsNone:": "crwdns6565:0crwdne6565:0",
+  "withdrawalsNone": "crwdns6765:0crwdne6765:0",
+  "withdrawalsCompleteButton": "crwdns6767:0crwdne6767:0",
   "signature": "crwdns6541:0crwdne6541:0",
   "created": "crwdns6543:0crwdne6543:0",
   "toEthereum": "crwdns6545:0crwdne6545:0",
@@ -467,7 +468,7 @@
   "vegaWallet": "crwdns6657:0crwdne6657:0",
   "rewardsComingSoon": "crwdns6659:0crwdne6659:0",
   "withdrawsComingSoon": "crwdns6661:0crwdne6661:0",
-  "associationChoice": "crwdns6663:0$VEGAcrwdnd6663:0$VEGAcrwdne6663:0",
+  "associationChoice": "crwdns6769:0$VEGAcrwdnd6769:0$VEGAcrwdne6769:0",
   "footerLinksText": "crwdns6665:0crwdne6665:0",
   "connectEthWallet": "crwdns6681:0crwdne6681:0",
   "connectEthWalletToAssociate": "crwdns6683:0$VEGAcrwdne6683:0",
@@ -483,5 +484,6 @@
   "Signature": "crwdns6715:0crwdne6715:0",
   "voteFailedReason": "crwdns6759:0crwdne6759:0",
   "votePassed": "crwdns6761:0crwdne6761:0",
-  "subjectToFurtherActions": "crwdns6763:0{{daysAgo}}crwdne6763:0"
+  "subjectToFurtherActions": "crwdns6763:0{{daysAgo}}crwdne6763:0",
+  "transactionHashPrompt": "crwdns6771:0crwdne6771:0"
 }
