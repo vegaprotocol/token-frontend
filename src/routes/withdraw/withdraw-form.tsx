@@ -40,7 +40,6 @@ export const WithdrawForm = ({
     () => new BigNumber(amountStr || 0),
     [amountStr]
   );
-  const [addressValid, setAddressValid] = React.useState<boolean>(true);
 
   const maximum = React.useMemo(() => {
     if (account) {
@@ -61,6 +60,10 @@ export const WithdrawForm = ({
     return true;
   }, [destinationAddress, amount, maximum]);
 
+  const addressValid = React.useMemo(() => {
+    return ethers.utils.isAddress(destinationAddress);
+  }, [destinationAddress]);
+
   // Navigate to complete withdrawals page once withdrawal
   // creation is complete
   React.useEffect(() => {
@@ -69,18 +72,10 @@ export const WithdrawForm = ({
     }
   }, [status, history]);
 
-  React.useEffect(() => {
-    const run = async () => {
-      await setAddressValid(ethers.utils.isAddress(destinationAddress));
-    };
-
-    run();
-  }, [destinationAddress]);
-
   return (
     <form
       className="withdraw-form"
-      onSubmit={async (e) => {
+      onSubmit={(e) => {
         e.preventDefault();
         if (!valid || !addressValid) return;
 
