@@ -91,6 +91,7 @@ button {
     background: $bg-color-default;
     color: $color-default;
     border: 1px solid $text-color-emphasise;
+    cursor: not-allowed;
 
     &:hover {
       background: $bg-color-default;
