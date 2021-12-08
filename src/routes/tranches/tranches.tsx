@@ -9,6 +9,8 @@ import { useRouteMatch } from "react-router-dom";
 import { ADDRESSES } from "../../config";
 import { TrancheItem } from "../redemption/tranche-item";
 import { TrancheLabel } from "./tranche-label";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { VestingChart } from "./vesting-chart";
 
 const trancheMinimum = 10;
 
@@ -24,6 +26,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
 
   return (
     <>
+      <VestingChart />
       {tranches?.length ? (
         <ul className="tranches__list">
           {(showAll ? tranches : filteredTranches).map((tranche) => {
