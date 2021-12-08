@@ -117,7 +117,6 @@ export interface IVegaLPStaking {
   awardContractAddress(): Promise<string>;
   slpContractAddress(): Promise<string>;
   rewardPerEpoch(): Promise<BigNumber>;
-  estimateAPY(): Promise<BigNumber>;
   totalStaked(): Promise<BigNumber>;
   totalUnstaked(account: string): Promise<BigNumber>;
   stake(amount: string): Promise<ethers.ContractTransaction>;

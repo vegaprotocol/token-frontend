@@ -163,35 +163,6 @@ export default class VegaLPStaking implements IVegaLPStaking {
   }
 
   /**
-   * Estimated APY. Note that this number may flucutate a lot and will decrease
-   * with each staking, including what the user may want to stake.
-   * When nothing is stake the APY will be Infinity, while after that it will be
-   * a decimal number (not percent).
-   * @return {Promise<BigNumber>} APY as a decimal number. See above caveats
-   */
-  async estimateAPY(): Promise<BigNumber> {
-    const [epochReward, epochInterval, totalBalance] = await Promise.all([
-      this.contract.epoch_reward(),
-      this.contract.epoch_seconds(),
-      this.contract.total_staked(),
-    ]);
-
-    // If there is none staked the APY is 0, not infinity
-    if (new BigNumber(totalBalance.toString()).isEqualTo(0)) {
-      return new BigNumber(0);
-    }
-
-    const epochsPerYear = new BigNumber(60 * 60 * 24 * 365).dividedBy(
-      new BigNumber(epochInterval.toString())
-    );
-    const epochApy = new BigNumber(epochReward.toString()).dividedBy(
-      new BigNumber(totalBalance.toString())
-    );
-
-    return epochApy.multipliedBy(epochsPerYear).times(100);
-  }
-
-  /**
    * Total amount staked in this liquidity pool
    * @return {Promise<BigNumber>} Amount in VEGA LP units
    */
