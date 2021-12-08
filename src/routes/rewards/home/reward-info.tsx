@@ -13,6 +13,7 @@ import {
 import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
 import { useTranslation } from "react-i18next";
 import { BigNumber } from "../../../lib/bignumber";
+import { format } from "date-fns";
 
 interface RewardInfoProps {
   data: Rewards | undefined;
@@ -135,10 +136,10 @@ export const RewardTable = ({ reward, delegations }: RewardTableProps) => {
           <th>{t("shareOfReward")}</th>
           <td>{new BigNumber(reward.percentageOfTotal).dp(2).toString()}%</td>
         </KeyValueTableRow>
-        {/* <KeyValueTableRow>
+        <KeyValueTableRow>
           <th>{t("received")}</th>
           <td>{format(new Date(reward.receivedAt), "dd MMM yyyy HH:mm")}</td>
-        </KeyValueTableRow> */}
+        </KeyValueTableRow>
       </KeyValueTable>
     </div>
   );
