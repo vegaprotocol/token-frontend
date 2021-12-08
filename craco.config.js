@@ -5,6 +5,13 @@ const SentryPlugin = require("@sentry/webpack-plugin");
 const package = require("./package.json");
 
 module.exports = function (options) {
+  // determine if we are using sentry
+  let useSentryPlugin = false;
+
+  if (process.env.REACT_APP_SENTRY_DSN && process.env.SENTRY_AUTH_TOKEN) {
+    useSentryPlugin = true;
+  }
+
   const isTranslationBranch = ["1", "true"].includes(
     process.env.REACT_APP_IN_CONTEXT_TRANSLATION
   );
@@ -35,12 +42,14 @@ module.exports = function (options) {
         return webpackConfig;
       },
       plugins: [
-        new SentryPlugin({
-          release: package.version,
-          include: "build/static/js",
-          ignore: ["node_modules", "webpack.config.js"],
-          urlPrefix: "~/static/js",
-        }),
+        useSentryPlugin
+          ? new SentryPlugin({
+              release: package.version,
+              include: "build/static/js",
+              ignore: ["node_modules", "webpack.config.js"],
+              urlPrefix: "~/static/js",
+            })
+          : null,
         new MiniCssExtractPlugin({
           // Options similar to the same options in webpackOptions.output
           // both options are optional
@@ -84,7 +93,7 @@ module.exports = function (options) {
             );
           }
         ),
-      ],
+      ].filter(Boolean),
     },
   };
 };
