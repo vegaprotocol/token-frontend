@@ -1,0 +1,17 @@
+@import "../../styles/colors";
+
+.vega-wallet-not-running {
+  &__container {
+    display: flex;
+    border-left: 4px solid $vega-red3;
+  }
+
+  &__exclamation {
+    color: $vega-red3;
+    padding-left: 8px;
+  }
+
+  &__text {
+    padding-left: 12px;
+  }
+}
