@@ -1,3 +1,7 @@
+## [0.5.26](https://github.com/vegaprotocol/token-frontend/compare/0.5.25...0.5.26) (2021-12-08)
+
+
+
 ## [0.5.25](https://github.com/vegaprotocol/token-frontend/compare/0.5.24...0.5.25) (2021-12-08)
 
 
@@ -17,10 +21,6 @@
 
 
 ## [0.5.22](https://github.com/vegaprotocol/token-frontend/compare/0.5.21...0.5.22) (2021-12-06)
-
-
-
-## [0.5.21](https://github.com/vegaprotocol/token-frontend/compare/0.5.20...0.5.21) (2021-12-06)
 
 
 
