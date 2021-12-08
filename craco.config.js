@@ -2,7 +2,7 @@ const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const SentryPlugin = require("@sentry/webpack-plugin");
-const package = require("package.json");
+const package = require("./package.json");
 
 module.exports = function (options) {
   const isTranslationBranch = ["1", "true"].includes(
