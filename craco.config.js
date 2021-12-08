@@ -1,6 +1,8 @@
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const SentryPlugin = require("@sentry/webpack-plugin");
+const package = require("package.json");
 
 module.exports = function (options) {
   const isTranslationBranch = ["1", "true"].includes(
@@ -33,6 +35,10 @@ module.exports = function (options) {
         return webpackConfig;
       },
       plugins: [
+        new SentryPlugin({
+          release: package.version,
+          include: "./dist",
+        }),
         new MiniCssExtractPlugin({
           // Options similar to the same options in webpackOptions.output
           // both options are optional
