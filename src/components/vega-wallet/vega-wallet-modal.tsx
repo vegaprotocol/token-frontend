@@ -1,3 +1,4 @@
+import React from "react";
 import { Overlay } from "@blueprintjs/core";
 import { useTranslation } from "react-i18next";
 import {
@@ -6,7 +7,7 @@ import {
 } from "../../contexts/app-state/app-state-context";
 import { Modal } from "../modal";
 import { DownloadWalletPrompt } from "./download-wallet-prompt";
-import { VegaWalletForm } from "./vega-wallet-form";
+import { VegaWalletFormContainer } from "./vega-wallet-container";
 
 export const VegaWalletModal = () => {
   const { t } = useTranslation();
@@ -26,14 +27,7 @@ export const VegaWalletModal = () => {
       <div className="modal modal--dark">
         <Modal>
           <h2>{t("connectVegaWallet")}</h2>
-          <VegaWalletForm
-            onConnect={() =>
-              appDispatch({
-                type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,
-                isOpen: false,
-              })
-            }
-          />
+          <VegaWalletFormContainer />
           <DownloadWalletPrompt />
         </Modal>
       </div>
