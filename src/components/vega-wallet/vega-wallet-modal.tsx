@@ -1,4 +1,3 @@
-import React from "react";
 import { Overlay } from "@blueprintjs/core";
 import { useTranslation } from "react-i18next";
 import {
@@ -25,8 +24,7 @@ export const VegaWalletModal = () => {
       transitionDuration={0}
     >
       <div className="modal modal--dark">
-        <Modal>
-          <h2>{t("connectVegaWallet")}</h2>
+        <Modal title={t("connectVegaWallet")}>
           <VegaWalletFormContainer />
           <DownloadWalletPrompt />
         </Modal>
