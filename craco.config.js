@@ -37,7 +37,9 @@ module.exports = function (options) {
       plugins: [
         new SentryPlugin({
           release: package.version,
-          include: "./dist",
+          include: "build/static/js",
+          ignore: ["node_modules", "webpack.config.js"],
+          urlPrefix: "~/static/js",
         }),
         new MiniCssExtractPlugin({
           // Options similar to the same options in webpackOptions.output
