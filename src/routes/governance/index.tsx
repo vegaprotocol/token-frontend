@@ -8,17 +8,17 @@ import { ProposalContainer } from "./proposal-container";
 const GovernanceRouter = ({ name }: RouteChildProps) => {
   const match = useRouteMatch();
   useDocumentTitle(name);
-
-  return (
-    <Switch>
-      <Route path={match.path} exact>
-        <ProposalsContainer />
-      </Route>
-      <Route path={`${match.path}/:proposalId`}>
-        <ProposalContainer />
-      </Route>
-    </Switch>
-  );
+  throw new Error("Test");
+  // return (
+  //   <Switch>
+  //     <Route path={match.path} exact>
+  //       <ProposalsContainer />
+  //     </Route>
+  //     <Route path={`${match.path}/:proposalId`}>
+  //       <ProposalContainer />
+  //     </Route>
+  //   </Switch>
+  // );
 };
 
 export default GovernanceRouter;
