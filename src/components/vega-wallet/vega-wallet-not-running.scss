@@ -3,7 +3,21 @@
 .vega-wallet-not-running {
   &__container {
     display: flex;
+    flex-direction: column;
+  }
+
+  &__text-container {
+    display: flex;
     border-left: 4px solid $vega-red3;
+  }
+
+  &__input {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    > p {
+      margin-bottom: 2px;
+    }
   }
 
   &__exclamation {
