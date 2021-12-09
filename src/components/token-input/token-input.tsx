@@ -40,7 +40,7 @@ export const AmountInput = ({
         rightElement={<Tag minimal={true}>{currency}</Tag>}
         autoComplete="off"
         type="number"
-        max={maximum.toNumber()}
+        max={maximum.toString()}
         min={0}
         step="any"
       />
