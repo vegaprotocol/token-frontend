@@ -30,6 +30,7 @@ import {
 } from "./__generated__/WithdrawalsPage";
 import { Flags } from "../../config";
 import { useRefreshBalances } from "../../hooks/use-refresh-balances";
+import { CopyToClipboardType } from "../../components/etherscan-link/etherscan-link";
 
 const Withdrawals = () => {
   const { t } = useTranslation();
@@ -215,6 +216,7 @@ export const Withdrawal = ({
               text={truncateMiddle(
                 withdrawal.details?.receiverAddress as string
               )}
+              copyToClipboard={CopyToClipboardType.LINK}
             />
           </td>
         </KeyValueTableRow>

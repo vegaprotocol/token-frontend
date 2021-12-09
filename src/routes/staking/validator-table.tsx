@@ -10,6 +10,7 @@ import { BigNumber } from "../../lib/bignumber";
 import { Staking_nodes } from "./__generated__/Staking";
 import { formatNumber } from "../../lib/format-number";
 import { EtherscanLink } from "../../components/etherscan-link";
+import { CopyToClipboardType } from "../../components/etherscan-link/etherscan-link";
 
 export interface ValidatorTableProps {
   node: Staking_nodes;
@@ -60,6 +61,7 @@ export const ValidatorTable = ({
             <EtherscanLink
               text={node.ethereumAdddress}
               address={node.ethereumAdddress}
+              copyToClipboard={CopyToClipboardType.LINK}
             />
           </td>
         </KeyValueTableRow>

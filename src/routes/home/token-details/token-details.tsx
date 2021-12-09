@@ -12,6 +12,7 @@ import { TokenDetailsCirculating } from "./token-details-circulating";
 import { formatNumber } from "../../../lib/format-number";
 import { useTranslation } from "react-i18next";
 import { useTranches } from "../../../hooks/use-tranches";
+import { CopyToClipboardType } from "../../../components/etherscan-link/etherscan-link";
 
 export const TokenDetails = ({
   totalSupply,
@@ -31,6 +32,7 @@ export const TokenDetails = ({
           <EtherscanLink
             address={ADDRESSES.vegaTokenAddress}
             text={ADDRESSES.vegaTokenAddress}
+            copyToClipboard={CopyToClipboardType.LINK}
           />
         </td>
       </KeyValueTableRow>
@@ -40,6 +42,7 @@ export const TokenDetails = ({
           <EtherscanLink
             address={ADDRESSES.vestingAddress}
             text={ADDRESSES.vestingAddress}
+            copyToClipboard={CopyToClipboardType.LINK}
           />
         </td>
       </KeyValueTableRow>

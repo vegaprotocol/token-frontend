@@ -11,6 +11,7 @@ import {
   KeyValueTableRow,
 } from "../../../components/key-value-table";
 import { formatNumber } from "../../../lib/format-number";
+import { CopyToClipboardType } from "../../../components/etherscan-link/etherscan-link";
 
 interface DexTokensSectionProps {
   name: string;
@@ -59,7 +60,11 @@ export const DexTokensSection = ({
         <KeyValueTableRow>
           <th>{t("liquidityTokenContractAddress")}</th>
           <td>
-            <EtherscanLink address={contractAddress} text={contractAddress} />
+            <EtherscanLink
+              address={contractAddress}
+              text={contractAddress}
+              copyToClipboard={CopyToClipboardType.LINK}
+            />
           </td>
         </KeyValueTableRow>
         <KeyValueTableRow>
@@ -74,6 +79,7 @@ export const DexTokensSection = ({
             <EtherscanLink
               address={values.awardContractAddress}
               text={values.awardContractAddress}
+              copyToClipboard={CopyToClipboardType.LINK}
             />
           </td>
         </KeyValueTableRow>
@@ -83,6 +89,7 @@ export const DexTokensSection = ({
             <EtherscanLink
               address={values.lpTokenContractAddress}
               text={values.lpTokenContractAddress}
+              copyToClipboard={CopyToClipboardType.LINK}
             />
           </td>
         </KeyValueTableRow>

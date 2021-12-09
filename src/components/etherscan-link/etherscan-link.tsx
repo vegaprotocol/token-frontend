@@ -43,7 +43,7 @@ export enum CopyToClipboardType {
  */
 export const EtherscanLink = ({
   text,
-  copyToClipboard = CopyToClipboardType.TEXT,
+  copyToClipboard = CopyToClipboardType.NONE,
   ...props
 }: EtherscanLinkProps) => {
   const { chainId } = useWeb3();
@@ -91,21 +91,18 @@ export const EtherscanLink = ({
     );
   };
 
-  const linkClassName =
-    copyToClipboard === CopyToClipboardType.LINK ? "" : "etherscan-link__mono";
-
   return copyToClipboard !== CopyToClipboardType.NONE ? (
     <Popover
       hoverOpenDelay={500}
       interactionKind={PopoverInteractionKind.HOVER}
     >
-      <a href={txLink} target="_blank" rel="noreferrer" className={linkClassName}>
+      <a href={txLink} target="_blank" rel="noreferrer">
         {linkText}
       </a>
       {getContents()}
     </Popover>
   ) : (
-    <a href={txLink} target="_blank" rel="noreferrer" className={linkClassName}>
+    <a href={txLink} target="_blank" rel="noreferrer">
       {linkText}
     </a>
   );
@@ -128,4 +125,4 @@ function etherscanLinkCreator(chainId: EthereumChainId | null) {
   };
 }
 
-EtherscanLink.displayName = "EtherScanLink";
+EtherscanLink.displayName = "EtherscanLink";

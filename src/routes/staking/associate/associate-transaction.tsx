@@ -66,10 +66,7 @@ export const AssociateTransaction = ({
           })}
         </p>
         <p>
-          <EtherscanLink
-            tx={state.txData.hash!}
-            copyToClipboard={CopyToClipboardType.LINK}
-          />
+          <EtherscanLink tx={state.txData.hash!} />
         </p>
         <p data-testid="transaction-pending-footer">
           {t("pendingAssociationText", {

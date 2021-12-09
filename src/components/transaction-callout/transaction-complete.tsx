@@ -20,8 +20,9 @@ export const TransactionComplete = ({
     <Callout icon={<Tick />} intent="success" title={heading || t("Complete")}>
       {body && <p data-testid="transaction-complete-body">{body}</p>}
       <p>
-        <EtherscanLink tx={hash} copyToClipboard={CopyToClipboardType.LINK} />
+        <EtherscanLink tx={hash} />
       </p>
+      LINK
       {footer && <p data-testid="transaction-complete-footer">{footer}</p>}
     </Callout>
   );
