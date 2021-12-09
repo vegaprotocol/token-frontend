@@ -20,10 +20,10 @@ export const VegaWalletFormContainer = () => {
   React.useEffect(() => {
     const run = async () => {
       const [version] = await vegaWalletService.getVersion();
-      console.log("Removeme!!!!!", version);
       setIsVegaWalletRunning(version !== Errors.SERVICE_UNAVAILABLE);
     };
-    const interval = setInterval(run, 2000);
+    run(); // run it first so that the intial state is correct
+    const interval = setInterval(run, 2000); // then pull every 2 seconds in case the wallet is started/stopped while the modal is up
 
     return () => clearInterval(interval);
   }, []);
