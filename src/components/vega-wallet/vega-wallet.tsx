@@ -453,6 +453,7 @@ const VegaWalletConnected = ({
               label={`${d.name || truncateMiddle(d.nodeId)} ${
                 d.hasStakePending ? `(${t("thisEpoch")})` : ""
               }`}
+              link={`${Routes.STAKING}/${d.nodeId}`}
               value={d.currentEpochStake}
               dark={true}
             />
@@ -462,6 +463,7 @@ const VegaWalletConnected = ({
               label={`${d.name || truncateMiddle(d.nodeId)} (${t(
                 "nextEpoch"
               )})`}
+              link={`${Routes.STAKING}/${d.nodeId}`}
               value={d.nextEpochStake}
               dark={true}
             />
