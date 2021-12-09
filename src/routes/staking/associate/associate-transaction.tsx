@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Callout } from "../../../components/callout";
 import { EtherscanLink } from "../../../components/etherscan-link";
-import { CopyToClipboardType } from "../../../components/etherscan-link/etherscan-link";
 import { Loader } from "../../../components/loader";
 import { TransactionCallout } from "../../../components/transaction-callout";
 import {

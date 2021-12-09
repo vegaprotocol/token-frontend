@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Callout } from "../callout";
 import { EtherscanLink } from "../etherscan-link";
-import { CopyToClipboardType } from "../etherscan-link/etherscan-link";
 import { Error } from "../icons";
 
 export interface TransactionErrorProps {
