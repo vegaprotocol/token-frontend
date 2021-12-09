@@ -22,7 +22,7 @@ export const TransactionError = ({
       <p>{error ? error.message : t("Something went wrong")}</p>
       {hash ? (
         <p>
-          <EtherscanLink tx={hash} copyToClipboard={CopyToClipboardType.LINK} />
+          <EtherscanLink tx={hash} />
         </p>
       ) : null}
       <button onClick={() => onActionClick()}>{t("Try again")}</button>
