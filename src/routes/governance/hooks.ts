@@ -9,7 +9,7 @@ import {
   Proposal_proposal_votes_yes_votes,
 } from "./__generated__/Proposal";
 import { addDecimal } from "../../lib/decimals";
-import BigNumber from "bignumber.js";
+import { BigNumber } from "../../lib/bignumber";
 
 const useProposalNetworkParams = ({
   proposal,

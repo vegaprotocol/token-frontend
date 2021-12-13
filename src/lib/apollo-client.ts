@@ -8,11 +8,11 @@ import {
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
 import { RetryLink } from "@apollo/client/link/retry";
-import BigNumber from "bignumber.js";
 import { addDecimal } from "./decimals";
 import uniqBy from "lodash/uniqBy";
 import sortBy from "lodash/sortBy";
 import { deterministicShuffle } from "./deterministic-shuffle";
+import { BigNumber } from "./bignumber";
 
 // Create seed in memory. Validator list order will remain the same
 // until the page is refreshed.
