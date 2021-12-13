@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import "./code-used.scss";
 import { Callout } from "../../components/callout";
 import { Error } from "../../components/icons";
 import { AddLockedTokenAddress } from "../../components/add-locked-token";
