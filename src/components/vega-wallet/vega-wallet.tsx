@@ -434,7 +434,6 @@ const VegaWalletConnected = ({
         symbol="VEGA"
         balance={currentStakeAvailable}
         dark={true}
-        address={ADDRESSES.vegaTokenAddress}
       />
       <WalletCardRow label={t("unstaked")} value={unstaked} dark={true} />
       {delegatedNodes.length ? (

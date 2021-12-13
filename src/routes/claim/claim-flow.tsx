@@ -89,7 +89,7 @@ export const ClaimFlow = ({
   // }
 
   // if (state.claimStatus === ClaimStatus.Used) {
-  return <CodeUsed address={address} />;
+  return <CodeUsed />;
   // }
 
   // if (state.claimStatus === ClaimStatus.Expired) {

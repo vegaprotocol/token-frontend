@@ -5,16 +5,12 @@ import {
 } from "./redemption-reducer";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 
-import { Callout } from "../../components/callout";
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
-import { Link } from "react-router-dom";
 import React from "react";
 import { RedeemFromTranche } from "./tranche";
 import { RedemptionInformation } from "./home/redemption-information";
-import { Routes } from "../router-config";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
-import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useTranches } from "../../hooks/use-tranches";
 import { useTranslation } from "react-i18next";
 import { useContracts } from "../../contexts/contracts/contracts-context";
@@ -28,9 +24,6 @@ const RedemptionRouter = () => {
     redemptionReducer,
     initialRedemptionState
   );
-  const {
-    appState: { trancheBalances },
-  } = useAppState();
   const { ethAddress } = useWeb3();
   const tranches = useTranches();
 
@@ -69,17 +62,6 @@ const RedemptionRouter = () => {
           )}
         </p>
       </EthConnectPrompt>
-    );
-  }
-
-  if (!trancheBalances.length) {
-    return (
-      <>
-        <Callout>
-          <p>{t("You have no VEGA tokens currently vesting.")}</p>
-        </Callout>
-        <Link to={Routes.TRANCHES}>{t("viewAllTranches")}</Link>
-      </>
     );
   }
 

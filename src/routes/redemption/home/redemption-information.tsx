@@ -11,6 +11,7 @@ import React from "react";
 import { truncateMiddle } from "../../../lib/truncate-middle";
 import { Routes } from "../../router-config";
 import { formatNumber } from "../../../lib/format-number";
+import { AddLockedTokenAddress } from "../../../components/add-locked-token";
 
 export const RedemptionInformation = ({
   state,
@@ -60,6 +61,9 @@ export const RedemptionInformation = ({
               tranchesLink: <Link to={Routes.TRANCHES} />,
             }}
           />
+          <Callout>
+            <AddLockedTokenAddress />
+          </Callout>
         </p>
       </section>
     );
@@ -67,6 +71,9 @@ export const RedemptionInformation = ({
 
   return (
     <section className="redemption-information" data-testid="redemption-page">
+      <Callout>
+        <AddLockedTokenAddress />
+      </Callout>
       <p data-testid="redemption-description">
         {t(
           "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.",
@@ -77,27 +84,6 @@ export const RedemptionInformation = ({
           }
         )}
       </p>
-      {/* <p data-testid="redemption-unlocked-tokens">
-        {t("A total of {{amount}} Unlocked Vega tokens.", {
-          amount: totalVestedBalance.toString(),
-        })}
-      </p>
-      <p data-testid="redemption-locked-tokens">
-        {t("A total of {{amount}} Locked Vega tokens.", {
-          amount: totalLockedBalance.toString(),
-        })}
-      </p>
-      <p data-testid="redemption-staked-tokens">
-        {t("{{stakedBalance}} are staked.", {
-          stakedBalance: lien.toString(),
-        })}
-      </p>
-      <p data-testid="redemption-page-description">
-        <strong>
-          {t("Use this page to redeem any unlocked VEGA tokens.")}
-        </strong>
-      </p>
-      <p data-testid="redemption-note">{t("redemptionExplain")}</p> */}
       <VestingTable
         associated={lien}
         locked={totalLockedBalance}

@@ -3,8 +3,6 @@ import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
 import "./wallet-card.scss";
 import { useAnimateValue } from "../../hooks/use-animate-value";
-import { AddTokenButton } from "../add-token-button";
-import { useAddAssetSupported } from "../../hooks/use-add-asset-to-wallet";
 
 interface WalletCardProps {
   children: React.ReactNode;
@@ -101,7 +99,6 @@ export interface WalletCardAssetProps {
   symbol: string;
   balance: BigNumber;
   decimals: number;
-  address?: string;
   border?: boolean;
   dark?: boolean;
   subheading?: string;
@@ -115,7 +112,6 @@ export const WalletCardAsset = ({
   decimals,
   border,
   dark,
-  address,
   subheading,
 }: WalletCardAssetProps) => {
   const [integers, decimalsPlaces] = React.useMemo(() => {
@@ -126,31 +122,18 @@ export const WalletCardAsset = ({
       .split(separator);
     return [integers, decimalsPlaces];
   }, [balance, decimals]);
-  const addSupported = useAddAssetSupported();
 
   return (
     <div
       className={`wallet-card__asset ${dark ? "wallet-card__asset--dark" : ""}`}
     >
-      {address && addSupported ? (
-        <AddTokenButton
-          className={`wallet-card__asset-image ${
-            border ? "wallet-card__asset-image--border" : ""
-          }`}
-          address={address}
-          symbol={symbol}
-          decimals={18}
-          image={image}
-        />
-      ) : (
-        <img
-          alt="Vega"
-          src={image}
-          className={`wallet-card__asset-image ${
-            border ? "wallet-card__asset-image--border" : ""
-          }`}
-        />
-      )}
+      <img
+        alt="Vega"
+        src={image}
+        className={`wallet-card__asset-image ${
+          border ? "wallet-card__asset-image--border" : ""
+        }`}
+      />
       <div className="wallet-card__asset-header">
         <div className="wallet-card__asset-heading">
           <h1>{name}</h1>
