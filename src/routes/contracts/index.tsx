@@ -16,6 +16,7 @@ const Contracts = () => {
             address={value}
             text={value}
             copyToClipboard={CopyToClipboardType.LINK}
+            className="font-mono"
           />
         </div>
       ))}
