@@ -33,6 +33,7 @@ export const TokenDetails = ({
             address={ADDRESSES.vegaTokenAddress}
             text={ADDRESSES.vegaTokenAddress}
             copyToClipboard={CopyToClipboardType.LINK}
+            className="font-mono"
           />
         </td>
       </KeyValueTableRow>
@@ -43,6 +44,7 @@ export const TokenDetails = ({
             address={ADDRESSES.vestingAddress}
             text={ADDRESSES.vestingAddress}
             copyToClipboard={CopyToClipboardType.LINK}
+            className="font-mono"
           />
         </td>
       </KeyValueTableRow>
