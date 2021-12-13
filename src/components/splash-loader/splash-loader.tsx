@@ -25,7 +25,7 @@ export const SplashLoader = ({ text = "Loading" }: { text?: string }) => {
           );
         })}
       </div>
-      <div className="loading__text">{text}</div>
+      <div>{text}</div>
     </div>
   );
 };
