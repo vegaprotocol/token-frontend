@@ -16,9 +16,12 @@ export const VegaWalletFormContainer = () => {
   const [isVegaWalletRunning, setIsVegaWalletRunning] = React.useState(
     appState.vegaWalletStatus !== VegaWalletStatus.None
   );
+  const [url, setUrl] = React.useState(vegaWalletService.url);
 
   React.useEffect(() => {
     const run = async () => {
+      if (!url) return;
+      vegaWalletService.url = url;
       const [version] = await vegaWalletService.getVersion();
       setIsVegaWalletRunning(version !== Errors.SERVICE_UNAVAILABLE);
     };
@@ -26,7 +29,7 @@ export const VegaWalletFormContainer = () => {
     const interval = setInterval(run, 2000); // then pull every 2 seconds in case the wallet is started/stopped while the modal is up
 
     return () => clearInterval(interval);
-  }, []);
+  }, [url]);
 
   return isVegaWalletRunning ? (
     <VegaWalletForm
@@ -36,8 +39,10 @@ export const VegaWalletFormContainer = () => {
           isOpen: false,
         })
       }
+      url={url}
+      setUrl={setUrl}
     />
   ) : (
-    <VegaWalletNotRunning />
+    <VegaWalletNotRunning url={url} setUrl={setUrl} />
   );
 };
