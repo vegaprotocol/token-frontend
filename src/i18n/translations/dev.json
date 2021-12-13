@@ -483,5 +483,6 @@
   "Signature": "Signature",
   "voteFailedReason": "Vote closed. Failed due to: ",
   "votePassed": "Vote passed.",
-  "subjectToFurtherActions": "Vote passed {{daysAgo}} subject to further actions."
+  "subjectToFurtherActions": "Vote passed {{daysAgo}} subject to further actions.",
+  "networkDown": "This site is not currently connecting to the network please try again later."
 }
