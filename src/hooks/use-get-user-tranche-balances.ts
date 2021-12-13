@@ -4,8 +4,8 @@ import {
   useAppState,
 } from "../contexts/app-state/app-state-context";
 import * as Sentry from "@sentry/react";
-import BigNumber from "bignumber.js";
 import { IVegaVesting } from "../lib/web3-utils";
+import { BigNumber } from "../lib/bignumber";
 
 export const useGetUserTrancheBalances = (
   address: string,
