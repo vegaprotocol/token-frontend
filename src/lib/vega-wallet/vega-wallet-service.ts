@@ -176,7 +176,6 @@ export class VegaWalletService implements IVegaWalletService {
   }
 
   async getVersion(): Promise<(string | undefined)[]> {
-    console.log(this.getUrl());
     try {
       const res = await fetch(`${this.getUrl()}/${Endpoints.VERSION}`, {});
 

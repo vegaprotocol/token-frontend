@@ -7,7 +7,12 @@ export const DownloadWalletPrompt = () => {
     <>
       <h3>{t("getWallet")}</h3>
       <p style={{ margin: 0 }}>
-        <a href={Links.WALLET_GUIDE} target="_blank" rel="noreferrer">
+        <a
+          style={{ color: Colors.DEEMPHASISE }}
+          href={Links.WALLET_GUIDE}
+          target="_blank"
+          rel="noreferrer"
+        >
           {t("readGuide")}
         </a>
       </p>
