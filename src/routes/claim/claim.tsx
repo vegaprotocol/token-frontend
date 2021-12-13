@@ -28,44 +28,44 @@ const Claim = ({
   const getUserTrancheBalances = useGetUserTrancheBalances(address, vesting);
   const refreshBalances = useRefreshBalances(address);
 
-  // React.useEffect(() => {
-  //   dispatch({
-  //     type: ClaimActionType.SET_DATA_FROM_URL,
-  //     decimals: appState.decimals,
-  //     data: {
-  //       amount: params.amount,
-  //       trancheId: params.tranche,
-  //       expiry: params.expiry,
-  //       s: params.s,
-  //       r: params.r,
-  //       v: params.v,
-  //       target: params.target,
-  //     },
-  //   });
-  // }, [appState.decimals, dispatch, params]);
+  React.useEffect(() => {
+    dispatch({
+      type: ClaimActionType.SET_DATA_FROM_URL,
+      decimals: appState.decimals,
+      data: {
+        amount: params.amount,
+        trancheId: params.tranche,
+        expiry: params.expiry,
+        s: params.s,
+        r: params.r,
+        v: params.v,
+        target: params.target,
+      },
+    });
+  }, [appState.decimals, dispatch, params]);
 
-  // // If the claim has been committed refetch the new VEGA balance
-  // React.useEffect(() => {
-  //   if (state.claimStatus === ClaimStatus.Finished && address) {
-  //     getUserTrancheBalances();
-  //     refreshBalances();
-  //   }
-  // }, [address, getUserTrancheBalances, refreshBalances, state.claimStatus]);
+  // If the claim has been committed refetch the new VEGA balance
+  React.useEffect(() => {
+    if (state.claimStatus === ClaimStatus.Finished && address) {
+      getUserTrancheBalances();
+      refreshBalances();
+    }
+  }, [address, getUserTrancheBalances, refreshBalances, state.claimStatus]);
 
-  // if (state.error) {
-  //   return <ClaimError />;
-  // }
+  if (state.error) {
+    return <ClaimError />;
+  }
 
-  // if (state.claimData?.signature.s) {
-  return (
-    <ClaimFlow
-      state={state}
-      dispatch={dispatch}
-      address={address}
-      tranches={tranches}
-    />
-  );
-  // }
+  if (state.claimData?.signature.s) {
+    return (
+      <ClaimFlow
+        state={state}
+        dispatch={dispatch}
+        address={address}
+        tranches={tranches}
+      />
+    );
+  }
 
   return null;
 };
