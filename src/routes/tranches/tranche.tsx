@@ -49,7 +49,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
           />
         }
       />
-      <div className="tranche__redeemed">
+      <div className="tranche__redeemed" data-test-id="redeemed-tranche-tokens">
         <span>{t("alreadyRedeemed")}</span>
         <span>{formatNumber(tranche.total_removed)}</span>
       </div>
@@ -61,11 +61,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
             const locked = user.remaining_tokens.times(lockedData?.locked);
             return (
               <li className="tranche__user-list--item" key={i}>
-                <EtherscanLink
-                  chainId={chainId}
-                  address={user.address}
-                  text={user.address}
-                />
+                <EtherscanLink address={user.address} text={user.address} />
                 <div className="tranche__progress-contents">
                   <span>{t("Locked")}</span>
                   <span>{t("Unlocked")}</span>

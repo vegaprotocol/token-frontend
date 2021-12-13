@@ -60,8 +60,10 @@ export const BalanceManager = ({ children }: any) => {
   }, [ethAddress, getUserTrancheBalances]);
 
   React.useEffect(() => {
-    getAssociationBreakdown();
-  }, [getAssociationBreakdown]);
+    if (ethAddress) {
+      getAssociationBreakdown();
+    }
+  }, [ethAddress, getAssociationBreakdown]);
 
   return children;
 };

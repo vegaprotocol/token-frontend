@@ -1,5 +1,15 @@
 {
-  "baseUrl": "http://localhost:3000",
+  "baseUrl": "http://localhost:3000/",
   "projectId": "9az7j4",
-  "defaultCommandTimeout": 20000
+  "environmentKeys": {
+    "vegaTokenAddress": "0xc93137f9F4B820Ca85FfA3C7e84cCa6Ebc7bB517",
+    "claimAddress": "0x8Cef746ab7C83B61F6461cC92882bD61AB65a994",
+    "lockedAddress": "0x0",
+    "vestingAddress": "0xd751FF6264234cAfAE88e4BF6003878fAB9630a7",
+    "stakingBridge": "0x3cCe40e1e47cedf76c03db3E48507f421b575523"
+  },
+  "env": {
+    "TAGS": "not @ignore"
+  },
+  "defaultCommandTimeout": 10000
 }

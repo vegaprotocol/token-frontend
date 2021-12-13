@@ -3,6 +3,24 @@ import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
 import "./wallet-card.scss";
 import { useAnimateValue } from "../../hooks/use-animate-value";
+import { Link } from "react-router-dom";
+
+const useNumberParts = (
+  value: BigNumber | null | undefined,
+  decimals: number
+) => {
+  return React.useMemo(() => {
+    if (!value) {
+      return ["0", "0".repeat(decimals)];
+    }
+    // @ts-ignore
+    const separator = BigNumber.config().FORMAT.decimalSeparator as string;
+    const [integers, decimalsPlaces] = formatNumber(value, 18)
+      .toString()
+      .split(separator);
+    return [integers, decimalsPlaces];
+  }, [decimals, value]);
+};
 
 interface WalletCardProps {
   children: React.ReactNode;
@@ -42,12 +60,14 @@ export const WalletCardContent = ({ children }: WalletCardContentProps) => {
 
 export const WalletCardRow = ({
   label,
+  link,
   value,
   dark = false,
   decimals = 18,
   bold = false,
 }: {
   label: string;
+  link?: string;
   decimals?: number;
   value?: BigNumber | null;
   dark?: boolean;
@@ -55,17 +75,7 @@ export const WalletCardRow = ({
 }) => {
   const ref = React.useRef<HTMLDivElement | null>(null);
   useAnimateValue(ref, value);
-  const [integers, decimalsPlaces] = React.useMemo(() => {
-    if (!value) {
-      return ["0", "0".repeat(18)];
-    }
-    // @ts-ignore
-    const separator = BigNumber.config().FORMAT.decimalSeparator as string;
-    const [integers, decimalsPlaces] = formatNumber(value, 18)
-      .toString()
-      .split(separator);
-    return [integers, decimalsPlaces];
-  }, [value]);
+  const [integers, decimalsPlaces] = useNumberParts(value, decimals);
 
   return (
     <div
@@ -74,7 +84,11 @@ export const WalletCardRow = ({
       }`}
       ref={ref}
     >
-      <span>{label}</span>
+      {link ? (
+        <Link to={link}>{label}</Link>
+      ) : (
+        <span>{label}</span>
+      )}
       {value && (
         <span>
           <span className="wallet-card__price--integer">{integers}.</span>
@@ -114,14 +128,7 @@ export const WalletCardAsset = ({
   dark,
   subheading,
 }: WalletCardAssetProps) => {
-  const [integers, decimalsPlaces] = React.useMemo(() => {
-    // @ts-ignore
-    const separator = BigNumber.config().FORMAT.decimalSeparator as string;
-    const [integers, decimalsPlaces] = formatNumber(balance, decimals)
-      .toString()
-      .split(separator);
-    return [integers, decimalsPlaces];
-  }, [balance, decimals]);
+  const [integers, decimalsPlaces] = useNumberParts(balance, decimals);
 
   return (
     <div

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 import "./tranche-item.scss";
 import { formatNumber } from "../../lib/format-number";
+import { LockedProgress } from "../../components/locked-progress";
 
 export interface TrancheItemProps {
   tranche: {
@@ -31,13 +32,6 @@ export const TrancheItem = ({
   link,
 }: TrancheItemProps) => {
   const { t } = useTranslation();
-  const lockedPercentage = React.useMemo(() => {
-    return locked.div(total).times(100);
-  }, [total, locked]);
-
-  const unlockedPercentage = React.useMemo(() => {
-    return unlocked.div(total).times(100);
-  }, [total, unlocked]);
 
   return (
     <section data-testid="tranche-item" className="tranche-item">
@@ -61,43 +55,20 @@ export const TrancheItem = ({
           <tr>
             <td>{t("Starts unlocking")}</td>
             <td>{format(tranche.tranche_start, "d MMM yyyy")}</td>
-            <td></td>
           </tr>
           <tr>
             <td>{t("Fully unlocked")}</td>
             <td>{format(tranche.tranche_end, "d MMM yyyy")}</td>
-            <td></td>
           </tr>
         </tbody>
       </table>
-      <div className="tranche-item__progress">
-        <div className="tranche-item__progress-bar">
-          <div
-            className="tranche-item__progress-bar--locked"
-            style={{
-              flex: isNaN(lockedPercentage.toNumber())
-                ? 0
-                : lockedPercentage.toNumber(),
-            }}
-          ></div>
-          <div
-            className="tranche-item__progress-bar--unlocked"
-            style={{
-              flex: isNaN(unlockedPercentage.toNumber())
-                ? 0
-                : unlockedPercentage.toNumber(),
-            }}
-          ></div>
-        </div>
-        <div className="tranche-item__progress-contents">
-          <span>{t("Locked")}</span>
-          <span>{t("Unlocked")}</span>
-        </div>
-        <div className="tranche-item__progress-contents">
-          <span>{formatNumber(locked, 2)}</span>
-          <span>{formatNumber(unlocked, 2)}</span>
-        </div>
-      </div>
+      <LockedProgress
+        locked={locked}
+        unlocked={unlocked}
+        total={total}
+        leftLabel={t("Locked")}
+        rightLabel={t("Unlocked")}
+      />
 
       <div className="tranche-item__footer" data-testid="tranche-item-footer">
         {message}

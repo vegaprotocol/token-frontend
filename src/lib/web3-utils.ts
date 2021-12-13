@@ -117,7 +117,6 @@ export interface IVegaLPStaking {
   awardContractAddress(): Promise<string>;
   slpContractAddress(): Promise<string>;
   rewardPerEpoch(): Promise<BigNumber>;
-  estimateAPY(): Promise<BigNumber>;
   totalStaked(): Promise<BigNumber>;
   totalUnstaked(account: string): Promise<BigNumber>;
   stake(amount: string): Promise<ethers.ContractTransaction>;
@@ -128,6 +127,16 @@ export interface IVegaLPStaking {
   liquidityTokensInRewardPool(): Promise<BigNumber>;
   currentEpochDetails(): Promise<EpochDetails>;
   stakingStart(): Promise<string>;
+}
+
+export interface IVegaErc20Bridge {
+  withdraw(approval: {
+    assetSource: string;
+    amount: string;
+    nonce: string;
+    signatures: string;
+    targetAddress: string;
+  }): Promise<ethers.ContractTransaction>;
 }
 
 export interface TxError {

@@ -1,13 +1,14 @@
 import merge from "lodash/merge";
 import * as faker from "faker";
 
-import { Proposals_proposals } from "../__generated__/proposals";
 import { ProposalState, VoteValue } from "../../../__generated__/globalTypes";
+import { ProposalFields } from "../__generated__/ProposalFields";
+import { DeepPartial } from "../../../lib/type-helpers";
 
 export function generateProposal(
-  override?: Partial<Proposals_proposals>
-): Proposals_proposals {
-  const defaultProposal = {
+  override: DeepPartial<ProposalFields> = {}
+): ProposalFields {
+  const defaultProposal: ProposalFields = {
     __typename: "Proposal",
     id: faker.datatype.uuid(),
     reference: "ref" + faker.datatype.uuid(),
@@ -25,7 +26,7 @@ export function generateProposal(
       change: {
         networkParameter: {
           key: faker.lorem.words(),
-          value: faker.datatype.number({ min: 0, max: 100 }),
+          value: faker.datatype.number({ min: 0, max: 100 }).toString(),
           __typename: "NetworkParameter",
         },
         __typename: "UpdateNetworkParameter",
@@ -35,7 +36,6 @@ export function generateProposal(
       __typename: "ProposalVotes",
       yes: {
         totalTokens: "0",
-        totalWeight: "0",
         totalNumber: "1",
         votes: [
           {
@@ -43,6 +43,10 @@ export function generateProposal(
             party: {
               id: faker.datatype.uuid(),
               __typename: "Party",
+              stake: {
+                __typename: "PartyStake",
+                currentStakeAvailable: "123",
+              },
             },
             datetime: faker.date.past().toISOString(),
             __typename: "Vote",
@@ -52,12 +56,15 @@ export function generateProposal(
       },
       no: {
         totalTokens: "0",
-        totalWeight: "0",
         totalNumber: "0",
         __typename: "ProposalVoteSide",
         votes: null,
       },
     },
   };
-  return merge(defaultProposal, override);
+
+  return merge<ProposalFields, DeepPartial<ProposalFields>>(
+    defaultProposal,
+    override
+  );
 }

@@ -1,14 +1,15 @@
 import React from "react";
-import { IVegaToken } from "../../lib/web3-utils";
+import { IVegaErc20Bridge, IVegaToken } from "../../lib/web3-utils";
 import { IVegaStaking } from "../../lib/web3-utils";
 import { IVegaVesting } from "../../lib/web3-utils";
 import { IVegaClaim } from "../../lib/web3-utils";
 
-interface ContractsContextShape {
+export interface ContractsContextShape {
   token: IVegaToken;
   staking: IVegaStaking;
   vesting: IVegaVesting;
   claim: IVegaClaim;
+  erc20Bridge: IVegaErc20Bridge;
 }
 
 export const ContractsContext = React.createContext<

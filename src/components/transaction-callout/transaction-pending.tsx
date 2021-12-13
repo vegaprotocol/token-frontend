@@ -1,6 +1,5 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { EthereumChainId } from "../../config";
 import { Callout } from "../callout";
 import { EtherscanLink } from "../etherscan-link";
 import { CopyToClipboardType } from "../etherscan-link/etherscan-link";
@@ -8,7 +7,6 @@ import { Loader } from "../loader";
 
 export const TransactionPending = ({
   hash,
-  chainId,
   heading,
   footer,
   body,
@@ -16,7 +14,6 @@ export const TransactionPending = ({
   requiredConfirmations,
 }: {
   hash: string;
-  chainId: EthereumChainId;
   confirmations: number | null;
   requiredConfirmations: number | null;
   heading?: React.ReactElement | string;
@@ -43,11 +40,7 @@ export const TransactionPending = ({
     <Callout icon={<Loader />} title={title}>
       {body && <p data-testid="transaction-pending-body">{body}</p>}
       <p>
-        <EtherscanLink
-          tx={hash}
-          chainId={chainId}
-          copyToClipboard={CopyToClipboardType.LINK}
-        />
+        <EtherscanLink tx={hash} copyToClipboard={CopyToClipboardType.LINK} />
       </p>
       {footer && <p data-testid="transaction-pending-footer">{footer}</p>}
     </Callout>

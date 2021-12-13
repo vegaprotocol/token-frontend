@@ -46,13 +46,13 @@ export interface Staking_party_delegations {
 export interface Staking_party {
   __typename: "Party";
   /**
-   * The staking informations for this Party
-   */
-  stake: Staking_party_stake;
-  /**
    * Party identifier
    */
   id: string;
+  /**
+   * The staking informations for this Party
+   */
+  stake: Staking_party_stake;
   delegations: Staking_party_delegations[] | null;
 }
 
@@ -119,6 +119,10 @@ export interface Staking_nodes {
    * Country code for the location of the node
    */
   location: string;
+  /**
+   * Ethereum public key of the node
+   */
+  ethereumAdddress: string;
   /**
    * The amount the node has put up themselves
    */

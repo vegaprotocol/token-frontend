@@ -63,11 +63,6 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
       // attempt to load keys complete
       setVegaKeysLoaded(true);
 
-      if (keysErr === VegaWalletServiceErrors.NO_TOKEN) {
-        // Do nothing so user has to auth again, but our load for vega keys is complete
-        return;
-      }
-
       if (
         keysErr === VegaWalletServiceErrors.SERVICE_UNAVAILABLE ||
         versionErr === VegaWalletServiceErrors.SERVICE_UNAVAILABLE
@@ -76,13 +71,21 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
         return;
       }
 
+      // Any other error do nothing so user has to auth again, but our load for vega keys is complete
+      if (keysErr) {
+        return;
+      }
+
+      let key = undefined;
       if (ethAddress && keys && keys.length) {
-        await setAssociatedBalances(ethAddress, keys[0].pub);
+        key = vegaWalletService.key || keys[0].pub;
+        await setAssociatedBalances(ethAddress, key);
       }
 
       appDispatch({
         type: AppStateActionType.VEGA_WALLET_INIT,
         keys,
+        key,
         version,
       });
     }

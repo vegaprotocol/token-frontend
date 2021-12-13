@@ -1,14 +1,24 @@
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const SentryPlugin = require("@sentry/webpack-plugin");
+const package = require("./package.json");
 
 module.exports = function (options) {
+  // determine if we are using sentry
+  let useSentryPlugin = false;
+
+  if (process.env.REACT_APP_SENTRY_DSN && process.env.SENTRY_AUTH_TOKEN) {
+    useSentryPlugin = true;
+  }
+
   const isTranslationBranch = ["1", "true"].includes(
     process.env.REACT_APP_IN_CONTEXT_TRANSLATION
   );
   const isMock = ["1", "true"].includes(process.env.REACT_APP_MOCKED);
   const detectProviderPath = isMock ? "../../__mocks__/@metamask" : "@metamask";
   const vegaWeb3Path = isMock ? "vega-web3/__mocks__" : "vega-web3";
+  const useTranchesPath = isMock ? "__mocks__/use-tranches" : "use-tranches";
   const graphQlProviderPath = isMock
     ? "graphql-provider/__mocks__"
     : "graphql-provider";
@@ -32,6 +42,14 @@ module.exports = function (options) {
         return webpackConfig;
       },
       plugins: [
+        useSentryPlugin
+          ? new SentryPlugin({
+              release: package.version,
+              include: "build/static/js",
+              ignore: ["node_modules", "webpack.config.js"],
+              urlPrefix: "~/static/js",
+            })
+          : null,
         new MiniCssExtractPlugin({
           // Options similar to the same options in webpackOptions.output
           // both options are optional
@@ -66,7 +84,16 @@ module.exports = function (options) {
             );
           }
         ),
-      ],
+        new webpack.NormalModuleReplacementPlugin(
+          /(.*)use-tranches(\.*)/,
+          function (resource) {
+            resource.request = resource.request.replace(
+              /use-tranches/,
+              `${useTranchesPath}`
+            );
+          }
+        ),
+      ].filter(Boolean),
     },
   };
 };

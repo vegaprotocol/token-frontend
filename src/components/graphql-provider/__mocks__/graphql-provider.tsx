@@ -14,18 +14,19 @@ import {
 } from "../../../routes/staking/__generated__/Staking";
 import { PartyDelegations } from "../../../routes/staking/__generated__/PartyDelegations";
 import { PARTY_DELEGATIONS_QUERY } from "../../../routes/staking/staking-form";
-import {
-  PROPOSALS_QUERY,
-  PROPOSAL_SUBSCRIPTION,
-} from "../../../routes/governance";
-import { ProposalsSub } from "../../../routes/governance/__generated__/proposalsSub";
-import { Proposals } from "../../../routes/governance/__generated__/proposals";
-import { Parties } from "../../../routes/governance/__generated__/Parties";
-import { PARTIES_QUERY } from "../../../routes/governance/vote-details";
+import { PROPOSALS_QUERY } from "../../../routes/governance/proposals-container";
+import { Proposals } from "../../../routes/governance/__generated__/Proposals";
 import { generateProposal } from "../../../routes/governance/test-helpers/generate-proposals";
 import { STAKING_QUERY } from "../../../routes/staking/staking-nodes-container";
+import { Rewards } from "../../../routes/rewards/home/__generated__/Rewards";
+import { REWARDS_QUERY } from "../../../routes/rewards/home";
+import { NETWORK_PARAMS_QUERY } from "../../../hooks/use-network-param";
+import { NetworkParams } from "../../../hooks/__generated__/NetworkParams";
+import { NODES_QUERY } from "../../../routes/staking/node-list";
+import { Nodes } from "../../../routes/staking/__generated__/Nodes";
 
-const partyId = "pub";
+const PARTY_ID = "pub";
+const REWARD_ASSET_ID = "reward-asset-id";
 
 const nodes: Staking_nodes[] = [
   {
@@ -35,6 +36,7 @@ const nodes: Staking_nodes[] = [
     pubkey: "pubkey",
     infoUrl: "",
     location: "",
+    ethereumAdddress: "",
     stakedByOperator: "100",
     stakedByDelegates: "100",
     stakedTotal: "200",
@@ -58,6 +60,7 @@ const nodes: Staking_nodes[] = [
     pubkey: "pubkey",
     infoUrl: "",
     location: "",
+    ethereumAdddress: "",
     stakedByOperator: "100",
     stakedByDelegates: "100",
     stakedTotal: "200",
@@ -89,7 +92,7 @@ const nodeData: Staking_nodeData = {
 const MOCK_STAKING_QUERY: MockedResponse<Staking> = {
   request: {
     query: STAKING_QUERY,
-    variables: { partyId },
+    variables: { partyId: PARTY_ID },
   },
   result: {
     data: {
@@ -110,7 +113,7 @@ const MOCK_STAKING_QUERY: MockedResponse<Staking> = {
           currentStakeAvailable: "0.00000000000001",
           currentStakeAvailableFormatted: "0.00000000000001",
         },
-        id: partyId,
+        id: PARTY_ID,
         delegations: [
           {
             __typename: "Delegation",
@@ -130,7 +133,7 @@ const MOCK_STAKING_QUERY: MockedResponse<Staking> = {
 const MOCK_PARTY_DELEGATIONS: MockedResponse<PartyDelegations> = {
   request: {
     query: PARTY_DELEGATIONS_QUERY,
-    variables: { partyId },
+    variables: { partyId: PARTY_ID },
   },
   result: {
     data: {
@@ -140,6 +143,7 @@ const MOCK_PARTY_DELEGATIONS: MockedResponse<PartyDelegations> = {
       },
       party: {
         __typename: "Party",
+        id: PARTY_ID,
         delegations: [
           {
             __typename: "Delegation",
@@ -158,37 +162,32 @@ const MOCK_PARTY_DELEGATIONS: MockedResponse<PartyDelegations> = {
 };
 
 const notVoted = generateProposal({
-  // @ts-ignore
   terms: { change: { networkParameter: { key: "not.voted" } } },
-  // @ts-ignore
   party: { id: "123" },
   votes: {
-    // @ts-ignore
     yes: { votes: null },
-    // @ts-ignore
     no: { votes: null },
   },
 });
 
 const noTokens = generateProposal({
-  // @ts-ignore
   terms: { change: { networkParameter: { key: "no.tokens" } } },
 });
 
 const votedAgainst = generateProposal({
-  // @ts-ignore
   terms: { change: { networkParameter: { key: "voted.against" } } },
-  // @ts-ignore
   party: { id: "123" },
   votes: {
     no: {
       votes: [
         {
-          // @ts-ignore
           value: VoteValue.No,
-          // @ts-ignore
           party: {
             id: "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527",
+            stake: {
+              __typename: "PartyStake",
+              currentStakeAvailable: "123",
+            },
           },
           datetime: faker.date.past().toISOString(),
         },
@@ -198,28 +197,27 @@ const votedAgainst = generateProposal({
 });
 
 const didNotVote = generateProposal({
-  // @ts-ignore
   terms: { change: { networkParameter: { key: "voted.closed.did.not.vote" } } },
   state: ProposalState.Enacted,
-  // @ts-ignore
   party: { id: "123" },
 });
 
 const voteClosedVotedFor = generateProposal({
-  // @ts-ignore
   terms: { change: { networkParameter: { key: "voted.closed.voted.for" } } },
   state: ProposalState.Enacted,
-  // @ts-ignore
   party: { id: "123" },
   votes: {
-    // @ts-ignore
     yes: {
       votes: [
         {
           value: VoteValue.Yes,
           party: {
-            id: "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527",
             __typename: "Party",
+            id: "0680ffba6c2e0239ebaa2b941ee79675dd1f447ddcae37720f8f377101f46527",
+            stake: {
+              __typename: "PartyStake",
+              currentStakeAvailable: "12345678",
+            },
           },
           datetime: faker.date.past().toISOString(),
           __typename: "Vote",
@@ -246,85 +244,131 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
   },
 };
 
-const MOCK_PROPOSALS_SUBSCRIPTION: MockedResponse<ProposalsSub> = {
+const MOCK_REWARDS: MockedResponse<Rewards> = {
   request: {
-    query: PROPOSAL_SUBSCRIPTION,
+    query: REWARDS_QUERY,
+    variables: {
+      partyId:
+        // TODO: Figure out a better way to sync up vega key with party id for mocking
+        "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
+    },
   },
   result: {
     data: {
-      proposals: {
-        id: "dab4eb13c027c82f1f2c9208aa4fe7c04413f91e5709fa4a44a4c29f4d449266",
-        reference: "",
-        state: ProposalState.Open,
-        datetime: "2021-09-02T13:19:42.157201307Z",
-        rejectionReason: null,
-        party: {
-          id: "65ea371c556f5648640c243dd30cf7374b5501ffe3dc8603476f723dd636656e",
-          __typename: "Party",
-        },
-        terms: {
-          closingDatetime: "2022-03-01T00:00:00Z",
-          enactmentDatetime: "2022-08-30T23:00:00Z",
-          change: {
-            networkParameter: {
-              key: "market.fee.factors.makerFee",
-              value: "0.33333",
-              __typename: "NetworkParameter",
+      party: {
+        __typename: "Party",
+        // TODO: Figure out a better way to sync up vega key with party id for mocking
+        id: "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
+        rewardDetails: [
+          {
+            __typename: "RewardPerAssetDetail",
+            asset: {
+              __typename: "Asset",
+              id: REWARD_ASSET_ID,
+              symbol: "asset-symbol",
             },
-            __typename: "UpdateNetworkParameter",
-          },
-          __typename: "ProposalTerms",
-        },
-        votes: {
-          yes: {
-            totalTokens: "0",
-            totalWeight: "0",
-            totalNumber: "1",
-            votes: [
+            rewards: [
               {
-                value: VoteValue.Yes,
-                party: {
-                  id: "65ea371c556f5648640c243dd30cf7374b5501ffe3dc8603476f723dd636656e",
-                  __typename: "Party",
+                __typename: "Reward",
+                asset: {
+                  __typename: "Asset",
+                  id: REWARD_ASSET_ID,
                 },
-                datetime: "2021-09-02T13:20:23.184093701Z",
-                __typename: "Vote",
+                party: {
+                  __typename: "Party",
+                  id: "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
+                },
+                epoch: { __typename: "Epoch", id: "1" },
+                amount: "100",
+                amountFormatted: "100.00",
+                percentageOfTotal: "50",
+                receivedAt: "2020-01-01T00:00:00",
+              },
+              {
+                __typename: "Reward",
+                asset: {
+                  __typename: "Asset",
+                  id: REWARD_ASSET_ID,
+                },
+                party: {
+                  __typename: "Party",
+                  id: "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
+                },
+                epoch: { __typename: "Epoch", id: "3" },
+                amount: "110",
+                amountFormatted: "110.00",
+                percentageOfTotal: "50",
+                receivedAt: "2020-01-01T00:00:00",
+              },
+              {
+                __typename: "Reward",
+                asset: {
+                  __typename: "Asset",
+                  id: REWARD_ASSET_ID,
+                },
+                party: {
+                  __typename: "Party",
+                  id: "3d019f95a79e8aa82f2f9915bafac816100d40297cb432970772878f6e3ee92d",
+                },
+                epoch: { __typename: "Epoch", id: "2" },
+                amount: "120",
+                amountFormatted: "120.00",
+                percentageOfTotal: "50",
+                receivedAt: "2020-01-01T00:00:00",
               },
             ],
-            __typename: "ProposalVoteSide",
+            totalAmount: "130",
+            totalAmountFormatted: "130.00",
           },
-          no: {
-            totalTokens: "0",
-            totalWeight: "0",
-            totalNumber: "0",
-            votes: null,
-            __typename: "ProposalVoteSide",
+        ],
+        delegations: [
+          {
+            __typename: "Delegation",
+            amount: "100",
+            amountFormatted: "100.00",
+            epoch: 1,
           },
-          __typename: "ProposalVotes",
+        ],
+      },
+      epoch: {
+        __typename: "Epoch",
+        id: "1",
+        timestamps: {
+          __typename: "EpochTimestamps",
+          start: "2020-01-01T00:00:00",
+          end: "2020-01-01T00:00:00",
+          expiry: "2020-01-01T00:00:00",
         },
-        __typename: "Proposal",
       },
     },
   },
 };
 
-const MOCK_PARTIES: MockedResponse<Parties> = {
+const MOCK_NETWORK_PARAMS: MockedResponse<NetworkParams> = {
   request: {
-    query: PARTIES_QUERY,
+    query: NETWORK_PARAMS_QUERY,
   },
   result: {
     data: {
-      parties: [
+      networkParameters: [
         {
-          __typename: "Party",
-          id: "123",
-          stake: {
-            __typename: "PartyStake",
-            currentStakeAvailable: "12345",
-            currentStakeAvailableFormatted: "12345",
-          },
+          __typename: "NetworkParameter",
+          key: "reward.asset",
+          value: "reward-asset-id",
         },
       ],
+    },
+  },
+};
+
+const MOCK_NODES_QUERY: MockedResponse<Nodes> = {
+  request: {
+    query: NODES_QUERY,
+  },
+  result: {
+    data: {
+      nodes,
+      nodeData,
     },
   },
 };
@@ -340,8 +384,10 @@ export const GraphQlProvider = ({
         MOCK_STAKING_QUERY,
         MOCK_PARTY_DELEGATIONS,
         MOCK_PROPOSALS,
-        MOCK_PROPOSALS_SUBSCRIPTION,
-        MOCK_PARTIES,
+        MOCK_NODES_QUERY,
+        // MOCK_PROPOSAL,
+        MOCK_REWARDS,
+        MOCK_NETWORK_PARAMS,
       ]}
     >
       {children}

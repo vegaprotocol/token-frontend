@@ -4,6 +4,10 @@
   padding: 20px;
   padding: 10px !important;
   border-bottom: 1px solid $white;
+  position: sticky;
+  top: 0;
+  background-color: $black;
+  z-index: 15;
 
   h1 {
     padding: 0;
@@ -35,8 +39,7 @@
   }
 
   &__inner {
-    max-width: 1020px;
-    margin: 0 auto;
+    margin: 4px auto 0;
     display: flex;
     gap: 10px;
     justify-content: space-between;
@@ -87,6 +90,7 @@
     flex-flow: column nowrap;
     justify-content: space-between;
     height: 100%;
+    overflow-y: scroll;
   }
 
   &__drawer-section {
@@ -141,6 +145,12 @@
     color: $black;
   }
 
+  > a.active {
+    &:hover {
+      color: $black;
+    }
+  }
+
   > a {
     color: $white;
     text-decoration: none;
@@ -191,6 +201,12 @@
       color: $black;
       text-decoration: none;
       font-size: 16px;
+    }
+
+    > a.active {
+      &:hover {
+        color: $white;
+      }
     }
   }
 }

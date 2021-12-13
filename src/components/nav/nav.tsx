@@ -163,10 +163,10 @@ const NavDrawer = ({ inverted }: { inverted: boolean }) => {
         <div className="nav__drawer">
           <div>
             <div className="nav__drawer-section">
-              <VegaWallet />
+              <EthWallet />
             </div>
             <div className="nav__drawer-section">
-              <EthWallet />
+              <VegaWallet />
             </div>
           </div>
           <NavLinks inverted={false} isDesktop={false} />
@@ -197,19 +197,21 @@ const NavLinks = ({
       <NavLink {...linkProps} exact={true} to={Routes.HOME}>
         {t("Home")}
       </NavLink>
-      {Flags.REDEEM_DISABLED ? null : (
-        <NavLink {...linkProps} to={Routes.VESTING}>
-          {t("Vesting")}
-        </NavLink>
-      )}
+      <NavLink {...linkProps} to={Routes.VESTING}>
+        {t("Vesting")}
+      </NavLink>
       <NavLink {...linkProps} to={Routes.STAKING}>
         {t("Staking")}
       </NavLink>
-      {Flags.GOVERNANCE_DISABLED ? null : (
-        <NavLink {...linkProps} to={Routes.GOVERNANCE}>
-          {t("Governance")}
-        </NavLink>
-      )}
+      <NavLink {...linkProps} to={Routes.REWARDS}>
+        {t("Rewards")}
+      </NavLink>
+      <NavLink {...linkProps} to={Routes.WITHDRAW}>
+        {t("Withdraw")}
+      </NavLink>
+      <NavLink {...linkProps} to={Routes.GOVERNANCE}>
+        {t("Governance")}
+      </NavLink>
       {Flags.DEX_STAKING_DISABLED ? null : (
         <NavLink {...linkProps} to={Routes.LIQUIDITY}>
           {t("liquidityNav")}

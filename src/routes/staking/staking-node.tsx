@@ -39,23 +39,6 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
   const { node } = useParams<{ node: string }>();
   const { t } = useTranslation();
 
-  const currentDelegationAmount = React.useMemo(() => {
-    if (!data?.party?.delegations) return new BigNumber(0);
-    const amounts = data.party.delegations
-      .filter(({ epoch }) => epoch.toString() === data.epoch.id)
-      .map((d) => new BigNumber(d.amountFormatted));
-    return BigNumber.sum.apply(null, [new BigNumber(0), ...amounts]);
-  }, [data]);
-
-  const unstaked = React.useMemo(() => {
-    return new BigNumber(
-      data?.party?.stake.currentStakeAvailableFormatted || 0
-    ).minus(currentDelegationAmount);
-  }, [
-    currentDelegationAmount,
-    data?.party?.stake.currentStakeAvailableFormatted,
-  ]);
-
   const nodeInfo = React.useMemo(() => {
     return data?.nodes?.find(({ id }) => id === node);
   }, [node, data]);
@@ -86,6 +69,23 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
     return BigNumber.sum.apply(null, [new BigNumber(0), ...amountsNextEpoch]);
   }, [currentEpoch, data?.party?.delegations, node, stakeThisEpoch]);
 
+  const currentDelegationAmount = React.useMemo(() => {
+    if (!data?.party?.delegations) return new BigNumber(0);
+    const amounts = data.party.delegations
+      .filter((d) => d.epoch === Number(currentEpoch) + 1)
+      .map((d) => new BigNumber(d.amountFormatted));
+    return BigNumber.sum.apply(null, [new BigNumber(0), ...amounts]);
+  }, [currentEpoch, data?.party?.delegations]);
+
+  const unstaked = React.useMemo(() => {
+    return new BigNumber(
+      data?.party?.stake.currentStakeAvailableFormatted || 0
+    ).minus(currentDelegationAmount);
+  }, [
+    currentDelegationAmount,
+    data?.party?.stake.currentStakeAvailableFormatted,
+  ]);
+
   if (!nodeInfo) {
     return (
       <span style={{ color: Colors.RED }}>
@@ -96,7 +96,10 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
 
   return (
     <>
-      <h2 style={{ wordBreak: "break-word", marginTop: 0 }}>
+      <h2
+        data-test-id="validator-node-title"
+        style={{ wordBreak: "break-word", marginTop: 0 }}
+      >
         {nodeInfo.name
           ? t("validatorTitle", { nodeName: nodeInfo.name })
           : t("validatorTitle", { nodeName: t("validatorTitleFallback") })}
@@ -121,6 +124,7 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
       <StakingForm
         pubkey={vegaKey.pub}
         nodeId={node}
+        nodeName={nodeInfo.name}
         availableStakeToAdd={unstaked}
         availableStakeToRemove={stakeNextEpoch}
       />

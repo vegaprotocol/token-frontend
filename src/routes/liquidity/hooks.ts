@@ -22,13 +22,11 @@ export const useGetLiquidityBalances = (
         const [
           rewardPerEpoch,
           rewardPoolBalance,
-          estimateAPY,
           awardContractAddress,
           lpTokenContractAddress,
           epochDetails,
           stakingStart,
         ] = await Promise.all<
-          BigNumber,
           BigNumber,
           BigNumber,
           string,
@@ -38,7 +36,6 @@ export const useGetLiquidityBalances = (
         >([
           lpStaking.rewardPerEpoch(),
           lpStaking.totalStaked(),
-          lpStaking.estimateAPY(),
           lpStaking.awardContractAddress(),
           lpStaking.slpContractAddress(),
           lpStaking.currentEpochDetails(),
@@ -79,7 +76,6 @@ export const useGetLiquidityBalances = (
             rewardPerEpoch,
             stakingStart,
             rewardPoolBalance,
-            estimateAPY,
             awardContractAddress,
             lpTokenContractAddress,
             connectedWalletData,

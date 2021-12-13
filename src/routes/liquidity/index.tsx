@@ -57,7 +57,7 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
         clearInterval(interval);
       }
     };
-  });
+  }, [loadAllBalances]);
 
   const title = React.useMemo(() => {
     if (withdraw) {

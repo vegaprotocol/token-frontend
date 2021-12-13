@@ -25,4 +25,25 @@
       }
     }
   }
+
+  &__title {
+    display: flex;
+    h3:first-child {
+      flex: 1;
+    }
+  }
+
+  &__arrow {
+    flex: 1;
+    text-align: center;
+
+    img {
+      width: 5px;
+      transform: rotate(180deg);
+    }
+  }
+
+  &__time-range {
+    display: flex;
+  }
 }

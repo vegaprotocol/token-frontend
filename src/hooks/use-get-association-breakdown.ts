@@ -1,7 +1,5 @@
 import React from "react";
 import * as Sentry from "@sentry/react";
-import { BigNumber } from "../lib/bignumber";
-import mergeWith from "lodash/mergeWith";
 import {
   AppStateActionType,
   useAppState,
@@ -22,21 +20,12 @@ export function useGetAssociationBreakdown(
         vesting.userTotalStakedByVegaKey(ethAddress),
       ]);
 
-      // Merge associations via vesting and wallet, adding the values together
-      // if both types of association have been used for a single Vega key
-      const result = mergeWith(
-        stakingAssociations,
-        vestingAssociations,
-        (obj: BigNumber, src: BigNumber) => {
-          if (!obj) return src;
-          if (!src) return obj;
-          return obj.plus(src);
-        }
-      );
-
       appDispatch({
         type: AppStateActionType.SET_ASSOCIATION_BREAKDOWN,
-        breakdown: result,
+        breakdown: {
+          stakingAssociations,
+          vestingAssociations,
+        },
       });
     } catch (err) {
       Sentry.captureException(err);

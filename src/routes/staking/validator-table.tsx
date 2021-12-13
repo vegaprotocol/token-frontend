@@ -9,6 +9,7 @@ import {
 import { BigNumber } from "../../lib/bignumber";
 import { Staking_nodes } from "./__generated__/Staking";
 import { formatNumber } from "../../lib/format-number";
+import { EtherscanLink } from "../../components/etherscan-link";
 
 export interface ValidatorTableProps {
   node: Staking_nodes;
@@ -22,14 +23,13 @@ export const ValidatorTable = ({
   stakeThisEpoch,
 }: ValidatorTableProps) => {
   const { t } = useTranslation();
-
   const stakePercentage = React.useMemo(() => {
     const total = new BigNumber(stakedTotal);
     const stakedOnNode = new BigNumber(node.stakedTotalFormatted);
     const stakedTotalPercentage =
       total.isEqualTo(0) || stakedOnNode.isEqualTo(0)
         ? "-"
-        : stakedOnNode.dividedBy(total).times(100).toString() + "%";
+        : stakedOnNode.dividedBy(total).times(100).dp(2).toString() + "%";
     return stakedTotalPercentage;
   }, [node.stakedTotalFormatted, stakedTotal]);
 
@@ -55,6 +55,15 @@ export const ValidatorTable = ({
           <td>{node.location}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
+          <th>{t("ETHEREUM ADDRESS")}</th>
+          <td>
+            <EtherscanLink
+              text={node.ethereumAdddress}
+              address={node.ethereumAdddress}
+            />
+          </td>
+        </KeyValueTableRow>
+        <KeyValueTableRow>
           <th>{t("TOTAL STAKE")}</th>
           <td>{node.stakedTotalFormatted}</td>
         </KeyValueTableRow>
@@ -64,7 +73,7 @@ export const ValidatorTable = ({
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("STAKED BY OPERATOR")}</th>
-          <td>{node.stakedByOperator}</td>
+          <td>{node.stakedByOperatorFormatted}</td>
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("STAKED BY DELEGATES")}</th>

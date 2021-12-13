@@ -1,8 +1,15 @@
 import React from "react";
 
-import type { Proposals_proposals } from "./__generated__/proposals";
+import type { Proposals_proposals } from "./__generated__/Proposals";
 import { useNetworkParam } from "../../hooks/use-network-param";
 import { useAppState } from "../../contexts/app-state/app-state-context";
+import { NetworkParams } from "../../config";
+import {
+  Proposal_proposal_votes_no_votes,
+  Proposal_proposal_votes_yes_votes,
+} from "./__generated__/Proposal";
+import { addDecimal } from "../../lib/decimals";
+import BigNumber from "bignumber.js";
 
 const useProposalNetworkParams = ({
   proposal,
@@ -10,19 +17,19 @@ const useProposalNetworkParams = ({
   proposal: Proposals_proposals;
 }) => {
   const { data, loading } = useNetworkParam([
-    "governance.proposal.updateMarket.requiredMajority",
-    "governance.proposal.updateMarket.requiredParticipation",
-    "governance.proposal.market.requiredMajority",
-    "governance.proposal.market.requiredParticipation",
-    "governance.proposal.asset.requiredMajority",
-    "governance.proposal.asset.requiredParticipation",
-    "governance.proposal.updateNetParam.requiredMajority",
-    "governance.proposal.updateNetParam.requiredParticipation",
+    NetworkParams.GOV_UPDATE_MARKET_REQUIRED_MAJORITY,
+    NetworkParams.GOV_UPDATE_MARKET_REQUIRED_PARTICIPATION,
+    NetworkParams.GOV_NEW_MARKET_REQUIRED_MAJORITY,
+    NetworkParams.GOV_NEW_MARKET_REQUIRED_PARTICIPATION,
+    NetworkParams.GOV_ASSET_REQUIRED_MAJORITY,
+    NetworkParams.GOV_ASSET_REQUIRED_PARTICIPATION,
+    NetworkParams.GOV_UPDATE_NET_PARAM_REQUIRED_MAJORITY,
+    NetworkParams.GOV_UPDATE_NET_PARAM_REQUIRED_PARTICIPATION,
   ]);
   if (loading || !data) {
     return {
-      requiredMajority: 100,
-      requiredParticipation: 100,
+      requiredMajority: new BigNumber(100),
+      requiredParticipation: new BigNumber(100),
     };
   }
 
@@ -41,22 +48,22 @@ const useProposalNetworkParams = ({
     case "UpdateMarket":
       return {
         requiredMajority: updateMarketMajority,
-        requiredParticipation: updateMarketParticipation,
+        requiredParticipation: new BigNumber(updateMarketParticipation),
       };
     case "UpdateNetworkParameter":
       return {
         requiredMajority: paramMajority,
-        requiredParticipation: paramParticipation,
+        requiredParticipation: new BigNumber(paramParticipation),
       };
     case "NewAsset":
       return {
         requiredMajority: assetMajority,
-        requiredParticipation: assetParticipation,
+        requiredParticipation: new BigNumber(assetParticipation),
       };
     case "NewMarket":
       return {
         requiredMajority: newMarketMajority,
-        requiredParticipation: newMarketParticipation,
+        requiredParticipation: new BigNumber(newMarketParticipation),
       };
   }
 };
@@ -69,51 +76,87 @@ export const useVoteInformation = ({
   const {
     appState: { totalSupply },
   } = useAppState();
+
   const { requiredMajority, requiredParticipation } = useProposalNetworkParams({
     proposal,
   });
 
   const requiredMajorityPercentage = React.useMemo(
-    () => (requiredMajority ? Number(requiredMajority) * 100 : 100),
+    () =>
+      requiredMajority
+        ? new BigNumber(requiredMajority).multipliedBy(100)
+        : new BigNumber(100),
     [requiredMajority]
   );
-  const yesTokens = React.useMemo(
-    () => Number(proposal.votes.yes.totalTokens),
-    [proposal.votes.yes.totalTokens]
-  );
-  const noTokens = React.useMemo(
-    () => Number(proposal.votes.no.totalTokens),
-    [proposal.votes.no.totalTokens]
-  );
+
+  const noTokens = React.useMemo(() => {
+    if (!proposal.votes.no.votes) {
+      return new BigNumber(0);
+    }
+    const totalNoVotes = proposal.votes.no.votes.reduce(
+      (prevValue: BigNumber, newValue: Proposal_proposal_votes_no_votes) => {
+        return new BigNumber(newValue.party.stake.currentStakeAvailable).plus(
+          prevValue
+        );
+      },
+      new BigNumber(0)
+    );
+    return new BigNumber(addDecimal(new BigNumber(totalNoVotes), 18));
+  }, [proposal.votes.no.votes]);
+
+  const yesTokens = React.useMemo(() => {
+    if (!proposal.votes.yes.votes) {
+      return new BigNumber(0);
+    }
+    const totalYesVotes = proposal.votes.yes.votes.reduce(
+      (prevValue: BigNumber, newValue: Proposal_proposal_votes_yes_votes) => {
+        return new BigNumber(newValue.party.stake.currentStakeAvailable).plus(
+          prevValue
+        );
+      },
+      new BigNumber(0)
+    );
+    return new BigNumber(addDecimal(new BigNumber(totalYesVotes), 18));
+  }, [proposal.votes.yes.votes]);
+
   const totalTokensVoted = React.useMemo(
-    () => yesTokens + noTokens,
-    [noTokens, yesTokens]
+    () => yesTokens.plus(noTokens),
+    [yesTokens, noTokens]
   );
   const yesPercentage = React.useMemo(
-    () => (totalTokensVoted === 0 ? 0 : (yesTokens * 100) / totalTokensVoted),
+    () =>
+      totalTokensVoted.isZero()
+        ? new BigNumber(0)
+        : yesTokens.multipliedBy(100).dividedBy(totalTokensVoted),
     [totalTokensVoted, yesTokens]
   );
   const noPercentage = React.useMemo(
-    () => (totalTokensVoted === 0 ? 0 : (noTokens * 100) / totalTokensVoted),
+    () =>
+      totalTokensVoted.isZero()
+        ? new BigNumber(0)
+        : noTokens.multipliedBy(100).dividedBy(totalTokensVoted),
     [noTokens, totalTokensVoted]
   );
   const participationMet = React.useMemo(() => {
-    const tokensNeeded = +totalSupply * Number(requiredParticipation);
-    return totalTokensVoted > tokensNeeded;
+    const tokensNeeded = totalSupply.multipliedBy(requiredParticipation);
+    return totalTokensVoted.isGreaterThan(tokensNeeded);
   }, [requiredParticipation, totalTokensVoted, totalSupply]);
 
   const majorityMet = React.useMemo(() => {
-    return totalTokensVoted >= requiredMajority;
+    return totalTokensVoted.isGreaterThanOrEqualTo(requiredMajority);
   }, [requiredMajority, totalTokensVoted]);
 
   const totalTokensPercentage = React.useMemo(() => {
-    return Number((100 * totalTokensVoted) / +totalSupply).toFixed(4);
+    return totalTokensVoted.multipliedBy(100).dividedBy(totalSupply);
   }, [totalTokensVoted, totalSupply]);
 
   const willPass = React.useMemo(
-    () => participationMet && yesPercentage > requiredMajorityPercentage,
+    () =>
+      participationMet &&
+      new BigNumber(yesPercentage).isGreaterThan(requiredMajorityPercentage),
     [participationMet, requiredMajorityPercentage, yesPercentage]
   );
+
   return {
     willPass,
     totalTokensPercentage,

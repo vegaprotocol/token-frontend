@@ -5,7 +5,6 @@ import {
   AppStateActionType,
   useAppState,
   VegaKeyExtended,
-  VegaWalletStatus,
 } from "../../contexts/app-state/app-state-context";
 import {
   WalletCard,
@@ -33,7 +32,7 @@ import { truncateMiddle } from "../../lib/truncate-middle";
 import { keyBy, uniq } from "lodash";
 import { useRefreshAssociatedBalances } from "../../hooks/use-refresh-associated-balances";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
-import { ADDRESSES, Colors, Flags } from "../../config";
+import { ADDRESSES, Colors } from "../../config";
 import { BulletHeader } from "../bullet-header";
 import { Routes } from "../../routes/router-config";
 import { Link } from "react-router-dom";
@@ -42,6 +41,7 @@ import vegaBlack from "../../images/vega_black.png";
 import noIcon from "../../images/token-no-icon.png";
 import { addDecimal } from "../../lib/decimals";
 import { AccountType } from "../../__generated__/globalTypes";
+import { DownloadWalletPrompt } from "./download-wallet-prompt";
 
 const DELEGATIONS_QUERY = gql`
   query Delegations($partyId: ID!) {
@@ -49,11 +49,13 @@ const DELEGATIONS_QUERY = gql`
       id
     }
     party(id: $partyId) {
+      id
       delegations {
         amountFormatted @client
         amount
         node {
           id
+          name
         }
         epoch
       }
@@ -112,7 +114,6 @@ export const VegaWallet = () => {
           )}
         </WalletCardHeader>
         <WalletCardContent>{child}</WalletCardContent>
-        <WalletCardContent>{version}</WalletCardContent>
       </WalletCard>
     </section>
   );
@@ -120,30 +121,25 @@ export const VegaWallet = () => {
 
 const VegaWalletNotConnected = () => {
   const { t } = useTranslation();
-  const { appState, appDispatch } = useAppState();
-
-  if (appState.vegaWalletStatus === VegaWalletStatus.None) {
-    return (
-      <WalletCardContent>
-        <div>{t("noService")}</div>
-      </WalletCardContent>
-    );
-  }
+  const { appDispatch } = useAppState();
 
   return (
-    <button
-      onClick={() =>
-        appDispatch({
-          type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,
-          isOpen: true,
-        })
-      }
-      className="vega-wallet__connect button-link"
-      data-testid="connect-vega"
-      type="button"
-    >
-      {t("Connect")}
-    </button>
+    <>
+      <button
+        onClick={() =>
+          appDispatch({
+            type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,
+            isOpen: true,
+          })
+        }
+        className="fill button-secondary"
+        data-testid="connect-vega"
+        type="button"
+      >
+        {t("connectVegaWalletToUseAssociated")}
+      </button>
+      <DownloadWalletPrompt />
+    </>
   );
 };
 
@@ -163,8 +159,8 @@ const VegaWalletAssetList = ({ accounts }: VegaWalletAssetsListProps) => {
           {t("assets")}
         </BulletHeader>
       </WalletCardHeader>
-      {accounts.map((a) => (
-        <WalletCardAsset {...a} dark={true} />
+      {accounts.map((a, i) => (
+        <WalletCardAsset key={i} {...a} dark={true} />
       ))}
     </>
   );
@@ -197,6 +193,7 @@ const VegaWalletConnected = ({
   const [delegatedNodes, setDelegatedNodes] = React.useState<
     {
       nodeId: string;
+      name: string;
       hasStakePending: boolean;
       currentEpochStake?: BigNumber;
       nextEpochStake?: BigNumber;
@@ -301,11 +298,15 @@ const VegaWalletConnected = ({
             const delegatedAmounts = nodesDelegated
               .map((d) => ({
                 nodeId: d,
+                name:
+                  delegatedThisEpoch[d]?.node?.name ||
+                  delegatedNextEpoch[d]?.node?.name,
                 hasStakePending: !!(
-                  delegatedThisEpoch[d]?.amountFormatted &&
-                  delegatedNextEpoch[d]?.amountFormatted &&
+                  (delegatedThisEpoch[d]?.amountFormatted ||
+                    delegatedNextEpoch[d]?.amountFormatted) &&
                   delegatedThisEpoch[d]?.amountFormatted !==
-                    delegatedNextEpoch[d]?.amountFormatted
+                    delegatedNextEpoch[d]?.amountFormatted &&
+                  delegatedNextEpoch[d] !== undefined
                 ),
                 currentEpochStake:
                   delegatedThisEpoch[d] &&
@@ -315,12 +316,22 @@ const VegaWalletConnected = ({
                   new BigNumber(delegatedNextEpoch[d].amountFormatted),
               }))
               .sort((a, b) => {
-                if (a.currentEpochStake.isLessThan(b.currentEpochStake))
+                if (
+                  new BigNumber(a.currentEpochStake || 0).isLessThan(
+                    b.currentEpochStake || 0
+                  )
+                )
                   return 1;
-                if (a.currentEpochStake.isGreaterThan(b.currentEpochStake))
+                if (
+                  new BigNumber(a.currentEpochStake || 0).isGreaterThan(
+                    b.currentEpochStake || 0
+                  )
+                )
                   return -1;
-                if (a.nodeId < b.nodeId) return 1;
-                if (a.nodeId > b.nodeId) return -1;
+                if ((!a.name && b.name) || a.name < b.name) return 1;
+                if ((!b.name && a.name) || a.name > b.name) return -1;
+                if (a.nodeId > b.nodeId) return 1;
+                if (a.nodeId < b.nodeId) return -1;
                 return 0;
               });
 
@@ -367,6 +378,7 @@ const VegaWalletConnected = ({
       if (ethAddress) {
         await setAssociatedBalances(ethAddress, k.pub);
       }
+      vegaWalletService.setKey(k.pub);
       appDispatch({
         type: AppStateActionType.VEGA_WALLET_SET_KEY,
         key: k,
@@ -376,8 +388,9 @@ const VegaWalletConnected = ({
     [ethAddress, appDispatch, setAssociatedBalances]
   );
 
-  const disconnect = (
+  const footer = (
     <WalletCardActions>
+      {version ? <div className="vega-wallet__version">{version}</div> : null}
       {vegaKeys.length > 1 ? (
         <button
           className="button-link"
@@ -403,7 +416,7 @@ const VegaWalletConnected = ({
         >
           {t("noVersionFound")}
         </div>
-        {disconnect}
+        {footer}
       </>
     );
   } else if (!vegaWalletService.isSupportedVersion(version)) {
@@ -419,7 +432,7 @@ const VegaWalletConnected = ({
             requiredVersion: MINIMUM_WALLET_VERSION,
           })}
         </div>
-        {disconnect}
+        {footer}
       </>
     );
   }
@@ -441,24 +454,37 @@ const VegaWalletConnected = ({
       ) : null}
       {delegatedNodes.map((d) => (
         <div key={d.nodeId}>
-          {d.currentEpochStake && (
+          {d.currentEpochStake && d.currentEpochStake.isGreaterThan(0) && (
             <WalletCardRow
-              label={`${truncateMiddle(d.nodeId)} ${
-                d.hasStakePending ? "(This epoch)" : ""
+              label={`${d.name || truncateMiddle(d.nodeId)} ${
+                d.hasStakePending ? `(${t("thisEpoch")})` : ""
               }`}
+              link={`${Routes.STAKING}/${d.nodeId}`}
               value={d.currentEpochStake}
               dark={true}
             />
           )}
           {d.hasStakePending && (
             <WalletCardRow
-              label={`${truncateMiddle(d.nodeId)} (Next epoch)`}
+              label={`${d.name || truncateMiddle(d.nodeId)} (${t(
+                "nextEpoch"
+              )})`}
+              link={`${Routes.STAKING}/${d.nodeId}`}
               value={d.nextEpochStake}
               dark={true}
             />
           )}
         </div>
       ))}
+      <WalletCardActions>
+        <Link style={{ flex: 1 }} to={Routes.GOVERNANCE}>
+          <button className="button-secondary">{t("governance")}</button>
+        </Link>
+        <Link style={{ flex: 1 }} to={Routes.STAKING}>
+          <button className="button-secondary">{t("staking")}</button>
+        </Link>
+      </WalletCardActions>
+      <VegaWalletAssetList accounts={accounts} />
       {expanded && (
         <ul className="vega-wallet__key-list">
           {vegaKeys
@@ -470,22 +496,7 @@ const VegaWalletConnected = ({
             ))}
         </ul>
       )}
-      {Flags.GOVERNANCE_DISABLED && Flags.STAKING_DISABLED ? null : (
-        <WalletCardActions>
-          {Flags.GOVERNANCE_DISABLED ? null : (
-            <Link style={{ flex: 1 }} to={Routes.GOVERNANCE}>
-              <button className="button-secondary">{t("governance")}</button>
-            </Link>
-          )}
-          {Flags.STAKING_DISABLED ? null : (
-            <Link style={{ flex: 1 }} to={Routes.STAKING}>
-              <button className="button-secondary">{t("staking")}</button>
-            </Link>
-          )}
-        </WalletCardActions>
-      )}
-      <VegaWalletAssetList accounts={accounts} />
-      {disconnect}
+      {footer}
     </>
   ) : (
     <WalletCardContent>{t("noKeys")}</WalletCardContent>

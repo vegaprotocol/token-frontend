@@ -6,7 +6,7 @@ import { AddLockedTokenAddress } from "../../components/add-locked-token";
 export const CodeUsed = () => {
   const { t } = useTranslation();
   return (
-    <Callout intent="warn" icon={<Error />} title={t("codeUsed")}>
+    <Callout intent="action" icon={<Error />} title={t("codeUsed")}>
       <p>{t("codeUsedText")}</p>
       <AddLockedTokenAddress />
     </Callout>

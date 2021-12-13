@@ -8,9 +8,11 @@ import semver from "semver";
 export const MINIMUM_WALLET_VERSION =
   process.env.REACT_APP_SUPPORTED_WALLET_VERSION;
 
-const DEFAULT_WALLET_URL = "http://localhost:1789";
+export const DEFAULT_WALLET_URL = "http://localhost:1789";
+export const HOSTED_WALLET_URL = "https://wallet.testnet.vega.xyz";
 const TOKEN_STORAGE_KEY = "vega_wallet_token";
 const WALLET_URL_KEY = "vega_wallet_url";
+const KEY_STORAGE_KEY = "vega_wallet_key";
 
 const Endpoints = {
   STATUS: "status",
@@ -42,7 +44,7 @@ export interface UndelegateSubmissionInput {
   undelegateSubmission: {
     nodeId: string;
     amount: string;
-    method: "METHOD_AT_END_OF_EPOCH";
+    method: "METHOD_NOW" | "METHOD_AT_END_OF_EPOCH";
   };
 }
 
@@ -54,10 +56,35 @@ export interface VoteSubmissionInput {
   };
 }
 
+export interface WithdrawSubmissionInput {
+  pubKey: string;
+  withdrawSubmission: {
+    amount: string;
+    asset: string;
+    ext: {
+      erc20: {
+        receiverAddress: string;
+      };
+    };
+  };
+}
+
 export type CommandSyncInput =
   | DelegateSubmissionInput
   | UndelegateSubmissionInput
-  | VoteSubmissionInput;
+  | VoteSubmissionInput
+  | WithdrawSubmissionInput;
+
+export interface CommandSyncResponse {
+  inputData: string;
+  pubKey: string;
+  signature: {
+    algo: string;
+    value: string;
+    version: number;
+  };
+  version: number;
+}
 
 export interface IVegaWalletService {
   url: string;
@@ -76,11 +103,13 @@ export class VegaWalletService implements IVegaWalletService {
   url: string;
   token: string;
   statusPoll: any;
+  key: string;
 
   constructor() {
     this.version = 1;
     this.url = LocalStorage.getItem(WALLET_URL_KEY) || DEFAULT_WALLET_URL;
     this.token = LocalStorage.getItem(TOKEN_STORAGE_KEY) || "";
+    this.key = LocalStorage.getItem(KEY_STORAGE_KEY) || "";
   }
 
   async getToken(params: {
@@ -127,6 +156,7 @@ export class VegaWalletService implements IVegaWalletService {
       const json = await res.json();
 
       if (json.success) {
+        this.clearKey();
         this.clearToken();
         this.clearWalletUrl();
         return [undefined, true];
@@ -187,7 +217,9 @@ export class VegaWalletService implements IVegaWalletService {
     }
   }
 
-  async commandSync(body: CommandSyncInput) {
+  async commandSync(
+    body: CommandSyncInput
+  ): Promise<[string | undefined, CommandSyncResponse | undefined]> {
     if (!this.token) {
       return [Errors.NO_TOKEN, undefined];
     }
@@ -218,6 +250,16 @@ export class VegaWalletService implements IVegaWalletService {
     } catch (err) {
       return this.handleServiceUnavailable();
     }
+  }
+
+  setKey(key: string) {
+    this.key = key;
+    LocalStorage.setItem(KEY_STORAGE_KEY, key);
+  }
+
+  private clearKey() {
+    this.key = "";
+    LocalStorage.removeItem(KEY_STORAGE_KEY);
   }
 
   private setToken(token: string) {

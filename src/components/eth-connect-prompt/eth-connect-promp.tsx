@@ -12,7 +12,7 @@ export const EthConnectPrompt = ({ children }: EthConnectPrompProps) => {
     <>
       {children}
       <button onClick={connect} className="fill" type="button">
-        {t("Connect to an Ethereum wallet")}
+        {t("connectEthWallet")}
       </button>
     </>
   );

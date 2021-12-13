@@ -15,21 +15,23 @@ import {
 import { gql, useApolloClient } from "@apollo/client";
 
 import { BigNumber } from "../../lib/bignumber";
-import { Colors } from "../../config";
+import { Colors, NetworkParams } from "../../config";
 import React from "react";
 import { StakeFailure } from "./stake-failure";
 import { StakePending } from "./stake-pending";
 import { StakeSuccess } from "./stake-success";
 import { TokenInput } from "../../components/token-input";
-import { removeDecimal } from "../../lib/decimals";
+import { addDecimal, removeDecimal } from "../../lib/decimals";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useHistory } from "react-router-dom";
 import { useSearchParams } from "../../hooks/use-search-params";
 import { useTranslation } from "react-i18next";
+import { useNetworkParam } from "../../hooks/use-network-param";
 
 export const PARTY_DELEGATIONS_QUERY = gql`
   query PartyDelegations($partyId: ID!) {
     party(id: $partyId) {
+      id
       delegations {
         amount
         amountFormatted @client
@@ -53,10 +55,15 @@ enum FormState {
 }
 
 export type StakeAction = "Add" | "Remove" | undefined;
+export enum RemoveType {
+  endOfEpoch,
+  now,
+}
 
 interface StakingFormProps {
   nodeId: string;
   pubkey: string;
+  nodeName: string;
   availableStakeToAdd: BigNumber;
   availableStakeToRemove: BigNumber;
 }
@@ -64,6 +71,7 @@ interface StakingFormProps {
 export const StakingForm = ({
   nodeId,
   pubkey,
+  nodeName,
   availableStakeToAdd,
   availableStakeToRemove,
 }: StakingFormProps) => {
@@ -75,6 +83,20 @@ export const StakingForm = ({
   const { t } = useTranslation();
   const [action, setAction] = React.useState<StakeAction>(params.action);
   const [amount, setAmount] = React.useState("");
+  const [removeType, setRemoveType] = React.useState<RemoveType>(
+    RemoveType.endOfEpoch
+  );
+  // Clear the amount when the staking method changes
+  React.useEffect(() => {
+    setAmount("");
+  }, [action, setAmount]);
+  const { data } = useNetworkParam([
+    NetworkParams.VALIDATOR_DELEGATION_MIN_AMOUNT,
+  ]);
+  const minTokensWithDecimals = React.useMemo(() => {
+    const minTokens = new BigNumber(data && data.length === 1 ? data[0] : "");
+    return addDecimal(minTokens, appState.decimals);
+  }, [appState.decimals, data]);
 
   const maxDelegation = React.useMemo(() => {
     if (action === "Add") {
@@ -100,7 +122,10 @@ export const StakingForm = ({
       undelegateSubmission: {
         nodeId,
         amount: removeDecimal(new BigNumber(amount), appState.decimals),
-        method: "METHOD_AT_END_OF_EPOCH",
+        method:
+          removeType === RemoveType.now
+            ? "METHOD_NOW"
+            : "METHOD_AT_END_OF_EPOCH",
       },
     };
     try {
@@ -144,7 +169,9 @@ export const StakingForm = ({
               clearInterval(interval);
             }
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            Sentry.captureException(err);
+          });
       }, 1000);
     }
 
@@ -152,11 +179,24 @@ export const StakingForm = ({
   }, [formState, client, pubkey, nodeId]);
 
   if (formState === FormState.Failure) {
-    return <StakeFailure nodeId={nodeId} />;
+    return <StakeFailure nodeName={nodeName} />;
   } else if (formState === FormState.Pending) {
-    return <StakePending action={action} amount={amount} nodeId={nodeId} />;
+    return (
+      <StakePending
+        action={action}
+        amount={amount}
+        nodeName={nodeName}
+      />
+    );
   } else if (formState === FormState.Success) {
-    return <StakeSuccess action={action} amount={amount} nodeId={nodeId} />;
+    return (
+      <StakeSuccess
+        action={action}
+        amount={amount}
+        nodeName={nodeName}
+        removeType={removeType}
+      />
+    );
   } else if (
     availableStakeToAdd.isEqualTo(0) &&
     availableStakeToRemove.isEqualTo(0)
@@ -203,16 +243,75 @@ export const StakingForm = ({
       </FormGroup>
       {action !== undefined && (
         <>
-          <h2>{t("How much to {{action}} in next epoch?", { action })}</h2>
-          <p>{t("Warning, spam protection exists")}</p>
-          <TokenInput
-            submitText={`${action} ${amount ? amount : ""} ${t("vegaTokens")}`}
-            perform={onSubmit}
-            amount={amount}
-            setAmount={setAmount}
-            maximum={maxDelegation}
-            currency={t("VEGA Tokens")}
-          />
+          {action === "Add" ? (
+            <>
+              <h2>{t("How much to Add in next epoch?")}</h2>
+              <p>
+                {t("minimumNomination", {
+                  minTokens: minTokensWithDecimals,
+                })}
+              </p>
+              <TokenInput
+                submitText={`Add ${amount ? amount : ""} ${t("vegaTokens")}`}
+                perform={onSubmit}
+                amount={amount}
+                setAmount={setAmount}
+                maximum={maxDelegation}
+                minimum={new BigNumber(minTokensWithDecimals)}
+                currency={t("VEGA Tokens")}
+              />
+            </>
+          ) : (
+            <>
+              <h2>{t("How much to Remove?")}</h2>
+              {removeType === RemoveType.now ? (
+                <p>
+                  {t(
+                    "Removing stake mid epoch will forsake any staking rewards from that epoch"
+                  )}
+                </p>
+              ) : null}
+              <TokenInput
+                submitText={t("undelegateSubmitButton", {
+                  amount: t("Remove {{amount}} VEGA tokens", { amount }),
+                  when:
+                    removeType === RemoveType.now
+                      ? t("as soon as possible")
+                      : t("at the end of epoch"),
+                })}
+                perform={onSubmit}
+                amount={amount}
+                setAmount={setAmount}
+                maximum={maxDelegation}
+                currency={t("VEGA Tokens")}
+              />
+              {removeType === RemoveType.now ? (
+                <>
+                  <p>{t("Want to remove your stake before the epoch ends?")}</p>
+                  <button
+                    type="button"
+                    onClick={() => setRemoveType(RemoveType.endOfEpoch)}
+                    className="button-link"
+                  >
+                    {t("Switch to form for removal at end of epoch")}
+                  </button>
+                </>
+              ) : (
+                <>
+                  <p>
+                    {t("Want to remove your stake at the end of the epoch?")}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setRemoveType(RemoveType.now)}
+                    className="button-link"
+                  >
+                    {t("Switch to form for immediate removal")}
+                  </button>
+                </>
+              )}
+            </>
+          )}
         </>
       )}
     </>

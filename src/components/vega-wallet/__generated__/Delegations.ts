@@ -23,6 +23,7 @@ export interface Delegations_party_delegations_node {
    * The node url eg n01.vega.xyz
    */
   id: string;
+  name: string;
 }
 
 export interface Delegations_party_delegations {
@@ -107,6 +108,10 @@ export interface Delegations_party_accounts {
 
 export interface Delegations_party {
   __typename: "Party";
+  /**
+   * Party identifier
+   */
+  id: string;
   delegations: Delegations_party_delegations[] | null;
   /**
    * The staking informations for this Party

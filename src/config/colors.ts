@@ -1,7 +1,7 @@
 export const Colors = {
   WHITE: "#FFF",
   RED: "#ED1515",
-  PINK: "#ff077f",
+  PINK: "#ff2d5e",
   GREEN: "#26ff8a",
   TEXT: "#c7c7c7",
 

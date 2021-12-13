@@ -99,7 +99,10 @@ export interface AppState {
    * A breakdown of associations by Vega key. An object where each key is the vega key and
    * the value is the total amount associated (staking and vesting combined) to that key.
    */
-  associationBreakdown: { [vegaKey: string]: BigNumber };
+  associationBreakdown: {
+    stakingAssociations: { [vegaKey: string]: BigNumber };
+    vestingAssociations: { [vegaKey: string]: BigNumber };
+  };
 }
 
 export enum AppStateActionType {
@@ -131,6 +134,7 @@ export type AppStateAction =
       type: AppStateActionType.VEGA_WALLET_INIT;
       keys: VegaKey[] | null | undefined;
       version: string | undefined;
+      key: string | undefined;
     }
   | {
       type: AppStateActionType.VEGA_WALLET_SET_KEY;
@@ -181,7 +185,10 @@ export type AppStateAction =
     }
   | {
       type: AppStateActionType.SET_ASSOCIATION_BREAKDOWN;
-      breakdown: { [vegaKey: string]: BigNumber };
+      breakdown: {
+        stakingAssociations: { [vegaKey: string]: BigNumber };
+        vestingAssociations: { [vegaKey: string]: BigNumber };
+      };
     };
 
 type AppStateContextShape = {

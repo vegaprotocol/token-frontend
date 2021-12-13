@@ -2,7 +2,6 @@ import { useTranslation } from "react-i18next";
 import { useRouteMatch } from "react-router-dom";
 import { RouteChildProps } from "..";
 import { Heading } from "../../components/heading";
-import { Flags } from "../../config";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import RedemptionRouter from "./redemption";
 
@@ -19,11 +18,7 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
           tranche ? t("pageTitleRedemptionTranche") : t("pageTitleRedemption")
         }
       />
-      {Flags.REDEEM_DISABLED ? (
-        <p>{t("redeemComingSoon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</p>
-      ) : (
-        <RedemptionRouter />
-      )}
+      <RedemptionRouter />
     </>
   );
 };

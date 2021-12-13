@@ -1,7 +1,7 @@
 @import "./styles/colors";
 
 .app {
-  max-width: 1020px;
+  max-width: 1300px;
   margin: 0 auto;
   display: grid;
   grid-template-rows: 1fr min-content;
@@ -11,8 +11,4 @@
     border-left: 1px solid $white;
     border-right: 1px solid $white;
   }
-}
-
-footer {
-  padding: 20px;
 }

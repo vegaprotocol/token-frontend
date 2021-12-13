@@ -15,7 +15,6 @@ import {
 } from "../../../components/staking-method-radio";
 import { useAddStake, usePollForStakeLinking } from "./hooks";
 import { Callout } from "../../../components/callout";
-import { useWeb3 } from "../../../contexts/web3-context/web3-context";
 
 export const AssociatePage = ({
   address,
@@ -30,10 +29,14 @@ export const AssociatePage = ({
   const params = useSearchParams();
   const [amount, setAmount] = React.useState<string>("");
 
-  const stakingMethod = params.method as StakingMethod | "";
   const [selectedStakingMethod, setSelectedStakingMethod] = React.useState<
     StakingMethod | ""
-  >(stakingMethod);
+  >("");
+
+  // Clear the amount when the staking method changes
+  React.useEffect(() => {
+    setAmount("");
+  }, [selectedStakingMethod]);
 
   const {
     state: txState,
@@ -49,13 +52,27 @@ export const AssociatePage = ({
 
   const linking = usePollForStakeLinking(vegaKey.pub, txState.txData.hash);
 
-  const { chainId } = useWeb3();
   const {
     appState: { walletBalance, totalVestedBalance, totalLockedBalance },
   } = useAppState();
 
-  const zeroVesting = totalVestedBalance.plus(totalLockedBalance).isEqualTo(0);
-  const zeroVega = walletBalance.isEqualTo(0);
+  const zeroVesting = React.useMemo(
+    () => totalVestedBalance.plus(totalLockedBalance).isEqualTo(0),
+    [totalLockedBalance, totalVestedBalance]
+  );
+  const zeroVega = React.useMemo(
+    () => walletBalance.isEqualTo(0),
+    [walletBalance]
+  );
+  React.useEffect(() => {
+    if (zeroVega && !zeroVesting) {
+      setSelectedStakingMethod(StakingMethod.Contract);
+    } else if (!zeroVega && zeroVesting) {
+      setSelectedStakingMethod(StakingMethod.Wallet);
+    } else {
+      setSelectedStakingMethod(params.method as StakingMethod | "");
+    }
+  }, [params.method, zeroVega, zeroVesting]);
   if (txState.txState !== TxState.Default) {
     return (
       <AssociateTransaction
@@ -65,31 +82,34 @@ export const AssociatePage = ({
         dispatch={txDispatch}
         requiredConfirmations={requiredConfirmations}
         linking={linking}
-        chainId={chainId}
       />
     );
   }
 
   return (
     <section data-testid="associate">
-      <p data-testid="associate-information">
-        {t(
-          "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes."
-        )}
-      </p>
+      <Callout>
+        <p data-testid="associate-information1">{t("associateInfo1")}</p>
+        <p data-testid="associate-information2">{t("associateInfo2")}</p>
+      </Callout>
       {zeroVesting && zeroVega ? (
         <Callout intent="error">
           <p>{t("associateNoVega")}</p>
         </Callout>
       ) : (
         <>
-          <h2 data-testid="associate-subheader">
-            {t("Where would you like to stake from?")}
-          </h2>
-          <StakingMethodRadio
-            setSelectedStakingMethod={setSelectedStakingMethod}
-            selectedStakingMethod={selectedStakingMethod}
-          />
+          {!zeroVesting ? (
+            <>
+              <h2 data-testid="associate-subheader">
+                {t("Where would you like to stake from?")}
+              </h2>
+              <p>{t("associationChoice")}</p>
+              <StakingMethodRadio
+                setSelectedStakingMethod={setSelectedStakingMethod}
+                selectedStakingMethod={selectedStakingMethod}
+              />
+            </>
+          ) : null}
         </>
       )}
       {selectedStakingMethod &&
