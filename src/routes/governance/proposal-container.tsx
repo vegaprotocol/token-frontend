@@ -27,6 +27,7 @@ export const ProposalContainer = () => {
     ProposalQueryResult,
     ProposalVariables
   >(PROPOSAL_QUERY, {
+    fetchPolicy: "no-cache",
     variables: { proposalId: params.proposalId },
     pollInterval: 5000,
   });
