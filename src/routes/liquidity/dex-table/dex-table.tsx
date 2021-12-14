@@ -18,7 +18,6 @@ interface DexTokensSectionProps {
   contractAddress: string;
   ethAddress: string;
   state: LiquidityState;
-  showInteractionButton?: boolean;
 }
 
 export const DexTokensSection = ({
@@ -26,7 +25,6 @@ export const DexTokensSection = ({
   contractAddress,
   ethAddress,
   state,
-  showInteractionButton = true,
 }: DexTokensSectionProps) => {
   const { t } = useTranslation();
   const values = React.useMemo(
@@ -100,11 +98,7 @@ export const DexTokensSection = ({
           </td>
         </KeyValueTableRow>
         {ethAddress ? (
-          <ConnectedRows
-            showInteractionButton={showInteractionButton}
-            lpContractAddress={contractAddress}
-            state={state}
-          />
+          <ConnectedRows lpContractAddress={contractAddress} state={state} />
         ) : null}
       </KeyValueTable>
     </section>
@@ -114,14 +108,9 @@ export const DexTokensSection = ({
 interface ConnectedRowsProps {
   lpContractAddress: string;
   state: LiquidityState;
-  showInteractionButton: boolean;
 }
 
-const ConnectedRows = ({
-  lpContractAddress,
-  state,
-  showInteractionButton = true,
-}: ConnectedRowsProps) => {
+const ConnectedRows = ({ lpContractAddress, state }: ConnectedRowsProps) => {
   const { t } = useTranslation();
   const values = React.useMemo(
     () => state.contractData[lpContractAddress],

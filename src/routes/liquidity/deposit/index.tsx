@@ -143,7 +143,6 @@ export const LiquidityDepositPage = ({
           contractAddress={lpTokenAddress}
           ethAddress={ethAddress}
           state={state}
-          showInteractionButton={false}
         />
         <h1>{t("depositLpTokensHeading")}</h1>
         {values.connectedWalletData?.availableLPTokens?.isGreaterThan(0) ? (
