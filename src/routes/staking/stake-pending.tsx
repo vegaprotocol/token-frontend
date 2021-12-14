@@ -1,6 +1,4 @@
-import { useTranslation } from "react-i18next";
-
-import { Callout } from "../../components/callout";
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import { Loader } from "../../components/loader";
 import { StakeAction } from "./staking-form";
 
@@ -13,7 +11,7 @@ interface StakePendingProps {
 export const StakePending = ({
   action,
   amount,
-  nodeName
+  nodeName,
 }: StakePendingProps) => {
   const { t } = useTranslation();
   const titleArgs = { amount, node: nodeName };

@@ -21,7 +21,9 @@ import { BigNumber } from "../../../lib/bignumber";
 import { Routes } from "../../router-config";
 import { DexTokensSection } from "../dex-table";
 import { useGetLiquidityBalances } from "../hooks";
-import { LiquidityAction, LiquidityState } from "../liquidity-reducer";
+import { Callout } from "@vegaprotocol/ui-toolkit";
+import { Error } from "../../../components/icons";
+import { useWeb3 } from "../../../contexts/web3-context/web3-context";
 
 export const LiquidityDepositPage = ({
   lpTokenAddress,

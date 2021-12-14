@@ -19,9 +19,12 @@ import {
   useAppState,
 } from "../../../contexts/app-state/app-state-context";
 import { useNetworkParam } from "../../../hooks/use-network-param";
-import { useVegaUser } from "../../../hooks/use-vega-user";
-import { Rewards } from "./__generated__/Rewards";
-import { RewardInfo } from "./reward-info";
+import { NetworkParams } from "../../../config";
+import { Heading } from "../../../components/heading";
+import { Callout } from "@vegaprotocol/ui-toolkit";
+// @ts-ignore
+import Duration from "duration-js";
+import { formatDistance } from "date-fns";
 
 export const REWARDS_QUERY = gql`
   query Rewards($partyId: ID!) {

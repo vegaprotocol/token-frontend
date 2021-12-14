@@ -15,7 +15,7 @@ import { useSearchParams } from "../../../hooks/use-search-params";
 import { AssociateTransaction } from "./associate-transaction";
 import { ContractAssociate } from "./contract-associate";
 import { useAddStake, usePollForStakeLinking } from "./hooks";
-import { WalletAssociate } from "./wallet-associate";
+import { Callout } from "@vegaprotocol/ui-toolkit";
 
 export const AssociatePage = ({
   address,

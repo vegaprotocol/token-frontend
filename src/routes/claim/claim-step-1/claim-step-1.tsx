@@ -6,7 +6,8 @@ import {
   TransactionAction,
   TransactionState,
 } from "../../../hooks/transaction-reducer";
-import { ClaimForm } from "../claim-form";
+import { Callout } from "@vegaprotocol/ui-toolkit";
+import { Tick } from "../../../components/icons";
 
 interface ClaimStep2 {
   countryCode: string;

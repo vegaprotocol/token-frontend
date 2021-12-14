@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
-
-import { Callout } from "../../components/callout";
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import { Error } from "../../components/icons";
 
 export const Expired = ({ code }: { code: string }) => {
