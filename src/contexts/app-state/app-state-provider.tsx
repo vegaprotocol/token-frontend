@@ -41,6 +41,8 @@ const initialAppState: AppState = {
     vestingAssociations: {},
     stakingAssociations: {},
   },
+  bannerMessage:
+    "The network is less than 900 blocks old, it could be in the process of restoring from a checkpoint",
 };
 
 function appStateReducer(state: AppState, action: AppStateAction): AppState {

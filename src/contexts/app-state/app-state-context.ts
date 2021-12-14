@@ -107,6 +107,11 @@ export interface AppState {
     stakingAssociations: { [vegaKey: string]: BigNumber };
     vestingAssociations: { [vegaKey: string]: BigNumber };
   };
+
+  /**
+   * Message to display in a banner at the top of the screen, currently always shown as a warning/error
+   */
+  bannerMessage: string;
 }
 
 export enum AppStateActionType {
