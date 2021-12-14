@@ -30,7 +30,7 @@ export const VestingChart = () => {
           <Tooltip
             contentStyle={{ backgroundColor: Colors.BLACK }}
             separator=":"
-            formatter={(value: any, name: any, props: any) => {
+            formatter={(value: any) => {
               return (
                 <div
                   style={{

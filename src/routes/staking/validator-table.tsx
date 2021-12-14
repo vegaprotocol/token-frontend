@@ -4,6 +4,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 import { EtherscanLink } from "../../components/etherscan-link";
+import { CopyToClipboardType } from "../../components/etherscan-link/etherscan-link";
 import {
   KeyValueTable,
   KeyValueTableRow,
@@ -11,9 +12,6 @@ import {
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
 import { Staking_nodes } from "./__generated__/Staking";
-import { formatNumber } from "../../lib/format-number";
-import { EtherscanLink } from "../../components/etherscan-link";
-import { CopyToClipboardType } from "../../components/etherscan-link/etherscan-link";
 
 export interface ValidatorTableProps {
   node: Staking_nodes;

@@ -3,6 +3,7 @@ import "./token-details.scss";
 import { useTranslation } from "react-i18next";
 
 import { EtherscanLink } from "../../../components/etherscan-link";
+import { CopyToClipboardType } from "../../../components/etherscan-link/etherscan-link";
 import {
   KeyValueTable,
   KeyValueTableRow,
@@ -11,9 +12,7 @@ import { ADDRESSES, Flags } from "../../../config";
 import { useTranches } from "../../../hooks/use-tranches";
 import { BigNumber } from "../../../lib/bignumber";
 import { formatNumber } from "../../../lib/format-number";
-import { useTranslation } from "react-i18next";
-import { useTranches } from "../../../hooks/use-tranches";
-import { CopyToClipboardType } from "../../../components/etherscan-link/etherscan-link";
+import { TokenDetailsCirculating } from "./token-details-circulating";
 
 export const TokenDetails = ({
   totalSupply,

@@ -7,6 +7,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 import { EtherscanLink } from "../../components/etherscan-link";
+import { CopyToClipboardType } from "../../components/etherscan-link/etherscan-link";
 import { Heading } from "../../components/heading";
 import {
   KeyValueTable,
@@ -32,9 +33,6 @@ import {
   WithdrawalsPage_party_withdrawals,
   WithdrawalsPageVariables,
 } from "./__generated__/WithdrawalsPage";
-import { Flags } from "../../config";
-import { useRefreshBalances } from "../../hooks/use-refresh-balances";
-import { CopyToClipboardType } from "../../components/etherscan-link/etherscan-link";
 
 const Withdrawals = () => {
   const { t } = useTranslation();
