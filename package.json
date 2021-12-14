@@ -6,7 +6,7 @@
     "node": ">=14.15.0"
   },
   "dependencies": {
-    "@vegaprotocol/ui-toolkit": "*",
+    "@vegaprotocol/ui-toolkit": "0.4.0",
     "@apollo/client": "^3.4.8",
     "@blueprintjs/core": "^3.47.0",
     "@blueprintjs/select": "^3.16.6",
