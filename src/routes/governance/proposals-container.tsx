@@ -1,15 +1,16 @@
-import React from "react";
+import { gql, useQuery } from "@apollo/client";
+import compact from "lodash/compact";
 import flow from "lodash/flow";
 import orderBy from "lodash/orderBy";
-import compact from "lodash/compact";
-import { gql, useQuery } from "@apollo/client";
-import { Proposals } from "./__generated__/Proposals";
-import { Callout } from "../../components/callout";
+import React from "react";
 import { useTranslation } from "react-i18next";
-import { SplashScreen } from "../../components/splash-screen";
+
+import { Callout } from "../../components/callout";
 import { SplashLoader } from "../../components/splash-loader";
-import { ProposalsList } from "./proposals-list";
+import { SplashScreen } from "../../components/splash-screen";
+import { Proposals } from "./__generated__/Proposals";
 import { PROPOSALS_FRAGMENT } from "./proposal-fragment";
+import { ProposalsList } from "./proposals-list";
 
 export const PROPOSALS_QUERY = gql`
   ${PROPOSALS_FRAGMENT}

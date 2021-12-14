@@ -4,6 +4,7 @@ import { Intent, ProgressBar } from "@blueprintjs/core";
 import { format, formatDistanceStrict } from "date-fns";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
+
 import arrow from "../../images/back.png";
 
 export const DATE_FORMAT = "yyyy.MM.dd HH:mm";

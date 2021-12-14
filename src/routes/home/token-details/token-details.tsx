@@ -1,14 +1,15 @@
 import "./token-details.scss";
 
-import { ADDRESSES, Flags } from "../../../config";
+import { useTranslation } from "react-i18next";
+
+import { EtherscanLink } from "../../../components/etherscan-link";
 import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
-
+import { ADDRESSES, Flags } from "../../../config";
+import { useTranches } from "../../../hooks/use-tranches";
 import { BigNumber } from "../../../lib/bignumber";
-import { EtherscanLink } from "../../../components/etherscan-link";
-import { TokenDetailsCirculating } from "./token-details-circulating";
 import { formatNumber } from "../../../lib/format-number";
 import { useTranslation } from "react-i18next";
 import { useTranches } from "../../../hooks/use-tranches";

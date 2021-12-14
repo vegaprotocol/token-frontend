@@ -1,18 +1,20 @@
 import "./disassociate-page.scss";
+
 import React from "react";
 import { useTranslation } from "react-i18next";
+
 import { ConnectedVegaKey } from "../../../components/connected-vega-key";
 import {
   StakingMethod,
   StakingMethodRadio,
 } from "../../../components/staking-method-radio";
 import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
-import { useSearchParams } from "../../../hooks/use-search-params";
 import { TxState } from "../../../hooks/transaction-reducer";
-import { WalletDisassociate } from "./wallet-disassociate";
+import { useSearchParams } from "../../../hooks/use-search-params";
 import { ContractDisassociate } from "./contract-disassociate";
 import { DisassociateTransaction } from "./disassociate-transaction";
 import { useRemoveStake } from "./hooks";
+import { WalletDisassociate } from "./wallet-disassociate";
 
 export const DisassociatePage = ({
   address,

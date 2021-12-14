@@ -1,5 +1,7 @@
 import "./template-sidebar.scss";
+
 import React from "react";
+
 import { Nav } from "../nav";
 
 export interface TemplateSidebarProps {

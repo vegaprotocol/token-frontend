@@ -1,11 +1,13 @@
 import "./transaction-button.scss";
-import { TransactionState, TxState } from "../../hooks/transaction-reducer";
-import { Loader } from "../loader";
-import { Error, HandUp, Tick } from "../icons";
-import { truncateMiddle } from "../../lib/truncate-middle";
-import { StatefulButton } from "../stateful-button";
+
 import { useTranslation } from "react-i18next";
+
+import { TransactionState, TxState } from "../../hooks/transaction-reducer";
+import { truncateMiddle } from "../../lib/truncate-middle";
 import { EtherscanLink } from "../etherscan-link";
+import { Error, HandUp, Tick } from "../icons";
+import { Loader } from "../loader";
+import { StatefulButton } from "../stateful-button";
 
 interface TransactionButtonProps {
   text: string;

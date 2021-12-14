@@ -1,29 +1,30 @@
 import { MockedProvider, MockedResponse } from "@apollo/client/testing";
-import React from "react";
-import * as faker from "faker";
 import { addDays } from "date-fns";
+import * as faker from "faker";
+import React from "react";
+
 import {
   NodeStatus,
   ProposalState,
   VoteValue,
 } from "../../../__generated__/globalTypes";
+import { NetworkParams } from "../../../hooks/__generated__/NetworkParams";
+import { NETWORK_PARAMS_QUERY } from "../../../hooks/use-network-param";
+import { Proposals } from "../../../routes/governance/__generated__/Proposals";
+import { PROPOSALS_QUERY } from "../../../routes/governance/proposals-container";
+import { generateProposal } from "../../../routes/governance/test-helpers/generate-proposals";
+import { REWARDS_QUERY } from "../../../routes/rewards/home";
+import { Rewards } from "../../../routes/rewards/home/__generated__/Rewards";
+import { Nodes } from "../../../routes/staking/__generated__/Nodes";
+import { PartyDelegations } from "../../../routes/staking/__generated__/PartyDelegations";
 import {
   Staking,
   Staking_nodeData,
   Staking_nodes,
 } from "../../../routes/staking/__generated__/Staking";
-import { PartyDelegations } from "../../../routes/staking/__generated__/PartyDelegations";
-import { PARTY_DELEGATIONS_QUERY } from "../../../routes/staking/staking-form";
-import { PROPOSALS_QUERY } from "../../../routes/governance/proposals-container";
-import { Proposals } from "../../../routes/governance/__generated__/Proposals";
-import { generateProposal } from "../../../routes/governance/test-helpers/generate-proposals";
-import { STAKING_QUERY } from "../../../routes/staking/staking-nodes-container";
-import { Rewards } from "../../../routes/rewards/home/__generated__/Rewards";
-import { REWARDS_QUERY } from "../../../routes/rewards/home";
-import { NETWORK_PARAMS_QUERY } from "../../../hooks/use-network-param";
-import { NetworkParams } from "../../../hooks/__generated__/NetworkParams";
 import { NODES_QUERY } from "../../../routes/staking/node-list";
-import { Nodes } from "../../../routes/staking/__generated__/Nodes";
+import { PARTY_DELEGATIONS_QUERY } from "../../../routes/staking/staking-form";
+import { STAKING_QUERY } from "../../../routes/staking/staking-nodes-container";
 
 const PARTY_ID = "pub";
 const REWARD_ASSET_ID = "reward-asset-id";

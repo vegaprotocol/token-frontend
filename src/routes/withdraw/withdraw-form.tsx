@@ -1,22 +1,24 @@
 import "./withdraw-form.scss";
+
+import { FormGroup,HTMLSelect } from "@blueprintjs/core";
+import { ethers } from "ethers";
 import React from "react";
-import { WithdrawPage_party_accounts } from "./__generated__/WithdrawPage";
-import { BigNumber } from "../../lib/bignumber";
-import { HTMLSelect, FormGroup } from "@blueprintjs/core";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router";
+
+import { Loader } from "../../components/loader";
+import { StatefulButton } from "../../components/stateful-button";
 import { AmountInput } from "../../components/token-input";
+import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
 import {
   Status as WithdrawStatus,
   useCreateWithdrawal,
 } from "../../hooks/use-create-withdrawal";
-import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
+import { BigNumber } from "../../lib/bignumber";
 import { removeDecimal } from "../../lib/decimals";
-import { useHistory } from "react-router";
-import { StatefulButton } from "../../components/stateful-button";
-import { Loader } from "../../components/loader";
 import { Routes } from "../router-config";
-import { useTranslation } from "react-i18next";
+import { WithdrawPage_party_accounts } from "./__generated__/WithdrawPage";
 import { EthAddressInput } from "./eth-address-input";
-import { ethers } from "ethers";
 
 interface WithdrawFormProps {
   accounts: WithdrawPage_party_accounts[];

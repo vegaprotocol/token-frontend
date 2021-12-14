@@ -1,7 +1,8 @@
-import React from "react";
 import * as Sentry from "@sentry/react";
-import { Tranche } from "../lib/vega-web3/vega-web3-types";
+import React from "react";
+
 import { useContracts } from "../contexts/contracts/contracts-context";
+import { Tranche } from "../lib/vega-web3/vega-web3-types";
 
 export function useTranches() {
   const { vesting } = useContracts();

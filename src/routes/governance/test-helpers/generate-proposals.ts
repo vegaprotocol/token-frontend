@@ -1,9 +1,9 @@
-import merge from "lodash/merge";
 import * as faker from "faker";
+import merge from "lodash/merge";
 
 import { ProposalState, VoteValue } from "../../../__generated__/globalTypes";
-import { ProposalFields } from "../__generated__/ProposalFields";
 import { DeepPartial } from "../../../lib/type-helpers";
+import { ProposalFields } from "../__generated__/ProposalFields";
 
 export function generateProposal(
   override: DeepPartial<ProposalFields> = {}

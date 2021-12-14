@@ -1,8 +1,9 @@
+import { useTranslation } from "react-i18next";
+
+import { Heading } from "../../components/heading";
+import { Proposal_proposal } from "./__generated__/Proposal";
 import { NetworkChange } from "./network-change";
 import { VoteDetails } from "./vote-details";
-import { Heading } from "../../components/heading";
-import { useTranslation } from "react-i18next";
-import { Proposal_proposal } from "./__generated__/Proposal";
 
 interface ProposalProps {
   proposal: Proposal_proposal;

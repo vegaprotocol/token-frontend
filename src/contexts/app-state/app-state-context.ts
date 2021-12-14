@@ -1,6 +1,7 @@
 import React from "react";
-import type { Tranche } from "../../lib/vega-web3/vega-web3-types";
+
 import { BigNumber } from "../../lib/bignumber";
+import type { Tranche } from "../../lib/vega-web3/vega-web3-types";
 
 export enum VegaWalletStatus {
   /** Detecting if Vega wallet service is running */

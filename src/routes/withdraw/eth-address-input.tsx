@@ -1,6 +1,7 @@
-import React from "react";
 import { FormGroup, InputGroup, Intent } from "@blueprintjs/core";
+import React from "react";
 import { useTranslation } from "react-i18next";
+
 import { Callout } from "../../components/callout";
 import { Ethereum } from "../../components/icons";
 

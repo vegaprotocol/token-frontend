@@ -1,23 +1,22 @@
 import React from "react";
-import { useWeb3 } from "../web3-context/web3-context";
-import { ContractsContext, ContractsContextShape } from "./contracts-context";
-import { ADDRESSES } from "../../config";
-import { SplashScreen } from "../../components/splash-screen";
-import { SplashLoader } from "../../components/splash-loader";
 
+import { SplashLoader } from "../../components/splash-loader";
+import { SplashScreen } from "../../components/splash-screen";
+import { ADDRESSES } from "../../config";
+// @ts-ignore
+import VegaClaim from "../../lib/VEGA_WEB3/vega-claim";
+// @ts-ignore
+import StakingAbi from "../../lib/VEGA_WEB3/vega-staking";
 // Note: Each contract class imported below gets swapped out for a mocked version
 // at ../../lib/vega-web3/__mocks__ at build time using webpack.NormalModuleReplacementPlugin
 // when you run the app with REACT_APP_MOCKED=1
-
 // @ts-ignore
 import VegaToken from "../../lib/VEGA_WEB3/vega-token";
 // @ts-ignore
-import StakingAbi from "../../lib/VEGA_WEB3/vega-staking";
-// @ts-ignore
 import VegaVesting from "../../lib/VEGA_WEB3/vega-vesting";
-// @ts-ignore
-import VegaClaim from "../../lib/VEGA_WEB3/vega-claim";
 import { VegaErc20Bridge } from "../../lib/vega-web3/vega-erc20-bridge";
+import { useWeb3 } from "../web3-context/web3-context";
+import { ContractsContext, ContractsContextShape } from "./contracts-context";
 
 /**
  * Provides Vega Ethereum contract instances to its children.

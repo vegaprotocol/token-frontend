@@ -1,16 +1,14 @@
-import { useAppState } from "../../contexts/app-state/app-state-context";
-import { Error, Tick } from "../../components/icons";
-import { Link, useRouteMatch } from "react-router-dom";
-import { NodeList } from "./node-list";
 import { Trans, useTranslation } from "react-i18next";
+import { Link, useRouteMatch } from "react-router-dom";
 
-import { BigNumber } from "../../lib/bignumber";
 import { BulletHeader } from "../../components/bullet-header";
 import { Callout } from "../../components/callout";
-import { ConnectToVega } from "./connect-to-vega";
+import { EtherscanLink } from "../../components/etherscan-link";
+import { Error, Tick } from "../../components/icons";
 import { Links } from "../../config";
-import { Staking as StakingQueryResult } from "./__generated__/Staking";
+import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
 import { EtherscanLink } from "../../components/etherscan-link";
 import { CopyToClipboardType } from "../../components/etherscan-link/etherscan-link";

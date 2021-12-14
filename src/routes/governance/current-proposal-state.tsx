@@ -1,6 +1,7 @@
-import { Proposals_proposals } from "./__generated__/Proposals";
 import "./current-proposal-state.scss";
+
 import { ProposalState } from "../../__generated__/globalTypes";
+import { Proposals_proposals } from "./__generated__/Proposals";
 
 export const CurrentProposalState = ({
   proposal,

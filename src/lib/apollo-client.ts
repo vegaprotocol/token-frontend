@@ -1,18 +1,19 @@
 import {
   ApolloClient,
+  FieldFunctionOptions,
   from,
   HttpLink,
   InMemoryCache,
   Reference,
-  FieldFunctionOptions,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
 import { RetryLink } from "@apollo/client/link/retry";
-import { addDecimal } from "./decimals";
-import uniqBy from "lodash/uniqBy";
 import sortBy from "lodash/sortBy";
-import { deterministicShuffle } from "./deterministic-shuffle";
+import uniqBy from "lodash/uniqBy";
+
 import { BigNumber } from "./bignumber";
+import { addDecimal } from "./decimals";
+import { deterministicShuffle } from "./deterministic-shuffle";
 
 // Create seed in memory. Validator list order will remain the same
 // until the page is refreshed.

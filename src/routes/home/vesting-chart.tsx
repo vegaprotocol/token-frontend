@@ -1,3 +1,5 @@
+import { format, startOfMonth } from "date-fns";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import {
   Area,
@@ -9,10 +11,9 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import data from "./data.json";
+
 import { Colors } from "../../config";
-import { format, startOfMonth } from "date-fns";
-import React from "react";
+import data from "./data.json";
 
 const ORDER = ["community", "publicSale", "earlyInvestors", "team"];
 

@@ -1,7 +1,8 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
+
 import { TokenInput } from "../../../components/token-input";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
-import { useTranslation } from "react-i18next";
 
 export const WalletDisassociate = ({
   perform,

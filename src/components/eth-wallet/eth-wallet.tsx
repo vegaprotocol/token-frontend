@@ -1,6 +1,16 @@
+import React from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+
+import { Colors } from "../../config";
 import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import vegaVesting from "../../images/vega_vesting.png";
+import vegaWhite from "../../images/vega_white.png";
+import { BigNumber } from "../../lib/bignumber";
 import { truncateMiddle } from "../../lib/truncate-middle";
+import { Routes } from "../../routes/router-config";
+import { LockedProgress } from "../locked-progress";
 import {
   WalletCard,
   WalletCardActions,
@@ -9,15 +19,6 @@ import {
   WalletCardHeader,
   WalletCardRow,
 } from "../wallet-card";
-import { Colors } from "../../config";
-import React from "react";
-import vegaWhite from "../../images/vega_white.png";
-import vegaVesting from "../../images/vega_vesting.png";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
-import { Routes } from "../../routes/router-config";
-import { Link } from "react-router-dom";
-import { LockedProgress } from "../locked-progress";
-import { BigNumber } from "../../lib/bignumber";
 
 const removeLeadingAddressSymbol = (key: string) => {
   if (key && key.length > 2 && key.slice(0, 2) === "0x") {

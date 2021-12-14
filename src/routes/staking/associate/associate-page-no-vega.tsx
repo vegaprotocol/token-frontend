@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+
 import { ConnectToVega } from "../connect-to-vega";
 
 export const AssociatePageNoVega = () => {

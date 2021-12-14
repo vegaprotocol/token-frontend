@@ -1,6 +1,7 @@
-import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import parseJSON from "date-fns/parseJSON";
+
 import { BigNumber } from "../../lib/bignumber";
+import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 
 const json: Tranche[] = [
   {

@@ -1,19 +1,20 @@
 import { FormGroup, Intent, Switch } from "@blueprintjs/core";
-import React from "react";
 import * as Sentry from "@sentry/react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+
+import { Flags } from "../../config";
 import {
   AppStateActionType,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
-import { useRefreshAssociatedBalances } from "../../hooks/use-refresh-associated-balances";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { useRefreshAssociatedBalances } from "../../hooks/use-refresh-associated-balances";
 import {
   HOSTED_WALLET_URL,
   vegaWalletService,
 } from "../../lib/vega-wallet/vega-wallet-service";
-import { Flags } from "../../config";
 
 interface FormFields {
   url: string;

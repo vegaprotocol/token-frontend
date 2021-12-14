@@ -1,8 +1,9 @@
 import { ethers } from "ethers";
+
 import { BigNumber } from "../../bignumber";
+import { addDecimal } from "../../decimals";
 import { IVegaStaking } from "../../web3-utils";
 import { promiEventFactory, uuidv4 } from "./promi-manager";
-import { addDecimal } from "../../decimals";
 
 const BASE_URL = "mocks/staking";
 

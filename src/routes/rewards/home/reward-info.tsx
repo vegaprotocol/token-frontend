@@ -1,19 +1,21 @@
 import "./reward-info.scss";
-import React from "react";
+
 import * as Sentry from "@sentry/react";
+import { format } from "date-fns";
+import React from "react";
+import { useTranslation } from "react-i18next";
+
 import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
+import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
+import { BigNumber } from "../../../lib/bignumber";
 import {
   Rewards,
   Rewards_party_delegations,
   Rewards_party_rewardDetails_rewards,
 } from "./__generated__/Rewards";
-import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
-import { useTranslation } from "react-i18next";
-import { BigNumber } from "../../../lib/bignumber";
-import { format } from "date-fns";
 
 interface RewardInfoProps {
   data: Rewards | undefined;

@@ -1,10 +1,11 @@
-import { BigNumber } from "../../lib/bignumber";
 import BN from "bn.js";
 import { ethers } from "ethers";
-import lpStakeAbi from "../abis/lp_staking_abi.json";
+
+import { BigNumber } from "../../lib/bignumber";
 import erc20Abi from "../abis/erc20_abi.json";
-import { EpochDetails, IVegaLPStaking } from "../web3-utils";
+import lpStakeAbi from "../abis/lp_staking_abi.json";
 import { addDecimal, removeDecimal } from "../decimals";
+import { EpochDetails, IVegaLPStaking } from "../web3-utils";
 
 export default class VegaLPStaking implements IVegaLPStaking {
   private contract: ethers.Contract;

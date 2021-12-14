@@ -1,15 +1,17 @@
 import "./node-list.scss";
-import React from "react";
+
 import { gql, useQuery } from "@apollo/client";
-import { Link, useRouteMatch } from "react-router-dom";
+import React from "react";
 import { useTranslation } from "react-i18next";
+import { Link, useRouteMatch } from "react-router-dom";
+
+import { Callout } from "../../components/callout";
+import { EpochCountdown } from "../../components/epoch-countdown";
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
 import { truncateMiddle } from "../../lib/truncate-middle";
-import { Staking_epoch, Staking_party } from "./__generated__/Staking";
-import { EpochCountdown } from "../../components/epoch-countdown";
 import { Nodes } from "./__generated__/Nodes";
-import { Callout } from "../../components/callout";
+import { Staking_epoch, Staking_party } from "./__generated__/Staking";
 
 export const NODES_QUERY = gql`
   query Nodes {

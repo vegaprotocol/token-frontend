@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
 
 interface EthConnectPrompProps {

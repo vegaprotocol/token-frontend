@@ -1,12 +1,15 @@
 import "./validator-table.scss";
+
 import React from "react";
 import { useTranslation } from "react-i18next";
 
+import { EtherscanLink } from "../../components/etherscan-link";
 import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../components/key-value-table";
 import { BigNumber } from "../../lib/bignumber";
+import { formatNumber } from "../../lib/format-number";
 import { Staking_nodes } from "./__generated__/Staking";
 import { formatNumber } from "../../lib/format-number";
 import { EtherscanLink } from "../../components/etherscan-link";

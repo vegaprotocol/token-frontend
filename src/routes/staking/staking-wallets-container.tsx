@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
 import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";

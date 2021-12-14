@@ -1,14 +1,14 @@
 import React from "react";
+
+import { BigNumber } from "../../lib/bignumber";
+import { truncateMiddle } from "../../lib/truncate-middle";
 import {
   AppState,
-  AppStateContext,
   AppStateAction,
   AppStateActionType,
+  AppStateContext,
   VegaWalletStatus,
 } from "./app-state-context";
-
-import { truncateMiddle } from "../../lib/truncate-middle";
-import { BigNumber } from "../../lib/bignumber";
 
 interface AppStateProviderProps {
   children: React.ReactNode;

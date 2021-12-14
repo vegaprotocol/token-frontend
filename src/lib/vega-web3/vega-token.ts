@@ -1,9 +1,10 @@
-import { BigNumber } from "../../lib/bignumber";
+import BN from "bn.js";
 import { ethers } from "ethers";
+
+import { BigNumber } from "../../lib/bignumber";
 import tokenAbi from "../abis/vega_token_abi.json";
 import { addDecimal, removeDecimal } from "../decimals";
 import { IVegaToken } from "../web3-utils";
-import BN from "bn.js";
 
 export default class VegaToken implements IVegaToken {
   private contract: ethers.Contract;
