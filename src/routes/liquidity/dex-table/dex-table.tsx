@@ -1,15 +1,15 @@
 import "./dex-table.scss";
+
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { EtherscanLink } from "../../../components/etherscan-link";
 import { Link } from "react-router-dom";
-import { Routes } from "../../router-config";
-import { LiquidityState } from "../liquidity-reducer";
-import { Links, REWARDS_POOL_ADDRESSES } from "../../../config";
+
+import { EtherscanLink } from "../../../components/etherscan-link";
 import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
+import { Links, REWARDS_POOL_ADDRESSES } from "../../../config";
 import { formatNumber } from "../../../lib/format-number";
 import { CopyToClipboardType } from "../../../components/etherscan-link/etherscan-link";
 

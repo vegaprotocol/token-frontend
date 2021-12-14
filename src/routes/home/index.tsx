@@ -1,18 +1,19 @@
 import "./home.scss";
 
-import { Trans, useTranslation } from "react-i18next";
-import { RouteChildProps } from "..";
-import { useDocumentTitle } from "../../hooks/use-document-title";
-import { TokenDetails } from "./token-details";
-import { Link } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 import React from "react";
-import { NodeData } from "./__generated__/NodeData";
-import { Routes } from "../router-config";
-import { useAppState } from "../../contexts/app-state/app-state-context";
-import { Links } from "../../config";
-import { BigNumber } from "../../lib/bignumber";
+import { Trans, useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+
 import { Heading } from "../../components/heading";
+import { Links } from "../../config";
+import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useDocumentTitle } from "../../hooks/use-document-title";
+import { BigNumber } from "../../lib/bignumber";
+import { RouteChildProps } from "..";
+import { Routes } from "../router-config";
+import { NodeData } from "./__generated__/NodeData";
+import { TokenDetails } from "./token-details";
 
 export const TOTAL_STAKED_QUERY = gql`
   query NodeData {

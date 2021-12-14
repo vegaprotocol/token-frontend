@@ -1,5 +1,7 @@
 import "./app-footer.scss";
+
 import { Trans } from "react-i18next";
+
 import { Links } from "../../config";
 
 export const AppFooter = () => {

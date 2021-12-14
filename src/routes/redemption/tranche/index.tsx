@@ -1,10 +1,12 @@
 import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";
-import { Colors } from "../../../config";
+
 import { TransactionCallout } from "../../../components/transaction-callout";
+import { Colors } from "../../../config";
 import { ADDRESSES } from "../../../config";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
+import { useContracts } from "../../../contexts/contracts/contracts-context";
 import {
   TransactionActionType,
   TxState,
@@ -13,11 +15,10 @@ import { useGetUserTrancheBalances } from "../../../hooks/use-get-user-tranche-b
 import { useRefreshBalances } from "../../../hooks/use-refresh-balances";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { BigNumber } from "../../../lib/bignumber";
+import { formatNumber } from "../../../lib/format-number";
 import { Routes } from "../../router-config";
 import { RedemptionState } from "../redemption-reducer";
 import { TrancheTable } from "../tranche-table";
-import { useContracts } from "../../../contexts/contracts/contracts-context";
-import { formatNumber } from "../../../lib/format-number";
 
 export const RedeemFromTranche = ({
   state,

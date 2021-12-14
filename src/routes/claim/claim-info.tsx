@@ -1,6 +1,7 @@
 import { format } from "date-fns";
-import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { useTranslation } from "react-i18next";
+
+import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 
 interface ClaimInfoProps {
   tranche: Tranche;

@@ -1,12 +1,13 @@
-import React from "react";
+import "./tranche-item.scss";
+
 import { format } from "date-fns";
+import React from "react";
 import { useTranslation } from "react-i18next";
-import { BigNumber } from "../../lib/bignumber";
 import { Link } from "react-router-dom";
 
-import "./tranche-item.scss";
-import { formatNumber } from "../../lib/format-number";
 import { LockedProgress } from "../../components/locked-progress";
+import { BigNumber } from "../../lib/bignumber";
+import { formatNumber } from "../../lib/format-number";
 
 export interface TrancheItemProps {
   tranche: {

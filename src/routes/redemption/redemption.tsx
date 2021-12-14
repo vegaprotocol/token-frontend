@@ -1,24 +1,24 @@
-import {
-  RedemptionActionType,
-  initialRedemptionState,
-  redemptionReducer,
-} from "./redemption-reducer";
+import React from "react";
+import { useTranslation } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { Callout } from "../../components/callout";
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
-import { Link } from "react-router-dom";
-import React from "react";
-import { RedeemFromTranche } from "./tranche";
-import { RedemptionInformation } from "./home/redemption-information";
-import { Routes } from "../router-config";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import { useTranches } from "../../hooks/use-tranches";
-import { useTranslation } from "react-i18next";
 import { useContracts } from "../../contexts/contracts/contracts-context";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { useTranches } from "../../hooks/use-tranches";
+import { Routes } from "../router-config";
+import { RedemptionInformation } from "./home/redemption-information";
+import {
+  initialRedemptionState,
+  RedemptionActionType,
+  redemptionReducer,
+} from "./redemption-reducer";
+import { RedeemFromTranche } from "./tranche";
 
 const RedemptionRouter = () => {
   const { t } = useTranslation();

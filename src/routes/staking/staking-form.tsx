@@ -1,32 +1,31 @@
 import "./staking-form.scss";
 
+import { gql, useApolloClient } from "@apollo/client";
+import { FormGroup, Radio, RadioGroup } from "@blueprintjs/core";
 import * as Sentry from "@sentry/react";
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 
+import { TokenInput } from "../../components/token-input";
+import { Colors, NetworkParams } from "../../config";
+import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useNetworkParam } from "../../hooks/use-network-param";
+import { useSearchParams } from "../../hooks/use-search-params";
+import { BigNumber } from "../../lib/bignumber";
+import { addDecimal, removeDecimal } from "../../lib/decimals";
 import {
   DelegateSubmissionInput,
   UndelegateSubmissionInput,
   vegaWalletService,
 } from "../../lib/vega-wallet/vega-wallet-service";
-import { FormGroup, Radio, RadioGroup } from "@blueprintjs/core";
 import {
   PartyDelegations,
   PartyDelegationsVariables,
 } from "./__generated__/PartyDelegations";
-import { gql, useApolloClient } from "@apollo/client";
-
-import { BigNumber } from "../../lib/bignumber";
-import { Colors, NetworkParams } from "../../config";
-import React from "react";
 import { StakeFailure } from "./stake-failure";
 import { StakePending } from "./stake-pending";
 import { StakeSuccess } from "./stake-success";
-import { TokenInput } from "../../components/token-input";
-import { addDecimal, removeDecimal } from "../../lib/decimals";
-import { useAppState } from "../../contexts/app-state/app-state-context";
-import { useHistory } from "react-router-dom";
-import { useSearchParams } from "../../hooks/use-search-params";
-import { useTranslation } from "react-i18next";
-import { useNetworkParam } from "../../hooks/use-network-param";
 
 export const PARTY_DELEGATIONS_QUERY = gql`
   query PartyDelegations($partyId: ID!) {

@@ -1,11 +1,13 @@
-import { format, isFuture } from "date-fns";
 import "./proposals-list.scss";
+
+import { format, isFuture } from "date-fns";
 import { useTranslation } from "react-i18next";
 import { Link, useRouteMatch } from "react-router-dom";
-import { Proposals_proposals } from "./__generated__/Proposals";
+
 import { Heading } from "../../components/heading";
-import { ProposalChangeText } from "./proposal-change-text";
+import { Proposals_proposals } from "./__generated__/Proposals";
 import { CurrentProposalState } from "./current-proposal-state";
+import { ProposalChangeText } from "./proposal-change-text";
 
 const DATE_FORMAT = "d MMM yyyy HH:mm";
 

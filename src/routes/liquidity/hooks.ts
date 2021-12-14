@@ -1,10 +1,11 @@
-import React from "react";
-import { REWARDS_ADDRESSES } from "../../config";
-import { BigNumber } from "../../lib/bignumber";
-import { LiquidityAction, LiquidityActionType } from "./liquidity-reducer";
-import { EpochDetails, IVegaLPStaking } from "../../lib/web3-utils";
 import * as Sentry from "@sentry/react";
+import React from "react";
+
+import { REWARDS_ADDRESSES } from "../../config";
 import { useVegaLPStaking } from "../../hooks/use-vega-lp-staking";
+import { BigNumber } from "../../lib/bignumber";
+import { EpochDetails, IVegaLPStaking } from "../../lib/web3-utils";
+import { LiquidityAction, LiquidityActionType } from "./liquidity-reducer";
 
 export const useGetLiquidityBalances = (
   dispatch: React.Dispatch<LiquidityAction>,

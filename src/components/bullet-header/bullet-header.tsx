@@ -1,4 +1,5 @@
 import "./bullet-header.scss";
+
 import React from "react";
 
 interface BulletHeaderProps {

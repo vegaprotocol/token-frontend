@@ -1,4 +1,5 @@
 import { render } from "@testing-library/react";
+
 import { ADDRESSES, EthereumChainIds } from "../../config";
 import { TrancheLabel } from "./tranche-label";
 

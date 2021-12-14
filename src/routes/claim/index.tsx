@@ -1,15 +1,16 @@
 import { useTranslation } from "react-i18next";
-import Claim from "./claim";
-import { RouteChildProps } from "..";
-import { useDocumentTitle } from "../../hooks/use-document-title";
-import { isRestricted } from "./lib/is-restricted";
-import { ClaimRestricted } from "./claim-restricted";
-import { useTranches } from "../../hooks/use-tranches";
-import { SplashScreen } from "../../components/splash-screen";
-import { SplashLoader } from "../../components/splash-loader";
+
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { Heading } from "../../components/heading";
+import { SplashLoader } from "../../components/splash-loader";
+import { SplashScreen } from "../../components/splash-screen";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { useDocumentTitle } from "../../hooks/use-document-title";
+import { useTranches } from "../../hooks/use-tranches";
+import { RouteChildProps } from "..";
+import Claim from "./claim";
+import { ClaimRestricted } from "./claim-restricted";
+import { isRestricted } from "./lib/is-restricted";
 
 const ClaimIndex = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);

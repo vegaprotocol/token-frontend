@@ -1,8 +1,9 @@
-import React from "react";
 import { ethers } from "ethers";
-import { IVegaLPStaking } from "../lib/web3-utils";
-import LPStakingAbi from "../lib/vega-web3/vega-lp-staking";
+import React from "react";
+
 import { useWeb3 } from "../contexts/web3-context/web3-context";
+import LPStakingAbi from "../lib/vega-web3/vega-lp-staking";
+import { IVegaLPStaking } from "../lib/web3-utils";
 
 /**
  * I think this is actually going to need to export 1x ABI per bridge, i.e. around 4

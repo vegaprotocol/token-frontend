@@ -1,18 +1,20 @@
 import "./staking-node.scss";
+
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
-import { ValidatorTable } from "./validator-table";
-import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
+
 import { EpochCountdown } from "../../components/epoch-countdown";
-import { YourStake } from "./your-stake";
-import { StakingForm } from "./staking-form";
-import { StakingWalletsContainer } from "./staking-wallets-container";
+import { Colors } from "../../config";
+import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber";
 import { Staking as StakingQueryResult } from "./__generated__/Staking";
-import { StakingNodesContainer } from "./staking-nodes-container";
-import { Colors } from "../../config";
 import { ConnectToVega } from "./connect-to-vega";
+import { StakingForm } from "./staking-form";
+import { StakingNodesContainer } from "./staking-nodes-container";
+import { StakingWalletsContainer } from "./staking-wallets-container";
+import { ValidatorTable } from "./validator-table";
+import { YourStake } from "./your-stake";
 
 export const StakingNodeContainer = () => {
   return (

@@ -1,12 +1,14 @@
 import "./tranches.scss";
-import { useRouteMatch } from "react-router-dom";
-import { TrancheLabel } from "./tranche-label";
-import { useTranslation } from "react-i18next";
+
 import React from "react";
-import { Tranche } from "../../lib/vega-web3/vega-web3-types";
+import { useTranslation } from "react-i18next";
+import { useRouteMatch } from "react-router-dom";
+
 import { ADDRESSES } from "../../config";
-import { TrancheItem } from "../redemption/tranche-item";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { Tranche } from "../../lib/vega-web3/vega-web3-types";
+import { TrancheItem } from "../redemption/tranche-item";
+import { TrancheLabel } from "./tranche-label";
 
 const trancheMinimum = 10;
 

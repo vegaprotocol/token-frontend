@@ -1,5 +1,6 @@
-import React from "react";
 import { ethers } from "ethers";
+import React from "react";
+
 import { EthereumChainId } from "../../config";
 
 interface Web3ContextShape {

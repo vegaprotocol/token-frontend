@@ -1,9 +1,11 @@
+import "./wallet-card.scss";
+
 import React from "react";
+import { Link } from "react-router-dom";
+
+import { useAnimateValue } from "../../hooks/use-animate-value";
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
-import "./wallet-card.scss";
-import { useAnimateValue } from "../../hooks/use-animate-value";
-import { Link } from "react-router-dom";
 
 const useNumberParts = (
   value: BigNumber | null | undefined,

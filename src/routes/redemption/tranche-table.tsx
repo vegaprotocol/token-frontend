@@ -1,16 +1,17 @@
 import "./tranche-table.scss";
-import React from "react";
 
+import React from "react";
 import { Trans, useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+
 import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../components/key-value-table";
 import { BigNumber } from "../../lib/bignumber";
-import { Link } from "react-router-dom";
-import { TrancheItem } from "./tranche-item";
-import { Routes } from "../router-config";
 import { formatNumber } from "../../lib/format-number";
+import { Routes } from "../router-config";
+import { TrancheItem } from "./tranche-item";
 
 export interface TrancheTableProps {
   tranche: {

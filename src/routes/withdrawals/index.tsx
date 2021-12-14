@@ -1,7 +1,11 @@
 import "./withdrawals.scss";
-import React from "react";
+
 import { gql, useQuery } from "@apollo/client";
+import { format } from "date-fns";
+import orderBy from "lodash/orderBy";
+import React from "react";
 import { useTranslation } from "react-i18next";
+
 import { EtherscanLink } from "../../components/etherscan-link";
 import { Heading } from "../../components/heading";
 import {
@@ -10,23 +14,23 @@ import {
 } from "../../components/key-value-table";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
-import { VegaWalletContainer } from "../../components/vega-wallet-container";
-import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
-import { truncateMiddle } from "../../lib/truncate-middle";
-import { format } from "date-fns";
-import { useContracts } from "../../contexts/contracts/contracts-context";
-import { useTransaction } from "../../hooks/use-transaction";
-import { addDecimal } from "../../lib/decimals";
-import { BigNumber } from "../../lib/bignumber";
 import { TransactionButton } from "../../components/transaction-button";
-import { usePollERC20Approval } from "../../hooks/use-ercPoll20Approval";
-import orderBy from "lodash/orderBy";
+import { VegaWalletContainer } from "../../components/vega-wallet-container";
+import { Flags } from "../../config";
+import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
+import { useContracts } from "../../contexts/contracts/contracts-context";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { TxState } from "../../hooks/transaction-reducer";
+import { usePollERC20Approval } from "../../hooks/use-ercPoll20Approval";
+import { useRefreshBalances } from "../../hooks/use-refresh-balances";
+import { useTransaction } from "../../hooks/use-transaction";
+import { BigNumber } from "../../lib/bignumber";
+import { addDecimal } from "../../lib/decimals";
+import { truncateMiddle } from "../../lib/truncate-middle";
 import {
   WithdrawalsPage,
-  WithdrawalsPageVariables,
   WithdrawalsPage_party_withdrawals,
+  WithdrawalsPageVariables,
 } from "./__generated__/WithdrawalsPage";
 import { Flags } from "../../config";
 import { useRefreshBalances } from "../../hooks/use-refresh-balances";

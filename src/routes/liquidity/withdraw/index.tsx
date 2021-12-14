@@ -1,32 +1,33 @@
 import "./withdraw.scss";
 
+import * as Sentry from "@sentry/react";
 import React from "react";
-import { useVegaLPStaking } from "../../../hooks/use-vega-lp-staking";
+import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+
+import { EthConnectPrompt } from "../../../components/eth-connect-prompt";
+import {
+  KeyValueTable,
+  KeyValueTableRow,
+} from "../../../components/key-value-table";
+import { TransactionCallout } from "../../../components/transaction-callout";
 import { REWARDS_ADDRESSES } from "../../../config";
-import { useTransaction } from "../../../hooks/use-transaction";
+import { useWeb3 } from "../../../contexts/web3-context/web3-context";
 import {
   TransactionActionType,
   TxState,
 } from "../../../hooks/transaction-reducer";
-import { TransactionCallout } from "../../../components/transaction-callout";
-import { useTranslation } from "react-i18next";
-import { EthConnectPrompt } from "../../../components/eth-connect-prompt";
-import * as Sentry from "@sentry/react";
+import { useTransaction } from "../../../hooks/use-transaction";
+import { useVegaLPStaking } from "../../../hooks/use-vega-lp-staking";
+import { formatNumber } from "../../../lib/format-number";
+import { Routes } from "../../router-config";
+import { useGetLiquidityBalances } from "../hooks";
 import {
   LiquidityAction,
   LiquidityState,
   LpContractData,
 } from "../liquidity-reducer";
-import { useGetLiquidityBalances } from "../hooks";
-import {
-  KeyValueTable,
-  KeyValueTableRow,
-} from "../../../components/key-value-table";
-import { Link } from "react-router-dom";
-import { Routes } from "../../router-config";
-import { useWeb3 } from "../../../contexts/web3-context/web3-context";
-import { formatNumber } from "../../../lib/format-number";
 
 export const LiquidityWithdrawPage = ({
   contractData,

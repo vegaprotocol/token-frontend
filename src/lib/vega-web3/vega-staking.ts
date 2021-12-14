@@ -1,9 +1,10 @@
-import { BigNumber } from "../../lib/bignumber";
 import BN from "bn.js";
 import { ethers } from "ethers";
+
+import { BigNumber } from "../../lib/bignumber";
 import stakingAbi from "../abis/staking_abi.json";
-import { IVegaStaking } from "../web3-utils";
 import { addDecimal, removeDecimal } from "../decimals";
+import { IVegaStaking } from "../web3-utils";
 import { combineStakeEventsByVegaKey } from "./stake-helpers";
 
 export default class StakingAbi implements IVegaStaking {

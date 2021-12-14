@@ -1,4 +1,5 @@
 import "./loader.scss";
+
 import React from "react";
 
 export const Loader = () => {

@@ -1,6 +1,7 @@
+import { Radio, RadioGroup } from "@blueprintjs/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Radio, RadioGroup } from "@blueprintjs/core";
+
 import { Flags } from "../../config";
 
 export enum StakingMethod {

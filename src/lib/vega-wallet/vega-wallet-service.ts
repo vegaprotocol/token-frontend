@@ -1,9 +1,10 @@
+import semver from "semver";
+
+import { VoteValue } from "../../__generated__/globalTypes";
 import { VegaKey } from "../../contexts/app-state/app-state-context";
 import { VOTE_VALUE_MAP } from "../../routes/governance/vote-types";
-import { VoteValue } from "../../__generated__/globalTypes";
 import { LocalStorage } from "../storage";
 import { GenericErrorResponse } from "./vega-wallet-types";
-import semver from "semver";
 
 export const MINIMUM_WALLET_VERSION =
   process.env.REACT_APP_SUPPORTED_WALLET_VERSION;

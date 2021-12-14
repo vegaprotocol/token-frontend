@@ -1,8 +1,12 @@
-import React from "react";
 import * as Sentry from "@sentry/react";
-import { SplashScreen } from "../../components/splash-screen";
-import { SplashLoader } from "../../components/splash-loader";
+import WalletConnectProvider from "@walletconnect/web3-provider";
+import { ethers } from "ethers";
+import React from "react";
 import { useTranslation } from "react-i18next";
+import Web3Modal, { getInjectedProviderName } from "web3modal";
+
+import { SplashLoader } from "../../components/splash-loader";
+import { SplashScreen } from "../../components/splash-screen";
 import {
   APP_CHAIN_ID,
   ChainIdMap,
@@ -10,9 +14,6 @@ import {
   EthereumChainNames,
 } from "../../config";
 import { Web3Context } from "./web3-context";
-import { ethers } from "ethers";
-import Web3Modal, { getInjectedProviderName } from "web3modal";
-import WalletConnectProvider from "@walletconnect/web3-provider";
 
 const web3Modal = new Web3Modal({
   cacheProvider: true,
