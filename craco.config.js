@@ -50,6 +50,10 @@ module.exports = function (options) {
               urlPrefix: "~/static/js",
             })
           : null,
+        new webpack.ProvidePlugin({
+          React: "react",
+          ReactDOM: "react-dom",
+        }),
         new MiniCssExtractPlugin({
           // Options similar to the same options in webpackOptions.output
           // both options are optional
