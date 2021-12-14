@@ -91,11 +91,11 @@ export const ClaimFlow = ({
   }
 
   if (state.claimStatus === ClaimStatus.Used) {
-    return <CodeUsed address={address} />;
+    return <CodeUsed />;
   }
 
   if (state.claimStatus === ClaimStatus.Expired) {
-    return <Expired address={address} code={shortCode} />;
+    return <Expired code={shortCode} />;
   }
 
   if (state.claimStatus === ClaimStatus.Finished) {
