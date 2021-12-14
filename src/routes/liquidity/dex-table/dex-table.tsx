@@ -12,6 +12,8 @@ import {
 } from "../../../components/key-value-table";
 import { Links, REWARDS_POOL_ADDRESSES } from "../../../config";
 import { formatNumber } from "../../../lib/format-number";
+import { Routes } from "../../router-config";
+import { LiquidityState } from "../liquidity-reducer";
 
 interface DexTokensSectionProps {
   name: string;
