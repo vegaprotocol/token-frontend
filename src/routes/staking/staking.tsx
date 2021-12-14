@@ -2,18 +2,15 @@ import { Trans, useTranslation } from "react-i18next";
 import { Link, useRouteMatch } from "react-router-dom";
 
 import { BulletHeader } from "../../components/bullet-header";
-import { Callout } from "../../components/callout";
-import { EtherscanLink } from "../../components/etherscan-link";
-import { CopyToClipboardType } from "../../components/etherscan-link/etherscan-link";
-import { Error, Tick } from "../../components/icons";
+import { ConnectToVega } from "./connect-to-vega";
 import { Links } from "../../config";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
-import { Staking as StakingQueryResult } from "./__generated__/Staking";
-import { ConnectToVega } from "./connect-to-vega";
-import { NodeList } from "./node-list";
+import { EtherscanLink } from "../../components/etherscan-link";
+import { Callout } from "@vegaprotocol/ui-toolkit";
+import { CopyToClipboardType } from "../../components/etherscan-link/etherscan-link";
 
 export const Staking = ({ data }: { data?: StakingQueryResult }) => {
   const { t } = useTranslation();

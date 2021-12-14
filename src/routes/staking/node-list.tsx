@@ -12,6 +12,9 @@ import { formatNumber } from "../../lib/format-number";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { Nodes } from "./__generated__/Nodes";
 import { Staking_epoch, Staking_party } from "./__generated__/Staking";
+import { EpochCountdown } from "../../components/epoch-countdown";
+import { Nodes } from "./__generated__/Nodes";
+import { Callout } from "@vegaprotocol/ui-toolkit";
 
 export const NODES_QUERY = gql`
   query Nodes {
