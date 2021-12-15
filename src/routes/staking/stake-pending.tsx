@@ -1,4 +1,5 @@
 import { Callout } from "@vegaprotocol/ui-toolkit";
+
 import { Loader } from "../../components/loader";
 import { StakeAction } from "./staking-form";
 

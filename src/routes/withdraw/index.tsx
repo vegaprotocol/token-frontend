@@ -1,7 +1,11 @@
 import { gql, useQuery } from "@apollo/client";
-import React from "react";
-import { gql, useQuery } from "@apollo/client";
 import { Callout } from "@vegaprotocol/ui-toolkit";
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+
+import { AccountType } from "../../__generated__/globalTypes";
+import { EthWalletContainer } from "../../components/eth-wallet-container";
 import { Heading } from "../../components/heading";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";

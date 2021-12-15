@@ -1,7 +1,8 @@
 import { FormGroup, InputGroup, Intent } from "@blueprintjs/core";
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Callout } from "@vegaprotocol/ui-toolkit";
+
 import { Ethereum } from "../../components/icons";
 
 interface EthAddressSelectorProps {

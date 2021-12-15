@@ -1,12 +1,12 @@
 import { gql, useQuery } from "@apollo/client";
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import compact from "lodash/compact";
 import flow from "lodash/flow";
 import orderBy from "lodash/orderBy";
-import compact from "lodash/compact";
-import { gql, useQuery } from "@apollo/client";
-import { Proposals } from "./__generated__/Proposals";
-import { Callout } from "@vegaprotocol/ui-toolkit";
+import React from "react";
 import { useTranslation } from "react-i18next";
+
+import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { Proposals } from "./__generated__/Proposals";
 import { PROPOSALS_FRAGMENT } from "./proposal-fragment";

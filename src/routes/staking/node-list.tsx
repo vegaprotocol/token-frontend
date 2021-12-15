@@ -1,20 +1,17 @@
 import "./node-list.scss";
 
 import { gql, useQuery } from "@apollo/client";
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useRouteMatch } from "react-router-dom";
 
-import { Callout } from "../../components/callout";
 import { EpochCountdown } from "../../components/epoch-countdown";
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { Nodes } from "./__generated__/Nodes";
 import { Staking_epoch, Staking_party } from "./__generated__/Staking";
-import { EpochCountdown } from "../../components/epoch-countdown";
-import { Nodes } from "./__generated__/Nodes";
-import { Callout } from "@vegaprotocol/ui-toolkit";
 
 export const NODES_QUERY = gql`
   query Nodes {

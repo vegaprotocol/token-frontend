@@ -1,8 +1,10 @@
 import "./redemption-information.scss";
 
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import React from "react";
 import { Trans, useTranslation } from "react-i18next";
-import { Callout } from "@vegaprotocol/ui-toolkit";
+import { Link, useHistory } from "react-router-dom";
+
 import { HandUp } from "../../../components/icons";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { formatNumber } from "../../../lib/format-number";
