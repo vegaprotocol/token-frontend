@@ -1,9 +1,9 @@
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import { Callout } from "@vegaprotocol/ui-toolkit";
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";

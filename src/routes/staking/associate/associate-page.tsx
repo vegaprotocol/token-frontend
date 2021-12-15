@@ -1,7 +1,7 @@
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { Callout } from "../../../components/callout";
 import {
   StakingMethod,
   StakingMethodRadio,
@@ -15,7 +15,7 @@ import { useSearchParams } from "../../../hooks/use-search-params";
 import { AssociateTransaction } from "./associate-transaction";
 import { ContractAssociate } from "./contract-associate";
 import { useAddStake, usePollForStakeLinking } from "./hooks";
-import { Callout } from "@vegaprotocol/ui-toolkit";
+import { WalletAssociate } from "./wallet-associate";
 
 export const AssociatePage = ({
   address,

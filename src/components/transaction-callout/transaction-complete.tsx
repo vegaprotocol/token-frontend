@@ -1,5 +1,6 @@
-import { useTranslation } from "react-i18next";
 import { Callout } from "@vegaprotocol/ui-toolkit";
+import { useTranslation } from "react-i18next";
+
 import { EtherscanLink } from "../etherscan-link";
 import { Tick } from "../icons";
 

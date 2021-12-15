@@ -1,10 +1,10 @@
 import * as Sentry from "@sentry/react";
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
-import { Callout } from "../../../components/callout";
 import { EthConnectPrompt } from "../../../components/eth-connect-prompt";
 import { Error } from "../../../components/icons";
 import { TokenInput } from "../../../components/token-input";
@@ -21,9 +21,7 @@ import { BigNumber } from "../../../lib/bignumber";
 import { Routes } from "../../router-config";
 import { DexTokensSection } from "../dex-table";
 import { useGetLiquidityBalances } from "../hooks";
-import { Callout } from "@vegaprotocol/ui-toolkit";
-import { Error } from "../../../components/icons";
-import { useWeb3 } from "../../../contexts/web3-context/web3-context";
+import { LiquidityAction, LiquidityState } from "../liquidity-reducer";
 
 export const LiquidityDepositPage = ({
   lpTokenAddress,
