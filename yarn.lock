@@ -3068,10 +3068,10 @@
     "@typescript-eslint/types" "4.33.0"
     eslint-visitor-keys "^2.0.0"
 
-"@vegaprotocol/ui-toolkit@0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@vegaprotocol/ui-toolkit/-/ui-toolkit-0.4.0.tgz#732840decd83cc72afb356f8560d80191408acce"
-  integrity sha512-QoXdD9c88fM1VtbzaU493m8CqmjQLziBSYtH5NFo9xUdAXzKml7JZXSrnpJqzATZTlFiKn57hpGyGBERkbSJrA==
+"@vegaprotocol/ui-toolkit@0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@vegaprotocol/ui-toolkit/-/ui-toolkit-0.5.0.tgz#55d7ca97b49b92bbc2edfed4bfb2ad593726f7d0"
+  integrity sha512-RNcPdjIqB0XcVcR3Fbbf1ajFZRmA867jP4dwNqDxHlsZ/s3Gf8mrFGtLZkSdfo5wCrxsm56uYSrwNrtbeRsCxQ==
   dependencies:
     "@babel/plugin-transform-runtime" "^7.15.0"
     "@testing-library/jest-dom" "^5.11.4"

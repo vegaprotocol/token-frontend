@@ -2,9 +2,9 @@ const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const SentryPlugin = require("@sentry/webpack-plugin");
-const package = require("./package.json");
+const meta = require("./package.json");
 
-module.exports = function (options) {
+module.exports = function () {
   // determine if we are using sentry
   let useSentryPlugin = false;
 
@@ -44,16 +44,12 @@ module.exports = function (options) {
       plugins: [
         useSentryPlugin
           ? new SentryPlugin({
-              release: package.version,
+              release: meta.version,
               include: "build/static/js",
               ignore: ["node_modules", "webpack.config.js"],
               urlPrefix: "~/static/js",
             })
           : null,
-        new webpack.ProvidePlugin({
-          React: "react",
-          ReactDOM: "react-dom",
-        }),
         new MiniCssExtractPlugin({
           // Options similar to the same options in webpackOptions.output
           // both options are optional
