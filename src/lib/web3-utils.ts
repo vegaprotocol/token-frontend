@@ -34,6 +34,7 @@ export interface EpochDetails {
 }
 
 export interface IStaking {
+  contract: ethers.Contract;
   stakeBalance(address: string, vegaKey: string): Promise<BigNumber>;
   totalStaked(): Promise<BigNumber>;
   removeStake(
@@ -131,6 +132,7 @@ export interface IVegaLPStaking {
 }
 
 export interface IVegaErc20Bridge {
+  contract: ethers.Contract;
   withdraw(approval: {
     assetSource: string;
     amount: string;

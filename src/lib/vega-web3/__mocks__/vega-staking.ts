@@ -9,6 +9,7 @@ import { promiEventFactory, uuidv4 } from "./promi-manager";
 const BASE_URL = "mocks/staking";
 
 class MockedVegaStaking implements IVegaStaking {
+  contract: any;
   private decimals: number;
 
   constructor(

@@ -8,6 +8,7 @@ import {
 } from "../../contexts/app-state/app-state-context";
 import { useContracts } from "../../contexts/contracts/contracts-context";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { useEthTransaction } from "../../hooks/use-eth-transaction";
 import { useGetAssociationBreakdown } from "../../hooks/use-get-association-breakdown";
 import { useGetUserTrancheBalances } from "../../hooks/use-get-user-tranche-balances";
 import { BigNumber } from "../../lib/bignumber";
@@ -16,6 +17,7 @@ export const BalanceManager = ({ children }: any) => {
   const contracts = useContracts();
   const { ethAddress } = useWeb3();
   const { appDispatch } = useAppState();
+  useEthTransaction(ethAddress, 6);
 
   const getUserTrancheBalances = useGetUserTrancheBalances(
     ethAddress,

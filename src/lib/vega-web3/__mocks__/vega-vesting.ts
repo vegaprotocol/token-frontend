@@ -10,6 +10,8 @@ import { promiEventFactory, uuidv4 } from "./promi-manager";
 const BASE_URL = "../mocks/vesting";
 
 class MockedVesting implements IVegaVesting {
+  // @ts-ignore
+  contract = null;
   private decimals: number;
 
   constructor(

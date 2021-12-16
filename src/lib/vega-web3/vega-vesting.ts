@@ -10,7 +10,7 @@ import { getTranchesFromHistory } from "./tranche-helpers";
 import { Tranche } from "./vega-web3-types";
 
 export default class VegaVesting implements IVegaVesting {
-  private contract: ethers.Contract;
+  public contract: ethers.Contract;
   private decimals: number;
 
   constructor(

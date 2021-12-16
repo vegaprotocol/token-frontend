@@ -4,7 +4,7 @@ import erc20BridgeAbi from "../abis/erc20_bridge_abi.json";
 import { IVegaErc20Bridge } from "../web3-utils";
 
 export class VegaErc20Bridge implements IVegaErc20Bridge {
-  private contract: ethers.Contract;
+  public contract: ethers.Contract;
 
   constructor(
     provider: ethers.providers.Web3Provider,

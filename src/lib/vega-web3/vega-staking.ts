@@ -8,7 +8,7 @@ import { IVegaStaking } from "../web3-utils";
 import { combineStakeEventsByVegaKey } from "./stake-helpers";
 
 export default class StakingAbi implements IVegaStaking {
-  private contract: ethers.Contract;
+  public contract: ethers.Contract;
   private decimals: number;
 
   constructor(
