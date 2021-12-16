@@ -1,9 +1,10 @@
+import semver from "semver";
+
+import { VoteValue } from "../../__generated__/globalTypes";
 import { VegaKey } from "../../contexts/app-state/app-state-context";
 import { VOTE_VALUE_MAP } from "../../routes/governance/vote-types";
-import { VoteValue } from "../../__generated__/globalTypes";
 import { LocalStorage } from "../storage";
 import { GenericErrorResponse } from "./vega-wallet-types";
-import semver from "semver";
 
 export const MINIMUM_WALLET_VERSION =
   process.env.REACT_APP_SUPPORTED_WALLET_VERSION;
@@ -12,6 +13,7 @@ export const DEFAULT_WALLET_URL = "http://localhost:1789";
 export const HOSTED_WALLET_URL = "https://wallet.testnet.vega.xyz";
 const TOKEN_STORAGE_KEY = "vega_wallet_token";
 const WALLET_URL_KEY = "vega_wallet_url";
+const KEY_STORAGE_KEY = "vega_wallet_key";
 
 const Endpoints = {
   STATUS: "status",
@@ -102,11 +104,13 @@ export class VegaWalletService implements IVegaWalletService {
   url: string;
   token: string;
   statusPoll: any;
+  key: string;
 
   constructor() {
     this.version = 1;
     this.url = LocalStorage.getItem(WALLET_URL_KEY) || DEFAULT_WALLET_URL;
     this.token = LocalStorage.getItem(TOKEN_STORAGE_KEY) || "";
+    this.key = LocalStorage.getItem(KEY_STORAGE_KEY) || "";
   }
 
   async getToken(params: {
@@ -153,6 +157,7 @@ export class VegaWalletService implements IVegaWalletService {
       const json = await res.json();
 
       if (json.success) {
+        this.clearKey();
         this.clearToken();
         this.clearWalletUrl();
         return [undefined, true];
@@ -246,6 +251,16 @@ export class VegaWalletService implements IVegaWalletService {
     } catch (err) {
       return this.handleServiceUnavailable();
     }
+  }
+
+  setKey(key: string) {
+    this.key = key;
+    LocalStorage.setItem(KEY_STORAGE_KEY, key);
+  }
+
+  private clearKey() {
+    this.key = "";
+    LocalStorage.removeItem(KEY_STORAGE_KEY);
   }
 
   private setToken(token: string) {

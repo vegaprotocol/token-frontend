@@ -1,5 +1,6 @@
-import React from "react";
 import * as Sentry from "@sentry/react";
+import React from "react";
+
 import { ADDRESSES } from "../../config";
 import {
   AppStateActionType,
@@ -7,9 +8,9 @@ import {
 } from "../../contexts/app-state/app-state-context";
 import { useContracts } from "../../contexts/contracts/contracts-context";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
-import { BigNumber } from "../../lib/bignumber";
-import { useGetUserTrancheBalances } from "../../hooks/use-get-user-tranche-balances";
 import { useGetAssociationBreakdown } from "../../hooks/use-get-association-breakdown";
+import { useGetUserTrancheBalances } from "../../hooks/use-get-user-tranche-balances";
+import { BigNumber } from "../../lib/bignumber";
 
 export const BalanceManager = ({ children }: any) => {
   const contracts = useContracts();
@@ -60,8 +61,10 @@ export const BalanceManager = ({ children }: any) => {
   }, [ethAddress, getUserTrancheBalances]);
 
   React.useEffect(() => {
-    getAssociationBreakdown();
-  }, [getAssociationBreakdown]);
+    if (ethAddress) {
+      getAssociationBreakdown();
+    }
+  }, [ethAddress, getAssociationBreakdown]);
 
   return children;
 };

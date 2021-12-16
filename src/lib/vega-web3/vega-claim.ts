@@ -1,9 +1,10 @@
-import { BigNumber } from "../../lib/bignumber";
 import { ethers } from "ethers";
+
+import { BigNumber } from "../../lib/bignumber";
 import claimAbi from "../abis/claim_abi.json";
-import { IVegaClaim } from "../web3-utils";
-import { removeDecimal } from "../decimals";
 import { asciiToHex } from "../ascii-to-hex";
+import { removeDecimal } from "../decimals";
+import { IVegaClaim } from "../web3-utils";
 
 export const UNSPENT_CODE = "0x0000000000000000000000000000000000000000";
 export const SPENT_CODE = "0x0000000000000000000000000000000000000001";

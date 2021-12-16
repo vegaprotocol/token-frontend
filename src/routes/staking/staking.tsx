@@ -1,19 +1,19 @@
-import { useAppState } from "../../contexts/app-state/app-state-context";
-import { Error, Tick } from "../../components/icons";
-import { Link, useRouteMatch } from "react-router-dom";
-import { NodeList, NodeListItemProps } from "./node-list";
 import { Trans, useTranslation } from "react-i18next";
+import { Link, useRouteMatch } from "react-router-dom";
 
-import { BigNumber } from "../../lib/bignumber";
 import { BulletHeader } from "../../components/bullet-header";
 import { Callout } from "../../components/callout";
-import { ConnectToVega } from "./connect-to-vega";
+import { EtherscanLink } from "../../components/etherscan-link";
+import { CopyToClipboardType } from "../../components/etherscan-link/etherscan-link";
+import { Error, Tick } from "../../components/icons";
 import { Links } from "../../config";
-import React from "react";
-import { Staking as StakingQueryResult } from "./__generated__/Staking";
-import { useVegaUser } from "../../hooks/use-vega-user";
+import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
+import { Staking as StakingQueryResult } from "./__generated__/Staking";
+import { ConnectToVega } from "./connect-to-vega";
+import { NodeList } from "./node-list";
 
 export const Staking = ({ data }: { data?: StakingQueryResult }) => {
   const { t } = useTranslation();
@@ -55,7 +55,12 @@ export const StakingStepConnectWallets = () => {
     return (
       <Callout intent="success" icon={<Tick />} title={"Connected"}>
         <p>
-          {t("Connected Ethereum address")} {ethAddress}
+          {t("Connected Ethereum address")}&nbsp;
+          <EtherscanLink
+            address={ethAddress}
+            text={ethAddress}
+            copyToClipboard={CopyToClipboardType.LINK}
+          />
         </p>
         <p>{t("stakingVegaWalletConnected", { key: currVegaKey.pub })}</p>
       </Callout>
@@ -70,11 +75,7 @@ export const StakingStepConnectWallets = () => {
           components={{
             vegaWalletLink: (
               // eslint-disable-next-line jsx-a11y/anchor-has-content
-              <a
-                href={Links.WALLET_RELEASES}
-                target="_blank"
-                rel="noreferrer"
-              />
+              <a href={Links.WALLET_GUIDE} target="_blank" rel="noreferrer" />
             ),
           }}
         />
@@ -88,7 +89,7 @@ export const StakingStepConnectWallets = () => {
       ) : (
         <p>
           <button onClick={connect} className="fill" type="button">
-            {t("Connect to an Ethereum wallet")}
+            {t("connectEthWallet")}
           </button>
         </p>
       )}
@@ -170,57 +171,5 @@ export const StakingStepSelectNode = ({
 }: {
   data?: StakingQueryResult;
 }) => {
-  const { t } = useTranslation();
-  const { currVegaKey } = useVegaUser();
-
-  const nodes = React.useMemo<NodeListItemProps[]>(() => {
-    if (!data?.nodes) return [];
-
-    const nodesWithPercentages = data.nodes.map((node) => {
-      const stakedTotal = new BigNumber(
-        data?.nodeData?.stakedTotalFormatted || 0
-      );
-      const stakedOnNode = new BigNumber(node.stakedTotalFormatted);
-      const stakedTotalPercentage =
-        stakedTotal.isEqualTo(0) || stakedOnNode.isEqualTo(0)
-          ? "-"
-          : stakedOnNode.dividedBy(stakedTotal).times(100).dp(2).toString() +
-            "%";
-
-      const userStake = data.party?.delegations?.length
-        ? data.party?.delegations
-            ?.filter((d) => d.node.id === node.id)
-            ?.filter((d) => d.epoch === Number(data.epoch.id))
-            .reduce((sum, d) => {
-              const value = new BigNumber(d.amountFormatted);
-              return sum.plus(value);
-            }, new BigNumber(0))
-        : new BigNumber(0);
-
-      const userStakePercentage =
-        userStake.isEqualTo(0) || stakedOnNode.isEqualTo(0)
-          ? "-"
-          : userStake.dividedBy(stakedOnNode).times(100).dp(2).toString() + "%";
-
-      return {
-        id: node.id,
-        name: node.name,
-        pubkey: node.pubkey,
-        stakedTotal,
-        stakedOnNode,
-        stakedTotalPercentage,
-        userStake,
-        userStakePercentage,
-        epoch: data.epoch,
-      };
-    });
-
-    return nodesWithPercentages;
-  }, [data]);
-
-  if (!currVegaKey) {
-    return <p className="text-muted">{t("connectVegaWallet")}</p>;
-  }
-
-  return <NodeList nodes={nodes} epoch={data?.epoch} />;
+  return <NodeList epoch={data?.epoch} party={data?.party} />;
 };

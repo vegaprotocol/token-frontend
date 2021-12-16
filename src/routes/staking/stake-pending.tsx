@@ -1,7 +1,8 @@
+import { useTranslation } from "react-i18next";
+
 import { Callout } from "../../components/callout";
 import { Loader } from "../../components/loader";
 import { StakeAction } from "./staking-form";
-import { useTranslation } from "react-i18next";
 
 interface StakePendingProps {
   action: StakeAction;
@@ -12,7 +13,7 @@ interface StakePendingProps {
 export const StakePending = ({
   action,
   amount,
-  nodeName,
+  nodeName
 }: StakePendingProps) => {
   const { t } = useTranslation();
   const titleArgs = { amount, node: nodeName };

@@ -1,20 +1,27 @@
 import "./index.scss";
+
 import { useQuery } from "@apollo/client";
+import { formatDistance } from "date-fns";
+// @ts-ignore
+import Duration from "duration-js";
 import gql from "graphql-tag";
+import React from "react";
 import { useTranslation } from "react-i18next";
+
+import { Callout } from "../../../components/callout";
+import { EpochCountdown } from "../../../components/epoch-countdown";
+import { Heading } from "../../../components/heading";
 import { SplashLoader } from "../../../components/splash-loader";
 import { SplashScreen } from "../../../components/splash-screen";
-import { EpochCountdown } from "../../../components/epoch-countdown";
-import { Rewards } from "./__generated__/Rewards";
-import { useVegaUser } from "../../../hooks/use-vega-user";
-import { RewardInfo } from "./reward-info";
+import { NetworkParams } from "../../../config";
 import {
   AppStateActionType,
   useAppState,
 } from "../../../contexts/app-state/app-state-context";
 import { useNetworkParam } from "../../../hooks/use-network-param";
-import { NetworkParams } from "../../../config";
-import { Heading } from "../../../components/heading";
+import { useVegaUser } from "../../../hooks/use-vega-user";
+import { Rewards } from "./__generated__/Rewards";
+import { RewardInfo } from "./reward-info";
 
 export const REWARDS_QUERY = gql`
   query Rewards($partyId: ID!) {
@@ -26,9 +33,15 @@ export const REWARDS_QUERY = gql`
           symbol
         }
         rewards {
-          assetId
-          partyId
-          epoch
+          asset {
+            id
+          }
+          party {
+            id
+          }
+          epoch {
+            id
+          }
           amount
           amountFormatted @client
           percentageOfTotal
@@ -66,7 +79,17 @@ export const RewardsIndex = () => {
     data: rewardAssetData,
     loading: rewardAssetLoading,
     error: rewardAssetError,
-  } = useNetworkParam([NetworkParams.REWARD_ASSET]);
+  } = useNetworkParam([
+    NetworkParams.REWARD_ASSET,
+    NetworkParams.REWARD_PAYOUT_DURATION,
+  ]);
+
+  const payoutDuration = React.useMemo(() => {
+    if (!rewardAssetData || !rewardAssetData[1]) {
+      return 0;
+    }
+    return new Duration(rewardAssetData[1]).milliseconds();
+  }, [rewardAssetData]);
 
   if (error || rewardAssetError) {
     return (
@@ -91,6 +114,16 @@ export const RewardsIndex = () => {
       <Heading title={t("pageTitleRewards")} />
       <p>{t("rewardsPara1")}</p>
       <p>{t("rewardsPara2")}</p>
+      {payoutDuration ? (
+        <Callout
+          title={t("rewardsCallout", {
+            duration: formatDistance(new Date(0), payoutDuration),
+          })}
+          intent="warn"
+        >
+          <p>{t("rewardsPara3")}</p>
+        </Callout>
+      ) : null}
       {!loading &&
         data &&
         !error &&
@@ -107,7 +140,6 @@ export const RewardsIndex = () => {
         {currVegaKey && vegaKeys?.length ? (
           <RewardInfo
             currVegaKey={currVegaKey}
-            vegaKeys={vegaKeys}
             data={data}
             rewardAssetId={rewardAssetData[0]}
           />
@@ -121,7 +153,7 @@ export const RewardsIndex = () => {
               })
             }
           >
-            {t("Connect to Vega wallet")}
+            {t("connectVegaWallet")}
           </button>
         )}
       </section>

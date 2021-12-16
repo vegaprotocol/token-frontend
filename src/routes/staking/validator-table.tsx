@@ -1,14 +1,17 @@
 import "./validator-table.scss";
+
 import React from "react";
 import { useTranslation } from "react-i18next";
 
+import { EtherscanLink } from "../../components/etherscan-link";
+import { CopyToClipboardType } from "../../components/etherscan-link/etherscan-link";
 import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../components/key-value-table";
 import { BigNumber } from "../../lib/bignumber";
-import { Staking_nodes } from "./__generated__/Staking";
 import { formatNumber } from "../../lib/format-number";
+import { Staking_nodes } from "./__generated__/Staking";
 
 export interface ValidatorTableProps {
   node: Staking_nodes;
@@ -22,7 +25,6 @@ export const ValidatorTable = ({
   stakeThisEpoch,
 }: ValidatorTableProps) => {
   const { t } = useTranslation();
-
   const stakePercentage = React.useMemo(() => {
     const total = new BigNumber(stakedTotal);
     const stakedOnNode = new BigNumber(node.stakedTotalFormatted);
@@ -53,6 +55,16 @@ export const ValidatorTable = ({
         <KeyValueTableRow>
           <th>{t("IP ADDRESS")}</th>
           <td>{node.location}</td>
+        </KeyValueTableRow>
+        <KeyValueTableRow>
+          <th>{t("ETHEREUM ADDRESS")}</th>
+          <td>
+            <EtherscanLink
+              text={node.ethereumAdddress}
+              address={node.ethereumAdddress}
+              copyToClipboard={CopyToClipboardType.LINK}
+            />
+          </td>
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("TOTAL STAKE")}</th>

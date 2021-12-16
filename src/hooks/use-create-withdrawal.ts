@@ -1,15 +1,16 @@
-import React from "react";
+import { gql,useApolloClient } from "@apollo/client";
 import * as Sentry from "@sentry/react";
+import React from "react";
+
+import { sigToId } from "../lib/sig-to-id";
 import {
   vegaWalletService,
   WithdrawSubmissionInput,
 } from "../lib/vega-wallet/vega-wallet-service";
-import { useApolloClient, gql } from "@apollo/client";
-import { sigToId } from "../lib/sig-to-id";
 import {
-  WithdrawalEvents,
-  WithdrawalEventsVariables,
-} from "./__generated__/WithdrawalEvents";
+  WithdrawalPoll,
+  WithdrawalPollVariables,
+} from "./__generated__/WithdrawalPoll";
 
 export enum Status {
   Idle,
@@ -25,32 +26,25 @@ type Submit = (
   receiverAddress: string
 ) => Promise<void>;
 
-const WITHDRAWAL_SUB = gql`
-  subscription WithdrawalEvents($partyId: ID!) {
-    busEvents(partyId: $partyId, batchSize: 0, types: [Withdrawal]) {
-      eventId
-      block
-      type
-      event {
-        ... on Withdrawal {
+const WITHDRAWAL_QUERY = gql`
+  query WithdrawalPoll($partyId: ID!) {
+    party(id: $partyId) {
+      id
+      withdrawals {
+        id
+        amount
+        status
+        asset {
           id
-          amount
-          status
-          asset {
-            id
-            symbol
-            decimals
-          }
-          party {
-            id
-          }
-          createdTimestamp
-          withdrawnTimestamp
-          txHash
-          details {
-            ... on Erc20WithdrawalDetails {
-              receiverAddress
-            }
+          symbol
+          decimals
+        }
+        createdTimestamp
+        withdrawnTimestamp
+        txHash
+        details {
+          ... on Erc20WithdrawalDetails {
+            receiverAddress
           }
         }
       }
@@ -60,7 +54,6 @@ const WITHDRAWAL_SUB = gql`
 
 export function useCreateWithdrawal(pubKey: string): [Status, Submit] {
   const mountedRef = React.useRef(true);
-  const subRef = React.useRef<ZenObservable.Subscription | null>(null);
   const client = useApolloClient();
   const [status, setStatus] = React.useState(Status.Idle);
   const [id, setId] = React.useState("");
@@ -68,12 +61,6 @@ export function useCreateWithdrawal(pubKey: string): [Status, Submit] {
   const safeSetStatus = (status: Status) => {
     if (mountedRef.current) {
       setStatus(status);
-    }
-  };
-
-  const stopSub = () => {
-    if (subRef.current) {
-      subRef.current.unsubscribe();
     }
   };
 
@@ -115,38 +102,37 @@ export function useCreateWithdrawal(pubKey: string): [Status, Submit] {
   );
 
   React.useEffect(() => {
+    let interval: any = null;
     if (status === Status.Pending) {
-      // start bus event sub
-      subRef.current = client
-        .subscribe<WithdrawalEvents, WithdrawalEventsVariables>({
-          query: WITHDRAWAL_SUB,
-          variables: { partyId: pubKey },
-        })
-        .subscribe(({ data }) => {
-          if (!data?.busEvents?.length) return;
-
-          // find matching withdrawals
-          const withdrawal = data.busEvents.find((e) => {
-            if (e.event.__typename !== "Withdrawal") return false;
-            if (e.event.id === id) return true;
-            return false;
+      interval = setInterval(async () => {
+        try {
+          const { data } = await client.query<
+            WithdrawalPoll,
+            WithdrawalPollVariables
+          >({
+            fetchPolicy: "network-only",
+            query: WITHDRAWAL_QUERY,
+            variables: { partyId: pubKey },
           });
 
+          // find matching withdrawals
+          const withdrawal = data?.party?.withdrawals?.find((e) => {
+            return e.id === id;
+          });
           if (withdrawal) {
             safeSetStatus(Status.Success);
-            stopSub();
+            clearInterval(interval);
           }
-        });
-    }
-
-    if (status === Status.Success || status === Status.Failure) {
-      stopSub();
+        } catch (err) {
+          clearInterval(interval);
+        }
+      }, 1000);
     }
 
     return () => {
-      stopSub();
+      clearInterval(interval);
     };
-  }, [status, client, pubKey, id]);
+  }, [client, id, pubKey, status]);
 
   React.useEffect(() => {
     mountedRef.current = true;

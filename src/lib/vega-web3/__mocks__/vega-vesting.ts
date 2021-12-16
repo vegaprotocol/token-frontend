@@ -1,8 +1,10 @@
+/* eslint-disable */
 import { ethers } from "ethers";
+
 import { BigNumber } from "../../../lib/bignumber";
-import { Tranche } from "../vega-web3-types";
-import { IVegaVesting } from "../../web3-utils";
 import { addDecimal } from "../../decimals";
+import { IVegaVesting } from "../../web3-utils";
+import { Tranche } from "../vega-web3-types";
 import { promiEventFactory, uuidv4 } from "./promi-manager";
 
 const BASE_URL = "../mocks/vesting";

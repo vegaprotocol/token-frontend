@@ -1,34 +1,33 @@
 import "./withdraw.scss";
 
+import * as Sentry from "@sentry/react";
 import React from "react";
-import { useVegaLPStaking } from "../../../hooks/use-vega-lp-staking";
+import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+
+import { EthConnectPrompt } from "../../../components/eth-connect-prompt";
+import {
+  KeyValueTable,
+  KeyValueTableRow,
+} from "../../../components/key-value-table";
+import { TransactionCallout } from "../../../components/transaction-callout";
 import { REWARDS_ADDRESSES } from "../../../config";
-import { useTransaction } from "../../../hooks/use-transaction";
+import { useWeb3 } from "../../../contexts/web3-context/web3-context";
 import {
   TransactionActionType,
   TxState,
 } from "../../../hooks/transaction-reducer";
-import { TransactionCallout } from "../../../components/transaction-callout";
-import { useTranslation } from "react-i18next";
-import { EthConnectPrompt } from "../../../components/eth-connect-prompt";
-import * as Sentry from "@sentry/react";
+import { useTransaction } from "../../../hooks/use-transaction";
+import { useVegaLPStaking } from "../../../hooks/use-vega-lp-staking";
+import { formatNumber } from "../../../lib/format-number";
+import { Routes } from "../../router-config";
+import { useGetLiquidityBalances } from "../hooks";
 import {
   LiquidityAction,
   LiquidityState,
   LpContractData,
 } from "../liquidity-reducer";
-import { useGetLiquidityBalances } from "../hooks";
-import {
-  KeyValueTable,
-  KeyValueTableRow,
-} from "../../../components/key-value-table";
-import { Callout } from "../../../components/callout";
-import { Error } from "../../../components/icons";
-import { Link } from "react-router-dom";
-import { Routes } from "../../router-config";
-import { useWeb3 } from "../../../contexts/web3-context/web3-context";
-import { formatNumber } from "../../../lib/format-number";
 
 export const LiquidityWithdrawPage = ({
   contractData,
@@ -47,11 +46,6 @@ export const LiquidityWithdrawPage = ({
     dispatch: txUnstakeDispatch,
     perform: txUnstakePerform,
   } = useTransaction(() => lpStaking.unstake());
-  const {
-    state: txWithdrawState,
-    dispatch: txWithdrawDispatch,
-    perform: txWithdrawPerform,
-  } = useTransaction(() => lpStaking.withdrawRewards());
 
   const { getBalances, lpStakingEth, lpStakingUSDC } = useGetLiquidityBalances(
     dispatch,
@@ -104,23 +98,6 @@ export const LiquidityWithdrawPage = ({
         />
       </>
     );
-  } else if (txWithdrawState.txState !== TxState.Default) {
-    return (
-      <>
-        <TransactionCallout
-          state={txWithdrawState}
-          completeHeading={t("withdrawVegaLpSuccessCalloutTitle")}
-          completeFooter={
-            <Link to={Routes.LIQUIDITY}>
-              <button className="fill">{t("lpTxSuccessButton")}</button>
-            </Link>
-          }
-          reset={() =>
-            txWithdrawDispatch({ type: TransactionActionType.TX_RESET })
-          }
-        />
-      </>
-    );
   } else if (!hasLpTokens && !hasRewardsTokens) {
     return <section>{t("withdrawLpNoneDeposited")}</section>;
   }
@@ -131,13 +108,6 @@ export const LiquidityWithdrawPage = ({
         <EthConnectPrompt />
       ) : (
         <section>
-          <Callout
-            icon={<Error />}
-            intent="error"
-            title={t("withdrawLpCalloutTitle")}
-          >
-            <p>{t("withdrawLpCalloutBody")}</p>
-          </Callout>
           <KeyValueTable className="dex-tokens-withdraw__table">
             <KeyValueTableRow>
               <th>{t("liquidityTokenWithdrawBalance")}</th>
@@ -162,15 +132,6 @@ export const LiquidityWithdrawPage = ({
               </td>
             </KeyValueTableRow>
           </KeyValueTable>
-          <p className="dex-tokens-withdraw__submit">
-            <button
-              disabled={!hasRewardsTokens}
-              className="fill"
-              onClick={txWithdrawPerform}
-            >
-              {t("withdrawLpWithdrawVegaButton")}
-            </button>
-          </p>
           <p className="dex-tokens-withdraw__submit">
             <button
               disabled={!hasLpTokens}

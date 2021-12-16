@@ -1,5 +1,4 @@
 import "./heading.scss";
-import { PixelatedText } from "../pixelated-text";
 
 export interface HeadingProps {
   title?: string;
@@ -13,7 +12,7 @@ export const Heading = ({ title }: HeadingProps) => {
       <header className="heading">
         <div className="heading__title-container">
           <h1 className="heading__title">
-            <PixelatedText text={title} />
+            {title}
           </h1>
         </div>
       </header>

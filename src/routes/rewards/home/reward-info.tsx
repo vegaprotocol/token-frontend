@@ -1,28 +1,25 @@
 import "./reward-info.scss";
-import React from "react";
+
 import * as Sentry from "@sentry/react";
+import { format } from "date-fns";
+import React from "react";
+import { useTranslation } from "react-i18next";
+
 import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
+import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
+import { BigNumber } from "../../../lib/bignumber";
 import {
   Rewards,
   Rewards_party_delegations,
   Rewards_party_rewardDetails_rewards,
 } from "./__generated__/Rewards";
-import {
-  AppStateActionType,
-  useAppState,
-  VegaKeyExtended,
-} from "../../../contexts/app-state/app-state-context";
-import { useTranslation } from "react-i18next";
-import { HTMLSelect, FormGroup } from "@blueprintjs/core";
-import { BigNumber } from "../../../lib/bignumber";
 
 interface RewardInfoProps {
   data: Rewards | undefined;
   currVegaKey: VegaKeyExtended;
-  vegaKeys: VegaKeyExtended[];
   rewardAssetId: string;
 }
 
@@ -33,11 +30,9 @@ const DEFAULT_REWARD_TYPE = "Staking";
 export const RewardInfo = ({
   data,
   currVegaKey,
-  vegaKeys,
   rewardAssetId,
 }: RewardInfoProps) => {
   const { t } = useTranslation();
-  const { appDispatch } = useAppState();
 
   // Create array of rewards per epoch
   const vegaTokenRewards = React.useMemo(() => {
@@ -73,23 +68,8 @@ export const RewardInfo = ({
 
   return (
     <div className="reward-info">
-      <FormGroup label="Show rewards for Vega key">
-        <HTMLSelect
-          options={vegaKeys.map((k) => ({
-            label: k.pub,
-            value: k.pub,
-          }))}
-          value={currVegaKey.pub}
-          onChange={(e) => {
-            const key = vegaKeys.find((k) => k.pub === e.target.value);
-            if (!key) throw new Error("Selected key not in key list");
-            appDispatch({
-              type: AppStateActionType.VEGA_WALLET_SET_KEY,
-              key,
-            });
-          }}
-        />
-      </FormGroup>
+      <h3 className="reward-info__sub-heading">{t("Connected Vega key")}</h3>
+      <p>{currVegaKey.pub}</p>
       {vegaTokenRewards.length ? (
         vegaTokenRewards.map((reward, i) => {
           if (!reward) return null;
@@ -121,7 +101,7 @@ export const RewardTable = ({ reward, delegations }: RewardTableProps) => {
     if (!delegations.length) return "0";
 
     const delegationsForEpoch = delegations
-      .filter((d) => d.epoch === reward.epoch)
+      .filter((d) => d.epoch.toString() === reward.epoch.id)
       .map((d) => new BigNumber(d.amountFormatted));
 
     if (delegationsForEpoch.length) {
@@ -137,7 +117,7 @@ export const RewardTable = ({ reward, delegations }: RewardTableProps) => {
   return (
     <div>
       <h3>
-        {t("Epoch")} {reward.epoch}
+        {t("Epoch")} {reward.epoch.id}
       </h3>
       <KeyValueTable>
         <KeyValueTableRow>
@@ -158,12 +138,10 @@ export const RewardTable = ({ reward, delegations }: RewardTableProps) => {
           <th>{t("shareOfReward")}</th>
           <td>{new BigNumber(reward.percentageOfTotal).dp(2).toString()}%</td>
         </KeyValueTableRow>
-        {/*
-        // TODO: re show when the receivedAt value is something sane.
         <KeyValueTableRow>
           <th>{t("received")}</th>
           <td>{format(new Date(reward.receivedAt), "dd MMM yyyy HH:mm")}</td>
-        </KeyValueTableRow> */}
+        </KeyValueTableRow>
       </KeyValueTable>
     </div>
   );

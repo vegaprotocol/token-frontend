@@ -1,18 +1,19 @@
 import React from "react";
+
 import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useContracts } from "../../contexts/contracts/contracts-context";
+import { useGetUserTrancheBalances } from "../../hooks/use-get-user-tranche-balances";
+import { useRefreshBalances } from "../../hooks/use-refresh-balances";
 import { useSearchParams } from "../../hooks/use-search-params";
+import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { ClaimError } from "./claim-error";
+import { ClaimFlow } from "./claim-flow";
 import {
   ClaimActionType,
   claimReducer,
   ClaimStatus,
   initialClaimState,
 } from "./claim-reducer";
-import { ClaimFlow } from "./claim-flow";
-import { Tranche } from "../../lib/vega-web3/vega-web3-types";
-import { useRefreshBalances } from "../../hooks/use-refresh-balances";
-import { useGetUserTrancheBalances } from "../../hooks/use-get-user-tranche-balances";
-import { useContracts } from "../../contexts/contracts/contracts-context";
 
 const Claim = ({
   address,

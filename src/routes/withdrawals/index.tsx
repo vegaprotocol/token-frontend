@@ -1,8 +1,13 @@
 import "./withdrawals.scss";
-import React from "react";
+
 import { gql, useQuery } from "@apollo/client";
+import { format } from "date-fns";
+import orderBy from "lodash/orderBy";
+import React from "react";
 import { useTranslation } from "react-i18next";
+
 import { EtherscanLink } from "../../components/etherscan-link";
+import { CopyToClipboardType } from "../../components/etherscan-link/etherscan-link";
 import { Heading } from "../../components/heading";
 import {
   KeyValueTable,
@@ -10,26 +15,24 @@ import {
 } from "../../components/key-value-table";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
-import { VegaWalletContainer } from "../../components/vega-wallet-container";
-import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
-import { truncateMiddle } from "../../lib/truncate-middle";
-import { format } from "date-fns";
-import { useContracts } from "../../contexts/contracts/contracts-context";
-import { useTransaction } from "../../hooks/use-transaction";
-import { addDecimal } from "../../lib/decimals";
-import { BigNumber } from "../../lib/bignumber";
 import { TransactionButton } from "../../components/transaction-button";
-import { usePollERC20Approval } from "../../hooks/use-ercPoll20Approval";
-import orderBy from "lodash/orderBy";
+import { VegaWalletContainer } from "../../components/vega-wallet-container";
+import { Flags } from "../../config";
+import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
+import { useContracts } from "../../contexts/contracts/contracts-context";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { TxState } from "../../hooks/transaction-reducer";
-import { useEthereumConfig } from "../../hooks/use-ethereum-config";
+import { usePollERC20Approval } from "../../hooks/use-ercPoll20Approval";
+import { useRefreshBalances } from "../../hooks/use-refresh-balances";
+import { useTransaction } from "../../hooks/use-transaction";
+import { BigNumber } from "../../lib/bignumber";
+import { addDecimal } from "../../lib/decimals";
+import { truncateMiddle } from "../../lib/truncate-middle";
 import {
   WithdrawalsPage,
-  WithdrawalsPageVariables,
   WithdrawalsPage_party_withdrawals,
+  WithdrawalsPageVariables,
 } from "./__generated__/WithdrawalsPage";
-import { Flags } from "../../config";
 
 const Withdrawals = () => {
   const { t } = useTranslation();
@@ -89,7 +92,8 @@ const WithdrawPendingContainer = ({
   currVegaKey,
 }: WithdrawPendingContainerProps) => {
   const { t } = useTranslation();
-  const ethereumConfig = useEthereumConfig();
+  const { ethAddress } = useWeb3();
+  const refreshBalances = useRefreshBalances(ethAddress);
   const { data, loading, error, refetch } = useQuery<
     WithdrawalsPage,
     WithdrawalsPageVariables
@@ -120,7 +124,7 @@ const WithdrawPendingContainer = ({
     );
   }
 
-  if (loading || !data || !ethereumConfig) {
+  if (loading || !data) {
     return (
       <SplashScreen>
         <SplashLoader />
@@ -138,8 +142,8 @@ const WithdrawPendingContainer = ({
         <li key={w.id}>
           <Withdrawal
             withdrawal={w}
-            requiredConfirmations={ethereumConfig.confirmations}
             refetchWithdrawals={refetch}
+            refetchBalances={refreshBalances}
           />
         </li>
       ))}
@@ -149,17 +153,16 @@ const WithdrawPendingContainer = ({
 
 interface WithdrawalProps {
   withdrawal: WithdrawalsPage_party_withdrawals;
-  requiredConfirmations: number;
   refetchWithdrawals: () => void;
+  refetchBalances: () => void;
 }
 
 export const Withdrawal = ({
   withdrawal,
-  requiredConfirmations,
   refetchWithdrawals,
+  refetchBalances,
 }: WithdrawalProps) => {
   const { t } = useTranslation();
-  const { chainId } = useWeb3();
   const erc20Approval = usePollERC20Approval(withdrawal.id);
   const { erc20Bridge } = useContracts();
   const { state, perform, reset } = useTransaction(() => {
@@ -178,7 +181,7 @@ export const Withdrawal = ({
       // TODO: switch when targetAddress is populated and deployed to mainnet data.erc20WithdrawalApproval.targetAddress,
       targetAddress: withdrawal.details.receiverAddress,
     });
-  }, requiredConfirmations);
+  });
 
   React.useEffect(() => {
     // Once complete we need to refetch the withdrawals so that pending withdrawal
@@ -186,8 +189,9 @@ export const Withdrawal = ({
     // is already handled by the query in the VegaWallet that polls
     if (state.txState === TxState.Complete) {
       refetchWithdrawals();
+      refetchBalances();
     }
-  }, [state, refetchWithdrawals]);
+  }, [state, refetchWithdrawals, refetchBalances]);
 
   return (
     <div>
@@ -210,11 +214,11 @@ export const Withdrawal = ({
           <th>{t("toEthereum")}</th>
           <td>
             <EtherscanLink
-              chainId={chainId}
               address={withdrawal.details?.receiverAddress as string}
               text={truncateMiddle(
                 withdrawal.details?.receiverAddress as string
               )}
+              copyToClipboard={CopyToClipboardType.LINK}
             />
           </td>
         </KeyValueTableRow>
@@ -228,12 +232,13 @@ export const Withdrawal = ({
           <th>{t("Signature")}</th>
           <td title={erc20Approval?.signatures}>
             {!erc20Approval?.signatures
-              ? "Loading..."
+              ? t("Loading")
               : truncateMiddle(erc20Approval.signatures)}
           </td>
         </KeyValueTableRow>
       </KeyValueTable>
       <TransactionButton
+        text={t("withdrawalsCompleteButton")}
         transactionState={state}
         forceTxState={withdrawal.txHash ? TxState.Complete : undefined}
         forceTxHash={withdrawal.txHash}

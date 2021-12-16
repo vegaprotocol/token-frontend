@@ -1,6 +1,7 @@
 export const NetworkParams = {
   ETHEREUM_CONFIG: "blockchains.ethereumConfig",
   REWARD_ASSET: "reward.asset",
+  REWARD_PAYOUT_DURATION: "reward.staking.delegation.payoutDelay",
   GOV_UPDATE_MARKET_REQUIRED_MAJORITY:
     "governance.proposal.updateMarket.requiredMajority",
   GOV_UPDATE_MARKET_REQUIRED_PARTICIPATION:
@@ -16,4 +17,5 @@ export const NetworkParams = {
     "governance.proposal.updateNetParam.requiredMajority",
   GOV_UPDATE_NET_PARAM_REQUIRED_PARTICIPATION:
     "governance.proposal.updateNetParam.requiredParticipation",
+  VALIDATOR_DELEGATION_MIN_AMOUNT: "validators.delegation.minAmount",
 };

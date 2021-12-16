@@ -25,6 +25,10 @@
   }
 
   &--warn {
+    box-shadow: 5px 5px 0px $vega-orange3;
+  }
+
+  &--action {
     box-shadow: 5px 5px 0px $vega-yellow3;
   }
 

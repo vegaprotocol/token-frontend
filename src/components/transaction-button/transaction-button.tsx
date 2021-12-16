@@ -1,14 +1,18 @@
 import "./transaction-button.scss";
-import { TransactionState, TxState } from "../../hooks/transaction-reducer";
-import { Loader } from "../loader";
-import { Error, HandUp, Tick } from "../icons";
-import { truncateMiddle } from "../../lib/truncate-middle";
-import { StatefulButton } from "../stateful-button";
+
 import { useTranslation } from "react-i18next";
 
+import { TransactionState, TxState } from "../../hooks/transaction-reducer";
+import { truncateMiddle } from "../../lib/truncate-middle";
+import { EtherscanLink } from "../etherscan-link";
+import { Error, HandUp, Tick } from "../icons";
+import { Loader } from "../loader";
+import { StatefulButton } from "../stateful-button";
+
 interface TransactionButtonProps {
+  text: string;
   transactionState: TransactionState;
-  /** txHash from the withdrawal object, indicating whether withdrawal has been completed or not */
+  /** txHash of the transaction if already complete */
   forceTxHash: string | null;
   forceTxState?: TxState;
   disabled?: boolean;
@@ -17,6 +21,7 @@ interface TransactionButtonProps {
 }
 
 export const TransactionButton = ({
+  text,
   transactionState,
   forceTxHash,
   forceTxState,
@@ -29,21 +34,9 @@ export const TransactionButton = ({
   const root = "transaction-button";
   const wrapperClassName = `${root} transaction-button--${txState.toLowerCase()}`;
   const buttonClassName = `${root}__button fill`;
-  const txhashClassName = `${root}__txhash`;
   const textClassName = `${root}__text`;
-
   const txHash = forceTxHash || txData.hash;
   const state = forceTxState || txState;
-
-  const etherscanLink = txHash && (
-    <a
-      href={`https://ropsten.etherscan.io/tx/${txHash}`}
-      target="_blank"
-      rel="noreferrer"
-    >
-      {truncateMiddle(txHash)}
-    </a>
-  );
 
   if (state === TxState.Complete) {
     const className = `transaction-button transaction-button--${TxState.Complete.toLowerCase()}`;
@@ -53,10 +46,7 @@ export const TransactionButton = ({
           <Tick />
           <span>{t("txButtonComplete")}</span>
         </p>
-        <p className={txhashClassName}>
-          <span>{t("transaction")}</span>
-          {etherscanLink}
-        </p>
+        <TransactionButtonFooter txHash={txHash} />
       </div>
     );
   }
@@ -69,6 +59,10 @@ export const TransactionButton = ({
           <HandUp />
           <span>{t("txButtonActionRequired")}</span>
         </StatefulButton>
+        <TransactionButtonFooter
+          message={t("transactionHashPrompt")}
+          txHash={txHash}
+        />
       </div>
     );
   }
@@ -80,10 +74,7 @@ export const TransactionButton = ({
           <Loader />
           <span>{t("txButtonAwaiting")}</span>
         </StatefulButton>
-        <p className={txhashClassName}>
-          <span>{t("transaction")}</span>
-          {etherscanLink}
-        </p>
+        <TransactionButtonFooter txHash={txHash} />
       </div>
     );
   }
@@ -98,10 +89,7 @@ export const TransactionButton = ({
             {t("Try again")}
           </button>
         </p>
-        <p className={txhashClassName}>
-          <span>{t("transaction")}</span>
-          {etherscanLink}
-        </p>
+        <TransactionButtonFooter txHash={txHash} />
       </div>
     );
   }
@@ -114,8 +102,45 @@ export const TransactionButton = ({
         onClick={start}
         disabled={disabled}
       >
-        {t("txButtonComplete")}
+        {text}
       </StatefulButton>
+      <TransactionButtonFooter txHash={txHash} />
     </div>
   );
+};
+
+interface TransactionButtonFooterProps {
+  txHash: string | null;
+  message?: string;
+}
+
+export const TransactionButtonFooter = ({
+  txHash,
+  message,
+}: TransactionButtonFooterProps) => {
+  const { t } = useTranslation();
+
+  if (message) {
+    return (
+      <div className="transaction-button__footer">
+        <p className="transaction-button__message">
+          <Error />
+          {message}
+        </p>
+      </div>
+    );
+  }
+
+  if (txHash) {
+    return (
+      <div className="transaction-button__footer">
+        <p className="transaction-button__txhash">
+          <span>{t("transaction")}</span>
+          <EtherscanLink text={truncateMiddle(txHash)} tx={txHash} />
+        </p>
+      </div>
+    );
+  }
+
+  return null;
 };

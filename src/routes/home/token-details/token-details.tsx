@@ -1,18 +1,18 @@
 import "./token-details.scss";
 
-import { ADDRESSES, Flags } from "../../../config";
+import { useTranslation } from "react-i18next";
+
+import { EtherscanLink } from "../../../components/etherscan-link";
+import { CopyToClipboardType } from "../../../components/etherscan-link/etherscan-link";
 import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
-
-import { BigNumber } from "../../../lib/bignumber";
-import { EtherscanLink } from "../../../components/etherscan-link";
-import { TokenDetailsCirculating } from "./token-details-circulating";
-import { formatNumber } from "../../../lib/format-number";
-import { useTranslation } from "react-i18next";
-import { useWeb3 } from "../../../contexts/web3-context/web3-context";
+import { ADDRESSES, Flags } from "../../../config";
 import { useTranches } from "../../../hooks/use-tranches";
+import { BigNumber } from "../../../lib/bignumber";
+import { formatNumber } from "../../../lib/format-number";
+import { TokenDetailsCirculating } from "./token-details-circulating";
 
 export const TokenDetails = ({
   totalSupply,
@@ -23,7 +23,6 @@ export const TokenDetails = ({
 }) => {
   const { t } = useTranslation();
 
-  const { chainId } = useWeb3();
   const tranches = useTranches();
   return (
     <KeyValueTable className={"token-details"}>
@@ -31,9 +30,10 @@ export const TokenDetails = ({
         <th>{t("Token address")}</th>
         <td data-testid="token-address">
           <EtherscanLink
-            chainId={chainId}
             address={ADDRESSES.vegaTokenAddress}
             text={ADDRESSES.vegaTokenAddress}
+            copyToClipboard={CopyToClipboardType.LINK}
+            className="font-mono"
           />
         </td>
       </KeyValueTableRow>
@@ -41,9 +41,10 @@ export const TokenDetails = ({
         <th>{t("Vesting contract")}</th>
         <td data-testid="token-contract">
           <EtherscanLink
-            chainId={chainId}
             address={ADDRESSES.vestingAddress}
             text={ADDRESSES.vestingAddress}
+            copyToClipboard={CopyToClipboardType.LINK}
+            className="font-mono"
           />
         </td>
       </KeyValueTableRow>
@@ -59,12 +60,10 @@ export const TokenDetails = ({
           </KeyValueTableRow>
         </>
       )}
-      {Flags.STAKING_DISABLED ? null : (
-        <KeyValueTableRow>
-          <th>{t("Staked on Vega validator")}</th>
-          <td data-testid="staked">{formatNumber(totalStaked, 2)}</td>
-        </KeyValueTableRow>
-      )}
+      <KeyValueTableRow>
+        <th>{t("Staked on Vega validator")}</th>
+        <td data-testid="staked">{formatNumber(totalStaked, 2)}</td>
+      </KeyValueTableRow>
     </KeyValueTable>
   );
 };

@@ -1,28 +1,26 @@
-import "./proposal.scss";
+import { useTranslation } from "react-i18next";
 
-import { useParams } from "react-router";
-import {
-  Proposals_proposals,
-} from "./__generated__/proposals";
+import { Heading } from "../../components/heading";
+import { Proposal_proposal } from "./__generated__/Proposal";
 import { NetworkChange } from "./network-change";
 import { VoteDetails } from "./vote-details";
 
 interface ProposalProps {
-  proposals: Proposals_proposals[];
+  proposal: Proposal_proposal;
 }
 
-export const Proposal = ({ proposals }: ProposalProps) => {
-  const { proposalId } = useParams<{ proposalId: string }>();
-  const proposal = proposals.find((proposal) => proposal.id === proposalId);
+export const Proposal = ({ proposal }: ProposalProps) => {
+  const { t } = useTranslation();
 
   if (!proposal) {
     return null;
   }
 
   return (
-    <div>
+    <>
+      <Heading title={t("updateNetworkParam")} />
       <NetworkChange proposal={proposal} />
       <VoteDetails proposal={proposal} />
-    </div>
+    </>
   );
 };

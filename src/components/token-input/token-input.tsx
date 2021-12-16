@@ -1,16 +1,18 @@
 import "./token-input.scss";
+
 import { FormGroup, InputGroup, Intent, Tag } from "@blueprintjs/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { BigNumber } from "../../lib/bignumber";
-import { Callout } from "../callout";
-import { Tick } from "../icons";
+
 import {
   TransactionAction,
   TransactionActionType,
   TransactionState,
   TxState,
 } from "../../hooks/transaction-reducer";
+import { BigNumber } from "../../lib/bignumber";
+import { Callout } from "../callout";
+import { Tick } from "../icons";
 import { TransactionCallout } from "../transaction-callout";
 
 const inputName = "amount";
@@ -40,7 +42,7 @@ export const AmountInput = ({
         rightElement={<Tag minimal={true}>{currency}</Tag>}
         autoComplete="off"
         type="number"
-        max={maximum.toNumber()}
+        max={maximum.toString()}
         min={0}
         step="any"
       />

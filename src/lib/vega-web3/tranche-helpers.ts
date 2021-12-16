@@ -1,8 +1,9 @@
 import { ethers } from "ethers";
-import { Tranche, TrancheEvents, TrancheUser } from "./vega-web3-types";
 import uniq from "lodash/uniq";
+
 import { BigNumber } from "../../lib/bignumber";
 import { addDecimal } from "../decimals";
+import { Tranche, TrancheEvents, TrancheUser } from "./vega-web3-types";
 
 export function createUserTransactions(
   events: ethers.Event[],

@@ -1,36 +1,43 @@
 import "./withdraw-form.scss";
+
+import { FormGroup,HTMLSelect } from "@blueprintjs/core";
+import { ethers } from "ethers";
 import React from "react";
-import { WithdrawPage_party_accounts } from "./__generated__/WithdrawPage";
-import { BigNumber } from "../../lib/bignumber";
-import { HTMLSelect, FormGroup, InputGroup } from "@blueprintjs/core";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router";
+
+import { Loader } from "../../components/loader";
+import { StatefulButton } from "../../components/stateful-button";
 import { AmountInput } from "../../components/token-input";
-import { EthWalletContainer } from "../../components/eth-wallet-container";
+import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
 import {
   Status as WithdrawStatus,
   useCreateWithdrawal,
 } from "../../hooks/use-create-withdrawal";
-import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { BigNumber } from "../../lib/bignumber";
 import { removeDecimal } from "../../lib/decimals";
-import { useHistory } from "react-router";
-import { StatefulButton } from "../../components/stateful-button";
-import { Loader } from "../../components/loader";
 import { Routes } from "../router-config";
-import { useTranslation } from "react-i18next";
+import { WithdrawPage_party_accounts } from "./__generated__/WithdrawPage";
+import { EthAddressInput } from "./eth-address-input";
 
 interface WithdrawFormProps {
   accounts: WithdrawPage_party_accounts[];
   currVegaKey: VegaKeyExtended;
+  connectedAddress: string;
 }
 
-export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
+export const WithdrawForm = ({
+  accounts,
+  currVegaKey,
+  connectedAddress,
+}: WithdrawFormProps) => {
   const { t } = useTranslation();
   const history = useHistory();
-  const { ethAddress } = useWeb3();
   const [amountStr, setAmount] = React.useState("");
   const [account, setAccount] = React.useState(accounts[0]);
   const [status, submit] = useCreateWithdrawal(currVegaKey.pub);
-
+  const [destinationAddress, setDestinationAddress] =
+    React.useState(connectedAddress);
   const amount = React.useMemo(
     () => new BigNumber(amountStr || 0),
     [amountStr]
@@ -46,14 +53,18 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
 
   const valid = React.useMemo(() => {
     if (
-      !ethAddress ||
+      !destinationAddress ||
       amount.isLessThanOrEqualTo(0) ||
       amount.isGreaterThan(maximum)
     ) {
       return false;
     }
     return true;
-  }, [ethAddress, amount, maximum]);
+  }, [destinationAddress, amount, maximum]);
+
+  const addressValid = React.useMemo(() => {
+    return ethers.utils.isAddress(destinationAddress);
+  }, [destinationAddress]);
 
   // Navigate to complete withdrawals page once withdrawal
   // creation is complete
@@ -66,14 +77,14 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
   return (
     <form
       className="withdraw-form"
-      onSubmit={async (e) => {
+      onSubmit={(e) => {
         e.preventDefault();
-        if (!valid) return;
+        if (!valid || !addressValid) return;
 
         submit(
           removeDecimal(amount, account.asset.decimals),
           account.asset.id,
-          ethAddress
+          destinationAddress
         );
       }}
     >
@@ -99,17 +110,12 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
           <p className="text-muted">{t("withdrawFormNoAsset")}</p>
         )}
       </FormGroup>
-      <FormGroup label={t("withdrawFormToLabel")}>
-        <EthWalletContainer>
-          {(ethAddress) => (
-            <InputGroup
-              value={ethAddress}
-              className="uneditable"
-              disabled={true}
-            />
-          )}
-        </EthWalletContainer>
-      </FormGroup>
+      <EthAddressInput
+        onChange={setDestinationAddress}
+        address={destinationAddress}
+        connectedAddress={connectedAddress}
+        isValid={addressValid}
+      />
       <FormGroup label={t("withdrawFormAmountLabel")} labelFor="amount">
         <AmountInput
           amount={amountStr}
@@ -120,7 +126,7 @@ export const WithdrawForm = ({ accounts, currVegaKey }: WithdrawFormProps) => {
       </FormGroup>
       <StatefulButton
         type="submit"
-        disabled={!valid || status === WithdrawStatus.Pending}
+        disabled={!addressValid || !valid || status === WithdrawStatus.Pending}
       >
         {status === WithdrawStatus.Pending ? (
           <>

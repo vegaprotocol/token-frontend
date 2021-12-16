@@ -1,4 +1,5 @@
 import "./tranche-label.scss";
+
 import { ADDRESSES, EthereumChainId, EthereumChainIds } from "../../config";
 
 const TRANCHE_LABELS: Record<number, string[]> = {

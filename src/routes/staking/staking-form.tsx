@@ -1,35 +1,31 @@
 import "./staking-form.scss";
 
+import { gql, useApolloClient } from "@apollo/client";
+import { FormGroup, Radio, RadioGroup } from "@blueprintjs/core";
 import * as Sentry from "@sentry/react";
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 
+import { TokenInput } from "../../components/token-input";
+import { Colors, NetworkParams } from "../../config";
+import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useNetworkParam } from "../../hooks/use-network-param";
+import { useSearchParams } from "../../hooks/use-search-params";
+import { BigNumber } from "../../lib/bignumber";
+import { addDecimal, removeDecimal } from "../../lib/decimals";
 import {
   DelegateSubmissionInput,
   UndelegateSubmissionInput,
   vegaWalletService,
 } from "../../lib/vega-wallet/vega-wallet-service";
-import { FormGroup, Radio, RadioGroup } from "@blueprintjs/core";
 import {
   PartyDelegations,
   PartyDelegationsVariables,
 } from "./__generated__/PartyDelegations";
-import { gql, useApolloClient } from "@apollo/client";
-
-import { BigNumber } from "../../lib/bignumber";
-import { Colors } from "../../config";
-import React from "react";
 import { StakeFailure } from "./stake-failure";
 import { StakePending } from "./stake-pending";
 import { StakeSuccess } from "./stake-success";
-import { TokenInput } from "../../components/token-input";
-import { addDecimal, removeDecimal } from "../../lib/decimals";
-import { useAppState } from "../../contexts/app-state/app-state-context";
-import { useHistory } from "react-router-dom";
-import { useSearchParams } from "../../hooks/use-search-params";
-import { useTranslation } from "react-i18next";
-import {
-  VALIDATOR_DELEGATION_MIN_AMOUNT,
-  useNetworkParam,
-} from "../../hooks/use-network-param";
 
 export const PARTY_DELEGATIONS_QUERY = gql`
   query PartyDelegations($partyId: ID!) {
@@ -58,7 +54,7 @@ enum FormState {
 }
 
 export type StakeAction = "Add" | "Remove" | undefined;
-enum RemoveType {
+export enum RemoveType {
   endOfEpoch,
   now,
 }
@@ -89,8 +85,13 @@ export const StakingForm = ({
   const [removeType, setRemoveType] = React.useState<RemoveType>(
     RemoveType.endOfEpoch
   );
-
-  const { data } = useNetworkParam([VALIDATOR_DELEGATION_MIN_AMOUNT]);
+  // Clear the amount when the staking method changes
+  React.useEffect(() => {
+    setAmount("");
+  }, [action, setAmount]);
+  const { data } = useNetworkParam([
+    NetworkParams.VALIDATOR_DELEGATION_MIN_AMOUNT,
+  ]);
   const minTokensWithDecimals = React.useMemo(() => {
     const minTokens = new BigNumber(data && data.length === 1 ? data[0] : "");
     return addDecimal(minTokens, appState.decimals);
@@ -179,9 +180,22 @@ export const StakingForm = ({
   if (formState === FormState.Failure) {
     return <StakeFailure nodeName={nodeName} />;
   } else if (formState === FormState.Pending) {
-    return <StakePending action={action} amount={amount} nodeName={nodeName} />;
+    return (
+      <StakePending
+        action={action}
+        amount={amount}
+        nodeName={nodeName}
+      />
+    );
   } else if (formState === FormState.Success) {
-    return <StakeSuccess action={action} amount={amount} nodeName={nodeName} />;
+    return (
+      <StakeSuccess
+        action={action}
+        amount={amount}
+        nodeName={nodeName}
+        removeType={removeType}
+      />
+    );
   } else if (
     availableStakeToAdd.isEqualTo(0) &&
     availableStakeToRemove.isEqualTo(0)

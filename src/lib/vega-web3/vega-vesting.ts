@@ -1,12 +1,13 @@
-import { BigNumber } from "../../lib/bignumber";
 import BN from "bn.js";
 import { ethers } from "ethers";
+
+import { BigNumber } from "../../lib/bignumber";
 import vestingAbi from "../abis/vesting_abi.json";
+import { addDecimal, removeDecimal } from "../decimals";
 import { IVegaVesting } from "../web3-utils";
+import { combineStakeEventsByVegaKey } from "./stake-helpers";
 import { getTranchesFromHistory } from "./tranche-helpers";
 import { Tranche } from "./vega-web3-types";
-import { addDecimal, removeDecimal } from "../decimals";
-import { combineStakeEventsByVegaKey } from "./stake-helpers";
 
 export default class VegaVesting implements IVegaVesting {
   private contract: ethers.Contract;

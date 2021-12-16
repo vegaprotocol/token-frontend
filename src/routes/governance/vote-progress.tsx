@@ -1,28 +1,30 @@
-import './vote-progress.scss'
+import "./vote-progress.scss";
 
-import React from 'react'
+import { BigNumber } from "../../lib/bignumber";
 
 export const VoteProgress = ({
   progress,
-  threshold
+  threshold,
 }: {
-  threshold: number
-  progress: number
+  threshold: BigNumber;
+  progress: BigNumber;
 }) => {
   return (
     <>
       <div
-        data-testid='vote-progress-indicator'
-        className='vote-progress__indicator'
-        style={{ left: `${threshold}%` }}></div>
-      <div className='bp3-progress-bar bp3-no-stripes vote-progress__container'>
+        data-testid="vote-progress-indicator"
+        className="vote-progress__indicator"
+        style={{ left: `${threshold}%` }}
+      ></div>
+      <div className="bp3-progress-bar bp3-no-stripes vote-progress__container">
         <div
-          className='bp3-progress-meter vote-progress__bar'
-          data-testid='vote-progress-bar'
+          className="bp3-progress-meter vote-progress__bar"
+          data-testid="vote-progress-bar"
           style={{
-            width: `${progress}%`
-          }}></div>
+            width: `${progress}%`,
+          }}
+        ></div>
       </div>
     </>
-  )
-}
+  );
+};

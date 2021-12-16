@@ -1,17 +1,19 @@
 import "./tranche.scss";
+
+import React from "react";
+import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
 import { Redirect } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { Routes } from "../router-config";
-import { Tranche as TrancheType } from "../../lib/vega-web3/vega-web3-types";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
+
 import { EtherscanLink } from "../../components/etherscan-link";
-import { TrancheItem } from "../redemption/tranche-item";
-import { TrancheLabel } from "./tranche-label";
 import { ADDRESSES } from "../../config";
-import React from "react";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
+import { Tranche as TrancheType } from "../../lib/vega-web3/vega-web3-types";
+import { TrancheItem } from "../redemption/tranche-item";
+import { Routes } from "../router-config";
+import { TrancheLabel } from "./tranche-label";
 
 export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
   const { t } = useTranslation();
@@ -61,11 +63,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
             const locked = user.remaining_tokens.times(lockedData?.locked);
             return (
               <li className="tranche__user-list--item" key={i}>
-                <EtherscanLink
-                  chainId={chainId}
-                  address={user.address}
-                  text={user.address}
-                />
+                <EtherscanLink address={user.address} text={user.address} />
                 <div className="tranche__progress-contents">
                   <span>{t("Locked")}</span>
                   <span>{t("Unlocked")}</span>

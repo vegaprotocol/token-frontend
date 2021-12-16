@@ -1,20 +1,21 @@
+import * as Sentry from "@sentry/react";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Route, Switch, useRouteMatch } from "react-router-dom";
-import { RouteChildProps } from "..";
-import { Flags, REWARDS_ADDRESSES } from "../../config";
-import { useDocumentTitle } from "../../hooks/use-document-title";
-import { LiquidityDeposit } from "./deposit";
-import { LiquidityContainer } from "./liquidity-container";
-import { LiquidityWithdraw } from "./withdraw";
 import { Redirect } from "react-router";
-import { initialLiquidityState, liquidityReducer } from "./liquidity-reducer";
-import * as Sentry from "@sentry/react";
-import { SplashScreen } from "../../components/splash-screen";
-import { SplashLoader } from "../../components/splash-loader";
-import { useGetLiquidityBalances } from "./hooks";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
+
 import { Heading } from "../../components/heading";
+import { SplashLoader } from "../../components/splash-loader";
+import { SplashScreen } from "../../components/splash-screen";
+import { Flags, REWARDS_ADDRESSES } from "../../config";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { useDocumentTitle } from "../../hooks/use-document-title";
+import { RouteChildProps } from "..";
+import { LiquidityDeposit } from "./deposit";
+import { useGetLiquidityBalances } from "./hooks";
+import { LiquidityContainer } from "./liquidity-container";
+import { initialLiquidityState, liquidityReducer } from "./liquidity-reducer";
+import { LiquidityWithdraw } from "./withdraw";
 
 const RedemptionIndex = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);

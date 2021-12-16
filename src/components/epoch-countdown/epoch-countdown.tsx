@@ -4,6 +4,7 @@ import { Intent, ProgressBar } from "@blueprintjs/core";
 import { format, formatDistanceStrict } from "date-fns";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
+
 import arrow from "../../images/back.png";
 
 export const DATE_FORMAT = "yyyy.MM.dd HH:mm";
@@ -39,7 +40,10 @@ export function EpochCountdown({
 
   // format end date into readable 'time until' text
   const endsIn = React.useMemo(() => {
-    return formatDistanceStrict(now, endDate);
+    if (endDate.getTime() > now) {
+      return formatDistanceStrict(now, endDate);
+    }
+    return 0;
   }, [now, endDate]);
 
   // start interval updating current time stamp until
@@ -66,7 +70,11 @@ export function EpochCountdown({
         <h3>
           {t("Epoch")} {id}
         </h3>
-        <p>{t("Next epoch in {{endText}}", { endText: endsIn })}</p>
+        <p>
+          {endsIn
+            ? t("Next epoch in {{endText}}", { endText: endsIn })
+            : t("Awaiting next epoch")}
+        </p>
       </div>
       <ProgressBar
         animate={false}

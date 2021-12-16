@@ -1,25 +1,25 @@
 import "./dex-table.scss";
+
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { EtherscanLink } from "../../../components/etherscan-link";
 import { Link } from "react-router-dom";
-import { Routes } from "../../router-config";
-import { LiquidityState } from "../liquidity-reducer";
-import { Links, REWARDS_POOL_ADDRESSES } from "../../../config";
+
+import { EtherscanLink } from "../../../components/etherscan-link";
+import { CopyToClipboardType } from "../../../components/etherscan-link/etherscan-link";
 import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
-import { EpochCountdown } from "../../../components/epoch-countdown";
-import { useWeb3 } from "../../../contexts/web3-context/web3-context";
+import { Links, REWARDS_POOL_ADDRESSES } from "../../../config";
 import { formatNumber } from "../../../lib/format-number";
+import { Routes } from "../../router-config";
+import { LiquidityState } from "../liquidity-reducer";
 
 interface DexTokensSectionProps {
   name: string;
   contractAddress: string;
   ethAddress: string;
   state: LiquidityState;
-  showInteractionButton?: boolean;
 }
 
 export const DexTokensSection = ({
@@ -27,9 +27,7 @@ export const DexTokensSection = ({
   contractAddress,
   ethAddress,
   state,
-  showInteractionButton = true,
 }: DexTokensSectionProps) => {
-  const { chainId } = useWeb3();
   const { t } = useTranslation();
   const values = React.useMemo(
     () => state.contractData[contractAddress],
@@ -63,9 +61,9 @@ export const DexTokensSection = ({
           <th>{t("liquidityTokenContractAddress")}</th>
           <td>
             <EtherscanLink
-              chainId={chainId}
               address={contractAddress}
               text={contractAddress}
+              copyToClipboard={CopyToClipboardType.LINK}
             />
           </td>
         </KeyValueTableRow>
@@ -79,9 +77,9 @@ export const DexTokensSection = ({
           <th>{t("rewardTokenContractAddress")}</th>
           <td>
             <EtherscanLink
-              chainId={chainId}
               address={values.awardContractAddress}
               text={values.awardContractAddress}
+              copyToClipboard={CopyToClipboardType.LINK}
             />
           </td>
         </KeyValueTableRow>
@@ -89,17 +87,12 @@ export const DexTokensSection = ({
           <th>{t("slpTokenContractAddress")}</th>
           <td>
             <EtherscanLink
-              chainId={chainId}
               address={values.lpTokenContractAddress}
               text={values.lpTokenContractAddress}
+              copyToClipboard={CopyToClipboardType.LINK}
             />
           </td>
         </KeyValueTableRow>
-        {/* TODO: Re-add this row when APY calculation is correct */}
-        {/* <KeyValueTableRow>
-          <th>{t("lpTokensEstimateAPY")}</th>
-          <td>{values.estimateAPY.decimalPlaces(2).toString()}%</td>
-        </KeyValueTableRow> */}
         <KeyValueTableRow>
           <th>{t("lpTokensInRewardPool")}</th>
           <td>
@@ -107,18 +100,9 @@ export const DexTokensSection = ({
           </td>
         </KeyValueTableRow>
         {ethAddress ? (
-          <ConnectedRows
-            showInteractionButton={showInteractionButton}
-            lpContractAddress={contractAddress}
-            state={state}
-          />
+          <ConnectedRows lpContractAddress={contractAddress} state={state} />
         ) : null}
       </KeyValueTable>
-      <EpochCountdown
-        startDate={new Date(values.epochDetails.startSeconds.toNumber() * 1000)}
-        endDate={new Date(values.epochDetails.endSeconds.toNumber() * 1000)}
-        id={values.epochDetails.id}
-      />
     </section>
   );
 };
@@ -126,14 +110,9 @@ export const DexTokensSection = ({
 interface ConnectedRowsProps {
   lpContractAddress: string;
   state: LiquidityState;
-  showInteractionButton: boolean;
 }
 
-const ConnectedRows = ({
-  lpContractAddress,
-  state,
-  showInteractionButton = true,
-}: ConnectedRowsProps) => {
+const ConnectedRows = ({ lpContractAddress, state }: ConnectedRowsProps) => {
   const { t } = useTranslation();
   const values = React.useMemo(
     () => state.contractData[lpContractAddress],
@@ -151,12 +130,7 @@ const ConnectedRows = ({
     accumulatedRewards,
   } = values.connectedWalletData;
   // Only shows the Deposit/Withdraw button IF they have tokens AND they haven't staked AND we're not on the relevant page
-  const isDepositButtonVisible =
-    showInteractionButton &&
-    availableLPTokens &&
-    availableLPTokens.isGreaterThan(0);
   const hasDeposited = totalStaked.isGreaterThan(0);
-  const hasRewards = accumulatedRewards.isGreaterThan(0);
   return (
     <>
       <KeyValueTableRow>
@@ -165,17 +139,6 @@ const ConnectedRows = ({
           <div>
             {formatNumber(availableLPTokens)}&nbsp;{t("SLP")}
           </div>
-          {hasDeposited ? (
-            <span className="text-muted">{t("alreadyDeposited")}</span>
-          ) : isDepositButtonVisible ? (
-            <div style={{ marginTop: 3 }}>
-              <Link to={`${Routes.LIQUIDITY}/${lpContractAddress}/deposit`}>
-                <button className="button-secondary">
-                  {t("depositToRewardPoolButton")}
-                </button>
-              </Link>
-            </div>
-          ) : null}
         </td>
       </KeyValueTableRow>
       <KeyValueTableRow>
@@ -201,7 +164,7 @@ const ConnectedRows = ({
           <div>
             {formatNumber(accumulatedRewards)} {t("VEGA")}
           </div>
-          {(hasDeposited || hasRewards) && (
+          {hasDeposited && (
             <div style={{ marginTop: 3 }}>
               <Link to={`${Routes.LIQUIDITY}/${lpContractAddress}/withdraw`}>
                 <button className="button-secondary">

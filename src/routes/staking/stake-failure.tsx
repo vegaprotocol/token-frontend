@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+
 import { Callout } from "../../components/callout";
 
 interface StakeFailureProps {

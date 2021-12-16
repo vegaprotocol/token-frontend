@@ -1,21 +1,23 @@
-import React from "react";
 import { gql, useQuery } from "@apollo/client";
-import { Callout } from "../../components/callout";
-import { Heading } from "../../components/heading";
-import { VegaWalletContainer } from "../../components/vega-wallet-container";
+import React from "react";
 import { useTranslation } from "react-i18next";
-import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
-import { SplashScreen } from "../../components/splash-screen";
+import { Link } from "react-router-dom";
+
+import { AccountType } from "../../__generated__/globalTypes";
+import { Callout } from "../../components/callout";
+import { EthWalletContainer } from "../../components/eth-wallet-container";
+import { Heading } from "../../components/heading";
 import { SplashLoader } from "../../components/splash-loader";
+import { SplashScreen } from "../../components/splash-screen";
+import { VegaWalletContainer } from "../../components/vega-wallet-container";
+import { Flags } from "../../config";
+import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
+import { Routes } from "../router-config";
 import {
   WithdrawPage,
   WithdrawPageVariables,
 } from "./__generated__/WithdrawPage";
-import { AccountType } from "../../__generated__/globalTypes";
 import { WithdrawForm } from "./withdraw-form";
-import { Link } from "react-router-dom";
-import { Routes } from "../router-config";
-import { Flags } from "../../config";
 
 const Withdraw = () => {
   const { t } = useTranslation();
@@ -49,8 +51,15 @@ const WITHDRAW_PAGE_QUERY = gql`
         type
         asset {
           id
+          name
           symbol
           decimals
+          source {
+            __typename
+            ... on ERC20 {
+              contractAddress
+            }
+          }
         }
       }
       withdrawals {
@@ -121,7 +130,7 @@ export const WithdrawContainer = ({ currVegaKey }: WithdrawContainerProps) => {
   return (
     <>
       {hasPendingWithdrawals && (
-        <Callout title={t("pendingWithdrawalsCalloutTitle")} intent="warn">
+        <Callout title={t("pendingWithdrawalsCalloutTitle")} intent="action">
           <p>{t("pendingWithdrawalsCalloutText")}</p>
           <p>
             <Link to={Routes.WITHDRAWALS}>
@@ -130,7 +139,15 @@ export const WithdrawContainer = ({ currVegaKey }: WithdrawContainerProps) => {
           </p>
         </Callout>
       )}
-      <WithdrawForm accounts={accounts} currVegaKey={currVegaKey} />
+      <EthWalletContainer>
+        {(connectedAddress) => (
+          <WithdrawForm
+            accounts={accounts}
+            currVegaKey={currVegaKey}
+            connectedAddress={connectedAddress}
+          />
+        )}
+      </EthWalletContainer>
     </>
   );
 };

@@ -1,10 +1,11 @@
 import "./etherscan-link.scss";
 
 import { Popover, PopoverInteractionKind } from "@blueprintjs/core";
+import { useTranslation } from "react-i18next";
 
 import { EthereumChainId } from "../../config";
+import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { useCopyToClipboard } from "../../hooks/use-copy-to-clipboard";
-import { useTranslation } from "react-i18next";
 
 const etherscanUrls: Record<EthereumChainId, string> = {
   "0x1": "https://etherscan.io",
@@ -15,9 +16,9 @@ const etherscanUrls: Record<EthereumChainId, string> = {
 };
 
 interface BaseEtherscanLinkProps {
-  chainId: EthereumChainId | null;
   text?: string;
   copyToClipboard?: CopyToClipboardType;
+  className?: string;
 }
 
 interface EtherscanAddressLinkProps extends BaseEtherscanLinkProps {
@@ -42,13 +43,14 @@ export enum CopyToClipboardType {
  * Form an HTML link tag pointing to an appropriate Etherscan page
  */
 export const EtherscanLink = ({
-  chainId,
   text,
-  copyToClipboard = CopyToClipboardType.TEXT,
+  className,
+  copyToClipboard = CopyToClipboardType.NONE,
   ...props
 }: EtherscanLinkProps) => {
+  const { chainId } = useWeb3();
   let hash: string;
-  let txLink: string | null;
+  let href: string | null;
   const { t } = useTranslation();
   const { copy, copied } = useCopyToClipboard();
   const linkText = text ? text : t("View on Etherscan (opens in a new tab)");
@@ -56,14 +58,14 @@ export const EtherscanLink = ({
 
   if ("tx" in props) {
     hash = props.tx;
-    txLink = createLink ? createLink.tx(hash) : null;
+    href = createLink ? createLink.tx(hash) : null;
   } else {
     hash = props.address;
-    txLink = createLink ? createLink.address(hash) : null;
+    href = createLink ? createLink.address(hash) : null;
   }
 
-  // Fallback: just render the TX id
-  if (!txLink) {
+  // Fallback: just render the address/txHash
+  if (!href) {
     return <span>{hash}</span>;
   }
 
@@ -72,7 +74,7 @@ export const EtherscanLink = ({
       case CopyToClipboardType.TEXT:
         return linkText;
       case CopyToClipboardType.LINK:
-        return txLink || hash || "";
+        return href || hash || "";
       default:
         return "";
     }
@@ -91,30 +93,23 @@ export const EtherscanLink = ({
     );
   };
 
+  const linkProps = {
+    target: "_blank",
+    rel: "noreferrer",
+    href,
+    className,
+  };
+
   return copyToClipboard !== CopyToClipboardType.NONE ? (
     <Popover
       hoverOpenDelay={500}
       interactionKind={PopoverInteractionKind.HOVER}
     >
-      <a
-        href={txLink}
-        target="_blank"
-        rel="noreferrer"
-        className="etherscan-link"
-      >
-        {linkText}
-      </a>
+      <a {...linkProps}>{linkText}</a>
       {getContents()}
     </Popover>
   ) : (
-    <a
-      href={txLink}
-      target="_blank"
-      rel="noreferrer"
-      className="etherscan-link"
-    >
-      {linkText}
-    </a>
+    <a {...linkProps}>{linkText}</a>
   );
 };
 
@@ -135,4 +130,4 @@ function etherscanLinkCreator(chainId: EthereumChainId | null) {
   };
 }
 
-EtherscanLink.displayName = "EtherScanLink";
+EtherscanLink.displayName = "EtherscanLink";

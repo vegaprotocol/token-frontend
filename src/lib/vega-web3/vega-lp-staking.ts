@@ -1,10 +1,11 @@
-import { BigNumber } from "../../lib/bignumber";
 import BN from "bn.js";
 import { ethers } from "ethers";
-import lpStakeAbi from "../abis/lp_staking_abi.json";
+
+import { BigNumber } from "../../lib/bignumber";
 import erc20Abi from "../abis/erc20_abi.json";
-import { EpochDetails, IVegaLPStaking } from "../web3-utils";
+import lpStakeAbi from "../abis/lp_staking_abi.json";
 import { addDecimal, removeDecimal } from "../decimals";
+import { EpochDetails, IVegaLPStaking } from "../web3-utils";
 
 export default class VegaLPStaking implements IVegaLPStaking {
   private contract: ethers.Contract;
@@ -160,35 +161,6 @@ export default class VegaLPStaking implements IVegaLPStaking {
     return new BigNumber(
       addDecimal(new BigNumber(balance.toString()), decimals)
     );
-  }
-
-  /**
-   * Estimated APY. Note that this number may flucutate a lot and will decrease
-   * with each staking, including what the user may want to stake.
-   * When nothing is stake the APY will be Infinity, while after that it will be
-   * a decimal number (not percent).
-   * @return {Promise<BigNumber>} APY as a decimal number. See above caveats
-   */
-  async estimateAPY(): Promise<BigNumber> {
-    const [epochReward, epochInterval, totalBalance] = await Promise.all([
-      this.contract.epoch_reward(),
-      this.contract.epoch_seconds(),
-      this.contract.total_staked(),
-    ]);
-
-    // If there is none staked the APY is 0, not infinity
-    if (new BigNumber(totalBalance.toString()).isEqualTo(0)) {
-      return new BigNumber(0);
-    }
-
-    const epochsPerYear = new BigNumber(60 * 60 * 24 * 365).dividedBy(
-      new BigNumber(epochInterval.toString())
-    );
-    const epochApy = new BigNumber(epochReward.toString()).dividedBy(
-      new BigNumber(totalBalance.toString())
-    );
-
-    return epochApy.multipliedBy(epochsPerYear).times(100);
   }
 
   /**

@@ -1,4 +1,6 @@
+/* eslint-disable */
 import { ethers } from "ethers";
+
 import { BigNumber } from "../../../lib/bignumber";
 import { IVegaClaim } from "../../web3-utils";
 import { promiEventFactory, uuidv4 } from "./promi-manager";

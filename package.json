@@ -1,6 +1,6 @@
 {
   "name": "token-frontend",
-  "version": "0.1.0",
+  "version": "0.5.27",
   "private": true,
   "engines": {
     "node": ">=14.15.0"
@@ -25,6 +25,7 @@
     "bignumber.js": "^9.0.1",
     "bn.js": "^5.2.0",
     "date-fns": "^2.23.0",
+    "duration-js": "^4.0.0",
     "env-cmd": "^10.1.0",
     "ethers": "^5.4.7",
     "faker": "^5.5.3",
@@ -54,14 +55,29 @@
     "postinstall": "cp .env.example .env",
     "build": "craco build",
     "test": "REACT_APP_CHAIN=0x1 craco test",
+    "lint:es": "eslint . --ext .ts,.tsx --max-warnings 0 --cache",
     "eject": "react-scripts eject",
     "generate": "env-cmd yarn apollo codegen:generate --target=typescript --globalTypesFile=src/__generated__/globalTypes.ts"
   },
   "eslintConfig": {
+    "plugins": [
+      "simple-import-sort"
+    ],
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "simple-import-sort/imports": "warn",
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          "vars": "all",
+          "args": "after-used"
+        }
+      ]
+    }
   },
   "browserslist": {
     "production": [
@@ -77,10 +93,12 @@
   },
   "devDependencies": {
     "@cypress/instrument-cra": "^1.4.0",
+    "@sentry/webpack-plugin": "^1.18.3",
     "@types/lodash": "^4.14.171",
     "@types/semver": "^7.3.9",
     "add": "^2.0.6",
     "apollo": "^2.33.4",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
     "istanbul-lib-coverage": "^3.0.0",
     "nyc": "^15.1.0",
     "yarn": "^1.22.11"

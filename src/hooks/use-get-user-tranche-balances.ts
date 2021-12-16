@@ -1,10 +1,11 @@
+import * as Sentry from "@sentry/react";
 import React from "react";
+
 import {
   AppStateActionType,
   useAppState,
 } from "../contexts/app-state/app-state-context";
-import * as Sentry from "@sentry/react";
-import BigNumber from "bignumber.js";
+import { BigNumber } from "../lib/bignumber";
 import { IVegaVesting } from "../lib/web3-utils";
 
 export const useGetUserTrancheBalances = (

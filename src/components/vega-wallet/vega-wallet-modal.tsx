@@ -1,11 +1,12 @@
 import { Overlay } from "@blueprintjs/core";
-import { Trans, useTranslation } from "react-i18next";
-import { Links } from "../../config";
+import { useTranslation } from "react-i18next";
+
 import {
   AppStateActionType,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
 import { Modal } from "../modal";
+import { DownloadWalletPrompt } from "./download-wallet-prompt";
 import { VegaWalletForm } from "./vega-wallet-form";
 
 export const VegaWalletModal = () => {
@@ -13,6 +14,7 @@ export const VegaWalletModal = () => {
   const { appState, appDispatch } = useAppState();
   return (
     <Overlay
+      className="bp3-dark"
       isOpen={appState.vegaWalletOverlay}
       onClose={() =>
         appDispatch({
@@ -22,24 +24,9 @@ export const VegaWalletModal = () => {
       }
       transitionDuration={0}
     >
-      <div className="modal">
+      <div className="modal modal--dark">
         <Modal>
           <h2>{t("connectVegaWallet")}</h2>
-          <p>
-            <Trans
-              i18nKey="vegaWalletRunning"
-              components={{
-                walletLink: (
-                  // eslint-disable-next-line jsx-a11y/anchor-has-content
-                  <a
-                    href={Links.WALLET_RELEASES}
-                    target="_blank"
-                    rel="nofollow noreferrer"
-                  />
-                ),
-              }}
-            />
-          </p>
           <VegaWalletForm
             onConnect={() =>
               appDispatch({
@@ -48,6 +35,7 @@ export const VegaWalletModal = () => {
               })
             }
           />
+          <DownloadWalletPrompt />
         </Modal>
       </div>
     </Overlay>

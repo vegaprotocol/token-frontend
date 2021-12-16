@@ -1,12 +1,13 @@
 import { useTranslation } from "react-i18next";
+
 import { Callout } from "../../components/callout";
 import { Error } from "../../components/icons";
 import { ADDRESSES } from "../../config";
 
-export const CodeUsed = ({ address }: { address: string | null }) => {
+export const CodeUsed = () => {
   const { t } = useTranslation();
   return (
-    <Callout intent="warn" icon={<Error />} title={t("codeUsed")}>
+    <Callout intent="action" icon={<Error />} title={t("codeUsed")}>
       <p>{t("codeUsedText")}</p>
       <h4>
         {t(

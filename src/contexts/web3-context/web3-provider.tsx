@@ -1,8 +1,12 @@
-import React from "react";
 import * as Sentry from "@sentry/react";
-import { SplashScreen } from "../../components/splash-screen";
-import { SplashLoader } from "../../components/splash-loader";
+import WalletConnectProvider from "@walletconnect/web3-provider";
+import { ethers } from "ethers";
+import React from "react";
 import { useTranslation } from "react-i18next";
+import Web3Modal, { getInjectedProviderName } from "web3modal";
+
+import { SplashLoader } from "../../components/splash-loader";
+import { SplashScreen } from "../../components/splash-screen";
 import {
   APP_CHAIN_ID,
   ChainIdMap,
@@ -10,9 +14,6 @@ import {
   EthereumChainNames,
 } from "../../config";
 import { Web3Context } from "./web3-context";
-import { ethers } from "ethers";
-import Web3Modal, { getInjectedProviderName } from "web3modal";
-import WalletConnectProvider from "@walletconnect/web3-provider";
 
 const web3Modal = new Web3Modal({
   cacheProvider: true,
@@ -58,7 +59,7 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
   const [provider, setProvider] =
     React.useState<ethers.providers.BaseProvider | null>(null);
   const [signer, setSigner] = React.useState<ethers.Signer | null>(null);
-  const [chainId, setChainId] = React.useState<EthereumChainId>(APP_CHAIN_ID);
+  const [chainId, setChainId] = React.useState<EthereumChainId | null>(null);
   const [ethAddress, setEthAddress] = React.useState("");
 
   // On connect replace the default provider and web3 instances (which uses an HttpProvider
@@ -66,7 +67,7 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
   const connect = React.useCallback(async () => {
     try {
       const rawProvider = await web3Modal.connect();
-      const newProvider = new ethers.providers.Web3Provider(rawProvider);
+      const newProvider = new ethers.providers.Web3Provider(rawProvider, "any");
       const signer = newProvider.getSigner();
       setProvider(newProvider);
       setSigner(signer);
@@ -87,6 +88,7 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
   // web3 instances to using the default Http provider using Infura
   const disconnect = React.useCallback(async () => {
     try {
+      setChainId(null);
       await web3Modal.clearCachedProvider();
       const newProvider = new ethers.providers.InfuraProvider(
         ChainIdMap[APP_CHAIN_ID],

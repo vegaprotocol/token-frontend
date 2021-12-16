@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+
 import {
   AppStateActionType,
   useAppState,
@@ -28,7 +29,7 @@ export const VegaWalletContainer = ({ children }: VegaWalletContainerProps) => {
             })
           }
         >
-          {t("Connect to Vega wallet")}
+          {t("connectVegaWallet")}
         </button>
       </p>
     );

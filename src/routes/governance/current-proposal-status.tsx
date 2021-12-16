@@ -1,9 +1,11 @@
 import "./current-proposal-status.scss";
 
+import { formatDistanceToNow } from "date-fns";
 import { useTranslation } from "react-i18next";
-import { useVoteInformation } from "./hooks";
-import { Proposals_proposals } from "./__generated__/proposals";
+
 import { ProposalState } from "../../__generated__/globalTypes";
+import { Proposals_proposals } from "./__generated__/Proposals";
+import { useVoteInformation } from "./hooks";
 
 export const CurrentProposalStatus = ({
   proposal,
@@ -15,7 +17,17 @@ export const CurrentProposalStatus = ({
   });
   const { t } = useTranslation();
 
-  if (willPass) {
+  const daysClosedAgo = formatDistanceToNow(
+    new Date(proposal.terms.closingDatetime),
+    { addSuffix: true }
+  );
+
+  const daysEnactedAgo = formatDistanceToNow(
+    new Date(proposal.terms.enactmentDatetime),
+    { addSuffix: true }
+  );
+
+  if (proposal.state === ProposalState.Open && willPass) {
     return (
       <span className="current-proposal-status__pass">{t("shouldPass")}</span>
     );
@@ -23,27 +35,67 @@ export const CurrentProposalStatus = ({
 
   if (!participationMet) {
     return (
-      <span className="current-proposal-status__fail">
-        {t("participationNotMet")}
-      </span>
+      <>
+        <span>{t("voteFailedReason")}</span>
+        <span className="current-proposal-status__fail">
+          {t("participationNotMet")}
+        </span>
+        <span>&nbsp;{daysClosedAgo}.</span>
+      </>
     );
   }
 
   if (!majorityMet) {
     return (
-      <span className="current-proposal-status__fail">
-        {t("majorityNotMet")}
-      </span>
+      <>
+        <span>{t("voteFailedReason")}</span>
+        <span className="current-proposal-status__fail">
+          {t("majorityNotMet")}
+        </span>
+        <span>&nbsp;{daysClosedAgo}.</span>
+      </>
     );
   }
 
-  if (proposal.state === ProposalState.Failed) {
-    return <span className="current-proposal-status__fail">{t("failed")}</span>;
+  if (
+    proposal.state === ProposalState.Failed ||
+    proposal.state === ProposalState.Declined ||
+    proposal.state === ProposalState.Rejected
+  ) {
+    return (
+      <>
+        <span>{t("voteFailedReason")}</span>
+        <span className="current-proposal-status__fail">{proposal.state}</span>
+        <span>&nbsp;{daysClosedAgo}.</span>
+      </>
+    );
+  }
+  if (
+    proposal.state === ProposalState.Enacted ||
+    proposal.state === ProposalState.Passed
+  ) {
+    return (
+      <>
+        <span>{t("votePassed")}</span>
+        <span className="current-proposal-status__pass">
+          &nbsp;{proposal.state}
+        </span>
+        <span>
+          &nbsp;
+          {proposal.state === ProposalState.Enacted
+            ? daysEnactedAgo
+            : daysClosedAgo}
+          .
+        </span>
+      </>
+    );
   }
 
-  if (proposal.state === ProposalState.Passed) {
-    return <span className="current-proposal-status__pass">{t("passed")}</span>;
+  if (proposal.state === ProposalState.WaitingForNodeVote) {
+    return (
+      <span>{t("subjectToFurtherActions", { daysAgo: daysClosedAgo })}</span>
+    );
   }
 
-  return <span>Unknown</span>;
+  return null;
 };

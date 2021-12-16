@@ -1,5 +1,7 @@
 import "./connected-vega-key.scss";
+
 import { useTranslation } from "react-i18next";
+
 import { ConnectToVega } from "../../routes/staking/connect-to-vega";
 
 export const ConnectedVegaKey = ({ pubKey }: { pubKey: string | null }) => {

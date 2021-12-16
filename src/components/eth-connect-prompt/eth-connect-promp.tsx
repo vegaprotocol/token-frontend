@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
 
 interface EthConnectPrompProps {
@@ -12,7 +13,7 @@ export const EthConnectPrompt = ({ children }: EthConnectPrompProps) => {
     <>
       {children}
       <button onClick={connect} className="fill" type="button">
-        {t("Connect to an Ethereum wallet")}
+        {t("connectEthWallet")}
       </button>
     </>
   );

@@ -1,31 +1,13 @@
-import { captureException } from "@sentry/minimal";
+import { captureException, captureMessage } from "@sentry/minimal";
 import * as React from "react";
+
+import { VoteValue } from "../../__generated__/globalTypes";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import {
-  hasErrorProperty,
   vegaWalletService,
   VoteSubmissionInput,
 } from "../../lib/vega-wallet/vega-wallet-service";
-import { VoteValue } from "../../__generated__/globalTypes";
 import { VOTE_VALUE_MAP } from "./vote-types";
-import { gql, useApolloClient } from "@apollo/client";
-
-export const VOTES_SUBSCRIPTION_QUERY = gql`
-  subscription votesSub($partyId: ID!) {
-    busEvents(types: [Vote], batchSize: 0, partyId: $partyId) {
-      type
-      event {
-        ... on Vote {
-          datetime
-          value
-          party {
-            id
-          }
-        }
-      }
-    }
-  }
-`;
 
 export type Vote = {
   value: VoteValue;
@@ -39,21 +21,26 @@ export enum VoteState {
   NotCast = "NotCast",
   Yes = "Yes",
   No = "No",
+  Pending = "Pending",
   Failed = "Failed",
 }
 
-export function getMyVote(pubkey: string, yesVotes?: Votes, noVotes?: Votes) {
-  const myYes = yesVotes?.find((v) => v && v.party.id === pubkey);
-  const myNo = noVotes?.find((v) => v && v.party.id === pubkey);
-  if (myYes) {
-    return myYes;
-  } else if (myNo) {
-    return myNo;
+export function getUserVote(pubkey: string, yesVotes?: Votes, noVotes?: Votes) {
+  const yesVote = yesVotes?.find((v) => v && v.party.id === pubkey);
+  const noVote = noVotes?.find((v) => v && v.party.id === pubkey);
+  if (yesVote) {
+    return yesVote;
+  } else if (noVote) {
+    return noVote;
   } else {
     return null;
   }
 }
 
+/**
+ * Finds the status of a users given vote in a given proposal and provides
+ * a function to send a vote transaction to your wallet
+ */
 export function useUserVote(
   proposalId: string | null,
   yesVotes: Votes | null,
@@ -61,32 +48,58 @@ export function useUserVote(
 ) {
   const yes = React.useMemo(() => yesVotes || [], [yesVotes]);
   const no = React.useMemo(() => noVotes || [], [noVotes]);
-  const client = useApolloClient();
+
   const {
     appState: { currVegaKey },
   } = useAppState();
-  const subRef = React.useRef<any>(null);
-  const [votePending, setVotePending] = React.useState(false);
 
-  const myVote = React.useMemo(() => {
-    if (currVegaKey) return getMyVote(currVegaKey.pub, yes, no);
+  const [voteState, setVoteState] = React.useState<VoteState | null>(
+    VoteState.NotCast
+  );
+
+  // Find the users vote everytime yes or no votes change
+  const userVote = React.useMemo(() => {
+    if (currVegaKey) {
+      return getUserVote(currVegaKey.pub, yes, no);
+    }
+    return null;
   }, [currVegaKey, yes, no]);
 
-  const initialState = React.useMemo(() => {
-    if (myVote === null || myVote === undefined) {
-      return VoteState.NotCast;
+  // If user vote changes update the vote state
+  React.useEffect(() => {
+    if (!userVote) {
+      setVoteState(VoteState.NotCast);
     } else {
-      return myVote.value === VoteValue.Yes ? VoteState.Yes : VoteState.No;
+      setVoteState(
+        userVote.value === VoteValue.Yes ? VoteState.Yes : VoteState.No
+      );
     }
-  }, [myVote]);
+  }, [userVote]);
 
-  const [voteState, setVoteState] = React.useState(initialState);
+  // Start a starts a timeout of 30s to set a failed message if
+  // the vote is not seen by the time the callback is invoked
+  React.useEffect(() => {
+    let timeout: any;
 
+    if (voteState === VoteState.Pending) {
+      setTimeout(() => {
+        setVoteState(VoteState.Failed);
+        captureMessage("Vote not seen after 30s");
+      }, 1000 * 30);
+    } else {
+      clearTimeout(timeout);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [voteState]);
+
+  /**
+   * Casts a vote using the users connected wallet
+   */
   async function castVote(value: VoteValue) {
     if (!proposalId || !currVegaKey) return;
 
-    setVotePending(true);
-    setVoteState(value === VoteValue.Yes ? VoteState.Yes : VoteState.No);
+    setVoteState(VoteState.Pending);
 
     try {
       const variables: VoteSubmissionInput = {
@@ -96,59 +109,24 @@ export function useUserVote(
           proposalId,
         },
       };
-      const res = await vegaWalletService.commandSync(variables);
+      const [err] = await vegaWalletService.commandSync(variables);
 
-      if (hasErrorProperty(res)) {
-        throw new Error(res.error);
+      if (err) {
+        setVoteState(VoteState.Failed);
+        captureException(err);
       }
+
+      // Now await vote via poll in parent component
     } catch (err) {
       setVoteState(VoteState.Failed);
       captureException(err);
     }
-
-    // start a subscription to see if your vote passes consensus
-    subRef.current = client
-      .subscribe({
-        query: VOTES_SUBSCRIPTION_QUERY,
-        variables: { partyId: currVegaKey.pub },
-      })
-      .subscribe({
-        next: ({ data }) => {
-          const userVote = data.busEvents.find((e: any) => {
-            if (e.type === "Vote" && e.event.party.id === currVegaKey.pub) {
-              return true;
-            }
-
-            return false;
-          });
-
-          if (userVote) {
-            setVotePending(false);
-          }
-        },
-        error: (err) => {
-          captureException(err);
-          // kill the subscription if an error is returned
-          subRef.current.unsubscribe();
-        },
-      });
   }
-
-  // if the component unmounts and there is still a subscription running
-  // cancel it so its not left hanging around
-  React.useEffect(() => {
-    return () => {
-      if (subRef.current) {
-        subRef.current.unsubscribe();
-      }
-    };
-  }, []);
 
   return {
     voteState,
-    votePending,
     castVote,
-    myVote,
-    voteDatetime: myVote ? myVote.datetime : null,
+    userVote,
+    voteDatetime: userVote ? new Date(userVote.datetime) : null,
   };
 }

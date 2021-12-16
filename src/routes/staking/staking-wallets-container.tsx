@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
 import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
@@ -24,11 +25,8 @@ export const StakingWalletsContainer = ({
   if (!ethAddress && needsEthereum) {
     return (
       <EthConnectPrompt>
-        <p>
-          {t(
-            "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes."
-          )}
-        </p>
+        <p>{t("associateInfo1")}</p>
+        <p>{t("associateInfo2")}</p>
       </EthConnectPrompt>
     );
   }
@@ -36,11 +34,10 @@ export const StakingWalletsContainer = ({
   if (!currVegaKey && needsVega) {
     return (
       <>
-        <p>
-          {t(
-            "To participate in Governance or to Nominate a node you’ll need to associate VEGA tokens with a Vega wallet/key. This Vega key can then be used to Propose, Vote and nominate nodes."
-          )}
-        </p>
+        <EthConnectPrompt>
+          <p>{t("associateInfo1")}</p>
+          <p>{t("associateInfo2")}</p>
+        </EthConnectPrompt>
         <ConnectToVega />
       </>
     );

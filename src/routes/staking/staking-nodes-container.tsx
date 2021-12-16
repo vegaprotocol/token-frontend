@@ -1,6 +1,7 @@
-import React from "react";
 import { gql, useQuery } from "@apollo/client";
+import React from "react";
 import { useTranslation } from "react-i18next";
+
 import { Callout } from "../../components/callout";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
@@ -38,6 +39,7 @@ export const STAKING_QUERY = gql`
       pubkey
       infoUrl
       location
+      ethereumAdddress
       stakedByOperator
       stakedByDelegates
       stakedTotal

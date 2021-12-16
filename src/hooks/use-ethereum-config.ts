@@ -1,7 +1,8 @@
-import React from "react";
 import * as Sentry from "@sentry/react";
-import { useNetworkParam } from "./use-network-param";
+import React from "react";
+
 import { NetworkParams } from "../config";
+import { useNetworkParam } from "./use-network-param";
 
 export const useEthereumConfig = () => {
   const { data: ethereumConfigJSON, loading } = useNetworkParam([
