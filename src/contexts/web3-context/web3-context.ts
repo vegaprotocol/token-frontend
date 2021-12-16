@@ -1,6 +1,7 @@
 import React from "react";
 import { ethers } from "ethers";
 import { EthereumChainId } from "../../config";
+import { BigNumber } from "../../lib/bignumber";
 
 interface Web3ContextShape {
   /**
@@ -35,6 +36,9 @@ interface Web3ContextShape {
 
   /** Ethereum address of the connected signer */
   ethAddress: string;
+
+  /** Ethereum address of  */
+  gas: BigNumber | null;
 }
 
 export const Web3Context = React.createContext<Web3ContextShape | undefined>(

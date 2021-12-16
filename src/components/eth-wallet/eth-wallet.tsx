@@ -18,6 +18,8 @@ import { Routes } from "../../routes/router-config";
 import { Link } from "react-router-dom";
 import { LockedProgress } from "../locked-progress";
 import { BigNumber } from "../../lib/bignumber";
+import { formatNumber } from "../../lib/format-number";
+import { EthereumChainIds } from "../../lib/web3-utils";
 
 const removeLeadingAddressSymbol = (key: string) => {
   if (key && key.length > 2 && key.slice(0, 2) === "0x") {
@@ -172,7 +174,7 @@ const ConnectedKey = () => {
 
 export const EthWallet = () => {
   const { t } = useTranslation();
-  const { connect, disconnect, ethAddress } = useWeb3();
+  const { connect, disconnect, ethAddress, gas, chainId } = useWeb3();
   const [disconnecting] = React.useState(false);
 
   return (
@@ -184,6 +186,25 @@ export const EthWallet = () => {
             {truncateMiddle(ethAddress)}
           </span>
         )}
+      </WalletCardHeader>
+      <WalletCardHeader>
+        {gas && chainId === EthereumChainIds.Mainnet ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <svg style={{ width: 24, height: 24 }} viewBox="0 0 24 24">
+              <path
+                fill="currentColor"
+                d="M18,10A1,1 0 0,1 17,9A1,1 0 0,1 18,8A1,1 0 0,1 19,9A1,1 0 0,1 18,10M12,10H6V5H12M19.77,7.23L19.78,7.22L16.06,3.5L15,4.56L17.11,6.67C16.17,7 15.5,7.93 15.5,9A2.5,2.5 0 0,0 18,11.5C18.36,11.5 18.69,11.42 19,11.29V18.5A1,1 0 0,1 18,19.5A1,1 0 0,1 17,18.5V14C17,12.89 16.1,12 15,12H14V5C14,3.89 13.1,3 12,3H6C4.89,3 4,3.89 4,5V21H14V13.5H15.5V18.5A2.5,2.5 0 0,0 18,21A2.5,2.5 0 0,0 20.5,18.5V9C20.5,8.31 20.22,7.68 19.77,7.23Z"
+              />
+            </svg>
+            {formatNumber(gas, 0)}
+          </div>
+        ) : null}
       </WalletCardHeader>
       <WalletCardContent>
         {ethAddress ? (

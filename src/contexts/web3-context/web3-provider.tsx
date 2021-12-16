@@ -13,6 +13,7 @@ import { Web3Context } from "./web3-context";
 import { ethers } from "ethers";
 import Web3Modal, { getInjectedProviderName } from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
+import { BigNumber } from "../../lib/bignumber";
 
 const web3Modal = new Web3Modal({
   cacheProvider: true,
@@ -60,6 +61,25 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
   const [signer, setSigner] = React.useState<ethers.Signer | null>(null);
   const [chainId, setChainId] = React.useState<EthereumChainId | null>(null);
   const [ethAddress, setEthAddress] = React.useState("");
+  const [gas, setGasPrice] = React.useState<BigNumber | null>(null);
+
+  React.useEffect(() => {
+    const run = async () => {
+      if (provider) {
+        try {
+          const res = await provider.getGasPrice();
+          const gwiePrice = new BigNumber(
+            ethers.utils.formatUnits(res, "gwei")
+          );
+          setGasPrice(gwiePrice);
+        } catch (e) {
+          Sentry.captureException(e);
+        }
+      }
+    };
+    const interval = setInterval(run, 10000);
+    return () => clearInterval(interval);
+  }, [setGasPrice, provider]);
 
   // On connect replace the default provider and web3 instances (which uses an HttpProvider
   // with Infura) with an instance provided by the Web3Modal package
@@ -227,6 +247,7 @@ export const Web3Provider = ({ children }: { children: JSX.Element }) => {
         signer,
         chainId,
         ethAddress,
+        gas,
       }}
     >
       {children}
