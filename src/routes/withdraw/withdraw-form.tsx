@@ -17,6 +17,7 @@ import { Routes } from "../router-config";
 import { useTranslation } from "react-i18next";
 import { EthAddressInput } from "./eth-address-input";
 import { ethers } from "ethers";
+import { Callout } from "../../components/callout";
 
 interface WithdrawFormProps {
   accounts: WithdrawPage_party_accounts[];
@@ -107,6 +108,9 @@ export const WithdrawForm = ({
           <p className="text-muted">{t("withdrawFormNoAsset")}</p>
         )}
       </FormGroup>
+      <Callout title={t("withdrawPreparedWarningHeading")} intent="warn">
+        <p>{t("withdrawPreparedWarningText")}</p>
+      </Callout>
       <EthAddressInput
         onChange={setDestinationAddress}
         address={destinationAddress}

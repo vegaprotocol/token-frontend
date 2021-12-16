@@ -30,6 +30,7 @@ import {
 } from "./__generated__/WithdrawalsPage";
 import { Flags } from "../../config";
 import { useRefreshBalances } from "../../hooks/use-refresh-balances";
+import { Callout } from "../../components/callout";
 
 const Withdrawals = () => {
   const { t } = useTranslation();
@@ -43,6 +44,9 @@ const Withdrawals = () => {
     <>
       <Heading title={t("withdrawalsTitle")} />
       <p>{t("withdrawalsText")}</p>
+      <Callout title={t("withdrawalsPreparedWarningHeading")} intent="warn">
+        <p>{t("withdrawalsPreparedWarningText")}</p>
+      </Callout>
       <VegaWalletContainer>
         {(currVegaKey) => (
           <WithdrawPendingContainer currVegaKey={currVegaKey} />
