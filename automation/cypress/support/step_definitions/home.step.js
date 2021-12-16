@@ -191,3 +191,15 @@ When("I have not connected my vega wallet", () => {
     "This step does not need to be filled in as connecting wallets is not yet supported with mocks/cypress"
   );
 });
+
+When("I click on the governance proposals button", () => {
+  cy.get("button").contains("View proposals").click();
+});
+
+Then("I am taken to governance proposals page", () => {
+  cy.url().should("equal", Cypress.config().baseUrl + "governance");
+});
+
+Then("I can see proposals", () => {
+  cy.log("Pending");
+});
