@@ -157,10 +157,7 @@ Then("I am taken to the {string} page", (pageVisited) => {
       break;
     case "withdraw":
       cy.url().should("include", "/withdraw");
-      cy.get(".heading__title-container").should(
-        "have.text",
-        "Withdraw rewards"
-      );
+      cy.get(".heading__title-container").should("have.text", "Withdraw");
       break;
     default:
       throw new Error("no page specified in list");
