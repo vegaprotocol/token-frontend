@@ -4,6 +4,6 @@
   "toEnactOn": "Proposed enactment",
   "setTo": "Vote status: ",
   "Check to see if you can redeem unlocked VEGA tokens": "Redeem unlocked $VEGA tokens",
-  "withdrawPageText": "Rewards are paid into your Vega Wallet, and can be withdrawn using the ERC20 bridge. The rewards are paid out of the treasury for restricted mainnet.",
+  "withdrawPageText": "Use this form to withdraw/release assets from your Vega wallet to their native chain.",
   "stakingStep3": "Step 3. Select the validator you'd like to nominate"
 }
