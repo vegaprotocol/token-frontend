@@ -6,7 +6,7 @@
   "scripts": {
     "cypress:open:local": "CYPRESS_ENV=localhost npm run cypress:open",
     "cypress:open:prod": "CYPRESS_ENV=production npm run cypress:open",
-    "cypress:open": "cypress open",
+    "cypress:open": "npx cypress open",
     "cypress:run": "npx cypress run --record --key ec7d4456-735d-4ddd-ab1a-4dbd46067b36",
     "test:local": "CYPRESS_ENV=localhost npm run test",
     "test:prod": "CYPRESS_ENV=production npm run test",

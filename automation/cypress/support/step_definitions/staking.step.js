@@ -44,11 +44,11 @@ Then("the token amount field is shown",()=>{
     cy.get('[data-testid="token-amount-input"]').should('be.visible').and('be.empty')
 })
 
-When("I attempt to remove {string} vega from stake",(amountOfvega)=>{
+When("I enter {string} into the token input field",(amountOfvega)=>{
     cy.get('[data-testid="token-amount-input"]').type(amountOfvega)
 })
 
-Then("the remove button is disabled",()=>{
+Then("the submit button is disabled",()=>{
     cy.get('[data-testid="token-input-submit-button"]').should('be.disabled').and('have.attr','disabled')
 })
 
