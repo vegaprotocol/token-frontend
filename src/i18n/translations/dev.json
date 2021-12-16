@@ -485,5 +485,6 @@
   "voteFailedReason": "Vote closed. Failed due to: ",
   "votePassed": "Vote passed.",
   "subjectToFurtherActions": "Vote passed {{daysAgo}} subject to further actions.",
-  "transactionHashPrompt": "Transaction hash will appear here once the transaction is approved in your Ethereum wallet"
+  "transactionHashPrompt": "Transaction hash will appear here once the transaction is approved in your Ethereum wallet",
+  "errorLoadingTranches": "Error loading tranches. Please try again later."
 }

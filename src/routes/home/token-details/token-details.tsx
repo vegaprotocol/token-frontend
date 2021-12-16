@@ -23,7 +23,7 @@ export const TokenDetails = ({
 }) => {
   const { t } = useTranslation();
 
-  const tranches = useTranches();
+  const { tranches } = useTranches();
   return (
     <KeyValueTable className={"token-details"}>
       <KeyValueTableRow>
