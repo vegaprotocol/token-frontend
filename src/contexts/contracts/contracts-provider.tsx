@@ -1,10 +1,9 @@
+import { VegaClaim } from "@vegaprotocol/smart-contracts-sdk";
 import React from "react";
 
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { ADDRESSES } from "../../config";
-// @ts-ignore
-import VegaClaim from "../../lib/VEGA_WEB3/vega-claim";
 // @ts-ignore
 import StakingAbi from "../../lib/VEGA_WEB3/vega-staking";
 // Note: Each contract class imported below gets swapped out for a mocked version
@@ -46,16 +45,16 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
             ADDRESSES.vestingAddress,
             decimals
           ),
+          erc20Bridge: new VegaErc20Bridge(
+            provider as any,
+            signer,
+            ADDRESSES.erc20Bridge
+          ),
           claim: new VegaClaim(
             provider,
             signer,
             ADDRESSES.claimAddress,
             decimals
-          ),
-          erc20Bridge: new VegaErc20Bridge(
-            provider as any,
-            signer,
-            ADDRESSES.erc20Bridge
           ),
         });
       }

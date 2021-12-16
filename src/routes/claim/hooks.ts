@@ -1,6 +1,7 @@
+import { IClaimTokenParams } from "@vegaprotocol/smart-contracts-sdk";
+
 import { useContracts } from "../../contexts/contracts/contracts-context";
 import { useTransaction } from "../../hooks/use-transaction";
-import { IClaimTokenParams } from "../../lib/vega-web3/vega-web3-types";
 
 export const useClaim = (claimData: IClaimTokenParams, address: string) => {
   const claimArgs = {
