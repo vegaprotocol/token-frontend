@@ -1,5 +1,4 @@
 Feature: Homepage
-  @e2e-test
 
   Scenario: Homepage displays correct information
     Given I am on the home page
@@ -26,6 +25,13 @@ Feature: Homepage
     Given I am on the home page
     When I click on the associate vega tokens
     Then I am taken to the staking page
+
+@todo
+  Scenario: Navigate to governance proposals page via button link on homepage body
+    Given I am on the home page
+    When I click on the governance proposals bitton
+    Then I am taken to governance proposals page
+    And I can see proposals
 
   Scenario: Navigate to a not found page will return page error
     Given I navigate to not found page
