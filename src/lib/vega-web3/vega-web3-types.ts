@@ -48,22 +48,3 @@ export enum TrancheEvents {
   BalanceAdded = "Tranche_Balance_Added",
   BalanceRemoved = "Tranche_Balance_Removed",
 }
-
-export interface IVegaClaimData {
-  amount: BigNumber;
-  tranche: number;
-  expiry: number;
-  target?: string;
-}
-
-export interface IVegaClaimSignature {
-  v: number;
-  r: string;
-  s: string;
-}
-
-export interface IClaimTokenParams {
-  claim: IVegaClaimData;
-  signature: IVegaClaimSignature;
-  country: string | null;
-}

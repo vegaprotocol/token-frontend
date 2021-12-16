@@ -1,10 +1,10 @@
+import { BigNumber } from "@vegaprotocol/smart-contracts-sdk";
 import { Callout } from "@vegaprotocol/ui-toolkit";
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import { EtherscanLink } from "../../components/etherscan-link";
 import { Tick } from "../../components/icons";
-import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
 import { Routes } from "../router-config";
 
