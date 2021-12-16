@@ -30,6 +30,9 @@ const Withdraw = () => {
     <>
       <Heading title={t("withdrawPageHeading")} />
       <p>{t("withdrawPageText")}</p>
+      <Callout title={t("withdrawPreparedWarningHeading")} intent="error">
+        <p>{t("withdrawPreparedWarningText")}</p>
+      </Callout>
       <VegaWalletContainer>
         {(currVegaKey) => <WithdrawContainer currVegaKey={currVegaKey} />}
       </VegaWalletContainer>

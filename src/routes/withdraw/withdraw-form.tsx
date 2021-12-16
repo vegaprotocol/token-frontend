@@ -17,7 +17,6 @@ import { Routes } from "../router-config";
 import { useTranslation } from "react-i18next";
 import { EthAddressInput } from "./eth-address-input";
 import { ethers } from "ethers";
-import { Callout } from "../../components/callout";
 
 interface WithdrawFormProps {
   accounts: WithdrawPage_party_accounts[];
@@ -86,9 +85,6 @@ export const WithdrawForm = ({
         );
       }}
     >
-      <Callout title={t("withdrawPreparedWarningHeading")} intent="warn">
-        <p>{t("withdrawPreparedWarningText")}</p>
-      </Callout>
       <FormGroup label={t("withdrawFormAssetLabel")} labelFor="asset">
         {accounts.length ? (
           <HTMLSelect
