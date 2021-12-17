@@ -12899,6 +12899,11 @@ react-scripts@4.0.3:
   optionalDependencies:
     fsevents "^2.1.3"
 
+react-singleton-hook@^3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/react-singleton-hook/-/react-singleton-hook-3.2.3.tgz#1765e67b1910fd163cdcd186a840af82b60ca17e"
+  integrity sha512-DYJ70V8IVUZznygmRYYF+hxwLkGPLrCCTAD1Je7sZYXquE9HpAJqBVeEgb2XIZwxWUw97PN2ho5J/+63YwdKaA==
+
 react-smooth@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/react-smooth/-/react-smooth-2.0.0.tgz#561647b33e498b2e25f449b3c6689b2e9111bf91"

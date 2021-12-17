@@ -1,3 +1,4 @@
+import orderBy from "lodash/orderBy";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
@@ -5,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Colors } from "../../config";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { useEthTransaction } from "../../hooks/use-eth-transaction";
 import vegaVesting from "../../images/vega_vesting.png";
 import vegaWhite from "../../images/vega_white.png";
 import { BigNumber } from "../../lib/bignumber";
@@ -167,9 +169,67 @@ const ConnectedKey = () => {
           </button>
         </Link>
       </WalletCardActions>
+      <MyTx />
     </>
   );
 };
+
+function MyTx() {
+  const { ethAddress } = useWeb3();
+  // @ts-ignore
+  const { txs } = useEthTransaction(ethAddress, 6);
+  return (
+    <div style={{ color: "black" }}>
+      <h2>My transactions</h2>
+      {txs?.length === 0 ? (
+        <div>No txs</div>
+      ) : (
+        <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
+          {orderBy(txs, ["tx.blockNumber"], ["desc"]).map((tx) => (
+            <li
+              // @ts-ignore
+              key={tx.tx.hash}
+              style={{
+                borderBottom: "1px solid #ccc",
+                marginBottom: 3,
+                paddingBottom: 3,
+              }}
+            >
+              <div>
+                block:
+                {
+                  // @ts-ignore
+                  tx.tx.blockNumber
+                }
+              </div>
+              <div>
+                type:{" "}
+                {
+                  // @ts-ignore
+                  tx.event?.event
+                }
+              </div>
+              <div>
+                hash:{" "}
+                {truncateMiddle(
+                  // @ts-ignore
+                  tx.tx.hash
+                )}
+              </div>
+              <div>
+                pending:{" "}
+                {
+                  // @ts-ignore
+                  tx.receipt === null ? "yes" : "no"
+                }
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
 
 export const EthWallet = () => {
   const { t } = useTranslation();

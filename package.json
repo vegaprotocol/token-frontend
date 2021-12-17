@@ -40,6 +40,7 @@
     "react-i18next": "^11.11.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-singleton-hook": "^3.2.3",
     "recharts": "^2.1.2",
     "semver": "^7.3.5",
     "sha3": "^2.1.4",

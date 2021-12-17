@@ -3,12 +3,12 @@ import React from "react";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { ADDRESSES } from "../../config";
+// Note: Each contract class imported below gets swapped out for a mocked version
+// at ../../lib/vega-web3/__mocks__ at build time using webpack.NormalModuleReplacementPlugin
 // @ts-ignore
 import VegaClaim from "../../lib/VEGA_WEB3/vega-claim";
 // @ts-ignore
 import StakingAbi from "../../lib/VEGA_WEB3/vega-staking";
-// Note: Each contract class imported below gets swapped out for a mocked version
-// at ../../lib/vega-web3/__mocks__ at build time using webpack.NormalModuleReplacementPlugin
 // when you run the app with REACT_APP_MOCKED=1
 // @ts-ignore
 import VegaToken from "../../lib/VEGA_WEB3/vega-token";

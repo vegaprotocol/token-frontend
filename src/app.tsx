@@ -3,6 +3,7 @@ import "./app.scss";
 
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
+import { SingletonHooksContainer } from "react-singleton-hook";
 
 import { AppLoader } from "./app-loader";
 import { AppFooter } from "./components/app-footer";
@@ -34,6 +35,7 @@ function App() {
                     </TemplateSidebar>
                     <AppFooter />
                   </div>
+                  <SingletonHooksContainer />
                   <VegaWalletModal />
                 </BalanceManager>
               </AppLoader>

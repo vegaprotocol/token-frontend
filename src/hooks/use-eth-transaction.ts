@@ -1,12 +1,10 @@
 import { BigNumber as EthersBigNumber, ethers } from "ethers";
-import React, { useState } from "react";
+import throttle from "lodash/throttle";
+import React from "react";
+import { singletonHook } from "react-singleton-hook";
 
 import { useContracts } from "../contexts/contracts/contracts-context";
-import {
-  IVegaErc20Bridge,
-  IVegaStaking,
-  IVegaVesting,
-} from "../lib/web3-utils";
+import { IVegaStaking } from "../lib/web3-utils";
 
 interface VegaTX {
   event: ethers.Event | null;
@@ -14,50 +12,64 @@ interface VegaTX {
   receipt: ethers.providers.TransactionReceipt | null;
 }
 
+type Listeners = {
+  tx: Function[];
+};
+
 class VegaEthUser {
-  vesting: IVegaVesting;
   staking: IVegaStaking;
-  erc20Bridge: IVegaErc20Bridge;
   confirmations: number;
   txs: VegaTX[] = [];
   address: string;
+  listeners: Listeners = { tx: [] };
+  depositFilter: ethers.EventFilter;
+  removeFilter: ethers.EventFilter;
 
-  constructor(
-    address: string,
-    confirmations: number,
-    vesting: IVegaVesting,
-    staking: IVegaStaking,
-    erc20Bridge: IVegaErc20Bridge
-  ) {
+  constructor(address: string, confirmations: number, staking: IVegaStaking) {
     this.confirmations = confirmations;
-    this.vesting = vesting;
     this.staking = staking;
-    this.erc20Bridge = erc20Bridge;
     this.address = address;
+    this.emit = throttle(this.emit, 1000);
 
-    const assetWithdrawnFilter =
-      erc20Bridge.contract.filters.Asset_Withdrawn(address);
-    const assetDepositFilter =
-      erc20Bridge.contract.filters.Asset_Deposited(address);
+    this.depositFilter = staking.contract.filters.Stake_Deposited(address);
+    this.removeFilter = staking.contract.filters.Stake_Removed(address);
 
-    const bridgeDepositFilter =
-      staking.contract.filters.Stake_Deposited(address);
-    const bridgeRemoveFilter = staking.contract.filters.Stake_Removed(address);
+    staking.contract.on(
+      this.depositFilter,
+      (
+        address: string,
+        amount: EthersBigNumber,
+        vegaPubKey: string,
+        event: ethers.Event
+      ) => {
+        this.handleEvent(event, this.confirmations);
+      }
+    );
+    staking.contract.on(
+      this.removeFilter,
+      (
+        address: string,
+        amount: EthersBigNumber,
+        vegaPubKey: string,
+        event: ethers.Event
+      ) => {
+        this.handleEvent(event);
+      }
+    );
+  }
 
-    const vestingDepositFilter =
-      staking.contract.filters.Stake_Deposited(address);
-    const vestingRemoveFilter = staking.contract.filters.Stake_Removed(address);
-    console.log(window.performance.now());
+  destroy() {
+    // Clean up everything
+    this.staking.contract.removeAllListeners();
+    this.off("tx");
+  }
 
+  fetchHistory() {
     // TODO could be filtered by block height in future
     // Get all the historic transactions for this user
     Promise.all([
-      erc20Bridge.contract.queryFilter(assetWithdrawnFilter),
-      erc20Bridge.contract.queryFilter(assetDepositFilter),
-      staking.contract.queryFilter(bridgeDepositFilter),
-      staking.contract.queryFilter(bridgeRemoveFilter),
-      vesting.contract.queryFilter(vestingDepositFilter),
-      vesting.contract.queryFilter(vestingRemoveFilter),
+      this.staking.contract.queryFilter(this.depositFilter),
+      this.staking.contract.queryFilter(this.removeFilter),
     ]).then((events) => {
       events.forEach((eventArray) => {
         eventArray.forEach((e) => {
@@ -66,93 +78,15 @@ class VegaEthUser {
         });
       });
     });
-
-    erc20Bridge.contract.on(
-      assetWithdrawnFilter,
-      (
-        address: string,
-        asset: string,
-        amount: EthersBigNumber,
-        vegaPubKey: string,
-        event: ethers.Event
-      ) => {
-        this.handleEvent(event);
-      }
-    );
-    erc20Bridge.contract.on(
-      assetDepositFilter,
-      (
-        address: string,
-        asset: string,
-        amount: EthersBigNumber,
-        vegaPubKey: string,
-        event: ethers.Event
-      ) => {
-        this.handleEvent(event, this.confirmations);
-      }
-    );
-
-    staking.contract.on(
-      bridgeDepositFilter,
-      (
-        address: string,
-        amount: EthersBigNumber,
-        vegaPubKey: string,
-        event: ethers.Event
-      ) => {
-        this.handleEvent(event, this.confirmations);
-      }
-    );
-    staking.contract.on(
-      bridgeRemoveFilter,
-      (
-        address: string,
-        amount: EthersBigNumber,
-        vegaPubKey: string,
-        event: ethers.Event
-      ) => {
-        this.handleEvent(event);
-      }
-    );
-
-    vesting.contract.on(
-      vestingDepositFilter,
-      (
-        address: string,
-        amount: EthersBigNumber,
-        vegaPubKey: string,
-        event: ethers.Event
-      ) => {
-        this.handleEvent(event, this.confirmations);
-      }
-    );
-    vesting.contract.on(
-      vestingRemoveFilter,
-      (
-        address: string,
-        amount: EthersBigNumber,
-        vegaPubKey: string,
-        event: ethers.Event
-      ) => {
-        this.handleEvent(event, this.confirmations);
-      }
-    );
   }
 
-  destroy() {
-    // Clean up everything
-    this.staking.contract.removeAllListeners();
-    this.vesting.contract.removeAllListeners();
-    this.erc20Bridge.contract.removeAllListeners();
-  }
-
-  async addTransaction(tx: ethers.providers.TransactionResponse) {
+  addTransaction = (tx: ethers.providers.TransactionResponse) => {
     this.mergeTransactions({
       tx,
       event: null,
       receipt: null,
     });
-  }
+  };
 
   private mergeTransactions(tx: VegaTX) {
     this.txs = [
@@ -160,7 +94,9 @@ class VegaEthUser {
       ...this.txs.filter(({ tx: t }) => t.hash !== tx.tx.hash),
       tx,
     ];
-    console.log("tx", window.performance.now(), this.txs);
+
+    console.log("attempting emit");
+    this.emit();
   }
 
   private async handleEvent(event: ethers.Event, confirmations: number = 1) {
@@ -182,34 +118,60 @@ class VegaEthUser {
       });
     }
   }
+
+  on(event: "tx", cb: Function) {
+    this.listeners[event].push(cb);
+  }
+
+  off(event: "tx") {
+    // TODO: handle only remove the function passed in
+    this.listeners[event] = [];
+  }
+
+  emit() {
+    this.listeners.tx.forEach((cb) => cb(this.txs));
+  }
 }
 
-// TODO if we used this multiple times then would have multiple classes kicking about
-// TODO investigate use global
-// Error handling in general for this whole thing
-// Does not work with useTransaction hook. Need to optimisitically add transactions
-export const useEthTransaction = (address: string, confirmations?: number) => {
-  const { erc20Bridge, staking, vesting } = useContracts();
-  const [vegaEhtUser, setVegaEthUser] = useState<VegaEthUser | null>(null);
-  React.useEffect(() => {
-    if (!vegaEhtUser && erc20Bridge && staking && vesting) {
-      setVegaEthUser(
-        new VegaEthUser(
-          address,
-          confirmations || 1,
-          vesting,
-          staking,
-          erc20Bridge
-        )
-      );
-    }
-    return () => {
-      vegaEhtUser?.destroy();
-      setVegaEthUser(null);
-    };
-  }, [address, confirmations, erc20Bridge, staking, vesting]);
-
-  // use effect to trigger destroy
+type UseEthTransaction = {
+  txs: VegaTX[];
+  addTx: (tx: ethers.providers.TransactionResponse) => void;
 };
 
-// 0x72c22822A19D20DE7e426fB84aa047399Ddd8853
+const init: UseEthTransaction = {
+  txs: [],
+  addTx: () => {
+    throw new Error("something went wrong");
+  },
+};
+
+export function useEthTransactionImpl(
+  address: string,
+  confirmations = 1
+): UseEthTransaction {
+  const { staking } = useContracts();
+  const [txs, setTxs] = React.useState<VegaTX[]>([]);
+
+  const instance = React.useMemo(() => {
+    return new VegaEthUser(address, confirmations, staking);
+  }, [address, confirmations, staking]);
+
+  React.useEffect(() => {
+    instance.on("tx", (incoming: VegaTX[]) => {
+      setTxs(incoming);
+    });
+
+    instance.fetchHistory();
+
+    return () => {
+      instance.destroy();
+    };
+  }, [instance]);
+
+  return { txs, addTx: instance.addTransaction };
+}
+
+export const useEthTransaction = singletonHook(
+  init,
+  useEthTransactionImpl as any
+);

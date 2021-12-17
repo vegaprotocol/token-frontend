@@ -3,17 +3,22 @@ import { ethers } from "ethers";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
+import { useWeb3 } from "../contexts/web3-context/web3-context";
 import { isUnexpectedError, isUserRejection } from "../lib/web3-utils";
 import {
   initialState,
   TransactionActionType,
   transactionReducer,
 } from "./transaction-reducer";
+import { useEthTransaction } from "./use-eth-transaction";
 
 export const useTransaction = (
   performTransaction: () => Promise<ethers.ContractTransaction>,
   requiredConfirmations: number = 1
 ) => {
+  const { ethAddress } = useWeb3();
+  // @ts-ignore
+  const { addTx } = useEthTransaction(ethAddress);
   const { t } = useTranslation();
   const [state, dispatch] = React.useReducer(transactionReducer, {
     ...initialState,
@@ -22,6 +27,7 @@ export const useTransaction = (
 
   const handleError = React.useCallback(
     (err: Error) => {
+      console.error(err);
       if (isUnexpectedError(err)) {
         Sentry.captureException(err);
       }
@@ -61,6 +67,7 @@ export const useTransaction = (
 
     try {
       const tx = await performTransaction();
+      addTx(tx);
 
       dispatch({
         type: TransactionActionType.TX_SUBMITTED,
@@ -114,7 +121,7 @@ export const useTransaction = (
     } catch (err) {
       handleError(err as Error);
     }
-  }, [performTransaction, requiredConfirmations, handleError]);
+  }, [performTransaction, requiredConfirmations, handleError, addTx]);
 
   const reset = () => {
     dispatch({ type: TransactionActionType.TX_RESET });
