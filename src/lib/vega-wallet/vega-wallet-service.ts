@@ -11,6 +11,8 @@ export const MINIMUM_WALLET_VERSION =
 
 export const DEFAULT_WALLET_URL = "http://localhost:1789";
 export const HOSTED_WALLET_URL = "https://wallet.testnet.vega.xyz";
+const WALLET_RELEASES_HISTORY =
+  "https://api.github.com/repos/vegaprotocol/vegawallet/releases";
 const TOKEN_STORAGE_KEY = "vega_wallet_token";
 const WALLET_URL_KEY = "vega_wallet_url";
 const KEY_STORAGE_KEY = "vega_wallet_key";
@@ -174,6 +176,28 @@ export class VegaWalletService implements IVegaWalletService {
       return true;
     }
     return semver.satisfies(version, MINIMUM_WALLET_VERSION);
+  }
+
+  async getLastestVersion() {
+    try {
+      const res = await fetch(WALLET_RELEASES_HISTORY, {});
+
+      if (res.status === 404) {
+        return null;
+      }
+
+      const json = await res.json();
+
+      // find the first non-prelease
+      for (let walletVerison of json) {
+        if (!walletVerison.prerelease) {
+          return walletVerison;
+        }
+      }
+      return null;
+    } catch (err) {
+      return null;
+    }
   }
 
   async getVersion(): Promise<(string | undefined)[]> {
