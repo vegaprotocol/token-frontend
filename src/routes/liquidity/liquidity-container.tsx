@@ -7,7 +7,6 @@ import { LiquidityState } from "./liquidity-reducer";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { Error } from "../../components/icons";
 import { Callout } from "../../components/callout";
-import { Link } from "react-router-dom";
 
 export const LiquidityContainer = ({ state }: { state: LiquidityState }) => {
   const { t } = useTranslation();
