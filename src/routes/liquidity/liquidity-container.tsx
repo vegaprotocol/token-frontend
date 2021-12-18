@@ -1,11 +1,10 @@
 import "./liquidity-container.scss";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
 import { Links, REWARDS_ADDRESSES } from "../../config";
 import { DexTokensSection } from "./dex-table";
 import { LiquidityState } from "./liquidity-reducer";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
-import { Error } from "../../components/icons";
 import { Callout } from "../../components/callout";
 
 export const LiquidityContainer = ({ state }: { state: LiquidityState }) => {
