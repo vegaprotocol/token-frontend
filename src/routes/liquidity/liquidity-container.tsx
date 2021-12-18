@@ -14,15 +14,23 @@ export const LiquidityContainer = ({ state }: { state: LiquidityState }) => {
     <section className="liquidity-container">
       <h2>{t("liquidityRewardsTitle")}</h2>
       <p>
-        {t("liquidityOnsenIntro")}
-        <a href={Links.SUSHI_ONSEN_WHAT_IS}>{t("liquidityOnsenHowItWorks")}</a>
-        {", "}
-        <a href={Links.SUSHI_ONSEN_FAQ}>{t("liquidityOnsenFAQ")}</a>
+        {t("liquidityOnsenIntro")}{" "}
+        <a href={Links.SUSHI_ONSEN_MENU}>{t("liquidityOnsenLinkText")}</a>.
       </p>
+      <ul>
+        <li>
+          <a href={Links.SUSHI_ONSEN_WHAT_IS}>
+            {t("liquidityOnsenHowItWorks")}
+          </a>
+        </li>
+        <li>
+          <a href={Links.SUSHI_ONSEN_FAQ}>{t("liquidityOnsenFAQ")}</a>
+        </li>
+      </ul>
       <p>
         <a href={Links.SUSHI_ONSEN_MENU}>
           <button className="fill button-secondary">
-            {t("liquidityOnsenLinkText")}
+            {t("liquidityOnsenButtonText")}
           </button>
         </a>
       </p>
