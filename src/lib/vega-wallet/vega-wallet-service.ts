@@ -1,6 +1,7 @@
 import semver from "semver";
 
 import { VoteValue } from "../../__generated__/globalTypes";
+import { Links } from "../../config";
 import { VegaKey } from "../../contexts/app-state/app-state-context";
 import { VOTE_VALUE_MAP } from "../../routes/governance/vote-types";
 import { LocalStorage } from "../storage";
@@ -11,8 +12,6 @@ export const MINIMUM_WALLET_VERSION =
 
 export const DEFAULT_WALLET_URL = "http://localhost:1789";
 export const HOSTED_WALLET_URL = "https://wallet.testnet.vega.xyz";
-const WALLET_RELEASES_HISTORY =
-  "https://api.github.com/repos/vegaprotocol/vegawallet/releases";
 const TOKEN_STORAGE_KEY = "vega_wallet_token";
 const WALLET_URL_KEY = "vega_wallet_url";
 const KEY_STORAGE_KEY = "vega_wallet_key";
@@ -180,10 +179,10 @@ export class VegaWalletService implements IVegaWalletService {
 
   async getLastestVersion() {
     try {
-      const res = await fetch(WALLET_RELEASES_HISTORY, {});
+      const res = await fetch(Links.WALLET_RELEASES_HISTORY, {});
 
       if (res.status === 404) {
-        return null;
+        return [null, null];
       }
 
       const json = await res.json();
@@ -191,12 +190,13 @@ export class VegaWalletService implements IVegaWalletService {
       // find the first non-prelease
       for (let walletVerison of json) {
         if (!walletVerison.prerelease) {
-          return walletVerison;
+          const location = Links.WALLET_RELEASES_LATEST + walletVerison.name;
+          return [walletVerison.name, location];
         }
       }
-      return null;
+      return [null, null];
     } catch (err) {
-      return null;
+      return [null, null];
     }
   }
 
