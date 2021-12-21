@@ -10,7 +10,9 @@ import {
 } from "../../../__generated__/globalTypes";
 import { NetworkParams } from "../../../hooks/__generated__/NetworkParams";
 import { NETWORK_PARAMS_QUERY } from "../../../hooks/use-network-param";
+import { Proposal } from "../../../routes/governance/__generated__/Proposal";
 import { Proposals } from "../../../routes/governance/__generated__/Proposals";
+import { PROPOSAL_QUERY } from "../../../routes/governance/proposal-container";
 import { PROPOSALS_QUERY } from "../../../routes/governance/proposals-container";
 import { generateProposal } from "../../../routes/governance/test-helpers/generate-proposals";
 import { REWARDS_QUERY } from "../../../routes/rewards/home";
@@ -25,8 +27,6 @@ import {
 import { NODES_QUERY } from "../../../routes/staking/node-list";
 import { PARTY_DELEGATIONS_QUERY } from "../../../routes/staking/staking-form";
 import { STAKING_QUERY } from "../../../routes/staking/staking-nodes-container";
-import { PROPOSAL_QUERY } from "../../../routes/governance/proposal-container";
-import { Proposal } from "../../../routes/governance/__generated__/Proposal";
 
 const PARTY_ID = "pub";
 const REWARD_ASSET_ID = "reward-asset-id";
@@ -404,11 +404,11 @@ export const GraphQlProvider = ({
   return (
     <MockedProvider
       mocks={[
+        MOCK_PROPOSALS,
+        ...MOCK_PROPOSAL,
         MOCK_STAKING_QUERY,
         MOCK_PARTY_DELEGATIONS,
-        MOCK_PROPOSALS,
         MOCK_NODES_QUERY,
-        ...MOCK_PROPOSAL,
         MOCK_REWARDS,
         MOCK_NETWORK_PARAMS,
       ]}
