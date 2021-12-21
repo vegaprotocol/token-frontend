@@ -25,6 +25,8 @@ import {
 import { NODES_QUERY } from "../../../routes/staking/node-list";
 import { PARTY_DELEGATIONS_QUERY } from "../../../routes/staking/staking-form";
 import { STAKING_QUERY } from "../../../routes/staking/staking-nodes-container";
+import { PROPOSAL_QUERY } from "../../../routes/governance/proposal-container";
+import { Proposal } from "../../../routes/governance/__generated__/Proposal";
 
 const PARTY_ID = "pub";
 const REWARD_ASSET_ID = "reward-asset-id";
@@ -245,6 +247,26 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
   },
 };
 
+const MOCK_PROPOSAL: MockedResponse<Proposal>[] = [
+  notVoted,
+  noTokens,
+  votedAgainst,
+  didNotVote,
+  voteClosedVotedFor,
+].map((p) => ({
+  request: {
+    query: PROPOSAL_QUERY,
+    variables: {
+      proposalId: p.id,
+    },
+  },
+  result: {
+    data: {
+      proposal: p,
+    },
+  },
+}));
+
 const MOCK_REWARDS: MockedResponse<Rewards> = {
   request: {
     query: REWARDS_QUERY,
@@ -386,7 +408,7 @@ export const GraphQlProvider = ({
         MOCK_PARTY_DELEGATIONS,
         MOCK_PROPOSALS,
         MOCK_NODES_QUERY,
-        // MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
         MOCK_REWARDS,
         MOCK_NETWORK_PARAMS,
       ]}
