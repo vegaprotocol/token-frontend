@@ -1,10 +1,13 @@
 import * as Sentry from "@sentry/react";
+import {
+  EpochDetails,
+  IVegaLPStaking,
+} from "@vegaprotocol/smart-contracts-sdk";
 import React from "react";
 
 import { REWARDS_ADDRESSES } from "../../config";
 import { useVegaLPStaking } from "../../hooks/use-vega-lp-staking";
 import { BigNumber } from "../../lib/bignumber";
-import { EpochDetails, IVegaLPStaking } from "../../lib/web3-utils";
 import { LiquidityAction, LiquidityActionType } from "./liquidity-reducer";
 
 export const useGetLiquidityBalances = (

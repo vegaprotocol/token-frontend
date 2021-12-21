@@ -1,5 +1,6 @@
 import "./tranche.scss";
 
+import { Tranche as TrancheType } from "@vegaprotocol/smart-contracts-sdk";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
@@ -10,7 +11,6 @@ import { ADDRESSES } from "../../config";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
-import { Tranche as TrancheType } from "../../lib/vega-web3/vega-web3-types";
 import { TrancheItem } from "../redemption/tranche-item";
 import { Routes } from "../router-config";
 import { TrancheLabel } from "./tranche-label";
