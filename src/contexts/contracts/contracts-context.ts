@@ -1,9 +1,11 @@
-import { IVegaClaim } from "@vegaprotocol/smart-contracts-sdk";
+import {
+  IVegaClaim,
+  IVegaErc20Bridge,
+  IVegaStaking,
+  IVegaToken,
+  IVegaVesting,
+} from "@vegaprotocol/smart-contracts-sdk";
 import React from "react";
-
-import { IVegaErc20Bridge, IVegaToken } from "../../lib/web3-utils";
-import { IVegaStaking } from "../../lib/web3-utils";
-import { IVegaVesting } from "../../lib/web3-utils";
 
 export interface ContractsContextShape {
   token: IVegaToken;

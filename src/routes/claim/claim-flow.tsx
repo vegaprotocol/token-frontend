@@ -1,6 +1,7 @@
 import "./claim-flow.scss";
 
 import * as Sentry from "@sentry/react";
+import { Tranche, UNSPENT_CODE } from "@vegaprotocol/smart-contracts-sdk";
 import { format } from "date-fns";
 import React from "react";
 import { Trans, useTranslation } from "react-i18next";
@@ -13,8 +14,6 @@ import {
 import { useContracts } from "../../contexts/contracts/contracts-context";
 import { formatNumber } from "../../lib/format-number";
 import { truncateMiddle } from "../../lib/truncate-middle";
-import { UNSPENT_CODE } from "../../lib/vega-web3/vega-claim";
-import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { ClaimInfo } from "./claim-info";
 import {
   ClaimAction,

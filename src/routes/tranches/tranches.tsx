@@ -1,12 +1,12 @@
 import "./tranches.scss";
 
+import { Tranche } from "@vegaprotocol/smart-contracts-sdk";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useRouteMatch } from "react-router-dom";
 
 import { ADDRESSES } from "../../config";
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
-import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { TrancheItem } from "../redemption/tranche-item";
 import { TrancheLabel } from "./tranche-label";
 

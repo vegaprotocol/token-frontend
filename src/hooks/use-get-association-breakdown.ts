@@ -1,11 +1,11 @@
 import * as Sentry from "@sentry/react";
+import { IVegaStaking, IVegaVesting } from "@vegaprotocol/smart-contracts-sdk";
 import React from "react";
 
 import {
   AppStateActionType,
   useAppState,
 } from "../contexts/app-state/app-state-context";
-import { IVegaStaking, IVegaVesting } from "../lib/web3-utils";
 
 export function useGetAssociationBreakdown(
   ethAddress: string,
