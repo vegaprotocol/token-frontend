@@ -1,3 +1,4 @@
+import { IClaimTokenParams } from "@vegaprotocol/smart-contracts-sdk";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
@@ -7,7 +8,6 @@ import { FormGroup } from "../../../components/form-group";
 import { useContracts } from "../../../contexts/contracts/contracts-context";
 import { TxState } from "../../../hooks/transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
-import { IClaimTokenParams } from "../../../lib/vega-web3/vega-web3-types";
 import {
   ClaimAction,
   ClaimActionType,
