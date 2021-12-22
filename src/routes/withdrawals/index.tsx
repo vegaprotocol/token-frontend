@@ -238,7 +238,11 @@ export const Withdrawal = ({
         </KeyValueTableRow>
       </KeyValueTable>
       <TransactionButton
-        text={t("withdrawalsCompleteButton")}
+        text={
+          !erc20Approval
+            ? t("withdrawalsPreparingButton")
+            : t("withdrawalsCompleteButton")
+        }
         transactionState={state}
         forceTxState={withdrawal.txHash ? TxState.Complete : undefined}
         forceTxHash={withdrawal.txHash}
