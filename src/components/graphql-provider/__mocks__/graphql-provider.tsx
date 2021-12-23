@@ -162,7 +162,7 @@ const MOCK_PARTY_DELEGATIONS: MockedResponse<PartyDelegations> = {
   },
 };
 
-const notVoted = generateProposal({
+const proposalNotVoted = generateProposal({
   terms: { change: { networkParameter: { key: "not.voted" } } },
   party: { id: "123" },
   votes: {
@@ -171,11 +171,11 @@ const notVoted = generateProposal({
   },
 });
 
-const noTokens = generateProposal({
+const proposalNoTokens = generateProposal({
   terms: { change: { networkParameter: { key: "no.tokens" } } },
 });
 
-const votedAgainst = generateProposal({
+const proposalVotedAgainst = generateProposal({
   terms: { change: { networkParameter: { key: "voted.against" } } },
   party: { id: "123" },
   votes: {
@@ -197,13 +197,13 @@ const votedAgainst = generateProposal({
   },
 });
 
-const didNotVote = generateProposal({
+const proposalDidNotVote = generateProposal({
   terms: { change: { networkParameter: { key: "voted.closed.did.not.vote" } } },
   state: ProposalState.Enacted,
   party: { id: "123" },
 });
 
-const voteClosedVotedFor = generateProposal({
+const propsoalVoteClosedVotedFor = generateProposal({
   terms: { change: { networkParameter: { key: "voted.closed.voted.for" } } },
   state: ProposalState.Enacted,
   party: { id: "123" },
@@ -228,6 +228,18 @@ const voteClosedVotedFor = generateProposal({
   },
 });
 
+const proposalDeclined = generateProposal({
+  state: ProposalState.Declined,
+});
+
+const proposalPassed = generateProposal({
+  state: ProposalState.Passed,
+});
+
+const proposalRejected = generateProposal({
+  state: ProposalState.Rejected,
+});
+
 const MOCK_PROPOSALS: MockedResponse<Proposals> = {
   request: {
     query: PROPOSALS_QUERY,
@@ -235,11 +247,14 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
   result: {
     data: {
       proposals: [
-        notVoted,
-        noTokens,
-        votedAgainst,
-        didNotVote,
-        voteClosedVotedFor,
+        proposalRejected,
+        proposalPassed,
+        proposalDeclined,
+        proposalNotVoted,
+        proposalNoTokens,
+        proposalVotedAgainst,
+        proposalDidNotVote,
+        propsoalVoteClosedVotedFor,
       ],
     },
   },
@@ -382,9 +397,9 @@ export const GraphQlProvider = ({
   return (
     <MockedProvider
       mocks={[
+        MOCK_PROPOSALS,
         MOCK_STAKING_QUERY,
         MOCK_PARTY_DELEGATIONS,
-        MOCK_PROPOSALS,
         MOCK_NODES_QUERY,
         // MOCK_PROPOSAL,
         MOCK_REWARDS,
