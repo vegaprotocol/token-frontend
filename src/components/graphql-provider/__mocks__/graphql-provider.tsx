@@ -324,6 +324,25 @@ const proposaNoVotesWillWin = generateProposal({
   },
 });
 
+const proposaNotEnoughVotes = generateProposal({
+  state: ProposalState.Declined,
+  votes: {
+    __typename: "ProposalVotes",
+    yes: {
+      totalTokens: "0",
+      totalNumber: "0",
+      __typename: "ProposalVoteSide",
+      votes: null,
+    },
+    no: {
+      totalTokens: "0",
+      totalNumber: "0",
+      __typename: "ProposalVoteSide",
+      votes: null,
+    },
+  },
+});
+
 
 const MOCK_PROPOSALS: MockedResponse<Proposals> = {
   request: {
@@ -332,6 +351,7 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
   result: {
     data: {
       proposals: [
+        proposaNotEnoughVotes,
         proposaNoVotesWillWin,
         proposaYesVotesWillWin,
         proposaSameYesNoVotes,
