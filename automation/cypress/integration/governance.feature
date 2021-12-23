@@ -1,9 +1,9 @@
-Feature: Governance page 
+Feature: Governance page
 
-@todo 
+
 Scenario: Navigate to governance page via link on homepage body for open proposal
   Given I am on the home page
-  When I click on the View proposals
+  When I click on the governance proposals button
   Then I am taken to the governance page
   And I could see governance proposals list wth the following fields for an open proposal
         | fields             |
@@ -12,10 +12,10 @@ Scenario: Navigate to governance page via link on homepage body for open proposa
         | Closes on          |
         | Proposed enactment |
 
-@todo 
+@todo
 Scenario: Navigate to governance page via link on homepage body for closed proposal
   Given I am on the home page
-  When I click on the View proposals
+  When When I click on the governance proposals button
   Then I am taken to the governance page
   And I could see governance proposals list wth the following fields for a closed proposal
         | fields     |
@@ -23,8 +23,8 @@ Scenario: Navigate to governance page via link on homepage body for closed propo
         | State      |
         | Closed on  |
         | Enacted on |
-       
-@todo 
+
+@todo
 Scenario: Statuses for governance proposals
   Given I navigate to '/governance' page
   When I view the governance proposals list
@@ -37,7 +37,7 @@ Scenario: Statuses for governance proposals
         | Rejected       |
   And sorted by furthest Proposed enactment date
 
-@todo 
+@todo
 Scenario: Voting on governance proposal page
   Given I navigate to '/governance' page
   When I click on a Open UpdateNetworkParameter proposal from the list
@@ -52,7 +52,7 @@ Scenario: Voting on governance proposal page
   And click on Vote against button
   Then Your vote section is updated with You voted Against
 
-@manual 
+@manual
 Scenario: Voting on governance proposal page after changing Vega wallet keys
   Given I navigate to '/governance' page
   When I click on a Open UpdateNetworkParameter proposal from the list
