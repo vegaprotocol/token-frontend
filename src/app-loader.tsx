@@ -56,7 +56,7 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
     run();
   }, [token, appDispatch, staking, vesting]);
 
-  // Attempte to get vega keys on startup
+  // Attempt to get vega keys on startup
   React.useEffect(() => {
     async function run() {
       const [keysErr, keys] = await vegaWalletService.getKeys();
