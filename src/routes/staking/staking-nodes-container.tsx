@@ -101,7 +101,13 @@ export const StakingNodesContainer = ({
   if (error) {
     return (
       <Callout intent="error" title={t("Something went wrong")}>
-        <pre>{error.message}</pre>
+        <pre>
+          {error.message.includes(
+            "rpc error: code = NotFound desc = NotFound error"
+          )
+            ? t("resourceNotFound")
+            : error.message}
+        </pre>
       </Callout>
     );
   }

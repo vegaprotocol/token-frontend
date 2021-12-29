@@ -489,5 +489,6 @@
   "injected.name": "Injected",
   "injected.text": "Connect with the provider in your browser",
   "walletConnect.name": "Mobile",
-  "walletConnect.text": "Scan QR code with your mobile wallet"
+  "walletConnect.text": "Scan QR code with your mobile wallet",
+  "resourceNotFound": "Resource Not Found"
 }
