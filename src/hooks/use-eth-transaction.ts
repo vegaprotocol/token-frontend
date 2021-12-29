@@ -6,10 +6,17 @@ import { singletonHook } from "react-singleton-hook";
 import { useContracts } from "../contexts/contracts/contracts-context";
 import { IVegaStaking } from "../lib/web3-utils";
 
+const REQUIRED_CONFIRMATIONS = {
+  Stake_Removed: 1,
+  Stake_Deposited: 6,
+};
+
 interface VegaTX {
   event: ethers.Event | null;
   tx: ethers.providers.TransactionResponse;
   receipt: ethers.providers.TransactionReceipt | null;
+  requiredConfirmations: number;
+  pending: boolean;
 }
 
 type Listeners = {
@@ -74,17 +81,24 @@ class VegaEthUser {
       events.forEach((eventArray) => {
         eventArray.forEach((e) => {
           // TODO pass correct number of confirmations { "STAKE_DEPOSITED": 6, "STAKE_REMOVED": 1}
+
+          console.log(e);
           this.handleEvent(e);
         });
       });
     });
   }
 
-  addTransaction = (tx: ethers.providers.TransactionResponse) => {
+  addTransaction = (
+    tx: ethers.providers.TransactionResponse,
+    requiredConfirmations = 1
+  ) => {
     this.mergeTransactions({
       tx,
       event: null,
       receipt: null,
+      pending: true,
+      requiredConfirmations,
     });
   };
 
@@ -95,26 +109,32 @@ class VegaEthUser {
       tx,
     ];
 
-    console.log("attempting emit");
     this.emit();
   }
 
-  private async handleEvent(event: ethers.Event, confirmations: number = 1) {
+  private async handleEvent(event: ethers.Event, requiredConfirmations = 1) {
     const tx = await event.getTransaction();
+
     // If hash is not in tx array add it in e.g. if the user used etherscan to perform the transaction rather than the app
     this.mergeTransactions({
       tx,
       event,
       receipt: null,
+      pending: tx.confirmations < requiredConfirmations,
+      requiredConfirmations:
+        REQUIRED_CONFIRMATIONS[event.event as "Stake_Deposited"] || 1,
     });
 
     // TODO error handling
-    for (let i = 1; i <= confirmations; i++) {
+    for (let i = 1; i <= requiredConfirmations; i++) {
       const receipt = await tx.wait(i);
       this.mergeTransactions({
         tx,
         event,
         receipt,
+        pending: receipt.confirmations < requiredConfirmations,
+        requiredConfirmations:
+          REQUIRED_CONFIRMATIONS[event.event as "Stake_Deposited"] || 1,
       });
     }
   }
@@ -135,7 +155,10 @@ class VegaEthUser {
 
 type UseEthTransaction = {
   txs: VegaTX[];
-  addTx: (tx: ethers.providers.TransactionResponse) => void;
+  addTx: (
+    tx: ethers.providers.TransactionResponse,
+    confirmations: number
+  ) => void;
 };
 
 const init: UseEthTransaction = {

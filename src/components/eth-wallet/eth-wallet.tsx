@@ -187,7 +187,6 @@ function MyTx() {
         <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
           {orderBy(txs, ["tx.blockNumber"], ["desc"]).map((tx) => (
             <li
-              // @ts-ignore
               key={tx.tx.hash}
               style={{
                 borderBottom: "1px solid #ccc",
@@ -197,31 +196,14 @@ function MyTx() {
             >
               <div>
                 block:
-                {
-                  // @ts-ignore
-                  tx.tx.blockNumber
-                }
+                {tx.tx.blockNumber}
               </div>
+              <div>type: {tx.event?.event}</div>
+              <div>hash: {truncateMiddle(tx.tx.hash)}</div>
+              <div>pending: {tx.pending ? "yes" : "no"}</div>
               <div>
-                type:{" "}
-                {
-                  // @ts-ignore
-                  tx.event?.event
-                }
-              </div>
-              <div>
-                hash:{" "}
-                {truncateMiddle(
-                  // @ts-ignore
-                  tx.tx.hash
-                )}
-              </div>
-              <div>
-                pending:{" "}
-                {
-                  // @ts-ignore
-                  tx.receipt === null ? "yes" : "no"
-                }
+                requried confirmations: {tx.requiredConfirmations} :{" "}
+                {tx.tx.confirmations} ({tx.receipt?.confirmations})
               </div>
             </li>
           ))}

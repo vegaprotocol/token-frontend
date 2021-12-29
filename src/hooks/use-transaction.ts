@@ -67,7 +67,7 @@ export const useTransaction = (
 
     try {
       const tx = await performTransaction();
-      addTx(tx);
+      addTx(tx, requiredConfirmations);
 
       dispatch({
         type: TransactionActionType.TX_SUBMITTED,
