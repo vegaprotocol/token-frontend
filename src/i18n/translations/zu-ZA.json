@@ -485,5 +485,6 @@
   "voteFailedReason": "crwdns6759:0crwdne6759:0",
   "votePassed": "crwdns6761:0crwdne6761:0",
   "subjectToFurtherActions": "crwdns6763:0{{daysAgo}}crwdne6763:0",
-  "transactionHashPrompt": "crwdns6771:0crwdne6771:0"
+  "transactionHashPrompt": "crwdns6771:0crwdne6771:0",
+  "errorLoadingTranches": "crwdns6773:0crwdne6773:0"
 }
