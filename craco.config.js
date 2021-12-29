@@ -16,8 +16,6 @@ module.exports = function () {
     process.env.REACT_APP_IN_CONTEXT_TRANSLATION
   );
   const isMock = ["1", "true"].includes(process.env.REACT_APP_MOCKED);
-  const detectProviderPath = isMock ? "../../__mocks__/@metamask" : "@metamask";
-  const vegaWeb3Path = isMock ? "vega-web3/__mocks__" : "vega-web3";
   const useTranchesPath = isMock ? "__mocks__/use-tranches" : "use-tranches";
   const graphQlProviderPath = isMock
     ? "graphql-provider/__mocks__"
@@ -57,24 +55,6 @@ module.exports = function () {
           chunkFilename: "static/css/[name].[contenthash:8].chunk.css",
           ignoreOrder: true,
         }),
-        new webpack.NormalModuleReplacementPlugin(
-          /(.*)DETECT_PROVIDER_PATH(\.*)/,
-          function (resource) {
-            resource.request = resource.request.replace(
-              /DETECT_PROVIDER_PATH/,
-              `${detectProviderPath}`
-            );
-          }
-        ),
-        new webpack.NormalModuleReplacementPlugin(
-          /(.*)VEGA_WEB3(\.*)/,
-          function (resource) {
-            resource.request = resource.request.replace(
-              /VEGA_WEB3/,
-              `${vegaWeb3Path}`
-            );
-          }
-        ),
         new webpack.NormalModuleReplacementPlugin(
           /(.*)GRAPHQL_PROVIDER(\.*)/,
           function (resource) {
