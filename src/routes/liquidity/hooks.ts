@@ -1,8 +1,5 @@
 import * as Sentry from "@sentry/react";
-import {
-  EpochDetails,
-  IVegaLPStaking,
-} from "@vegaprotocol/smart-contracts-sdk";
+import { EpochDetails, VegaLPStaking } from "@vegaprotocol/smart-contracts-sdk";
 import React from "react";
 
 import { REWARDS_ADDRESSES } from "../../config";
@@ -21,7 +18,7 @@ export const useGetLiquidityBalances = (
     address: REWARDS_ADDRESSES["SushiSwap VEGA/USDC"],
   });
   const getBalances = React.useCallback(
-    async (lpStaking: IVegaLPStaking, contractAddress: string) => {
+    async (lpStaking: VegaLPStaking, contractAddress: string) => {
       try {
         const [
           rewardPerEpoch,

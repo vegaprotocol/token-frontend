@@ -1,7 +1,7 @@
 import {
-  StakingAbi,
   VegaClaim,
   VegaErc20Bridge,
+  VegaStaking,
   VegaToken,
   VegaVesting,
 } from "@vegaprotocol/smart-contracts-sdk";
@@ -29,7 +29,7 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
       if (!cancelled) {
         setContracts({
           token,
-          staking: new StakingAbi(
+          staking: new VegaStaking(
             provider,
             signer,
             ADDRESSES.stakingBridge,

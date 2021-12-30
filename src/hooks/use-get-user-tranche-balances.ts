@@ -1,5 +1,5 @@
 import * as Sentry from "@sentry/react";
-import { IVegaVesting } from "@vegaprotocol/smart-contracts-sdk";
+import { VegaVesting } from "@vegaprotocol/smart-contracts-sdk";
 import React from "react";
 
 import {
@@ -10,7 +10,7 @@ import { BigNumber } from "../lib/bignumber";
 
 export const useGetUserTrancheBalances = (
   address: string,
-  vesting: IVegaVesting
+  vesting: VegaVesting
 ) => {
   const { appDispatch } = useAppState();
   return React.useCallback(async () => {

@@ -1,5 +1,5 @@
 import * as Sentry from "@sentry/react";
-import { IVegaStaking, IVegaVesting } from "@vegaprotocol/smart-contracts-sdk";
+import { VegaStaking, VegaVesting } from "@vegaprotocol/smart-contracts-sdk";
 import React from "react";
 
 import {
@@ -9,8 +9,8 @@ import {
 
 export function useGetAssociationBreakdown(
   ethAddress: string,
-  staking: IVegaStaking,
-  vesting: IVegaVesting
+  staking: VegaStaking,
+  vesting: VegaVesting
 ): () => Promise<void> {
   const { appDispatch } = useAppState();
 
