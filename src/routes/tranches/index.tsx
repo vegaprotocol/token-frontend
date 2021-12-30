@@ -14,9 +14,9 @@ const TrancheRouter = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
   const { t } = useTranslation();
   const match = useRouteMatch();
-  const tranches = useTranches();
+  const { tranches } = useTranches();
 
-  if (!tranches.length) {
+  if (!tranches) {
     return (
       <SplashScreen>
         <SplashLoader />

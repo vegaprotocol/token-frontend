@@ -16,9 +16,9 @@ const ClaimIndex = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
   const { t } = useTranslation();
   const { ethAddress } = useWeb3();
-  const tranches = useTranches();
+  const {tranches} = useTranches();
 
-  if (!tranches.length) {
+  if (!tranches) {
     return (
       <SplashScreen>
         <SplashLoader />

@@ -32,19 +32,22 @@ const RedemptionRouter = () => {
     appState: { trancheBalances },
   } = useAppState();
   const { ethAddress } = useWeb3();
-  const tranches = useTranches();
+  const { tranches, error } = useTranches();
 
   React.useEffect(() => {
     const run = (address: string) => {
-      const userTranches = tranches.filter((t) =>
+      const userTranches = tranches?.filter((t) =>
         t.users.some(
           ({ address: a }) => a.toLowerCase() === address.toLowerCase()
         )
       );
-      dispatch({
-        type: RedemptionActionType.SET_USER_TRANCHES,
-        userTranches,
-      });
+
+      if (userTranches) {
+        dispatch({
+          type: RedemptionActionType.SET_USER_TRANCHES,
+          userTranches,
+        });
+      }
     };
 
     if (ethAddress) {
@@ -52,7 +55,11 @@ const RedemptionRouter = () => {
     }
   }, [ethAddress, tranches, vesting]);
 
-  if (!tranches.length) {
+  if (error) {
+    return <Callout intent="error" title={t("errorLoadingTranches")}>{error}</Callout>;
+  }
+
+  if (!tranches) {
     return (
       <SplashScreen>
         <SplashLoader />
