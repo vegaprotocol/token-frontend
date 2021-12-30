@@ -71,6 +71,12 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
     return BigNumber.sum.apply(null, [new BigNumber(0), ...amountsNextEpoch]);
   }, [currentEpoch, data?.party?.delegations, node, stakeThisEpoch]);
 
+  const pendingStakeNextEpoch = React.useMemo(() => {
+    return stakeNextEpoch.minus(stakeThisEpoch);
+  }, [stakeThisEpoch, stakeNextEpoch]);
+
+  console.log("pendingStakeNextEpoch", pendingStakeNextEpoch.toNumber());
+
   const currentDelegationAmount = React.useMemo(() => {
     if (!data?.party?.delegations) return new BigNumber(0);
     const amounts = data.party.delegations
