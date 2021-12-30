@@ -10,6 +10,7 @@ import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber";
 import { Staking as StakingQueryResult } from "./__generated__/Staking";
 import { ConnectToVega } from "./connect-to-vega";
+import { PendingStake } from "./pending-stake";
 import { StakingForm } from "./staking-form";
 import { StakingNodesContainer } from "./staking-nodes-container";
 import { StakingWalletsContainer } from "./staking-wallets-container";
@@ -129,6 +130,9 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
         stakeNextEpoch={stakeNextEpoch}
         stakeThisEpoch={stakeThisEpoch}
       />
+      {pendingStakeNextEpoch.isZero() ? null : (
+        <PendingStake pendingAmount={pendingStakeNextEpoch} />
+      )}
       <StakingForm
         pubkey={vegaKey.pub}
         nodeId={node}
