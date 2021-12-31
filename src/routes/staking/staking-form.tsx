@@ -23,6 +23,7 @@ import {
   PartyDelegations,
   PartyDelegationsVariables,
 } from "./__generated__/PartyDelegations";
+import { PendingStake } from "./pending-stake";
 import { StakeFailure } from "./stake-failure";
 import { StakePending } from "./stake-pending";
 import { StakeSuccess } from "./stake-success";
@@ -65,6 +66,7 @@ interface StakingFormProps {
   nodeName: string;
   availableStakeToAdd: BigNumber;
   availableStakeToRemove: BigNumber;
+  pendingStakeNextEpoch: BigNumber;
 }
 
 export const StakingForm = ({
@@ -73,6 +75,7 @@ export const StakingForm = ({
   nodeName,
   availableStakeToAdd,
   availableStakeToRemove,
+  pendingStakeNextEpoch,
 }: StakingFormProps) => {
   const params = useSearchParams();
   const history = useHistory();
@@ -180,13 +183,7 @@ export const StakingForm = ({
   if (formState === FormState.Failure) {
     return <StakeFailure nodeName={nodeName} />;
   } else if (formState === FormState.Pending) {
-    return (
-      <StakePending
-        action={action}
-        amount={amount}
-        nodeName={nodeName}
-      />
-    );
+    return <StakePending action={action} amount={amount} nodeName={nodeName} />;
   } else if (formState === FormState.Success) {
     return (
       <StakeSuccess
@@ -211,6 +208,14 @@ export const StakingForm = ({
 
   return (
     <>
+      {pendingStakeNextEpoch.isZero() ? null : (
+        <PendingStake
+          pendingAmount={pendingStakeNextEpoch}
+          setAmount={setAmount}
+          perform={onSubmit}
+          setRemoveType={setRemoveType}
+        />
+      )}
       <h2>{t("Manage your stake")}</h2>
       <FormGroup>
         <RadioGroup
