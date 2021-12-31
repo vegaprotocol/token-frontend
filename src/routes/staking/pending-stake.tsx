@@ -1,5 +1,7 @@
 import "./pending-stake.scss";
 
+import { useTranslation } from "react-i18next";
+
 import { BigNumber } from "../../lib/bignumber";
 
 interface PendingStakeProps {
@@ -7,12 +9,13 @@ interface PendingStakeProps {
 }
 
 export const PendingStake = ({ pendingAmount }: PendingStakeProps) => {
+  const { t } = useTranslation();
   return (
     <div className="your-stake__container">
-      <h2>Pending Nomination</h2>
-      <p>Pending nomination for next epoch: {pendingAmount.toString()} $VEGA</p>
+      <h2>{t("pendingNomination")}</h2>
+      <p>{t("pendingNominationNextEpoch", { pendingAmount })}</p>
       <button type="button" className="button-secondary button-secondary--dark">
-        Cancel pending epoch nomination
+        {t("cancelPendingEpochNomination")}
       </button>
     </div>
   );
