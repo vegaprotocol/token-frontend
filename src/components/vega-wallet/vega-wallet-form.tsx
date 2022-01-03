@@ -1,5 +1,6 @@
 import { FormGroup, Intent, Switch } from "@blueprintjs/core";
 import * as Sentry from "@sentry/react";
+import { useWeb3 } from "../../hooks/use-web3";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -9,7 +10,6 @@ import {
   AppStateActionType,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { useRefreshAssociatedBalances } from "../../hooks/use-refresh-associated-balances";
 import {
   HOSTED_WALLET_URL,
@@ -28,7 +28,7 @@ interface VegaWalletFormProps {
 
 export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
   const { t } = useTranslation();
-  const { ethAddress } = useWeb3();
+  const { account } = useWeb3();
   const { appDispatch } = useAppState();
   const refreshAssociatedBalances = useRefreshAssociatedBalances();
 
@@ -72,9 +72,9 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
       }
 
       let key = undefined;
-      if (ethAddress && keys && keys.length) {
+      if (account && keys && keys.length) {
         key = vegaWalletService.key || keys[0].pub;
-        await refreshAssociatedBalances(ethAddress, key);
+        await refreshAssociatedBalances(account, key);
       }
 
       appDispatch({

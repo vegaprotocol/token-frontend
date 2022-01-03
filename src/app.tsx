@@ -1,6 +1,8 @@
 import "./i18n";
 import "./app.scss";
 
+import { Web3ReactProvider } from "@web3-react/core";
+import { ethers } from "ethers";
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
@@ -15,7 +17,6 @@ import { VegaWallet } from "./components/vega-wallet";
 import { VegaWalletModal } from "./components/vega-wallet/vega-wallet-modal";
 import { AppStateProvider } from "./contexts/app-state/app-state-provider";
 import { ContractsProvider } from "./contexts/contracts/contracts-provider";
-import { Web3Provider } from "./contexts/web3-context/web3-provider";
 import { AppRouter } from "./routes";
 
 function App() {
@@ -23,7 +24,13 @@ function App() {
   return (
     <GraphQlProvider>
       <Router>
-        <Web3Provider>
+        <Web3ReactProvider
+          getLibrary={(provider) => {
+            const library = new ethers.providers.Web3Provider(provider);
+            library.pollingInterval = 12000;
+            return library;
+          }}
+        >
           <ContractsProvider>
             <AppStateProvider>
               <AppLoader>
@@ -39,7 +46,7 @@ function App() {
               </AppLoader>
             </AppStateProvider>
           </ContractsProvider>
-        </Web3Provider>
+        </Web3ReactProvider>
       </Router>
     </GraphQlProvider>
   );

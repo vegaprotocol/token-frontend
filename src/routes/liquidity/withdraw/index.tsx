@@ -13,13 +13,13 @@ import {
 } from "../../../components/key-value-table";
 import { TransactionCallout } from "../../../components/transaction-callout";
 import { REWARDS_ADDRESSES } from "../../../config";
-import { useWeb3 } from "../../../contexts/web3-context/web3-context";
 import {
   TransactionActionType,
   TxState,
 } from "../../../hooks/transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { useVegaLPStaking } from "../../../hooks/use-vega-lp-staking";
+import { useWeb3 } from "../../../hooks/use-web3";
 import { formatNumber } from "../../../lib/format-number";
 import { Routes } from "../../router-config";
 import { useGetLiquidityBalances } from "../hooks";
@@ -40,7 +40,7 @@ export const LiquidityWithdrawPage = ({
 }) => {
   const { t } = useTranslation();
   const lpStaking = useVegaLPStaking({ address: lpTokenAddress });
-  const { ethAddress } = useWeb3();
+  const { account } = useWeb3();
   const {
     state: txUnstakeState,
     dispatch: txUnstakeDispatch,
@@ -49,7 +49,7 @@ export const LiquidityWithdrawPage = ({
 
   const { getBalances, lpStakingEth, lpStakingUSDC } = useGetLiquidityBalances(
     dispatch,
-    ethAddress
+    account || ""
   );
   React.useEffect(() => {
     const run = async () => {
@@ -104,7 +104,7 @@ export const LiquidityWithdrawPage = ({
 
   return (
     <section>
-      {!ethAddress ? (
+      {!account ? (
         <EthConnectPrompt />
       ) : (
         <section>

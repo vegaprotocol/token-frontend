@@ -1,6 +1,7 @@
+import { useWeb3 } from "../../hooks/use-web3";
 import { useTranslation } from "react-i18next";
 
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { injected } from "../../lib/connectors";
 
 interface EthConnectPrompProps {
   children?: React.ReactNode;
@@ -8,11 +9,11 @@ interface EthConnectPrompProps {
 
 export const EthConnectPrompt = ({ children }: EthConnectPrompProps) => {
   const { t } = useTranslation();
-  const { connect } = useWeb3();
+  const { activate } = useWeb3();
   return (
     <>
       {children}
-      <button onClick={connect} className="fill" type="button">
+      <button onClick={() => activate(injected)} className="fill" type="button">
         {t("connectEthWallet")}
       </button>
     </>
