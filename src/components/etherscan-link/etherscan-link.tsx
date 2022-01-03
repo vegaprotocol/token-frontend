@@ -1,10 +1,10 @@
 import "./etherscan-link.scss";
 
 import { Popover, PopoverInteractionKind } from "@blueprintjs/core";
+import { useWeb3 } from "../../hooks/use-web3";
 import { useTranslation } from "react-i18next";
 
 import { EthereumChainId } from "../../config";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { useCopyToClipboard } from "../../hooks/use-copy-to-clipboard";
 
 const etherscanUrls: Record<EthereumChainId, string> = {
@@ -54,7 +54,7 @@ export const EtherscanLink = ({
   const { t } = useTranslation();
   const { copy, copied } = useCopyToClipboard();
   const linkText = text ? text : t("View on Etherscan (opens in a new tab)");
-  const createLink = etherscanLinkCreator(chainId);
+  const createLink = etherscanLinkCreator(`0x${chainId}` as EthereumChainId);
 
   if ("tx" in props) {
     hash = props.tx;

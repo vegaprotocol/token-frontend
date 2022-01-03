@@ -1,12 +1,21 @@
 import "./tranches.scss";
 
+<<<<<<< HEAD
 import { Tranche } from "@vegaprotocol/smart-contracts-sdk";
+=======
+import { useWeb3 } from "../../hooks/use-web3";
+>>>>>>> 415c3ace (trying out web3-react library)
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useRouteMatch } from "react-router-dom";
 
 import { ADDRESSES } from "../../config";
+<<<<<<< HEAD
 import { useWeb3 } from "../../contexts/web3-context/web3-context";
+=======
+import { Tranche } from "../../lib/vega-web3/vega-web3-types";
+import { EthereumChainId } from "../../lib/web3-utils";
+>>>>>>> 415c3ace (trying out web3-react library)
 import { TrancheItem } from "../redemption/tranche-item";
 import { TrancheLabel } from "./tranche-label";
 
@@ -38,7 +47,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                   secondaryHeader={
                     <TrancheLabel
                       contract={ADDRESSES.vestingAddress}
-                      chainId={chainId}
+                      chainId={`0x${chainId}` as EthereumChainId}
                       id={tranche.tranche_id}
                     />
                   }

@@ -8,15 +8,15 @@ import {
   useAppState,
 } from "./contexts/app-state/app-state-context";
 import { useContracts } from "./contexts/contracts/contracts-context";
-import { useWeb3 } from "./contexts/web3-context/web3-context";
 import { useRefreshAssociatedBalances } from "./hooks/use-refresh-associated-balances";
+import { useWeb3 } from "./hooks/use-web3";
 import {
   Errors as VegaWalletServiceErrors,
   vegaWalletService,
 } from "./lib/vega-wallet/vega-wallet-service";
 
 export const AppLoader = ({ children }: { children: React.ReactElement }) => {
-  const { ethAddress } = useWeb3();
+  const { account } = useWeb3();
   const { appDispatch } = useAppState();
   const { token, staking, vesting } = useContracts();
   const setAssociatedBalances = useRefreshAssociatedBalances();
@@ -49,6 +49,7 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
         });
         setBalancesLoaded(true);
       } catch (err) {
+        console.log("HERE", err);
         Sentry.captureException(err);
       }
     };
@@ -78,9 +79,9 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
       }
 
       let key = undefined;
-      if (ethAddress && keys && keys.length) {
+      if (account && keys && keys.length) {
         key = vegaWalletService.key || keys[0].pub;
-        await setAssociatedBalances(ethAddress, key);
+        await setAssociatedBalances(account, key);
       }
 
       appDispatch({
@@ -92,7 +93,7 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
     }
 
     run();
-  }, [appDispatch, ethAddress, vegaKeysLoaded, setAssociatedBalances]);
+  }, [appDispatch, account, vegaKeysLoaded, setAssociatedBalances]);
 
   if (!loaded) {
     return (

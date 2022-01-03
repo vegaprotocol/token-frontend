@@ -1,4 +1,5 @@
 import * as Sentry from "@sentry/react";
+import { useWeb3 } from "../../hooks/use-web3";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Redirect } from "react-router";
@@ -8,7 +9,6 @@ import { Heading } from "../../components/heading";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { Flags, REWARDS_ADDRESSES } from "../../config";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { RouteChildProps } from "..";
 import { LiquidityDeposit } from "./deposit";
@@ -27,11 +27,11 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
     liquidityReducer,
     initialLiquidityState
   );
-  const { ethAddress } = useWeb3();
+  const { account } = useWeb3();
   const [loading, setLoading] = React.useState(true);
   const { getBalances, lpStakingUSDC, lpStakingEth } = useGetLiquidityBalances(
     dispatch,
-    ethAddress
+    account || ""
   );
   const loadAllBalances = React.useCallback(async () => {
     try {

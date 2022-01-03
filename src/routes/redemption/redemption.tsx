@@ -1,4 +1,5 @@
 import { Callout } from "@vegaprotocol/ui-toolkit";
+import { useWeb3 } from "../../hooks/use-web3";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
@@ -9,7 +10,6 @@ import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useContracts } from "../../contexts/contracts/contracts-context";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { useTranches } from "../../hooks/use-tranches";
 import { Routes } from "../router-config";
 import { RedemptionInformation } from "./home/redemption-information";
@@ -31,7 +31,7 @@ const RedemptionRouter = () => {
   const {
     appState: { trancheBalances },
   } = useAppState();
-  const { ethAddress } = useWeb3();
+  const { account } = useWeb3();
   const { tranches, error } = useTranches();
 
   React.useEffect(() => {
@@ -50,13 +50,17 @@ const RedemptionRouter = () => {
       }
     };
 
-    if (ethAddress) {
-      run(ethAddress);
+    if (account) {
+      run(account);
     }
-  }, [ethAddress, tranches, vesting]);
+  }, [account, tranches, vesting]);
 
   if (error) {
-    return <Callout intent="error" title={t("errorLoadingTranches")}>{error}</Callout>;
+    return (
+      <Callout intent="error" title={t("errorLoadingTranches")}>
+        {error}
+      </Callout>
+    );
   }
 
   if (!tranches) {
@@ -67,7 +71,7 @@ const RedemptionRouter = () => {
     );
   }
 
-  if (!ethAddress) {
+  if (!account) {
     return (
       <EthConnectPrompt>
         <p>
@@ -93,10 +97,10 @@ const RedemptionRouter = () => {
   return (
     <Switch>
       <Route exact path={`${match.path}`}>
-        <RedemptionInformation state={state} address={ethAddress} />
+        <RedemptionInformation state={state} address={account} />
       </Route>
       <Route path={`${match.path}/:id`}>
-        <RedeemFromTranche state={state} address={ethAddress} />
+        <RedeemFromTranche state={state} address={account} />
       </Route>
     </Switch>
   );

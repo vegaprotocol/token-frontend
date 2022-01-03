@@ -1,13 +1,14 @@
+import { useWeb3 } from "../../hooks/use-web3";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import { Colors } from "../../config";
 import { useAppState } from "../../contexts/app-state/app-state-context";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import vegaVesting from "../../images/vega_vesting.png";
 import vegaWhite from "../../images/vega_white.png";
 import { BigNumber } from "../../lib/bignumber";
+import { injected } from "../../lib/connectors";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { Routes } from "../../routes/router-config";
 import { LockedProgress } from "../locked-progress";
@@ -173,37 +174,37 @@ const ConnectedKey = () => {
 
 export const EthWallet = () => {
   const { t } = useTranslation();
-  const { connect, disconnect, ethAddress } = useWeb3();
+  const { activate, deactivate, account } = useWeb3();
   const [disconnecting] = React.useState(false);
 
   return (
     <WalletCard>
       <WalletCardHeader>
         <h1>{t("ethereumKey")}</h1>
-        {ethAddress && (
+        {account && (
           <span className="vega-wallet__curr-key">
-            {truncateMiddle(ethAddress)}
+            {truncateMiddle(account)}
           </span>
         )}
       </WalletCardHeader>
       <WalletCardContent>
-        {ethAddress ? (
+        {account ? (
           <ConnectedKey />
         ) : (
           <button
             type="button"
             className="fill button-secondary--inverted"
-            onClick={connect}
+            onClick={() => activate(injected)}
             data-test-id="connect-to-eth-wallet-button"
           >
             {t("connectEthWalletToAssociate")}
           </button>
         )}
-        {ethAddress && (
+        {account && (
           <WalletCardActions>
             <button
               className="button-link button-link--dark"
-              onClick={disconnect}
+              onClick={deactivate}
               type="button"
             >
               {disconnecting ? t("awaitingDisconnect") : t("disconnect")}

@@ -1,6 +1,7 @@
 import "./withdrawals.scss";
 
 import { gql, useQuery } from "@apollo/client";
+import { useWeb3 } from "../../hooks/use-web3";
 import { format } from "date-fns";
 import orderBy from "lodash/orderBy";
 import React from "react";
@@ -20,7 +21,6 @@ import { VegaWalletContainer } from "../../components/vega-wallet-container";
 import { Flags } from "../../config";
 import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
 import { useContracts } from "../../contexts/contracts/contracts-context";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { TxState } from "../../hooks/transaction-reducer";
 import { usePollERC20Approval } from "../../hooks/use-ercPoll20Approval";
 import { useRefreshBalances } from "../../hooks/use-refresh-balances";
@@ -92,8 +92,8 @@ const WithdrawPendingContainer = ({
   currVegaKey,
 }: WithdrawPendingContainerProps) => {
   const { t } = useTranslation();
-  const { ethAddress } = useWeb3();
-  const refreshBalances = useRefreshBalances(ethAddress);
+  const { account } = useWeb3();
+  const refreshBalances = useRefreshBalances(account || "");
   const { data, loading, error, refetch } = useQuery<
     WithdrawalsPage,
     WithdrawalsPageVariables
