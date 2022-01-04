@@ -46,12 +46,12 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
         </Link>
         <table
           className="proposal-table"
-          data-test-id="governance-proposal-table"
+          data-testid="governance-proposal-table"
         >
           <tbody>
             <tr>
               <th>{t("state")}</th>
-              <td data-test-id="governance-proposal-state">
+              <td data-testid="governance-proposal-state">
                 <CurrentProposalState proposal={row} />
               </td>
             </tr>

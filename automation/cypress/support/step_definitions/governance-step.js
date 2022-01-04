@@ -7,11 +7,11 @@ Then("I am taken to the governance page", () => {
 Then(
   "I could see governance proposals list for a {string} proposal",
   (expectedProposalState) => {
-    cy.get("[data-test-id='governance-proposal-state']").should(
+    cy.get("[data-testid='governance-proposal-state']").should(
       "include.text",
       expectedProposalState
     ); // Check proposal state is displayed
-    cy.get("[data-test-id='governance-proposal-table']").each(($table) => {
+    cy.get("[data-testid='governance-proposal-table']").each(($table) => {
       cy.wrap($table).within(() => {
         cy.get("td")
           .eq(0)

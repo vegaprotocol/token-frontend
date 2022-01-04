@@ -86,14 +86,12 @@ export const generateYesVotes = (
           },
         },
         datetime: faker.date.past().toISOString(),
-      } as ProposalFields_votes_yes_votes;
+      };
     }),
   };
 };
 
-export const generateNoVotes = (
-  numberOfVotes = 5
-): ProposalFields_votes_no => {
+export const generateNoVotes = (numberOfVotes = 5): ProposalFields_votes_no => {
   return {
     __typename: "ProposalVoteSide",
     totalNumber: faker.datatype.number({ min: 0, max: 100 }).toString(),
@@ -116,7 +114,7 @@ export const generateNoVotes = (
           },
         },
         datetime: faker.date.past().toISOString(),
-      } as ProposalFields_votes_no_votes;
+      };
     }),
   };
 };
