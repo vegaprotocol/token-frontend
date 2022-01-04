@@ -1,7 +1,7 @@
 Feature: Governance page
 
 
-  Scenario Outline: Navigate to governance page via link on homepage body for open proposal
+  Scenario Outline: Navigate to governance page via link on homepage body for governance proposals
     Given I am on the home page
     When I click on the governance proposals button
     Then I am taken to the governance page
@@ -14,17 +14,10 @@ Feature: Governance page
       | Rejected      |
 
   @todo
-  Scenario: Statuses for governance proposals
+  Scenario: Governance proposals are sorted by Proposed enactment date
     Given I navigate to '/governance' page
     When I view the governance proposals list
-    And I can view proposal states with the following values
-      | proposal state |
-      | Passed         |
-      | Declined       |
-      | Enacted        |
-      | Open           |
-      | Rejected       |
-    And sorted by furthest Proposed enactment date
+    Then Proposals sorted by furthest Proposed enactment date
 
   @todo
   Scenario: Voting on governance proposal page

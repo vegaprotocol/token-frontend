@@ -7,15 +7,17 @@ Then("I am taken to the governance page", () => {
 Then(
   "I could see governance proposals list for a {string} proposal",
   (expectedProposalState) => {
-    // let expectedStateFound = false;
-    cy.get("table.proposal-table").each(($table) => {
+    cy.get("[data-test-id='governance-proposal-state']").should(
+      "include.text",
+      expectedProposalState
+    ); // Check proposal state is displayed
+    cy.get("[data-test-id='governance-proposal-table']").each(($table) => {
       cy.wrap($table).within(() => {
         cy.get("td")
           .eq(0)
           .then(($expectedState) => {
             if ($expectedState.text().includes(expectedProposalState)) {
-              // expectedStateFound = true;
-              cy.log(`Found ${expectedProposalState} proposal`);
+              // If table containing proposal state found, check fields are all displayed
               cy.get("th").should("have.length", 3);
               cy.get("td").should("have.length", 3);
               cy.get("th").eq(0).should("have.text", "State");
@@ -40,7 +42,6 @@ Then(
               cy.get("td").eq(2).should("not.be.empty");
             }
           });
-        // expect(expectedStateFound).to.be.true;
       });
     });
   }
