@@ -1,9 +1,9 @@
-import { useWeb3 } from "../../hooks/use-web3";
 import { useTranslation } from "react-i18next";
 
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
 import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
 import { useVegaUser } from "../../hooks/use-vega-user";
+import { useWeb3 } from "../../hooks/use-web3";
 import { ConnectToVega } from "./connect-to-vega";
 
 export const StakingWalletsContainer = ({

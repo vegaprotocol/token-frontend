@@ -1,5 +1,4 @@
 import { Callout } from "@vegaprotocol/ui-toolkit";
-import { useWeb3 } from "../../hooks/use-web3";
 import { Trans, useTranslation } from "react-i18next";
 import { Link, useRouteMatch } from "react-router-dom";
 
@@ -9,6 +8,7 @@ import { CopyToClipboardType } from "../../components/etherscan-link/etherscan-l
 import { Error, Tick } from "../../components/icons";
 import { Links } from "../../config";
 import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useWeb3 } from "../../hooks/use-web3";
 import { BigNumber } from "../../lib/bignumber";
 import { injected } from "../../lib/connectors";
 import { formatNumber } from "../../lib/format-number";

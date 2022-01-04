@@ -1,9 +1,9 @@
 import "./eth-wallet-container.scss";
 
-import { useWeb3 } from "../../hooks/use-web3";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
+import { useWeb3 } from "../../hooks/use-web3";
 import { injected } from "../../lib/connectors";
 import { Ethereum } from "../icons";
 

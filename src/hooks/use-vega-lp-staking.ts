@@ -1,6 +1,6 @@
+import { VegaLPStaking } from "@vegaprotocol/smart-contracts-sdk";
 import React from "react";
 
-import LPStakingAbi from "../lib/vega-web3/vega-lp-staking";
 import { useWeb3 } from "./use-web3";
 
 /**
@@ -9,6 +9,6 @@ import { useWeb3 } from "./use-web3";
 export const useVegaLPStaking = ({ address }: { address: string }) => {
   const { library } = useWeb3();
   return React.useMemo(() => {
-    return new LPStakingAbi(library, library, address);
+    return new VegaLPStaking(library, library, address);
   }, [library, address]);
 };

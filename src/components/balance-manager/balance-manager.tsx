@@ -1,5 +1,4 @@
 import * as Sentry from "@sentry/react";
-import { useWeb3 } from "../../hooks/use-web3";
 import React from "react";
 
 import { ADDRESSES } from "../../config";
@@ -10,6 +9,7 @@ import {
 import { useContracts } from "../../contexts/contracts/contracts-context";
 import { useGetAssociationBreakdown } from "../../hooks/use-get-association-breakdown";
 import { useGetUserTrancheBalances } from "../../hooks/use-get-user-tranche-balances";
+import { useWeb3 } from "../../hooks/use-web3";
 import { BigNumber } from "../../lib/bignumber";
 
 export const BalanceManager = ({ children }: any) => {

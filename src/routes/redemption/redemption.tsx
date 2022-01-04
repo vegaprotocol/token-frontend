@@ -1,5 +1,4 @@
 import { Callout } from "@vegaprotocol/ui-toolkit";
-import { useWeb3 } from "../../hooks/use-web3";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
@@ -11,6 +10,7 @@ import { SplashScreen } from "../../components/splash-screen";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useContracts } from "../../contexts/contracts/contracts-context";
 import { useTranches } from "../../hooks/use-tranches";
+import { useWeb3 } from "../../hooks/use-web3";
 import { Routes } from "../router-config";
 import { RedemptionInformation } from "./home/redemption-information";
 import {

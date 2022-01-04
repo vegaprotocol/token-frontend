@@ -1,22 +1,17 @@
-import { useWeb3 } from "../../hooks/use-web3";
+import {
+  VegaClaim,
+  VegaErc20Bridge,
+  VegaStaking,
+  VegaToken,
+  VegaVesting,
+} from "@vegaprotocol/smart-contracts-sdk";
 import React from "react";
 
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { ADDRESSES } from "../../config";
-// @ts-ignore
-import VegaClaim from "../../lib/VEGA_WEB3/vega-claim";
-// @ts-ignore
-import StakingAbi from "../../lib/VEGA_WEB3/vega-staking";
-// Note: Each contract class imported below gets swapped out for a mocked version
-// at ../../lib/vega-web3/__mocks__ at build time using webpack.NormalModuleReplacementPlugin
-// when you run the app with REACT_APP_MOCKED=1
-// @ts-ignore
-import VegaToken from "../../lib/VEGA_WEB3/vega-token";
-// @ts-ignore
-import VegaVesting from "../../lib/VEGA_WEB3/vega-vesting";
+import { useWeb3 } from "../../hooks/use-web3";
 import { ContractsContext, ContractsContextShape } from "./contracts-context";
-import { VegaErc20Bridge } from "@vegaprotocol/smart-contracts-sdk";
 
 /**
  * Provides Vega Ethereum contract instances to its children.
@@ -34,7 +29,7 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
       if (!cancelled) {
         setContracts({
           token,
-          staking: new StakingAbi(
+          staking: new VegaStaking(
             library,
             library,
             ADDRESSES.stakingBridge,

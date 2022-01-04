@@ -1,12 +1,12 @@
 import "./liquidity-container.scss";
 
 import { Callout } from "@vegaprotocol/ui-toolkit";
-import { useWeb3 } from "../../hooks/use-web3";
 import { Trans, useTranslation } from "react-i18next";
 
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
 import { Error } from "../../components/icons";
 import { Links, REWARDS_ADDRESSES } from "../../config";
+import { useWeb3 } from "../../hooks/use-web3";
 import { DexTokensSection } from "./dex-table";
 import { LiquidityState } from "./liquidity-reducer";
 
