@@ -1,6 +1,6 @@
-import { useWeb3 } from "../../hooks/use-web3";
 import { useTranslation } from "react-i18next";
 
+import { useWeb3 } from "../../hooks/use-web3";
 import { injected } from "../../lib/connectors";
 
 interface EthConnectPrompProps {

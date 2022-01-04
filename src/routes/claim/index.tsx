@@ -1,4 +1,3 @@
-import { useWeb3 } from "../../hooks/use-web3";
 import { useTranslation } from "react-i18next";
 
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
@@ -7,6 +6,7 @@ import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { useTranches } from "../../hooks/use-tranches";
+import { useWeb3 } from "../../hooks/use-web3";
 import { RouteChildProps } from "..";
 import Claim from "./claim";
 import { ClaimRestricted } from "./claim-restricted";
