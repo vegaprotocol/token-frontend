@@ -139,7 +139,6 @@
   "vegaKey": "Vega key",
   "noService": "Looks like the Vega wallet service isn't running. Please start it and refresh the page",
   "disconnect": "Disconnect",
-  "awaitingDisconnect": "Disconnecting...",
   "Checking Vega wallet status": "Checking Vega Wallet status",
   "hostedSwitchLabel": "Use hosted wallet",
   "urlLabel": "Wallet location",

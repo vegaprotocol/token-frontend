@@ -1,20 +1,20 @@
 import "./eth-connect-modal.scss";
 
 import { Overlay } from "@blueprintjs/core";
-import { useWeb3React } from "@web3-react/core";
 import { useTranslation } from "react-i18next";
 
 import {
   AppStateActionType,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
+import { useWeb3Connect } from "../../hooks/use-web3";
 import { Connectors } from "../../lib/connectors";
 import { Modal } from "../modal";
 
 export const EthConnectModal = () => {
   const { t } = useTranslation();
   const { appState, appDispatch } = useAppState();
-  const { activate } = useWeb3React();
+  const { connect } = useWeb3Connect();
   const close = () =>
     appDispatch({
       type: AppStateActionType.SET_ETH_WALLET_OVERLAY,
@@ -39,7 +39,7 @@ export const EthConnectModal = () => {
                   className="eth-connect-modal__button button-link"
                   type="button"
                   onClick={() => {
-                    activate(connector);
+                    connect(connector);
                     close();
                   }}
                 >
