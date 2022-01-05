@@ -5,6 +5,11 @@ import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
 
 import { APP_CHAIN_ID, InfuraUrls } from "../config";
 
+export type AllowedConnectors =
+  | NetworkConnector
+  | InjectedConnector
+  | WalletConnectConnector;
+
 export const injected = new InjectedConnector({
   supportedChainIds: [1, 3, 1337],
 });
