@@ -8,6 +8,6 @@ import React from "react";
 export const useVegaLPStaking = ({ address }: { address: string }) => {
   const { library } = useWeb3React();
   return React.useMemo(() => {
-    return new VegaLPStaking(library, library, address);
+    return new VegaLPStaking(library, library.getSigner(), address);
   }, [library, address]);
 };
