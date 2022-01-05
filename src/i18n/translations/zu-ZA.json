@@ -139,7 +139,6 @@
   "vegaKey": "crwdns4777:0crwdne4777:0",
   "noService": "crwdns4779:0crwdne4779:0",
   "disconnect": "crwdns4783:0crwdne4783:0",
-  "awaitingDisconnect": "crwdns4785:0crwdne4785:0",
   "Checking Vega wallet status": "crwdns6579:0crwdne6579:0",
   "hostedSwitchLabel": "crwdns6289:0crwdne6289:0",
   "urlLabel": "crwdns4789:0crwdne4789:0",
@@ -486,5 +485,9 @@
   "votePassed": "crwdns6761:0crwdne6761:0",
   "subjectToFurtherActions": "crwdns6763:0{{daysAgo}}crwdne6763:0",
   "transactionHashPrompt": "crwdns6771:0crwdne6771:0",
-  "errorLoadingTranches": "crwdns6773:0crwdne6773:0"
+  "errorLoadingTranches": "crwdns6773:0crwdne6773:0",
+  "injected.name": "crwdns6777:0crwdne6777:0",
+  "injected.text": "crwdns6779:0crwdne6779:0",
+  "walletConnect.name": "crwdns6781:0crwdne6781:0",
+  "walletConnect.text": "crwdns6783:0crwdne6783:0"
 }
