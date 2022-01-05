@@ -78,7 +78,6 @@ export function useInactiveListener() {
         }
       };
       const handleNetworkChanged = (networkId: string | number) => {
-        console.log("Handling 'networkChanged' event with payload", networkId);
         activate(injected);
       };
 
