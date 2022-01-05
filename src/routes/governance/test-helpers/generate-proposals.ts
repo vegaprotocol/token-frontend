@@ -6,9 +6,7 @@ import { DeepPartial } from "../../../lib/type-helpers";
 import {
   ProposalFields,
   ProposalFields_votes_no,
-  ProposalFields_votes_no_votes,
   ProposalFields_votes_yes,
-  ProposalFields_votes_yes_votes,
 } from "../__generated__/ProposalFields";
 
 export function generateProposal(
