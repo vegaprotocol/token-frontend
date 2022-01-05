@@ -8,7 +8,7 @@ import {
   useAppState,
 } from "../../contexts/app-state/app-state-context";
 import { useWeb3Connect } from "../../hooks/use-web3";
-import { Connectors } from "../../lib/connectors";
+import { Connectors, NETWORK_KEY } from "../../lib/connectors";
 import { Modal } from "../modal";
 
 export const EthConnectModal = () => {
@@ -32,7 +32,7 @@ export const EthConnectModal = () => {
           <h2>Connect Ethereum wallet</h2>
           <div>
             {Object.entries(Connectors).map(([key, connector]) => {
-              if (key === "networkOnly") return null;
+              if (key === NETWORK_KEY) return null;
               return (
                 <button
                   key={key}
