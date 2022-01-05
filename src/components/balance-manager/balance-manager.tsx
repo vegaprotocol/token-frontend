@@ -53,6 +53,7 @@ export const BalanceManager = ({ children }: any) => {
     updateBalances();
   }, [appDispatch, contracts?.token, contracts?.vesting, account]);
 
+  // This use effect hook is very expensive and is kept separate to prevent expensive reloading of data.
   React.useEffect(() => {
     if (account) {
       getUserTrancheBalances();
