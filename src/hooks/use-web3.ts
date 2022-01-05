@@ -67,7 +67,7 @@ export function useInactiveListener() {
       const handleConnect = () => {
         activate(injected);
       };
-      const handleChainChanged = (chainId: string | number) => {
+      const handleChainChanged = () => {
         activate(injected);
       };
       const handleAccountsChanged = (accounts: string[]) => {
@@ -75,7 +75,7 @@ export function useInactiveListener() {
           activate(injected);
         }
       };
-      const handleNetworkChanged = (networkId: string | number) => {
+      const handleNetworkChanged = () => {
         activate(injected);
       };
 
