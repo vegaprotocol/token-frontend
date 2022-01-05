@@ -25,8 +25,10 @@ export const networkOnly = new NetworkConnector({
   defaultChainId: ChainIdMap[APP_CHAIN_ID],
 });
 
+export const NETWORK_KEY = "networkOnly";
+
 export const Connectors = {
   injected,
   walletConnect,
-  networkOnly,
+  [NETWORK_KEY]: networkOnly,
 };
