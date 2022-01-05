@@ -6,6 +6,7 @@ import {
   VegaVesting,
 } from "@vegaprotocol/smart-contracts-sdk";
 import { useWeb3React } from "@web3-react/core";
+import { NetworkConnector } from "@web3-react/network-connector";
 import React from "react";
 
 import { SplashLoader } from "../../components/splash-loader";
@@ -25,9 +26,13 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
     let cancelled = false;
     const run = async () => {
       if (library && !cancelled) {
+        const signer =
+          connector instanceof NetworkConnector
+            ? undefined
+            : library.getSigner();
         const token = new VegaToken(
           library,
-          library.getSigner(),
+          signer,
           ADDRESSES.vegaTokenAddress
         );
         const decimals = await token.decimals();
@@ -35,25 +40,25 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
           token,
           staking: new VegaStaking(
             library,
-            library.getSigner(),
+            signer,
             ADDRESSES.stakingBridge,
             decimals
           ),
           vesting: new VegaVesting(
             library,
-            library.getSigner(),
+            signer,
             ADDRESSES.vestingAddress,
             decimals
           ),
           claim: new VegaClaim(
             library,
-            library.getSigner(),
+            signer,
             ADDRESSES.claimAddress,
             decimals
           ),
           erc20Bridge: new VegaErc20Bridge(
             library,
-            library.getSigner(),
+            signer,
             ADDRESSES.erc20Bridge
           ),
         });
