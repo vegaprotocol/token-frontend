@@ -1,7 +1,9 @@
 import { useTranslation } from "react-i18next";
 
-import { useWeb3 } from "../../hooks/use-web3";
-import { injected } from "../../lib/connectors";
+import {
+  AppStateActionType,
+  useAppState,
+} from "../../contexts/app-state/app-state-context";
 
 interface EthConnectPrompProps {
   children?: React.ReactNode;
@@ -9,11 +11,20 @@ interface EthConnectPrompProps {
 
 export const EthConnectPrompt = ({ children }: EthConnectPrompProps) => {
   const { t } = useTranslation();
-  const { activate } = useWeb3();
+  const { appDispatch } = useAppState();
   return (
     <>
       {children}
-      <button onClick={() => activate(injected)} className="fill" type="button">
+      <button
+        onClick={() =>
+          appDispatch({
+            type: AppStateActionType.SET_ETH_WALLET_OVERLAY,
+            isOpen: true,
+          })
+        }
+        className="fill"
+        type="button"
+      >
         {t("connectEthWallet")}
       </button>
     </>

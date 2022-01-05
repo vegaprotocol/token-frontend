@@ -49,7 +49,6 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
         });
         setBalancesLoaded(true);
       } catch (err) {
-        console.log("HERE", err);
         Sentry.captureException(err);
       }
     };

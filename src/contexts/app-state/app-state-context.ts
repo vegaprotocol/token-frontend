@@ -69,8 +69,11 @@ export interface AppState {
   /** Approved amount of VEGA to be associated for staking */
   allowance: BigNumber;
 
-  /** Whether or not the connect to VEGA wallet overaly is open */
+  /** Whether or not the connect to VEGA wallet overlay is open */
   vegaWalletOverlay: boolean;
+
+  /** Whether or not the connect to Ethereum wallet overlay is open */
+  ethConnectOverlay: boolean;
 
   /** Whether or not a Vega wallet service is running, can be Pending, Ready or None */
   vegaWalletStatus: VegaWalletStatus;
@@ -117,6 +120,7 @@ export enum AppStateActionType {
   REFRESH_BALANCES,
   SET_TRANCHE_DATA,
   SET_VEGA_WALLET_OVERLAY,
+  SET_ETH_WALLET_OVERLAY,
   SET_DRAWER,
   SET_TRANCHE_ERROR,
   REFRESH_ASSOCIATED_BALANCES,
@@ -173,6 +177,10 @@ export type AppStateAction =
     }
   | {
       type: AppStateActionType.SET_VEGA_WALLET_OVERLAY;
+      isOpen: boolean;
+    }
+  | {
+      type: AppStateActionType.SET_ETH_WALLET_OVERLAY;
       isOpen: boolean;
     }
   | {

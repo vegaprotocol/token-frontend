@@ -3,8 +3,11 @@ import "./eth-wallet-container.scss";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
+import {
+  AppStateActionType,
+  useAppState,
+} from "../../contexts/app-state/app-state-context";
 import { useWeb3 } from "../../hooks/use-web3";
-import { injected } from "../../lib/connectors";
 import { Ethereum } from "../icons";
 
 interface EthWalletContainerProps {
@@ -13,14 +16,20 @@ interface EthWalletContainerProps {
 
 export const EthWalletContainer = ({ children }: EthWalletContainerProps) => {
   const { t } = useTranslation();
-  const { activate, account } = useWeb3();
+  const { appDispatch } = useAppState();
+  const { account } = useWeb3();
 
   if (!account) {
     return (
       <button
         className="eth-wallet-container fill"
         type="button"
-        onClick={() => activate(injected)}
+        onClick={() =>
+          appDispatch({
+            type: AppStateActionType.SET_ETH_WALLET_OVERLAY,
+            isOpen: true,
+          })
+        }
       >
         <div>{t("connectEthWallet")}</div>
         <Ethereum />
