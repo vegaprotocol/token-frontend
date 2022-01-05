@@ -27,7 +27,7 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
       if (library && !cancelled) {
         const token = new VegaToken(
           library,
-          library,
+          library.getSigner(),
           ADDRESSES.vegaTokenAddress
         );
         const decimals = await token.decimals();
@@ -35,25 +35,25 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
           token,
           staking: new VegaStaking(
             library,
-            library,
+            library.getSigner(),
             ADDRESSES.stakingBridge,
             decimals
           ),
           vesting: new VegaVesting(
             library,
-            library,
+            library.getSigner(),
             ADDRESSES.vestingAddress,
             decimals
           ),
           claim: new VegaClaim(
             library,
-            library,
+            library.getSigner(),
             ADDRESSES.claimAddress,
             decimals
           ),
           erc20Bridge: new VegaErc20Bridge(
             library,
-            library,
+            library.getSigner(),
             ADDRESSES.erc20Bridge
           ),
         });
