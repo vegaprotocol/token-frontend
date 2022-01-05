@@ -1,20 +1,20 @@
 import "./eth-connect-modal.scss";
 
 import { Overlay } from "@blueprintjs/core";
+import { useWeb3React } from "@web3-react/core";
 import { useTranslation } from "react-i18next";
 
 import {
   AppStateActionType,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
-import { useWeb3 } from "../../hooks/use-web3";
 import { Connectors } from "../../lib/connectors";
 import { Modal } from "../modal";
 
 export const EthConnectModal = () => {
   const { t } = useTranslation();
   const { appState, appDispatch } = useAppState();
-  const { activate } = useWeb3();
+  const { activate } = useWeb3React();
   const close = () =>
     appDispatch({
       type: AppStateActionType.SET_ETH_WALLET_OVERLAY,
@@ -32,6 +32,7 @@ export const EthConnectModal = () => {
           <h2>Connect Ethereum wallet</h2>
           <div>
             {Object.entries(Connectors).map(([key, connector]) => {
+              if (key === "networkOnly") return null;
               return (
                 <button
                   key={key}

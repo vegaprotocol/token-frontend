@@ -1,5 +1,6 @@
 import * as Sentry from "@sentry/react";
 import { Callout } from "@vegaprotocol/ui-toolkit";
+import { useWeb3React } from "@web3-react/core";
 import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { useParams } from "react-router";
@@ -16,7 +17,6 @@ import {
 } from "../../../hooks/transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { useVegaLPStaking } from "../../../hooks/use-vega-lp-staking";
-import { useWeb3 } from "../../../hooks/use-web3";
 import { BigNumber } from "../../../lib/bignumber";
 import { Routes } from "../../router-config";
 import { DexTokensSection } from "../dex-table";
@@ -48,7 +48,7 @@ export const LiquidityDepositPage = ({
     dispatch: txStakeDispatch,
     perform: txStakePerform,
   } = useTransaction(() => lpStaking.stake(amount));
-  const { account } = useWeb3();
+  const { account } = useWeb3React();
   const { getBalances, lpStakingEth, lpStakingUSDC } = useGetLiquidityBalances(
     dispatch,
     account || ""

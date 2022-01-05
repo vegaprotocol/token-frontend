@@ -1,4 +1,5 @@
 import { Callout } from "@vegaprotocol/ui-toolkit";
+import { useWeb3React } from "@web3-react/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
@@ -10,7 +11,6 @@ import { SplashScreen } from "../../components/splash-screen";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useContracts } from "../../contexts/contracts/contracts-context";
 import { useTranches } from "../../hooks/use-tranches";
-import { useWeb3 } from "../../hooks/use-web3";
 import { Routes } from "../router-config";
 import { RedemptionInformation } from "./home/redemption-information";
 import {
@@ -31,7 +31,7 @@ const RedemptionRouter = () => {
   const {
     appState: { trancheBalances },
   } = useAppState();
-  const { account } = useWeb3();
+  const { account } = useWeb3React();
   const { tranches, error } = useTranches();
 
   React.useEffect(() => {

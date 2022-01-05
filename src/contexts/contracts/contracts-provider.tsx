@@ -5,28 +5,32 @@ import {
   VegaToken,
   VegaVesting,
 } from "@vegaprotocol/smart-contracts-sdk";
+import { useWeb3React } from "@web3-react/core";
 import React from "react";
 
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { ADDRESSES } from "../../config";
-import { useWeb3 } from "../../hooks/use-web3";
 import { ContractsContext, ContractsContextShape } from "./contracts-context";
 
 /**
  * Provides Vega Ethereum contract instances to its children.
  */
 export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
-  const { library } = useWeb3();
+  const { library, connector } = useWeb3React();
   const [contracts, setContracts] =
     React.useState<ContractsContextShape | null>(null);
 
   React.useEffect(() => {
     let cancelled = false;
     const run = async () => {
-      const token = new VegaToken(library, library, ADDRESSES.vegaTokenAddress);
-      const decimals = await token.decimals();
-      if (!cancelled) {
+      if (library && !cancelled) {
+        const token = new VegaToken(
+          library,
+          library,
+          ADDRESSES.vegaTokenAddress
+        );
+        const decimals = await token.decimals();
         setContracts({
           token,
           staking: new VegaStaking(
@@ -57,10 +61,11 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
     };
 
     run();
+
     return () => {
       cancelled = true;
     };
-  }, [library]);
+  }, [library, connector]);
 
   if (!contracts) {
     return (

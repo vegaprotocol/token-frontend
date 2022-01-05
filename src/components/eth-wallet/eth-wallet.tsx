@@ -1,3 +1,4 @@
+import { useWeb3React } from "@web3-react/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
@@ -7,10 +8,10 @@ import {
   AppStateActionType,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
-import { useWeb3 } from "../../hooks/use-web3";
 import vegaVesting from "../../images/vega_vesting.png";
 import vegaWhite from "../../images/vega_white.png";
 import { BigNumber } from "../../lib/bignumber";
+import { networkOnly } from "../../lib/connectors";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { Routes } from "../../routes/router-config";
 import { LockedProgress } from "../locked-progress";
@@ -177,7 +178,7 @@ const ConnectedKey = () => {
 export const EthWallet = () => {
   const { t } = useTranslation();
   const { appDispatch } = useAppState();
-  const { deactivate, account } = useWeb3();
+  const { activate, deactivate, account } = useWeb3React();
   const [disconnecting] = React.useState(false);
 
   return (
@@ -212,7 +213,12 @@ export const EthWallet = () => {
           <WalletCardActions>
             <button
               className="button-link button-link--dark"
-              onClick={deactivate}
+              onClick={() => {
+                deactivate();
+                setTimeout(() => {
+                  activate(networkOnly);
+                }, 0);
+              }}
               type="button"
             >
               {disconnecting ? t("awaitingDisconnect") : t("disconnect")}

@@ -1,4 +1,5 @@
 import * as Sentry from "@sentry/react";
+import { useWeb3React } from "@web3-react/core";
 import React from "react";
 
 import { SplashLoader } from "./components/splash-loader";
@@ -10,25 +11,17 @@ import {
 import { useContracts } from "./contexts/contracts/contracts-context";
 import { useRefreshAssociatedBalances } from "./hooks/use-refresh-associated-balances";
 import {
-  useEagerConnect,
-  useInactiveListener,
-  useWeb3,
-} from "./hooks/use-web3";
-import {
   Errors as VegaWalletServiceErrors,
   vegaWalletService,
 } from "./lib/vega-wallet/vega-wallet-service";
 
 export const AppLoader = ({ children }: { children: React.ReactElement }) => {
-  const { account } = useWeb3();
+  const { account } = useWeb3React();
   const { appDispatch } = useAppState();
   const { token, staking, vesting } = useContracts();
   const setAssociatedBalances = useRefreshAssociatedBalances();
   const [balancesLoaded, setBalancesLoaded] = React.useState(false);
   const [vegaKeysLoaded, setVegaKeysLoaded] = React.useState(false);
-
-  useEagerConnect();
-  useInactiveListener();
 
   // Derive loaded state from all things that we want to load or attempted
   // to load before rendering the app

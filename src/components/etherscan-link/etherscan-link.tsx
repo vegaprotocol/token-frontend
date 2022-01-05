@@ -1,11 +1,11 @@
 import "./etherscan-link.scss";
 
 import { Popover, PopoverInteractionKind } from "@blueprintjs/core";
+import { useWeb3React } from "@web3-react/core";
 import { useTranslation } from "react-i18next";
 
 import { EthereumChainId } from "../../config";
 import { useCopyToClipboard } from "../../hooks/use-copy-to-clipboard";
-import { useWeb3 } from "../../hooks/use-web3";
 
 const etherscanUrls: Record<EthereumChainId, string> = {
   "0x1": "https://etherscan.io",
@@ -48,7 +48,7 @@ export const EtherscanLink = ({
   copyToClipboard = CopyToClipboardType.NONE,
   ...props
 }: EtherscanLinkProps) => {
-  const { chainId } = useWeb3();
+  const { chainId } = useWeb3React();
   let hash: string;
   let href: string | null;
   const { t } = useTranslation();

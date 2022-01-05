@@ -1,6 +1,7 @@
 import "./withdrawals.scss";
 
 import { gql, useQuery } from "@apollo/client";
+import { useWeb3React } from "@web3-react/core";
 import { format } from "date-fns";
 import orderBy from "lodash/orderBy";
 import React from "react";
@@ -24,7 +25,6 @@ import { TxState } from "../../hooks/transaction-reducer";
 import { usePollERC20Approval } from "../../hooks/use-ercPoll20Approval";
 import { useRefreshBalances } from "../../hooks/use-refresh-balances";
 import { useTransaction } from "../../hooks/use-transaction";
-import { useWeb3 } from "../../hooks/use-web3";
 import { BigNumber } from "../../lib/bignumber";
 import { addDecimal } from "../../lib/decimals";
 import { truncateMiddle } from "../../lib/truncate-middle";
@@ -92,7 +92,7 @@ const WithdrawPendingContainer = ({
   currVegaKey,
 }: WithdrawPendingContainerProps) => {
   const { t } = useTranslation();
-  const { account } = useWeb3();
+  const { account } = useWeb3React();
   const refreshBalances = useRefreshBalances(account || "");
   const { data, loading, error, refetch } = useQuery<
     WithdrawalsPage,

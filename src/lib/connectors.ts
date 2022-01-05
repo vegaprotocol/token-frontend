@@ -1,7 +1,9 @@
+import { ChainIdMap } from "@vegaprotocol/smart-contracts-sdk";
 import { InjectedConnector } from "@web3-react/injected-connector";
+import { NetworkConnector } from "@web3-react/network-connector";
 import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
 
-import { InfuraUrls } from "../config";
+import { APP_CHAIN_ID, InfuraUrls } from "../config";
 
 export const injected = new InjectedConnector({
   supportedChainIds: [1, 3, 1337],
@@ -9,7 +11,7 @@ export const injected = new InjectedConnector({
 // @ts-ignore
 window.foo = injected;
 
-export const walletconnect = new WalletConnectConnector({
+export const walletConnect = new WalletConnectConnector({
   rpc: {
     1: InfuraUrls["0x1"],
     3: InfuraUrls["0x3"],
@@ -17,7 +19,16 @@ export const walletconnect = new WalletConnectConnector({
   qrcode: true,
 });
 
+export const networkOnly = new NetworkConnector({
+  urls: {
+    1: InfuraUrls["0x1"],
+    3: InfuraUrls["0x3"],
+  },
+  defaultChainId: ChainIdMap[APP_CHAIN_ID],
+});
+
 export const Connectors = {
   injected,
-  walletconnect,
+  walletConnect,
+  networkOnly,
 };
