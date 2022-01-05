@@ -61,7 +61,7 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
                   ? t("closesOn")
                   : t("closedOn")}
               </th>
-              <td>
+              <td data-testid="governance-proposal-closingDate">
                 {format(new Date(row.terms.closingDatetime), DATE_FORMAT)}
               </td>
             </tr>
@@ -71,7 +71,7 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
                   ? t("proposedEnactment")
                   : t("enactedOn")}
               </th>
-              <td>
+              <td data-testid="governance-proposal-enactmentDate">
                 {format(new Date(row.terms.enactmentDatetime), DATE_FORMAT)}
               </td>
             </tr>
