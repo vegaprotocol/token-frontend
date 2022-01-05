@@ -139,7 +139,6 @@
   "vegaKey": "Vega key",
   "noService": "Looks like the Vega wallet service isn't running. Please start it and refresh the page",
   "disconnect": "Disconnect",
-  "awaitingDisconnect": "Disconnecting...",
   "Checking Vega wallet status": "Checking Vega Wallet status",
   "hostedSwitchLabel": "Use hosted wallet",
   "urlLabel": "Wallet location",
@@ -413,7 +412,7 @@
   "rewardsPara2": "This page lists all the rewards that your Vega key has received.",
   "rewardsPara3": "This delay is set by a network parameter",
   "rewardsCallout": "Rewards are credited {{duration}} after the epoch ends.",
-  "noRewards": "This Vega key has not received any rewards.",
+  "noRewards": "The Vega key has not been credited any rewards since the previous network checkpoint.",
   "rewardType": "Reward type",
   "yourStake": "Your stake",
   "reward": "Reward",
@@ -485,5 +484,10 @@
   "voteFailedReason": "Vote closed. Failed due to: ",
   "votePassed": "Vote passed.",
   "subjectToFurtherActions": "Vote passed {{daysAgo}} subject to further actions.",
-  "transactionHashPrompt": "Transaction hash will appear here once the transaction is approved in your Ethereum wallet"
+  "transactionHashPrompt": "Transaction hash will appear here once the transaction is approved in your Ethereum wallet",
+  "errorLoadingTranches": "Error loading tranches. Please try again later.",
+  "injected.name": "Injected",
+  "injected.text": "Connect with the provider in your browser",
+  "walletConnect.name": "Mobile",
+  "walletConnect.text": "Scan QR code with your mobile wallet"
 }

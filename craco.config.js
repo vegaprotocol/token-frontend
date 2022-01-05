@@ -2,9 +2,9 @@ const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const SentryPlugin = require("@sentry/webpack-plugin");
-const package = require("./package.json");
+const meta = require("./package.json");
 
-module.exports = function (options) {
+module.exports = function () {
   // determine if we are using sentry
   let useSentryPlugin = false;
 
@@ -16,8 +16,6 @@ module.exports = function (options) {
     process.env.REACT_APP_IN_CONTEXT_TRANSLATION
   );
   const isMock = ["1", "true"].includes(process.env.REACT_APP_MOCKED);
-  const detectProviderPath = isMock ? "../../__mocks__/@metamask" : "@metamask";
-  const vegaWeb3Path = isMock ? "vega-web3/__mocks__" : "vega-web3";
   const useTranchesPath = isMock ? "__mocks__/use-tranches" : "use-tranches";
   const graphQlProviderPath = isMock
     ? "graphql-provider/__mocks__"
@@ -44,7 +42,7 @@ module.exports = function (options) {
       plugins: [
         useSentryPlugin
           ? new SentryPlugin({
-              release: package.version,
+              release: meta.version,
               include: "build/static/js",
               ignore: ["node_modules", "webpack.config.js"],
               urlPrefix: "~/static/js",
@@ -57,24 +55,6 @@ module.exports = function (options) {
           chunkFilename: "static/css/[name].[contenthash:8].chunk.css",
           ignoreOrder: true,
         }),
-        new webpack.NormalModuleReplacementPlugin(
-          /(.*)DETECT_PROVIDER_PATH(\.*)/,
-          function (resource) {
-            resource.request = resource.request.replace(
-              /DETECT_PROVIDER_PATH/,
-              `${detectProviderPath}`
-            );
-          }
-        ),
-        new webpack.NormalModuleReplacementPlugin(
-          /(.*)VEGA_WEB3(\.*)/,
-          function (resource) {
-            resource.request = resource.request.replace(
-              /VEGA_WEB3/,
-              `${vegaWeb3Path}`
-            );
-          }
-        ),
         new webpack.NormalModuleReplacementPlugin(
           /(.*)GRAPHQL_PROVIDER(\.*)/,
           function (resource) {

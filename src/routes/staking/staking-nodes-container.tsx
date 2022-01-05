@@ -1,8 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { Callout } from "../../components/callout";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { useVegaUser } from "../../hooks/use-vega-user";

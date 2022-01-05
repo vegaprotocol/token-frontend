@@ -1,59 +1,63 @@
+import {
+  VegaClaim,
+  VegaErc20Bridge,
+  VegaStaking,
+  VegaToken,
+  VegaVesting,
+} from "@vegaprotocol/smart-contracts-sdk";
+import { useWeb3React } from "@web3-react/core";
+import { NetworkConnector } from "@web3-react/network-connector";
 import React from "react";
 
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { ADDRESSES } from "../../config";
-// @ts-ignore
-import VegaClaim from "../../lib/VEGA_WEB3/vega-claim";
-// @ts-ignore
-import StakingAbi from "../../lib/VEGA_WEB3/vega-staking";
-// Note: Each contract class imported below gets swapped out for a mocked version
-// at ../../lib/vega-web3/__mocks__ at build time using webpack.NormalModuleReplacementPlugin
-// when you run the app with REACT_APP_MOCKED=1
-// @ts-ignore
-import VegaToken from "../../lib/VEGA_WEB3/vega-token";
-// @ts-ignore
-import VegaVesting from "../../lib/VEGA_WEB3/vega-vesting";
-import { VegaErc20Bridge } from "../../lib/vega-web3/vega-erc20-bridge";
-import { useWeb3 } from "../web3-context/web3-context";
 import { ContractsContext, ContractsContextShape } from "./contracts-context";
 
 /**
  * Provides Vega Ethereum contract instances to its children.
  */
 export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
-  const { provider, signer } = useWeb3();
+  const { library, connector } = useWeb3React();
   const [contracts, setContracts] =
     React.useState<ContractsContextShape | null>(null);
 
   React.useEffect(() => {
     let cancelled = false;
     const run = async () => {
-      const token = new VegaToken(provider, signer, ADDRESSES.vegaTokenAddress);
-      const decimals = await token.decimals();
-      if (!cancelled) {
+      if (library && !cancelled) {
+        const signer =
+          connector instanceof NetworkConnector
+            ? undefined
+            : library.getSigner();
+        const token = new VegaToken(
+          library,
+          signer,
+          ADDRESSES.vegaTokenAddress
+        );
+        const decimals = await token.decimals();
         setContracts({
           token,
-          staking: new StakingAbi(
-            provider,
+          staking: new VegaStaking(
+            library,
             signer,
             ADDRESSES.stakingBridge,
             decimals
           ),
           vesting: new VegaVesting(
-            provider,
+            library,
             signer,
             ADDRESSES.vestingAddress,
             decimals
           ),
           claim: new VegaClaim(
-            provider,
+            library,
             signer,
             ADDRESSES.claimAddress,
             decimals
           ),
           erc20Bridge: new VegaErc20Bridge(
-            provider as any,
+            library,
             signer,
             ADDRESSES.erc20Bridge
           ),
@@ -62,10 +66,11 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
     };
 
     run();
+
     return () => {
       cancelled = true;
     };
-  }, [provider, signer]);
+  }, [library, connector]);
 
   if (!contracts) {
     return (
