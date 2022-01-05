@@ -1,3 +1,5 @@
+import "./eth-connect-modal.scss";
+
 import { Overlay } from "@blueprintjs/core";
 import { useTranslation } from "react-i18next";
 
@@ -32,6 +34,8 @@ export const EthConnectModal = () => {
             {Object.entries(Connectors).map(([key, connector]) => {
               return (
                 <button
+                  key={key}
+                  className="eth-connect-modal__button button-link"
                   type="button"
                   onClick={() => {
                     activate(connector);
