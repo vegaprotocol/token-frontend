@@ -8,8 +8,6 @@ import { APP_CHAIN_ID, InfuraUrls } from "../config";
 export const injected = new InjectedConnector({
   supportedChainIds: [1, 3, 1337],
 });
-// @ts-ignore
-window.foo = injected;
 
 export const walletConnect = new WalletConnectConnector({
   rpc: {
