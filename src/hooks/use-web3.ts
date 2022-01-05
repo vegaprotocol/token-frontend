@@ -9,6 +9,7 @@ export function useWeb3Connect() {
   // Connects to given connector after deactivating network only connector
   const connect = React.useCallback(
     (connector: any) => {
+      // TODO: Fix any
       deactivate();
       setTimeout(() => {
         activate(connector);
@@ -58,11 +59,11 @@ export function useEagerConnect() {
   return tried;
 }
 
-export function useInactiveListener() {
+export function useWeb3Listeners() {
   const { active, error, activate } = useWeb3React();
 
-  React.useEffect((): any => {
-    const { ethereum } = window as any;
+  React.useEffect(() => {
+    const { ethereum } = window;
     if (ethereum && ethereum.on && !active && !error) {
       const handleConnect = () => {
         activate(injected);
