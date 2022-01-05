@@ -486,5 +486,9 @@
   "votePassed": "Vote passed.",
   "subjectToFurtherActions": "Vote passed {{daysAgo}} subject to further actions.",
   "transactionHashPrompt": "Transaction hash will appear here once the transaction is approved in your Ethereum wallet",
-  "errorLoadingTranches": "Error loading tranches. Please try again later."
+  "errorLoadingTranches": "Error loading tranches. Please try again later.",
+  "injected.name": "Injected",
+  "injected.text": "Connect with the provider in your browser",
+  "walletconnect.name": "Mobile",
+  "walletconnect.text": "Scan QR code with your mobile wallet"
 }
