@@ -7,10 +7,12 @@ import { EtherscanLink } from "../../components/etherscan-link";
 import { CopyToClipboardType } from "../../components/etherscan-link/etherscan-link";
 import { Error, Tick } from "../../components/icons";
 import { Links } from "../../config";
-import { useAppState } from "../../contexts/app-state/app-state-context";
+import {
+  AppStateActionType,
+  useAppState,
+} from "../../contexts/app-state/app-state-context";
 import { useWeb3 } from "../../hooks/use-web3";
 import { BigNumber } from "../../lib/bignumber";
-import { injected } from "../../lib/connectors";
 import { formatNumber } from "../../lib/format-number";
 import { Staking as StakingQueryResult } from "./__generated__/Staking";
 import { ConnectToVega } from "./connect-to-vega";
@@ -47,9 +49,10 @@ export const Staking = ({ data }: { data?: StakingQueryResult }) => {
 
 export const StakingStepConnectWallets = () => {
   const { t } = useTranslation();
-  const { activate, account } = useWeb3();
+  const { account } = useWeb3();
   const {
     appState: { currVegaKey },
+    appDispatch,
   } = useAppState();
 
   if (currVegaKey && account) {
@@ -90,7 +93,12 @@ export const StakingStepConnectWallets = () => {
       ) : (
         <p>
           <button
-            onClick={() => activate(injected)}
+            onClick={() =>
+              appDispatch({
+                type: AppStateActionType.SET_ETH_WALLET_OVERLAY,
+                isOpen: true,
+              })
+            }
             className="fill"
             type="button"
           >
