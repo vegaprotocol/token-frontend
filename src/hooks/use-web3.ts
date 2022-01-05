@@ -3,6 +3,31 @@ import React from "react";
 
 import { injected, networkOnly } from "../lib/connectors";
 
+export function useWeb3Connect() {
+  const { activate, deactivate } = useWeb3React();
+
+  // Connects to given connector after deactivating network only connector
+  const connect = React.useCallback(
+    (connector: any) => {
+      deactivate();
+      setTimeout(() => {
+        activate(connector);
+      }, 0);
+    },
+    [activate, deactivate]
+  );
+
+  // Reconnects to network only connector after disconnecting
+  const disconnect = React.useCallback(() => {
+    deactivate();
+    setTimeout(() => {
+      activate(networkOnly);
+    }, 0);
+  }, [activate, deactivate]);
+
+  return { connect, disconnect };
+}
+
 // This hook only eager connects to injected providers
 export function useEagerConnect() {
   const { activate, active } = useWeb3React();
