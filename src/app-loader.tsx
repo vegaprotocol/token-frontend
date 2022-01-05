@@ -9,7 +9,11 @@ import {
 } from "./contexts/app-state/app-state-context";
 import { useContracts } from "./contexts/contracts/contracts-context";
 import { useRefreshAssociatedBalances } from "./hooks/use-refresh-associated-balances";
-import { useWeb3 } from "./hooks/use-web3";
+import {
+  useEagerConnect,
+  useInactiveListener,
+  useWeb3,
+} from "./hooks/use-web3";
 import {
   Errors as VegaWalletServiceErrors,
   vegaWalletService,
@@ -22,6 +26,9 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
   const setAssociatedBalances = useRefreshAssociatedBalances();
   const [balancesLoaded, setBalancesLoaded] = React.useState(false);
   const [vegaKeysLoaded, setVegaKeysLoaded] = React.useState(false);
+
+  useEagerConnect();
+  useInactiveListener();
 
   // Derive loaded state from all things that we want to load or attempted
   // to load before rendering the app
