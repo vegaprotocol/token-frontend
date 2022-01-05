@@ -1,5 +1,6 @@
 import "./eth-wallet-container.scss";
 
+import { useWeb3React } from "@web3-react/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
@@ -7,7 +8,6 @@ import {
   AppStateActionType,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
-import { useWeb3 } from "../../hooks/use-web3";
 import { Ethereum } from "../icons";
 
 interface EthWalletContainerProps {
@@ -17,7 +17,7 @@ interface EthWalletContainerProps {
 export const EthWalletContainer = ({ children }: EthWalletContainerProps) => {
   const { t } = useTranslation();
   const { appDispatch } = useAppState();
-  const { account } = useWeb3();
+  const { account } = useWeb3React();
 
   if (!account) {
     return (

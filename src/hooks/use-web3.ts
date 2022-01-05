@@ -1,35 +1,11 @@
 import { useWeb3React } from "@web3-react/core";
-import { Web3ReactContextInterface } from "@web3-react/core/dist/types";
-import { ethers } from "ethers";
 import React from "react";
 
-import { injected } from "../lib/connectors";
+import { injected, networkOnly } from "../lib/connectors";
 
-export function useWeb3() {
-  const context = useWeb3React();
-
-  const fallback: Web3ReactContextInterface = React.useMemo(() => {
-    return {
-      ...context,
-      library: new ethers.providers.InfuraProvider(
-        3,
-        process.env.REACT_APP_INFURA_ID
-      ),
-      chainId: 3,
-    };
-  }, [context]);
-
-  // Use the browser/extension/connected wallet if active
-  // otherwise use the fallback
-  if (context.active) {
-    return context;
-  } else {
-    return fallback;
-  }
-}
-
+// This hook only eager connects to injected providers
 export function useEagerConnect() {
-  const { activate, active } = useWeb3();
+  const { activate, active } = useWeb3React();
   const [tried, setTried] = React.useState(false);
 
   React.useEffect(() => {
@@ -39,7 +15,9 @@ export function useEagerConnect() {
           setTried(true);
         });
       } else {
-        setTried(true);
+        activate(networkOnly, undefined, true).catch(() => {
+          setTried(true);
+        });
       }
     });
     // eslint-disable-next-line
@@ -56,7 +34,7 @@ export function useEagerConnect() {
 }
 
 export function useInactiveListener() {
-  const { active, error, activate } = useWeb3();
+  const { active, error, activate } = useWeb3React();
 
   React.useEffect((): any => {
     const { ethereum } = window as any;

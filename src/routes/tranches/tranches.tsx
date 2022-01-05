@@ -1,12 +1,12 @@
 import "./tranches.scss";
 
 import { EthereumChainId, Tranche } from "@vegaprotocol/smart-contracts-sdk";
+import { useWeb3React } from "@web3-react/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useRouteMatch } from "react-router-dom";
 
 import { ADDRESSES } from "../../config";
-import { useWeb3 } from "../../hooks/use-web3";
 import { TrancheItem } from "../redemption/tranche-item";
 import { TrancheLabel } from "./tranche-label";
 
@@ -19,7 +19,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
   const [showAll, setShowAll] = React.useState<boolean>(false);
   const { t } = useTranslation();
   const match = useRouteMatch();
-  const { chainId } = useWeb3();
+  const { chainId } = useWeb3React();
   const filteredTranches = tranches?.filter(shouldShowTranche) || [];
 
   return (

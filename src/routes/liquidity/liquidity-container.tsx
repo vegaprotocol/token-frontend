@@ -1,18 +1,18 @@
 import "./liquidity-container.scss";
 
 import { Callout } from "@vegaprotocol/ui-toolkit";
+import { useWeb3React } from "@web3-react/core";
 import { Trans, useTranslation } from "react-i18next";
 
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
 import { Error } from "../../components/icons";
 import { Links, REWARDS_ADDRESSES } from "../../config";
-import { useWeb3 } from "../../hooks/use-web3";
 import { DexTokensSection } from "./dex-table";
 import { LiquidityState } from "./liquidity-reducer";
 
 export const LiquidityContainer = ({ state }: { state: LiquidityState }) => {
   const { t } = useTranslation();
-  const { account } = useWeb3();
+  const { account } = useWeb3React();
   return (
     <section className="liquidity-container">
       <Callout icon={<Error />} intent="error" title={t("lpEndedTitle")}>

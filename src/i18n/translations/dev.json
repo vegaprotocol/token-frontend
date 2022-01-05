@@ -489,6 +489,6 @@
   "errorLoadingTranches": "Error loading tranches. Please try again later.",
   "injected.name": "Injected",
   "injected.text": "Connect with the provider in your browser",
-  "walletconnect.name": "Mobile",
-  "walletconnect.text": "Scan QR code with your mobile wallet"
+  "walletConnect.name": "Mobile",
+  "walletConnect.text": "Scan QR code with your mobile wallet"
 }

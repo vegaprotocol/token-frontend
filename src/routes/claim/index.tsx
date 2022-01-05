@@ -1,3 +1,4 @@
+import { useWeb3React } from "@web3-react/core";
 import { useTranslation } from "react-i18next";
 
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
@@ -6,7 +7,6 @@ import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { useTranches } from "../../hooks/use-tranches";
-import { useWeb3 } from "../../hooks/use-web3";
 import { RouteChildProps } from "..";
 import Claim from "./claim";
 import { ClaimRestricted } from "./claim-restricted";
@@ -15,7 +15,7 @@ import { isRestricted } from "./lib/is-restricted";
 const ClaimIndex = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
   const { t } = useTranslation();
-  const { account } = useWeb3();
+  const { account } = useWeb3React();
   const { tranches } = useTranches();
 
   if (!tranches) {

@@ -1,9 +1,9 @@
+import { useWeb3React } from "@web3-react/core";
 import { useTranslation } from "react-i18next";
 
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
 import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
 import { useVegaUser } from "../../hooks/use-vega-user";
-import { useWeb3 } from "../../hooks/use-web3";
 import { ConnectToVega } from "./connect-to-vega";
 
 export const StakingWalletsContainer = ({
@@ -19,7 +19,7 @@ export const StakingWalletsContainer = ({
   }) => React.ReactElement;
 }) => {
   const { t } = useTranslation();
-  const { account } = useWeb3();
+  const { account } = useWeb3React();
   const { currVegaKey } = useVegaUser();
 
   if (!account && needsEthereum) {

@@ -1,4 +1,5 @@
 import { Callout } from "@vegaprotocol/ui-toolkit";
+import { useWeb3React } from "@web3-react/core";
 import { Trans, useTranslation } from "react-i18next";
 import { Link, useRouteMatch } from "react-router-dom";
 
@@ -11,7 +12,6 @@ import {
   AppStateActionType,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
-import { useWeb3 } from "../../hooks/use-web3";
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
 import { Staking as StakingQueryResult } from "./__generated__/Staking";
@@ -49,7 +49,7 @@ export const Staking = ({ data }: { data?: StakingQueryResult }) => {
 
 export const StakingStepConnectWallets = () => {
   const { t } = useTranslation();
-  const { account } = useWeb3();
+  const { account } = useWeb3React();
   const {
     appState: { currVegaKey },
     appDispatch,
@@ -126,7 +126,7 @@ export const StakingStepAssociate = ({
 }) => {
   const match = useRouteMatch();
   const { t } = useTranslation();
-  const { account } = useWeb3();
+  const { account } = useWeb3React();
   const {
     appState: { currVegaKey },
   } = useAppState();

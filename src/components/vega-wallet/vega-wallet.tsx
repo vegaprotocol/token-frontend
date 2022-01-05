@@ -2,6 +2,7 @@ import "./vega-wallet.scss";
 
 import { gql, useApolloClient } from "@apollo/client";
 import * as Sentry from "@sentry/react";
+import { useWeb3React } from "@web3-react/core";
 import { keyBy, uniq } from "lodash";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -16,7 +17,6 @@ import {
 } from "../../contexts/app-state/app-state-context";
 import { useRefreshAssociatedBalances } from "../../hooks/use-refresh-associated-balances";
 import { useVegaUser } from "../../hooks/use-vega-user";
-import { useWeb3 } from "../../hooks/use-web3";
 import noIcon from "../../images/token-no-icon.png";
 import vegaBlack from "../../images/vega_black.png";
 import vegaWhite from "../../images/vega_white.png";
@@ -180,7 +180,7 @@ const VegaWalletConnected = ({
   version,
 }: VegaWalletConnectedProps) => {
   const { t } = useTranslation();
-  const { account } = useWeb3();
+  const { account } = useWeb3React();
   const {
     appDispatch,
     appState: { decimals },

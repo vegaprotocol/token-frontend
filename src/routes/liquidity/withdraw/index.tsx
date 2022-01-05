@@ -1,6 +1,7 @@
 import "./withdraw.scss";
 
 import * as Sentry from "@sentry/react";
+import { useWeb3React } from "@web3-react/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
@@ -19,7 +20,6 @@ import {
 } from "../../../hooks/transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
 import { useVegaLPStaking } from "../../../hooks/use-vega-lp-staking";
-import { useWeb3 } from "../../../hooks/use-web3";
 import { formatNumber } from "../../../lib/format-number";
 import { Routes } from "../../router-config";
 import { useGetLiquidityBalances } from "../hooks";
@@ -40,7 +40,7 @@ export const LiquidityWithdrawPage = ({
 }) => {
   const { t } = useTranslation();
   const lpStaking = useVegaLPStaking({ address: lpTokenAddress });
-  const { account } = useWeb3();
+  const { account } = useWeb3React();
   const {
     state: txUnstakeState,
     dispatch: txUnstakeDispatch,
