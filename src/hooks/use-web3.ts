@@ -69,7 +69,6 @@ export function useInactiveListener() {
         activate(injected);
       };
       const handleChainChanged = (chainId: string | number) => {
-        console.log("Handling 'chainChanged' event with payload", chainId);
         activate(injected);
       };
       const handleAccountsChanged = (accounts: string[]) => {
