@@ -65,7 +65,6 @@ export function useInactiveListener() {
     const { ethereum } = window as any;
     if (ethereum && ethereum.on && !active && !error) {
       const handleConnect = () => {
-        console.log("Handling 'connect' event");
         activate(injected);
       };
       const handleChainChanged = (chainId: string | number) => {
