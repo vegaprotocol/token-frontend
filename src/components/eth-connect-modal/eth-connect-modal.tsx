@@ -8,11 +8,7 @@ import {
   useAppState,
 } from "../../contexts/app-state/app-state-context";
 import { useWeb3Connect } from "../../hooks/use-web3";
-import {
-  AllowedConnectors,
-  Connectors,
-  NETWORK_KEY,
-} from "../../lib/connectors";
+import { Connectors, NETWORK_KEY } from "../../lib/connectors";
 import { Modal } from "../modal";
 
 export const EthConnectModal = () => {
