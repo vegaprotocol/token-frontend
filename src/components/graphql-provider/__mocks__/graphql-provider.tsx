@@ -10,7 +10,9 @@ import {
 } from "../../../__generated__/globalTypes";
 import { NetworkParams } from "../../../hooks/__generated__/NetworkParams";
 import { NETWORK_PARAMS_QUERY } from "../../../hooks/use-network-param";
+import { Proposal } from "../../../routes/governance/__generated__/Proposal";
 import { Proposals } from "../../../routes/governance/__generated__/Proposals";
+import { PROPOSAL_QUERY } from "../../../routes/governance/proposal-container";
 import { PROPOSALS_QUERY } from "../../../routes/governance/proposals-container";
 import {
   generateNoVotes,
@@ -372,6 +374,37 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
   },
 };
 
+const MOCK_PROPOSAL: MockedResponse<Proposal>[] = [
+    proposaNotEnoughVotes,
+    proposaNoVotesWillWin,
+    proposaYesVotesWillWin,
+    proposaSameYesNoVotes,
+    proposalNoVotesOnly,
+    proposalYesVotesOnly,
+    proposalWaitingForNodeVote,
+    proposalRejectedNoVotes,
+    proposalRejected,
+    proposalPassed,
+    proposalDeclined,
+    proposalNotVoted,
+    proposalNoTokens,
+    proposalVotedAgainst,
+    proposalDidNotVote,
+    propsoalVoteClosedVotedFor,
+].map((p) => ({
+  request: {
+    query: PROPOSAL_QUERY,
+    variables: {
+      proposalId: p.id,
+    },
+  },
+  result: {
+    data: {
+      proposal: p,
+    },
+  },
+}));
+
 const MOCK_REWARDS: MockedResponse<Rewards> = {
   request: {
     query: REWARDS_QUERY,
@@ -510,10 +543,28 @@ export const GraphQlProvider = ({
     <MockedProvider
       mocks={[
         MOCK_PROPOSALS,
+        MOCK_PROPOSALS,
+        MOCK_PROPOSALS,
+        MOCK_PROPOSALS,
+        MOCK_PROPOSALS,
+        MOCK_PROPOSALS,
+        MOCK_PROPOSALS,
+        MOCK_PROPOSALS,
+        ...MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
         MOCK_STAKING_QUERY,
         MOCK_PARTY_DELEGATIONS,
         MOCK_NODES_QUERY,
-        // MOCK_PROPOSAL,
         MOCK_REWARDS,
         MOCK_NETWORK_PARAMS,
       ]}

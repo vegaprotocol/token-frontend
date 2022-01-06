@@ -42,7 +42,10 @@ Then("the vesting address is shown", () => {
 });
 
 Then("the total supply is shown correctly", () => {
-  cy.get('[data-testid="total-supply"]').should("have.text", "65,000,091.00");
+  cy.get('[data-testid="total-supply"]').then(($supply) => {
+    const supplyNum = Number($supply.text().replace(/,/g, ""));
+    expect(supplyNum).to.be.above(64999723);
+  });
 });
 
 Then("associated token field is showing {string}", (amount) => {
@@ -192,10 +195,6 @@ When("I have not connected my vega wallet", () => {
 
 When("I click on the governance proposals button", () => {
   cy.get("button").contains("View proposals").click();
-});
-
-Then("I am taken to governance proposals page", () => {
-  cy.url().should("equal", Cypress.config().baseUrl + "governance");
 });
 
 Then("I can see proposals", () => {

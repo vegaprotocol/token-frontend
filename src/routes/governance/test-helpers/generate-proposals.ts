@@ -6,9 +6,7 @@ import { DeepPartial } from "../../../lib/type-helpers";
 import {
   ProposalFields,
   ProposalFields_votes_no,
-  ProposalFields_votes_no_votes,
   ProposalFields_votes_yes,
-  ProposalFields_votes_yes_votes,
 } from "../__generated__/ProposalFields";
 
 export function generateProposal(
@@ -86,14 +84,12 @@ export const generateYesVotes = (
           },
         },
         datetime: faker.date.past().toISOString(),
-      } as ProposalFields_votes_yes_votes;
+      };
     }),
   };
 };
 
-export const generateNoVotes = (
-  numberOfVotes = 5
-): ProposalFields_votes_no => {
+export const generateNoVotes = (numberOfVotes = 5): ProposalFields_votes_no => {
   return {
     __typename: "ProposalVoteSide",
     totalNumber: faker.datatype.number({ min: 0, max: 100 }).toString(),
@@ -116,7 +112,7 @@ export const generateNoVotes = (
           },
         },
         datetime: faker.date.past().toISOString(),
-      } as ProposalFields_votes_no_votes;
+      };
     }),
   };
 };
