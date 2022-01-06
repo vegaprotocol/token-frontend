@@ -28,6 +28,19 @@ export const VestingChart = () => {
     <div style={{ marginBottom: 25 }}>
       <ResponsiveContainer height={400} width="100%">
         <AreaChart data={data}>
+          <defs>
+            {[
+              ["pink", Colors.PINK],
+              ["green", Colors.VEGA_GREEN],
+              ["orange", Colors.VEGA_ORANGE],
+              ["yellow", Colors.VEGA_YELLOW],
+            ].map(([key, color]) => (
+              <linearGradient id={key} x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor={color} stopOpacity={0.85} />
+                <stop offset="100%" stopColor={color} stopOpacity={0} />
+              </linearGradient>
+            ))}
+          </defs>
           <Tooltip
             contentStyle={{ backgroundColor: Colors.BLACK }}
             separator=":"
@@ -79,7 +92,7 @@ export const VestingChart = () => {
             type="linear"
             dataKey="team"
             stroke={Colors.PINK}
-            fill={Colors.PINK}
+            fill="url(#pink)"
             yAxisId={0}
             strokeWidth={2}
             fillOpacity={0.85}
@@ -91,7 +104,7 @@ export const VestingChart = () => {
             type="monotone"
             dataKey="earlyInvestors"
             stroke={Colors.VEGA_GREEN}
-            fill={Colors.VEGA_GREEN}
+            fill="url(#green)"
             yAxisId={0}
             strokeWidth={2}
             fillOpacity={0.85}
@@ -103,7 +116,7 @@ export const VestingChart = () => {
             type="monotone"
             dataKey="publicSale"
             stroke={Colors.VEGA_YELLOW}
-            fill={Colors.VEGA_YELLOW}
+            fill="url(#yellow)"
             yAxisId={0}
             strokeWidth={2}
             stackId="1"
@@ -115,7 +128,7 @@ export const VestingChart = () => {
             type="monotone"
             dataKey="community"
             stroke={Colors.VEGA_ORANGE}
-            fill={Colors.VEGA_ORANGE}
+            fill="url(#orange)"
             yAxisId={0}
             strokeWidth={2}
             fillOpacity={0.85}
