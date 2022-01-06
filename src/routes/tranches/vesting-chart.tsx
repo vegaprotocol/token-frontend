@@ -1,3 +1,5 @@
+import { format, startOfMonth } from "date-fns";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import {
   Area,
@@ -9,10 +11,9 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import data from "../home/data.json";
+
 import { Colors } from "../../config";
-import { format, startOfMonth } from "date-fns";
-import React from "react";
+import data from "./data.json";
 
 const ORDER = ["community", "publicSale", "earlyInvestors", "team"];
 
@@ -29,7 +30,7 @@ export const VestingChart = () => {
           <Tooltip
             contentStyle={{ backgroundColor: Colors.BLACK }}
             separator=":"
-            formatter={(value: any, name: any, props: any) => {
+            formatter={(value: any) => {
               return (
                 <div
                   style={{
