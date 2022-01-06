@@ -10,26 +10,23 @@ import {
   UndelegateSubmissionInput,
   vegaWalletService,
 } from "../../lib/vega-wallet/vega-wallet-service";
-import { FormState } from "./staking-form";
 
 interface PendingStakeProps {
   pendingAmount: BigNumber;
   nodeId: string;
   pubkey: string;
-  setFormState: (state: FormState) => void;
 }
 
 export const PendingStake = ({
   pendingAmount,
   nodeId,
-  pubkey,
-  setFormState,
+  pubkey
 }: PendingStakeProps) => {
   const { t } = useTranslation();
   const { appState } = useAppState();
 
   const removeStakeNow = async () => {
-    setFormState(FormState.Pending);
+    // setFormState(FormState.Pending);
     const undelegateInput: UndelegateSubmissionInput = {
       pubKey: pubkey,
       undelegateSubmission: {
@@ -44,11 +41,11 @@ export const PendingStake = ({
       const [err] = await vegaWalletService.commandSync(command);
 
       if (err) {
-        setFormState(FormState.Failure);
+        // setFormState(FormState.Failure);
         Sentry.captureException(err);
       }
     } catch (err) {
-      setFormState(FormState.Failure);
+      // setFormState(FormState.Failure);
       Sentry.captureException(err);
     }
   };

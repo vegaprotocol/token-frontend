@@ -23,7 +23,6 @@ import {
   PartyDelegations,
   PartyDelegationsVariables,
 } from "./__generated__/PartyDelegations";
-import { PendingStake } from "./pending-stake";
 import { StakeFailure } from "./stake-failure";
 import { StakePending } from "./stake-pending";
 import { StakeSuccess } from "./stake-success";
@@ -75,7 +74,6 @@ export const StakingForm = ({
   nodeName,
   availableStakeToAdd,
   availableStakeToRemove,
-  pendingStakeNextEpoch,
 }: StakingFormProps) => {
   const params = useSearchParams();
   const history = useHistory();
@@ -208,14 +206,6 @@ export const StakingForm = ({
 
   return (
     <>
-      {pendingStakeNextEpoch.isZero() ? null : (
-        <PendingStake
-          nodeId={nodeId}
-          pubkey={pubkey}
-          pendingAmount={pendingStakeNextEpoch}
-          setFormState={setFormState}
-        />
-      )}
       <h2>{t("Manage your stake")}</h2>
       <FormGroup>
         <RadioGroup
