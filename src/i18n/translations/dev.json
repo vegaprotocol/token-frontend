@@ -486,5 +486,6 @@
   "walletConnect.name": "Mobile",
   "walletConnect.text": "Scan QR code with your mobile wallet",
   "resourceNotFound": "Resource Not Found",
-  "Or": "Or"
+  "Or": "Or",
+  "addTokenToWallet": "Show this token in your Ethereum wallet"
 }

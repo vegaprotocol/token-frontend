@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import { useAddAssetToWallet } from "../../hooks/use-add-asset-to-wallet";
 
 export const AddTokenButtonLink = ({
@@ -11,6 +13,7 @@ export const AddTokenButtonLink = ({
   decimals: number;
   image: string;
 }) => {
+  const { t } = useTranslation();
   const { add, addSupported } = useAddAssetToWallet(
     address,
     symbol,
@@ -22,7 +25,7 @@ export const AddTokenButtonLink = ({
   }
   return (
     <button className="add-token-button button-link" onClick={add}>
-      Click here to add to wallet
+      {t("addTokenToWallet")}
     </button>
   );
 };
