@@ -491,5 +491,8 @@
   "walletConnect.name": "Mobile",
   "walletConnect.text": "Scan QR code with your mobile wallet",
   "resourceNotFound": "Resource Not Found",
-  "chartDisclaimer": "All these values are approximate and are for illustrative purposes only. Certain activities, for example community incentive tokens, do not have specific dates to be credited and so an approximation has been used."
+  "chartBelow": "*Certain activities, for example community incentive tokens, do not have specific dates to be credited and so an approximation has been used. ",
+  "chartTitle": "Token unlocking schedule",
+  "chartAbove": "This chart shows the approximate* schedule for how tokens will unlock from vesting tranches over time.",
+  "date": "Date"
 }

@@ -24,9 +24,11 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
   const filteredTranches = tranches?.filter(shouldShowTranche) || [];
 
   return (
-    <>
+    <section>
+      <h1>{t("chartTitle")}</h1>
+      <p>{t("chartAbove")}</p>
       <VestingChart />
-      <p>{t("chartDisclaimer")}</p>
+      <p>{t("chartBelow")}</p>
       {tranches?.length ? (
         <ul className="tranches__list">
           {(showAll ? tranches : filteredTranches).map((tranche) => {
@@ -66,6 +68,6 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
               )}
         </button>
       </section>
-    </>
+    </section>
   );
 };

@@ -47,23 +47,23 @@ export const VestingChart = () => {
               return ORDER.indexOf(label.dataKey) + 1;
             }}
           />
-          <XAxis dataKey="date">
-            <Label
-              value="$VEGA"
-              position="bottom"
-              offset={5}
-              fill={Colors.WHITE}
-            />
-          </XAxis>
           <YAxis type="number" width={100}>
             <Label
               angle={270}
-              value="Date"
+              value={t("VEGA").toString()}
               position="left"
               offset={-5}
               fill={Colors.WHITE}
             />
           </YAxis>
+          <XAxis dataKey="date">
+            <Label
+              value={t("date").toString()}
+              position="bottom"
+              offset={5}
+              fill={Colors.WHITE}
+            />
+          </XAxis>
           <ReferenceLine
             x={currentDate}
             stroke={Colors.WHITE}
@@ -78,10 +78,11 @@ export const VestingChart = () => {
             dot={false}
             type="linear"
             dataKey="team"
-            stroke={Colors.VEGA_GREEN}
-            fill={Colors.VEGA_GREEN}
+            stroke={Colors.PINK}
+            fill={Colors.PINK}
             yAxisId={0}
             strokeWidth={2}
+            fillOpacity={0.85}
             stackId="1"
             name={t("Team")}
           />
@@ -89,10 +90,11 @@ export const VestingChart = () => {
             dot={false}
             type="monotone"
             dataKey="earlyInvestors"
-            stroke={Colors.VEGA_RED}
-            fill={Colors.VEGA_RED}
+            stroke={Colors.VEGA_GREEN}
+            fill={Colors.VEGA_GREEN}
             yAxisId={0}
             strokeWidth={2}
+            fillOpacity={0.85}
             stackId="1"
             name={t("Early Investors")}
           />
@@ -105,16 +107,18 @@ export const VestingChart = () => {
             yAxisId={0}
             strokeWidth={2}
             stackId="1"
+            fillOpacity={0.85}
             name={t("Public Sale")}
           />
           <Area
             dot={false}
             type="monotone"
             dataKey="community"
-            stroke={Colors.PINK}
-            fill={Colors.PINK}
+            stroke={Colors.VEGA_ORANGE}
+            fill={Colors.VEGA_ORANGE}
             yAxisId={0}
             strokeWidth={2}
+            fillOpacity={0.85}
             stackId="1"
             name={t("Community")}
           />
