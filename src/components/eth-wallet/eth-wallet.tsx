@@ -1,10 +1,14 @@
+import { useWeb3React } from "@web3-react/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import { Colors } from "../../config";
-import { useAppState } from "../../contexts/app-state/app-state-context";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import {
+  AppStateActionType,
+  useAppState,
+} from "../../contexts/app-state/app-state-context";
+import { useWeb3Connect } from "../../hooks/use-web3";
 import vegaVesting from "../../images/vega_vesting.png";
 import vegaWhite from "../../images/vega_white.png";
 import { BigNumber } from "../../lib/bignumber";
@@ -173,40 +177,46 @@ const ConnectedKey = () => {
 
 export const EthWallet = () => {
   const { t } = useTranslation();
-  const { connect, disconnect, ethAddress } = useWeb3();
-  const [disconnecting] = React.useState(false);
+  const { appDispatch } = useAppState();
+  const { account } = useWeb3React();
+  const { disconnect } = useWeb3Connect();
 
   return (
     <WalletCard>
       <WalletCardHeader>
         <h1>{t("ethereumKey")}</h1>
-        {ethAddress && (
+        {account && (
           <span className="vega-wallet__curr-key">
-            {truncateMiddle(ethAddress)}
+            {truncateMiddle(account)}
           </span>
         )}
       </WalletCardHeader>
       <WalletCardContent>
-        {ethAddress ? (
+        {account ? (
           <ConnectedKey />
         ) : (
           <button
             type="button"
             className="fill button-secondary--inverted"
-            onClick={connect}
+            onClick={() =>
+              appDispatch({
+                type: AppStateActionType.SET_ETH_WALLET_OVERLAY,
+                isOpen: true,
+              })
+            }
             data-test-id="connect-to-eth-wallet-button"
           >
             {t("connectEthWalletToAssociate")}
           </button>
         )}
-        {ethAddress && (
+        {account && (
           <WalletCardActions>
             <button
               className="button-link button-link--dark"
               onClick={disconnect}
               type="button"
             >
-              {disconnecting ? t("awaitingDisconnect") : t("disconnect")}
+              {t("disconnect")}
             </button>
           </WalletCardActions>
         )}

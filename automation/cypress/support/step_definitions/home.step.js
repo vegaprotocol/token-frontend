@@ -1,4 +1,5 @@
-import { Then, Given, When } from "cypress-cucumber-preprocessor/steps";
+import { Given, Then, When } from "cypress-cucumber-preprocessor/steps";
+
 import { mock } from "../../common/mock";
 
 Given("I am on the home page", () => {
@@ -41,10 +42,7 @@ Then("the vesting address is shown", () => {
 });
 
 Then("the total supply is shown correctly", () => {
-  cy.get('[data-testid="total-supply"]').should(
-    "have.text",
-    "1,000,000,000.00"
-  );
+  cy.get('[data-testid="total-supply"]').should("have.text", "65,000,091.00");
 });
 
 Then("associated token field is showing {string}", (amount) => {

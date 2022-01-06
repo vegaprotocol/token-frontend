@@ -1,9 +1,9 @@
 import "./contract-associate.scss";
 
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { Callout } from "../../../components/callout";
 import { TokenInput } from "../../../components/token-input";
 import {
   useAppState,

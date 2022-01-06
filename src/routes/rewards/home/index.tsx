@@ -1,6 +1,7 @@
 import "./index.scss";
 
 import { useQuery } from "@apollo/client";
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import { formatDistance } from "date-fns";
 // @ts-ignore
 import Duration from "duration-js";
@@ -8,7 +9,6 @@ import gql from "graphql-tag";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { Callout } from "../../../components/callout";
 import { EpochCountdown } from "../../../components/epoch-countdown";
 import { Heading } from "../../../components/heading";
 import { SplashLoader } from "../../../components/splash-loader";

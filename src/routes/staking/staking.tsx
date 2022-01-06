@@ -1,14 +1,17 @@
+import { Callout } from "@vegaprotocol/ui-toolkit";
+import { useWeb3React } from "@web3-react/core";
 import { Trans, useTranslation } from "react-i18next";
 import { Link, useRouteMatch } from "react-router-dom";
 
 import { BulletHeader } from "../../components/bullet-header";
-import { Callout } from "../../components/callout";
 import { EtherscanLink } from "../../components/etherscan-link";
 import { CopyToClipboardType } from "../../components/etherscan-link/etherscan-link";
 import { Error, Tick } from "../../components/icons";
 import { Links } from "../../config";
-import { useAppState } from "../../contexts/app-state/app-state-context";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import {
+  AppStateActionType,
+  useAppState,
+} from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
 import { Staking as StakingQueryResult } from "./__generated__/Staking";
@@ -46,19 +49,20 @@ export const Staking = ({ data }: { data?: StakingQueryResult }) => {
 
 export const StakingStepConnectWallets = () => {
   const { t } = useTranslation();
-  const { connect, ethAddress } = useWeb3();
+  const { account } = useWeb3React();
   const {
     appState: { currVegaKey },
+    appDispatch,
   } = useAppState();
 
-  if (currVegaKey && ethAddress) {
+  if (currVegaKey && account) {
     return (
       <Callout intent="success" icon={<Tick />} title={"Connected"}>
         <p>
           {t("Connected Ethereum address")}&nbsp;
           <EtherscanLink
-            address={ethAddress}
-            text={ethAddress}
+            address={account}
+            text={account}
             copyToClipboard={CopyToClipboardType.LINK}
           />
         </p>
@@ -80,15 +84,24 @@ export const StakingStepConnectWallets = () => {
           }}
         />
       </p>
-      {ethAddress ? (
+      {account ? (
         <Callout
           icon={<Tick />}
           intent="success"
-          title={`Ethereum wallet connected: ${ethAddress}`}
+          title={`Ethereum wallet connected: ${account}`}
         />
       ) : (
         <p>
-          <button onClick={connect} className="fill" type="button">
+          <button
+            onClick={() =>
+              appDispatch({
+                type: AppStateActionType.SET_ETH_WALLET_OVERLAY,
+                isOpen: true,
+              })
+            }
+            className="fill"
+            type="button"
+          >
             {t("connectEthWallet")}
           </button>
         </p>
@@ -113,12 +126,12 @@ export const StakingStepAssociate = ({
 }) => {
   const match = useRouteMatch();
   const { t } = useTranslation();
-  const { ethAddress } = useWeb3();
+  const { account } = useWeb3React();
   const {
     appState: { currVegaKey },
   } = useAppState();
 
-  if (!ethAddress) {
+  if (!account) {
     return (
       <Callout
         intent="error"
