@@ -1,6 +1,5 @@
 Feature: Governance page
 
-  @todo
   Scenario Outline: Navigate to governance page via link on homepage body for governance proposals
     Given I am on the home page
     When I click on the governance proposals button
@@ -18,7 +17,7 @@ Feature: Governance page
     When I view the governance proposals list
     Then Proposals sorted by furthest Proposed enactment date
 
-  @todo
+  @manual
   Scenario: Voting on governance proposal page
     Given I navigate to '/governance' page
     When I click on a Open UpdateNetworkParameter proposal from the list
