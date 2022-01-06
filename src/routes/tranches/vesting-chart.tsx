@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import {
   Area,
   AreaChart,
+  Label,
   Legend,
   ReferenceLine,
   ResponsiveContainer,
@@ -46,8 +47,23 @@ export const VestingChart = () => {
               return ORDER.indexOf(label.dataKey) + 1;
             }}
           />
-          <XAxis dataKey="date" />
-          <YAxis type="number" width={80} />
+          <XAxis dataKey="date">
+            <Label
+              value="$VEGA"
+              position="bottom"
+              offset={5}
+              fill={Colors.WHITE}
+            />
+          </XAxis>
+          <YAxis type="number" width={100}>
+            <Label
+              angle={270}
+              value="Date"
+              position="left"
+              offset={-5}
+              fill={Colors.WHITE}
+            />
+          </YAxis>
           <ReferenceLine
             x={currentDate}
             stroke={Colors.WHITE}
