@@ -44,7 +44,7 @@ Then("the vesting address is shown", () => {
 Then("the total supply is shown correctly", () => {
   cy.get('[data-testid="total-supply"]').then(($supply) => {
     const supplyNum = Number($supply.text().replace(/,/g, ""));
-    expect(supplyNum).to.be.above(65000000);
+    expect(supplyNum).to.be.above(64999723);
   });
 });
 
