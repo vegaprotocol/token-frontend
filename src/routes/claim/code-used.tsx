@@ -1,8 +1,8 @@
 import { Callout } from "@vegaprotocol/ui-toolkit";
 import { useTranslation } from "react-i18next";
 
-import { Error } from "../../components/icons";
 import { AddLockedTokenAddress } from "../../components/add-locked-token";
+import { Error } from "../../components/icons";
 
 export const CodeUsed = () => {
   const { t } = useTranslation();

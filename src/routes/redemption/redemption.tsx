@@ -3,18 +3,12 @@ import { useWeb3React } from "@web3-react/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
-import React from "react";
-import { RedeemFromTranche } from "./tranche";
-import { RedemptionInformation } from "./home/redemption-information";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
-import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useContracts } from "../../contexts/contracts/contracts-context";
 import { useTranches } from "../../hooks/use-tranches";
-import { Routes } from "../router-config";
 import { RedemptionInformation } from "./home/redemption-information";
 import {
   initialRedemptionState,
@@ -31,9 +25,6 @@ const RedemptionRouter = () => {
     redemptionReducer,
     initialRedemptionState
   );
-  const {
-    appState: { trancheBalances },
-  } = useAppState();
   const { account } = useWeb3React();
   const { tranches, error } = useTranches();
 

@@ -5,6 +5,7 @@ import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { Link, useHistory } from "react-router-dom";
 
+import { AddLockedTokenAddress } from "../../../components/add-locked-token";
 import { HandUp } from "../../../components/icons";
 import { useAppState } from "../../../contexts/app-state/app-state-context";
 import { formatNumber } from "../../../lib/format-number";
@@ -13,8 +14,6 @@ import { Routes } from "../../router-config";
 import { RedemptionState } from "../redemption-reducer";
 import { Tranche0Table, TrancheTable } from "../tranche-table";
 import { VestingTable } from "./vesting-table";
-import { formatNumber } from "../../../lib/format-number";
-import { AddLockedTokenAddress } from "../../../components/add-locked-token";
 
 export const RedemptionInformation = ({
   state,
@@ -64,10 +63,10 @@ export const RedemptionInformation = ({
               tranchesLink: <Link to={Routes.TRANCHES} />,
             }}
           />
-          <Callout>
-            <AddLockedTokenAddress />
-          </Callout>
         </p>
+        <Callout>
+          <AddLockedTokenAddress />
+        </Callout>
       </section>
     );
   }
