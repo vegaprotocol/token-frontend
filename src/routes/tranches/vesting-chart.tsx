@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import {
   Area,
   AreaChart,
+  Label,
   Legend,
   ReferenceLine,
   ResponsiveContainer,
@@ -27,6 +28,19 @@ export const VestingChart = () => {
     <div style={{ marginBottom: 25 }}>
       <ResponsiveContainer height={400} width="100%">
         <AreaChart data={data}>
+          <defs>
+            {[
+              ["pink", Colors.PINK],
+              ["green", Colors.VEGA_GREEN],
+              ["orange", Colors.VEGA_ORANGE],
+              ["yellow", Colors.VEGA_YELLOW],
+            ].map(([key, color]) => (
+              <linearGradient id={key} x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor={color} stopOpacity={0.85} />
+                <stop offset="100%" stopColor={color} stopOpacity={0} />
+              </linearGradient>
+            ))}
+          </defs>
           <Tooltip
             contentStyle={{ backgroundColor: Colors.BLACK }}
             separator=":"
@@ -46,8 +60,23 @@ export const VestingChart = () => {
               return ORDER.indexOf(label.dataKey) + 1;
             }}
           />
-          <XAxis dataKey="date" />
-          <YAxis type="number" width={80} />
+          <YAxis type="number" width={100}>
+            <Label
+              angle={270}
+              value={t("VEGA").toString()}
+              position="left"
+              offset={-5}
+              fill={Colors.WHITE}
+            />
+          </YAxis>
+          <XAxis dataKey="date">
+            <Label
+              value={t("date").toString()}
+              position="bottom"
+              offset={5}
+              fill={Colors.WHITE}
+            />
+          </XAxis>
           <ReferenceLine
             x={currentDate}
             stroke={Colors.WHITE}
@@ -62,10 +91,11 @@ export const VestingChart = () => {
             dot={false}
             type="linear"
             dataKey="team"
-            stroke={Colors.VEGA_GREEN}
-            fill={Colors.VEGA_GREEN}
+            stroke={Colors.PINK}
+            fill="url(#pink)"
             yAxisId={0}
             strokeWidth={2}
+            fillOpacity={0.85}
             stackId="1"
             name={t("Team")}
           />
@@ -73,10 +103,11 @@ export const VestingChart = () => {
             dot={false}
             type="monotone"
             dataKey="earlyInvestors"
-            stroke={Colors.VEGA_RED}
-            fill={Colors.VEGA_RED}
+            stroke={Colors.VEGA_GREEN}
+            fill="url(#green)"
             yAxisId={0}
             strokeWidth={2}
+            fillOpacity={0.85}
             stackId="1"
             name={t("Early Investors")}
           />
@@ -85,20 +116,22 @@ export const VestingChart = () => {
             type="monotone"
             dataKey="publicSale"
             stroke={Colors.VEGA_YELLOW}
-            fill={Colors.VEGA_YELLOW}
+            fill="url(#yellow)"
             yAxisId={0}
             strokeWidth={2}
             stackId="1"
+            fillOpacity={0.85}
             name={t("Public Sale")}
           />
           <Area
             dot={false}
             type="monotone"
             dataKey="community"
-            stroke={Colors.PINK}
-            fill={Colors.PINK}
+            stroke={Colors.VEGA_ORANGE}
+            fill="url(#orange)"
             yAxisId={0}
             strokeWidth={2}
+            fillOpacity={0.85}
             stackId="1"
             name={t("Community")}
           />
