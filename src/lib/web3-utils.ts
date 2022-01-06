@@ -8,7 +8,7 @@ export interface TxError {
  * Error codes returned from Metamask that we can safely not capture in Sentry
  */
 const IgnoreCodes = {
-  ALREADY_PROCESSING: 32002,
+  ALREADY_PROCESSING: -32002,
   USER_REJECTED: 4001,
 };
 
@@ -29,6 +29,17 @@ export const isUnexpectedError = (error: Error | TxError) => {
  */
 export const isUserRejection = (error: Error | TxError) => {
   if ("code" in error && error.code === IgnoreCodes.USER_REJECTED) {
+    return true;
+  }
+  return false;
+};
+
+/**
+ * Check if the error from web3/metamask is the user rejecting connection or
+ * a transaction confirmation prompt
+ */
+export const isAlreadyProcessing = (error: Error | TxError) => {
+  if ("code" in error && error.code === IgnoreCodes.ALREADY_PROCESSING) {
     return true;
   }
   return false;
