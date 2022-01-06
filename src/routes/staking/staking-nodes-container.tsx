@@ -66,6 +66,8 @@ export const STAKING_QUERY = gql`
   }
 `;
 
+const RPC_ERROR = "rpc error: code = NotFound desc = NotFound error";
+
 export const StakingNodesContainer = ({
   children,
 }: {
@@ -101,7 +103,11 @@ export const StakingNodesContainer = ({
   if (error) {
     return (
       <Callout intent="error" title={t("Something went wrong")}>
-        <pre>{error.message}</pre>
+        <pre>
+          {error.message.includes(RPC_ERROR)
+            ? t("resourceNotFound")
+            : error.message}
+        </pre>
       </Callout>
     );
   }

@@ -6,7 +6,7 @@ import {
   VegaVesting,
 } from "@vegaprotocol/smart-contracts-sdk";
 import { useWeb3React } from "@web3-react/core";
-import { NetworkConnector } from "@web3-react/network-connector";
+import { InjectedConnector } from "@web3-react/injected-connector";
 import React from "react";
 
 import { SplashLoader } from "../../components/splash-loader";
@@ -26,10 +26,12 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
     let cancelled = false;
     const run = async () => {
       if (library && !cancelled) {
-        const signer =
-          connector instanceof NetworkConnector
-            ? undefined
-            : library.getSigner();
+        let signer = null;
+        if (connector instanceof InjectedConnector) {
+          const authorized = await connector.isAuthorized();
+          signer = authorized ? library.getSigner() : null;
+        }
+
         const token = new VegaToken(
           library,
           signer,

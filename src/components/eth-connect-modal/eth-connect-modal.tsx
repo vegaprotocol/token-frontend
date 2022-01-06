@@ -29,7 +29,7 @@ export const EthConnectModal = () => {
     >
       <div className="modal modal--dark">
         <Modal>
-          <h2>Connect Ethereum wallet</h2>
+          <h2>{t("connectEthWallet")}</h2>
           <div>
             {Object.entries(Connectors).map(([key, connector]) => {
               if (key === NETWORK_KEY) return null;

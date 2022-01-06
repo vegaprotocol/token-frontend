@@ -1,15 +1,14 @@
 import { useWeb3React } from "@web3-react/core";
 import React from "react";
 
-import { injected, networkOnly } from "../lib/connectors";
+import { AllowedConnectors, injected, networkOnly } from "../lib/connectors";
 
 export function useWeb3Connect() {
   const { activate, deactivate } = useWeb3React();
 
   // Connects to given connector after deactivating network only connector
   const connect = React.useCallback(
-    (connector: any) => {
-      // TODO: Fix any
+    (connector: AllowedConnectors) => {
       deactivate();
       setTimeout(() => {
         activate(connector);
