@@ -490,5 +490,9 @@
   "injected.text": "crwdns6779:0crwdne6779:0",
   "walletConnect.name": "crwdns6781:0crwdne6781:0",
   "walletConnect.text": "crwdns6783:0crwdne6783:0",
-  "resourceNotFound": "crwdns6787:0crwdne6787:0"
+  "resourceNotFound": "crwdns6787:0crwdne6787:0",
+  "chartBelow": "crwdns6789:0crwdne6789:0",
+  "chartTitle": "crwdns6791:0crwdne6791:0",
+  "chartAbove": "crwdns6793:0crwdne6793:0",
+  "date": "crwdns6795:0crwdne6795:0"
 }
