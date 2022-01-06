@@ -242,7 +242,7 @@
   "What Vega wallet/key is going to control your stake?": "What Vega Wallet/key is going to control your stake?",
   "Where would you like to stake from?": "Where would you like to associate from?",
   "associateNoVega": "Your connected Ethereum address does not have any $VEGA",
-  "associateInfo1": "To participate in governance or to nominate a Validator you’ll need to associate $VEGA tokens with a Vega wallet/key.",
+  "associateInfo1": "To participate in governance or to nominate a Validator you'll need to associate $VEGA tokens with a Vega wallet/key.",
   "associateInfo2": "If you already have $VEGA tokens nominated to validators, your newly associated tokens will automatically be nominated to the same validators, in the same proportion.",
   "Associate VEGA Tokens with key": "Associate $VEGA Tokens with key",
   "Wallet": "Wallet",
@@ -336,7 +336,7 @@
   "liquidityStep1Title": "Provide liquidity on one of the markets below and get your SLP tokens.",
   "liquidityStep1Body": "You will need to add the SushiSwap market/token address to your wallet to see your SLP tokens.",
   "liquidityStep2Title": "Stake these SLP tokens into the appropriate contract below.",
-  "liquidityStep2Body": "You can’t increase your stake without un-staking first so consider how much you stake and when.",
+  "liquidityStep2Body": "You can't increase your stake without un-staking first so consider how much you stake and when.",
   "liquidityStep3Title": "Wait for a full epoch, get a share of the incentive for each full epoch you stake.",
   "liquidityStep3Body": "The reward amount is divided by the amount of SLP tokens staked in that epoch. The APY on each pool is indicative based on the current state, this will change over time and is not guaranteed.  You will not be entitled to rewards from the epoch that you un-staked in.",
   "liquidityStep4Title": "Un-stake or withdraw to receive your rewards.",
@@ -444,11 +444,10 @@
   "notAssociated": "Not Associated",
   "title": "$VEGA TOKEN",
   "Use the Ethereum wallet you want to send your tokens to. You'll also need enough Ethereum to pay gas.": "Connect to the Ethereum wallet that holds your $VEGA tokens to see what can be redeemed from vesting tranches. To redeem tokens you will need some ETH to pay gas fees.\n",
-  "ethereumKey": "Ethereum wallet",
   "Staked on Vega validator": "Staked $VEGA",
   "You can associate tokens while they are held in the vesting contract, when they unlock you will need to disassociate them before they can be redeemed.": "You can associate tokens while they are held in the vesting contract, when they unlock you will need to disassociate them before they can be redeemed.",
   "Nominate Stake to Validator Node": "Select a validator to nominate",
-  "Vega key {{vegaKey}} can now participate in governance and Nominate a validator with it’s stake.": "Vega key {{vegaKey}} can now participate in governance and nominate a validator with your associated $VEGA.",
+  "Vega key {{vegaKey}} can now participate in governance and Nominate a validator with it's stake.": "Vega key {{vegaKey}} can now participate in governance and nominate a validator with your associated $VEGA.",
   "stakingStep2Text": "Your tokens need to be associated with a Vega Wallet so that you can control your stake",
   "stakingStep3": "Step 3. Select the validator you'd like to nominate",
   "stakeAddSuccessMessage": "In some cases your actual nominated stake will be lower than you originally nominated. This happens when the validator is oversubscribed. The actual nominated amount will be calculated at the start of the next epoch.",
@@ -486,5 +485,6 @@
   "injected.text": "Connect with the provider in your browser",
   "walletConnect.name": "Mobile",
   "walletConnect.text": "Scan QR code with your mobile wallet",
-  "resourceNotFound": "Resource Not Found"
+  "resourceNotFound": "Resource Not Found",
+  "Or": "Or"
 }
