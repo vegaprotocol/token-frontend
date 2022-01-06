@@ -1,19 +1,20 @@
-import { ethers } from "ethers";
-import React from "react";
-import { useWeb3 } from "../contexts/web3-context/web3-context";
 import * as Sentry from "@sentry/react";
+import { useWeb3React } from "@web3-react/core";
+import { InjectedConnector } from "@web3-react/injected-connector";
+import React from "react";
+
 import { appEnv, Networks } from "../config";
-import { JsonRpcProvider } from "@ethersproject/providers";
 
 export const useAddAssetSupported = () => {
-  const { provider } = useWeb3();
+  const { connector } = useWeb3React();
+
   return React.useMemo(() => {
     return (
-      provider &&
-      provider instanceof JsonRpcProvider &&
+      connector &&
+      connector instanceof InjectedConnector &&
       window.ethereum.isMetaMask
     );
-  }, [provider]);
+  }, [connector]);
 };
 
 export const useAddAssetToWallet = (
@@ -22,15 +23,14 @@ export const useAddAssetToWallet = (
   decimals: number,
   image: string
 ) => {
-  const { provider } = useWeb3();
+  const { connector } = useWeb3React();
   const addSupported = useAddAssetSupported();
   const add = React.useCallback(async () => {
     try {
-      await (provider as unknown as ethers.providers.JsonRpcProvider)?.send(
-        "wallet_watchAsset",
-        {
-          // Ethers is wrong, this does work.
-          // @ts-ignore
+      const provider = await connector?.getProvider();
+      provider.request({
+        method: "wallet_watchAsset",
+        params: {
           type: "ERC20",
           options: {
             address,
@@ -44,12 +44,12 @@ export const useAddAssetToWallet = (
             decimals,
             image,
           },
-        }
-      );
+        },
+      });
     } catch (error) {
       Sentry.captureException(error);
     }
-  }, [address, decimals, image, provider, symbol]);
+  }, [address, decimals, image, connector, symbol]);
 
   return React.useMemo(() => {
     return {
