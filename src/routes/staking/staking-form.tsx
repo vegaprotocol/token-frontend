@@ -214,7 +214,6 @@ export const StakingForm = ({
           pubkey={pubkey}
           pendingAmount={pendingStakeNextEpoch}
           setFormState={setFormState}
-          setRemoveType={setRemoveType}
         />
       )}
       <h2>{t("Manage your stake")}</h2>

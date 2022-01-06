@@ -10,11 +10,10 @@ import {
   UndelegateSubmissionInput,
   vegaWalletService,
 } from "../../lib/vega-wallet/vega-wallet-service";
-import { FormState, RemoveType } from "./staking-form";
+import { FormState } from "./staking-form";
 
 interface PendingStakeProps {
   pendingAmount: BigNumber;
-  setRemoveType: (removeType: RemoveType) => void;
   nodeId: string;
   pubkey: string;
   setFormState: (state: FormState) => void;
