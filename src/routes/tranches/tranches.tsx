@@ -26,6 +26,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
   return (
     <>
       <VestingChart />
+      <p>{t("chartDisclaimer")}</p>
       {tranches?.length ? (
         <ul className="tranches__list">
           {(showAll ? tranches : filteredTranches).map((tranche) => {
