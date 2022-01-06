@@ -1,8 +1,8 @@
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Callout } from "../callout";
+
 import { EtherscanLink } from "../etherscan-link";
-import { CopyToClipboardType } from "../etherscan-link/etherscan-link";
 import { Loader } from "../loader";
 
 export const TransactionPending = ({
@@ -40,7 +40,7 @@ export const TransactionPending = ({
     <Callout icon={<Loader />} title={title}>
       {body && <p data-testid="transaction-pending-body">{body}</p>}
       <p>
-        <EtherscanLink tx={hash} copyToClipboard={CopyToClipboardType.LINK} />
+        <EtherscanLink tx={hash} />
       </p>
       {footer && <p data-testid="transaction-pending-footer">{footer}</p>}
     </Callout>

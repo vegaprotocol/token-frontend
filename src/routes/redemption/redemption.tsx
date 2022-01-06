@@ -1,9 +1,9 @@
-import {
-  RedemptionActionType,
-  initialRedemptionState,
-  redemptionReducer,
-} from "./redemption-reducer";
+import { Callout } from "@vegaprotocol/ui-toolkit";
+import { useWeb3React } from "@web3-react/core";
+import React from "react";
+import { useTranslation } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
 import React from "react";
@@ -11,10 +11,17 @@ import { RedeemFromTranche } from "./tranche";
 import { RedemptionInformation } from "./home/redemption-information";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
-import { useTranches } from "../../hooks/use-tranches";
-import { useTranslation } from "react-i18next";
+import { useAppState } from "../../contexts/app-state/app-state-context";
 import { useContracts } from "../../contexts/contracts/contracts-context";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
+import { useTranches } from "../../hooks/use-tranches";
+import { Routes } from "../router-config";
+import { RedemptionInformation } from "./home/redemption-information";
+import {
+  initialRedemptionState,
+  RedemptionActionType,
+  redemptionReducer,
+} from "./redemption-reducer";
+import { RedeemFromTranche } from "./tranche";
 
 const RedemptionRouter = () => {
   const { t } = useTranslation();
@@ -24,28 +31,42 @@ const RedemptionRouter = () => {
     redemptionReducer,
     initialRedemptionState
   );
-  const { ethAddress } = useWeb3();
-  const tranches = useTranches();
+  const {
+    appState: { trancheBalances },
+  } = useAppState();
+  const { account } = useWeb3React();
+  const { tranches, error } = useTranches();
 
   React.useEffect(() => {
     const run = (address: string) => {
-      const userTranches = tranches.filter((t) =>
+      const userTranches = tranches?.filter((t) =>
         t.users.some(
           ({ address: a }) => a.toLowerCase() === address.toLowerCase()
         )
       );
-      dispatch({
-        type: RedemptionActionType.SET_USER_TRANCHES,
-        userTranches,
-      });
+
+      if (userTranches) {
+        dispatch({
+          type: RedemptionActionType.SET_USER_TRANCHES,
+          userTranches,
+        });
+      }
     };
 
-    if (ethAddress) {
-      run(ethAddress);
+    if (account) {
+      run(account);
     }
-  }, [ethAddress, tranches, vesting]);
+  }, [account, tranches, vesting]);
 
-  if (!tranches.length) {
+  if (error) {
+    return (
+      <Callout intent="error" title={t("errorLoadingTranches")}>
+        {error}
+      </Callout>
+    );
+  }
+
+  if (!tranches) {
     return (
       <SplashScreen>
         <SplashLoader />
@@ -53,7 +74,7 @@ const RedemptionRouter = () => {
     );
   }
 
-  if (!ethAddress) {
+  if (!account) {
     return (
       <EthConnectPrompt>
         <p>
@@ -68,10 +89,10 @@ const RedemptionRouter = () => {
   return (
     <Switch>
       <Route exact path={`${match.path}`}>
-        <RedemptionInformation state={state} address={ethAddress} />
+        <RedemptionInformation state={state} address={account} />
       </Route>
       <Route path={`${match.path}/:id`}>
-        <RedeemFromTranche state={state} address={ethAddress} />
+        <RedeemFromTranche state={state} address={account} />
       </Route>
     </Switch>
   );

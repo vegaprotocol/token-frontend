@@ -1,7 +1,8 @@
-import React from "react";
 import { gql, useQuery } from "@apollo/client";
+import { Callout } from "@vegaprotocol/ui-toolkit";
+import React from "react";
 import { useTranslation } from "react-i18next";
-import { Callout } from "../../components/callout";
+
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { useVegaUser } from "../../hooks/use-vega-user";
@@ -65,6 +66,8 @@ export const STAKING_QUERY = gql`
   }
 `;
 
+const RPC_ERROR = "rpc error: code = NotFound desc = NotFound error";
+
 export const StakingNodesContainer = ({
   children,
 }: {
@@ -100,7 +103,11 @@ export const StakingNodesContainer = ({
   if (error) {
     return (
       <Callout intent="error" title={t("Something went wrong")}>
-        <pre>{error.message}</pre>
+        <pre>
+          {error.message.includes(RPC_ERROR)
+            ? t("resourceNotFound")
+            : error.message}
+        </pre>
       </Callout>
     );
   }

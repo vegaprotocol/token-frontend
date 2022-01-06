@@ -1,5 +1,4 @@
 Feature: Homepage
-  @e2e-test
 
   Scenario: Homepage displays correct information
     Given I am on the home page
@@ -12,11 +11,11 @@ Feature: Homepage
   Scenario: Links on the homepage
     Given I am on the home page
     Then the vega wallet link is correct
-    And the token address has a link 
+    And the token address has a link
     And the vesting address has a link
     And the associate vega tokens link is correct
 
-  Scenario: Check for redeem unlocked tokens from homepage 
+  Scenario: Check for redeem unlocked tokens from homepage
     Given I am on the home page
     Then I can see the check for redeemable tokens button
     When I click the check for redeemable tokens button
@@ -26,6 +25,12 @@ Feature: Homepage
     Given I am on the home page
     When I click on the associate vega tokens
     Then I am taken to the staking page
+
+  Scenario: Navigate to governance proposals page via button link on homepage body
+    Given I am on the home page
+    When I click on the governance proposals button
+    Then I am taken to the governance page
+    # And I can see proposals   //proposals not showing /mock
 
   Scenario: Navigate to a not found page will return page error
     Given I navigate to not found page
@@ -37,7 +42,7 @@ Feature: Homepage
     When I click on '<navItem>' on main nav
     And I can see '<navItem>' button is clearly highlighted after click
     Then I am taken to the '<page>' page
-     
+
      Examples:
         | navItem       |  page        |
         | Vesting       | vesting      |
@@ -52,7 +57,7 @@ Feature: Homepage
     Given I am on the home page
     And I have not connected my eth wallet
     Then I can see the eth wallet disconnected with message 'Connect Ethereum wallet to associate $VEGA'
-  
+
   Scenario: Vega wallet not connected placeholder
     Given I am on the home page
     And I have not connected my vega wallet

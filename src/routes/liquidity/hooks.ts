@@ -1,10 +1,11 @@
+import * as Sentry from "@sentry/react";
+import { EpochDetails, VegaLPStaking } from "@vegaprotocol/smart-contracts-sdk";
 import React from "react";
+
 import { REWARDS_ADDRESSES } from "../../config";
+import { useVegaLPStaking } from "../../hooks/use-vega-lp-staking";
 import { BigNumber } from "../../lib/bignumber";
 import { LiquidityAction, LiquidityActionType } from "./liquidity-reducer";
-import { EpochDetails, IVegaLPStaking } from "../../lib/web3-utils";
-import * as Sentry from "@sentry/react";
-import { useVegaLPStaking } from "../../hooks/use-vega-lp-staking";
 
 export const useGetLiquidityBalances = (
   dispatch: React.Dispatch<LiquidityAction>,
@@ -17,7 +18,7 @@ export const useGetLiquidityBalances = (
     address: REWARDS_ADDRESSES["SushiSwap VEGA/USDC"],
   });
   const getBalances = React.useCallback(
-    async (lpStaking: IVegaLPStaking, contractAddress: string) => {
+    async (lpStaking: VegaLPStaking, contractAddress: string) => {
       try {
         const [
           rewardPerEpoch,

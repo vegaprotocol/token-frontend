@@ -1,17 +1,17 @@
+import * as Sentry from "@sentry/react";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { TransactionCallout } from "../../../components/transaction-callout";
-import * as Sentry from "@sentry/react";
+import { Redirect } from "react-router";
 
+import { TransactionCallout } from "../../../components/transaction-callout";
+import { useContracts } from "../../../contexts/contracts/contracts-context";
 import {
   TransactionAction,
   TransactionActionType,
   TransactionState,
   TxState,
 } from "../../../hooks/transaction-reducer";
-import { Redirect } from "react-router";
 import { Routes } from "../../router-config";
-import { useContracts } from "../../../contexts/contracts/contracts-context";
 
 export interface ICountry {
   name: string;

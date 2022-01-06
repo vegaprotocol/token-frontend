@@ -1,22 +1,23 @@
-import React from "react";
 import { gql, useQuery } from "@apollo/client";
-import { Callout } from "../../components/callout";
-import { Heading } from "../../components/heading";
-import { VegaWalletContainer } from "../../components/vega-wallet-container";
+import { Callout } from "@vegaprotocol/ui-toolkit";
+import React from "react";
 import { useTranslation } from "react-i18next";
-import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
-import { SplashScreen } from "../../components/splash-screen";
+import { Link } from "react-router-dom";
+
+import { AccountType } from "../../__generated__/globalTypes";
+import { EthWalletContainer } from "../../components/eth-wallet-container";
+import { Heading } from "../../components/heading";
 import { SplashLoader } from "../../components/splash-loader";
+import { SplashScreen } from "../../components/splash-screen";
+import { VegaWalletContainer } from "../../components/vega-wallet-container";
+import { Flags } from "../../config";
+import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
+import { Routes } from "../router-config";
 import {
   WithdrawPage,
   WithdrawPageVariables,
 } from "./__generated__/WithdrawPage";
-import { AccountType } from "../../__generated__/globalTypes";
 import { WithdrawForm } from "./withdraw-form";
-import { Link } from "react-router-dom";
-import { Routes } from "../router-config";
-import { Flags } from "../../config";
-import { EthWalletContainer } from "../../components/eth-wallet-container";
 
 const Withdraw = () => {
   const { t } = useTranslation();

@@ -1,5 +1,6 @@
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import { useTranslation } from "react-i18next";
-import { Callout } from "../../components/callout";
+
 import { Error } from "../../components/icons";
 import { AddLockedTokenAddress } from "../../components/add-locked-token";
 

@@ -1,7 +1,7 @@
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import { useTranslation } from "react-i18next";
-import { Callout } from "../callout";
+
 import { EtherscanLink } from "../etherscan-link";
-import { CopyToClipboardType } from "../etherscan-link/etherscan-link";
 import { Tick } from "../icons";
 
 export const TransactionComplete = ({
@@ -20,8 +20,9 @@ export const TransactionComplete = ({
     <Callout icon={<Tick />} intent="success" title={heading || t("Complete")}>
       {body && <p data-testid="transaction-complete-body">{body}</p>}
       <p>
-        <EtherscanLink tx={hash} copyToClipboard={CopyToClipboardType.LINK} />
+        <EtherscanLink tx={hash} />
       </p>
+      LINK
       {footer && <p data-testid="transaction-complete-footer">{footer}</p>}
     </Callout>
   );

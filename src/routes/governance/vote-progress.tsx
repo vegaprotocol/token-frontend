@@ -1,4 +1,5 @@
 import "./vote-progress.scss";
+
 import { BigNumber } from "../../lib/bignumber";
 
 export const VoteProgress = ({

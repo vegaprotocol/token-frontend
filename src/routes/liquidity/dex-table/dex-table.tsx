@@ -1,23 +1,25 @@
 import "./dex-table.scss";
+
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { EtherscanLink } from "../../../components/etherscan-link";
 import { Link } from "react-router-dom";
-import { Routes } from "../../router-config";
-import { LiquidityState } from "../liquidity-reducer";
-import { Links, REWARDS_POOL_ADDRESSES } from "../../../config";
+
+import { EtherscanLink } from "../../../components/etherscan-link";
+import { CopyToClipboardType } from "../../../components/etherscan-link/etherscan-link";
 import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
+import { Links, REWARDS_POOL_ADDRESSES } from "../../../config";
 import { formatNumber } from "../../../lib/format-number";
+import { Routes } from "../../router-config";
+import { LiquidityState } from "../liquidity-reducer";
 
 interface DexTokensSectionProps {
   name: string;
   contractAddress: string;
   ethAddress: string;
   state: LiquidityState;
-  showInteractionButton?: boolean;
 }
 
 export const DexTokensSection = ({
@@ -25,7 +27,6 @@ export const DexTokensSection = ({
   contractAddress,
   ethAddress,
   state,
-  showInteractionButton = true,
 }: DexTokensSectionProps) => {
   const { t } = useTranslation();
   const values = React.useMemo(
@@ -59,7 +60,11 @@ export const DexTokensSection = ({
         <KeyValueTableRow>
           <th>{t("liquidityTokenContractAddress")}</th>
           <td>
-            <EtherscanLink address={contractAddress} text={contractAddress} />
+            <EtherscanLink
+              address={contractAddress}
+              text={contractAddress}
+              copyToClipboard={CopyToClipboardType.LINK}
+            />
           </td>
         </KeyValueTableRow>
         <KeyValueTableRow>
@@ -74,6 +79,7 @@ export const DexTokensSection = ({
             <EtherscanLink
               address={values.awardContractAddress}
               text={values.awardContractAddress}
+              copyToClipboard={CopyToClipboardType.LINK}
             />
           </td>
         </KeyValueTableRow>
@@ -83,6 +89,7 @@ export const DexTokensSection = ({
             <EtherscanLink
               address={values.lpTokenContractAddress}
               text={values.lpTokenContractAddress}
+              copyToClipboard={CopyToClipboardType.LINK}
             />
           </td>
         </KeyValueTableRow>
@@ -93,11 +100,7 @@ export const DexTokensSection = ({
           </td>
         </KeyValueTableRow>
         {ethAddress ? (
-          <ConnectedRows
-            showInteractionButton={showInteractionButton}
-            lpContractAddress={contractAddress}
-            state={state}
-          />
+          <ConnectedRows lpContractAddress={contractAddress} state={state} />
         ) : null}
       </KeyValueTable>
     </section>
@@ -107,14 +110,9 @@ export const DexTokensSection = ({
 interface ConnectedRowsProps {
   lpContractAddress: string;
   state: LiquidityState;
-  showInteractionButton: boolean;
 }
 
-const ConnectedRows = ({
-  lpContractAddress,
-  state,
-  showInteractionButton = true,
-}: ConnectedRowsProps) => {
+const ConnectedRows = ({ lpContractAddress, state }: ConnectedRowsProps) => {
   const { t } = useTranslation();
   const values = React.useMemo(
     () => state.contractData[lpContractAddress],

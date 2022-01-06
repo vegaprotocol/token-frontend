@@ -1,18 +1,20 @@
 import "./wallet-associate.scss";
+
+import React from "react";
 import { useTranslation } from "react-i18next";
+
+import { TokenInput } from "../../../components/token-input";
+import { ADDRESSES } from "../../../config";
 import {
   AppStateActionType,
   useAppState,
   VegaKeyExtended,
 } from "../../../contexts/app-state/app-state-context";
-import { BigNumber } from "../../../lib/bignumber";
-import { AssociateInfo } from "./associate-info";
-import React from "react";
-import { useTransaction } from "../../../hooks/use-transaction";
 import { useContracts } from "../../../contexts/contracts/contracts-context";
 import { TxState } from "../../../hooks/transaction-reducer";
-import { TokenInput } from "../../../components/token-input";
-import { ADDRESSES } from "../../../config";
+import { useTransaction } from "../../../hooks/use-transaction";
+import { BigNumber } from "../../../lib/bignumber";
+import { AssociateInfo } from "./associate-info";
 
 export const WalletAssociate = ({
   perform,

@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+
 import { Colors, Links } from "../../config";
 
 export const DownloadWalletPrompt = () => {

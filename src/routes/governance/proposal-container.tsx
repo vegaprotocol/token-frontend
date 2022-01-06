@@ -1,15 +1,16 @@
 import { gql, useQuery } from "@apollo/client";
-import { Callout } from "../../components/callout";
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import { useTranslation } from "react-i18next";
-import { SplashScreen } from "../../components/splash-screen";
+import { useParams } from "react-router-dom";
+
 import { SplashLoader } from "../../components/splash-loader";
-import { PROPOSALS_FRAGMENT } from "./proposal-fragment";
-import { Proposal } from "./proposal";
+import { SplashScreen } from "../../components/splash-screen";
 import {
   Proposal as ProposalQueryResult,
   ProposalVariables,
 } from "./__generated__/Proposal";
-import { useParams } from "react-router";
+import { Proposal } from "./proposal";
+import { PROPOSALS_FRAGMENT } from "./proposal-fragment";
 
 export const PROPOSAL_QUERY = gql`
   ${PROPOSALS_FRAGMENT}
@@ -27,6 +28,7 @@ export const ProposalContainer = () => {
     ProposalQueryResult,
     ProposalVariables
   >(PROPOSAL_QUERY, {
+    fetchPolicy: "no-cache",
     variables: { proposalId: params.proposalId },
     pollInterval: 5000,
   });

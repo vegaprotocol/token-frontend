@@ -1,8 +1,20 @@
 import "./claim-flow.scss";
+
+import * as Sentry from "@sentry/react";
+import { Tranche, UNSPENT_CODE } from "@vegaprotocol/smart-contracts-sdk";
 import { format } from "date-fns";
 import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+
+import {
+  KeyValueTable,
+  KeyValueTableRow,
+} from "../../components/key-value-table";
+import { useContracts } from "../../contexts/contracts/contracts-context";
+import { formatNumber } from "../../lib/format-number";
+import { truncateMiddle } from "../../lib/truncate-middle";
+import { ClaimInfo } from "./claim-info";
 import {
   ClaimAction,
   ClaimActionType,
@@ -10,24 +22,13 @@ import {
   ClaimStatus,
 } from "./claim-reducer";
 import { CodeUsed } from "./code-used";
-import { Expired } from "./expired";
-import { TargetedClaim } from "./targeted-claim";
-import { UntargetedClaim } from "./untargeted-claim";
-import * as Sentry from "@sentry/react";
-import { ClaimInfo } from "./claim-info";
-import { TargetAddressMismatch } from "./target-address-mismatch";
-import { TrancheNotFound } from "./tranche-not-found";
-import { Verifying } from "./verifying";
-import { truncateMiddle } from "../../lib/truncate-middle";
 import { Complete } from "./complete";
-import {
-  KeyValueTable,
-  KeyValueTableRow,
-} from "../../components/key-value-table";
-import { Tranche } from "../../lib/vega-web3/vega-web3-types";
-import { formatNumber } from "../../lib/format-number";
-import { UNSPENT_CODE } from "../../lib/vega-web3/vega-claim";
-import { useContracts } from "../../contexts/contracts/contracts-context";
+import { Expired } from "./expired";
+import { TargetAddressMismatch } from "./target-address-mismatch";
+import { TargetedClaim } from "./targeted-claim";
+import { TrancheNotFound } from "./tranche-not-found";
+import { UntargetedClaim } from "./untargeted-claim";
+import { Verifying } from "./verifying";
 
 interface ClaimFlowProps {
   state: ClaimState;
@@ -93,7 +94,7 @@ export const ClaimFlow = ({
   }
 
   if (state.claimStatus === ClaimStatus.Expired) {
-    return <Expired address={address} code={shortCode} />;
+    return <Expired code={shortCode} />;
   }
 
   if (state.claimStatus === ClaimStatus.Finished) {

@@ -1,11 +1,12 @@
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import { useTranslation } from "react-i18next";
-import { ClaimForm } from "../claim-form";
+
+import { Tick } from "../../../components/icons";
 import {
   TransactionAction,
   TransactionState,
 } from "../../../hooks/transaction-reducer";
-import { Callout } from "../../../components/callout";
-import { Tick } from "../../../components/icons";
+import { ClaimForm } from "../claim-form";
 
 interface ClaimStep2 {
   countryCode: string;

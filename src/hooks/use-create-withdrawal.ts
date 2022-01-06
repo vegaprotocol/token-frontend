@@ -1,11 +1,12 @@
-import React from "react";
+import { gql,useApolloClient } from "@apollo/client";
 import * as Sentry from "@sentry/react";
+import React from "react";
+
+import { sigToId } from "../lib/sig-to-id";
 import {
   vegaWalletService,
   WithdrawSubmissionInput,
 } from "../lib/vega-wallet/vega-wallet-service";
-import { useApolloClient, gql } from "@apollo/client";
-import { sigToId } from "../lib/sig-to-id";
 import {
   WithdrawalPoll,
   WithdrawalPollVariables,

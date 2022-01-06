@@ -1,7 +1,7 @@
 import React from "react";
 
-import { StakingWalletsContainer } from "../staking-wallets-container";
 import { useEthereumConfig } from "../../../hooks/use-ethereum-config";
+import { StakingWalletsContainer } from "../staking-wallets-container";
 import { AssociatePage } from "./associate-page";
 import { AssociatePageNoVega } from "./associate-page-no-vega";
 

@@ -1,15 +1,15 @@
 import "./disassociate-page.scss";
 
+import React from "react";
+import { useTranslation } from "react-i18next";
+
 import {
   StakingMethod,
   StakingMethodRadio,
 } from "../../../components/staking-method-radio";
-
+import { useSearchParams } from "../../../hooks/use-search-params";
 import { ConnectToVega } from "../connect-to-vega";
 import { ContractDisassociate } from "./contract-disassociate";
-import React from "react";
-import { useSearchParams } from "../../../hooks/use-search-params";
-import { useTranslation } from "react-i18next";
 
 export const DisassociatePageNoVega = () => {
   const { t } = useTranslation();

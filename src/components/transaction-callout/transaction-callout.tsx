@@ -1,8 +1,8 @@
 import { TransactionState, TxState } from "../../hooks/transaction-reducer";
+import { TransactionComplete } from "./transaction-complete";
 import { TransactionError } from "./transaction-error";
 import { TransactionPending } from "./transaction-pending";
 import { TransactionRequested } from "./transaction-requested";
-import { TransactionComplete } from "./transaction-complete";
 
 export const TransactionCallout = ({
   state,

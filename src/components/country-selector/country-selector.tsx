@@ -1,7 +1,8 @@
-import countryData from "./country-data";
-import { ItemPredicate, Suggest } from "@blueprintjs/select";
 import { MenuItem } from "@blueprintjs/core";
+import { ItemPredicate, Suggest } from "@blueprintjs/select";
+
 import { ICountry } from "../../routes/claim/claim-form";
+import countryData from "./country-data";
 
 const CountrySuggest = Suggest.ofType<ICountry>();
 

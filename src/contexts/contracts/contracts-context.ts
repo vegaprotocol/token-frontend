@@ -1,15 +1,18 @@
+import {
+  VegaClaim,
+  VegaErc20Bridge,
+  VegaStaking,
+  VegaToken,
+  VegaVesting,
+} from "@vegaprotocol/smart-contracts-sdk";
 import React from "react";
-import { IVegaErc20Bridge, IVegaToken } from "../../lib/web3-utils";
-import { IVegaStaking } from "../../lib/web3-utils";
-import { IVegaVesting } from "../../lib/web3-utils";
-import { IVegaClaim } from "../../lib/web3-utils";
 
 export interface ContractsContextShape {
-  token: IVegaToken;
-  staking: IVegaStaking;
-  vesting: IVegaVesting;
-  claim: IVegaClaim;
-  erc20Bridge: IVegaErc20Bridge;
+  token: VegaToken;
+  staking: VegaStaking;
+  vesting: VegaVesting;
+  claim: VegaClaim;
+  erc20Bridge: VegaErc20Bridge;
 }
 
 export const ContractsContext = React.createContext<

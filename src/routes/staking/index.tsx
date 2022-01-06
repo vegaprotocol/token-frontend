@@ -1,9 +1,10 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
-import { RouteChildProps } from "..";
+
 import { Heading } from "../../components/heading";
 import { useDocumentTitle } from "../../hooks/use-document-title";
+import { RouteChildProps } from "..";
 import { AssociateContainer } from "./associate/associate-page-container";
 import { DisassociateContainer } from "./disassociate/disassociate-page-container";
 import { Staking } from "./staking";

@@ -1,15 +1,18 @@
 import "./redemption-information.scss";
-import { useAppState } from "../../../contexts/app-state/app-state-context";
-import { RedemptionState } from "../redemption-reducer";
-import { VestingTable } from "./vesting-table";
-import { Tranche0Table, TrancheTable } from "../tranche-table";
-import { Trans, useTranslation } from "react-i18next";
-import { Callout } from "../../../components/callout";
-import { HandUp } from "../../../components/icons";
-import { Link, useHistory } from "react-router-dom";
+
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import React from "react";
+import { Trans, useTranslation } from "react-i18next";
+import { Link, useHistory } from "react-router-dom";
+
+import { HandUp } from "../../../components/icons";
+import { useAppState } from "../../../contexts/app-state/app-state-context";
+import { formatNumber } from "../../../lib/format-number";
 import { truncateMiddle } from "../../../lib/truncate-middle";
 import { Routes } from "../../router-config";
+import { RedemptionState } from "../redemption-reducer";
+import { Tranche0Table, TrancheTable } from "../tranche-table";
+import { VestingTable } from "./vesting-table";
 import { formatNumber } from "../../../lib/format-number";
 import { AddLockedTokenAddress } from "../../../components/add-locked-token";
 

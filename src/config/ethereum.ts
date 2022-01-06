@@ -136,7 +136,7 @@ const RewardsPoolAddresses = {
   } as { [key: string]: string },
 };
 
-const InfuraUrls = {
+export const InfuraUrls = {
   [EthereumChainIds.Mainnet]: `https://mainnet.infura.io/v3/${infuraId}`,
   [EthereumChainIds.Ropsten]: `https://ropsten.infura.io/v3/${infuraId}`,
 };

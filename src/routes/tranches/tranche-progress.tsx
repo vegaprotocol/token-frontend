@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+
 import { Colors } from "../../config";
 import { getAbbreviatedNumber } from "../../lib/abbreviate-number";
 import { BigNumber } from "../../lib/bignumber";

@@ -1,5 +1,5 @@
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import { useTranslation } from "react-i18next";
-import { Callout } from "../../components/callout";
 
 interface StakeFailureProps {
   nodeName: string;

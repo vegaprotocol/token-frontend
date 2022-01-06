@@ -1,13 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom";
 import "./index.scss";
+import "@vegaprotocol/ui-toolkit/dist/style.css";
 
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
+import React from "react";
+import ReactDOM from "react-dom";
 
+import packageJson from "../package.json";
 import App from "./app";
 import reportWebVitals from "./reportWebVitals";
-import packageJson from "../package.json";
 
 const dsn = process.env.REACT_APP_SENTRY_DSN || false;
 const environment = process.env.REACT_APP_ENV || "local";

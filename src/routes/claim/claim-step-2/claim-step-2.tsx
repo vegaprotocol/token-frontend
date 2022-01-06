@@ -1,12 +1,13 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+
+import { TransactionCallout } from "../../../components/transaction-callout";
 import {
   TransactionAction,
   TransactionActionType,
   TransactionState,
   TxState,
 } from "../../../hooks/transaction-reducer";
-import { TransactionCallout } from "../../../components/transaction-callout";
 import { BigNumber } from "../../../lib/bignumber";
 import { formatNumber } from "../../../lib/format-number";
 

@@ -1,6 +1,7 @@
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { Callout } from "../../components/callout";
+
 import { EtherscanLink } from "../../components/etherscan-link";
 import { Tick } from "../../components/icons";
 import { BigNumber } from "../../lib/bignumber";

@@ -1,15 +1,15 @@
 import React from "react";
 
-import type { Proposals_proposals } from "./__generated__/Proposals";
-import { useNetworkParam } from "../../hooks/use-network-param";
-import { useAppState } from "../../contexts/app-state/app-state-context";
 import { NetworkParams } from "../../config";
+import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useNetworkParam } from "../../hooks/use-network-param";
+import { BigNumber } from "../../lib/bignumber";
+import { addDecimal } from "../../lib/decimals";
 import {
   Proposal_proposal_votes_no_votes,
   Proposal_proposal_votes_yes_votes,
 } from "./__generated__/Proposal";
-import { addDecimal } from "../../lib/decimals";
-import BigNumber from "bignumber.js";
+import type { Proposals_proposals } from "./__generated__/Proposals";
 
 const useProposalNetworkParams = ({
   proposal,

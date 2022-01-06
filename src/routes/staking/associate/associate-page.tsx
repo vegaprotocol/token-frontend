@@ -1,20 +1,21 @@
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { ContractAssociate } from "./contract-associate";
-import { WalletAssociate } from "./wallet-associate";
+
+import {
+  StakingMethod,
+  StakingMethodRadio,
+} from "../../../components/staking-method-radio";
 import {
   useAppState,
   VegaKeyExtended,
 } from "../../../contexts/app-state/app-state-context";
 import { TxState } from "../../../hooks/transaction-reducer";
-import { AssociateTransaction } from "./associate-transaction";
 import { useSearchParams } from "../../../hooks/use-search-params";
-import {
-  StakingMethod,
-  StakingMethodRadio,
-} from "../../../components/staking-method-radio";
+import { AssociateTransaction } from "./associate-transaction";
+import { ContractAssociate } from "./contract-associate";
 import { useAddStake, usePollForStakeLinking } from "./hooks";
-import { Callout } from "../../../components/callout";
+import { WalletAssociate } from "./wallet-associate";
 
 export const AssociatePage = ({
   address,

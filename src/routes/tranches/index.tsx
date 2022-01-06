@@ -1,21 +1,22 @@
+import { useTranslation } from "react-i18next";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
+
+import { Heading } from "../../components/heading";
+import { SplashLoader } from "../../components/splash-loader";
+import { SplashScreen } from "../../components/splash-screen";
+import { useDocumentTitle } from "../../hooks/use-document-title";
+import { useTranches } from "../../hooks/use-tranches";
+import { RouteChildProps } from "..";
 import { Tranche } from "./tranche";
 import { Tranches } from "./tranches";
-import { useTranslation } from "react-i18next";
-import { useDocumentTitle } from "../../hooks/use-document-title";
-import { RouteChildProps } from "..";
-import { SplashScreen } from "../../components/splash-screen";
-import { SplashLoader } from "../../components/splash-loader";
-import { useTranches } from "../../hooks/use-tranches";
-import { Heading } from "../../components/heading";
 
 const TrancheRouter = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
   const { t } = useTranslation();
   const match = useRouteMatch();
-  const tranches = useTranches();
+  const { tranches } = useTranches();
 
-  if (!tranches.length) {
+  if (!tranches) {
     return (
       <SplashScreen>
         <SplashLoader />

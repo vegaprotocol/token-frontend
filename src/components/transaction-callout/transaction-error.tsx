@@ -1,7 +1,7 @@
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import { useTranslation } from "react-i18next";
-import { Callout } from "../callout";
+
 import { EtherscanLink } from "../etherscan-link";
-import { CopyToClipboardType } from "../etherscan-link/etherscan-link";
 import { Error } from "../icons";
 
 export interface TransactionErrorProps {
@@ -22,7 +22,7 @@ export const TransactionError = ({
       <p>{error ? error.message : t("Something went wrong")}</p>
       {hash ? (
         <p>
-          <EtherscanLink tx={hash} copyToClipboard={CopyToClipboardType.LINK} />
+          <EtherscanLink tx={hash} />
         </p>
       ) : null}
       <button onClick={() => onActionClick()}>{t("Try again")}</button>

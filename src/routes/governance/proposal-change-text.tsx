@@ -1,4 +1,5 @@
 import "./proposal-change-text.scss";
+
 import { Trans } from "react-i18next";
 
 interface ProposalChangeTextProps {

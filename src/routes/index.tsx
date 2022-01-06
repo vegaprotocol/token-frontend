@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+
 import { SplashLoader } from "../components/splash-loader";
 import { SplashScreen } from "../components/splash-screen";
 import routerConfig from "./router-config";
