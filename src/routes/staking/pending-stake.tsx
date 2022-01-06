@@ -1,28 +1,57 @@
 import "./pending-stake.scss";
 
+import * as Sentry from "@sentry/react";
 import { useTranslation } from "react-i18next";
 
+import { useAppState } from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber";
-import { RemoveType } from "./staking-form";
+import { removeDecimal } from "../../lib/decimals";
+import {
+  UndelegateSubmissionInput,
+  vegaWalletService,
+} from "../../lib/vega-wallet/vega-wallet-service";
+import { FormState, RemoveType } from "./staking-form";
 
 interface PendingStakeProps {
   pendingAmount: BigNumber;
-  perform: () => void;
   setRemoveType: (removeType: RemoveType) => void;
-  setAmount: React.Dispatch<any>;
+  nodeId: string;
+  pubkey: string;
+  setFormState: (state: FormState) => void;
 }
 
 export const PendingStake = ({
   pendingAmount,
-  perform,
-  setRemoveType,
-  setAmount
+  nodeId,
+  pubkey,
+  setFormState,
 }: PendingStakeProps) => {
   const { t } = useTranslation();
-  const removeStakeNow = () => {
-    setAmount(pendingAmount)
-    setRemoveType(RemoveType.now);
-    perform();
+  const { appState } = useAppState();
+
+  const removeStakeNow = async () => {
+    setFormState(FormState.Pending);
+    const undelegateInput: UndelegateSubmissionInput = {
+      pubKey: pubkey,
+      undelegateSubmission: {
+        nodeId,
+        amount: removeDecimal(new BigNumber(pendingAmount), appState.decimals),
+        method: "METHOD_NOW",
+      },
+    };
+
+    try {
+      const command = undelegateInput;
+      const [err] = await vegaWalletService.commandSync(command);
+
+      if (err) {
+        setFormState(FormState.Failure);
+        Sentry.captureException(err);
+      }
+    } catch (err) {
+      setFormState(FormState.Failure);
+      Sentry.captureException(err);
+    }
   };
 
   return (
@@ -32,7 +61,7 @@ export const PendingStake = ({
       <button
         type="button"
         className="button-secondary button-secondary--dark"
-        onClick={removeStakeNow}
+        onClick={() => removeStakeNow()}
       >
         {t("cancelPendingEpochNomination")}
       </button>

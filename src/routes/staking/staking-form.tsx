@@ -47,7 +47,7 @@ export const PARTY_DELEGATIONS_QUERY = gql`
   }
 `;
 
-enum FormState {
+export enum FormState {
   Default,
   Pending,
   Success,
@@ -210,9 +210,10 @@ export const StakingForm = ({
     <>
       {pendingStakeNextEpoch.isZero() ? null : (
         <PendingStake
+          nodeId={nodeId}
+          pubkey={pubkey}
           pendingAmount={pendingStakeNextEpoch}
-          setAmount={setAmount}
-          perform={onSubmit}
+          setFormState={setFormState}
           setRemoveType={setRemoveType}
         />
       )}
