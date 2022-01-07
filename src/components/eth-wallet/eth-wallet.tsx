@@ -8,6 +8,7 @@ import {
   AppStateActionType,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
+import { usePendingTransactions } from "../../hooks/use-pending-transactions";
 import { useWeb3Connect } from "../../hooks/use-web3";
 import vegaVesting from "../../images/vega_vesting.png";
 import vegaWhite from "../../images/vega_white.png";
@@ -92,6 +93,8 @@ const ConnectedKey = () => {
   const { t } = useTranslation();
   const { appState } = useAppState();
   const { walletBalance, totalLockedBalance, totalVestedBalance } = appState;
+  const pendingTxs = usePendingTransactions();
+  console.log("pending", pendingTxs);
 
   const totalInVestingContract = React.useMemo(() => {
     return totalLockedBalance.plus(totalVestedBalance);
