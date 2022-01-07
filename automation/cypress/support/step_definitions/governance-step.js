@@ -1,4 +1,5 @@
 import { Then, When } from "cypress-cucumber-preprocessor/steps";
+import { parse } from "date-fns";
 
 Then("I am taken to the governance page", () => {
   cy.url().should("equal", Cypress.config().baseUrl + "governance");
@@ -46,3 +47,20 @@ Then(
     });
   }
 );
+
+When("I view the governance proposals list", () => {
+  cy.get("[data-testid='governance-proposal-table']").should("exist");
+});
+
+Then("Proposals sorted by furthest Proposed enactment date", () => {
+  let prevDate = new Date("01/01/3000");
+
+  cy.get("[data-testid='governance-proposal-enactmentDate']").each(
+    ($enactmentDate) => {
+      const currentDate = new Date($enactmentDate.text());
+      expect(prevDate).to.be.gte(currentDate);
+
+      prevDate = currentDate;
+    }
+  );
+});

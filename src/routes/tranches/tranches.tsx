@@ -9,6 +9,7 @@ import { useRouteMatch } from "react-router-dom";
 import { ADDRESSES } from "../../config";
 import { TrancheItem } from "../redemption/tranche-item";
 import { TrancheLabel } from "./tranche-label";
+import { VestingChart } from "./vesting-chart";
 
 const trancheMinimum = 10;
 
@@ -23,7 +24,11 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
   const filteredTranches = tranches?.filter(shouldShowTranche) || [];
 
   return (
-    <>
+    <section>
+      <h1>{t("chartTitle")}</h1>
+      <p>{t("chartAbove")}</p>
+      <VestingChart />
+      <p>{t("chartBelow")}</p>
       {tranches?.length ? (
         <ul className="tranches__list">
           {(showAll ? tranches : filteredTranches).map((tranche) => {
@@ -63,6 +68,6 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
               )}
         </button>
       </section>
-    </>
+    </section>
   );
 };

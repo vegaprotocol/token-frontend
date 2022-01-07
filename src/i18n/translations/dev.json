@@ -40,7 +40,6 @@
   "Associated": "Associated",
   "Not Associated": "Not Associated",
   "vegaTokens": "$VEGA tokens",
-  "Connect with Metamask": "Connect with MetaMask",
   "VEGA was successfully withdrawn to your wallet": "$VEGA was successfully withdrawn to your wallet",
   "Please select your country": "Please select your country",
   "Fully vested on": "Fully vested on {{date}}",
@@ -487,5 +486,13 @@
   "walletConnect.text": "Scan QR code with your mobile wallet",
   "resourceNotFound": "Resource Not Found",
   "Or": "Or",
-  "addTokenToWallet": "Show this token in your Ethereum wallet"
+  "addTokenToWallet": "Show this token in your Ethereum wallet",
+  "chartBelow": "*Certain activities, for example community incentive tokens, do not have specific dates to be credited and so an approximation has been used. ",
+  "chartTitle": "Token unlocking schedule",
+  "chartAbove": "This chart shows the approximate* schedule for how tokens will unlock from vesting tranches over time.",
+  "date": "Date",
+  "noEthereumProviderError": "No ethereum browser extension detected, install MetaMask on desktop or visit from a dApp browser on mobile",
+  "unsupportedChainIdError": "You're connected to an unsupported network",
+  "userRejectionError": "Please authorize this website to access you're Ethereum account",
+  "unknownEthereumConnectionError": "An unknown error occurred. Check the console for more details"
 }
