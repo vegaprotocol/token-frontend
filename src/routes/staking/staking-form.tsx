@@ -65,7 +65,6 @@ interface StakingFormProps {
   nodeName: string;
   availableStakeToAdd: BigNumber;
   availableStakeToRemove: BigNumber;
-  pendingStakeNextEpoch: BigNumber;
 }
 
 export const StakingForm = ({

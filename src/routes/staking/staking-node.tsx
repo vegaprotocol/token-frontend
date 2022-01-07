@@ -141,7 +141,6 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
         nodeName={nodeInfo.name}
         availableStakeToAdd={unstaked}
         availableStakeToRemove={stakeNextEpoch}
-        pendingStakeNextEpoch={pendingStakeNextEpoch}
       />
     </>
   );
