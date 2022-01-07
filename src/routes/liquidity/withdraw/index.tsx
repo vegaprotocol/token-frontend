@@ -1,6 +1,7 @@
 import "./withdraw.scss";
 
 import * as Sentry from "@sentry/react";
+import { useWeb3React } from "@web3-react/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
@@ -13,7 +14,6 @@ import {
 } from "../../../components/key-value-table";
 import { TransactionCallout } from "../../../components/transaction-callout";
 import { REWARDS_ADDRESSES } from "../../../config";
-import { useWeb3 } from "../../../contexts/web3-context/web3-context";
 import {
   TransactionActionType,
   TxState,
@@ -40,7 +40,7 @@ export const LiquidityWithdrawPage = ({
 }) => {
   const { t } = useTranslation();
   const lpStaking = useVegaLPStaking({ address: lpTokenAddress });
-  const { ethAddress } = useWeb3();
+  const { account } = useWeb3React();
   const {
     state: txUnstakeState,
     dispatch: txUnstakeDispatch,
@@ -49,7 +49,7 @@ export const LiquidityWithdrawPage = ({
 
   const { getBalances, lpStakingEth, lpStakingUSDC } = useGetLiquidityBalances(
     dispatch,
-    ethAddress
+    account || ""
   );
   React.useEffect(() => {
     const run = async () => {
@@ -104,7 +104,7 @@ export const LiquidityWithdrawPage = ({
 
   return (
     <section>
-      {!ethAddress ? (
+      {!account ? (
         <EthConnectPrompt />
       ) : (
         <section>

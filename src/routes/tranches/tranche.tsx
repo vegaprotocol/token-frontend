@@ -1,5 +1,10 @@
 import "./tranche.scss";
 
+import {
+  EthereumChainId,
+  Tranche as TrancheType,
+} from "@vegaprotocol/smart-contracts-sdk";
+import { useWeb3React } from "@web3-react/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
@@ -7,10 +12,8 @@ import { Redirect } from "react-router-dom";
 
 import { EtherscanLink } from "../../components/etherscan-link";
 import { ADDRESSES } from "../../config";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
-import { Tranche as TrancheType } from "../../lib/vega-web3/vega-web3-types";
 import { TrancheItem } from "../redemption/tranche-item";
 import { Routes } from "../router-config";
 import { TrancheLabel } from "./tranche-label";
@@ -18,7 +21,7 @@ import { TrancheLabel } from "./tranche-label";
 export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
   const { t } = useTranslation();
   const { trancheId } = useParams<{ trancheId: string }>();
-  const { chainId } = useWeb3();
+  const { chainId } = useWeb3React();
   const tranche = tranches.find(
     (tranche) => tranche.tranche_id === parseInt(trancheId)
   );
@@ -46,7 +49,7 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
         secondaryHeader={
           <TrancheLabel
             contract={ADDRESSES.vestingAddress}
-            chainId={chainId}
+            chainId={`0x${chainId}` as EthereumChainId}
             id={tranche.tranche_id}
           />
         }

@@ -2,6 +2,7 @@ import "./vega-wallet.scss";
 
 import { gql, useApolloClient } from "@apollo/client";
 import * as Sentry from "@sentry/react";
+import { useWeb3React } from "@web3-react/core";
 import { keyBy, uniq } from "lodash";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -14,7 +15,6 @@ import {
   useAppState,
   VegaKeyExtended,
 } from "../../contexts/app-state/app-state-context";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { useRefreshAssociatedBalances } from "../../hooks/use-refresh-associated-balances";
 import { useVegaUser } from "../../hooks/use-vega-user";
 import noIcon from "../../images/token-no-icon.png";
@@ -180,7 +180,7 @@ const VegaWalletConnected = ({
   version,
 }: VegaWalletConnectedProps) => {
   const { t } = useTranslation();
-  const { ethAddress } = useWeb3();
+  const { account } = useWeb3React();
   const {
     appDispatch,
     appState: { decimals },
@@ -372,8 +372,8 @@ const VegaWalletConnected = ({
 
   const changeKey = React.useCallback(
     async (k: VegaKeyExtended) => {
-      if (ethAddress) {
-        await setAssociatedBalances(ethAddress, k.pub);
+      if (account) {
+        await setAssociatedBalances(account, k.pub);
       }
       vegaWalletService.setKey(k.pub);
       appDispatch({
@@ -382,7 +382,7 @@ const VegaWalletConnected = ({
       });
       setExpanded(false);
     },
-    [ethAddress, appDispatch, setAssociatedBalances]
+    [account, appDispatch, setAssociatedBalances]
   );
 
   const footer = (

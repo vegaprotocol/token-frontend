@@ -46,6 +46,7 @@ const defaultMockOptions = {
 
 export const mock = (cy, options = {}) => {
   const mergedOptions = _.merge({}, defaultMockOptions, options);
+
   // PROVIDER
   cy.intercept(
     "GET",

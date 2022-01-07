@@ -44,11 +44,14 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
             </p>
           </header>
         </Link>
-        <table className="proposal-table">
+        <table
+          className="proposal-table"
+          data-testid="governance-proposal-table"
+        >
           <tbody>
             <tr>
               <th>{t("state")}</th>
-              <td>
+              <td data-testid="governance-proposal-state">
                 <CurrentProposalState proposal={row} />
               </td>
             </tr>
@@ -58,7 +61,7 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
                   ? t("closesOn")
                   : t("closedOn")}
               </th>
-              <td>
+              <td data-testid="governance-proposal-closingDate">
                 {format(new Date(row.terms.closingDatetime), DATE_FORMAT)}
               </td>
             </tr>
@@ -68,7 +71,7 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
                   ? t("proposedEnactment")
                   : t("enactedOn")}
               </th>
-              <td>
+              <td data-testid="governance-proposal-enactmentDate">
                 {format(new Date(row.terms.enactmentDatetime), DATE_FORMAT)}
               </td>
             </tr>

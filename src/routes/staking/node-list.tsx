@@ -1,11 +1,11 @@
 import "./node-list.scss";
 
 import { gql, useQuery } from "@apollo/client";
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useRouteMatch } from "react-router-dom";
 
-import { Callout } from "../../components/callout";
 import { EpochCountdown } from "../../components/epoch-countdown";
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";

@@ -3,7 +3,11 @@ import merge from "lodash/merge";
 
 import { ProposalState, VoteValue } from "../../../__generated__/globalTypes";
 import { DeepPartial } from "../../../lib/type-helpers";
-import { ProposalFields } from "../__generated__/ProposalFields";
+import {
+  ProposalFields,
+  ProposalFields_votes_no,
+  ProposalFields_votes_yes,
+} from "../__generated__/ProposalFields";
 
 export function generateProposal(
   override: DeepPartial<ProposalFields> = {}
@@ -21,8 +25,18 @@ export function generateProposal(
     },
     terms: {
       __typename: "ProposalTerms",
-      closingDatetime: faker.date.soon().toISOString(),
-      enactmentDatetime: faker.date.future().toISOString(),
+      closingDatetime:
+        !override.state || // defaults to Open
+        override.state === ProposalState.Open ||
+        override.state === ProposalState.WaitingForNodeVote
+          ? faker.date.soon().toISOString()
+          : faker.date.past().toISOString(),
+      enactmentDatetime:
+        !override.state || // defaults to Open
+        override.state === ProposalState.Open ||
+        override.state === ProposalState.WaitingForNodeVote
+          ? faker.date.future().toISOString()
+          : faker.date.past().toISOString(),
       change: {
         networkParameter: {
           key: faker.lorem.words(),
@@ -34,32 +48,8 @@ export function generateProposal(
     },
     votes: {
       __typename: "ProposalVotes",
-      yes: {
-        totalTokens: "0",
-        totalNumber: "1",
-        votes: [
-          {
-            value: VoteValue.Yes,
-            party: {
-              id: faker.datatype.uuid(),
-              __typename: "Party",
-              stake: {
-                __typename: "PartyStake",
-                currentStakeAvailable: "123",
-              },
-            },
-            datetime: faker.date.past().toISOString(),
-            __typename: "Vote",
-          },
-        ],
-        __typename: "ProposalVoteSide",
-      },
-      no: {
-        totalTokens: "0",
-        totalNumber: "0",
-        __typename: "ProposalVoteSide",
-        votes: null,
-      },
+      yes: generateYesVotes(),
+      no: generateNoVotes(),
     },
   };
 
@@ -68,3 +58,61 @@ export function generateProposal(
     override
   );
 }
+
+export const generateYesVotes = (
+  numberOfVotes = 5
+): ProposalFields_votes_yes => {
+  return {
+    __typename: "ProposalVoteSide",
+    totalNumber: faker.datatype.number({ min: 0, max: 100 }).toString(),
+    totalTokens: faker.datatype.number({ min: 1, max: 10000 }).toString(),
+    votes: Array.from(Array(numberOfVotes)).map(() => {
+      return {
+        __typename: "Vote",
+        value: VoteValue.Yes,
+        party: {
+          id: faker.datatype.uuid(),
+          __typename: "Party",
+          stake: {
+            __typename: "PartyStake",
+            currentStakeAvailable: faker.datatype
+              .number({
+                min: 1,
+                max: 10000,
+              })
+              .toString(),
+          },
+        },
+        datetime: faker.date.past().toISOString(),
+      };
+    }),
+  };
+};
+
+export const generateNoVotes = (numberOfVotes = 5): ProposalFields_votes_no => {
+  return {
+    __typename: "ProposalVoteSide",
+    totalNumber: faker.datatype.number({ min: 0, max: 100 }).toString(),
+    totalTokens: faker.datatype.number({ min: 1, max: 10000 }).toString(),
+    votes: Array.from(Array(numberOfVotes)).map(() => {
+      return {
+        __typename: "Vote",
+        value: VoteValue.No,
+        party: {
+          id: faker.datatype.uuid(),
+          __typename: "Party",
+          stake: {
+            __typename: "PartyStake",
+            currentStakeAvailable: faker.datatype
+              .number({
+                min: 1,
+                max: 10000,
+              })
+              .toString(),
+          },
+        },
+        datetime: faker.date.past().toISOString(),
+      };
+    }),
+  };
+};
