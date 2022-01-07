@@ -489,5 +489,8 @@
   "errorLoadingTranches": "Error loading tranches. Please try again later.",
   "pendingNomination": "Pending Nomination",
   "pendingNominationNextEpoch": "Pending nomination for next epoch: {{pendingAmount}} $VEGA",
-  "cancelPendingEpochNomination": "Cancel pending epoch nomination"
+  "cancelPendingEpochNomination": "Cancel pending epoch nomination",
+  "removingPendingStake": "Removing pending stake of {{pendingAmount}} $VEGA",
+  "failedToRemovePendingStake": "Failed to remove pending stake of {{pendingAmount}} $VEGA",
+  "pleaseTryAgain": "Please try again later."
 }

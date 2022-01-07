@@ -1,8 +1,11 @@
 import "./pending-stake.scss";
 
 import * as Sentry from "@sentry/react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 
+import { Callout } from "../../components/callout";
+import { Loader } from "../../components/loader";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber";
 import { removeDecimal } from "../../lib/decimals";
@@ -17,6 +20,13 @@ interface PendingStakeProps {
   pubkey: string;
 }
 
+enum FormState {
+  Default,
+  Pending,
+  Success,
+  Failure,
+}
+
 export const PendingStake = ({
   pendingAmount,
   nodeId,
@@ -24,9 +34,10 @@ export const PendingStake = ({
 }: PendingStakeProps) => {
   const { t } = useTranslation();
   const { appState } = useAppState();
+  const [formState, setFormState] = React.useState(FormState.Default);
 
   const removeStakeNow = async () => {
-    // setFormState(FormState.Pending);
+    setFormState(FormState.Pending);
     const undelegateInput: UndelegateSubmissionInput = {
       pubKey: pubkey,
       undelegateSubmission: {
@@ -41,14 +52,32 @@ export const PendingStake = ({
       const [err] = await vegaWalletService.commandSync(command);
 
       if (err) {
-        // setFormState(FormState.Failure);
+        setFormState(FormState.Failure);
         Sentry.captureException(err);
       }
     } catch (err) {
-      // setFormState(FormState.Failure);
+      setFormState(FormState.Failure);
       Sentry.captureException(err);
     }
   };
+
+  if (formState === FormState.Failure) {
+    return (
+      <Callout
+        intent={"error"}
+        title={t("failedToRemovePendingStake", { pendingAmount })}
+      >
+        <p>{t("pleaseTryAgain")}</p>
+      </Callout>
+    );
+  } else if (formState === FormState.Pending) {
+    return (
+      <Callout
+        icon={<Loader />}
+        title={t("removingPendingStake", { pendingAmount })}
+      />
+    );
+  }
 
   return (
     <div className="your-stake__container">

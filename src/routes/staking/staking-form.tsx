@@ -46,7 +46,7 @@ export const PARTY_DELEGATIONS_QUERY = gql`
   }
 `;
 
-export enum FormState {
+enum FormState {
   Default,
   Pending,
   Success,
