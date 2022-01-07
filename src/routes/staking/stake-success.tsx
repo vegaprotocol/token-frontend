@@ -1,7 +1,7 @@
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
-import { Callout } from "../../components/callout";
 import { Tick } from "../../components/icons";
 import { Routes } from "../router-config";
 import { RemoveType, StakeAction } from "./staking-form";

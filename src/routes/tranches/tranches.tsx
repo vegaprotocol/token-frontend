@@ -1,14 +1,15 @@
 import "./tranches.scss";
 
+import { EthereumChainId, Tranche } from "@vegaprotocol/smart-contracts-sdk";
+import { useWeb3React } from "@web3-react/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useRouteMatch } from "react-router-dom";
 
 import { ADDRESSES } from "../../config";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
-import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { TrancheItem } from "../redemption/tranche-item";
 import { TrancheLabel } from "./tranche-label";
+import { VestingChart } from "./vesting-chart";
 
 const trancheMinimum = 10;
 
@@ -19,11 +20,15 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
   const [showAll, setShowAll] = React.useState<boolean>(false);
   const { t } = useTranslation();
   const match = useRouteMatch();
-  const { chainId } = useWeb3();
+  const { chainId } = useWeb3React();
   const filteredTranches = tranches?.filter(shouldShowTranche) || [];
 
   return (
-    <>
+    <section>
+      <h1>{t("chartTitle")}</h1>
+      <p>{t("chartAbove")}</p>
+      <VestingChart />
+      <p>{t("chartBelow")}</p>
       {tranches?.length ? (
         <ul className="tranches__list">
           {(showAll ? tranches : filteredTranches).map((tranche) => {
@@ -38,7 +43,7 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
                   secondaryHeader={
                     <TrancheLabel
                       contract={ADDRESSES.vestingAddress}
-                      chainId={chainId}
+                      chainId={`0x${chainId}` as EthereumChainId}
                       id={tranche.tranche_id}
                     />
                   }
@@ -63,6 +68,6 @@ export const Tranches = ({ tranches }: { tranches: Tranche[] }) => {
               )}
         </button>
       </section>
-    </>
+    </section>
   );
 };

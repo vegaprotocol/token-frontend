@@ -1,7 +1,7 @@
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { Callout } from "../callout";
 import { EtherscanLink } from "../etherscan-link";
 import { Loader } from "../loader";
 

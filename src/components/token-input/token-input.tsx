@@ -1,6 +1,7 @@
 import "./token-input.scss";
 
 import { FormGroup, InputGroup, Intent, Tag } from "@blueprintjs/core";
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
@@ -11,7 +12,6 @@ import {
   TxState,
 } from "../../hooks/transaction-reducer";
 import { BigNumber } from "../../lib/bignumber";
-import { Callout } from "../callout";
 import { Tick } from "../icons";
 import { TransactionCallout } from "../transaction-callout";
 

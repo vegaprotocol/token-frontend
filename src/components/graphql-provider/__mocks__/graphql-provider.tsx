@@ -10,9 +10,15 @@ import {
 } from "../../../__generated__/globalTypes";
 import { NetworkParams } from "../../../hooks/__generated__/NetworkParams";
 import { NETWORK_PARAMS_QUERY } from "../../../hooks/use-network-param";
+import { Proposal } from "../../../routes/governance/__generated__/Proposal";
 import { Proposals } from "../../../routes/governance/__generated__/Proposals";
+import { PROPOSAL_QUERY } from "../../../routes/governance/proposal-container";
 import { PROPOSALS_QUERY } from "../../../routes/governance/proposals-container";
-import { generateProposal } from "../../../routes/governance/test-helpers/generate-proposals";
+import {
+  generateNoVotes,
+  generateProposal,
+  generateYesVotes,
+} from "../../../routes/governance/test-helpers/generate-proposals";
 import { REWARDS_QUERY } from "../../../routes/rewards/home";
 import { Rewards } from "../../../routes/rewards/home/__generated__/Rewards";
 import { Nodes } from "../../../routes/staking/__generated__/Nodes";
@@ -162,8 +168,9 @@ const MOCK_PARTY_DELEGATIONS: MockedResponse<PartyDelegations> = {
   },
 };
 
-const notVoted = generateProposal({
+const proposalNotVoted = generateProposal({
   terms: { change: { networkParameter: { key: "not.voted" } } },
+  state: ProposalState.Open,
   party: { id: "123" },
   votes: {
     yes: { votes: null },
@@ -171,11 +178,11 @@ const notVoted = generateProposal({
   },
 });
 
-const noTokens = generateProposal({
+const proposalNoTokens = generateProposal({
   terms: { change: { networkParameter: { key: "no.tokens" } } },
 });
 
-const votedAgainst = generateProposal({
+const proposalVotedAgainst = generateProposal({
   terms: { change: { networkParameter: { key: "voted.against" } } },
   party: { id: "123" },
   votes: {
@@ -197,13 +204,13 @@ const votedAgainst = generateProposal({
   },
 });
 
-const didNotVote = generateProposal({
+const proposalDidNotVote = generateProposal({
   terms: { change: { networkParameter: { key: "voted.closed.did.not.vote" } } },
   state: ProposalState.Enacted,
   party: { id: "123" },
 });
 
-const voteClosedVotedFor = generateProposal({
+const propsoalVoteClosedVotedFor = generateProposal({
   terms: { change: { networkParameter: { key: "voted.closed.voted.for" } } },
   state: ProposalState.Enacted,
   party: { id: "123" },
@@ -228,6 +235,117 @@ const voteClosedVotedFor = generateProposal({
   },
 });
 
+const proposalDeclined = generateProposal({
+  state: ProposalState.Rejected,
+  votes: {
+    __typename: "ProposalVotes",
+    yes: generateYesVotes(50),
+    no: generateNoVotes(100),
+  },
+});
+
+
+const proposalPassed = generateProposal({
+  state: ProposalState.Passed,
+  votes: {
+    __typename: "ProposalVotes",
+    yes: generateYesVotes(250),
+    no: generateNoVotes(100),
+  },
+});
+
+const proposalRejected = generateProposal({
+  state: ProposalState.Rejected,
+});
+
+const proposalRejectedNoVotes = generateProposal({
+  state: ProposalState.Rejected,
+  votes: {
+    __typename: "ProposalVotes",
+    yes: generateYesVotes(50),
+    no: generateNoVotes(100),
+  },
+});
+
+const proposalWaitingForNodeVote = generateProposal({
+  state: ProposalState.WaitingForNodeVote,
+});
+
+const proposalYesVotesOnly = generateProposal({
+  state: ProposalState.Open,
+  votes: {
+    __typename: "ProposalVotes",
+    yes: generateYesVotes(100),
+    no: {
+      totalTokens: "0",
+      totalNumber: "0",
+      __typename: "ProposalVoteSide",
+      votes: null,
+    },
+  },
+});
+
+const proposalNoVotesOnly = generateProposal({
+  state: ProposalState.Open,
+  votes: {
+    __typename: "ProposalVotes",
+    yes: {
+      totalTokens: "0",
+      totalNumber: "0",
+      __typename: "ProposalVoteSide",
+      votes: null,
+    },
+    no: generateNoVotes(100),
+  },
+});
+
+const proposaSameYesNoVotes = generateProposal({
+  state: ProposalState.Open,
+  votes: {
+    __typename: "ProposalVotes",
+    yes: generateYesVotes(100),
+    no: generateNoVotes(100),
+  },
+});
+
+const proposaYesVotesWillWin = generateProposal({
+  state: ProposalState.Open,
+  votes: {
+    __typename: "ProposalVotes",
+    yes: generateYesVotes(100),
+    no: generateNoVotes(50),
+  },
+});
+
+const proposaNoVotesWillWin = generateProposal({
+  state: ProposalState.Open,
+  votes: {
+    __typename: "ProposalVotes",
+    yes: generateYesVotes(50),
+    no: generateNoVotes(100),
+  },
+});
+
+const proposaNotEnoughVotes = generateProposal({
+  state: ProposalState.Declined,
+  votes: {
+    __typename: "ProposalVotes",
+    yes: {
+      totalTokens: "0",
+      totalNumber: "0",
+      __typename: "ProposalVoteSide",
+      votes: null,
+    },
+    no: {
+      totalTokens: "0",
+      totalNumber: "0",
+      __typename: "ProposalVoteSide",
+      votes: null,
+    },
+  },
+});
+
+
 const MOCK_PROPOSALS: MockedResponse<Proposals> = {
   request: {
     query: PROPOSALS_QUERY,
@@ -235,15 +353,57 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
   result: {
     data: {
       proposals: [
-        notVoted,
-        noTokens,
-        votedAgainst,
-        didNotVote,
-        voteClosedVotedFor,
+        proposaNotEnoughVotes,
+        proposaNoVotesWillWin,
+        proposaYesVotesWillWin,
+        proposaSameYesNoVotes,
+        proposalNoVotesOnly,
+        proposalYesVotesOnly,
+        proposalWaitingForNodeVote,
+        proposalRejectedNoVotes,
+        proposalRejected,
+        proposalPassed,
+        proposalDeclined,
+        proposalNotVoted,
+        proposalNoTokens,
+        proposalVotedAgainst,
+        proposalDidNotVote,
+        propsoalVoteClosedVotedFor,
       ],
     },
   },
 };
+
+const MOCK_PROPOSAL: MockedResponse<Proposal>[] = [
+    proposaNotEnoughVotes,
+    proposaNoVotesWillWin,
+    proposaYesVotesWillWin,
+    proposaSameYesNoVotes,
+    proposalNoVotesOnly,
+    proposalYesVotesOnly,
+    proposalWaitingForNodeVote,
+    proposalRejectedNoVotes,
+    proposalRejected,
+    proposalPassed,
+    proposalDeclined,
+    proposalNotVoted,
+    proposalNoTokens,
+    proposalVotedAgainst,
+    proposalDidNotVote,
+    propsoalVoteClosedVotedFor,
+].map((p) => ({
+  request: {
+    query: PROPOSAL_QUERY,
+    variables: {
+      proposalId: p.id,
+    },
+  },
+  result: {
+    data: {
+      proposal: p,
+    },
+  },
+}));
 
 const MOCK_REWARDS: MockedResponse<Rewards> = {
   request: {
@@ -382,11 +542,29 @@ export const GraphQlProvider = ({
   return (
     <MockedProvider
       mocks={[
+        MOCK_PROPOSALS,
+        MOCK_PROPOSALS,
+        MOCK_PROPOSALS,
+        MOCK_PROPOSALS,
+        MOCK_PROPOSALS,
+        MOCK_PROPOSALS,
+        MOCK_PROPOSALS,
+        MOCK_PROPOSALS,
+        ...MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
+        ...MOCK_PROPOSAL,
         MOCK_STAKING_QUERY,
         MOCK_PARTY_DELEGATIONS,
-        MOCK_PROPOSALS,
         MOCK_NODES_QUERY,
-        // MOCK_PROPOSAL,
         MOCK_REWARDS,
         MOCK_NETWORK_PARAMS,
       ]}

@@ -29,7 +29,7 @@ Feature: Homepage
   Scenario: Navigate to governance proposals page via button link on homepage body
     Given I am on the home page
     When I click on the governance proposals button
-    Then I am taken to governance proposals page
+    Then I am taken to the governance page
     # And I can see proposals   //proposals not showing /mock
 
   Scenario: Navigate to a not found page will return page error

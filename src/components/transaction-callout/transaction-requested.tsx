@@ -1,6 +1,6 @@
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import { useTranslation } from "react-i18next";
 
-import { Callout } from "../callout";
 import { HandUp } from "../icons";
 
 export const TransactionRequested = () => {
