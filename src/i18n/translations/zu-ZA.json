@@ -40,7 +40,6 @@
   "Associated": "crwdns4573:0crwdne4573:0",
   "Not Associated": "crwdns5317:0crwdne5317:0",
   "vegaTokens": "crwdns6305:0$VEGAcrwdne6305:0",
-  "Connect with Metamask": "crwdns6571:0crwdne6571:0",
   "VEGA was successfully withdrawn to your wallet": "crwdns6307:0$VEGAcrwdne6307:0",
   "Please select your country": "crwdns4581:0crwdne4581:0",
   "Fully vested on": "crwdns4583:0{{date}}crwdne4583:0",
@@ -494,5 +493,9 @@
   "chartBelow": "crwdns6789:0crwdne6789:0",
   "chartTitle": "crwdns6791:0crwdne6791:0",
   "chartAbove": "crwdns6793:0crwdne6793:0",
-  "date": "crwdns6795:0crwdne6795:0"
+  "date": "crwdns6795:0crwdne6795:0",
+  "noEthereumProviderError": "crwdns6797:0crwdne6797:0",
+  "unsupportedChainIdError": "crwdns6799:0crwdne6799:0",
+  "userRejectionError": "crwdns6801:0crwdne6801:0",
+  "unknownEthereumConnectionError": "crwdns6803:0crwdne6803:0"
 }
