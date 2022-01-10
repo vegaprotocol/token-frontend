@@ -130,6 +130,7 @@ export enum AppStateActionType {
   SET_TRANCHE_ERROR,
   REFRESH_ASSOCIATED_BALANCES,
   SET_ASSOCIATION_BREAKDOWN,
+  SET_BANNER_MESSAGE,
 }
 
 export type AppStateAction =
@@ -203,6 +204,10 @@ export type AppStateAction =
         stakingAssociations: { [vegaKey: string]: BigNumber };
         vestingAssociations: { [vegaKey: string]: BigNumber };
       };
+    }
+  | {
+      type: AppStateActionType.SET_BANNER_MESSAGE;
+      message: string;
     };
 
 type AppStateContextShape = {
