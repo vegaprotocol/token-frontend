@@ -1,5 +1,6 @@
-import { gql,useApolloClient } from "@apollo/client";
+import { gql, useApolloClient } from "@apollo/client";
 import * as Sentry from "@sentry/react";
+import BigNumber from "bignumber.js";
 import React from "react";
 
 import { StakeLinkingStatus } from "../../../__generated__/globalTypes";
@@ -24,11 +25,11 @@ export const useAddStake = (
 ) => {
   const { staking, vesting } = useContracts();
   const contractAdd = useTransaction(
-    () => vesting.addStake(amount, vegaKey),
+    () => vesting.addStake(new BigNumber(amount), vegaKey),
     confirmations
   );
   const walletAdd = useTransaction(
-    () => staking.addStake(amount, vegaKey),
+    () => staking.addStake(new BigNumber(amount), vegaKey),
     confirmations
   );
   const refreshBalances = useRefreshBalances(address);

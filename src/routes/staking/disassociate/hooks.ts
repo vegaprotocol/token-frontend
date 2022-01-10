@@ -1,3 +1,4 @@
+import BigNumber from "bignumber.js";
 import React from "react";
 
 import { StakingMethod } from "../../../components/staking-method-radio";
@@ -18,10 +19,10 @@ export const useRemoveStake = (
   // which if staked > wallet balance means you cannot unstaked
   // even worse if you stake everything then you can't unstake anything!
   const contractRemove = useTransaction(() =>
-    vesting.removeStake(amount, vegaKey)
+    vesting.removeStake(new BigNumber(amount), vegaKey)
   );
   const walletRemove = useTransaction(() =>
-    staking.removeStake(amount, vegaKey)
+    staking.removeStake(new BigNumber(amount), vegaKey)
   );
   const refreshBalances = useRefreshBalances(address);
   const getAssociationBreakdown = useGetAssociationBreakdown(
