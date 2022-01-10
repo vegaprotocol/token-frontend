@@ -41,7 +41,7 @@ class RouteErrorBoundary extends React.Component<
   }
 }
 
-const Extended = withTranslation()(RouteErrorBoundary);
+const BoundaryWithTranslation = withTranslation()(RouteErrorBoundary);
 
 export const AppRouter = () => {
   const splashLoading = (
@@ -51,9 +51,9 @@ export const AppRouter = () => {
   );
 
   return (
-    <Extended>
-      <Switch>
-        <React.Suspense fallback={splashLoading}>
+    <BoundaryWithTranslation>
+      <React.Suspense fallback={splashLoading}>
+        <Switch>
           {routerConfig.map(
             ({ path, component: Component, exact = false, name }) => (
               <Route key={name} path={path} exact={exact}>
@@ -61,8 +61,8 @@ export const AppRouter = () => {
               </Route>
             )
           )}
-        </React.Suspense>
-      </Switch>
-    </Extended>
+        </Switch>
+      </React.Suspense>
+    </BoundaryWithTranslation>
   );
 };
