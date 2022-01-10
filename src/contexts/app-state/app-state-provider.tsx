@@ -42,6 +42,7 @@ const initialAppState: AppState = {
     stakingAssociations: {},
   },
   transactionOverlay: false,
+  bannerMessage: "",
 };
 
 function appStateReducer(state: AppState, action: AppStateAction): AppState {
@@ -181,6 +182,12 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
       return {
         ...state,
         transactionOverlay: action.isOpen,
+      };
+    }
+    case AppStateActionType.SET_BANNER_MESSAGE: {
+      return {
+        ...state,
+        bannerMessage: action.message,
       };
     }
   }
