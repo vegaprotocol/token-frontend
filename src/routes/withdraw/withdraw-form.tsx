@@ -1,6 +1,6 @@
 import "./withdraw-form.scss";
 
-import { FormGroup,HTMLSelect } from "@blueprintjs/core";
+import { FormGroup, HTMLSelect } from "@blueprintjs/core";
 import { ethers } from "ethers";
 import React from "react";
 import { useTranslation } from "react-i18next";
