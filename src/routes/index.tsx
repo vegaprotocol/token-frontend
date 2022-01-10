@@ -1,4 +1,6 @@
+import * as Sentry from "@sentry/react";
 import React from "react";
+import { WithTranslation, withTranslation } from "react-i18next";
 import { Route, Switch } from "react-router-dom";
 
 import { SplashLoader } from "../components/splash-loader";
@@ -9,6 +11,38 @@ export interface RouteChildProps {
   name: string;
 }
 
+interface RouteErrorBoundaryProps extends WithTranslation {
+  children: React.ReactElement;
+}
+
+class RouteErrorBoundary extends React.Component<
+  RouteErrorBoundaryProps,
+  { hasError: boolean }
+> {
+  constructor(props: RouteErrorBoundaryProps) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error) {
+    Sentry.captureException(error);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <h1>{this.props.t("Something went wrong")}</h1>;
+    }
+
+    return this.props.children;
+  }
+}
+
+const Extended = withTranslation()(RouteErrorBoundary);
+
 export const AppRouter = () => {
   const splashLoading = (
     <SplashScreen>
@@ -17,16 +51,18 @@ export const AppRouter = () => {
   );
 
   return (
-    <React.Suspense fallback={splashLoading}>
+    <Extended>
       <Switch>
-        {routerConfig.map(
-          ({ path, component: Component, exact = false, name }) => (
-            <Route key={name} path={path} exact={exact}>
-              <Component name={name} />
-            </Route>
-          )
-        )}
+        <React.Suspense fallback={splashLoading}>
+          {routerConfig.map(
+            ({ path, component: Component, exact = false, name }) => (
+              <Route key={name} path={path} exact={exact}>
+                <Component name={name} />
+              </Route>
+            )
+          )}
+        </React.Suspense>
       </Switch>
-    </React.Suspense>
+    </Extended>
   );
 };
