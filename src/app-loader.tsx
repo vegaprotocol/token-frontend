@@ -100,6 +100,62 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
     }
   }, [appDispatch, account, vegaKeysLoaded, setAssociatedBalances]);
 
+  React.useEffect(() => {
+    let interval: any = null;
+
+    const getNetworkLimits = async () => {
+      const [networkLimits, stats] = await Promise.all([
+        fetch("https://n04.d.vega.xyz/network/limits").then((res) =>
+          res.json()
+        ),
+        fetch("https://n04.d.vega.xyz/statistics").then((res) => res.json()),
+      ]);
+
+      const restoreBlock = Number(
+        networkLimits.networkLimits.bootstrapBlockCount
+      );
+      const currentBlock = Number(stats.statistics.blockHeight);
+
+      if (currentBlock <= restoreBlock) {
+        appDispatch({
+          type: AppStateActionType.SET_BANNER_MESSAGE,
+          message:
+            "The network is less than 900 blocks old, it could be in the process of restoring from a checkpoint",
+        });
+
+        if (!interval) {
+          startPoll();
+        }
+      } else {
+        appDispatch({
+          type: AppStateActionType.SET_BANNER_MESSAGE,
+          message: "",
+        });
+
+        if (interval) {
+          stopPoll();
+        }
+      }
+    };
+
+    const startPoll = () => {
+      interval = setInterval(() => {
+        getNetworkLimits();
+      }, 10000);
+    };
+
+    const stopPoll = () => {
+      clearInterval(interval);
+      interval = null;
+    };
+
+    getNetworkLimits();
+
+    return () => {
+      stopPoll();
+    };
+  }, [appDispatch]);
+
   if (Flags.NETWORK_DOWN) {
     return (
       <SplashScreen>

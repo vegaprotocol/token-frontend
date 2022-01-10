@@ -6,6 +6,7 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import { AppLoader } from "./app-loader";
+import { AppBanner } from "./components/app-banner";
 import { AppFooter } from "./components/app-footer";
 import { BalanceManager } from "./components/balance-manager";
 import { EthConnectModal } from "./components/eth-connect-modal";
@@ -34,6 +35,7 @@ function App() {
                 <AppLoader>
                   <BalanceManager>
                     <div className="app">
+                      <AppBanner />
                       <TemplateSidebar sidebar={sideBar}>
                         <AppRouter />
                       </TemplateSidebar>

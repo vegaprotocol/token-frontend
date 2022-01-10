@@ -110,6 +110,10 @@ export interface AppState {
 
   /**  Whether or not the transaction modal is open */
   transactionOverlay: boolean;
+  /**
+   * Message to display in a banner at the top of the screen, currently always shown as a warning/error
+   */
+  bannerMessage: string;
 }
 
 export enum AppStateActionType {
@@ -129,6 +133,7 @@ export enum AppStateActionType {
   REFRESH_ASSOCIATED_BALANCES,
   SET_ASSOCIATION_BREAKDOWN,
   SET_TRANSACTION_OVERLAY,
+  SET_BANNER_MESSAGE,
 }
 
 export type AppStateAction =
@@ -206,6 +211,10 @@ export type AppStateAction =
   | {
       type: AppStateActionType.SET_TRANSACTION_OVERLAY;
       isOpen: boolean;
+    }
+  | {
+      type: AppStateActionType.SET_BANNER_MESSAGE;
+      message: string;
     };
 
 type AppStateContextShape = {
