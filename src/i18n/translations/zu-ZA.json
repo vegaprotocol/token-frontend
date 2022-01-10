@@ -494,8 +494,8 @@
   "chartTitle": "crwdns6791:0crwdne6791:0",
   "chartAbove": "crwdns6793:0crwdne6793:0",
   "date": "crwdns6795:0crwdne6795:0",
-  "noEthereumProviderError": "crwdns6797:0crwdne6797:0",
+  "noEthereumProviderError": "crwdns6805:0crwdne6805:0",
   "unsupportedChainIdError": "crwdns6799:0crwdne6799:0",
-  "userRejectionError": "crwdns6801:0crwdne6801:0",
-  "unknownEthereumConnectionError": "crwdns6803:0crwdne6803:0"
+  "userRejectionError": "crwdns6807:0crwdne6807:0",
+  "unknownEthereumConnectionError": "crwdns6809:0crwdne6809:0"
 }
