@@ -1,7 +1,6 @@
 import semver from "semver";
 
 import { VoteValue } from "../../__generated__/globalTypes";
-import { Links } from "../../config";
 import { VegaKey } from "../../contexts/app-state/app-state-context";
 import { VOTE_VALUE_MAP } from "../../routes/governance/vote-types";
 import { LocalStorage } from "../storage";
