@@ -112,6 +112,7 @@ export const useTransaction = (
         timestamp: Date.now(),
       });
     } catch (err) {
+      console.log(err);
       handleError(err as Error);
     }
   }, [performTransaction, requiredConfirmations, handleError]);
