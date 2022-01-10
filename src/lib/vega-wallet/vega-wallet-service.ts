@@ -177,29 +177,6 @@ export class VegaWalletService implements IVegaWalletService {
     return semver.satisfies(version, MINIMUM_WALLET_VERSION);
   }
 
-  async getLastestVersion() {
-    try {
-      const res = await fetch(Links.WALLET_RELEASES_HISTORY, {});
-
-      if (res.status === 404) {
-        return [null, null];
-      }
-
-      const json = await res.json();
-
-      // find the first non-prelease
-      for (let walletVerison of json) {
-        if (!walletVerison.prerelease) {
-          const location = Links.WALLET_RELEASES_LATEST + walletVerison.name;
-          return [walletVerison.name, location];
-        }
-      }
-      return [null, null];
-    } catch (err) {
-      return [null, null];
-    }
-  }
-
   async getVersion(): Promise<(string | undefined)[]> {
     try {
       const res = await fetch(`${this.getUrl()}/${Endpoints.VERSION}`, {});
