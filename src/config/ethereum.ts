@@ -1,7 +1,7 @@
 import { Networks } from "./vega";
 
 const appChainId = process.env.REACT_APP_CHAIN as EthereumChainId;
-export const appEnv = process.env.REACT_APP_ENV as Networks;
+export const APP_ENV = process.env.REACT_APP_ENV as Networks;
 const infuraId = process.env.REACT_APP_INFURA_ID;
 
 const customVegaTokenAddress = process.env.CUSTOM_TOKEN_ADDRESS as string;
@@ -105,7 +105,7 @@ export const EnvironmentConfig: { [key in Networks]: VegaContracts } = {
 
 const Addresses = {
   [EthereumChainIds.Mainnet]: EnvironmentConfig.MAINNET,
-  [EthereumChainIds.Ropsten]: EnvironmentConfig[appEnv],
+  [EthereumChainIds.Ropsten]: EnvironmentConfig[APP_ENV],
 };
 
 // No concept of dev/staging/test for these right now.
