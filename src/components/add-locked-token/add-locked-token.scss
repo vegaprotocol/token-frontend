@@ -1,15 +1,22 @@
-.or {
-  display: flex;
-  margin: 12px 0px;
+.add-locked-token-address {
+  p {
+    display: flex;
+    justify-content: center;
+  }
 
-  hr {
-    flex: 1;
-    margin-top: 12px;
-    &:first-child {
-      margin-right: 12px;
-    }
-    &:last-child {
-      margin-left: 12px;
+  &__or-divider {
+    display: flex;
+    margin: 12px 0px;
+
+    hr {
+      flex: 1;
+      margin-top: 12px;
+      &:first-child {
+        margin-right: 12px;
+      }
+      &:last-child {
+        margin-left: 12px;
+      }
     }
   }
 }

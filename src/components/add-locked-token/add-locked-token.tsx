@@ -11,7 +11,7 @@ export const AddLockedTokenAddress = () => {
   const { t } = useTranslation();
   const addSupported = useAddAssetSupported();
   return (
-    <>
+    <div className="add-locked-token-address">
       <h4>
         {t(
           "Keep track of locked tokens in your wallet with the VEGA (VESTING) token."
@@ -19,7 +19,7 @@ export const AddLockedTokenAddress = () => {
       </h4>
       {addSupported ? (
         <>
-          <p style={{ display: "flex", justifyContent: "center" }}>
+          <p>
             <AddTokenButtonLink
               address={ADDRESSES.lockedAddress}
               symbol="VEGA🔒"
@@ -27,7 +27,7 @@ export const AddLockedTokenAddress = () => {
               image={vegaVesting}
             />
           </p>
-          <div className="or">
+          <div className="add-locked-token-address__or-divider">
             <hr />
             {t("Or")} <hr />
           </div>
@@ -41,6 +41,6 @@ export const AddLockedTokenAddress = () => {
           }
         )}
       </p>
-    </>
+    </div>
   );
 };
