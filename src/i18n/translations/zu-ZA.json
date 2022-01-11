@@ -40,7 +40,6 @@
   "Associated": "crwdns4573:0crwdne4573:0",
   "Not Associated": "crwdns5317:0crwdne5317:0",
   "vegaTokens": "crwdns6305:0$VEGAcrwdne6305:0",
-  "Connect with Metamask": "crwdns6571:0crwdne6571:0",
   "VEGA was successfully withdrawn to your wallet": "crwdns6307:0$VEGAcrwdne6307:0",
   "Please select your country": "crwdns4581:0crwdne4581:0",
   "Fully vested on": "crwdns4583:0{{date}}crwdne4583:0",
@@ -486,6 +485,12 @@
   "subjectToFurtherActions": "crwdns6763:0{{daysAgo}}crwdne6763:0",
   "transactionHashPrompt": "crwdns6771:0crwdne6771:0",
   "errorLoadingTranches": "crwdns6773:0crwdne6773:0",
+  "pendingNomination": "crwdns6811:0crwdne6811:0",
+  "pendingNominationNextEpoch": "crwdns6813:0{{pendingAmount}}crwdnd6813:0$VEGAcrwdne6813:0",
+  "cancelPendingEpochNomination": "crwdns6815:0crwdne6815:0",
+  "removingPendingStake": "crwdns6817:0{{pendingAmount}}crwdnd6817:0$VEGAcrwdne6817:0",
+  "failedToRemovePendingStake": "crwdns6819:0{{pendingAmount}}crwdnd6819:0$VEGAcrwdne6819:0",
+  "pleaseTryAgain": "crwdns6821:0crwdne6821:0",
   "injected.name": "crwdns6777:0crwdne6777:0",
   "injected.text": "crwdns6779:0crwdne6779:0",
   "walletConnect.name": "crwdns6781:0crwdne6781:0",
@@ -494,5 +499,9 @@
   "chartBelow": "crwdns6789:0crwdne6789:0",
   "chartTitle": "crwdns6791:0crwdne6791:0",
   "chartAbove": "crwdns6793:0crwdne6793:0",
-  "date": "crwdns6795:0crwdne6795:0"
+  "date": "crwdns6795:0crwdne6795:0",
+  "noEthereumProviderError": "crwdns6805:0crwdne6805:0",
+  "unsupportedChainIdError": "crwdns6799:0crwdne6799:0",
+  "userRejectionError": "crwdns6807:0crwdne6807:0",
+  "unknownEthereumConnectionError": "crwdns6809:0crwdne6809:0"
 }

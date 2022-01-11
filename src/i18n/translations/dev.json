@@ -480,6 +480,12 @@
   "subjectToFurtherActions": "Vote passed {{daysAgo}} subject to further actions.",
   "transactionHashPrompt": "Transaction hash will appear here once the transaction is approved in your Ethereum wallet",
   "errorLoadingTranches": "Error loading tranches. Please try again later.",
+  "pendingNomination": "Pending Nomination",
+  "pendingNominationNextEpoch": "Pending nomination for next epoch: {{pendingAmount}} $VEGA",
+  "cancelPendingEpochNomination": "Cancel pending epoch nomination",
+  "removingPendingStake": "Removing pending stake of {{pendingAmount}} $VEGA",
+  "failedToRemovePendingStake": "Failed to remove pending stake of {{pendingAmount}} $VEGA",
+  "pleaseTryAgain": "Please try again later.",
   "injected.name": "Injected",
   "injected.text": "Connect with the provider in your browser",
   "walletConnect.name": "Mobile",
@@ -491,8 +497,8 @@
   "chartTitle": "Token unlocking schedule",
   "chartAbove": "This chart shows the approximate* schedule for how tokens will unlock from vesting tranches over time.",
   "date": "Date",
-  "noEthereumProviderError": "No ethereum browser extension detected, install MetaMask on desktop or visit from a dApp browser on mobile",
+  "noEthereumProviderError": "No Ethereum browser extension detected, install MetaMask on desktop or visit from a dApp browser on mobile",
   "unsupportedChainIdError": "You're connected to an unsupported network",
-  "userRejectionError": "Please authorize this website to access you're Ethereum account",
-  "unknownEthereumConnectionError": "An unknown error occurred. Check the console for more details"
+  "userRejectionError": "Please authorise this website to access your Ethereum account",
+  "unknownEthereumConnectionError": "An unknown error occurred. Check the console in your browser's web developer tools for more details"
 }
