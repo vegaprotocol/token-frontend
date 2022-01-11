@@ -41,3 +41,5 @@ export const INFURA_URL = InfuraUrls[appChainId];
  * Normally this is 0x3 (Ropsten) for dev and 0x1 (Mainnet) for prod
  */
 export const APP_CHAIN_ID = appChainId;
+
+export const APP_ENV = appEnv;

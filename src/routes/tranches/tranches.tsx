@@ -1,12 +1,12 @@
 import "./tranches.scss";
 
-import { EthereumChainId, Tranche } from "@vegaprotocol/smart-contracts-sdk";
+import { Tranche } from "@vegaprotocol/smart-contracts-sdk";
 import { useWeb3React } from "@web3-react/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useRouteMatch } from "react-router-dom";
 
-import { ADDRESSES } from "../../config";
+import { ADDRESSES, EthereumChainId } from "../../config";
 import { TrancheItem } from "../redemption/tranche-item";
 import { TrancheLabel } from "./tranche-label";
 import { VestingChart } from "./vesting-chart";
