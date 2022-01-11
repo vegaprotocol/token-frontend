@@ -3,7 +3,7 @@ import { useWeb3React } from "@web3-react/core";
 import { InjectedConnector } from "@web3-react/injected-connector";
 import React from "react";
 
-import { appEnv, Networks } from "../config";
+import { APP_ENV, Networks } from "../config";
 
 export const useAddAssetSupported = () => {
   const { connector } = useWeb3React();
@@ -36,10 +36,10 @@ export const useAddAssetToWallet = (
             address,
             symbol: `${symbol}${
               // Add the environment if not mainnet
-              appEnv === Networks.MAINNET
+              APP_ENV === Networks.MAINNET
                 ? ""
                 : // Remove NET as VEGA(TESTNET) is too long
-                  ` ${appEnv.replace("NET", "")}`
+                  ` ${APP_ENV.replace("NET", "")}`
             }`,
             decimals,
             image,
