@@ -25,11 +25,11 @@ export const useAddStake = (
 ) => {
   const { staking, vesting } = useContracts();
   const contractAdd = useTransaction(
-    () => vesting.addStake(new BigNumber(amount), vegaKey),
+    () => vesting.addStake(new BigNumber(amount), vegaKey, confirmations),
     confirmations
   );
   const walletAdd = useTransaction(
-    () => staking.addStake(new BigNumber(amount), vegaKey),
+    () => staking.addStake(new BigNumber(amount), vegaKey, confirmations),
     confirmations
   );
   const refreshBalances = useRefreshBalances(address);
