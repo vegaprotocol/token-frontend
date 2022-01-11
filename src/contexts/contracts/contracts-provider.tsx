@@ -17,21 +17,28 @@ import { ContractsContext, ContractsContextShape } from "./contracts-context";
  * Provides Vega Ethereum contract instances to its children.
  */
 export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
-  const { library, connector } = useWeb3React();
+  const { library, account } = useWeb3React();
   const [contracts, setContracts] =
     React.useState<ContractsContextShape | null>(null);
 
+  // Create instances of contract classes. If we have an account use a signer for the
+  // contracts so that we can sign transactions, otherwise use the provider for just
+  // reading data
   React.useEffect(() => {
-    if (library) {
+    let provider = library;
+    if (account && library && typeof library.getSigner === "function") {
+      provider = library.getSigner();
+    }
+    if (provider) {
       setContracts({
-        token: new VegaToken(library, APP_ENV),
-        staking: new VegaStaking(library, APP_ENV),
-        vesting: new VegaVesting(library, APP_ENV),
-        claim: new VegaClaim(library, APP_ENV),
-        erc20Bridge: new VegaErc20Bridge(library, APP_ENV),
+        token: new VegaToken(provider, APP_ENV),
+        staking: new VegaStaking(provider, APP_ENV),
+        vesting: new VegaVesting(provider, APP_ENV),
+        claim: new VegaClaim(provider, APP_ENV),
+        erc20Bridge: new VegaErc20Bridge(provider, APP_ENV),
       });
     }
-  }, [library, connector]);
+  }, [library, account]);
 
   if (!contracts) {
     return (
