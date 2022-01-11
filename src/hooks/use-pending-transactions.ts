@@ -8,8 +8,8 @@ export const usePendingTransactions = () => {
 
   React.useEffect(() => {
     if (!staking) return;
-    staking.watchTransactions((txs) => {
-      setPending(txs.some((tx) => tx.pending));
+    staking.listen((txs: any) => {
+      setPending(txs.some((tx: any) => tx.pending));
     });
   }, [staking]);
 
