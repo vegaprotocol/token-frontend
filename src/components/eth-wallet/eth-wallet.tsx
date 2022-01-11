@@ -188,7 +188,7 @@ export const EthWallet = () => {
         )}
       </WalletCardHeader>
       <WalletCardHeader>
-        {gas && chainId === EthereumChainIds.Mainnet ? (
+        {gas ? (
           <div
             style={{
               display: "flex",
