@@ -25,17 +25,19 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
   // contracts so that we can sign transactions, otherwise use the provider for just
   // reading data
   React.useEffect(() => {
-    let provider = library;
+    let signer = null;
+
     if (account && library && typeof library.getSigner === "function") {
-      provider = library.getSigner();
+      signer = library.getSigner();
     }
-    if (provider) {
+
+    if (library) {
       setContracts({
-        token: new VegaToken(provider, APP_ENV),
-        staking: new VegaStaking(provider, APP_ENV),
-        vesting: new VegaVesting(provider, APP_ENV),
-        claim: new VegaClaim(provider, APP_ENV),
-        erc20Bridge: new VegaErc20Bridge(provider, APP_ENV),
+        token: new VegaToken(APP_ENV, library, signer),
+        staking: new VegaStaking(APP_ENV, library, signer),
+        vesting: new VegaVesting(APP_ENV, library, signer),
+        claim: new VegaClaim(APP_ENV, library, signer),
+        erc20Bridge: new VegaErc20Bridge(APP_ENV, library, signer),
       });
     }
   }, [library, account]);
