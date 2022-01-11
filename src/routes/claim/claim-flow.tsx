@@ -139,7 +139,7 @@ export const ClaimFlow = ({
                     ? t("claimExpiry", {
                         date: format(
                           state.claimData?.claim.expiry * 1000,
-                          "dd/MM/yyyy"
+                          "dd MMM yyyy"
                         ),
                       })
                     : t("claimNoExpiry"),
@@ -168,17 +168,20 @@ export const ClaimFlow = ({
                 <th>{t("Claim expires")}</th>
                 <td>
                   {state.claimData?.claim.expiry
-                    ? format(state.claimData?.claim.expiry * 1000, "dd/MM/yyyy")
+                    ? format(
+                        state.claimData?.claim.expiry * 1000,
+                        "dd MMM yyyy"
+                      )
                     : "No expiry"}
                 </td>
               </KeyValueTableRow>
               <KeyValueTableRow>
                 <th>{t("Starts unlocking")}</th>
-                <td>{format(currentTranche.tranche_start, "dd/MM/yyyy")}</td>
+                <td>{format(currentTranche.tranche_start, "dd MMM yyyy")}</td>
               </KeyValueTableRow>
               <KeyValueTableRow>
                 <th>{t("Fully unlocked")}</th>
-                <td>{format(currentTranche.tranche_end, "dd/MM/yyyy")}</td>
+                <td>{format(currentTranche.tranche_end, "dd MMM yyyy")}</td>
               </KeyValueTableRow>
             </KeyValueTable>
           </div>

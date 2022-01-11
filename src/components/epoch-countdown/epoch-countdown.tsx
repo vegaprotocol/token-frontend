@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 
 import arrow from "../../images/back.png";
 
-export const DATE_FORMAT = "yyyy.MM.dd HH:mm";
+const DATE_FORMAT = "dd MMMM yyyy HH:mm";
 
 export interface EpochCountdownProps {
   id: string;

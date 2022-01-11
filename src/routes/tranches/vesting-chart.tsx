@@ -21,7 +21,7 @@ const ORDER = ["community", "publicSale", "earlyInvestors", "team"];
 export const VestingChart = () => {
   const { t } = useTranslation();
   const currentDate = React.useMemo(
-    () => format(startOfMonth(new Date()), "yyyy-MM-dd"),
+    () => format(startOfMonth(new Date()), "dd MMM yyyy"),
     []
   );
   return (
