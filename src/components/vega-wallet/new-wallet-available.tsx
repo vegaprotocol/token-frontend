@@ -12,13 +12,14 @@ export const NewWalletAvailable = () => {
   const [newVersionAvailable, setNewVersionAvailable] = React.useState<
     string | null
   >(null);
-  const [latestVersionLocation, setLatestVersionLocation] =
-    React.useState<string>();
+  const [latestVersionLocation, setLatestVersionLocation] = React.useState<
+    string | null
+  >(null);
 
   React.useEffect(() => {
     const getWalletLatest = async () => {
       try {
-        const res = await fetch(Links.WALLET_RELEASES_HISTORY, {});
+        const res = await fetch(Links.WALLET_RELEASES_HISTORY);
         const json = await res.json();
 
         // find the first non-prelease
@@ -48,9 +49,11 @@ export const NewWalletAvailable = () => {
   return (
     <div className="new-wallet-available__container">
       <span>{t("newWalletVersionAvailable")}</span>
-      <a href={latestVersionLocation} target="_blank" rel="noreferrer">
-        {t("downloadNewWallet", { newVersionAvailable })}
-      </a>
+      {latestVersionLocation ? (
+        <a href={latestVersionLocation} target="_blank" rel="noreferrer">
+          {t("downloadNewWallet", { newVersionAvailable })}
+        </a>
+      ) : null}
     </div>
   );
 };
