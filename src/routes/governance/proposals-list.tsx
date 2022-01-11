@@ -9,7 +9,7 @@ import { Proposals_proposals } from "./__generated__/Proposals";
 import { CurrentProposalState } from "./current-proposal-state";
 import { ProposalChangeText } from "./proposal-change-text";
 
-const DATE_FORMAT = "d MMM yyyy HH:mm";
+const DATE_FORMAT = "dd MMMM yyyy HH:mm";
 
 interface ProposalsListProps {
   proposals: Proposals_proposals[];

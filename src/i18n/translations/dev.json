@@ -376,7 +376,7 @@
   "liquidityTokenApprove": "Approve",
   "liquidityComingSoon": "Liquidity rewards coming soon",
   "lpEndedParagraph": "You can only withdraw your rewards and unstake. Upon unstaking, your Ethereum key will be credited with all SLP tokens staked and its share of $VEGA tokens for each full epoch that it was staked.",
-  "lpEndedTitle": "This liquidity incentive ended on 2021.12.03 14:52 UTC",
+  "lpEndedTitle": "This liquidity incentive ended on 03 December 2021 14:52 UTC",
   "lpDiscordPrompt": "Watch our <discordLink>Discord</discordLink> for future ways to earn $VEGA!",
   "Keep track of locked tokens in your wallet with the VEGA (VESTING) token.": "Keep track of locked tokens in your wallet with the $VEGA (VESTING) token.",
   "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.": "The token address is {{address}}. Hit the add token button in your ERC20 wallet and enter this address.",
