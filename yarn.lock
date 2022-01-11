@@ -3128,7 +3128,7 @@
     eslint-visitor-keys "^2.0.0"
 
 "@vegaprotocol/smart-contracts-sdk@../smart-contracts-sdk":
-  version "0.1.0"
+  version "0.3.0"
   dependencies:
     deprecated-decorator "^0.1.6"
     ethers "^5.5.2"
