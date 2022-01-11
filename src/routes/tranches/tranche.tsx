@@ -1,9 +1,6 @@
 import "./tranche.scss";
 
-import {
-  EthereumChainId,
-  Tranche as TrancheType,
-} from "@vegaprotocol/smart-contracts-sdk";
+import { Tranche as TrancheType } from "@vegaprotocol/smart-contracts-sdk";
 import { useWeb3React } from "@web3-react/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -11,7 +8,7 @@ import { useParams } from "react-router";
 import { Redirect } from "react-router-dom";
 
 import { EtherscanLink } from "../../components/etherscan-link";
-import { ADDRESSES } from "../../config";
+import { ADDRESSES, EthereumChainId } from "../../config";
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
 import { TrancheItem } from "../redemption/tranche-item";

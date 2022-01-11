@@ -1,5 +1,4 @@
 import {
-  Networks,
   VegaClaim,
   VegaErc20Bridge,
   VegaStaking,
@@ -7,12 +6,11 @@ import {
   VegaVesting,
 } from "@vegaprotocol/smart-contracts-sdk";
 import { useWeb3React } from "@web3-react/core";
-import { InjectedConnector } from "@web3-react/injected-connector";
 import React from "react";
 
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
-import { ADDRESSES } from "../../config";
+import { APP_ENV } from "../../config";
 import { ContractsContext, ContractsContextShape } from "./contracts-context";
 
 /**
@@ -24,50 +22,15 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
     React.useState<ContractsContextShape | null>(null);
 
   React.useEffect(() => {
-    let cancelled = false;
-    const run = async () => {
-      if (library && !cancelled) {
-        let signer = null;
-        if (connector instanceof InjectedConnector) {
-          const authorized = await connector.isAuthorized();
-          signer = authorized ? library.getSigner() : null;
-        }
-
-        const token = new VegaToken(
-          library,
-          signer,
-          ADDRESSES.vegaTokenAddress
-        );
-        const decimals = await token.decimals();
-        setContracts({
-          token,
-          staking: new VegaStaking(library, Networks.DEVNET),
-          vesting: new VegaVesting(
-            library,
-            signer,
-            ADDRESSES.vestingAddress,
-            decimals
-          ),
-          claim: new VegaClaim(
-            library,
-            signer,
-            ADDRESSES.claimAddress,
-            decimals
-          ),
-          erc20Bridge: new VegaErc20Bridge(
-            library,
-            signer,
-            ADDRESSES.erc20Bridge
-          ),
-        });
-      }
-    };
-
-    run();
-
-    return () => {
-      cancelled = true;
-    };
+    if (library) {
+      setContracts({
+        token: new VegaToken(library, APP_ENV),
+        staking: new VegaStaking(library, APP_ENV),
+        vesting: new VegaVesting(library, APP_ENV),
+        claim: new VegaClaim(library, APP_ENV),
+        erc20Bridge: new VegaErc20Bridge(library, APP_ENV),
+      });
+    }
   }, [library, connector]);
 
   if (!contracts) {

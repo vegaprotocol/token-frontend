@@ -1,10 +1,7 @@
-import {
-  EthereumChainId,
-  EthereumChainNames,
-} from "@vegaprotocol/smart-contracts-sdk";
 import { useWeb3React } from "@web3-react/core";
 import { useTranslation } from "react-i18next";
 
+import { EthereumChainId, EthereumChainNames } from "../../config/ethereum";
 import {
   useEagerConnect,
   useWeb3Connect,
