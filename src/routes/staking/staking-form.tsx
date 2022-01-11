@@ -180,13 +180,7 @@ export const StakingForm = ({
   if (formState === FormState.Failure) {
     return <StakeFailure nodeName={nodeName} />;
   } else if (formState === FormState.Pending) {
-    return (
-      <StakePending
-        action={action}
-        amount={amount}
-        nodeName={nodeName}
-      />
-    );
+    return <StakePending action={action} amount={amount} nodeName={nodeName} />;
   } else if (formState === FormState.Success) {
     return (
       <StakeSuccess
