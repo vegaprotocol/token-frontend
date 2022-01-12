@@ -26,6 +26,7 @@ import { usePollERC20Approval } from "../../hooks/use-ercPoll20Approval";
 import { useRefreshBalances } from "../../hooks/use-refresh-balances";
 import { useTransaction } from "../../hooks/use-transaction";
 import { BigNumber } from "../../lib/bignumber";
+import { DATE_FORMAT_DETAILED } from "../../lib/date-formats";
 import { addDecimal } from "../../lib/decimals";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import {
@@ -225,7 +226,10 @@ export const Withdrawal = ({
         <KeyValueTableRow>
           <th>{t("created")}</th>
           <td>
-            {format(new Date(withdrawal.createdTimestamp), "dd MMM yyyy HH:mm")}
+            {format(
+              new Date(withdrawal.createdTimestamp),
+              DATE_FORMAT_DETAILED
+            )}
           </td>
         </KeyValueTableRow>
         <KeyValueTableRow>

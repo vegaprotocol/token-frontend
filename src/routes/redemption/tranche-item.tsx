@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 import { LockedProgress } from "../../components/locked-progress";
 import { BigNumber } from "../../lib/bignumber";
+import { DATE_FORMAT_LONG } from "../../lib/date-formats";
 import { formatNumber } from "../../lib/format-number";
 
 export interface TrancheItemProps {
@@ -55,11 +56,11 @@ export const TrancheItem = ({
         <tbody>
           <tr>
             <td>{t("Starts unlocking")}</td>
-            <td>{format(tranche.tranche_start, "dd MMMM yyyy")}</td>
+            <td>{format(tranche.tranche_start, DATE_FORMAT_LONG)}</td>
           </tr>
           <tr>
             <td>{t("Fully unlocked")}</td>
-            <td>{format(tranche.tranche_end, "dd MMMM yyyy")}</td>
+            <td>{format(tranche.tranche_end, DATE_FORMAT_LONG)}</td>
           </tr>
         </tbody>
       </table>
