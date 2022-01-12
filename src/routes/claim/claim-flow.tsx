@@ -12,6 +12,7 @@ import {
   KeyValueTableRow,
 } from "../../components/key-value-table";
 import { useContracts } from "../../contexts/contracts/contracts-context";
+import { DATE_FORMAT_LONG } from "../../lib/date-formats";
 import { formatNumber } from "../../lib/format-number";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { ClaimInfo } from "./claim-info";
@@ -139,7 +140,7 @@ export const ClaimFlow = ({
                     ? t("claimExpiry", {
                         date: format(
                           state.claimData?.claim.expiry * 1000,
-                          "dd MMM yyyy"
+                          DATE_FORMAT_LONG
                         ),
                       })
                     : t("claimNoExpiry"),
@@ -170,18 +171,18 @@ export const ClaimFlow = ({
                   {state.claimData?.claim.expiry
                     ? format(
                         state.claimData?.claim.expiry * 1000,
-                        "dd MMM yyyy"
+                        DATE_FORMAT_LONG
                       )
                     : "No expiry"}
                 </td>
               </KeyValueTableRow>
               <KeyValueTableRow>
                 <th>{t("Starts unlocking")}</th>
-                <td>{format(currentTranche.tranche_start, "dd MMM yyyy")}</td>
+                <td>{format(currentTranche.tranche_start, DATE_FORMAT_LONG)}</td>
               </KeyValueTableRow>
               <KeyValueTableRow>
                 <th>{t("Fully unlocked")}</th>
-                <td>{format(currentTranche.tranche_end, "dd MMM yyyy")}</td>
+                <td>{format(currentTranche.tranche_end, DATE_FORMAT_LONG)}</td>
               </KeyValueTableRow>
             </KeyValueTable>
           </div>

@@ -11,6 +11,7 @@ import {
 } from "../../../components/key-value-table";
 import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../../lib/bignumber";
+import { DATE_FORMAT_DETAILED } from "../../../lib/date-formats";
 import {
   Rewards,
   Rewards_party_delegations,
@@ -140,7 +141,7 @@ export const RewardTable = ({ reward, delegations }: RewardTableProps) => {
         </KeyValueTableRow>
         <KeyValueTableRow>
           <th>{t("received")}</th>
-          <td>{format(new Date(reward.receivedAt), "dd MMM yyyy HH:mm")}</td>
+          <td>{format(new Date(reward.receivedAt), DATE_FORMAT_DETAILED)}</td>
         </KeyValueTableRow>
       </KeyValueTable>
     </div>

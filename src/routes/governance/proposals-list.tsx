@@ -5,11 +5,10 @@ import { useTranslation } from "react-i18next";
 import { Link, useRouteMatch } from "react-router-dom";
 
 import { Heading } from "../../components/heading";
+import { DATE_FORMAT_DETAILED } from "../../lib/date-formats";
 import { Proposals_proposals } from "./__generated__/Proposals";
 import { CurrentProposalState } from "./current-proposal-state";
 import { ProposalChangeText } from "./proposal-change-text";
-
-const DATE_FORMAT = "dd MMMM yyyy HH:mm";
 
 interface ProposalsListProps {
   proposals: Proposals_proposals[];
@@ -62,7 +61,7 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
                   : t("closedOn")}
               </th>
               <td data-testid="governance-proposal-closingDate">
-                {format(new Date(row.terms.closingDatetime), DATE_FORMAT)}
+                {format(new Date(row.terms.closingDatetime), DATE_FORMAT_DETAILED)}
               </td>
             </tr>
             <tr>
@@ -72,7 +71,7 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
                   : t("enactedOn")}
               </th>
               <td data-testid="governance-proposal-enactmentDate">
-                {format(new Date(row.terms.enactmentDatetime), DATE_FORMAT)}
+                {format(new Date(row.terms.enactmentDatetime), DATE_FORMAT_DETAILED)}
               </td>
             </tr>
           </tbody>

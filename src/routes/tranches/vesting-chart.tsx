@@ -14,6 +14,7 @@ import {
 } from "recharts";
 
 import { Colors } from "../../config";
+import { DATE_FORMAT_LONG } from "../../lib/date-formats";
 import data from "./data.json";
 
 const ORDER = ["community", "publicSale", "earlyInvestors", "team"];
@@ -21,7 +22,7 @@ const ORDER = ["community", "publicSale", "earlyInvestors", "team"];
 export const VestingChart = () => {
   const { t } = useTranslation();
   const currentDate = React.useMemo(
-    () => format(startOfMonth(new Date()), "dd MMM yyyy"),
+    () => format(startOfMonth(new Date()), DATE_FORMAT_LONG),
     []
   );
   return (
