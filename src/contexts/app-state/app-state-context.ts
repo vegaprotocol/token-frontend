@@ -1,4 +1,4 @@
-import { Tranche } from "@vegaprotocol/smart-contracts-sdk";
+import { Tranche, TxData } from "@vegaprotocol/smart-contracts-sdk";
 import React from "react";
 
 import { BigNumber } from "../../lib/bignumber";
@@ -107,6 +107,12 @@ export interface AppState {
     stakingAssociations: { [vegaKey: string]: BigNumber };
     vestingAssociations: { [vegaKey: string]: BigNumber };
   };
+
+  /**  Whether or not the transaction modal is open */
+  transactionOverlay: boolean;
+
+  /** Ethereum transactions */
+  ethTransactions: TxData[];
 }
 
 export enum AppStateActionType {
@@ -125,6 +131,8 @@ export enum AppStateActionType {
   SET_TRANCHE_ERROR,
   REFRESH_ASSOCIATED_BALANCES,
   SET_ASSOCIATION_BREAKDOWN,
+  SET_TRANSACTION_OVERLAY,
+  SET_ETH_TRANSACTIONS,
 }
 
 export type AppStateAction =
@@ -198,6 +206,14 @@ export type AppStateAction =
         stakingAssociations: { [vegaKey: string]: BigNumber };
         vestingAssociations: { [vegaKey: string]: BigNumber };
       };
+    }
+  | {
+      type: AppStateActionType.SET_TRANSACTION_OVERLAY;
+      isOpen: boolean;
+    }
+  | {
+      type: AppStateActionType.SET_ETH_TRANSACTIONS;
+      transactions: TxData[];
     };
 
 type AppStateContextShape = {
