@@ -94,7 +94,6 @@ const ConnectedKey = () => {
   const { appState } = useAppState();
   const { walletBalance, totalLockedBalance, totalVestedBalance } = appState;
   const pendingTxs = usePendingTransactions();
-  console.log("pending", pendingTxs);
 
   const totalInVestingContract = React.useMemo(() => {
     return totalLockedBalance.plus(totalVestedBalance);
@@ -121,6 +120,19 @@ const ConnectedKey = () => {
 
   return (
     <>
+      {pendingTxs ? (
+        <div
+          style={{
+            padding: 10,
+            background: "red",
+            top: 0,
+            right: 0,
+            position: "absolute",
+          }}
+        >
+          Pending
+        </div>
+      ) : null}
       {totalVestedBalance.plus(totalLockedBalance).isEqualTo(0) ? null : (
         <>
           <WalletCardAsset
