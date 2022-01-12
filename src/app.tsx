@@ -13,6 +13,7 @@ import { EthWallet } from "./components/eth-wallet";
 // @ts-ignore
 import { GraphQlProvider } from "./components/GRAPHQL_PROVIDER/graphql-provider";
 import { TemplateSidebar } from "./components/page-templates/template-sidebar";
+import { TransactionModal } from "./components/transactions-modal";
 import { VegaWallet } from "./components/vega-wallet";
 import { VegaWalletModal } from "./components/vega-wallet/vega-wallet-modal";
 import { Web3Connector } from "./components/web3-connector";
@@ -40,6 +41,7 @@ function App() {
                     </div>
                     <VegaWalletModal />
                     <EthConnectModal />
+                    <TransactionModal />
                   </BalanceManager>
                 </AppLoader>
               </AppStateProvider>

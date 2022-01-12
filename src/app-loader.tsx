@@ -100,6 +100,24 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
     }
   }, [appDispatch, account, vegaKeysLoaded, setAssociatedBalances]);
 
+  React.useEffect(() => {
+    if (!staking || !vesting) return;
+
+    staking.listen((txs) => {
+      appDispatch({
+        type: AppStateActionType.SET_ETH_TRANSACTIONS,
+        transactions: txs,
+      });
+    });
+
+    vesting.listen((txs) => {
+      appDispatch({
+        type: AppStateActionType.SET_ETH_TRANSACTIONS,
+        transactions: txs,
+      });
+    });
+  }, [staking, vesting, appDispatch]);
+
   if (Flags.NETWORK_DOWN) {
     return (
       <SplashScreen>
