@@ -1,9 +1,9 @@
+import { ChainIdMap } from "@vegaprotocol/smart-contracts-sdk";
 import { InjectedConnector } from "@web3-react/injected-connector";
 import { NetworkConnector } from "@web3-react/network-connector";
 import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
 
 import { APP_CHAIN_ID, InfuraUrls } from "../config";
-import { ChainIdMap } from "../config/ethereum";
 
 export type AllowedConnectors =
   | NetworkConnector
