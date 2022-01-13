@@ -22,12 +22,12 @@ export const NewWalletAvailable = () => {
         const res = await fetch(Links.WALLET_RELEASES_HISTORY);
         const json = await res.json();
 
+        const [, currentVersion] = await vegaWalletService.getVersion();
         // find the first non-prelease
         for (let walletVerison of json) {
           if (!walletVerison.prerelease) {
             const location = Links.WALLET_RELEASES_LATEST + walletVerison.name;
             const latestVersion = walletVerison.name;
-            const [, currentVersion] = await vegaWalletService.getVersion();
             if (latestVersion !== currentVersion) {
               setNewVersionAvailable(latestVersion);
               setLatestVersionLocation(location);
