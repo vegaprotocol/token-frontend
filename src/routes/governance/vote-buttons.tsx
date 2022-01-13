@@ -12,6 +12,7 @@ import {
 } from "../../contexts/app-state/app-state-context";
 import { useVegaUser } from "../../hooks/use-vega-user";
 import { BigNumber } from "../../lib/bignumber";
+import { DATE_FORMAT_LONG } from "../../lib/date-formats";
 import {
   VoteButtons as VoteButtonsQueryResult,
   VoteButtonsVariables,
@@ -140,7 +141,7 @@ export const VoteButtons = ({
         <span className={className}>{t(`voteState_${voteState}`)}</span>
         {". "}
         {voteDatetime ? (
-          <span>{format(voteDatetime, "d MMM yyyy")}. </span>
+          <span>{format(voteDatetime, DATE_FORMAT_LONG)}. </span>
         ) : null}
         {proposalState === ProposalState.Open ? (
           <button

@@ -6,8 +6,7 @@ import * as React from "react";
 import { useTranslation } from "react-i18next";
 
 import arrow from "../../images/back.png";
-
-export const DATE_FORMAT = "yyyy.MM.dd HH:mm";
+import { DATE_FORMAT_DETAILED } from "../../lib/date-formats";
 
 export interface EpochCountdownProps {
   id: string;
@@ -83,11 +82,11 @@ export function EpochCountdown({
         intent={Intent.NONE}
       />
       <div className="epoch-countdown__time-range">
-        <p>{format(startDate, DATE_FORMAT)}</p>
+        <p>{format(startDate, DATE_FORMAT_DETAILED)}</p>
         <div className="epoch-countdown__arrow">
           <img alt="arrow" src={arrow} />
         </div>
-        <p>{format(endDate, DATE_FORMAT)}</p>
+        <p>{format(endDate, DATE_FORMAT_DETAILED)}</p>
       </div>
     </div>
   );

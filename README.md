@@ -17,15 +17,6 @@
 Install:
 `yarn install`
 
-Add .env file in root:
-
-```bash
-// .env
-REACT_APP_ENV=DEVNET
-REACT_APP_CHAIN=0x3
-REACT_APP_VEGA_URL="https://n04.d.vega.xyz/query"
-```
-
 Starting the app:
 `yarn start`
 
