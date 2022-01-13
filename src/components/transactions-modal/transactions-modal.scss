@@ -1,0 +1,18 @@
+@import "../../styles/colors";
+
+.transactions-modal {
+  &__table {
+    width: 100%;
+
+    th,
+    td {
+      text-align: left;
+      font-weight: normal;
+    }
+
+    th {
+      color: $text-color-deemphasise;
+      border-bottom: 1px solid $gray5;
+    }
+  }
+}

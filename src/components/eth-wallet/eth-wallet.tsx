@@ -15,6 +15,7 @@ import vegaWhite from "../../images/vega_white.png";
 import { BigNumber } from "../../lib/bignumber";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { Routes } from "../../routes/router-config";
+import { Loader } from "../loader";
 import { LockedProgress } from "../locked-progress";
 import {
   WalletCard,
@@ -93,7 +94,6 @@ const ConnectedKey = () => {
   const { t } = useTranslation();
   const { appState } = useAppState();
   const { walletBalance, totalLockedBalance, totalVestedBalance } = appState;
-  const pendingTxs = usePendingTransactions();
 
   const totalInVestingContract = React.useMemo(() => {
     return totalLockedBalance.plus(totalVestedBalance);
@@ -120,19 +120,6 @@ const ConnectedKey = () => {
 
   return (
     <>
-      {pendingTxs ? (
-        <div
-          style={{
-            padding: 10,
-            background: "red",
-            top: 0,
-            right: 0,
-            position: "absolute",
-          }}
-        >
-          Pending
-        </div>
-      ) : null}
       {totalVestedBalance.plus(totalLockedBalance).isEqualTo(0) ? null : (
         <>
           <WalletCardAsset
@@ -195,15 +182,42 @@ export const EthWallet = () => {
   const { appDispatch } = useAppState();
   const { account } = useWeb3React();
   const { disconnect } = useWeb3Connect();
+  const pendingTxs = usePendingTransactions();
 
   return (
     <WalletCard>
       <WalletCardHeader>
         <h1>{t("ethereumKey")}</h1>
         {account && (
-          <span className="vega-wallet__curr-key">
-            {truncateMiddle(account)}
-          </span>
+          <div className="vega-wallet__curr-key" style={{ textAlign: "right" }}>
+            <div>{truncateMiddle(account)}</div>
+            {pendingTxs && (
+              <div>
+                <button
+                  onClick={() =>
+                    appDispatch({
+                      type: AppStateActionType.SET_TRANSACTION_OVERLAY,
+                      isOpen: true,
+                    })
+                  }
+                  style={{
+                    display: "flex",
+                    gap: 5,
+                    justifyContent: "space-between",
+                    padding: 5,
+                    background: "black",
+                    color: "white",
+                    flexWrap: "nowrap",
+                    whiteSpace: "nowrap",
+                  }}
+                  type="button"
+                >
+                  <Loader />
+                  Pending tx
+                </button>
+              </div>
+            )}
+          </div>
         )}
       </WalletCardHeader>
       <WalletCardContent>
