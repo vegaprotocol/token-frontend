@@ -24,6 +24,17 @@ export const Staking = ({ data }: { data?: StakingQueryResult }) => {
   return (
     <>
       <section>
+        <p>{t("stakingDescription1")}</p>
+        <p>{t("stakingDescription2")}</p>
+        <p>{t("stakingDescription3")}</p>
+        <p>{t("stakingDescription4")}</p>
+        <a href={Links.STAKING_GUIDE} target="_blank" rel="noreferrer">
+          {t("readMoreStaking")}
+        </a>
+      </section>
+      <StakingStepSelectNode data={data} />
+
+      <section>
         <BulletHeader tag="h2" style={{ marginTop: 0 }}>
           {t("stakingStep1")}
         </BulletHeader>

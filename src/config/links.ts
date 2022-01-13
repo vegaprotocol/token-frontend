@@ -6,4 +6,5 @@ export const Links = {
   NOLT: "https://vega-testnet.nolt.io",
   GITHUB: "https://github.com/vegaprotocol/token-frontend",
   DISCORD: "https://vega.xyz/discord",
+  STAKING_GUIDE: "https://docs.vega.xyz/docs/concepts/vega-chain/#staking-on-vega"
 };
