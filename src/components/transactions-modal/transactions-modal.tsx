@@ -1,13 +1,20 @@
+import "./transactions-modal.scss";
+
 import { Overlay } from "@blueprintjs/core";
+import { TxData } from "@vegaprotocol/smart-contracts-sdk";
+import { EtherscanLink } from "@vegaprotocol/ui-toolkit";
+import { useWeb3React } from "@web3-react/core";
 import React from "react";
 
 import {
   AppStateActionType,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
+import { truncateMiddle } from "../../lib/truncate-middle";
 import { Modal } from "../modal";
 
 export const TransactionModal = () => {
+  const { chainId } = useWeb3React();
   const { appState, appDispatch } = useAppState();
 
   const close = React.useCallback(
@@ -19,6 +26,18 @@ export const TransactionModal = () => {
     [appDispatch]
   );
 
+  const renderStatus = (t: TxData) => {
+    if (!t.receipt) {
+      return "Pending";
+    }
+
+    if (t.receipt.confirmations > t.requiredConfirmations) {
+      return "Confirmed";
+    }
+
+    return `${t.receipt.confirmations} of ${t.requiredConfirmations} blocks to go`;
+  };
+
   return (
     <Overlay
       className="bp3-dark"
@@ -26,14 +45,35 @@ export const TransactionModal = () => {
       onClose={close}
       transitionDuration={0}
     >
-      <div className="modal modal--dark">
+      <div className="modal transactions-modal">
         <Modal>
-          <h2>Transactions</h2>
-          <div>
-            {appState.ethTransactions.map((t) => {
-              return <div>{t.tx.hash}</div>;
-            })}
-          </div>
+          <h2>Ethereum Transactions</h2>
+          {appState.ethTransactions.map((t) => {
+            return (
+              <div>
+                <table className="transactions-modal__table">
+                  <thead>
+                    <tr>
+                      <th>Transaction</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <EtherscanLink
+                          tx={t.tx.hash}
+                          text={truncateMiddle(t.tx.hash)}
+                          chainId={`0x${chainId}` as any}
+                        />
+                      </td>
+                      <td>{renderStatus(t)}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            );
+          })}
         </Modal>
       </div>
     </Overlay>
