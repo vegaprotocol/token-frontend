@@ -10,11 +10,13 @@ import {
   AppStateActionType,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
+import { useContracts } from "../../contexts/contracts/contracts-context";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { Modal } from "../modal";
 
 export const TransactionModal = () => {
   const { chainId } = useWeb3React();
+  const { transactions } = useContracts();
   const { appState, appDispatch } = useAppState();
 
   const close = React.useCallback(
@@ -48,7 +50,7 @@ export const TransactionModal = () => {
       <div className="modal transactions-modal">
         <Modal>
           <h2>Ethereum Transactions</h2>
-          {appState.ethTransactions.map((t) => {
+          {transactions.map((t) => {
             return (
               <div>
                 <table className="transactions-modal__table">

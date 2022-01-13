@@ -1,3 +1,4 @@
+import { TxData } from "@vegaprotocol/smart-contracts-sdk";
 import {
   VegaClaim,
   VegaErc20Bridge,
@@ -6,6 +7,7 @@ import {
   VegaVesting,
 } from "@vegaprotocol/smart-contracts-sdk";
 import { useWeb3React } from "@web3-react/core";
+import uniqBy from "lodash/uniqBy";
 import React from "react";
 
 import { SplashLoader } from "../../components/splash-loader";
@@ -18,8 +20,11 @@ import { ContractsContext, ContractsContextShape } from "./contracts-context";
  */
 export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
   const { library, account } = useWeb3React();
-  const [contracts, setContracts] =
-    React.useState<ContractsContextShape | null>(null);
+  const [txs, setTxs] = React.useState<TxData[]>([]);
+  const [contracts, setContracts] = React.useState<Pick<
+    ContractsContextShape,
+    "token" | "staking" | "vesting" | "claim" | "erc20Bridge"
+  > | null>(null);
 
   // Create instances of contract classes. If we have an account use a signer for the
   // contracts so that we can sign transactions, otherwise use the provider for just
@@ -42,6 +47,22 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
     }
   }, [library, account]);
 
+  React.useEffect(() => {
+    if (!contracts) return;
+
+    const mergeTxs = (existing: TxData[], incoming: TxData[]) => {
+      return uniqBy([...incoming, ...existing], "tx.hash");
+    };
+
+    contracts.staking.listen((txs) => {
+      setTxs((curr) => mergeTxs(curr, txs));
+    });
+
+    contracts.vesting.listen((txs) => {
+      setTxs((curr) => mergeTxs(curr, txs));
+    });
+  }, [contracts]);
+
   if (!contracts) {
     return (
       <SplashScreen>
@@ -51,7 +72,7 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
   }
 
   return (
-    <ContractsContext.Provider value={contracts}>
+    <ContractsContext.Provider value={{ ...contracts, transactions: txs }}>
       {children}
     </ContractsContext.Provider>
   );

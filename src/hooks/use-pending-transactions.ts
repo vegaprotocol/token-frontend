@@ -1,15 +1,13 @@
 import React from "react";
 
-import { useAppState } from "../contexts/app-state/app-state-context";
+import { useContracts } from "../contexts/contracts/contracts-context";
 
 export const usePendingTransactions = () => {
-  const {
-    appState: { ethTransactions },
-  } = useAppState();
+  const { transactions } = useContracts();
 
   const pending = React.useMemo(() => {
-    return ethTransactions.some((tx) => tx.pending);
-  }, [ethTransactions]);
+    return transactions.some((tx) => tx.pending);
+  }, [transactions]);
 
   return pending;
 };
