@@ -248,13 +248,18 @@ const VegaWalletConnected = ({
                   return {
                     isVega,
                     name: a.asset.name,
-                    symbol: isVega ? t("collateral") : a.asset.symbol,
+                    subheading: isVega ? t("collateral") : a.asset.symbol,
+                    symbol: a.asset.symbol,
                     decimals: a.asset.decimals,
                     balance: new BigNumber(
                       addDecimal(new BigNumber(a.balance), a.asset.decimals)
                     ),
                     image: isVega ? vegaBlack : noIcon,
                     border: isVega,
+                    address:
+                      a.asset.source.__typename === "ERC20"
+                        ? a.asset.source.contractAddress
+                        : undefined,
                   };
                 })
                 .sort((a, b) => {
@@ -440,7 +445,8 @@ const VegaWalletConnected = ({
         image={vegaWhite}
         decimals={decimals}
         name="VEGA"
-        symbol="associated"
+        subheading={t("Associated")}
+        symbol="VEGA"
         balance={currentStakeAvailable}
         dark={true}
       />

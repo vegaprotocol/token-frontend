@@ -11,11 +11,11 @@ import { Networks } from "./vega";
 const appChainId = process.env.REACT_APP_CHAIN as EthereumChainId;
 const infuraId = process.env.REACT_APP_INFURA_ID;
 
-export const appEnv = process.env.REACT_APP_ENV as Networks;
+export const APP_ENV = process.env.REACT_APP_ENV as Networks;
 
 const Addresses = {
   [EthereumChainIds.Mainnet]: EnvironmentConfig.MAINNET,
-  [EthereumChainIds.Ropsten]: EnvironmentConfig[appEnv],
+  [EthereumChainIds.Ropsten]: EnvironmentConfig[APP_ENV],
 };
 
 export type { EthereumChainId };

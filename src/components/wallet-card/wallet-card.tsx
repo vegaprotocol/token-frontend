@@ -117,6 +117,7 @@ export interface WalletCardAssetProps {
   decimals: number;
   border?: boolean;
   dark?: boolean;
+  subheading?: string;
 }
 
 export const WalletCardAsset = ({
@@ -127,6 +128,7 @@ export const WalletCardAsset = ({
   decimals,
   border,
   dark,
+  subheading,
 }: WalletCardAssetProps) => {
   const [integers, decimalsPlaces] = useNumberParts(balance, decimals);
 
@@ -144,7 +146,7 @@ export const WalletCardAsset = ({
       <div className="wallet-card__asset-header">
         <div className="wallet-card__asset-heading">
           <h1>{name}</h1>
-          <h2>{symbol}</h2>
+          <h2>{subheading || symbol}</h2>
         </div>
         <div className="wallet-card__asset-balance">
           <span className="wallet-card__price--integer">{integers}.</span>
