@@ -42,7 +42,6 @@ const initialAppState: AppState = {
     stakingAssociations: {},
   },
   transactionOverlay: false,
-  ethTransactions: [],
 };
 
 function appStateReducer(state: AppState, action: AppStateAction): AppState {
@@ -182,12 +181,6 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
       return {
         ...state,
         transactionOverlay: action.isOpen,
-      };
-    }
-    case AppStateActionType.SET_ETH_TRANSACTIONS: {
-      return {
-        ...state,
-        ethTransactions: action.transactions,
       };
     }
   }

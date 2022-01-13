@@ -1,4 +1,5 @@
 import {
+  TxData,
   VegaClaim,
   VegaErc20Bridge,
   VegaStaking,
@@ -13,6 +14,7 @@ export interface ContractsContextShape {
   vesting: VegaVesting;
   claim: VegaClaim;
   erc20Bridge: VegaErc20Bridge;
+  transactions: TxData[];
 }
 
 export const ContractsContext = React.createContext<
