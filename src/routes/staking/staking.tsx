@@ -1,3 +1,5 @@
+import "./staking.scss";
+
 import { Callout } from "@vegaprotocol/ui-toolkit";
 import { useWeb3React } from "@web3-react/core";
 import { Trans, useTranslation } from "react-i18next";
@@ -7,6 +9,10 @@ import { BulletHeader } from "../../components/bullet-header";
 import { EtherscanLink } from "../../components/etherscan-link";
 import { CopyToClipboardType } from "../../components/etherscan-link/etherscan-link";
 import { Error, Tick } from "../../components/icons";
+import {
+  KeyValueTable,
+  KeyValueTableRow,
+} from "../../components/key-value-table";
 import { Links } from "../../config";
 import {
   AppStateActionType,
@@ -32,6 +38,22 @@ export const Staking = ({ data }: { data?: StakingQueryResult }) => {
           {t("readMoreStaking")}
         </a>
       </section>
+      <div className="staking__table">
+        <KeyValueTable>
+          <KeyValueTableRow>
+            <th>{t("stakedNextEpoch")}</th>
+            <td>--</td>
+          </KeyValueTableRow>
+          <KeyValueTableRow>
+            <th>{t("stakingReward")}</th>
+            <td>--</td>
+          </KeyValueTableRow>
+          <KeyValueTableRow>
+            <th>{t("prevEpoch")}</th>
+            <td>--</td>
+          </KeyValueTableRow>
+        </KeyValueTable>
+      </div>
       <StakingStepSelectNode data={data} />
 
       <section>

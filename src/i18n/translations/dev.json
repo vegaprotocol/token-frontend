@@ -505,5 +505,8 @@
   "stakingDescription2": "Validators and their nominators are rewared every 24 hours for securing the network with a cut of trading fees (and rewards from the Vega treasury). Staking rewards are paid into your Vega wallet after an epoch ends.",
   "stakingDescription3": "The amount that a validator, and its nominators receives is proportionate to the amount staked on it, however a validator can be penalised during an epoch for a number of reasons. In this case the validator and its nominator will forfeit some or all of its reward from that epoch",
   "stakingDescription4": "A validator will receive a higher share of the pot than its nominators. This share is the same for all validators and is set by a network parameter.",
-  "readMoreStaking": "Read more about staking on Vega"
+  "readMoreStaking": "Read more about staking on Vega",
+  "stakedNextEpoch": "Staked (next epoch)",
+  "stakingReward": "Staking reward (previous epoch)",
+  "prevEpoch": "Previous epoch return (Reward / Staked)"
 }
