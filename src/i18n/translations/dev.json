@@ -513,6 +513,6 @@
   "noEthereumProviderError": "No Ethereum browser extension detected, install MetaMask on desktop or visit from a dApp browser on mobile",
   "unsupportedChainIdError": "You're connected to an unsupported network",
   "userRejectionError": "Please authorise this website to access your Ethereum account",
-  "unknownEthereumConnectionError": "An unknown error occurred. Check the console in your browser's web developer tools for more details"
+  "unknownEthereumConnectionError": "An unknown error occurred. Check the console in your browser's web developer tools for more details",
   "networkDown": "This site is not currently connecting to the network please try again later."
 }

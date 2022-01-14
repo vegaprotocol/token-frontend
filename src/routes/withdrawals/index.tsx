@@ -1,6 +1,7 @@
 import "./withdrawals.scss";
 
 import { gql, useQuery } from "@apollo/client";
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import { useWeb3React } from "@web3-react/core";
 import { format } from "date-fns";
 import orderBy from "lodash/orderBy";
@@ -34,9 +35,6 @@ import {
   WithdrawalsPage_party_withdrawals,
   WithdrawalsPageVariables,
 } from "./__generated__/WithdrawalsPage";
-import { Flags } from "../../config";
-import { useRefreshBalances } from "../../hooks/use-refresh-balances";
-import { Callout } from "../../components/callout";
 
 const Withdrawals = () => {
   const { t } = useTranslation();

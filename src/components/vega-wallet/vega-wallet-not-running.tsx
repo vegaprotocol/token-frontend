@@ -1,6 +1,8 @@
-import { useTranslation } from "react-i18next";
-import { FormGroup } from "../form-group";
 import "./vega-wallet-not-running.scss";
+
+import { useTranslation } from "react-i18next";
+
+import { FormGroup } from "../form-group";
 
 interface VegaWalletNotRunningProps {
   url: string;

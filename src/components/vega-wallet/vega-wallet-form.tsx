@@ -2,7 +2,6 @@ import { FormGroup, Intent, Switch } from "@blueprintjs/core";
 import * as Sentry from "@sentry/react";
 import { useWeb3React } from "@web3-react/core";
 import React from "react";
-import * as Sentry from "@sentry/react";
 import { useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 

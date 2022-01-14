@@ -2,8 +2,10 @@ import * as Sentry from "@sentry/react";
 import { useWeb3React } from "@web3-react/core";
 import React from "react";
 
+import { SplashError } from "./components/splash-error";
 import { SplashLoader } from "./components/splash-loader";
 import { SplashScreen } from "./components/splash-screen";
+import { Flags } from "./config";
 import {
   AppStateActionType,
   useAppState,
@@ -14,11 +16,6 @@ import {
   Errors as VegaWalletServiceErrors,
   vegaWalletService,
 } from "./lib/vega-wallet/vega-wallet-service";
-import { useContracts } from "./contexts/contracts/contracts-context";
-import { useRefreshAssociatedBalances } from "./hooks/use-refresh-associated-balances";
-import { useWeb3 } from "./contexts/web3-context/web3-context";
-import { Flags } from "./config";
-import { SplashError } from "./components/splash-error";
 
 export const AppLoader = ({ children }: { children: React.ReactElement }) => {
   const { account } = useWeb3React();
@@ -101,7 +98,7 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
     if (!Flags.NETWORK_DOWN) {
       run();
     }
-  }, [appDispatch, ethAddress, vegaKeysLoaded, setAssociatedBalances]);
+  }, [appDispatch, account, vegaKeysLoaded, setAssociatedBalances]);
 
   if (Flags.NETWORK_DOWN) {
     return (
