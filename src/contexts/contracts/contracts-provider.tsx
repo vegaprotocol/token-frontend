@@ -63,6 +63,10 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
     });
   }, [contracts]);
 
+  React.useEffect(() => {
+    setTxs([]);
+  }, [account]);
+
   if (!contracts) {
     return (
       <SplashScreen>
