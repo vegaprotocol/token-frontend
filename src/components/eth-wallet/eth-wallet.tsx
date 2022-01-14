@@ -191,7 +191,7 @@ export const EthWallet = () => {
       <WalletCardHeader>
         <h1>{t("ethereumKey")}</h1>
         {account && (
-          <div className="eth-wallet__curr-key" style={{ textAlign: "right" }}>
+          <div className="eth-wallet__curr-key">
             <div>{truncateMiddle(account)}</div>
             {pendingTxs && (
               <div>
