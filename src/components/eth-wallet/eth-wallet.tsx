@@ -206,7 +206,7 @@ export const EthWallet = () => {
                   type="button"
                 >
                   <Loader />
-                  Pending transactions
+                  {t("pendingTransactions")}
                 </button>
               </div>
             )}

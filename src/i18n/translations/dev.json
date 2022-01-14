@@ -526,5 +526,6 @@
   "ethTransactionModalTitle": "Ethereum Transactions",
   "confirmed": "Confirmed",
   "pending": "Pending",
-  "confirmationsRemaining": "{{confirmations}} of {{required}} blocks to go"
+  "confirmationsRemaining": "{{confirmations}} of {{required}} blocks to go",
+  "pendingTransactions": "Pending transactions"
 }
