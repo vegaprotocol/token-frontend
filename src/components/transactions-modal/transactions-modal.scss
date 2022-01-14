@@ -15,4 +15,10 @@
       border-bottom: 1px solid $gray5;
     }
   }
+
+  &__status {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
 }
