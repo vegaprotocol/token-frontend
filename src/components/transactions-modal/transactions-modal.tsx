@@ -67,8 +67,7 @@ export const TransactionModal = () => {
       <div className="modal transactions-modal">
         <Modal>
           <h2>{t("ethTransactionModalTitle")}</h2>
-
-          <div>
+          {transactions.length ? (
             <table className="transactions-modal__table">
               <thead>
                 <tr>
@@ -93,7 +92,9 @@ export const TransactionModal = () => {
                 })}
               </tbody>
             </table>
-          </div>
+          ) : (
+            <p>No transactions</p>
+          )}
         </Modal>
       </div>
     </Overlay>
