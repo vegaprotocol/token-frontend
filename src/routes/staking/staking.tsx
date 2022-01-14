@@ -2,6 +2,7 @@ import "./staking.scss";
 
 import { Callout } from "@vegaprotocol/ui-toolkit";
 import { useWeb3React } from "@web3-react/core";
+import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { Link, useRouteMatch } from "react-router-dom";
 
@@ -27,6 +28,18 @@ import { NodeList } from "./node-list";
 export const Staking = ({ data }: { data?: StakingQueryResult }) => {
   const { t } = useTranslation();
 
+  const currentEpoch = React.useMemo(() => {
+    return data?.epoch.id!;
+  }, [data?.epoch.id]);
+
+  const stakeThisEpoch = React.useMemo(() => {
+    const delegations = data?.party?.delegations || [];
+    const amountsThisEpoch = delegations
+      .filter((d) => d.epoch === Number(currentEpoch))
+      .map((d) => new BigNumber(d.amountFormatted));
+    return BigNumber.sum.apply(null, [new BigNumber(0), ...amountsThisEpoch]);
+  }, [data?.party?.delegations, currentEpoch]);
+
   return (
     <>
       <section>
@@ -42,7 +55,7 @@ export const Staking = ({ data }: { data?: StakingQueryResult }) => {
         <KeyValueTable>
           <KeyValueTableRow>
             <th>{t("stakedNextEpoch")}</th>
-            <td>--</td>
+            <td>{t("vegaAmount", { amount: stakeThisEpoch.toString() })}</td>
           </KeyValueTableRow>
           <KeyValueTableRow>
             <th>{t("stakingReward")}</th>

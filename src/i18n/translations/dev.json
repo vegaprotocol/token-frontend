@@ -508,5 +508,6 @@
   "readMoreStaking": "Read more about staking on Vega",
   "stakedNextEpoch": "Staked (next epoch)",
   "stakingReward": "Staking reward (previous epoch)",
-  "prevEpoch": "Previous epoch return (Reward / Staked)"
+  "prevEpoch": "Previous epoch return (Reward / Staked)",
+  "vegaAmount": "{{amount}} VEGA"
 }
