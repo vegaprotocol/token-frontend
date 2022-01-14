@@ -33,9 +33,11 @@ export const TransactionModal = () => {
   );
 
   const renderStatus = (txObj: TxData) => {
+    const className = "transaction-modal__status";
+
     if (!txObj.receipt) {
       return (
-        <span style={{ display: "flex", gap: 5, alignItems: "center" }}>
+        <span className={className}>
           <Loader invert={true} />
           {t("pending")}
         </span>
@@ -44,17 +46,22 @@ export const TransactionModal = () => {
 
     if (txObj.receipt.confirmations >= txObj.requiredConfirmations) {
       return (
-        <span style={{ display: "flex", gap: 5, alignItems: "center" }}>
+        <span className={className}>
           <Tick />
           {t("confirmed")}
         </span>
       );
     }
 
-    return t("confirmationsRemaining", {
-      confirmations: txObj.receipt.confirmations,
-      required: txObj.requiredConfirmations,
-    });
+    return (
+      <span className={className}>
+        <Loader invert={true} />
+        {t("confirmationsRemaining", {
+          confirmations: txObj.receipt.confirmations,
+          required: txObj.requiredConfirmations,
+        })}
+      </span>
+    );
   };
 
   return (
