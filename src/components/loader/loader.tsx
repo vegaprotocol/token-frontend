@@ -2,8 +2,14 @@ import "./loader.scss";
 
 import React from "react";
 
-export const Loader = () => {
+interface LoaderProps {
+  invert?: boolean;
+}
+
+export const Loader = ({ invert = false }: LoaderProps) => {
   const [, forceRender] = React.useState(false);
+  const className = ["loader", invert ? "loader--dark" : ""].join(" ");
+
   React.useEffect(() => {
     const interval = setInterval(() => {
       forceRender((x) => !x);
@@ -13,7 +19,7 @@ export const Loader = () => {
   }, []);
 
   return (
-    <span className="loader">
+    <span className={className}>
       {new Array(9).fill(null).map((_, i) => {
         return (
           <span
