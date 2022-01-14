@@ -522,4 +522,9 @@
   "stakingDescription4": "A validator will receive a higher share of the pot than its nominators. This share is the same for all validators and is set by a network parameter.",
   "readMoreStaking": "Read more about staking on Vega",
   "networkDown": "This site is not currently connecting to the network please try again later."
+  "unknownEthereumConnectionError": "An unknown error occurred. Check the console in your browser's web developer tools for more details",
+  "ethTransactionModalTitle": "Ethereum Transactions",
+  "confirmed": "Confirmed",
+  "pending": "Pending",
+  "confirmationsRemaining": "{{confirmations}} of {{required}} blocks to go"
 }
