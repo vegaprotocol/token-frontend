@@ -110,6 +110,10 @@ export const WithdrawForm = ({
           <p className="text-muted">{t("withdrawFormNoAsset")}</p>
         )}
       </FormGroup>
+      <Callout title={t("withdrawPreparedWarningHeading")} intent="warn">
+        <p>{t("withdrawPreparedWarningText1")}</p>
+        <p>{t("withdrawPreparedWarningText2")}</p>
+      </Callout>
       <EthAddressInput
         onChange={setDestinationAddress}
         address={destinationAddress}

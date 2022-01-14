@@ -6,7 +6,6 @@
   top: 0;
   width: 400px;
   background: $white;
-  padding: 20px;
   color: $black;
 
   h1,
@@ -19,7 +18,15 @@
     color: $black;
   }
 
+  &__title {
+    text-align: center;
+    border-bottom: solid 1px $white;
+    padding-bottom: 10px;
+    margin-top: 10px;
+  }
+
   &__content {
+    padding: 0 20px 20px 20px;
     > :first-child {
       margin-top: 0;
     }

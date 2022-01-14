@@ -14,6 +14,11 @@ import {
   Errors as VegaWalletServiceErrors,
   vegaWalletService,
 } from "./lib/vega-wallet/vega-wallet-service";
+import { useContracts } from "./contexts/contracts/contracts-context";
+import { useRefreshAssociatedBalances } from "./hooks/use-refresh-associated-balances";
+import { useWeb3 } from "./contexts/web3-context/web3-context";
+import { Flags } from "./config";
+import { SplashError } from "./components/splash-error";
 
 export const AppLoader = ({ children }: { children: React.ReactElement }) => {
   const { account } = useWeb3React();
@@ -53,7 +58,9 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
       }
     };
 
-    run();
+    if (!Flags.NETWORK_DOWN) {
+      run();
+    }
   }, [token, appDispatch, staking, vesting]);
 
   // Attempt to get vega keys on startup
@@ -91,8 +98,18 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
       });
     }
 
-    run();
-  }, [appDispatch, account, vegaKeysLoaded, setAssociatedBalances]);
+    if (!Flags.NETWORK_DOWN) {
+      run();
+    }
+  }, [appDispatch, ethAddress, vegaKeysLoaded, setAssociatedBalances]);
+
+  if (Flags.NETWORK_DOWN) {
+    return (
+      <SplashScreen>
+        <SplashError />
+      </SplashScreen>
+    );
+  }
 
   if (!loaded) {
     return (

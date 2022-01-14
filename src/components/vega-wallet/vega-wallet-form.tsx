@@ -2,7 +2,8 @@ import { FormGroup, Intent, Switch } from "@blueprintjs/core";
 import * as Sentry from "@sentry/react";
 import { useWeb3React } from "@web3-react/core";
 import React from "react";
-import { useForm } from "react-hook-form";
+import * as Sentry from "@sentry/react";
+import { useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 import { Flags } from "../../config";
@@ -24,9 +25,15 @@ interface FormFields {
 
 interface VegaWalletFormProps {
   onConnect: () => void;
+  url: string;
+  setUrl: (url: string) => void;
 }
 
-export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
+export const VegaWalletForm = ({
+  onConnect,
+  url,
+  setUrl,
+}: VegaWalletFormProps) => {
   const { t } = useTranslation();
   const { account } = useWeb3React();
   const { appDispatch } = useAppState();
@@ -35,6 +42,7 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
   const [loading, setLoading] = React.useState(false);
   const [hostedWallet, setHostedWallet] = React.useState(false);
   const {
+    control,
     register,
     handleSubmit,
     formState: { errors },
@@ -42,9 +50,15 @@ export const VegaWalletForm = ({ onConnect }: VegaWalletFormProps) => {
     setValue,
   } = useForm<FormFields>({
     defaultValues: {
-      url: vegaWalletService.url,
+      url,
     },
   });
+
+  const formUrl = useWatch({ name: "url", control });
+
+  React.useEffect(() => {
+    setUrl(formUrl);
+  }, [formUrl, setUrl]);
 
   async function onSubmit(fields: FormFields) {
     setLoading(true);

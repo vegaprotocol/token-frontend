@@ -15,22 +15,35 @@ export const LiquidityContainer = ({ state }: { state: LiquidityState }) => {
   const { account } = useWeb3React();
   return (
     <section className="liquidity-container">
-      <Callout icon={<Error />} intent="error" title={t("lpEndedTitle")}>
+      <h2>{t("liquidityRewardsTitle")}</h2>
+      <p>
+        {t("liquidityOnsenIntro")}{" "}
+        <a href={Links.SUSHI_ONSEN_MENU}>{t("liquidityOnsenLinkText")}</a>.
+      </p>
+      <ul>
+        <li>
+          <a href={Links.SUSHI_ONSEN_WHAT_IS}>
+            {t("liquidityOnsenHowItWorks")}
+          </a>
+        </li>
+        <li>
+          <a href={Links.SUSHI_ONSEN_FAQ}>{t("liquidityOnsenFAQ")}</a>
+        </li>
+      </ul>
+      <p>
+        <a href={Links.SUSHI_ONSEN_MENU}>
+          <button className="fill button-secondary">
+            {t("liquidityOnsenButtonText")}
+          </button>
+        </a>
+      </p>
+
+      <h2>{t("liquidityRewardsTitlePrevious")}</h2>
+      <Callout intent="error" title={t("lpEndedTitle")}>
         <p>{t("lpEndedParagraph")}</p>
-        <p>
-          <Trans
-            i18nKey="lpDiscordPrompt"
-            components={{
-              discordLink: (
-                // eslint-disable-next-line jsx-a11y/anchor-has-content
-                <a href={Links.DISCORD} target="_blank" rel="noreferrer" />
-              ),
-            }}
-          />
-        </p>
       </Callout>
 
-      {!account && <EthConnectPrompt />}
+      {!ethAddress && <EthConnectPrompt />}
       <h2>{t("liquidityRewardsTitle")}</h2>
       {Object.entries(REWARDS_ADDRESSES).map(([name, contractAddress]) => {
         return (
