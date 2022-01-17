@@ -1,6 +1,7 @@
 import "./withdrawals.scss";
 
 import { gql, useQuery } from "@apollo/client";
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import { useWeb3React } from "@web3-react/core";
 import { format } from "date-fns";
 import orderBy from "lodash/orderBy";
@@ -47,6 +48,9 @@ const Withdrawals = () => {
     <>
       <Heading title={t("withdrawalsTitle")} />
       <p>{t("withdrawalsText")}</p>
+      <Callout title={t("withdrawalsPreparedWarningHeading")} intent="warn">
+        <p>{t("withdrawalsPreparedWarningText")}</p>
+      </Callout>
       <VegaWalletContainer>
         {(currVegaKey) => (
           <WithdrawPendingContainer currVegaKey={currVegaKey} />
