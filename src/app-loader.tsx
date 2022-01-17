@@ -2,8 +2,10 @@ import * as Sentry from "@sentry/react";
 import { useWeb3React } from "@web3-react/core";
 import React from "react";
 
+import { SplashError } from "./components/splash-error";
 import { SplashLoader } from "./components/splash-loader";
 import { SplashScreen } from "./components/splash-screen";
+import { Flags } from "./config";
 import {
   AppStateActionType,
   useAppState,
@@ -53,7 +55,9 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
       }
     };
 
-    run();
+    if (!Flags.NETWORK_DOWN) {
+      run();
+    }
   }, [token, appDispatch, staking, vesting]);
 
   // Attempt to get vega keys on startup
@@ -91,8 +95,18 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
       });
     }
 
-    run();
+    if (!Flags.NETWORK_DOWN) {
+      run();
+    }
   }, [appDispatch, account, vegaKeysLoaded, setAssociatedBalances]);
+
+  if (Flags.NETWORK_DOWN) {
+    return (
+      <SplashScreen>
+        <SplashError />
+      </SplashScreen>
+    );
+  }
 
   if (!loaded) {
     return (

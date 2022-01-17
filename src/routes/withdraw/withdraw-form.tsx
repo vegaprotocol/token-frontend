@@ -1,6 +1,7 @@
 import "./withdraw-form.scss";
 
 import { FormGroup, HTMLSelect } from "@blueprintjs/core";
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import { ethers } from "ethers";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -110,6 +111,10 @@ export const WithdrawForm = ({
           <p className="text-muted">{t("withdrawFormNoAsset")}</p>
         )}
       </FormGroup>
+      <Callout title={t("withdrawPreparedWarningHeading")} intent="warn">
+        <p>{t("withdrawPreparedWarningText1")}</p>
+        <p>{t("withdrawPreparedWarningText2")}</p>
+      </Callout>
       <EthAddressInput
         onChange={setDestinationAddress}
         address={destinationAddress}

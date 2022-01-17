@@ -73,8 +73,7 @@ export const EthConnectModal = () => {
       transitionDuration={0}
     >
       <div className="modal modal--dark">
-        <Modal>
-          <h2>{t("connectEthWallet")}</h2>
+        <Modal title={t("connectEthWallet")}>
           <div>
             {error && (
               <p className="eth-connect-modal__error">

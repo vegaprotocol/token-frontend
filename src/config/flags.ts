@@ -1,6 +1,7 @@
 const TRUTHY = ["1", "true"];
 
 export const Flags = {
+  NETWORK_DOWN: TRUTHY.includes(process.env.REACT_APP_NETWORK_DOWN!),
   HOSTED_WALLET_ENABLED: TRUTHY.includes(
     process.env.REACT_APP_HOSTED_WALLET_ENABLED!
   ),
