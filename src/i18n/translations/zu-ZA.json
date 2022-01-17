@@ -8,7 +8,7 @@
   "pageTitleLiquidity": "crwdns4515:0crwdne4515:0",
   "pageTitleRedemptionTranche": "crwdns4517:0crwdne4517:0",
   "pageTitleTranches": "crwdns4519:0crwdne4519:0",
-  "pageTitleStaking": "crwdns4521:0crwdne4521:0",
+  "pageTitleStaking": "crwdns6873:0crwdne6873:0",
   "pageTitle404": "crwdns4523:0crwdne4523:0",
   "pageTitleNotPermitted": "crwdns4525:0crwdne4525:0",
   "pageTitleDisassociate": "crwdns6569:0$VEGAcrwdne6569:0",
@@ -514,5 +514,10 @@
   "unsupportedChainIdError": "crwdns6799:0crwdne6799:0",
   "userRejectionError": "crwdns6807:0crwdne6807:0",
   "unknownEthereumConnectionError": "crwdns6809:0crwdne6809:0",
+  "stakingDescription1": "crwdns6875:0crwdne6875:0",
+  "stakingDescription2": "crwdns6877:0crwdne6877:0",
+  "stakingDescription3": "crwdns6879:0crwdne6879:0",
+  "stakingDescription4": "crwdns6881:0crwdne6881:0",
+  "readMoreStaking": "crwdns6883:0crwdne6883:0",
   "networkDown": "crwdns6871:0crwdne6871:0"
 }
