@@ -136,7 +136,10 @@ Then("I am taken to the {string} page", (pageVisited) => {
       break;
     case "staking":
       cy.url().should("include", "/staking");
-      cy.get(".heading__title-container").should("have.text", "Staking");
+      cy.get(".heading__title-container").should(
+        "have.text",
+        "Staking on Vega"
+      );
       break;
     case "governance":
       cy.url().should("include", "/governance");
