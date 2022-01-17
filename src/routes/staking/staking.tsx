@@ -2,7 +2,6 @@ import "./staking.scss";
 
 import { Callout } from "@vegaprotocol/ui-toolkit";
 import { useWeb3React } from "@web3-react/core";
-import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { Link, useRouteMatch } from "react-router-dom";
 
@@ -10,10 +9,6 @@ import { BulletHeader } from "../../components/bullet-header";
 import { EtherscanLink } from "../../components/etherscan-link";
 import { CopyToClipboardType } from "../../components/etherscan-link/etherscan-link";
 import { Error, Tick } from "../../components/icons";
-import {
-  KeyValueTable,
-  KeyValueTableRow,
-} from "../../components/key-value-table";
 import { Links } from "../../config";
 import {
   AppStateActionType,
@@ -28,18 +23,6 @@ import { NodeList } from "./node-list";
 export const Staking = ({ data }: { data?: StakingQueryResult }) => {
   const { t } = useTranslation();
 
-  const currentEpoch = React.useMemo(() => {
-    return data?.epoch.id!;
-  }, [data?.epoch.id]);
-
-  const stakeThisEpoch = React.useMemo(() => {
-    const delegations = data?.party?.delegations || [];
-    const amountsThisEpoch = delegations
-      .filter((d) => d.epoch === Number(currentEpoch))
-      .map((d) => new BigNumber(d.amountFormatted));
-    return BigNumber.sum.apply(null, [new BigNumber(0), ...amountsThisEpoch]);
-  }, [data?.party?.delegations, currentEpoch]);
-
   return (
     <>
       <section>
@@ -51,22 +34,7 @@ export const Staking = ({ data }: { data?: StakingQueryResult }) => {
           {t("readMoreStaking")}
         </a>
       </section>
-      <div className="staking__table">
-        <KeyValueTable>
-          <KeyValueTableRow>
-            <th>{t("stakedNextEpoch")}</th>
-            <td>{t("vegaAmount", { amount: stakeThisEpoch.toString() })}</td>
-          </KeyValueTableRow>
-          <KeyValueTableRow>
-            <th>{t("stakingReward")}</th>
-            <td>--</td>
-          </KeyValueTableRow>
-          <KeyValueTableRow>
-            <th>{t("prevEpoch")}</th>
-            <td>--</td>
-          </KeyValueTableRow>
-        </KeyValueTable>
-      </div>
+
       <StakingStepSelectNode data={data} />
 
       <section>
