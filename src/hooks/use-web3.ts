@@ -30,13 +30,15 @@ export function useWeb3Connect() {
 
 // This hook only eager connects to injected providers
 export function useEagerConnect() {
-  const { activate, active } = useWeb3React();
+  const { activate, active, connector } = useWeb3React();
   const [tried, setTried] = React.useState(false);
 
   React.useEffect(() => {
     injected.isAuthorized().then((isAuthorized: boolean) => {
       if (isAuthorized) {
-        activate(injected, undefined, true).catch(() => {
+        console.log(injected);
+        activate(injected, undefined, true).catch((e) => {
+          console.log(e);
           setTried(true);
         });
       } else {
