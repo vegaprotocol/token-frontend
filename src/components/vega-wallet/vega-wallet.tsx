@@ -44,6 +44,7 @@ import {
   DelegationsVariables,
 } from "./__generated__/Delegations";
 import { DownloadWalletPrompt } from "./download-wallet-prompt";
+import { NewWalletAvailable } from "./new-wallet-available";
 
 const DELEGATIONS_QUERY = gql`
   query Delegations($partyId: ID!) {
@@ -115,6 +116,7 @@ export const VegaWallet = () => {
             </span>
           )}
         </WalletCardHeader>
+        <NewWalletAvailable />
         <WalletCardContent>{child}</WalletCardContent>
       </WalletCard>
     </section>

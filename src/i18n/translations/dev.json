@@ -492,6 +492,8 @@
   "votePassed": "Vote passed.",
   "subjectToFurtherActions": "Vote passed {{daysAgo}} subject to further actions.",
   "transactionHashPrompt": "Transaction hash will appear here once the transaction is approved in your Ethereum wallet",
+  "newWalletVersionAvailable": "A new Vega wallet is available 🎉. ",
+  "downloadNewWallet": "Download {{newVersionAvailable}}",
   "errorLoadingTranches": "Error loading tranches. Please try again later.",
   "pendingNomination": "Pending Nomination",
   "pendingNominationNextEpoch": "Pending nomination for next epoch: {{pendingAmount}} $VEGA",
