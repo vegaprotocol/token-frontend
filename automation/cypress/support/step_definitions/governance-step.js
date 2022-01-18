@@ -1,5 +1,4 @@
 import { Then, When } from "cypress-cucumber-preprocessor/steps";
-import { parse } from "date-fns";
 
 Then("I am taken to the governance page", () => {
   cy.url().should("equal", Cypress.config().baseUrl + "governance");
