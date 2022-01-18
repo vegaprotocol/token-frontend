@@ -72,39 +72,19 @@ describe("Associate - vesting tokens", () => {
     cy.get('[data-testid="wallet-name"]').type("dex");
     cy.get('[data-testid="wallet-password"]').type("123");
     cy.get('[data-testid="wallet-login"]').click();
-    cy.get('[data-testid="token-amount-input"]').type("0.0001");
-    cy.get('[data-testid="token-amount-input"]').type("0.0001");
+    cy.get('[data-testid="token-amount-input"]').type("1");
     cy.get('[data-testid="token-input-submit-button"]').click();
-    cy.get('[data-testid="transaction-pending-heading"]').should(
-      "have.text",
-      "Associating Tokens"
-    );
-    // cy.get('[data-testid="transaction-pending-body"]').should(
-    //   "have.text",
-    //   "Associating 0.00010 VEGA tokens with Vega key pub"
-    // );
-    // cy.get('[data-testid="transaction-pending-footer"]').should(
-    //   "have.text",
-    //   "The Vega network requires 6 Confirmations (approx 5 minutes) on Ethereum before crediting your Vega key with your tokens. This page will update once complete or you can come back and check your Vega wallet to see if it is ready to use."
-    // );
 
     // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(1200000);
-
-    cy.get('[data-testid="transaction-complete-heading"]').should(
-      "have.text",
-      "Done"
-    );
-    cy.get('[data-testid="transaction-complete-body"]').should(
-      "have.text",
-      "Vega key pub can now participate in governance and Nominate a validator with it’s stake."
-    );
-    cy.get('[data-testid="transaction-complete-footer"]').should(
-      "have.text",
-      "Nominate Stake to Validator Node"
-    );
+    cy.wait(300000);
+    cy.get(".callout--success").should("exist");
 
     cy.get('[data-testid="transaction-complete-footer"] button').click();
     cy.url().should("include", "staking");
+
+    cy.get('[data-testid="node-list-item"] a').first().click();
+    cy.get(".bp3-radio").first().click();
+    cy.get("[data-testid='token-amount-input']").type("1");
+    cy.get('[data-testid="token-input-submit-button"]').click();
   });
 });
