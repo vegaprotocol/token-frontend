@@ -32,12 +32,10 @@
 import { Eip1193Bridge } from "@ethersproject/experimental/lib/eip1193-bridge";
 import { JsonRpcProvider } from "@ethersproject/providers";
 import { Wallet } from "@ethersproject/wallet";
+import { ethers } from "ethers";
 
 // todo: figure out how env vars actually work in CI
-// const TEST_PRIVATE_KEY = Cypress.env('INTEGRATION_TEST_PRIVATE_KEY')
-const TEST_PRIVATE_KEY =
-  "0xe580410d7c37d26c6ad1a837bbae46bc27f9066a466fb3a66e770523b4666d19";
-
+export const TEST_PRIVATE_KEY = Cypress.env("INTEGRATION_TEST_PRIVATE_KEY");
 // address of the above key
 export const TEST_ADDRESS_NEVER_USE = new Wallet(TEST_PRIVATE_KEY).address;
 
@@ -83,8 +81,28 @@ class CustomizedBridge extends Eip1193Bridge {
       }
     }
     try {
-      delete params[0].from;
-      const result = await super.send(method, params);
+      if (params && params.length && params[0].from && method === "eth_call")
+        delete params[0].from;
+      let result;
+      if (
+        params &&
+        params.length &&
+        params[0].from &&
+        method === "eth_sendTransaction"
+      ) {
+        params[0].gasLimit = params[0].gas;
+        delete params[0].gas;
+        delete params[0].from;
+        const req = ethers.providers.JsonRpcProvider.hexlifyTransaction(
+          params[0]
+        );
+        req.gasLimit = req.gas;
+        delete req.gas;
+        const tx = await this.signer.sendTransaction(req);
+        result = tx.hash;
+      } else {
+        result = await super.send(method, params);
+      }
       console.debug("result received", method, params, result);
       if (isCallbackForm) {
         callback(null, { result });
@@ -92,6 +110,8 @@ class CustomizedBridge extends Eip1193Bridge {
         return result;
       }
     } catch (error) {
+      debugger;
+      console.log(error);
       if (isCallbackForm) {
         callback(error, null);
       } else {

@@ -2,10 +2,6 @@ import { mock, mockVesting } from "../common/mock";
 
 describe("Associate", () => {
   it("Renders switcher, header and description", () => {
-    // As a user
-    mockVesting();
-    mock(cy);
-
     // When visiting the associate page
     cy.visit("/staking/associate");
     cy.get('[data-testid="connect-vega"]').click();
@@ -25,9 +21,6 @@ describe("Associate", () => {
   });
 
   it("Allows query param from method (Wallet)", () => {
-    // As a user
-    mockVesting();
-    mock(cy);
     // When visiting the associate page
     cy.visit("/staking/associate?method=Wallet");
     cy.get('[data-testid="connect-vega"]').click();
@@ -41,9 +34,6 @@ describe("Associate", () => {
   });
 
   it("Allows query param from method (Contract)", () => {
-    // As a user
-    mockVesting();
-    mock(cy);
     // When visiting the associate page
     cy.visit("/staking/associate?method=Contract");
     cy.get('[data-testid="connect-vega"]').click();
@@ -57,9 +47,6 @@ describe("Associate", () => {
   });
 
   it("Allows the user to click to select", () => {
-    // As a user
-    mockVesting();
-    mock(cy);
     // When visiting the associate page
     cy.visit("/staking/associate");
     cy.get('[data-testid="connect-vega"]').click();

@@ -244,7 +244,6 @@ const proposalDeclined = generateProposal({
   },
 });
 
-
 const proposalPassed = generateProposal({
   state: ProposalState.Passed,
   votes: {
@@ -345,7 +344,6 @@ const proposaNotEnoughVotes = generateProposal({
   },
 });
 
-
 const MOCK_PROPOSALS: MockedResponse<Proposals> = {
   request: {
     query: PROPOSALS_QUERY,
@@ -375,22 +373,22 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
 };
 
 const MOCK_PROPOSAL: MockedResponse<Proposal>[] = [
-    proposaNotEnoughVotes,
-    proposaNoVotesWillWin,
-    proposaYesVotesWillWin,
-    proposaSameYesNoVotes,
-    proposalNoVotesOnly,
-    proposalYesVotesOnly,
-    proposalWaitingForNodeVote,
-    proposalRejectedNoVotes,
-    proposalRejected,
-    proposalPassed,
-    proposalDeclined,
-    proposalNotVoted,
-    proposalNoTokens,
-    proposalVotedAgainst,
-    proposalDidNotVote,
-    propsoalVoteClosedVotedFor,
+  proposaNotEnoughVotes,
+  proposaNoVotesWillWin,
+  proposaYesVotesWillWin,
+  proposaSameYesNoVotes,
+  proposalNoVotesOnly,
+  proposalYesVotesOnly,
+  proposalWaitingForNodeVote,
+  proposalRejectedNoVotes,
+  proposalRejected,
+  proposalPassed,
+  proposalDeclined,
+  proposalNotVoted,
+  proposalNoTokens,
+  proposalVotedAgainst,
+  proposalDidNotVote,
+  propsoalVoteClosedVotedFor,
 ].map((p) => ({
   request: {
     query: PROPOSAL_QUERY,
@@ -516,6 +514,12 @@ const MOCK_NETWORK_PARAMS: MockedResponse<NetworkParams> = {
           __typename: "NetworkParameter",
           key: "reward.asset",
           value: "reward-asset-id",
+        },
+        {
+          __typename: "NetworkParameter",
+          key: "blockchains.ethereumConfig",
+          value:
+            '{"network_id": "3", "chain_id": "3", "bridge_address": "0x042573A44C7ed0c03960ce505Bd60C6d90d23795", "staking_bridge_addresses": ["0x3cCe40e1e47cedf76c03db3E48507f421b575523", "0xd751FF6264234cAfAE88e4BF6003878fAB9630a7"], "confirmations": 3}',
         },
       ],
     },

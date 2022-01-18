@@ -8,9 +8,6 @@ const generateCodeLink = ({ code, amount, tranche, nonce, target, expiry }) => {
 
 describe("Claim", () => {
   it("Renders error heading and error subheading if code is not enough", () => {
-    // As a user
-    mockVesting();
-    mock(cy);
     // Given a link with no information
     // When visiting the claim page
     cy.visit("/claim");
