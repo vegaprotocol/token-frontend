@@ -1,4 +1,4 @@
-name: Mocked backend tests
+name: E2e tests
 
 on:
   push:
@@ -73,3 +73,4 @@ jobs:
           CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID }}
           # pass cypress integration test private key
           CYPRESS_INTEGRATION_TEST_PRIVATE_KEY: ${{ secrets.CYPRESS_INTEGRATION_TEST_PRIVATE_KEY }}
+          CYPRESS_VEGA_WALLET_PASSWORD: ${{ secrets.PASSWORD }}
