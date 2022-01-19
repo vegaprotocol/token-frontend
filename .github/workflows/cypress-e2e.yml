@@ -30,9 +30,9 @@ jobs:
       - name: Unzip wallet
         run: unzip ./vegawallet-linux-amd64.zip
       - name: Create passphrase
-        run: echo "${{ secrets.PASSWORD }}" > ./passphrase
+        run: echo "${{ secrets.VEGA_WALLET_PASSWORD }}" > ./passphrase
       - name: Create recovery
-        run: echo "${{ secrets.RECOVERY_PHRASE }}" > ./recovery
+        run: echo "${{ secrets.VEGA_WALLET_RECOVERY_PHRASE }}" > ./recovery
       - name: Initialize wallet
         run: ./vegawallet init -f
       - name: Import wallet
@@ -73,4 +73,4 @@ jobs:
           CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID }}
           # pass cypress integration test private key
           CYPRESS_INTEGRATION_TEST_PRIVATE_KEY: ${{ secrets.CYPRESS_INTEGRATION_TEST_PRIVATE_KEY }}
-          CYPRESS_VEGA_WALLET_PASSWORD: ${{ secrets.PASSWORD }}
+          CYPRESS_VEGA_WALLET_PASSWORD: ${{ secrets.VEGA_WALLET_PASSWORD }}
