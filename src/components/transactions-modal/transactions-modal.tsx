@@ -33,13 +33,13 @@ export const TransactionModal = () => {
   );
 
   const renderStatus = (txObj: TxData) => {
-    const className = "transaction-modal__status";
+    const className = "transactions-modal__status";
 
     if (!txObj.receipt) {
       return (
         <span className={className}>
           <Loader invert={true} />
-          {t("pending")}
+          <span>{t("pending")}</span>
         </span>
       );
     }
@@ -48,7 +48,7 @@ export const TransactionModal = () => {
       return (
         <span className={className}>
           <Tick />
-          {t("confirmed")}
+          <span>{t("confirmed")}</span>
         </span>
       );
     }
@@ -56,10 +56,12 @@ export const TransactionModal = () => {
     return (
       <span className={className}>
         <Loader invert={true} />
-        {t("confirmationsRemaining", {
-          confirmations: txObj.receipt.confirmations,
-          required: txObj.requiredConfirmations,
-        })}
+        <span>
+          {t("confirmationsRemaining", {
+            confirmations: txObj.receipt.confirmations,
+            required: txObj.requiredConfirmations,
+          })}
+        </span>
       </span>
     );
   };
