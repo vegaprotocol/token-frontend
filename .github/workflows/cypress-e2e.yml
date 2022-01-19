@@ -50,6 +50,9 @@ jobs:
       - name: Setup env file
         run: cp .env.testnet .env.local
 
+      - name: Setup env file
+        run: cat .env.local
+
       - name: Start server in the background
         run: yarn start:e2e &
 
