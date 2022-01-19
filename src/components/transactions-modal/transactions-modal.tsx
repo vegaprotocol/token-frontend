@@ -102,7 +102,7 @@ export const TransactionModal = () => {
               </tbody>
             </table>
           ) : (
-            <p>No transactions</p>
+            <p>{t("noTransactions")}</p>
           )}
         </Modal>
       </div>
