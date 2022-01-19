@@ -1,11 +1,5 @@
-const fs = require("fs-extra");
 const path = require("path");
 const deepmerge = require("deepmerge");
-
-const cypressConfigResolverByFile = (filename) => {
-  const pathToConfigFile = path.resolve(__dirname, `${filename}.json`);
-  return fs.readJsonSync(pathToConfigFile);
-};
 
 const cypressConfigResolver = (config) => {
   let configJson = require(config.configFile);
