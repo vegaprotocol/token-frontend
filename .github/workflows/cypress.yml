@@ -71,3 +71,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # pass the project ID from the secrets through environment variable
           CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          # pass cypress integration test private key
+          CYPRESS_INTEGRATION_TEST_PRIVATE_KEY: ${{ secrets.CYPRESS_INTEGRATION_TEST_PRIVATE_KEY }}
