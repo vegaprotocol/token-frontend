@@ -1,48 +1,11 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-
-// Cypress.Commands.overwrite("contains", (originalFn, selector, str, ...rest) => {
-//   // if (!en[str]) {
-//   //   throw Error("Could not find translations for string:", str);
-//   // }
-//   return originalFn(selector, en[str] || str, ...rest);
-// });
-
 import { Eip1193Bridge } from "@ethersproject/experimental/lib/eip1193-bridge";
 import { JsonRpcProvider } from "@ethersproject/providers";
 import { Wallet } from "@ethersproject/wallet";
 import { ethers } from "ethers";
 
-// todo: figure out how env vars actually work in CI
 export const TEST_PRIVATE_KEY = Cypress.env("INTEGRATION_TEST_PRIVATE_KEY");
-// address of the above key
+// Address of the above key
 export const TEST_ADDRESS_NEVER_USE = new Wallet(TEST_PRIVATE_KEY).address;
-
-// export const TEST_ADDRESS_NEVER_USE_SHORTENED = `${TEST_ADDRESS_NEVER_USE.substr(
-//   0,
-//   6
-// )}...${TEST_ADDRESS_NEVER_USE.substr(-4, 4)}`;
 
 class CustomizedBridge extends Eip1193Bridge {
   chainId = 3;
@@ -66,6 +29,7 @@ class CustomizedBridge extends Eip1193Bridge {
       method = args[0];
       params = args[1];
     }
+    // Mock out request accounts and chainId
     if (method === "eth_requestAccounts" || method === "eth_accounts") {
       if (isCallbackForm) {
         callback({ result: [TEST_ADDRESS_NEVER_USE] });
@@ -81,26 +45,41 @@ class CustomizedBridge extends Eip1193Bridge {
       }
     }
     try {
+      // Hacky, https://github.com/ethers-io/ethers.js/issues/1683#issuecomment-1016227588
+
+      // If from is present on eth_call it errors, removing it makes the library set
+      // from as the connected wallet which works fine
       if (params && params.length && params[0].from && method === "eth_call")
         delete params[0].from;
       let result;
+      // For sending a transaction if we call send it will error
+      // as it wants gasLimit in sendTransaction but hexlify sets the property gas
+      // to gasLimit which makes sensd transaction error.
+      // This has taken the code from the super method for sendTransaction and altered
+      // it slightly to make it work with the gas limit issues.
       if (
         params &&
         params.length &&
         params[0].from &&
         method === "eth_sendTransaction"
       ) {
+        // Hexlify will not take gas, must be gasLimit, set this property to be gasLimit
         params[0].gasLimit = params[0].gas;
         delete params[0].gas;
+        // If from is present on eth_sendTransaction it errors, removing it makes the library set
+        // from as the connected wallet which works fine
         delete params[0].from;
         const req = ethers.providers.JsonRpcProvider.hexlifyTransaction(
           params[0]
         );
+        // Hexlify sets the gasLimit property to be gas again and send transaction requires gasLimit
         req.gasLimit = req.gas;
         delete req.gas;
+        // Send the transaction
         const tx = await this.signer.sendTransaction(req);
         result = tx.hash;
       } else {
+        // All other transactions the base class works for
         result = await super.send(method, params);
       }
       console.debug("result received", method, params, result);
@@ -110,7 +89,6 @@ class CustomizedBridge extends Eip1193Bridge {
         return result;
       }
     } catch (error) {
-      debugger;
       console.log(error);
       if (isCallbackForm) {
         callback(error, null);
@@ -135,7 +113,6 @@ Cypress.Commands.overwrite("visit", (original, url, options) => {
       );
       const signer = new Wallet(TEST_PRIVATE_KEY, provider);
       win.ethereum = new CustomizedBridge(signer, provider);
-      console.log(win.ethereum);
     },
   });
 });
