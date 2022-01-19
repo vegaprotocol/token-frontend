@@ -11,6 +11,7 @@ describe("Associate and stake - Wallet tokens", () => {
     cy.get('[data-testid="token-amount-input"]').type("1");
     cy.get('[data-testid="token-input-submit-button"]').click();
 
+    // TODO let's poll for this with a timeout to not waste build mins
     // eslint-disable-next-line cypress/no-unnecessary-waiting
     cy.wait(300000);
     cy.get(".callout--success").should("exist");
