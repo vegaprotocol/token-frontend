@@ -37,14 +37,10 @@ jobs:
         run: ./vegawallet init -f
       - name: Import wallet
         run: ./vegawallet import -w test --recovery-phrase-file ./recovery -p ./passphrase
-      # - name: List keys
-      #   run: ./vegawallet key list -w test -p ./passphrase
 
-      # Setup TESTNET config
+      # Setup TESTNET config and start service on testnet
       - name: Import config
         run: ./vegawallet network import --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml
-      # - name: List networks
-      #   run: ./vegawallet network list
       - name: Start service
         run: ./vegawallet service run --network fairground &
 
