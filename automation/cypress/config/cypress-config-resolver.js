@@ -19,11 +19,7 @@ const cypressConfigResolver = (config) => {
     configJson = deepmerge(baseConfig, configJson);
   }
 
-  const mergedConfig = {
-    ...configJson,
-    ...config,
-  };
-  return mergedConfig;
+  return configJson;
 };
 
 module.exports.cypressConfigResolver = cypressConfigResolver;
