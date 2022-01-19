@@ -10,6 +10,10 @@ import { Networks } from "./vega";
 
 const appChainId = process.env.REACT_APP_CHAIN as EthereumChainId;
 const infuraId = process.env.REACT_APP_INFURA_ID;
+console.log(process.env);
+console.log(process.env.REACT_APP_CHAIN);
+console.log(process.env.REACT_APP_ENV);
+console.log(process.env.REACT_APP_VEGA_URL);
 
 export const APP_ENV = process.env.REACT_APP_ENV as Networks;
 

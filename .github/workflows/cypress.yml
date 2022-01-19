@@ -50,7 +50,7 @@ jobs:
         run: yarn install
 
       - name: Start server in the background
-        run: REACT_APP_CHAIN=0x3 yarn start:mock &
+        run: yarn start:test &
 
       # Install yarn automation/ dependencies, cache them correctly
       # and run all Cypress tests
