@@ -492,6 +492,8 @@
   "votePassed": "crwdns6761:0crwdne6761:0",
   "subjectToFurtherActions": "crwdns6763:0{{daysAgo}}crwdne6763:0",
   "transactionHashPrompt": "crwdns6771:0crwdne6771:0",
+  "newWalletVersionAvailable": "crwdns6885:0crwdne6885:0",
+  "downloadNewWallet": "crwdns6887:0{{newVersionAvailable}}crwdne6887:0",
   "errorLoadingTranches": "crwdns6773:0crwdne6773:0",
   "pendingNomination": "crwdns6811:0crwdne6811:0",
   "pendingNominationNextEpoch": "crwdns6813:0{{pendingAmount}}crwdnd6813:0$VEGAcrwdne6813:0",
