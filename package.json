@@ -56,6 +56,8 @@
   },
   "scripts": {
     "start": "craco start",
+    "start:e2e": "yarn start:test",
+    "start:mock": "REACT_APP_MOCKED=1 yarn start:test",
     "start:test": "env-cmd craco -r @cypress/instrument-cra start",
     "postinstall": "cp .env .env.local",
     "build": "craco build",

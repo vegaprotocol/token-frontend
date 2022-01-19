@@ -48,7 +48,7 @@ jobs:
         run: yarn install
 
       - name: Start server in the background
-        run: yarn start:test &
+        run: yarn start:e2e &
 
       # Install yarn automation/ dependencies, cache them correctly
       # and run all Cypress tests
