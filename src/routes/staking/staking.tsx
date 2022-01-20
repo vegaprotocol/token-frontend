@@ -35,8 +35,6 @@ export const Staking = ({ data }: { data?: StakingQueryResult }) => {
         </a>
       </section>
 
-      <StakingStepSelectNode data={data} />
-
       <section>
         <BulletHeader tag="h2" style={{ marginTop: 0 }}>
           {t("stakingStep1")}
