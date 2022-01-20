@@ -36,15 +36,6 @@ export const PendingStake = ({
   const { appState } = useAppState();
   const [formState, setFormState] = React.useState(FormState.Default);
 
-  // TODO Hacky refactor!
-  // If we have used the form (i.e. form state is not default)
-  // and the pendingAmount is zero then the cancel was a success so set it as so.
-  React.useEffect(() => {
-    if (formState !== FormState.Default && pendingAmount.isEqualTo(0)) {
-      setFormState(FormState.Success);
-    }
-  }, [formState, pendingAmount]);
-
   const removeStakeNow = async () => {
     setFormState(FormState.Pending);
     const undelegateInput: UndelegateSubmissionInput = {
