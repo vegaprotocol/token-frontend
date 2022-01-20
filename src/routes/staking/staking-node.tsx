@@ -128,20 +128,21 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
         stakeNextEpoch={stakeNextEpoch}
         stakeThisEpoch={stakeThisEpoch}
       />
-      {pendingStakeNextEpoch.isZero() ? null : (
+      {pendingStakeNextEpoch.isZero() ? (
+        <StakingForm
+          pubkey={vegaKey.pub}
+          nodeId={node}
+          nodeName={nodeInfo.name}
+          availableStakeToAdd={unstaked}
+          availableStakeToRemove={stakeNextEpoch}
+        />
+      ) : (
         <PendingStake
           nodeId={node}
           pubkey={vegaKey.pub}
           pendingAmount={pendingStakeNextEpoch}
         />
       )}
-      <StakingForm
-        pubkey={vegaKey.pub}
-        nodeId={node}
-        nodeName={nodeInfo.name}
-        availableStakeToAdd={unstaked}
-        availableStakeToRemove={stakeNextEpoch}
-      />
     </>
   );
 };
