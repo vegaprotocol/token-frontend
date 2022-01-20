@@ -36,9 +36,7 @@ export function useEagerConnect() {
   React.useEffect(() => {
     injected.isAuthorized().then((isAuthorized: boolean) => {
       if (isAuthorized) {
-        console.log(injected);
-        activate(injected, undefined, true).catch((e) => {
-          console.log(e);
+        activate(injected, undefined, true).catch(() => {
           setTried(true);
         });
       } else {
