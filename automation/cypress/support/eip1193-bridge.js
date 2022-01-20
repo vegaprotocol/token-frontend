@@ -6,6 +6,7 @@ import { ethers } from "ethers";
 export const TEST_PRIVATE_KEY = Cypress.env("INTEGRATION_TEST_PRIVATE_KEY");
 // Address of the above key
 export const TEST_ADDRESS_NEVER_USE = new Wallet(TEST_PRIVATE_KEY).address;
+const INFURA_ID = Cypress.env("INFURA_ID");
 
 export class CustomizedBridge extends Eip1193Bridge {
   chainId = 3;
@@ -101,7 +102,7 @@ export class CustomizedBridge extends Eip1193Bridge {
 
 export const createBridge = () => {
   const provider = new JsonRpcProvider(
-    `https://ropsten.infura.io/v3/4f846e79e13f44d1b51bbd7ed9edefb8`,
+    `https://ropsten.infura.io/v3/${INFURA_ID}`,
     3
   );
   const signer = new Wallet(TEST_PRIVATE_KEY, provider);
