@@ -72,9 +72,9 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
     return BigNumber.sum.apply(null, [new BigNumber(0), ...amountsNextEpoch]);
   }, [currentEpoch, data?.party?.delegations, node, stakeThisEpoch]);
 
-  const pendingStakeNextEpoch = React.useMemo(() => {
-    return stakeNextEpoch.minus(stakeThisEpoch);
-  }, [stakeThisEpoch, stakeNextEpoch]);
+  // const pendingStakeNextEpoch = React.useMemo(() => {
+  //   return stakeNextEpoch.minus(stakeThisEpoch);
+  // }, [stakeThisEpoch, stakeNextEpoch]);
 
   const currentDelegationAmount = React.useMemo(() => {
     if (!data?.party?.delegations) return new BigNumber(0);
@@ -128,21 +128,20 @@ export const StakingNode = ({ vegaKey, data }: StakingNodeProps) => {
         stakeNextEpoch={stakeNextEpoch}
         stakeThisEpoch={stakeThisEpoch}
       />
-      {pendingStakeNextEpoch.isZero() ? (
-        <StakingForm
-          pubkey={vegaKey.pub}
-          nodeId={node}
-          nodeName={nodeInfo.name}
-          availableStakeToAdd={unstaked}
-          availableStakeToRemove={stakeNextEpoch}
-        />
-      ) : (
+      {/* {pendingStakeNextEpoch.isZero() ? null : (
         <PendingStake
           nodeId={node}
           pubkey={vegaKey.pub}
           pendingAmount={pendingStakeNextEpoch}
         />
-      )}
+      )} */}
+      <StakingForm
+        pubkey={vegaKey.pub}
+        nodeId={node}
+        nodeName={nodeInfo.name}
+        availableStakeToAdd={unstaked}
+        availableStakeToRemove={stakeNextEpoch}
+      />
     </>
   );
 };
