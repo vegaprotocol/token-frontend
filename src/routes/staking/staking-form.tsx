@@ -240,7 +240,7 @@ export const StakingForm = ({
       </FormGroup>
       {action !== undefined && (
         <>
-          {action === "Add" ? (
+          {action === Actions.Add ? (
             <>
               <h2>{t("How much to Add in next epoch?")}</h2>
               <p>
