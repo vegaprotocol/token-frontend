@@ -54,7 +54,6 @@ export const PendingStake = ({
       if (err) {
         setFormState(FormState.Failure);
         Sentry.captureException(err);
-      } else {
       }
     } catch (err) {
       setFormState(FormState.Failure);
