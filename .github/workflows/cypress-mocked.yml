@@ -48,4 +48,5 @@ jobs:
           # pass cypress integration test private key
           CYPRESS_INTEGRATION_TEST_PRIVATE_KEY: ${{ secrets.CYPRESS_INTEGRATION_TEST_PRIVATE_KEY }}
           CYPRESS_VEGA_WALLET_PASSWORD: ${{ secrets.PASSWORD }}
+          CYPRESS_VEGA_WALLET_NAME: ${{ secrets.VEGA_WALLET_NAME }}
           CYPRESS_INFURA_ID: "4f846e79e13f44d1b51bbd7ed9edefb8"
