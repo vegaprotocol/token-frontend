@@ -21,11 +21,9 @@ export const StakePending = ({
   const title = isAdd
     ? t("stakeAddPendingTitle", titleArgs)
     : t("stakeRemovePendingTitle", titleArgs);
-  const message = isAdd ? t("stakeAddPendingMessage") : null;
 
   return (
     <Callout icon={<Loader />} title={title}>
-      {message && <p>{message}</p>}
       <p>{t("timeForConfirmation")}</p>
     </Callout>
   );
