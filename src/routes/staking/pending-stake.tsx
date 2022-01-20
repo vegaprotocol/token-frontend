@@ -77,8 +77,6 @@ export const PendingStake = ({
         title={t("removingPendingStake", { pendingAmount })}
       />
     );
-  } else if (formState === FormState.Success) {
-    return null;
   }
 
   return (
