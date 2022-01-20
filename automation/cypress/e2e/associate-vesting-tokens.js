@@ -1,3 +1,6 @@
+export const CONFIRMATION_TRANSACTION_MAX_WAIT = 300000;
+export const NONCONFIRMATION_TRANSACTION_MAX_WAIT = 60000;
+
 describe("Associate and stake - Wallet tokens", () => {
   it("Renders in progress and completed states", () => {
     const password = Cypress.env("VEGA_WALLET_PASSWORD");
@@ -12,12 +15,13 @@ describe("Associate and stake - Wallet tokens", () => {
     cy.get('[data-testid="token-amount-input"]').type("1");
     cy.get('[data-testid="token-input-submit-button"]').click();
 
-    // TODO let's poll for this with a timeout to not waste build mins
-    // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(300000);
-    cy.get(".callout--success").should("exist");
+    cy.get(".callout--success", {
+      timeout: CONFIRMATION_TRANSACTION_MAX_WAIT,
+    }).should("exist");
 
-    cy.get('[data-testid="transaction-complete-footer"] button').click();
+    cy.get('[data-testid="transaction-complete-footer"] button', {
+      timeout: CONFIRMATION_TRANSACTION_MAX_WAIT,
+    }).click();
     cy.url().should("include", "staking");
 
     cy.get('[data-testid="node-list-item"] a').first().click();
