@@ -5,9 +5,8 @@ it("Start with different accounts", () => {
   cy.ethereumConnect(1);
   // When visiting the associate page
   cy.visit("/staking/associate?method=Contract");
-  cy.get(".calloutasd", {
-    timeout: CONFIRMATION_TRANSACTION_MAX_WAIT,
-  }).should("exist");
+  // eslint-disable-next-line cypress/no-unnecessary-waiting
+  cy.wait(10000);
 });
 
 it("Disconnect", () => {
