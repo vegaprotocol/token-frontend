@@ -1,4 +1,4 @@
-export const CONFIRMATION_TRANSACTION_MAX_WAIT = 10000;
+export const CONFIRMATION_TRANSACTION_MAX_WAIT = 300000;
 export const NONCONFIRMATION_TRANSACTION_MAX_WAIT = 60000;
 
 it("Start with different accounts", () => {
@@ -22,8 +22,8 @@ it("Disconnect", () => {
 });
 
 describe("Associate and stake - Wallet tokens", () => {
-  it("Renders in progress and completed states", () => {
-    cy.ethereumConnect();
+  it("Staking Journey", () => {
+    cy.ethereumConnect(0);
     // When visiting the associate page
     cy.visit("/staking/associate?method=Contract");
     // Then the button is disabled by default
