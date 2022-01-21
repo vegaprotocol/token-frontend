@@ -9,7 +9,6 @@ export type AllowedConnectors =
   | NetworkConnector
   | InjectedConnector
   | WalletConnectConnector;
-
 export const injected = new InjectedConnector({
   supportedChainIds: [1, 3, 1337],
 });

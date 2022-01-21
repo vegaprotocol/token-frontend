@@ -6,7 +6,6 @@ import { ethers } from "ethers";
 const getAccount = (number = 0) => `m/44'/60'/0'/0/${number}`;
 
 // Address of the above key
-
 export class CustomizedBridge extends Eip1193Bridge {
   chainId = 3;
 
@@ -117,6 +116,7 @@ export const createBridge = (accountNumber) => {
     INTEGRATION_TEST_MNEMONIC,
     getAccount(accountNumber)
   ).privateKey;
+
   const signer = new Wallet(privateKey, provider);
   return new CustomizedBridge(signer, provider);
 };

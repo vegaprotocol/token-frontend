@@ -1,14 +1,28 @@
 import { createBridge, createNotLoggedInBridge } from "./eip1193-bridge";
 
-// sets up the injected provider to be a mock ethereum provider with the given mnemonic/index
-// eslint-disable-next-line no-undef
-Cypress.Commands.overwrite("visit", (original, url, options) => {
-  return original(url, {
-    ...options,
-    onBeforeLoad(win) {
-      options && options.onBeforeLoad && options.onBeforeLoad(win);
-      win.localStorage.clear();
-      win.ethereum = createBridge();
-    },
+Cypress.Commands.add("ethereumUnconnected", () => {
+  cy.on("window:before:load", (win) => {
+    win.ethereum = createNotLoggedInBridge();
+  });
+});
+
+Cypress.Commands.add("ethereumConnect", (account) => {
+  cy.on("window:before:load", (win) => {
+    win.ethereum = createBridge(account);
+  });
+});
+
+// Cypress.Commands.add("ethereumChangeAccount", () => {
+//   cy.window().then((win) => {
+//     win.ethereum.emit("accountsChanged", [
+//       "0x50EcdF8977a98CeF52AAC035326740d25A47a342",
+//     ]);
+//   });
+// });
+
+Cypress.Commands.add("ethereumDisconnect", () => {
+  cy.window().then((win) => {
+    win.ethereum.emit("accountsChanged", []);
+    win.ethereum.emit("disconnect");
   });
 });
