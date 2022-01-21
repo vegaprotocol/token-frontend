@@ -72,7 +72,7 @@ jobs:
           # pass the project ID from the secrets through environment variable
           CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID }}
           # pass cypress integration test private key
-          CYPRESS_INTEGRATION_TEST_PRIVATE_KEY: ${{ secrets.CYPRESS_INTEGRATION_TEST_PRIVATE_KEY }}
+          CYPRESS_INTEGRATION_TEST_MNEMONIC: ${{ secrets.CYPRESS_INTEGRATION_TEST_MNEMONIC }}
           CYPRESS_VEGA_WALLET_PASSWORD: ${{ secrets.VEGA_WALLET_PASSWORD }}
           CYPRESS_VEGA_WALLET_NAME: ${{ secrets.VEGA_WALLET_NAME }}
           CYPRESS_INFURA_ID: "4f846e79e13f44d1b51bbd7ed9edefb8"

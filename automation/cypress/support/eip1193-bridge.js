@@ -3,10 +3,13 @@ import { JsonRpcProvider } from "@ethersproject/providers";
 import { Wallet } from "@ethersproject/wallet";
 import { ethers } from "ethers";
 
-export const TEST_PRIVATE_KEY = Cypress.env("INTEGRATION_TEST_PRIVATE_KEY");
 // Address of the above key
-export const TEST_ADDRESS_NEVER_USE = new Wallet(TEST_PRIVATE_KEY).address;
 const INFURA_ID = Cypress.env("INFURA_ID");
+
+export const TEST_PRIVATE_KEY = Wallet.fromMnemonic(
+  Cypress.env("INTEGRATION_TEST_MNEMONIC")
+).privateKey;
+export const TEST_ADDRESS_NEVER_USE = new Wallet(TEST_PRIVATE_KEY).address;
 
 export class CustomizedBridge extends Eip1193Bridge {
   chainId = 3;
