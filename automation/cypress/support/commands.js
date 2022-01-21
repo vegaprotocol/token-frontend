@@ -1,4 +1,4 @@
-import { createBridge } from "./eip1193-bridge";
+import { createBridge, createNotLoggedInBridge } from "./eip1193-bridge";
 
 // sets up the injected provider to be a mock ethereum provider with the given mnemonic/index
 // eslint-disable-next-line no-undef

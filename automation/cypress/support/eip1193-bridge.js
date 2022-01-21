@@ -3,13 +3,9 @@ import { JsonRpcProvider } from "@ethersproject/providers";
 import { Wallet } from "@ethersproject/wallet";
 import { ethers } from "ethers";
 
-// Address of the above key
-const INFURA_ID = Cypress.env("INFURA_ID");
+const getAccount = (number = 0) => `m/44'/60'/0'/0/${number}`;
 
-export const TEST_PRIVATE_KEY = Wallet.fromMnemonic(
-  Cypress.env("INTEGRATION_TEST_MNEMONIC")
-).privateKey;
-export const TEST_ADDRESS_NEVER_USE = new Wallet(TEST_PRIVATE_KEY).address;
+// Address of the above key
 
 export class CustomizedBridge extends Eip1193Bridge {
   chainId = 3;
@@ -33,22 +29,23 @@ export class CustomizedBridge extends Eip1193Bridge {
       method = args[0];
       params = args[1];
     }
-    // Mock out request accounts and chainId
-    if (method === "eth_requestAccounts" || method === "eth_accounts") {
-      if (isCallbackForm) {
-        callback({ result: [TEST_ADDRESS_NEVER_USE] });
-      } else {
-        return Promise.resolve([TEST_ADDRESS_NEVER_USE]);
-      }
-    }
-    if (method === "eth_chainId") {
-      if (isCallbackForm) {
-        callback(null, { result: "0x3" });
-      } else {
-        return Promise.resolve("0x3");
-      }
-    }
     try {
+      // Mock out request accounts and chainId
+      if (method === "eth_requestAccounts" || method === "eth_accounts") {
+        const address = this.signer ? [await this.signer.getAddress()] : [];
+        if (isCallbackForm) {
+          callback({ result: address });
+        } else {
+          return Promise.resolve(address);
+        }
+      }
+      if (method === "eth_chainId") {
+        if (isCallbackForm) {
+          callback(null, { result: "0x3" });
+        } else {
+          return Promise.resolve("0x3");
+        }
+      }
       // Hacky, https://github.com/ethers-io/ethers.js/issues/1683#issuecomment-1016227588
 
       // If from is present on eth_call it errors, removing it makes the library set
@@ -103,11 +100,23 @@ export class CustomizedBridge extends Eip1193Bridge {
   }
 }
 
-export const createBridge = () => {
-  const provider = new JsonRpcProvider(
-    `https://ropsten.infura.io/v3/${INFURA_ID}`,
-    3
-  );
-  const signer = new Wallet(TEST_PRIVATE_KEY, provider);
+const INFURA_ID = Cypress.env("INFURA_ID");
+const INTEGRATION_TEST_MNEMONIC = Cypress.env("INTEGRATION_TEST_MNEMONIC");
+
+const getProvider = () =>
+  new JsonRpcProvider(`https://ropsten.infura.io/v3/${INFURA_ID}`, 3);
+
+export const createNotLoggedInBridge = () => {
+  const provider = getProvider();
+  return new CustomizedBridge(null, provider);
+};
+
+export const createBridge = (accountNumber) => {
+  const provider = getProvider();
+  const privateKey = Wallet.fromMnemonic(
+    INTEGRATION_TEST_MNEMONIC,
+    getAccount(accountNumber)
+  ).privateKey;
+  const signer = new Wallet(privateKey, provider);
   return new CustomizedBridge(signer, provider);
 };
