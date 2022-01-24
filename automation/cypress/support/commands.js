@@ -1,8 +1,8 @@
-import { createBridge, createNotLoggedInBridge } from "./eip1193-bridge";
+import { createBridge, signerlessBridge } from "./eip1193-bridge";
 
 Cypress.Commands.add("ethereumUnconnected", () => {
   cy.on("window:before:load", (win) => {
-    win.ethereum = createNotLoggedInBridge();
+    win.ethereum = signerlessBridge();
   });
 });
 

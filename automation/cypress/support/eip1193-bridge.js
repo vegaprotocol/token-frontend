@@ -105,7 +105,7 @@ const INTEGRATION_TEST_MNEMONIC = Cypress.env("INTEGRATION_TEST_MNEMONIC");
 const getProvider = () =>
   new JsonRpcProvider(`https://ropsten.infura.io/v3/${INFURA_ID}`, 3);
 
-export const createNotLoggedInBridge = () => {
+export const signerlessBridge = () => {
   const provider = getProvider();
   return new CustomizedBridge(null, provider);
 };
