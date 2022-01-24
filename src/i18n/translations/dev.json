@@ -521,8 +521,7 @@
   "stakingDescription3": "The amount that a validator, and its nominators receives is proportionate to the amount staked on it, however a validator can be penalised during an epoch for a number of reasons. In this case the validator and its nominator will forfeit some or all of its reward from that epoch",
   "stakingDescription4": "A validator will receive a higher share of the pot than its nominators. This share is the same for all validators and is set by a network parameter.",
   "readMoreStaking": "Read more about staking on Vega",
-  "networkDown": "This site is not currently connecting to the network please try again later."
-  "unknownEthereumConnectionError": "An unknown error occurred. Check the console in your browser's web developer tools for more details",
+  "networkDown": "This site is not currently connecting to the network please try again later.",
   "ethTransactionModalTitle": "Ethereum Transactions",
   "confirmed": "Confirmed",
   "pending": "Pending",
