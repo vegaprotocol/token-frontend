@@ -74,8 +74,7 @@ export const TransactionModal = () => {
       transitionDuration={0}
     >
       <div className="modal transactions-modal">
-        <Modal>
-          <h2>{t("ethTransactionModalTitle")}</h2>
+        <Modal title={t("ethTransactionModalTitle")}>
           {transactions.length ? (
             <table className="transactions-modal__table">
               <thead>
