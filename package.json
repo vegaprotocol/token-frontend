@@ -59,7 +59,7 @@
     "start:e2e": "yarn start:test",
     "start:mock": "REACT_APP_MOCKED=1 yarn start:test",
     "start:test": "env-cmd craco -r @cypress/instrument-cra start",
-    "postinstall": "cp .env.dev .env",
+    "postinstall": "cp .env .env.local",
     "build": "craco build",
     "test": "REACT_APP_CHAIN=0x1 craco test",
     "lint:es": "eslint . --ext .ts,.tsx --max-warnings 0 --cache",
