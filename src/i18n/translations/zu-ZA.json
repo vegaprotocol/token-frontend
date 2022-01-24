@@ -521,5 +521,11 @@
   "stakingDescription3": "crwdns6879:0crwdne6879:0",
   "stakingDescription4": "crwdns6881:0crwdne6881:0",
   "readMoreStaking": "crwdns6883:0crwdne6883:0",
-  "networkDown": "crwdns6871:0crwdne6871:0"
+  "networkDown": "crwdns6871:0crwdne6871:0",
+  "ethTransactionModalTitle": "crwdns6889:0crwdne6889:0",
+  "confirmed": "crwdns6891:0crwdne6891:0",
+  "pending": "crwdns6893:0crwdne6893:0",
+  "confirmationsRemaining": "crwdns6895:0{{confirmations}}crwdnd6895:0{{required}}crwdne6895:0",
+  "pendingTransactions": "crwdns6897:0crwdne6897:0",
+  "noTransactions": "crwdns6899:0crwdne6899:0"
 }
