@@ -9,10 +9,7 @@ import { Loader } from "../../components/loader";
 import { useAppState } from "../../contexts/app-state/app-state-context";
 import { BigNumber } from "../../lib/bignumber";
 import { removeDecimal } from "../../lib/decimals";
-import {
-  UndelegateSubmissionInput,
-  vegaWalletService,
-} from "../../lib/vega-wallet/vega-wallet-service";
+import { vegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
 
 interface PendingStakeProps {
   pendingAmount: BigNumber;
@@ -37,28 +34,26 @@ export const PendingStake = ({
   const [formState, setFormState] = React.useState(FormState.Default);
 
   const removeStakeNow = async () => {
-    setFormState(FormState.Pending);
-    const undelegateInput: UndelegateSubmissionInput = {
-      pubKey: pubkey,
-      undelegateSubmission: {
-        nodeId,
-        amount: removeDecimal(new BigNumber(pendingAmount), appState.decimals),
-        method: "METHOD_NOW",
-      },
-    };
-
-    try {
-      const command = undelegateInput;
-      const [err] = await vegaWalletService.commandSync(command);
-
-      if (err) {
-        setFormState(FormState.Failure);
-        Sentry.captureException(err);
-      }
-    } catch (err) {
-      setFormState(FormState.Failure);
-      Sentry.captureException(err);
-    }
+    // setFormState(FormState.Pending);
+    // const undelegateInput: UndelegateSubmissionInput = {
+    //   pubKey: pubkey,
+    //   undelegateSubmission: {
+    //     nodeId,
+    //     amount: removeDecimal(new BigNumber(pendingAmount), appState.decimals),
+    //     method: "METHOD_NOW",
+    //   },
+    // };
+    // try {
+    //   const command = undelegateInput;
+    //   const [err] = await vegaWalletService.commandSync(command);
+    //   if (err) {
+    //     setFormState(FormState.Failure);
+    //     Sentry.captureException(err);
+    //   }
+    // } catch (err) {
+    //   setFormState(FormState.Failure);
+    //   Sentry.captureException(err);
+    // }
   };
 
   if (formState === FormState.Failure) {

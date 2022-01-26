@@ -12,10 +12,7 @@ import {
 } from "./contexts/app-state/app-state-context";
 import { useContracts } from "./contexts/contracts/contracts-context";
 import { useRefreshAssociatedBalances } from "./hooks/use-refresh-associated-balances";
-import {
-  Errors as VegaWalletServiceErrors,
-  vegaWalletService,
-} from "./lib/vega-wallet/vega-wallet-service";
+import { vegaWalletService } from "./lib/vega-wallet/vega-wallet-service";
 
 export const AppLoader = ({ children }: { children: React.ReactElement }) => {
   const { account } = useWeb3React();
@@ -63,36 +60,35 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
   // Attempt to get vega keys on startup
   React.useEffect(() => {
     async function run() {
-      const [keysErr, keys] = await vegaWalletService.getKeys();
-      const [versionErr, version] = await vegaWalletService.getVersion();
-      // attempt to load keys complete
-      setVegaKeysLoaded(true);
+      try {
+        const keysRes = await vegaWalletService.keysGet();
+        const versionRes = await vegaWalletService.versionGet();
 
-      if (
-        keysErr === VegaWalletServiceErrors.SERVICE_UNAVAILABLE ||
-        versionErr === VegaWalletServiceErrors.SERVICE_UNAVAILABLE
-      ) {
-        appDispatch({ type: AppStateActionType.VEGA_WALLET_DOWN });
-        return;
+        let key = undefined;
+        if (account && keysRes.keys && keysRes.keys.length) {
+          key = keysRes.keys[0].pub;
+          await setAssociatedBalances(account, key as string);
+        }
+
+        appDispatch({
+          type: AppStateActionType.VEGA_WALLET_INIT,
+          // @ts-ignore
+          keys: keysRes.keys,
+          key,
+          version: versionRes.version,
+        });
+      } catch (err) {
+        // @ts-ignore
+        console.log("failed", err.message);
+        // @ts-ignore
+        if (err.message === "Failed to fetch") {
+          appDispatch({ type: AppStateActionType.VEGA_WALLET_DOWN });
+        } else {
+          appDispatch({ type: AppStateActionType.VEGA_WALLET_UP });
+        }
+      } finally {
+        setVegaKeysLoaded(true);
       }
-
-      // Any other error do nothing so user has to auth again, but our load for vega keys is complete
-      if (keysErr) {
-        return;
-      }
-
-      let key = undefined;
-      if (account && keys && keys.length) {
-        key = vegaWalletService.key || keys[0].pub;
-        await setAssociatedBalances(account, key);
-      }
-
-      appDispatch({
-        type: AppStateActionType.VEGA_WALLET_INIT,
-        keys,
-        key,
-        version,
-      });
     }
 
     if (!Flags.NETWORK_DOWN) {

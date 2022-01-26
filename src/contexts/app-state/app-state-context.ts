@@ -117,6 +117,7 @@ export enum AppStateActionType {
   VEGA_WALLET_INIT,
   VEGA_WALLET_SET_KEY,
   VEGA_WALLET_DOWN,
+  VEGA_WALLET_UP,
   VEGA_WALLET_DISCONNECT,
   SET_TOKEN,
   SET_ALLOWANCE,
@@ -150,6 +151,7 @@ export type AppStateAction =
       key: VegaKeyExtended;
     }
   | { type: AppStateActionType.VEGA_WALLET_DOWN }
+  | { type: AppStateActionType.VEGA_WALLET_UP }
   | { type: AppStateActionType.VEGA_WALLET_DISCONNECT }
   | {
       type: AppStateActionType.SET_TOKEN;

@@ -101,6 +101,12 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         vegaWalletStatus: VegaWalletStatus.None,
       };
     }
+    case AppStateActionType.VEGA_WALLET_UP: {
+      return {
+        ...state,
+        vegaWalletStatus: VegaWalletStatus.Ready,
+      };
+    }
     case AppStateActionType.VEGA_WALLET_DISCONNECT: {
       return {
         ...state,

@@ -14,11 +14,7 @@ import { useNetworkParam } from "../../hooks/use-network-param";
 import { useSearchParams } from "../../hooks/use-search-params";
 import { BigNumber } from "../../lib/bignumber";
 import { addDecimal, removeDecimal } from "../../lib/decimals";
-import {
-  DelegateSubmissionInput,
-  UndelegateSubmissionInput,
-  vegaWalletService,
-} from "../../lib/vega-wallet/vega-wallet-service";
+import { vegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
 import {
   PartyDelegations,
   PartyDelegationsVariables,
@@ -113,14 +109,14 @@ export const StakingForm = ({
 
   async function onSubmit() {
     setFormState(FormState.Pending);
-    const delegateInput: DelegateSubmissionInput = {
+    const delegateInput = {
       pubKey: pubkey,
       delegateSubmission: {
         nodeId,
         amount: removeDecimal(new BigNumber(amount), appState.decimals),
       },
     };
-    const undelegateInput: UndelegateSubmissionInput = {
+    const undelegateInput = {
       pubKey: pubkey,
       undelegateSubmission: {
         nodeId,
@@ -133,7 +129,8 @@ export const StakingForm = ({
     };
     try {
       const command = action === Actions.Add ? delegateInput : undelegateInput;
-      const [err] = await vegaWalletService.commandSync(command);
+      // @ts-ignore
+      const [err] = await vegaWalletService.commandSyncPost(command);
 
       if (err) {
         setFormState(FormState.Failure);

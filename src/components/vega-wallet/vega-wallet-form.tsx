@@ -69,20 +69,8 @@ export const VegaWalletForm = ({
     }
 
     try {
-      // const [tokenErr, token] = await vegaWalletService.getToken({
-      //   wallet: fields.wallet,
-      //   passphrase: fields.passphrase,
-      //   url: fields.url,
-      // });
-      // const [, version] = await vegaWalletService.getVersion();
-
-      // if (tokenErr) {
-      //   setError("passphrase", { message: t(tokenErr) });
-      //   setLoading(false);
-      //   return;
-      // }
-
-      // const [keysErr, keys] = await vegaWalletService.getKeys();
+      const versionRes = await vegaWalletService.versionGet();
+      console.log(versionRes);
 
       const res = await vegaWalletService.keysGet();
       console.log("res", res);

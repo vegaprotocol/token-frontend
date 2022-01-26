@@ -23,10 +23,7 @@ import vegaWhite from "../../images/vega_white.png";
 import { BigNumber } from "../../lib/bignumber";
 import { addDecimal } from "../../lib/decimals";
 import { truncateMiddle } from "../../lib/truncate-middle";
-import {
-  MINIMUM_WALLET_VERSION,
-  vegaWalletService,
-} from "../../lib/vega-wallet/vega-wallet-service";
+import { vegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
 import { Routes } from "../../routes/router-config";
 import { BulletHeader } from "../bullet-header";
 import {
@@ -360,7 +357,7 @@ const VegaWalletConnected = ({
     async function () {
       try {
         setDisconnecting(true);
-        await vegaWalletService.revokeToken();
+        await vegaWalletService.authTokenDelete();
         appDispatch({ type: AppStateActionType.VEGA_WALLET_DISCONNECT });
       } catch (err) {
         Sentry.captureException(err);
@@ -382,7 +379,7 @@ const VegaWalletConnected = ({
       if (account) {
         await setAssociatedBalances(account, k.pub);
       }
-      vegaWalletService.setKey(k.pub);
+      localStorage.setItem("vega_wallet_key", k.pub);
       appDispatch({
         type: AppStateActionType.VEGA_WALLET_SET_KEY,
         key: k,
@@ -423,23 +420,24 @@ const VegaWalletConnected = ({
         {footer}
       </>
     );
-  } else if (!vegaWalletService.isSupportedVersion(version)) {
-    return (
-      <>
-        <div
-          style={{
-            color: Colors.RED,
-          }}
-        >
-          {t("unsupportedVersion", {
-            version,
-            requiredVersion: MINIMUM_WALLET_VERSION,
-          })}
-        </div>
-        {footer}
-      </>
-    );
   }
+  // else if (!vegaWalletService.isSupportedVersion(version)) {
+  //   return (
+  //     <>
+  //       <div
+  //         style={{
+  //           color: Colors.RED,
+  //         }}
+  //       >
+  //         {t("unsupportedVersion", {
+  //           version,
+  //           requiredVersion: MINIMUM_WALLET_VERSION,
+  //         })}
+  //       </div>
+  //       {footer}
+  //     </>
+  //   );
+  // }
 
   return vegaKeys.length ? (
     <>

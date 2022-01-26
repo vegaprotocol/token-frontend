@@ -1,12 +1,9 @@
-import { gql,useApolloClient } from "@apollo/client";
+import { gql, useApolloClient } from "@apollo/client";
 import * as Sentry from "@sentry/react";
 import React from "react";
 
 import { sigToId } from "../lib/sig-to-id";
-import {
-  vegaWalletService,
-  WithdrawSubmissionInput,
-} from "../lib/vega-wallet/vega-wallet-service";
+import { vegaWalletService } from "../lib/vega-wallet/vega-wallet-service";
 import {
   WithdrawalPoll,
   WithdrawalPollVariables,
@@ -66,7 +63,7 @@ export function useCreateWithdrawal(pubKey: string): [Status, Submit] {
 
   const submit = React.useCallback(
     async (amount: string, asset: string, receiverAddress: string) => {
-      const command: WithdrawSubmissionInput = {
+      const command = {
         pubKey,
         withdrawSubmission: {
           amount,
@@ -82,17 +79,19 @@ export function useCreateWithdrawal(pubKey: string): [Status, Submit] {
       safeSetStatus(Status.Submitted);
 
       try {
-        const [err, res] = await vegaWalletService.commandSync(command);
+        // TODO:
+        // @ts-ignore
+        const res = await vegaWalletService.commandSyncPost(command);
 
-        if (err || !res) {
-          safeSetStatus(Status.Failure);
-        } else {
-          const id = sigToId(res.signature.value);
-          setId(id);
-          // Now await subscription
-        }
+        // if (err || !res) {
+        //   safeSetStatus(Status.Failure);
+        // } else {
+        //   const id = sigToId(res.signature.value);
+        //   setId(id);
+        //   // Now await subscription
+        // }
 
-        safeSetStatus(Status.Pending);
+        // safeSetStatus(Status.Pending);
       } catch (err) {
         safeSetStatus(Status.Failure);
         Sentry.captureException(err);
