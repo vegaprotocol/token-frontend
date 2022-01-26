@@ -1,20 +1,16 @@
-import { FormGroup, Intent, Switch } from "@blueprintjs/core";
+import { FormGroup, Intent } from "@blueprintjs/core";
 import * as Sentry from "@sentry/react";
 import { useWeb3React } from "@web3-react/core";
 import React from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { Flags } from "../../config";
 import {
   AppStateActionType,
   useAppState,
 } from "../../contexts/app-state/app-state-context";
 import { useRefreshAssociatedBalances } from "../../hooks/use-refresh-associated-balances";
-import {
-  HOSTED_WALLET_URL,
-  vegaWalletService,
-} from "../../lib/vega-wallet/vega-wallet-service";
+import { vegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
 
 interface FormFields {
   url: string;
@@ -39,14 +35,12 @@ export const VegaWalletForm = ({
   const refreshAssociatedBalances = useRefreshAssociatedBalances();
 
   const [loading, setLoading] = React.useState(false);
-  const [hostedWallet, setHostedWallet] = React.useState(false);
   const {
     control,
     register,
     handleSubmit,
     formState: { errors },
     setError,
-    setValue,
   } = useForm<FormFields>({
     defaultValues: {
       url,
@@ -63,44 +57,62 @@ export const VegaWalletForm = ({
     setLoading(true);
 
     try {
-      const [tokenErr] = await vegaWalletService.getToken({
+      const tokenRes = await vegaWalletService.authTokenPost({
         wallet: fields.wallet,
         passphrase: fields.passphrase,
-        url: fields.url,
       });
-      const [, version] = await vegaWalletService.getVersion();
 
-      if (tokenErr) {
-        setError("passphrase", { message: t(tokenErr) });
-        setLoading(false);
-        return;
-      }
+      localStorage.setItem("vega_wallet_token", tokenRes.token);
+    } catch (err) {
+      console.log("token req fail", err);
+      localStorage.clearItem("vega_wallet_token");
+    }
 
-      const [keysErr, keys] = await vegaWalletService.getKeys();
+    try {
+      // const [tokenErr, token] = await vegaWalletService.getToken({
+      //   wallet: fields.wallet,
+      //   passphrase: fields.passphrase,
+      //   url: fields.url,
+      // });
+      // const [, version] = await vegaWalletService.getVersion();
 
-      if (keysErr) {
-        setError("passphrase", { message: t(keysErr) });
-        setLoading(false);
-        return;
-      }
+      // if (tokenErr) {
+      //   setError("passphrase", { message: t(tokenErr) });
+      //   setLoading(false);
+      //   return;
+      // }
+
+      // const [keysErr, keys] = await vegaWalletService.getKeys();
+
+      const res = await vegaWalletService.keysGet();
+      console.log("res", res);
 
       let key = undefined;
-      if (account && keys && keys.length) {
-        key = vegaWalletService.key || keys[0].pub;
-        await refreshAssociatedBalances(account, key);
+      if (account && res.keys && res.keys.length) {
+        key = res.keys[0].pub;
+        // TODO: why is kye undefined
+        await refreshAssociatedBalances(account, key as string);
       }
 
       appDispatch({
         type: AppStateActionType.VEGA_WALLET_INIT,
-        keys,
+        // @ts-ignore
+        keys: res.keys,
         key,
-        version,
+        // TODO: fetch version
+        version: "0.1.1",
       });
 
       setLoading(false);
       onConnect();
     } catch (err) {
+      console.log(err);
       Sentry.captureException(err);
+      setError("passphrase", {
+        message: "Something failed, maybe wrong passphrase",
+      });
+      setLoading(false);
+      return;
     }
   }
 
@@ -108,26 +120,6 @@ export const VegaWalletForm = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="vega-wallet-form">
-      {Flags.HOSTED_WALLET_ENABLED ? (
-        <FormGroup labelFor="hostedWallet" label={t("hostedSwitchLabel")}>
-          <Switch
-            large={true}
-            name="hostedWallet"
-            checked={hostedWallet}
-            onChange={(a) => {
-              const input = a.target as HTMLInputElement;
-              setHostedWallet(input.checked);
-              setValue(
-                "url",
-                input.checked ? HOSTED_WALLET_URL : vegaWalletService.url,
-                {
-                  shouldValidate: false,
-                }
-              );
-            }}
-          />
-        </FormGroup>
-      ) : null}
       <FormGroup
         label={t("urlLabel")}
         labelFor="url"
@@ -135,7 +127,6 @@ export const VegaWalletForm = ({
         helperText={errors.url?.message}
       >
         <input
-          disabled={hostedWallet}
           {...register("url", { required })}
           type="text"
           className="bp3-input"
