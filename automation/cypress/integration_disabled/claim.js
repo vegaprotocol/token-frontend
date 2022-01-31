@@ -373,7 +373,7 @@ describe("Untargeted code", () => {
     cy.contains("View on Etherscan (opens in a new tab)");
 
     // THen the finished state is rendered
-    cy.contains("Claim complete").should("exist");
+    cy.contains("Claim successful").should("exist");
     cy.contains(
       "Ethereum address 0x0000000000000000000000000000000000000000 now has a vested right to 0.00001 more VEGA tokens."
     ).should("exist");
@@ -472,7 +472,7 @@ describe("Targeted code", () => {
     cy.contains("View on Etherscan (opens in a new tab)");
 
     // THen it renders completed state
-    cy.contains("Claim complete").should("exist");
+    cy.contains("Claim successful").should("exist");
     cy.contains(
       "Ethereum address 0x0000000000000000000000000000000000000000 now has a vested right to 0.00001 more VEGA tokens"
     ).should("exist");
