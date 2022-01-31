@@ -30,7 +30,6 @@ There are a few different configuration options offered for this app:
 | `REACT_APP_CHAIN`                    | The ETH chain for the app to work on. Should be mainnet for live, but ropsten for preview deploys.       |
 | `REACT_APP_VEGA_URL`                 | The GraphQL query endpoint of a [Vega data node](https://github.com/vegaprotocol/networks#data-node)     |
 | `REACT_APP_DEX_STAKING_DISABLED`     | Disable the dex liquidity page an show a coming soon message                                             |
-| `REACT_APP_VESTING_DISABLED`         | Prevent association from the vesting contract                                                            |
 | `REACT_APP_FAIRGROUND`               | Change styling to be themed as the fairground version of the website                                     |
 | `REACT_APP_INFURA_ID`                | Infura fallback for if the user does not have a web3 compatible browser                                  |
 | `REACT_APP_SUPPORTED_WALLET_VERSION` | The minimum wallet semver version supported by this application otherwise an error message will be shown |

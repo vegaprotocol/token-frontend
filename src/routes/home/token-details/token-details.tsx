@@ -8,7 +8,7 @@ import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
-import { ADDRESSES, Flags } from "../../../config";
+import { ADDRESSES } from "../../../config";
 import { useTranches } from "../../../hooks/use-tranches";
 import { BigNumber } from "../../../lib/bignumber";
 import { formatNumber } from "../../../lib/format-number";
@@ -48,18 +48,14 @@ export const TokenDetails = ({
           />
         </td>
       </KeyValueTableRow>
-      {Flags.VESTING_DISABLED ? null : (
-        <>
-          <KeyValueTableRow>
-            <th>{t("Total supply")}</th>
-            <td data-testid="total-supply">{formatNumber(totalSupply, 2)}</td>
-          </KeyValueTableRow>
-          <KeyValueTableRow>
-            <th>{t("Circulating supply")}</th>
-            <TokenDetailsCirculating tranches={tranches} />
-          </KeyValueTableRow>
-        </>
-      )}
+      <KeyValueTableRow>
+        <th>{t("Total supply")}</th>
+        <td data-testid="total-supply">{formatNumber(totalSupply, 2)}</td>
+      </KeyValueTableRow>
+      <KeyValueTableRow>
+        <th>{t("Circulating supply")}</th>
+        <TokenDetailsCirculating tranches={tranches} />
+      </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("Staked on Vega validator")}</th>
         <td data-testid="staked">{formatNumber(totalStaked, 2)}</td>
