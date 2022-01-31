@@ -1,9 +1,11 @@
 import "./governance.scss";
-import { RouteChildProps } from "..";
-import { useDocumentTitle } from "../../hooks/use-document-title";
+
 import { Route, Switch, useRouteMatch } from "react-router-dom";
-import { ProposalsContainer } from "./proposals-container";
+
+import { useDocumentTitle } from "../../hooks/use-document-title";
+import { RouteChildProps } from "..";
 import { ProposalContainer } from "./proposal-container";
+import { ProposalsContainer } from "./proposals-container";
 
 const GovernanceRouter = ({ name }: RouteChildProps) => {
   const match = useRouteMatch();

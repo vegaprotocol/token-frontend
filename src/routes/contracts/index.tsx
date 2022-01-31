@@ -1,12 +1,11 @@
 import React from "react";
+
 import { EtherscanLink } from "../../components/etherscan-link";
+import { CopyToClipboardType } from "../../components/etherscan-link/etherscan-link";
 import { Heading } from "../../components/heading";
 import { ADDRESSES } from "../../config";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
 
 const Contracts = () => {
-  const { chainId } = useWeb3();
-
   return (
     <section>
       <Heading title={"Contracts"} />
@@ -14,7 +13,12 @@ const Contracts = () => {
       {Object.entries(ADDRESSES).map(([key, value]) => (
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div>{key}:</div>
-          <EtherscanLink address={value} chainId={chainId} text={value} />
+          <EtherscanLink
+            address={value}
+            text={value}
+            copyToClipboard={CopyToClipboardType.LINK}
+            className="font-mono"
+          />
         </div>
       ))}
     </section>

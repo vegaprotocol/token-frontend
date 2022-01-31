@@ -1,18 +1,22 @@
 import "./reward-info.scss";
-import React from "react";
+
 import * as Sentry from "@sentry/react";
+import { format } from "date-fns";
+import React from "react";
+import { useTranslation } from "react-i18next";
+
 import {
   KeyValueTable,
   KeyValueTableRow,
 } from "../../../components/key-value-table";
+import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
+import { BigNumber } from "../../../lib/bignumber";
+import { DATE_FORMAT_DETAILED } from "../../../lib/date-formats";
 import {
   Rewards,
   Rewards_party_delegations,
   Rewards_party_rewardDetails_rewards,
 } from "./__generated__/Rewards";
-import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
-import { useTranslation } from "react-i18next";
-import { BigNumber } from "../../../lib/bignumber";
 
 interface RewardInfoProps {
   data: Rewards | undefined;
@@ -98,7 +102,7 @@ export const RewardTable = ({ reward, delegations }: RewardTableProps) => {
     if (!delegations.length) return "0";
 
     const delegationsForEpoch = delegations
-      .filter((d) => d.epoch === reward.epoch)
+      .filter((d) => d.epoch.toString() === reward.epoch.id)
       .map((d) => new BigNumber(d.amountFormatted));
 
     if (delegationsForEpoch.length) {
@@ -114,7 +118,7 @@ export const RewardTable = ({ reward, delegations }: RewardTableProps) => {
   return (
     <div>
       <h3>
-        {t("Epoch")} {reward.epoch}
+        {t("Epoch")} {reward.epoch.id}
       </h3>
       <KeyValueTable>
         <KeyValueTableRow>
@@ -135,10 +139,10 @@ export const RewardTable = ({ reward, delegations }: RewardTableProps) => {
           <th>{t("shareOfReward")}</th>
           <td>{new BigNumber(reward.percentageOfTotal).dp(2).toString()}%</td>
         </KeyValueTableRow>
-        {/* <KeyValueTableRow>
+        <KeyValueTableRow>
           <th>{t("received")}</th>
-          <td>{format(new Date(reward.receivedAt), "dd MMM yyyy HH:mm")}</td>
-        </KeyValueTableRow> */}
+          <td>{format(new Date(reward.receivedAt), DATE_FORMAT_DETAILED)}</td>
+        </KeyValueTableRow>
       </KeyValueTable>
     </div>
   );

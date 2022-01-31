@@ -1,16 +1,19 @@
 import "./redemption-information.scss";
-import { useAppState } from "../../../contexts/app-state/app-state-context";
-import { RedemptionState } from "../redemption-reducer";
-import { VestingTable } from "./vesting-table";
-import { Tranche0Table, TrancheTable } from "../tranche-table";
-import { Trans, useTranslation } from "react-i18next";
-import { Callout } from "../../../components/callout";
-import { HandUp } from "../../../components/icons";
-import { Link, useHistory } from "react-router-dom";
+
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import React from "react";
+import { Trans, useTranslation } from "react-i18next";
+import { Link, useHistory } from "react-router-dom";
+
+import { AddLockedTokenAddress } from "../../../components/add-locked-token";
+import { HandUp } from "../../../components/icons";
+import { useAppState } from "../../../contexts/app-state/app-state-context";
+import { formatNumber } from "../../../lib/format-number";
 import { truncateMiddle } from "../../../lib/truncate-middle";
 import { Routes } from "../../router-config";
-import { formatNumber } from "../../../lib/format-number";
+import { RedemptionState } from "../redemption-reducer";
+import { Tranche0Table, TrancheTable } from "../tranche-table";
+import { VestingTable } from "./vesting-table";
 
 export const RedemptionInformation = ({
   state,
@@ -61,12 +64,18 @@ export const RedemptionInformation = ({
             }}
           />
         </p>
+        <Callout>
+          <AddLockedTokenAddress />
+        </Callout>
       </section>
     );
   }
 
   return (
     <section className="redemption-information" data-testid="redemption-page">
+      <Callout>
+        <AddLockedTokenAddress />
+      </Callout>
       <p data-testid="redemption-description">
         {t(
           "{{address}} has {{balance}} VEGA tokens in {{tranches}} tranches of the vesting contract.",
@@ -77,27 +86,6 @@ export const RedemptionInformation = ({
           }
         )}
       </p>
-      {/* <p data-testid="redemption-unlocked-tokens">
-        {t("A total of {{amount}} Unlocked Vega tokens.", {
-          amount: totalVestedBalance.toString(),
-        })}
-      </p>
-      <p data-testid="redemption-locked-tokens">
-        {t("A total of {{amount}} Locked Vega tokens.", {
-          amount: totalLockedBalance.toString(),
-        })}
-      </p>
-      <p data-testid="redemption-staked-tokens">
-        {t("{{stakedBalance}} are staked.", {
-          stakedBalance: lien.toString(),
-        })}
-      </p>
-      <p data-testid="redemption-page-description">
-        <strong>
-          {t("Use this page to redeem any unlocked VEGA tokens.")}
-        </strong>
-      </p>
-      <p data-testid="redemption-note">{t("redemptionExplain")}</p> */}
       <VestingTable
         associated={lien}
         locked={totalLockedBalance}

@@ -1,6 +1,6 @@
 $font-main: "Helvetica neue", "Helvetica", arial, sans-serif;
 $font-mono: "Roboto Mono", monospace;
-$font-pixelated: NeuePixelGrotesk, "Helvetica neue", "Helvetica", arial,
+$font-alpa-lyrae: AlphaLyrae, "Helvetica neue", "Helvetica", arial,
   sans-serif;
 
 .font-main {
@@ -12,6 +12,6 @@ $font-pixelated: NeuePixelGrotesk, "Helvetica neue", "Helvetica", arial,
 }
 
 @font-face {
-  font-family: NeuePixelGrotesk;
-  src: url(./NeuePixelGrotesk-Regular.woff);
+  font-family: AlphaLyrae;
+  src: url(./AlphaLyrae-Medium.woff);
 }

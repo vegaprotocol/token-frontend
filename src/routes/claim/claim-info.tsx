@@ -1,6 +1,8 @@
+import { Tranche } from "@vegaprotocol/smart-contracts-sdk";
 import { format } from "date-fns";
-import { Tranche } from "../../lib/vega-web3/vega-web3-types";
 import { useTranslation } from "react-i18next";
+
+import { DATE_FORMAT_LONG } from "../../lib/date-formats";
 
 interface ClaimInfoProps {
   tranche: Tranche;
@@ -10,11 +12,11 @@ export const ClaimInfo = ({ tranche }: ClaimInfoProps) => {
   const { t } = useTranslation();
   const unlockDate = format(
     new Date(tranche.tranche_start).getTime(),
-    "MMM d, yyyy"
+    DATE_FORMAT_LONG
   );
   const trancheEndDate = format(
     new Date(tranche.tranche_end).getTime(),
-    "MMM d, yyyy"
+    DATE_FORMAT_LONG
   );
   const fullyRedeemable =
     new Date().getTime() > new Date(tranche.tranche_end).getTime();

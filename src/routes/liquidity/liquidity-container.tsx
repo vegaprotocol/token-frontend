@@ -1,15 +1,17 @@
 import "./liquidity-container.scss";
+
+import { Callout } from "@vegaprotocol/ui-toolkit";
+import { useWeb3React } from "@web3-react/core";
 import { useTranslation } from "react-i18next";
+
 import { EthConnectPrompt } from "../../components/eth-connect-prompt";
 import { Links, REWARDS_ADDRESSES } from "../../config";
 import { DexTokensSection } from "./dex-table";
 import { LiquidityState } from "./liquidity-reducer";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
-import { Callout } from "../../components/callout";
 
 export const LiquidityContainer = ({ state }: { state: LiquidityState }) => {
   const { t } = useTranslation();
-  const { ethAddress } = useWeb3();
+  const { account } = useWeb3React();
   return (
     <section className="liquidity-container">
       <h2>{t("liquidityRewardsTitle")}</h2>
@@ -39,14 +41,16 @@ export const LiquidityContainer = ({ state }: { state: LiquidityState }) => {
       <Callout intent="error" title={t("lpEndedTitle")}>
         <p>{t("lpEndedParagraph")}</p>
       </Callout>
-      {!ethAddress && <EthConnectPrompt />}
+
+      {!account && <EthConnectPrompt />}
+      <h2>{t("liquidityRewardsTitle")}</h2>
       {Object.entries(REWARDS_ADDRESSES).map(([name, contractAddress]) => {
         return (
           <DexTokensSection
             key={name}
             name={name}
             contractAddress={contractAddress}
-            ethAddress={ethAddress}
+            ethAddress={account || ""}
             state={state}
           />
         );

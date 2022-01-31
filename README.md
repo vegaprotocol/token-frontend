@@ -2,31 +2,20 @@
 
 **_Control panel for your VEGA tokens_**
 
-![preview](https://user-images.githubusercontent.com/6678/131992372-4a89d7ea-d9b3-4698-b767-e4464396a7d0.jpg)
+<img width="1438" alt="Screenshot 2021-12-11 at 06 32 51" src="https://user-images.githubusercontent.com/13255539/145666935-563fc1ff-35bc-4cd9-ae6d-cf711cc23454.png">
 
 ## Features
 
 - View vesting progress
 - Redeem VEGA tokens
 - Stake VEGA tokens
-
-# Reporting issues
-
-If you are not on the Vega team and found an issue on token.vega.xyz, please report your bug on our [Nolt board](https://vega-testnet.nolt.io). Include as much information as possible, including screenshots and Etherscan links. Issues raised via this repository may be closed without investigation.
+- Withdraw tokens
+- Vote on proposals
 
 # Development
 
 Install:
 `yarn install`
-
-Add .env file in root:
-
-```bash
-// .env
-REACT_APP_ENV=DEVNET
-REACT_APP_CHAIN=0x3
-REACT_APP_VEGA_URL="https://n04.d.vega.xyz/query"
-```
 
 Starting the app:
 `yarn start`

@@ -1,18 +1,20 @@
-import React from "react";
+import { gql, useApolloClient } from "@apollo/client";
 import * as Sentry from "@sentry/react";
-import { useTransaction } from "../../../hooks/use-transaction";
-import { TxState } from "../../../hooks/transaction-reducer";
-import { StakingMethod } from "../../../components/staking-method-radio";
-import { useRefreshBalances } from "../../../hooks/use-refresh-balances";
-import { useApolloClient, gql } from "@apollo/client";
+import BigNumber from "bignumber.js";
+import React from "react";
+
 import { StakeLinkingStatus } from "../../../__generated__/globalTypes";
+import { StakingMethod } from "../../../components/staking-method-radio";
+import { useContracts } from "../../../contexts/contracts/contracts-context";
+import { TxState } from "../../../hooks/transaction-reducer";
+import { useGetAssociationBreakdown } from "../../../hooks/use-get-association-breakdown";
+import { useRefreshBalances } from "../../../hooks/use-refresh-balances";
+import { useTransaction } from "../../../hooks/use-transaction";
 import {
   PartyStakeLinkings,
-  PartyStakeLinkingsVariables,
   PartyStakeLinkings_party_stake_linkings,
+  PartyStakeLinkingsVariables,
 } from "./__generated__/PartyStakeLinkings";
-import { useContracts } from "../../../contexts/contracts/contracts-context";
-import { useGetAssociationBreakdown } from "../../../hooks/use-get-association-breakdown";
 
 export const useAddStake = (
   address: string,
@@ -23,11 +25,11 @@ export const useAddStake = (
 ) => {
   const { staking, vesting } = useContracts();
   const contractAdd = useTransaction(
-    () => vesting.addStake(amount, vegaKey),
+    () => vesting.addStake(new BigNumber(amount), vegaKey, confirmations),
     confirmations
   );
   const walletAdd = useTransaction(
-    () => staking.addStake(amount, vegaKey),
+    () => staking.addStake(new BigNumber(amount), vegaKey, confirmations),
     confirmations
   );
   const refreshBalances = useRefreshBalances(address);

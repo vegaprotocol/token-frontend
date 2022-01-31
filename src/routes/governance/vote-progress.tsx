@@ -1,13 +1,13 @@
 import "./vote-progress.scss";
 
-import React from "react";
+import { BigNumber } from "../../lib/bignumber";
 
 export const VoteProgress = ({
   progress,
   threshold,
 }: {
-  threshold: number;
-  progress: number;
+  threshold: BigNumber;
+  progress: BigNumber;
 }) => {
   return (
     <>

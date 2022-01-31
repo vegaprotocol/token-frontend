@@ -1,14 +1,9 @@
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import { useTranslation } from "react-i18next";
-import { Callout } from "../../components/callout";
+
 import { Error } from "../../components/icons";
 
-export const Expired = ({
-  address,
-  code,
-}: {
-  address: string | null;
-  code: string;
-}) => {
+export const Expired = ({ code }: { code: string }) => {
   const { t } = useTranslation();
   return (
     <Callout intent="error" icon={<Error />} title={t("codeExpired")}>

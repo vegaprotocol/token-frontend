@@ -1,9 +1,9 @@
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { Callout } from "../../components/callout";
+
 import { EtherscanLink } from "../../components/etherscan-link";
 import { Tick } from "../../components/icons";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
 import { Routes } from "../router-config";
@@ -20,7 +20,6 @@ export const Complete = ({
   claimTxHash: string | null;
 }) => {
   const { t } = useTranslation();
-  const { chainId } = useWeb3();
 
   return (
     <>
@@ -37,21 +36,13 @@ export const Complete = ({
         {commitTxHash && (
           <p style={{ margin: 0 }}>
             {t("Link transaction")}:{" "}
-            <EtherscanLink
-              chainId={chainId!}
-              tx={commitTxHash}
-              text={commitTxHash}
-            />
+            <EtherscanLink tx={commitTxHash} text={commitTxHash} />
           </p>
         )}
         {claimTxHash && (
           <p>
             {t("Claim transaction")}:{" "}
-            <EtherscanLink
-              chainId={chainId!}
-              tx={claimTxHash}
-              text={claimTxHash}
-            />
+            <EtherscanLink tx={claimTxHash} text={claimTxHash} />
           </p>
         )}
         <Link to={Routes.VESTING}>

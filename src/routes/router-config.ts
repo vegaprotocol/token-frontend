@@ -1,6 +1,7 @@
 import React from "react";
-import NotFound from "./not-found";
+
 import Home from "./home";
+import NotFound from "./not-found";
 import NotPermitted from "./not-permitted";
 
 export const Routes = {

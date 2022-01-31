@@ -1,15 +1,16 @@
 import "./vote-details.scss";
+
 import { formatDistanceToNow } from "date-fns";
-import { useVoteInformation } from "./hooks";
-import { VoteProgress } from "./vote-progress";
-import { CurrentProposalStatus } from "./current-proposal-status";
-import { VoteButtonsContainer } from "./vote-buttons";
-import { useUserVote } from "./use-user-vote";
-import { ProposalState } from "../../__generated__/globalTypes";
-import { Proposal_proposal } from "./__generated__/Proposal";
 import { useTranslation } from "react-i18next";
-import BigNumber from "bignumber.js";
+
+import { ProposalState } from "../../__generated__/globalTypes";
 import { formatNumber } from "../../lib/format-number";
+import { Proposal_proposal } from "./__generated__/Proposal";
+import { CurrentProposalStatus } from "./current-proposal-status";
+import { useVoteInformation } from "./hooks";
+import { useUserVote } from "./use-user-vote";
+import { VoteButtonsContainer } from "./vote-buttons";
+import { VoteProgress } from "./vote-progress";
 
 interface VoteDetailsProps {
   proposal: Proposal_proposal;
@@ -75,11 +76,11 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
           <tr>
             <td className="text-muted">
               {" "}
-              {formatNumber(new BigNumber(yesTokens), defaultDecimals)}
+              {formatNumber(yesTokens, defaultDecimals)}
             </td>
             <td></td>
             <td className="text-muted">
-              {formatNumber(new BigNumber(noTokens), defaultDecimals)}
+              {formatNumber(noTokens, defaultDecimals)}
             </td>
           </tr>
         </tbody>
@@ -94,12 +95,12 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
             {t("notMet")}
           </span>
         )}{" "}
-        {formatNumber(new BigNumber(totalTokensVoted), defaultDecimals)}{" "}
-        {formatNumber(new BigNumber(totalTokensPercentage), defaultDecimals)}%
+        {formatNumber(totalTokensVoted, defaultDecimals)}{" "}
+        {formatNumber(totalTokensPercentage, defaultDecimals)}%
         <span className="vote-details__required-participation text-muted">
           (
           {formatNumber(
-            new BigNumber(Number(requiredParticipation) * 100),
+            requiredParticipation.multipliedBy(100),
             defaultDecimals
           )}
           % {t("governanceRequired")})

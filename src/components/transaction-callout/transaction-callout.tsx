@@ -1,9 +1,8 @@
 import { TransactionState, TxState } from "../../hooks/transaction-reducer";
+import { TransactionComplete } from "./transaction-complete";
 import { TransactionError } from "./transaction-error";
 import { TransactionPending } from "./transaction-pending";
 import { TransactionRequested } from "./transaction-requested";
-import { TransactionComplete } from "./transaction-complete";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
 
 export const TransactionCallout = ({
   state,
@@ -24,7 +23,6 @@ export const TransactionCallout = ({
   pendingBody?: React.ReactElement | string;
   pendingFooter?: React.ReactElement | string;
 }) => {
-  const { chainId } = useWeb3();
   // TODO use switch to kill dead code branches
   if (state.txState === TxState.Error) {
     return (
@@ -32,7 +30,6 @@ export const TransactionCallout = ({
         onActionClick={reset}
         error={state.txData.userFacingError || state.txData.error}
         hash={state.txData.hash}
-        chainId={chainId!}
       />
     );
   } else if (state.txState === TxState.Pending) {
@@ -41,7 +38,6 @@ export const TransactionCallout = ({
         confirmations={state.txData.confirmations}
         requiredConfirmations={state.requiredConfirmations}
         hash={state.txData.hash!}
-        chainId={chainId!}
         heading={pendingHeading}
         body={pendingBody}
         footer={pendingFooter}
@@ -53,7 +49,6 @@ export const TransactionCallout = ({
     return (
       <TransactionComplete
         hash={state.txData.hash!}
-        chainId={chainId!}
         heading={completeHeading}
         body={completeBody}
         footer={completeFooter}

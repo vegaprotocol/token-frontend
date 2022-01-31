@@ -1,8 +1,11 @@
+import "./wallet-card.scss";
+
 import React from "react";
+import { Link } from "react-router-dom";
+
+import { useAnimateValue } from "../../hooks/use-animate-value";
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
-import "./wallet-card.scss";
-import { useAnimateValue } from "../../hooks/use-animate-value";
 
 const useNumberParts = (
   value: BigNumber | null | undefined,
@@ -59,12 +62,14 @@ export const WalletCardContent = ({ children }: WalletCardContentProps) => {
 
 export const WalletCardRow = ({
   label,
+  link,
   value,
   dark = false,
   decimals = 18,
   bold = false,
 }: {
   label: string;
+  link?: string;
   decimals?: number;
   value?: BigNumber | null;
   dark?: boolean;
@@ -81,7 +86,11 @@ export const WalletCardRow = ({
       }`}
       ref={ref}
     >
-      <span>{label}</span>
+      {link ? (
+        <Link to={link}>{label}</Link>
+      ) : (
+        <span>{label}</span>
+      )}
       {value && (
         <span>
           <span className="wallet-card__price--integer">{integers}.</span>
@@ -108,6 +117,7 @@ export interface WalletCardAssetProps {
   decimals: number;
   border?: boolean;
   dark?: boolean;
+  subheading?: string;
 }
 
 export const WalletCardAsset = ({
@@ -118,6 +128,7 @@ export const WalletCardAsset = ({
   decimals,
   border,
   dark,
+  subheading,
 }: WalletCardAssetProps) => {
   const [integers, decimalsPlaces] = useNumberParts(balance, decimals);
 
@@ -135,7 +146,7 @@ export const WalletCardAsset = ({
       <div className="wallet-card__asset-header">
         <div className="wallet-card__asset-heading">
           <h1>{name}</h1>
-          <h2>{symbol}</h2>
+          <h2>{subheading || symbol}</h2>
         </div>
         <div className="wallet-card__asset-balance">
           <span className="wallet-card__price--integer">{integers}.</span>

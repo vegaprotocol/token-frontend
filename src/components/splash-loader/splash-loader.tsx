@@ -1,4 +1,5 @@
 import "./splash-loader.scss";
+
 import React from "react";
 
 export const SplashLoader = ({ text = "Loading" }: { text?: string }) => {

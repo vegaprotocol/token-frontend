@@ -1,26 +1,27 @@
-import React from "react";
-import { useVegaLPStaking } from "../../../hooks/use-vega-lp-staking";
-import { BigNumber } from "../../../lib/bignumber";
 import * as Sentry from "@sentry/react";
-import { useParams } from "react-router";
-import { REWARDS_ADDRESSES } from "../../../config";
-import { TokenInput } from "../../../components/token-input";
+import { Callout } from "@vegaprotocol/ui-toolkit";
+import { useWeb3React } from "@web3-react/core";
+import React from "react";
 import { Trans, useTranslation } from "react-i18next";
-import { useTransaction } from "../../../hooks/use-transaction";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+
+import { EthConnectPrompt } from "../../../components/eth-connect-prompt";
+import { Error } from "../../../components/icons";
+import { TokenInput } from "../../../components/token-input";
 import { TransactionCallout } from "../../../components/transaction-callout";
+import { REWARDS_ADDRESSES } from "../../../config";
 import {
   TransactionActionType,
   TxState,
 } from "../../../hooks/transaction-reducer";
+import { useTransaction } from "../../../hooks/use-transaction";
+import { useVegaLPStaking } from "../../../hooks/use-vega-lp-staking";
+import { BigNumber } from "../../../lib/bignumber";
 import { Routes } from "../../router-config";
-import { Link } from "react-router-dom";
 import { DexTokensSection } from "../dex-table";
-import { LiquidityAction, LiquidityState } from "../liquidity-reducer";
-import { EthConnectPrompt } from "../../../components/eth-connect-prompt";
 import { useGetLiquidityBalances } from "../hooks";
-import { Callout } from "../../../components/callout";
-import { Error } from "../../../components/icons";
-import { useWeb3 } from "../../../contexts/web3-context/web3-context";
+import { LiquidityAction, LiquidityState } from "../liquidity-reducer";
 
 export const LiquidityDepositPage = ({
   lpTokenAddress,
@@ -47,10 +48,10 @@ export const LiquidityDepositPage = ({
     dispatch: txStakeDispatch,
     perform: txStakePerform,
   } = useTransaction(() => lpStaking.stake(amount));
-  const { ethAddress } = useWeb3();
+  const { account } = useWeb3React();
   const { getBalances, lpStakingEth, lpStakingUSDC } = useGetLiquidityBalances(
     dispatch,
-    ethAddress
+    account || ""
   );
   React.useEffect(() => {
     const run = async () => {
@@ -81,20 +82,20 @@ export const LiquidityDepositPage = ({
   );
   const fetchAllowance = React.useCallback(async () => {
     try {
-      const allowance = await lpStaking.allowance(ethAddress);
+      const allowance = await lpStaking.allowance(account || "");
       setAllowance(allowance);
     } catch (err) {
       Sentry.captureException(err);
     }
-  }, [ethAddress, lpStaking]);
+  }, [account, lpStaking]);
   React.useEffect(() => {
     if (txApprovalState.txState === TxState.Complete) {
       fetchAllowance();
     }
-  }, [lpStaking, ethAddress, fetchAllowance, txApprovalState.txState]);
+  }, [lpStaking, account, fetchAllowance, txApprovalState.txState]);
   React.useEffect(() => {
     fetchAllowance();
-  }, [lpStaking, ethAddress, fetchAllowance]);
+  }, [lpStaking, account, fetchAllowance]);
   let pageContent;
   if (txStakeState.txState !== TxState.Default) {
     pageContent = (
@@ -129,7 +130,7 @@ export const LiquidityDepositPage = ({
   } else {
     pageContent = (
       <>
-        {!ethAddress && <EthConnectPrompt />}
+        {!account && <EthConnectPrompt />}
         <Callout
           icon={<Error />}
           intent="error"
@@ -140,9 +141,8 @@ export const LiquidityDepositPage = ({
         <DexTokensSection
           name={name}
           contractAddress={lpTokenAddress}
-          ethAddress={ethAddress}
+          ethAddress={account || ""}
           state={state}
-          showInteractionButton={false}
         />
         <h1>{t("depositLpTokensHeading")}</h1>
         {values.connectedWalletData?.availableLPTokens?.isGreaterThan(0) ? (

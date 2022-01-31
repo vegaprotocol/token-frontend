@@ -1,10 +1,12 @@
+import BigNumber from "bignumber.js";
 import React from "react";
+
 import { StakingMethod } from "../../../components/staking-method-radio";
-import { useTransaction } from "../../../hooks/use-transaction";
-import { TxState } from "../../../hooks/transaction-reducer";
-import { useRefreshBalances } from "../../../hooks/use-refresh-balances";
 import { useContracts } from "../../../contexts/contracts/contracts-context";
+import { TxState } from "../../../hooks/transaction-reducer";
 import { useGetAssociationBreakdown } from "../../../hooks/use-get-association-breakdown";
+import { useRefreshBalances } from "../../../hooks/use-refresh-balances";
+import { useTransaction } from "../../../hooks/use-transaction";
 
 export const useRemoveStake = (
   address: string,
@@ -17,10 +19,10 @@ export const useRemoveStake = (
   // which if staked > wallet balance means you cannot unstaked
   // even worse if you stake everything then you can't unstake anything!
   const contractRemove = useTransaction(() =>
-    vesting.removeStake(amount, vegaKey)
+    vesting.removeStake(new BigNumber(amount), vegaKey)
   );
   const walletRemove = useTransaction(() =>
-    staking.removeStake(amount, vegaKey)
+    staking.removeStake(new BigNumber(amount), vegaKey)
   );
   const refreshBalances = useRefreshBalances(address);
   const getAssociationBreakdown = useGetAssociationBreakdown(

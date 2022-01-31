@@ -1,72 +1,71 @@
+import { TxData } from "@vegaprotocol/smart-contracts-sdk";
+import {
+  VegaClaim,
+  VegaErc20Bridge,
+  VegaStaking,
+  VegaToken,
+  VegaVesting,
+} from "@vegaprotocol/smart-contracts-sdk";
+import { useWeb3React } from "@web3-react/core";
+import uniqBy from "lodash/uniqBy";
 import React from "react";
-import { useWeb3 } from "../web3-context/web3-context";
-import { ContractsContext, ContractsContextShape } from "./contracts-context";
-import { ADDRESSES } from "../../config";
-import { SplashScreen } from "../../components/splash-screen";
+
 import { SplashLoader } from "../../components/splash-loader";
-
-// Note: Each contract class imported below gets swapped out for a mocked version
-// at ../../lib/vega-web3/__mocks__ at build time using webpack.NormalModuleReplacementPlugin
-// when you run the app with REACT_APP_MOCKED=1
-
-// @ts-ignore
-import VegaToken from "../../lib/VEGA_WEB3/vega-token";
-// @ts-ignore
-import StakingAbi from "../../lib/VEGA_WEB3/vega-staking";
-// @ts-ignore
-import VegaVesting from "../../lib/VEGA_WEB3/vega-vesting";
-// @ts-ignore
-import VegaClaim from "../../lib/VEGA_WEB3/vega-claim";
-import { VegaErc20Bridge } from "../../lib/vega-web3/vega-erc20-bridge";
+import { SplashScreen } from "../../components/splash-screen";
+import { APP_ENV } from "../../config";
+import { ContractsContext, ContractsContextShape } from "./contracts-context";
 
 /**
  * Provides Vega Ethereum contract instances to its children.
  */
 export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
-  const { provider, signer } = useWeb3();
-  const [contracts, setContracts] =
-    React.useState<ContractsContextShape | null>(null);
+  const { library, account } = useWeb3React();
+  const [txs, setTxs] = React.useState<TxData[]>([]);
+  const [contracts, setContracts] = React.useState<Pick<
+    ContractsContextShape,
+    "token" | "staking" | "vesting" | "claim" | "erc20Bridge"
+  > | null>(null);
+
+  // Create instances of contract classes. If we have an account use a signer for the
+  // contracts so that we can sign transactions, otherwise use the provider for just
+  // reading data
+  React.useEffect(() => {
+    let signer = null;
+
+    if (account && library && typeof library.getSigner === "function") {
+      signer = library.getSigner();
+    }
+
+    if (library) {
+      setContracts({
+        token: new VegaToken(APP_ENV, library, signer),
+        staking: new VegaStaking(APP_ENV, library, signer),
+        vesting: new VegaVesting(APP_ENV, library, signer),
+        claim: new VegaClaim(APP_ENV, library, signer),
+        erc20Bridge: new VegaErc20Bridge(APP_ENV, library, signer),
+      });
+    }
+  }, [library, account]);
 
   React.useEffect(() => {
-    let cancelled = false;
-    const run = async () => {
-      const token = new VegaToken(provider, signer, ADDRESSES.vegaTokenAddress);
-      const decimals = await token.decimals();
-      if (!cancelled) {
-        setContracts({
-          token,
-          staking: new StakingAbi(
-            provider,
-            signer,
-            ADDRESSES.stakingBridge,
-            decimals
-          ),
-          vesting: new VegaVesting(
-            provider,
-            signer,
-            ADDRESSES.vestingAddress,
-            decimals
-          ),
-          claim: new VegaClaim(
-            provider,
-            signer,
-            ADDRESSES.claimAddress,
-            decimals
-          ),
-          erc20Bridge: new VegaErc20Bridge(
-            provider as any,
-            signer,
-            ADDRESSES.erc20Bridge
-          ),
-        });
-      }
+    if (!contracts) return;
+
+    const mergeTxs = (existing: TxData[], incoming: TxData[]) => {
+      return uniqBy([...incoming, ...existing], "tx.hash");
     };
 
-    run();
-    return () => {
-      cancelled = true;
-    };
-  }, [provider, signer]);
+    contracts.staking.listen((txs) => {
+      setTxs((curr) => mergeTxs(curr, txs));
+    });
+
+    contracts.vesting.listen((txs) => {
+      setTxs((curr) => mergeTxs(curr, txs));
+    });
+  }, [contracts]);
+
+  React.useEffect(() => {
+    setTxs([]);
+  }, [account]);
 
   if (!contracts) {
     return (
@@ -77,7 +76,7 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
   }
 
   return (
-    <ContractsContext.Provider value={contracts}>
+    <ContractsContext.Provider value={{ ...contracts, transactions: txs }}>
       {children}
     </ContractsContext.Provider>
   );

@@ -1,10 +1,10 @@
-import { isFuture, format } from "date-fns";
-import { Proposals_proposals } from "./__generated__/Proposals";
+import { format,isFuture } from "date-fns";
 import { useTranslation } from "react-i18next";
-import { ProposalChangeText } from "./proposal-change-text";
-import { CurrentProposalState } from "./current-proposal-state";
 
-const DATE_FORMAT = "d MMM yyyy HH:mm";
+import { DATE_FORMAT_DETAILED } from "../../lib/date-formats";
+import { Proposals_proposals } from "./__generated__/Proposals";
+import { CurrentProposalState } from "./current-proposal-state";
+import { ProposalChangeText } from "./proposal-change-text";
 
 interface NetworkChangeProps {
   proposal: Proposals_proposals;
@@ -39,7 +39,7 @@ export const NetworkChange = ({ proposal }: NetworkChangeProps) => {
                 ? t("closesOn")
                 : t("closedOn")}
             </th>
-            <td>{format(new Date(terms.closingDatetime), DATE_FORMAT)}</td>
+            <td>{format(new Date(terms.closingDatetime), DATE_FORMAT_DETAILED)}</td>
           </tr>
           <tr>
             <th>
@@ -47,7 +47,7 @@ export const NetworkChange = ({ proposal }: NetworkChangeProps) => {
                 ? t("proposedEnactment")
                 : t("enactedOn")}
             </th>
-            <td>{format(new Date(terms.enactmentDatetime), DATE_FORMAT)}</td>
+            <td>{format(new Date(terms.enactmentDatetime), DATE_FORMAT_DETAILED)}</td>
           </tr>
           <tr>
             <th>{t("proposedBy")}</th>
@@ -59,7 +59,7 @@ export const NetworkChange = ({ proposal }: NetworkChangeProps) => {
           </tr>
           <tr>
             <th>{t("proposedOn")}</th>
-            <td>{format(new Date(proposal.datetime), DATE_FORMAT)}</td>
+            <td>{format(new Date(proposal.datetime), DATE_FORMAT_DETAILED)}</td>
           </tr>
         </tbody>
       </table>

@@ -1,8 +1,8 @@
 import "./disassociate-page.scss";
 
+import { StakingWalletsContainer } from "../staking-wallets-container";
 import { DisassociatePage } from "./disassociate-page";
 import { DisassociatePageNoVega } from "./disassociate-page-no-vega";
-import { StakingWalletsContainer } from "../staking-wallets-container";
 
 export const DisassociateContainer = () => {
   return (

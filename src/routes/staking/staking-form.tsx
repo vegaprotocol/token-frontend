@@ -1,32 +1,31 @@
 import "./staking-form.scss";
 
+import { gql, useApolloClient } from "@apollo/client";
+import { FormGroup, Radio, RadioGroup } from "@blueprintjs/core";
 import * as Sentry from "@sentry/react";
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 
+import { TokenInput } from "../../components/token-input";
+import { Colors, NetworkParams } from "../../config";
+import { useAppState } from "../../contexts/app-state/app-state-context";
+import { useNetworkParam } from "../../hooks/use-network-param";
+import { useSearchParams } from "../../hooks/use-search-params";
+import { BigNumber } from "../../lib/bignumber";
+import { addDecimal, removeDecimal } from "../../lib/decimals";
 import {
   DelegateSubmissionInput,
   UndelegateSubmissionInput,
   vegaWalletService,
 } from "../../lib/vega-wallet/vega-wallet-service";
-import { FormGroup, Radio, RadioGroup } from "@blueprintjs/core";
 import {
   PartyDelegations,
   PartyDelegationsVariables,
 } from "./__generated__/PartyDelegations";
-import { gql, useApolloClient } from "@apollo/client";
-
-import { BigNumber } from "../../lib/bignumber";
-import { Colors, NetworkParams } from "../../config";
-import React from "react";
 import { StakeFailure } from "./stake-failure";
 import { StakePending } from "./stake-pending";
 import { StakeSuccess } from "./stake-success";
-import { TokenInput } from "../../components/token-input";
-import { addDecimal, removeDecimal } from "../../lib/decimals";
-import { useAppState } from "../../contexts/app-state/app-state-context";
-import { useHistory } from "react-router-dom";
-import { useSearchParams } from "../../hooks/use-search-params";
-import { useTranslation } from "react-i18next";
-import { useNetworkParam } from "../../hooks/use-network-param";
 
 export const PARTY_DELEGATIONS_QUERY = gql`
   query PartyDelegations($partyId: ID!) {
@@ -54,10 +53,14 @@ enum FormState {
   Failure,
 }
 
-export type StakeAction = "Add" | "Remove" | undefined;
+export enum Actions {
+  Add = "Add",
+  Remove = "Remove",
+}
+export type StakeAction = Actions | undefined;
 export enum RemoveType {
-  endOfEpoch,
-  now,
+  EndOfEpoch,
+  Now,
 }
 
 interface StakingFormProps {
@@ -84,7 +87,7 @@ export const StakingForm = ({
   const [action, setAction] = React.useState<StakeAction>(params.action);
   const [amount, setAmount] = React.useState("");
   const [removeType, setRemoveType] = React.useState<RemoveType>(
-    RemoveType.endOfEpoch
+    RemoveType.EndOfEpoch
   );
   // Clear the amount when the staking method changes
   React.useEffect(() => {
@@ -99,11 +102,11 @@ export const StakingForm = ({
   }, [appState.decimals, data]);
 
   const maxDelegation = React.useMemo(() => {
-    if (action === "Add") {
+    if (action === Actions.Add) {
       return availableStakeToAdd;
     }
 
-    if (action === "Remove") {
+    if (action === Actions.Remove) {
       return availableStakeToRemove;
     }
   }, [action, availableStakeToAdd, availableStakeToRemove]);
@@ -123,13 +126,13 @@ export const StakingForm = ({
         nodeId,
         amount: removeDecimal(new BigNumber(amount), appState.decimals),
         method:
-          removeType === RemoveType.now
+          removeType === RemoveType.Now
             ? "METHOD_NOW"
             : "METHOD_AT_END_OF_EPOCH",
       },
     };
     try {
-      const command = action === "Add" ? delegateInput : undelegateInput;
+      const command = action === Actions.Add ? delegateInput : undelegateInput;
       const [err] = await vegaWalletService.commandSync(command);
 
       if (err) {
@@ -181,13 +184,7 @@ export const StakingForm = ({
   if (formState === FormState.Failure) {
     return <StakeFailure nodeName={nodeName} />;
   } else if (formState === FormState.Pending) {
-    return (
-      <StakePending
-        action={action}
-        amount={amount}
-        nodeName={nodeName}
-      />
-    );
+    return <StakePending action={action} amount={amount} nodeName={nodeName} />;
   } else if (formState === FormState.Success) {
     return (
       <StakeSuccess
@@ -229,13 +226,13 @@ export const StakingForm = ({
         >
           <Radio
             disabled={availableStakeToAdd.isEqualTo(0)}
-            value="Add"
+            value={Actions.Add}
             label="Add"
             data-testid="add-stake-radio"
           />
           <Radio
             disabled={availableStakeToRemove.isEqualTo(0)}
-            value="Remove"
+            value={Actions.Remove}
             label="Remove"
             data-testid="remove-stake-radio"
           />
@@ -243,7 +240,7 @@ export const StakingForm = ({
       </FormGroup>
       {action !== undefined && (
         <>
-          {action === "Add" ? (
+          {action === Actions.Add ? (
             <>
               <h2>{t("How much to Add in next epoch?")}</h2>
               <p>
@@ -264,7 +261,7 @@ export const StakingForm = ({
           ) : (
             <>
               <h2>{t("How much to Remove?")}</h2>
-              {removeType === RemoveType.now ? (
+              {removeType === RemoveType.Now ? (
                 <p>
                   {t(
                     "Removing stake mid epoch will forsake any staking rewards from that epoch"
@@ -275,7 +272,7 @@ export const StakingForm = ({
                 submitText={t("undelegateSubmitButton", {
                   amount: t("Remove {{amount}} VEGA tokens", { amount }),
                   when:
-                    removeType === RemoveType.now
+                    removeType === RemoveType.Now
                       ? t("as soon as possible")
                       : t("at the end of epoch"),
                 })}
@@ -285,12 +282,12 @@ export const StakingForm = ({
                 maximum={maxDelegation}
                 currency={t("VEGA Tokens")}
               />
-              {removeType === RemoveType.now ? (
+              {removeType === RemoveType.Now ? (
                 <>
                   <p>{t("Want to remove your stake before the epoch ends?")}</p>
                   <button
                     type="button"
-                    onClick={() => setRemoveType(RemoveType.endOfEpoch)}
+                    onClick={() => setRemoveType(RemoveType.EndOfEpoch)}
                     className="button-link"
                   >
                     {t("Switch to form for removal at end of epoch")}
@@ -303,7 +300,7 @@ export const StakingForm = ({
                   </p>
                   <button
                     type="button"
-                    onClick={() => setRemoveType(RemoveType.now)}
+                    onClick={() => setRemoveType(RemoveType.Now)}
                     className="button-link"
                   >
                     {t("Switch to form for immediate removal")}

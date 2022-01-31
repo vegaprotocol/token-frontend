@@ -1,7 +1,8 @@
 import { useTranslation } from "react-i18next";
-import { RouteChildProps } from "..";
+
 import { Heading } from "../../components/heading";
 import { useDocumentTitle } from "../../hooks/use-document-title";
+import { RouteChildProps } from "..";
 
 const NotFound = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);

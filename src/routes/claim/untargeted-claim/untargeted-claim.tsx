@@ -1,10 +1,13 @@
+import { IClaimTokenParams } from "@vegaprotocol/smart-contracts-sdk";
 import React from "react";
 import { useTranslation } from "react-i18next";
+
+import { BulletHeader } from "../../../components/bullet-header";
 import { CountrySelector } from "../../../components/country-selector";
 import { FormGroup } from "../../../components/form-group";
+import { useContracts } from "../../../contexts/contracts/contracts-context";
 import { TxState } from "../../../hooks/transaction-reducer";
 import { useTransaction } from "../../../hooks/use-transaction";
-import { BulletHeader } from "../../../components/bullet-header";
 import {
   ClaimAction,
   ClaimActionType,
@@ -13,8 +16,6 @@ import {
 } from "../claim-reducer";
 import { ClaimStep1 } from "../claim-step-1";
 import { ClaimStep2 } from "../claim-step-2";
-import { IClaimTokenParams } from "../../../lib/vega-web3/vega-web3-types";
-import { useContracts } from "../../../contexts/contracts/contracts-context";
 import { useClaim } from "../hooks";
 
 interface UntargetedClaimProps {

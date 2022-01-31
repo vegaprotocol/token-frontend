@@ -1,21 +1,21 @@
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { ContractAssociate } from "./contract-associate";
-import { WalletAssociate } from "./wallet-associate";
+
+import {
+  StakingMethod,
+  StakingMethodRadio,
+} from "../../../components/staking-method-radio";
 import {
   useAppState,
   VegaKeyExtended,
 } from "../../../contexts/app-state/app-state-context";
 import { TxState } from "../../../hooks/transaction-reducer";
-import { AssociateTransaction } from "./associate-transaction";
 import { useSearchParams } from "../../../hooks/use-search-params";
-import {
-  StakingMethod,
-  StakingMethodRadio,
-} from "../../../components/staking-method-radio";
+import { AssociateTransaction } from "./associate-transaction";
+import { ContractAssociate } from "./contract-associate";
 import { useAddStake, usePollForStakeLinking } from "./hooks";
-import { Callout } from "../../../components/callout";
-import { useWeb3 } from "../../../contexts/web3-context/web3-context";
+import { WalletAssociate } from "./wallet-associate";
 
 export const AssociatePage = ({
   address,
@@ -53,7 +53,6 @@ export const AssociatePage = ({
 
   const linking = usePollForStakeLinking(vegaKey.pub, txState.txData.hash);
 
-  const { chainId } = useWeb3();
   const {
     appState: { walletBalance, totalVestedBalance, totalLockedBalance },
   } = useAppState();
@@ -84,7 +83,6 @@ export const AssociatePage = ({
         dispatch={txDispatch}
         requiredConfirmations={requiredConfirmations}
         linking={linking}
-        chainId={chainId}
       />
     );
   }

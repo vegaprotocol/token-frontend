@@ -1,8 +1,10 @@
+import "./locked-progress.scss";
+
 import React from "react";
+
 import { Colors } from "../../config";
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
-import "./locked-progress.scss";
 
 export interface LockedProgressProps {
   total: BigNumber;

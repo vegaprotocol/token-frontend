@@ -1,20 +1,21 @@
+import * as Sentry from "@sentry/react";
+import { useWeb3React } from "@web3-react/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { Redirect } from "react-router";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
-import { RouteChildProps } from "..";
+
+import { Heading } from "../../components/heading";
+import { SplashLoader } from "../../components/splash-loader";
+import { SplashScreen } from "../../components/splash-screen";
 import { Flags, REWARDS_ADDRESSES } from "../../config";
 import { useDocumentTitle } from "../../hooks/use-document-title";
+import { RouteChildProps } from "..";
 import { LiquidityDeposit } from "./deposit";
-import { LiquidityContainer } from "./liquidity-container";
-import { LiquidityWithdraw } from "./withdraw";
-import { Redirect } from "react-router";
-import { initialLiquidityState, liquidityReducer } from "./liquidity-reducer";
-import * as Sentry from "@sentry/react";
-import { SplashScreen } from "../../components/splash-screen";
-import { SplashLoader } from "../../components/splash-loader";
 import { useGetLiquidityBalances } from "./hooks";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
-import { Heading } from "../../components/heading";
+import { LiquidityContainer } from "./liquidity-container";
+import { initialLiquidityState, liquidityReducer } from "./liquidity-reducer";
+import { LiquidityWithdraw } from "./withdraw";
 
 const RedemptionIndex = ({ name }: RouteChildProps) => {
   useDocumentTitle(name);
@@ -26,11 +27,11 @@ const RedemptionIndex = ({ name }: RouteChildProps) => {
     liquidityReducer,
     initialLiquidityState
   );
-  const { ethAddress } = useWeb3();
+  const { account } = useWeb3React();
   const [loading, setLoading] = React.useState(true);
   const { getBalances, lpStakingUSDC, lpStakingEth } = useGetLiquidityBalances(
     dispatch,
-    ethAddress
+    account || ""
   );
   const loadAllBalances = React.useCallback(async () => {
     try {

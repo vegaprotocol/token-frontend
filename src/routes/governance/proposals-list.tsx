@@ -1,13 +1,14 @@
-import { format, isFuture } from "date-fns";
 import "./proposals-list.scss";
+
+import { format, isFuture } from "date-fns";
 import { useTranslation } from "react-i18next";
 import { Link, useRouteMatch } from "react-router-dom";
-import { Proposals_proposals } from "./__generated__/Proposals";
-import { Heading } from "../../components/heading";
-import { ProposalChangeText } from "./proposal-change-text";
-import { CurrentProposalState } from "./current-proposal-state";
 
-const DATE_FORMAT = "d MMM yyyy HH:mm";
+import { Heading } from "../../components/heading";
+import { DATE_FORMAT_DETAILED } from "../../lib/date-formats";
+import { Proposals_proposals } from "./__generated__/Proposals";
+import { CurrentProposalState } from "./current-proposal-state";
+import { ProposalChangeText } from "./proposal-change-text";
 
 interface ProposalsListProps {
   proposals: Proposals_proposals[];
@@ -42,11 +43,14 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
             </p>
           </header>
         </Link>
-        <table className="proposal-table">
+        <table
+          className="proposal-table"
+          data-testid="governance-proposal-table"
+        >
           <tbody>
             <tr>
               <th>{t("state")}</th>
-              <td>
+              <td data-testid="governance-proposal-state">
                 <CurrentProposalState proposal={row} />
               </td>
             </tr>
@@ -56,8 +60,8 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
                   ? t("closesOn")
                   : t("closedOn")}
               </th>
-              <td>
-                {format(new Date(row.terms.closingDatetime), DATE_FORMAT)}
+              <td data-testid="governance-proposal-closingDate">
+                {format(new Date(row.terms.closingDatetime), DATE_FORMAT_DETAILED)}
               </td>
             </tr>
             <tr>
@@ -66,8 +70,8 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
                   ? t("proposedEnactment")
                   : t("enactedOn")}
               </th>
-              <td>
-                {format(new Date(row.terms.enactmentDatetime), DATE_FORMAT)}
+              <td data-testid="governance-proposal-enactmentDate">
+                {format(new Date(row.terms.enactmentDatetime), DATE_FORMAT_DETAILED)}
               </td>
             </tr>
           </tbody>

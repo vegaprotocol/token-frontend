@@ -1,14 +1,14 @@
 import React from "react";
+
+import { BigNumber } from "../../lib/bignumber";
+import { truncateMiddle } from "../../lib/truncate-middle";
 import {
   AppState,
-  AppStateContext,
   AppStateAction,
   AppStateActionType,
+  AppStateContext,
   VegaWalletStatus,
 } from "./app-state-context";
-
-import { truncateMiddle } from "../../lib/truncate-middle";
-import { BigNumber } from "../../lib/bignumber";
 
 interface AppStateProviderProps {
   children: React.ReactNode;
@@ -25,6 +25,7 @@ const initialAppState: AppState = {
   allowance: new BigNumber(0),
   tranches: null,
   vegaWalletOverlay: false,
+  ethConnectOverlay: false,
   vegaWalletStatus: VegaWalletStatus.Pending,
   vegaKeys: null,
   vegaWalletVersion: undefined,
@@ -40,6 +41,7 @@ const initialAppState: AppState = {
     vestingAssociations: {},
     stakingAssociations: {},
   },
+  transactionOverlay: false,
 };
 
 function appStateReducer(state: AppState, action: AppStateAction): AppState {
@@ -148,6 +150,13 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         drawerOpen: action.isOpen ? false : state.drawerOpen,
       };
     }
+    case AppStateActionType.SET_ETH_WALLET_OVERLAY: {
+      return {
+        ...state,
+        ethConnectOverlay: action.isOpen,
+        drawerOpen: action.isOpen ? false : state.drawerOpen,
+      };
+    }
     case AppStateActionType.SET_DRAWER: {
       return {
         ...state,
@@ -166,6 +175,12 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
       return {
         ...state,
         associationBreakdown: { ...action.breakdown },
+      };
+    }
+    case AppStateActionType.SET_TRANSACTION_OVERLAY: {
+      return {
+        ...state,
+        transactionOverlay: action.isOpen,
       };
     }
   }

@@ -1,4 +1,5 @@
-import { Then, Given, When } from "cypress-cucumber-preprocessor/steps";
+import { Given, Then, When } from "cypress-cucumber-preprocessor/steps";
+
 import { mock } from "../../common/mock";
 
 Given("I am on the home page", () => {
@@ -41,10 +42,10 @@ Then("the vesting address is shown", () => {
 });
 
 Then("the total supply is shown correctly", () => {
-  cy.get('[data-testid="total-supply"]').should(
-    "have.text",
-    "1,000,000,000.00"
-  );
+  cy.get('[data-testid="total-supply"]').then(($supply) => {
+    const supplyNum = Number($supply.text().replace(/,/g, ""));
+    expect(supplyNum).to.be.above(64999723);
+  });
 });
 
 Then("associated token field is showing {string}", (amount) => {
@@ -135,7 +136,10 @@ Then("I am taken to the {string} page", (pageVisited) => {
       break;
     case "staking":
       cy.url().should("include", "/staking");
-      cy.get(".heading__title-container").should("have.text", "Staking");
+      cy.get(".heading__title-container").should(
+        "have.text",
+        "Staking on Vega"
+      );
       break;
     case "governance":
       cy.url().should("include", "/governance");
@@ -187,4 +191,12 @@ When("I have not connected my vega wallet", () => {
   cy.log(
     "This step does not need to be filled in as connecting wallets is not yet supported with mocks/cypress"
   );
+});
+
+When("I click on the governance proposals button", () => {
+  cy.get("button").contains("View proposals").click();
+});
+
+Then("I can see proposals", () => {
+  cy.log("Pending");
 });

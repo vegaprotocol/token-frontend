@@ -1,12 +1,14 @@
-import React from "react";
+import "./tranche-item.scss";
+
 import { format } from "date-fns";
+import React from "react";
 import { useTranslation } from "react-i18next";
-import { BigNumber } from "../../lib/bignumber";
 import { Link } from "react-router-dom";
 
-import "./tranche-item.scss";
-import { formatNumber } from "../../lib/format-number";
 import { LockedProgress } from "../../components/locked-progress";
+import { BigNumber } from "../../lib/bignumber";
+import { DATE_FORMAT_LONG } from "../../lib/date-formats";
+import { formatNumber } from "../../lib/format-number";
 
 export interface TrancheItemProps {
   tranche: {
@@ -54,11 +56,11 @@ export const TrancheItem = ({
         <tbody>
           <tr>
             <td>{t("Starts unlocking")}</td>
-            <td>{format(tranche.tranche_start, "d MMM yyyy")}</td>
+            <td>{format(tranche.tranche_start, DATE_FORMAT_LONG)}</td>
           </tr>
           <tr>
             <td>{t("Fully unlocked")}</td>
-            <td>{format(tranche.tranche_end, "d MMM yyyy")}</td>
+            <td>{format(tranche.tranche_end, DATE_FORMAT_LONG)}</td>
           </tr>
         </tbody>
       </table>

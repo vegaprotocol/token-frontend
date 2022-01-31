@@ -1,5 +1,6 @@
-import { ButtonHTMLAttributes } from "react";
 import "./stateful-button.scss";
+
+import { ButtonHTMLAttributes } from "react";
 
 export const StatefulButton = (
   props: ButtonHTMLAttributes<HTMLButtonElement>

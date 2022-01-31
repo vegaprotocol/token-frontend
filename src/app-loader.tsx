@@ -1,23 +1,24 @@
-import React from "react";
 import * as Sentry from "@sentry/react";
+import { useWeb3React } from "@web3-react/core";
+import React from "react";
+
+import { SplashError } from "./components/splash-error";
 import { SplashLoader } from "./components/splash-loader";
 import { SplashScreen } from "./components/splash-screen";
+import { Flags } from "./config";
 import {
   AppStateActionType,
   useAppState,
 } from "./contexts/app-state/app-state-context";
+import { useContracts } from "./contexts/contracts/contracts-context";
+import { useRefreshAssociatedBalances } from "./hooks/use-refresh-associated-balances";
 import {
   Errors as VegaWalletServiceErrors,
   vegaWalletService,
 } from "./lib/vega-wallet/vega-wallet-service";
-import { useContracts } from "./contexts/contracts/contracts-context";
-import { useRefreshAssociatedBalances } from "./hooks/use-refresh-associated-balances";
-import { useWeb3 } from "./contexts/web3-context/web3-context";
-import { Flags } from "./config";
-import { SplashError } from "./components/splash-error";
 
 export const AppLoader = ({ children }: { children: React.ReactElement }) => {
-  const { ethAddress } = useWeb3();
+  const { account } = useWeb3React();
   const { appDispatch } = useAppState();
   const { token, staking, vesting } = useContracts();
   const setAssociatedBalances = useRefreshAssociatedBalances();
@@ -59,7 +60,7 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
     }
   }, [token, appDispatch, staking, vesting]);
 
-  // Attempte to get vega keys on startup
+  // Attempt to get vega keys on startup
   React.useEffect(() => {
     async function run() {
       const [keysErr, keys] = await vegaWalletService.getKeys();
@@ -81,9 +82,9 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
       }
 
       let key = undefined;
-      if (ethAddress && keys && keys.length) {
+      if (account && keys && keys.length) {
         key = vegaWalletService.key || keys[0].pub;
-        await setAssociatedBalances(ethAddress, key);
+        await setAssociatedBalances(account, key);
       }
 
       appDispatch({
@@ -97,7 +98,7 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
     if (!Flags.NETWORK_DOWN) {
       run();
     }
-  }, [appDispatch, ethAddress, vegaKeysLoaded, setAssociatedBalances]);
+  }, [appDispatch, account, vegaKeysLoaded, setAssociatedBalances]);
 
   if (Flags.NETWORK_DOWN) {
     return (

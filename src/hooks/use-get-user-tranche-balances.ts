@@ -1,15 +1,16 @@
+import * as Sentry from "@sentry/react";
+import { VegaVesting } from "@vegaprotocol/smart-contracts-sdk";
 import React from "react";
+
 import {
   AppStateActionType,
   useAppState,
 } from "../contexts/app-state/app-state-context";
-import * as Sentry from "@sentry/react";
-import BigNumber from "bignumber.js";
-import { IVegaVesting } from "../lib/web3-utils";
+import { BigNumber } from "../lib/bignumber";
 
 export const useGetUserTrancheBalances = (
   address: string,
-  vesting: IVegaVesting
+  vesting: VegaVesting
 ) => {
   const { appDispatch } = useAppState();
   return React.useCallback(async () => {

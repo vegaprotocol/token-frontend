@@ -1,5 +1,6 @@
+import { Tranche } from "@vegaprotocol/smart-contracts-sdk";
 import React from "react";
-import type { Tranche } from "../../lib/vega-web3/vega-web3-types";
+
 import { BigNumber } from "../../lib/bignumber";
 
 export enum VegaWalletStatus {
@@ -68,8 +69,11 @@ export interface AppState {
   /** Approved amount of VEGA to be associated for staking */
   allowance: BigNumber;
 
-  /** Whether or not the connect to VEGA wallet overaly is open */
+  /** Whether or not the connect to VEGA wallet overlay is open */
   vegaWalletOverlay: boolean;
+
+  /** Whether or not the connect to Ethereum wallet overlay is open */
+  ethConnectOverlay: boolean;
 
   /** Whether or not a Vega wallet service is running, can be Pending, Ready or None */
   vegaWalletStatus: VegaWalletStatus;
@@ -103,6 +107,9 @@ export interface AppState {
     stakingAssociations: { [vegaKey: string]: BigNumber };
     vestingAssociations: { [vegaKey: string]: BigNumber };
   };
+
+  /**  Whether or not the transaction modal is open */
+  transactionOverlay: boolean;
 }
 
 export enum AppStateActionType {
@@ -116,10 +123,12 @@ export enum AppStateActionType {
   REFRESH_BALANCES,
   SET_TRANCHE_DATA,
   SET_VEGA_WALLET_OVERLAY,
+  SET_ETH_WALLET_OVERLAY,
   SET_DRAWER,
   SET_TRANCHE_ERROR,
   REFRESH_ASSOCIATED_BALANCES,
   SET_ASSOCIATION_BREAKDOWN,
+  SET_TRANSACTION_OVERLAY,
 }
 
 export type AppStateAction =
@@ -175,6 +184,10 @@ export type AppStateAction =
       isOpen: boolean;
     }
   | {
+      type: AppStateActionType.SET_ETH_WALLET_OVERLAY;
+      isOpen: boolean;
+    }
+  | {
       type: AppStateActionType.SET_DRAWER;
       isOpen: boolean;
     }
@@ -189,6 +202,10 @@ export type AppStateAction =
         stakingAssociations: { [vegaKey: string]: BigNumber };
         vestingAssociations: { [vegaKey: string]: BigNumber };
       };
+    }
+  | {
+      type: AppStateActionType.SET_TRANSACTION_OVERLAY;
+      isOpen: boolean;
     };
 
 type AppStateContextShape = {

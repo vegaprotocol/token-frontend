@@ -1,9 +1,10 @@
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import { useTranslation } from "react-i18next";
-import { Callout } from "../../components/callout";
-import { Tick } from "../../components/icons";
 import { Link } from "react-router-dom";
+
+import { Tick } from "../../components/icons";
 import { Routes } from "../router-config";
-import { RemoveType, StakeAction } from "./staking-form";
+import { Actions, RemoveType, StakeAction } from "./staking-form";
 
 interface StakeSuccessProps {
   action: StakeAction;
@@ -19,13 +20,13 @@ export const StakeSuccess = ({
   removeType,
 }: StakeSuccessProps) => {
   const { t } = useTranslation();
-  const isAdd = action === "Add";
+  const isAdd = action === Actions.Add;
   const title = isAdd
     ? t("stakeAddSuccessTitle", { amount })
     : t("stakeRemoveSuccessTitle", { amount, node: nodeName });
   const message = isAdd
     ? t("stakeAddSuccessMessage")
-    : removeType === RemoveType.endOfEpoch
+    : removeType === RemoveType.EndOfEpoch
     ? t("stakeRemoveSuccessMessage")
     : t("stakeRemoveNowSuccessMessage");
 

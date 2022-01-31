@@ -11,4 +11,10 @@
     background: white;
     opacity: 0;
   }
+
+  &--dark {
+    span {
+      background: black;
+    }
+  }
 }

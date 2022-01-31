@@ -1,13 +1,14 @@
+import * as Sentry from "@sentry/react";
+import { ethers } from "ethers";
 import React from "react";
+import { useTranslation } from "react-i18next";
+
 import { isUnexpectedError, isUserRejection } from "../lib/web3-utils";
 import {
   initialState,
   TransactionActionType,
   transactionReducer,
 } from "./transaction-reducer";
-import { useTranslation } from "react-i18next";
-import * as Sentry from "@sentry/react";
-import { ethers } from "ethers";
 
 export const useTransaction = (
   performTransaction: () => Promise<ethers.ContractTransaction>,

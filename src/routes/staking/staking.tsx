@@ -1,24 +1,40 @@
-import { useAppState } from "../../contexts/app-state/app-state-context";
-import { Error, Tick } from "../../components/icons";
-import { Link, useRouteMatch } from "react-router-dom";
-import { NodeList } from "./node-list";
-import { Trans, useTranslation } from "react-i18next";
+import "./staking.scss";
 
-import { BigNumber } from "../../lib/bignumber";
+import { Callout } from "@vegaprotocol/ui-toolkit";
+import { useWeb3React } from "@web3-react/core";
+import { Trans, useTranslation } from "react-i18next";
+import { Link, useRouteMatch } from "react-router-dom";
+
 import { BulletHeader } from "../../components/bullet-header";
-import { Callout } from "../../components/callout";
-import { ConnectToVega } from "./connect-to-vega";
-import { Links } from "../../config";
-import { Staking as StakingQueryResult } from "./__generated__/Staking";
-import { useWeb3 } from "../../contexts/web3-context/web3-context";
-import { formatNumber } from "../../lib/format-number";
 import { EtherscanLink } from "../../components/etherscan-link";
+import { CopyToClipboardType } from "../../components/etherscan-link/etherscan-link";
+import { Error, Tick } from "../../components/icons";
+import { Links } from "../../config";
+import {
+  AppStateActionType,
+  useAppState,
+} from "../../contexts/app-state/app-state-context";
+import { BigNumber } from "../../lib/bignumber";
+import { formatNumber } from "../../lib/format-number";
+import { Staking as StakingQueryResult } from "./__generated__/Staking";
+import { ConnectToVega } from "./connect-to-vega";
+import { NodeList } from "./node-list";
 
 export const Staking = ({ data }: { data?: StakingQueryResult }) => {
   const { t } = useTranslation();
 
   return (
     <>
+      <section>
+        <p>{t("stakingDescription1")}</p>
+        <p>{t("stakingDescription2")}</p>
+        <p>{t("stakingDescription3")}</p>
+        <p>{t("stakingDescription4")}</p>
+        <a href={Links.STAKING_GUIDE} target="_blank" rel="noreferrer">
+          {t("readMoreStaking")}
+        </a>
+      </section>
+
       <section>
         <BulletHeader tag="h2" style={{ marginTop: 0 }}>
           {t("stakingStep1")}
@@ -45,20 +61,21 @@ export const Staking = ({ data }: { data?: StakingQueryResult }) => {
 
 export const StakingStepConnectWallets = () => {
   const { t } = useTranslation();
-  const { connect, ethAddress, chainId } = useWeb3();
+  const { account } = useWeb3React();
   const {
     appState: { currVegaKey },
+    appDispatch,
   } = useAppState();
 
-  if (currVegaKey && ethAddress) {
+  if (currVegaKey && account) {
     return (
       <Callout intent="success" icon={<Tick />} title={"Connected"}>
         <p>
           {t("Connected Ethereum address")}&nbsp;
           <EtherscanLink
-            address={ethAddress}
-            chainId={chainId}
-            text={ethAddress}
+            address={account}
+            text={account}
+            copyToClipboard={CopyToClipboardType.LINK}
           />
         </p>
         <p>{t("stakingVegaWalletConnected", { key: currVegaKey.pub })}</p>
@@ -79,15 +96,24 @@ export const StakingStepConnectWallets = () => {
           }}
         />
       </p>
-      {ethAddress ? (
+      {account ? (
         <Callout
           icon={<Tick />}
           intent="success"
-          title={`Ethereum wallet connected: ${ethAddress}`}
+          title={`Ethereum wallet connected: ${account}`}
         />
       ) : (
         <p>
-          <button onClick={connect} className="fill" type="button">
+          <button
+            onClick={() =>
+              appDispatch({
+                type: AppStateActionType.SET_ETH_WALLET_OVERLAY,
+                isOpen: true,
+              })
+            }
+            className="fill"
+            type="button"
+          >
             {t("connectEthWallet")}
           </button>
         </p>
@@ -112,12 +138,12 @@ export const StakingStepAssociate = ({
 }) => {
   const match = useRouteMatch();
   const { t } = useTranslation();
-  const { ethAddress } = useWeb3();
+  const { account } = useWeb3React();
   const {
     appState: { currVegaKey },
   } = useAppState();
 
-  if (!ethAddress) {
+  if (!account) {
     return (
       <Callout
         intent="error"

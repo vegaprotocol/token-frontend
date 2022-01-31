@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+
 import { SplashLoader } from "../../components/splash-loader";
 
 export const Verifying = () => {

@@ -1,12 +1,11 @@
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { Callout } from "../../../components/callout";
+
 import { EtherscanLink } from "../../../components/etherscan-link";
-import { CopyToClipboardType } from "../../../components/etherscan-link/etherscan-link";
 import { Loader } from "../../../components/loader";
 import { TransactionCallout } from "../../../components/transaction-callout";
-import { EthereumChainId } from "../../../config";
 import {
   TransactionAction,
   TransactionActionType,
@@ -23,7 +22,6 @@ export const AssociateTransaction = ({
   dispatch,
   requiredConfirmations,
   linking,
-  chainId,
 }: {
   amount: string;
   vegaKey: string;
@@ -31,7 +29,6 @@ export const AssociateTransaction = ({
   dispatch: React.Dispatch<TransactionAction>;
   requiredConfirmations: number;
   linking: PartyStakeLinkings_party_stake_linkings | null;
-  chainId: EthereumChainId;
 }) => {
   const { t } = useTranslation();
 
@@ -51,10 +48,7 @@ export const AssociateTransaction = ({
         amount: remainingConfirmations,
       })}`;
     }
-  }, [
-    remainingConfirmations,
-    t
-  ]);
+  }, [remainingConfirmations, t]);
 
   let derivedTxState: TxState = state.txState;
 
@@ -72,11 +66,7 @@ export const AssociateTransaction = ({
           })}
         </p>
         <p>
-          <EtherscanLink
-            tx={state.txData.hash!}
-            chainId={chainId}
-            copyToClipboard={CopyToClipboardType.LINK}
-          />
+          <EtherscanLink tx={state.txData.hash!} />
         </p>
         <p data-testid="transaction-pending-footer">
           {t("pendingAssociationText", {
