@@ -12,7 +12,6 @@ export const Flags = {
   DEX_STAKING_DISABLED: TRUTHY.includes(
     process.env.REACT_APP_DEX_STAKING_DISABLED!
   ),
-  VESTING_DISABLED: TRUTHY.includes(process.env.REACT_APP_VESTING_DISABLED!),
   FAIRGROUND: TRUTHY.includes(process.env.REACT_APP_FAIRGROUND!),
   WITHDRAWS_DISABLED: TRUTHY.includes(
     process.env.REACT_APP_WITHDRAWS_DISABLED!

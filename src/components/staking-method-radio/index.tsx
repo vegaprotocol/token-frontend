@@ -2,8 +2,6 @@ import { Radio, RadioGroup } from "@blueprintjs/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { Flags } from "../../config";
-
 export enum StakingMethod {
   Contract = "Contract",
   Wallet = "Wallet",
@@ -27,7 +25,6 @@ export const StakingMethodRadio = ({
       selectedValue={selectedStakingMethod}
     >
       <Radio
-        disabled={Flags.VESTING_DISABLED}
         data-testid="associate-radio-contract"
         label={t("Vesting contract")}
         value={StakingMethod.Contract}
