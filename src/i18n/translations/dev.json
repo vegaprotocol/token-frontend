@@ -105,7 +105,7 @@
   "No holders": "No holders",
   "required": "Required",
   "claimComplete": "Claim successful",
-  "claimCompleteMessage": "Ethereum address {{address}} now has a vested right to {{balance}} $VEGA tokens, and can claim these once unlocked",
+  "claimCompleteMessage": "Ethereum address {{address}} now has a vested right to {{balance}} $VEGA tokens, and can redeem these once unlocked",
   "Link transaction": "Link transaction",
   "Claim transaction": "Claim transaction",
   "trancheExtraInfo": "placeholder",
