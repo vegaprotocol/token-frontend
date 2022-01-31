@@ -116,7 +116,6 @@ export const VegaWallet = () => {
             </span>
           )}
         </WalletCardHeader>
-        <NewWalletAvailable />
         <WalletCardContent>{child}</WalletCardContent>
       </WalletCard>
     </section>
@@ -443,6 +442,7 @@ const VegaWalletConnected = ({
 
   return vegaKeys.length ? (
     <>
+      <NewWalletAvailable />
       <WalletCardAsset
         image={vegaWhite}
         decimals={decimals}
