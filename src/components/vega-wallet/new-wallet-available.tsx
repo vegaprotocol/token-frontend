@@ -21,6 +21,7 @@ export const NewWalletAvailable = () => {
       try {
         const res = await fetch(Links.WALLET_RELEASES_HISTORY);
         const json = await res.json();
+        console.log(json);
 
         const [, currentVersion] = await vegaWalletService.getVersion();
         // find the first non-prelease
