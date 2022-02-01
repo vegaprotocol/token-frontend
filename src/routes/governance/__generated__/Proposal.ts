@@ -17,6 +17,10 @@ export interface Proposal_proposal_party {
   id: string;
 }
 
+export interface Proposal_proposal_terms_change_NewFreeform {
+  __typename: "NewFreeform";
+}
+
 export interface Proposal_proposal_terms_change_NewMarket_instrument {
   __typename: "InstrumentConfiguration";
   /**
@@ -85,7 +89,7 @@ export interface Proposal_proposal_terms_change_UpdateNetworkParameter {
   networkParameter: Proposal_proposal_terms_change_UpdateNetworkParameter_networkParameter;
 }
 
-export type Proposal_proposal_terms_change = Proposal_proposal_terms_change_NewMarket | Proposal_proposal_terms_change_UpdateMarket | Proposal_proposal_terms_change_NewAsset | Proposal_proposal_terms_change_UpdateNetworkParameter;
+export type Proposal_proposal_terms_change = Proposal_proposal_terms_change_NewFreeform | Proposal_proposal_terms_change_NewMarket | Proposal_proposal_terms_change_UpdateMarket | Proposal_proposal_terms_change_NewAsset | Proposal_proposal_terms_change_UpdateNetworkParameter;
 
 export interface Proposal_proposal_terms {
   __typename: "ProposalTerms";
@@ -120,7 +124,7 @@ export interface Proposal_proposal_votes_yes_votes_party {
    */
   id: string;
   /**
-   * The staking informations for this Party
+   * The staking information for this Party
    */
   stake: Proposal_proposal_votes_yes_votes_party_stake;
 }
@@ -172,7 +176,7 @@ export interface Proposal_proposal_votes_no_votes_party {
    */
   id: string;
   /**
-   * The staking informations for this Party
+   * The staking information for this Party
    */
   stake: Proposal_proposal_votes_no_votes_party_stake;
 }

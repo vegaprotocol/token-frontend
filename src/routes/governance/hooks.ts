@@ -65,6 +65,8 @@ const useProposalNetworkParams = ({
         requiredMajority: newMarketMajority,
         requiredParticipation: new BigNumber(newMarketParticipation),
       };
+    default:
+      throw new Error("Unknown proposal type");
   }
 };
 

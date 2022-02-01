@@ -114,7 +114,7 @@ export interface Delegations_party {
   id: string;
   delegations: Delegations_party_delegations[] | null;
   /**
-   * The staking informations for this Party
+   * The staking information for this Party
    */
   stake: Delegations_party_stake;
   /**
@@ -125,7 +125,7 @@ export interface Delegations_party {
 
 export interface Delegations {
   /**
-   * get data for a specific epoch, if id omitted it gets the current epoch
+   * get data for a specific epoch, if id omitted it gets the current epoch. If the string is 'next', fetch the next epoch
    */
   epoch: Delegations_epoch;
   /**

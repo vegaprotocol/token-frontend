@@ -50,7 +50,7 @@ export interface Staking_party {
    */
   id: string;
   /**
-   * The staking informations for this Party
+   * The staking information for this Party
    */
   stake: Staking_party_stake;
   delegations: Staking_party_delegations[] | null;
@@ -178,7 +178,7 @@ export interface Staking {
    */
   party: Staking_party | null;
   /**
-   * get data for a specific epoch, if id omitted it gets the current epoch
+   * get data for a specific epoch, if id omitted it gets the current epoch. If the string is 'next', fetch the next epoch
    */
   epoch: Staking_epoch;
   /**

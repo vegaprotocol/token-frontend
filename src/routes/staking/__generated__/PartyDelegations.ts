@@ -55,7 +55,7 @@ export interface PartyDelegations {
    */
   party: PartyDelegations_party | null;
   /**
-   * get data for a specific epoch, if id omitted it gets the current epoch
+   * get data for a specific epoch, if id omitted it gets the current epoch. If the string is 'next', fetch the next epoch
    */
   epoch: PartyDelegations_epoch;
 }

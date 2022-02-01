@@ -56,7 +56,7 @@ export interface WithdrawalsPage_party_withdrawals {
    */
   asset: WithdrawalsPage_party_withdrawals_asset;
   /**
-   * The PartyID initiating the witndrawal
+   * The PartyID initiating the withdrawal
    */
   party: WithdrawalsPage_party_withdrawals_party;
   /**
