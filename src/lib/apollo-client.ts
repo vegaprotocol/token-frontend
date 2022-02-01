@@ -14,6 +14,7 @@ import uniqBy from "lodash/uniqBy";
 import { BigNumber } from "./bignumber";
 import { addDecimal } from "./decimals";
 import { deterministicShuffle } from "./deterministic-shuffle";
+import { getDataNodeUrl } from "./get-data-node-url";
 
 // Create seed in memory. Validator list order will remain the same
 // until the page is refreshed.
@@ -22,15 +23,7 @@ const VALIDATOR_RANDOMISER_SEED = (
 ).toString();
 
 export function createClient() {
-  const base = process.env.REACT_APP_VEGA_URL;
-  if (!base) {
-    throw new Error("Environment variable REACT_APP_VEGA_URL must be set");
-  }
-  const gqlPath = "query";
-  const urlHTTP = new URL(gqlPath, base);
-  const urlWS = new URL(gqlPath, base);
-  // Replace http with ws, preserving if its a secure connection eg. https => wss
-  urlWS.protocol = urlWS.protocol.replace("http", "ws");
+  const { graphql } = getDataNodeUrl();
 
   const formatUintToNumber = (amount: string, decimals = 18) =>
     addDecimal(new BigNumber(amount), decimals).toString();
@@ -161,7 +154,7 @@ export function createClient() {
   });
 
   const httpLink = new HttpLink({
-    uri: urlHTTP.href,
+    uri: graphql,
     credentials: "same-origin",
   });
 

@@ -1,6 +1,7 @@
 import * as Sentry from "@sentry/react";
 import { useWeb3React } from "@web3-react/core";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { SplashError } from "./components/splash-error";
 import { SplashLoader } from "./components/splash-loader";
@@ -12,12 +13,14 @@ import {
 } from "./contexts/app-state/app-state-context";
 import { useContracts } from "./contexts/contracts/contracts-context";
 import { useRefreshAssociatedBalances } from "./hooks/use-refresh-associated-balances";
+import { getDataNodeUrl } from "./lib/get-data-node-url";
 import {
   Errors as VegaWalletServiceErrors,
   vegaWalletService,
 } from "./lib/vega-wallet/vega-wallet-service";
 
 export const AppLoader = ({ children }: { children: React.ReactElement }) => {
+  const { t } = useTranslation();
   const { account } = useWeb3React();
   const { appDispatch } = useAppState();
   const { token, staking, vesting } = useContracts();
@@ -101,14 +104,16 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
   }, [appDispatch, account, vegaKeysLoaded, setAssociatedBalances]);
 
   React.useEffect(() => {
+    const { base } = getDataNodeUrl();
+    const networkLimitsEndpoint = new URL("/network/limits", base).href;
+    const statsEndpoint = new URL("/statistics", base).href;
+
     let interval: any = null;
 
     const getNetworkLimits = async () => {
       const [networkLimits, stats] = await Promise.all([
-        fetch("https://n04.d.vega.xyz/network/limits").then((res) =>
-          res.json()
-        ),
-        fetch("https://n04.d.vega.xyz/statistics").then((res) => res.json()),
+        fetch(networkLimitsEndpoint).then((res) => res.json()),
+        fetch(statsEndpoint).then((res) => res.json()),
       ]);
 
       const restoreBlock = Number(
@@ -119,8 +124,7 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
       if (currentBlock <= restoreBlock) {
         appDispatch({
           type: AppStateActionType.SET_BANNER_MESSAGE,
-          message:
-            "The network is less than 900 blocks old, it could be in the process of restoring from a checkpoint",
+          message: t("networkRestoring", { bootstrapBlockCount: restoreBlock }),
         });
 
         if (!interval) {
@@ -154,7 +158,7 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
     return () => {
       stopPoll();
     };
-  }, [appDispatch]);
+  }, [appDispatch, t]);
 
   if (Flags.NETWORK_DOWN) {
     return (
