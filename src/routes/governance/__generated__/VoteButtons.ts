@@ -23,7 +23,7 @@ export interface VoteButtons_party {
    */
   id: string;
   /**
-   * The staking informations for this Party
+   * The staking information for this Party
    */
   stake: VoteButtons_party_stake;
 }
