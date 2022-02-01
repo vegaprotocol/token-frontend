@@ -471,7 +471,6 @@
   "View Governance proposals": "View proposals",
   "vegaWallet": "Vega Wallet",
   "rewardsComingSoon": "Rewards is coming soon",
-  "withdrawsComingSoon": "Withdraws are coming soon",
   "associationChoice": "You have $VEGA tokens held by the vesting contract. Would you like to associate those or associate $VEGA directly from your wallet?",
   "footerLinksText": "Known issues and feedback on <noltLink>Nolt</noltLink> and <githubLink>Github</githubLink>",
   "connectEthWallet": "Connect Ethereum wallet",

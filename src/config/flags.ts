@@ -13,7 +13,4 @@ export const Flags = {
     process.env.REACT_APP_DEX_STAKING_DISABLED!
   ),
   FAIRGROUND: TRUTHY.includes(process.env.REACT_APP_FAIRGROUND!),
-  WITHDRAWS_DISABLED: TRUTHY.includes(
-    process.env.REACT_APP_WITHDRAWS_DISABLED!
-  ),
 };

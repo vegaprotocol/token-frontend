@@ -10,7 +10,6 @@ import { Heading } from "../../components/heading";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { VegaWalletContainer } from "../../components/vega-wallet-container";
-import { Flags } from "../../config";
 import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
 import { Routes } from "../router-config";
 import {
@@ -22,12 +21,7 @@ import { WithdrawForm } from "./withdraw-form";
 const Withdraw = () => {
   const { t } = useTranslation();
 
-  return Flags.WITHDRAWS_DISABLED ? (
-    <>
-      <Heading title={t("withdrawPageHeading")} />
-      <div>{t("withdrawsComingSoon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</div>
-    </>
-  ) : (
+  return (
     <>
       <Heading title={t("withdrawPageHeading")} />
       <p>{t("withdrawPageText")}</p>

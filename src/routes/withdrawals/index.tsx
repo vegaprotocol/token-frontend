@@ -19,7 +19,6 @@ import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { TransactionButton } from "../../components/transaction-button";
 import { VegaWalletContainer } from "../../components/vega-wallet-container";
-import { Flags } from "../../config";
 import { VegaKeyExtended } from "../../contexts/app-state/app-state-context";
 import { useContracts } from "../../contexts/contracts/contracts-context";
 import { TxState } from "../../hooks/transaction-reducer";
@@ -39,12 +38,7 @@ import {
 const Withdrawals = () => {
   const { t } = useTranslation();
 
-  return Flags.WITHDRAWS_DISABLED ? (
-    <>
-      <Heading title={t("withdrawPageHeading")} />
-      <div>{t("withdrawsComingSoon")}&nbsp;🚧👷‍♂️👷‍♀️🚧</div>
-    </>
-  ) : (
+  return (
     <>
       <Heading title={t("withdrawalsTitle")} />
       <p>{t("withdrawalsText")}</p>
