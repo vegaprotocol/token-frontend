@@ -67,7 +67,7 @@
   "claimNoExpiry": "It has no expiry date",
   "showRedeem": "You'll be able to redeem your unlocked tokens at token.vega.xyz/vesting",
   "codeUsed": "Code already used",
-  "codeUsedText": "Looks like that code has already been used, Check the Vesting page to see if you can redeem your tokens.",
+  "codeUsedText": "Looks like that code has already been used. Check the Vesting page to see if you can redeem your tokens.",
   "codeExpired": "Code expired",
   "Vesting Balance": "Vesting Balance",
   "VEGA": "$VEGA",
