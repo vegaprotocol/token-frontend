@@ -12,13 +12,20 @@
  */
 export enum AccountType {
   Bond = "Bond",
+  External = "External",
   FeeInfrastructure = "FeeInfrastructure",
   FeeLiquidity = "FeeLiquidity",
   General = "General",
   GlobalInsurance = "GlobalInsurance",
+  GlobalReward = "GlobalReward",
   Insurance = "Insurance",
   LockWithdraw = "LockWithdraw",
   Margin = "Margin",
+  PendingTransfers = "PendingTransfers",
+  RewardLpReceivedFees = "RewardLpReceivedFees",
+  RewardMakerReceivedFees = "RewardMakerReceivedFees",
+  RewardMarketProposers = "RewardMarketProposers",
+  RewardTakerPaidFees = "RewardTakerPaidFees",
   Settlement = "Settlement",
 }
 
@@ -101,9 +108,9 @@ export enum VoteValue {
  * The status of a withdrawal
  */
 export enum WithdrawalStatus {
-  Cancelled = "Cancelled",
   Finalized = "Finalized",
   Open = "Open",
+  Rejected = "Rejected",
 }
 
 //==============================================================

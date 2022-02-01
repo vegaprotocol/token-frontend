@@ -37,7 +37,7 @@ export interface PartyStakeLinkings_party {
    */
   id: string;
   /**
-   * The staking informations for this Party
+   * The staking information for this Party
    */
   stake: PartyStakeLinkings_party_stake;
 }
