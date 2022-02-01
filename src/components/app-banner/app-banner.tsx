@@ -8,7 +8,8 @@ export const AppBanner = () => {
     appState: { bannerMessage },
   } = useAppState();
 
-  if (!bannerMessage) return null;
+  // Return empty div so that grid placement remains correct
+  if (!bannerMessage) return <div />;
 
   return (
     <div className="app-banner" role="alert">
