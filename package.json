@@ -21,7 +21,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.8",
-    "@vegaprotocol/smart-contracts-sdk": "^0.4.0",
+    "@vegaprotocol/smart-contracts-sdk": "^0.5.0",
     "@vegaprotocol/ui-toolkit": "0.5.0",
     "@walletconnect/web3-provider": "^1.6.6",
     "@web3-react/core": "^6.1.9",

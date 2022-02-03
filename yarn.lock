@@ -3127,10 +3127,10 @@
     "@typescript-eslint/types" "4.33.0"
     eslint-visitor-keys "^2.0.0"
 
-"@vegaprotocol/smart-contracts-sdk@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@vegaprotocol/smart-contracts-sdk/-/smart-contracts-sdk-0.4.0.tgz#f766f55caf8e71b561337836beb4d2bc724c46d7"
-  integrity sha512-kL/XNlYyUjGYuyqAjtdCzI7FxlPx5P39jzVPDEcTKGd7S50gV4cA60fJ1iMae1knucVOVOLqtFhiaQzqTx8IdA==
+"@vegaprotocol/smart-contracts-sdk@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@vegaprotocol/smart-contracts-sdk/-/smart-contracts-sdk-0.5.0.tgz#0d085dd7554e92d4765a2bc90147de7be81c5f7d"
+  integrity sha512-e813gt8THW5zmtj4giE/UHeWjGeOH+b44XQtPW8Py60B+fdKT8l3s+3ECBk6PkwpSNAS5er0ITOhJ+zC9sG/oQ==
   dependencies:
     deprecated-decorator "^0.1.6"
     ethers "^5.5.2"
