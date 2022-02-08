@@ -18,7 +18,10 @@ export const VegaWalletNotRunning = ({
   return (
     <div className="vega-wallet-not-running__container">
       <div className="vega-wallet-not-running__input">
-        <FormGroup label={t("urlLabel")} labelFor="wallet-service-url">
+        <FormGroup
+          label={t("walletServiceLabel")}
+          labelFor="wallet-service-url"
+        >
           <input
             name="wallet-service-url"
             id="wallet-service-url"
@@ -32,9 +35,8 @@ export const VegaWalletNotRunning = ({
       <div className="vega-wallet-not-running__text-container">
         <div className="vega-wallet-not-running__exclamation">!</div>
         <div className="vega-wallet-not-running__text">
-          <p>{t("noWalletDetected", { url })}</p>
+          <p>{t("noWalletDetected")}</p>
           <p>{t("noWalletHelpText")}</p>
-          <p>{t("walletServiceNotRunning")}</p>
         </div>
       </div>
     </div>
