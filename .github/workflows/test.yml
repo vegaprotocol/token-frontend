@@ -15,7 +15,7 @@ jobs:
           with:
             node-version: 14.18.3
         - name: cd into automation directory
-          run: cd /automation
+          run: cd automation
         - name: Install
           run: npm install
         # - name: Download wallet
