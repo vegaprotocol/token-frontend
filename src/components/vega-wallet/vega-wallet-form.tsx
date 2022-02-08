@@ -129,7 +129,7 @@ export const VegaWalletForm = ({
         </FormGroup>
       ) : null}
       <FormGroup
-        label={t("urlLabel")}
+        label={t("walletServiceLabel")}
         labelFor="url"
         intent={errors.url?.message ? Intent.DANGER : Intent.NONE}
         helperText={errors.url?.message}
