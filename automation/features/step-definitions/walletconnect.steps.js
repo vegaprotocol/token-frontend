@@ -73,11 +73,11 @@ Given(/^I connect my ethereum wallet$/, () => {
     $(".network-name-item=Ropsten Test Network").click();
     browser.closeWindow();
     browser.switchWindow("https://staging.token.vega.xyz/");
-    $('[data-test-id="connect-to-eth-wallet-button"]').waitForDisplayed({
+    $('.eth-connect-modal__button').waitForDisplayed({
       timeout: 10000,
       timeoutMsg: "Connect Eth Button not displayed",
     });
-    $('[data-test-id="connect-to-eth-wallet-button"]').click();
+    $('.eth-connect-modal__button').click();
     $(".web3modal-provider-name*=Injected").click();
     browser.pause(1500);
     browser.switchWindow("MetaMask Notification");

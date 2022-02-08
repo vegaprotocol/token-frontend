@@ -57,7 +57,14 @@ exports.config = {
     // Default request retries count
     connectionRetryCount: 3,
     framework: 'cucumber',
-    reporters: ['spec'],
+    reporters: [[
+      'spec'
+    ],['allure', {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: false,
+        useCucumberStepReporter: true
+    }]],
     cucumberOpts: {                                                             
         // <string[]> (file/dir) require files before executing features
         require: ['./features/step-definitions/*.steps.js'],
