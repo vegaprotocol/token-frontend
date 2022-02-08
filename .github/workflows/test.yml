@@ -11,6 +11,9 @@ on:
 jobs:
   prepare:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: automation
     if: ${{ contains(github.event.pull_request.labels.*.name, 'readyTest') }}
     steps:
         - name: Checkout
@@ -18,8 +21,6 @@ jobs:
         - uses: actions/setup-node@v1
           with:
             node-version: 14.18.3
-        - name: cd into automation directory
-          run: cd automation
         - name: Install
           run: npm install
         # - name: Download wallet
@@ -30,8 +31,6 @@ jobs:
           run: pwd
         - name: list directories
           run: ls
-        - name: cd into automation directory
-          run: cd automation
         - name: Initialize wallet
           run: ./vegawallet init -f
         # - name: List keys
