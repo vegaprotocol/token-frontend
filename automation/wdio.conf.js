@@ -58,9 +58,7 @@ exports.config = {
     // Default request retries count
     connectionRetryCount: 3,
     framework: 'cucumber',
-    reporters: [[
-      'spec'
-    ],['allure', {
+    reporters: [['allure', {
         outputDir: 'allure-results',
         disableWebdriverStepsReporting: true,
         disableWebdriverScreenshotsReporting: false,
