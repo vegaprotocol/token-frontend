@@ -1,0 +1,54 @@
+name: WDIO tests + browserstack
+on:
+  pull_request:
+    types:
+      - opened
+      - labeled
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    if: ${{ contains(github.event.pull_request.labels.*.name, 'readyTest') }}
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+        - uses: actions/setup-node@v1
+          with:
+            node-version: 14.18.3
+        - name: cd into automation directory
+          run: cd /automation
+        - name: Install
+          run: npm install
+        # - name: Download wallet
+        #   run: curl -L https://github.com/vegaprotocol/vegawallet/releases/download/v${{ matrix.vegawallet-version }}/vegawallet-linux-amd64.zip -O
+        # - name: Unzip wallet
+        #   run: unzip ./vegawallet-linux-amd64.zip
+        - name: Initialize wallet
+          run: ./vegawallet init -f
+        # - name: List keys
+        #   run: ./vegawallet key list
+        - name: Import config
+          run: ./vegawallet network import --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml
+        - name: List networks
+          run: ./vegawallet network list
+        - name: Start service
+          run: ./vegawallet service run --network fairground &
+        - name: 'BrowserStack Env Setup'  # Invokes the setup-env action
+          uses: browserstack/github-actions/setup-env@master
+          with:
+            username: ditmirhasani_8O6wBn
+            access-key: kapsvp3EvwLSmyDyJKxG
+        - name: 'BrowserStack Local Tunnel Setup'  # Invokes the setup-local action
+          uses: browserstack/github-actions/setup-local@master
+          with:
+            local-testing: start
+        - name: Run tests
+          run: npm run wdio
+        # - name: 'BrowserStackLocal Stop'  # Terminating the BrowserStackLocal tunnel connection
+        #   uses: browserstack/github-actions/setup-local@master
+        #   with:
+        #     local-testing: stop
+          # - uses: actions/upload-artifact@v1
+          #   if: failure()
+          #   with:
+          #     name: logs
+          #     path: logs
