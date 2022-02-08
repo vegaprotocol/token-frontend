@@ -523,5 +523,6 @@
   "pending": "crwdns6893:0crwdne6893:0",
   "confirmationsRemaining": "crwdns6895:0{{confirmations}}crwdnd6895:0{{required}}crwdne6895:0",
   "pendingTransactions": "crwdns6897:0crwdne6897:0",
-  "noTransactions": "crwdns6899:0crwdne6899:0"
+  "noTransactions": "crwdns6899:0crwdne6899:0",
+  "networkRestoring": "crwdns6916:0{{bootstrapBlockCount}}crwdne6916:0"
 }
