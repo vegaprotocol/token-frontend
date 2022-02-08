@@ -5,6 +5,7 @@ let buff = new Buffer.from(require('fs').readFileSync(file_path));
 let base64data = buff.toString('base64');
 
 const Hooks = require('./hooks.js')
+const allure = require('allure-commandline')
 exports.config = {
     specs: [
         './features/**/walletconnect.feature'
