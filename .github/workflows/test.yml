@@ -30,6 +30,8 @@ jobs:
           run: pwd
         - name: list directories
           run: ls
+        - name: cd into automation directory
+          run: cd automation
         - name: Initialize wallet
           run: ./vegawallet init -f
         # - name: List keys
