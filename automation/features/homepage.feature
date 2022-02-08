@@ -4,11 +4,12 @@ Feature: Homepage
     Given I am on the home page
 
   Scenario: Homepage displays correct information
+    And I connect my ethereum wallet
     Then I can see the token address is shown
     And the vesting address is shown
     And the total supply is shown correctly
     # And associated token field is showing '0.00'
-    And staked token field is showing as "12.22"
+    # And staked token field is showing as "12.22"
 
   Scenario: Links on the homepage
     Then the vega wallet link is correct

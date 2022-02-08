@@ -42,19 +42,19 @@ class Page {
     return $("[data-test-id='connect-to-eth-wallet-button']");
   }
   get disconnectWalletBtn() {
-    return $(".button-link=Disconnect");
+    return $$(".button-link=Disconnect");
   } //TODO add test id
   get connectMetaMask() {
     return $(".web3modal-provider-name*=Injected");
   }
 
-   goTo(path) {
-     browser.url(path);
+  goTo(path) {
+    browser.url(path);
   }
 
-   connectToEthWallet() {
-     ( this.connectEthWallet).click();
-     ( this.connectMetaMask).click();
+  connectToEthWallet() {
+    this.connectEthWallet.click();
+    this.connectMetaMask.click();
   }
 }
 

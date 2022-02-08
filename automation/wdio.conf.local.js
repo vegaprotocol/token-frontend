@@ -7,7 +7,7 @@ let base64data = buff.toString('base64');
 const Hooks = require('./hooks.js')
 exports.config = {
     specs: [
-        './features/**/walletconnect.feature'
+        './features/**/*.feature'
     ],
     // Patterns to exclude.
     exclude: [
@@ -49,7 +49,7 @@ exports.config = {
     baseUrl: 'https://staging.token.vega.xyz',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 100000,
+    waitforTimeout: 30000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
@@ -80,7 +80,7 @@ exports.config = {
         // <string> (expression) only execute the features or scenarios with tags matching the expression
         tagExpression: 'not @todo and not @manual and not @ignore',
         // <number> timeout for step definitions
-        timeout: 120000,
+        timeout: 30000,
         // <boolean> Enable this config to treat undefined definitions as warnings.
         ignoreUndefinedDefinitions: false
     },

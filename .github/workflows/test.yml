@@ -1,10 +1,6 @@
 name: WDIO tests + browserstack
-
 on:
-  push:
-    branches: [master, develop]
   pull_request:
-    branches: [master, develop]
     types:
       - opened
       - labeled
@@ -27,10 +23,6 @@ jobs:
         #   run: curl -L https://github.com/vegaprotocol/vegawallet/releases/download/v${{ matrix.vegawallet-version }}/vegawallet-linux-amd64.zip -O
         # - name: Unzip wallet
         #   run: unzip ./vegawallet-linux-amd64.zip
-        - name: list pwd
-          run: pwd
-        - name: list directories
-          run: ls
         - name: Initialize wallet
           run: ./vegawallet init -f
         # - name: List keys

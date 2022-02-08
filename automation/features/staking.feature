@@ -3,6 +3,7 @@ Feature: Staking page
   
   @ignore
   Scenario: Go to staking page
+    Given I connect my ethereum wallet
     Given I connect Vega wallet
     Given I navigate to "staking" page
     Then I can see the validator node list

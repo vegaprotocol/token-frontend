@@ -31,7 +31,7 @@ class HomePage extends Page {
   get checkVestingBtn() {
     return $("[data-test-id='check-vesting-page-btn']");
   }
-   getNavBarElement(tab) {
+  getNavBarElement(tab) {
     return $(".nav-links").$("a=" + tab);
   }
 }

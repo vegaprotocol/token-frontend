@@ -1,7 +1,9 @@
 class Hooks {
   connectEthWallet() {
-    browser.url("https://staging.token.vega.xyz/");
-    browser.switchWindow("https://staging.token.vega.xyz/");
+    const baseUrl = browser.options.baseUrl
+    
+    browser.url(baseUrl);
+    browser.switchWindow(baseUrl);
     $('input[name="password"]').waitForDisplayed({
       timeout: 10000,
       timeoutMsg: "password field not displayed in 10 seconds",
@@ -63,18 +65,18 @@ class Hooks {
     });
     $(".network-name-item=Ropsten Test Network").click();
     browser.closeWindow();
-    browser.switchWindow("https://staging.token.vega.xyz/");
-    $('[data-test-id="connect-to-eth-wallet-button"]').waitForDisplayed({
+    browser.switchWindow(baseUrl);
+    $('.eth-connect-modal__button*=Injected').waitForDisplayed({
       timeout: 10000,
       timeoutMsg: "Connect Eth Button not displayed",
     });
-    $('[data-test-id="connect-to-eth-wallet-button"]').click();
+    // $('[data-test-id="connect-to-eth-wallet-button"]').click();
     $(".web3modal-provider-name*=Injected").click();
     browser.pause(1500);
     browser.switchWindow("MetaMask Notification");
     $("button=Next").click();
     $("button=Connect").click();
-    browser.switchWindow("https://staging.token.vega.xyz/");
+    browser.switchWindow(baseUrl);
   }
 }
 

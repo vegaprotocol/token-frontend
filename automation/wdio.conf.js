@@ -8,7 +8,7 @@ const Hooks = require('./hooks.js')
 const allure = require('allure-commandline')
 exports.config = {
     specs: [
-        './features/**/walletconnect.feature'
+        './features/**/*.feature'
     ],
     // Patterns to exclude.
     exclude: [
@@ -32,6 +32,8 @@ exports.config = {
                 'extensions' : [ base64data ]
             },
           }],
+        //   logLevel: 'warn',
+
 
     user: "ditmirhasani_8O6wBn",
     key: "kapsvp3EvwLSmyDyJKxG",
@@ -47,9 +49,11 @@ exports.config = {
     // Set a base URL in order to shorten url command calls. If your `url` parameter starts
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
-    // gets prepended directly.XCSJhttps://github.com/vegaprotocol/token-frontend/issues/1184    //
+    // gets prepended directly.
+    baseUrl: 'https://dev.token.vega.xyz',
+    //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 300000,
+    waitforTimeout: 30000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
@@ -64,7 +68,7 @@ exports.config = {
         disableWebdriverScreenshotsReporting: false,
         useCucumberStepReporter: true
     }]],
-    cucumberOpts: {                                                             
+    cucumberOpts: {
         // <string[]> (file/dir) require files before executing features
         require: ['./features/step-definitions/*.steps.js'],
         // <boolean> show full backtrace for errors
@@ -84,7 +88,7 @@ exports.config = {
         // <string> (expression) only execute the features or scenarios with tags matching the expression
         tagExpression: 'not @todo and not @manual and not @ignore',
         // <number> timeout for step definitions
-        timeout: 120000,
+        timeout: 30000,
         // <boolean> Enable this config to treat undefined definitions as warnings.
         ignoreUndefinedDefinitions: false
     },
@@ -97,8 +101,26 @@ exports.config = {
               })
           },
     // beforeFeature: function (uri, feature){
-    //     // Hooks.connectEthWallet()
+    //     Hooks.connectEthWallet()
     //     },
+    onComplete: function() {
+        const reportError = new Error('Could not generate Allure report')
+        const generation = allure(['generate', 'allure-results', '--clean'])
+        return new Promise((resolve, reject) => {
+            const generationTimeout = setTimeout(
+                () => reject(reportError),
+                30000)
+
+            generation.on('exit', function(exitCode) {
+                clearTimeout(generationTimeout)
+
+                if (exitCode !== 0) {
+                    return reject(reportError)
+                }
+                resolve()
+            })
+        })
+    }
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {String} commandName hook command name
