@@ -15,7 +15,7 @@ jobs:
           with:
             node-version: 14.18.3
         - name: cd into automation directory
-          run: cwd automation
+          run: cd automation
         - name: Install
           run: npm install
         # - name: Download wallet
@@ -23,6 +23,7 @@ jobs:
         # - name: Unzip wallet
         #   run: unzip ./vegawallet-linux-amd64.zip
         - name: Initialize wallet
+          run: ls
           run: ./vegawallet init -f
         # - name: List keys
         #   run: ./vegawallet key list
