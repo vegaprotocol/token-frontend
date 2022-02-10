@@ -4,6 +4,9 @@ on:
     types:
       - opened
       - labeled
+
+env:
+  BASE_URL: https://deploy-preview-${PR_NUMBER}--token-vega-xyz.netlify.app/
 jobs:
   prepare:
     runs-on: ubuntu-latest
