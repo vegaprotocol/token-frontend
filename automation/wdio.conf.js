@@ -50,7 +50,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'https://dev.token.vega.xyz',
+    baseUrl: process.env.BASE_URL,
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 30000,
@@ -104,22 +104,22 @@ exports.config = {
     //     Hooks.connectEthWallet()
     //     },
     onComplete: function() {
-        const reportError = new Error('Could not generate Allure report')
-        const generation = allure(['generate', 'allure-results', '--clean'])
-        return new Promise((resolve, reject) => {
-            const generationTimeout = setTimeout(
-                () => reject(reportError),
-                30000)
+        // const reportError = new Error('Could not generate Allure report')
+        // const generation = allure(['generate', 'allure-results', '--clean'])
+        // return new Promise((resolve, reject) => {
+        //     const generationTimeout = setTimeout(
+        //         () => reject(reportError),
+        //         30000)
 
-            generation.on('exit', function(exitCode) {
-                clearTimeout(generationTimeout)
+        //     generation.on('exit', function(exitCode) {
+        //         clearTimeout(generationTimeout)
 
-                if (exitCode !== 0) {
-                    return reject(reportError)
-                }
-                resolve()
-            })
-        })
+        //         if (exitCode !== 0) {
+        //             return reject(reportError)
+        //         }
+        //         resolve()
+        //     })
+        // })
     }
     /**
      * Runs before a WebdriverIO command gets executed.
