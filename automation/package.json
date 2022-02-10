@@ -14,7 +14,8 @@
     },
     "scripts": {
         "wdio": "wdio run wdio.conf.js",
-        "wdio:local": "wdio run wdio.conf.local.js"
+        "wdio:local": "wdio run wdio.conf.local.js",
+        "allure:generate": "allure generate allure-results --clean -o allure-report"
     },
     "dependencies": {
         "@wdio/browserstack-service": "^7.16.13",
