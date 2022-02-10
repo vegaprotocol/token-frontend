@@ -6,6 +6,3 @@ local.log
 
 # misc
 .DS_Store
-
-# reports
-/allure*
