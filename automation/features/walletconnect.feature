@@ -1,5 +1,6 @@
 Feature: Connect a vega wallet
 
+@test
   Scenario: Go to Vega
     Given I connect my ethereum wallet
     Given I navigate to "staking" page

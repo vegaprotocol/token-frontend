@@ -66,13 +66,14 @@ jobs:
             path: gh-pages
         # Generate report
         - name: something
+          if: always()
           run: ls
         - name: Allure Report action from marketplace
           uses: simple-elf/allure-report-action@master
           if: always()
           #id: allure-report
           with:
-            allure_results: automation/allure-results
+            allure_results: allure-results
             gh_pages: gh-pages
             allure_report: automation/allure-report
             allure_history: automation/allure-history
