@@ -46,7 +46,7 @@ jobs:
           uses: browserstack/github-actions/setup-local@master
           with:
             local-testing: start
-        - name: Run tests BROWSERSTACK
+        - name: Run testss
           run: npm run wdio
         - name: 'BrowserStackLocal Stop'  # Terminating the BrowserStackLocal tunnel connection
           uses: browserstack/github-actions/setup-local@master
