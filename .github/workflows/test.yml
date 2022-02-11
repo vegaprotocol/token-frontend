@@ -83,6 +83,9 @@ jobs:
             PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             PUBLISH_BRANCH: gh-pages
             PUBLISH_DIR: allure-history
+
+        - name: LS DIRECTORIES
+          run: ls
 # name: WDIO tests + browserstack
 # on:
 #   pull_request:
