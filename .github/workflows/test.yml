@@ -28,8 +28,8 @@ jobs:
         #   run: curl -L https://github.com/vegaprotocol/vegawallet/releases/download/v${{ matrix.vegawallet-version }}/vegawallet-linux-amd64.zip -O
         # - name: Unzip wallet
         #   run: unzip ./vegawallet-linux-amd64.zip
-        - name: Initialize wallet
-          run: ./vegawallet init -f
+        # - name: Initialize wallet
+        #   run: ./vegawallet init -f
         # - name: List keys
         #   run: ./vegawallet key list
         - name: Import config
