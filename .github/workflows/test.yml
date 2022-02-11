@@ -10,7 +10,8 @@ on:
   #     - labeled
 
 env:
-  BASE_URL: https://deploy-preview-${{github.event.number}}--token-vega-xyz.netlify.app/
+  # BASE_URL: https://deploy-preview-${{github.event.number}}--token-vega-xyz.netlify.app/
+    BASE_URL:https://staging.token.vega.xyz/
 jobs:
   prepare:
     runs-on: ubuntu-latest
