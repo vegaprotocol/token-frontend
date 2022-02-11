@@ -67,7 +67,6 @@ jobs:
         # Generate report
         - name: Allure Report action from marketplace
           uses: simple-elf/allure-report-action@master
-          run: ls
           if: always()
           #id: allure-report
           with:
@@ -83,7 +82,7 @@ jobs:
           env:
             PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             PUBLISH_BRANCH: gh-pages
-            PUBLISH_DIR: allure-history
+            PUBLISH_DIR: ./allure-history
 # name: WDIO tests + browserstack
 # on:
 #   pull_request:
