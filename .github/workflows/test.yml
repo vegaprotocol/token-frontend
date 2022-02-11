@@ -66,15 +66,16 @@ jobs:
             path: gh-pages
         # Generate report
         - name: Allure Report action from marketplace
-          uses: simple-elf/allure-report-action@master
-          if: always()
-          #id: allure-report
-          with:
-            allure_results: automation/allure-results
-            gh_pages: gh-pages
-            allure_report: automation/allure-report
-            allure_history: automation/allure-history
-            keep_reports: 20
+          run: ls
+          # uses: simple-elf/allure-report-action@master
+          # if: always()
+          # #id: allure-report
+          # with:
+          #   allure_results: automation/allure-results
+          #   gh_pages: gh-pages
+          #   allure_report: automation/allure-report
+          #   allure_history: automation/allure-history
+          #   keep_reports: 20
 
         - name: Deploy report to Github Pages
           if: always()
@@ -84,8 +85,8 @@ jobs:
             PUBLISH_BRANCH: gh-pages
             PUBLISH_DIR: allure-history
 
-        - name: LS DIRECTORIES
-          run: ls
+        # - name: LS DIRECTORIES
+        #   run: ls
 # name: WDIO tests + browserstack
 # on:
 #   pull_request:
