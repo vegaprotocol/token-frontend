@@ -42,7 +42,7 @@ exports.config = {
             browserstackLocal: true
         }]
     ],
-    logLevel: 'info',
+    logLevel: 'silent',
 
     bail: 0,
     //

@@ -15,9 +15,7 @@ env:
 jobs:
   prepare:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: automation
+    if: ${{ contains(github.event.pull_request.labels.*.name, 'readyTest') }}
     steps:
         - name: Checkout
           uses: actions/checkout@v2
@@ -32,8 +30,6 @@ jobs:
         #   run: unzip ./vegawallet-linux-amd64.zip
         - name: Initialize wallet
           run: ./vegawallet init -f
-        # - name: Run tests LS
-        #   run: ls
         # - name: List keys
         #   run: ./vegawallet key list
         - name: Import config
@@ -70,35 +66,16 @@ jobs:
             ref: gh-pages
             path: gh-pages
         # Generate report
-        - name: generate report
-          if: always()
-          run: npm run allure:generate
-        - name: LS directories
-          if: always()
-          run: ls
         - name: Allure Report action from marketplace
           uses: simple-elf/allure-report-action@master
           if: always()
           #id: allure-report
           with:
-            allure_results: allure-results/
-            gh_pages: gh-pages
-            allure_report: allure-report/
-            # allure_history: allure-history/
-            keep_reports: 30
-        # - name: Allure Report action from marketplace
-        #   uses: simple-elf/allure-report-action@master
-        #   if: always()
-        #   #id: allure-report
-        #   with:
-        #     allure_results: allure-results
-        #     gh_pages: gh-pages
-        #     allure_report: allure-report
-        #     allure_history: allure-history
-        #     keep_reports: 20
-        - name: LS directories
-          if: always()
-          run: ls
+            allure_results: allure-results
+            #gh_pages: gh-pages
+            #allure_report: allure-report
+            allure_history: allure-history
+            keep_reports: 20
         - name: Deploy report to Github Pages
           if: always()
           uses: peaceiris/actions-gh-pages@v2
@@ -106,6 +83,3 @@ jobs:
             PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             PUBLISH_BRANCH: gh-pages
             PUBLISH_DIR: allure-history
-        - name: LS directories
-          if: always()
-          run: ls
