@@ -47,9 +47,7 @@ jobs:
           with:
             local-testing: start
         - name: Run tests
-          run:  |
-          npm run wdio
-          ls
+          run: npm run wdio
         - name: 'BrowserStackLocal Stop'  # Terminating the BrowserStackLocal tunnel connection
           uses: browserstack/github-actions/setup-local@master
           with:
