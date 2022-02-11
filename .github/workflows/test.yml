@@ -66,10 +66,10 @@ jobs:
             path: gh-pages
         # Generate report
         - run: ls
-        - run: |
+        - name: something
+          run: |
           ls ${{ github.workspace }}
         - name: Allure Report action from marketplace
-
           # uses: simple-elf/allure-report-action@master
           # if: always()
           # #id: allure-report
