@@ -69,6 +69,9 @@ jobs:
             ref: gh-pages
             path: gh-pages
         # Generate report
+        - name: generate report
+          if: always()
+          run: npm run allure:generate
         - name: LS directories
           if: always()
           run: ls
