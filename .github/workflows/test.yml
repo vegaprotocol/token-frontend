@@ -1,0 +1,86 @@
+name: WDIO tests + browserstack
+on:
+  push:
+    branches: [master, develop]
+  pull_request:
+    branches: [master, develop]
+  # pull_request:
+  #   types:
+  #     - opened
+  #     - labeled
+
+env:
+  # BASE_URL: https://deploy-preview-${{github.event.number}}--token-vega-xyz.netlify.app/
+    BASE_URL: https://staging.token.vega.xyz/
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+      workingDirectory: automation/
+    # if: ${{ contains(github.event.pull_request.labels.*.name, 'readyTest') }}
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+        - uses: actions/setup-node@v1
+          with:
+            node-version: 14.18.3
+        - name: Install
+          run: npm install
+        # - name: Download wallet
+        #   run: curl -L https://github.com/vegaprotocol/vegawallet/releases/download/v${{ matrix.vegawallet-version }}/vegawallet-linux-amd64.zip -O
+        # - name: Unzip wallet
+        #   run: unzip ./vegawallet-linux-amd64.zip
+        # - name: Initialize wallet
+        #   run: ./vegawallet init -f
+        # - name: List keys
+        #   run: ./vegawallet key list 
+        - name: Import config
+          run: ./vegawallet network import --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml
+        - name: List networks
+          run: ./vegawallet network list
+        - name: Start service
+          run: ./vegawallet service run --network fairground &
+        - name: 'BrowserStack Env Setup'  # Invokes the setup-env action
+          uses: browserstack/github-actions/setup-env@master
+          with:
+            username: ditmirhasani_8O6wBn
+            access-key: kapsvp3EvwLSmyDyJKxG
+        - name: 'BrowserStack Local Tunnel Setup'  # Invokes the setup-local action
+          uses: browserstack/github-actions/setup-local@master
+          with:
+            local-testing: start
+        - name: Run tests
+          run: npm run wdio
+        # - name: 'BrowserStackLocal Stop'  # Terminating the BrowserStackLocal tunnel connection
+        #   uses: browserstack/github-actions/setup-local@master
+        #   with:
+        #     local-testing: stop
+        #   - uses: actions/upload-artifact@v1
+        #     if: always()
+        #     with:
+        #       name: logs
+        #       path: logs
+        - name: Get Allure history
+          uses: actions/checkout@v2
+          if: always()
+          continue-on-error: true
+          with:
+            ref: gh-pages
+            path: gh-pages
+        # Generate report
+        - name: Allure Report action from marketplace
+          uses: simple-elf/allure-report-action@master
+          if: always()
+          #id: allure-report
+          with:
+            allure_results: automation/allure-results
+            #gh_pages: gh-pages
+            #allure_report: allure-report
+            allure_history: automation/allure-history
+            keep_reports: 20
+        - name: Deploy report to Github Pages
+          if: always()
+          uses: peaceiris/actions-gh-pages@v2
+          env:
+            PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            PUBLISH_BRANCH: gh-pages
+            PUBLISH_DIR: automation/allure-history
