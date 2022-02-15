@@ -15,7 +15,7 @@ env:
 jobs:
   prepare:
     runs-on: ubuntu-latest
-      workingDirectory: automation/
+    working-directory: automation/
     # if: ${{ contains(github.event.pull_request.labels.*.name, 'readyTest') }}
     steps:
         - name: Checkout
