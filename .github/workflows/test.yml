@@ -4,10 +4,6 @@ on:
     branches: [master, develop]
   pull_request:
     branches: [master, develop]
-  # pull_request:
-  #   types:
-  #     - opened
-  #     - labeled
 
 env:
   # BASE_URL: https://deploy-preview-${{github.event.number}}--token-vega-xyz.netlify.app/
