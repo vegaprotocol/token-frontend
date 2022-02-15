@@ -1,0 +1,160 @@
+{
+  "uid" : "39accd1892bdb217",
+  "name" : "Go to Vega",
+  "fullName" : "Connect a vega wallet.Go to Vega",
+  "historyId" : "2129d14575a3417babcc30e919ec07d2",
+  "time" : {
+    "start" : 1644946072787,
+    "stop" : 1644946098226,
+    "duration" : 25439
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I connect my ethereum wallet",
+      "time" : {
+        "start" : 1644946072790,
+        "stop" : 1644946094894,
+        "duration" : 22104
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1644946094894,
+        "stop" : 1644946096407,
+        "duration" : 1513
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I can see my ethereum key 0x9804C6E98dA75e3271ccE3aA56728FD8e9376155 is shown",
+      "time" : {
+        "start" : 1644946096407,
+        "stop" : 1644946098225,
+        "duration" : 1818
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-6"
+  }, {
+    "name" : "suite",
+    "value" : "Connect a vega wallet"
+  }, {
+    "name" : "testClass",
+    "value" : "Connect a vega wallet"
+  }, {
+    "name" : "testMethod",
+    "value" : "Go to Vega"
+  }, {
+    "name" : "package",
+    "value" : "Connect a vega wallet"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 5,
+        "unknown" : 0,
+        "total" : 5
+      },
+      "items" : [ {
+        "uid" : "8e68d28af58dcc9c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/61//#testresult/8e68d28af58dcc9c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1644945423390,
+          "stop" : 1644945446033,
+          "duration" : 22643
+        }
+      }, {
+        "uid" : "328450ad584bb60a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/60//#testresult/328450ad584bb60a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1644944160755,
+          "stop" : 1644944189074,
+          "duration" : 28319
+        }
+      }, {
+        "uid" : "54546e95db42c327",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/59//#testresult/54546e95db42c327",
+        "status" : "passed",
+        "time" : {
+          "start" : 1644943629494,
+          "stop" : 1644943649153,
+          "duration" : 19659
+        }
+      }, {
+        "uid" : "db983048422418b1",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/58//#testresult/db983048422418b1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1644943151402,
+          "stop" : 1644943175884,
+          "duration" : 24482
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "39accd1892bdb217.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
