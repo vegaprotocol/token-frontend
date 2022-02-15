@@ -86,12 +86,17 @@ jobs:
             PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             PUBLISH_BRANCH: gh-pages
             PUBLISH_DIR: automation/allure-history
-        - name: Post the link to the report
-          if: always()
-          uses: Sibz/github-status-action@v1
-          with: 
-              authToken: ${{secrets.GITHUB_TOKEN}}
-              context: 'Test report'
-              state: 'success'
-              sha: ${{ github.event.pull_request.head.sha }}
-              target_url: https://vegaprotocol.github.io/token-frontend/${{ github.run_number }}
+        - name: Post the link to the report in PR comment
+          uses: thollander/actions-comment-pull-request@v1
+          with:
+            message: 'Link to report : https://vegaprotocol.github.io/token-frontend/'
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # - name: Post the link to the report in PR comment
+        #   if: always()
+        #   uses: Sibz/github-status-action@v1
+        #   with: 
+        #       authToken: ${{secrets.GITHUB_TOKEN}}
+        #       context: 'Test report'
+        #       state: 'success'
+        #       sha: ${{ github.event.pull_request.head.sha }}
+        #       target_url: https://vegaprotocol.github.io/token-frontend/${{ github.run_number }}
