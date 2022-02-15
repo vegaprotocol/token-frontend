@@ -1,0 +1,166 @@
+{
+  "uid" : "3180b5d5c25080ae",
+  "name" : "Can navigate to Staking page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Staking page using main nav tab",
+  "historyId" : "91dde96c03721a837df89d488b7a153b",
+  "time" : {
+    "start" : 1644945325312,
+    "stop" : 1644945326963,
+    "duration" : 1651
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1644945325312,
+        "stop" : 1644945326249,
+        "duration" : 937
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When I click on \"Staking\" on main nav",
+      "time" : {
+        "start" : 1644945326249,
+        "stop" : 1644945326727,
+        "duration" : 478
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And I can see \"Staking\" button is clearly highlighted after click",
+      "time" : {
+        "start" : 1644945326727,
+        "stop" : 1644945326899,
+        "duration" : 172
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I am taken to the \"staking\" page",
+      "time" : {
+        "start" : 1644945326899,
+        "stop" : 1644945326962,
+        "duration" : 63
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Staking page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 4,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "dd052fda760f3125",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/60//#testresult/dd052fda760f3125",
+        "status" : "passed",
+        "time" : {
+          "start" : 1644944101847,
+          "stop" : 1644944103533,
+          "duration" : 1686
+        }
+      }, {
+        "uid" : "a37ac18652bf181c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/59//#testresult/a37ac18652bf181c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1644943556374,
+          "stop" : 1644943557910,
+          "duration" : 1536
+        }
+      }, {
+        "uid" : "3c5aa7bac12e7c97",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/58//#testresult/3c5aa7bac12e7c97",
+        "status" : "passed",
+        "time" : {
+          "start" : 1644943088387,
+          "stop" : 1644943089978,
+          "duration" : 1591
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "3180b5d5c25080ae.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
