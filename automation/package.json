@@ -1,36 +1,22 @@
 {
-  "name": "cypress-cucumber-example",
-  "version": "1.0.0",
-  "description": "An example for Cypress and Cucumber usage",
-  "main": "index.js",
-  "scripts": {
-    "cypress:open:local": "CYPRESS_ENV=localhost npm run cypress:open",
-    "cypress:open:prod": "CYPRESS_ENV=production npm run cypress:open",
-    "cypress:open": "cypress open",
-    "cypress:run": "npx cypress run --record --key ec7d4456-735d-4ddd-ab1a-4dbd46067b36",
-    "test:local": "CYPRESS_ENV=localhost npm run test",
-    "test:prod": "CYPRESS_ENV=production npm run test",
-    "test": "cypress run --env TAGS='@e2e-test' --spec 'cypress/integration/**/*.feature'",
-    "test:debug:local": "CYPRESS_ENV=localhost npm run test:debug",
-    "test:debug:prod": "CYPRESS_ENV=production npm run test:debug",
-    "test:debug": "cypress run --headed --browser chrome --env TAGS='@e2e-test' --spec 'cypress/integration/**/*.feature'",
-    "test:pull-features": "git submodule update --remote gherkin-features && cp -rf gherkin-features/* cypress/integration && node ./scripts/remove-old-features.js"
-  },
-  "author": "",
-  "license": "Private",
-  "dependencies": {
-    "@cypress/code-coverage": "^3.9.10",
-    "axios": "^0.21.0",
-    "cypress": "^6.0.1",
-    "cypress-cucumber-preprocessor": "^4.0.0",
-    "fs-extra": "^9.0.1",
-    "glob": "^7.1.6",
-    "lodash": "^4.17.21"
-  },
-  "cypress-cucumber-preprocessor": {
-    "nonGlobalStepDefinitions": false
-  },
-  "devDependencies": {
-    "eslint-plugin-cypress": "^2.11.3"
-  }
+    "name": "webdriverio-tests",
+    "version": "0.1.0",
+    "private": true,
+    "devDependencies": {
+        "@wdio/allure-reporter": "^7.16.13",
+        "@wdio/cli": "^7.16.12",
+        "@wdio/cucumber-framework": "^7.16.12",
+        "@wdio/local-runner": "^7.16.12",
+        "@wdio/spec-reporter": "^7.16.11",
+        "@wdio/sync": "^7.16.13",
+        "chromedriver": "^97.0.0",
+        "wdio-chromedriver-service": "^7.2.6"
+    },
+    "scripts": {
+        "wdio": "wdio run wdio.conf.js"
+    },
+    "dependencies": {
+        "@wdio/browserstack-service": "^7.16.13",
+        "allure-commandline": "^2.17.2"
+    }
 }
