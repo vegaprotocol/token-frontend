@@ -1,0 +1,113 @@
+{
+  "uid" : "db983048422418b1",
+  "name" : "Go to Vega",
+  "fullName" : "Connect a vega wallet.Go to Vega",
+  "historyId" : "2129d14575a3417babcc30e919ec07d2",
+  "time" : {
+    "start" : 1644943151402,
+    "stop" : 1644943175884,
+    "duration" : 24482
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I connect my ethereum wallet",
+      "time" : {
+        "start" : 1644943151404,
+        "stop" : 1644943173257,
+        "duration" : 21853
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1644943173257,
+        "stop" : 1644943174214,
+        "duration" : 957
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I can see my ethereum key 0x9804C6E98dA75e3271ccE3aA56728FD8e9376155 is shown",
+      "time" : {
+        "start" : 1644943174214,
+        "stop" : 1644943175883,
+        "duration" : 1669
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-6"
+  }, {
+    "name" : "suite",
+    "value" : "Connect a vega wallet"
+  }, {
+    "name" : "testClass",
+    "value" : "Connect a vega wallet"
+  }, {
+    "name" : "testMethod",
+    "value" : "Go to Vega"
+  }, {
+    "name" : "package",
+    "value" : "Connect a vega wallet"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "db983048422418b1.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
