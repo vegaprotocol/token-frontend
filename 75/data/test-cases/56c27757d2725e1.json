@@ -1,0 +1,169 @@
+{
+  "uid" : "56c27757d2725e1",
+  "name" : "Navigate to governance proposals page via button link on homepage body",
+  "fullName" : "Homepage.Navigate to governance proposals page via button link on homepage body",
+  "historyId" : "5e75bc84a209a21f0887a6dfbf578ed6",
+  "time" : {
+    "start" : 1645191414761,
+    "stop" : 1645191423133,
+    "duration" : 8372
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "element click intercepted: Element <a href=\"/governance\">...</a> is not clickable at point (568, 877). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+  "statusTrace" : "element click intercepted: Element <a href=\"/governance\">...</a> is not clickable at point (568, 877). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x0000000102020ff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x0000000101fac403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x0000000101b68e38 chromedriver + 171576\n                3   chromedriver                        0x0000000101ba57e1 chromedriver + 419809\n                4   chromedriver                        0x0000000101ba349e chromedriver + 410782\n                5   chromedriver                        0x0000000101ba0cca chromedriver + 400586\n                6   chromedriver                        0x0000000101b9f761 chromedriver + 395105\n                7   chromedriver                        0x0000000101b93778 chromedriver + 345976\n                8   chromedriver                        0x0000000101bbbaa2 chromedriver + 510626\n                9   chromedriver                        0x0000000101b93015 chromedriver + 344085\n                10  chromedriver                        0x0000000101bbbdbe chromedriver + 511422\n                11  chromedriver                        0x0000000101bce5d2 chromedriver + 587218\n                12  chromedriver                        0x0000000101bbbd63 chromedriver + 511331\n                13  chromedriver                        0x0000000101b9182e chromedriver + 337966\n                14  chromedriver                        0x0000000101b92b65 chromedriver + 342885\n                15  chromedriver                        0x0000000101fdcf1b __gxx_personality_v0 + 305451\n                16  chromedriver                        0x0000000101ff3e23 __gxx_personality_v0 + 399411\n                17  chromedriver                        0x0000000101ff98df __gxx_personality_v0 + 422639\n                18  chromedriver                        0x0000000101ff517a __gxx_personality_v0 + 404362\n                19  chromedriver                        0x0000000101fd1541 __gxx_personality_v0 + 257873\n                20  chromedriver                        0x0000000102010f28 __gxx_personality_v0 + 518456\n                21  chromedriver                        0x00000001020110b1 __gxx_personality_v0 + 518849\n                22  chromedriver                        0x0000000102028498 __gxx_personality_v0 + 614056\n                23  libsystem_pthread.dylib             0x00007fff206dc8fc _pthread_start + 224\n                24  libsystem_pthread.dylib             0x00007fff206d8443 thread_start + 15\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:99:18)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "element click intercepted: Element <a href=\"/governance\">...</a> is not clickable at point (568, 877). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+    "statusTrace" : "element click intercepted: Element <a href=\"/governance\">...</a> is not clickable at point (568, 877). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x0000000102020ff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x0000000101fac403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x0000000101b68e38 chromedriver + 171576\n                3   chromedriver                        0x0000000101ba57e1 chromedriver + 419809\n                4   chromedriver                        0x0000000101ba349e chromedriver + 410782\n                5   chromedriver                        0x0000000101ba0cca chromedriver + 400586\n                6   chromedriver                        0x0000000101b9f761 chromedriver + 395105\n                7   chromedriver                        0x0000000101b93778 chromedriver + 345976\n                8   chromedriver                        0x0000000101bbbaa2 chromedriver + 510626\n                9   chromedriver                        0x0000000101b93015 chromedriver + 344085\n                10  chromedriver                        0x0000000101bbbdbe chromedriver + 511422\n                11  chromedriver                        0x0000000101bce5d2 chromedriver + 587218\n                12  chromedriver                        0x0000000101bbbd63 chromedriver + 511331\n                13  chromedriver                        0x0000000101b9182e chromedriver + 337966\n                14  chromedriver                        0x0000000101b92b65 chromedriver + 342885\n                15  chromedriver                        0x0000000101fdcf1b __gxx_personality_v0 + 305451\n                16  chromedriver                        0x0000000101ff3e23 __gxx_personality_v0 + 399411\n                17  chromedriver                        0x0000000101ff98df __gxx_personality_v0 + 422639\n                18  chromedriver                        0x0000000101ff517a __gxx_personality_v0 + 404362\n                19  chromedriver                        0x0000000101fd1541 __gxx_personality_v0 + 257873\n                20  chromedriver                        0x0000000102010f28 __gxx_personality_v0 + 518456\n                21  chromedriver                        0x00000001020110b1 __gxx_personality_v0 + 518849\n                22  chromedriver                        0x0000000102028498 __gxx_personality_v0 + 614056\n                23  libsystem_pthread.dylib             0x00007fff206dc8fc _pthread_start + 224\n                24  libsystem_pthread.dylib             0x00007fff206d8443 thread_start + 15\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:99:18)",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1645191414762,
+        "stop" : 1645191415982,
+        "duration" : 1220
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When I click on the governance proposals button",
+      "time" : {
+        "start" : 1645191415982,
+        "stop" : 1645191423133,
+        "duration" : 7151
+      },
+      "status" : "broken",
+      "statusMessage" : "element click intercepted: Element <a href=\"/governance\">...</a> is not clickable at point (568, 877). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x0000000102020ff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x0000000101fac403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x0000000101b68e38 chromedriver + 171576\n                3   chromedriver                        0x0000000101ba57e1 chromedriver + 419809\n                4   chromedriver                        0x0000000101ba349e chromedriver + 410782\n                5   chromedriver                        0x0000000101ba0cca chromedriver + 400586\n                6   chromedriver                        0x0000000101b9f761 chromedriver + 395105\n                7   chromedriver                        0x0000000101b93778 chromedriver + 345976\n                8   chromedriver                        0x0000000101bbbaa2 chromedriver + 510626\n                9   chromedriver                        0x0000000101b93015 chromedriver + 344085\n                10  chromedriver                        0x0000000101bbbdbe chromedriver + 511422\n                11  chromedriver                        0x0000000101bce5d2 chromedriver + 587218\n                12  chromedriver                        0x0000000101bbbd63 chromedriver + 511331\n                13  chromedriver                        0x0000000101b9182e chromedriver + 337966\n                14  chromedriver                        0x0000000101b92b65 chromedriver + 342885\n                15  chromedriver                        0x0000000101fdcf1b __gxx_personality_v0 + 305451\n                16  chromedriver                        0x0000000101ff3e23 __gxx_personality_v0 + 399411\n                17  chromedriver                        0x0000000101ff98df __gxx_personality_v0 + 422639\n                18  chromedriver                        0x0000000101ff517a __gxx_personality_v0 + 404362\n                19  chromedriver                        0x0000000101fd1541 __gxx_personality_v0 + 257873\n                20  chromedriver                        0x0000000102010f28 __gxx_personality_v0 + 518456\n                21  chromedriver                        0x00000001020110b1 __gxx_personality_v0 + 518849\n                22  chromedriver                        0x0000000102028498 __gxx_personality_v0 + 614056\n                23  libsystem_pthread.dylib             0x00007fff206dc8fc _pthread_start + 224\n                24  libsystem_pthread.dylib             0x00007fff206d8443 thread_start + 15\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:99:18)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "cf2c7c2865cffdc4",
+        "name" : "Screenshot",
+        "source" : "cf2c7c2865cffdc4.png",
+        "type" : "image/png",
+        "size" : 75036
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Navigate to governance proposals page via button link on homepage body"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 1,
+        "skipped" : 0,
+        "passed" : 5,
+        "unknown" : 0,
+        "total" : 6
+      },
+      "items" : [ {
+        "uid" : "115c8ba90ef8296b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/74//#testresult/115c8ba90ef8296b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645190676304,
+          "stop" : 1645190678583,
+          "duration" : 2279
+        }
+      }, {
+        "uid" : "2f4cc4fe84beedc",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/73//#testresult/2f4cc4fe84beedc",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645189740166,
+          "stop" : 1645189741777,
+          "duration" : 1611
+        }
+      }, {
+        "uid" : "af2cfa6b1c76c18a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/72//#testresult/af2cfa6b1c76c18a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645182595432,
+          "stop" : 1645182596901,
+          "duration" : 1469
+        }
+      }, {
+        "uid" : "8074ee19e5ce8c10",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/71//#testresult/8074ee19e5ce8c10",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645182032152,
+          "stop" : 1645182033056,
+          "duration" : 904
+        }
+      }, {
+        "uid" : "fc93442a9644b09b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/70//#testresult/fc93442a9644b09b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645181401245,
+          "stop" : 1645181403842,
+          "duration" : 2597
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "56c27757d2725e1.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

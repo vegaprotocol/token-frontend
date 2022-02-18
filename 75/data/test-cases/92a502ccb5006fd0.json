@@ -1,0 +1,201 @@
+{
+  "uid" : "92a502ccb5006fd0",
+  "name" : "Links on the homepage",
+  "fullName" : "Homepage.Links on the homepage",
+  "historyId" : "75dc0c7908c032915bb7dc0878fb6e77",
+  "time" : {
+    "start" : 1645191374875,
+    "stop" : 1645191388685,
+    "duration" : 13810
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1645191374876,
+        "stop" : 1645191376180,
+        "duration" : 1304
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then the vega wallet link is correct",
+      "time" : {
+        "start" : 1645191376180,
+        "stop" : 1645191387860,
+        "duration" : 11680
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And the token address has a link",
+      "time" : {
+        "start" : 1645191387860,
+        "stop" : 1645191388128,
+        "duration" : 268
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And the vesting address has a link",
+      "time" : {
+        "start" : 1645191388128,
+        "stop" : 1645191388390,
+        "duration" : 262
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And the associate vega tokens link is correct",
+      "time" : {
+        "start" : 1645191388390,
+        "stop" : 1645191388684,
+        "duration" : 294
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 5,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Links on the homepage"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 4,
+        "unknown" : 0,
+        "total" : 6
+      },
+      "items" : [ {
+        "uid" : "445572c51d8d408d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/74//#testresult/445572c51d8d408d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645190669876,
+          "stop" : 1645190672187,
+          "duration" : 2311
+        }
+      }, {
+        "uid" : "385d37c348796c69",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/73//#testresult/385d37c348796c69",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645189734428,
+          "stop" : 1645189736793,
+          "duration" : 2365
+        }
+      }, {
+        "uid" : "504fec9d9164b0a5",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/72//#testresult/504fec9d9164b0a5",
+        "status" : "broken",
+        "statusDetails" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds",
+        "time" : {
+          "start" : 1645182561504,
+          "stop" : 1645182592982,
+          "duration" : 31478
+        }
+      }, {
+        "uid" : "be156077c2b0cb7b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/71//#testresult/be156077c2b0cb7b",
+        "status" : "broken",
+        "statusDetails" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds",
+        "time" : {
+          "start" : 1645181998693,
+          "stop" : 1645182029972,
+          "duration" : 31279
+        }
+      }, {
+        "uid" : "3d6791ed531fa0b3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/70//#testresult/3d6791ed531fa0b3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645181389934,
+          "stop" : 1645181393911,
+          "duration" : 3977
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "92a502ccb5006fd0.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
