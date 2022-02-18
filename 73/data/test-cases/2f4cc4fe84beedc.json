@@ -1,0 +1,151 @@
+{
+  "uid" : "2f4cc4fe84beedc",
+  "name" : "Navigate to governance proposals page via button link on homepage body",
+  "fullName" : "Homepage.Navigate to governance proposals page via button link on homepage body",
+  "historyId" : "5e75bc84a209a21f0887a6dfbf578ed6",
+  "time" : {
+    "start" : 1645189740166,
+    "stop" : 1645189741777,
+    "duration" : 1611
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1645189740166,
+        "stop" : 1645189740736,
+        "duration" : 570
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When I click on the governance proposals button",
+      "time" : {
+        "start" : 1645189740736,
+        "stop" : 1645189741532,
+        "duration" : 796
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I am taken to the \"governance\" page",
+      "time" : {
+        "start" : 1645189741532,
+        "stop" : 1645189741777,
+        "duration" : 245
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Navigate to governance proposals page via button link on homepage body"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 4,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "af2cfa6b1c76c18a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/72//#testresult/af2cfa6b1c76c18a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645182595432,
+          "stop" : 1645182596901,
+          "duration" : 1469
+        }
+      }, {
+        "uid" : "8074ee19e5ce8c10",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/71//#testresult/8074ee19e5ce8c10",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645182032152,
+          "stop" : 1645182033056,
+          "duration" : 904
+        }
+      }, {
+        "uid" : "fc93442a9644b09b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/70//#testresult/fc93442a9644b09b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645181401245,
+          "stop" : 1645181403842,
+          "duration" : 2597
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "2f4cc4fe84beedc.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
