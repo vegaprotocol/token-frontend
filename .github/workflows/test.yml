@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [master, develop]
 
-env:
+# env:
   # BASE_URL: https://deploy-preview-${{github.event.number}}--token-vega-xyz.netlify.app/
 jobs:
   prepare:
@@ -49,8 +49,10 @@ jobs:
           run: npm run yarn:install:deps
         - name: Start localhost
           run: npm run yarn:start
+        - name : wait on localhost
+          with:
+            wait-on: http://localhost:3000
         - name: Run tests
-          wait-on: "http://localhost:3000"
           run: npm run wdio
         # - name: 'BrowserStackLocal Stop'  # Terminating the BrowserStackLocal tunnel connection
         #   uses: browserstack/github-actions/setup-local@master
