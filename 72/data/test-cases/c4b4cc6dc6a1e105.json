@@ -1,0 +1,144 @@
+{
+  "uid" : "c4b4cc6dc6a1e105",
+  "name" : "Homepage displays correct information",
+  "fullName" : "Homepage.Homepage displays correct information",
+  "historyId" : "3e1a9b6fd96622225400d11d3b5c3ffc",
+  "time" : {
+    "start" : 1645182548340,
+    "stop" : 1645182561501,
+    "duration" : 13161
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: password field not displayed in 10 seconds",
+  "statusTrace" : "Error: password field not displayed in 10 seconds\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:9:31)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: password field not displayed in 10 seconds",
+    "statusTrace" : "Error: password field not displayed in 10 seconds\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:9:31)",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1645182548342,
+        "stop" : 1645182549424,
+        "duration" : 1082
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And I connect my ethereum wallet",
+      "time" : {
+        "start" : 1645182549424,
+        "stop" : 1645182561501,
+        "duration" : 12077
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: password field not displayed in 10 seconds\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:9:31)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "db8fad9e8b1dac81",
+        "name" : "Screenshot",
+        "source" : "db8fad9e8b1dac81.png",
+        "type" : "image/png",
+        "size" : 476488
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Homepage displays correct information"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "32e2456ea0754d65",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/71//#testresult/32e2456ea0754d65",
+        "status" : "broken",
+        "statusDetails" : "Error: password field not displayed in 10 seconds",
+        "time" : {
+          "start" : 1645181986322,
+          "stop" : 1645181998691,
+          "duration" : 12369
+        }
+      }, {
+        "uid" : "145b07f51cc4ac1b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/70//#testresult/145b07f51cc4ac1b",
+        "status" : "broken",
+        "statusDetails" : "Error: password field not displayed in 10 seconds",
+        "time" : {
+          "start" : 1645181374460,
+          "stop" : 1645181389932,
+          "duration" : 15472
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "c4b4cc6dc6a1e105.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

@@ -1,0 +1,129 @@
+{
+  "uid" : "551b0f8fd281ede7",
+  "name" : "Go to Vega",
+  "fullName" : "Connect a vega wallet.Go to Vega",
+  "historyId" : "2129d14575a3417babcc30e919ec07d2",
+  "time" : {
+    "start" : 1645182684730,
+    "stop" : 1645182698315,
+    "duration" : 13585
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: password field not displayed in 10 seconds",
+  "statusTrace" : "Error: password field not displayed in 10 seconds\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:9:31)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: password field not displayed in 10 seconds",
+    "statusTrace" : "Error: password field not displayed in 10 seconds\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:9:31)",
+    "steps" : [ {
+      "name" : "Given I connect my ethereum wallet",
+      "time" : {
+        "start" : 1645182684732,
+        "stop" : 1645182698315,
+        "duration" : 13583
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: password field not displayed in 10 seconds\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:9:31)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "bf1681c7b2316ce0",
+        "name" : "Screenshot",
+        "source" : "bf1681c7b2316ce0.png",
+        "type" : "image/png",
+        "size" : 474202
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-6"
+  }, {
+    "name" : "suite",
+    "value" : "Connect a vega wallet"
+  }, {
+    "name" : "testClass",
+    "value" : "Connect a vega wallet"
+  }, {
+    "name" : "testMethod",
+    "value" : "Go to Vega"
+  }, {
+    "name" : "package",
+    "value" : "Connect a vega wallet"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "9f91eb4a3652330",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/71//#testresult/9f91eb4a3652330",
+        "status" : "broken",
+        "statusDetails" : "Error: password field not displayed in 10 seconds",
+        "time" : {
+          "start" : 1645182099531,
+          "stop" : 1645182116634,
+          "duration" : 17103
+        }
+      }, {
+        "uid" : "622e908a0d587897",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/70//#testresult/622e908a0d587897",
+        "status" : "broken",
+        "statusDetails" : "Error: password field not displayed in 10 seconds",
+        "time" : {
+          "start" : 1645181486755,
+          "stop" : 1645181500336,
+          "duration" : 13581
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "551b0f8fd281ede7.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
