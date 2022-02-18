@@ -103,6 +103,13 @@ exports.config = {
     // beforeFeature: function (uri, feature){
     //     Hooks.connectEthWallet()
     //     },
+
+    afterStep: function (step, scenario, result, context) {
+      if (!result.passed){
+        browser.takeScreenshot()
+      }
+    },
+    
     onComplete: function() {
         const reportError = new Error('Could not generate Allure report')
         const generation = allure(['generate', 'allure-results', '--clean'])
