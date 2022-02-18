@@ -38,7 +38,7 @@ exports.config = {
         // excludeDriverLogs: ['bugreport', 'server'],
     }],
 
-    logLevel: 'info',
+    logLevel: 'silent',
 
     bail: 0,
     //
@@ -53,7 +53,7 @@ exports.config = {
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
-    connectionRetryTimeout: 120000,
+    connectionRetryTimeout: 30000,
     services: ['chromedriver'],
     //
     // Default request retries count

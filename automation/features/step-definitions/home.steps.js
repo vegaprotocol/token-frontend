@@ -10,8 +10,10 @@ Given(/^I have not connected my vega wallet$/, () => {
 });
 
 Given(/^I have not connected my eth wallet$/, () => {
-  HomePage.disconnectWalletBtn[0].click();
-});
+  $('button=Disconnect').waitForDisplayed({timeout: 10000,timeoutMsg: "Disconnect Ethereum wallet Button not displayed",})
+  $('button=Disconnect').click()
+  // HomePage.disconnectWalletBtn[0].click();
+});  
 
 Given(/^I navigate to not found page$/, () => {
   browser.url("not-found");
@@ -125,6 +127,6 @@ Then(
   (disconnectedMsg) => {
     const ConnectEthWalletTxt = HomePage.connectEthWallet.getText();
     expect(ConnectEthWalletTxt).toBe(disconnectedMsg);
-    HomePage.connectToEthWallet();
+    // HomePage.connectToEthWallet();
   }
 );

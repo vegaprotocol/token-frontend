@@ -42,7 +42,7 @@ exports.config = {
             browserstackLocal: true
         }]
     ],
-    logLevel: 'info',
+    logLevel: 'silent',
 
     bail: 0,
     //
@@ -109,7 +109,7 @@ exports.config = {
         browser.takeScreenshot()
       }
     },
-    
+
     onComplete: function() {
         const reportError = new Error('Could not generate Allure report')
         const generation = allure(['generate', 'allure-results', '--clean'])

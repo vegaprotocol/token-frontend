@@ -15,10 +15,8 @@
     "scripts": {
         "wdio": "wdio run wdio.conf.js",
         "wdio:local": "wdio run wdio.conf.local.js",
-        "yarn:start":"cd .. && yarn start",
-        "yarn:install:deps":"cd .. && yarn"
-
-
+        "yarn:start": "cd .. && yarn start",
+        "yarn:install:deps": "cd .. && yarn"
     },
     "dependencies": {
         "@wdio/browserstack-service": "^7.16.13",
