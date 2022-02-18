@@ -1,0 +1,163 @@
+{
+  "uid" : "d4af12b1e02350b",
+  "name" : "Homepage displays correct information",
+  "fullName" : "Homepage.Homepage displays correct information",
+  "historyId" : "3e1a9b6fd96622225400d11d3b5c3ffc",
+  "time" : {
+    "start" : 1645190636822,
+    "stop" : 1645190669874,
+    "duration" : 33052
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds",
+  "statusTrace" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds\n                    at Timeout.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:53:14)\n                    at listOnTimeout (internal/timers.js:557:17)\n                    at processTimers (internal/timers.js:500:7)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds",
+    "statusTrace" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds\n                    at Timeout.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:53:14)\n                    at listOnTimeout (internal/timers.js:557:17)\n                    at processTimers (internal/timers.js:500:7)",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1645190636824,
+        "stop" : 1645190639380,
+        "duration" : 2556
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And I connect my ethereum wallet",
+      "time" : {
+        "start" : 1645190639380,
+        "stop" : 1645190669874,
+        "duration" : 30494
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds\n                    at Timeout.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:53:14)\n                    at listOnTimeout (internal/timers.js:557:17)\n                    at processTimers (internal/timers.js:500:7)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "9198308d1c689cb1",
+        "name" : "Screenshot",
+        "source" : "9198308d1c689cb1.png",
+        "type" : "image/png",
+        "size" : 345449
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Homepage displays correct information"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 4,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 5
+      },
+      "items" : [ {
+        "uid" : "eae39b3af349e59a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/73//#testresult/eae39b3af349e59a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645189703200,
+          "stop" : 1645189734427,
+          "duration" : 31227
+        }
+      }, {
+        "uid" : "c4b4cc6dc6a1e105",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/72//#testresult/c4b4cc6dc6a1e105",
+        "status" : "broken",
+        "statusDetails" : "Error: password field not displayed in 10 seconds",
+        "time" : {
+          "start" : 1645182548340,
+          "stop" : 1645182561501,
+          "duration" : 13161
+        }
+      }, {
+        "uid" : "32e2456ea0754d65",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/71//#testresult/32e2456ea0754d65",
+        "status" : "broken",
+        "statusDetails" : "Error: password field not displayed in 10 seconds",
+        "time" : {
+          "start" : 1645181986322,
+          "stop" : 1645181998691,
+          "duration" : 12369
+        }
+      }, {
+        "uid" : "145b07f51cc4ac1b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/70//#testresult/145b07f51cc4ac1b",
+        "status" : "broken",
+        "statusDetails" : "Error: password field not displayed in 10 seconds",
+        "time" : {
+          "start" : 1645181374460,
+          "stop" : 1645181389932,
+          "duration" : 15472
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "d4af12b1e02350b.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

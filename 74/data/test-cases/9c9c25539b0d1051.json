@@ -1,0 +1,175 @@
+{
+  "uid" : "9c9c25539b0d1051",
+  "name" : "Can navigate to Withdraw page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Withdraw page using main nav tab",
+  "historyId" : "79fd1594428f09390ba7229044b87ba2",
+  "time" : {
+    "start" : 1645190694720,
+    "stop" : 1645190696866,
+    "duration" : 2146
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1645190694720,
+        "stop" : 1645190695727,
+        "duration" : 1007
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When I click on \"Withdraw\" on main nav",
+      "time" : {
+        "start" : 1645190695727,
+        "stop" : 1645190696655,
+        "duration" : 928
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And I can see \"Withdraw\" button is clearly highlighted after click",
+      "time" : {
+        "start" : 1645190696655,
+        "stop" : 1645190696807,
+        "duration" : 152
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I am taken to the \"withdraw\" page",
+      "time" : {
+        "start" : 1645190696807,
+        "stop" : 1645190696866,
+        "duration" : 59
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Withdraw page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 5,
+        "unknown" : 0,
+        "total" : 5
+      },
+      "items" : [ {
+        "uid" : "a1c0628d5d7c95ee",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/73//#testresult/a1c0628d5d7c95ee",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645189754120,
+          "stop" : 1645189756044,
+          "duration" : 1924
+        }
+      }, {
+        "uid" : "5f656a0edf18a330",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/72//#testresult/5f656a0edf18a330",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645182606815,
+          "stop" : 1645182608506,
+          "duration" : 1691
+        }
+      }, {
+        "uid" : "821e07036a9f3c44",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/71//#testresult/821e07036a9f3c44",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645182041670,
+          "stop" : 1645182043035,
+          "duration" : 1365
+        }
+      }, {
+        "uid" : "70829180c4d255e9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/70//#testresult/70829180c4d255e9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645181423568,
+          "stop" : 1645181432300,
+          "duration" : 8732
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "9c9c25539b0d1051.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

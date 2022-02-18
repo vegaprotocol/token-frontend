@@ -1,0 +1,164 @@
+{
+  "uid" : "b234fa41922720e",
+  "name" : "Do a staking thing",
+  "fullName" : "Connect a vega wallet.Do a staking thing",
+  "historyId" : "8beca60b824d302b4ed85245503ab447",
+  "time" : {
+    "start" : 1645190912287,
+    "stop" : 1645190944306,
+    "duration" : 32019
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds",
+  "statusTrace" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds\n                    at Timeout.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:53:14)\n                    at listOnTimeout (internal/timers.js:557:17)\n                    at processTimers (internal/timers.js:500:7)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds",
+    "statusTrace" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds\n                    at Timeout.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:53:14)\n                    at listOnTimeout (internal/timers.js:557:17)\n                    at processTimers (internal/timers.js:500:7)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1645190912288,
+        "stop" : 1645190913732,
+        "duration" : 1444
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When I connect hosted wallet",
+      "time" : {
+        "start" : 1645190913732,
+        "stop" : 1645190944306,
+        "duration" : 30574
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds\n                    at Timeout.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:53:14)\n                    at listOnTimeout (internal/timers.js:557:17)\n                    at processTimers (internal/timers.js:500:7)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "48e2230524878b2c",
+        "name" : "Screenshot",
+        "source" : "48e2230524878b2c.png",
+        "type" : "image/png",
+        "size" : 356529
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-6"
+  }, {
+    "name" : "suite",
+    "value" : "Connect a vega wallet"
+  }, {
+    "name" : "testClass",
+    "value" : "Connect a vega wallet"
+  }, {
+    "name" : "testMethod",
+    "value" : "Do a staking thing"
+  }, {
+    "name" : "package",
+    "value" : "Connect a vega wallet"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 5,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 5
+      },
+      "items" : [ {
+        "uid" : "6564ec9f2cf6b81e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/73//#testresult/6564ec9f2cf6b81e",
+        "status" : "broken",
+        "statusDetails" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds",
+        "time" : {
+          "start" : 1645189844969,
+          "stop" : 1645189876649,
+          "duration" : 31680
+        }
+      }, {
+        "uid" : "6471d12b9b40627c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/72//#testresult/6471d12b9b40627c",
+        "status" : "broken",
+        "statusDetails" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds",
+        "time" : {
+          "start" : 1645182698317,
+          "stop" : 1645182729845,
+          "duration" : 31528
+        }
+      }, {
+        "uid" : "b851f55ab2e41d1f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/71//#testresult/b851f55ab2e41d1f",
+        "status" : "broken",
+        "statusDetails" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds",
+        "time" : {
+          "start" : 1645182116635,
+          "stop" : 1645182147505,
+          "duration" : 30870
+        }
+      }, {
+        "uid" : "1644c27df5960050",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/70//#testresult/1644c27df5960050",
+        "status" : "broken",
+        "statusDetails" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds",
+        "time" : {
+          "start" : 1645181500337,
+          "stop" : 1645181531562,
+          "duration" : 31225
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "b234fa41922720e.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

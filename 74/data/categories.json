@@ -1,0 +1,82 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds",
+      "children" : [ {
+        "name" : "Homepage displays correct information",
+        "uid" : "d4af12b1e02350b",
+        "parentUid" : "a57415a84f891855138ccda29deb297a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1645190636822,
+          "stop" : 1645190669874,
+          "duration" : 33052
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      }, {
+        "name" : "Go to staking page and connect hosted wallet",
+        "uid" : "515868828a255bb5",
+        "parentUid" : "a57415a84f891855138ccda29deb297a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1645190783423,
+          "stop" : 1645190814968,
+          "duration" : 31545
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      }, {
+        "name" : "Go to Vega",
+        "uid" : "d920dfaf31742b5e",
+        "parentUid" : "a57415a84f891855138ccda29deb297a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1645190881669,
+          "stop" : 1645190912285,
+          "duration" : 30616
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      }, {
+        "name" : "Do a staking thing",
+        "uid" : "b234fa41922720e",
+        "parentUid" : "a57415a84f891855138ccda29deb297a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1645190912287,
+          "stop" : 1645190944306,
+          "duration" : 32019
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "a57415a84f891855138ccda29deb297a"
+    }, {
+      "name" : "Error: Connect Eth Button not displayed",
+      "children" : [ {
+        "name" : "Go to staking and connect ethereum wallet",
+        "uid" : "910736aa39860087",
+        "parentUid" : "0832eab6de7cc09a92eb52eda2a21a9b",
+        "status" : "broken",
+        "time" : {
+          "start" : 1645190758433,
+          "stop" : 1645190783421,
+          "duration" : 24988
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "0832eab6de7cc09a92eb52eda2a21a9b"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
+  "name" : "categories"
+}
