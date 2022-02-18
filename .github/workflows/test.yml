@@ -20,6 +20,10 @@ jobs:
         - uses: actions/setup-node@v1
           with:
             node-version: 14.18.3
+        - name: Install root dependencies
+          run: npm run yarn:install:deps
+        - name: Start localhost
+          run: npm run yarn:start
         - name: Install
           run: npm install
         # - name: Download wallet
@@ -45,12 +49,8 @@ jobs:
           uses: browserstack/github-actions/setup-local@master
           with:
             local-testing: start
-        - name: Install root dependencies
-          run: npm run yarn:install:deps
-        - name: Start localhost
-          run: npm run yarn:start
-          with:
-            wait-on: http://localhost:3000
+          # with:
+          #   wait-on: http://localhost:3000
         - name: Run tests
           run: npm run wdio
         # - name: 'BrowserStackLocal Stop'  # Terminating the BrowserStackLocal tunnel connection
