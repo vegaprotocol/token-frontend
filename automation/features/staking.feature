@@ -1,8 +1,18 @@
 Feature: Staking page
   @e2e-test
   
+  Scenario: Go to staking and connect ethereum wallet
+    Given I connect my ethereum wallet
+    Given I navigate to "staking" page
+    Then I can see my ethereum key 0x9804C6E98dA75e3271ccE3aA56728FD8e9376155 is shown
+
+    Scenario: Go to staking page and connect hosted wallet
+    Given I navigate to "staking" page
+    When I connect hosted wallet
+    And I associate some tokens
+  
   @ignore
-  Scenario: Go to staking page
+    Scenario: Go to staking page
     Given I connect my ethereum wallet
     Given I connect Vega wallet
     Given I navigate to "staking" page
