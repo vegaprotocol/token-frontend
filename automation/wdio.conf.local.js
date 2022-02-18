@@ -139,8 +139,11 @@ exports.config = {
      * @param {number}             result.duration  duration of scenario in milliseconds
      * @param {Object}             context          Cucumber World object
      */
-    // afterStep: function (step, scenario, result, context) {
-    // },
+    afterStep: function (step, scenario, result, context) {
+      if (!result.passed){
+        browser.takeScreenshot()
+      }
+    },
     /**
      *
      * Runs after a Cucumber Scenario.
