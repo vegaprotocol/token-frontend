@@ -13,7 +13,12 @@
         "wdio-chromedriver-service": "^7.2.6"
     },
     "scripts": {
-        "wdio": "wdio run wdio.conf.js"
+        "wdio": "wdio run wdio.conf.js",
+        "wdio:local": "wdio run wdio.conf.local.js",
+        "yarn:start":"cd .. && yarn start",
+        "yarn:install:deps":"cd .. && yarn"
+
+
     },
     "dependencies": {
         "@wdio/browserstack-service": "^7.16.13",
