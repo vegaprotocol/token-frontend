@@ -1,0 +1,226 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds",
+      "children" : [ {
+        "name" : "Homepage displays correct information",
+        "uid" : "f7b58e5e04e7517a",
+        "parentUid" : "a57415a84f891855138ccda29deb297a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1645193200425,
+          "stop" : 1645193233821,
+          "duration" : 33396
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      }, {
+        "name" : "Go to staking and connect ethereum wallet",
+        "uid" : "ffca8c3ec07b05c4",
+        "parentUid" : "a57415a84f891855138ccda29deb297a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1645193423983,
+          "stop" : 1645193454735,
+          "duration" : 30752
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "a57415a84f891855138ccda29deb297a"
+    }, {
+      "name" : "element click intercepted: Element <button data-test-id=\"check-vesting-page-btn\" class=\"fill button-secondary\">...</button> is not clickable at point (380, 589). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+      "children" : [ {
+        "name" : "Check for redeem unlocked tokens from homepage",
+        "uid" : "9dd8cbe11ba8ae5c",
+        "parentUid" : "2353ac80cc7d42422724aec2a30160b9",
+        "status" : "broken",
+        "time" : {
+          "start" : 1645193238879,
+          "stop" : 1645193248346,
+          "duration" : 9467
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "2353ac80cc7d42422724aec2a30160b9"
+    }, {
+      "name" : "element click intercepted: Element <a href=\"/staking/associate\">...</a> is not clickable at point (109, 804). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+      "children" : [ {
+        "name" : "Navigate to staking page via link on homepage body",
+        "uid" : "4ebbbac59fbf18ee",
+        "parentUid" : "fbb5ff04431541e6da9fff9024956f9e",
+        "status" : "broken",
+        "time" : {
+          "start" : 1645193248348,
+          "stop" : 1645193257825,
+          "duration" : 9477
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "fbb5ff04431541e6da9fff9024956f9e"
+    }, {
+      "name" : "element click intercepted: Element <a href=\"/governance\">...</a> is not clickable at point (568, 877). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+      "children" : [ {
+        "name" : "Navigate to governance proposals page via button link on homepage body",
+        "uid" : "8c2aff884611ce1b",
+        "parentUid" : "e23be266db0db5cd4a10d2af5e357e62",
+        "status" : "broken",
+        "time" : {
+          "start" : 1645193257826,
+          "stop" : 1645193267173,
+          "duration" : 9347
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "e23be266db0db5cd4a10d2af5e357e62"
+    }, {
+      "name" : "element click intercepted: Element <a href=\"/vesting\">...</a> is not clickable at point (139, 81). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+      "children" : [ {
+        "name" : "Can navigate to Vesting page using main nav tab",
+        "uid" : "cd9c605e33f5d5d0",
+        "parentUid" : "c860b98f6fbcefa0cf22570ddf17c5f4",
+        "status" : "broken",
+        "time" : {
+          "start" : 1645193270992,
+          "stop" : 1645193279151,
+          "duration" : 8159
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "c860b98f6fbcefa0cf22570ddf17c5f4"
+    }, {
+      "name" : "element click intercepted: Element <a href=\"/staking\">...</a> is not clickable at point (236, 81). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+      "children" : [ {
+        "name" : "Can navigate to Staking page using main nav tab",
+        "uid" : "946ad8eecf7a1f6e",
+        "parentUid" : "28bbeec7a429223c0b1923fb3a3d31a0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1645193279155,
+          "stop" : 1645193288773,
+          "duration" : 9618
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "28bbeec7a429223c0b1923fb3a3d31a0"
+    }, {
+      "name" : "element click intercepted: Element <a href=\"/governance\">...</a> is not clickable at point (579, 81). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+      "children" : [ {
+        "name" : "Can navigate to Governance page using main nav tab",
+        "uid" : "9e612c05342cd220",
+        "parentUid" : "34735fdc39b40517da0424f93ddfe9b2",
+        "status" : "broken",
+        "time" : {
+          "start" : 1645193288775,
+          "stop" : 1645193302528,
+          "duration" : 13753
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "34735fdc39b40517da0424f93ddfe9b2"
+    }, {
+      "name" : "element click intercepted: Element <a aria-current=\"page\" class=\"active\" href=\"/\">...</a> is not clickable at point (52, 81). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+      "children" : [ {
+        "name" : "Can navigate to Home page using main nav tab",
+        "uid" : "e2965664ba501adf",
+        "parentUid" : "924ecf34e98bd434005c9792c1999871",
+        "status" : "broken",
+        "time" : {
+          "start" : 1645193302529,
+          "stop" : 1645193312191,
+          "duration" : 9662
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "924ecf34e98bd434005c9792c1999871"
+    }, {
+      "name" : "element click intercepted: Element <a href=\"/rewards\">...</a> is not clickable at point (339, 81). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+      "children" : [ {
+        "name" : "Can navigate to Rewards page using main nav tab",
+        "uid" : "1bd0a5eed2a1c40d",
+        "parentUid" : "6a00fb8013ac1cb6c8f34d67c2c66360",
+        "status" : "broken",
+        "time" : {
+          "start" : 1645193312192,
+          "stop" : 1645193326113,
+          "duration" : 13921
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "6a00fb8013ac1cb6c8f34d67c2c66360"
+    }, {
+      "name" : "element click intercepted: Element <a href=\"/withdraw\">...</a> is not clickable at point (451, 81). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+      "children" : [ {
+        "name" : "Can navigate to Withdraw page using main nav tab",
+        "uid" : "8a4082e8bc3ddaab",
+        "parentUid" : "b2be7979400ea07cf94c0fe0dbb7ccbf",
+        "status" : "broken",
+        "time" : {
+          "start" : 1645193326114,
+          "stop" : 1645193344776,
+          "duration" : 18662
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "b2be7979400ea07cf94c0fe0dbb7ccbf"
+    }, {
+      "name" : "Error: Disconnect Ethereum wallet Button not displayed",
+      "children" : [ {
+        "name" : "Eth wallet not connected placeholder",
+        "uid" : "1c3b023df6c32a64",
+        "parentUid" : "6a369e4f7e4d2136fe98d27fc1db6ea8",
+        "status" : "broken",
+        "time" : {
+          "start" : 1645193344777,
+          "stop" : 1645193357825,
+          "duration" : 13048
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "6a369e4f7e4d2136fe98d27fc1db6ea8"
+    }, {
+      "name" : "element click intercepted: Element <button class=\"fill\" data-test-id=\"connect-to-vega-wallet-btn\">...</button> is not clickable at point (380, 634). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+      "children" : [ {
+        "name" : "Go to staking page and connect hosted wallet",
+        "uid" : "2f11ad49a3583181",
+        "parentUid" : "5593c7afea39e4b741f1cde5d31f5f82",
+        "status" : "broken",
+        "time" : {
+          "start" : 1645193454737,
+          "stop" : 1645193467799,
+          "duration" : 13062
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "5593c7afea39e4b741f1cde5d31f5f82"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
+  "name" : "categories"
+}
