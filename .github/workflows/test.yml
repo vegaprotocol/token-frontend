@@ -49,7 +49,6 @@ jobs:
           run: npm run yarn:install:deps
         - name: Start localhost
           run: npm run yarn:start
-        - name : wait on localhost
           with:
             wait-on: http://localhost:3000
         - name: Run tests
