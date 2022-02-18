@@ -1,0 +1,221 @@
+{
+  "uid" : "98d3104e051c652961429bf95fa0b5d6",
+  "children" : [ {
+    "name" : "Homepage",
+    "children" : [ {
+      "name" : "Homepage displays correct information",
+      "uid" : "9a99f332f43d56a2",
+      "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
+      "status" : "broken",
+      "time" : {
+        "start" : 1645177965358,
+        "stop" : 1645177978007,
+        "duration" : 12649
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Links on the homepage",
+      "uid" : "481a7e8102c3fed9",
+      "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
+      "status" : "broken",
+      "time" : {
+        "start" : 1645177978010,
+        "stop" : 1645178008254,
+        "duration" : 30244
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Check for redeem unlocked tokens from homepage",
+      "uid" : "46edfc5dec9a17c9",
+      "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
+      "status" : "broken",
+      "time" : {
+        "start" : 1645178008256,
+        "stop" : 1645178038498,
+        "duration" : 30242
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Navigate to staking page via link on homepage body",
+      "uid" : "2b0f1c4190d7c0c5",
+      "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
+      "status" : "broken",
+      "time" : {
+        "start" : 1645178038500,
+        "stop" : 1645178068697,
+        "duration" : 30197
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Navigate to governance proposals page via button link on homepage body",
+      "uid" : "b267c5cc90685c15",
+      "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
+      "status" : "broken",
+      "time" : {
+        "start" : 1645178068697,
+        "stop" : 1645178098890,
+        "duration" : 30193
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Navigate to a not found page will return page error",
+      "uid" : "4910be36c130eaf",
+      "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
+      "status" : "broken",
+      "time" : {
+        "start" : 1645178098891,
+        "stop" : 1645178129422,
+        "duration" : 30531
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Can navigate to Vesting page using main nav tab",
+      "uid" : "bc4497ebd9939fbb",
+      "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
+      "status" : "broken",
+      "time" : {
+        "start" : 1645178129423,
+        "stop" : 1645178159690,
+        "duration" : 30267
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Can navigate to Staking page using main nav tab",
+      "uid" : "1cafb707c63e609e",
+      "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
+      "status" : "broken",
+      "time" : {
+        "start" : 1645178159691,
+        "stop" : 1645178189903,
+        "duration" : 30212
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Can navigate to Governance page using main nav tab",
+      "uid" : "ad917afa5a2b5808",
+      "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
+      "status" : "broken",
+      "time" : {
+        "start" : 1645178189903,
+        "stop" : 1645178220131,
+        "duration" : 30228
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Can navigate to Home page using main nav tab",
+      "uid" : "faee63511cb2f456",
+      "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
+      "status" : "broken",
+      "time" : {
+        "start" : 1645178220132,
+        "stop" : 1645178250403,
+        "duration" : 30271
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Can navigate to Rewards page using main nav tab",
+      "uid" : "e5b9317646ada291",
+      "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
+      "status" : "broken",
+      "time" : {
+        "start" : 1645178250405,
+        "stop" : 1645178280636,
+        "duration" : 30231
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Can navigate to Withdraw page using main nav tab",
+      "uid" : "c8b51e1710d86d68",
+      "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
+      "status" : "broken",
+      "time" : {
+        "start" : 1645178280637,
+        "stop" : 1645178310961,
+        "duration" : 30324
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Eth wallet not connected placeholder",
+      "uid" : "758d5b3ad2b4eef",
+      "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
+      "status" : "broken",
+      "time" : {
+        "start" : 1645178310963,
+        "stop" : 1645178311320,
+        "duration" : 357
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Vega wallet not connected placeholder",
+      "uid" : "79687e547350afd3",
+      "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
+      "status" : "broken",
+      "time" : {
+        "start" : 1645178311321,
+        "stop" : 1645178341545,
+        "duration" : 30224
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    } ],
+    "uid" : "a42c9f51ba1bf76b8f087ce0758272d2"
+  }, {
+    "name" : "Connect a vega wallet",
+    "children" : [ {
+      "name" : "Go to Vega",
+      "uid" : "48613e099060edf3",
+      "parentUid" : "5b108db8fed0c8c03e89a1af0441f2bb",
+      "status" : "broken",
+      "time" : {
+        "start" : 1645178389077,
+        "stop" : 1645178402090,
+        "duration" : 13013
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Do a staking thing",
+      "uid" : "192fe0c46c6ce772",
+      "parentUid" : "5b108db8fed0c8c03e89a1af0441f2bb",
+      "status" : "broken",
+      "time" : {
+        "start" : 1645178402093,
+        "stop" : 1645178432419,
+        "duration" : 30326
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    } ],
+    "uid" : "5b108db8fed0c8c03e89a1af0441f2bb"
+  } ],
+  "name" : "suites"
+}
