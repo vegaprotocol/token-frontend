@@ -1,0 +1,142 @@
+{
+  "uid" : "be156077c2b0cb7b",
+  "name" : "Links on the homepage",
+  "fullName" : "Homepage.Links on the homepage",
+  "historyId" : "75dc0c7908c032915bb7dc0878fb6e77",
+  "time" : {
+    "start" : 1645181998693,
+    "stop" : 1645182029972,
+    "duration" : 31279
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds",
+  "statusTrace" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds\n                    at Timeout.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:53:14)\n                    at listOnTimeout (internal/timers.js:557:17)\n                    at processTimers (internal/timers.js:500:7)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds",
+    "statusTrace" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds\n                    at Timeout.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:53:14)\n                    at listOnTimeout (internal/timers.js:557:17)\n                    at processTimers (internal/timers.js:500:7)",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1645181998693,
+        "stop" : 1645181999216,
+        "duration" : 523
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then the vega wallet link is correct",
+      "time" : {
+        "start" : 1645181999216,
+        "stop" : 1645181999967,
+        "duration" : 751
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And the token address has a link",
+      "time" : {
+        "start" : 1645181999967,
+        "stop" : 1645182029972,
+        "duration" : 30005
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds\n                    at Timeout.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:53:14)\n                    at listOnTimeout (internal/timers.js:557:17)\n                    at processTimers (internal/timers.js:500:7)",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Links on the homepage"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 1,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "3d6791ed531fa0b3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/70//#testresult/3d6791ed531fa0b3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645181389934,
+          "stop" : 1645181393911,
+          "duration" : 3977
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "be156077c2b0cb7b.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
