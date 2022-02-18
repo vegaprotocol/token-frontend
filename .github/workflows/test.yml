@@ -79,7 +79,7 @@ jobs:
             #gh_pages: gh-pages
             #allure_report: allure-report
             allure_history: automation/allure-history
-            keep_reports: 20
+            keep_reports: 30
         - name: Deploy report to Github Pages
           if: always()
           uses: peaceiris/actions-gh-pages@v2
@@ -89,8 +89,9 @@ jobs:
             PUBLISH_DIR: automation/allure-history
         - name: Post the link to the report in PR comment
           uses: thollander/actions-comment-pull-request@v1
+          if: always()
           with:
-            message: 'Link to report : https://vegaprotocol.github.io/token-frontend/'
+            message: 'Link to report : https://vegaprotocol.github.io/token-frontend/${{ github.run_number }}'
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         # - name: Post the link to the report in PR comment
         #   if: always()
