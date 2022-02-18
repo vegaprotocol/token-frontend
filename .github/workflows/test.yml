@@ -23,7 +23,7 @@ jobs:
         - name: Install root dependencies
           run: npm run yarn:install:deps
         - name: Start localhost
-          run: npm run yarn:start
+          run: npm run yarn:start &
         - name: Install
           run: npm install
         # - name: Download wallet
