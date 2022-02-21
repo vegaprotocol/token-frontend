@@ -62,37 +62,37 @@ jobs:
         #     with:
         #       name: logs
         #       path: logs
-        - name: Get Allure history
-          uses: actions/checkout@v2
-          if: always()
-          continue-on-error: true
-          with:
-            ref: gh-pages
-            path: gh-pages
+        # - name: Get Allure history
+        #   uses: actions/checkout@v2
+        #   if: always()
+        #   continue-on-error: true
+        #   with:
+        #     ref: gh-pages
+        #     path: gh-pages
         # Generate report
-        - name: Allure Report action from marketplace
-          uses: simple-elf/allure-report-action@master
-          if: always()
-          #id: allure-report
-          with:
-            allure_results: automation/allure-results
-            #gh_pages: gh-pages
-            #allure_report: allure-report
-            allure_history: automation/allure-history
-            keep_reports: 30
-        - name: Deploy report to Github Pages
-          if: always()
-          uses: peaceiris/actions-gh-pages@v2
-          env:
-            PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            PUBLISH_BRANCH: gh-pages
-            PUBLISH_DIR: automation/allure-history
-        - name: Post the link to the report in PR comment
-          uses: thollander/actions-comment-pull-request@v1
-          if: always()
-          with:
-            message: 'Link to report : https://vegaprotocol.github.io/token-frontend/${{ github.run_number }}'
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # - name: Allure Report action from marketplace
+        #   uses: simple-elf/allure-report-action@master
+        #   if: always()
+        #   #id: allure-report
+        #   with:
+        #     allure_results: automation/allure-results
+        #     #gh_pages: gh-pages
+        #     #allure_report: allure-report
+        #     allure_history: automation/allure-history
+        #     keep_reports: 30
+        # - name: Deploy report to Github Pages
+        #   if: always()
+        #   uses: peaceiris/actions-gh-pages@v2
+        #   env:
+        #     PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        #     PUBLISH_BRANCH: gh-pages
+        #     PUBLISH_DIR: automation/allure-history
+        # - name: Post the link to the report in PR comment
+        #   uses: thollander/actions-comment-pull-request@v1
+        #   if: always()
+        #   with:
+        #     message: 'Link to report : https://vegaprotocol.github.io/token-frontend/${{ github.run_number }}'
+        #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         # - name: Post the link to the report in PR comment
         #   if: always()
         #   uses: Sibz/github-status-action@v1
