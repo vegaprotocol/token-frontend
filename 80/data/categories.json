@@ -1,0 +1,39 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "Error: function timed out, ensure the promise resolves within 30000 milliseconds",
+      "children" : [ {
+        "name" : "Homepage displays correct information",
+        "uid" : "c144496cf4a2aba6",
+        "parentUid" : "a57415a84f891855138ccda29deb297a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1645699506392,
+          "stop" : 1645699538567,
+          "duration" : 32175
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      }, {
+        "name" : "Go to staking page and connect hosted wallet",
+        "uid" : "75f442d10bf2a3b4",
+        "parentUid" : "a57415a84f891855138ccda29deb297a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1645699629234,
+          "stop" : 1645699660630,
+          "duration" : 31396
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "a57415a84f891855138ccda29deb297a"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
+  "name" : "categories"
+}
