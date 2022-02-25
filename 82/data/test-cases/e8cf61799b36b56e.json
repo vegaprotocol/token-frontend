@@ -1,0 +1,118 @@
+{
+  "uid" : "e8cf61799b36b56e",
+  "name" : "Go to staking and connect ethereum wallet",
+  "fullName" : "Staking page.Go to staking and connect ethereum wallet",
+  "historyId" : "24b200d19bf9488be3cf36ec47fd72a6",
+  "time" : {
+    "start" : 1645805074460,
+    "stop" : 1645805100612,
+    "duration" : 26152
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: Connect Eth Button not displayed",
+  "statusTrace" : "Error: Connect Eth Button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:46:54)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: Connect Eth Button not displayed",
+    "statusTrace" : "Error: Connect Eth Button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:46:54)",
+    "steps" : [ {
+      "name" : "Given I connect my ethereum wallet",
+      "time" : {
+        "start" : 1645805074462,
+        "stop" : 1645805100611,
+        "duration" : 26149
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: Connect Eth Button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:46:54)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "80494c95ba1e23eb",
+        "name" : "Screenshot",
+        "source" : "80494c95ba1e23eb.png",
+        "type" : "image/png",
+        "size" : 322435
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking page"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Go to staking and connect ethereum wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 1,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "5f9ad01d8bcd70dc",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/82//#testresult/5f9ad01d8bcd70dc",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645700641710,
+          "stop" : 1645700660283,
+          "duration" : 18573
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "e8cf61799b36b56e.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

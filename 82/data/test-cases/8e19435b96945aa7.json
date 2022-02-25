@@ -1,0 +1,133 @@
+{
+  "uid" : "8e19435b96945aa7",
+  "name" : "Go to staking page and connect hosted wallet",
+  "fullName" : "Staking page.Go to staking page and connect hosted wallet",
+  "historyId" : "67d06199d32f3f896ad3dda6b50d4df4",
+  "time" : {
+    "start" : 1645805100614,
+    "stop" : 1645805107405,
+    "duration" : 6791
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1645805100614,
+        "stop" : 1645805101679,
+        "duration" : 1065
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When I connect hosted wallet",
+      "time" : {
+        "start" : 1645805101680,
+        "stop" : 1645805107403,
+        "duration" : 5723
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And I associate some tokens",
+      "time" : {
+        "start" : 1645805107404,
+        "stop" : 1645805107404,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking page"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Go to staking page and connect hosted wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 2,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "6943cd3c4627e134",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/82//#testresult/6943cd3c4627e134",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645700660283,
+          "stop" : 1645700667055,
+          "duration" : 6772
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "8e19435b96945aa7.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

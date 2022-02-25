@@ -1,0 +1,148 @@
+{
+  "uid" : "b5f2d2d576b6e2d2",
+  "name" : "Can navigate to Vesting page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Vesting page using main nav tab",
+  "historyId" : "91edaff876b9e227e3c02278f9214d3a",
+  "time" : {
+    "start" : 1645805006683,
+    "stop" : 1645805008131,
+    "duration" : 1448
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1645805006684,
+        "stop" : 1645805007396,
+        "duration" : 712
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When I click on \"Vesting\" on main nav",
+      "time" : {
+        "start" : 1645805007396,
+        "stop" : 1645805007925,
+        "duration" : 529
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And I can see \"Vesting\" button is clearly highlighted after click",
+      "time" : {
+        "start" : 1645805007925,
+        "stop" : 1645805008067,
+        "duration" : 142
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I am taken to the \"vesting\" page",
+      "time" : {
+        "start" : 1645805008067,
+        "stop" : 1645805008131,
+        "duration" : 64
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Vesting page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 2,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "9b35113708b7085b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/82//#testresult/9b35113708b7085b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645700571611,
+          "stop" : 1645700573177,
+          "duration" : 1566
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "b5f2d2d576b6e2d2.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

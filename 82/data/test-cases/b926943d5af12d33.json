@@ -1,0 +1,133 @@
+{
+  "uid" : "b926943d5af12d33",
+  "name" : "Vega wallet not connected placeholder",
+  "fullName" : "Homepage.Vega wallet not connected placeholder",
+  "historyId" : "607e0e06b898d703b411f2efc855b24b",
+  "time" : {
+    "start" : 1645805015348,
+    "stop" : 1645805016116,
+    "duration" : 768
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1645805015348,
+        "stop" : 1645805015805,
+        "duration" : 457
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And I have not connected my vega wallet",
+      "time" : {
+        "start" : 1645805015805,
+        "stop" : 1645805015805,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I can see the vega wallet disconnected with message \"Connect Vega wallet to use associated $VEGA\"",
+      "time" : {
+        "start" : 1645805015805,
+        "stop" : 1645805016116,
+        "duration" : 311
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Vega wallet not connected placeholder"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 2,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "b57d82b5aa8ecba9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/82//#testresult/b57d82b5aa8ecba9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645700581027,
+          "stop" : 1645700581815,
+          "duration" : 788
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "b926943d5af12d33.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

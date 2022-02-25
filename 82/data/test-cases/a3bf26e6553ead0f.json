@@ -1,0 +1,148 @@
+{
+  "uid" : "a3bf26e6553ead0f",
+  "name" : "Can navigate to Rewards page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Rewards page using main nav tab",
+  "historyId" : "e5c128f7a5a71120ad145bc26baf6de1",
+  "time" : {
+    "start" : 1645805011650,
+    "stop" : 1645805013071,
+    "duration" : 1421
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1645805011650,
+        "stop" : 1645805012413,
+        "duration" : 763
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When I click on \"Rewards\" on main nav",
+      "time" : {
+        "start" : 1645805012413,
+        "stop" : 1645805012737,
+        "duration" : 324
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And I can see \"Rewards\" button is clearly highlighted after click",
+      "time" : {
+        "start" : 1645805012737,
+        "stop" : 1645805013001,
+        "duration" : 264
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I am taken to the \"rewards\" page",
+      "time" : {
+        "start" : 1645805013001,
+        "stop" : 1645805013071,
+        "duration" : 70
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Rewards page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 2,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "75a84cd7ee039ff4",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/82//#testresult/75a84cd7ee039ff4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1645700577227,
+          "stop" : 1645700578600,
+          "duration" : 1373
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "a3bf26e6553ead0f.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

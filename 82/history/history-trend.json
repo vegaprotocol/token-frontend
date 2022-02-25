@@ -11,6 +11,18 @@
     "total" : 16
   }
 }, {
+  "buildOrder" : 82,
+  "reportUrl" : "https://vegaprotocol.github.io/token-frontend/82/",
+  "reportName" : "Allure Report with history",
+  "data" : {
+    "failed" : 0,
+    "broken" : 1,
+    "skipped" : 0,
+    "passed" : 15,
+    "unknown" : 0,
+    "total" : 16
+  }
+}, {
   "data" : {
     "failed" : 0,
     "broken" : 0,

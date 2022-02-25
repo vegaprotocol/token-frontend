@@ -1,0 +1,164 @@
+{
+  "uid" : "60cb47ba31a2220e",
+  "name" : "Homepage displays correct information",
+  "fullName" : "Homepage.Homepage displays correct information",
+  "historyId" : "3e1a9b6fd96622225400d11d3b5c3ffc",
+  "time" : {
+    "start" : 1645804987004,
+    "stop" : 1645805000695,
+    "duration" : 13691
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1645804987006,
+        "stop" : 1645804988215,
+        "duration" : 1209
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And I connect my ethereum wallet",
+      "time" : {
+        "start" : 1645804988215,
+        "stop" : 1645804999960,
+        "duration" : 11745
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I can see the token address is shown",
+      "time" : {
+        "start" : 1645804999960,
+        "stop" : 1645805000319,
+        "duration" : 359
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And the vesting address is shown",
+      "time" : {
+        "start" : 1645805000319,
+        "stop" : 1645805000523,
+        "duration" : 204
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And the total supply is shown correctly",
+      "time" : {
+        "start" : 1645805000523,
+        "stop" : 1645805000694,
+        "duration" : 171
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 5,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Homepage displays correct information"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 1,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "ebaab7fb3c356590",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/82//#testresult/ebaab7fb3c356590",
+        "status" : "broken",
+        "statusDetails" : "Error: Connect Eth Button not displayed",
+        "time" : {
+          "start" : 1645700530909,
+          "stop" : 1645700563955,
+          "duration" : 33046
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "60cb47ba31a2220e.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
