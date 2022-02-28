@@ -144,7 +144,6 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
           }
         }
       } catch (err) {
-        console.log(err);
         Sentry.captureException(err);
       }
     };
