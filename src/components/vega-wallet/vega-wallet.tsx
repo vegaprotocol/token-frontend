@@ -33,7 +33,7 @@ import {
   WalletCardRow,
 } from "../wallet-card";
 import { DownloadWalletPrompt } from "./download-wallet-prompt";
-import { useVegaWalletAccounts } from "./hooks";
+import { usePollForDelegations } from "./hooks";
 
 export const VegaWallet = () => {
   const { t } = useTranslation();
@@ -139,7 +139,7 @@ const VegaWalletConnected = ({
   const [disconnecting, setDisconnecting] = React.useState(false);
   const [expanded, setExpanded] = React.useState(false);
   const { delegations, currentStakeAvailable, delegatedNodes, accounts } =
-    useVegaWalletAccounts();
+    usePollForDelegations();
 
   const handleDisconnect = React.useCallback(
     async function () {

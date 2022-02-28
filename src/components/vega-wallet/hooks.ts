@@ -58,7 +58,7 @@ const DELEGATIONS_QUERY = gql`
   }
 `;
 
-export const useVegaWalletAccounts = () => {
+export const usePollForDelegations = () => {
   const { t } = useTranslation();
   const { currVegaKey } = useVegaUser();
   const client = useApolloClient();
