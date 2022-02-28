@@ -86,7 +86,7 @@ export const TransactionModal = () => {
               <tbody>
                 {transactions.map((t) => {
                   return (
-                    <tr>
+                    <tr key={t.tx.hash}>
                       <td>
                         <EtherscanLink
                           tx={t.tx.hash}
