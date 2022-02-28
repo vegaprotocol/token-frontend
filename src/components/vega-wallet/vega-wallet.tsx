@@ -44,7 +44,6 @@ import {
   DelegationsVariables,
 } from "./__generated__/Delegations";
 import { DownloadWalletPrompt } from "./download-wallet-prompt";
-import { NewWalletAvailable } from "./new-wallet-available";
 
 const DELEGATIONS_QUERY = gql`
   query Delegations($partyId: ID!) {
@@ -442,7 +441,6 @@ const VegaWalletConnected = ({
 
   return vegaKeys.length ? (
     <>
-      <NewWalletAvailable />
       <WalletCardAsset
         image={vegaWhite}
         decimals={decimals}
