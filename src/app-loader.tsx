@@ -111,34 +111,41 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
     let interval: any = null;
 
     const getNetworkLimits = async () => {
-      const [networkLimits, stats] = await Promise.all([
-        fetch(networkLimitsEndpoint).then((res) => res.json()),
-        fetch(statsEndpoint).then((res) => res.json()),
-      ]);
+      try {
+        const [networkLimits, stats] = await Promise.all([
+          fetch(networkLimitsEndpoint).then((res) => res.json()),
+          fetch(statsEndpoint).then((res) => res.json()),
+        ]);
 
-      const restoreBlock = Number(
-        networkLimits.networkLimits.bootstrapBlockCount
-      );
-      const currentBlock = Number(stats.statistics.blockHeight);
+        const restoreBlock = Number(
+          networkLimits.networkLimits.bootstrapBlockCount
+        );
+        const currentBlock = Number(stats.statistics.blockHeight);
 
-      if (currentBlock <= restoreBlock) {
-        appDispatch({
-          type: AppStateActionType.SET_BANNER_MESSAGE,
-          message: t("networkRestoring", { bootstrapBlockCount: restoreBlock }),
-        });
+        if (currentBlock <= restoreBlock) {
+          appDispatch({
+            type: AppStateActionType.SET_BANNER_MESSAGE,
+            message: t("networkRestoring", {
+              bootstrapBlockCount: restoreBlock,
+            }),
+          });
 
-        if (!interval) {
-          startPoll();
+          if (!interval) {
+            startPoll();
+          }
+        } else {
+          appDispatch({
+            type: AppStateActionType.SET_BANNER_MESSAGE,
+            message: "",
+          });
+
+          if (interval) {
+            stopPoll();
+          }
         }
-      } else {
-        appDispatch({
-          type: AppStateActionType.SET_BANNER_MESSAGE,
-          message: "",
-        });
-
-        if (interval) {
-          stopPoll();
-        }
+      } catch (err) {
+        console.log(err);
+        Sentry.captureException(err);
       }
     };
 
