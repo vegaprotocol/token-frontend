@@ -41,8 +41,12 @@ jobs:
         - name: 'BrowserStack Env Setup'  # Invokes the setup-env action
           uses: browserstack/github-actions/setup-env@master
           with:
-            username: ditmirhasani_8O6wBn
-            access-key: kapsvp3EvwLSmyDyJKxG
+            username: ${{ secrets.browserstack_user}}
+            access-key: ${{ secrets.browserstack_key}}
+          env:
+            browserstack_user: ${{ secrets.browserstack_user}}
+            access-key: ${{ secrets.browserstack_key}}
+
         - name: 'BrowserStack Local Tunnel Setup'  # Invokes the setup-local action
           uses: browserstack/github-actions/setup-local@master
           with:
@@ -53,6 +57,9 @@ jobs:
           run: npm run yarn:start &
         - name: Run tests
           run: npm run wdio
+          env:
+            browserstack_user: ${{ secrets.browserstack_user}}
+            access-key: ${{ secrets.browserstack_key}}
         # - name: 'BrowserStackLocal Stop'  # Terminating the BrowserStackLocal tunnel connection
         #   uses: browserstack/github-actions/setup-local@master
         #   with:
