@@ -179,7 +179,6 @@ const VegaWalletConnected = ({
 
   const footer = (
     <WalletCardActions>
-      {version ? <div className="vega-wallet__version">{version}</div> : null}
       {vegaKeys.length > 1 ? (
         <button
           className="button-link"
