@@ -49,11 +49,11 @@ exports.config = {
     baseUrl: 'http://localhost:3000',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 30000,
+    waitforTimeout: 300000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
-    connectionRetryTimeout: 30000,
+    connectionRetryTimeout: 300000,
     services: ['chromedriver'],
     //
     // Default request retries count
@@ -80,7 +80,7 @@ exports.config = {
         // <string> (expression) only execute the features or scenarios with tags matching the expression
         tagExpression: 'not @todo and not @manual and not @ignore',
         // <number> timeout for step definitions
-        timeout: 30000,
+        timeout: 300000,
         // <boolean> Enable this config to treat undefined definitions as warnings.
         ignoreUndefinedDefinitions: false
     },

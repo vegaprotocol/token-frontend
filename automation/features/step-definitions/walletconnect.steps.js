@@ -30,32 +30,27 @@ When(/^I nav to (.*)$/,  (site) => {
 });
 
 When(/^I associate some tokens$/,()=>{
-
+// WIP
+  //   const associatedamount= $(".wallet-card__price--decimal").getText()
+  // console.log(associatedamount)
+  //           console.log('11111')
+  // if ($('button=Associate more $VEGA tokens with wallet').isDisplayed()){
+  //   $('button=Associate more $VEGA tokens with wallet').click()
+  // } else $('button=Associate $VEGA tokens with wallet').click()
+  // $('[data-testid="associate-radio-wallet"]').click({force:true})
+  // $('[data-testid="token-amount-input"]').setValue(0.00001)
+  // $('[data-testid="token-input-submit-button"]').click()
+  // browser.switchWindow("MetaMask Notification");
+  // console.log('switching to metamask window')
+  // $('button=Confirm').click()
 })
 
 When(/^I connect hosted wallet$/,()=>{
     $('[data-test-id="connect-to-vega-wallet-btn"]').click()
     browser.pause(1000)
-    // $('Input[name="hostedWallet"]').click({force:true})
-    // browser.pause(1000)
     $('[data-testid="wallet-name"]').setValue('UI_TEST_1')
     browser.pause(1000)
     $('[data-testid="wallet-password"]').setValue('dev12345')
     browser.pause(1000)
     $('[data-testid="wallet-login"]').click()
-
-    browser.pause(1000)
-
-    
-    
-  
-    
 })
-
-
-
-
-
-
-// When I navigate to 'https://dev.token.vega.xyz/staking'
-// Then I can see my ethereum key '0x9804C6E98dA75e3271ccE3aA56728FD8e9376155' is shown

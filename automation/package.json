@@ -15,6 +15,7 @@
     "scripts": {
         "wdio": "wdio run wdio.conf.js",
         "wdio:local": "wdio run wdio.conf.local.js",
+        "wdio:local:test": "wdio run wdio.conf.local.js --cucumberOpts.tagExpression='@staking'",
         "yarn:start": "cd .. && yarn start",
         "yarn:install:deps": "cd .. && yarn"
     },

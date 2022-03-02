@@ -28,15 +28,14 @@ exports.config = {
                 "local":'true'
             },
             'goog:chromeOptions' : {
-                args: ['disable-popup-blocking','allow-insecure-localhost'],
-                'extensions' : [ base64data ]
+                args: ['disable-popup-blocking','allow-insecure-localhost']
             },
           }],
         //   logLevel: 'warn',
 
 
-    user: "ditmirhasani_8O6wBn",
-    key: "kapsvp3EvwLSmyDyJKxG",
+    user: process.env.browserstack_user,
+    key: process.env.browserstack_key,
     services: [
         ['browserstack', {
             browserstackLocal: true
@@ -45,20 +44,11 @@ exports.config = {
     logLevel: 'silent',
 
     bail: 0,
-    //
-    // Set a base URL in order to shorten url command calls. If your `url` parameter starts
-    // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
-    // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
-    // gets prepended directly.
     baseUrl: 'http://localhost:3000',
-    //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 30000,
-    //
-    // Default timeout in milliseconds for request
-    // if browser driver or grid doesn't send response
-    connectionRetryTimeout: 120000,
-    //
+    // Default timeout in milliseconds for requests
+    connectionRetryTimeout: 60000,
     // Default request retries count
     connectionRetryCount: 3,
     framework: 'cucumber',
@@ -88,7 +78,7 @@ exports.config = {
         // <string> (expression) only execute the features or scenarios with tags matching the expression
         tagExpression: 'not @todo and not @manual and not @ignore',
         // <number> timeout for step definitions
-        timeout: 30000,
+        timeout: 60000,
         // <boolean> Enable this config to treat undefined definitions as warnings.
         ignoreUndefinedDefinitions: false
     },
@@ -100,9 +90,6 @@ exports.config = {
           browser.addCommand(key, commands[key]);
               })
           },
-    // beforeFeature: function (uri, feature){
-    //     Hooks.connectEthWallet()
-    //     },
 
     afterStep: function (step, scenario, result, context) {
       if (!result.passed){
@@ -116,7 +103,7 @@ exports.config = {
         return new Promise((resolve, reject) => {
             const generationTimeout = setTimeout(
                 () => reject(reportError),
-                30000)
+                300000)
 
             generation.on('exit', function(exitCode) {
                 clearTimeout(generationTimeout)
@@ -128,114 +115,4 @@ exports.config = {
             })
         })
     }
-    /**
-     * Runs before a WebdriverIO command gets executed.
-     * @param {String} commandName hook command name
-     * @param {Array} args arguments that command would receive
-     */
-    // beforeCommand: function (commandName, args) {
-    // },
-    /**
-     * Cucumber Hooks
-     *
-     * Runs before a Cucumber Feature.
-     * @param {String}                   uri      path to feature file
-     * @param {GherkinDocument.IFeature} feature  Cucumber feature object
-     */
-    // beforeFeature: function (uri, feature) {
-    // },
-    /**
-     *
-     * Runs before a Cucumber Scenario.
-     * @param {ITestCaseHookParameter} world    world object containing information on pickle and test step
-     * @param {Object}                 context  Cucumber World object
-     */
-    // beforeScenario: function (world, context) {
-    // },
-    /**
-     *
-     * Runs before a Cucumber Step.
-     * @param {Pickle.IPickleStep} step     step data
-     * @param {IPickle}            scenario scenario pickle
-     * @param {Object}             context  Cucumber World object
-     */
-    // beforeStep: function (step, scenario, context) {
-    // },
-    /**
-     *
-     * Runs after a Cucumber Step.
-     * @param {Pickle.IPickleStep} step             step data
-     * @param {IPickle}            scenario         scenario pickle
-     * @param {Object}             result           results object containing scenario results
-     * @param {boolean}            result.passed    true if scenario has passed
-     * @param {string}             result.error     error stack if scenario failed
-     * @param {number}             result.duration  duration of scenario in milliseconds
-     * @param {Object}             context          Cucumber World object
-     */
-    // afterStep: function (step, scenario, result, context) {
-    // },
-    /**
-     *
-     * Runs after a Cucumber Scenario.
-     * @param {ITestCaseHookParameter} world            world object containing information on pickle and test step
-     * @param {Object}                 result           results object containing scenario results
-     * @param {boolean}                result.passed    true if scenario has passed
-     * @param {string}                 result.error     error stack if scenario failed
-     * @param {number}                 result.duration  duration of scenario in milliseconds
-     * @param {Object}                 context          Cucumber World object
-     */
-    // afterScenario: function (world, result, context) {
-    // },
-    /**
-     *
-     * Runs after a Cucumber Feature.
-     * @param {String}                   uri      path to feature file
-     * @param {GherkinDocument.IFeature} feature  Cucumber feature object
-     */
-    // afterFeature: function (uri, feature) {
-    // },
-    
-    /**
-     * Runs after a WebdriverIO command gets executed
-     * @param {String} commandName hook command name
-     * @param {Array} args arguments that command would receive
-     * @param {Number} result 0 - command success, 1 - command error
-     * @param {Object} error error object if any
-     */
-    // afterCommand: function (commandName, args, result, error) {
-    // },
-    /**
-     * Gets executed after all tests are done. You still have access to all global variables from
-     * the test.
-     * @param {Number} result 0 - test pass, 1 - test fail
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs List of spec file paths that ran
-     */
-    // after: function (result, capabilities, specs) {
-    // },
-    /**
-     * Gets executed right after terminating the webdriver session.
-     * @param {Object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs List of spec file paths that ran
-     */
-    // afterSession: function (config, capabilities, specs) {
-    // },
-    /**
-     * Gets executed after all workers got shut down and the process is about to exit. An error
-     * thrown in the onComplete hook will result in the test run failing.
-     * @param {Object} exitCode 0 - success, 1 - fail
-     * @param {Object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {<Object>} results object containing test results
-     */
-    // onComplete: function(exitCode, config, capabilities, results) {
-    // },
-    /**
-    * Gets executed when a refresh happens.
-    * @param {String} oldSessionId session ID of the old session
-    * @param {String} newSessionId session ID of the new session
-    */
-    //onReload: function(oldSessionId, newSessionId) {
-    //}
 }
