@@ -228,7 +228,6 @@ const VegaWalletConnected = ({
 
   return vegaKeys.length ? (
     <>
-      <NewWalletAvailable />
       <WalletCardAsset
         image={vegaWhite}
         decimals={decimals}
