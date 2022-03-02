@@ -1,0 +1,98 @@
+{
+  "uid" : "d08d131000c4ab5f",
+  "name" : "Go to staking and connect ethereum wallet",
+  "fullName" : "Staking page.Go to staking and connect ethereum wallet",
+  "historyId" : "24b200d19bf9488be3cf36ec47fd72a6",
+  "time" : {
+    "start" : 1646224171098,
+    "stop" : 1646224173685,
+    "duration" : 2587
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: No window found with title, url or name matching \"MetaMask\"",
+  "statusTrace" : "Error: No window found with title, url or name matching \"MetaMask\"\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at Browser.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:18:11)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: No window found with title, url or name matching \"MetaMask\"",
+    "statusTrace" : "Error: No window found with title, url or name matching \"MetaMask\"\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at Browser.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:18:11)",
+    "steps" : [ {
+      "name" : "Given I connect my ethereum wallet",
+      "time" : {
+        "start" : 1646224171100,
+        "stop" : 1646224173685,
+        "duration" : 2585
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: No window found with title, url or name matching \"MetaMask\"\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at Browser.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:18:11)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "e03894841dd7e94a",
+        "name" : "Screenshot",
+        "source" : "e03894841dd7e94a.png",
+        "type" : "image/png",
+        "size" : 474108
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking page"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Go to staking and connect ethereum wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "d08d131000c4ab5f.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

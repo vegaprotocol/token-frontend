@@ -1,0 +1,56 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "Error: No window found with title, url or name matching \"MetaMask\"",
+      "children" : [ {
+        "name" : "Homepage displays correct information",
+        "uid" : "c9974b3bd3681abf",
+        "parentUid" : "ae62b8c568bfa5eb90ccbecfe023468e",
+        "status" : "broken",
+        "time" : {
+          "start" : 1646224102313,
+          "stop" : 1646224135474,
+          "duration" : 33161
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      }, {
+        "name" : "Go to staking and connect ethereum wallet",
+        "uid" : "d08d131000c4ab5f",
+        "parentUid" : "ae62b8c568bfa5eb90ccbecfe023468e",
+        "status" : "broken",
+        "time" : {
+          "start" : 1646224171098,
+          "stop" : 1646224173685,
+          "duration" : 2587
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "ae62b8c568bfa5eb90ccbecfe023468e"
+    }, {
+      "name" : "Error: Disconnect Ethereum wallet Button not displayed",
+      "children" : [ {
+        "name" : "Eth wallet not connected placeholder",
+        "uid" : "4f69e2d5e5d323de",
+        "parentUid" : "6a369e4f7e4d2136fe98d27fc1db6ea8",
+        "status" : "broken",
+        "time" : {
+          "start" : 1646224149098,
+          "stop" : 1646224159839,
+          "duration" : 10741
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "6a369e4f7e4d2136fe98d27fc1db6ea8"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
+  "name" : "categories"
+}
