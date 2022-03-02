@@ -34,8 +34,8 @@ exports.config = {
         //   logLevel: 'warn',
 
 
-    user: process.env.browserstack_user,
-    key: process.env.browserstack_key,
+    user: process.env.BROWSERSTACK_USER,
+    key: process.env.BROWSERSTACK_KEY,
     services: [
         ['browserstack', {
             browserstackLocal: true
