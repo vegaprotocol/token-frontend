@@ -41,7 +41,7 @@ exports.config = {
             browserstackLocal: true
         }]
     ],
-    logLevel: 'silent',
+    logLevel: 'info',
 
     bail: 0,
     baseUrl: 'http://localhost:3000',
