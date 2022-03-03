@@ -5,16 +5,7 @@ Given(/^I connect my ethereum wallet$/, () => {
   const baseUrl = browser.options.baseUrl;
   browser.url(baseUrl);
   browser.switchWindow(baseUrl);
-  // $('input[name="password"]').waitForDisplayed({
-  //   timeout: 10000,
-  //   timeoutMsg: "password field not displayed in 10 seconds",
-  // });
-  // $('input[name="password"]').setValue("hedgehog");
-  // $(".button").waitForDisplayed({
-  //   timeout: 10000,
-  //   timeoutMsg: "Button not displayed",
-  // });
-  // $(".button").click();
+  browser.pause(3000)
   browser.switchWindow("MetaMask");
   $(".button").waitForDisplayed({timeout: 10000,timeoutMsg: "Button not displayed"});
   $(".button").click();
