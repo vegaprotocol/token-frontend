@@ -3,6 +3,7 @@ Feature: Homepage
   Background:
     Given I am on the home page
 
+  @ignore
   Scenario: Homepage displays correct information
     And I connect my ethereum wallet
     Then I can see the token address is shown
@@ -51,6 +52,7 @@ Feature: Homepage
       | Rewards    | rewards    |
       | Withdraw   | withdraw   |
 
+@ignore
   Scenario: Eth wallet not connected placeholder
     And I have not connected my eth wallet
     Then I can see the eth wallet disconnected with message "Connect Ethereum wallet to associate $VEGA"
