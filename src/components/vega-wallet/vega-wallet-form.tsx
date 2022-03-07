@@ -68,7 +68,6 @@ export const VegaWalletForm = ({
         passphrase: fields.passphrase,
         url: fields.url,
       });
-      const [, version] = await vegaWalletService.getVersion();
 
       if (tokenErr) {
         setError("passphrase", { message: t(tokenErr) });
@@ -94,7 +93,6 @@ export const VegaWalletForm = ({
         type: AppStateActionType.VEGA_WALLET_INIT,
         keys,
         key,
-        version,
       });
 
       setLoading(false);

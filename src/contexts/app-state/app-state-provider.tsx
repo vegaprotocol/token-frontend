@@ -28,7 +28,6 @@ const initialAppState: AppState = {
   ethConnectOverlay: false,
   vegaWalletStatus: VegaWalletStatus.Pending,
   vegaKeys: null,
-  vegaWalletVersion: undefined,
   currVegaKey: null,
   walletAssociatedBalance: null,
   vestingAssociatedBalance: null,
@@ -87,7 +86,6 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         vegaKeys,
         currVegaKey: selectedKey ? selectedKey : null,
         vegaWalletStatus: VegaWalletStatus.Ready,
-        vegaWalletVersion: action.version,
       };
     }
     case AppStateActionType.VEGA_WALLET_SET_KEY: {
@@ -107,7 +105,6 @@ function appStateReducer(state: AppState, action: AppStateAction): AppState {
         ...state,
         currVegaKey: null,
         vegaKeys: null,
-        vegaWalletVersion: undefined,
       };
     }
     case AppStateActionType.SET_TOKEN: {

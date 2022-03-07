@@ -67,14 +67,10 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
   React.useEffect(() => {
     async function run() {
       const [keysErr, keys] = await vegaWalletService.getKeys();
-      const [versionErr, version] = await vegaWalletService.getVersion();
       // attempt to load keys complete
       setVegaKeysLoaded(true);
 
-      if (
-        keysErr === VegaWalletServiceErrors.SERVICE_UNAVAILABLE ||
-        versionErr === VegaWalletServiceErrors.SERVICE_UNAVAILABLE
-      ) {
+      if (keysErr === VegaWalletServiceErrors.SERVICE_UNAVAILABLE) {
         appDispatch({ type: AppStateActionType.VEGA_WALLET_DOWN });
         return;
       }
@@ -94,7 +90,6 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
         type: AppStateActionType.VEGA_WALLET_INIT,
         keys,
         key,
-        version,
       });
     }
 
