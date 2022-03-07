@@ -1,5 +1,3 @@
-import semver from "semver";
-
 import { VoteValue } from "../../__generated__/globalTypes";
 import { VegaKey } from "../../contexts/app-state/app-state-context";
 import { VOTE_VALUE_MAP } from "../../routes/governance/vote-types";
@@ -166,31 +164,6 @@ export class VegaWalletService implements IVegaWalletService {
       }
     } catch (err) {
       return this.handleServiceUnavailable(false);
-    }
-  }
-
-  isSupportedVersion(version: string): boolean {
-    if (!MINIMUM_WALLET_VERSION) {
-      return true;
-    }
-    return semver.satisfies(version, MINIMUM_WALLET_VERSION);
-  }
-
-  async getVersion(): Promise<(string | undefined)[]> {
-    try {
-      const res = await fetch(`${this.getUrl()}/${Endpoints.VERSION}`, {});
-
-      if (res.status === 404) {
-        return [undefined, undefined];
-      } else if (!res.ok) {
-        return [Errors.COMMAND_FAILED, undefined];
-      }
-
-      const json = await res.json();
-
-      return [undefined, json.version];
-    } catch (err) {
-      return this.handleServiceUnavailable();
     }
   }
 
