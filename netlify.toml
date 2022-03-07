@@ -17,6 +17,7 @@
 # This configures the master branch for production environement with the correct information
 [context.master.environment]
   REACT_APP_SUPPORTED_WALLET_VERSION=">=0.9.2"
+  REACT_APP_NETWORK_LIMITS = 0
 
 # The translation flag for each of these is defined in the netlify UI so they can be independant based on the branch
 [context.develop.environment]
