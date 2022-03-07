@@ -148,18 +148,21 @@ export const AppLoader = ({ children }: { children: React.ReactElement }) => {
       }
     };
 
+    const stopPoll = () => {
+      clearInterval(interval);
+      interval = null;
+    };
+
     const startPoll = () => {
       interval = setInterval(() => {
         getNetworkLimits();
       }, 10000);
     };
 
-    const stopPoll = () => {
-      clearInterval(interval);
-      interval = null;
-    };
-
-    getNetworkLimits();
+    // Only begin polling if network limits flag is set, as this is a new API not yet on mainnet 7/3/22
+    if (Flags.NETWORK_LIMITS) {
+      getNetworkLimits();
+    }
 
     return () => {
       stopPoll();
