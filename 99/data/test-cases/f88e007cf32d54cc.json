@@ -1,0 +1,232 @@
+{
+  "uid" : "f88e007cf32d54cc",
+  "name" : "Can navigate to Rewards page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Rewards page using main nav tab",
+  "historyId" : "e5c128f7a5a71120ad145bc26baf6de1",
+  "time" : {
+    "start" : 1646733873954,
+    "stop" : 1646733880300,
+    "duration" : 6346
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "element click intercepted: Element <a href=\"/rewards\">...</a> is not clickable at point (339, 81). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+  "statusTrace" : "element click intercepted: Element <a href=\"/rewards\">...</a> is not clickable at point (339, 81). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x000000010333fff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x00000001032cb403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x0000000102e87e38 chromedriver + 171576\n                3   chromedriver                        0x0000000102ec47e1 chromedriver + 419809\n                4   chromedriver                        0x0000000102ec249e chromedriver + 410782\n                5   chromedriver                        0x0000000102ebfcca chromedriver + 400586\n                6   chromedriver                        0x0000000102ebe761 chromedriver + 395105\n                7   chromedriver                        0x0000000102eb2778 chromedriver + 345976\n                8   chromedriver                        0x0000000102edaaa2 chromedriver + 510626\n                9   chromedriver                        0x0000000102eb2015 chromedriver + 344085\n                10  chromedriver                        0x0000000102edadbe chromedriver + 511422\n                11  chromedriver                        0x0000000102eed5d2 chromedriver + 587218\n                12  chromedriver                        0x0000000102edad63 chromedriver + 511331\n                13  chromedriver                        0x0000000102eb082e chromedriver + 337966\n                14  chromedriver                        0x0000000102eb1b65 chromedriver + 342885\n                15  chromedriver                        0x00000001032fbf1b __gxx_personality_v0 + 305451\n                16  chromedriver                        0x0000000103312e23 __gxx_personality_v0 + 399411\n                17  chromedriver                        0x00000001033188df __gxx_personality_v0 + 422639\n                18  chromedriver                        0x000000010331417a __gxx_personality_v0 + 404362\n                19  chromedriver                        0x00000001032f0541 __gxx_personality_v0 + 257873\n                20  chromedriver                        0x000000010332ff28 __gxx_personality_v0 + 518456\n                21  chromedriver                        0x00000001033300b1 __gxx_personality_v0 + 518849\n                22  chromedriver                        0x0000000103347498 __gxx_personality_v0 + 614056\n                23  libsystem_pthread.dylib             0x00007fff2064a8fc _pthread_start + 224\n                24  libsystem_pthread.dylib             0x00007fff20646443 thread_start + 15\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:104:17)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "element click intercepted: Element <a href=\"/rewards\">...</a> is not clickable at point (339, 81). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+    "statusTrace" : "element click intercepted: Element <a href=\"/rewards\">...</a> is not clickable at point (339, 81). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x000000010333fff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x00000001032cb403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x0000000102e87e38 chromedriver + 171576\n                3   chromedriver                        0x0000000102ec47e1 chromedriver + 419809\n                4   chromedriver                        0x0000000102ec249e chromedriver + 410782\n                5   chromedriver                        0x0000000102ebfcca chromedriver + 400586\n                6   chromedriver                        0x0000000102ebe761 chromedriver + 395105\n                7   chromedriver                        0x0000000102eb2778 chromedriver + 345976\n                8   chromedriver                        0x0000000102edaaa2 chromedriver + 510626\n                9   chromedriver                        0x0000000102eb2015 chromedriver + 344085\n                10  chromedriver                        0x0000000102edadbe chromedriver + 511422\n                11  chromedriver                        0x0000000102eed5d2 chromedriver + 587218\n                12  chromedriver                        0x0000000102edad63 chromedriver + 511331\n                13  chromedriver                        0x0000000102eb082e chromedriver + 337966\n                14  chromedriver                        0x0000000102eb1b65 chromedriver + 342885\n                15  chromedriver                        0x00000001032fbf1b __gxx_personality_v0 + 305451\n                16  chromedriver                        0x0000000103312e23 __gxx_personality_v0 + 399411\n                17  chromedriver                        0x00000001033188df __gxx_personality_v0 + 422639\n                18  chromedriver                        0x000000010331417a __gxx_personality_v0 + 404362\n                19  chromedriver                        0x00000001032f0541 __gxx_personality_v0 + 257873\n                20  chromedriver                        0x000000010332ff28 __gxx_personality_v0 + 518456\n                21  chromedriver                        0x00000001033300b1 __gxx_personality_v0 + 518849\n                22  chromedriver                        0x0000000103347498 __gxx_personality_v0 + 614056\n                23  libsystem_pthread.dylib             0x00007fff2064a8fc _pthread_start + 224\n                24  libsystem_pthread.dylib             0x00007fff20646443 thread_start + 15\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:104:17)",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1646733873954,
+        "stop" : 1646733874991,
+        "duration" : 1037
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When I click on \"Rewards\" on main nav",
+      "time" : {
+        "start" : 1646733874991,
+        "stop" : 1646733880300,
+        "duration" : 5309
+      },
+      "status" : "broken",
+      "statusMessage" : "element click intercepted: Element <a href=\"/rewards\">...</a> is not clickable at point (339, 81). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x000000010333fff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x00000001032cb403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x0000000102e87e38 chromedriver + 171576\n                3   chromedriver                        0x0000000102ec47e1 chromedriver + 419809\n                4   chromedriver                        0x0000000102ec249e chromedriver + 410782\n                5   chromedriver                        0x0000000102ebfcca chromedriver + 400586\n                6   chromedriver                        0x0000000102ebe761 chromedriver + 395105\n                7   chromedriver                        0x0000000102eb2778 chromedriver + 345976\n                8   chromedriver                        0x0000000102edaaa2 chromedriver + 510626\n                9   chromedriver                        0x0000000102eb2015 chromedriver + 344085\n                10  chromedriver                        0x0000000102edadbe chromedriver + 511422\n                11  chromedriver                        0x0000000102eed5d2 chromedriver + 587218\n                12  chromedriver                        0x0000000102edad63 chromedriver + 511331\n                13  chromedriver                        0x0000000102eb082e chromedriver + 337966\n                14  chromedriver                        0x0000000102eb1b65 chromedriver + 342885\n                15  chromedriver                        0x00000001032fbf1b __gxx_personality_v0 + 305451\n                16  chromedriver                        0x0000000103312e23 __gxx_personality_v0 + 399411\n                17  chromedriver                        0x00000001033188df __gxx_personality_v0 + 422639\n                18  chromedriver                        0x000000010331417a __gxx_personality_v0 + 404362\n                19  chromedriver                        0x00000001032f0541 __gxx_personality_v0 + 257873\n                20  chromedriver                        0x000000010332ff28 __gxx_personality_v0 + 518456\n                21  chromedriver                        0x00000001033300b1 __gxx_personality_v0 + 518849\n                22  chromedriver                        0x0000000103347498 __gxx_personality_v0 + 614056\n                23  libsystem_pthread.dylib             0x00007fff2064a8fc _pthread_start + 224\n                24  libsystem_pthread.dylib             0x00007fff20646443 thread_start + 15\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:104:17)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "f0b9caf11e4e0117",
+        "name" : "Screenshot",
+        "source" : "f0b9caf11e4e0117.png",
+        "type" : "image/png",
+        "size" : 61063
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Rewards page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 1,
+        "skipped" : 0,
+        "passed" : 12,
+        "unknown" : 0,
+        "total" : 13
+      },
+      "items" : [ {
+        "uid" : "674e2b2930c3c05e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/98//#testresult/674e2b2930c3c05e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646733282048,
+          "stop" : 1646733283457,
+          "duration" : 1409
+        }
+      }, {
+        "uid" : "f8e5cadd957d0c2a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/97//#testresult/f8e5cadd957d0c2a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646731166414,
+          "stop" : 1646731169235,
+          "duration" : 2821
+        }
+      }, {
+        "uid" : "ac3d950fe71bc574",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/96//#testresult/ac3d950fe71bc574",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646730897296,
+          "stop" : 1646730899047,
+          "duration" : 1751
+        }
+      }, {
+        "uid" : "1ebc0deb6ffefb3d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/95//#testresult/1ebc0deb6ffefb3d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646729728329,
+          "stop" : 1646729730096,
+          "duration" : 1767
+        }
+      }, {
+        "uid" : "c1303e4e46798ee6",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/94//#testresult/c1303e4e46798ee6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646728991520,
+          "stop" : 1646728992537,
+          "duration" : 1017
+        }
+      }, {
+        "uid" : "c11d555edaa7bc91",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/93//#testresult/c11d555edaa7bc91",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646701409638,
+          "stop" : 1646701410747,
+          "duration" : 1109
+        }
+      }, {
+        "uid" : "2bb81057eb78605d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/92//#testresult/2bb81057eb78605d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646668938195,
+          "stop" : 1646668940062,
+          "duration" : 1867
+        }
+      }, {
+        "uid" : "670024cb2daac59d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/91//#testresult/670024cb2daac59d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646668693777,
+          "stop" : 1646668694721,
+          "duration" : 944
+        }
+      }, {
+        "uid" : "5a39116600e28e01",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/90//#testresult/5a39116600e28e01",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646304279494,
+          "stop" : 1646304280970,
+          "duration" : 1476
+        }
+      }, {
+        "uid" : "8e4d47236c78cb93",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/89//#testresult/8e4d47236c78cb93",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646302143389,
+          "stop" : 1646302145201,
+          "duration" : 1812
+        }
+      }, {
+        "uid" : "e567e210a10a64da",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/88//#testresult/e567e210a10a64da",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646239003887,
+          "stop" : 1646239006008,
+          "duration" : 2121
+        }
+      }, {
+        "uid" : "157ebaf3bddea5fb",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/88//#testresult/157ebaf3bddea5fb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646224146339,
+          "stop" : 1646224147689,
+          "duration" : 1350
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "f88e007cf32d54cc.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
