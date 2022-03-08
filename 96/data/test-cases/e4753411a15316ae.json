@@ -1,0 +1,220 @@
+{
+  "uid" : "e4753411a15316ae",
+  "name" : "Can navigate to Governance page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Governance page using main nav tab",
+  "historyId" : "c75e45baee8ec9cdb17e5d4c32cacdf7",
+  "time" : {
+    "start" : 1646730893263,
+    "stop" : 1646730895433,
+    "duration" : 2170
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1646730893263,
+        "stop" : 1646730893896,
+        "duration" : 633
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When I click on \"Governance\" on main nav",
+      "time" : {
+        "start" : 1646730893896,
+        "stop" : 1646730895129,
+        "duration" : 1233
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And I can see \"Governance\" button is clearly highlighted after click",
+      "time" : {
+        "start" : 1646730895129,
+        "stop" : 1646730895337,
+        "duration" : 208
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I am taken to the \"governance\" page",
+      "time" : {
+        "start" : 1646730895338,
+        "stop" : 1646730895433,
+        "duration" : 95
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Governance page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 10,
+        "unknown" : 0,
+        "total" : 10
+      },
+      "items" : [ {
+        "uid" : "fecf7019cb997d42",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/95//#testresult/fecf7019cb997d42",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646729725140,
+          "stop" : 1646729726752,
+          "duration" : 1612
+        }
+      }, {
+        "uid" : "ad9e00217e5f4418",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/94//#testresult/ad9e00217e5f4418",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646728988261,
+          "stop" : 1646728990365,
+          "duration" : 2104
+        }
+      }, {
+        "uid" : "9fb2b9a12253af93",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/93//#testresult/9fb2b9a12253af93",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646701407605,
+          "stop" : 1646701408621,
+          "duration" : 1016
+        }
+      }, {
+        "uid" : "639ce65f386a4b19",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/92//#testresult/639ce65f386a4b19",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646668934920,
+          "stop" : 1646668936567,
+          "duration" : 1647
+        }
+      }, {
+        "uid" : "f79032508e8037cd",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/91//#testresult/f79032508e8037cd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646668690686,
+          "stop" : 1646668692293,
+          "duration" : 1607
+        }
+      }, {
+        "uid" : "6c48b73a0142d1b3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/90//#testresult/6c48b73a0142d1b3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646304276308,
+          "stop" : 1646304278113,
+          "duration" : 1805
+        }
+      }, {
+        "uid" : "15ff0101c11ecfee",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/89//#testresult/15ff0101c11ecfee",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646302140205,
+          "stop" : 1646302141947,
+          "duration" : 1742
+        }
+      }, {
+        "uid" : "d75952e465a247f7",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/88//#testresult/d75952e465a247f7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646239000554,
+          "stop" : 1646239002399,
+          "duration" : 1845
+        }
+      }, {
+        "uid" : "a349fa0228e56701",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/88//#testresult/a349fa0228e56701",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646224143593,
+          "stop" : 1646224145006,
+          "duration" : 1413
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "e4753411a15316ae.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
