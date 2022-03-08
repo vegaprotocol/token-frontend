@@ -99,7 +99,6 @@
     "@cypress/instrument-cra": "^1.4.0",
     "@sentry/webpack-plugin": "^1.18.3",
     "@types/lodash": "^4.14.171",
-    "@types/semver": "^7.3.9",
     "add": "^2.0.6",
     "apollo": "^2.33.4",
     "eslint-plugin-simple-import-sort": "^7.0.0",
