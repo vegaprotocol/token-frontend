@@ -1,4 +1,11 @@
 [ {
+  "buildOrder" : 98,
+  "reportUrl" : "https://vegaprotocol.github.io/token-frontend/98/",
+  "reportName" : "Allure Report with history",
+  "data" : {
+    "duration" : 142259
+  }
+}, {
   "buildOrder" : 99,
   "reportUrl" : "https://vegaprotocol.github.io/token-frontend/99/",
   "reportName" : "Allure Report with history",
