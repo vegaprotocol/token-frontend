@@ -28,7 +28,10 @@ exports.config = {
                 "local":'true'
             },
             'goog:chromeOptions' : {
-                args: ['disable-popup-blocking','allow-insecure-localhost']
+                args: ['disable-popup-blocking','allow-insecure-localhost'],
+                extensions: [
+                require('fs').readFileSync('metamask_10_8_1_0.crx').toString('base64')
+            ]
             },
           }],
         //   logLevel: 'warn',
