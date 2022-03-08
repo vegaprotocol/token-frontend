@@ -1,5 +1,5 @@
 Feature: Staking page
-  @ignore
+
     Scenario: Go to staking and connect ethereum wallet
     Given I connect my ethereum wallet
     Given I navigate to "staking" page

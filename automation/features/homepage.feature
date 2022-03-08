@@ -3,7 +3,6 @@ Feature: Homepage
   Background:
     Given I am on the home page
 
-  @ignore
   Scenario: Homepage displays correct information
     And I connect my ethereum wallet
     Then I can see the token address is shown
