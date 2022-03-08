@@ -1,1 +1,4 @@
-[ ]
+[ {
+  "values" : [ "https://vegaprotocol.github.io/token-frontend" ],
+  "name" : "URL"
+} ]
