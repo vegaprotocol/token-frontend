@@ -24,7 +24,6 @@ export const VegaWalletFormContainer = () => {
       if (!url) return;
       vegaWalletService.url = url;
       const [version] = await vegaWalletService.getKeys();
-      const [err] = await vegaWalletService.getKeys();
       setIsVegaWalletRunning(version !== Errors.SERVICE_UNAVAILABLE);
     };
     run(); // run it first so that the intial state is correct
