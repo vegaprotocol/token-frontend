@@ -1,0 +1,26 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "Error: Can't call click on element with selector \"[data-test-id=\"connect-to-eth-wallet-button\"]\" because element wasn't found",
+      "children" : [ {
+        "name" : "Homepage displays correct information",
+        "uid" : "82d956301caf6e46",
+        "parentUid" : "417c6b633c761aeebe300d5f57d6a4aa",
+        "status" : "broken",
+        "time" : {
+          "start" : 1646729662274,
+          "stop" : 1646729712874,
+          "duration" : 50600
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "417c6b633c761aeebe300d5f57d6a4aa"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
+  "name" : "categories"
+}

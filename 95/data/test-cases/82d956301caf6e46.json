@@ -1,0 +1,154 @@
+{
+  "uid" : "82d956301caf6e46",
+  "name" : "Homepage displays correct information",
+  "fullName" : "Homepage.Homepage displays correct information",
+  "historyId" : "3e1a9b6fd96622225400d11d3b5c3ffc",
+  "time" : {
+    "start" : 1646729662274,
+    "stop" : 1646729712874,
+    "duration" : 50600
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: Can't call click on element with selector \"[data-test-id=\"connect-to-eth-wallet-button\"]\" because element wasn't found",
+  "statusTrace" : "Error: Can't call click on element with selector \"[data-test-id=\"connect-to-eth-wallet-button\"]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:38:54)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: Can't call click on element with selector \"[data-test-id=\"connect-to-eth-wallet-button\"]\" because element wasn't found",
+    "statusTrace" : "Error: Can't call click on element with selector \"[data-test-id=\"connect-to-eth-wallet-button\"]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:38:54)",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1646729662277,
+        "stop" : 1646729664389,
+        "duration" : 2112
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And I connect my ethereum wallet",
+      "time" : {
+        "start" : 1646729664389,
+        "stop" : 1646729712874,
+        "duration" : 48485
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: Can't call click on element with selector \"[data-test-id=\"connect-to-eth-wallet-button\"]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:38:54)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "a0d2dc6fdc249451",
+        "name" : "Screenshot",
+        "source" : "a0d2dc6fdc249451.png",
+        "type" : "image/png",
+        "size" : 322826
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Homepage displays correct information"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 4,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "27e094a94f0cf9b4",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/89//#testresult/27e094a94f0cf9b4",
+        "status" : "broken",
+        "statusDetails" : "Error: No window found with title, url or name matching \"MetaMask\"",
+        "time" : {
+          "start" : 1646302090058,
+          "stop" : 1646302128024,
+          "duration" : 37966
+        }
+      }, {
+        "uid" : "84b0837cca856e2c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/88//#testresult/84b0837cca856e2c",
+        "status" : "broken",
+        "statusDetails" : "Error: No window found with title, url or name matching \"MetaMask\"",
+        "time" : {
+          "start" : 1646238949261,
+          "stop" : 1646238985949,
+          "duration" : 36688
+        }
+      }, {
+        "uid" : "c9974b3bd3681abf",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/88//#testresult/c9974b3bd3681abf",
+        "status" : "broken",
+        "statusDetails" : "Error: No window found with title, url or name matching \"MetaMask\"",
+        "time" : {
+          "start" : 1646224102313,
+          "stop" : 1646224135474,
+          "duration" : 33161
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "82d956301caf6e46.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
