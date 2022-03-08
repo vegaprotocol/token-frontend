@@ -1,0 +1,187 @@
+{
+  "uid" : "c06549a913a64105",
+  "name" : "Go to staking page and connect hosted wallet",
+  "fullName" : "Staking page.Go to staking page and connect hosted wallet",
+  "historyId" : "67d06199d32f3f896ad3dda6b50d4df4",
+  "time" : {
+    "start" : 1646729049799,
+    "stop" : 1646729056680,
+    "duration" : 6881
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1646729049802,
+        "stop" : 1646729051670,
+        "duration" : 1868
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When I connect hosted wallet",
+      "time" : {
+        "start" : 1646729051670,
+        "stop" : 1646729056679,
+        "duration" : 5009
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And I associate some tokens",
+      "time" : {
+        "start" : 1646729056679,
+        "stop" : 1646729056679,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking page"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Go to staking page and connect hosted wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 8,
+        "unknown" : 0,
+        "total" : 8
+      },
+      "items" : [ {
+        "uid" : "84d6317efbfa68da",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/93//#testresult/84d6317efbfa68da",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646701421539,
+          "stop" : 1646701430146,
+          "duration" : 8607
+        }
+      }, {
+        "uid" : "b90765924889db47",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/92//#testresult/b90765924889db47",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646668953789,
+          "stop" : 1646668960031,
+          "duration" : 6242
+        }
+      }, {
+        "uid" : "88fd9028419a746b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/91//#testresult/88fd9028419a746b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646668706695,
+          "stop" : 1646668717049,
+          "duration" : 10354
+        }
+      }, {
+        "uid" : "f27d65d43c003589",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/90//#testresult/f27d65d43c003589",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646304295581,
+          "stop" : 1646304302209,
+          "duration" : 6628
+        }
+      }, {
+        "uid" : "85a205d7b47462b8",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/89//#testresult/85a205d7b47462b8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646302176849,
+          "stop" : 1646302184332,
+          "duration" : 7483
+        }
+      }, {
+        "uid" : "61cfa1bfd841ba8b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/88//#testresult/61cfa1bfd841ba8b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646239033717,
+          "stop" : 1646239038843,
+          "duration" : 5126
+        }
+      }, {
+        "uid" : "6f77b5667fa6a0d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/88//#testresult/6f77b5667fa6a0d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646224173686,
+          "stop" : 1646224179187,
+          "duration" : 5501
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "c06549a913a64105.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

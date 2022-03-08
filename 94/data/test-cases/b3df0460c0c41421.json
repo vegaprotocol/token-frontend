@@ -1,0 +1,202 @@
+{
+  "uid" : "b3df0460c0c41421",
+  "name" : "Links on the homepage",
+  "fullName" : "Homepage.Links on the homepage",
+  "historyId" : "75dc0c7908c032915bb7dc0878fb6e77",
+  "time" : {
+    "start" : 1646728942408,
+    "stop" : 1646728978105,
+    "duration" : 35697
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "failed",
+  "statusMessage" : "Error: Expect $(`[data-testid=\"token-address\"] > span > span > a`) to have attribute href containing",
+  "statusTrace" : "Error: Expect $(`[data-testid=\"token-address\"] > span > span > a`) to have attribute href containing\n                \n                Expected: \"https://ropsten.etherscan.io/address/\"\n                Received: undefined\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:65:37)",
+  "flaky" : false,
+  "newFailed" : true,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "Error: Expect $(`[data-testid=\"token-address\"] > span > span > a`) to have attribute href containing",
+    "statusTrace" : "Error: Expect $(`[data-testid=\"token-address\"] > span > span > a`) to have attribute href containing\n                \n                Expected: \"https://ropsten.etherscan.io/address/\"\n                Received: undefined\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:65:37)",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1646728942410,
+        "stop" : 1646728946245,
+        "duration" : 3835
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then the vega wallet link is correct",
+      "time" : {
+        "start" : 1646728946245,
+        "stop" : 1646728947182,
+        "duration" : 937
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And the token address has a link",
+      "time" : {
+        "start" : 1646728947182,
+        "stop" : 1646728978105,
+        "duration" : 30923
+      },
+      "status" : "failed",
+      "statusMessage" : "Error: Expect $(`[data-testid=\"token-address\"] > span > span > a`) to have attribute href containing\n                \n                Expected: \"https://ropsten.etherscan.io/address/\"\n                Received: undefined\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:65:37)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "7cfebdb75985f1bc",
+        "name" : "Screenshot",
+        "source" : "7cfebdb75985f1bc.png",
+        "type" : "image/png",
+        "size" : 476635
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Links on the homepage"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 1,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 7,
+        "unknown" : 0,
+        "total" : 8
+      },
+      "items" : [ {
+        "uid" : "45189fa0dbb796ad",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/93//#testresult/45189fa0dbb796ad",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646701369327,
+          "stop" : 1646701401166,
+          "duration" : 31839
+        }
+      }, {
+        "uid" : "febf26eec1c17135",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/92//#testresult/febf26eec1c17135",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646668889625,
+          "stop" : 1646668924660,
+          "duration" : 35035
+        }
+      }, {
+        "uid" : "82667032cdfec48a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/91//#testresult/82667032cdfec48a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646668644783,
+          "stop" : 1646668681563,
+          "duration" : 36780
+        }
+      }, {
+        "uid" : "6451fc6925f0d9aa",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/90//#testresult/6451fc6925f0d9aa",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646304234890,
+          "stop" : 1646304267459,
+          "duration" : 32569
+        }
+      }, {
+        "uid" : "ad9ce5064146fb90",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/89//#testresult/ad9ce5064146fb90",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646302128026,
+          "stop" : 1646302130413,
+          "duration" : 2387
+        }
+      }, {
+        "uid" : "15dea58ff77c0f4",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/88//#testresult/15dea58ff77c0f4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646238985950,
+          "stop" : 1646238988562,
+          "duration" : 2612
+        }
+      }, {
+        "uid" : "83f60d7bf4fcad6d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/88//#testresult/83f60d7bf4fcad6d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646224135476,
+          "stop" : 1646224136477,
+          "duration" : 1001
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "b3df0460c0c41421.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
