@@ -34,8 +34,8 @@ Given(/^I connect my ethereum wallet$/, () => {
   $(".network-name-item=Ropsten Test Network").click();
   browser.closeWindow();
   browser.switchWindow(baseUrl);
-  if ($('[data-test-id="connect-to-eth-wallet-button"]').isDisplayed){
-  $('[data-test-id="connect-to-eth-wallet-button"]').waitForDisplayed({timeout: 10000,timeoutMsg: "Connect Eth Button not displayed"});
+  if ($('[data-test-id="connect-to-eth-wallet-button"]').isDisplayed() === true){
+  // $('[data-test-id="connect-to-eth-wallet-button"]').waitForDisplayed({timeout: 10000,timeoutMsg: "Connect Eth Button not displayed"});
   $('[data-test-id="connect-to-eth-wallet-button"]').click();
   $(".button*=Injected").click();
   }
