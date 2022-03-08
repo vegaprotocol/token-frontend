@@ -1,0 +1,266 @@
+{
+  "uid" : "a970d806ad9b4976",
+  "name" : "Can navigate to Vesting page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Vesting page using main nav tab",
+  "historyId" : "91edaff876b9e227e3c02278f9214d3a",
+  "time" : {
+    "start" : 1646739758513,
+    "stop" : 1646739759867,
+    "duration" : 1354
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1646739758514,
+        "stop" : 1646739759002,
+        "duration" : 488
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When I click on \"Vesting\" on main nav",
+      "time" : {
+        "start" : 1646739759002,
+        "stop" : 1646739759667,
+        "duration" : 665
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And I can see \"Vesting\" button is clearly highlighted after click",
+      "time" : {
+        "start" : 1646739759668,
+        "stop" : 1646739759806,
+        "duration" : 138
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I am taken to the \"vesting\" page",
+      "time" : {
+        "start" : 1646739759806,
+        "stop" : 1646739759867,
+        "duration" : 61
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Vesting page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 1,
+        "skipped" : 0,
+        "passed" : 14,
+        "unknown" : 0,
+        "total" : 15
+      },
+      "items" : [ {
+        "uid" : "bfbaa077afb5b5fb",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/98//#testresult/bfbaa077afb5b5fb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646734347375,
+          "stop" : 1646734349018,
+          "duration" : 1643
+        }
+      }, {
+        "uid" : "7de362cdc96eb9c3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/99//#testresult/7de362cdc96eb9c3",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <a href=\"/vesting\">...</a> is not clickable at point (139, 81). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1646733848652,
+          "stop" : 1646733854691,
+          "duration" : 6039
+        }
+      }, {
+        "uid" : "e5e93edbc8b66fda",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/98//#testresult/e5e93edbc8b66fda",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646733275141,
+          "stop" : 1646733276940,
+          "duration" : 1799
+        }
+      }, {
+        "uid" : "9981253aff9a09a0",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/97//#testresult/9981253aff9a09a0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646731158551,
+          "stop" : 1646731160966,
+          "duration" : 2415
+        }
+      }, {
+        "uid" : "938c71ff6415486b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/96//#testresult/938c71ff6415486b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646730890191,
+          "stop" : 1646730891689,
+          "duration" : 1498
+        }
+      }, {
+        "uid" : "7412fd1843d3f815",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/95//#testresult/7412fd1843d3f815",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646729721485,
+          "stop" : 1646729723372,
+          "duration" : 1887
+        }
+      }, {
+        "uid" : "5dbc3eeda5dab425",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/94//#testresult/5dbc3eeda5dab425",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646728984848,
+          "stop" : 1646728986729,
+          "duration" : 1881
+        }
+      }, {
+        "uid" : "2dfc7881faf95c60",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/93//#testresult/2dfc7881faf95c60",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646701405052,
+          "stop" : 1646701406137,
+          "duration" : 1085
+        }
+      }, {
+        "uid" : "7a6f98210dfc365",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/92//#testresult/7a6f98210dfc365",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646668931171,
+          "stop" : 1646668933072,
+          "duration" : 1901
+        }
+      }, {
+        "uid" : "294815c603f93544",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/91//#testresult/294815c603f93544",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646668687685,
+          "stop" : 1646668689141,
+          "duration" : 1456
+        }
+      }, {
+        "uid" : "2ba871f9c85a634e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/90//#testresult/2ba871f9c85a634e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646304273285,
+          "stop" : 1646304274672,
+          "duration" : 1387
+        }
+      }, {
+        "uid" : "45569232721a341d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/89//#testresult/45569232721a341d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646302136469,
+          "stop" : 1646302138673,
+          "duration" : 2204
+        }
+      }, {
+        "uid" : "87b3a75efb24c83d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/88//#testresult/87b3a75efb24c83d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646238997014,
+          "stop" : 1646238998890,
+          "duration" : 1876
+        }
+      }, {
+        "uid" : "e8c546e7d4c923a9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/88//#testresult/e8c546e7d4c923a9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646224141293,
+          "stop" : 1646224142573,
+          "duration" : 1280
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "a970d806ad9b4976.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
