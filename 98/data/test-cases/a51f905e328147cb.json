@@ -1,0 +1,172 @@
+{
+  "uid" : "a51f905e328147cb",
+  "name" : "Eth wallet not connected placeholder",
+  "fullName" : "Homepage.Eth wallet not connected placeholder",
+  "historyId" : "fee0cb03accef770cec6e04dd3ebbc7a",
+  "time" : {
+    "start" : 1646733284482,
+    "stop" : 1646733295388,
+    "duration" : 10906
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: Disconnect Ethereum wallet Button not displayed",
+  "statusTrace" : "Error: Disconnect Ethereum wallet Button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:13:26)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: Disconnect Ethereum wallet Button not displayed",
+    "statusTrace" : "Error: Disconnect Ethereum wallet Button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:13:26)",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1646733284482,
+        "stop" : 1646733284845,
+        "duration" : 363
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And I have not connected my eth wallet",
+      "time" : {
+        "start" : 1646733284845,
+        "stop" : 1646733295388,
+        "duration" : 10543
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: Disconnect Ethereum wallet Button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:13:26)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "a54c54a1d476fd26",
+        "name" : "Screenshot",
+        "source" : "a54c54a1d476fd26.png",
+        "type" : "image/png",
+        "size" : 474425
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Eth wallet not connected placeholder"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 4,
+        "skipped" : 0,
+        "passed" : 2,
+        "unknown" : 0,
+        "total" : 6
+      },
+      "items" : [ {
+        "uid" : "72b4d457f6d77e3b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/97//#testresult/72b4d457f6d77e3b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646731171270,
+          "stop" : 1646731173262,
+          "duration" : 1992
+        }
+      }, {
+        "uid" : "a1f5eb38fdfe8e95",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/96//#testresult/a1f5eb38fdfe8e95",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646730900649,
+          "stop" : 1646730902123,
+          "duration" : 1474
+        }
+      }, {
+        "uid" : "7d81ccc1d47c215e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/89//#testresult/7d81ccc1d47c215e",
+        "status" : "broken",
+        "statusDetails" : "Error: Disconnect Ethereum wallet Button not displayed",
+        "time" : {
+          "start" : 1646302147175,
+          "stop" : 1646302158096,
+          "duration" : 10921
+        }
+      }, {
+        "uid" : "720ae34768f9085f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/88//#testresult/720ae34768f9085f",
+        "status" : "broken",
+        "statusDetails" : "Error: Disconnect Ethereum wallet Button not displayed",
+        "time" : {
+          "start" : 1646239008580,
+          "stop" : 1646239020585,
+          "duration" : 12005
+        }
+      }, {
+        "uid" : "4f69e2d5e5d323de",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/88//#testresult/4f69e2d5e5d323de",
+        "status" : "broken",
+        "statusDetails" : "Error: Disconnect Ethereum wallet Button not displayed",
+        "time" : {
+          "start" : 1646224149098,
+          "stop" : 1646224159839,
+          "duration" : 10741
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "a51f905e328147cb.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
