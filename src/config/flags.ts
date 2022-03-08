@@ -13,4 +13,5 @@ export const Flags = {
     process.env.REACT_APP_DEX_STAKING_DISABLED!
   ),
   FAIRGROUND: TRUTHY.includes(process.env.REACT_APP_FAIRGROUND!),
+  NETWORK_LIMITS: TRUTHY.includes(process.env.REACT_APP_NETWORK_LIMITS!),
 };

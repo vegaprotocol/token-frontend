@@ -6,7 +6,6 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
-import { Colors } from "../../config";
 import {
   AppStateActionType,
   useAppState,
@@ -17,10 +16,7 @@ import { useVegaUser } from "../../hooks/use-vega-user";
 import vegaWhite from "../../images/vega_white.png";
 import { BigNumber } from "../../lib/bignumber";
 import { truncateMiddle } from "../../lib/truncate-middle";
-import {
-  MINIMUM_WALLET_VERSION,
-  vegaWalletService,
-} from "../../lib/vega-wallet/vega-wallet-service";
+import { vegaWalletService } from "../../lib/vega-wallet/vega-wallet-service";
 import { Routes } from "../../routes/router-config";
 import { BulletHeader } from "../bullet-header";
 import {
@@ -37,16 +33,12 @@ import { usePollForDelegations } from "./hooks";
 
 export const VegaWallet = () => {
   const { t } = useTranslation();
-  const { currVegaKey, vegaKeys, version } = useVegaUser();
+  const { currVegaKey, vegaKeys } = useVegaUser();
 
   const child = !vegaKeys ? (
     <VegaWalletNotConnected />
   ) : (
-    <VegaWalletConnected
-      currVegaKey={currVegaKey}
-      vegaKeys={vegaKeys}
-      version={version}
-    />
+    <VegaWalletConnected currVegaKey={currVegaKey} vegaKeys={vegaKeys} />
   );
 
   return (
@@ -121,13 +113,11 @@ const VegaWalletAssetList = ({ accounts }: VegaWalletAssetsListProps) => {
 interface VegaWalletConnectedProps {
   currVegaKey: VegaKeyExtended | null;
   vegaKeys: VegaKeyExtended[];
-  version: string | undefined;
 }
 
 const VegaWalletConnected = ({
   currVegaKey,
   vegaKeys,
-  version,
 }: VegaWalletConnectedProps) => {
   const { t } = useTranslation();
   const { account } = useWeb3React();
@@ -179,7 +169,6 @@ const VegaWalletConnected = ({
 
   const footer = (
     <WalletCardActions>
-      {version ? <div className="vega-wallet__version">{version}</div> : null}
       {vegaKeys.length > 1 ? (
         <button
           className="button-link"
@@ -194,37 +183,6 @@ const VegaWalletConnected = ({
       </button>
     </WalletCardActions>
   );
-
-  if (!version) {
-    return (
-      <>
-        <div
-          style={{
-            color: Colors.RED,
-          }}
-        >
-          {t("noVersionFound")}
-        </div>
-        {footer}
-      </>
-    );
-  } else if (!vegaWalletService.isSupportedVersion(version)) {
-    return (
-      <>
-        <div
-          style={{
-            color: Colors.RED,
-          }}
-        >
-          {t("unsupportedVersion", {
-            version,
-            requiredVersion: MINIMUM_WALLET_VERSION,
-          })}
-        </div>
-        {footer}
-      </>
-    );
-  }
 
   return vegaKeys.length ? (
     <>
