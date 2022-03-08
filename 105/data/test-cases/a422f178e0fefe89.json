@@ -1,0 +1,160 @@
+{
+  "uid" : "a422f178e0fefe89",
+  "name" : "Navigate to governance proposals page via button link on homepage body",
+  "fullName" : "Homepage.Navigate to governance proposals page via button link on homepage body",
+  "historyId" : "5e75bc84a209a21f0887a6dfbf578ed6",
+  "time" : {
+    "start" : 1646746025912,
+    "stop" : 1646746027148,
+    "duration" : 1236
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1646746025913,
+        "stop" : 1646746026459,
+        "duration" : 546
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When I click on the governance proposals button",
+      "time" : {
+        "start" : 1646746026459,
+        "stop" : 1646746027085,
+        "duration" : 626
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I am taken to the \"governance\" page",
+      "time" : {
+        "start" : 1646746027085,
+        "stop" : 1646746027148,
+        "duration" : 63
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Navigate to governance proposals page via button link on homepage body"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 5,
+        "unknown" : 0,
+        "total" : 5
+      },
+      "items" : [ {
+        "uid" : "ca8f5f56e307ece",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/104//#testresult/ca8f5f56e307ece",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646746001671,
+          "stop" : 1646746003078,
+          "duration" : 1407
+        }
+      }, {
+        "uid" : "7dc6f674c6c89d02",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/101//#testresult/7dc6f674c6c89d02",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646745747404,
+          "stop" : 1646745748506,
+          "duration" : 1102
+        }
+      }, {
+        "uid" : "5ad0d30b6ce8b87b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/103//#testresult/5ad0d30b6ce8b87b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646744629070,
+          "stop" : 1646744630147,
+          "duration" : 1077
+        }
+      }, {
+        "uid" : "d7242b0b06691ab",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/102//#testresult/d7242b0b06691ab",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646744488147,
+          "stop" : 1646744489231,
+          "duration" : 1084
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "a422f178e0fefe89.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
