@@ -51,7 +51,6 @@ Feature: Homepage
       | Rewards    | rewards    |
       | Withdraw   | withdraw   |
 
-@ignore
   Scenario: Eth wallet not connected placeholder
     And I have not connected my eth wallet
     Then I can see the eth wallet disconnected with message "Connect Ethereum wallet to associate $VEGA"
