@@ -1,0 +1,201 @@
+[ {
+  "uid" : "39303185db6fc565",
+  "name" : "Prompt to connect to eth wallet to claim if not connected",
+  "time" : {
+    "start" : 1646903600946,
+    "stop" : 1646903603152,
+    "duration" : 2206
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "91aad68e139330ba",
+  "name" : "Page not found error where page does not exist",
+  "time" : {
+    "start" : 1646903697378,
+    "stop" : 1646903728771,
+    "duration" : 31393
+  },
+  "status" : "failed",
+  "severity" : "normal"
+}, {
+  "uid" : "cf7d28d754c3b6f0",
+  "name" : "Links on the homepage",
+  "time" : {
+    "start" : 1646903687046,
+    "stop" : 1646903688478,
+    "duration" : 1432
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "507493b149bb8ce7",
+  "name" : "Go to staking page and connect hosted wallet",
+  "time" : {
+    "start" : 1646903787342,
+    "stop" : 1646903793005,
+    "duration" : 5663
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "d0227bf8c6edae31",
+  "name" : "Check for redeem unlocked tokens from homepage",
+  "time" : {
+    "start" : 1646903688478,
+    "stop" : 1646903689348,
+    "duration" : 870
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "f82e29e6e886cf73",
+  "name" : "Vega wallet not connected placeholder",
+  "time" : {
+    "start" : 1646903730529,
+    "stop" : 1646903731404,
+    "duration" : 875
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "e6bd22dc2b23fbd9",
+  "name" : "Valid claim code with no specified key",
+  "time" : {
+    "start" : 1646903616356,
+    "stop" : 1646903616847,
+    "duration" : 491
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "3aa4c2f3ac8db196",
+  "name" : "Homepage displays correct information",
+  "time" : {
+    "start" : 1646903672634,
+    "stop" : 1646903687046,
+    "duration" : 14412
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "54f961fb0ce69d6e",
+  "name" : "Can navigate to Rewards page using main nav tab",
+  "time" : {
+    "start" : 1646903695489,
+    "stop" : 1646903696450,
+    "duration" : 961
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "951c86ba8ac10116",
+  "name" : "Go to staking and connect ethereum wallet",
+  "time" : {
+    "start" : 1646903779432,
+    "stop" : 1646903787340,
+    "duration" : 7908
+  },
+  "status" : "broken",
+  "severity" : "normal"
+}, {
+  "uid" : "c4659d6c0f7d46bf",
+  "name" : "Eth wallet not connected placeholder",
+  "time" : {
+    "start" : 1646903728772,
+    "stop" : 1646903730529,
+    "duration" : 1757
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "9d87308b0d06be0b",
+  "name" : "Can navigate to Vesting page using main nav tab",
+  "time" : {
+    "start" : 1646903691934,
+    "stop" : 1646903692796,
+    "duration" : 862
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "32477ca6b5feae80",
+  "name" : "Navigate to governance proposals page via button link on homepage body",
+  "time" : {
+    "start" : 1646903690088,
+    "stop" : 1646903690818,
+    "duration" : 730
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "4fcebfb7614dca95",
+  "name" : "Can navigate to Staking page using main nav tab",
+  "time" : {
+    "start" : 1646903692796,
+    "stop" : 1646903693644,
+    "duration" : 848
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "c1b7c2d19c4cb833",
+  "name" : "Can navigate to Withdraw page using main nav tab",
+  "time" : {
+    "start" : 1646903696450,
+    "stop" : 1646903697378,
+    "duration" : 928
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "96be51f25b1fbcc9",
+  "name" : "Can navigate to Governance page using main nav tab",
+  "time" : {
+    "start" : 1646903693645,
+    "stop" : 1646903694512,
+    "duration" : 867
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "df2b94f973319128",
+  "name" : "Can navigate to Home page using main nav tab",
+  "time" : {
+    "start" : 1646903694512,
+    "stop" : 1646903695489,
+    "duration" : 977
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "bb6ffe1fe7638b17",
+  "name" : "Invalid claims code will show error",
+  "time" : {
+    "start" : 1646903603153,
+    "stop" : 1646903616356,
+    "duration" : 13203
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "9429c45950c1f0a2",
+  "name" : "Navigate to a not found page will return page error",
+  "time" : {
+    "start" : 1646903690818,
+    "stop" : 1646903691934,
+    "duration" : 1116
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "caaeb620d9595528",
+  "name" : "Navigate to staking page via link on homepage body",
+  "time" : {
+    "start" : 1646903689348,
+    "stop" : 1646903690088,
+    "duration" : 740
+  },
+  "status" : "passed",
+  "severity" : "normal"
+} ]

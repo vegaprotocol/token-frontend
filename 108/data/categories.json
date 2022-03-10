@@ -1,0 +1,47 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "Error: Expect $(`.heading__title`) to have text",
+      "children" : [ {
+        "name" : "Page not found error where page does not exist",
+        "uid" : "91aad68e139330ba",
+        "parentUid" : "b1937208c09ffa43e2fbd1983fd5a45b",
+        "status" : "failed",
+        "time" : {
+          "start" : 1646903697378,
+          "stop" : 1646903728771,
+          "duration" : 31393
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "b1937208c09ffa43e2fbd1983fd5a45b"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  }, {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "Error: No window found with title, url or name matching \"http://localhost:3000\"",
+      "children" : [ {
+        "name" : "Go to staking and connect ethereum wallet",
+        "uid" : "951c86ba8ac10116",
+        "parentUid" : "4c2a5032309c850416dca4a481cb5671",
+        "status" : "broken",
+        "time" : {
+          "start" : 1646903779432,
+          "stop" : 1646903787340,
+          "duration" : 7908
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "4c2a5032309c850416dca4a481cb5671"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
+  "name" : "categories"
+}
