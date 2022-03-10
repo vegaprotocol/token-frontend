@@ -3,9 +3,6 @@ const HomePage = require("../pageobjects/home.page");
 
 Given(/^I connect my ethereum wallet$/, () => {
   const baseUrl = browser.options.baseUrl;
-  browser.url(baseUrl);
-  browser.switchWindow(baseUrl);
-  browser.pause(3000)
   browser.switchWindow("MetaMask");
   $(".button").waitForDisplayed({timeout: 10000,timeoutMsg: "Button not displayed"});
   $(".button").click();
@@ -19,9 +16,9 @@ Given(/^I connect my ethereum wallet$/, () => {
   $$('div[role="checkbox"]')[1].click();
   $('button[type="submit"]').click();
   $("button=All Done").click();
-  $('button=Next').click()
-  $('button=Connect').waitForDisplayed({timeout: 10000,timeoutMsg: "connect Button not displayed"});
-  $('button=Connect').click()
+  // $('button=Next').click()
+  // $('button=Connect').waitForDisplayed({timeout: 10000,timeoutMsg: "connect Button not displayed"});
+  // $('button=Connect').click()
   $('[data-testid="popover-close"]').waitForDisplayed({timeout: 10000,timeoutMsg: "pop over close not display"});
   $('[data-testid="popover-close"]').click();
   browser.url("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#settings/advanced");
@@ -34,16 +31,19 @@ Given(/^I connect my ethereum wallet$/, () => {
   $(".network-name-item=Ropsten Test Network").click();
   browser.closeWindow();
   browser.switchWindow(baseUrl);
+  console.log('is connect to eth wallet displayed ?',$('[data-test-id="connect-to-eth-wallet-button"]').isDisplayed())
   if ($('[data-test-id="connect-to-eth-wallet-button"]').isDisplayed() === true){
   // $('[data-test-id="connect-to-eth-wallet-button"]').waitForDisplayed({timeout: 10000,timeoutMsg: "Connect Eth Button not displayed"});
   $('[data-test-id="connect-to-eth-wallet-button"]').click();
   $(".button*=Injected").click();
+  browser.pause(2000)
+  browser.switchWindow("MetaMask Notification");
+  $("button=Next").click();
+  $("button=Connect").click();
+  browser.switchWindow(baseUrl);
+
   }
 
-  // browser.switchWindow("MetaMask Notification");
-  // $("button=Next").click();
-  // $("button=Connect").click();
-  // browser.switchWindow(baseUrl);
 });
 
 Given(/^I navigate to "([^"]*)?" page$/, (page) => {

@@ -51,6 +51,10 @@ Feature: Homepage
       | Rewards    | rewards    |
       | Withdraw   | withdraw   |
 
+  Scenario: Page not found error where page does not exist
+    Given I navigate to "pagedoesnotexist" page
+    Then I can see the 404 error page
+
   Scenario: Eth wallet not connected placeholder
     And I have not connected my eth wallet
     Then I can see the eth wallet disconnected with message "Connect Ethereum wallet to associate $VEGA"

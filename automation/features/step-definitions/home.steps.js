@@ -130,3 +130,20 @@ Then(
     // HomePage.connectToEthWallet();
   }
 );
+
+Then(
+  /^I can see the 404 error page$/, ()=>{
+    expect($('.heading__title')).toHaveText('Page not found')
+  }
+  // expect($('.heading__title')).getText().toBe('Page not found')
+  
+);
+
+Then(
+  /^I wait for some time$/, ()=>{
+  browser.pause(2000)  
+  }
+  // expect($('.heading__title')).getText().toBe('Page not found') 
+);
+
+

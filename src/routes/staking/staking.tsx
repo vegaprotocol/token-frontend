@@ -113,6 +113,7 @@ export const StakingStepConnectWallets = () => {
             }
             className="fill"
             type="button"
+            data-testid="connect-to-eth-btn"
           >
             {t("connectEthWallet")}
           </button>
