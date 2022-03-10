@@ -1,0 +1,235 @@
+{
+  "uid" : "6822c30426fedb8d",
+  "name" : "Can navigate to Vesting page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Vesting page using main nav tab",
+  "historyId" : "91edaff876b9e227e3c02278f9214d3a",
+  "time" : {
+    "start" : 1646905663514,
+    "stop" : 1646905666216,
+    "duration" : 2702
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1646905663514,
+        "stop" : 1646905664765,
+        "duration" : 1251
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "a41eaf37cf42bd4d",
+        "name" : "Screenshot",
+        "source" : "a41eaf37cf42bd4d.png",
+        "type" : "image/png",
+        "size" : 322197
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on \"Vesting\" on main nav",
+      "time" : {
+        "start" : 1646905664765,
+        "stop" : 1646905665517,
+        "duration" : 752
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "4721c1126d9855fb",
+        "name" : "Screenshot",
+        "source" : "4721c1126d9855fb.png",
+        "type" : "image/png",
+        "size" : 225473
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I can see \"Vesting\" button is clearly highlighted after click",
+      "time" : {
+        "start" : 1646905665517,
+        "stop" : 1646905665896,
+        "duration" : 379
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "a19dd419c8a9adae",
+        "name" : "Screenshot",
+        "source" : "a19dd419c8a9adae.png",
+        "type" : "image/png",
+        "size" : 225473
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I am taken to the \"vesting\" page",
+      "time" : {
+        "start" : 1646905665896,
+        "stop" : 1646905666215,
+        "duration" : 319
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "9a157754035b1abc",
+        "name" : "Screenshot",
+        "source" : "9a157754035b1abc.png",
+        "type" : "image/png",
+        "size" : 225473
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Vesting page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 9,
+        "unknown" : 0,
+        "total" : 9
+      },
+      "items" : [ {
+        "uid" : "9d87308b0d06be0b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/108//#testresult/9d87308b0d06be0b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646903691934,
+          "stop" : 1646903692796,
+          "duration" : 862
+        }
+      }, {
+        "uid" : "91740e222a7fa780",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/107//#testresult/91740e222a7fa780",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646754380274,
+          "stop" : 1646754381856,
+          "duration" : 1582
+        }
+      }, {
+        "uid" : "cdbec420c1d7632a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/106//#testresult/cdbec420c1d7632a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646747106879,
+          "stop" : 1646747108550,
+          "duration" : 1671
+        }
+      }, {
+        "uid" : "72b7243a8bdec88d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/105//#testresult/72b7243a8bdec88d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646746028596,
+          "stop" : 1646746030131,
+          "duration" : 1535
+        }
+      }, {
+        "uid" : "cc6ee076b8037c2c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/104//#testresult/cc6ee076b8037c2c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646746004369,
+          "stop" : 1646746005766,
+          "duration" : 1397
+        }
+      }, {
+        "uid" : "b8d7e3c5fb5b737d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/101//#testresult/b8d7e3c5fb5b737d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646745749973,
+          "stop" : 1646745751484,
+          "duration" : 1511
+        }
+      }, {
+        "uid" : "51e0cc9505d67049",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/103//#testresult/51e0cc9505d67049",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646744631417,
+          "stop" : 1646744632738,
+          "duration" : 1321
+        }
+      }, {
+        "uid" : "9ed45dd02a805031",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/102//#testresult/9ed45dd02a805031",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646744490533,
+          "stop" : 1646744491657,
+          "duration" : 1124
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "6822c30426fedb8d.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
