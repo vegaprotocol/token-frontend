@@ -1,8 +1,8 @@
 Feature: Staking page
 
     Scenario: Go to staking and connect ethereum wallet
-    Given I connect my ethereum wallet
     Given I navigate to "staking" page
+    Given I connect my ethereum wallet
     Then I can see my ethereum key 0x9804C6E98dA75e3271ccE3aA56728FD8e9376155 is shown
 
     Scenario: Go to staking page and connect hosted wallet
@@ -26,6 +26,7 @@ Feature: Staking page
     And the validator information table is displayed
     And the epoch counter is displayed
     And your stake information is displayed
+
   @todo
    Scenario: Remove stake at next epoch
     Given I navigate to '/staking' page
