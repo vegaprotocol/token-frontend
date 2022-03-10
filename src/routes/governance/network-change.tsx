@@ -19,6 +19,14 @@ export const NetworkChange = ({ proposal }: NetworkChangeProps) => {
       <table className="proposal-table">
         <tbody>
           <tr>
+            <th>{t("id")}</th>
+            <td>{proposal.id}</td>
+          </tr>
+          <tr>
+            <th>{t("reference")}</th>
+            <td>{proposal.reference}</td>
+          </tr>
+          <tr>
             <th>{t("state")}</th>
             <td>
               <CurrentProposalState proposal={proposal} />
@@ -55,6 +63,16 @@ export const NetworkChange = ({ proposal }: NetworkChangeProps) => {
           <tr>
             <th>{t("proposedOn")}</th>
             <td>{format(new Date(proposal.datetime), DATE_FORMAT_DETAILED)}</td>
+          </tr>
+          {proposal.rejectionReason ? (
+            <tr>
+              <th>{t("rejectionReason")}</th>
+              <td>{proposal.rejectionReason}</td>
+            </tr>
+          ) : null}
+          <tr>
+            <th>{t("type")}</th>
+            <td>{proposal.terms.change.__typename}</td>
           </tr>
         </tbody>
       </table>
