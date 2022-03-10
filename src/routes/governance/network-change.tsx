@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { DATE_FORMAT_DETAILED } from "../../lib/date-formats";
 import { Proposals_proposals } from "./__generated__/Proposals";
 import { CurrentProposalState } from "./current-proposal-state";
-import { ProposalChangeText } from "./proposal-change-text";
 
 interface NetworkChangeProps {
   proposal: Proposals_proposals;
@@ -13,18 +12,10 @@ interface NetworkChangeProps {
 export const NetworkChange = ({ proposal }: NetworkChangeProps) => {
   const { t } = useTranslation();
 
-  if (proposal.terms.change.__typename !== "UpdateNetworkParameter") {
-    return null;
-  }
-
   const terms = proposal.terms;
-  const networkParameter = proposal.terms.change.networkParameter;
 
   return (
     <section>
-      <p style={{ margin: "20px 0 2px 0", color: "#fff" }}>
-        <ProposalChangeText networkParam={networkParameter} />
-      </p>
       <table className="proposal-table">
         <tbody>
           <tr>
