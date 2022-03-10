@@ -523,5 +523,8 @@
   "confirmationsRemaining": "{{confirmations}} of {{required}} blocks to go",
   "pendingTransactions": "Pending transactions",
   "noTransactions": "No transactions",
-  "networkRestoring": "The network is less than {{bootstrapBlockCount}} blocks old, it could be in the process of restoring from a checkpoint"
+  "networkRestoring": "The network is less than {{bootstrapBlockCount}} blocks old, it could be in the process of restoring from a checkpoint",
+  "type": "Type",
+  "rejectionReason": "Rejection Reason",
+  "reference": "Reference"
 }
