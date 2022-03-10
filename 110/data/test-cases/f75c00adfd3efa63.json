@@ -1,0 +1,223 @@
+{
+  "uid" : "f75c00adfd3efa63",
+  "name" : "Go to staking page and connect hosted wallet",
+  "fullName" : "Staking page.Go to staking page and connect hosted wallet",
+  "historyId" : "67d06199d32f3f896ad3dda6b50d4df4",
+  "time" : {
+    "start" : 1646906859138,
+    "stop" : 1646906865513,
+    "duration" : 6375
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1646906859139,
+        "stop" : 1646906860989,
+        "duration" : 1850
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "e0dedfc96b98c66c",
+        "name" : "Screenshot",
+        "source" : "e0dedfc96b98c66c.png",
+        "type" : "image/png",
+        "size" : 341780
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I connect hosted wallet",
+      "time" : {
+        "start" : 1646906860990,
+        "stop" : 1646906865229,
+        "duration" : 4239
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "bc606174770a3865",
+        "name" : "Screenshot",
+        "source" : "bc606174770a3865.png",
+        "type" : "image/png",
+        "size" : 233961
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I associate some tokens",
+      "time" : {
+        "start" : 1646906865229,
+        "stop" : 1646906865512,
+        "duration" : 283
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "b6f12f5afd39569f",
+        "name" : "Screenshot",
+        "source" : "b6f12f5afd39569f.png",
+        "type" : "image/png",
+        "size" : 233961
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking page"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Go to staking page and connect hosted wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 10,
+        "unknown" : 0,
+        "total" : 10
+      },
+      "items" : [ {
+        "uid" : "a85537fce561d47e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/109//#testresult/a85537fce561d47e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646905759570,
+          "stop" : 1646905769839,
+          "duration" : 10269
+        }
+      }, {
+        "uid" : "507493b149bb8ce7",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/108//#testresult/507493b149bb8ce7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646903787342,
+          "stop" : 1646903793005,
+          "duration" : 5663
+        }
+      }, {
+        "uid" : "935af91f58c3da88",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/107//#testresult/935af91f58c3da88",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646754399437,
+          "stop" : 1646754405949,
+          "duration" : 6512
+        }
+      }, {
+        "uid" : "9aa73e84a73ff402",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/106//#testresult/9aa73e84a73ff402",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646747132022,
+          "stop" : 1646747139254,
+          "duration" : 7232
+        }
+      }, {
+        "uid" : "ba0645e81761e4e8",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/105//#testresult/ba0645e81761e4e8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646746065147,
+          "stop" : 1646746073896,
+          "duration" : 8749
+        }
+      }, {
+        "uid" : "147f836e32d9939a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/104//#testresult/147f836e32d9939a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646746049108,
+          "stop" : 1646746057046,
+          "duration" : 7938
+        }
+      }, {
+        "uid" : "9dba32563eef4d1c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/101//#testresult/9dba32563eef4d1c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646745769977,
+          "stop" : 1646745778755,
+          "duration" : 8778
+        }
+      }, {
+        "uid" : "b7e9330f09dcdd90",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/103//#testresult/b7e9330f09dcdd90",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646744651860,
+          "stop" : 1646744660617,
+          "duration" : 8757
+        }
+      }, {
+        "uid" : "3c130118b73d8ae9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/102//#testresult/3c130118b73d8ae9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646744604295,
+          "stop" : 1646744613616,
+          "duration" : 9321
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "f75c00adfd3efa63.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
