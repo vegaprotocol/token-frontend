@@ -1,6 +1,5 @@
-import { useTranslation } from "react-i18next";
-
 import { Heading } from "../../components/heading";
+import { getProposalName } from "../../lib/type-policies/proposal";
 import { Proposal_proposal } from "./__generated__/Proposal";
 import { NetworkChange } from "./network-change";
 import { VoteDetails } from "./vote-details";
@@ -10,15 +9,13 @@ interface ProposalProps {
 }
 
 export const Proposal = ({ proposal }: ProposalProps) => {
-  const { t } = useTranslation();
-
   if (!proposal) {
     return null;
   }
 
   return (
     <>
-      <Heading title={t("updateNetworkParam")} />
+      <Heading title={getProposalName(proposal.terms.change)} />
       <NetworkChange proposal={proposal} />
       <VoteDetails proposal={proposal} />
     </>

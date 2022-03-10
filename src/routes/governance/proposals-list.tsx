@@ -6,9 +6,9 @@ import { Link, useRouteMatch } from "react-router-dom";
 
 import { Heading } from "../../components/heading";
 import { DATE_FORMAT_DETAILED } from "../../lib/date-formats";
+import { getProposalName } from "../../lib/type-policies/proposal";
 import { Proposals_proposals } from "./__generated__/Proposals";
 import { CurrentProposalState } from "./current-proposal-state";
-import { ProposalChangeText } from "./proposal-change-text";
 
 interface ProposalsListProps {
   proposals: Proposals_proposals[];
@@ -18,28 +18,17 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
   const { t } = useTranslation();
   const match = useRouteMatch();
 
-  const filteredData = proposals.filter((row) => {
-    return row.terms.change.__typename === "UpdateNetworkParameter";
-  });
-
-  if (filteredData.length === 0) {
+  if (proposals.length === 0) {
     return <p>{t("noProposals")}</p>;
   }
 
-  const renderRow = (row: Proposals_proposals) => {
-    if (row.terms.change.__typename !== "UpdateNetworkParameter") return null;
-
-    const type = row.terms.change.__typename;
-
+  const renderRow = (proposal: Proposals_proposals) => {
     return (
-      <li key={row.id}>
-        <Link to={`${match.url}/${row.id}`}>
+      <li key={proposal.id}>
+        <Link to={`${match.url}/${proposal.id}`}>
           <header className="proposals-list__item-header">
-            <p className="proposals-list__item-type">{type}</p>
             <p className="proposals-list__item-change">
-              <ProposalChangeText
-                networkParam={row.terms.change.networkParameter}
-              />
+              {getProposalName(proposal.terms.change)}
             </p>
           </header>
         </Link>
@@ -51,27 +40,33 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
             <tr>
               <th>{t("state")}</th>
               <td data-testid="governance-proposal-state">
-                <CurrentProposalState proposal={row} />
+                <CurrentProposalState proposal={proposal} />
               </td>
             </tr>
             <tr>
               <th>
-                {isFuture(new Date(row.terms.closingDatetime))
+                {isFuture(new Date(proposal.terms.closingDatetime))
                   ? t("closesOn")
                   : t("closedOn")}
               </th>
               <td data-testid="governance-proposal-closingDate">
-                {format(new Date(row.terms.closingDatetime), DATE_FORMAT_DETAILED)}
+                {format(
+                  new Date(proposal.terms.closingDatetime),
+                  DATE_FORMAT_DETAILED
+                )}
               </td>
             </tr>
             <tr>
               <th>
-                {isFuture(new Date(row.terms.enactmentDatetime))
+                {isFuture(new Date(proposal.terms.enactmentDatetime))
                   ? t("proposedEnactment")
                   : t("enactedOn")}
               </th>
               <td data-testid="governance-proposal-enactmentDate">
-                {format(new Date(row.terms.enactmentDatetime), DATE_FORMAT_DETAILED)}
+                {format(
+                  new Date(proposal.terms.enactmentDatetime),
+                  DATE_FORMAT_DETAILED
+                )}
               </td>
             </tr>
           </tbody>
@@ -88,7 +83,7 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
       <p>{t("requiredMajorityDescription")}</p>
       <h2>{t("proposals")}</h2>
       <ul className="proposals-list">
-        {filteredData.map((row) => renderRow(row))}
+        {proposals.map((row) => renderRow(row))}
       </ul>
     </>
   );

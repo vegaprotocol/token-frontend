@@ -1,4 +1,4 @@
-import { format,isFuture } from "date-fns";
+import { format, isFuture } from "date-fns";
 import { useTranslation } from "react-i18next";
 
 import { DATE_FORMAT_DETAILED } from "../../lib/date-formats";
@@ -39,7 +39,9 @@ export const NetworkChange = ({ proposal }: NetworkChangeProps) => {
                 ? t("closesOn")
                 : t("closedOn")}
             </th>
-            <td>{format(new Date(terms.closingDatetime), DATE_FORMAT_DETAILED)}</td>
+            <td>
+              {format(new Date(terms.closingDatetime), DATE_FORMAT_DETAILED)}
+            </td>
           </tr>
           <tr>
             <th>
@@ -47,7 +49,9 @@ export const NetworkChange = ({ proposal }: NetworkChangeProps) => {
                 ? t("proposedEnactment")
                 : t("enactedOn")}
             </th>
-            <td>{format(new Date(terms.enactmentDatetime), DATE_FORMAT_DETAILED)}</td>
+            <td>
+              {format(new Date(terms.enactmentDatetime), DATE_FORMAT_DETAILED)}
+            </td>
           </tr>
           <tr>
             <th>{t("proposedBy")}</th>
