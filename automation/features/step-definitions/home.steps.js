@@ -133,7 +133,7 @@ Then(
 
 Then(
   /^I can see the 404 error page$/, ()=>{
-    expect($('.heading__title')).toHaveText('Page not found')
+    expect($('.heading__title')).toHaveText('PAGE NOT FOUND')
   }
   // expect($('.heading__title')).getText().toBe('Page not found')
   

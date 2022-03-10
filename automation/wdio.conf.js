@@ -96,9 +96,9 @@ exports.config = {
           },
 
     afterStep: function (step, scenario, result, context) {
-      if (!result.passed){
+      // if (!result.passed){
         browser.takeScreenshot()
-      }
+      // }
     },
 
     onComplete: function() {
