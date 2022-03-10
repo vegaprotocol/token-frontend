@@ -28,7 +28,6 @@ const vegaJsonTheme = {
  */
 const removeTypename = (data: object): any => {
   return Object.entries(data).reduce((prev, [key, value]) => {
-    console.log(value);
     if (key === "__typename") {
       return prev;
     } else if (value && typeof value === "object") {

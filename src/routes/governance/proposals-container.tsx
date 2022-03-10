@@ -38,8 +38,9 @@ export const ProposalsContainer = () => {
         orderBy(
           arr,
           [
-            (p) => new Date(p.terms.enactmentDatetime),
-            (p) => new Date(p.terms.closingDatetime),
+            (p) => new Date(p.terms.enactmentDatetime).getTime(),
+            (p) => new Date(p.terms.closingDatetime).getTime(),
+            (p) => p.id,
           ],
           ["desc", "desc"]
         ),
