@@ -1,3 +1,4 @@
+import { SyntaxHighlighter } from "../../components/syntax-highlighter";
 import { Proposal_proposal } from "./__generated__/Proposal";
 
 export const ProposalTermsJson = ({
@@ -8,7 +9,7 @@ export const ProposalTermsJson = ({
   return (
     <section>
       <h2>Proposal Terms</h2>
-      <pre>{JSON.stringify(proposal.terms.change, null, "  ")}</pre>
+      <SyntaxHighlighter data={proposal.terms.change} />
     </section>
   );
 };
