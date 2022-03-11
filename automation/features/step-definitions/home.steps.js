@@ -14,6 +14,10 @@ Given(/^I have not connected my eth wallet$/, () => {
   $('button=Disconnect').click()
 });  
 
+Given(/^I navigate to not found page$/, () => {
+  browser.url("not-found");
+});
+
 Then(/^I can see the url includes "([^"]*)?"$/, (expectedUrl) => {
   expect(browser.url()).toHaveUrlContaining(expectedUrl);
 });
