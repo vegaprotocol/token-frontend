@@ -1,0 +1,31 @@
+[ {
+  "uid" : "1322c547dcf9ca89",
+  "name" : "Invalid claims code will show error",
+  "time" : {
+    "start" : 1646992837484,
+    "stop" : 1646992854245,
+    "duration" : 16761
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "3e5c665c79253c4a",
+  "name" : "Valid claim code with no specified key",
+  "time" : {
+    "start" : 1646992854245,
+    "stop" : 1646992855716,
+    "duration" : 1471
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "c42972c04abff922",
+  "name" : "Prompt to connect to eth wallet to claim if not connected",
+  "time" : {
+    "start" : 1646992833403,
+    "stop" : 1646992837484,
+    "duration" : 4081
+  },
+  "status" : "passed",
+  "severity" : "normal"
+} ]

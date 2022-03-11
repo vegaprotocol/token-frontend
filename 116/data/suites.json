@@ -1,0 +1,48 @@
+{
+  "uid" : "98d3104e051c652961429bf95fa0b5d6",
+  "children" : [ {
+    "name" : "Claim codes",
+    "children" : [ {
+      "name" : "Prompt to connect to eth wallet to claim if not connected",
+      "uid" : "c42972c04abff922",
+      "parentUid" : "1f7d96b497e9c9e8f0d6caa89ed6f050",
+      "status" : "passed",
+      "time" : {
+        "start" : 1646992833403,
+        "stop" : 1646992837484,
+        "duration" : 4081
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Invalid claims code will show error",
+      "uid" : "1322c547dcf9ca89",
+      "parentUid" : "1f7d96b497e9c9e8f0d6caa89ed6f050",
+      "status" : "passed",
+      "time" : {
+        "start" : 1646992837484,
+        "stop" : 1646992854245,
+        "duration" : 16761
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Valid claim code with no specified key",
+      "uid" : "3e5c665c79253c4a",
+      "parentUid" : "1f7d96b497e9c9e8f0d6caa89ed6f050",
+      "status" : "passed",
+      "time" : {
+        "start" : 1646992854245,
+        "stop" : 1646992855716,
+        "duration" : 1471
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    } ],
+    "uid" : "1f7d96b497e9c9e8f0d6caa89ed6f050"
+  } ],
+  "name" : "suites"
+}
