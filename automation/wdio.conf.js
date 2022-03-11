@@ -14,7 +14,7 @@ exports.config = {
     exclude: [
         // 'path/to/excluded/files'
     ],
-    maxInstances: 1,
+    maxInstances: 3,
 
     // https://webdriver.io/docs/options/#capabilities
     // BSTACK OPTIONS : https://www.browserstack.com/automate/capabilities?tag=selenium-4#
