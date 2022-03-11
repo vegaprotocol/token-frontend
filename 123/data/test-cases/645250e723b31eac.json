@@ -1,0 +1,152 @@
+{
+  "uid" : "645250e723b31eac",
+  "name" : "Invalid claims code will show error",
+  "fullName" : "Claim codes.Invalid claims code will show error",
+  "historyId" : "39a15c833b071a37ff175b7229368de0",
+  "time" : {
+    "start" : 1647013637126,
+    "stop" : 1647013662942,
+    "duration" : 25816
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"claim?r=odiuhfn\" page",
+      "time" : {
+        "start" : 1647013637126,
+        "stop" : 1647013638483,
+        "duration" : 1357
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "8d13aa8f1dab448",
+        "name" : "Screenshot",
+        "source" : "8d13aa8f1dab448.png",
+        "type" : "image/png",
+        "size" : 8713
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I connect my ethereum wallet",
+      "time" : {
+        "start" : 1647013638483,
+        "stop" : 1647013661776,
+        "duration" : 23293
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "de3eaf1c80e12836",
+        "name" : "Screenshot",
+        "source" : "de3eaf1c80e12836.png",
+        "type" : "image/png",
+        "size" : 305713
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I can see the heading title is \"CLAIM $VEGA TOKENS\"",
+      "time" : {
+        "start" : 1647013661776,
+        "stop" : 1647013662429,
+        "duration" : 653
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "39f3b3d7d821760b",
+        "name" : "Screenshot",
+        "source" : "39f3b3d7d821760b.png",
+        "type" : "image/png",
+        "size" : 230147
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the invalid claim code error \"Something doesn't look right. Please check the link again or the Vesting page to see if you have already claimed\"",
+      "time" : {
+        "start" : 1647013662429,
+        "stop" : 1647013662941,
+        "duration" : 512
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "9a2808f9569a20fe",
+        "name" : "Screenshot",
+        "source" : "9a2808f9569a20fe.png",
+        "type" : "image/png",
+        "size" : 230147
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-0"
+  }, {
+    "name" : "suite",
+    "value" : "Claim codes"
+  }, {
+    "name" : "testClass",
+    "value" : "Claim codes"
+  }, {
+    "name" : "testMethod",
+    "value" : "Invalid claims code will show error"
+  }, {
+    "name" : "package",
+    "value" : "Claim codes"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "645250e723b31eac.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
