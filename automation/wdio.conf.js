@@ -14,7 +14,7 @@ exports.config = {
     exclude: [
         // 'path/to/excluded/files'
     ],
-    maxInstances: 3,
+    maxInstances: 1,
 
     // https://webdriver.io/docs/options/#capabilities
     // BSTACK OPTIONS : https://www.browserstack.com/automate/capabilities?tag=selenium-4#
@@ -51,7 +51,7 @@ exports.config = {
     // Default timeout for all waitFor* commands.
     waitforTimeout: 30000,
     // Default timeout in milliseconds for requests
-    connectionRetryTimeout: 60000,
+    connectionRetryTimeout: 150000,
     // Default request retries count
     connectionRetryCount: 3,
     framework: 'cucumber',
