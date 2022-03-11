@@ -10,14 +10,19 @@ Feature: Claim codes
     And I can see the heading title is "CLAIM $VEGA TOKENS"
     Then I can see the invalid claim code error "Something doesn't look right. Please check the link again or the Vesting page to see if you have already claimed"
 
-@test
+@todo
   Scenario: Valid claim code with no specified key 
     Given I navigate to "claim?r=o0x0d9b23d1e9f352a5f48abcaace301c249a770c6588864eb6ade8aa472f41ab1b20cff73862997eb3eff90bf255fbbe2833b05fc0e0a71f89c5b287f6493dc49a1c" page
 
 @todo
   Scenario: Valid claim code but incorrect key cannot be claimed
     Given I navigate to "claim?r=odiuhfn" page
+    Then I am not able to claim the code with my current key
 
 @todo 
-Scenario: Expired claim code
+  Scenario: Expired claim code
+      Given I navigate to "claim?r=expired claim code" page
+      Then I can see the claim code is not claimable
+      And the claim code unclaimable error message is displayed
+
 

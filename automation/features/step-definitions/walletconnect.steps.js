@@ -8,34 +8,18 @@ const { Given, When, Then } = require('@wdio/cucumber-framework');
 //     login: LoginPage
 // }
 
-When(/^I wait$/,  () => {
-     browser.pause(1)
-});
-
-When(/^I go to (.*)$/,  (site) => {
-    //  browser.url(site)
-     $('a=Staking').click()
-     browser.pause(500)
-});
-
 Then(/^I can see my ethereum key (.*) is shown$/,  (ethKey) => {
     console.log($('.callout__title').getText())
     expect($('.callout__title').getText()).toContain(`Ethereum wallet connected: ${ethKey.replace("'", "")}`)
     
 });
 
-When(/^I nav to (.*)$/,  (site) => {
-    browser.url('https://staging.token.vega.xyz/staking')
-     browser.pause(5000)
-});
-
-
 When(/^I connect hosted wallet$/,()=>{
-    $('[data-test-id="connect-to-vega-wallet-btn"]').click()
-    browser.pause(1000)
-    $('[data-testid="wallet-name"]').setValue('UI_TEST_1')
-    browser.pause(1000)
-    $('[data-testid="wallet-password"]').setValue('dev12345')
-    browser.pause(1000)
-    $('[data-testid="wallet-login"]').click()
+  $('[data-test-id="connect-to-vega-wallet-btn"]').waitForDisplayed({timeout:10000,timeoutMsg:"connect to vega wallet did not display"})
+  $('[data-test-id="connect-to-vega-wallet-btn"]').click()
+  browser.getByTestId('wallet-name').waitForDisplayed({timeout:10000,timeoutMsg:"wallet name field not displayed"})
+  browser.getByTestId('wallet-name').setValue('UI_TEST_1')
+  browser.getByTestId('wallet-password').waitForDisplayed({timeout:10000,timeoutMsg:"wallet password field not displayed"})
+  browser.getByTestId('wallet-password').setValue('dev12345')
+   browser.getByTestId('wallet-login').waitForClickable({ timeout:1000, timeoutMsg:"wallet login button not clickable after 10 seconds" })
 })

@@ -9,10 +9,6 @@ Then(/^I can see the validator node list$/, () => {
 });
 
 When(/^I associate some tokens from wallet$/,()=>{
-    const associatedamount= $(".wallet-card__asset-balance").getText()
-  console.log("current wallet balance ",associatedamount)
-    console.log('WINDOWS before ::::',browser.getWindowHandles().length);
-    browser.pause(3000)
     browser.getByTestId('callout').waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "callout was not found"})
   if (browser.getByTestId('associate-more-tokens-btn').isDisplayed()){
     browser.getByTestId('associate-more-tokens-btn').click()
@@ -21,15 +17,12 @@ When(/^I associate some tokens from wallet$/,()=>{
     browser.pause(1000)
     browser.getByTestId('token-amount-input').setValue(0.00001)
     browser.pause(1000)
-    console.log('TOKEN AMOUNT INPUT ====',browser.getByTestId('token-amount-input').getValue())
     browser.getByTestId('token-input-submit-button').click()
     browser.waitUntil(() => browser.getWindowHandles().length > 1);
-  browser.switchWindow("MetaMask Notification");
-  console.log('WINDOWS AFTER ::::',browser.getWindowHandles());
-  console.log('switching to metamask window')
-  $('button=Confirm').click()
-  browser.switchWindow("VEGA");
-  browser.pause(3000)
+    browser.switchWindow("MetaMask Notification");
+    $('button=Confirm').click()
+    browser.switchWindow("VEGA");
+    browser.pause(3000)
 })
 
 When(/^I can see the pending transactions button is shown$/,()=>{
