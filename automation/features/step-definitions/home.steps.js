@@ -19,7 +19,7 @@ Given(/^I navigate to not found page$/, () => {
 });
 
 Then(/^I can see the url includes "([^"]*)?"$/, (expectedUrl) => {
-  expect(browser.url()).toHaveUrlContaining(expectedUrl);
+  expect(browser).toHaveUrlContaining(expectedUrl);
 });
 
 Then(/^the error message is displayed "([^"]*)?" on page$/, (expectedError) => {

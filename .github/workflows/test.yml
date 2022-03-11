@@ -32,7 +32,7 @@ jobs:
         # - name: List keys
         #   run: ./vegawallet key list 
         - name: Import config
-          run: ./vegawallet network import --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml
+          run: ./vegawallet network import --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/stagnet/stagnet.toml
         - name: List networks
           run: ./vegawallet network list
         - name: Start service
