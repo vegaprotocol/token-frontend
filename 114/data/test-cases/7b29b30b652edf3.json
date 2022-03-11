@@ -1,0 +1,262 @@
+{
+  "uid" : "7b29b30b652edf3",
+  "name" : "Navigate to a not found page will return page error",
+  "fullName" : "Homepage.Navigate to a not found page will return page error",
+  "historyId" : "5e2eacc32e5bd56b94ebf36d1028332b",
+  "time" : {
+    "start" : 1646989156598,
+    "stop" : 1646989159402,
+    "duration" : 2804
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1646989156598,
+        "stop" : 1646989157533,
+        "duration" : 935
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "414fc9c134c57ea1",
+        "name" : "Screenshot",
+        "source" : "414fc9c134c57ea1.png",
+        "type" : "image/png",
+        "size" : 8718
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Given I navigate to not found page",
+      "time" : {
+        "start" : 1646989157533,
+        "stop" : 1646989158685,
+        "duration" : 1152
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "a8bc7d3ba2ffeff8",
+        "name" : "Screenshot",
+        "source" : "a8bc7d3ba2ffeff8.png",
+        "type" : "image/png",
+        "size" : 272015
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the url includes \"not-found\"",
+      "time" : {
+        "start" : 1646989158685,
+        "stop" : 1646989159026,
+        "duration" : 341
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "a924ce8797fb35d",
+        "name" : "Screenshot",
+        "source" : "a924ce8797fb35d.png",
+        "type" : "image/png",
+        "size" : 198112
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And the error message is displayed \"This page can not be found, please check the URL and try again.\" on page",
+      "time" : {
+        "start" : 1646989159026,
+        "stop" : 1646989159401,
+        "duration" : 375
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "6e76c5b08637ae67",
+        "name" : "Screenshot",
+        "source" : "6e76c5b08637ae67.png",
+        "type" : "image/png",
+        "size" : 198112
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Navigate to a not found page will return page error"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 12,
+        "unknown" : 0,
+        "total" : 12
+      },
+      "items" : [ {
+        "uid" : "cadecb4575ce2889",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/111//#testresult/cadecb4575ce2889",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646950206743,
+          "stop" : 1646950208191,
+          "duration" : 1448
+        }
+      }, {
+        "uid" : "af0314f392f7081b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/110//#testresult/af0314f392f7081b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646906760491,
+          "stop" : 1646906762757,
+          "duration" : 2266
+        }
+      }, {
+        "uid" : "fc355728c807cc64",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/109//#testresult/fc355728c807cc64",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646905660657,
+          "stop" : 1646905663514,
+          "duration" : 2857
+        }
+      }, {
+        "uid" : "9429c45950c1f0a2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/108//#testresult/9429c45950c1f0a2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646903690818,
+          "stop" : 1646903691934,
+          "duration" : 1116
+        }
+      }, {
+        "uid" : "85d153ca32bed10f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/107//#testresult/85d153ca32bed10f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646754379334,
+          "stop" : 1646754380273,
+          "duration" : 939
+        }
+      }, {
+        "uid" : "a487e8c531eece63",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/106//#testresult/a487e8c531eece63",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646747105081,
+          "stop" : 1646747106879,
+          "duration" : 1798
+        }
+      }, {
+        "uid" : "42337d4005366a59",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/105//#testresult/42337d4005366a59",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646746027149,
+          "stop" : 1646746028596,
+          "duration" : 1447
+        }
+      }, {
+        "uid" : "139d8900838a79b5",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/104//#testresult/139d8900838a79b5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646746003078,
+          "stop" : 1646746004369,
+          "duration" : 1291
+        }
+      }, {
+        "uid" : "c7c9575bd0a7916b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/101//#testresult/c7c9575bd0a7916b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646745748506,
+          "stop" : 1646745749973,
+          "duration" : 1467
+        }
+      }, {
+        "uid" : "2f0f524e2ce63073",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/103//#testresult/2f0f524e2ce63073",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646744630148,
+          "stop" : 1646744631417,
+          "duration" : 1269
+        }
+      }, {
+        "uid" : "90f04da8f3c6b32a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/102//#testresult/90f04da8f3c6b32a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646744489231,
+          "stop" : 1646744490533,
+          "duration" : 1302
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "7b29b30b652edf3.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
