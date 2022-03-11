@@ -94,9 +94,12 @@ jobs:
             PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             PUBLISH_BRANCH: gh-pages
             PUBLISH_DIR: automation/allure-history
+        - name: Allure report location
+          if: always()
+          run: echo "Link to report https://vegaprotocol.github.io/token-frontend/${{ github.run_number }}"
         - name: Post the link to the report in PR comment
           uses: thollander/actions-comment-pull-request@v1
-          if: always()
+          if: ${{ github.event_name === 'pull_request' }}
           with:
             message: 'Link to report : https://vegaprotocol.github.io/token-frontend/${{ github.run_number }}'
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -5,11 +5,17 @@ Feature: Staking page
     Given I connect my ethereum wallet
     Then I can see my ethereum key 0x9804C6E98dA75e3271ccE3aA56728FD8e9376155 is shown
 
-    Scenario: Go to staking page and connect hosted wallet
+    Scenario: Associate tokens through wallet
     Given I navigate to "staking" page
     When I connect hosted wallet
-    And I associate some tokens
-  
+    And I associate some tokens from wallet
+    Then I can see the pending transactions button is shown
+
+    Scenario: Use maximum button on associate from wallet enters correct amount
+    Given I navigate to "staking" page
+    When I click on use maximum button
+    Then I can see the maximum amount of tokens in my wallet are in the token input box
+
   @ignore
     Scenario: Go to staking page
     Given I connect my ethereum wallet
