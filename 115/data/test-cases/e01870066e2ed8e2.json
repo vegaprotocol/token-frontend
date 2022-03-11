@@ -1,0 +1,271 @@
+{
+  "uid" : "e01870066e2ed8e2",
+  "name" : "Can navigate to Staking page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Staking page using main nav tab",
+  "historyId" : "91dde96c03721a837df89d488b7a153b",
+  "time" : {
+    "start" : 1646990516493,
+    "stop" : 1646990518681,
+    "duration" : 2188
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1646990516494,
+        "stop" : 1646990517204,
+        "duration" : 710
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "2e530fda89de75c3",
+        "name" : "Screenshot",
+        "source" : "2e530fda89de75c3.png",
+        "type" : "image/png",
+        "size" : 399476
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on \"Staking\" on main nav",
+      "time" : {
+        "start" : 1646990517205,
+        "stop" : 1646990517941,
+        "duration" : 736
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "d748351a0226c647",
+        "name" : "Screenshot",
+        "source" : "d748351a0226c647.png",
+        "type" : "image/png",
+        "size" : 333474
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I can see \"Staking\" button is clearly highlighted after click",
+      "time" : {
+        "start" : 1646990517941,
+        "stop" : 1646990518307,
+        "duration" : 366
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "ceed77459513be1b",
+        "name" : "Screenshot",
+        "source" : "ceed77459513be1b.png",
+        "type" : "image/png",
+        "size" : 333474
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I am taken to the \"staking\" page",
+      "time" : {
+        "start" : 1646990518307,
+        "stop" : 1646990518680,
+        "duration" : 373
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "14fb7b37e230eaa",
+        "name" : "Screenshot",
+        "source" : "14fb7b37e230eaa.png",
+        "type" : "image/png",
+        "size" : 333474
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Staking page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 13,
+        "unknown" : 0,
+        "total" : 13
+      },
+      "items" : [ {
+        "uid" : "aa1cd044430290e0",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/114//#testresult/aa1cd044430290e0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646989161880,
+          "stop" : 1646989164024,
+          "duration" : 2144
+        }
+      }, {
+        "uid" : "b74ee10fe12df1ba",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/111//#testresult/b74ee10fe12df1ba",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646950209881,
+          "stop" : 1646950212250,
+          "duration" : 2369
+        }
+      }, {
+        "uid" : "317096129ae45413",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/110//#testresult/317096129ae45413",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646906765801,
+          "stop" : 1646906768287,
+          "duration" : 2486
+        }
+      }, {
+        "uid" : "92b6a6c8e1b991f4",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/109//#testresult/92b6a6c8e1b991f4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646905666216,
+          "stop" : 1646905668944,
+          "duration" : 2728
+        }
+      }, {
+        "uid" : "4fcebfb7614dca95",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/108//#testresult/4fcebfb7614dca95",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646903692796,
+          "stop" : 1646903693644,
+          "duration" : 848
+        }
+      }, {
+        "uid" : "d83309d7123db2a7",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/107//#testresult/d83309d7123db2a7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646754381856,
+          "stop" : 1646754383314,
+          "duration" : 1458
+        }
+      }, {
+        "uid" : "b41148acb1db86f9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/106//#testresult/b41148acb1db86f9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646747108550,
+          "stop" : 1646747110208,
+          "duration" : 1658
+        }
+      }, {
+        "uid" : "26d6a8780f0b2ad9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/105//#testresult/26d6a8780f0b2ad9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646746030131,
+          "stop" : 1646746031865,
+          "duration" : 1734
+        }
+      }, {
+        "uid" : "90783ebc41d5d1e0",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/104//#testresult/90783ebc41d5d1e0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646746005767,
+          "stop" : 1646746006876,
+          "duration" : 1109
+        }
+      }, {
+        "uid" : "b3f0e3d99d2d1936",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/101//#testresult/b3f0e3d99d2d1936",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646745751484,
+          "stop" : 1646745752941,
+          "duration" : 1457
+        }
+      }, {
+        "uid" : "6fd448dd3bb37a4d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/103//#testresult/6fd448dd3bb37a4d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646744632738,
+          "stop" : 1646744634180,
+          "duration" : 1442
+        }
+      }, {
+        "uid" : "92a5c3e9e31ef8c0",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/102//#testresult/92a5c3e9e31ef8c0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646744491657,
+          "stop" : 1646744492577,
+          "duration" : 920
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "e01870066e2ed8e2.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

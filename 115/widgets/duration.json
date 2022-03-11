@@ -1,0 +1,181 @@
+[ {
+  "uid" : "f816f6305191769d",
+  "name" : "Valid claim code with no specified key",
+  "time" : {
+    "start" : 1646990432622,
+    "stop" : 1646990433456,
+    "duration" : 834
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "855ffe3adbfd5b6e",
+  "name" : "Links on the homepage",
+  "time" : {
+    "start" : 1646990503121,
+    "stop" : 1646990506479,
+    "duration" : 3358
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "45fbfec8250b16cb",
+  "name" : "Homepage displays correct information",
+  "time" : {
+    "start" : 1646990480478,
+    "stop" : 1646990503121,
+    "duration" : 22643
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "4183338fb883e1a8",
+  "name" : "Can navigate to Governance page using main nav tab",
+  "time" : {
+    "start" : 1646990518681,
+    "stop" : 1646990520759,
+    "duration" : 2078
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "20b562a9204acd7c",
+  "name" : "Vega wallet not connected placeholder",
+  "time" : {
+    "start" : 1646990532466,
+    "stop" : 1646990533931,
+    "duration" : 1465
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "2fcf9e5f318b6a4",
+  "name" : "Eth wallet not connected placeholder",
+  "time" : {
+    "start" : 1646990530184,
+    "stop" : 1646990532466,
+    "duration" : 2282
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "4418b6a60fdfeac3",
+  "name" : "Can navigate to Withdraw page using main nav tab",
+  "time" : {
+    "start" : 1646990525463,
+    "stop" : 1646990527991,
+    "duration" : 2528
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "155051c6f0d42cd7",
+  "name" : "Check for redeem unlocked tokens from homepage",
+  "time" : {
+    "start" : 1646990506479,
+    "stop" : 1646990508456,
+    "duration" : 1977
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "95c3a5ef15359a22",
+  "name" : "Can navigate to Vesting page using main nav tab",
+  "time" : {
+    "start" : 1646990514111,
+    "stop" : 1646990516493,
+    "duration" : 2382
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "22d7d7038b54f635",
+  "name" : "Navigate to staking page via link on homepage body",
+  "time" : {
+    "start" : 1646990508456,
+    "stop" : 1646990510266,
+    "duration" : 1810
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "7aaf507e23303e22",
+  "name" : "Can navigate to Home page using main nav tab",
+  "time" : {
+    "start" : 1646990520759,
+    "stop" : 1646990522851,
+    "duration" : 2092
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "267b6aa4abcf19c2",
+  "name" : "Page not found error where page does not exist",
+  "time" : {
+    "start" : 1646990527991,
+    "stop" : 1646990530184,
+    "duration" : 2193
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "f358174aa930d417",
+  "name" : "Navigate to a not found page will return page error",
+  "time" : {
+    "start" : 1646990511958,
+    "stop" : 1646990514111,
+    "duration" : 2153
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "9d50f16a9034491b",
+  "name" : "Invalid claims code will show error",
+  "time" : {
+    "start" : 1646990417806,
+    "stop" : 1646990432622,
+    "duration" : 14816
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "5387c80030a67f20",
+  "name" : "Prompt to connect to eth wallet to claim if not connected",
+  "time" : {
+    "start" : 1646990412411,
+    "stop" : 1646990417806,
+    "duration" : 5395
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "e01870066e2ed8e2",
+  "name" : "Can navigate to Staking page using main nav tab",
+  "time" : {
+    "start" : 1646990516493,
+    "stop" : 1646990518681,
+    "duration" : 2188
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "6705cd3087a4dd5c",
+  "name" : "Navigate to governance proposals page via button link on homepage body",
+  "time" : {
+    "start" : 1646990510267,
+    "stop" : 1646990511958,
+    "duration" : 1691
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "feb7e9b9071c2001",
+  "name" : "Can navigate to Rewards page using main nav tab",
+  "time" : {
+    "start" : 1646990522851,
+    "stop" : 1646990525462,
+    "duration" : 2611
+  },
+  "status" : "passed",
+  "severity" : "normal"
+} ]
