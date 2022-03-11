@@ -1,0 +1,277 @@
+{
+  "uid" : "9feb2491e8a59554",
+  "name" : "Vega wallet not connected placeholder",
+  "fullName" : "Homepage.Vega wallet not connected placeholder",
+  "historyId" : "607e0e06b898d703b411f2efc855b24b",
+  "time" : {
+    "start" : 1646999706641,
+    "stop" : 1646999708714,
+    "duration" : 2073
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1646999706641,
+        "stop" : 1646999707844,
+        "duration" : 1203
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "b575d191e1c6a343",
+        "name" : "Screenshot",
+        "source" : "b575d191e1c6a343.png",
+        "type" : "image/png",
+        "size" : 351110
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I have not connected my vega wallet",
+      "time" : {
+        "start" : 1646999707844,
+        "stop" : 1646999708056,
+        "duration" : 212
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "b89f49d6b38e5987",
+        "name" : "Screenshot",
+        "source" : "b89f49d6b38e5987.png",
+        "type" : "image/png",
+        "size" : 272510
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the vega wallet disconnected with message \"Connect Vega wallet to use associated $VEGA\"",
+      "time" : {
+        "start" : 1646999708056,
+        "stop" : 1646999708714,
+        "duration" : 658
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "46e4501050534598",
+        "name" : "Screenshot",
+        "source" : "46e4501050534598.png",
+        "type" : "image/png",
+        "size" : 272510
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Vega wallet not connected placeholder"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 16,
+        "unknown" : 0,
+        "total" : 16
+      },
+      "items" : [ {
+        "uid" : "b4dc0607c2ce1a43",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/118//#testresult/b4dc0607c2ce1a43",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646998377781,
+          "stop" : 1646998379347,
+          "duration" : 1566
+        }
+      }, {
+        "uid" : "3cef8918889ca9a4",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/117//#testresult/3cef8918889ca9a4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646995827776,
+          "stop" : 1646995829553,
+          "duration" : 1777
+        }
+      }, {
+        "uid" : "20b562a9204acd7c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/115//#testresult/20b562a9204acd7c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646990532466,
+          "stop" : 1646990533931,
+          "duration" : 1465
+        }
+      }, {
+        "uid" : "f110502910e07daf",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/114//#testresult/f110502910e07daf",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646989177293,
+          "stop" : 1646989178764,
+          "duration" : 1471
+        }
+      }, {
+        "uid" : "40b2c1c361612c2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/111//#testresult/40b2c1c361612c2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646950218346,
+          "stop" : 1646950219636,
+          "duration" : 1290
+        }
+      }, {
+        "uid" : "9ae497153b99002d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/110//#testresult/9ae497153b99002d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646906781501,
+          "stop" : 1646906783044,
+          "duration" : 1543
+        }
+      }, {
+        "uid" : "f259c4e412f81e94",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/109//#testresult/f259c4e412f81e94",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646905685453,
+          "stop" : 1646905687451,
+          "duration" : 1998
+        }
+      }, {
+        "uid" : "f82e29e6e886cf73",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/108//#testresult/f82e29e6e886cf73",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646903730529,
+          "stop" : 1646903731404,
+          "duration" : 875
+        }
+      }, {
+        "uid" : "e56b22776b76efd9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/107//#testresult/e56b22776b76efd9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646754389239,
+          "stop" : 1646754390334,
+          "duration" : 1095
+        }
+      }, {
+        "uid" : "c79cab1fda2bd636",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/106//#testresult/c79cab1fda2bd636",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646747117129,
+          "stop" : 1646747118390,
+          "duration" : 1261
+        }
+      }, {
+        "uid" : "a6a4390b15a7fe7f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/105//#testresult/a6a4390b15a7fe7f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646746038891,
+          "stop" : 1646746040372,
+          "duration" : 1481
+        }
+      }, {
+        "uid" : "3179788518c55045",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/104//#testresult/3179788518c55045",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646746012420,
+          "stop" : 1646746012994,
+          "duration" : 574
+        }
+      }, {
+        "uid" : "f186b99b6298a21",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/101//#testresult/f186b99b6298a21",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646745758771,
+          "stop" : 1646745759438,
+          "duration" : 667
+        }
+      }, {
+        "uid" : "b452c9b81bc0d411",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/103//#testresult/b452c9b81bc0d411",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646744640054,
+          "stop" : 1646744641242,
+          "duration" : 1188
+        }
+      }, {
+        "uid" : "acd132220fbd9149",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/102//#testresult/acd132220fbd9149",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646744497606,
+          "stop" : 1646744498435,
+          "duration" : 829
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "9feb2491e8a59554.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

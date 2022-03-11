@@ -1,0 +1,189 @@
+{
+  "uid" : "6cfab0a7c97abd2b",
+  "name" : "Go to staking and connect ethereum wallet",
+  "fullName" : "Staking page.Go to staking and connect ethereum wallet",
+  "historyId" : "24b200d19bf9488be3cf36ec47fd72a6",
+  "time" : {
+    "start" : 1646999767767,
+    "stop" : 1646999783602,
+    "duration" : 15835
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1646999767769,
+        "stop" : 1646999769362,
+        "duration" : 1593
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "6475389abacbd134",
+        "name" : "Screenshot",
+        "source" : "6475389abacbd134.png",
+        "type" : "image/png",
+        "size" : 8133
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Given I connect my ethereum wallet",
+      "time" : {
+        "start" : 1646999769363,
+        "stop" : 1646999783057,
+        "duration" : 13694
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "54ac2091e91493b6",
+        "name" : "Screenshot",
+        "source" : "54ac2091e91493b6.png",
+        "type" : "image/png",
+        "size" : 364633
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see my ethereum key 0x9804C6E98dA75e3271ccE3aA56728FD8e9376155 is shown",
+      "time" : {
+        "start" : 1646999783057,
+        "stop" : 1646999783601,
+        "duration" : 544
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "c99f733de1dae18b",
+        "name" : "Screenshot",
+        "source" : "c99f733de1dae18b.png",
+        "type" : "image/png",
+        "size" : 286533
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking page"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Go to staking and connect ethereum wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 4,
+        "unknown" : 0,
+        "total" : 6
+      },
+      "items" : [ {
+        "uid" : "827ab2981677da1d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/118//#testresult/827ab2981677da1d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646998433510,
+          "stop" : 1646998446985,
+          "duration" : 13475
+        }
+      }, {
+        "uid" : "f1005c852f5f6e70",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/117//#testresult/f1005c852f5f6e70",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646995877444,
+          "stop" : 1646995901017,
+          "duration" : 23573
+        }
+      }, {
+        "uid" : "ce4e9109dc5c5d0b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/110//#testresult/ce4e9109dc5c5d0b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1646906843474,
+          "stop" : 1646906859138,
+          "duration" : 15664
+        }
+      }, {
+        "uid" : "f245d36e588de00b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/109//#testresult/f245d36e588de00b",
+        "status" : "broken",
+        "statusDetails" : "Error: No window found with title, url or name matching \"http://localhost:3000\"",
+        "time" : {
+          "start" : 1646905748035,
+          "stop" : 1646905759567,
+          "duration" : 11532
+        }
+      }, {
+        "uid" : "951c86ba8ac10116",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/108//#testresult/951c86ba8ac10116",
+        "status" : "broken",
+        "statusDetails" : "Error: No window found with title, url or name matching \"http://localhost:3000\"",
+        "time" : {
+          "start" : 1646903779432,
+          "stop" : 1646903787340,
+          "duration" : 7908
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "6cfab0a7c97abd2b.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
