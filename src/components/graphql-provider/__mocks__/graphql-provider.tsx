@@ -12,7 +12,7 @@ import { NetworkParams } from "../../../hooks/__generated__/NetworkParams";
 import { NETWORK_PARAMS_QUERY } from "../../../hooks/use-network-param";
 import { Proposal } from "../../../routes/governance/__generated__/Proposal";
 import { Proposals } from "../../../routes/governance/__generated__/Proposals";
-import { PROPOSAL_QUERY } from "../../../routes/governance/proposal-container";
+import { PROPOSAL_QUERY } from "../../../routes/governance/components/proposal-container";
 import { PROPOSALS_QUERY } from "../../../routes/governance/proposals-container";
 import {
   generateNoVotes,
@@ -244,7 +244,6 @@ const proposalDeclined = generateProposal({
   },
 });
 
-
 const proposalPassed = generateProposal({
   state: ProposalState.Passed,
   votes: {
@@ -345,7 +344,6 @@ const proposaNotEnoughVotes = generateProposal({
   },
 });
 
-
 const MOCK_PROPOSALS: MockedResponse<Proposals> = {
   request: {
     query: PROPOSALS_QUERY,
@@ -375,22 +373,22 @@ const MOCK_PROPOSALS: MockedResponse<Proposals> = {
 };
 
 const MOCK_PROPOSAL: MockedResponse<Proposal>[] = [
-    proposaNotEnoughVotes,
-    proposaNoVotesWillWin,
-    proposaYesVotesWillWin,
-    proposaSameYesNoVotes,
-    proposalNoVotesOnly,
-    proposalYesVotesOnly,
-    proposalWaitingForNodeVote,
-    proposalRejectedNoVotes,
-    proposalRejected,
-    proposalPassed,
-    proposalDeclined,
-    proposalNotVoted,
-    proposalNoTokens,
-    proposalVotedAgainst,
-    proposalDidNotVote,
-    propsoalVoteClosedVotedFor,
+  proposaNotEnoughVotes,
+  proposaNoVotesWillWin,
+  proposaYesVotesWillWin,
+  proposaSameYesNoVotes,
+  proposalNoVotesOnly,
+  proposalYesVotesOnly,
+  proposalWaitingForNodeVote,
+  proposalRejectedNoVotes,
+  proposalRejected,
+  proposalPassed,
+  proposalDeclined,
+  proposalNotVoted,
+  proposalNoTokens,
+  proposalVotedAgainst,
+  proposalDidNotVote,
+  propsoalVoteClosedVotedFor,
 ].map((p) => ({
   request: {
     query: PROPOSAL_QUERY,
