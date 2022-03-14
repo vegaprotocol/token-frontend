@@ -32,7 +32,11 @@ export const ProposalVotesTable = ({ proposal }: ProposalVotesTableProps) => {
   } = useVoteInformation({ proposal });
 
   return (
-    <KeyValueTable numerical={true} data-testid="proposal-votes-table">
+    <KeyValueTable
+      numerical={true}
+      muted={true}
+      data-testid="proposal-votes-table"
+    >
       <KeyValueTableRow>
         <th>{t("willPass")}</th>
         <td>{willPass ? "👍" : "👎"}</td>

@@ -1,5 +1,3 @@
-import "./governance.scss";
-
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 
 import { useDocumentTitle } from "../../hooks/use-document-title";

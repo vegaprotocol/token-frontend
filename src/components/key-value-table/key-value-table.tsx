@@ -7,12 +7,14 @@ export interface KeyValueTableProps
   title?: string;
   numerical?: boolean; // makes all values monospace
   children: React.ReactNode;
+  muted?: boolean;
 }
 
 export const KeyValueTable = ({
   title,
   numerical,
   children,
+  muted,
   className,
   ...rest
 }: KeyValueTableProps) => {
@@ -23,7 +25,8 @@ export const KeyValueTable = ({
         {...rest}
         className={`key-value-table ${className ? className : ""} ${
           numerical ? "key-value-table--numerical" : ""
-        }`}
+        }
+        ${muted ? "key-value-table--muted" : ""}`}
       >
         <tbody>{children}</tbody>
       </table>

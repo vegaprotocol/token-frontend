@@ -5,6 +5,10 @@ import { useTranslation } from "react-i18next";
 import { Link, useRouteMatch } from "react-router-dom";
 
 import { Heading } from "../../../../components/heading";
+import {
+  KeyValueTable,
+  KeyValueTableRow,
+} from "../../../../components/key-value-table";
 import { DATE_FORMAT_DETAILED } from "../../../../lib/date-formats";
 import { getProposalName } from "../../../../lib/type-policies/proposal";
 import { Proposals_proposals } from "../../__generated__/Proposals";
@@ -32,45 +36,40 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
             </p>
           </header>
         </Link>
-        <table
-          className="proposal-table"
-          data-testid="governance-proposal-table"
-        >
-          <tbody>
-            <tr>
-              <th>{t("state")}</th>
-              <td data-testid="governance-proposal-state">
-                <CurrentProposalState proposal={proposal} />
-              </td>
-            </tr>
-            <tr>
-              <th>
-                {isFuture(new Date(proposal.terms.closingDatetime))
-                  ? t("closesOn")
-                  : t("closedOn")}
-              </th>
-              <td data-testid="governance-proposal-closingDate">
-                {format(
-                  new Date(proposal.terms.closingDatetime),
-                  DATE_FORMAT_DETAILED
-                )}
-              </td>
-            </tr>
-            <tr>
-              <th>
-                {isFuture(new Date(proposal.terms.enactmentDatetime))
-                  ? t("proposedEnactment")
-                  : t("enactedOn")}
-              </th>
-              <td data-testid="governance-proposal-enactmentDate">
-                {format(
-                  new Date(proposal.terms.enactmentDatetime),
-                  DATE_FORMAT_DETAILED
-                )}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <KeyValueTable muted={true}>
+          <KeyValueTableRow>
+            <th>{t("state")}</th>
+            <td data-testid="governance-proposal-state">
+              <CurrentProposalState proposal={proposal} />
+            </td>
+          </KeyValueTableRow>
+          <KeyValueTableRow>
+            <th>
+              {isFuture(new Date(proposal.terms.closingDatetime))
+                ? t("closesOn")
+                : t("closedOn")}
+            </th>
+            <td data-testid="governance-proposal-closingDate">
+              {format(
+                new Date(proposal.terms.closingDatetime),
+                DATE_FORMAT_DETAILED
+              )}
+            </td>
+          </KeyValueTableRow>
+          <KeyValueTableRow>
+            <th>
+              {isFuture(new Date(proposal.terms.enactmentDatetime))
+                ? t("proposedEnactment")
+                : t("enactedOn")}
+            </th>
+            <td data-testid="governance-proposal-enactmentDate">
+              {format(
+                new Date(proposal.terms.enactmentDatetime),
+                DATE_FORMAT_DETAILED
+              )}
+            </td>
+          </KeyValueTableRow>
+        </KeyValueTable>
       </li>
     );
   };

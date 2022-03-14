@@ -71,4 +71,16 @@ $ns: "key-value-table";
       font-family: $font-main;
     }
   }
+  &.#{$ns}--muted {
+    tr {
+      border-color: $gray1;
+    }
+    tr:first-child {
+      border-top: none;
+    }
+
+    tr:last-child {
+      border-bottom: none;
+    }
+  }
 }
