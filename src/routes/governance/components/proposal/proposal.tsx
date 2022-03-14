@@ -1,9 +1,9 @@
-import { Heading } from "../../components/heading";
-import { getProposalName } from "../../lib/type-policies/proposal";
-import { Proposal_proposal } from "./__generated__/Proposal";
-import { ProposalChangeTable } from "./components/proposal-change-table";
-import { ProposalTermsJson } from "./components/proposal-terms-json";
-import { VoteDetails } from "./components/vote-details";
+import { Heading } from "../../../../components/heading";
+import { getProposalName } from "../../../../lib/type-policies/proposal";
+import { Proposal_proposal } from "../../__generated__/Proposal";
+import { ProposalChangeTable } from "../proposal-change-table";
+import { ProposalTermsJson } from "../proposal-terms-json";
+import { VoteDetails } from "../vote-details";
 
 interface ProposalProps {
   proposal: Proposal_proposal;

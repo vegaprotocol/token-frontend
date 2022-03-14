@@ -9,8 +9,8 @@ import {
   Proposal as ProposalQueryResult,
   ProposalVariables,
 } from "../../__generated__/Proposal";
-import { Proposal } from "../../proposal";
 import { PROPOSALS_FRAGMENT } from "../../proposal-fragment";
+import { Proposal } from "../proposal/proposal";
 
 export const PROPOSAL_QUERY = gql`
   ${PROPOSALS_FRAGMENT}
