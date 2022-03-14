@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { DATE_FORMAT_DETAILED } from "../../../../lib/date-formats";
 import { Proposals_proposals } from "../../__generated__/Proposals";
-import { CurrentProposalState } from "../../current-proposal-state";
+import { CurrentProposalState } from "../current-proposal-state";
 
 interface ProposalChangeTableProps {
   proposal: Proposals_proposals;

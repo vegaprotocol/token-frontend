@@ -1,5 +1,5 @@
-import { SyntaxHighlighter } from "../../components/syntax-highlighter";
-import { Proposal_proposal } from "./__generated__/Proposal";
+import { SyntaxHighlighter } from "../../../../components/syntax-highlighter";
+import { Proposal_proposal } from "../../__generated__/Proposal";
 
 export const ProposalTermsJson = ({
   proposal,

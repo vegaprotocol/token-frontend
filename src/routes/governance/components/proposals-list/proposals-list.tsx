@@ -4,11 +4,11 @@ import { format, isFuture } from "date-fns";
 import { useTranslation } from "react-i18next";
 import { Link, useRouteMatch } from "react-router-dom";
 
-import { Heading } from "../../components/heading";
-import { DATE_FORMAT_DETAILED } from "../../lib/date-formats";
-import { getProposalName } from "../../lib/type-policies/proposal";
-import { Proposals_proposals } from "./__generated__/Proposals";
-import { CurrentProposalState } from "./current-proposal-state";
+import { Heading } from "../../../../components/heading";
+import { DATE_FORMAT_DETAILED } from "../../../../lib/date-formats";
+import { getProposalName } from "../../../../lib/type-policies/proposal";
+import { Proposals_proposals } from "../../__generated__/Proposals";
+import { CurrentProposalState } from "../current-proposal-state";
 
 interface ProposalsListProps {
   proposals: Proposals_proposals[];
