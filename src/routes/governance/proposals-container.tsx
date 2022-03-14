@@ -42,7 +42,7 @@ export const ProposalsContainer = () => {
             (p) => new Date(p.terms.closingDatetime).getTime(),
             (p) => p.id,
           ],
-          ["desc", "desc"]
+          ["desc", "desc", "desc"]
         ),
     ])(data.proposals);
   }, [data]);
