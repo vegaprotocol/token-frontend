@@ -7,6 +7,7 @@ export const PROPOSALS_FRAGMENT = gql`
     state
     datetime
     rejectionReason
+    errorDetails
     party {
       id
     }

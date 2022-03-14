@@ -3,13 +3,13 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ProposalState, ProposalRejectionReason, PeggedReference, PropertyKeyType, ConditionOperator, VoteValue } from "./../../../__generated__/globalTypes";
+import { ProposalState, ProposalRejectionReason, PeggedReference, PropertyKeyType, ConditionOperator, VoteValue } from "./../../../../__generated__/globalTypes";
 
 // ====================================================
-// GraphQL query operation: Proposal
+// GraphQL query operation: Proposals
 // ====================================================
 
-export interface Proposal_proposal_party {
+export interface Proposals_proposals_party {
   __typename: "Party";
   /**
    * Party identifier
@@ -17,11 +17,11 @@ export interface Proposal_proposal_party {
   id: string;
 }
 
-export interface Proposal_proposal_terms_change_NewFreeform {
+export interface Proposals_proposals_terms_change_NewFreeform {
   __typename: "NewFreeform";
 }
 
-export interface Proposal_proposal_terms_change_NewMarket_commitment_sells {
+export interface Proposals_proposals_terms_change_NewMarket_commitment_sells {
   __typename: "LiquidityOrder";
   /**
    * Offset from the pegged reference
@@ -37,7 +37,7 @@ export interface Proposal_proposal_terms_change_NewMarket_commitment_sells {
   reference: PeggedReference;
 }
 
-export interface Proposal_proposal_terms_change_NewMarket_commitment_buys {
+export interface Proposals_proposals_terms_change_NewMarket_commitment_buys {
   __typename: "LiquidityOrder";
   /**
    * Offset from the pegged reference
@@ -53,7 +53,7 @@ export interface Proposal_proposal_terms_change_NewMarket_commitment_buys {
   reference: PeggedReference;
 }
 
-export interface Proposal_proposal_terms_change_NewMarket_commitment {
+export interface Proposals_proposals_terms_change_NewMarket_commitment {
   __typename: "NewMarketCommitment";
   /**
    * Specified as a unit-less number that represents the amount of settlement asset of the market
@@ -67,14 +67,14 @@ export interface Proposal_proposal_terms_change_NewMarket_commitment {
   /**
    * A set of liquidity sell orders to meet the liquidity provision obligation
    */
-  sells: Proposal_proposal_terms_change_NewMarket_commitment_sells[] | null;
+  sells: Proposals_proposals_terms_change_NewMarket_commitment_sells[] | null;
   /**
    * A set of liquidity buy orders to meet the liquidity provision obligation
    */
-  buys: Proposal_proposal_terms_change_NewMarket_commitment_buys[] | null;
+  buys: Proposals_proposals_terms_change_NewMarket_commitment_buys[] | null;
 }
 
-export interface Proposal_proposal_terms_change_NewMarket_instrument_futureProduct_settlementAsset {
+export interface Proposals_proposals_terms_change_NewMarket_instrument_futureProduct_settlementAsset {
   __typename: "Asset";
   /**
    * The full name of the asset (e.g: Great British Pound)
@@ -90,13 +90,13 @@ export interface Proposal_proposal_terms_change_NewMarket_instrument_futureProdu
   id: string;
 }
 
-export interface Proposal_proposal_terms_change_NewMarket_instrument_futureProduct_oracleSpecBinding {
+export interface Proposals_proposals_terms_change_NewMarket_instrument_futureProduct_oracleSpecBinding {
   __typename: "OracleSpecToFutureBinding";
   settlementPriceProperty: string;
   tradingTerminationProperty: string;
 }
 
-export interface Proposal_proposal_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice_filters_key {
+export interface Proposals_proposals_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice_filters_key {
   __typename: "PropertyKey";
   /**
    * name is the name of the property.
@@ -108,7 +108,7 @@ export interface Proposal_proposal_terms_change_NewMarket_instrument_futureProdu
   type: PropertyKeyType;
 }
 
-export interface Proposal_proposal_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice_filters_conditions {
+export interface Proposals_proposals_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice_filters_conditions {
   __typename: "Condition";
   /**
    * value is used by the comparator.
@@ -120,20 +120,20 @@ export interface Proposal_proposal_terms_change_NewMarket_instrument_futureProdu
   operator: ConditionOperator;
 }
 
-export interface Proposal_proposal_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice_filters {
+export interface Proposals_proposals_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice_filters {
   __typename: "Filter";
   /**
    * key is the oracle data property key targeted by the filter.
    */
-  key: Proposal_proposal_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice_filters_key;
+  key: Proposals_proposals_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice_filters_key;
   /**
    * conditions are the conditions that should be matched by the data to be
    * considered of interest.
    */
-  conditions: Proposal_proposal_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice_filters_conditions[] | null;
+  conditions: Proposals_proposals_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice_filters_conditions[] | null;
 }
 
-export interface Proposal_proposal_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice {
+export interface Proposals_proposals_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice {
   __typename: "OracleSpecConfiguration";
   /**
    * pubKeys is the list of authorized public keys that signed the data for this
@@ -145,10 +145,10 @@ export interface Proposal_proposal_terms_change_NewMarket_instrument_futureProdu
    * filters describes which oracle data are considered of interest or not for
    * the product (or the risk model).
    */
-  filters: Proposal_proposal_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice_filters[] | null;
+  filters: Proposals_proposals_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice_filters[] | null;
 }
 
-export interface Proposal_proposal_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination_filters_key {
+export interface Proposals_proposals_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination_filters_key {
   __typename: "PropertyKey";
   /**
    * name is the name of the property.
@@ -160,7 +160,7 @@ export interface Proposal_proposal_terms_change_NewMarket_instrument_futureProdu
   type: PropertyKeyType;
 }
 
-export interface Proposal_proposal_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination_filters_conditions {
+export interface Proposals_proposals_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination_filters_conditions {
   __typename: "Condition";
   /**
    * value is used by the comparator.
@@ -172,20 +172,20 @@ export interface Proposal_proposal_terms_change_NewMarket_instrument_futureProdu
   operator: ConditionOperator;
 }
 
-export interface Proposal_proposal_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination_filters {
+export interface Proposals_proposals_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination_filters {
   __typename: "Filter";
   /**
    * key is the oracle data property key targeted by the filter.
    */
-  key: Proposal_proposal_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination_filters_key;
+  key: Proposals_proposals_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination_filters_key;
   /**
    * conditions are the conditions that should be matched by the data to be
    * considered of interest.
    */
-  conditions: Proposal_proposal_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination_filters_conditions[] | null;
+  conditions: Proposals_proposals_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination_filters_conditions[] | null;
 }
 
-export interface Proposal_proposal_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination {
+export interface Proposals_proposals_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination {
   __typename: "OracleSpecConfiguration";
   /**
    * pubKeys is the list of authorized public keys that signed the data for this
@@ -197,15 +197,15 @@ export interface Proposal_proposal_terms_change_NewMarket_instrument_futureProdu
    * filters describes which oracle data are considered of interest or not for
    * the product (or the risk model).
    */
-  filters: Proposal_proposal_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination_filters[] | null;
+  filters: Proposals_proposals_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination_filters[] | null;
 }
 
-export interface Proposal_proposal_terms_change_NewMarket_instrument_futureProduct {
+export interface Proposals_proposals_terms_change_NewMarket_instrument_futureProduct {
   __typename: "FutureProduct";
   /**
    * Product asset ID
    */
-  settlementAsset: Proposal_proposal_terms_change_NewMarket_instrument_futureProduct_settlementAsset;
+  settlementAsset: Proposals_proposals_terms_change_NewMarket_instrument_futureProduct_settlementAsset;
   /**
    * String representing the quote (e.g. BTCUSD -> USD is quote)
    */
@@ -214,18 +214,18 @@ export interface Proposal_proposal_terms_change_NewMarket_instrument_futureProdu
    * OracleSpecToFutureBinding tells on which property oracle data should be
    * used as settlement price.
    */
-  oracleSpecBinding: Proposal_proposal_terms_change_NewMarket_instrument_futureProduct_oracleSpecBinding;
+  oracleSpecBinding: Proposals_proposals_terms_change_NewMarket_instrument_futureProduct_oracleSpecBinding;
   /**
    * Describes the oracle data that an instrument wants to get from the oracle engine for settlement price.
    */
-  oracleSpecForSettlementPrice: Proposal_proposal_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice;
+  oracleSpecForSettlementPrice: Proposals_proposals_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice;
   /**
    * Describes the oracle data that an instrument wants to get from the oracle engine for trading termination.
    */
-  oracleSpecForTradingTermination: Proposal_proposal_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination;
+  oracleSpecForTradingTermination: Proposals_proposals_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination;
 }
 
-export interface Proposal_proposal_terms_change_NewMarket_instrument {
+export interface Proposals_proposals_terms_change_NewMarket_instrument {
   __typename: "InstrumentConfiguration";
   /**
    * Full and fairly descriptive name for the instrument
@@ -238,10 +238,10 @@ export interface Proposal_proposal_terms_change_NewMarket_instrument {
   /**
    * Future product specification
    */
-  futureProduct: Proposal_proposal_terms_change_NewMarket_instrument_futureProduct | null;
+  futureProduct: Proposals_proposals_terms_change_NewMarket_instrument_futureProduct | null;
 }
 
-export interface Proposal_proposal_terms_change_NewMarket {
+export interface Proposals_proposals_terms_change_NewMarket {
   __typename: "NewMarket";
   /**
    * Decimal places used for the new market
@@ -254,19 +254,19 @@ export interface Proposal_proposal_terms_change_NewMarket {
   /**
    * The liquidity commitment submitted with the new market
    */
-  commitment: Proposal_proposal_terms_change_NewMarket_commitment | null;
+  commitment: Proposals_proposals_terms_change_NewMarket_commitment | null;
   /**
    * New market instrument configuration
    */
-  instrument: Proposal_proposal_terms_change_NewMarket_instrument;
+  instrument: Proposals_proposals_terms_change_NewMarket_instrument;
 }
 
-export interface Proposal_proposal_terms_change_UpdateMarket {
+export interface Proposals_proposals_terms_change_UpdateMarket {
   __typename: "UpdateMarket";
   marketId: string;
 }
 
-export interface Proposal_proposal_terms_change_NewAsset_source_BuiltinAsset {
+export interface Proposals_proposals_terms_change_NewAsset_source_BuiltinAsset {
   __typename: "BuiltinAsset";
   /**
    * Maximum amount that can be requested by a party through the built-in asset faucet at a time
@@ -274,7 +274,7 @@ export interface Proposal_proposal_terms_change_NewAsset_source_BuiltinAsset {
   maxFaucetAmountMint: string;
 }
 
-export interface Proposal_proposal_terms_change_NewAsset_source_ERC20 {
+export interface Proposals_proposals_terms_change_NewAsset_source_ERC20 {
   __typename: "ERC20";
   /**
    * The address of the erc20 contract
@@ -282,9 +282,9 @@ export interface Proposal_proposal_terms_change_NewAsset_source_ERC20 {
   contractAddress: string;
 }
 
-export type Proposal_proposal_terms_change_NewAsset_source = Proposal_proposal_terms_change_NewAsset_source_BuiltinAsset | Proposal_proposal_terms_change_NewAsset_source_ERC20;
+export type Proposals_proposals_terms_change_NewAsset_source = Proposals_proposals_terms_change_NewAsset_source_BuiltinAsset | Proposals_proposals_terms_change_NewAsset_source_ERC20;
 
-export interface Proposal_proposal_terms_change_NewAsset {
+export interface Proposals_proposals_terms_change_NewAsset {
   __typename: "NewAsset";
   /**
    * The symbol of the asset (e.g: GBP)
@@ -293,10 +293,10 @@ export interface Proposal_proposal_terms_change_NewAsset {
   /**
    * the source of the new Asset
    */
-  source: Proposal_proposal_terms_change_NewAsset_source;
+  source: Proposals_proposals_terms_change_NewAsset_source;
 }
 
-export interface Proposal_proposal_terms_change_UpdateNetworkParameter_networkParameter {
+export interface Proposals_proposals_terms_change_UpdateNetworkParameter_networkParameter {
   __typename: "NetworkParameter";
   /**
    * The name of the network parameter
@@ -308,14 +308,14 @@ export interface Proposal_proposal_terms_change_UpdateNetworkParameter_networkPa
   value: string;
 }
 
-export interface Proposal_proposal_terms_change_UpdateNetworkParameter {
+export interface Proposals_proposals_terms_change_UpdateNetworkParameter {
   __typename: "UpdateNetworkParameter";
-  networkParameter: Proposal_proposal_terms_change_UpdateNetworkParameter_networkParameter;
+  networkParameter: Proposals_proposals_terms_change_UpdateNetworkParameter_networkParameter;
 }
 
-export type Proposal_proposal_terms_change = Proposal_proposal_terms_change_NewFreeform | Proposal_proposal_terms_change_NewMarket | Proposal_proposal_terms_change_UpdateMarket | Proposal_proposal_terms_change_NewAsset | Proposal_proposal_terms_change_UpdateNetworkParameter;
+export type Proposals_proposals_terms_change = Proposals_proposals_terms_change_NewFreeform | Proposals_proposals_terms_change_NewMarket | Proposals_proposals_terms_change_UpdateMarket | Proposals_proposals_terms_change_NewAsset | Proposals_proposals_terms_change_UpdateNetworkParameter;
 
-export interface Proposal_proposal_terms {
+export interface Proposals_proposals_terms {
   __typename: "ProposalTerms";
   /**
    * RFC3339Nano time and date when voting closes for this proposal.
@@ -330,10 +330,10 @@ export interface Proposal_proposal_terms {
   /**
    * Actual change being introduced by the proposal - action the proposal triggers if passed and enacted.
    */
-  change: Proposal_proposal_terms_change;
+  change: Proposals_proposals_terms_change;
 }
 
-export interface Proposal_proposal_votes_yes_votes_party_stake {
+export interface Proposals_proposals_votes_yes_votes_party_stake {
   __typename: "PartyStake";
   /**
    * The stake currently available for the party
@@ -341,7 +341,7 @@ export interface Proposal_proposal_votes_yes_votes_party_stake {
   currentStakeAvailable: string;
 }
 
-export interface Proposal_proposal_votes_yes_votes_party {
+export interface Proposals_proposals_votes_yes_votes_party {
   __typename: "Party";
   /**
    * Party identifier
@@ -350,10 +350,10 @@ export interface Proposal_proposal_votes_yes_votes_party {
   /**
    * The staking information for this Party
    */
-  stake: Proposal_proposal_votes_yes_votes_party_stake;
+  stake: Proposals_proposals_votes_yes_votes_party_stake;
 }
 
-export interface Proposal_proposal_votes_yes_votes {
+export interface Proposals_proposals_votes_yes_votes {
   __typename: "Vote";
   /**
    * The vote value cast
@@ -362,14 +362,14 @@ export interface Proposal_proposal_votes_yes_votes {
   /**
    * The party casting the vote
    */
-  party: Proposal_proposal_votes_yes_votes_party;
+  party: Proposals_proposals_votes_yes_votes_party;
   /**
    * RFC3339Nano time and date when the vote reached Vega network
    */
   datetime: string;
 }
 
-export interface Proposal_proposal_votes_yes {
+export interface Proposals_proposals_votes_yes {
   __typename: "ProposalVoteSide";
   /**
    * Total tokens of governance token from the votes casted for this side
@@ -382,10 +382,10 @@ export interface Proposal_proposal_votes_yes {
   /**
    * All votes casted for this side
    */
-  votes: Proposal_proposal_votes_yes_votes[] | null;
+  votes: Proposals_proposals_votes_yes_votes[] | null;
 }
 
-export interface Proposal_proposal_votes_no_votes_party_stake {
+export interface Proposals_proposals_votes_no_votes_party_stake {
   __typename: "PartyStake";
   /**
    * The stake currently available for the party
@@ -393,7 +393,7 @@ export interface Proposal_proposal_votes_no_votes_party_stake {
   currentStakeAvailable: string;
 }
 
-export interface Proposal_proposal_votes_no_votes_party {
+export interface Proposals_proposals_votes_no_votes_party {
   __typename: "Party";
   /**
    * Party identifier
@@ -402,10 +402,10 @@ export interface Proposal_proposal_votes_no_votes_party {
   /**
    * The staking information for this Party
    */
-  stake: Proposal_proposal_votes_no_votes_party_stake;
+  stake: Proposals_proposals_votes_no_votes_party_stake;
 }
 
-export interface Proposal_proposal_votes_no_votes {
+export interface Proposals_proposals_votes_no_votes {
   __typename: "Vote";
   /**
    * The vote value cast
@@ -414,14 +414,14 @@ export interface Proposal_proposal_votes_no_votes {
   /**
    * The party casting the vote
    */
-  party: Proposal_proposal_votes_no_votes_party;
+  party: Proposals_proposals_votes_no_votes_party;
   /**
    * RFC3339Nano time and date when the vote reached Vega network
    */
   datetime: string;
 }
 
-export interface Proposal_proposal_votes_no {
+export interface Proposals_proposals_votes_no {
   __typename: "ProposalVoteSide";
   /**
    * Total tokens of governance token from the votes casted for this side
@@ -434,22 +434,22 @@ export interface Proposal_proposal_votes_no {
   /**
    * All votes casted for this side
    */
-  votes: Proposal_proposal_votes_no_votes[] | null;
+  votes: Proposals_proposals_votes_no_votes[] | null;
 }
 
-export interface Proposal_proposal_votes {
+export interface Proposals_proposals_votes {
   __typename: "ProposalVotes";
   /**
    * Yes votes cast for this proposal
    */
-  yes: Proposal_proposal_votes_yes;
+  yes: Proposals_proposals_votes_yes;
   /**
    * No votes cast for this proposal
    */
-  no: Proposal_proposal_votes_no;
+  no: Proposals_proposals_votes_no;
 }
 
-export interface Proposal_proposal {
+export interface Proposals_proposals {
   __typename: "Proposal";
   /**
    * Proposal ID that is filled by VEGA once proposal reaches the network
@@ -472,26 +472,26 @@ export interface Proposal_proposal {
    */
   rejectionReason: ProposalRejectionReason | null;
   /**
+   * Error details of the rejectionReason
+   */
+  errorDetails: string | null;
+  /**
    * Party that prepared the proposal
    */
-  party: Proposal_proposal_party;
+  party: Proposals_proposals_party;
   /**
    * Terms of the proposal
    */
-  terms: Proposal_proposal_terms;
+  terms: Proposals_proposals_terms;
   /**
    * Votes cast for this proposal
    */
-  votes: Proposal_proposal_votes;
+  votes: Proposals_proposals_votes;
 }
 
-export interface Proposal {
+export interface Proposals {
   /**
-   * A governance proposal located by either its id or reference. If both are set, id is used.
+   * All governance proposals in the VEGA network
    */
-  proposal: Proposal_proposal;
-}
-
-export interface ProposalVariables {
-  proposalId: string;
+  proposals: Proposals_proposals[] | null;
 }

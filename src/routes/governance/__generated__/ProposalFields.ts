@@ -472,6 +472,10 @@ export interface ProposalFields {
    */
   rejectionReason: ProposalRejectionReason | null;
   /**
+   * Error details of the rejectionReason
+   */
+  errorDetails: string | null;
+  /**
    * Party that prepared the proposal
    */
   party: ProposalFields_party;
