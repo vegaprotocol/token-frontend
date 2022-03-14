@@ -6,7 +6,7 @@ import {
   KeyValueTableRow,
 } from "../../../../components/key-value-table";
 import { DATE_FORMAT_DETAILED } from "../../../../lib/date-formats";
-import { Proposals_proposals } from "../../__generated__/Proposals";
+import { Proposals_proposals } from "../../proposals/__generated__/Proposals";
 import { CurrentProposalState } from "../current-proposal-state";
 
 interface ProposalChangeTableProps {
@@ -19,7 +19,7 @@ export const ProposalChangeTable = ({ proposal }: ProposalChangeTableProps) => {
   const terms = proposal.terms;
 
   return (
-    <KeyValueTable muted={true}>
+    <KeyValueTable muted={true} data-testid="proposal-change-table">
       <KeyValueTableRow>
         <th>{t("id")}</th>
         <td>{proposal.id}</td>
@@ -62,6 +62,12 @@ export const ProposalChangeTable = ({ proposal }: ProposalChangeTableProps) => {
         <KeyValueTableRow>
           <th>{t("rejectionReason")}</th>
           <td>{proposal.rejectionReason}</td>
+        </KeyValueTableRow>
+      ) : null}
+      {proposal.errorDetails ? (
+        <KeyValueTableRow>
+          <th>{t("errorDetails")}</th>
+          <td>{proposal.errorDetails}</td>
         </KeyValueTableRow>
       ) : null}
       <KeyValueTableRow>
