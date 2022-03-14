@@ -4,7 +4,9 @@ import { formatDistanceToNow } from "date-fns";
 import { useTranslation } from "react-i18next";
 
 import { ProposalState } from "../../../../__generated__/globalTypes";
+import { useVegaUser } from "../../../../hooks/use-vega-user";
 import { formatNumber } from "../../../../lib/format-number";
+import { ConnectToVega } from "../../../staking/connect-to-vega";
 import { Proposal_proposal } from "../../__generated__/Proposal";
 import { useVoteInformation } from "../../hooks";
 import { CurrentProposalStatus } from "../current-proposal-status";
@@ -17,6 +19,7 @@ interface VoteDetailsProps {
 }
 
 export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
+  const { currVegaKey } = useVegaUser();
   const {
     totalTokensPercentage,
     participationMet,
@@ -102,13 +105,19 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
           {t("governanceRequired")})
         </span>
       </p>
-      <h3>{t("yourVote")}</h3>
-      <VoteButtonsContainer
-        voteState={voteState}
-        castVote={castVote}
-        voteDatetime={voteDatetime}
-        proposalState={proposal.state}
-      />
+      {currVegaKey ? (
+        <>
+          <h3>{t("yourVote")}</h3>
+          <VoteButtonsContainer
+            voteState={voteState}
+            castVote={castVote}
+            voteDatetime={voteDatetime}
+            proposalState={proposal.state}
+          />
+        </>
+      ) : (
+        <ConnectToVega />
+      )}
     </section>
   );
 };
