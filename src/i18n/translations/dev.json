@@ -526,5 +526,19 @@
   "networkRestoring": "The network is less than {{bootstrapBlockCount}} blocks old, it could be in the process of restoring from a checkpoint",
   "type": "Type",
   "rejectionReason": "Rejection Reason",
-  "reference": "Reference"
+  "reference": "Reference",
+  "voteBreakdown": "Vote breakdown",
+  "willPass": "Will pass",
+  "majorityMet": "Majority met",
+  "participationMet": "Participation met",
+  "tokenForProposal": "Tokens for proposal",
+  "tokensAgainstProposal": "Tokens against proposal",
+  "participationRequired": "Participation required",
+  "numberOfVotingParties": "Number of voting parties",
+  "totalTokensVotes": "Total yes tokens",
+  "totalTokenVotedPercentage": "Total tokens voted percentage",
+  "numberOfForVotes": "Number of for votes",
+  "numberOfAgainstVotes": "Number of against votes",
+  "yesPercentage": "Yes percentage",
+  "noPercentage": "No percentage"
 }

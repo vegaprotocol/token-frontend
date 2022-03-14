@@ -33,6 +33,7 @@ export const ProposalVotesTable = ({ proposal }: ProposalVotesTableProps) => {
 
   return (
     <KeyValueTable
+      title={t("voteBreakdown")}
       numerical={true}
       muted={true}
       data-testid="proposal-votes-table"
@@ -75,7 +76,7 @@ export const ProposalVotesTable = ({ proposal }: ProposalVotesTableProps) => {
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("totalTokenVotedPercentage")}</th>
-        <td>{formatNumber(totalTokensPercentage, 2)}</td>
+        <td>{formatNumber(totalTokensPercentage, 2)}%</td>
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("numberOfForVotes")}</th>
@@ -87,11 +88,11 @@ export const ProposalVotesTable = ({ proposal }: ProposalVotesTableProps) => {
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("yesPercentage")}</th>
-        <td>{formatNumber(yesPercentage, 2)}</td>
+        <td>{formatNumber(yesPercentage, 2)}%</td>
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>{t("noPercentage")}</th>
-        <td>{formatNumber(noPercentage, 2)}</td>
+        <td>{formatNumber(noPercentage, 2)}%</td>
       </KeyValueTableRow>
     </KeyValueTable>
   );
