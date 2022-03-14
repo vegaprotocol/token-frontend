@@ -1,0 +1,151 @@
+{
+  "uid" : "efa83d903e78983f",
+  "name" : "Navigate to governance proposals page via button link on homepage body",
+  "fullName" : "Homepage.Navigate to governance proposals page via button link on homepage body",
+  "historyId" : "5e75bc84a209a21f0887a6dfbf578ed6",
+  "time" : {
+    "start" : 1647272224847,
+    "stop" : 1647272227449,
+    "duration" : 2602
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1647272224848,
+        "stop" : 1647272225315,
+        "duration" : 467
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When I click on the governance proposals button",
+      "time" : {
+        "start" : 1647272225315,
+        "stop" : 1647272226285,
+        "duration" : 970
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I am taken to the \"governance\" page",
+      "time" : {
+        "start" : 1647272226285,
+        "stop" : 1647272227449,
+        "duration" : 1164
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Navigate to governance proposals page via button link on homepage body"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 4,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "29b75b5253d9628",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/125//#testresult/29b75b5253d9628",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647264381280,
+          "stop" : 1647264386046,
+          "duration" : 4766
+        }
+      }, {
+        "uid" : "6510f15f005e0497",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/124//#testresult/6510f15f005e0497",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647252252028,
+          "stop" : 1647252254986,
+          "duration" : 2958
+        }
+      }, {
+        "uid" : "81657e16201b9998",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/123//#testresult/81657e16201b9998",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647013750411,
+          "stop" : 1647013752548,
+          "duration" : 2137
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "efa83d903e78983f.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
