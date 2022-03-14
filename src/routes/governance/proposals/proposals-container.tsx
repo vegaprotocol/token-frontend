@@ -6,11 +6,11 @@ import orderBy from "lodash/orderBy";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { SplashLoader } from "../../components/splash-loader";
-import { SplashScreen } from "../../components/splash-screen";
-import { Proposals } from "./__generated__/Proposals";
-import { ProposalsList } from "./components/proposals-list";
-import { PROPOSALS_FRAGMENT } from "./proposal-fragment";
+import { SplashLoader } from "../../../components/splash-loader";
+import { SplashScreen } from "../../../components/splash-screen";
+import { Proposals } from "../__generated__/Proposals";
+import { ProposalsList } from "../components/proposals-list";
+import { PROPOSALS_FRAGMENT } from "../proposal-fragment";
 
 export const PROPOSALS_QUERY = gql`
   ${PROPOSALS_FRAGMENT}

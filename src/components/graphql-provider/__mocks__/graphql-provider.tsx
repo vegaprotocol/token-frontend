@@ -12,8 +12,8 @@ import { NetworkParams } from "../../../hooks/__generated__/NetworkParams";
 import { NETWORK_PARAMS_QUERY } from "../../../hooks/use-network-param";
 import { Proposal } from "../../../routes/governance/__generated__/Proposal";
 import { Proposals } from "../../../routes/governance/__generated__/Proposals";
-import { PROPOSAL_QUERY } from "../../../routes/governance/components/proposal-container";
-import { PROPOSALS_QUERY } from "../../../routes/governance/proposals-container";
+import { PROPOSAL_QUERY } from "../../../routes/governance/proposal";
+import { PROPOSALS_QUERY } from "../../../routes/governance/proposals";
 import {
   generateNoVotes,
   generateProposal,

@@ -3,14 +3,14 @@ import { Callout } from "@vegaprotocol/ui-toolkit";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
-import { SplashLoader } from "../../../../components/splash-loader";
-import { SplashScreen } from "../../../../components/splash-screen";
+import { SplashLoader } from "../../../components/splash-loader";
+import { SplashScreen } from "../../../components/splash-screen";
 import {
   Proposal as ProposalQueryResult,
   ProposalVariables,
-} from "../../__generated__/Proposal";
-import { PROPOSALS_FRAGMENT } from "../../proposal-fragment";
-import { Proposal } from "../proposal/proposal";
+} from "../__generated__/Proposal";
+import { Proposal } from "../components/proposal";
+import { PROPOSALS_FRAGMENT } from "../proposal-fragment";
 
 export const PROPOSAL_QUERY = gql`
   ${PROPOSALS_FRAGMENT}

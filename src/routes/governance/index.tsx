@@ -4,8 +4,8 @@ import { Route, Switch, useRouteMatch } from "react-router-dom";
 
 import { useDocumentTitle } from "../../hooks/use-document-title";
 import { RouteChildProps } from "..";
-import { ProposalContainer } from "./components/proposal-container";
-import { ProposalsContainer } from "./proposals-container";
+import { ProposalContainer } from "./proposal";
+import { ProposalsContainer } from "./proposals";
 
 const GovernanceRouter = ({ name }: RouteChildProps) => {
   const match = useRouteMatch();
