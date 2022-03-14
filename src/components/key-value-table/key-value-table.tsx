@@ -22,6 +22,7 @@ export const KeyValueTable = ({
     <React.Fragment>
       {title && <h3 className="key-value-table__header">{title}</h3>}
       <table
+        data-testid="key-value-table"
         {...rest}
         className={`key-value-table ${className ? className : ""} ${
           numerical ? "key-value-table--numerical" : ""
