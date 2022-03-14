@@ -1,12 +1,12 @@
 import { captureException, captureMessage } from "@sentry/minimal";
 import * as React from "react";
 
-import { VoteValue } from "../../__generated__/globalTypes";
-import { useAppState } from "../../contexts/app-state/app-state-context";
+import { VoteValue } from "../../../../__generated__/globalTypes";
+import { useAppState } from "../../../../contexts/app-state/app-state-context";
 import {
   vegaWalletService,
   VoteSubmissionInput,
-} from "../../lib/vega-wallet/vega-wallet-service";
+} from "../../../../lib/vega-wallet/vega-wallet-service";
 import { VOTE_VALUE_MAP } from "./vote-types";
 
 export type Vote = {

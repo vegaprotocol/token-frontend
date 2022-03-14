@@ -3,11 +3,11 @@ import "./vote-details.scss";
 import { formatDistanceToNow } from "date-fns";
 import { useTranslation } from "react-i18next";
 
-import { ProposalState } from "../../__generated__/globalTypes";
-import { formatNumber } from "../../lib/format-number";
-import { Proposal_proposal } from "./__generated__/Proposal";
-import { CurrentProposalStatus } from "./current-proposal-status";
-import { useVoteInformation } from "./hooks";
+import { ProposalState } from "../../../../__generated__/globalTypes";
+import { formatNumber } from "../../../../lib/format-number";
+import { Proposal_proposal } from "../../__generated__/Proposal";
+import { useVoteInformation } from "../../hooks";
+import { CurrentProposalStatus } from "../current-proposal-status";
 import { useUserVote } from "./use-user-vote";
 import { VoteButtonsContainer } from "./vote-buttons";
 import { VoteProgress } from "./vote-progress";

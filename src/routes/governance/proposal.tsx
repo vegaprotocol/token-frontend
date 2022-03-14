@@ -1,9 +1,9 @@
 import { Heading } from "../../components/heading";
 import { getProposalName } from "../../lib/type-policies/proposal";
 import { Proposal_proposal } from "./__generated__/Proposal";
-import { NetworkChange } from "./network-change";
+import { ProposalChangeTable } from "./components/proposal-change-table";
+import { VoteDetails } from "./components/vote-details";
 import { ProposalTermsJson } from "./proposal-terms-json";
-import { VoteDetails } from "./vote-details";
 
 interface ProposalProps {
   proposal: Proposal_proposal;
@@ -17,7 +17,7 @@ export const Proposal = ({ proposal }: ProposalProps) => {
   return (
     <>
       <Heading title={getProposalName(proposal.terms.change)} />
-      <NetworkChange proposal={proposal} />
+      <ProposalChangeTable proposal={proposal} />
       <VoteDetails proposal={proposal} />
       <ProposalTermsJson proposal={proposal} />
     </>

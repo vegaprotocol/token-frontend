@@ -1,22 +1,25 @@
 import "./vote-buttons.scss";
 
-import { gql,useQuery } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import { format } from "date-fns";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 
-import { ProposalState, VoteValue } from "../../__generated__/globalTypes";
+import {
+  ProposalState,
+  VoteValue,
+} from "../../../../__generated__/globalTypes";
 import {
   AppStateActionType,
   useAppState,
-} from "../../contexts/app-state/app-state-context";
-import { useVegaUser } from "../../hooks/use-vega-user";
-import { BigNumber } from "../../lib/bignumber";
-import { DATE_FORMAT_LONG } from "../../lib/date-formats";
+} from "../../../../contexts/app-state/app-state-context";
+import { useVegaUser } from "../../../../hooks/use-vega-user";
+import { BigNumber } from "../../../../lib/bignumber";
+import { DATE_FORMAT_LONG } from "../../../../lib/date-formats";
 import {
   VoteButtons as VoteButtonsQueryResult,
   VoteButtonsVariables,
-} from "./__generated__/VoteButtons";
+} from "../../__generated__/VoteButtons";
 import { VoteState } from "./use-user-vote";
 
 interface VoteButtonsContainerProps {
