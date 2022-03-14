@@ -3,6 +3,7 @@ import { getProposalName } from "../../../../lib/type-policies/proposal";
 import { Proposal_proposal } from "../../__generated__/Proposal";
 import { ProposalChangeTable } from "../proposal-change-table";
 import { ProposalTermsJson } from "../proposal-terms-json";
+import { ProposalVotesTable } from "../proposal-votes-table";
 import { VoteDetails } from "../vote-details";
 
 interface ProposalProps {
@@ -19,6 +20,7 @@ export const Proposal = ({ proposal }: ProposalProps) => {
       <Heading title={getProposalName(proposal.terms.change)} />
       <ProposalChangeTable proposal={proposal} />
       <VoteDetails proposal={proposal} />
+      <ProposalVotesTable proposal={proposal} />
       <ProposalTermsJson proposal={proposal} />
     </>
   );

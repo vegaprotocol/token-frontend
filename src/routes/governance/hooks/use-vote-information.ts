@@ -168,8 +168,13 @@ export const useVoteInformation = ({
     yesPercentage,
     noTokens,
     yesTokens,
+    yesVotes: new BigNumber(proposal.votes.yes.totalNumber),
+    noVotes: new BigNumber(proposal.votes.no.totalNumber),
+    totalVotes: new BigNumber(proposal.votes.yes.totalNumber).plus(
+      proposal.votes.no.totalNumber
+    ),
     requiredMajorityPercentage,
-    requiredParticipation,
+    requiredParticipation: new BigNumber(requiredParticipation).times(100),
     majorityMet,
   };
 };

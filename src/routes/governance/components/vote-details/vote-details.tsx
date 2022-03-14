@@ -98,12 +98,8 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
         {formatNumber(totalTokensVoted, defaultDecimals)}{" "}
         {formatNumber(totalTokensPercentage, defaultDecimals)}%
         <span className="vote-details__required-participation text-muted">
-          (
-          {formatNumber(
-            requiredParticipation.multipliedBy(100),
-            defaultDecimals
-          )}
-          % {t("governanceRequired")})
+          ({formatNumber(requiredParticipation, defaultDecimals)}%{" "}
+          {t("governanceRequired")})
         </span>
       </p>
       <h3>{t("yourVote")}</h3>
