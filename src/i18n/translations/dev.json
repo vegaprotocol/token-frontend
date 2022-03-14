@@ -540,5 +540,6 @@
   "numberOfForVotes": "Number of for votes",
   "numberOfAgainstVotes": "Number of against votes",
   "yesPercentage": "Yes percentage",
-  "noPercentage": "No percentage"
+  "noPercentage": "No percentage",
+  "proposalTerms": "Proposal terms"
 }
