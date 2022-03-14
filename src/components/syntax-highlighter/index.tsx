@@ -42,7 +42,11 @@ const removeTypename = (data: object): any => {
 export const SyntaxHighlighter = ({ data }: { data: object }) => {
   const filteredData = React.useMemo(() => removeTypename(data), [data]);
   return (
-    <Highlighter language="json" style={vegaJsonTheme}>
+    <Highlighter
+      language="json"
+      style={vegaJsonTheme}
+      data-testid="syntax-highlighter"
+    >
       {JSON.stringify(filteredData, null, "  ")}
     </Highlighter>
   );
