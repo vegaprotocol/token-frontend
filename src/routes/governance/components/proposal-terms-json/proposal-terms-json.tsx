@@ -1,15 +1,15 @@
 import { SyntaxHighlighter } from "../../../../components/syntax-highlighter";
-import { Proposal_proposal } from "../../__generated__/Proposal";
+import { RestProposalResponse } from "../../proposal/proposal-container";
 
 export const ProposalTermsJson = ({
-  proposal,
+  terms,
 }: {
-  proposal: Proposal_proposal;
+  terms: RestProposalResponse;
 }) => {
   return (
     <section>
       <h2>Proposal Terms</h2>
-      <SyntaxHighlighter data={proposal.terms.change} />
+      <SyntaxHighlighter data={terms} />
     </section>
   );
 };
