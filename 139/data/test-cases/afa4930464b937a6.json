@@ -1,0 +1,190 @@
+{
+  "uid" : "afa4930464b937a6",
+  "name" : "Can navigate to Rewards page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Rewards page using main nav tab",
+  "historyId" : "e5c128f7a5a71120ad145bc26baf6de1",
+  "time" : {
+    "start" : 1647359129211,
+    "stop" : 1647359132339,
+    "duration" : 3128
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1647359129211,
+        "stop" : 1647359130548,
+        "duration" : 1337
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "854b9146b2561764",
+        "name" : "Screenshot",
+        "source" : "854b9146b2561764.png",
+        "type" : "image/png",
+        "size" : 322187
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on \"Rewards\" on main nav",
+      "time" : {
+        "start" : 1647359130548,
+        "stop" : 1647359131159,
+        "duration" : 611
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "d3f0367c635e86ca",
+        "name" : "Screenshot",
+        "source" : "d3f0367c635e86ca.png",
+        "type" : "image/png",
+        "size" : 187669
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I can see \"Rewards\" button is clearly highlighted after click",
+      "time" : {
+        "start" : 1647359131159,
+        "stop" : 1647359131896,
+        "duration" : 737
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "51146e28bb825b4b",
+        "name" : "Screenshot",
+        "source" : "51146e28bb825b4b.png",
+        "type" : "image/png",
+        "size" : 224660
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I am taken to the \"rewards\" page",
+      "time" : {
+        "start" : 1647359131896,
+        "stop" : 1647359132339,
+        "duration" : 443
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "af34224a949274db",
+        "name" : "Screenshot",
+        "source" : "af34224a949274db.png",
+        "type" : "image/png",
+        "size" : 224660
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Rewards page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 4,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "cddab2de22da4593",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/138//#testresult/cddab2de22da4593",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647357055963,
+          "stop" : 1647357058916,
+          "duration" : 2953
+        }
+      }, {
+        "uid" : "db8e4fbae9d72b0a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/137//#testresult/db8e4fbae9d72b0a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647356164135,
+          "stop" : 1647356166316,
+          "duration" : 2181
+        }
+      }, {
+        "uid" : "5160a87d0400b661",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/136//#testresult/5160a87d0400b661",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647354978167,
+          "stop" : 1647354981922,
+          "duration" : 3755
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "afa4930464b937a6.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

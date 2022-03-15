@@ -1,0 +1,190 @@
+{
+  "uid" : "41560d7bb0d376b5",
+  "name" : "Can navigate to Governance page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Governance page using main nav tab",
+  "historyId" : "c75e45baee8ec9cdb17e5d4c32cacdf7",
+  "time" : {
+    "start" : 1647359122794,
+    "stop" : 1647359126379,
+    "duration" : 3585
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1647359122794,
+        "stop" : 1647359123512,
+        "duration" : 718
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "d9e4007f7aa28f4f",
+        "name" : "Screenshot",
+        "source" : "d9e4007f7aa28f4f.png",
+        "type" : "image/png",
+        "size" : 8696
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on \"Governance\" on main nav",
+      "time" : {
+        "start" : 1647359123512,
+        "stop" : 1647359124453,
+        "duration" : 941
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "5af6370fa260f9de",
+        "name" : "Screenshot",
+        "source" : "5af6370fa260f9de.png",
+        "type" : "image/png",
+        "size" : 188286
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I can see \"Governance\" button is clearly highlighted after click",
+      "time" : {
+        "start" : 1647359124453,
+        "stop" : 1647359125920,
+        "duration" : 1467
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "1fe159f327a0128e",
+        "name" : "Screenshot",
+        "source" : "1fe159f327a0128e.png",
+        "type" : "image/png",
+        "size" : 192690
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I am taken to the \"governance\" page",
+      "time" : {
+        "start" : 1647359125920,
+        "stop" : 1647359126378,
+        "duration" : 458
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "59378b30d7ea2d8c",
+        "name" : "Screenshot",
+        "source" : "59378b30d7ea2d8c.png",
+        "type" : "image/png",
+        "size" : 192690
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Governance page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 4,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "fc75a2819fb9f3df",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/138//#testresult/fc75a2819fb9f3df",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647357051302,
+          "stop" : 1647357053883,
+          "duration" : 2581
+        }
+      }, {
+        "uid" : "c3a7bf77e1295451",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/137//#testresult/c3a7bf77e1295451",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647356159562,
+          "stop" : 1647356162056,
+          "duration" : 2494
+        }
+      }, {
+        "uid" : "4fbca243bf11cfac",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/136//#testresult/4fbca243bf11cfac",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647354972492,
+          "stop" : 1647354975239,
+          "duration" : 2747
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "41560d7bb0d376b5.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
