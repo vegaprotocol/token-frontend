@@ -24,7 +24,8 @@ jobs:
         - name: Install
           run: npm install
         - name: Download wallet
-          run: curl -L https://github.com/vegaprotocol/vegawallet/releases/download/v${{ matrix.vegawallet-version }}/vegawallet-linux-amd64.zip -O
+          run: curl -L https://github.com/vegaprotocol/vegawallet/releases/download/v0.13.1/vegawallet-linux-amd64.zip -O
+          # run: curl -L https://github.com/vegaprotocol/vegawallet/releases/download/v${{ matrix.vegawallet-version }}/vegawallet-linux-amd64.zip -O
         - name: ls current
           run: ls
         - name: ls previous
