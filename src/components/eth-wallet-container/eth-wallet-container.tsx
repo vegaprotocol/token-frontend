@@ -24,6 +24,7 @@ export const EthWalletContainer = ({ children }: EthWalletContainerProps) => {
       <button
         className="eth-wallet-container fill"
         type="button"
+        data-testid="connect-to-eth-btn"
         onClick={() =>
           appDispatch({
             type: AppStateActionType.SET_ETH_WALLET_OVERLAY,

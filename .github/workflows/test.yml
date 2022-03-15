@@ -13,7 +13,6 @@ jobs:
     defaults:
       run:
         working-directory: automation
-    # if: ${{ contains(github.event.pull_request.labels.*.name, 'readyTest') }}/
     steps:
         - name: Checkout
           uses: actions/checkout@v2
@@ -25,19 +24,30 @@ jobs:
         - name: Install
           run: npm install
         # - name: Download wallet
-        #   run: curl -L https://github.com/vegaprotocol/vegawallet/releases/download/v${{ matrix.vegawallet-version }}/vegawallet-linux-amd64.zip -O
+        #   run: curl -L https://github.com/vegaprotocol/vegawallet/releases/download/v0.13.1/vegawallet-linux-amd64.zip -O
+        #   # run: curl -L https://github.com/vegaprotocol/vegawallet/releases/download/v${{ matrix.vegawallet-version }}/vegawallet-linux-amd64.zip -O
+        # - name: ls current
+        #   run: ls
+        # - name: ls previous
+        #   run: ls ..
         # - name: Unzip wallet
-        #   run: unzip ./vegawallet-linux-amd64.zip
+        #   run: unzip vegawallet-linux-amd64.zip
+        - name: Download and Unzip latest wallet
+          run: curl -s https://api.github.com/repos/vegaprotocol/vegawallet/releases/latest | awk -F\" '/browser_download_url.*linux-amd64.zip/{print $(NF-1)}' | xargs wget && unzip vegawallet-linux-amd64.zip && rm vegawallet-linux-amd64.zip
         - name: Initialize wallet
           run: ./vegawallet init -f
-        # - name: List keys
-        #   run: ./vegawallet key list 
+        - name: Create recovery phrase file
+          run: echo ${{ secrets.TEST_WALLET_RECOVERY }} > recovery-phrase.txt
+        - name: Create recovery phrase file
+          run: echo "dev12345" > passphrase.txt
+        - name: Import wallet
+          run: ./vegawallet import --wallet UI_TEST_1 --recovery-phrase-file recovery-phrase.txt --passphrase-file passphrase.txt 
         - name: Import config
           run: ./vegawallet network import --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml
         - name: List networks
           run: ./vegawallet network list
         - name: Start service
-          run: ./vegawallet service run --network fairground &
+          run: ./vegawallet service run --network fairground  &
         - name: 'BrowserStack Env Setup'  # Invokes the setup-env action
           uses: browserstack/github-actions/setup-env@master
           with:
@@ -94,12 +104,15 @@ jobs:
             PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             PUBLISH_BRANCH: gh-pages
             PUBLISH_DIR: automation/allure-history
-        - name: Post the link to the report in PR comment
-          uses: thollander/actions-comment-pull-request@v1
+        - name: Allure report location
           if: always()
-          with:
-            message: 'Link to report : https://vegaprotocol.github.io/token-frontend/${{ github.run_number }}'
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          run: echo "Link to report https://vegaprotocol.github.io/token-frontend/${{ github.run_number }}"
+        # - name: Post the link to the report in PR comment
+        #   uses: thollander/actions-comment-pull-request@v1
+        #   if: ${{ contains(github.event_name, 'pull_request') }}
+        #   with:
+        #     message: 'Link to report : https://vegaprotocol.github.io/token-frontend/${{ github.run_number }}'
+        #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         # - name: Post the link to the report in PR comment
         #   if: always()
         #   uses: Sibz/github-status-action@v1
