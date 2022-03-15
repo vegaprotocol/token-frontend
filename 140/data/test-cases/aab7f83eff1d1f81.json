@@ -1,0 +1,189 @@
+{
+  "uid" : "aab7f83eff1d1f81",
+  "name" : "Associate tokens through wallet",
+  "fullName" : "Staking page.Associate tokens through wallet",
+  "historyId" : "702a46c3c9200ee604094906aa343264",
+  "time" : {
+    "start" : 1647367779752,
+    "stop" : 1647367814171,
+    "duration" : 34419
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+  "statusTrace" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:14:54)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+    "statusTrace" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:14:54)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1647367779752,
+        "stop" : 1647367781340,
+        "duration" : 1588
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "b56ac593c1ad9218",
+        "name" : "Screenshot",
+        "source" : "b56ac593c1ad9218.png",
+        "type" : "image/png",
+        "size" : 261769
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I connect to the vega wallet",
+      "time" : {
+        "start" : 1647367781340,
+        "stop" : 1647367783305,
+        "duration" : 1965
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "2ab3ac78ab71c484",
+        "name" : "Screenshot",
+        "source" : "2ab3ac78ab71c484.png",
+        "type" : "image/png",
+        "size" : 263110
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I associate some tokens from wallet",
+      "time" : {
+        "start" : 1647367783305,
+        "stop" : 1647367814171,
+        "duration" : 30866
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:14:54)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "76f57c2522ddb897",
+        "name" : "Screenshot",
+        "source" : "76f57c2522ddb897.png",
+        "type" : "image/png",
+        "size" : 334087
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking page"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Associate tokens through wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 2,
+        "unknown" : 0,
+        "total" : 5
+      },
+      "items" : [ {
+        "uid" : "dad8c989d97a62fd",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/139//#testresult/dad8c989d97a62fd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647359215847,
+          "stop" : 1647359234519,
+          "duration" : 18672
+        }
+      }, {
+        "uid" : "ff6f357b9bbc83ce",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/138//#testresult/ff6f357b9bbc83ce",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647357146919,
+          "stop" : 1647357161418,
+          "duration" : 14499
+        }
+      }, {
+        "uid" : "120723ebee049959",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/137//#testresult/120723ebee049959",
+        "status" : "broken",
+        "statusDetails" : "Step \"I connect hosted wallet\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.",
+        "time" : {
+          "start" : 1647356278467,
+          "stop" : 1647356281998,
+          "duration" : 3531
+        }
+      }, {
+        "uid" : "efca5c78820f71ed",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/136//#testresult/efca5c78820f71ed",
+        "status" : "broken",
+        "statusDetails" : "Step \"I connect hosted wallet\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.",
+        "time" : {
+          "start" : 1647355052498,
+          "stop" : 1647355053713,
+          "duration" : 1215
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "aab7f83eff1d1f81.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
