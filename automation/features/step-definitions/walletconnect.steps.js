@@ -14,7 +14,7 @@ Then(/^I can see my ethereum key (.*) is shown$/,  (ethKey) => {
     
 });
 
-When(/^I connect hosted wallet$/,()=>{
+When(/^I connect to the vega wallet$/,()=>{
   $('[data-test-id="connect-to-vega-wallet-btn"]').waitForDisplayed({timeout:10000,timeoutMsg:"connect to vega wallet did not display"})
   $('[data-test-id="connect-to-vega-wallet-btn"]').click()
   browser.getByTestId('wallet-name').waitForDisplayed({timeout:10000,timeoutMsg:"wallet name field not displayed"})
