@@ -29,8 +29,12 @@ jobs:
         #   run: unzip ./vegawallet-linux-amd64.zip
         - name: Initialize wallet
           run: ./vegawallet init -f
-        - name: List keys
-          run: ./vegawallet list 
+        - name: Create recovery phrase file
+          run: echo "feel aisle depend tower spell loan benefit stock office usual gallery kick mechanic tumble dad poem meat marine knock call border dismiss permit nominee" > recovery-phrase.txt
+        - name: Create recovery phrase file
+          run: echo "dev12345" > passphrase.txt
+        - name: Import wallet
+          run: ./vegawallet import --wallet UI_TEST_1 --recovery-phrase-file recovery-phrase.txt --passphrase-file passphrase.txt 
         - name: Import config
           run: ./vegawallet network import --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml
         - name: List networks
