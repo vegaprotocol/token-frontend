@@ -7,7 +7,7 @@ Feature: Staking page
 
     Scenario: Associate tokens through wallet
       Given I navigate to "staking" page
-      When I connect hosted wallet
+      When I connect to the vega wallet
       And I associate some tokens from wallet
       Then I can see the pending transactions button is shown
 
@@ -19,14 +19,14 @@ Feature: Staking page
   @ignore
     Scenario: Go to staking page
     Given I connect my ethereum wallet
-    Given I connect Vega wallet
+    Given I connect to the vega wallet
     Given I navigate to "staking" page
     Then I can see the validator node list
 
   @todo
     Scenario: Click through to a staking node page
     Given I navigate to '/staking' page
-    And I connect to wallet vega
+    And I connect to the vega wallet
     Then I can see the validator node list
     And I click on a validator from the list
     Then the validator node page is displayed "node-1-name"
@@ -37,7 +37,7 @@ Feature: Staking page
   @todo
    Scenario: Remove stake at next epoch
     Given I navigate to '/staking' page
-    And I connect to wallet vega
+    And I connect to the vega wallet
     And I click on a validator from the list
     When I click on the remove radio button
     Then the token amount field is shown
