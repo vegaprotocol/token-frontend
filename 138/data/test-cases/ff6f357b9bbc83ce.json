@@ -1,0 +1,183 @@
+{
+  "uid" : "ff6f357b9bbc83ce",
+  "name" : "Associate tokens through wallet",
+  "fullName" : "Staking page.Associate tokens through wallet",
+  "historyId" : "702a46c3c9200ee604094906aa343264",
+  "time" : {
+    "start" : 1647357146919,
+    "stop" : 1647357161418,
+    "duration" : 14499
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1647357146919,
+        "stop" : 1647357148340,
+        "duration" : 1421
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "9ff87d75e632884d",
+        "name" : "Screenshot",
+        "source" : "9ff87d75e632884d.png",
+        "type" : "image/png",
+        "size" : 405611
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I connect to the vega wallet",
+      "time" : {
+        "start" : 1647357148340,
+        "stop" : 1647357150657,
+        "duration" : 2317
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "d512dbb2f880efe3",
+        "name" : "Screenshot",
+        "source" : "d512dbb2f880efe3.png",
+        "type" : "image/png",
+        "size" : 263456
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I associate some tokens from wallet",
+      "time" : {
+        "start" : 1647357150657,
+        "stop" : 1647357160638,
+        "duration" : 9981
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "f7f77683e1046d15",
+        "name" : "Screenshot",
+        "source" : "f7f77683e1046d15.png",
+        "type" : "image/png",
+        "size" : 245916
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the pending transactions button is shown",
+      "time" : {
+        "start" : 1647357160638,
+        "stop" : 1647357161418,
+        "duration" : 780
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "651de711ef5ba3ce",
+        "name" : "Screenshot",
+        "source" : "651de711ef5ba3ce.png",
+        "type" : "image/png",
+        "size" : 245894
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking page"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Associate tokens through wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "120723ebee049959",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/137//#testresult/120723ebee049959",
+        "status" : "broken",
+        "statusDetails" : "Step \"I connect hosted wallet\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.",
+        "time" : {
+          "start" : 1647356278467,
+          "stop" : 1647356281998,
+          "duration" : 3531
+        }
+      }, {
+        "uid" : "efca5c78820f71ed",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/136//#testresult/efca5c78820f71ed",
+        "status" : "broken",
+        "statusDetails" : "Step \"I connect hosted wallet\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.",
+        "time" : {
+          "start" : 1647355052498,
+          "stop" : 1647355053713,
+          "duration" : 1215
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "ff6f357b9bbc83ce.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
