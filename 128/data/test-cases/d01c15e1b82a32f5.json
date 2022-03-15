@@ -1,0 +1,160 @@
+{
+  "uid" : "d01c15e1b82a32f5",
+  "name" : "Prompt to connect to eth wallet to claim if not connected",
+  "fullName" : "Claim codes.Prompt to connect to eth wallet to claim if not connected",
+  "historyId" : "fe146ac841243977d1a34bcefd87d344",
+  "time" : {
+    "start" : 1647349778656,
+    "stop" : 1647349782572,
+    "duration" : 3916
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"claim?r=odiuhfn\" page",
+      "time" : {
+        "start" : 1647349778659,
+        "stop" : 1647349780382,
+        "duration" : 1723
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "e0eabf8418053c95",
+        "name" : "Screenshot",
+        "source" : "e0eabf8418053c95.png",
+        "type" : "image/png",
+        "size" : 8734
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the error message when not connected to eth wallet on claims page \"Connect to the Ethereum wallet that holds your $VEGA tokens to see what can be redeemed from vesting tranches. To redeem tokens you will need some ETH to pay gas fees.\"",
+      "time" : {
+        "start" : 1647349780382,
+        "stop" : 1647349782097,
+        "duration" : 1715
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "af9d04d1c53b5219",
+        "name" : "Screenshot",
+        "source" : "af9d04d1c53b5219.png",
+        "type" : "image/png",
+        "size" : 359573
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And the connect to ethereum button is visible",
+      "time" : {
+        "start" : 1647349782097,
+        "stop" : 1647349782571,
+        "duration" : 474
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "30301a4183187f2f",
+        "name" : "Screenshot",
+        "source" : "30301a4183187f2f.png",
+        "type" : "image/png",
+        "size" : 359573
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-0"
+  }, {
+    "name" : "suite",
+    "value" : "Claim codes"
+  }, {
+    "name" : "testClass",
+    "value" : "Claim codes"
+  }, {
+    "name" : "testMethod",
+    "value" : "Prompt to connect to eth wallet to claim if not connected"
+  }, {
+    "name" : "package",
+    "value" : "Claim codes"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 3,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "30e98f5710ece05e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/127//#testresult/30e98f5710ece05e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647344570537,
+          "stop" : 1647344574457,
+          "duration" : 3920
+        }
+      }, {
+        "uid" : "a7d87236fff5558",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/123//#testresult/a7d87236fff5558",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647013633558,
+          "stop" : 1647013637126,
+          "duration" : 3568
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "d01c15e1b82a32f5.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

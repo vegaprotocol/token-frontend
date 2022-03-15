@@ -1,0 +1,208 @@
+{
+  "uid" : "7efbf02bf2b733c3",
+  "name" : "Can navigate to Withdraw page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Withdraw page using main nav tab",
+  "historyId" : "79fd1594428f09390ba7229044b87ba2",
+  "time" : {
+    "start" : 1647349895708,
+    "stop" : 1647349897933,
+    "duration" : 2225
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1647349895708,
+        "stop" : 1647349896458,
+        "duration" : 750
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "2c6dd21c470cda66",
+        "name" : "Screenshot",
+        "source" : "2c6dd21c470cda66.png",
+        "type" : "image/png",
+        "size" : 375806
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on \"Withdraw\" on main nav",
+      "time" : {
+        "start" : 1647349896458,
+        "stop" : 1647349897200,
+        "duration" : 742
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "f2f42aa2ad605ce8",
+        "name" : "Screenshot",
+        "source" : "f2f42aa2ad605ce8.png",
+        "type" : "image/png",
+        "size" : 229440
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I can see \"Withdraw\" button is clearly highlighted after click",
+      "time" : {
+        "start" : 1647349897200,
+        "stop" : 1647349897635,
+        "duration" : 435
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "7d4b9aa4f76b1b2a",
+        "name" : "Screenshot",
+        "source" : "7d4b9aa4f76b1b2a.png",
+        "type" : "image/png",
+        "size" : 229440
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I am taken to the \"withdraw\" page",
+      "time" : {
+        "start" : 1647349897635,
+        "stop" : 1647349897932,
+        "duration" : 297
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "5d1805cd123c2078",
+        "name" : "Screenshot",
+        "source" : "5d1805cd123c2078.png",
+        "type" : "image/png",
+        "size" : 229440
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Withdraw page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 6,
+        "unknown" : 0,
+        "total" : 6
+      },
+      "items" : [ {
+        "uid" : "a118ad1a89375251",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/127//#testresult/a118ad1a89375251",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647344706511,
+          "stop" : 1647344708216,
+          "duration" : 1705
+        }
+      }, {
+        "uid" : "68a2276921b21123",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/126//#testresult/68a2276921b21123",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647272239885,
+          "stop" : 1647272242185,
+          "duration" : 2300
+        }
+      }, {
+        "uid" : "775f3e4961f773bc",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/125//#testresult/775f3e4961f773bc",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647264407019,
+          "stop" : 1647264409080,
+          "duration" : 2061
+        }
+      }, {
+        "uid" : "ccd130165295bde1",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/124//#testresult/ccd130165295bde1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647252275073,
+          "stop" : 1647252278441,
+          "duration" : 3368
+        }
+      }, {
+        "uid" : "5c0d5d6706f490d7",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/123//#testresult/5c0d5d6706f490d7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647013766885,
+          "stop" : 1647013769217,
+          "duration" : 2332
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "7efbf02bf2b733c3.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
