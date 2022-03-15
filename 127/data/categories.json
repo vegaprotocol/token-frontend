@@ -1,0 +1,39 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+      "children" : [ {
+        "name" : "Associate tokens through wallet",
+        "uid" : "fa9120392949a665",
+        "parentUid" : "aef2bce83297108812b54de1eca2d273",
+        "status" : "broken",
+        "time" : {
+          "start" : 1647344785699,
+          "stop" : 1647344820085,
+          "duration" : 34386
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      }, {
+        "name" : "Use maximum button on associate from wallet enters correct amount",
+        "uid" : "69c46bedbf0b7e40",
+        "parentUid" : "aef2bce83297108812b54de1eca2d273",
+        "status" : "broken",
+        "time" : {
+          "start" : 1647344820086,
+          "stop" : 1647344852208,
+          "duration" : 32122
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "aef2bce83297108812b54de1eca2d273"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
+  "name" : "categories"
+}
