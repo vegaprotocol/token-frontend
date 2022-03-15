@@ -22,7 +22,7 @@ When(/^I associate some tokens from wallet$/,()=>{
     browser.switchWindow("MetaMask Notification");
     $('button=Confirm').click()
     browser.switchWindow("VEGA");
-    browser.pause(3000)
+    browser.pause(2000)
 })
 
 When(/^I can see the pending transactions button is shown$/,()=>{
