@@ -23,15 +23,17 @@ jobs:
           run: npm run yarn:install:deps
         - name: Install
           run: npm install
-        - name: Download wallet
-          run: curl -L https://github.com/vegaprotocol/vegawallet/releases/download/v0.13.1/vegawallet-linux-amd64.zip -O
-          # run: curl -L https://github.com/vegaprotocol/vegawallet/releases/download/v${{ matrix.vegawallet-version }}/vegawallet-linux-amd64.zip -O
-        - name: ls current
-          run: ls
-        - name: ls previous
-          run: ls ..
-        - name: Unzip wallet
-          run: unzip vegawallet-linux-amd64.zip
+        # - name: Download wallet
+        #   run: curl -L https://github.com/vegaprotocol/vegawallet/releases/download/v0.13.1/vegawallet-linux-amd64.zip -O
+        #   # run: curl -L https://github.com/vegaprotocol/vegawallet/releases/download/v${{ matrix.vegawallet-version }}/vegawallet-linux-amd64.zip -O
+        # - name: ls current
+        #   run: ls
+        # - name: ls previous
+        #   run: ls ..
+        # - name: Unzip wallet
+        #   run: unzip vegawallet-linux-amd64.zip
+        - name: Download and Unzip latest wallet
+          run: curl -s https://api.github.com/repos/vegaprotocol/vegawallet/releases/latest | awk -F\" '/browser_download_url.*linux-amd64.zip/{print $(NF-1)}' | xargs wget && unzip vegawallet-linux-amd64.zip && rm vegawallet-linux-amd64.zip
         - name: Initialize wallet
           run: ./vegawallet init -f
         - name: Create recovery phrase file
