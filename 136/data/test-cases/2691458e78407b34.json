@@ -1,0 +1,173 @@
+{
+  "uid" : "2691458e78407b34",
+  "name" : "Homepage displays correct information",
+  "fullName" : "Homepage.Homepage displays correct information",
+  "historyId" : "3e1a9b6fd96622225400d11d3b5c3ffc",
+  "time" : {
+    "start" : 1647354926831,
+    "stop" : 1647354953258,
+    "duration" : 26427
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1647354926833,
+        "stop" : 1647354931239,
+        "duration" : 4406
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "435efe5e06be96ff",
+        "name" : "Screenshot",
+        "source" : "435efe5e06be96ff.png",
+        "type" : "image/png",
+        "size" : 8742
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I connect my ethereum wallet",
+      "time" : {
+        "start" : 1647354931239,
+        "stop" : 1647354950992,
+        "duration" : 19753
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "6b2ca1ffe27f3632",
+        "name" : "Screenshot",
+        "source" : "6b2ca1ffe27f3632.png",
+        "type" : "image/png",
+        "size" : 400844
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the token address is shown",
+      "time" : {
+        "start" : 1647354950992,
+        "stop" : 1647354951916,
+        "duration" : 924
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "6a9674ec059f3bf1",
+        "name" : "Screenshot",
+        "source" : "6a9674ec059f3bf1.png",
+        "type" : "image/png",
+        "size" : 322332
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And the vesting address is shown",
+      "time" : {
+        "start" : 1647354951916,
+        "stop" : 1647354952761,
+        "duration" : 845
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "83c5eb36c5586a83",
+        "name" : "Screenshot",
+        "source" : "83c5eb36c5586a83.png",
+        "type" : "image/png",
+        "size" : 322332
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And the total supply is shown correctly",
+      "time" : {
+        "start" : 1647354952761,
+        "stop" : 1647354953257,
+        "duration" : 496
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "e9dac65a0e33cb05",
+        "name" : "Screenshot",
+        "source" : "e9dac65a0e33cb05.png",
+        "type" : "image/png",
+        "size" : 322332
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 5,
+    "attachmentsCount" : 5,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Homepage displays correct information"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "2691458e78407b34.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

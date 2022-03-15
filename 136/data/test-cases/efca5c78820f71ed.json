@@ -1,0 +1,113 @@
+{
+  "uid" : "efca5c78820f71ed",
+  "name" : "Associate tokens through wallet",
+  "fullName" : "Staking page.Associate tokens through wallet",
+  "historyId" : "702a46c3c9200ee604094906aa343264",
+  "time" : {
+    "start" : 1647355052498,
+    "stop" : 1647355053713,
+    "duration" : 1215
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Step \"I connect hosted wallet\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.",
+  "statusTrace" : "Step \"I connect hosted wallet\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.\n                \tat Feature(/home/runner/work/token-frontend/token-frontend/automation/features/staking.feature):1:1\n                \tat Scenario(Associate tokens through wallet):8:5\n                \tat Step(I connect hosted wallet):10:7\n                ",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Step \"I connect hosted wallet\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.",
+    "statusTrace" : "Step \"I connect hosted wallet\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.\n                \tat Feature(/home/runner/work/token-frontend/token-frontend/automation/features/staking.feature):1:1\n                \tat Scenario(Associate tokens through wallet):8:5\n                \tat Step(I connect hosted wallet):10:7\n                ",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1647355052499,
+        "stop" : 1647355053712,
+        "duration" : 1213
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "42ffa3757eae8942",
+        "name" : "Screenshot",
+        "source" : "42ffa3757eae8942.png",
+        "type" : "image/png",
+        "size" : 388922
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I connect hosted wallet",
+      "time" : {
+        "start" : 1647355053712,
+        "stop" : 1647355053713,
+        "duration" : 1
+      },
+      "status" : "broken",
+      "statusMessage" : "Step \"I connect hosted wallet\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.\n                \tat Feature(/home/runner/work/token-frontend/token-frontend/automation/features/staking.feature):1:1\n                \tat Scenario(Associate tokens through wallet):8:5\n                \tat Step(I connect hosted wallet):10:7\n                ",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking page"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Associate tokens through wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "efca5c78820f71ed.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

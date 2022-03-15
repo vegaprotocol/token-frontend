@@ -1,0 +1,152 @@
+{
+  "uid" : "2312ec3627a4a7a4",
+  "name" : "Can navigate to Vesting page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Vesting page using main nav tab",
+  "historyId" : "91edaff876b9e227e3c02278f9214d3a",
+  "time" : {
+    "start" : 1647354968018,
+    "stop" : 1647354970338,
+    "duration" : 2320
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1647354968019,
+        "stop" : 1647354968932,
+        "duration" : 913
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "7730e55a6afc9efe",
+        "name" : "Screenshot",
+        "source" : "7730e55a6afc9efe.png",
+        "type" : "image/png",
+        "size" : 399471
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on \"Vesting\" on main nav",
+      "time" : {
+        "start" : 1647354968932,
+        "stop" : 1647354969654,
+        "duration" : 722
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "67d66856cfefa3cd",
+        "name" : "Screenshot",
+        "source" : "67d66856cfefa3cd.png",
+        "type" : "image/png",
+        "size" : 225525
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I can see \"Vesting\" button is clearly highlighted after click",
+      "time" : {
+        "start" : 1647354969654,
+        "stop" : 1647354970019,
+        "duration" : 365
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "34b0ed62acedd062",
+        "name" : "Screenshot",
+        "source" : "34b0ed62acedd062.png",
+        "type" : "image/png",
+        "size" : 225525
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I am taken to the \"vesting\" page",
+      "time" : {
+        "start" : 1647354970019,
+        "stop" : 1647354970338,
+        "duration" : 319
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "cc396a9a4160c94c",
+        "name" : "Screenshot",
+        "source" : "cc396a9a4160c94c.png",
+        "type" : "image/png",
+        "size" : 225525
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Vesting page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "2312ec3627a4a7a4.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
