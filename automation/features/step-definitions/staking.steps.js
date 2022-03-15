@@ -1,5 +1,4 @@
 const { Given, When, Then } = require("@wdio/cucumber-framework");
-const { cy } = require("date-fns/locale");
 const StakingPage = require("../pageobjects/staking.page");
 let currentAmountOfTokensInWallet =''
 

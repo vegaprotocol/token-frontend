@@ -23,10 +23,10 @@ jobs:
           run: npm run yarn:install:deps
         - name: Install
           run: npm install
-        # - name: Download wallet
-        #   run: curl -L https://github.com/vegaprotocol/vegawallet/releases/download/v${{ matrix.vegawallet-version }}/vegawallet-linux-amd64.zip -O
-        # - name: Unzip wallet
-        #   run: unzip ./vegawallet-linux-amd64.zip
+        - name: Download wallet
+          run: curl -L https://github.com/vegaprotocol/vegawallet/releases/download/v${{ matrix.vegawallet-version }}/vegawallet-linux-amd64.zip -O
+        - name: Unzip wallet
+          run: unzip ./vegawallet-linux-amd64.zip
         - name: Initialize wallet
           run: ./vegawallet init -f
         - name: Create recovery phrase file

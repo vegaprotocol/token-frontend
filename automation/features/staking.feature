@@ -22,6 +22,7 @@ Feature: Staking page
     Given I connect Vega wallet
     Given I navigate to "staking" page
     Then I can see the validator node list
+
   @todo
     Scenario: Click through to a staking node page
     Given I navigate to '/staking' page
