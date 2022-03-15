@@ -1,0 +1,211 @@
+{
+  "uid" : "a69966b554b4156b",
+  "name" : "Homepage displays correct information",
+  "fullName" : "Homepage.Homepage displays correct information",
+  "historyId" : "3e1a9b6fd96622225400d11d3b5c3ffc",
+  "time" : {
+    "start" : 1647350746465,
+    "stop" : 1647350764664,
+    "duration" : 18199
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1647350746468,
+        "stop" : 1647350748056,
+        "duration" : 1588
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "f7622cfbfdf30860",
+        "name" : "Screenshot",
+        "source" : "f7622cfbfdf30860.png",
+        "type" : "image/png",
+        "size" : 8714
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I connect my ethereum wallet",
+      "time" : {
+        "start" : 1647350748056,
+        "stop" : 1647350762938,
+        "duration" : 14882
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "532c1a3513ed878e",
+        "name" : "Screenshot",
+        "source" : "532c1a3513ed878e.png",
+        "type" : "image/png",
+        "size" : 399546
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the token address is shown",
+      "time" : {
+        "start" : 1647350762938,
+        "stop" : 1647350763520,
+        "duration" : 582
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "600b7c17ddb81410",
+        "name" : "Screenshot",
+        "source" : "600b7c17ddb81410.png",
+        "type" : "image/png",
+        "size" : 322390
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And the vesting address is shown",
+      "time" : {
+        "start" : 1647350763520,
+        "stop" : 1647350764219,
+        "duration" : 699
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "cfdeae1e8d0a0930",
+        "name" : "Screenshot",
+        "source" : "cfdeae1e8d0a0930.png",
+        "type" : "image/png",
+        "size" : 322390
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And the total supply is shown correctly",
+      "time" : {
+        "start" : 1647350764219,
+        "stop" : 1647350764663,
+        "duration" : 444
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "c04c78a91e1ac286",
+        "name" : "Screenshot",
+        "source" : "c04c78a91e1ac286.png",
+        "type" : "image/png",
+        "size" : 322390
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 5,
+    "attachmentsCount" : 5,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Homepage displays correct information"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 4,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "6d911bbe3c6835c6",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/128//#testresult/6d911bbe3c6835c6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647349846929,
+          "stop" : 1647349870758,
+          "duration" : 23829
+        }
+      }, {
+        "uid" : "75ac04ad3f3d06e4",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/127//#testresult/75ac04ad3f3d06e4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647344657882,
+          "stop" : 1647344682881,
+          "duration" : 24999
+        }
+      }, {
+        "uid" : "98bda489ce9425ed",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/123//#testresult/98bda489ce9425ed",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647013718570,
+          "stop" : 1647013741933,
+          "duration" : 23363
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "a69966b554b4156b.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

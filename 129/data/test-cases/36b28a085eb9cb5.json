@@ -1,0 +1,169 @@
+{
+  "uid" : "36b28a085eb9cb5",
+  "name" : "Page not found error where page does not exist",
+  "fullName" : "Homepage.Page not found error where page does not exist",
+  "historyId" : "ea729e808820a164eba0470bcd9c059f",
+  "time" : {
+    "start" : 1647350797160,
+    "stop" : 1647350799961,
+    "duration" : 2801
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1647350797160,
+        "stop" : 1647350798372,
+        "duration" : 1212
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "9f9aeb9cc7938754",
+        "name" : "Screenshot",
+        "source" : "9f9aeb9cc7938754.png",
+        "type" : "image/png",
+        "size" : 399546
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Given I navigate to \"pagedoesnotexist\" page",
+      "time" : {
+        "start" : 1647350798372,
+        "stop" : 1647350799532,
+        "duration" : 1160
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "60e885e4bd9912db",
+        "name" : "Screenshot",
+        "source" : "60e885e4bd9912db.png",
+        "type" : "image/png",
+        "size" : 266114
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the 404 error page",
+      "time" : {
+        "start" : 1647350799532,
+        "stop" : 1647350799960,
+        "duration" : 428
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "2d34bc6ee7fd75e7",
+        "name" : "Screenshot",
+        "source" : "2d34bc6ee7fd75e7.png",
+        "type" : "image/png",
+        "size" : 198199
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Page not found error where page does not exist"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 4,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "61bf042ed497c4e1",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/128//#testresult/61bf042ed497c4e1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647349897933,
+          "stop" : 1647349899995,
+          "duration" : 2062
+        }
+      }, {
+        "uid" : "c802937e4262865c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/127//#testresult/c802937e4262865c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647344708216,
+          "stop" : 1647344710297,
+          "duration" : 2081
+        }
+      }, {
+        "uid" : "22f38f4147480afd",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/123//#testresult/22f38f4147480afd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647013769218,
+          "stop" : 1647013771636,
+          "duration" : 2418
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "36b28a085eb9cb5.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
