@@ -1,0 +1,151 @@
+{
+  "uid" : "ba0edf0da89a7861",
+  "name" : "Prompt to connect to eth wallet to claim if not connected",
+  "fullName" : "Claim codes.Prompt to connect to eth wallet to claim if not connected",
+  "historyId" : "fe146ac841243977d1a34bcefd87d344",
+  "time" : {
+    "start" : 1647356060074,
+    "stop" : 1647356063510,
+    "duration" : 3436
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"claim?r=odiuhfn\" page",
+      "time" : {
+        "start" : 1647356060076,
+        "stop" : 1647356061985,
+        "duration" : 1909
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "f222cd87a34e4cc9",
+        "name" : "Screenshot",
+        "source" : "f222cd87a34e4cc9.png",
+        "type" : "image/png",
+        "size" : 8128
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the error message when not connected to eth wallet on claims page \"Connect to the Ethereum wallet that holds your $VEGA tokens to see what can be redeemed from vesting tranches. To redeem tokens you will need some ETH to pay gas fees.\"",
+      "time" : {
+        "start" : 1647356061985,
+        "stop" : 1647356062934,
+        "duration" : 949
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "fd7b48788906cf20",
+        "name" : "Screenshot",
+        "source" : "fd7b48788906cf20.png",
+        "type" : "image/png",
+        "size" : 318518
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And the connect to ethereum button is visible",
+      "time" : {
+        "start" : 1647356062934,
+        "stop" : 1647356063509,
+        "duration" : 575
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "5349a79e48a754b4",
+        "name" : "Screenshot",
+        "source" : "5349a79e48a754b4.png",
+        "type" : "image/png",
+        "size" : 318518
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-0"
+  }, {
+    "name" : "suite",
+    "value" : "Claim codes"
+  }, {
+    "name" : "testClass",
+    "value" : "Claim codes"
+  }, {
+    "name" : "testMethod",
+    "value" : "Prompt to connect to eth wallet to claim if not connected"
+  }, {
+    "name" : "package",
+    "value" : "Claim codes"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 2,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "ada8be62e3de420e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/136//#testresult/ada8be62e3de420e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647354851933,
+          "stop" : 1647354855142,
+          "duration" : 3209
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "ba0edf0da89a7861.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

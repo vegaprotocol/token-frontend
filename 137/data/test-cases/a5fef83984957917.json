@@ -1,0 +1,151 @@
+{
+  "uid" : "a5fef83984957917",
+  "name" : "Page not found error where page does not exist",
+  "fullName" : "Homepage.Page not found error where page does not exist",
+  "historyId" : "ea729e808820a164eba0470bcd9c059f",
+  "time" : {
+    "start" : 1647356168733,
+    "stop" : 1647356170627,
+    "duration" : 1894
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1647356168733,
+        "stop" : 1647356169578,
+        "duration" : 845
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "9397a4b2bf5e7596",
+        "name" : "Screenshot",
+        "source" : "9397a4b2bf5e7596.png",
+        "type" : "image/png",
+        "size" : 399526
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Given I navigate to \"pagedoesnotexist\" page",
+      "time" : {
+        "start" : 1647356169578,
+        "stop" : 1647356170204,
+        "duration" : 626
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "a28cc2fb2eb2591a",
+        "name" : "Screenshot",
+        "source" : "a28cc2fb2eb2591a.png",
+        "type" : "image/png",
+        "size" : 249367
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the 404 error page",
+      "time" : {
+        "start" : 1647356170204,
+        "stop" : 1647356170627,
+        "duration" : 423
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "ba1d34951925cedf",
+        "name" : "Screenshot",
+        "source" : "ba1d34951925cedf.png",
+        "type" : "image/png",
+        "size" : 198193
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Page not found error where page does not exist"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 2,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "4185f333ce62cf38",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/136//#testresult/4185f333ce62cf38",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647354984043,
+          "stop" : 1647354986340,
+          "duration" : 2297
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "a5fef83984957917.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

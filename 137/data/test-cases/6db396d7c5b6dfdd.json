@@ -1,0 +1,151 @@
+{
+  "uid" : "6db396d7c5b6dfdd",
+  "name" : "Eth wallet not connected placeholder",
+  "fullName" : "Homepage.Eth wallet not connected placeholder",
+  "historyId" : "fee0cb03accef770cec6e04dd3ebbc7a",
+  "time" : {
+    "start" : 1647356170627,
+    "stop" : 1647356172676,
+    "duration" : 2049
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1647356170627,
+        "stop" : 1647356171441,
+        "duration" : 814
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "f383e74ecff768af",
+        "name" : "Screenshot",
+        "source" : "f383e74ecff768af.png",
+        "type" : "image/png",
+        "size" : 375833
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I have not connected my eth wallet",
+      "time" : {
+        "start" : 1647356171441,
+        "stop" : 1647356172214,
+        "duration" : 773
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "6bd88e3025db45b0",
+        "name" : "Screenshot",
+        "source" : "6bd88e3025db45b0.png",
+        "type" : "image/png",
+        "size" : 474100
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the eth wallet disconnected with message \"Connect Ethereum wallet to associate $VEGA\"",
+      "time" : {
+        "start" : 1647356172214,
+        "stop" : 1647356172676,
+        "duration" : 462
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "b72bc97ae3d76a42",
+        "name" : "Screenshot",
+        "source" : "b72bc97ae3d76a42.png",
+        "type" : "image/png",
+        "size" : 474100
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Eth wallet not connected placeholder"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 2,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "fb6fd08741ad30d0",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/136//#testresult/fb6fd08741ad30d0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647354986341,
+          "stop" : 1647354988968,
+          "duration" : 2627
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "6db396d7c5b6dfdd.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
