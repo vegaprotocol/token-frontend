@@ -37,7 +37,7 @@ jobs:
         - name: Initialize wallet
           run: ./vegawallet init -f
         - name: Create recovery phrase file
-          run: echo "feel aisle depend tower spell loan benefit stock office usual gallery kick mechanic tumble dad poem meat marine knock call border dismiss permit nominee" > recovery-phrase.txt
+          run: echo ${{ secrets.TEST_WALLET_RECOVERY }} > recovery-phrase.txt
         - name: Create recovery phrase file
           run: echo "dev12345" > passphrase.txt
         - name: Import wallet

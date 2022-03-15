@@ -136,11 +136,3 @@ Then(
   }  
 );
 
-Then(
-  /^I wait for some time$/, ()=>{
-  browser.pause(2000)  
-  }
-  // expect($('.heading__title')).getText().toBe('Page not found') 
-);
-
-
