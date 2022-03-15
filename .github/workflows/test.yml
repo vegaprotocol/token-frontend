@@ -30,7 +30,7 @@ jobs:
         - name: ls previous
           run: ls ..
         - name: Unzip wallet
-          run: unzip ./vegawallet-linux-amd64
+          run: unzip vegawallet-linux-amd64.zip
         - name: Initialize wallet
           run: ./vegawallet init -f
         - name: Create recovery phrase file
