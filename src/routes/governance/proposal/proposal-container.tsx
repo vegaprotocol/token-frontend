@@ -48,7 +48,7 @@ export const ProposalContainer = () => {
   } = useVegaRest<RestProposalResponse>({
     url: `datanode/rest/governance/proposal/${params.proposalId}`,
   });
-  console.log(restData?.data.proposal.terms);
+
   const { data, loading, error } = useQuery<
     ProposalQueryResult,
     ProposalVariables
