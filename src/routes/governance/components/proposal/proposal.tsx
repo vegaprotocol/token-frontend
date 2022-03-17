@@ -1,6 +1,6 @@
 import { Heading } from "../../../../components/heading";
 import { getProposalName } from "../../../../lib/type-policies/proposal";
-import { Proposal_proposal } from "../../__generated__/Proposal";
+import { Proposal_proposal } from "../../proposal/__generated__/Proposal";
 import { RestProposalResponse } from "../../proposal/proposal-container";
 import { ProposalChangeTable } from "../proposal-change-table";
 import { ProposalTermsJson } from "../proposal-terms-json";

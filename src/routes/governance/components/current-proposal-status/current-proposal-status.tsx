@@ -4,8 +4,8 @@ import { formatDistanceToNow } from "date-fns";
 import { useTranslation } from "react-i18next";
 
 import { ProposalState } from "../../../../__generated__/globalTypes";
-import { Proposals_proposals } from "../../__generated__/Proposals";
 import { useVoteInformation } from "../../hooks";
+import { Proposals_proposals } from "../../proposals/__generated__/Proposals";
 
 export const CurrentProposalStatus = ({
   proposal,

@@ -8,12 +8,12 @@ import { SplashLoader } from "../../../components/splash-loader";
 import { SplashScreen } from "../../../components/splash-screen";
 import { EnvironmentNodes } from "../../../config";
 import useFetch from "../../../hooks/use-fetch";
+import { Proposal } from "../components/proposal";
+import { PROPOSALS_FRAGMENT } from "../proposal-fragment";
 import {
   Proposal as ProposalQueryResult,
   ProposalVariables,
-} from "../__generated__/Proposal";
-import { Proposal } from "../components/proposal";
-import { PROPOSALS_FRAGMENT } from "../proposal-fragment";
+} from "./__generated__/Proposal";
 
 /**
  * TODO: how do we do this properly to ensure that it is kept up to date?

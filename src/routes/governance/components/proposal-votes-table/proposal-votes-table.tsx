@@ -5,8 +5,8 @@ import {
   KeyValueTableRow,
 } from "../../../../components/key-value-table";
 import { formatNumber } from "../../../../lib/format-number";
-import { Proposals_proposals } from "../../__generated__/Proposals";
 import { useVoteInformation } from "../../hooks";
+import { Proposals_proposals } from "../../proposals/__generated__/Proposals";
 
 interface ProposalVotesTableProps {
   proposal: Proposals_proposals;

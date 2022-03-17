@@ -11,7 +11,7 @@ import {
 } from "../../../../components/key-value-table";
 import { DATE_FORMAT_DETAILED } from "../../../../lib/date-formats";
 import { getProposalName } from "../../../../lib/type-policies/proposal";
-import { Proposals_proposals } from "../../__generated__/Proposals";
+import { Proposals_proposals } from "../../proposals/__generated__/Proposals";
 import { CurrentProposalState } from "../current-proposal-state";
 
 interface ProposalsListProps {

@@ -19,6 +19,7 @@ export function generateProposal(
     state: ProposalState.Open,
     datetime: faker.date.past().toISOString(),
     rejectionReason: null,
+    errorDetails: null,
     party: {
       __typename: "Party",
       id: faker.datatype.uuid(),

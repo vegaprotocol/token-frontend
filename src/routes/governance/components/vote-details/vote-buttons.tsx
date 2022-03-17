@@ -19,7 +19,7 @@ import { DATE_FORMAT_LONG } from "../../../../lib/date-formats";
 import {
   VoteButtons as VoteButtonsQueryResult,
   VoteButtonsVariables,
-} from "../../__generated__/VoteButtons";
+} from "./__generated__/VoteButtons";
 import { VoteState } from "./use-user-vote";
 
 interface VoteButtonsContainerProps {

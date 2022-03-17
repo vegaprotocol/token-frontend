@@ -8,8 +8,8 @@ import { addDecimal } from "../../../lib/decimals";
 import {
   Proposal_proposal_votes_no_votes,
   Proposal_proposal_votes_yes_votes,
-} from "../__generated__/Proposal";
-import type { Proposals_proposals } from "../__generated__/Proposals";
+} from "../proposal/__generated__/Proposal";
+import { Proposals_proposals } from "../proposals/__generated__/Proposals";
 
 const useProposalNetworkParams = ({
   proposal,
