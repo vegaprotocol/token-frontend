@@ -6,8 +6,8 @@ import { useParams } from "react-router-dom";
 
 import { SplashLoader } from "../../../components/splash-loader";
 import { SplashScreen } from "../../../components/splash-screen";
-import { EnvironmentNodes } from "../../../config";
 import useFetch from "../../../hooks/use-fetch";
+import { getDataNodeUrl } from "../../../lib/get-data-node-url";
 import { Proposal } from "../components/proposal";
 import { PROPOSALS_FRAGMENT } from "../proposal-fragment";
 import {
@@ -35,19 +35,20 @@ export const PROPOSAL_QUERY = gql`
   }
 `;
 
-const useVegaRest = function <T>({ url }: { url: string }) {
-  const endpoint = React.useMemo(() => `${EnvironmentNodes[0]}/${url}`, [url]);
-  return useFetch<T>(endpoint);
-};
-
 export const ProposalContainer = () => {
   const { t } = useTranslation();
   const params = useParams<{ proposalId: string }>();
+  const { base } = getDataNodeUrl();
+  const proposalUrl = React.useMemo(
+    () =>
+      new URL(`datanode/rest/governance/proposal/${params.proposalId}`, base)
+        .href,
+    [base, params.proposalId]
+  );
+
   const {
     state: { loading: restLoading, error: restError, data: restData },
-  } = useVegaRest<RestProposalResponse>({
-    url: `datanode/rest/governance/proposal/${params.proposalId}`,
-  });
+  } = useFetch<RestProposalResponse>(proposalUrl);
 
   const { data, loading, error } = useQuery<
     ProposalQueryResult,
