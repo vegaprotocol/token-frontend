@@ -1,0 +1,216 @@
+{
+  "uid" : "d582a57f865fa182",
+  "name" : "Eth wallet not connected placeholder",
+  "fullName" : "Homepage.Eth wallet not connected placeholder",
+  "historyId" : "fee0cb03accef770cec6e04dd3ebbc7a",
+  "time" : {
+    "start" : 1647533198808,
+    "stop" : 1647533201328,
+    "duration" : 2520
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1647533198808,
+        "stop" : 1647533200058,
+        "duration" : 1250
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "aae5c87ca9d33720",
+        "name" : "Screenshot",
+        "source" : "aae5c87ca9d33720.png",
+        "type" : "image/png",
+        "size" : 344183
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I have not connected my eth wallet",
+      "time" : {
+        "start" : 1647533200058,
+        "stop" : 1647533200776,
+        "duration" : 718
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "2303e63e9c693602",
+        "name" : "Screenshot",
+        "source" : "2303e63e9c693602.png",
+        "type" : "image/png",
+        "size" : 424190
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the eth wallet disconnected with message \"Connect Ethereum wallet to associate $VEGA\"",
+      "time" : {
+        "start" : 1647533200776,
+        "stop" : 1647533201327,
+        "duration" : 551
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "23c3ca0be0929528",
+        "name" : "Screenshot",
+        "source" : "23c3ca0be0929528.png",
+        "type" : "image/png",
+        "size" : 424190
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Eth wallet not connected placeholder"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 7,
+        "unknown" : 0,
+        "total" : 9
+      },
+      "items" : [ {
+        "uid" : "61830bdbdecd5732",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/143//#testresult/61830bdbdecd5732",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647514495962,
+          "stop" : 1647514497989,
+          "duration" : 2027
+        }
+      }, {
+        "uid" : "e17e00b7edafee25",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/142//#testresult/e17e00b7edafee25",
+        "status" : "broken",
+        "statusDetails" : "Error: Disconnect Ethereum wallet Button not displayed",
+        "time" : {
+          "start" : 1647439354980,
+          "stop" : 1647439366079,
+          "duration" : 11099
+        }
+      }, {
+        "uid" : "9a8fa1b80d058b14",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/141//#testresult/9a8fa1b80d058b14",
+        "status" : "broken",
+        "statusDetails" : "Error: Disconnect Ethereum wallet Button not displayed",
+        "time" : {
+          "start" : 1647438988148,
+          "stop" : 1647438999496,
+          "duration" : 11348
+        }
+      }, {
+        "uid" : "82c84a09acf9f86a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/140//#testresult/82c84a09acf9f86a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647367696562,
+          "stop" : 1647367698516,
+          "duration" : 1954
+        }
+      }, {
+        "uid" : "6592dcfe10dc4926",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/139//#testresult/6592dcfe10dc4926",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647359137843,
+          "stop" : 1647359140596,
+          "duration" : 2753
+        }
+      }, {
+        "uid" : "5aee16f8dd4159fa",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/138//#testresult/5aee16f8dd4159fa",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647357064202,
+          "stop" : 1647357067225,
+          "duration" : 3023
+        }
+      }, {
+        "uid" : "6db396d7c5b6dfdd",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/137//#testresult/6db396d7c5b6dfdd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647356170627,
+          "stop" : 1647356172676,
+          "duration" : 2049
+        }
+      }, {
+        "uid" : "fb6fd08741ad30d0",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/136//#testresult/fb6fd08741ad30d0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647354986341,
+          "stop" : 1647354988968,
+          "duration" : 2627
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "d582a57f865fa182.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
