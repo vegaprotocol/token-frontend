@@ -537,7 +537,7 @@
   "numberOfVotingParties": "Number of voting parties",
   "totalTokensVotes": "Total yes tokens",
   "totalTokenVotedPercentage": "Total tokens voted percentage",
-  "numberOfForVotes": "Number of for votes",
+  "numberOfForVotes": "Number of votes for",
   "numberOfAgainstVotes": "Number of against votes",
   "yesPercentage": "Yes percentage",
   "noPercentage": "No percentage",
