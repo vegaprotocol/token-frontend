@@ -538,7 +538,7 @@
   "totalTokensVotes": "Total yes tokens",
   "totalTokenVotedPercentage": "Total tokens voted percentage",
   "numberOfForVotes": "Number of votes for",
-  "numberOfAgainstVotes": "Number of against votes",
+  "numberOfAgainstVotes": "Number of votes against",
   "yesPercentage": "Yes percentage",
   "noPercentage": "No percentage",
   "proposalTerms": "Proposal terms"
