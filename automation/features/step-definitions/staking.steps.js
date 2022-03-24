@@ -38,11 +38,7 @@ When(/^I associate some tokens from vesting contract$/,()=>{
 })
 
 When(/^I disassociate some tokens from wallet$/,()=>{
-    browser.getByTestId('callout').waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "callout was not found"})
-  // if (browser.getByTestId('associate-more-tokens-btn').isDisplayed()){
-  //   browser.getByTestId('associate-more-tokens-btn').click()
-  // } else browser.getByTestId('associate-tokens-btn').click()
-
+  browser.getByTestId('callout').waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "callout was not found"})
   browser.getByTestId("disassociate-tokens-btn").waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "disassociate btn  was not found"})
   browser.getByTestId("disassociate-tokens-btn").click()
   browser.pause(4000)
