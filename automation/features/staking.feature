@@ -1,38 +1,68 @@
 Feature: Staking page
 
-    Scenario: Go to staking and connect ethereum wallet
+Background:
       Given I navigate to "staking" page
-      Given I connect my ethereum wallet
-      Then I can see my ethereum key 0x9804C6E98dA75e3271ccE3aA56728FD8e9376155 is shown
 
-    Scenario: Associate tokens through wallet
-      Given I navigate to "staking" page
-      When I connect to the vega wallet
-      And I associate some tokens from wallet
-      Then I can see the pending transactions button is shown
-
-    Scenario: Use maximum button on associate from wallet enters correct amount
-      Given I navigate to "staking" page
-      When I click on use maximum button
-      Then I can see the maximum amount of tokens in my wallet are in the token input box
-
-  @ignore
-    Scenario: Go to staking page
+@test
+  Scenario: Go to staking and connect ethereum wallet
     Given I connect my ethereum wallet
-    Given I connect to the vega wallet
-    Given I navigate to "staking" page
-    Then I can see the validator node list
+    Then I can see my ethereum key 0x9804C6E98dA75e3271ccE3aA56728FD8e9376155 is shown
+
+@test
+  Scenario: Associate tokens through wallet
+    When I connect to the vega wallet
+    And I associate some tokens from wallet
+    Then I can see the pending transactions button is shown
+
+@test
+  Scenario: Associate tokens through vesting contract
+    And I associate some tokens from vesting contract
+    Then I can see the pending transactions button is shown 
+
+@test
+  Scenario: Use maximum button on associate from wallet enters correct amount
+    When I click on use maximum button
+    Then I can see the maximum amount of tokens in my wallet are in the token input box
+
+@test
+  Scenario: Disassociate tokens through wallet
+    And I disassociate some tokens from wallet
+    Then I can see the pending transactions button is shown
+
+@test
+  Scenario: Disassociate tokens through vesting contract
+    And I disassociate some tokens from vesting contract
+    Then I can see the pending transactions button is shown
+
+@test
+  Scenario: Staking validator list and nodes is displayed
+  Then I can see the validator node list
+  And the epoch countdown timer is counting down
+  
+@test
+Scenario: add stake from vesting contract
+    When I click on a validator
+    Then I am taken to the correct validator page
 
   @todo
-    Scenario: Click through to a staking node page
-    Given I navigate to '/staking' page
-    And I connect to the vega wallet
-    Then I can see the validator node list
-    And I click on a validator from the list
-    Then the validator node page is displayed "node-1-name"
-    And the validator information table is displayed
-    And the epoch counter is displayed
-    And your stake information is displayed
+Scenario: add stake from wallet 
+    When I click on a validator
+    Then I am taken to the correct validator page
+
+  @todo
+Scenario: add stake from vesting contract
+    When I click on a validator
+    Then I am taken to the correct validator page
+
+  @todo
+Scenario: remove stake now 
+    When I click on a validator
+    Then I am taken to the correct validator page
+
+  @todo
+  Scenario: remove stake at next epoch 
+    When I click on a validator
+    Then I am taken to the correct validator page
 
   @todo
    Scenario: Remove stake at next epoch
