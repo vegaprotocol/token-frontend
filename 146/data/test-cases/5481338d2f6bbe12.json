@@ -1,0 +1,225 @@
+{
+  "uid" : "5481338d2f6bbe12",
+  "name" : "Associate tokens through wallet",
+  "fullName" : "Staking page.Associate tokens through wallet",
+  "historyId" : "702a46c3c9200ee604094906aa343264",
+  "time" : {
+    "start" : 1648164353332,
+    "stop" : 1648164359596,
+    "duration" : 6264
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "element click intercepted: Element <button class=\"fill\" data-test-id=\"connect-to-vega-wallet-btn\">...</button> is not clickable at point (380, 634). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+  "statusTrace" : "element click intercepted: Element <button class=\"fill\" data-test-id=\"connect-to-vega-wallet-btn\">...</button> is not clickable at point (380, 634). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x000000010c1e6ff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x000000010c172403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x000000010bd2ee38 chromedriver + 171576\n                3   chromedriver                        0x000000010bd6b7e1 chromedriver + 419809\n                4   chromedriver                        0x000000010bd6949e chromedriver + 410782\n                5   chromedriver                        0x000000010bd66cca chromedriver + 400586\n                6   chromedriver                        0x000000010bd65761 chromedriver + 395105\n                7   chromedriver                        0x000000010bd59778 chromedriver + 345976\n                8   chromedriver                        0x000000010bd81aa2 chromedriver + 510626\n                9   chromedriver                        0x000000010bd59015 chromedriver + 344085\n                10  chromedriver                        0x000000010bd81dbe chromedriver + 511422\n                11  chromedriver                        0x000000010bd945d2 chromedriver + 587218\n                12  chromedriver                        0x000000010bd81d63 chromedriver + 511331\n                13  chromedriver                        0x000000010bd5782e chromedriver + 337966\n                14  chromedriver                        0x000000010bd58b65 chromedriver + 342885\n                15  chromedriver                        0x000000010c1a2f1b __gxx_personality_v0 + 305451\n                16  chromedriver                        0x000000010c1b9e23 __gxx_personality_v0 + 399411\n                17  chromedriver                        0x000000010c1bf8df __gxx_personality_v0 + 422639\n                18  chromedriver                        0x000000010c1bb17a __gxx_personality_v0 + 404362\n                19  chromedriver                        0x000000010c197541 __gxx_personality_v0 + 257873\n                20  chromedriver                        0x000000010c1d6f28 __gxx_personality_v0 + 518456\n                21  chromedriver                        0x000000010c1d70b1 __gxx_personality_v0 + 518849\n                22  chromedriver                        0x000000010c1ee498 __gxx_personality_v0 + 614056\n                23  libsystem_pthread.dylib             0x00007fff209088fc _pthread_start + 224\n                24  libsystem_pthread.dylib             0x00007fff20904443 thread_start + 15\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/walletconnect.steps.js:19:52)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "element click intercepted: Element <button class=\"fill\" data-test-id=\"connect-to-vega-wallet-btn\">...</button> is not clickable at point (380, 634). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+    "statusTrace" : "element click intercepted: Element <button class=\"fill\" data-test-id=\"connect-to-vega-wallet-btn\">...</button> is not clickable at point (380, 634). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x000000010c1e6ff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x000000010c172403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x000000010bd2ee38 chromedriver + 171576\n                3   chromedriver                        0x000000010bd6b7e1 chromedriver + 419809\n                4   chromedriver                        0x000000010bd6949e chromedriver + 410782\n                5   chromedriver                        0x000000010bd66cca chromedriver + 400586\n                6   chromedriver                        0x000000010bd65761 chromedriver + 395105\n                7   chromedriver                        0x000000010bd59778 chromedriver + 345976\n                8   chromedriver                        0x000000010bd81aa2 chromedriver + 510626\n                9   chromedriver                        0x000000010bd59015 chromedriver + 344085\n                10  chromedriver                        0x000000010bd81dbe chromedriver + 511422\n                11  chromedriver                        0x000000010bd945d2 chromedriver + 587218\n                12  chromedriver                        0x000000010bd81d63 chromedriver + 511331\n                13  chromedriver                        0x000000010bd5782e chromedriver + 337966\n                14  chromedriver                        0x000000010bd58b65 chromedriver + 342885\n                15  chromedriver                        0x000000010c1a2f1b __gxx_personality_v0 + 305451\n                16  chromedriver                        0x000000010c1b9e23 __gxx_personality_v0 + 399411\n                17  chromedriver                        0x000000010c1bf8df __gxx_personality_v0 + 422639\n                18  chromedriver                        0x000000010c1bb17a __gxx_personality_v0 + 404362\n                19  chromedriver                        0x000000010c197541 __gxx_personality_v0 + 257873\n                20  chromedriver                        0x000000010c1d6f28 __gxx_personality_v0 + 518456\n                21  chromedriver                        0x000000010c1d70b1 __gxx_personality_v0 + 518849\n                22  chromedriver                        0x000000010c1ee498 __gxx_personality_v0 + 614056\n                23  libsystem_pthread.dylib             0x00007fff209088fc _pthread_start + 224\n                24  libsystem_pthread.dylib             0x00007fff20904443 thread_start + 15\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/walletconnect.steps.js:19:52)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1648164353333,
+        "stop" : 1648164354078,
+        "duration" : 745
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "d0258c093ca2fdff",
+        "name" : "Screenshot",
+        "source" : "d0258c093ca2fdff.png",
+        "type" : "image/png",
+        "size" : 8721
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I connect to the vega wallet",
+      "time" : {
+        "start" : 1648164354078,
+        "stop" : 1648164359596,
+        "duration" : 5518
+      },
+      "status" : "broken",
+      "statusMessage" : "element click intercepted: Element <button class=\"fill\" data-test-id=\"connect-to-vega-wallet-btn\">...</button> is not clickable at point (380, 634). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x000000010c1e6ff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x000000010c172403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x000000010bd2ee38 chromedriver + 171576\n                3   chromedriver                        0x000000010bd6b7e1 chromedriver + 419809\n                4   chromedriver                        0x000000010bd6949e chromedriver + 410782\n                5   chromedriver                        0x000000010bd66cca chromedriver + 400586\n                6   chromedriver                        0x000000010bd65761 chromedriver + 395105\n                7   chromedriver                        0x000000010bd59778 chromedriver + 345976\n                8   chromedriver                        0x000000010bd81aa2 chromedriver + 510626\n                9   chromedriver                        0x000000010bd59015 chromedriver + 344085\n                10  chromedriver                        0x000000010bd81dbe chromedriver + 511422\n                11  chromedriver                        0x000000010bd945d2 chromedriver + 587218\n                12  chromedriver                        0x000000010bd81d63 chromedriver + 511331\n                13  chromedriver                        0x000000010bd5782e chromedriver + 337966\n                14  chromedriver                        0x000000010bd58b65 chromedriver + 342885\n                15  chromedriver                        0x000000010c1a2f1b __gxx_personality_v0 + 305451\n                16  chromedriver                        0x000000010c1b9e23 __gxx_personality_v0 + 399411\n                17  chromedriver                        0x000000010c1bf8df __gxx_personality_v0 + 422639\n                18  chromedriver                        0x000000010c1bb17a __gxx_personality_v0 + 404362\n                19  chromedriver                        0x000000010c197541 __gxx_personality_v0 + 257873\n                20  chromedriver                        0x000000010c1d6f28 __gxx_personality_v0 + 518456\n                21  chromedriver                        0x000000010c1d70b1 __gxx_personality_v0 + 518849\n                22  chromedriver                        0x000000010c1ee498 __gxx_personality_v0 + 614056\n                23  libsystem_pthread.dylib             0x00007fff209088fc _pthread_start + 224\n                24  libsystem_pthread.dylib             0x00007fff20904443 thread_start + 15\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/walletconnect.steps.js:19:52)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "eaa5617bfd994636",
+        "name" : "Screenshot",
+        "source" : "eaa5617bfd994636.png",
+        "type" : "image/png",
+        "size" : 484450
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking page"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Associate tokens through wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 6,
+        "skipped" : 0,
+        "passed" : 5,
+        "unknown" : 0,
+        "total" : 11
+      },
+      "items" : [ {
+        "uid" : "8897cf8640431953",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/145//#testresult/8897cf8640431953",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647593669156,
+          "stop" : 1647593681379,
+          "duration" : 12223
+        }
+      }, {
+        "uid" : "dd9f0b468ed27eb9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/144//#testresult/dd9f0b468ed27eb9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647533331101,
+          "stop" : 1647533349955,
+          "duration" : 18854
+        }
+      }, {
+        "uid" : "cabb82f253fcc30d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/143//#testresult/cabb82f253fcc30d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647514575406,
+          "stop" : 1647514589720,
+          "duration" : 14314
+        }
+      }, {
+        "uid" : "1961c52fde121ead",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/142//#testresult/1961c52fde121ead",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <button class=\"fill\" data-test-id=\"connect-to-vega-wallet-btn\">...</button> is not clickable at point (380, 634). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1647439463056,
+          "stop" : 1647439471377,
+          "duration" : 8321
+        }
+      }, {
+        "uid" : "bc3180339c318929",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/141//#testresult/bc3180339c318929",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <button class=\"fill\" data-test-id=\"connect-to-vega-wallet-btn\">...</button> is not clickable at point (380, 634). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1647439086279,
+          "stop" : 1647439093682,
+          "duration" : 7403
+        }
+      }, {
+        "uid" : "aab7f83eff1d1f81",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/140//#testresult/aab7f83eff1d1f81",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1647367779752,
+          "stop" : 1647367814171,
+          "duration" : 34419
+        }
+      }, {
+        "uid" : "dad8c989d97a62fd",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/139//#testresult/dad8c989d97a62fd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647359215847,
+          "stop" : 1647359234519,
+          "duration" : 18672
+        }
+      }, {
+        "uid" : "ff6f357b9bbc83ce",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/138//#testresult/ff6f357b9bbc83ce",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647357146919,
+          "stop" : 1647357161418,
+          "duration" : 14499
+        }
+      }, {
+        "uid" : "120723ebee049959",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/137//#testresult/120723ebee049959",
+        "status" : "broken",
+        "statusDetails" : "Step \"I connect hosted wallet\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.",
+        "time" : {
+          "start" : 1647356278467,
+          "stop" : 1647356281998,
+          "duration" : 3531
+        }
+      }, {
+        "uid" : "efca5c78820f71ed",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/136//#testresult/efca5c78820f71ed",
+        "status" : "broken",
+        "statusDetails" : "Step \"I connect hosted wallet\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.",
+        "time" : {
+          "start" : 1647355052498,
+          "stop" : 1647355053713,
+          "duration" : 1215
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "5481338d2f6bbe12.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
