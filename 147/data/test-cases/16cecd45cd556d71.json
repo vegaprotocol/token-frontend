@@ -1,0 +1,173 @@
+{
+  "uid" : "16cecd45cd556d71",
+  "name" : "Cannot disassociate more tokens through vesting contract than available",
+  "fullName" : "Staking and Association tests.Cannot disassociate more tokens through vesting contract than available",
+  "historyId" : "4eefaa5bf5521545350dacf8045a38e6",
+  "time" : {
+    "start" : 1648165254190,
+    "stop" : 1648165257860,
+    "duration" : 3670
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1648165254191,
+        "stop" : 1648165255089,
+        "duration" : 898
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "a94a031e5f5df4f9",
+        "name" : "Screenshot",
+        "source" : "a94a031e5f5df4f9.png",
+        "type" : "image/png",
+        "size" : 255541
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I click the button to disassociate",
+      "time" : {
+        "start" : 1648165255089,
+        "stop" : 1648165255743,
+        "duration" : 654
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "2eb3e72c7a4ab794",
+        "name" : "Screenshot",
+        "source" : "2eb3e72c7a4ab794.png",
+        "type" : "image/png",
+        "size" : 256601
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on the \"vesting contract\" radio button",
+      "time" : {
+        "start" : 1648165255743,
+        "stop" : 1648165256670,
+        "duration" : 927
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "9cd6fcf08e594c27",
+        "name" : "Screenshot",
+        "source" : "9cd6fcf08e594c27.png",
+        "type" : "image/png",
+        "size" : 268111
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I enter \"2000000\" tokens in the input field",
+      "time" : {
+        "start" : 1648165256671,
+        "stop" : 1648165257514,
+        "duration" : 843
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "6f288cbd0b69d674",
+        "name" : "Screenshot",
+        "source" : "6f288cbd0b69d674.png",
+        "type" : "image/png",
+        "size" : 269180
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then the token submit button is disabled",
+      "time" : {
+        "start" : 1648165257514,
+        "stop" : 1648165257860,
+        "duration" : 346
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "f5c00ecda46e45b1",
+        "name" : "Screenshot",
+        "source" : "f5c00ecda46e45b1.png",
+        "type" : "image/png",
+        "size" : 269157
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 5,
+    "attachmentsCount" : 5,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Cannot disassociate more tokens through vesting contract than available"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "16cecd45cd556d71.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

@@ -1,0 +1,131 @@
+{
+  "uid" : "1a3cd2d0b76d546b",
+  "name" : "Disassociate tokens through vesting contract",
+  "fullName" : "Staking and Association tests.Disassociate tokens through vesting contract",
+  "historyId" : "2202ce34a69f50ec221451d1dfbc74e6",
+  "time" : {
+    "start" : 1648165257860,
+    "stop" : 1648165272234,
+    "duration" : 14374
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1648165257860,
+        "stop" : 1648165258657,
+        "duration" : 797
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "f2e91e22f1d1c2c8",
+        "name" : "Screenshot",
+        "source" : "f2e91e22f1d1c2c8.png",
+        "type" : "image/png",
+        "size" : 261801
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I disassociate some tokens from vesting contract",
+      "time" : {
+        "start" : 1648165258658,
+        "stop" : 1648165271523,
+        "duration" : 12865
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "26cfdcf1213439fe",
+        "name" : "Screenshot",
+        "source" : "26cfdcf1213439fe.png",
+        "type" : "image/png",
+        "size" : 208676
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the pending transactions button is shown",
+      "time" : {
+        "start" : 1648165271523,
+        "stop" : 1648165272233,
+        "duration" : 710
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "3b0c2b202f03e034",
+        "name" : "Screenshot",
+        "source" : "3b0c2b202f03e034.png",
+        "type" : "image/png",
+        "size" : 208672
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Disassociate tokens through vesting contract"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "1a3cd2d0b76d546b.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

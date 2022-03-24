@@ -1,0 +1,131 @@
+{
+  "uid" : "993b23524bd81bbd",
+  "name" : "Use maximum button on associate from wallet enters correct amount",
+  "fullName" : "Staking and Association tests.Use maximum button on associate from wallet enters correct amount",
+  "historyId" : "1dd52f0eaff1358613e21e869074f5e0",
+  "time" : {
+    "start" : 1648165235232,
+    "stop" : 1648165238723,
+    "duration" : 3491
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1648165235232,
+        "stop" : 1648165236314,
+        "duration" : 1082
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "393b6b2a54e2a15e",
+        "name" : "Screenshot",
+        "source" : "393b6b2a54e2a15e.png",
+        "type" : "image/png",
+        "size" : 405604
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on use maximum button",
+      "time" : {
+        "start" : 1648165236314,
+        "stop" : 1648165238314,
+        "duration" : 2000
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "1545ab3bb3cbb77c",
+        "name" : "Screenshot",
+        "source" : "1545ab3bb3cbb77c.png",
+        "type" : "image/png",
+        "size" : 279549
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the maximum amount of tokens in my wallet are in the token input box",
+      "time" : {
+        "start" : 1648165238315,
+        "stop" : 1648165238722,
+        "duration" : 407
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "be45b4ae81665663",
+        "name" : "Screenshot",
+        "source" : "be45b4ae81665663.png",
+        "type" : "image/png",
+        "size" : 279784
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Use maximum button on associate from wallet enters correct amount"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "993b23524bd81bbd.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

@@ -1,0 +1,152 @@
+{
+  "uid" : "5e219664507ddd7f",
+  "name" : "Associate tokens through wallet",
+  "fullName" : "Staking and Association tests.Associate tokens through wallet",
+  "historyId" : "bafb7c0403b9875ff59d6ddb673f743",
+  "time" : {
+    "start" : 1648165207743,
+    "stop" : 1648165224305,
+    "duration" : 16562
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1648165207743,
+        "stop" : 1648165209625,
+        "duration" : 1882
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "e8c7a335258fd186",
+        "name" : "Screenshot",
+        "source" : "e8c7a335258fd186.png",
+        "type" : "image/png",
+        "size" : 289841
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I connect to the vega wallet",
+      "time" : {
+        "start" : 1648165209625,
+        "stop" : 1648165211534,
+        "duration" : 1909
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "1afa8d0e8701c26e",
+        "name" : "Screenshot",
+        "source" : "1afa8d0e8701c26e.png",
+        "type" : "image/png",
+        "size" : 239533
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I associate some tokens from wallet",
+      "time" : {
+        "start" : 1648165211535,
+        "stop" : 1648165223728,
+        "duration" : 12193
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "39754f05132a6fb2",
+        "name" : "Screenshot",
+        "source" : "39754f05132a6fb2.png",
+        "type" : "image/png",
+        "size" : 238051
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the pending transactions button is shown",
+      "time" : {
+        "start" : 1648165223728,
+        "stop" : 1648165224305,
+        "duration" : 577
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "d01bdf029bcde7a1",
+        "name" : "Screenshot",
+        "source" : "d01bdf029bcde7a1.png",
+        "type" : "image/png",
+        "size" : 238061
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Associate tokens through wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "5e219664507ddd7f.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
