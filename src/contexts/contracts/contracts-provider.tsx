@@ -1,9 +1,10 @@
-import { TxData } from "@vegaprotocol/smart-contracts-sdk";
 import {
+  EnvironmentConfig,
+  ERC20Token,
+  TxData,
   VegaClaim,
   VegaErc20Bridge,
   VegaStaking,
-  VegaToken,
   VegaVesting,
 } from "@vegaprotocol/smart-contracts-sdk";
 import { useWeb3React } from "@web3-react/core";
@@ -38,7 +39,11 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
 
     if (library) {
       setContracts({
-        token: new VegaToken(APP_ENV, library, signer),
+        token: new ERC20Token(
+          EnvironmentConfig[APP_ENV].vegaTokenAddress,
+          library,
+          signer
+        ),
         staking: new VegaStaking(APP_ENV, library, signer),
         vesting: new VegaVesting(APP_ENV, library, signer),
         claim: new VegaClaim(APP_ENV, library, signer),
