@@ -24,22 +24,40 @@ Background:
     And I disassociate some tokens from wallet
     Then I can see the pending transactions button is shown
 
+  Scenario: Cannot disassociate more tokens through wallet than available
+    And I click the button to disassociate
+    When I click on the "wallet" radio button
+    And I enter "2000000" tokens in the input field
+    Then the token submit button is disabled
+
+  Scenario: Cannot disassociate more tokens through vesting contract than available
+    And I click the button to disassociate
+    When I click on the "vesting contract" radio button
+    And I enter "2000000" tokens in the input field
+    Then the token submit button is disabled
+
   Scenario: Disassociate tokens through vesting contract
     And I disassociate some tokens from vesting contract
     Then I can see the pending transactions button is shown
 
-  Scenario: Staking validator list and nodes is displayed
+  Scenario: Staking validator list and epoch timer countdown
     Then I can see the validator node list
     And the epoch countdown timer is counting down
 
-  Scenario: add stake from vesting contract
-    When I click on a validator
-    Then I am taken to the correct validator page
-
-  @todo
   Scenario: add stake from wallet 
     When I click on a validator
     Then I am taken to the correct validator page
+    And I select to "Add" stake
+    And I enter "0.1" tokens in the input field
+    Then I can submit the stake successfully
+    # And the pending transaction is displayed
+    # And the stake is successful
+
+  Scenario: Cannot stake more than what is associated 
+    When I click on a validator
+    And I select to "Add" stake
+    And I enter "2000000" tokens in the input field
+    Then the token submit button is disabled
 
   @todo
   Scenario: add stake from vesting contract
@@ -47,14 +65,16 @@ Background:
     Then I am taken to the correct validator page
 
   @todo
-Scenario: remove stake now 
+  Scenario: remove stake now 
     When I click on a validator
     Then I am taken to the correct validator page
+    And I select to "Remove" stake
 
   @todo
   Scenario: remove stake at next epoch 
     When I click on a validator
     Then I am taken to the correct validator page
+    And I select to "Remove" stake
 
   @todo
    Scenario: Remove stake at next epoch
