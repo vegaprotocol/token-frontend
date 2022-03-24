@@ -1,56 +1,48 @@
-Feature: Staking page
+Feature: Staking and Association tests 
 
 Background:
-      Given I navigate to "staking" page
+    Given I navigate to "staking" page
 
-@test
   Scenario: Go to staking and connect ethereum wallet
     Given I connect my ethereum wallet
     Then I can see my ethereum key 0x9804C6E98dA75e3271ccE3aA56728FD8e9376155 is shown
 
-@test
   Scenario: Associate tokens through wallet
     When I connect to the vega wallet
     And I associate some tokens from wallet
     Then I can see the pending transactions button is shown
 
-@test
   Scenario: Associate tokens through vesting contract
     And I associate some tokens from vesting contract
     Then I can see the pending transactions button is shown 
 
-@test
   Scenario: Use maximum button on associate from wallet enters correct amount
     When I click on use maximum button
     Then I can see the maximum amount of tokens in my wallet are in the token input box
 
-@test
   Scenario: Disassociate tokens through wallet
     And I disassociate some tokens from wallet
     Then I can see the pending transactions button is shown
 
-@test
   Scenario: Disassociate tokens through vesting contract
     And I disassociate some tokens from vesting contract
     Then I can see the pending transactions button is shown
 
-@test
   Scenario: Staking validator list and nodes is displayed
-  Then I can see the validator node list
-  And the epoch countdown timer is counting down
-  
-@test
-Scenario: add stake from vesting contract
+    Then I can see the validator node list
+    And the epoch countdown timer is counting down
+
+  Scenario: add stake from vesting contract
     When I click on a validator
     Then I am taken to the correct validator page
 
   @todo
-Scenario: add stake from wallet 
+  Scenario: add stake from wallet 
     When I click on a validator
     Then I am taken to the correct validator page
 
   @todo
-Scenario: add stake from vesting contract
+  Scenario: add stake from vesting contract
     When I click on a validator
     Then I am taken to the correct validator page
 
