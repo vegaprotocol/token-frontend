@@ -1,5 +1,6 @@
+import { Tranche } from "@vegaprotocol/smart-contracts-sdk";
+
 import { BigNumber } from "../../../lib/bignumber";
-import { Tranche } from "../../../lib/vega-web3/vega-web3-types";
 import { sumCirculatingTokens } from "./token-details-circulating";
 
 test("It sums some easy tranches correctly", () => {

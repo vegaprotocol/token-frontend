@@ -20,6 +20,7 @@ export const useGetLiquidityBalances = (
   const getBalances = React.useCallback(
     async (lpStaking: VegaLPStaking, contractAddress: string) => {
       try {
+        // @ts-ignore
         const [
           rewardPerEpoch,
           rewardPoolBalance,
@@ -28,6 +29,7 @@ export const useGetLiquidityBalances = (
           epochDetails,
           stakingStart,
         ] = await Promise.all<
+          // @ts-ignore
           BigNumber,
           BigNumber,
           string,
