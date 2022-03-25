@@ -1,0 +1,274 @@
+{
+  "uid" : "c513f0aa01a5d5ef",
+  "name" : "Invalid claims code will show error",
+  "fullName" : "Claim codes.Invalid claims code will show error",
+  "historyId" : "39a15c833b071a37ff175b7229368de0",
+  "time" : {
+    "start" : 1648168475467,
+    "stop" : 1648168503201,
+    "duration" : 27734
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"claim?r=odiuhfn\" page",
+      "time" : {
+        "start" : 1648168475468,
+        "stop" : 1648168476823,
+        "duration" : 1355
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "4fc72a4da32f3ed6",
+        "name" : "Screenshot",
+        "source" : "4fc72a4da32f3ed6.png",
+        "type" : "image/png",
+        "size" : 333842
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I connect my ethereum wallet",
+      "time" : {
+        "start" : 1648168476823,
+        "stop" : 1648168501706,
+        "duration" : 24883
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "faf9abe2b2a29538",
+        "name" : "Screenshot",
+        "source" : "faf9abe2b2a29538.png",
+        "type" : "image/png",
+        "size" : 230810
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I can see the heading title is \"CLAIM $VEGA TOKENS\"",
+      "time" : {
+        "start" : 1648168501706,
+        "stop" : 1648168502782,
+        "duration" : 1076
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "d47574178fa50b98",
+        "name" : "Screenshot",
+        "source" : "d47574178fa50b98.png",
+        "type" : "image/png",
+        "size" : 211460
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the invalid claim code error \"Something doesn't look right. Please check the link again or the Vesting page to see if you have already claimed\"",
+      "time" : {
+        "start" : 1648168502782,
+        "stop" : 1648168503200,
+        "duration" : 418
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "c6cd5e71ead20042",
+        "name" : "Screenshot",
+        "source" : "c6cd5e71ead20042.png",
+        "type" : "image/png",
+        "size" : 211460
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-0"
+  }, {
+    "name" : "suite",
+    "value" : "Claim codes"
+  }, {
+    "name" : "testClass",
+    "value" : "Claim codes"
+  }, {
+    "name" : "testMethod",
+    "value" : "Invalid claims code will show error"
+  }, {
+    "name" : "package",
+    "value" : "Claim codes"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 10,
+        "unknown" : 0,
+        "total" : 13
+      },
+      "items" : [ {
+        "uid" : "642e20eab3ed93ff",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/147//#testresult/642e20eab3ed93ff",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648164957800,
+          "stop" : 1648164990263,
+          "duration" : 32463
+        }
+      }, {
+        "uid" : "2f0c345ee09ebd4a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/146//#testresult/2f0c345ee09ebd4a",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <button type=\"button\" class=\"fill button-secondary--inverted\" data-test-id=\"connect-to-eth-wallet-button\">...</button> is not clickable at point (985, 98). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1648164079643,
+          "stop" : 1648164098589,
+          "duration" : 18946
+        }
+      }, {
+        "uid" : "32b5fdf8367a2b5a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/145//#testresult/32b5fdf8367a2b5a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647593481299,
+          "stop" : 1647593494571,
+          "duration" : 13272
+        }
+      }, {
+        "uid" : "ae09c916eeb1cc24",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/144//#testresult/ae09c916eeb1cc24",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647533063762,
+          "stop" : 1647533078303,
+          "duration" : 14541
+        }
+      }, {
+        "uid" : "6a17815f6e3a5640",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/143//#testresult/6a17815f6e3a5640",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647514378446,
+          "stop" : 1647514405107,
+          "duration" : 26661
+        }
+      }, {
+        "uid" : "dcf51def93ddc8f7",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/142//#testresult/dcf51def93ddc8f7",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <button type=\"button\" class=\"fill button-secondary--inverted\" data-test-id=\"connect-to-eth-wallet-button\">...</button> is not clickable at point (985, 98). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1647439211563,
+          "stop" : 1647439226852,
+          "duration" : 15289
+        }
+      }, {
+        "uid" : "e84bde5ad3673b1d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/141//#testresult/e84bde5ad3673b1d",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <button type=\"button\" class=\"fill button-secondary--inverted\" data-test-id=\"connect-to-eth-wallet-button\">...</button> is not clickable at point (985, 98). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1647438837453,
+          "stop" : 1647438852532,
+          "duration" : 15079
+        }
+      }, {
+        "uid" : "cae46c5b4afbcc80",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/140//#testresult/cae46c5b4afbcc80",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647367574784,
+          "stop" : 1647367591476,
+          "duration" : 16692
+        }
+      }, {
+        "uid" : "2ac05b3615262ede",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/139//#testresult/2ac05b3615262ede",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647359015625,
+          "stop" : 1647359030648,
+          "duration" : 15023
+        }
+      }, {
+        "uid" : "897d719214fac465",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/138//#testresult/897d719214fac465",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647356946261,
+          "stop" : 1647356959559,
+          "duration" : 13298
+        }
+      }, {
+        "uid" : "89dd3d45dd8f6e9c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/137//#testresult/89dd3d45dd8f6e9c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647356063510,
+          "stop" : 1647356080080,
+          "duration" : 16570
+        }
+      }, {
+        "uid" : "627df10e24a0ca0a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/136//#testresult/627df10e24a0ca0a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647354855142,
+          "stop" : 1647354872345,
+          "duration" : 17203
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "c513f0aa01a5d5ef.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

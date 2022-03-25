@@ -1,0 +1,274 @@
+{
+  "uid" : "a00c668684cc831f",
+  "name" : "Can navigate to Home page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Home page using main nav tab",
+  "historyId" : "6fab3f7524031af7e2c647aac983c3ff",
+  "time" : {
+    "start" : 1648168597911,
+    "stop" : 1648168600277,
+    "duration" : 2366
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1648168597911,
+        "stop" : 1648168598581,
+        "duration" : 670
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "28766bae283c8ea5",
+        "name" : "Screenshot",
+        "source" : "28766bae283c8ea5.png",
+        "type" : "image/png",
+        "size" : 8726
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on \"Home\" on main nav",
+      "time" : {
+        "start" : 1648168598581,
+        "stop" : 1648168599273,
+        "duration" : 692
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "feefd9206af364d6",
+        "name" : "Screenshot",
+        "source" : "feefd9206af364d6.png",
+        "type" : "image/png",
+        "size" : 275910
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I can see \"Home\" button is clearly highlighted after click",
+      "time" : {
+        "start" : 1648168599273,
+        "stop" : 1648168599746,
+        "duration" : 473
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "8de50fcbb4c9c875",
+        "name" : "Screenshot",
+        "source" : "8de50fcbb4c9c875.png",
+        "type" : "image/png",
+        "size" : 275910
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I am taken to the \"home\" page",
+      "time" : {
+        "start" : 1648168599746,
+        "stop" : 1648168600276,
+        "duration" : 530
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "7072c66eb83f2f6e",
+        "name" : "Screenshot",
+        "source" : "7072c66eb83f2f6e.png",
+        "type" : "image/png",
+        "size" : 275910
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Home page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 10,
+        "unknown" : 0,
+        "total" : 13
+      },
+      "items" : [ {
+        "uid" : "8c117746624fdd61",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/147//#testresult/8c117746624fdd61",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648165118997,
+          "stop" : 1648165121526,
+          "duration" : 2529
+        }
+      }, {
+        "uid" : "519bde363ab82c73",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/146//#testresult/519bde363ab82c73",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <a aria-current=\"page\" class=\"active\" href=\"/\">...</a> is not clickable at point (52, 81). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1648164249216,
+          "stop" : 1648164256455,
+          "duration" : 7239
+        }
+      }, {
+        "uid" : "b89fb3fb575301c3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/145//#testresult/b89fb3fb575301c3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647593588026,
+          "stop" : 1647593590473,
+          "duration" : 2447
+        }
+      }, {
+        "uid" : "acb678cc4cd4f947",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/144//#testresult/acb678cc4cd4f947",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647533186795,
+          "stop" : 1647533190139,
+          "duration" : 3344
+        }
+      }, {
+        "uid" : "14235b150551faf2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/143//#testresult/14235b150551faf2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647514487998,
+          "stop" : 1647514490136,
+          "duration" : 2138
+        }
+      }, {
+        "uid" : "8d300d5446e62060",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/142//#testresult/8d300d5446e62060",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <a aria-current=\"page\" class=\"active\" href=\"/\">...</a> is not clickable at point (52, 81). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1647439334703,
+          "stop" : 1647439340585,
+          "duration" : 5882
+        }
+      }, {
+        "uid" : "bdf48069d10adb56",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/141//#testresult/bdf48069d10adb56",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <a aria-current=\"page\" class=\"active\" href=\"/\">...</a> is not clickable at point (52, 81). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1647438967548,
+          "stop" : 1647438973469,
+          "duration" : 5921
+        }
+      }, {
+        "uid" : "42e85acb5c1ed85c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/140//#testresult/42e85acb5c1ed85c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647367688814,
+          "stop" : 1647367690674,
+          "duration" : 1860
+        }
+      }, {
+        "uid" : "14d7915469a6448e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/139//#testresult/14d7915469a6448e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647359126379,
+          "stop" : 1647359129211,
+          "duration" : 2832
+        }
+      }, {
+        "uid" : "e2259a38d596cbd8",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/138//#testresult/e2259a38d596cbd8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647357053883,
+          "stop" : 1647357055962,
+          "duration" : 2079
+        }
+      }, {
+        "uid" : "cb46231bd7b030d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/137//#testresult/cb46231bd7b030d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647356162056,
+          "stop" : 1647356164134,
+          "duration" : 2078
+        }
+      }, {
+        "uid" : "6bbb48f8c7a6ed45",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/136//#testresult/6bbb48f8c7a6ed45",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647354975239,
+          "stop" : 1647354978167,
+          "duration" : 2928
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "a00c668684cc831f.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

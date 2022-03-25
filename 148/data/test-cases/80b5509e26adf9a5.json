@@ -1,0 +1,232 @@
+{
+  "uid" : "80b5509e26adf9a5",
+  "name" : "Go to staking and connect ethereum wallet",
+  "fullName" : "Staking page.Go to staking and connect ethereum wallet",
+  "historyId" : "24b200d19bf9488be3cf36ec47fd72a6",
+  "time" : {
+    "start" : 1648168666458,
+    "stop" : 1648168689089,
+    "duration" : 22631
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: Get started Button not displayed",
+  "statusTrace" : "Error: Get started Button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at Browser.connectToEthWallet (/home/runner/work/token-frontend/token-frontend/automation/commands.js:10:37)\n                    at Browser.connectToEthWallet (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at Browser.next [as connectToEthWallet] (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/monad.js:149:33)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:5:11)\n                    at async Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at async Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at async Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: Get started Button not displayed",
+    "statusTrace" : "Error: Get started Button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at Browser.connectToEthWallet (/home/runner/work/token-frontend/token-frontend/automation/commands.js:10:37)\n                    at Browser.connectToEthWallet (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at Browser.next [as connectToEthWallet] (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/monad.js:149:33)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:5:11)\n                    at async Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at async Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at async Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1648168666460,
+        "stop" : 1648168668350,
+        "duration" : 1890
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "c3c110b45be6464b",
+        "name" : "Screenshot",
+        "source" : "c3c110b45be6464b.png",
+        "type" : "image/png",
+        "size" : 8722
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Given I connect my ethereum wallet",
+      "time" : {
+        "start" : 1648168668350,
+        "stop" : 1648168689088,
+        "duration" : 20738
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: Get started Button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at Browser.connectToEthWallet (/home/runner/work/token-frontend/token-frontend/automation/commands.js:10:37)\n                    at Browser.connectToEthWallet (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at Browser.next [as connectToEthWallet] (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/monad.js:149:33)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:5:11)\n                    at async Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at async Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at async Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "eac1712eefc6a182",
+        "name" : "Screenshot",
+        "source" : "eac1712eefc6a182.png",
+        "type" : "image/png",
+        "size" : 6619
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking page"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Go to staking and connect ethereum wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 4,
+        "skipped" : 0,
+        "passed" : 8,
+        "unknown" : 0,
+        "total" : 12
+      },
+      "items" : [ {
+        "uid" : "a2426c33d2c4d557",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/146//#testresult/a2426c33d2c4d557",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <button type=\"button\" class=\"fill button-secondary--inverted\" data-test-id=\"connect-to-eth-wallet-button\">...</button> is not clickable at point (985, 98). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1648164337667,
+          "stop" : 1648164353331,
+          "duration" : 15664
+        }
+      }, {
+        "uid" : "87aaf4336710e957",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/145//#testresult/87aaf4336710e957",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647593655998,
+          "stop" : 1647593669156,
+          "duration" : 13158
+        }
+      }, {
+        "uid" : "95ec7ab3367bb8d9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/144//#testresult/95ec7ab3367bb8d9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647533302688,
+          "stop" : 1647533331100,
+          "duration" : 28412
+        }
+      }, {
+        "uid" : "544f1d2a767e5e99",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/143//#testresult/544f1d2a767e5e99",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647514559891,
+          "stop" : 1647514575406,
+          "duration" : 15515
+        }
+      }, {
+        "uid" : "90c41890655a13f6",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/142//#testresult/90c41890655a13f6",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <button type=\"button\" class=\"fill button-secondary--inverted\" data-test-id=\"connect-to-eth-wallet-button\">...</button> is not clickable at point (985, 98). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1647439435630,
+          "stop" : 1647439463052,
+          "duration" : 27422
+        }
+      }, {
+        "uid" : "6c0155288762ac8a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/141//#testresult/6c0155288762ac8a",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <button type=\"button\" class=\"fill button-secondary--inverted\" data-test-id=\"connect-to-eth-wallet-button\">...</button> is not clickable at point (985, 98). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1647439061917,
+          "stop" : 1647439086278,
+          "duration" : 24361
+        }
+      }, {
+        "uid" : "46bc1481dcd29214",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/140//#testresult/46bc1481dcd29214",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647367762767,
+          "stop" : 1647367779751,
+          "duration" : 16984
+        }
+      }, {
+        "uid" : "8d039e1b59fcee5d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/139//#testresult/8d039e1b59fcee5d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647359192102,
+          "stop" : 1647359215847,
+          "duration" : 23745
+        }
+      }, {
+        "uid" : "4a3f10f5312753e3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/138//#testresult/4a3f10f5312753e3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647357131608,
+          "stop" : 1647357146919,
+          "duration" : 15311
+        }
+      }, {
+        "uid" : "44f4179980632186",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/137//#testresult/44f4179980632186",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647356240190,
+          "stop" : 1647356278467,
+          "duration" : 38277
+        }
+      }, {
+        "uid" : "1f99a2462fa1c9c9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/136//#testresult/1f99a2462fa1c9c9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647355037173,
+          "stop" : 1647355052498,
+          "duration" : 15325
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "80b5509e26adf9a5.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
