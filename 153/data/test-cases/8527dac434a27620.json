@@ -1,0 +1,229 @@
+{
+  "uid" : "8527dac434a27620",
+  "name" : "Cannot stake more than what is associated",
+  "fullName" : "Staking and Association tests.Cannot stake more than what is associated",
+  "historyId" : "b8943f126db6c991ca238d55739ed443",
+  "time" : {
+    "start" : 1648216943441,
+    "stop" : 1648216961701,
+    "duration" : 18260
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1648216943441,
+        "stop" : 1648216947559,
+        "duration" : 4118
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "515ced53fd8c9bda",
+        "name" : "Screenshot",
+        "source" : "515ced53fd8c9bda.png",
+        "type" : "image/png",
+        "size" : 254369
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on a validator",
+      "time" : {
+        "start" : 1648216947559,
+        "stop" : 1648216952493,
+        "duration" : 4934
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "254562182364a166",
+        "name" : "Screenshot",
+        "source" : "254562182364a166.png",
+        "type" : "image/png",
+        "size" : 273238
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I select to \"Add\" stake",
+      "time" : {
+        "start" : 1648216952494,
+        "stop" : 1648216956637,
+        "duration" : 4143
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "4b3bddb3262084d3",
+        "name" : "Screenshot",
+        "source" : "4b3bddb3262084d3.png",
+        "type" : "image/png",
+        "size" : 340235
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I enter \"2000000\" tokens in the input field",
+      "time" : {
+        "start" : 1648216956637,
+        "stop" : 1648216959770,
+        "duration" : 3133
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "e8adbd022bff5374",
+        "name" : "Screenshot",
+        "source" : "e8adbd022bff5374.png",
+        "type" : "image/png",
+        "size" : 341849
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then the token submit button is disabled",
+      "time" : {
+        "start" : 1648216959770,
+        "stop" : 1648216961701,
+        "duration" : 1931
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "e20fb116c682f767",
+        "name" : "Screenshot",
+        "source" : "e20fb116c682f767.png",
+        "type" : "image/png",
+        "size" : 341849
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 5,
+    "attachmentsCount" : 5,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Cannot stake more than what is associated"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 6,
+        "unknown" : 0,
+        "total" : 6
+      },
+      "items" : [ {
+        "uid" : "3c8d00c463d4e268",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/152//#testresult/3c8d00c463d4e268",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648211272672,
+          "stop" : 1648211279054,
+          "duration" : 6382
+        }
+      }, {
+        "uid" : "d29d8bc1ebd8f6c2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/151//#testresult/d29d8bc1ebd8f6c2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648208107405,
+          "stop" : 1648208113027,
+          "duration" : 5622
+        }
+      }, {
+        "uid" : "25e6622246848849",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/150//#testresult/25e6622246848849",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648205935810,
+          "stop" : 1648205942075,
+          "duration" : 6265
+        }
+      }, {
+        "uid" : "5fc95fc1ee20834a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/147//#testresult/5fc95fc1ee20834a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648200772442,
+          "stop" : 1648200778537,
+          "duration" : 6095
+        }
+      }, {
+        "uid" : "34479737e4cea57e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/147//#testresult/34479737e4cea57e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648165284626,
+          "stop" : 1648165290573,
+          "duration" : 5947
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "8527dac434a27620.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

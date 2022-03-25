@@ -1,0 +1,56 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "Error: expect(received).not.toEqual(expected) // deep equality",
+      "children" : [ {
+        "name" : "Rewards are shown and rewards countdown is shown when vega wallet is connect",
+        "uid" : "9e637c76b8c45d1",
+        "parentUid" : "f308d330cc4306ed7e49629ac12d4a97",
+        "status" : "failed",
+        "time" : {
+          "start" : 1648216695435,
+          "stop" : 1648216701532,
+          "duration" : 6097
+        },
+        "flaky" : false,
+        "newFailed" : true,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      }, {
+        "name" : "Staking validator list and epoch timer countdown",
+        "uid" : "ffb01fc5fa1f2a56",
+        "parentUid" : "f308d330cc4306ed7e49629ac12d4a97",
+        "status" : "failed",
+        "time" : {
+          "start" : 1648216908550,
+          "stop" : 1648216921673,
+          "duration" : 13123
+        },
+        "flaky" : false,
+        "newFailed" : true,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "f308d330cc4306ed7e49629ac12d4a97"
+    }, {
+      "name" : "Error: expect(received).toBe(expected) // Object.is equality",
+      "children" : [ {
+        "name" : "Use maximum button on associate from wallet enters correct amount",
+        "uid" : "79ca3aef3ea6acb3",
+        "parentUid" : "23d31088e622dd99f0c1272da23a5f8f",
+        "status" : "failed",
+        "time" : {
+          "start" : 1648216832507,
+          "stop" : 1648216839415,
+          "duration" : 6908
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "23d31088e622dd99f0c1272da23a5f8f"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  } ],
+  "name" : "categories"
+}
