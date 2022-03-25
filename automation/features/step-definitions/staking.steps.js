@@ -1,75 +1,22 @@
 const { Given, When, Then } = require("@wdio/cucumber-framework");
-const StakingPage = require("../pageobjects/staking.page");
+const stakingPage = require("../pageobjects/staking.page");
 let currentAmountOfTokensInWallet =''
 let validatorName =''
 
 When(/^I associate some tokens from wallet$/,()=>{
-    browser.getByTestId('callout').waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "callout was not found"})
-    browser.pause(2000)
-  if (browser.getByTestId('associate-more-tokens-btn').isDisplayed()){
-    browser.getByTestId('associate-more-tokens-btn').click()
-  } else browser.getByTestId('associate-tokens-btn').click()
-  browser.getByTestId('associate-radio-wallet').click({force:true})
-    browser.pause(1000)
-    browser.getByTestId('token-amount-input').setValue(0.00001)
-    browser.pause(1000)
-    browser.getByTestId('token-input-submit-button').click()
-    browser.waitUntil(() => browser.getWindowHandles().length > 1);
-    browser.switchWindow("MetaMask Notification");
-    $('button=Confirm').click()
-    browser.switchWindow("VEGA");
-    browser.pause(2000)
+stakingPage.associateTokensThroughWallet()
 })
 
 When(/^I associate some tokens from vesting contract$/,()=>{
-    browser.getByTestId('callout').waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "callout was not found"})
-  if (browser.getByTestId('associate-more-tokens-btn').isDisplayed()){
-    browser.getByTestId('associate-more-tokens-btn').click()
-  } else browser.getByTestId('associate-tokens-btn').click()
-  browser.getByTestId('associate-radio-contract').click({force:true})
-    browser.pause(1000)
-    browser.getByTestId('token-amount-input').setValue(0.00001)
-    browser.pause(1000)
-    browser.getByTestId('token-input-submit-button').click()
-    browser.waitUntil(() => browser.getWindowHandles().length > 1);
-    browser.switchWindow("MetaMask Notification");
-    $('button=Confirm').click()
-    browser.switchWindow("VEGA");
-    browser.pause(2000)
+  stakingPage.associateTokensThroughVestingContract()
 })
 
 When(/^I disassociate some tokens from wallet$/,()=>{
-    browser.getByTestId('callout').waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "callout was not found"})
-    browser.getByTestId("disassociate-tokens-btn").waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "disassociate btn  was not found"})
-    browser.getByTestId("disassociate-tokens-btn").click()
-    browser.pause(1000)
-    $('[data-testid="associate-radio-wallet"]').click({force:true})
-    browser.pause(1000)
-    browser.getByTestId('token-amount-input').setValue(0.00001)
-    browser.pause(1000)
-    browser.getByTestId('token-input-submit-button').click()
-    browser.waitUntil(() => browser.getWindowHandles().length > 1);
-    browser.switchWindow("MetaMask Notification");
-    $('button=Confirm').click()
-    browser.switchWindow("VEGA");
-    browser.pause(2000)
+stakingPage.disassociateTokensThroughWallet()
 })
 
 When(/^I disassociate some tokens from vesting contract$/,()=>{
-    browser.getByTestId('callout').waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "callout was not found"})
-    browser.getByTestId("disassociate-tokens-btn").waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "disassociate btn  was not found"})
-    browser.getByTestId("disassociate-tokens-btn").click()
-    browser.pause(4000)
-    $('[data-testid="associate-radio-wallet"]').click({force:true})
-    browser.pause(1000)
-    browser.getByTestId('token-amount-input').setValue(0.00001)
-    browser.pause(1000)
-    browser.getByTestId('token-input-submit-button').click()
-    browser.waitUntil(() => browser.getWindowHandles().length > 1);
-    browser.switchWindow("MetaMask Notification");
-    $('button=Confirm').click()
-    browser.switchWindow("VEGA");
-    browser.pause(2000)
+stakingPage.disassociateTokensThroughVestingContract()
 })
 
 When(/^I can see the pending transactions button is shown$/,()=>{
