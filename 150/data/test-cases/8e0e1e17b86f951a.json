@@ -1,0 +1,202 @@
+{
+  "uid" : "8e0e1e17b86f951a",
+  "name" : "Cannot disassociate more tokens through wallet than available",
+  "fullName" : "Staking and Association tests.Cannot disassociate more tokens through wallet than available",
+  "historyId" : "e8b998c24236a4d68b976a4e61d43a96",
+  "time" : {
+    "start" : 1648205904057,
+    "stop" : 1648205907989,
+    "duration" : 3932
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1648205904058,
+        "stop" : 1648205905088,
+        "duration" : 1030
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "47b66e54e07a42d7",
+        "name" : "Screenshot",
+        "source" : "47b66e54e07a42d7.png",
+        "type" : "image/png",
+        "size" : 8743
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I click the button to disassociate",
+      "time" : {
+        "start" : 1648205905088,
+        "stop" : 1648205906102,
+        "duration" : 1014
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "5a97cc0ffb7712d5",
+        "name" : "Screenshot",
+        "source" : "5a97cc0ffb7712d5.png",
+        "type" : "image/png",
+        "size" : 256327
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on the \"wallet\" radio button",
+      "time" : {
+        "start" : 1648205906102,
+        "stop" : 1648205906825,
+        "duration" : 723
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "c67232f685071d2b",
+        "name" : "Screenshot",
+        "source" : "c67232f685071d2b.png",
+        "type" : "image/png",
+        "size" : 268847
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I enter \"2000000\" tokens in the input field",
+      "time" : {
+        "start" : 1648205906825,
+        "stop" : 1648205907479,
+        "duration" : 654
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "e4b7cc7e72219075",
+        "name" : "Screenshot",
+        "source" : "e4b7cc7e72219075.png",
+        "type" : "image/png",
+        "size" : 269451
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then the token submit button is disabled",
+      "time" : {
+        "start" : 1648205907479,
+        "stop" : 1648205907989,
+        "duration" : 510
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "db406b4ccddd79e",
+        "name" : "Screenshot",
+        "source" : "db406b4ccddd79e.png",
+        "type" : "image/png",
+        "size" : 269919
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 5,
+    "attachmentsCount" : 5,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Cannot disassociate more tokens through wallet than available"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 3,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "c6fa8ba0f1b5c50",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/147//#testresult/c6fa8ba0f1b5c50",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648200738547,
+          "stop" : 1648200743199,
+          "duration" : 4652
+        }
+      }, {
+        "uid" : "aaf1942ae915cce0",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/147//#testresult/aaf1942ae915cce0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648165250110,
+          "stop" : 1648165254190,
+          "duration" : 4080
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "8e0e1e17b86f951a.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

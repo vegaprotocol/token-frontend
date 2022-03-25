@@ -1,0 +1,160 @@
+{
+  "uid" : "cbb2e7677b22e6d5",
+  "name" : "Staking validator list and epoch timer countdown",
+  "fullName" : "Staking and Association tests.Staking validator list and epoch timer countdown",
+  "historyId" : "d90e06a1ac2b23447752f22625460308",
+  "time" : {
+    "start" : 1648205923596,
+    "stop" : 1648205929014,
+    "duration" : 5418
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1648205923597,
+        "stop" : 1648205924430,
+        "duration" : 833
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "f579d62d4b18f8c0",
+        "name" : "Screenshot",
+        "source" : "f579d62d4b18f8c0.png",
+        "type" : "image/png",
+        "size" : 8710
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the validator node list",
+      "time" : {
+        "start" : 1648205924430,
+        "stop" : 1648205926168,
+        "duration" : 1738
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "bf3c79d152154454",
+        "name" : "Screenshot",
+        "source" : "bf3c79d152154454.png",
+        "type" : "image/png",
+        "size" : 289841
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And the epoch countdown timer is counting down",
+      "time" : {
+        "start" : 1648205926168,
+        "stop" : 1648205929014,
+        "duration" : 2846
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "2ae6f9d07c5b0ccb",
+        "name" : "Screenshot",
+        "source" : "2ae6f9d07c5b0ccb.png",
+        "type" : "image/png",
+        "size" : 291957
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Staking validator list and epoch timer countdown"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 3,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "a063dfd504b0e659",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/147//#testresult/a063dfd504b0e659",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648200761496,
+          "stop" : 1648200765833,
+          "duration" : 4337
+        }
+      }, {
+        "uid" : "6e3eacf1737f2191",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/147//#testresult/6e3eacf1737f2191",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648165272234,
+          "stop" : 1648165278132,
+          "duration" : 5898
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "cbb2e7677b22e6d5.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
