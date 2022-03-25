@@ -1,4 +1,5 @@
 const { Given, When, Then } = require("@wdio/cucumber-framework");
+const rewardsPage = require("../pageobjects/rewards.page");
 const RewardsPage = require("../pageobjects/rewards.page");
 
 Given(/^I have not earned any rewards$/, () => {});
@@ -33,4 +34,12 @@ Then(/^no reward message is shown$/, () => {
   expect(displayedMsg.getText()).toBe(
     "This Vega key has not received any rewards."
   );
+});
+Then(/^the connect to vega wallet is shown$/, () => {
+rewardsPage.vegaWalletConnectBtn.waitForDisplayed({timeoutMsg:"connect to vega wallet button not displayed"})
+expect(rewardsPage.vegaWalletConnectBtn).toHaveText('Connect Vega wallet')
+});
+
+Then(/^the rewards epoch countdown is not displayed$/, () => {
+expect(rewardsPage.epochRewardsCountdownTimer).not.toBeDisplayed()
 });
