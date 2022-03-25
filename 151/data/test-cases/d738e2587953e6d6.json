@@ -1,0 +1,152 @@
+{
+  "uid" : "d738e2587953e6d6",
+  "name" : "Rewards countdown is not displayed if vega wallet is not connected",
+  "fullName" : "Rewards page.Rewards countdown is not displayed if vega wallet is not connected",
+  "historyId" : "31400b4d4ec4d4b7fae679df4f19d991",
+  "time" : {
+    "start" : 1648207942170,
+    "stop" : 1648207967173,
+    "duration" : 25003
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"rewards\" page",
+      "time" : {
+        "start" : 1648207942173,
+        "stop" : 1648207945923,
+        "duration" : 3750
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "b6ec073945505814",
+        "name" : "Screenshot",
+        "source" : "b6ec073945505814.png",
+        "type" : "image/png",
+        "size" : 8743
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Given I connect my ethereum wallet",
+      "time" : {
+        "start" : 1648207945923,
+        "stop" : 1648207965494,
+        "duration" : 19571
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "f6e7a6614e1554f6",
+        "name" : "Screenshot",
+        "source" : "f6e7a6614e1554f6.png",
+        "type" : "image/png",
+        "size" : 301181
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then the connect to vega wallet is shown",
+      "time" : {
+        "start" : 1648207965494,
+        "stop" : 1648207966606,
+        "duration" : 1112
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "517e7158ca0e74ee",
+        "name" : "Screenshot",
+        "source" : "517e7158ca0e74ee.png",
+        "type" : "image/png",
+        "size" : 206864
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And the rewards epoch countdown is not displayed",
+      "time" : {
+        "start" : 1648207966606,
+        "stop" : 1648207967171,
+        "duration" : 565
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "6cc5acba7c14a3b5",
+        "name" : "Screenshot",
+        "source" : "6cc5acba7c14a3b5.png",
+        "type" : "image/png",
+        "size" : 206864
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-3"
+  }, {
+    "name" : "suite",
+    "value" : "Rewards page"
+  }, {
+    "name" : "testClass",
+    "value" : "Rewards page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Rewards countdown is not displayed if vega wallet is not connected"
+  }, {
+    "name" : "package",
+    "value" : "Rewards page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "d738e2587953e6d6.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
