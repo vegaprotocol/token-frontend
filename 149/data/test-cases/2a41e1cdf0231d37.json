@@ -1,0 +1,278 @@
+{
+  "uid" : "2a41e1cdf0231d37",
+  "name" : "Associate tokens through wallet",
+  "fullName" : "Staking page.Associate tokens through wallet",
+  "historyId" : "702a46c3c9200ee604094906aa343264",
+  "time" : {
+    "start" : 1648179900765,
+    "stop" : 1648179918074,
+    "duration" : 17309
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1648179900765,
+        "stop" : 1648179902355,
+        "duration" : 1590
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "410f30df8a801a4b",
+        "name" : "Screenshot",
+        "source" : "410f30df8a801a4b.png",
+        "type" : "image/png",
+        "size" : 8702
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I connect to the vega wallet",
+      "time" : {
+        "start" : 1648179902355,
+        "stop" : 1648179904688,
+        "duration" : 2333
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "ddef5113b01ac758",
+        "name" : "Screenshot",
+        "source" : "ddef5113b01ac758.png",
+        "type" : "image/png",
+        "size" : 247581
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I associate some tokens from wallet",
+      "time" : {
+        "start" : 1648179904688,
+        "stop" : 1648179916870,
+        "duration" : 12182
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "57f58121fccd092d",
+        "name" : "Screenshot",
+        "source" : "57f58121fccd092d.png",
+        "type" : "image/png",
+        "size" : 238014
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the pending transactions button is shown",
+      "time" : {
+        "start" : 1648179916870,
+        "stop" : 1648179918074,
+        "duration" : 1204
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "5986c9b55987c7aa",
+        "name" : "Screenshot",
+        "source" : "5986c9b55987c7aa.png",
+        "type" : "image/png",
+        "size" : 238026
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking page"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Associate tokens through wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 7,
+        "skipped" : 0,
+        "passed" : 6,
+        "unknown" : 0,
+        "total" : 13
+      },
+      "items" : [ {
+        "uid" : "c55782f3816de586",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/148//#testresult/c55782f3816de586",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1648168689090,
+          "stop" : 1648168724152,
+          "duration" : 35062
+        }
+      }, {
+        "uid" : "5481338d2f6bbe12",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/146//#testresult/5481338d2f6bbe12",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <button class=\"fill\" data-test-id=\"connect-to-vega-wallet-btn\">...</button> is not clickable at point (380, 634). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1648164353332,
+          "stop" : 1648164359596,
+          "duration" : 6264
+        }
+      }, {
+        "uid" : "8897cf8640431953",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/145//#testresult/8897cf8640431953",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647593669156,
+          "stop" : 1647593681379,
+          "duration" : 12223
+        }
+      }, {
+        "uid" : "dd9f0b468ed27eb9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/144//#testresult/dd9f0b468ed27eb9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647533331101,
+          "stop" : 1647533349955,
+          "duration" : 18854
+        }
+      }, {
+        "uid" : "cabb82f253fcc30d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/143//#testresult/cabb82f253fcc30d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647514575406,
+          "stop" : 1647514589720,
+          "duration" : 14314
+        }
+      }, {
+        "uid" : "1961c52fde121ead",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/142//#testresult/1961c52fde121ead",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <button class=\"fill\" data-test-id=\"connect-to-vega-wallet-btn\">...</button> is not clickable at point (380, 634). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1647439463056,
+          "stop" : 1647439471377,
+          "duration" : 8321
+        }
+      }, {
+        "uid" : "bc3180339c318929",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/141//#testresult/bc3180339c318929",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <button class=\"fill\" data-test-id=\"connect-to-vega-wallet-btn\">...</button> is not clickable at point (380, 634). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1647439086279,
+          "stop" : 1647439093682,
+          "duration" : 7403
+        }
+      }, {
+        "uid" : "aab7f83eff1d1f81",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/140//#testresult/aab7f83eff1d1f81",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1647367779752,
+          "stop" : 1647367814171,
+          "duration" : 34419
+        }
+      }, {
+        "uid" : "dad8c989d97a62fd",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/139//#testresult/dad8c989d97a62fd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647359215847,
+          "stop" : 1647359234519,
+          "duration" : 18672
+        }
+      }, {
+        "uid" : "ff6f357b9bbc83ce",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/138//#testresult/ff6f357b9bbc83ce",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647357146919,
+          "stop" : 1647357161418,
+          "duration" : 14499
+        }
+      }, {
+        "uid" : "120723ebee049959",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/137//#testresult/120723ebee049959",
+        "status" : "broken",
+        "statusDetails" : "Step \"I connect hosted wallet\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.",
+        "time" : {
+          "start" : 1647356278467,
+          "stop" : 1647356281998,
+          "duration" : 3531
+        }
+      }, {
+        "uid" : "efca5c78820f71ed",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/136//#testresult/efca5c78820f71ed",
+        "status" : "broken",
+        "statusDetails" : "Step \"I connect hosted wallet\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.",
+        "time" : {
+          "start" : 1647355052498,
+          "stop" : 1647355053713,
+          "duration" : 1215
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "2a41e1cdf0231d37.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
