@@ -1,0 +1,178 @@
+{
+  "uid" : "f5cbd923a8f9fec1",
+  "name" : "Disassociate tokens through vesting contract",
+  "fullName" : "Staking and Association tests.Disassociate tokens through vesting contract",
+  "historyId" : "2202ce34a69f50ec221451d1dfbc74e6",
+  "time" : {
+    "start" : 1648211223344,
+    "stop" : 1648211232996,
+    "duration" : 9652
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1648211223345,
+        "stop" : 1648211224117,
+        "duration" : 772
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "c526a995ec2669ab",
+        "name" : "Screenshot",
+        "source" : "c526a995ec2669ab.png",
+        "type" : "image/png",
+        "size" : 411616
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I disassociate some tokens from vesting contract",
+      "time" : {
+        "start" : 1648211224117,
+        "stop" : 1648211232409,
+        "duration" : 8292
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "a922224a3bb9ed42",
+        "name" : "Screenshot",
+        "source" : "a922224a3bb9ed42.png",
+        "type" : "image/png",
+        "size" : 216084
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the pending transactions button is shown",
+      "time" : {
+        "start" : 1648211232409,
+        "stop" : 1648211232995,
+        "duration" : 586
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "65b78f2f6bde0462",
+        "name" : "Screenshot",
+        "source" : "65b78f2f6bde0462.png",
+        "type" : "image/png",
+        "size" : 216058
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Disassociate tokens through vesting contract"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 5,
+        "unknown" : 0,
+        "total" : 5
+      },
+      "items" : [ {
+        "uid" : "963a98805ddcdb8b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/151//#testresult/963a98805ddcdb8b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648208086243,
+          "stop" : 1648208096860,
+          "duration" : 10617
+        }
+      }, {
+        "uid" : "1a6df19a6c6af38a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/150//#testresult/1a6df19a6c6af38a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648205912323,
+          "stop" : 1648205923596,
+          "duration" : 11273
+        }
+      }, {
+        "uid" : "696692f393d3e8c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/147//#testresult/696692f393d3e8c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648200746797,
+          "stop" : 1648200761496,
+          "duration" : 14699
+        }
+      }, {
+        "uid" : "1a3cd2d0b76d546b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/147//#testresult/1a3cd2d0b76d546b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648165257860,
+          "stop" : 1648165272234,
+          "duration" : 14374
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "f5cbd923a8f9fec1.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
