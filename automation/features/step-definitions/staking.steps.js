@@ -20,16 +20,16 @@ stakingPage.disassociateTokensThroughVestingContract()
 })
 
 When(/^I can see the pending transactions button is shown$/,()=>{
-  browser.getByTestId('pending-transactions-btn').waitForDisplayed({timeout:20000,reverse:false,timeoutMsg: "Pending transactions button was not found"})
-  expect(browser.getByTestId('pending-transactions-btn')).toHaveText('Pending transactions')
+  stakingPage.pendingTransactionsBtn.waitForDisplayed({timeout:20000,reverse:false,timeoutMsg: "Pending transactions button was not found"})
+  expect(stakingPage.pendingTransactionsBtn).toHaveText('Pending transactions')
 })
 
 When(/^I click on use maximum button$/,()=>{
   // currentAmountOfTokensInWallet = $(".wallet-card__asset-balance").getText()
     browser.getByTestId('callout').waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "callout was not found"})
-    if (browser.getByTestId('associate-more-tokens-btn').isDisplayed()){
-    browser.getByTestId('associate-more-tokens-btn').click()
-  } else browser.getByTestId('associate-tokens-btn').click()
+    if (stakingPage.associateMoreTokensBtn.isDisplayed()){
+    stakingPage.associateMoreTokensBtn.click()
+  } else stakingPage.associateTokensBtn.click()
   $('[data-testid="associate-radio-wallet"]').click({force:true})
   currentAmountOfTokensInWallet = $(".wallet-card__asset-balance").getText()
   browser.getByTestId("token-amount-use-maximum").click()
@@ -51,10 +51,6 @@ Then(/^the epoch countdown timer is counting down$/,()=>{
 const currentCountdownTimerText = browser.getByTestId('current-epoch-ends-in').getText()
 browser.pause(2100) // let some time pass 
 expect(browser.getByTestId('current-epoch-ends-in').getText()).not.toEqual(currentCountdownTimerText)
-})
-
-Then(/^I pause some seconds$/,()=>{
-browser.pause(600000)
 })
 
 When(/^I click on a validator$/,()=>{
@@ -92,8 +88,8 @@ switch(radioButton) {
 });
 
 When(/^I enter "([^"]*)?" tokens in the input field$/, (tokenAmount) => {
-  browser.getByTestId('token-amount-input').setValue(tokenAmount)
-  expect(browser.getByTestId('token-amount-input')).toHaveValueContaining(tokenAmount)
+  stakingPage.tokenAmountInputField.setValue(tokenAmount)
+  expect(stakingPage.tokenAmountInputField).toHaveValueContaining(tokenAmount)
 });
 
 Then(/^the token submit button is disabled$/, () => {
@@ -116,8 +112,8 @@ When(/^I select to "([^"]*)?" stake$/, (stakeAction) => {
 });
 
 Then(/^I can submit the stake successfully$/, () => {
-    expect(browser.getByTestId('token-input-submit-button')).toBeEnabled()
-    browser.getByTestId('token-input-submit-button').click()
+    expect(stakingPage.tokenAmountSubmitBtn).toBeEnabled()
+    stakingPage.tokenAmountSubmitBtn.click()
 });
 
 When(/^I click the pending transactions button$/, () => {
@@ -126,8 +122,8 @@ When(/^I click the pending transactions button$/, () => {
 
 Then(/^I can see the pending transactions modal is shown$/, () => {
  browser.getByTestId('pending-transactions-modal').waitForDisplayed({timeout:20000,timeoutMsg:"pending transactions modal did not display"})
-expect(browser.getByTestId('etherscan-link')).toBeDisplayed()
-expect(browser.getByTestId('etherscan-link')).toHaveAttr('href')
-expect($('.transactions-modal__status')).toHaveText('Pending')
+expect(stakingPage.etherscanLink).toBeDisplayed()
+expect(stakingPage.etherscanLink).toHaveAttr('href')
+expect(stakingPage.pendingTransactionsModalStatus).toHaveText('Pending')
 });
 

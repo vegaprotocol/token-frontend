@@ -2,6 +2,12 @@ const Page = require("./page");
 
 class StakingPage extends Page {
     get validatorListTestId () {return 'node-list-item'}
+
+    get etherscanLink() {return browser.getByTestId('etherscan-link')}
+
+    get pendingTransactionsBtn() {return browser.getByTestId('pending-transactions-btn')}
+
+    get pendingTransactionsModalStatus() {return $('.transactions-modal__status')}
     
     get associateMoreTokensBtn () {return browser.getByTestId('associate-more-tokens-btn')}
 
