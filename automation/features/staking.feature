@@ -11,6 +11,8 @@ Background:
     When I connect to the vega wallet
     And I associate some tokens from wallet
     Then I can see the pending transactions button is shown
+    When I click the pending transactions button
+    Then I can see the pending transactions modal is shown
 
   Scenario: Associate tokens through vesting contract
     And I associate some tokens from vesting contract
@@ -23,6 +25,8 @@ Background:
   Scenario: Disassociate tokens through wallet
     And I disassociate some tokens from wallet
     Then I can see the pending transactions button is shown
+    When I click the pending transactions button
+    Then I can see the pending transactions modal is shown
 
   Scenario: Cannot disassociate more tokens through wallet than available
     And I click the button to disassociate

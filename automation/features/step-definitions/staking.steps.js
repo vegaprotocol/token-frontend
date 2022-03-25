@@ -54,7 +54,7 @@ expect(browser.getByTestId('current-epoch-ends-in').getText()).not.toEqual(curre
 })
 
 Then(/^I pause some seconds$/,()=>{
-browser.pause(60000)
+browser.pause(600000)
 })
 
 When(/^I click on a validator$/,()=>{
@@ -120,6 +120,14 @@ Then(/^I can submit the stake successfully$/, () => {
     browser.getByTestId('token-input-submit-button').click()
 });
 
+When(/^I click the pending transactions button$/, () => {
+    browser.getByTestId('pending-transactions-btn').click()
+});
 
-
+Then(/^I can see the pending transactions modal is shown$/, () => {
+ browser.getByTestId('pending-transactions-modal').waitForDisplayed({timeout:20000,timeoutMsg:"pending transactions modal did not display"})
+expect(browser.getByTestId('etherscan-link')).toBeDisplayed()
+expect(browser.getByTestId('etherscan-link')).toHaveAttr('href')
+expect($('.transactions-modal__status')).toHaveText('Pending')
+});
 
