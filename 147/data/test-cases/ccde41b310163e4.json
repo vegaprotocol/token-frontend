@@ -1,0 +1,268 @@
+{
+  "uid" : "ccde41b310163e4",
+  "name" : "Page not found error where page does not exist",
+  "fullName" : "Homepage.Page not found error where page does not exist",
+  "historyId" : "ea729e808820a164eba0470bcd9c059f",
+  "time" : {
+    "start" : 1648200620179,
+    "stop" : 1648200622127,
+    "duration" : 1948
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1648200620180,
+        "stop" : 1648200621015,
+        "duration" : 835
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "b4592c493720460b",
+        "name" : "Screenshot",
+        "source" : "b4592c493720460b.png",
+        "type" : "image/png",
+        "size" : 399401
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Given I navigate to \"pagedoesnotexist\" page",
+      "time" : {
+        "start" : 1648200621015,
+        "stop" : 1648200621713,
+        "duration" : 698
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "3699f3b56ff61a86",
+        "name" : "Screenshot",
+        "source" : "3699f3b56ff61a86.png",
+        "type" : "image/png",
+        "size" : 272015
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the 404 error page",
+      "time" : {
+        "start" : 1648200621713,
+        "stop" : 1648200622126,
+        "duration" : 413
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "5365b65ca2241331",
+        "name" : "Screenshot",
+        "source" : "5365b65ca2241331.png",
+        "type" : "image/png",
+        "size" : 179084
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Page not found error where page does not exist"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 15,
+        "unknown" : 0,
+        "total" : 15
+      },
+      "items" : [ {
+        "uid" : "8f7117bd33ab646a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/149//#testresult/8f7117bd33ab646a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648179816049,
+          "stop" : 1648179818531,
+          "duration" : 2482
+        }
+      }, {
+        "uid" : "60db9ca8c36236a6",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/148//#testresult/60db9ca8c36236a6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648168604352,
+          "stop" : 1648168606597,
+          "duration" : 2245
+        }
+      }, {
+        "uid" : "ebcfb5b3d39ee325",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/147//#testresult/ebcfb5b3d39ee325",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648165126445,
+          "stop" : 1648165128644,
+          "duration" : 2199
+        }
+      }, {
+        "uid" : "7b40f0a53830d2ce",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/146//#testresult/7b40f0a53830d2ce",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648164270179,
+          "stop" : 1648164274142,
+          "duration" : 3963
+        }
+      }, {
+        "uid" : "c51fe1d9b3999362",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/145//#testresult/c51fe1d9b3999362",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647593595562,
+          "stop" : 1647593597933,
+          "duration" : 2371
+        }
+      }, {
+        "uid" : "95ffafc27055c698",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/144//#testresult/95ffafc27055c698",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647533195799,
+          "stop" : 1647533198808,
+          "duration" : 3009
+        }
+      }, {
+        "uid" : "f92b8e8f3664527",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/143//#testresult/f92b8e8f3664527",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647514494003,
+          "stop" : 1647514495961,
+          "duration" : 1958
+        }
+      }, {
+        "uid" : "8b223a1f0a7a0aa9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/142//#testresult/8b223a1f0a7a0aa9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647439352955,
+          "stop" : 1647439354980,
+          "duration" : 2025
+        }
+      }, {
+        "uid" : "ceac48d9846737f0",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/141//#testresult/ceac48d9846737f0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647438985821,
+          "stop" : 1647438988148,
+          "duration" : 2327
+        }
+      }, {
+        "uid" : "6a0668f7344d05b8",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/140//#testresult/6a0668f7344d05b8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647367694676,
+          "stop" : 1647367696562,
+          "duration" : 1886
+        }
+      }, {
+        "uid" : "aadb07e853f85be4",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/139//#testresult/aadb07e853f85be4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647359134972,
+          "stop" : 1647359137843,
+          "duration" : 2871
+        }
+      }, {
+        "uid" : "4d6868b7afb7e75c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/138//#testresult/4d6868b7afb7e75c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647357061505,
+          "stop" : 1647357064202,
+          "duration" : 2697
+        }
+      }, {
+        "uid" : "a5fef83984957917",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/137//#testresult/a5fef83984957917",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647356168733,
+          "stop" : 1647356170627,
+          "duration" : 1894
+        }
+      }, {
+        "uid" : "4185f333ce62cf38",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/136//#testresult/4185f333ce62cf38",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647354984043,
+          "stop" : 1647354986340,
+          "duration" : 2297
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "ccde41b310163e4.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

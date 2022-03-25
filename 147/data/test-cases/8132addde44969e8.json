@@ -1,0 +1,151 @@
+{
+  "uid" : "8132addde44969e8",
+  "name" : "Associate tokens through vesting contract",
+  "fullName" : "Staking and Association tests.Associate tokens through vesting contract",
+  "historyId" : "a946109617038e803ba8a7b96a6eb903",
+  "time" : {
+    "start" : 1648200711857,
+    "stop" : 1648200721945,
+    "duration" : 10088
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1648200711857,
+        "stop" : 1648200712905,
+        "duration" : 1048
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "15333f3a45b77a80",
+        "name" : "Screenshot",
+        "source" : "15333f3a45b77a80.png",
+        "type" : "image/png",
+        "size" : 411458
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I associate some tokens from vesting contract",
+      "time" : {
+        "start" : 1648200712905,
+        "stop" : 1648200721339,
+        "duration" : 8434
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "728065aeeb12c562",
+        "name" : "Screenshot",
+        "source" : "728065aeeb12c562.png",
+        "type" : "image/png",
+        "size" : 238172
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the pending transactions button is shown",
+      "time" : {
+        "start" : 1648200721339,
+        "stop" : 1648200721944,
+        "duration" : 605
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "f0adf40a077a2e2c",
+        "name" : "Screenshot",
+        "source" : "f0adf40a077a2e2c.png",
+        "type" : "image/png",
+        "size" : 238153
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Associate tokens through vesting contract"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 2,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "a6da84565fa3bc47",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/147//#testresult/a6da84565fa3bc47",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648165224306,
+          "stop" : 1648165235232,
+          "duration" : 10926
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "8132addde44969e8.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

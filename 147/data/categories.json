@@ -1,26 +1,5 @@
 {
   "uid" : "4b4757e66a1912dae1a509f688f20b0f",
-  "children" : [ {
-    "name" : "Product defects",
-    "children" : [ {
-      "name" : "Error: Expect window to have url containing",
-      "children" : [ {
-        "name" : "Navigate to governance proposals page via button link on homepage body",
-        "uid" : "51f8430b86a49eac",
-        "parentUid" : "a7c2f67bff926389c585af370c7913a5",
-        "status" : "failed",
-        "time" : {
-          "start" : 1648165077195,
-          "stop" : 1648165108986,
-          "duration" : 31791
-        },
-        "flaky" : false,
-        "newFailed" : false,
-        "parameters" : [ "chrome-96.0.4664.110" ]
-      } ],
-      "uid" : "a7c2f67bff926389c585af370c7913a5"
-    } ],
-    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
-  } ],
+  "children" : [ ],
   "name" : "categories"
 }
