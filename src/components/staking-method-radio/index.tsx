@@ -18,6 +18,7 @@ export const StakingMethodRadio = ({
   return (
     <RadioGroup
       inline={true}
+      data-testid="radio-btns-container-wallet-vestingcontract"
       onChange={(e) => {
         // @ts-ignore
         setSelectedStakingMethod(e.target.value);
