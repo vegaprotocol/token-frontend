@@ -25,19 +25,18 @@ When(/^I can see the pending transactions button is shown$/,()=>{
 })
 
 When(/^I click on use maximum button$/,()=>{
-  // currentAmountOfTokensInWallet = $(".wallet-card__asset-balance").getText()
     browser.getByTestId('callout').waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "callout was not found"})
     if (stakingPage.associateMoreTokensBtn.isDisplayed()){
     stakingPage.associateMoreTokensBtn.click()
   } else stakingPage.associateTokensBtn.click()
   $('[data-testid="associate-radio-wallet"]').click({force:true})
-  currentAmountOfTokensInWallet = $(".wallet-card__asset-balance").getText()
+  currentAmountOfTokensInWallet = browser.getByTestId('eth-wallet-balance').getText()
   browser.getByTestId("token-amount-use-maximum").click()
 })
 
 When(/^I can see the maximum amount of tokens in my wallet are in the token input box$/,()=>{
   const noZeroes = currentAmountOfTokensInWallet.toString();
-  const noZeroesFloat = parseFloat(noZeroes)
+  const noZeroesFloat = parseFloat(noZeroes.replace(",",""))
   expect(browser.getByTestId('token-amount-input').getValue()).toBe(String(noZeroesFloat))
 })
 
@@ -51,6 +50,10 @@ Then(/^the epoch countdown timer is counting down$/,()=>{
 const currentCountdownTimerText = browser.getByTestId('current-epoch-ends-in').getText()
 browser.pause(2100) // let some time pass 
 expect(browser.getByTestId('current-epoch-ends-in').getText()).not.toEqual(currentCountdownTimerText)
+})
+
+Then(/^I pause some seconds$/,()=>{
+browser.pause(600000)
 })
 
 When(/^I click on a validator$/,()=>{
