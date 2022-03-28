@@ -66,10 +66,10 @@ export function EpochCountdown({
       className={`${containerClass} epoch-countdown`}
     >
       <div className="epoch-countdown__title">
-        <h3 data-testid="current-epoch-number">
+        <h3>
           {t("Epoch")} {id}
         </h3>
-        <p data-testid="current-epoch-ends-in">
+        <p>
           {endsIn
             ? t("Next epoch in {{endText}}", { endText: endsIn })
             : t("Awaiting next epoch")}

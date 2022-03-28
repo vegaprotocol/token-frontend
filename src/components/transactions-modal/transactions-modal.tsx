@@ -73,7 +73,7 @@ export const TransactionModal = () => {
       onClose={close}
       transitionDuration={0}
     >
-      <div className="modal transactions-modal" data-testid="pending-transactions-modal">
+      <div className="modal transactions-modal">
         <Modal title={t("ethTransactionModalTitle")}>
           {transactions.length ? (
             <table className="transactions-modal__table">

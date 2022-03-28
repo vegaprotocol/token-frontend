@@ -1,6 +1,6 @@
 Feature: Tranches page
 
-@ignore
+  @ignore
   Scenario: Go to Tranches page
     Given I connect my ethereum wallet
     And I navigate to "tranches" page
@@ -8,7 +8,6 @@ Feature: Tranches page
     # Then I can see the header title is "Vesting tranches"
     And I can see tranches are displayed
     And First tranche contains unlocked tokens
-
   @ignore
   Scenario: Click through to a tranche
     Given I navigate to "tranches" page

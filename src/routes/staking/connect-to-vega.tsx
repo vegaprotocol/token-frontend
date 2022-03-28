@@ -18,7 +18,7 @@ export const ConnectToVega = () => {
         })
       }
       className="fill"
-      data-testid="connect-to-vega-wallet-btn"
+      data-test-id="connect-to-vega-wallet-btn"
     >
       {t("connectVegaWallet")}
     </button>

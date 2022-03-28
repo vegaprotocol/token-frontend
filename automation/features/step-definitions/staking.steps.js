@@ -1,132 +1,51 @@
 const { Given, When, Then } = require("@wdio/cucumber-framework");
-const stakingPage = require("../pageobjects/staking.page");
+const StakingPage = require("../pageobjects/staking.page");
 let currentAmountOfTokensInWallet =''
-let validatorName =''
+
+Then(/^I can see the validator node list$/, () => {
+  const nodeList = $(".node-list").$$('[data-testid="node-list-item"]');
+  expect(nodeList.length).toBeGreaterThan(0);
+});
 
 When(/^I associate some tokens from wallet$/,()=>{
-stakingPage.associateTokensThroughWallet()
-})
-
-When(/^I associate some tokens from vesting contract$/,()=>{
-  stakingPage.associateTokensThroughVestingContract()
-})
-
-When(/^I disassociate some tokens from wallet$/,()=>{
-stakingPage.disassociateTokensThroughWallet()
-})
-
-When(/^I disassociate some tokens from vesting contract$/,()=>{
-stakingPage.disassociateTokensThroughVestingContract()
+    browser.getByTestId('callout').waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "callout was not found"})
+  if (browser.getByTestId('associate-more-tokens-btn').isDisplayed()){
+    browser.getByTestId('associate-more-tokens-btn').click()
+  } else browser.getByTestId('associate-tokens-btn').click()
+  $('[data-testid="associate-radio-wallet"]').click({force:true})
+    browser.pause(1000)
+    browser.getByTestId('token-amount-input').setValue(0.00001)
+    browser.pause(1000)
+    browser.getByTestId('token-input-submit-button').click()
+    browser.waitUntil(() => browser.getWindowHandles().length > 1);
+    browser.switchWindow("MetaMask Notification");
+    $('button=Confirm').click()
+    browser.switchWindow("VEGA");
+    browser.pause(2000)
 })
 
 When(/^I can see the pending transactions button is shown$/,()=>{
-  stakingPage.pendingTransactionsBtn.waitForDisplayed({timeout:20000,reverse:false,timeoutMsg: "Pending transactions button was not found"})
-  expect(stakingPage.pendingTransactionsBtn).toHaveText('Pending transactions')
+  browser.getByTestId('pending-transactions-btn').waitForDisplayed({timeout:20000,reverse:false,timeoutMsg: "Pending transactions button was not found"})
+    console.log(  browser.getByTestId('pending-transactions-btn').getText())
+  expect(browser.getByTestId('pending-transactions-btn')).toHaveText('Pending transactions')
 })
 
 When(/^I click on use maximum button$/,()=>{
+  // currentAmountOfTokensInWallet = $(".wallet-card__asset-balance").getText()
     browser.getByTestId('callout').waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "callout was not found"})
-    if (stakingPage.associateMoreTokensBtn.isDisplayed()){
-    stakingPage.associateMoreTokensBtn.click()
-  } else stakingPage.associateTokensBtn.click()
+    if (browser.getByTestId('associate-more-tokens-btn').isDisplayed()){
+    browser.getByTestId('associate-more-tokens-btn').click()
+  } else browser.getByTestId('associate-tokens-btn').click()
   $('[data-testid="associate-radio-wallet"]').click({force:true})
-  currentAmountOfTokensInWallet = browser.getByTestId('eth-wallet-balance').getText()
+  currentAmountOfTokensInWallet = $(".wallet-card__asset-balance").getText()
   browser.getByTestId("token-amount-use-maximum").click()
 })
 
 When(/^I can see the maximum amount of tokens in my wallet are in the token input box$/,()=>{
   const noZeroes = currentAmountOfTokensInWallet.toString();
-  const noZeroesFloat = parseFloat(noZeroes.replace(",",""))
+  const noZeroesFloat = parseFloat(noZeroes)
   expect(browser.getByTestId('token-amount-input').getValue()).toBe(String(noZeroesFloat))
 })
 
-Then(/^I can see the validator node list$/,()=>{
-expect(browser.getByTestId('validator-node-list')).toBeDisplayed()
-  const nodeList = $(".node-list").$$('[data-testid="node-list-item"]');
-  expect(nodeList.length).toBeGreaterThan(0);
-})
 
-Then(/^the epoch countdown timer is counting down$/,()=>{
-const currentCountdownTimerText = browser.getByTestId('current-epoch-ends-in').getText()
-browser.pause(2100) // let some time pass 
-expect(browser.getByTestId('current-epoch-ends-in').getText()).not.toEqual(currentCountdownTimerText)
-})
-
-Then(/^I pause some seconds$/,()=>{
-browser.pause(600000)
-})
-
-When(/^I click on a validator$/,()=>{
-  browser.pause(2000)
-  // $$('.node-list__item-name"]').waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "Validator list not displayed"})
-  validatorName = $$('.node-list__item-name')[0].getText()
-  // $$('.node-list__item-name"]').waitForClickable({timeout:30000,reverse:false,timeoutMsg: "Validator list not clickable"})
-  $$('.node-list__item-name')[0].click()
-})
-
-Then(/^I am taken to the correct validator page$/,()=>{
-  $('[data-test-id="validator-node-title"]').waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "Validator name heading not displayed"})
-  const validatorHeadingNameCurrent = $('[data-test-id="validator-node-title"]').getText()
-  expect(validatorHeadingNameCurrent).toEqual(`VALIDATOR: ${validatorName}`)
-})
-
-When(/^I click the button to disassociate$/,()=>{
-  browser.getByTestId('disassociate-tokens-btn').waitForDisplayed({timeout:30000, timeoutMsg:"disassociate button not displayed"})
-  browser.getByTestId('disassociate-tokens-btn').click()
-})
-
-When(/^I click on the "([^"]*)?" radio button$/, (radioButton) => {
-switch(radioButton) {
-  case "wallet":
-    $('label=Wallet').waitForDisplayed({timeoutMsg:"Wallet radio btn not displayed"})
-    browser.getByTestId('associate-radio-wallet').click({force:true})
-  break;
-  case "vesting contract":
-    $('label=Vesting contract').waitForDisplayed({timeoutMsg:"Vesting contract radio btn not displayed"})
-    browser.getByTestId('associate-radio-contract').click({force:true})
-    break;
-  default:
-    console.info(`${radioButton} Option not on list`)
-  }
-});
-
-When(/^I enter "([^"]*)?" tokens in the input field$/, (tokenAmount) => {
-  stakingPage.tokenAmountInputField.setValue(tokenAmount)
-  expect(stakingPage.tokenAmountInputField).toHaveValueContaining(tokenAmount)
-});
-
-Then(/^the token submit button is disabled$/, () => {
-  expect(browser.getByTestId('token-input-submit-button')).toBeDisabled()
-});
-
-When(/^I select to "([^"]*)?" stake$/, (stakeAction) => {
-  switch(stakeAction) {
-  case "Add":
-    $('label=Add').waitForDisplayed({timeoutMsg:"Add stake radio button not displayed"})
-    browser.getByTestId('add-stake-radio').click({force:true})
-  break;
-  case "Remove":
-    $('label=Remove').waitForDisplayed({timeoutMsg:"Remove stake radio button not displayed"})
-    browser.getByTestId('remove-stake-radio').click({force:true})
-    break;
-  default:
-    console.info(`${stakeAction} stake Not an option`)
-  }
-});
-
-Then(/^I can submit the stake successfully$/, () => {
-    expect(stakingPage.tokenAmountSubmitBtn).toBeEnabled()
-    stakingPage.tokenAmountSubmitBtn.click()
-});
-
-When(/^I click the pending transactions button$/, () => {
-    browser.getByTestId('pending-transactions-btn').click()
-});
-
-Then(/^I can see the pending transactions modal is shown$/, () => {
- browser.getByTestId('pending-transactions-modal').waitForDisplayed({timeout:20000,timeoutMsg:"pending transactions modal did not display"})
-expect(stakingPage.etherscanLink).toBeDisplayed()
-expect(stakingPage.etherscanLink).toHaveAttr('href')
-expect(stakingPage.pendingTransactionsModalStatus).toHaveText('Pending')
-});
 
