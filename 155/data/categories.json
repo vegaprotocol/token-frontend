@@ -1,0 +1,39 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "Error: Can't call $ on element with selector \".nav-links\" because element wasn't found",
+      "children" : [ {
+        "name" : "Can navigate to Governance page using main nav tab",
+        "uid" : "2cbd3000596ab64f",
+        "parentUid" : "8e1a541e9b2dde023fe71d0ea2dc2748",
+        "status" : "broken",
+        "time" : {
+          "start" : 1648459242168,
+          "stop" : 1648459272979,
+          "duration" : 30811
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      }, {
+        "name" : "Can navigate to Home page using main nav tab",
+        "uid" : "53b627d2d83c7dcd",
+        "parentUid" : "8e1a541e9b2dde023fe71d0ea2dc2748",
+        "status" : "broken",
+        "time" : {
+          "start" : 1648459272981,
+          "stop" : 1648459304238,
+          "duration" : 31257
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "8e1a541e9b2dde023fe71d0ea2dc2748"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
+  "name" : "categories"
+}
