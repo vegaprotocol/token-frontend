@@ -1,0 +1,216 @@
+{
+  "uid" : "c6fa976e6e9310b9",
+  "name" : "Use maximum button on associate from wallet enters correct amount",
+  "fullName" : "Staking and Association tests.Use maximum button on associate from wallet enters correct amount",
+  "historyId" : "1dd52f0eaff1358613e21e869074f5e0",
+  "time" : {
+    "start" : 1648585705419,
+    "stop" : 1648585709319,
+    "duration" : 3900
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1648585705419,
+        "stop" : 1648585706517,
+        "duration" : 1098
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "b447d6b4d48876c8",
+        "name" : "Screenshot",
+        "source" : "b447d6b4d48876c8.png",
+        "type" : "image/png",
+        "size" : 411229
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on use maximum button",
+      "time" : {
+        "start" : 1648585706517,
+        "stop" : 1648585708819,
+        "duration" : 2302
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "e2184239dd70b32b",
+        "name" : "Screenshot",
+        "source" : "e2184239dd70b32b.png",
+        "type" : "image/png",
+        "size" : 288311
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the maximum amount of tokens in my wallet are in the token input box",
+      "time" : {
+        "start" : 1648585708819,
+        "stop" : 1648585709318,
+        "duration" : 499
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "e5c36a95c71e7373",
+        "name" : "Screenshot",
+        "source" : "e5c36a95c71e7373.png",
+        "type" : "image/png",
+        "size" : 288589
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Use maximum button on associate from wallet enters correct amount"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 2,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 7,
+        "unknown" : 0,
+        "total" : 9
+      },
+      "items" : [ {
+        "uid" : "91e636d70df41b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/155//#testresult/91e636d70df41b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648459512218,
+          "stop" : 1648459516384,
+          "duration" : 4166
+        }
+      }, {
+        "uid" : "612e1285a26f77e8",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/154//#testresult/612e1285a26f77e8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648457715423,
+          "stop" : 1648457719128,
+          "duration" : 3705
+        }
+      }, {
+        "uid" : "79ca3aef3ea6acb3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/153//#testresult/79ca3aef3ea6acb3",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1648216832507,
+          "stop" : 1648216839415,
+          "duration" : 6908
+        }
+      }, {
+        "uid" : "2cddf5fc29b6a135",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/152//#testresult/2cddf5fc29b6a135",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1648211195097,
+          "stop" : 1648211198503,
+          "duration" : 3406
+        }
+      }, {
+        "uid" : "ce0c7d7508a1f937",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/151//#testresult/ce0c7d7508a1f937",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648208066844,
+          "stop" : 1648208070305,
+          "duration" : 3461
+        }
+      }, {
+        "uid" : "6488053bf86a8c06",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/150//#testresult/6488053bf86a8c06",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648205889907,
+          "stop" : 1648205893165,
+          "duration" : 3258
+        }
+      }, {
+        "uid" : "e3598d24c332fcd8",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/147//#testresult/e3598d24c332fcd8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648200721945,
+          "stop" : 1648200725452,
+          "duration" : 3507
+        }
+      }, {
+        "uid" : "993b23524bd81bbd",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/147//#testresult/993b23524bd81bbd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648165235232,
+          "stop" : 1648165238723,
+          "duration" : 3491
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "c6fa976e6e9310b9.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
