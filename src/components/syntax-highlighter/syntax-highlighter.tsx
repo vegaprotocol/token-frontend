@@ -26,28 +26,15 @@ const vegaJsonTheme = {
 /**
  * Remove nested __typename from response as it's useless
  */
-const removeTypename = (data: object): any => {
-  return Object.entries(data).reduce((prev, [key, value]) => {
-    if (key === "__typename") {
-      return prev;
-    } else if (value && typeof value === "object") {
-      prev[key] = removeTypename(value);
-    } else {
-      prev[key] = value;
-    }
-    return prev;
-  }, {} as any);
-};
 
 export const SyntaxHighlighter = ({ data }: { data: object }) => {
-  const filteredData = React.useMemo(() => removeTypename(data), [data]);
   return (
     <Highlighter
       language="json"
       style={vegaJsonTheme}
       data-testid="syntax-highlighter"
     >
-      {JSON.stringify(filteredData, null, "  ")}
+      {JSON.stringify(data, null, 2)}
     </Highlighter>
   );
 };
