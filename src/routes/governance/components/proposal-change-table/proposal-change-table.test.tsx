@@ -18,39 +18,37 @@ it("Renders with data-testid", () => {
 it("Renders all data for table", () => {
   const proposal = generateProposal();
   render(<ProposalChangeTable proposal={proposal} />);
-  expect(screen.queryByText("id")).toBeInTheDocument();
-  expect(screen.queryByText(proposal.id!)).toBeInTheDocument();
+  expect(screen.getByText("id")).toBeInTheDocument();
+  expect(screen.getByText(proposal.id!)).toBeInTheDocument();
 
-  expect(screen.queryByText("state")).toBeInTheDocument();
-  expect(screen.queryByText("Open")).toBeInTheDocument();
+  expect(screen.getByText("state")).toBeInTheDocument();
+  expect(screen.getByText("Open")).toBeInTheDocument();
 
-  expect(screen.queryByText("closesOn")).toBeInTheDocument();
+  expect(screen.getByText("closesOn")).toBeInTheDocument();
   expect(
-    screen.queryByText(
+    screen.getByText(
       format(new Date(proposal.terms.closingDatetime), DATE_FORMAT_DETAILED)
     )
   ).toBeInTheDocument();
 
-  expect(screen.queryByText("proposedEnactment")).toBeInTheDocument();
+  expect(screen.getByText("proposedEnactment")).toBeInTheDocument();
   expect(
-    screen.queryByText(
+    screen.getByText(
       format(new Date(proposal.terms.enactmentDatetime), DATE_FORMAT_DETAILED)
     )
   ).toBeInTheDocument();
 
-  expect(screen.queryByText("proposedBy")).toBeInTheDocument();
-  expect(screen.queryByText(proposal.party.id!)).toBeInTheDocument();
+  expect(screen.getByText("proposedBy")).toBeInTheDocument();
+  expect(screen.getByText(proposal.party.id!)).toBeInTheDocument();
 
-  expect(screen.queryByText("proposedOn")).toBeInTheDocument();
+  expect(screen.getByText("proposedOn")).toBeInTheDocument();
   expect(
-    screen.queryByText(
-      format(new Date(proposal.datetime), DATE_FORMAT_DETAILED)
-    )
+    screen.getByText(format(new Date(proposal.datetime), DATE_FORMAT_DETAILED))
   ).toBeInTheDocument();
 
-  expect(screen.queryByText("type")).toBeInTheDocument();
+  expect(screen.getByText("type")).toBeInTheDocument();
   expect(
-    screen.queryByText(proposal.terms.change.__typename)
+    screen.getByText(proposal.terms.change.__typename)
   ).toBeInTheDocument();
 });
 
@@ -60,19 +58,19 @@ it("Changes data based on if data is in future or past", () => {
   });
   render(<ProposalChangeTable proposal={proposal} />);
 
-  expect(screen.queryByText("state")).toBeInTheDocument();
-  expect(screen.queryByText("Enacted")).toBeInTheDocument();
+  expect(screen.getByText("state")).toBeInTheDocument();
+  expect(screen.getByText("Enacted")).toBeInTheDocument();
 
-  expect(screen.queryByText("closedOn")).toBeInTheDocument();
+  expect(screen.getByText("closedOn")).toBeInTheDocument();
   expect(
-    screen.queryByText(
+    screen.getByText(
       format(new Date(proposal.terms.closingDatetime), DATE_FORMAT_DETAILED)
     )
   ).toBeInTheDocument();
 
-  expect(screen.queryByText("enactedOn")).toBeInTheDocument();
+  expect(screen.getByText("enactedOn")).toBeInTheDocument();
   expect(
-    screen.queryByText(
+    screen.getByText(
       format(new Date(proposal.terms.enactmentDatetime), DATE_FORMAT_DETAILED)
     )
   ).toBeInTheDocument();
@@ -84,11 +82,11 @@ it("Renders error details and rejection reason if present", () => {
     rejectionReason: ProposalRejectionReason.CloseTimeTooLate,
   });
   render(<ProposalChangeTable proposal={proposal} />);
-  expect(screen.queryByText("errorDetails")).toBeInTheDocument();
-  expect(screen.queryByText("Error details")).toBeInTheDocument();
+  expect(screen.getByText("errorDetails")).toBeInTheDocument();
+  expect(screen.getByText("Error details")).toBeInTheDocument();
 
-  expect(screen.queryByText("rejectionReason")).toBeInTheDocument();
+  expect(screen.getByText("rejectionReason")).toBeInTheDocument();
   expect(
-    screen.queryByText(ProposalRejectionReason.CloseTimeTooLate)
+    screen.getByText(ProposalRejectionReason.CloseTimeTooLate)
   ).toBeInTheDocument();
 });
