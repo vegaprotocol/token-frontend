@@ -33,4 +33,6 @@ Then(/^I can see the wallet address in the input field is "([^"]*)?"$/, (newWall
     expect(WithdrawalsPage.ethWalletAddressField).toHaveValue(newWalletAddress)
 });
 
-
+Then(/^the error message is shown "([^"]*)?"$/, (walletErrorMsg) => {
+    expect($(`.callout--warn=${walletErrorMsg}`)).toBeDisplayed()
+});
