@@ -23,9 +23,6 @@ const vegaJsonTheme = {
   },
 };
 
-/**
- * Remove nested __typename from response as it's useless
- */
 
 export const SyntaxHighlighter = ({ data }: { data: object }) => {
   return (
