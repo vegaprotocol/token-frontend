@@ -77,7 +77,7 @@ const VegaWalletNotConnected = () => {
           })
         }
         className="fill button-secondary"
-        data-testid="connect-vega"
+        data-testid="connect-to-vega-wallet-btn"
         type="button"
       >
         {t("connectVegaWalletToUseAssociated")}

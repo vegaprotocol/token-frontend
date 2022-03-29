@@ -45,6 +45,7 @@ export const EthAddressInput = ({
       <button
         type="button"
         onClick={() => setUseConnectedWallet(!useConnectedWallet)}
+        data-testid="enter-wallet-address-link"
         className="button-link fill"
       >
         {useConnectedWallet ? t("enterAddress") : t("useConnectedWallet")}
