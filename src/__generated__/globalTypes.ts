@@ -30,42 +30,9 @@ export enum AccountType {
   Settlement = "Settlement",
 }
 
-/**
- * Comparator describes the type of comparison.
- */
-export enum ConditionOperator {
-  OperatorEquals = "OperatorEquals",
-  OperatorGreaterThan = "OperatorGreaterThan",
-  OperatorGreaterThanOrEqual = "OperatorGreaterThanOrEqual",
-  OperatorLessThan = "OperatorLessThan",
-  OperatorLessThanOrEqual = "OperatorLessThanOrEqual",
-}
-
 export enum NodeStatus {
   NonValidator = "NonValidator",
   Validator = "Validator",
-}
-
-/**
- * Valid references used for pegged orders.
- */
-export enum PeggedReference {
-  BestAsk = "BestAsk",
-  BestBid = "BestBid",
-  Mid = "Mid",
-}
-
-/**
- * Type describes the type of properties that are supported by the oracle
- * engine.
- */
-export enum PropertyKeyType {
-  TypeBoolean = "TypeBoolean",
-  TypeDecimal = "TypeDecimal",
-  TypeEmpty = "TypeEmpty",
-  TypeInteger = "TypeInteger",
-  TypeString = "TypeString",
-  TypeTimestamp = "TypeTimestamp",
 }
 
 /**

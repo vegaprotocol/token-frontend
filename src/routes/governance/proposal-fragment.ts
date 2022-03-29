@@ -18,61 +18,8 @@ export const PROPOSALS_FRAGMENT = gql`
         ... on NewMarket {
           decimalPlaces
           metadata
-          commitment {
-            commitmentAmount
-            fee
-            sells {
-              offset
-              proportion
-              reference
-            }
-            buys {
-              offset
-              proportion
-              reference
-            }
-          }
           instrument {
             name
-            code
-            futureProduct {
-              settlementAsset {
-                name
-                symbol
-                id
-              }
-              quoteName
-              oracleSpecBinding {
-                settlementPriceProperty
-                tradingTerminationProperty
-              }
-              oracleSpecForSettlementPrice {
-                pubKeys
-                filters {
-                  key {
-                    name
-                    type
-                  }
-                  conditions {
-                    value
-                    operator
-                  }
-                }
-              }
-              oracleSpecForTradingTermination {
-                pubKeys
-                filters {
-                  key {
-                    name
-                    type
-                  }
-                  conditions {
-                    value
-                    operator
-                  }
-                }
-              }
-            }
           }
         }
         ... on UpdateMarket {

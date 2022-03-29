@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ProposalState, ProposalRejectionReason, PeggedReference, PropertyKeyType, ConditionOperator, VoteValue } from "./../../../__generated__/globalTypes";
+import { ProposalState, ProposalRejectionReason, VoteValue } from "./../../../__generated__/globalTypes";
 
 // ====================================================
 // GraphQL fragment: ProposalFields
@@ -21,224 +21,12 @@ export interface ProposalFields_terms_change_NewFreeform {
   __typename: "NewFreeform";
 }
 
-export interface ProposalFields_terms_change_NewMarket_commitment_sells {
-  __typename: "LiquidityOrder";
-  /**
-   * Offset from the pegged reference
-   */
-  offset: string;
-  /**
-   * The proportion of the commitment allocated to this order
-   */
-  proportion: number;
-  /**
-   * The value to which this order is tied
-   */
-  reference: PeggedReference;
-}
-
-export interface ProposalFields_terms_change_NewMarket_commitment_buys {
-  __typename: "LiquidityOrder";
-  /**
-   * Offset from the pegged reference
-   */
-  offset: string;
-  /**
-   * The proportion of the commitment allocated to this order
-   */
-  proportion: number;
-  /**
-   * The value to which this order is tied
-   */
-  reference: PeggedReference;
-}
-
-export interface ProposalFields_terms_change_NewMarket_commitment {
-  __typename: "NewMarketCommitment";
-  /**
-   * Specified as a unit-less number that represents the amount of settlement asset of the market
-   */
-  commitmentAmount: string;
-  /**
-   * Nominated liquidity fee factor, which is an input to the calculation of
-   * taker fees on the market, as per setting fees and rewarding liquidity provider
-   */
-  fee: string;
-  /**
-   * A set of liquidity sell orders to meet the liquidity provision obligation
-   */
-  sells: ProposalFields_terms_change_NewMarket_commitment_sells[] | null;
-  /**
-   * A set of liquidity buy orders to meet the liquidity provision obligation
-   */
-  buys: ProposalFields_terms_change_NewMarket_commitment_buys[] | null;
-}
-
-export interface ProposalFields_terms_change_NewMarket_instrument_futureProduct_settlementAsset {
-  __typename: "Asset";
-  /**
-   * The full name of the asset (e.g: Great British Pound)
-   */
-  name: string;
-  /**
-   * The symbol of the asset (e.g: GBP)
-   */
-  symbol: string;
-  /**
-   * The id of the asset
-   */
-  id: string;
-}
-
-export interface ProposalFields_terms_change_NewMarket_instrument_futureProduct_oracleSpecBinding {
-  __typename: "OracleSpecToFutureBinding";
-  settlementPriceProperty: string;
-  tradingTerminationProperty: string;
-}
-
-export interface ProposalFields_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice_filters_key {
-  __typename: "PropertyKey";
-  /**
-   * name is the name of the property.
-   */
-  name: string | null;
-  /**
-   * type is the type of the property.
-   */
-  type: PropertyKeyType;
-}
-
-export interface ProposalFields_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice_filters_conditions {
-  __typename: "Condition";
-  /**
-   * value is used by the comparator.
-   */
-  value: string | null;
-  /**
-   * comparator is the type of comparison to make on the value.
-   */
-  operator: ConditionOperator;
-}
-
-export interface ProposalFields_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice_filters {
-  __typename: "Filter";
-  /**
-   * key is the oracle data property key targeted by the filter.
-   */
-  key: ProposalFields_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice_filters_key;
-  /**
-   * conditions are the conditions that should be matched by the data to be
-   * considered of interest.
-   */
-  conditions: ProposalFields_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice_filters_conditions[] | null;
-}
-
-export interface ProposalFields_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice {
-  __typename: "OracleSpecConfiguration";
-  /**
-   * pubKeys is the list of authorized public keys that signed the data for this
-   * oracle. All the public keys in the oracle data should be contained in these
-   * public keys.
-   */
-  pubKeys: string[] | null;
-  /**
-   * filters describes which oracle data are considered of interest or not for
-   * the product (or the risk model).
-   */
-  filters: ProposalFields_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice_filters[] | null;
-}
-
-export interface ProposalFields_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination_filters_key {
-  __typename: "PropertyKey";
-  /**
-   * name is the name of the property.
-   */
-  name: string | null;
-  /**
-   * type is the type of the property.
-   */
-  type: PropertyKeyType;
-}
-
-export interface ProposalFields_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination_filters_conditions {
-  __typename: "Condition";
-  /**
-   * value is used by the comparator.
-   */
-  value: string | null;
-  /**
-   * comparator is the type of comparison to make on the value.
-   */
-  operator: ConditionOperator;
-}
-
-export interface ProposalFields_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination_filters {
-  __typename: "Filter";
-  /**
-   * key is the oracle data property key targeted by the filter.
-   */
-  key: ProposalFields_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination_filters_key;
-  /**
-   * conditions are the conditions that should be matched by the data to be
-   * considered of interest.
-   */
-  conditions: ProposalFields_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination_filters_conditions[] | null;
-}
-
-export interface ProposalFields_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination {
-  __typename: "OracleSpecConfiguration";
-  /**
-   * pubKeys is the list of authorized public keys that signed the data for this
-   * oracle. All the public keys in the oracle data should be contained in these
-   * public keys.
-   */
-  pubKeys: string[] | null;
-  /**
-   * filters describes which oracle data are considered of interest or not for
-   * the product (or the risk model).
-   */
-  filters: ProposalFields_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination_filters[] | null;
-}
-
-export interface ProposalFields_terms_change_NewMarket_instrument_futureProduct {
-  __typename: "FutureProduct";
-  /**
-   * Product asset ID
-   */
-  settlementAsset: ProposalFields_terms_change_NewMarket_instrument_futureProduct_settlementAsset;
-  /**
-   * String representing the quote (e.g. BTCUSD -> USD is quote)
-   */
-  quoteName: string;
-  /**
-   * OracleSpecToFutureBinding tells on which property oracle data should be
-   * used as settlement price.
-   */
-  oracleSpecBinding: ProposalFields_terms_change_NewMarket_instrument_futureProduct_oracleSpecBinding;
-  /**
-   * Describes the oracle data that an instrument wants to get from the oracle engine for settlement price.
-   */
-  oracleSpecForSettlementPrice: ProposalFields_terms_change_NewMarket_instrument_futureProduct_oracleSpecForSettlementPrice;
-  /**
-   * Describes the oracle data that an instrument wants to get from the oracle engine for trading termination.
-   */
-  oracleSpecForTradingTermination: ProposalFields_terms_change_NewMarket_instrument_futureProduct_oracleSpecForTradingTermination;
-}
-
 export interface ProposalFields_terms_change_NewMarket_instrument {
   __typename: "InstrumentConfiguration";
   /**
    * Full and fairly descriptive name for the instrument
    */
   name: string;
-  /**
-   * A short non necessarily unique code used to easily describe the instrument (e.g: FX:BTCUSD/DEC18)
-   */
-  code: string;
-  /**
-   * Future product specification
-   */
-  futureProduct: ProposalFields_terms_change_NewMarket_instrument_futureProduct | null;
 }
 
 export interface ProposalFields_terms_change_NewMarket {
@@ -251,10 +39,6 @@ export interface ProposalFields_terms_change_NewMarket {
    * Metadata for this instrument, tags
    */
   metadata: string[] | null;
-  /**
-   * The liquidity commitment submitted with the new market
-   */
-  commitment: ProposalFields_terms_change_NewMarket_commitment | null;
   /**
    * New market instrument configuration
    */
