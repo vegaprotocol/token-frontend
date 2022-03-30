@@ -114,19 +114,66 @@ When(/^I select to "([^"]*)?" stake$/, (stakeAction) => {
   }
 });
 
-Then(/^I can submit the stake successfully$/, () => {
+Then(/^I can submit successfully$/, () => {
     expect(stakingPage.tokenAmountSubmitBtn).toBeEnabled()
     stakingPage.tokenAmountSubmitBtn.click()
+  });
+
+Then(/^the pending transaction is displayed$/, () => {
+    $('p=Waiting for confirmation that your change in nomination has been received').waitForDisplayed({timeout:15000,timeoutMsg:"pending stake mconfirmation not displayed"})
 });
+
+Then(/^the stake is successful$/, () => {
+    $('.callout--success').waitForDisplayed({timeout:60000, timeoutMsg:"stake success message container not displayed after 60 seconds"})
+    expect($('.callout__title=At the beginning of the next epoch your $VEGA will be nominated to the validator')).toBeDisplayed()
+});
+
+Then(/^I click on the back to staking button$/, () => {
+  stakingPage.backToStakingPageBtn.click()
+});
+
+Then(/^I am back on the staking main page$/, () => {
+  expect(browser.getUrl()).toEqual(`${browser.options.baseUrl}/staking`)
+});
+
 
 When(/^I click the pending transactions button$/, () => {
     browser.getByTestId('pending-transactions-btn').click()
 });
 
 Then(/^I can see the pending transactions modal is shown$/, () => {
- browser.getByTestId('pending-transactions-modal').waitForDisplayed({timeout:20000,timeoutMsg:"pending transactions modal did not display"})
-expect(stakingPage.etherscanLink).toBeDisplayed()
-expect(stakingPage.etherscanLink).toHaveAttr('href')
-expect(stakingPage.pendingTransactionsModalStatus).toHaveText('Pending')
+  browser.getByTestId('pending-transactions-modal').waitForDisplayed({timeout:20000,timeoutMsg:"pending transactions modal did not display"})
+  expect(stakingPage.etherscanLink).toBeDisplayed()
+  expect(stakingPage.etherscanLink).toHaveAttr('href')
+  expect(stakingPage.pendingTransactionsModalStatus).toHaveText('Pending')
 });
 
+When(/^I can see "([^"]*)?" vega has been removed from staking$/, (tokenAmount) => {
+  $('.callout--success').waitForDisplayed({timeout:60000, timeoutMsg:"remove stake success message container not displayed after 60 seconds"})
+  expect($(`.callout__title*=${tokenAmount} $VEGA has been removed from validator`)).toBeDisplayed()
+  expect($('p=It will be applied in the next epoch')).toBeDisplayed()
+});
+
+When(/^I click on the option to remove stake now$/, () => {
+  stakingPage.removeStakeNowBtn.waitForDisplayed({timeout:20000,timeoutMsg:"remove stake now button not displayed"})
+  stakingPage.removeStakeNowBtn.click()
+});
+
+When(/^I can see the remove now disclaimer with text "([^"]*)?"$/, (disclaimerText) => {
+  stakingPage.removeStakeNowDisclaimerText.waitForDisplayed({timeout:20000,timeoutMsg:"remove stake disclaimer text not displayed"})
+  expect(stakingPage.removeStakeNowDisclaimerText.getText()).toEqual(disclaimerText)
+});
+
+Then(/^the submit button text is "([^"]*)?"$/, (btnText) => {
+  stakingPage.tokenAmountSubmitBtn.waitForEnabled()
+  expect(stakingPage.tokenAmountSubmitBtn).toHaveText(btnText)
+});
+
+Then(/^I can see the stake is removed immediately$/, () => {
+    $('.callout--success').waitForDisplayed({timeout:60000, timeoutMsg:"remove stake now success message container not displayed after 60 seconds"})     
+    expect($('p=It will be applied immediately')).toBeDisplayed()
+});
+
+Then(/^I can see the button to switch to remove at the end of epoch is showing$/, () => {
+    expect('.button-link=Switch to remove at end of epoch').toBeDisplayed()
+});
