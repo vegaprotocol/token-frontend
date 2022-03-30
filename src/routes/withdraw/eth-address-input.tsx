@@ -51,7 +51,7 @@ export const EthAddressInput = ({
         {useConnectedWallet ? t("enterAddress") : t("useConnectedWallet")}
       </button>
 
-      {isValid ? null : <Callout intent="warn">{t("invalidAddress")}</Callout>}
+      {isValid ? null : <Callout intent="warn" datatest-id="invalid-address-callout" >{t("invalidAddress")}</Callout>}
     </FormGroup>
   );
 };

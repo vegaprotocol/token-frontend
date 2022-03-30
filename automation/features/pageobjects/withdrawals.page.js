@@ -2,7 +2,7 @@ const Page = require("./page");
 
 class WithdrawalsPage extends Page {
   get ethWalletAddressField() {
-    return $('[data-testid="token-amount-input"]');
+    return $$('[data-testid="token-amount-input"]');
   }
 
   get enableWalletAddressFieldLink() {
