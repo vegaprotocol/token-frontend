@@ -1,0 +1,215 @@
+{
+  "uid" : "8acb7de3ba29d9f7",
+  "name" : "Remove stake at next epoch",
+  "fullName" : "Staking and Association tests.Remove stake at next epoch",
+  "historyId" : "10033006f4aecbda3976bbb4211da0f6",
+  "time" : {
+    "start" : 1648672133359,
+    "stop" : 1648672142576,
+    "duration" : 9217
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1648672133359,
+        "stop" : 1648672134464,
+        "duration" : 1105
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "d3bd668221058757",
+        "name" : "Screenshot",
+        "source" : "d3bd668221058757.png",
+        "type" : "image/png",
+        "size" : 261764
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on a validator",
+      "time" : {
+        "start" : 1648672134464,
+        "stop" : 1648672137507,
+        "duration" : 3043
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "950725918aa63719",
+        "name" : "Screenshot",
+        "source" : "950725918aa63719.png",
+        "type" : "image/png",
+        "size" : 232252
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I am taken to the correct validator page",
+      "time" : {
+        "start" : 1648672137507,
+        "stop" : 1648672138188,
+        "duration" : 681
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "afc8c590f4ec2028",
+        "name" : "Screenshot",
+        "source" : "afc8c590f4ec2028.png",
+        "type" : "image/png",
+        "size" : 233417
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I select to \"Remove\" stake",
+      "time" : {
+        "start" : 1648672138188,
+        "stop" : 1648672138949,
+        "duration" : 761
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "bfdbda331ddf96ba",
+        "name" : "Screenshot",
+        "source" : "bfdbda331ddf96ba.png",
+        "type" : "image/png",
+        "size" : 292478
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I enter \"1\" tokens in the input field",
+      "time" : {
+        "start" : 1648672138949,
+        "stop" : 1648672139755,
+        "duration" : 806
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "ff5ee6d64cf83e59",
+        "name" : "Screenshot",
+        "source" : "ff5ee6d64cf83e59.png",
+        "type" : "image/png",
+        "size" : 291885
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can submit successfully",
+      "time" : {
+        "start" : 1648672139755,
+        "stop" : 1648672140376,
+        "duration" : 621
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "1079be3fde79c5eb",
+        "name" : "Screenshot",
+        "source" : "1079be3fde79c5eb.png",
+        "type" : "image/png",
+        "size" : 235301
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I can see \"1\" vega has been removed from staking",
+      "time" : {
+        "start" : 1648672140376,
+        "stop" : 1648672142576,
+        "duration" : 2200
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "86768b4ae5309fcf",
+        "name" : "Screenshot",
+        "source" : "86768b4ae5309fcf.png",
+        "type" : "image/png",
+        "size" : 255789
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 7,
+    "attachmentsCount" : 7,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Remove stake at next epoch"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "8acb7de3ba29d9f7.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

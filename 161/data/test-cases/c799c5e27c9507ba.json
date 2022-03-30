@@ -1,0 +1,224 @@
+{
+  "uid" : "c799c5e27c9507ba",
+  "name" : "Remove stake now",
+  "fullName" : "Staking and Association tests.Remove stake now",
+  "historyId" : "19546d112f1aa7dea0a4f9c63a284358",
+  "time" : {
+    "start" : 1648672095201,
+    "stop" : 1648672133358,
+    "duration" : 38157
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "failed",
+  "statusMessage" : "Error: Expect .button-link=Switch to remove at end of epoch to be displayed",
+  "statusTrace" : "Error: Expect .button-link=Switch to remove at end of epoch to be displayed\n                \n                Expected: \"displayed\"\n                Received: \"not displayed\"\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:178:61)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "Error: Expect .button-link=Switch to remove at end of epoch to be displayed",
+    "statusTrace" : "Error: Expect .button-link=Switch to remove at end of epoch to be displayed\n                \n                Expected: \"displayed\"\n                Received: \"not displayed\"\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:178:61)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1648672095201,
+        "stop" : 1648672096123,
+        "duration" : 922
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "3abed777d76d0d58",
+        "name" : "Screenshot",
+        "source" : "3abed777d76d0d58.png",
+        "type" : "image/png",
+        "size" : 261801
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on a validator",
+      "time" : {
+        "start" : 1648672096123,
+        "stop" : 1648672099060,
+        "duration" : 2937
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "d43d5a862c0ead4c",
+        "name" : "Screenshot",
+        "source" : "d43d5a862c0ead4c.png",
+        "type" : "image/png",
+        "size" : 233274
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I am taken to the correct validator page",
+      "time" : {
+        "start" : 1648672099060,
+        "stop" : 1648672100023,
+        "duration" : 963
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "c33d8aa964895d2",
+        "name" : "Screenshot",
+        "source" : "c33d8aa964895d2.png",
+        "type" : "image/png",
+        "size" : 234509
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I select to \"Remove\" stake",
+      "time" : {
+        "start" : 1648672100023,
+        "stop" : 1648672100904,
+        "duration" : 881
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "16c14506bfa051cc",
+        "name" : "Screenshot",
+        "source" : "16c14506bfa051cc.png",
+        "type" : "image/png",
+        "size" : 293798
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I click on the option to remove stake now",
+      "time" : {
+        "start" : 1648672100904,
+        "stop" : 1648672101679,
+        "duration" : 775
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "4b43e9902ad4a0c1",
+        "name" : "Screenshot",
+        "source" : "4b43e9902ad4a0c1.png",
+        "type" : "image/png",
+        "size" : 330360
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I can see the remove now disclaimer with text \"Removing stake mid epoch will forsake any staking rewards from that epoch\"",
+      "time" : {
+        "start" : 1648672101679,
+        "stop" : 1648672102623,
+        "duration" : 944
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "617ef387f38ec4c2",
+        "name" : "Screenshot",
+        "source" : "617ef387f38ec4c2.png",
+        "type" : "image/png",
+        "size" : 331646
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I can see the button to switch to remove at the end of epoch is showing",
+      "time" : {
+        "start" : 1648672102623,
+        "stop" : 1648672133358,
+        "duration" : 30735
+      },
+      "status" : "failed",
+      "statusMessage" : "Error: Expect .button-link=Switch to remove at end of epoch to be displayed\n                \n                Expected: \"displayed\"\n                Received: \"not displayed\"\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:178:61)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "b2b235b0f3b77859",
+        "name" : "Screenshot",
+        "source" : "b2b235b0f3b77859.png",
+        "type" : "image/png",
+        "size" : 331484
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 7,
+    "attachmentsCount" : 7,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Remove stake now"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "c799c5e27c9507ba.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

@@ -1,0 +1,182 @@
+{
+  "uid" : "9a1ee39742f6353",
+  "name" : "Check wallet field entry",
+  "fullName" : "Withdraw page.Check wallet field entry",
+  "historyId" : "86d619d8b6252719c65a00c589c789fc",
+  "time" : {
+    "start" : 1648672203887,
+    "stop" : 1648672251804,
+    "duration" : 47917
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "failed",
+  "statusMessage" : "Error: Expect $$(`[data-testid=\"token-amount-input\"]`) to have property value",
+  "statusTrace" : "Error: Expect $$(`[data-testid=\"token-amount-input\"]`) to have property value\n                \n                Expected: \"0x9804C6E98dA75e3271ccE3aA56728FD8e9376155\"\n                Received: \"\"\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/withdraw.steps.js:5:49)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "Error: Expect $$(`[data-testid=\"token-amount-input\"]`) to have property value",
+    "statusTrace" : "Error: Expect $$(`[data-testid=\"token-amount-input\"]`) to have property value\n                \n                Expected: \"0x9804C6E98dA75e3271ccE3aA56728FD8e9376155\"\n                Received: \"\"\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/withdraw.steps.js:5:49)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"withdraw\" page",
+      "time" : {
+        "start" : 1648672203889,
+        "stop" : 1648672205120,
+        "duration" : 1231
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "4a4a1f50f623ace9",
+        "name" : "Screenshot",
+        "source" : "4a4a1f50f623ace9.png",
+        "type" : "image/png",
+        "size" : 8707
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Given I connect my ethereum wallet",
+      "time" : {
+        "start" : 1648672205120,
+        "stop" : 1648672218905,
+        "duration" : 13785
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "924c1364c0a89671",
+        "name" : "Screenshot",
+        "source" : "924c1364c0a89671.png",
+        "type" : "image/png",
+        "size" : 307277
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I connect to the vega wallet",
+      "time" : {
+        "start" : 1648672218906,
+        "stop" : 1648672221139,
+        "duration" : 2233
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "8966b1ba7f81515b",
+        "name" : "Screenshot",
+        "source" : "8966b1ba7f81515b.png",
+        "type" : "image/png",
+        "size" : 186212
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the wallet address field is showing \"0x9804C6E98dA75e3271ccE3aA56728FD8e9376155\"",
+      "time" : {
+        "start" : 1648672221139,
+        "stop" : 1648672251804,
+        "duration" : 30665
+      },
+      "status" : "failed",
+      "statusMessage" : "Error: Expect $$(`[data-testid=\"token-amount-input\"]`) to have property value\n                \n                Expected: \"0x9804C6E98dA75e3271ccE3aA56728FD8e9376155\"\n                Received: \"\"\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/withdraw.steps.js:5:49)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "3bf373d866fd1f94",
+        "name" : "Screenshot",
+        "source" : "3bf373d866fd1f94.png",
+        "type" : "image/png",
+        "size" : 285091
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-6"
+  }, {
+    "name" : "suite",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "testClass",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Check wallet field entry"
+  }, {
+    "name" : "package",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 2,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "17d9ed8d4edf148f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/160//#testresult/17d9ed8d4edf148f",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $$(`[data-testid=\"token-amount-input\"]`) to have property value",
+        "time" : {
+          "start" : 1648641189286,
+          "stop" : 1648641259964,
+          "duration" : 70678
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "9a1ee39742f6353.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
