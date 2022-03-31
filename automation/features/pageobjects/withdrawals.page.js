@@ -1,13 +1,13 @@
 const Page = require("./page");
 
-class WithdrawalsPage extends Page {
-  get ethWalletAddressField() {
-    return $$('[data-testid="token-amount-input"]');
-  }
+class withdrawalsPage extends Page {
+    get ethWalletAddressField() {
+        return browser.getByTestId('current-eth-address-withdrawals');
+    }
 
-  get enableWalletAddressFieldLink() {
-    return browser.getByTestId('enter-wallet-address-link')
-  } 
+    get enableWalletAddressFieldLink() {
+        return browser.getByTestId('enter-wallet-address-link')
+    }
 }
 
-module.exports = new WithdrawalsPage();
+module.exports = new withdrawalsPage();
