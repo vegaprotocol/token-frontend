@@ -1,0 +1,346 @@
+{
+  "uid" : "ced30da8227438fc",
+  "name" : "Check for redeem unlocked tokens from homepage",
+  "fullName" : "Homepage.Check for redeem unlocked tokens from homepage",
+  "historyId" : "b45d53d5ab561581c8e6bb6b0fe6e9ee",
+  "time" : {
+    "start" : 1648719861316,
+    "stop" : 1648719863649,
+    "duration" : 2333
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1648719861316,
+        "stop" : 1648719862283,
+        "duration" : 967
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "a991b05f7a0e7c57",
+        "name" : "Screenshot",
+        "source" : "a991b05f7a0e7c57.png",
+        "type" : "image/png",
+        "size" : 399700
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the check for redeemable tokens button",
+      "time" : {
+        "start" : 1648719862283,
+        "stop" : 1648719862624,
+        "duration" : 341
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "cd2e7aea9ad410e1",
+        "name" : "Screenshot",
+        "source" : "cd2e7aea9ad410e1.png",
+        "type" : "image/png",
+        "size" : 282207
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click the check for redeemable tokens button",
+      "time" : {
+        "start" : 1648719862624,
+        "stop" : 1648719863383,
+        "duration" : 759
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "3a63cea1e7816164",
+        "name" : "Screenshot",
+        "source" : "3a63cea1e7816164.png",
+        "type" : "image/png",
+        "size" : 213378
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I am taken to the \"vesting\" page",
+      "time" : {
+        "start" : 1648719863383,
+        "stop" : 1648719863649,
+        "duration" : 266
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "bbb944ade64990d6",
+        "name" : "Screenshot",
+        "source" : "bbb944ade64990d6.png",
+        "type" : "image/png",
+        "size" : 213378
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Check for redeem unlocked tokens from homepage"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 23,
+        "unknown" : 0,
+        "total" : 26
+      },
+      "items" : [ {
+        "uid" : "2cf059bfe0b0d800",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/161//#testresult/2cf059bfe0b0d800",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648671716445,
+          "stop" : 1648671721754,
+          "duration" : 5309
+        }
+      }, {
+        "uid" : "8e9e106c87efda41",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/160//#testresult/8e9e106c87efda41",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648640798085,
+          "stop" : 1648640800416,
+          "duration" : 2331
+        }
+      }, {
+        "uid" : "12f0bb6e3740d9ae",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/157//#testresult/12f0bb6e3740d9ae",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648586210894,
+          "stop" : 1648586214905,
+          "duration" : 4011
+        }
+      }, {
+        "uid" : "78844b7416480fa4",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/156//#testresult/78844b7416480fa4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648585445605,
+          "stop" : 1648585452173,
+          "duration" : 6568
+        }
+      }, {
+        "uid" : "89a07b67aa582ecb",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/155//#testresult/89a07b67aa582ecb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648459229300,
+          "stop" : 1648459231155,
+          "duration" : 1855
+        }
+      }, {
+        "uid" : "700e8a4de35a31f5",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/154//#testresult/700e8a4de35a31f5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648457472910,
+          "stop" : 1648457475208,
+          "duration" : 2298
+        }
+      }, {
+        "uid" : "243255d68e30b12d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/153//#testresult/243255d68e30b12d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648216601549,
+          "stop" : 1648216604991,
+          "duration" : 3442
+        }
+      }, {
+        "uid" : "b03ed0ad18d1857f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/152//#testresult/b03ed0ad18d1857f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648210980072,
+          "stop" : 1648210981987,
+          "duration" : 1915
+        }
+      }, {
+        "uid" : "2fd2a8349fd02f4a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/151//#testresult/2fd2a8349fd02f4a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648207828796,
+          "stop" : 1648207831278,
+          "duration" : 2482
+        }
+      }, {
+        "uid" : "7d98f7419a53dac5",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/150//#testresult/7d98f7419a53dac5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648205752819,
+          "stop" : 1648205755102,
+          "duration" : 2283
+        }
+      }, {
+        "uid" : "13d294acac5b6de9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/147//#testresult/13d294acac5b6de9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648200595116,
+          "stop" : 1648200597070,
+          "duration" : 1954
+        }
+      }, {
+        "uid" : "38ac59cc306f57d5",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/149//#testresult/38ac59cc306f57d5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648179792506,
+          "stop" : 1648179794877,
+          "duration" : 2371
+        }
+      }, {
+        "uid" : "10491d4d47a05279",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/148//#testresult/10491d4d47a05279",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648168582961,
+          "stop" : 1648168585481,
+          "duration" : 2520
+        }
+      }, {
+        "uid" : "8c4b6bdbf4f8453e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/147//#testresult/8c4b6bdbf4f8453e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648165072966,
+          "stop" : 1648165075367,
+          "duration" : 2401
+        }
+      }, {
+        "uid" : "4a7d83b90b79d1c1",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/146//#testresult/4a7d83b90b79d1c1",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <button data-test-id=\"check-vesting-page-btn\" class=\"fill button-secondary\">...</button> is not clickable at point (380, 589). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1648164198234,
+          "stop" : 1648164208038,
+          "duration" : 9804
+        }
+      }, {
+        "uid" : "4e4760fa174b235d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/145//#testresult/4e4760fa174b235d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647593570422,
+          "stop" : 1647593572874,
+          "duration" : 2452
+        }
+      }, {
+        "uid" : "6c3c0aa7d1867c6a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/144//#testresult/6c3c0aa7d1867c6a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647533165567,
+          "stop" : 1647533168605,
+          "duration" : 3038
+        }
+      }, {
+        "uid" : "6e29a26647e4888e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/143//#testresult/6e29a26647e4888e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647514473495,
+          "stop" : 1647514475368,
+          "duration" : 1873
+        }
+      }, {
+        "uid" : "7d2d62f5d2829259",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/142//#testresult/7d2d62f5d2829259",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <button data-test-id=\"check-vesting-page-btn\" class=\"fill button-secondary\">...</button> is not clickable at point (380, 589). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1647439297619,
+          "stop" : 1647439303598,
+          "duration" : 5979
+        }
+      }, {
+        "uid" : "70fe2fbd6d00efe5",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/141//#testresult/70fe2fbd6d00efe5",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <button data-test-id=\"check-vesting-page-btn\" class=\"fill button-secondary\">...</button> is not clickable at point (380, 589). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1647438926073,
+          "stop" : 1647438932587,
+          "duration" : 6514
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "ced30da8227438fc.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
