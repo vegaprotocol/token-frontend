@@ -1,0 +1,167 @@
+{
+  "uid" : "6802aa132a6e9c71",
+  "name" : "Remove stake at next epoch",
+  "fullName" : "Staking and Association tests.Remove stake at next epoch",
+  "historyId" : "10033006f4aecbda3976bbb4211da0f6",
+  "time" : {
+    "start" : 1648761626574,
+    "stop" : 1648761638167,
+    "duration" : 11593
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "element click intercepted: Element <span class=\"node-list__item-name\">...</span> is not clickable at point (43, 876). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+  "statusTrace" : "element click intercepted: Element <span class=\"node-list__item-name\">...</span> is not clickable at point (43, 876). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x0000000104229ff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x00000001041b5403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x0000000103d71e38 chromedriver + 171576\n                3   chromedriver                        0x0000000103dae7e1 chromedriver + 419809\n                4   chromedriver                        0x0000000103dac49e chromedriver + 410782\n                5   chromedriver                        0x0000000103da9cca chromedriver + 400586\n                6   chromedriver                        0x0000000103da8761 chromedriver + 395105\n                7   chromedriver                        0x0000000103d9c778 chromedriver + 345976\n                8   chromedriver                        0x0000000103dc4aa2 chromedriver + 510626\n                9   chromedriver                        0x0000000103d9c015 chromedriver + 344085\n                10  chromedriver                        0x0000000103dc4dbe chromedriver + 511422\n                11  chromedriver                        0x0000000103dd75d2 chromedriver + 587218\n                12  chromedriver                        0x0000000103dc4d63 chromedriver + 511331\n                13  chromedriver                        0x0000000103d9a82e chromedriver + 337966\n                14  chromedriver                        0x0000000103d9bb65 chromedriver + 342885\n                15  chromedriver                        0x00000001041e5f1b __gxx_personality_v0 + 305451\n                16  chromedriver                        0x00000001041fce23 __gxx_personality_v0 + 399411\n                17  chromedriver                        0x00000001042028df __gxx_personality_v0 + 422639\n                18  chromedriver                        0x00000001041fe17a __gxx_personality_v0 + 404362\n                19  chromedriver                        0x00000001041da541 __gxx_personality_v0 + 257873\n                20  chromedriver                        0x0000000104219f28 __gxx_personality_v0 + 518456\n                21  chromedriver                        0x000000010421a0b1 __gxx_personality_v0 + 518849\n                22  chromedriver                        0x0000000104231498 __gxx_personality_v0 + 614056\n                23  libsystem_pthread.dylib             0x00007fff2065b8fc _pthread_start + 224\n                24  libsystem_pthread.dylib             0x00007fff20657443 thread_start + 15\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:64:36)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "element click intercepted: Element <span class=\"node-list__item-name\">...</span> is not clickable at point (43, 876). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+    "statusTrace" : "element click intercepted: Element <span class=\"node-list__item-name\">...</span> is not clickable at point (43, 876). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x0000000104229ff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x00000001041b5403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x0000000103d71e38 chromedriver + 171576\n                3   chromedriver                        0x0000000103dae7e1 chromedriver + 419809\n                4   chromedriver                        0x0000000103dac49e chromedriver + 410782\n                5   chromedriver                        0x0000000103da9cca chromedriver + 400586\n                6   chromedriver                        0x0000000103da8761 chromedriver + 395105\n                7   chromedriver                        0x0000000103d9c778 chromedriver + 345976\n                8   chromedriver                        0x0000000103dc4aa2 chromedriver + 510626\n                9   chromedriver                        0x0000000103d9c015 chromedriver + 344085\n                10  chromedriver                        0x0000000103dc4dbe chromedriver + 511422\n                11  chromedriver                        0x0000000103dd75d2 chromedriver + 587218\n                12  chromedriver                        0x0000000103dc4d63 chromedriver + 511331\n                13  chromedriver                        0x0000000103d9a82e chromedriver + 337966\n                14  chromedriver                        0x0000000103d9bb65 chromedriver + 342885\n                15  chromedriver                        0x00000001041e5f1b __gxx_personality_v0 + 305451\n                16  chromedriver                        0x00000001041fce23 __gxx_personality_v0 + 399411\n                17  chromedriver                        0x00000001042028df __gxx_personality_v0 + 422639\n                18  chromedriver                        0x00000001041fe17a __gxx_personality_v0 + 404362\n                19  chromedriver                        0x00000001041da541 __gxx_personality_v0 + 257873\n                20  chromedriver                        0x0000000104219f28 __gxx_personality_v0 + 518456\n                21  chromedriver                        0x000000010421a0b1 __gxx_personality_v0 + 518849\n                22  chromedriver                        0x0000000104231498 __gxx_personality_v0 + 614056\n                23  libsystem_pthread.dylib             0x00007fff2065b8fc _pthread_start + 224\n                24  libsystem_pthread.dylib             0x00007fff20657443 thread_start + 15\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:64:36)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1648761626574,
+        "stop" : 1648761629133,
+        "duration" : 2559
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "4515c1458fb7d037",
+        "name" : "Screenshot",
+        "source" : "4515c1458fb7d037.png",
+        "type" : "image/png",
+        "size" : 29929
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on a validator",
+      "time" : {
+        "start" : 1648761629133,
+        "stop" : 1648761638167,
+        "duration" : 9034
+      },
+      "status" : "broken",
+      "statusMessage" : "element click intercepted: Element <span class=\"node-list__item-name\">...</span> is not clickable at point (43, 876). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x0000000104229ff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x00000001041b5403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x0000000103d71e38 chromedriver + 171576\n                3   chromedriver                        0x0000000103dae7e1 chromedriver + 419809\n                4   chromedriver                        0x0000000103dac49e chromedriver + 410782\n                5   chromedriver                        0x0000000103da9cca chromedriver + 400586\n                6   chromedriver                        0x0000000103da8761 chromedriver + 395105\n                7   chromedriver                        0x0000000103d9c778 chromedriver + 345976\n                8   chromedriver                        0x0000000103dc4aa2 chromedriver + 510626\n                9   chromedriver                        0x0000000103d9c015 chromedriver + 344085\n                10  chromedriver                        0x0000000103dc4dbe chromedriver + 511422\n                11  chromedriver                        0x0000000103dd75d2 chromedriver + 587218\n                12  chromedriver                        0x0000000103dc4d63 chromedriver + 511331\n                13  chromedriver                        0x0000000103d9a82e chromedriver + 337966\n                14  chromedriver                        0x0000000103d9bb65 chromedriver + 342885\n                15  chromedriver                        0x00000001041e5f1b __gxx_personality_v0 + 305451\n                16  chromedriver                        0x00000001041fce23 __gxx_personality_v0 + 399411\n                17  chromedriver                        0x00000001042028df __gxx_personality_v0 + 422639\n                18  chromedriver                        0x00000001041fe17a __gxx_personality_v0 + 404362\n                19  chromedriver                        0x00000001041da541 __gxx_personality_v0 + 257873\n                20  chromedriver                        0x0000000104219f28 __gxx_personality_v0 + 518456\n                21  chromedriver                        0x000000010421a0b1 __gxx_personality_v0 + 518849\n                22  chromedriver                        0x0000000104231498 __gxx_personality_v0 + 614056\n                23  libsystem_pthread.dylib             0x00007fff2065b8fc _pthread_start + 224\n                24  libsystem_pthread.dylib             0x00007fff20657443 thread_start + 15\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:64:36)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "3ca8f06c0d36fb98",
+        "name" : "Screenshot",
+        "source" : "3ca8f06c0d36fb98.png",
+        "type" : "image/png",
+        "size" : 29929
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Remove stake at next epoch"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 3,
+        "unknown" : 0,
+        "total" : 5
+      },
+      "items" : [ {
+        "uid" : "acf3dcfd805a7e22",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/166//#testresult/acf3dcfd805a7e22",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <span class=\"node-list__item-name\">...</span> is not clickable at point (50, 876). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1648757226113,
+          "stop" : 1648757234528,
+          "duration" : 8415
+        }
+      }, {
+        "uid" : "e6d2482f81fc9df5",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/164//#testresult/e6d2482f81fc9df5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648724618321,
+          "stop" : 1648724627151,
+          "duration" : 8830
+        }
+      }, {
+        "uid" : "baec5bdb7d82ae4a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/162//#testresult/baec5bdb7d82ae4a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648720339887,
+          "stop" : 1648720359217,
+          "duration" : 19330
+        }
+      }, {
+        "uid" : "8acb7de3ba29d9f7",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/161//#testresult/8acb7de3ba29d9f7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648672133359,
+          "stop" : 1648672142576,
+          "duration" : 9217
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "6802aa132a6e9c71.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

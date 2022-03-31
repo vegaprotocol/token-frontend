@@ -1,0 +1,179 @@
+{
+  "uid" : "455baeefea81252d",
+  "name" : "Check wallet field entry",
+  "fullName" : "Withdraw page.Check wallet field entry",
+  "historyId" : "86d619d8b6252719c65a00c589c789fc",
+  "time" : {
+    "start" : 1648761710639,
+    "stop" : 1648761749814,
+    "duration" : 39175
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "element click intercepted: Element <button type=\"button\" class=\"fill button-secondary--inverted\" data-test-id=\"connect-to-eth-wallet-button\">...</button> is not clickable at point (985, 98). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+  "statusTrace" : "element click intercepted: Element <button type=\"button\" class=\"fill button-secondary--inverted\" data-test-id=\"connect-to-eth-wallet-button\">...</button> is not clickable at point (985, 98). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x0000000100d0bff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x0000000100c97403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x0000000100853e38 chromedriver + 171576\n                3   chromedriver                        0x00000001008907e1 chromedriver + 419809\n                4   chromedriver                        0x000000010088e49e chromedriver + 410782\n                5   chromedriver                        0x000000010088bcca chromedriver + 400586\n                6   chromedriver                        0x000000010088a761 chromedriver + 395105\n                7   chromedriver                        0x000000010087e778 chromedriver + 345976\n                8   chromedriver                        0x00000001008a6aa2 chromedriver + 510626\n                9   chromedriver                        0x000000010087e015 chromedriver + 344085\n                10  chromedriver                        0x00000001008a6dbe chromedriver + 511422\n                11  chromedriver                        0x00000001008b95d2 chromedriver + 587218\n                12  chromedriver                        0x00000001008a6d63 chromedriver + 511331\n                13  chromedriver                        0x000000010087c82e chromedriver + 337966\n                14  chromedriver                        0x000000010087db65 chromedriver + 342885\n                15  chromedriver                        0x0000000100cc7f1b __gxx_personality_v0 + 305451\n                16  chromedriver                        0x0000000100cdee23 __gxx_personality_v0 + 399411\n                17  chromedriver                        0x0000000100ce48df __gxx_personality_v0 + 422639\n                18  chromedriver                        0x0000000100ce017a __gxx_personality_v0 + 404362\n                19  chromedriver                        0x0000000100cbc541 __gxx_personality_v0 + 257873\n                20  chromedriver                        0x0000000100cfbf28 __gxx_personality_v0 + 518456\n                21  chromedriver                        0x0000000100cfc0b1 __gxx_personality_v0 + 518849\n                22  chromedriver                        0x0000000100d13498 __gxx_personality_v0 + 614056\n                23  libsystem_pthread.dylib             0x00007fff2063a8fc _pthread_start + 224\n                24  libsystem_pthread.dylib             0x00007fff20636443 thread_start + 15\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at Browser.connectToEthWallet (/home/runner/work/token-frontend/token-frontend/automation/commands.js:36:58)\n                    at Browser.connectToEthWallet (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at Browser.next [as connectToEthWallet] (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/monad.js:149:33)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:5:13)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "element click intercepted: Element <button type=\"button\" class=\"fill button-secondary--inverted\" data-test-id=\"connect-to-eth-wallet-button\">...</button> is not clickable at point (985, 98). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+    "statusTrace" : "element click intercepted: Element <button type=\"button\" class=\"fill button-secondary--inverted\" data-test-id=\"connect-to-eth-wallet-button\">...</button> is not clickable at point (985, 98). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x0000000100d0bff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x0000000100c97403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x0000000100853e38 chromedriver + 171576\n                3   chromedriver                        0x00000001008907e1 chromedriver + 419809\n                4   chromedriver                        0x000000010088e49e chromedriver + 410782\n                5   chromedriver                        0x000000010088bcca chromedriver + 400586\n                6   chromedriver                        0x000000010088a761 chromedriver + 395105\n                7   chromedriver                        0x000000010087e778 chromedriver + 345976\n                8   chromedriver                        0x00000001008a6aa2 chromedriver + 510626\n                9   chromedriver                        0x000000010087e015 chromedriver + 344085\n                10  chromedriver                        0x00000001008a6dbe chromedriver + 511422\n                11  chromedriver                        0x00000001008b95d2 chromedriver + 587218\n                12  chromedriver                        0x00000001008a6d63 chromedriver + 511331\n                13  chromedriver                        0x000000010087c82e chromedriver + 337966\n                14  chromedriver                        0x000000010087db65 chromedriver + 342885\n                15  chromedriver                        0x0000000100cc7f1b __gxx_personality_v0 + 305451\n                16  chromedriver                        0x0000000100cdee23 __gxx_personality_v0 + 399411\n                17  chromedriver                        0x0000000100ce48df __gxx_personality_v0 + 422639\n                18  chromedriver                        0x0000000100ce017a __gxx_personality_v0 + 404362\n                19  chromedriver                        0x0000000100cbc541 __gxx_personality_v0 + 257873\n                20  chromedriver                        0x0000000100cfbf28 __gxx_personality_v0 + 518456\n                21  chromedriver                        0x0000000100cfc0b1 __gxx_personality_v0 + 518849\n                22  chromedriver                        0x0000000100d13498 __gxx_personality_v0 + 614056\n                23  libsystem_pthread.dylib             0x00007fff2063a8fc _pthread_start + 224\n                24  libsystem_pthread.dylib             0x00007fff20636443 thread_start + 15\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at Browser.connectToEthWallet (/home/runner/work/token-frontend/token-frontend/automation/commands.js:36:58)\n                    at Browser.connectToEthWallet (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at Browser.next [as connectToEthWallet] (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/monad.js:149:33)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:5:13)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"withdraw\" page",
+      "time" : {
+        "start" : 1648761710642,
+        "stop" : 1648761715463,
+        "duration" : 4821
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "a814c52839915e67",
+        "name" : "Screenshot",
+        "source" : "a814c52839915e67.png",
+        "type" : "image/png",
+        "size" : 29949
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Given I connect my ethereum wallet",
+      "time" : {
+        "start" : 1648761715463,
+        "stop" : 1648761749813,
+        "duration" : 34350
+      },
+      "status" : "broken",
+      "statusMessage" : "element click intercepted: Element <button type=\"button\" class=\"fill button-secondary--inverted\" data-test-id=\"connect-to-eth-wallet-button\">...</button> is not clickable at point (985, 98). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x0000000100d0bff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x0000000100c97403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x0000000100853e38 chromedriver + 171576\n                3   chromedriver                        0x00000001008907e1 chromedriver + 419809\n                4   chromedriver                        0x000000010088e49e chromedriver + 410782\n                5   chromedriver                        0x000000010088bcca chromedriver + 400586\n                6   chromedriver                        0x000000010088a761 chromedriver + 395105\n                7   chromedriver                        0x000000010087e778 chromedriver + 345976\n                8   chromedriver                        0x00000001008a6aa2 chromedriver + 510626\n                9   chromedriver                        0x000000010087e015 chromedriver + 344085\n                10  chromedriver                        0x00000001008a6dbe chromedriver + 511422\n                11  chromedriver                        0x00000001008b95d2 chromedriver + 587218\n                12  chromedriver                        0x00000001008a6d63 chromedriver + 511331\n                13  chromedriver                        0x000000010087c82e chromedriver + 337966\n                14  chromedriver                        0x000000010087db65 chromedriver + 342885\n                15  chromedriver                        0x0000000100cc7f1b __gxx_personality_v0 + 305451\n                16  chromedriver                        0x0000000100cdee23 __gxx_personality_v0 + 399411\n                17  chromedriver                        0x0000000100ce48df __gxx_personality_v0 + 422639\n                18  chromedriver                        0x0000000100ce017a __gxx_personality_v0 + 404362\n                19  chromedriver                        0x0000000100cbc541 __gxx_personality_v0 + 257873\n                20  chromedriver                        0x0000000100cfbf28 __gxx_personality_v0 + 518456\n                21  chromedriver                        0x0000000100cfc0b1 __gxx_personality_v0 + 518849\n                22  chromedriver                        0x0000000100d13498 __gxx_personality_v0 + 614056\n                23  libsystem_pthread.dylib             0x00007fff2063a8fc _pthread_start + 224\n                24  libsystem_pthread.dylib             0x00007fff20636443 thread_start + 15\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at Browser.connectToEthWallet (/home/runner/work/token-frontend/token-frontend/automation/commands.js:36:58)\n                    at Browser.connectToEthWallet (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at Browser.next [as connectToEthWallet] (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/monad.js:149:33)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:5:13)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "cb9223974f27e52b",
+        "name" : "Screenshot",
+        "source" : "cb9223974f27e52b.png",
+        "type" : "image/png",
+        "size" : 29949
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-6"
+  }, {
+    "name" : "suite",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "testClass",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Check wallet field entry"
+  }, {
+    "name" : "package",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 3,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 6
+      },
+      "items" : [ {
+        "uid" : "c95853612b39447d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/166//#testresult/c95853612b39447d",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <button type=\"button\" class=\"fill button-secondary--inverted\" data-test-id=\"connect-to-eth-wallet-button\">...</button> is not clickable at point (985, 98). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1648757297604,
+          "stop" : 1648757319572,
+          "duration" : 21968
+        }
+      }, {
+        "uid" : "cd096e535863d991",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/164//#testresult/cd096e535863d991",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648724689118,
+          "stop" : 1648724714562,
+          "duration" : 25444
+        }
+      }, {
+        "uid" : "ed5cf5a5a2dfe8f3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/162//#testresult/ed5cf5a5a2dfe8f3",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $$(`[data-testid=\"token-amount-input\"]`) to have property value",
+        "time" : {
+          "start" : 1648720417121,
+          "stop" : 1648720489665,
+          "duration" : 72544
+        }
+      }, {
+        "uid" : "9a1ee39742f6353",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/161//#testresult/9a1ee39742f6353",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $$(`[data-testid=\"token-amount-input\"]`) to have property value",
+        "time" : {
+          "start" : 1648672203887,
+          "stop" : 1648672251804,
+          "duration" : 47917
+        }
+      }, {
+        "uid" : "17d9ed8d4edf148f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/160//#testresult/17d9ed8d4edf148f",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $$(`[data-testid=\"token-amount-input\"]`) to have property value",
+        "time" : {
+          "start" : 1648641189286,
+          "stop" : 1648641259964,
+          "duration" : 70678
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "455baeefea81252d.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

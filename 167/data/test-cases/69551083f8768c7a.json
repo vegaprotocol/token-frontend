@@ -1,0 +1,179 @@
+{
+  "uid" : "69551083f8768c7a",
+  "name" : "Invalid wallet address error message is shown if user enters an invalid wallet address",
+  "fullName" : "Withdraw page.Invalid wallet address error message is shown if user enters an invalid wallet address",
+  "historyId" : "2e7ebd0bffca55f3e09ec81c113e66e4",
+  "time" : {
+    "start" : 1648761749817,
+    "stop" : 1648761764762,
+    "duration" : 14945
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: Enter wallet address manually link not displayed",
+  "statusTrace" : "Error: Enter wallet address manually link not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/withdraw.steps.js:13:50)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: Enter wallet address manually link not displayed",
+    "statusTrace" : "Error: Enter wallet address manually link not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/withdraw.steps.js:13:50)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"withdraw\" page",
+      "time" : {
+        "start" : 1648761749818,
+        "stop" : 1648761753809,
+        "duration" : 3991
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "48dd87970d1caf4d",
+        "name" : "Screenshot",
+        "source" : "48dd87970d1caf4d.png",
+        "type" : "image/png",
+        "size" : 29949
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click the link to enter a new wallet address",
+      "time" : {
+        "start" : 1648761753809,
+        "stop" : 1648761764762,
+        "duration" : 10953
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: Enter wallet address manually link not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/withdraw.steps.js:13:50)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "1a290256af8cc9e",
+        "name" : "Screenshot",
+        "source" : "1a290256af8cc9e.png",
+        "type" : "image/png",
+        "size" : 29949
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-6"
+  }, {
+    "name" : "suite",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "testClass",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Invalid wallet address error message is shown if user enters an invalid wallet address"
+  }, {
+    "name" : "package",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 5,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 6
+      },
+      "items" : [ {
+        "uid" : "c973812f8ef15634",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/166//#testresult/c973812f8ef15634",
+        "status" : "broken",
+        "statusDetails" : "Error: Enter wallet address manually link not displayed",
+        "time" : {
+          "start" : 1648757319575,
+          "stop" : 1648757331490,
+          "duration" : 11915
+        }
+      }, {
+        "uid" : "fc07959bbe9689a4",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/164//#testresult/fc07959bbe9689a4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648724714562,
+          "stop" : 1648724718755,
+          "duration" : 4193
+        }
+      }, {
+        "uid" : "905c115a65263289",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/162//#testresult/905c115a65263289",
+        "status" : "broken",
+        "statusDetails" : "TypeError: withdrawalsPage.ethWalletAddressField.setValue is not a function",
+        "time" : {
+          "start" : 1648720489667,
+          "stop" : 1648720496416,
+          "duration" : 6749
+        }
+      }, {
+        "uid" : "8ca6d53894fb81c5",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/161//#testresult/8ca6d53894fb81c5",
+        "status" : "broken",
+        "statusDetails" : "TypeError: WithdrawalsPage.ethWalletAddressField.setValue is not a function",
+        "time" : {
+          "start" : 1648672251807,
+          "stop" : 1648672254834,
+          "duration" : 3027
+        }
+      }, {
+        "uid" : "5ad01aa7952a15dc",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/160//#testresult/5ad01aa7952a15dc",
+        "status" : "broken",
+        "statusDetails" : "TypeError: WithdrawalsPage.ethWalletAddressField.setValue is not a function",
+        "time" : {
+          "start" : 1648641259967,
+          "stop" : 1648641266579,
+          "duration" : 6612
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "69551083f8768c7a.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
