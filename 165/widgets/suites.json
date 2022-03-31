@@ -1,0 +1,48 @@
+{
+  "total" : 4,
+  "items" : [ {
+    "uid" : "c085e711d3f04553fe49e3d48234feb1",
+    "name" : "Rewards page",
+    "statistic" : {
+      "failed" : 1,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 2
+    }
+  }, {
+    "uid" : "a42c9f51ba1bf76b8f087ce0758272d2",
+    "name" : "Homepage",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 15,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 15
+    }
+  }, {
+    "uid" : "235ec29f5ea4c88ba1c34af1a8aaf4f9",
+    "name" : "Staking and Association tests",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 11,
+      "unknown" : 0,
+      "total" : 11
+    }
+  }, {
+    "uid" : "1f7d96b497e9c9e8f0d6caa89ed6f050",
+    "name" : "Claim codes",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 2,
+      "unknown" : 0,
+      "total" : 2
+    }
+  } ]
+}
