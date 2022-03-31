@@ -205,3 +205,7 @@ export const GraphQLNodes = Object.keys(VegaNetworks).reduce(
   },
   {}
 ) as NetworkConfig;
+
+export const EnvironmentNodes = GraphQLNodes[
+  process.env.REACT_APP_ENV as Networks
+] as string[];

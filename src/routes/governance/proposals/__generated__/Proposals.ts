@@ -3,13 +3,13 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ProposalState, ProposalRejectionReason, VoteValue } from "./../../../__generated__/globalTypes";
+import { ProposalState, ProposalRejectionReason, VoteValue } from "./../../../../__generated__/globalTypes";
 
 // ====================================================
-// GraphQL fragment: ProposalFields
+// GraphQL query operation: Proposals
 // ====================================================
 
-export interface ProposalFields_party {
+export interface Proposals_proposals_party {
   __typename: "Party";
   /**
    * Party identifier
@@ -17,11 +17,11 @@ export interface ProposalFields_party {
   id: string;
 }
 
-export interface ProposalFields_terms_change_NewFreeform {
+export interface Proposals_proposals_terms_change_NewFreeform {
   __typename: "NewFreeform";
 }
 
-export interface ProposalFields_terms_change_NewMarket_instrument {
+export interface Proposals_proposals_terms_change_NewMarket_instrument {
   __typename: "InstrumentConfiguration";
   /**
    * Full and fairly descriptive name for the instrument
@@ -29,7 +29,7 @@ export interface ProposalFields_terms_change_NewMarket_instrument {
   name: string;
 }
 
-export interface ProposalFields_terms_change_NewMarket {
+export interface Proposals_proposals_terms_change_NewMarket {
   __typename: "NewMarket";
   /**
    * Decimal places used for the new market
@@ -42,15 +42,15 @@ export interface ProposalFields_terms_change_NewMarket {
   /**
    * New market instrument configuration
    */
-  instrument: ProposalFields_terms_change_NewMarket_instrument;
+  instrument: Proposals_proposals_terms_change_NewMarket_instrument;
 }
 
-export interface ProposalFields_terms_change_UpdateMarket {
+export interface Proposals_proposals_terms_change_UpdateMarket {
   __typename: "UpdateMarket";
   marketId: string;
 }
 
-export interface ProposalFields_terms_change_NewAsset_source_BuiltinAsset {
+export interface Proposals_proposals_terms_change_NewAsset_source_BuiltinAsset {
   __typename: "BuiltinAsset";
   /**
    * Maximum amount that can be requested by a party through the built-in asset faucet at a time
@@ -58,7 +58,7 @@ export interface ProposalFields_terms_change_NewAsset_source_BuiltinAsset {
   maxFaucetAmountMint: string;
 }
 
-export interface ProposalFields_terms_change_NewAsset_source_ERC20 {
+export interface Proposals_proposals_terms_change_NewAsset_source_ERC20 {
   __typename: "ERC20";
   /**
    * The address of the erc20 contract
@@ -66,9 +66,9 @@ export interface ProposalFields_terms_change_NewAsset_source_ERC20 {
   contractAddress: string;
 }
 
-export type ProposalFields_terms_change_NewAsset_source = ProposalFields_terms_change_NewAsset_source_BuiltinAsset | ProposalFields_terms_change_NewAsset_source_ERC20;
+export type Proposals_proposals_terms_change_NewAsset_source = Proposals_proposals_terms_change_NewAsset_source_BuiltinAsset | Proposals_proposals_terms_change_NewAsset_source_ERC20;
 
-export interface ProposalFields_terms_change_NewAsset {
+export interface Proposals_proposals_terms_change_NewAsset {
   __typename: "NewAsset";
   /**
    * The symbol of the asset (e.g: GBP)
@@ -77,10 +77,10 @@ export interface ProposalFields_terms_change_NewAsset {
   /**
    * the source of the new Asset
    */
-  source: ProposalFields_terms_change_NewAsset_source;
+  source: Proposals_proposals_terms_change_NewAsset_source;
 }
 
-export interface ProposalFields_terms_change_UpdateNetworkParameter_networkParameter {
+export interface Proposals_proposals_terms_change_UpdateNetworkParameter_networkParameter {
   __typename: "NetworkParameter";
   /**
    * The name of the network parameter
@@ -92,14 +92,14 @@ export interface ProposalFields_terms_change_UpdateNetworkParameter_networkParam
   value: string;
 }
 
-export interface ProposalFields_terms_change_UpdateNetworkParameter {
+export interface Proposals_proposals_terms_change_UpdateNetworkParameter {
   __typename: "UpdateNetworkParameter";
-  networkParameter: ProposalFields_terms_change_UpdateNetworkParameter_networkParameter;
+  networkParameter: Proposals_proposals_terms_change_UpdateNetworkParameter_networkParameter;
 }
 
-export type ProposalFields_terms_change = ProposalFields_terms_change_NewFreeform | ProposalFields_terms_change_NewMarket | ProposalFields_terms_change_UpdateMarket | ProposalFields_terms_change_NewAsset | ProposalFields_terms_change_UpdateNetworkParameter;
+export type Proposals_proposals_terms_change = Proposals_proposals_terms_change_NewFreeform | Proposals_proposals_terms_change_NewMarket | Proposals_proposals_terms_change_UpdateMarket | Proposals_proposals_terms_change_NewAsset | Proposals_proposals_terms_change_UpdateNetworkParameter;
 
-export interface ProposalFields_terms {
+export interface Proposals_proposals_terms {
   __typename: "ProposalTerms";
   /**
    * RFC3339Nano time and date when voting closes for this proposal.
@@ -114,10 +114,10 @@ export interface ProposalFields_terms {
   /**
    * Actual change being introduced by the proposal - action the proposal triggers if passed and enacted.
    */
-  change: ProposalFields_terms_change;
+  change: Proposals_proposals_terms_change;
 }
 
-export interface ProposalFields_votes_yes_votes_party_stake {
+export interface Proposals_proposals_votes_yes_votes_party_stake {
   __typename: "PartyStake";
   /**
    * The stake currently available for the party
@@ -125,7 +125,7 @@ export interface ProposalFields_votes_yes_votes_party_stake {
   currentStakeAvailable: string;
 }
 
-export interface ProposalFields_votes_yes_votes_party {
+export interface Proposals_proposals_votes_yes_votes_party {
   __typename: "Party";
   /**
    * Party identifier
@@ -134,10 +134,10 @@ export interface ProposalFields_votes_yes_votes_party {
   /**
    * The staking information for this Party
    */
-  stake: ProposalFields_votes_yes_votes_party_stake;
+  stake: Proposals_proposals_votes_yes_votes_party_stake;
 }
 
-export interface ProposalFields_votes_yes_votes {
+export interface Proposals_proposals_votes_yes_votes {
   __typename: "Vote";
   /**
    * The vote value cast
@@ -146,14 +146,14 @@ export interface ProposalFields_votes_yes_votes {
   /**
    * The party casting the vote
    */
-  party: ProposalFields_votes_yes_votes_party;
+  party: Proposals_proposals_votes_yes_votes_party;
   /**
    * RFC3339Nano time and date when the vote reached Vega network
    */
   datetime: string;
 }
 
-export interface ProposalFields_votes_yes {
+export interface Proposals_proposals_votes_yes {
   __typename: "ProposalVoteSide";
   /**
    * Total tokens of governance token from the votes casted for this side
@@ -166,10 +166,10 @@ export interface ProposalFields_votes_yes {
   /**
    * All votes casted for this side
    */
-  votes: ProposalFields_votes_yes_votes[] | null;
+  votes: Proposals_proposals_votes_yes_votes[] | null;
 }
 
-export interface ProposalFields_votes_no_votes_party_stake {
+export interface Proposals_proposals_votes_no_votes_party_stake {
   __typename: "PartyStake";
   /**
    * The stake currently available for the party
@@ -177,7 +177,7 @@ export interface ProposalFields_votes_no_votes_party_stake {
   currentStakeAvailable: string;
 }
 
-export interface ProposalFields_votes_no_votes_party {
+export interface Proposals_proposals_votes_no_votes_party {
   __typename: "Party";
   /**
    * Party identifier
@@ -186,10 +186,10 @@ export interface ProposalFields_votes_no_votes_party {
   /**
    * The staking information for this Party
    */
-  stake: ProposalFields_votes_no_votes_party_stake;
+  stake: Proposals_proposals_votes_no_votes_party_stake;
 }
 
-export interface ProposalFields_votes_no_votes {
+export interface Proposals_proposals_votes_no_votes {
   __typename: "Vote";
   /**
    * The vote value cast
@@ -198,14 +198,14 @@ export interface ProposalFields_votes_no_votes {
   /**
    * The party casting the vote
    */
-  party: ProposalFields_votes_no_votes_party;
+  party: Proposals_proposals_votes_no_votes_party;
   /**
    * RFC3339Nano time and date when the vote reached Vega network
    */
   datetime: string;
 }
 
-export interface ProposalFields_votes_no {
+export interface Proposals_proposals_votes_no {
   __typename: "ProposalVoteSide";
   /**
    * Total tokens of governance token from the votes casted for this side
@@ -218,22 +218,22 @@ export interface ProposalFields_votes_no {
   /**
    * All votes casted for this side
    */
-  votes: ProposalFields_votes_no_votes[] | null;
+  votes: Proposals_proposals_votes_no_votes[] | null;
 }
 
-export interface ProposalFields_votes {
+export interface Proposals_proposals_votes {
   __typename: "ProposalVotes";
   /**
    * Yes votes cast for this proposal
    */
-  yes: ProposalFields_votes_yes;
+  yes: Proposals_proposals_votes_yes;
   /**
    * No votes cast for this proposal
    */
-  no: ProposalFields_votes_no;
+  no: Proposals_proposals_votes_no;
 }
 
-export interface ProposalFields {
+export interface Proposals_proposals {
   __typename: "Proposal";
   /**
    * Proposal ID that is filled by VEGA once proposal reaches the network
@@ -262,13 +262,20 @@ export interface ProposalFields {
   /**
    * Party that prepared the proposal
    */
-  party: ProposalFields_party;
+  party: Proposals_proposals_party;
   /**
    * Terms of the proposal
    */
-  terms: ProposalFields_terms;
+  terms: Proposals_proposals_terms;
   /**
    * Votes cast for this proposal
    */
-  votes: ProposalFields_votes;
+  votes: Proposals_proposals_votes;
+}
+
+export interface Proposals {
+  /**
+   * All governance proposals in the VEGA network
+   */
+  proposals: Proposals_proposals[] | null;
 }

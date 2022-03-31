@@ -1,6 +1,6 @@
 {
   "name": "token-frontend",
-  "version": "0.5.35",
+  "version": "0.5.36",
   "private": true,
   "engines": {
     "node": ">=14.15.0"
@@ -46,6 +46,7 @@
     "react-i18next": "^11.11.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-syntax-highlighter": "^15.4.5",
     "recharts": "^2.1.2",
     "sha3": "^2.1.4",
     "subscriptions-transport-ws": "^0.9.19",
@@ -99,6 +100,7 @@
     "@cypress/instrument-cra": "^1.4.0",
     "@sentry/webpack-plugin": "^1.18.3",
     "@types/lodash": "^4.14.171",
+    "@types/react-syntax-highlighter": "^13.5.2",
     "add": "^2.0.6",
     "apollo": "^2.33.4",
     "eslint-plugin-simple-import-sort": "^7.0.0",

@@ -1,4 +1,4 @@
-import { Proposals_proposals_terms_change } from "../../routes/governance/__generated__/Proposals";
+import { Proposals_proposals_terms_change } from "../../routes/governance/proposals/__generated__/Proposals";
 
 export function getProposalName(change: Proposals_proposals_terms_change) {
   if (change.__typename === "NewAsset") {
