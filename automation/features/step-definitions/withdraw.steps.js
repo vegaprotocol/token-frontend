@@ -1,4 +1,4 @@
-const { Given, When, Then } = require("@wdio/cucumber-framework");
+const { When, Then } = require("@wdio/cucumber-framework");
 const withdrawalsPage = require("../pageobjects/withdrawals.page");
 
 Then(/^I can see the wallet address field is showing "([^"]*)?"$/, (walletAddress) => {
@@ -10,7 +10,7 @@ Then(/^The wallet address field is disabled$/, () => {
 });
 
 When(/^I click the link to enter a new wallet address$/, () => {
-    withdrawalsPage.enableWalletAddressFieldLink.waitForDisplayed({timeout:10000,timeoutMsg:"Enter wallet address manually link not displayed"})
+    withdrawalsPage.enableWalletAddressFieldLink.waitForDisplayed({ timeout: 10000, timeoutMsg: "Enter wallet address manually link not displayed" })
     expect(withdrawalsPage.enableWalletAddressFieldLink).toHaveText('Enter address manually')
     withdrawalsPage.enableWalletAddressFieldLink.click()
 });
@@ -29,7 +29,6 @@ Then(/^the wallet address link is changed to "([^"]*)?"$/, (walletAddresslinkTex
 });
 
 Then(/^I can see the wallet address in the input field is "([^"]*)?"$/, (newWalletAddress) => {
-    console.log(withdrawalsPage.ethWalletAddressField.getValue())
     expect(withdrawalsPage.ethWalletAddressField).toHaveValue(newWalletAddress)
 });
 
