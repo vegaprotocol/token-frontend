@@ -1,0 +1,193 @@
+{
+  "uid" : "fc07959bbe9689a4",
+  "name" : "Invalid wallet address error message is shown if user enters an invalid wallet address",
+  "fullName" : "Withdraw page.Invalid wallet address error message is shown if user enters an invalid wallet address",
+  "historyId" : "2e7ebd0bffca55f3e09ec81c113e66e4",
+  "time" : {
+    "start" : 1648724714562,
+    "stop" : 1648724718755,
+    "duration" : 4193
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"withdraw\" page",
+      "time" : {
+        "start" : 1648724714563,
+        "stop" : 1648724716140,
+        "duration" : 1577
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "bfbf036f172fbf38",
+        "name" : "Screenshot",
+        "source" : "bfbf036f172fbf38.png",
+        "type" : "image/png",
+        "size" : 261300
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click the link to enter a new wallet address",
+      "time" : {
+        "start" : 1648724716140,
+        "stop" : 1648724717542,
+        "duration" : 1402
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "3f6d817d57771a36",
+        "name" : "Screenshot",
+        "source" : "3f6d817d57771a36.png",
+        "type" : "image/png",
+        "size" : 278369
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I enter a new wallet address \"1\"",
+      "time" : {
+        "start" : 1648724717542,
+        "stop" : 1648724718253,
+        "duration" : 711
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "5cc4e5ca1f14366c",
+        "name" : "Screenshot",
+        "source" : "5cc4e5ca1f14366c.png",
+        "type" : "image/png",
+        "size" : 263950
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then the error message is shown \"Looks like that address isn't a valid Ethereum address, please check and try again\"",
+      "time" : {
+        "start" : 1648724718253,
+        "stop" : 1648724718755,
+        "duration" : 502
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "e2035a5a2204ca31",
+        "name" : "Screenshot",
+        "source" : "e2035a5a2204ca31.png",
+        "type" : "image/png",
+        "size" : 264018
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-6"
+  }, {
+    "name" : "suite",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "testClass",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Invalid wallet address error message is shown if user enters an invalid wallet address"
+  }, {
+    "name" : "package",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "905c115a65263289",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/162//#testresult/905c115a65263289",
+        "status" : "broken",
+        "statusDetails" : "TypeError: withdrawalsPage.ethWalletAddressField.setValue is not a function",
+        "time" : {
+          "start" : 1648720489667,
+          "stop" : 1648720496416,
+          "duration" : 6749
+        }
+      }, {
+        "uid" : "8ca6d53894fb81c5",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/161//#testresult/8ca6d53894fb81c5",
+        "status" : "broken",
+        "statusDetails" : "TypeError: WithdrawalsPage.ethWalletAddressField.setValue is not a function",
+        "time" : {
+          "start" : 1648672251807,
+          "stop" : 1648672254834,
+          "duration" : 3027
+        }
+      }, {
+        "uid" : "5ad01aa7952a15dc",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/160//#testresult/5ad01aa7952a15dc",
+        "status" : "broken",
+        "statusDetails" : "TypeError: WithdrawalsPage.ethWalletAddressField.setValue is not a function",
+        "time" : {
+          "start" : 1648641259967,
+          "stop" : 1648641266579,
+          "duration" : 6612
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "fc07959bbe9689a4.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
