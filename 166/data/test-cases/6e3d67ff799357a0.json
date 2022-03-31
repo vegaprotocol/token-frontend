@@ -1,0 +1,274 @@
+{
+  "uid" : "6e3d67ff799357a0",
+  "name" : "Go to staking and connect ethereum wallet",
+  "fullName" : "Staking and Association tests.Go to staking and connect ethereum wallet",
+  "historyId" : "79532109b9122c496b8d980ab3fa0bc3",
+  "time" : {
+    "start" : 1648756943449,
+    "stop" : 1648756967955,
+    "duration" : 24506
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "element click intercepted: Element <button type=\"button\" class=\"fill button-secondary--inverted\" data-test-id=\"connect-to-eth-wallet-button\">...</button> is not clickable at point (985, 98). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+  "statusTrace" : "element click intercepted: Element <button type=\"button\" class=\"fill button-secondary--inverted\" data-test-id=\"connect-to-eth-wallet-button\">...</button> is not clickable at point (985, 98). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x000000010341eff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x00000001033aa403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x0000000102f66e38 chromedriver + 171576\n                3   chromedriver                        0x0000000102fa37e1 chromedriver + 419809\n                4   chromedriver                        0x0000000102fa149e chromedriver + 410782\n                5   chromedriver                        0x0000000102f9ecca chromedriver + 400586\n                6   chromedriver                        0x0000000102f9d761 chromedriver + 395105\n                7   chromedriver                        0x0000000102f91778 chromedriver + 345976\n                8   chromedriver                        0x0000000102fb9aa2 chromedriver + 510626\n                9   chromedriver                        0x0000000102f91015 chromedriver + 344085\n                10  chromedriver                        0x0000000102fb9dbe chromedriver + 511422\n                11  chromedriver                        0x0000000102fcc5d2 chromedriver + 587218\n                12  chromedriver                        0x0000000102fb9d63 chromedriver + 511331\n                13  chromedriver                        0x0000000102f8f82e chromedriver + 337966\n                14  chromedriver                        0x0000000102f90b65 chromedriver + 342885\n                15  chromedriver                        0x00000001033daf1b __gxx_personality_v0 + 305451\n                16  chromedriver                        0x00000001033f1e23 __gxx_personality_v0 + 399411\n                17  chromedriver                        0x00000001033f78df __gxx_personality_v0 + 422639\n                18  chromedriver                        0x00000001033f317a __gxx_personality_v0 + 404362\n                19  chromedriver                        0x00000001033cf541 __gxx_personality_v0 + 257873\n                20  chromedriver                        0x000000010340ef28 __gxx_personality_v0 + 518456\n                21  chromedriver                        0x000000010340f0b1 __gxx_personality_v0 + 518849\n                22  chromedriver                        0x0000000103426498 __gxx_personality_v0 + 614056\n                23  libsystem_pthread.dylib             0x00007fff205728fc _pthread_start + 224\n                24  libsystem_pthread.dylib             0x00007fff2056e443 thread_start + 15\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at Browser.connectToEthWallet (/home/runner/work/token-frontend/token-frontend/automation/commands.js:36:58)\n                    at Browser.connectToEthWallet (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at Browser.next [as connectToEthWallet] (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/monad.js:149:33)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:5:13)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "element click intercepted: Element <button type=\"button\" class=\"fill button-secondary--inverted\" data-test-id=\"connect-to-eth-wallet-button\">...</button> is not clickable at point (985, 98). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+    "statusTrace" : "element click intercepted: Element <button type=\"button\" class=\"fill button-secondary--inverted\" data-test-id=\"connect-to-eth-wallet-button\">...</button> is not clickable at point (985, 98). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x000000010341eff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x00000001033aa403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x0000000102f66e38 chromedriver + 171576\n                3   chromedriver                        0x0000000102fa37e1 chromedriver + 419809\n                4   chromedriver                        0x0000000102fa149e chromedriver + 410782\n                5   chromedriver                        0x0000000102f9ecca chromedriver + 400586\n                6   chromedriver                        0x0000000102f9d761 chromedriver + 395105\n                7   chromedriver                        0x0000000102f91778 chromedriver + 345976\n                8   chromedriver                        0x0000000102fb9aa2 chromedriver + 510626\n                9   chromedriver                        0x0000000102f91015 chromedriver + 344085\n                10  chromedriver                        0x0000000102fb9dbe chromedriver + 511422\n                11  chromedriver                        0x0000000102fcc5d2 chromedriver + 587218\n                12  chromedriver                        0x0000000102fb9d63 chromedriver + 511331\n                13  chromedriver                        0x0000000102f8f82e chromedriver + 337966\n                14  chromedriver                        0x0000000102f90b65 chromedriver + 342885\n                15  chromedriver                        0x00000001033daf1b __gxx_personality_v0 + 305451\n                16  chromedriver                        0x00000001033f1e23 __gxx_personality_v0 + 399411\n                17  chromedriver                        0x00000001033f78df __gxx_personality_v0 + 422639\n                18  chromedriver                        0x00000001033f317a __gxx_personality_v0 + 404362\n                19  chromedriver                        0x00000001033cf541 __gxx_personality_v0 + 257873\n                20  chromedriver                        0x000000010340ef28 __gxx_personality_v0 + 518456\n                21  chromedriver                        0x000000010340f0b1 __gxx_personality_v0 + 518849\n                22  chromedriver                        0x0000000103426498 __gxx_personality_v0 + 614056\n                23  libsystem_pthread.dylib             0x00007fff205728fc _pthread_start + 224\n                24  libsystem_pthread.dylib             0x00007fff2056e443 thread_start + 15\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at Browser.connectToEthWallet (/home/runner/work/token-frontend/token-frontend/automation/commands.js:36:58)\n                    at Browser.connectToEthWallet (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at Browser.next [as connectToEthWallet] (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/monad.js:149:33)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:5:13)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1648756943452,
+        "stop" : 1648756947444,
+        "duration" : 3992
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "6a1245368e2b0300",
+        "name" : "Screenshot",
+        "source" : "6a1245368e2b0300.png",
+        "type" : "image/png",
+        "size" : 35740
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Given I connect my ethereum wallet",
+      "time" : {
+        "start" : 1648756947445,
+        "stop" : 1648756967952,
+        "duration" : 20507
+      },
+      "status" : "broken",
+      "statusMessage" : "element click intercepted: Element <button type=\"button\" class=\"fill button-secondary--inverted\" data-test-id=\"connect-to-eth-wallet-button\">...</button> is not clickable at point (985, 98). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x000000010341eff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x00000001033aa403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x0000000102f66e38 chromedriver + 171576\n                3   chromedriver                        0x0000000102fa37e1 chromedriver + 419809\n                4   chromedriver                        0x0000000102fa149e chromedriver + 410782\n                5   chromedriver                        0x0000000102f9ecca chromedriver + 400586\n                6   chromedriver                        0x0000000102f9d761 chromedriver + 395105\n                7   chromedriver                        0x0000000102f91778 chromedriver + 345976\n                8   chromedriver                        0x0000000102fb9aa2 chromedriver + 510626\n                9   chromedriver                        0x0000000102f91015 chromedriver + 344085\n                10  chromedriver                        0x0000000102fb9dbe chromedriver + 511422\n                11  chromedriver                        0x0000000102fcc5d2 chromedriver + 587218\n                12  chromedriver                        0x0000000102fb9d63 chromedriver + 511331\n                13  chromedriver                        0x0000000102f8f82e chromedriver + 337966\n                14  chromedriver                        0x0000000102f90b65 chromedriver + 342885\n                15  chromedriver                        0x00000001033daf1b __gxx_personality_v0 + 305451\n                16  chromedriver                        0x00000001033f1e23 __gxx_personality_v0 + 399411\n                17  chromedriver                        0x00000001033f78df __gxx_personality_v0 + 422639\n                18  chromedriver                        0x00000001033f317a __gxx_personality_v0 + 404362\n                19  chromedriver                        0x00000001033cf541 __gxx_personality_v0 + 257873\n                20  chromedriver                        0x000000010340ef28 __gxx_personality_v0 + 518456\n                21  chromedriver                        0x000000010340f0b1 __gxx_personality_v0 + 518849\n                22  chromedriver                        0x0000000103426498 __gxx_personality_v0 + 614056\n                23  libsystem_pthread.dylib             0x00007fff205728fc _pthread_start + 224\n                24  libsystem_pthread.dylib             0x00007fff2056e443 thread_start + 15\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at Browser.connectToEthWallet (/home/runner/work/token-frontend/token-frontend/automation/commands.js:36:58)\n                    at Browser.connectToEthWallet (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at Browser.next [as connectToEthWallet] (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/monad.js:149:33)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/shared-steps.steps.js:5:13)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "7bda8f557d4258ff",
+        "name" : "Screenshot",
+        "source" : "7bda8f557d4258ff.png",
+        "type" : "image/png",
+        "size" : 35740
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Go to staking and connect ethereum wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 1,
+        "skipped" : 0,
+        "passed" : 16,
+        "unknown" : 0,
+        "total" : 17
+      },
+      "items" : [ {
+        "uid" : "b429f6fccaa072c5",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/165//#testresult/b429f6fccaa072c5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648727705756,
+          "stop" : 1648727719963,
+          "duration" : 14207
+        }
+      }, {
+        "uid" : "782e2a52f614afb7",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/164//#testresult/782e2a52f614afb7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648724485620,
+          "stop" : 1648724500775,
+          "duration" : 15155
+        }
+      }, {
+        "uid" : "59a306ab91f4f904",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/163//#testresult/59a306ab91f4f904",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648722953106,
+          "stop" : 1648722968692,
+          "duration" : 15586
+        }
+      }, {
+        "uid" : "461ef3a08505e9d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/162//#testresult/461ef3a08505e9d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648720062968,
+          "stop" : 1648720100275,
+          "duration" : 37307
+        }
+      }, {
+        "uid" : "bf1885e3ccb07e51",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/161//#testresult/bf1885e3ccb07e51",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648671963921,
+          "stop" : 1648671989153,
+          "duration" : 25232
+        }
+      }, {
+        "uid" : "78df9b483201e010",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/160//#testresult/78df9b483201e010",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648641025246,
+          "stop" : 1648641040926,
+          "duration" : 15680
+        }
+      }, {
+        "uid" : "fcb0ba3e71040ee1",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/157//#testresult/fcb0ba3e71040ee1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648586404937,
+          "stop" : 1648586425568,
+          "duration" : 20631
+        }
+      }, {
+        "uid" : "c11a3e5deba4df5a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/156//#testresult/c11a3e5deba4df5a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648585653678,
+          "stop" : 1648585677632,
+          "duration" : 23954
+        }
+      }, {
+        "uid" : "1cb983dcaf566cd",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/155//#testresult/1cb983dcaf566cd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648459464478,
+          "stop" : 1648459482744,
+          "duration" : 18266
+        }
+      }, {
+        "uid" : "7e07b9985eac356a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/154//#testresult/7e07b9985eac356a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648457663089,
+          "stop" : 1648457688453,
+          "duration" : 25364
+        }
+      }, {
+        "uid" : "ecde29b7a78ed02b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/153//#testresult/ecde29b7a78ed02b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648216769780,
+          "stop" : 1648216794724,
+          "duration" : 24944
+        }
+      }, {
+        "uid" : "717454e8d8584852",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/152//#testresult/717454e8d8584852",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648211141216,
+          "stop" : 1648211167285,
+          "duration" : 26069
+        }
+      }, {
+        "uid" : "7d70e3a3f35f8e6a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/151//#testresult/7d70e3a3f35f8e6a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648208031037,
+          "stop" : 1648208046374,
+          "duration" : 15337
+        }
+      }, {
+        "uid" : "406ee7028f7bddd4",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/150//#testresult/406ee7028f7bddd4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648205846754,
+          "stop" : 1648205863103,
+          "duration" : 16349
+        }
+      }, {
+        "uid" : "6c31df305c3bb01c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/147//#testresult/6c31df305c3bb01c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648200680918,
+          "stop" : 1648200694034,
+          "duration" : 13116
+        }
+      }, {
+        "uid" : "f65882be10ddf3ce",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/147//#testresult/f65882be10ddf3ce",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648165192358,
+          "stop" : 1648165207742,
+          "duration" : 15384
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "6e3d67ff799357a0.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
