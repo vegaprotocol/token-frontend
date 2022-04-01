@@ -54,3 +54,11 @@ it("Freeform network", () => {
   });
   expect(name).toEqual("Freeform: 0x0");
 });
+
+it("Renders unknown proposal if it's a different proposal type", () => {
+  const name = getProposalName({
+    // @ts-ignore
+    __typename: "Foo",
+  });
+  expect(name).toEqual("Unknown Proposal");
+});
