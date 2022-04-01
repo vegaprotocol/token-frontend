@@ -1,0 +1,26 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "Error: No window found with title, url or name matching \"MetaMask Notification\"",
+      "children" : [ {
+        "name" : "Invalid claims code will show error",
+        "uid" : "3d193427792045d4",
+        "parentUid" : "2d9b616939a242cc3497526db9ae1416",
+        "status" : "broken",
+        "time" : {
+          "start" : 1648819568638,
+          "stop" : 1648819603063,
+          "duration" : 34425
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "2d9b616939a242cc3497526db9ae1416"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
+  "name" : "categories"
+}
