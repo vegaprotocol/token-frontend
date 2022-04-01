@@ -9,6 +9,8 @@ export function getProposalName(change: Proposals_proposals_terms_change) {
     return `Update Market: ${change.marketId}`;
   } else if (change.__typename === "UpdateNetworkParameter") {
     return `Update Network: ${change.networkParameter.key}`;
+  } else if (change.__typename === "NewFreeform") {
+    return `Freeform: ${change.hash}`;
   }
 
   return "Unknown Proposal";

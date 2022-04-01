@@ -43,6 +43,11 @@ export const PROPOSALS_FRAGMENT = gql`
             value
           }
         }
+        ... on NewFreeform {
+          url
+          description
+          hash
+        }
       }
     }
     votes {
