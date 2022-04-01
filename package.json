@@ -59,15 +59,14 @@
     "postinstall": "cp .env .env.local",
     "build": "craco build",
     "test": "REACT_APP_CHAIN=0x1 craco test",
-    "lint:es": "eslint . --ext .ts,.tsx,.js --max-warnings 0 --cache",
-    "lint:es:fix": "eslint --fix . --ext .ts,.tsx,.js --max-warnings 0 --cache",
+    "lint:es:fix": "eslint . --ext .ts,.tsx,.js --max-warnings 0 --cache",
+    "lint:es": "eslint --fix . --ext .ts,.tsx,.js --max-warnings 0 --cache",
     "eject": "react-scripts eject",
     "generate": "env-cmd yarn apollo codegen:generate --target=typescript --globalTypesFile=src/__generated__/globalTypes.ts"
   },
   "eslintConfig": {
     "plugins": [
-      "simple-import-sort",
-      "wdio"
+      "simple-import-sort"
     ],
     "extends": [
       "react-app",
