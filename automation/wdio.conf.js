@@ -1,6 +1,11 @@
 const commands = require('./commands.js')
-const allure = require('allure-commandline')
 
+let file_path = 'metamask_10_8_1_0.crx';
+let buff = new Buffer.from(require('fs').readFileSync(file_path));
+let base64data = buff.toString('base64');
+
+const Hooks = require('./hooks.js')
+const allure = require('allure-commandline')
 exports.config = {
     specs: [
         './features/**/*.feature'
@@ -13,23 +18,23 @@ exports.config = {
 
     // https://webdriver.io/docs/options/#capabilities
     // BSTACK OPTIONS : https://www.browserstack.com/automate/capabilities?tag=selenium-4#
-    capabilities: [{
-        browserName: "Chrome",
-        browserVersion: "96.0",
-        'bstack:options': {
-            "os": "OS X",
-            "osVersion": "Big Sur",
-            "seleniumVersion": "3.14.0",
-            "local": 'true'
-        },
-        'goog:chromeOptions': {
-            args: ['disable-popup-blocking', 'allow-insecure-localhost'],
-            extensions: [
+        capabilities: [{
+            browserName : "Chrome",
+            browserVersion : "96.0",
+            'bstack:options' : {
+                "os" : "OS X",
+                "osVersion" : "Big Sur",
+                "seleniumVersion" : "3.14.0",
+                "local":'true'
+            },
+            'goog:chromeOptions' : {
+                args: ['disable-popup-blocking','allow-insecure-localhost'],
+                extensions: [
                 require('fs').readFileSync('metamask_10_8_1_0.crx').toString('base64')
             ]
-        },
-    }],
-    //   logLevel: 'warn',
+            },
+          }],
+        //   logLevel: 'warn',
 
 
     user: process.env.BROWSERSTACK_USER,
@@ -83,20 +88,20 @@ exports.config = {
 
     before: function (capabilities, specs) {
         // Add commands to WebdriverIO
-        Object.keys(commands).forEach(key => {
-            console.log('Adding custom command - ', key)
-            browser.addCommand(key, commands[key]);
-        }),
-        browser.switchWindow('Vega');
-    },
+          Object.keys(commands).forEach(key => {
+              console.log('Adding custom command - ',key)
+          browser.addCommand(key, commands[key]);
+              }),
+          browser.switchWindow('Vega');
+          },
 
     afterStep: function (step, scenario, result, context) {
-        // if (!result.passed){
+      // if (!result.passed){
         browser.takeScreenshot()
-        // }
+      // }
     },
 
-    onComplete: function () {
+    onComplete: function() {
         const reportError = new Error('Could not generate Allure report')
         const generation = allure(['generate', 'allure-results', '--clean'])
         return new Promise((resolve, reject) => {
@@ -104,7 +109,7 @@ exports.config = {
                 () => reject(reportError),
                 300000)
 
-            generation.on('exit', function (exitCode) {
+            generation.on('exit', function(exitCode) {
                 clearTimeout(generationTimeout)
 
                 if (exitCode !== 0) {

@@ -87,12 +87,12 @@ export const WalletCardRow = ({
       ref={ref}
     >
       {link ? (
-        <Link data-testid="validator-staked-to-link" to={link}>{label}</Link>
+        <Link to={link}>{label}</Link>
       ) : (
         <span>{label}</span>
       )}
       {value && (
-        <span data-testid="validator-staked-to-amount">
+        <span>
           <span className="wallet-card__price--integer">{integers}.</span>
           <span className="wallet-card__price--decimal">{decimalsPlaces}</span>
         </span>

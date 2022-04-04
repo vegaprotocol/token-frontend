@@ -30,7 +30,7 @@ export const EthAddressInput = ({
   return (
     <FormGroup label={t("To")} labelFor="ethAddressInput">
       <InputGroup
-        data-testid="current-eth-address-withdrawals"
+        data-testid="token-amount-input"
         className="token-input__input"
         name="ethAddressInput"
         onChange={(e) => onChange(e.target.value)}
@@ -45,13 +45,12 @@ export const EthAddressInput = ({
       <button
         type="button"
         onClick={() => setUseConnectedWallet(!useConnectedWallet)}
-        data-testid="enter-wallet-address-link"
         className="button-link fill"
       >
         {useConnectedWallet ? t("enterAddress") : t("useConnectedWallet")}
       </button>
 
-      {isValid ? null : <Callout intent="warn" datatest-id="invalid-address-callout" >{t("invalidAddress")}</Callout>}
+      {isValid ? null : <Callout intent="warn">{t("invalidAddress")}</Callout>}
     </FormGroup>
   );
 };
