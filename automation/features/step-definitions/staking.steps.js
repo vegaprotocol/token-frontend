@@ -52,10 +52,6 @@ Then(/^the epoch countdown timer is counting down$/, () => {
     expect(browser.getByTestId('current-epoch-ends-in').getText()).not.toEqual(currentCountdownTimerText)
 })
 
-Then(/^I pause some seconds$/, () => {
-    browser.pause(600000)
-})
-
 When(/^I click on a validator$/, () => {
     browser.pause(2000)
     // $$('.node-list__item-name"]').waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "Validator list not displayed"})
