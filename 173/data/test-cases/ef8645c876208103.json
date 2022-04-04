@@ -1,0 +1,253 @@
+{
+  "uid" : "ef8645c876208103",
+  "name" : "Remove stake now",
+  "fullName" : "Staking and Association tests.Remove stake now",
+  "historyId" : "19546d112f1aa7dea0a4f9c63a284358",
+  "time" : {
+    "start" : 1649073254775,
+    "stop" : 1649073280490,
+    "duration" : 25715
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: remove stake now button not displayed",
+  "statusTrace" : "Error: remove stake now button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:154:35)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: remove stake now button not displayed",
+    "statusTrace" : "Error: remove stake now button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:154:35)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1649073254776,
+        "stop" : 1649073256074,
+        "duration" : 1298
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "ddf7e94f893ff604",
+        "name" : "Screenshot",
+        "source" : "ddf7e94f893ff604.png",
+        "type" : "image/png",
+        "size" : 263149
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on a validator",
+      "time" : {
+        "start" : 1649073256074,
+        "stop" : 1649073258773,
+        "duration" : 2699
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "c2909ee4b80179b8",
+        "name" : "Screenshot",
+        "source" : "c2909ee4b80179b8.png",
+        "type" : "image/png",
+        "size" : 277834
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I am taken to the correct validator page",
+      "time" : {
+        "start" : 1649073258773,
+        "stop" : 1649073259410,
+        "duration" : 637
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "f057b75fa7240881",
+        "name" : "Screenshot",
+        "source" : "f057b75fa7240881.png",
+        "type" : "image/png",
+        "size" : 279002
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I select to \"Remove\" stake",
+      "time" : {
+        "start" : 1649073259410,
+        "stop" : 1649073260092,
+        "duration" : 682
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "1b51816151a92fe4",
+        "name" : "Screenshot",
+        "source" : "1b51816151a92fe4.png",
+        "type" : "image/png",
+        "size" : 279007
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I click on the option to remove stake now",
+      "time" : {
+        "start" : 1649073260092,
+        "stop" : 1649073280490,
+        "duration" : 20398
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: remove stake now button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:154:35)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "30d85d7935d7c6ec",
+        "name" : "Screenshot",
+        "source" : "30d85d7935d7c6ec.png",
+        "type" : "image/png",
+        "size" : 279051
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 5,
+    "attachmentsCount" : 5,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Remove stake now"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 3,
+        "broken" : 4,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 7
+      },
+      "items" : [ {
+        "uid" : "e08414cc284e3638",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/168//#testresult/e08414cc284e3638",
+        "status" : "broken",
+        "statusDetails" : "Error: remove stake now button not displayed",
+        "time" : {
+          "start" : 1648807753519,
+          "stop" : 1648807785479,
+          "duration" : 31960
+        }
+      }, {
+        "uid" : "78c0b85633545ab",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/167//#testresult/78c0b85633545ab",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <span class=\"node-list__item-name\">...</span> is not clickable at point (45, 876). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1648761614771,
+          "stop" : 1648761626569,
+          "duration" : 11798
+        }
+      }, {
+        "uid" : "1a99d7e69bc92d34",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/166//#testresult/1a99d7e69bc92d34",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <span class=\"node-list__item-name\">...</span> is not clickable at point (43, 876). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1648757216968,
+          "stop" : 1648757226111,
+          "duration" : 9143
+        }
+      }, {
+        "uid" : "4edeb78a08f69f9e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/164//#testresult/4edeb78a08f69f9e",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect .button-link=Switch to remove at end of epoch to be displayed",
+        "time" : {
+          "start" : 1648724581419,
+          "stop" : 1648724618319,
+          "duration" : 36900
+        }
+      }, {
+        "uid" : "52c8e2acbe942afc",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/162//#testresult/52c8e2acbe942afc",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect .button-link=Switch to remove at end of epoch to be displayed",
+        "time" : {
+          "start" : 1648720284245,
+          "stop" : 1648720339886,
+          "duration" : 55641
+        }
+      }, {
+        "uid" : "c799c5e27c9507ba",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/161//#testresult/c799c5e27c9507ba",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect .button-link=Switch to remove at end of epoch to be displayed",
+        "time" : {
+          "start" : 1648672095201,
+          "stop" : 1648672133358,
+          "duration" : 38157
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "ef8645c876208103.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
