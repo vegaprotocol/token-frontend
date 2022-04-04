@@ -17,10 +17,6 @@ export interface Proposals_proposals_party {
   id: string;
 }
 
-export interface Proposals_proposals_terms_change_NewFreeform {
-  __typename: "NewFreeform";
-}
-
 export interface Proposals_proposals_terms_change_NewMarket_instrument {
   __typename: "InstrumentConfiguration";
   /**
@@ -97,7 +93,23 @@ export interface Proposals_proposals_terms_change_UpdateNetworkParameter {
   networkParameter: Proposals_proposals_terms_change_UpdateNetworkParameter_networkParameter;
 }
 
-export type Proposals_proposals_terms_change = Proposals_proposals_terms_change_NewFreeform | Proposals_proposals_terms_change_NewMarket | Proposals_proposals_terms_change_UpdateMarket | Proposals_proposals_terms_change_NewAsset | Proposals_proposals_terms_change_UpdateNetworkParameter;
+export interface Proposals_proposals_terms_change_NewFreeform {
+  __typename: "NewFreeform";
+  /**
+   * The URL containing content that describes the proposal
+   */
+  url: string;
+  /**
+   * A short description of what is being proposed
+   */
+  description: string;
+  /**
+   * The hash on the content of the URL
+   */
+  hash: string;
+}
+
+export type Proposals_proposals_terms_change = Proposals_proposals_terms_change_NewMarket | Proposals_proposals_terms_change_UpdateMarket | Proposals_proposals_terms_change_NewAsset | Proposals_proposals_terms_change_UpdateNetworkParameter | Proposals_proposals_terms_change_NewFreeform;
 
 export interface Proposals_proposals_terms {
   __typename: "ProposalTerms";
