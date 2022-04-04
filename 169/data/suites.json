@@ -4,26 +4,26 @@
     "name" : "Claim codes",
     "children" : [ {
       "name" : "Prompt to connect to eth wallet to claim if not connected",
-      "uid" : "c0db17a72f859af8",
+      "uid" : "6513558179b23cb5",
       "parentUid" : "1f7d96b497e9c9e8f0d6caa89ed6f050",
       "status" : "passed",
       "time" : {
-        "start" : 1649060603369,
-        "stop" : 1649060608271,
-        "duration" : 4902
+        "start" : 1649065323742,
+        "stop" : 1649065337806,
+        "duration" : 14064
       },
       "flaky" : false,
       "newFailed" : false,
       "parameters" : [ "chrome-96.0.4664.110" ]
     }, {
       "name" : "Invalid claims code will show error",
-      "uid" : "eae95f44bd5dae65",
+      "uid" : "122054d9dc0b6a89",
       "parentUid" : "1f7d96b497e9c9e8f0d6caa89ed6f050",
       "status" : "passed",
       "time" : {
-        "start" : 1649060608272,
-        "stop" : 1649060626494,
-        "duration" : 18222
+        "start" : 1649065337806,
+        "stop" : 1649065350984,
+        "duration" : 13178
       },
       "flaky" : false,
       "newFailed" : false,
@@ -34,195 +34,195 @@
     "name" : "Homepage",
     "children" : [ {
       "name" : "Homepage displays correct information",
-      "uid" : "622b28d7858da355",
+      "uid" : "f1bd6d45c0602df4",
       "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
       "status" : "passed",
       "time" : {
-        "start" : 1649060684165,
-        "stop" : 1649060708525,
-        "duration" : 24360
+        "start" : 1649065399939,
+        "stop" : 1649065414762,
+        "duration" : 14823
       },
       "flaky" : false,
       "newFailed" : false,
       "parameters" : [ "chrome-96.0.4664.110" ]
     }, {
       "name" : "Links on the homepage",
-      "uid" : "5a5546d961c375ea",
+      "uid" : "9cc8b5fb9acdc7d8",
       "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
       "status" : "passed",
       "time" : {
-        "start" : 1649060708525,
-        "stop" : 1649060713880,
-        "duration" : 5355
+        "start" : 1649065414762,
+        "stop" : 1649065417608,
+        "duration" : 2846
       },
       "flaky" : false,
       "newFailed" : false,
       "parameters" : [ "chrome-96.0.4664.110" ]
     }, {
       "name" : "Check for redeem unlocked tokens from homepage",
-      "uid" : "463981b04c99818f",
+      "uid" : "1d64bf4125245252",
       "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
       "status" : "passed",
       "time" : {
-        "start" : 1649060713880,
-        "stop" : 1649060717698,
-        "duration" : 3818
+        "start" : 1649065417608,
+        "stop" : 1649065419513,
+        "duration" : 1905
       },
       "flaky" : false,
       "newFailed" : false,
       "parameters" : [ "chrome-96.0.4664.110" ]
     }, {
       "name" : "Navigate to staking page via link on homepage body",
-      "uid" : "a045d459893d1b95",
+      "uid" : "1c31432d32f1020e",
       "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
       "status" : "passed",
       "time" : {
-        "start" : 1649060717698,
-        "stop" : 1649060720844,
-        "duration" : 3146
+        "start" : 1649065419513,
+        "stop" : 1649065420985,
+        "duration" : 1472
       },
       "flaky" : false,
       "newFailed" : false,
       "parameters" : [ "chrome-96.0.4664.110" ]
     }, {
       "name" : "Navigate to governance proposals page via button link on homepage body",
-      "uid" : "21d7a27b66b7789d",
+      "uid" : "1f84a01e2b1caf72",
       "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
       "status" : "passed",
       "time" : {
-        "start" : 1649060720844,
-        "stop" : 1649060724539,
-        "duration" : 3695
+        "start" : 1649065420985,
+        "stop" : 1649065423204,
+        "duration" : 2219
       },
       "flaky" : false,
       "newFailed" : false,
       "parameters" : [ "chrome-96.0.4664.110" ]
     }, {
       "name" : "Navigate to a not found page will return page error",
-      "uid" : "ca21ea32e36b9af4",
+      "uid" : "4621c4051b0cb644",
       "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
       "status" : "passed",
       "time" : {
-        "start" : 1649060724539,
-        "stop" : 1649060728423,
-        "duration" : 3884
+        "start" : 1649065423205,
+        "stop" : 1649065425503,
+        "duration" : 2298
       },
       "flaky" : false,
       "newFailed" : false,
       "parameters" : [ "chrome-96.0.4664.110" ]
     }, {
       "name" : "Can navigate to Vesting page using main nav tab",
-      "uid" : "e25a48ec989b4b33",
+      "uid" : "9b6b69a595c80234",
       "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
       "status" : "passed",
       "time" : {
-        "start" : 1649060728423,
-        "stop" : 1649060732623,
-        "duration" : 4200
+        "start" : 1649065425503,
+        "stop" : 1649065427738,
+        "duration" : 2235
       },
       "flaky" : false,
       "newFailed" : false,
       "parameters" : [ "chrome-96.0.4664.110" ]
     }, {
       "name" : "Can navigate to Staking page using main nav tab",
-      "uid" : "9e0c387d6b3ff5f1",
+      "uid" : "15cac45999752eb5",
       "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
       "status" : "passed",
       "time" : {
-        "start" : 1649060732623,
-        "stop" : 1649060736777,
-        "duration" : 4154
+        "start" : 1649065427739,
+        "stop" : 1649065430205,
+        "duration" : 2466
       },
       "flaky" : false,
       "newFailed" : false,
       "parameters" : [ "chrome-96.0.4664.110" ]
     }, {
       "name" : "Can navigate to Governance page using main nav tab",
-      "uid" : "3d5b1f30cee4b4b2",
+      "uid" : "7ce75cf96dc15ddf",
       "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
       "status" : "passed",
       "time" : {
-        "start" : 1649060736777,
-        "stop" : 1649060741275,
-        "duration" : 4498
+        "start" : 1649065430205,
+        "stop" : 1649065432719,
+        "duration" : 2514
       },
       "flaky" : false,
       "newFailed" : false,
       "parameters" : [ "chrome-96.0.4664.110" ]
     }, {
       "name" : "Can navigate to Home page using main nav tab",
-      "uid" : "4dc67a8a43450fdc",
+      "uid" : "60f420479719b811",
       "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
       "status" : "passed",
       "time" : {
-        "start" : 1649060741275,
-        "stop" : 1649060745247,
-        "duration" : 3972
+        "start" : 1649065432720,
+        "stop" : 1649065434474,
+        "duration" : 1754
       },
       "flaky" : false,
       "newFailed" : false,
       "parameters" : [ "chrome-96.0.4664.110" ]
     }, {
       "name" : "Can navigate to Rewards page using main nav tab",
-      "uid" : "13782473bd2e0f11",
+      "uid" : "e661d3a2fa2a462c",
       "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
       "status" : "passed",
       "time" : {
-        "start" : 1649060745247,
-        "stop" : 1649060749567,
-        "duration" : 4320
+        "start" : 1649065434474,
+        "stop" : 1649065437254,
+        "duration" : 2780
       },
       "flaky" : false,
       "newFailed" : false,
       "parameters" : [ "chrome-96.0.4664.110" ]
     }, {
       "name" : "Can navigate to Withdraw page using main nav tab",
-      "uid" : "1eba57fb982a7bf9",
+      "uid" : "b611c03c2be151c6",
       "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
       "status" : "passed",
       "time" : {
-        "start" : 1649060749568,
-        "stop" : 1649060752994,
-        "duration" : 3426
+        "start" : 1649065437254,
+        "stop" : 1649065439391,
+        "duration" : 2137
       },
       "flaky" : false,
       "newFailed" : false,
       "parameters" : [ "chrome-96.0.4664.110" ]
     }, {
       "name" : "Page not found error where page does not exist",
-      "uid" : "6d3329b4affe1293",
+      "uid" : "6144fb95f3c746f5",
       "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
       "status" : "passed",
       "time" : {
-        "start" : 1649060752994,
-        "stop" : 1649060756262,
-        "duration" : 3268
+        "start" : 1649065439392,
+        "stop" : 1649065441238,
+        "duration" : 1846
       },
       "flaky" : false,
       "newFailed" : false,
       "parameters" : [ "chrome-96.0.4664.110" ]
     }, {
       "name" : "Eth wallet not connected placeholder",
-      "uid" : "bca2accc3acf00a1",
+      "uid" : "8aba6b070e782013",
       "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
       "status" : "passed",
       "time" : {
-        "start" : 1649060756262,
-        "stop" : 1649060759714,
-        "duration" : 3452
+        "start" : 1649065441238,
+        "stop" : 1649065443210,
+        "duration" : 1972
       },
       "flaky" : false,
       "newFailed" : false,
       "parameters" : [ "chrome-96.0.4664.110" ]
     }, {
       "name" : "Vega wallet not connected placeholder",
-      "uid" : "56c743d3d7998b56",
+      "uid" : "2e7dfb6c2924e8e0",
       "parentUid" : "a42c9f51ba1bf76b8f087ce0758272d2",
       "status" : "passed",
       "time" : {
-        "start" : 1649060759715,
-        "stop" : 1649060762626,
-        "duration" : 2911
+        "start" : 1649065443210,
+        "stop" : 1649065444728,
+        "duration" : 1518
       },
       "flaky" : false,
       "newFailed" : false,
@@ -233,32 +233,179 @@
     "name" : "Rewards page",
     "children" : [ {
       "name" : "Rewards countdown is not displayed if vega wallet is not connected",
-      "uid" : "140fc6c98d3150a5",
+      "uid" : "2cc465051184aab3",
       "parentUid" : "c085e711d3f04553fe49e3d48234feb1",
       "status" : "passed",
       "time" : {
-        "start" : 1649060828314,
-        "stop" : 1649060848379,
-        "duration" : 20065
+        "start" : 1649065505345,
+        "stop" : 1649065521723,
+        "duration" : 16378
       },
       "flaky" : false,
       "newFailed" : false,
       "parameters" : [ "chrome-96.0.4664.110" ]
     }, {
       "name" : "Rewards are shown and rewards countdown is shown when vega wallet is connect",
-      "uid" : "1950c05776e68d7e",
+      "uid" : "4e20d61a5daaf66e",
       "parentUid" : "c085e711d3f04553fe49e3d48234feb1",
       "status" : "passed",
       "time" : {
-        "start" : 1649060848379,
-        "stop" : 1649060855843,
-        "duration" : 7464
+        "start" : 1649065521723,
+        "stop" : 1649065528211,
+        "duration" : 6488
       },
       "flaky" : false,
       "newFailed" : false,
       "parameters" : [ "chrome-96.0.4664.110" ]
     } ],
     "uid" : "c085e711d3f04553fe49e3d48234feb1"
+  }, {
+    "name" : "Staking and Association tests",
+    "children" : [ {
+      "name" : "Go to staking and connect ethereum wallet",
+      "uid" : "ded625e18453102d",
+      "parentUid" : "235ec29f5ea4c88ba1c34af1a8aaf4f9",
+      "status" : "passed",
+      "time" : {
+        "start" : 1649065583633,
+        "stop" : 1649065598029,
+        "duration" : 14396
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Associate tokens through wallet",
+      "uid" : "16a0f9205b770c4a",
+      "parentUid" : "235ec29f5ea4c88ba1c34af1a8aaf4f9",
+      "status" : "passed",
+      "time" : {
+        "start" : 1649065598030,
+        "stop" : 1649065614512,
+        "duration" : 16482
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Associate tokens through vesting contract",
+      "uid" : "b0b7f998daa30c68",
+      "parentUid" : "235ec29f5ea4c88ba1c34af1a8aaf4f9",
+      "status" : "passed",
+      "time" : {
+        "start" : 1649065614512,
+        "stop" : 1649065624401,
+        "duration" : 9889
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Use maximum button on associate from wallet enters correct amount",
+      "uid" : "3cc93eee316b7238",
+      "parentUid" : "235ec29f5ea4c88ba1c34af1a8aaf4f9",
+      "status" : "passed",
+      "time" : {
+        "start" : 1649065624401,
+        "stop" : 1649065627842,
+        "duration" : 3441
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Disassociate tokens through wallet",
+      "uid" : "af1fdcd044859202",
+      "parentUid" : "235ec29f5ea4c88ba1c34af1a8aaf4f9",
+      "status" : "passed",
+      "time" : {
+        "start" : 1649065627843,
+        "stop" : 1649065639445,
+        "duration" : 11602
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Cannot disassociate more tokens through wallet than available",
+      "uid" : "7b8e62708e630e17",
+      "parentUid" : "235ec29f5ea4c88ba1c34af1a8aaf4f9",
+      "status" : "passed",
+      "time" : {
+        "start" : 1649065639445,
+        "stop" : 1649065643418,
+        "duration" : 3973
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Cannot disassociate more tokens through vesting contract than available",
+      "uid" : "5a8249747ae19841",
+      "parentUid" : "235ec29f5ea4c88ba1c34af1a8aaf4f9",
+      "status" : "passed",
+      "time" : {
+        "start" : 1649065643418,
+        "stop" : 1649065647210,
+        "duration" : 3792
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Disassociate tokens through vesting contract",
+      "uid" : "50041bc19be82f65",
+      "parentUid" : "235ec29f5ea4c88ba1c34af1a8aaf4f9",
+      "status" : "passed",
+      "time" : {
+        "start" : 1649065647211,
+        "stop" : 1649065658974,
+        "duration" : 11763
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Staking validator list and epoch timer countdown",
+      "uid" : "7da585724f1e75b5",
+      "parentUid" : "235ec29f5ea4c88ba1c34af1a8aaf4f9",
+      "status" : "passed",
+      "time" : {
+        "start" : 1649065658974,
+        "stop" : 1649065663535,
+        "duration" : 4561
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "add stake from wallet",
+      "uid" : "b196db1a5e704b9",
+      "parentUid" : "235ec29f5ea4c88ba1c34af1a8aaf4f9",
+      "status" : "passed",
+      "time" : {
+        "start" : 1649065663535,
+        "stop" : 1649065670557,
+        "duration" : 7022
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    }, {
+      "name" : "Cannot stake more than what is associated",
+      "uid" : "c1c3b440e34f73db",
+      "parentUid" : "235ec29f5ea4c88ba1c34af1a8aaf4f9",
+      "status" : "passed",
+      "time" : {
+        "start" : 1649065670557,
+        "stop" : 1649065675756,
+        "duration" : 5199
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "chrome-96.0.4664.110" ]
+    } ],
+    "uid" : "235ec29f5ea4c88ba1c34af1a8aaf4f9"
   } ],
   "name" : "suites"
 }

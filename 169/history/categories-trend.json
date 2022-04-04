@@ -4,6 +4,11 @@
   "reportName" : "Allure Report with history",
   "data" : { }
 }, {
+  "buildOrder" : 169,
+  "reportUrl" : "https://vegaprotocol.github.io/token-frontend/169/",
+  "reportName" : "Allure Report with history",
+  "data" : { }
+}, {
   "buildOrder" : 171,
   "reportUrl" : "https://vegaprotocol.github.io/token-frontend/171/",
   "reportName" : "Allure Report with history",
@@ -125,13 +130,5 @@
   "reportName" : "Allure Report with history",
   "data" : {
     "Product defects" : 3
-  }
-}, {
-  "buildOrder" : 152,
-  "reportUrl" : "https://vegaprotocol.github.io/token-frontend/152/",
-  "reportName" : "Allure Report with history",
-  "data" : {
-    "Product defects" : 1,
-    "Test defects" : 1
   }
 } ]
