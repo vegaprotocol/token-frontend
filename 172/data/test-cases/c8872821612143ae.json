@@ -1,0 +1,287 @@
+{
+  "uid" : "c8872821612143ae",
+  "name" : "Can navigate to Home page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Home page using main nav tab",
+  "historyId" : "6fab3f7524031af7e2c647aac983c3ff",
+  "time" : {
+    "start" : 1649060504488,
+    "stop" : 1649060509950,
+    "duration" : 5462
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "no such window: target window already closed",
+  "statusTrace" : "no such window: target window already closed\n                from unknown error: web view not found\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x000000010ffdbff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x000000010ff67403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x000000010fb23e38 chromedriver + 171576\n                3   chromedriver                        0x000000010fb050fe chromedriver + 45310\n                4   chromedriver                        0x000000010fb7a31c chromedriver + 525084\n                5   chromedriver                        0x000000010fb88c2f chromedriver + 584751\n                6   chromedriver                        0x000000010fb76d63 chromedriver + 511331\n                7   chromedriver                        0x000000010fb4c82e chromedriver + 337966\n                8   chromedriver                        0x000000010fb4db65 chromedriver + 342885\n                9   chromedriver                        0x000000010ff97f1b __gxx_personality_v0 + 305451\n                10  chromedriver                        0x000000010ffaee23 __gxx_personality_v0 + 399411\n                11  chromedriver                        0x000000010ffb48df __gxx_personality_v0 + 422639\n                12  chromedriver                        0x000000010ffb017a __gxx_personality_v0 + 404362\n                13  chromedriver                        0x000000010ff8c541 __gxx_personality_v0 + 257873\n                14  chromedriver                        0x000000010ffcbf28 __gxx_personality_v0 + 518456\n                15  chromedriver                        0x000000010ffcc0b1 __gxx_personality_v0 + 518849\n                16  chromedriver                        0x000000010ffe3498 __gxx_personality_v0 + 614056\n                17  libsystem_pthread.dylib             0x00007fff203368fc _pthread_start + 224\n                18  libsystem_pthread.dylib             0x00007fff20332443 thread_start + 15\n                    at Browser.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at HomePage.Page.goTo (/home/runner/work/token-frontend/token-frontend/automation/features/pageobjects/page.js:52:13)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:5:12)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "no such window: target window already closed",
+    "statusTrace" : "no such window: target window already closed\n                from unknown error: web view not found\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x000000010ffdbff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x000000010ff67403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x000000010fb23e38 chromedriver + 171576\n                3   chromedriver                        0x000000010fb050fe chromedriver + 45310\n                4   chromedriver                        0x000000010fb7a31c chromedriver + 525084\n                5   chromedriver                        0x000000010fb88c2f chromedriver + 584751\n                6   chromedriver                        0x000000010fb76d63 chromedriver + 511331\n                7   chromedriver                        0x000000010fb4c82e chromedriver + 337966\n                8   chromedriver                        0x000000010fb4db65 chromedriver + 342885\n                9   chromedriver                        0x000000010ff97f1b __gxx_personality_v0 + 305451\n                10  chromedriver                        0x000000010ffaee23 __gxx_personality_v0 + 399411\n                11  chromedriver                        0x000000010ffb48df __gxx_personality_v0 + 422639\n                12  chromedriver                        0x000000010ffb017a __gxx_personality_v0 + 404362\n                13  chromedriver                        0x000000010ff8c541 __gxx_personality_v0 + 257873\n                14  chromedriver                        0x000000010ffcbf28 __gxx_personality_v0 + 518456\n                15  chromedriver                        0x000000010ffcc0b1 __gxx_personality_v0 + 518849\n                16  chromedriver                        0x000000010ffe3498 __gxx_personality_v0 + 614056\n                17  libsystem_pthread.dylib             0x00007fff203368fc _pthread_start + 224\n                18  libsystem_pthread.dylib             0x00007fff20332443 thread_start + 15\n                    at Browser.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at HomePage.Page.goTo (/home/runner/work/token-frontend/token-frontend/automation/features/pageobjects/page.js:52:13)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:5:12)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1649060504489,
+        "stop" : 1649060509950,
+        "duration" : 5461
+      },
+      "status" : "broken",
+      "statusMessage" : "no such window: target window already closed\n                from unknown error: web view not found\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x000000010ffdbff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x000000010ff67403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x000000010fb23e38 chromedriver + 171576\n                3   chromedriver                        0x000000010fb050fe chromedriver + 45310\n                4   chromedriver                        0x000000010fb7a31c chromedriver + 525084\n                5   chromedriver                        0x000000010fb88c2f chromedriver + 584751\n                6   chromedriver                        0x000000010fb76d63 chromedriver + 511331\n                7   chromedriver                        0x000000010fb4c82e chromedriver + 337966\n                8   chromedriver                        0x000000010fb4db65 chromedriver + 342885\n                9   chromedriver                        0x000000010ff97f1b __gxx_personality_v0 + 305451\n                10  chromedriver                        0x000000010ffaee23 __gxx_personality_v0 + 399411\n                11  chromedriver                        0x000000010ffb48df __gxx_personality_v0 + 422639\n                12  chromedriver                        0x000000010ffb017a __gxx_personality_v0 + 404362\n                13  chromedriver                        0x000000010ff8c541 __gxx_personality_v0 + 257873\n                14  chromedriver                        0x000000010ffcbf28 __gxx_personality_v0 + 518456\n                15  chromedriver                        0x000000010ffcc0b1 __gxx_personality_v0 + 518849\n                16  chromedriver                        0x000000010ffe3498 __gxx_personality_v0 + 614056\n                17  libsystem_pthread.dylib             0x00007fff203368fc _pthread_start + 224\n                18  libsystem_pthread.dylib             0x00007fff20332443 thread_start + 15\n                    at Browser.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at HomePage.Page.goTo (/home/runner/work/token-frontend/token-frontend/automation/features/pageobjects/page.js:52:13)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:5:12)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Home page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 8,
+        "skipped" : 0,
+        "passed" : 28,
+        "unknown" : 0,
+        "total" : 36
+      },
+      "items" : [ {
+        "uid" : "90cfcec08d1abecb",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/171//#testresult/90cfcec08d1abecb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649058441034,
+          "stop" : 1649058444453,
+          "duration" : 3419
+        }
+      }, {
+        "uid" : "ec8b6235f64605d2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/170//#testresult/ec8b6235f64605d2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648829684518,
+          "stop" : 1648829687908,
+          "duration" : 3390
+        }
+      }, {
+        "uid" : "e559fddf78f848dc",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/169//#testresult/e559fddf78f848dc",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648819699126,
+          "stop" : 1648819701299,
+          "duration" : 2173
+        }
+      }, {
+        "uid" : "9de1e884e8c1a240",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/168//#testresult/9de1e884e8c1a240",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648807313524,
+          "stop" : 1648807315683,
+          "duration" : 2159
+        }
+      }, {
+        "uid" : "a127ad5165a0a252",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/167//#testresult/a127ad5165a0a252",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <a aria-current=\"page\" class=\"active\" href=\"/\">...</a> is not clickable at point (52, 81). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1648761032864,
+          "stop" : 1648761039271,
+          "duration" : 6407
+        }
+      }, {
+        "uid" : "456c8f98e65f4be4",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/166//#testresult/456c8f98e65f4be4",
+        "status" : "broken",
+        "statusDetails" : "element click intercepted: Element <a aria-current=\"page\" class=\"active\" href=\"/\">...</a> is not clickable at point (52, 81). Other element would receive the click: <iframe style=\"position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; border: none; z-index: 2147483647;\"></iframe>",
+        "time" : {
+          "start" : 1648756684863,
+          "stop" : 1648756694407,
+          "duration" : 9544
+        }
+      }, {
+        "uid" : "e76a9283ffcd11a9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/165//#testresult/e76a9283ffcd11a9",
+        "status" : "broken",
+        "statusDetails" : "invalid session id",
+        "time" : {
+          "start" : 1648727540220,
+          "stop" : 1648727540520,
+          "duration" : 300
+        }
+      }, {
+        "uid" : "4fa637268ae36e02",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/164//#testresult/4fa637268ae36e02",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648724264076,
+          "stop" : 1648724266273,
+          "duration" : 2197
+        }
+      }, {
+        "uid" : "2f33d23c56cb1f58",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/163//#testresult/2f33d23c56cb1f58",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648722789692,
+          "stop" : 1648722792471,
+          "duration" : 2779
+        }
+      }, {
+        "uid" : "792efde4c166c17b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/162//#testresult/792efde4c166c17b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648719875347,
+          "stop" : 1648719878192,
+          "duration" : 2845
+        }
+      }, {
+        "uid" : "a444b3bc608464b5",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/161//#testresult/a444b3bc608464b5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648671755699,
+          "stop" : 1648671762069,
+          "duration" : 6370
+        }
+      }, {
+        "uid" : "5826d827a6789fb8",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/160//#testresult/5826d827a6789fb8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648640814403,
+          "stop" : 1648640816983,
+          "duration" : 2580
+        }
+      }, {
+        "uid" : "9debb7eaef1cde0f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/157//#testresult/9debb7eaef1cde0f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648586239188,
+          "stop" : 1648586242962,
+          "duration" : 3774
+        }
+      }, {
+        "uid" : "74e46e081c62e9ea",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/156//#testresult/74e46e081c62e9ea",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648585490985,
+          "stop" : 1648585497915,
+          "duration" : 6930
+        }
+      }, {
+        "uid" : "53b627d2d83c7dcd",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/155//#testresult/53b627d2d83c7dcd",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call $ on element with selector \".nav-links\" because element wasn't found",
+        "time" : {
+          "start" : 1648459272981,
+          "stop" : 1648459304238,
+          "duration" : 31257
+        }
+      }, {
+        "uid" : "a5565e82a1b5b020",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/154//#testresult/a5565e82a1b5b020",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648457491465,
+          "stop" : 1648457493691,
+          "duration" : 2226
+        }
+      }, {
+        "uid" : "a74d3372a4302548",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/153//#testresult/a74d3372a4302548",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648216620879,
+          "stop" : 1648216623611,
+          "duration" : 2732
+        }
+      }, {
+        "uid" : "965b92a87a09a0e3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/152//#testresult/965b92a87a09a0e3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648210994414,
+          "stop" : 1648210996310,
+          "duration" : 1896
+        }
+      }, {
+        "uid" : "486ad8bc247b1fac",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/151//#testresult/486ad8bc247b1fac",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648207847142,
+          "stop" : 1648207849298,
+          "duration" : 2156
+        }
+      }, {
+        "uid" : "133f56dfb59fdc70",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/150//#testresult/133f56dfb59fdc70",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648205767850,
+          "stop" : 1648205771019,
+          "duration" : 3169
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "c8872821612143ae.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
