@@ -11,19 +11,25 @@ class StakingPage extends Page {
     
     get associateMoreTokensBtn () {return browser.getByTestId('associate-more-tokens-btn')}
 
-    get associateTokensBtn () {return browser.getByTestId('associate-tokens-btn')}
+    get associateTokensBtn() {return browser.getByTestId('associate-tokens-btn')}
 
-    get disassociateTokensBtn () {return browser.getByTestId("disassociate-tokens-btn")}
+    get disassociateTokensBtn() {return browser.getByTestId("disassociate-tokens-btn")}
 
-    get calloutContainer () {return browser.getByTestId('callout')}
+    get calloutContainer() {return browser.getByTestId('callout')}
 
-    get walletRadioBtn () {return browser.getByTestId('associate-radio-wallet')}
+    get walletRadioBtn() {return browser.getByTestId('associate-radio-wallet')}
 
-    get vestingContractRadioBtn () {return browser.getByTestId('associate-radio-contract')}
+    get vestingContractRadioBtn() {return browser.getByTestId('associate-radio-contract')}
 
-    get tokenAmountInputField () {return browser.getByTestId('token-amount-input')}
+    get tokenAmountInputField() {return browser.getByTestId('token-amount-input')}
 
-    get tokenAmountSubmitBtn () {return browser.getByTestId('token-input-submit-button')}
+    get tokenAmountSubmitBtn() {return browser.getByTestId('token-input-submit-button')}
+
+    get backToStakingPageBtn() {return browser.getByTestId('back-to-staking-link')}
+
+    get removeStakeNowBtn () {return browser.getByTestId('remove-stake-now-btn')}
+    
+    get removeStakeNowDisclaimerText () {return browser.getByTestId('remove-stake-now-disclaimer')}
 
     associateTokensThroughWallet() {
       this.calloutContainer.waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "callout was not found"})
