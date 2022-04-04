@@ -1,42 +1,13 @@
+const Page = require("./page");
 
-
-const Page = require('./page');
-
-/**
- * sub page containing specific selectors and methods for a specific page
- */
-class LoginPage extends Page {
-    /**
-     * define selectors using getter methods
-     */
-    get inputUsername() {
-        return $('#username');
+class withdrawalsPage extends Page {
+    get ethWalletAddressField() {
+        return browser.getByTestId('current-eth-address-withdrawals');
     }
 
-    get inputPassword() {
-        return $('#password');
-    }
-
-    get btnSubmit() {
-        return $('button[type="submit"]');
-    }
-
-    /**
-     * a method to encapsule automation code to interact with the page
-     * e.g. to login using username and password
-     */
-     login (username, password) {
-         this.inputUsername.setValue(username);
-         this.inputPassword.setValue(password);
-         this.btnSubmit.click();
-    }
-
-    /**
-     * overwrite specific options to adapt it to page object
-     */
-    open() {
-        return super.open('login');
+    get enableWalletAddressFieldLink() {
+        return browser.getByTestId('enter-wallet-address-link')
     }
 }
 
-module.exports = new LoginPage();
+module.exports = new withdrawalsPage();

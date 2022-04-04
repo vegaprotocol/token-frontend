@@ -1,8 +1,31 @@
 Feature: Withdraw page
   
+  Background: 
+    Given I navigate to "withdraw" page
+
+  Scenario: Check wallet field entry
+    Given I connect my ethereum wallet
+    When I connect to the vega wallet
+    Then I can see the wallet address field is showing "0x9804C6E98dA75e3271ccE3aA56728FD8e9376155"
+    And The wallet address field is disabled
+    When I click the link to enter a new wallet address
+    Then the wallet address field is enabled
+    When I enter a new wallet address "new-wallet-address-xxccvvbbb"
+    Then the wallet address link is changed to "Use connected wallet"
+    Then I can see the wallet address in the input field is "new-wallet-address-xxccvvbbb"
+
+  Scenario: Invalid wallet address error message is shown if user enters an invalid wallet address
+    When I click the link to enter a new wallet address
+    When I enter a new wallet address "1"
+    Then the error message is shown "Looks like that address isn't a valid Ethereum address, please check and try again"
+
 @todo
-  Scenario: Go to withdraw page
+  Scenario: Cannot withdraw if empty balance
     Given I navigate to '/withdraw' page
+    And I have not accumulated any rewards to withdraw
+    Then the option to withdraw is disabled
+    And the user message is displayed
+
 
 @todo
   Scenario: Cannot withdraw if empty balance
