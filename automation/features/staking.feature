@@ -52,10 +52,12 @@ Background:
     When I click on a validator
     Then I am taken to the correct validator page
     And I select to "Add" stake
-    And I enter "0.1" tokens in the input field
-    Then I can submit the stake successfully
-    # And the pending transaction is displayed
-    # And the stake is successful
+    And I enter "10" tokens in the input field
+    Then I can submit successfully
+    And the pending transaction is displayed
+    And the stake is successful
+    When I click on the back to staking button
+    Then I am back on the staking main page
 
   Scenario: Cannot stake more than what is associated 
     When I click on a validator
@@ -63,52 +65,22 @@ Background:
     And I enter "2000000" tokens in the input field
     Then the token submit button is disabled
 
-  @todo
-  Scenario: add stake from vesting contract
-    When I click on a validator
-    Then I am taken to the correct validator page
-
-  @todo
-  Scenario: remove stake now 
+  Scenario: Remove stake now 
     When I click on a validator
     Then I am taken to the correct validator page
     And I select to "Remove" stake
+    And I click on the option to remove stake now
+    And I can see the remove now disclaimer with text "Removing stake mid epoch will forsake any staking rewards from that epoch"
+    And I can see the button to switch to remove at the end of epoch is showing
+    And I enter "1" tokens in the input field
+    And the submit button text is "Remove 1 $VEGA tokens now"
+    Then I can submit successfully
+    And I can see the stake is removed immediately
 
-  @todo
-  Scenario: remove stake at next epoch 
+  Scenario: Remove stake at next epoch 
     When I click on a validator
     Then I am taken to the correct validator page
     And I select to "Remove" stake
-
-  @todo
-   Scenario: Remove stake at next epoch
-    Given I navigate to '/staking' page
-    And I connect to the vega wallet
-    And I click on a validator from the list
-    When I click on the remove radio button
-    Then the token amount field is shown
-    When I attempt to remove "10000000000" vega from stake
-    Then the remove button is disabled
-    When I click the use maximum button on the field
-    Then I can see the number in the field is '100'
-    And the remove button is now enabled again with message "Remove 100 $VEGA tokens at the end of epoch"
-    When I click to confirm removal of tokens from stake
-    Then I can see the remove message is displayed "node-1-name"
-    And next epoch credit message is displayed with message "Waiting for confirmation that your change in nomination has been received"
-
-# # ignoring this as it seems the same flow as remove stake at next epoch with the mocks
-# @ignore
-#    Scenario: Remove stake now
-#     Given I navigate to '/staking' page
-#     And I connect to wallet vega
-#     And I click on a validator from the list
-#     When I click on the remove radio button
-#     Then the remove field is shown
-#     When I attempt to remove more than i have staked
-#     Then the remove button is disabled
-#     When I click the use maximum button on the field
-#     And I click on the remove now switch
-#     Then I can see the number in the field is '100'
-#     And the remove button is now enabled again with message "Remove 100 $VEGA tokens at the end of epoch"
-#     When I click to confirm removal of tokens from stake
-#     Then I can see the remove message is displayed
+    And I enter "1" tokens in the input field
+    Then I can submit successfully
+    And I can see "1" vega has been removed from staking
