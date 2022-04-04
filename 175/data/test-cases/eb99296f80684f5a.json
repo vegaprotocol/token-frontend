@@ -1,0 +1,366 @@
+{
+  "uid" : "eb99296f80684f5a",
+  "name" : "Cannot disassociate more tokens through vesting contract than available",
+  "fullName" : "Staking and Association tests.Cannot disassociate more tokens through vesting contract than available",
+  "historyId" : "4eefaa5bf5521545350dacf8045a38e6",
+  "time" : {
+    "start" : 1649085472938,
+    "stop" : 1649085478071,
+    "duration" : 5133
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1649085472939,
+        "stop" : 1649085474497,
+        "duration" : 1558
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "d1308f91e7f21cc",
+        "name" : "Screenshot",
+        "source" : "d1308f91e7f21cc.png",
+        "type" : "image/png",
+        "size" : 295221
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I click the button to disassociate",
+      "time" : {
+        "start" : 1649085474497,
+        "stop" : 1649085475563,
+        "duration" : 1066
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "39c44266ba1bea76",
+        "name" : "Screenshot",
+        "source" : "39c44266ba1bea76.png",
+        "type" : "image/png",
+        "size" : 261657
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on the \"vesting contract\" radio button",
+      "time" : {
+        "start" : 1649085475563,
+        "stop" : 1649085476734,
+        "duration" : 1171
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "516182026ce07ee9",
+        "name" : "Screenshot",
+        "source" : "516182026ce07ee9.png",
+        "type" : "image/png",
+        "size" : 275588
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I enter \"2000000\" tokens in the input field",
+      "time" : {
+        "start" : 1649085476734,
+        "stop" : 1649085477611,
+        "duration" : 877
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "b8dae629e9d8f13f",
+        "name" : "Screenshot",
+        "source" : "b8dae629e9d8f13f.png",
+        "type" : "image/png",
+        "size" : 276753
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then the token submit button is disabled",
+      "time" : {
+        "start" : 1649085477611,
+        "stop" : 1649085478070,
+        "duration" : 459
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "c7d940a2c00a38cb",
+        "name" : "Screenshot",
+        "source" : "c7d940a2c00a38cb.png",
+        "type" : "image/png",
+        "size" : 276728
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 5,
+    "attachmentsCount" : 5,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Cannot disassociate more tokens through vesting contract than available"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 24,
+        "unknown" : 0,
+        "total" : 26
+      },
+      "items" : [ {
+        "uid" : "2f9aeedf517a1a0c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/174//#testresult/2f9aeedf517a1a0c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649076596717,
+          "stop" : 1649076601568,
+          "duration" : 4851
+        }
+      }, {
+        "uid" : "2530c0845ee2e0dd",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/173//#testresult/2530c0845ee2e0dd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649073163047,
+          "stop" : 1649073165974,
+          "duration" : 2927
+        }
+      }, {
+        "uid" : "5a8249747ae19841",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/169//#testresult/5a8249747ae19841",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649065643418,
+          "stop" : 1649065647210,
+          "duration" : 3792
+        }
+      }, {
+        "uid" : "3fd880cf57317947",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/171//#testresult/3fd880cf57317947",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649058660452,
+          "stop" : 1649058664725,
+          "duration" : 4273
+        }
+      }, {
+        "uid" : "9a7dff1cc121a3af",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/170//#testresult/9a7dff1cc121a3af",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648829952341,
+          "stop" : 1648829959128,
+          "duration" : 6787
+        }
+      }, {
+        "uid" : "abf81ac4c1ac10bb",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/169//#testresult/abf81ac4c1ac10bb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648819916005,
+          "stop" : 1648819919678,
+          "duration" : 3673
+        }
+      }, {
+        "uid" : "ce549ba71f79990e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/168//#testresult/ce549ba71f79990e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648807623575,
+          "stop" : 1648807633958,
+          "duration" : 10383
+        }
+      }, {
+        "uid" : "a012adf0218576ff",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/167//#testresult/a012adf0218576ff",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate button not displayed",
+        "time" : {
+          "start" : 1648761486779,
+          "stop" : 1648761520327,
+          "duration" : 33548
+        }
+      }, {
+        "uid" : "7dcd05b8546afff3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/166//#testresult/7dcd05b8546afff3",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate button not displayed",
+        "time" : {
+          "start" : 1648757103618,
+          "stop" : 1648757135686,
+          "duration" : 32068
+        }
+      }, {
+        "uid" : "6475201427cfed5",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/165//#testresult/6475201427cfed5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648727760335,
+          "stop" : 1648727764203,
+          "duration" : 3868
+        }
+      }, {
+        "uid" : "a0ed07f725a0d378",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/164//#testresult/a0ed07f725a0d378",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648724544761,
+          "stop" : 1648724549242,
+          "duration" : 4481
+        }
+      }, {
+        "uid" : "249a3348a58a6c8f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/163//#testresult/249a3348a58a6c8f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648723013058,
+          "stop" : 1648723016789,
+          "duration" : 3731
+        }
+      }, {
+        "uid" : "3a965ef1cc536bda",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/162//#testresult/3a965ef1cc536bda",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648720198101,
+          "stop" : 1648720209162,
+          "duration" : 11061
+        }
+      }, {
+        "uid" : "17f75b8d41fafb12",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/161//#testresult/17f75b8d41fafb12",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648672035255,
+          "stop" : 1648672039107,
+          "duration" : 3852
+        }
+      }, {
+        "uid" : "f1ab0752e32b937e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/160//#testresult/f1ab0752e32b937e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648641089784,
+          "stop" : 1648641094394,
+          "duration" : 4610
+        }
+      }, {
+        "uid" : "c793d40ebcc4a014",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/157//#testresult/c793d40ebcc4a014",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648586519671,
+          "stop" : 1648586526356,
+          "duration" : 6685
+        }
+      }, {
+        "uid" : "897ac0cc447b2cff",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/156//#testresult/897ac0cc447b2cff",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648585724236,
+          "stop" : 1648585729050,
+          "duration" : 4814
+        }
+      }, {
+        "uid" : "8add16b3c9a2c9c9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/155//#testresult/8add16b3c9a2c9c9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648459535761,
+          "stop" : 1648459540439,
+          "duration" : 4678
+        }
+      }, {
+        "uid" : "822df799986a3c54",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/154//#testresult/822df799986a3c54",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648457735412,
+          "stop" : 1648457739088,
+          "duration" : 3676
+        }
+      }, {
+        "uid" : "64f2b4072605a0a2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/153//#testresult/64f2b4072605a0a2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648216869711,
+          "stop" : 1648216885600,
+          "duration" : 15889
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "eb99296f80684f5a.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

@@ -1,0 +1,325 @@
+{
+  "uid" : "d8db693b68517fc8",
+  "name" : "Staking validator list and epoch timer countdown",
+  "fullName" : "Staking and Association tests.Staking validator list and epoch timer countdown",
+  "historyId" : "d90e06a1ac2b23447752f22625460308",
+  "time" : {
+    "start" : 1649085487849,
+    "stop" : 1649085493581,
+    "duration" : 5732
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1649085487850,
+        "stop" : 1649085488669,
+        "duration" : 819
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "d6dce86e3a448c1a",
+        "name" : "Screenshot",
+        "source" : "d6dce86e3a448c1a.png",
+        "type" : "image/png",
+        "size" : 8720
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the validator node list",
+      "time" : {
+        "start" : 1649085488669,
+        "stop" : 1649085490141,
+        "duration" : 1472
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "2f3db45d244a06e2",
+        "name" : "Screenshot",
+        "source" : "2f3db45d244a06e2.png",
+        "type" : "image/png",
+        "size" : 295414
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And the epoch countdown timer is counting down",
+      "time" : {
+        "start" : 1649085490141,
+        "stop" : 1649085493580,
+        "duration" : 3439
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "cbfcfb0898fdd767",
+        "name" : "Screenshot",
+        "source" : "cbfcfb0898fdd767.png",
+        "type" : "image/png",
+        "size" : 298991
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Staking validator list and epoch timer countdown"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 1,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 23,
+        "unknown" : 0,
+        "total" : 26
+      },
+      "items" : [ {
+        "uid" : "524599924f8aaae6",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/174//#testresult/524599924f8aaae6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649076613791,
+          "stop" : 1649076619232,
+          "duration" : 5441
+        }
+      }, {
+        "uid" : "e44a62061d28cf34",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/173//#testresult/e44a62061d28cf34",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649073175318,
+          "stop" : 1649073180172,
+          "duration" : 4854
+        }
+      }, {
+        "uid" : "7da585724f1e75b5",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/169//#testresult/7da585724f1e75b5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649065658974,
+          "stop" : 1649065663535,
+          "duration" : 4561
+        }
+      }, {
+        "uid" : "2f1a4f230859a92b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/171//#testresult/2f1a4f230859a92b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649058673723,
+          "stop" : 1649058678339,
+          "duration" : 4616
+        }
+      }, {
+        "uid" : "b646b4e161f1cbb",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/170//#testresult/b646b4e161f1cbb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648829973395,
+          "stop" : 1648829980707,
+          "duration" : 7312
+        }
+      }, {
+        "uid" : "829fcd107dd6816a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/169//#testresult/829fcd107dd6816a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648819929167,
+          "stop" : 1648819935171,
+          "duration" : 6004
+        }
+      }, {
+        "uid" : "12de604af325042a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/168//#testresult/12de604af325042a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648807652529,
+          "stop" : 1648807661866,
+          "duration" : 9337
+        }
+      }, {
+        "uid" : "3c01350f22bc955",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/167//#testresult/3c01350f22bc955",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1648761554676,
+          "stop" : 1648761590315,
+          "duration" : 35639
+        }
+      }, {
+        "uid" : "e9e8be1442d6580a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/166//#testresult/e9e8be1442d6580a",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1648757167072,
+          "stop" : 1648757199699,
+          "duration" : 32627
+        }
+      }, {
+        "uid" : "fccd502d4c8d959c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/165//#testresult/fccd502d4c8d959c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648727773481,
+          "stop" : 1648727778408,
+          "duration" : 4927
+        }
+      }, {
+        "uid" : "3fee74c435d8f3b2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/164//#testresult/3fee74c435d8f3b2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648724559256,
+          "stop" : 1648724564581,
+          "duration" : 5325
+        }
+      }, {
+        "uid" : "89b8dca7aefc846b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/163//#testresult/89b8dca7aefc846b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648723026221,
+          "stop" : 1648723031204,
+          "duration" : 4983
+        }
+      }, {
+        "uid" : "83572fcbdea67de",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/162//#testresult/83572fcbdea67de",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648720227706,
+          "stop" : 1648720236822,
+          "duration" : 9116
+        }
+      }, {
+        "uid" : "656649e5dfe2018b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/161//#testresult/656649e5dfe2018b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648672049179,
+          "stop" : 1648672053948,
+          "duration" : 4769
+        }
+      }, {
+        "uid" : "d890cd54d15890f1",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/160//#testresult/d890cd54d15890f1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648641106478,
+          "stop" : 1648641111650,
+          "duration" : 5172
+        }
+      }, {
+        "uid" : "431f460a1785ad59",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/157//#testresult/431f460a1785ad59",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648586539702,
+          "stop" : 1648586547203,
+          "duration" : 7501
+        }
+      }, {
+        "uid" : "8c007c64853041f8",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/156//#testresult/8c007c64853041f8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648585738373,
+          "stop" : 1648585742754,
+          "duration" : 4381
+        }
+      }, {
+        "uid" : "a5715fa27b135381",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/155//#testresult/a5715fa27b135381",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648459552758,
+          "stop" : 1648459558591,
+          "duration" : 5833
+        }
+      }, {
+        "uid" : "5c626974045323fb",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/154//#testresult/5c626974045323fb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648457749359,
+          "stop" : 1648457755301,
+          "duration" : 5942
+        }
+      }, {
+        "uid" : "ffb01fc5fa1f2a56",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/153//#testresult/ffb01fc5fa1f2a56",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).not.toEqual(expected) // deep equality",
+        "time" : {
+          "start" : 1648216908550,
+          "stop" : 1648216921673,
+          "duration" : 13123
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "d8db693b68517fc8.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
