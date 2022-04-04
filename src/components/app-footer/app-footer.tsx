@@ -13,7 +13,7 @@ export const AppFooter = () => {
           i18nKey="footerLinksText"
           components={{
             /* eslint-disable */
-            noltLink: <a href={Links.NOLT} />,
+            feedbackLink: <a href={Links.FEEDBACK} />,
             githubLink: <a href={Links.GITHUB} />,
             /* eslint-enable */
           }}
