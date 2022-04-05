@@ -29,7 +29,7 @@ Then(/^the rewards table is not displayed$/, () => {
 
 Then(/^no reward message is shown$/, () => {
   const displayedMsg = RewardsPage.noRewardMsg;
-  console.log(displayedMsg.getText());
+
   expect(displayedMsg.getText()).toBe(
     "This Vega key has not received any rewards."
   );

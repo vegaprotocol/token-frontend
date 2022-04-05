@@ -82,7 +82,6 @@ exports.config = {
   before: function (/* capabilities, specs */) {
     // Add commands to WebdriverIO
     Object.keys(commands).forEach((key) => {
-      console.log("Adding custom command - ", key);
       browser.addCommand(key, commands[key]);
     });
     browser.switchWindow("Vega");

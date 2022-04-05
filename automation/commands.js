@@ -58,10 +58,6 @@ module.exports = {
     $(".network-name-item=Ropsten Test Network").click();
     browser.closeWindow();
     browser.switchWindow(baseUrl);
-    console.log(
-      "is connect to eth wallet displayed ?",
-      $('[data-test-id="connect-to-eth-wallet-button"]').isDisplayed()
-    );
     if (
       $('[data-test-id="connect-to-eth-wallet-button"]').isDisplayed() === true
     ) {
