@@ -1,0 +1,140 @@
+{
+  "uid" : "63162a028cdf8020",
+  "name" : "Links on the homepage",
+  "fullName" : "Homepage.Links on the homepage",
+  "historyId" : "75dc0c7908c032915bb7dc0878fb6e77",
+  "time" : {
+    "start" : 1649187299452,
+    "stop" : 1649187333245,
+    "duration" : 33793
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "failed",
+  "statusMessage" : "Error: Expect $(`[data-test-id=\"get-vega-wallet-link\"]`) to have attribute href",
+  "statusTrace" : "Error: Expect $(`[data-test-id=\"get-vega-wallet-link\"]`) to have attribute href\n                \n                Expected: \"https://docs.vega.xyz/docs/tools/vega-wallet/cli-wallet/create-wallet\"\n                Received: \"https://docs.vega.xyz/docs/tools/vega-wallet\"\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:57:35)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "Error: Expect $(`[data-test-id=\"get-vega-wallet-link\"]`) to have attribute href",
+    "statusTrace" : "Error: Expect $(`[data-test-id=\"get-vega-wallet-link\"]`) to have attribute href\n                \n                Expected: \"https://docs.vega.xyz/docs/tools/vega-wallet/cli-wallet/create-wallet\"\n                Received: \"https://docs.vega.xyz/docs/tools/vega-wallet\"\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:57:35)",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1649187299452,
+        "stop" : 1649187301816,
+        "duration" : 2364
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "2ad4f580b135c63",
+        "name" : "Screenshot",
+        "source" : "2ad4f580b135c63.png",
+        "type" : "image/png",
+        "size" : 394353
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then the vega wallet link is correct",
+      "time" : {
+        "start" : 1649187301816,
+        "stop" : 1649187333245,
+        "duration" : 31429
+      },
+      "status" : "failed",
+      "statusMessage" : "Error: Expect $(`[data-test-id=\"get-vega-wallet-link\"]`) to have attribute href\n                \n                Expected: \"https://docs.vega.xyz/docs/tools/vega-wallet/cli-wallet/create-wallet\"\n                Received: \"https://docs.vega.xyz/docs/tools/vega-wallet\"\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:57:35)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "7ddbecb0e8b31f62",
+        "name" : "Screenshot",
+        "source" : "7ddbecb0e8b31f62.png",
+        "type" : "image/png",
+        "size" : 282785
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Links on the homepage"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 2,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "6eb630f523c56437",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/177//#testresult/6eb630f523c56437",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $(`[data-test-id=\"get-vega-wallet-link\"]`) to have attribute href",
+        "time" : {
+          "start" : 1649186810906,
+          "stop" : 1649186843415,
+          "duration" : 32509
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "63162a028cdf8020.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

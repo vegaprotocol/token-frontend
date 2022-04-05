@@ -1,0 +1,282 @@
+{
+  "uid" : "22fea681f1218796",
+  "name" : "add stake from wallet",
+  "fullName" : "Staking and Association tests.add stake from wallet",
+  "historyId" : "5f689952e36c8ee90a1079d1446ad037",
+  "time" : {
+    "start" : 1649189735073,
+    "stop" : 1649189740980,
+    "duration" : 5907
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Step \"I am back on the staking main page\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.",
+  "statusTrace" : "Step \"I am back on the staking main page\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.\n                \tat Feature(/home/runner/work/token-frontend/token-frontend/automation/features/staking.feature):1:1\n                \tat Scenario(add stake from wallet):57:3\n                \tat Step(I am back on the staking main page):66:5\n                ",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Step \"I am back on the staking main page\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.",
+    "statusTrace" : "Step \"I am back on the staking main page\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.\n                \tat Feature(/home/runner/work/token-frontend/token-frontend/automation/features/staking.feature):1:1\n                \tat Scenario(add stake from wallet):57:3\n                \tat Step(I am back on the staking main page):66:5\n                ",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1649189735073,
+        "stop" : 1649189736010,
+        "duration" : 937
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "a5b39d3013ed0e21",
+        "name" : "Screenshot",
+        "source" : "a5b39d3013ed0e21.png",
+        "type" : "image/png",
+        "size" : 405753
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on a validator",
+      "time" : {
+        "start" : 1649189736010,
+        "stop" : 1649189738953,
+        "duration" : 2943
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "1d8173f10129d0af",
+        "name" : "Screenshot",
+        "source" : "1d8173f10129d0af.png",
+        "type" : "image/png",
+        "size" : 277062
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I am taken to the correct validator page",
+      "time" : {
+        "start" : 1649189738953,
+        "stop" : 1649189739779,
+        "duration" : 826
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "ef34de79c53ee83e",
+        "name" : "Screenshot",
+        "source" : "ef34de79c53ee83e.png",
+        "type" : "image/png",
+        "size" : 278195
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I select to \"Add\" stake",
+      "time" : {
+        "start" : 1649189739779,
+        "stop" : 1649189740410,
+        "duration" : 631
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "e36f9412a5218948",
+        "name" : "Screenshot",
+        "source" : "e36f9412a5218948.png",
+        "type" : "image/png",
+        "size" : 342625
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I enter \"10\" tokens in the input field",
+      "time" : {
+        "start" : 1649189740410,
+        "stop" : 1649189740979,
+        "duration" : 569
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "21f83fe170967c6c",
+        "name" : "Screenshot",
+        "source" : "21f83fe170967c6c.png",
+        "type" : "image/png",
+        "size" : 341647
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can submit successfully",
+      "time" : {
+        "start" : 1649189740979,
+        "stop" : 1649189740979,
+        "duration" : 0
+      },
+      "status" : "broken",
+      "statusMessage" : "Step \"I am back on the staking main page\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.\n                \tat Feature(/home/runner/work/token-frontend/token-frontend/automation/features/staking.feature):1:1\n                \tat Scenario(add stake from wallet):57:3\n                \tat Step(I am back on the staking main page):66:5\n                ",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    }, {
+      "name" : "And the pending transaction is displayed",
+      "time" : {
+        "start" : 1649189740979,
+        "stop" : 1649189740980,
+        "duration" : 1
+      },
+      "status" : "broken",
+      "statusMessage" : "Step \"I am back on the staking main page\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.\n                \tat Feature(/home/runner/work/token-frontend/token-frontend/automation/features/staking.feature):1:1\n                \tat Scenario(add stake from wallet):57:3\n                \tat Step(I am back on the staking main page):66:5\n                ",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    }, {
+      "name" : "And the stake is successful",
+      "time" : {
+        "start" : 1649189740980,
+        "stop" : 1649189740980,
+        "duration" : 0
+      },
+      "status" : "broken",
+      "statusMessage" : "Step \"I am back on the staking main page\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.\n                \tat Feature(/home/runner/work/token-frontend/token-frontend/automation/features/staking.feature):1:1\n                \tat Scenario(add stake from wallet):57:3\n                \tat Step(I am back on the staking main page):66:5\n                ",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on the back to staking button",
+      "time" : {
+        "start" : 1649189740980,
+        "stop" : 1649189740980,
+        "duration" : 0
+      },
+      "status" : "broken",
+      "statusMessage" : "Step \"I am back on the staking main page\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.\n                \tat Feature(/home/runner/work/token-frontend/token-frontend/automation/features/staking.feature):1:1\n                \tat Scenario(add stake from wallet):57:3\n                \tat Step(I am back on the staking main page):66:5\n                ",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    }, {
+      "name" : "Then I am back on the staking main page",
+      "time" : {
+        "start" : 1649189740980,
+        "stop" : 1649189740980,
+        "duration" : 0
+      },
+      "status" : "broken",
+      "statusMessage" : "Step \"I am back on the staking main page\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.\n                \tat Feature(/home/runner/work/token-frontend/token-frontend/automation/features/staking.feature):1:1\n                \tat Scenario(add stake from wallet):57:3\n                \tat Step(I am back on the staking main page):66:5\n                ",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 10,
+    "attachmentsCount" : 5,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "add stake from wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "2e37a02011000cc6",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/177//#testresult/2e37a02011000cc6",
+        "status" : "broken",
+        "statusDetails" : "Step \"I am back on the staking main page\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.",
+        "time" : {
+          "start" : 1649187812442,
+          "stop" : 1649187818928,
+          "duration" : 6486
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "22fea681f1218796.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

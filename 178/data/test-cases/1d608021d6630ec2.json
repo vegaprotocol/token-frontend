@@ -1,0 +1,151 @@
+{
+  "uid" : "1d608021d6630ec2",
+  "name" : "Go to staking and connect ethereum wallet",
+  "fullName" : "Staking and Association tests.Go to staking and connect ethereum wallet",
+  "historyId" : "79532109b9122c496b8d980ab3fa0bc3",
+  "time" : {
+    "start" : 1649188319436,
+    "stop" : 1649188344952,
+    "duration" : 25516
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1649188319438,
+        "stop" : 1649188323092,
+        "duration" : 3654
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "c13ea34eaac8ef43",
+        "name" : "Screenshot",
+        "source" : "c13ea34eaac8ef43.png",
+        "type" : "image/png",
+        "size" : 8735
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Given I connect my ethereum wallet",
+      "time" : {
+        "start" : 1649188323092,
+        "stop" : 1649188344044,
+        "duration" : 20952
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "36d82affec38bb90",
+        "name" : "Screenshot",
+        "source" : "36d82affec38bb90.png",
+        "type" : "image/png",
+        "size" : 415433
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see my ethereum key 0x9804C6E98dA75e3271ccE3aA56728FD8e9376155 is shown",
+      "time" : {
+        "start" : 1649188344044,
+        "stop" : 1649188344951,
+        "duration" : 907
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "aec11ad803d5f60a",
+        "name" : "Screenshot",
+        "source" : "aec11ad803d5f60a.png",
+        "type" : "image/png",
+        "size" : 295686
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Go to staking and connect ethereum wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 2,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "1ffda6096959076a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/177//#testresult/1ffda6096959076a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649187507952,
+          "stop" : 1649187529420,
+          "duration" : 21468
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "1d608021d6630ec2.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

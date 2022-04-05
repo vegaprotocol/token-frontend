@@ -1,0 +1,162 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "Error: Expect $(`[data-test-id=\"get-vega-wallet-link\"]`) to have attribute href",
+      "children" : [ {
+        "name" : "Links on the homepage",
+        "uid" : "63162a028cdf8020",
+        "parentUid" : "01a7a799c22db0b3e0ff4fd2c9f912d0",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649187299452,
+          "stop" : 1649187333245,
+          "duration" : 33793
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "01a7a799c22db0b3e0ff4fd2c9f912d0"
+    }, {
+      "name" : "Error: expect(received).not.toEqual(expected) // deep equality",
+      "children" : [ {
+        "name" : "Staking validator list and epoch timer countdown",
+        "uid" : "16a33eac5206ec5e",
+        "parentUid" : "f308d330cc4306ed7e49629ac12d4a97",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649189729315,
+          "stop" : 1649189735072,
+          "duration" : 5757
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "f308d330cc4306ed7e49629ac12d4a97"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  }, {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "Error: Can't call getText on element with selector \"[data-testid=\"connect-vega\"]\" because element wasn't found",
+      "children" : [ {
+        "name" : "Vega wallet not connected placeholder",
+        "uid" : "fd6c6767703bc843",
+        "parentUid" : "3636258aadc3551c2204cd86b294cc04",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649187400254,
+          "stop" : 1649187439553,
+          "duration" : 39299
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "3636258aadc3551c2204cd86b294cc04"
+    }, {
+      "name" : "Error: function timed out, ensure the promise resolves within 600000 milliseconds",
+      "children" : [ {
+        "name" : "Associate tokens through vesting contract",
+        "uid" : "c801fd083b2f725a",
+        "parentUid" : "1fbecac9e13ca22cdb1335c7cb220829",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649188442302,
+          "stop" : 1649189083847,
+          "duration" : 641545
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      }, {
+        "name" : "Disassociate tokens through vesting contract",
+        "uid" : "6c7031420ccd762",
+        "parentUid" : "1fbecac9e13ca22cdb1335c7cb220829",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649189117702,
+          "stop" : 1649189729312,
+          "duration" : 611610
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "1fbecac9e13ca22cdb1335c7cb220829"
+    }, {
+      "name" : "TypeError: Cannot read property 'getText' of undefined",
+      "children" : [ {
+        "name" : "Cannot disassociate more tokens through wallet than available",
+        "uid" : "623930d581f976d6",
+        "parentUid" : "b255ed0b5283de44a987ae88678f10a6",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649189109588,
+          "stop" : 1649189111486,
+          "duration" : 1898
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "b255ed0b5283de44a987ae88678f10a6"
+    }, {
+      "name" : "Step \"I am back on the staking main page\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.",
+      "children" : [ {
+        "name" : "add stake from wallet",
+        "uid" : "22fea681f1218796",
+        "parentUid" : "ffc9dab740558f15240c30794823df32",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649189735073,
+          "stop" : 1649189740980,
+          "duration" : 5907
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "ffc9dab740558f15240c30794823df32"
+    }, {
+      "name" : "Step \"I can see the stake is removed immediately\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.",
+      "children" : [ {
+        "name" : "Remove stake now",
+        "uid" : "b04731a5cf20940a",
+        "parentUid" : "a07424fe672663d6dbe995f8f251c813",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649189747558,
+          "stop" : 1649189752967,
+          "duration" : 5409
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "a07424fe672663d6dbe995f8f251c813"
+    }, {
+      "name" : "Step \"I can see \"1\" vega has been removed from staking\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.",
+      "children" : [ {
+        "name" : "Remove stake at next epoch",
+        "uid" : "1df91ecc0d16bfde",
+        "parentUid" : "7dc3b5bae7108fdd62ef3415e33fd1ee",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649189752968,
+          "stop" : 1649189788917,
+          "duration" : 35949
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "7dc3b5bae7108fdd62ef3415e33fd1ee"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
+  "name" : "categories"
+}
