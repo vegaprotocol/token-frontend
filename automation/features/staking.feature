@@ -1,6 +1,6 @@
-Feature: Staking and Association tests 
+Feature: Staking and Association tests
 
-Background:
+  Background:
     Given I navigate to "staking" page
 
   Scenario: Go to staking and connect ethereum wallet
@@ -9,27 +9,32 @@ Background:
 
   Scenario: Associate tokens through wallet
     When I connect to the vega wallet
-    And I associate some tokens from wallet
+    And I associate "0.10" tokens from "wallet"
     Then I can see the pending transactions button is shown
     When I click the pending transactions button
     Then I can see the pending transactions modal is shown
+    And the pending transactions modal can be closed
+    And the association of "0.10" has been successful
 
   Scenario: Associate tokens through vesting contract
-    And I associate some tokens from vesting contract
-    Then I can see the pending transactions button is shown 
+    And I pause some "30000"
+    And I associate "0.10" tokens from "vesting contract"
+    Then I can see the pending transactions button is shown
+    And the association of "0.10" has been successful
 
   Scenario: Use maximum button on associate from wallet enters correct amount
     When I click on use maximum button
     Then I can see the maximum amount of tokens in my wallet are in the token input box
 
   Scenario: Disassociate tokens through wallet
-    And I disassociate some tokens from wallet
+    And I disassociate "0.10" tokens from "wallet"
     Then I can see the pending transactions button is shown
     When I click the pending transactions button
     Then I can see the pending transactions modal is shown
+    And the disassociation of "0.10" has been successful
 
   Scenario: Cannot disassociate more tokens through wallet than available
-    And I click the button to disassociate
+    And I disassociate "0.10" tokens from "wallet"
     When I click on the "wallet" radio button
     And I enter "2000000" tokens in the input field
     Then the token submit button is disabled
@@ -41,14 +46,15 @@ Background:
     Then the token submit button is disabled
 
   Scenario: Disassociate tokens through vesting contract
-    And I disassociate some tokens from vesting contract
+    And I disassociate "0.10" tokens from "vesting contract"
     Then I can see the pending transactions button is shown
+    And the disassociation of "0.10" has been successful
 
   Scenario: Staking validator list and epoch timer countdown
     Then I can see the validator node list
     And the epoch countdown timer is counting down
 
-  Scenario: add stake from wallet 
+  Scenario: add stake from wallet
     When I click on a validator
     Then I am taken to the correct validator page
     And I select to "Add" stake
@@ -59,13 +65,13 @@ Background:
     When I click on the back to staking button
     Then I am back on the staking main page
 
-  Scenario: Cannot stake more than what is associated 
+  Scenario: Cannot stake more than what is associated
     When I click on a validator
     And I select to "Add" stake
     And I enter "2000000" tokens in the input field
     Then the token submit button is disabled
 
-  Scenario: Remove stake now 
+  Scenario: Remove stake now
     When I click on a validator
     Then I am taken to the correct validator page
     And I select to "Remove" stake
@@ -77,7 +83,7 @@ Background:
     Then I can submit successfully
     And I can see the stake is removed immediately
 
-  Scenario: Remove stake at next epoch 
+  Scenario: Remove stake at next epoch
     When I click on a validator
     Then I am taken to the correct validator page
     And I select to "Remove" stake

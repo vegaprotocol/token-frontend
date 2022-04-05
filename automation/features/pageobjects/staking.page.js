@@ -1,98 +1,77 @@
 const Page = require("./page");
 
 class StakingPage extends Page {
-    get validatorListTestId () {return 'node-list-item'}
+  get validatorListTestId() { return 'node-list-item' }
 
-    get etherscanLink() {return browser.getByTestId('etherscan-link')}
+  get etherscanLink() { return browser.getByTestId('etherscan-link') }
 
-    get pendingTransactionsBtn() {return browser.getByTestId('pending-transactions-btn')}
+  get pendingTransactionsBtn() { return browser.getByTestId('pending-transactions-btn') }
 
-    get pendingTransactionsModalStatus() {return $('.transactions-modal__status')}
-    
-    get associateMoreTokensBtn () {return browser.getByTestId('associate-more-tokens-btn')}
+  get pendingTransactionsModalStatus() { return $('.transactions-modal__status') }
 
-    get associateTokensBtn() {return browser.getByTestId('associate-tokens-btn')}
+  get associateMoreTokensBtn() { return browser.getByTestId('associate-more-tokens-btn') }
 
-    get disassociateTokensBtn() {return browser.getByTestId("disassociate-tokens-btn")}
+  get associateTokensBtn() { return browser.getByTestId('associate-tokens-btn') }
 
-    get calloutContainer() {return browser.getByTestId('callout')}
+  get disassociateTokensBtn() { return browser.getByTestId("disassociate-tokens-btn") }
 
-    get walletRadioBtn() {return browser.getByTestId('associate-radio-wallet')}
+  get calloutContainer() { return browser.getByTestId('callout') }
 
-    get vestingContractRadioBtn() {return browser.getByTestId('associate-radio-contract')}
+  get walletRadioBtn() { return browser.getByTestId('associate-radio-wallet') }
 
-    get tokenAmountInputField() {return browser.getByTestId('token-amount-input')}
+  get vestingContractRadioBtn() { return browser.getByTestId('associate-radio-contract') }
 
-    get tokenAmountSubmitBtn() {return browser.getByTestId('token-input-submit-button')}
+  get tokenAmountInputField() { return browser.getByTestId('token-amount-input') }
 
-    get backToStakingPageBtn() {return browser.getByTestId('back-to-staking-link')}
+  get tokenAmountSubmitBtn() { return browser.getByTestId('token-input-submit-button') }
 
-    get removeStakeNowBtn () {return browser.getByTestId('remove-stake-now-btn')}
-    
-    get removeStakeNowDisclaimerText () {return browser.getByTestId('remove-stake-now-disclaimer')}
+  get backToStakingPageBtn() { return browser.getByTestId('back-to-staking-link') }
 
-    associateTokensThroughWallet() {
-      this.calloutContainer.waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "callout was not found"})
-      browser.pause(1000)
-      if (this.associateMoreTokensBtn.isDisplayed()){
-         this.associateMoreTokensBtn.click()
-        } else this.associateTokensBtn.click()
-      this.walletRadioBtn.click({force:true})
-      this.tokenAmountInputField.setValue(0.00001)
-      this.tokenAmountSubmitBtn.click()
-      browser.waitUntil(() => browser.getWindowHandles().length > 1);
-      browser.switchWindow("MetaMask Notification");
-      $('button=Confirm').click()
-      browser.switchWindow("VEGA");
-      browser.pause(2000)
+  get removeStakeNowBtn() { return browser.getByTestId('remove-stake-now-btn') }
+
+  get removeStakeNowDisclaimerText() { return browser.getByTestId('remove-stake-now-disclaimer') }
+
+  associateTokens(tokenAmount, source) {
+    this.calloutContainer.waitForDisplayed({ timeout: 30000, reverse: false, timeoutMsg: "callout was not found" })
+    browser.pause(1000)
+    if (this.associateMoreTokensBtn.isDisplayed()) {
+      this.associateMoreTokensBtn.click()
+    } else this.associateTokensBtn.click()
+    switch (source.toLowerCase()) {
+      case "wallet":
+        this.walletRadioBtn.click({ force: true })
+        break;
+      case "vesting contract":
+        this.vestingContractRadioBtn.click({ force: true })
+        break;
+      default:
+        throw new Error('Options available : [wallet , vesting contract]')
     }
+    this.tokenAmountInputField.setValue(tokenAmount)
+    this.tokenAmountSubmitBtn.click()
+    this.confirmTransactionSpeedUp()
+  }
 
-    associateTokensThroughVestingContract() {
-      this.calloutContainer.waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "callout was not found"})
-      browser.pause(1000)
-      if (this.associateMoreTokensBtn.isDisplayed()){
-          this.associateMoreTokensBtn.click()
-        } else this.associateTokensBtn.click()
-      this.vestingContractRadioBtn.click({force:true})
-      this.tokenAmountInputField.setValue(0.00001)
-      this.tokenAmountSubmitBtn.click()
-      browser.waitUntil(() => browser.getWindowHandles().length > 1);
-      browser.switchWindow("MetaMask Notification");
-      $('button=Confirm').click()
-      browser.switchWindow("VEGA");
-      browser.pause(2000)
+  disassociateTokens(tokenAmount, source) {
+    this.calloutContainer.waitForDisplayed({ timeout: 30000, reverse: false, timeoutMsg: "callout was not found" })
+    browser.pause(1000)
+    this.disassociateTokensBtn.waitForDisplayed({ timeout: 30000, reverse: false, timeoutMsg: "disassociate btn  was not found" })
+    this.disassociateTokensBtn.click()
+    switch (source.toLowerCase()) {
+      case "wallet":
+        this.walletRadioBtn.click({ force: true })
+        break;
+      case "vesting contract":
+        this.vestingContractRadioBtn.click({ force: true })
+        break;
+      default:
+        throw new Error('Options available : [wallet , vesting contract]')
     }
+    this.tokenAmountInputField.setValue(tokenAmount)
+    this.tokenAmountSubmitBtn.click()
+    this.confirmTransactionSpeedUp()
 
-
-    disassociateTokensThroughWallet() {
-      this.calloutContainer.waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "callout was not found"})
-      browser.pause(1000)
-      this.disassociateTokensBtn.waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "disassociate btn  was not found"})
-      this.disassociateTokensBtn.click()
-      this.walletRadioBtn.click({force:true})
-      this.tokenAmountInputField.setValue(0.00001)
-      this.tokenAmountSubmitBtn.click()
-      browser.waitUntil(() => browser.getWindowHandles().length > 1);
-      browser.switchWindow("MetaMask Notification");
-      $('button=Confirm').click()
-      browser.switchWindow("VEGA");
-      browser.pause(2000)
-    }
-
-    disassociateTokensThroughVestingContract() {
-      this.calloutContainer.waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "callout was not found"})
-      this.disassociateTokensBtn.waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "disassociate btn  was not found"})
-      this.disassociateTokensBtn.click()
-      browser.pause(1000)
-      this.vestingContractRadioBtn.click({force:true})
-      this.tokenAmountInputField.setValue(0.00001)
-      this.tokenAmountSubmitBtn.click()
-      browser.waitUntil(() => browser.getWindowHandles().length > 1);
-      browser.switchWindow("MetaMask Notification");
-      $('button=Confirm').click()
-      browser.switchWindow("VEGA");
-      browser.pause(2000)
-    }
+  }
 }
 
 module.exports = new StakingPage();

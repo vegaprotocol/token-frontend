@@ -1,25 +1,36 @@
-const { When, Then } = require("@wdio/cucumber-framework");
+const { Given, When, Then } = require("@wdio/cucumber-framework");
 const stakingPage = require("../pageobjects/staking.page");
 let currentAmountOfTokensInWallet = ''
 let validatorName = ''
+let tokensAssociatedInVegaWallet = ''
+let tokensAssociatedInVegaWalletText = ''
+let tokensNotAssociatedInVegaWalletText = ''
+let tokensNotAssociatedInVegaWallet = ''
 
 When(/^I associate some tokens from wallet$/, () => {
     stakingPage.associateTokensThroughWallet()
 })
 
-When(/^I associate some tokens from vesting contract$/, () => {
-    stakingPage.associateTokensThroughVestingContract()
+When(/^I associate "([^"]*)?" tokens from "([^"]*)?"$/, (tokenAmount, sourceOfFunds) => {
+    tokensAssociatedInVegaWalletText = $$('[data-testid="associated-token-amount"]')[2].getText()
+    tokensNotAssociatedInVegaWalletText = $$('[data-testid="not-associated-token-amount"]')[2].getText()
+    tokensAssociatedInVegaWallet = tokensAssociatedInVegaWalletText.replace(',', '')
+    tokensNotAssociatedInVegaWallet = tokensNotAssociatedInVegaWalletText.replace(',', '')
+    stakingPage.associateTokens(tokenAmount, sourceOfFunds)
+
 })
 
-When(/^I disassociate some tokens from wallet$/, () => {
-    stakingPage.disassociateTokensThroughWallet()
-})
-
-When(/^I disassociate some tokens from vesting contract$/, () => {
-    stakingPage.disassociateTokensThroughVestingContract()
+When(/^I disassociate "([^"]*)?" tokens from "([^"]*)?"$/, (tokenAmount, sourceOfFunds) => {
+    tokensAssociatedInVegaWalletText = $$('[data-testid="associated-token-amount"]')[2].getText()
+    tokensNotAssociatedInVegaWalletText = $$('[data-testid="not-associated-token-amount"]')[2].getText()
+    tokensAssociatedInVegaWallet = tokensAssociatedInVegaWalletText.replace(',', '')
+    tokensNotAssociatedInVegaWallet = tokensNotAssociatedInVegaWalletText.replace(',', '')
+    stakingPage.disassociateTokens(tokenAmount, sourceOfFunds)
 })
 
 When(/^I can see the pending transactions button is shown$/, () => {
+    console.log('>>>>', tokensAssociatedInVegaWallet)
+    console.log('>>>>', tokensNotAssociatedInVegaWallet)
     stakingPage.pendingTransactionsBtn.waitForDisplayed({ timeout: 20000, reverse: false, timeoutMsg: "Pending transactions button was not found" })
     expect(stakingPage.pendingTransactionsBtn).toHaveText('Pending transactions')
 })
@@ -50,6 +61,10 @@ Then(/^the epoch countdown timer is counting down$/, () => {
     const currentCountdownTimerText = browser.getByTestId('current-epoch-ends-in').getText()
     browser.pause(2100) // let some time pass 
     expect(browser.getByTestId('current-epoch-ends-in').getText()).not.toEqual(currentCountdownTimerText)
+})
+
+Then(/^I pause some "([^"]*)?"$/, (seconds) => {
+    browser.pause(seconds)
 })
 
 When(/^I click on a validator$/, () => {
@@ -110,28 +125,10 @@ When(/^I select to "([^"]*)?" stake$/, (stakeAction) => {
     }
 });
 
-Then(/^I can submit successfully$/, () => {
+Then(/^I can submit the stake successfully$/, () => {
     expect(stakingPage.tokenAmountSubmitBtn).toBeEnabled()
     stakingPage.tokenAmountSubmitBtn.click()
 });
-
-Then(/^the pending transaction is displayed$/, () => {
-    $('p=Waiting for confirmation that your change in nomination has been received').waitForDisplayed({ timeout: 15000, timeoutMsg: "pending stake mconfirmation not displayed" })
-});
-
-Then(/^the stake is successful$/, () => {
-    $('.callout--success').waitForDisplayed({ timeout: 60000, timeoutMsg: "stake success message container not displayed after 60 seconds" })
-    expect($('.callout__title=At the beginning of the next epoch your $VEGA will be nominated to the validator')).toBeDisplayed()
-});
-
-Then(/^I click on the back to staking button$/, () => {
-    stakingPage.backToStakingPageBtn.click()
-});
-
-Then(/^I am back on the staking main page$/, () => {
-    expect(browser.getUrl()).toEqual(`${browser.options.baseUrl}/staking`)
-});
-
 
 When(/^I click the pending transactions button$/, () => {
     browser.getByTestId('pending-transactions-btn').click()
@@ -144,32 +141,33 @@ Then(/^I can see the pending transactions modal is shown$/, () => {
     expect(stakingPage.pendingTransactionsModalStatus).toHaveText('Pending')
 });
 
-When(/^I can see "([^"]*)?" vega has been removed from staking$/, (tokenAmount) => {
-    $('.callout--success').waitForDisplayed({ timeout: 60000, timeoutMsg: "remove stake success message container not displayed after 60 seconds" })
-    expect($(`.callout__title*=${tokenAmount} $VEGA has been removed from validator`)).toBeDisplayed()
-    expect($('p=It will be applied in the next epoch')).toBeDisplayed()
+Then(/^the pending transactions modal can be closed$/, () => {
+    $('main').click({ force: true })
+    expect(browser.getByTestId('pending-transactions-modal')).not.toBeDisplayed()
 });
 
-When(/^I click on the option to remove stake now$/, () => {
-    stakingPage.removeStakeNowBtn.waitForDisplayed({ timeout: 20000, timeoutMsg: "remove stake now button not displayed" })
-    stakingPage.removeStakeNowBtn.click()
+When(/^the association of "([^"]*)?" has been successful$/, (tokenAmount) => {
+    expect(browser.waitUntil(
+        () => ($$('[data-testid="associated-token-amount"]')[2].getText()) !== tokensAssociatedInVegaWalletText,
+        {
+            timeout: 600000,
+            timeoutMsg: 'expected balance to be different'
+        }
+    )).toBeTruthy()
+    browser.pause(2000)
+    console.log($$('[data-testid="associated-token-amount"]')[2].getText())
 });
 
-When(/^I can see the remove now disclaimer with text "([^"]*)?"$/, (disclaimerText) => {
-    stakingPage.removeStakeNowDisclaimerText.waitForDisplayed({ timeout: 20000, timeoutMsg: "remove stake disclaimer text not displayed" })
-    expect(stakingPage.removeStakeNowDisclaimerText.getText()).toEqual(disclaimerText)
+When(/^the disassociation of "([^"]*)?" has been successful$/, (tokenAmount) => {
+    expect(browser.waitUntil(
+        () => ($$('[data-testid="associated-token-amount"]')[2].getText()) !== tokensAssociatedInVegaWalletText,
+        {
+            timeout: 600000,
+            timeoutMsg: 'expected balance to be different'
+        }
+    )).toBeTruthy()
+    browser.pause(2000)
+    console.log($$('[data-testid="associated-token-amount"]')[2].getText())
 });
 
-Then(/^the submit button text is "([^"]*)?"$/, (btnText) => {
-    stakingPage.tokenAmountSubmitBtn.waitForEnabled()
-    expect(stakingPage.tokenAmountSubmitBtn).toHaveText(btnText)
-});
 
-Then(/^I can see the stake is removed immediately$/, () => {
-    $('.callout--success').waitForDisplayed({ timeout: 60000, timeoutMsg: "remove stake now success message container not displayed after 60 seconds" })
-    expect($('p=It will be applied immediately')).toBeDisplayed()
-});
-
-Then(/^I can see the button to switch to remove at the end of epoch is showing$/, () => {
-    $('.button-link=Switch to remove at end of epoch').waitForDisplayed({ timeout: 15000, interval: 50, timeoutMsg: "Switch to remove at end of epoch still not displayed after 15 seconds" })
-});
