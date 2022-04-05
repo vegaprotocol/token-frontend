@@ -33,6 +33,7 @@
     "date-fns": "^2.23.0",
     "duration-js": "^4.0.0",
     "env-cmd": "^10.1.0",
+    "eslint-plugin-wdio": "^7.19.0",
     "ethers": "^5.4.7",
     "faker": "^5.5.3",
     "graphql": "^15.7.2",
@@ -56,11 +57,11 @@
   },
   "scripts": {
     "start": "craco start",
-    "start:mock": "REACT_APP_MOCKED=1 craco -r @cypress/instrument-cra start",
+    "start:mock": "REACT_APP_MOCKED=1 craco start",
     "postinstall": "cp .env .env.local",
     "build": "craco build",
     "test": "REACT_APP_CHAIN=0x1 craco test",
-    "lint:es": "eslint . --ext .ts,.tsx --max-warnings 0 --cache",
+    "lint:es": "eslint . --ext .ts,.tsx,.js --max-warnings 0",
     "eject": "react-scripts eject",
     "generate": "env-cmd yarn apollo codegen:generate --target=typescript --globalTypesFile=src/__generated__/globalTypes.ts"
   },
@@ -97,7 +98,6 @@
     ]
   },
   "devDependencies": {
-    "@cypress/instrument-cra": "^1.4.0",
     "@sentry/webpack-plugin": "^1.18.3",
     "@types/lodash": "^4.14.171",
     "@types/react-syntax-highlighter": "^13.5.2",

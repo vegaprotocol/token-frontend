@@ -7145,6 +7145,11 @@ eslint-plugin-testing-library@^3.9.2:
   dependencies:
     "@typescript-eslint/experimental-utils" "^3.10.1"
 
+eslint-plugin-wdio@^7.19.0:
+  version "7.19.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-wdio/-/eslint-plugin-wdio-7.19.0.tgz#b3946e1a223eaabd5c196500f55bc14c92f697f8"
+  integrity sha512-d/i5ZZ3KeSRu8fa88HDORp6pqcTkgQhihe8PrloV2PK2ZWuAuhgWqX6M98X44SCUt0FjadCRhvq8Pr+7cg22Cw==
+
 eslint-scope@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-4.0.3.tgz#ca03833310f6889a3264781aa82e63eb9cfe7848"
