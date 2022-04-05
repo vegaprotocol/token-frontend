@@ -76,7 +76,7 @@ exports.config = {
         // <string> (expression) only execute the features or scenarios with tags matching the expression
         tagExpression: 'not @todo and not @manual and not @ignore',
         // <number> timeout for step definitions
-        timeout: 60000,
+        timeout: 600000,
         // <boolean> Enable this config to treat undefined definitions as warnings.
         ignoreUndefinedDefinitions: false
     },
@@ -87,7 +87,7 @@ exports.config = {
             console.log('Adding custom command - ', key)
             browser.addCommand(key, commands[key]);
         }),
-        browser.switchWindow('Vega');
+            browser.switchWindow('Vega');
     },
 
     afterStep: function (step, scenario, result, context) {

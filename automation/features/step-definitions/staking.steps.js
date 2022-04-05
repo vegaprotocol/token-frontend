@@ -29,8 +29,6 @@ When(/^I disassociate "([^"]*)?" tokens from "([^"]*)?"$/, (tokenAmount, sourceO
 })
 
 When(/^I can see the pending transactions button is shown$/, () => {
-    console.log('>>>>', tokensAssociatedInVegaWallet)
-    console.log('>>>>', tokensNotAssociatedInVegaWallet)
     stakingPage.pendingTransactionsBtn.waitForDisplayed({ timeout: 20000, reverse: false, timeoutMsg: "Pending transactions button was not found" })
     expect(stakingPage.pendingTransactionsBtn).toHaveText('Pending transactions')
 })
