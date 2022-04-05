@@ -1,0 +1,140 @@
+{
+  "uid" : "306817dd6726de75",
+  "name" : "Rewards are shown and rewards countdown is shown when vega wallet is connect",
+  "fullName" : "Rewards page.Rewards are shown and rewards countdown is shown when vega wallet is connect",
+  "historyId" : "903ee56ca3eb850dae2b0d96e392f95f",
+  "time" : {
+    "start" : 1649187215236,
+    "stop" : 1649187221876,
+    "duration" : 6640
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "failed",
+  "statusMessage" : "Error: expect(received).not.toEqual(expected) // deep equality",
+  "statusTrace" : "Error: expect(received).not.toEqual(expected) // deep equality\n                \n                Expected: not \"Waiting for next epoch to start...\"\n                \n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:63:72)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "Error: expect(received).not.toEqual(expected) // deep equality",
+    "statusTrace" : "Error: expect(received).not.toEqual(expected) // deep equality\n                \n                Expected: not \"Waiting for next epoch to start...\"\n                \n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:63:72)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"rewards\" page",
+      "time" : {
+        "start" : 1649187215236,
+        "stop" : 1649187216864,
+        "duration" : 1628
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "b3464e9debb578f0",
+        "name" : "Screenshot",
+        "source" : "b3464e9debb578f0.png",
+        "type" : "image/png",
+        "size" : 8741
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I connect to the vega wallet",
+      "time" : {
+        "start" : 1649187216864,
+        "stop" : 1649187219222,
+        "duration" : 2358
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "22f4d8da79e7c6a7",
+        "name" : "Screenshot",
+        "source" : "22f4d8da79e7c6a7.png",
+        "type" : "image/png",
+        "size" : 188194
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then the epoch countdown timer is counting down",
+      "time" : {
+        "start" : 1649187219222,
+        "stop" : 1649187221876,
+        "duration" : 2654
+      },
+      "status" : "failed",
+      "statusMessage" : "Error: expect(received).not.toEqual(expected) // deep equality\n                \n                Expected: not \"Waiting for next epoch to start...\"\n                \n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:63:72)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "773e0fcb34064c09",
+        "name" : "Screenshot",
+        "source" : "773e0fcb34064c09.png",
+        "type" : "image/png",
+        "size" : 238575
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-3"
+  }, {
+    "name" : "suite",
+    "value" : "Rewards page"
+  }, {
+    "name" : "testClass",
+    "value" : "Rewards page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Rewards are shown and rewards countdown is shown when vega wallet is connect"
+  }, {
+    "name" : "package",
+    "value" : "Rewards page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "306817dd6726de75.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

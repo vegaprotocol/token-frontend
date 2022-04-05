@@ -1,0 +1,152 @@
+{
+  "uid" : "28d73659dea619a3",
+  "name" : "Can navigate to Staking page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Staking page using main nav tab",
+  "historyId" : "91dde96c03721a837df89d488b7a153b",
+  "time" : {
+    "start" : 1649186887348,
+    "stop" : 1649186890021,
+    "duration" : 2673
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1649186887348,
+        "stop" : 1649186888627,
+        "duration" : 1279
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "794ba6169b7c7d63",
+        "name" : "Screenshot",
+        "source" : "794ba6169b7c7d63.png",
+        "type" : "image/png",
+        "size" : 399622
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on \"Staking\" on main nav",
+      "time" : {
+        "start" : 1649186888627,
+        "stop" : 1649186889320,
+        "duration" : 693
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "fe8f5ce34faedfbd",
+        "name" : "Screenshot",
+        "source" : "fe8f5ce34faedfbd.png",
+        "type" : "image/png",
+        "size" : 295954
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I can see \"Staking\" button is clearly highlighted after click",
+      "time" : {
+        "start" : 1649186889320,
+        "stop" : 1649186889687,
+        "duration" : 367
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "4031da6f804c1f7c",
+        "name" : "Screenshot",
+        "source" : "4031da6f804c1f7c.png",
+        "type" : "image/png",
+        "size" : 295980
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I am taken to the \"staking\" page",
+      "time" : {
+        "start" : 1649186889687,
+        "stop" : 1649186890020,
+        "duration" : 333
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "65cb8a93731c683b",
+        "name" : "Screenshot",
+        "source" : "65cb8a93731c683b.png",
+        "type" : "image/png",
+        "size" : 295980
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Staking page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "28d73659dea619a3.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

@@ -1,0 +1,131 @@
+{
+  "uid" : "b60df570e36d0e5",
+  "name" : "Prompt to connect to eth wallet to claim if not connected",
+  "fullName" : "Claim codes.Prompt to connect to eth wallet to claim if not connected",
+  "historyId" : "fe146ac841243977d1a34bcefd87d344",
+  "time" : {
+    "start" : 1649186715247,
+    "stop" : 1649186719116,
+    "duration" : 3869
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"claim?r=odiuhfn\" page",
+      "time" : {
+        "start" : 1649186715249,
+        "stop" : 1649186717008,
+        "duration" : 1759
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "afb282c63c22cf2c",
+        "name" : "Screenshot",
+        "source" : "afb282c63c22cf2c.png",
+        "type" : "image/png",
+        "size" : 8722
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the error message when not connected to eth wallet on claims page \"Connect to the Ethereum wallet that holds your $VEGA tokens to see what can be redeemed from vesting tranches. To redeem tokens you will need some ETH to pay gas fees.\"",
+      "time" : {
+        "start" : 1649186717008,
+        "stop" : 1649186718686,
+        "duration" : 1678
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "bce9092b2ee1f496",
+        "name" : "Screenshot",
+        "source" : "bce9092b2ee1f496.png",
+        "type" : "image/png",
+        "size" : 360887
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And the connect to ethereum button is visible",
+      "time" : {
+        "start" : 1649186718686,
+        "stop" : 1649186719115,
+        "duration" : 429
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "9e6c91d18a3c6a6f",
+        "name" : "Screenshot",
+        "source" : "9e6c91d18a3c6a6f.png",
+        "type" : "image/png",
+        "size" : 360887
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-0"
+  }, {
+    "name" : "suite",
+    "value" : "Claim codes"
+  }, {
+    "name" : "testClass",
+    "value" : "Claim codes"
+  }, {
+    "name" : "testMethod",
+    "value" : "Prompt to connect to eth wallet to claim if not connected"
+  }, {
+    "name" : "package",
+    "value" : "Claim codes"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "b60df570e36d0e5.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
