@@ -1,4 +1,4 @@
-const { Given, When, Then } = require("@wdio/cucumber-framework");
+const { Given, Then } = require("@wdio/cucumber-framework");
 const RewardsPage = require("../pageobjects/rewards.page");
 
 Given(/^I have not earned any rewards$/, () => {});
@@ -12,9 +12,9 @@ Then(/^I can see the rewards epoch timer displayed$/, () => {
   expect(epochTimerTxt.length).toBeGreaterThan(12);
 });
 
-Then(/^I can see the connected vega wallet key$/, () => {
+Then(/^I can see the connected vega wallet key$/, async () => {
   const walletKey = RewardsPage.vegaWalletKey;
-  expect(walletKey.getText()).toHaveText();
+  await expect(walletKey.getText()).toHaveText();
 });
 
 Then(/^the rewards table is displayed$/, () => {

@@ -10,16 +10,19 @@ Given(/^I have not connected my vega wallet$/, () => {
 });
 
 Given(/^I have not connected my eth wallet$/, () => {
-  $('button=Disconnect').waitForDisplayed({timeout: 10000,timeoutMsg: "Disconnect Ethereum wallet Button not displayed",})
-  $('button=Disconnect').click()
-});  
+  $("button=Disconnect").waitForDisplayed({
+    timeout: 10000,
+    timeoutMsg: "Disconnect Ethereum wallet Button not displayed",
+  });
+  $("button=Disconnect").click();
+});
 
 Given(/^I navigate to not found page$/, () => {
   browser.url("not-found");
 });
 
-Then(/^I can see the url includes "([^"]*)?"$/, (expectedUrl) => {
-  expect(browser).toHaveUrlContaining(expectedUrl);
+Then(/^I can see the url includes "([^"]*)?"$/, async (expectedUrl) => {
+  await expect(browser).toHaveUrlContaining(expectedUrl);
 });
 
 Then(/^the error message is displayed "([^"]*)?" on page$/, (expectedError) => {
@@ -29,17 +32,11 @@ Then(/^the error message is displayed "([^"]*)?" on page$/, (expectedError) => {
 Then(/^I can see the token address is shown$/, () => {
   const tokenAddress = browser.getByTestId(HomePage.tokenAddressTestId);
   expect(tokenAddress).toExist();
-  // expect(tokenAddress).toBe(
-  //   "0x547cbA83a7eb82b546ee5C7ff0527F258Ba4546D"
-  // );
 });
 
 Then(/^the vesting address is shown$/, () => {
   const vestingAddress = browser.getByTestId(HomePage.vestingAddressTestId);
   expect(vestingAddress).toExist();
-  // expect(vestingAddress.getText()).toBe(
-  //   "0xfCe6eB272D3d4146A96bC28de71212b327F575fa"
-  // );
 });
 
 Then(/^the total supply is shown correctly$/, () => {
@@ -53,8 +50,8 @@ Then(/^staked token field is showing as "([^"]*)?"$/, (amount) => {
   expect(stakedToken.getText()).toBe(amount);
 });
 
-Then(/^the vega wallet link is correct$/, () => {
-  expect(HomePage.vegaWalletLink).toHaveAttribute(
+Then(/^the vega wallet link is correct$/, async () => {
+  await expect(HomePage.vegaWalletLink).toHaveAttribute(
     "href",
     "https://docs.vega.xyz/docs/tools/vega-wallet/cli-wallet/create-wallet"
   );
@@ -74,15 +71,15 @@ Then(/^the vesting address has a link$/, () => {
   );
 });
 
-Then(/^the associate vega tokens link is correct$/, () => {
-  expect(HomePage.associatedTokensLink).toHaveAttribute(
+Then(/^the associate vega tokens link is correct$/, async () => {
+  await expect(HomePage.associatedTokensLink).toHaveAttribute(
     "href",
     "/staking/associate"
   );
 });
 
-Then(/^I can see the check for redeemable tokens button$/, () => {
-  expect(HomePage.checkVestingBtn).toBeDisplayed();
+Then(/^I can see the check for redeemable tokens button$/, async () => {
+  await expect(HomePage.checkVestingBtn).toBeDisplayed();
 });
 
 When(/^I click the check for redeemable tokens button$/, () => {
@@ -126,13 +123,9 @@ Then(
   (disconnectedMsg) => {
     const ConnectEthWalletTxt = HomePage.connectEthWallet.getText();
     expect(ConnectEthWalletTxt).toBe(disconnectedMsg);
-    // HomePage.connectToEthWallet();
   }
 );
 
-Then(
-  /^I can see the 404 error page$/, ()=>{
-    expect($('.heading__title')).toHaveText('PAGE NOT FOUND')
-  }  
-);
-
+Then(/^I can see the 404 error page$/, async () => {
+  await expect($(".heading__title")).toHaveText("PAGE NOT FOUND");
+});

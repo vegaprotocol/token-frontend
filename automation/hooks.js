@@ -1,7 +1,7 @@
 class Hooks {
   connectEthWallet() {
-    const baseUrl = browser.options.baseUrl
-    
+    const baseUrl = browser.options.baseUrl;
+
     browser.url(baseUrl);
     browser.switchWindow(baseUrl);
     $('input[name="password"]').waitForDisplayed({
@@ -72,6 +72,7 @@ class Hooks {
     });
     $('[data-test-id="connect-to-eth-wallet-button"]').click();
     $(".web3modal-provider-name*=Injected").click();
+    // eslint-disable-next-line wdio/no-pause
     browser.pause(1500);
     browser.switchWindow("MetaMask Notification");
     $("button=Next").click();
