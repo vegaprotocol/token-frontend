@@ -2,7 +2,7 @@ const { Given, When, Then } = require("@wdio/cucumber-framework");
 const HomePage = require("../pageobjects/home.page");
 
 Given(/^I connect my ethereum wallet$/, () => {
-  browser.connectToEthWallet()
+  browser.connectToEthWallet();
 });
 
 Given(/^I navigate to "([^"]*)?" page$/, (page) => {
@@ -23,16 +23,17 @@ When(/^I connect Vega wallet$/, () => {
   walletLogin.click();
 });
 
-Then(/^I am taken to the "([^"]*)?" page$/, (page) => {
-  if (page == "home") {
-    expect(browser).toHaveUrl(browser.options.baseUrl + "/");
-  } else expect(browser).toHaveUrlContaining("/" + page);
+Then(/^I am taken to the "([^"]*)?" page$/, async (page) => {
+  if (page === "home") {
+    await expect(browser).toHaveUrl(browser.options.baseUrl + "/");
+  } else {
+    await expect(browser).toHaveUrlContaining("/" + page);
+  }
 });
 
-Then(/^I can see the header title is "([^"]*)?"$/, (headerTitle) => {
+Then(/^I can see the header title is "([^"]*)?"$/, async (headerTitle) => {
   const displayedHeaderTitle = $(".heading__title").getText();
-  console.log(headerTitle.toUpperCase());
-  expect(displayedHeaderTitle).toHaveText(headerTitle.toUpperCase());
+  await expect(displayedHeaderTitle).toHaveText(headerTitle.toUpperCase());
 });
 
 Then(/^I disconnect Vega Wallet$/, () => {
