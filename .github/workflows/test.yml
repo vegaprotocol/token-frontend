@@ -18,7 +18,7 @@ jobs:
           uses: actions/checkout@v2
         - uses: actions/setup-node@v1
           with:
-            node-version: 14.18.3
+            node-version: 16.14.0
         - name: Install root dependencies
           run: npm run yarn:install:deps
         - name: Install
@@ -41,7 +41,7 @@ jobs:
         - name: Create recovery phrase file
           run: echo "dev12345" > passphrase.txt
         - name: Import wallet
-          run: ./vegawallet import --wallet UI_TEST_1 --recovery-phrase-file recovery-phrase.txt --passphrase-file passphrase.txt 
+          run: ./vegawallet import --wallet UI_TEST_1 --recovery-phrase-file recovery-phrase.txt --passphrase-file passphrase.txt
         - name: Import config
           run: ./vegawallet network import --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml
         - name: List networks
@@ -116,7 +116,7 @@ jobs:
         # - name: Post the link to the report in PR comment
         #   if: always()
         #   uses: Sibz/github-status-action@v1
-        #   with: 
+        #   with:
         #       authToken: ${{secrets.GITHUB_TOKEN}}
         #       context: 'Test report'
         #       state: 'success'
