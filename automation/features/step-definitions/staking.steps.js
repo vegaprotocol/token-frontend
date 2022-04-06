@@ -108,6 +108,23 @@ Then(/^the token submit button is disabled$/, () => {
     expect(browser.getByTestId('token-input-submit-button')).toBeDisabled()
 });
 
+Then(/^the pending transaction is displayed$/, () => {
+    $('p=Waiting for confirmation that your change in nomination has been received').waitForDisplayed({ timeout: 15000, timeoutMsg: "pending stake mconfirmation not displayed" })
+});
+
+Then(/^the stake is successful$/, () => {
+    $('.callout--success').waitForDisplayed({ timeout: 60000, timeoutMsg: "stake success message container not displayed after 60 seconds" })
+    expect($('.callout__title=At the beginning of the next epoch your $VEGA will be nominated to the validator')).toBeDisplayed()
+});
+
+Then(/^I click on the back to staking button$/, () => {
+    stakingPage.backToStakingPageBtn.click()
+});
+
+Then(/^I am back on the staking main page$/, () => {
+    expect(browser.getUrl()).toEqual(`${browser.options.baseUrl}/staking`)
+});
+
 When(/^I select to "([^"]*)?" stake$/, (stakeAction) => {
     switch (stakeAction) {
         case "Add":
@@ -126,6 +143,17 @@ When(/^I select to "([^"]*)?" stake$/, (stakeAction) => {
 Then(/^I can submit the stake successfully$/, () => {
     expect(stakingPage.tokenAmountSubmitBtn).toBeEnabled()
     stakingPage.tokenAmountSubmitBtn.click()
+});
+
+When(/^I can see "([^"]*)?" vega has been removed from staking$/, (tokenAmount) => {
+    $('.callout--success').waitForDisplayed({ timeout: 60000, timeoutMsg: "remove stake success message container not displayed after 60 seconds" })
+    expect($(`.callout__title*=${tokenAmount} $VEGA has been removed from validator`)).toBeDisplayed()
+    expect($('p=It will be applied in the next epoch')).toBeDisplayed()
+});
+
+When(/^I click on the option to remove stake now$/, () => {
+    stakingPage.removeStakeNowBtn.waitForDisplayed({ timeout: 20000, timeoutMsg: "remove stake now button not displayed" })
+    stakingPage.removeStakeNowBtn.click()
 });
 
 When(/^I click the pending transactions button$/, () => {
@@ -168,4 +196,11 @@ When(/^the disassociation of "([^"]*)?" has been successful$/, (tokenAmount) => 
     console.log($$('[data-testid="associated-token-amount"]')[2].getText())
 });
 
+Then(/^I can see the stake is removed immediately$/, () => {
+    $('.callout--success').waitForDisplayed({ timeout: 60000, timeoutMsg: "remove stake now success message container not displayed after 60 seconds" })
+    expect($('p=It will be applied immediately')).toBeDisplayed()
+});
 
+Then(/^I can see the button to switch to remove at the end of epoch is showing$/, () => {
+    $('.button-link=Switch to remove at end of epoch').waitForDisplayed({ timeout: 15000, interval: 50, timeoutMsg: "Switch to remove at end of epoch still not displayed after 15 seconds" })
+});
