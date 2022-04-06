@@ -1,0 +1,162 @@
+{
+  "uid" : "570525e633371f83",
+  "name" : "Vega wallet not connected placeholder",
+  "fullName" : "Homepage.Vega wallet not connected placeholder",
+  "historyId" : "607e0e06b898d703b411f2efc855b24b",
+  "time" : {
+    "start" : 1649241124106,
+    "stop" : 1649241126309,
+    "duration" : 2203
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1649241124106,
+        "stop" : 1649241125230,
+        "duration" : 1124
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "8e7126ed69b16f50",
+        "name" : "Screenshot",
+        "source" : "8e7126ed69b16f50.png",
+        "type" : "image/png",
+        "size" : 8134
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I have not connected my vega wallet",
+      "time" : {
+        "start" : 1649241125230,
+        "stop" : 1649241125854,
+        "duration" : 624
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "5924151ab00a98ae",
+        "name" : "Screenshot",
+        "source" : "5924151ab00a98ae.png",
+        "type" : "image/png",
+        "size" : 353542
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the vega wallet disconnected with message \"Connect Vega wallet to use associated $VEGA\"",
+      "time" : {
+        "start" : 1649241125854,
+        "stop" : 1649241126308,
+        "duration" : 454
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "be48b288bf8def0b",
+        "name" : "Screenshot",
+        "source" : "be48b288bf8def0b.png",
+        "type" : "image/png",
+        "size" : 249537
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Vega wallet not connected placeholder"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "4f1d0419e8fddcc8",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/4f1d0419e8fddcc8",
+        "status" : "broken",
+        "statusDetails" : "TypeError: browser.getByTestId(...).getText is not a function",
+        "time" : {
+          "start" : 1649240783845,
+          "stop" : 1649240783856,
+          "duration" : 11
+        }
+      }, {
+        "uid" : "394a3659cfb70aab",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/183//#testresult/394a3659cfb70aab",
+        "status" : "broken",
+        "statusDetails" : "TypeError: browser.getByTestId(...).getText is not a function",
+        "time" : {
+          "start" : 1649239743865,
+          "stop" : 1649239743876,
+          "duration" : 11
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "570525e633371f83.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

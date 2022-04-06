@@ -1,0 +1,201 @@
+[ {
+  "uid" : "ce114ffd8a2b1ac4",
+  "name" : "Navigate to governance proposals page via button link on homepage body",
+  "time" : {
+    "start" : 1649241094501,
+    "stop" : 1649241097517,
+    "duration" : 3016
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "570525e633371f83",
+  "name" : "Vega wallet not connected placeholder",
+  "time" : {
+    "start" : 1649241124106,
+    "stop" : 1649241126309,
+    "duration" : 2203
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "15c2735550226aab",
+  "name" : "Links on the homepage",
+  "time" : {
+    "start" : 1649241056949,
+    "stop" : 1649241089031,
+    "duration" : 32082
+  },
+  "status" : "failed",
+  "severity" : "normal"
+}, {
+  "uid" : "f17e24de63caa6ef",
+  "name" : "Can navigate to Withdraw page using main nav tab",
+  "time" : {
+    "start" : 1649241115059,
+    "stop" : 1649241117631,
+    "duration" : 2572
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "b529f52da0e248da",
+  "name" : "Can navigate to Rewards page using main nav tab",
+  "time" : {
+    "start" : 1649241112269,
+    "stop" : 1649241115059,
+    "duration" : 2790
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "5b97c202beae72ae",
+  "name" : "Page not found error where page does not exist",
+  "time" : {
+    "start" : 1649241117631,
+    "stop" : 1649241121428,
+    "duration" : 3797
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "ab2069d4a148a795",
+  "name" : "Invalid claims code will show error",
+  "time" : {
+    "start" : 1649240957134,
+    "stop" : 1649240973252,
+    "duration" : 16118
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "a00c3de6914f6860",
+  "name" : "Prompt to connect to eth wallet to claim if not connected",
+  "time" : {
+    "start" : 1649240952959,
+    "stop" : 1649240957134,
+    "duration" : 4175
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "127215ab7e98cdf6",
+  "name" : "Go to staking and connect ethereum wallet",
+  "time" : {
+    "start" : 1649241186001,
+    "stop" : 1649241200327,
+    "duration" : 14326
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "daee1ca02e246b22",
+  "name" : "Use maximum button on associate from wallet enters correct amount",
+  "time" : {
+    "start" : 1649241213904,
+    "stop" : 1649241216709,
+    "duration" : 2805
+  },
+  "status" : "failed",
+  "severity" : "normal"
+}, {
+  "uid" : "71949693e04b8982",
+  "name" : "Check for redeem unlocked tokens from homepage",
+  "time" : {
+    "start" : 1649241089032,
+    "stop" : 1649241092331,
+    "duration" : 3299
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "1d8be90c07faf59d",
+  "name" : "Can navigate to Home page using main nav tab",
+  "time" : {
+    "start" : 1649241109719,
+    "stop" : 1649241112269,
+    "duration" : 2550
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "44621dd90a48f8ef",
+  "name" : "Can navigate to Staking page using main nav tab",
+  "time" : {
+    "start" : 1649241103720,
+    "stop" : 1649241106422,
+    "duration" : 2702
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "59201331c81afa0",
+  "name" : "Can navigate to Vesting page using main nav tab",
+  "time" : {
+    "start" : 1649241101104,
+    "stop" : 1649241103720,
+    "duration" : 2616
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "20e7cc6897fbee74",
+  "name" : "Can navigate to Governance page using main nav tab",
+  "time" : {
+    "start" : 1649241106422,
+    "stop" : 1649241109719,
+    "duration" : 3297
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "e241e289c1e38089",
+  "name" : "Navigate to staking page via link on homepage body",
+  "time" : {
+    "start" : 1649241092331,
+    "stop" : 1649241094501,
+    "duration" : 2170
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "7a9860178011cac2",
+  "name" : "Associate tokens through wallet",
+  "time" : {
+    "start" : 1649241200327,
+    "stop" : 1649241213904,
+    "duration" : 13577
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "56be3c3fff1ad5ac",
+  "name" : "Eth wallet not connected placeholder",
+  "time" : {
+    "start" : 1649241121428,
+    "stop" : 1649241124106,
+    "duration" : 2678
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "2eabf569f046a49b",
+  "name" : "Navigate to a not found page will return page error",
+  "time" : {
+    "start" : 1649241097518,
+    "stop" : 1649241101104,
+    "duration" : 3586
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "b5bd5eeb25b31aa3",
+  "name" : "Homepage displays correct information",
+  "time" : {
+    "start" : 1649241039293,
+    "stop" : 1649241056949,
+    "duration" : 17656
+  },
+  "status" : "passed",
+  "severity" : "normal"
+} ]
