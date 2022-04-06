@@ -6,13 +6,13 @@
       "name" : "TypeError: browser.getByTestId(...).isDisplayed is not a function",
       "children" : [ {
         "name" : "Prompt to connect to eth wallet to claim if not connected",
-        "uid" : "2006c9bd19efd1c3",
+        "uid" : "4fbf492c82de791e",
         "parentUid" : "ce57db20ea8fa239fa26f31f8cfe2752",
         "status" : "broken",
         "time" : {
-          "start" : 1649240712788,
-          "stop" : 1649240712864,
-          "duration" : 76
+          "start" : 1649257724212,
+          "stop" : 1649257724248,
+          "duration" : 36
         },
         "flaky" : false,
         "newFailed" : false,
@@ -23,13 +23,13 @@
       "name" : "TypeError: totalSupply.getText is not a function",
       "children" : [ {
         "name" : "Homepage displays correct information",
-        "uid" : "2d12770167a8a4af",
+        "uid" : "f54e62475d0bbdd8",
         "parentUid" : "ba94afd29ebc67ccc693b0ad10fca0c2",
         "status" : "broken",
         "time" : {
-          "start" : 1649240783568,
-          "stop" : 1649240783627,
-          "duration" : 59
+          "start" : 1649257777363,
+          "stop" : 1649257777421,
+          "duration" : 58
         },
         "flaky" : false,
         "newFailed" : false,
@@ -40,13 +40,13 @@
       "name" : "TypeError: browser.getByTestId(...).getText is not a function",
       "children" : [ {
         "name" : "Vega wallet not connected placeholder",
-        "uid" : "4f1d0419e8fddcc8",
+        "uid" : "a529828583c136f",
         "parentUid" : "d2d2562f5875bf3e353d805cd8b259d6",
         "status" : "broken",
         "time" : {
-          "start" : 1649240783845,
-          "stop" : 1649240783856,
-          "duration" : 11
+          "start" : 1649257777609,
+          "stop" : 1649257777616,
+          "duration" : 7
         },
         "flaky" : false,
         "newFailed" : false,
@@ -57,26 +57,26 @@
       "name" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
       "children" : [ {
         "name" : "Associate tokens through wallet",
-        "uid" : "faca9d5b05f1ecbb",
+        "uid" : "4922609969bad87b",
         "parentUid" : "2d05afeb6297f2065bfe722e8dfe289c",
         "status" : "broken",
         "time" : {
-          "start" : 1649240860102,
-          "stop" : 1649240860116,
-          "duration" : 14
+          "start" : 1649257837127,
+          "stop" : 1649257837139,
+          "duration" : 12
         },
         "flaky" : false,
         "newFailed" : false,
         "parameters" : [ "chrome-96.0.4664.110" ]
       }, {
         "name" : "Use maximum button on associate from wallet enters correct amount",
-        "uid" : "af74d4e407b7a880",
+        "uid" : "588f1b6f2877c514",
         "parentUid" : "2d05afeb6297f2065bfe722e8dfe289c",
         "status" : "broken",
         "time" : {
-          "start" : 1649240860117,
-          "stop" : 1649240860126,
-          "duration" : 9
+          "start" : 1649257837140,
+          "stop" : 1649257837147,
+          "duration" : 7
         },
         "flaky" : false,
         "newFailed" : false,
@@ -91,94 +91,94 @@
       "name" : "Error: expect(received).toBe(expected) // Object.is equality",
       "children" : [ {
         "name" : "Can navigate to Vesting page using main nav tab",
-        "uid" : "c1c38eef9f40fe70",
+        "uid" : "bc2a77f791c4d56",
         "parentUid" : "23d31088e622dd99f0c1272da23a5f8f",
         "status" : "failed",
         "time" : {
-          "start" : 1649240783717,
-          "stop" : 1649240783735,
-          "duration" : 18
+          "start" : 1649257777510,
+          "stop" : 1649257777526,
+          "duration" : 16
         },
-        "flaky" : false,
-        "newFailed" : false,
+        "flaky" : true,
+        "newFailed" : true,
         "parameters" : [ "chrome-96.0.4664.110" ]
       }, {
         "name" : "Can navigate to Staking page using main nav tab",
-        "uid" : "1cc3ce10ca58aae4",
+        "uid" : "16256ef5caa46649",
         "parentUid" : "23d31088e622dd99f0c1272da23a5f8f",
         "status" : "failed",
         "time" : {
-          "start" : 1649240783737,
-          "stop" : 1649240783750,
-          "duration" : 13
+          "start" : 1649257777528,
+          "stop" : 1649257777540,
+          "duration" : 12
         },
-        "flaky" : false,
-        "newFailed" : false,
+        "flaky" : true,
+        "newFailed" : true,
         "parameters" : [ "chrome-96.0.4664.110" ]
       }, {
         "name" : "Can navigate to Governance page using main nav tab",
-        "uid" : "dad7a7ffbd238533",
+        "uid" : "7f5a1460d8aab31",
         "parentUid" : "23d31088e622dd99f0c1272da23a5f8f",
         "status" : "failed",
         "time" : {
-          "start" : 1649240783751,
-          "stop" : 1649240783766,
-          "duration" : 15
+          "start" : 1649257777540,
+          "stop" : 1649257777550,
+          "duration" : 10
         },
-        "flaky" : false,
-        "newFailed" : false,
+        "flaky" : true,
+        "newFailed" : true,
         "parameters" : [ "chrome-96.0.4664.110" ]
       }, {
         "name" : "Can navigate to Home page using main nav tab",
-        "uid" : "fa6184f013562278",
+        "uid" : "b103bdc1e36de69d",
         "parentUid" : "23d31088e622dd99f0c1272da23a5f8f",
         "status" : "failed",
         "time" : {
-          "start" : 1649240783769,
-          "stop" : 1649240783785,
-          "duration" : 16
+          "start" : 1649257777550,
+          "stop" : 1649257777559,
+          "duration" : 9
         },
-        "flaky" : false,
-        "newFailed" : false,
+        "flaky" : true,
+        "newFailed" : true,
         "parameters" : [ "chrome-96.0.4664.110" ]
       }, {
         "name" : "Can navigate to Rewards page using main nav tab",
-        "uid" : "81989b58e191883f",
+        "uid" : "c0f1a901d3d60059",
         "parentUid" : "23d31088e622dd99f0c1272da23a5f8f",
         "status" : "failed",
         "time" : {
-          "start" : 1649240783786,
-          "stop" : 1649240783804,
-          "duration" : 18
+          "start" : 1649257777560,
+          "stop" : 1649257777577,
+          "duration" : 17
         },
-        "flaky" : false,
-        "newFailed" : false,
+        "flaky" : true,
+        "newFailed" : true,
         "parameters" : [ "chrome-96.0.4664.110" ]
       }, {
         "name" : "Can navigate to Withdraw page using main nav tab",
-        "uid" : "219abd2ea3db18d3",
+        "uid" : "ecc712060138b4a3",
         "parentUid" : "23d31088e622dd99f0c1272da23a5f8f",
         "status" : "failed",
         "time" : {
-          "start" : 1649240783805,
-          "stop" : 1649240783816,
-          "duration" : 11
+          "start" : 1649257777579,
+          "stop" : 1649257777588,
+          "duration" : 9
         },
-        "flaky" : false,
-        "newFailed" : false,
+        "flaky" : true,
+        "newFailed" : true,
         "parameters" : [ "chrome-96.0.4664.110" ]
       }, {
         "name" : "Eth wallet not connected placeholder",
-        "uid" : "b2672214d8353371",
+        "uid" : "d16478e9a7e1e4ac",
         "parentUid" : "23d31088e622dd99f0c1272da23a5f8f",
         "status" : "failed",
         "time" : {
-          "start" : 1649240783830,
-          "stop" : 1649240783844,
-          "duration" : 14
+          "start" : 1649257777598,
+          "stop" : 1649257777608,
+          "duration" : 10
         },
-        "flaky" : false,
-        "newFailed" : false,
+        "flaky" : true,
+        "newFailed" : true,
         "parameters" : [ "chrome-96.0.4664.110" ]
       } ],
       "uid" : "23d31088e622dd99f0c1272da23a5f8f"
@@ -186,16 +186,16 @@
       "name" : "Error: expect(received).toContain(expected) // indexOf",
       "children" : [ {
         "name" : "Go to staking and connect ethereum wallet",
-        "uid" : "7f1550b8d5fd7022",
+        "uid" : "81504f3b1b362f3e",
         "parentUid" : "2daf3c642898536ec7cf909f856c04b8",
         "status" : "failed",
         "time" : {
-          "start" : 1649240860051,
-          "stop" : 1649240860101,
-          "duration" : 50
+          "start" : 1649257837079,
+          "stop" : 1649257837126,
+          "duration" : 47
         },
-        "flaky" : false,
-        "newFailed" : false,
+        "flaky" : true,
+        "newFailed" : true,
         "parameters" : [ "chrome-96.0.4664.110" ]
       } ],
       "uid" : "2daf3c642898536ec7cf909f856c04b8"
