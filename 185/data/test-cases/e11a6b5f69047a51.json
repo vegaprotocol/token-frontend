@@ -1,0 +1,208 @@
+{
+  "uid" : "e11a6b5f69047a51",
+  "name" : "Check for redeem unlocked tokens from homepage",
+  "fullName" : "Homepage.Check for redeem unlocked tokens from homepage",
+  "historyId" : "b45d53d5ab561581c8e6bb6b0fe6e9ee",
+  "time" : {
+    "start" : 1649258620076,
+    "stop" : 1649258627032,
+    "duration" : 6956
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1649258620076,
+        "stop" : 1649258622676,
+        "duration" : 2600
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "b94434f43a2068fb",
+        "name" : "Screenshot",
+        "source" : "b94434f43a2068fb.png",
+        "type" : "image/png",
+        "size" : 394394
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the check for redeemable tokens button",
+      "time" : {
+        "start" : 1649258622677,
+        "stop" : 1649258624245,
+        "duration" : 1568
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "2e49a6d1edc387a4",
+        "name" : "Screenshot",
+        "source" : "2e49a6d1edc387a4.png",
+        "type" : "image/png",
+        "size" : 282319
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click the check for redeemable tokens button",
+      "time" : {
+        "start" : 1649258624245,
+        "stop" : 1649258625868,
+        "duration" : 1623
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "3ce105ce98e12664",
+        "name" : "Screenshot",
+        "source" : "3ce105ce98e12664.png",
+        "type" : "image/png",
+        "size" : 214151
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I am taken to the \"vesting\" page",
+      "time" : {
+        "start" : 1649258625869,
+        "stop" : 1649258627032,
+        "duration" : 1163
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "afdcf1c55534b830",
+        "name" : "Screenshot",
+        "source" : "afdcf1c55534b830.png",
+        "type" : "image/png",
+        "size" : 214151
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Check for redeem unlocked tokens from homepage"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 6,
+        "unknown" : 0,
+        "total" : 6
+      },
+      "items" : [ {
+        "uid" : "6c20f0d98896746b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/6c20f0d98896746b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649257777448,
+          "stop" : 1649257777468,
+          "duration" : 20
+        }
+      }, {
+        "uid" : "d9d7d51525c3cdbc",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/d9d7d51525c3cdbc",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649246830395,
+          "stop" : 1649246833713,
+          "duration" : 3318
+        }
+      }, {
+        "uid" : "71949693e04b8982",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/71949693e04b8982",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649241089032,
+          "stop" : 1649241092331,
+          "duration" : 3299
+        }
+      }, {
+        "uid" : "ee1bba9877637273",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/ee1bba9877637273",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649240783652,
+          "stop" : 1649240783672,
+          "duration" : 20
+        }
+      }, {
+        "uid" : "9b07094425656e68",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/183//#testresult/9b07094425656e68",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649239743518,
+          "stop" : 1649239743559,
+          "duration" : 41
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "e11a6b5f69047a51.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

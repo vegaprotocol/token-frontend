@@ -1,0 +1,211 @@
+{
+  "uid" : "2cb9751353a0cfdd",
+  "name" : "Associate tokens through wallet",
+  "fullName" : "Staking page.Associate tokens through wallet",
+  "historyId" : "702a46c3c9200ee604094906aa343264",
+  "time" : {
+    "start" : 1649258781863,
+    "stop" : 1649258796562,
+    "duration" : 14699
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1649258781864,
+        "stop" : 1649258783404,
+        "duration" : 1540
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "15bbc2f263ecb357",
+        "name" : "Screenshot",
+        "source" : "15bbc2f263ecb357.png",
+        "type" : "image/png",
+        "size" : 263095
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I connect to the vega wallet",
+      "time" : {
+        "start" : 1649258783404,
+        "stop" : 1649258785852,
+        "duration" : 2448
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "b3f56cca2080a2b2",
+        "name" : "Screenshot",
+        "source" : "b3f56cca2080a2b2.png",
+        "type" : "image/png",
+        "size" : 244620
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I associate some tokens from wallet",
+      "time" : {
+        "start" : 1649258785852,
+        "stop" : 1649258795919,
+        "duration" : 10067
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "9246965183a9ad46",
+        "name" : "Screenshot",
+        "source" : "9246965183a9ad46.png",
+        "type" : "image/png",
+        "size" : 246921
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the pending transactions button is shown",
+      "time" : {
+        "start" : 1649258795919,
+        "stop" : 1649258796561,
+        "duration" : 642
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "ae9928ab52e731df",
+        "name" : "Screenshot",
+        "source" : "ae9928ab52e731df.png",
+        "type" : "image/png",
+        "size" : 246929
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking page"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Associate tokens through wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 3,
+        "unknown" : 0,
+        "total" : 6
+      },
+      "items" : [ {
+        "uid" : "4922609969bad87b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/4922609969bad87b",
+        "status" : "broken",
+        "statusDetails" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1649257837127,
+          "stop" : 1649257837139,
+          "duration" : 12
+        }
+      }, {
+        "uid" : "58229b34c9c1502b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/58229b34c9c1502b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649246939585,
+          "stop" : 1649246958345,
+          "duration" : 18760
+        }
+      }, {
+        "uid" : "7a9860178011cac2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/7a9860178011cac2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649241200327,
+          "stop" : 1649241213904,
+          "duration" : 13577
+        }
+      }, {
+        "uid" : "faca9d5b05f1ecbb",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/faca9d5b05f1ecbb",
+        "status" : "broken",
+        "statusDetails" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1649240860102,
+          "stop" : 1649240860116,
+          "duration" : 14
+        }
+      }, {
+        "uid" : "97e6dd47b2f05b9c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/183//#testresult/97e6dd47b2f05b9c",
+        "status" : "broken",
+        "statusDetails" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1649239811882,
+          "stop" : 1649239811901,
+          "duration" : 19
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "2cb9751353a0cfdd.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
