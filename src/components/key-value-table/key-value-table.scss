@@ -38,19 +38,16 @@ $ns: "key-value-table";
 
   th {
     word-break: break-word;
+    text-align: left;
+    font-weight: 500;
+    color: $white;
+    text-transform: uppercase;
   }
 
   th,
   td {
     vertical-align: top;
     padding: 5px;
-  }
-
-  th {
-    text-align: left;
-    font-weight: 500;
-    color: $white;
-    text-transform: uppercase;
   }
 
   td {
@@ -65,10 +62,24 @@ $ns: "key-value-table";
   &.#{$ns}--numerical {
     td {
       font-family: $font-mono;
-    }
 
-    td button {
-      font-family: $font-main;
+      & button {
+        font-family: $font-main;
+      }
+    }
+  }
+
+  &.#{$ns}--muted {
+    tr {
+      border-color: $gray1;
+
+      &:first-child {
+        border-top: none;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
     }
   }
 }

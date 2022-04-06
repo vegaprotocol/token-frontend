@@ -197,6 +197,7 @@ export const EthWallet = () => {
               <div>
                 <button
                   className="eth-wallet__pending-tx-button"
+                  data-testid="pending-transactions-btn"
                   onClick={() =>
                     appDispatch({
                       type: AppStateActionType.SET_TRANSACTION_OVERLAY,

@@ -17,10 +17,6 @@ export interface ProposalFields_party {
   id: string;
 }
 
-export interface ProposalFields_terms_change_NewFreeform {
-  __typename: "NewFreeform";
-}
-
 export interface ProposalFields_terms_change_NewMarket_instrument {
   __typename: "InstrumentConfiguration";
   /**
@@ -31,6 +27,14 @@ export interface ProposalFields_terms_change_NewMarket_instrument {
 
 export interface ProposalFields_terms_change_NewMarket {
   __typename: "NewMarket";
+  /**
+   * Decimal places used for the new market
+   */
+  decimalPlaces: number;
+  /**
+   * Metadata for this instrument, tags
+   */
+  metadata: string[] | null;
   /**
    * New market instrument configuration
    */
@@ -89,7 +93,23 @@ export interface ProposalFields_terms_change_UpdateNetworkParameter {
   networkParameter: ProposalFields_terms_change_UpdateNetworkParameter_networkParameter;
 }
 
-export type ProposalFields_terms_change = ProposalFields_terms_change_NewFreeform | ProposalFields_terms_change_NewMarket | ProposalFields_terms_change_UpdateMarket | ProposalFields_terms_change_NewAsset | ProposalFields_terms_change_UpdateNetworkParameter;
+export interface ProposalFields_terms_change_NewFreeform {
+  __typename: "NewFreeform";
+  /**
+   * The URL containing content that describes the proposal
+   */
+  url: string;
+  /**
+   * A short description of what is being proposed
+   */
+  description: string;
+  /**
+   * The hash on the content of the URL
+   */
+  hash: string;
+}
+
+export type ProposalFields_terms_change = ProposalFields_terms_change_NewMarket | ProposalFields_terms_change_UpdateMarket | ProposalFields_terms_change_NewAsset | ProposalFields_terms_change_UpdateNetworkParameter | ProposalFields_terms_change_NewFreeform;
 
 export interface ProposalFields_terms {
   __typename: "ProposalTerms";
@@ -247,6 +267,10 @@ export interface ProposalFields {
    * Reason for the proposal to be rejected by the core
    */
   rejectionReason: ProposalRejectionReason | null;
+  /**
+   * Error details of the rejectionReason
+   */
+  errorDetails: string | null;
   /**
    * Party that prepared the proposal
    */

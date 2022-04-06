@@ -12,7 +12,6 @@ Given(/^I have not connected my vega wallet$/, () => {
 Given(/^I have not connected my eth wallet$/, () => {
   $('button=Disconnect').waitForDisplayed({timeout: 10000,timeoutMsg: "Disconnect Ethereum wallet Button not displayed",})
   $('button=Disconnect').click()
-  // HomePage.disconnectWalletBtn[0].click();
 });  
 
 Given(/^I navigate to not found page$/, () => {
@@ -130,3 +129,10 @@ Then(
     // HomePage.connectToEthWallet();
   }
 );
+
+Then(
+  /^I can see the 404 error page$/, ()=>{
+    expect($('.heading__title')).toHaveText('PAGE NOT FOUND')
+  }  
+);
+

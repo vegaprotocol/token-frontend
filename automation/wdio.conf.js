@@ -28,7 +28,10 @@ exports.config = {
                 "local":'true'
             },
             'goog:chromeOptions' : {
-                args: ['disable-popup-blocking','allow-insecure-localhost']
+                args: ['disable-popup-blocking','allow-insecure-localhost'],
+                extensions: [
+                require('fs').readFileSync('metamask_10_8_1_0.crx').toString('base64')
+            ]
             },
           }],
         //   logLevel: 'warn',
@@ -48,7 +51,7 @@ exports.config = {
     // Default timeout for all waitFor* commands.
     waitforTimeout: 30000,
     // Default timeout in milliseconds for requests
-    connectionRetryTimeout: 60000,
+    connectionRetryTimeout: 150000,
     // Default request retries count
     connectionRetryCount: 3,
     framework: 'cucumber',
@@ -88,13 +91,14 @@ exports.config = {
           Object.keys(commands).forEach(key => {
               console.log('Adding custom command - ',key)
           browser.addCommand(key, commands[key]);
-              })
+              }),
+          browser.switchWindow('Vega');
           },
 
     afterStep: function (step, scenario, result, context) {
-      if (!result.passed){
+      // if (!result.passed){
         browser.takeScreenshot()
-      }
+      // }
     },
 
     onComplete: function() {

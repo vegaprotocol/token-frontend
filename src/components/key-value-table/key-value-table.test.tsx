@@ -34,3 +34,33 @@ it("Renders the correct elements", () => {
   expect(rows[1].firstChild).toHaveTextContent("My label 2");
   expect(rows[1].children[1]).toHaveTextContent("My value 2");
 });
+
+it("Applies numeric class if prop is passed", () => {
+  render(
+    <KeyValueTable numerical={true} {...props}>
+      <KeyValueTableRow>
+        <td>My label</td>
+        <td>My value</td>
+      </KeyValueTableRow>
+    </KeyValueTable>
+  );
+
+  expect(screen.getByTestId("key-value-table")).toHaveClass(
+    "key-value-table--numerical"
+  );
+});
+
+it("Applies muted class if prop is passed", () => {
+  render(
+    <KeyValueTable muted={true} {...props}>
+      <KeyValueTableRow>
+        <td>My label</td>
+        <td>My value</td>
+      </KeyValueTableRow>
+    </KeyValueTable>
+  );
+
+  expect(screen.getByTestId("key-value-table")).toHaveClass(
+    "key-value-table--muted"
+  );
+});

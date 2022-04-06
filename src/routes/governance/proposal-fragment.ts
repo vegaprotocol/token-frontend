@@ -7,6 +7,7 @@ export const PROPOSALS_FRAGMENT = gql`
     state
     datetime
     rejectionReason
+    errorDetails
     party {
       id
     }
@@ -15,6 +16,8 @@ export const PROPOSALS_FRAGMENT = gql`
       enactmentDatetime
       change {
         ... on NewMarket {
+          decimalPlaces
+          metadata
           instrument {
             name
           }
@@ -39,6 +42,11 @@ export const PROPOSALS_FRAGMENT = gql`
             key
             value
           }
+        }
+        ... on NewFreeform {
+          url
+          description
+          hash
         }
       }
     }
