@@ -4,6 +4,7 @@ import { useDocumentTitle } from "../../hooks/use-document-title";
 import { RouteChildProps } from "..";
 import { ProposalContainer } from "./proposal";
 import { ProposalsContainer } from "./proposals";
+import { ProposeContainer } from "./propose";
 
 const GovernanceRouter = ({ name }: RouteChildProps) => {
   const match = useRouteMatch();
@@ -13,6 +14,9 @@ const GovernanceRouter = ({ name }: RouteChildProps) => {
     <Switch>
       <Route path={match.path} exact>
         <ProposalsContainer />
+      </Route>
+      <Route path={`${match.path}/propose`}>
+        <ProposeContainer />
       </Route>
       <Route path={`${match.path}/:proposalId`}>
         <ProposalContainer />
