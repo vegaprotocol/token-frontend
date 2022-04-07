@@ -53,10 +53,8 @@ Then(/^the epoch countdown timer is counting down$/, () => {
 })
 
 When(/^I click on a validator$/, () => {
-    browser.pause(2000)
-    // $$('.node-list__item-name"]').waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "Validator list not displayed"})
+    $$('.node-list__item-name"]').waitForDisplayed({timeout:30000,reverse:false,timeoutMsg: "Validator list not displayed"})
     validatorName = $$('.node-list__item-name')[0].getText()
-    // $$('.node-list__item-name"]').waitForClickable({timeout:30000,reverse:false,timeoutMsg: "Validator list not clickable"})
     $$('.node-list__item-name')[0].click()
 })
 

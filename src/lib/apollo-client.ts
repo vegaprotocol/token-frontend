@@ -159,7 +159,9 @@ export function createClient() {
   });
 
   const errorLink = onError(({ graphQLErrors, networkError }) => {
+    // eslint-disable-next-line no-console
     console.log(graphQLErrors);
+    // eslint-disable-next-line no-console
     console.log(networkError);
   });
 

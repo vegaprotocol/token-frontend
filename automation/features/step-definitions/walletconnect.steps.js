@@ -1,17 +1,9 @@
-const { Given, When, Then } = require('@wdio/cucumber-framework');
-// const Hooks = require('../../Hooks');
+const { When, Then } = require("@wdio/cucumber-framework");
 
-// const LoginPage = require('../pageobjects/login.page');
-// const SecurePage = require('../pageobjects/secure.page');
-
-// const pages = {
-//     login: LoginPage
-// }
-
-Then(/^I can see my ethereum key (.*) is shown$/,  (ethKey) => {
-    console.log($('.callout__title').getText())
-    expect($('.callout__title').getText()).toContain(`Ethereum wallet connected: ${ethKey.replace("'", "")}`)
-    
+Then(/^I can see my ethereum key (.*) is shown$/, (ethKey) => {
+  expect($(".callout__title").getText()).toContain(
+    `Ethereum wallet connected: ${ethKey.replace("'", "")}`
+  );
 });
 
 When(/^I connect to the vega wallet$/,()=>{
