@@ -17,7 +17,6 @@ Feature: Staking and Association tests
     And the association of "0.10" has been successful
 
   Scenario: Associate tokens through vesting contract
-    And I pause some "30000"
     And I associate "0.10" tokens from "vesting contract"
     Then I can see the pending transactions button is shown
     And the association of "0.10" has been successful

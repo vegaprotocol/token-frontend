@@ -92,10 +92,9 @@ exports.config = {
     // Add commands to WebdriverIO
     /* eslint-disable no-unused-expressions */
     Object.keys(commands).forEach((key) => {
-      console.log("Adding custom command - ", key);
       browser.addCommand(key, commands[key]);
-    }),
-      browser.switchWindow("Vega");
+    });
+    browser.switchWindow("Vega");
   },
 
   afterStep: function () {

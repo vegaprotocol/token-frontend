@@ -37,10 +37,12 @@ When(
     tokensNotAssociatedInVegaWalletText = $$(
       '[data-testid="not-associated-token-amount"]'
     )[2].getText();
+    /* eslint-disable  @typescript-eslint/no-unused-vars */
     tokensAssociatedInVegaWallet = tokensAssociatedInVegaWalletText.replace(
       ",",
       ""
     );
+    /* eslint-disable  @typescript-eslint/no-unused-vars */
     tokensNotAssociatedInVegaWallet =
       tokensNotAssociatedInVegaWalletText.replace(",", "");
     stakingPage.disassociateTokens(tokenAmount, sourceOfFunds);
@@ -289,7 +291,7 @@ Then(/^the pending transactions modal can be closed$/, () => {
   expect(browser.getByTestId("pending-transactions-modal")).not.toBeDisplayed();
 });
 
-When(/^the association of "([^"]*)?" has been successful$/, (tokenAmount) => {
+When(/^the association of "([^"]*)?" has been successful$/, () => {
   expect(
     browser.waitUntil(
       () =>
@@ -301,28 +303,21 @@ When(/^the association of "([^"]*)?" has been successful$/, (tokenAmount) => {
       }
     )
   ).toBeTruthy();
-  browser.pause(2000);
-  console.log($$('[data-testid="associated-token-amount"]')[2].getText());
 });
 
-When(
-  /^the disassociation of "([^"]*)?" has been successful$/,
-  (tokenAmount) => {
-    expect(
-      browser.waitUntil(
-        () =>
-          $$('[data-testid="associated-token-amount"]')[2].getText() !==
-          tokensAssociatedInVegaWalletText,
-        {
-          timeout: 600000,
-          timeoutMsg: "expected balance to be different",
-        }
-      )
-    ).toBeTruthy();
-    browser.pause(2000);
-    console.log($$('[data-testid="associated-token-amount"]')[2].getText());
-  }
-);
+When(/^the disassociation of "([^"]*)?" has been successful$/, () => {
+  expect(
+    browser.waitUntil(
+      () =>
+        $$('[data-testid="associated-token-amount"]')[2].getText() !==
+        tokensAssociatedInVegaWalletText,
+      {
+        timeout: 600000,
+        timeoutMsg: "expected balance to be different",
+      }
+    )
+  ).toBeTruthy();
+});
 When(
   /^I can see "([^"]*)?" vega has been removed from staking$/,
   (tokenAmount) => {

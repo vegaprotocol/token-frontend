@@ -24,14 +24,13 @@ When(/^I connect Vega wallet$/, () => {
 });
 
 Then(/^I am taken to the "([^"]*)?" page$/, (page) => {
-  if (page == "home") {
+  if (page === "home") {
     expect(browser).toHaveUrl(browser.options.baseUrl + "/");
   } else expect(browser).toHaveUrlContaining("/" + page);
 });
 
 Then(/^I can see the header title is "([^"]*)?"$/, (headerTitle) => {
   const displayedHeaderTitle = $(".heading__title").getText();
-  console.log(headerTitle.toUpperCase());
   expect(displayedHeaderTitle).toHaveText(headerTitle.toUpperCase());
 });
 
