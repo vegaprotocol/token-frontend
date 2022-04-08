@@ -65,6 +65,7 @@ Then(/^the epoch countdown timer is counting down$/, () => {
   const currentCountdownTimerText = browser
     .getByTestId("current-epoch-ends-in")
     .getText();
+  /* eslint-disable wdio/no-pause */
   browser.pause(2100); // let some time pass
   expect(browser.getByTestId("current-epoch-ends-in").getText()).not.toEqual(
     currentCountdownTimerText
