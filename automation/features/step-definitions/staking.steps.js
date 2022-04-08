@@ -2,9 +2,11 @@ const { When, Then } = require("@wdio/cucumber-framework");
 const stakingPage = require("../pageobjects/staking.page");
 let currentAmountOfTokensInWallet = "";
 let validatorName = "";
+/* eslint-disable  no-unused-vars */
 let tokensAssociatedInVegaWallet = "";
 let tokensAssociatedInVegaWalletText = "";
 let tokensNotAssociatedInVegaWalletText = "";
+/* eslint-disable  no-unused-vars */
 let tokensNotAssociatedInVegaWallet = "";
 
 When(
