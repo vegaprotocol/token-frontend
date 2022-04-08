@@ -1,0 +1,171 @@
+{
+  "uid" : "6cdc814e606c3109",
+  "name" : "Cannot disassociate more tokens through wallet than available",
+  "fullName" : "Staking and Association tests.Cannot disassociate more tokens through wallet than available",
+  "historyId" : "e8b998c24236a4d68b976a4e61d43a96",
+  "time" : {
+    "start" : 1649417919560,
+    "stop" : 1649417961527,
+    "duration" : 41967
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: Wallet radio btn not displayed",
+  "statusTrace" : "Error: Wallet radio btn not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:138:25)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: Wallet radio btn not displayed",
+    "statusTrace" : "Error: Wallet radio btn not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:138:25)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1649417919560,
+        "stop" : 1649417920322,
+        "duration" : 762
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "52b7487fd5e88c36",
+        "name" : "Screenshot",
+        "source" : "52b7487fd5e88c36.png",
+        "type" : "image/png",
+        "size" : 411616
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I disassociate \"0.10\" tokens from \"wallet\"",
+      "time" : {
+        "start" : 1649417920322,
+        "stop" : 1649417930838,
+        "duration" : 10516
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "3b85d2875ff9d489",
+        "name" : "Screenshot",
+        "source" : "3b85d2875ff9d489.png",
+        "type" : "image/png",
+        "size" : 196945
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on the \"wallet\" radio button",
+      "time" : {
+        "start" : 1649417930838,
+        "stop" : 1649417961527,
+        "duration" : 30689
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: Wallet radio btn not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:138:25)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "be96a9ff273dfd64",
+        "name" : "Screenshot",
+        "source" : "be96a9ff273dfd64.png",
+        "type" : "image/png",
+        "size" : 204651
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Cannot disassociate more tokens through wallet than available"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "951c8340a1090d24",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/951c8340a1090d24",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate btn  was not found",
+        "time" : {
+          "start" : 1649417127459,
+          "stop" : 1649417159836,
+          "duration" : 32377
+        }
+      }, {
+        "uid" : "7ae4d4befd59bf0a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/7ae4d4befd59bf0a",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate btn  was not found",
+        "time" : {
+          "start" : 1649415667497,
+          "stop" : 1649415699806,
+          "duration" : 32309
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "6cdc814e606c3109.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

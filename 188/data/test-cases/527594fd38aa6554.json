@@ -1,0 +1,235 @@
+{
+  "uid" : "527594fd38aa6554",
+  "name" : "Invalid claims code will show error",
+  "fullName" : "Claim codes.Invalid claims code will show error",
+  "historyId" : "39a15c833b071a37ff175b7229368de0",
+  "time" : {
+    "start" : 1649417532654,
+    "stop" : 1649417556624,
+    "duration" : 23970
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"claim?r=odiuhfn\" page",
+      "time" : {
+        "start" : 1649417532654,
+        "stop" : 1649417534023,
+        "duration" : 1369
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "c032eff8de0b4efb",
+        "name" : "Screenshot",
+        "source" : "c032eff8de0b4efb.png",
+        "type" : "image/png",
+        "size" : 8731
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I connect my ethereum wallet",
+      "time" : {
+        "start" : 1649417534023,
+        "stop" : 1649417555961,
+        "duration" : 21938
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "5ef5bb074d4876fa",
+        "name" : "Screenshot",
+        "source" : "5ef5bb074d4876fa.png",
+        "type" : "image/png",
+        "size" : 309461
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I can see the heading title is \"CLAIM $VEGA TOKENS\"",
+      "time" : {
+        "start" : 1649417555961,
+        "stop" : 1649417556237,
+        "duration" : 276
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "78bbfe62e9ed8b84",
+        "name" : "Screenshot",
+        "source" : "78bbfe62e9ed8b84.png",
+        "type" : "image/png",
+        "size" : 218529
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the invalid claim code error \"Something doesn't look right. Please check the link again or the Vesting page to see if you have already claimed\"",
+      "time" : {
+        "start" : 1649417556238,
+        "stop" : 1649417556624,
+        "duration" : 386
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "70fb2dff6bf874e4",
+        "name" : "Screenshot",
+        "source" : "70fb2dff6bf874e4.png",
+        "type" : "image/png",
+        "size" : 218529
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-0"
+  }, {
+    "name" : "suite",
+    "value" : "Claim codes"
+  }, {
+    "name" : "testClass",
+    "value" : "Claim codes"
+  }, {
+    "name" : "testMethod",
+    "value" : "Invalid claims code will show error"
+  }, {
+    "name" : "package",
+    "value" : "Claim codes"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 9,
+        "unknown" : 0,
+        "total" : 9
+      },
+      "items" : [ {
+        "uid" : "2c06f5bb1e5ee57e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/2c06f5bb1e5ee57e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649416724091,
+          "stop" : 1649416739942,
+          "duration" : 15851
+        }
+      }, {
+        "uid" : "946b1c4850f6294b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/946b1c4850f6294b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649415255630,
+          "stop" : 1649415270220,
+          "duration" : 14590
+        }
+      }, {
+        "uid" : "de8fce771cb1517a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/185//#testresult/de8fce771cb1517a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649258470019,
+          "stop" : 1649258488444,
+          "duration" : 18425
+        }
+      }, {
+        "uid" : "5c3df52907f5562d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/5c3df52907f5562d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649257724251,
+          "stop" : 1649257724284,
+          "duration" : 33
+        }
+      }, {
+        "uid" : "66332e0b726c548e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/66332e0b726c548e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649246678137,
+          "stop" : 1649246712455,
+          "duration" : 34318
+        }
+      }, {
+        "uid" : "ab2069d4a148a795",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/ab2069d4a148a795",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649240957134,
+          "stop" : 1649240973252,
+          "duration" : 16118
+        }
+      }, {
+        "uid" : "1760bd294db11490",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/1760bd294db11490",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649240712866,
+          "stop" : 1649240712967,
+          "duration" : 101
+        }
+      }, {
+        "uid" : "fa12e26dc399a175",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/183//#testresult/fa12e26dc399a175",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649239667926,
+          "stop" : 1649239668016,
+          "duration" : 90
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "527594fd38aa6554.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

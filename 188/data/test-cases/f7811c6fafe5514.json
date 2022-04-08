@@ -1,0 +1,150 @@
+{
+  "uid" : "f7811c6fafe5514",
+  "name" : "Associate tokens through vesting contract",
+  "fullName" : "Staking and Association tests.Associate tokens through vesting contract",
+  "historyId" : "a946109617038e803ba8a7b96a6eb903",
+  "time" : {
+    "start" : 1649417913053,
+    "stop" : 1649417914589,
+    "duration" : 1536
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "TypeError: Cannot read property 'getText' of undefined",
+  "statusTrace" : "TypeError: Cannot read property 'getText' of undefined\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:17:9)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "TypeError: Cannot read property 'getText' of undefined",
+    "statusTrace" : "TypeError: Cannot read property 'getText' of undefined\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:17:9)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1649417913053,
+        "stop" : 1649417913760,
+        "duration" : 707
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "be46767f63bce606",
+        "name" : "Screenshot",
+        "source" : "be46767f63bce606.png",
+        "type" : "image/png",
+        "size" : 8738
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I associate \"0.10\" tokens from \"vesting contract\"",
+      "time" : {
+        "start" : 1649417913760,
+        "stop" : 1649417914589,
+        "duration" : 829
+      },
+      "status" : "broken",
+      "statusMessage" : "TypeError: Cannot read property 'getText' of undefined\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:17:9)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "1feaed22cd386fec",
+        "name" : "Screenshot",
+        "source" : "1feaed22cd386fec.png",
+        "type" : "image/png",
+        "size" : 297330
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Associate tokens through vesting contract"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "33de564679baf915",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/33de564679baf915",
+        "status" : "broken",
+        "statusDetails" : "Step \"I pause some \"30000\"\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.",
+        "time" : {
+          "start" : 1649417091744,
+          "stop" : 1649417093329,
+          "duration" : 1585
+        }
+      }, {
+        "uid" : "f214fc716947443c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/f214fc716947443c",
+        "status" : "broken",
+        "statusDetails" : "Step \"I pause some \"30000\"\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.",
+        "time" : {
+          "start" : 1649415631926,
+          "stop" : 1649415633034,
+          "duration" : 1108
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "f7811c6fafe5514.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
