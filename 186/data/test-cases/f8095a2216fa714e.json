@@ -1,0 +1,217 @@
+{
+  "uid" : "f8095a2216fa714e",
+  "name" : "Navigate to a not found page will return page error",
+  "fullName" : "Homepage.Navigate to a not found page will return page error",
+  "historyId" : "5e2eacc32e5bd56b94ebf36d1028332b",
+  "time" : {
+    "start" : 1649415388375,
+    "stop" : 1649415391468,
+    "duration" : 3093
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1649415388375,
+        "stop" : 1649415389388,
+        "duration" : 1013
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "4cafa4a70262dae8",
+        "name" : "Screenshot",
+        "source" : "4cafa4a70262dae8.png",
+        "type" : "image/png",
+        "size" : 8713
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Given I navigate to not found page",
+      "time" : {
+        "start" : 1649415389388,
+        "stop" : 1649415390432,
+        "duration" : 1044
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "6272529dc3acc523",
+        "name" : "Screenshot",
+        "source" : "6272529dc3acc523.png",
+        "type" : "image/png",
+        "size" : 8732
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the url includes \"not-found\"",
+      "time" : {
+        "start" : 1649415390432,
+        "stop" : 1649415391056,
+        "duration" : 624
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "9786b3d143178e3b",
+        "name" : "Screenshot",
+        "source" : "9786b3d143178e3b.png",
+        "type" : "image/png",
+        "size" : 186115
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And the error message is displayed \"This page can not be found, please check the URL and try again.\" on page",
+      "time" : {
+        "start" : 1649415391056,
+        "stop" : 1649415391468,
+        "duration" : 412
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "35fced8088fa7fb4",
+        "name" : "Screenshot",
+        "source" : "35fced8088fa7fb4.png",
+        "type" : "image/png",
+        "size" : 186115
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Navigate to a not found page will return page error"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 7,
+        "unknown" : 0,
+        "total" : 7
+      },
+      "items" : [ {
+        "uid" : "343ab11d0c0ef789",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/185//#testresult/343ab11d0c0ef789",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649258638281,
+          "stop" : 1649258645926,
+          "duration" : 7645
+        }
+      }, {
+        "uid" : "eabdb365f4e1e3af",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/eabdb365f4e1e3af",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649257777491,
+          "stop" : 1649257777510,
+          "duration" : 19
+        }
+      }, {
+        "uid" : "2d4e589bb144085a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/2d4e589bb144085a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649246839078,
+          "stop" : 1649246842759,
+          "duration" : 3681
+        }
+      }, {
+        "uid" : "2eabf569f046a49b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/2eabf569f046a49b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649241097518,
+          "stop" : 1649241101104,
+          "duration" : 3586
+        }
+      }, {
+        "uid" : "19d34bafca8d02da",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/19d34bafca8d02da",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649240783695,
+          "stop" : 1649240783717,
+          "duration" : 22
+        }
+      }, {
+        "uid" : "d0774a2ffe79d503",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/183//#testresult/d0774a2ffe79d503",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649239743624,
+          "stop" : 1649239743671,
+          "duration" : 47
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "f8095a2216fa714e.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

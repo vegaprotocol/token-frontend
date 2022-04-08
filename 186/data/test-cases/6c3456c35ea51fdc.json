@@ -1,0 +1,119 @@
+{
+  "uid" : "6c3456c35ea51fdc",
+  "name" : "Disassociate tokens through wallet",
+  "fullName" : "Staking and Association tests.Disassociate tokens through wallet",
+  "historyId" : "b46da9954f537da53e9193eecec78ff3",
+  "time" : {
+    "start" : 1649415665396,
+    "stop" : 1649415667496,
+    "duration" : 2100
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "TypeError: Cannot read property 'getText' of undefined",
+  "statusTrace" : "TypeError: Cannot read property 'getText' of undefined\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:34:9)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "TypeError: Cannot read property 'getText' of undefined",
+    "statusTrace" : "TypeError: Cannot read property 'getText' of undefined\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:34:9)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1649415665396,
+        "stop" : 1649415666552,
+        "duration" : 1156
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "e9995df3789a006a",
+        "name" : "Screenshot",
+        "source" : "e9995df3789a006a.png",
+        "type" : "image/png",
+        "size" : 8715
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I disassociate \"0.10\" tokens from \"wallet\"",
+      "time" : {
+        "start" : 1649415666552,
+        "stop" : 1649415667496,
+        "duration" : 944
+      },
+      "status" : "broken",
+      "statusMessage" : "TypeError: Cannot read property 'getText' of undefined\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:34:9)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "79505f753587ed66",
+        "name" : "Screenshot",
+        "source" : "79505f753587ed66.png",
+        "type" : "image/png",
+        "size" : 411463
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Disassociate tokens through wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "6c3456c35ea51fdc.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

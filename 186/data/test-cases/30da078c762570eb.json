@@ -1,0 +1,220 @@
+{
+  "uid" : "30da078c762570eb",
+  "name" : "Can navigate to Vesting page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Vesting page using main nav tab",
+  "historyId" : "91edaff876b9e227e3c02278f9214d3a",
+  "time" : {
+    "start" : 1649415391468,
+    "stop" : 1649415394371,
+    "duration" : 2903
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1649415391468,
+        "stop" : 1649415392985,
+        "duration" : 1517
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "a1f5f46ef7de8f56",
+        "name" : "Screenshot",
+        "source" : "a1f5f46ef7de8f56.png",
+        "type" : "image/png",
+        "size" : 399461
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on \"Vesting\" on main nav",
+      "time" : {
+        "start" : 1649415392985,
+        "stop" : 1649415393713,
+        "duration" : 728
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "963a1d9fe45cdeb2",
+        "name" : "Screenshot",
+        "source" : "963a1d9fe45cdeb2.png",
+        "type" : "image/png",
+        "size" : 214275
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I can see \"Vesting\" button is clearly highlighted after click",
+      "time" : {
+        "start" : 1649415393713,
+        "stop" : 1649415394070,
+        "duration" : 357
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "df1b8c23e5921b5f",
+        "name" : "Screenshot",
+        "source" : "df1b8c23e5921b5f.png",
+        "type" : "image/png",
+        "size" : 214275
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I am taken to the \"vesting\" page",
+      "time" : {
+        "start" : 1649415394070,
+        "stop" : 1649415394371,
+        "duration" : 301
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "2c76cbefddf0f4cf",
+        "name" : "Screenshot",
+        "source" : "2c76cbefddf0f4cf.png",
+        "type" : "image/png",
+        "size" : 214275
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Vesting page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 3,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 4,
+        "unknown" : 0,
+        "total" : 7
+      },
+      "items" : [ {
+        "uid" : "44d87c0ab492a96e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/185//#testresult/44d87c0ab492a96e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649258645926,
+          "stop" : 1649258652539,
+          "duration" : 6613
+        }
+      }, {
+        "uid" : "bc2a77f791c4d56",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/bc2a77f791c4d56",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1649257777510,
+          "stop" : 1649257777526,
+          "duration" : 16
+        }
+      }, {
+        "uid" : "b2df2bb3b80fe167",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/b2df2bb3b80fe167",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649246842759,
+          "stop" : 1649246845604,
+          "duration" : 2845
+        }
+      }, {
+        "uid" : "59201331c81afa0",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/59201331c81afa0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649241101104,
+          "stop" : 1649241103720,
+          "duration" : 2616
+        }
+      }, {
+        "uid" : "c1c38eef9f40fe70",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/c1c38eef9f40fe70",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1649240783717,
+          "stop" : 1649240783735,
+          "duration" : 18
+        }
+      }, {
+        "uid" : "38230b8640125841",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/183//#testresult/38230b8640125841",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1649239743671,
+          "stop" : 1649239743704,
+          "duration" : 33
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "30da078c762570eb.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

@@ -1,0 +1,220 @@
+{
+  "uid" : "e9647281b72e8ca6",
+  "name" : "Can navigate to Home page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Home page using main nav tab",
+  "historyId" : "6fab3f7524031af7e2c647aac983c3ff",
+  "time" : {
+    "start" : 1649415400676,
+    "stop" : 1649415403458,
+    "duration" : 2782
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1649415400677,
+        "stop" : 1649415401594,
+        "duration" : 917
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "3e4c778bf7bb418e",
+        "name" : "Screenshot",
+        "source" : "3e4c778bf7bb418e.png",
+        "type" : "image/png",
+        "size" : 8745
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on \"Home\" on main nav",
+      "time" : {
+        "start" : 1649415401594,
+        "stop" : 1649415402671,
+        "duration" : 1077
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "d99fbde978256061",
+        "name" : "Screenshot",
+        "source" : "d99fbde978256061.png",
+        "type" : "image/png",
+        "size" : 282225
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I can see \"Home\" button is clearly highlighted after click",
+      "time" : {
+        "start" : 1649415402671,
+        "stop" : 1649415403106,
+        "duration" : 435
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "a123f19938553efc",
+        "name" : "Screenshot",
+        "source" : "a123f19938553efc.png",
+        "type" : "image/png",
+        "size" : 282225
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I am taken to the \"home\" page",
+      "time" : {
+        "start" : 1649415403106,
+        "stop" : 1649415403457,
+        "duration" : 351
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "deaccdd743ae4849",
+        "name" : "Screenshot",
+        "source" : "deaccdd743ae4849.png",
+        "type" : "image/png",
+        "size" : 282225
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Home page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 3,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 4,
+        "unknown" : 0,
+        "total" : 7
+      },
+      "items" : [ {
+        "uid" : "c2d4b4798b4dba65",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/185//#testresult/c2d4b4798b4dba65",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649258667032,
+          "stop" : 1649258674125,
+          "duration" : 7093
+        }
+      }, {
+        "uid" : "b103bdc1e36de69d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/b103bdc1e36de69d",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1649257777550,
+          "stop" : 1649257777559,
+          "duration" : 9
+        }
+      }, {
+        "uid" : "1180d4d5d6f9e52f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/1180d4d5d6f9e52f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649246851499,
+          "stop" : 1649246854333,
+          "duration" : 2834
+        }
+      }, {
+        "uid" : "1d8be90c07faf59d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/1d8be90c07faf59d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649241109719,
+          "stop" : 1649241112269,
+          "duration" : 2550
+        }
+      }, {
+        "uid" : "fa6184f013562278",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/fa6184f013562278",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1649240783769,
+          "stop" : 1649240783785,
+          "duration" : 16
+        }
+      }, {
+        "uid" : "5b755d101d715c1e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/183//#testresult/5b755d101d715c1e",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1649239743772,
+          "stop" : 1649239743790,
+          "duration" : 18
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "e9647281b72e8ca6.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

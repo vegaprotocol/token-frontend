@@ -1,0 +1,125 @@
+{
+  "uid" : "93537516c79e4dfc",
+  "name" : "Check wallet field entry",
+  "fullName" : "Withdraw page.Check wallet field entry",
+  "historyId" : "86d619d8b6252719c65a00c589c789fc",
+  "time" : {
+    "start" : 1649415828258,
+    "stop" : 0,
+    "duration" : -1649415828258
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "unknown",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "unknown",
+    "steps" : [ {
+      "name" : "Given I navigate to \"withdraw\" page",
+      "time" : {
+        "start" : 1649415828261,
+        "stop" : 1649415831938,
+        "duration" : 3677
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "81dad8b4370a3a96",
+        "name" : "Screenshot",
+        "source" : "81dad8b4370a3a96.png",
+        "type" : "image/png",
+        "size" : 8742
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Given I connect my ethereum wallet",
+      "time" : {
+        "start" : 1649415831938,
+        "stop" : 1649415855648,
+        "duration" : 23710
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "4801b11b6eeab5ed",
+        "name" : "Screenshot",
+        "source" : "4801b11b6eeab5ed.png",
+        "type" : "image/png",
+        "size" : 308803
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I connect to the vega wallet",
+      "time" : {
+        "start" : 1649415855648,
+        "stop" : 1649415855658,
+        "duration" : 10
+      },
+      "status" : "skipped",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-6"
+  }, {
+    "name" : "suite",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "testClass",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Check wallet field entry"
+  }, {
+    "name" : "package",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "93537516c79e4dfc.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

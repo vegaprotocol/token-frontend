@@ -1,0 +1,119 @@
+{
+  "uid" : "c2736b28f35b8fbf",
+  "name" : "Invalid wallet address error message is shown if user enters an invalid wallet address",
+  "fullName" : "Withdraw page.Invalid wallet address error message is shown if user enters an invalid wallet address",
+  "historyId" : "2e7ebd0bffca55f3e09ec81c113e66e4",
+  "time" : {
+    "start" : 1649415855660,
+    "stop" : 1649415868463,
+    "duration" : 12803
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: Enter wallet address manually link not displayed",
+  "statusTrace" : "Error: Enter wallet address manually link not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/withdraw.steps.js:16:48)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: Enter wallet address manually link not displayed",
+    "statusTrace" : "Error: Enter wallet address manually link not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/withdraw.steps.js:16:48)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"withdraw\" page",
+      "time" : {
+        "start" : 1649415855660,
+        "stop" : 1649415857720,
+        "duration" : 2060
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "629db5998d66fb86",
+        "name" : "Screenshot",
+        "source" : "629db5998d66fb86.png",
+        "type" : "image/png",
+        "size" : 8732
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click the link to enter a new wallet address",
+      "time" : {
+        "start" : 1649415857720,
+        "stop" : 1649415868462,
+        "duration" : 10742
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: Enter wallet address manually link not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/withdraw.steps.js:16:48)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "9e6f453d246cca9a",
+        "name" : "Screenshot",
+        "source" : "9e6f453d246cca9a.png",
+        "type" : "image/png",
+        "size" : 217282
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-6"
+  }, {
+    "name" : "suite",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "testClass",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Invalid wallet address error message is shown if user enters an invalid wallet address"
+  }, {
+    "name" : "package",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "c2736b28f35b8fbf.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
