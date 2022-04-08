@@ -1,0 +1,160 @@
+{
+  "uid" : "e96c6aa6b325fc4c",
+  "name" : "Cannot disassociate more tokens through wallet than available",
+  "fullName" : "Staking and Association tests.Cannot disassociate more tokens through wallet than available",
+  "historyId" : "e8b998c24236a4d68b976a4e61d43a96",
+  "time" : {
+    "start" : 1649420238952,
+    "stop" : 1649420270515,
+    "duration" : 31563
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: disassociate button not displayed",
+  "statusTrace" : "Error: disassociate button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:98:50)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: disassociate button not displayed",
+    "statusTrace" : "Error: disassociate button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:98:50)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1649420238952,
+        "stop" : 1649420239760,
+        "duration" : 808
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "23c698ac6633ccff",
+        "name" : "Screenshot",
+        "source" : "23c698ac6633ccff.png",
+        "type" : "image/png",
+        "size" : 8715
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I click the button to disassociate",
+      "time" : {
+        "start" : 1649420239760,
+        "stop" : 1649420270515,
+        "duration" : 30755
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: disassociate button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:98:50)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "8182abd6666d77f8",
+        "name" : "Screenshot",
+        "source" : "8182abd6666d77f8.png",
+        "type" : "image/png",
+        "size" : 295965
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Cannot disassociate more tokens through wallet than available"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 4,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "6cdc814e606c3109",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/6cdc814e606c3109",
+        "status" : "broken",
+        "statusDetails" : "Error: Wallet radio btn not displayed",
+        "time" : {
+          "start" : 1649417919560,
+          "stop" : 1649417961527,
+          "duration" : 41967
+        }
+      }, {
+        "uid" : "951c8340a1090d24",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/951c8340a1090d24",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate btn  was not found",
+        "time" : {
+          "start" : 1649417127459,
+          "stop" : 1649417159836,
+          "duration" : 32377
+        }
+      }, {
+        "uid" : "7ae4d4befd59bf0a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/7ae4d4befd59bf0a",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate btn  was not found",
+        "time" : {
+          "start" : 1649415667497,
+          "stop" : 1649415699806,
+          "duration" : 32309
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "e96c6aa6b325fc4c.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

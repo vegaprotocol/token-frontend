@@ -1,0 +1,160 @@
+{
+  "uid" : "a2fa75ed5e41bc49",
+  "name" : "Cannot stake more than what is associated",
+  "fullName" : "Staking and Association tests.Cannot stake more than what is associated",
+  "historyId" : "b8943f126db6c991ca238d55739ed443",
+  "time" : {
+    "start" : 1649420367242,
+    "stop" : 1649420368631,
+    "duration" : 1389
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "invalid selector: An invalid or illegal selector was specified",
+  "statusTrace" : "invalid selector: An invalid or illegal selector was specified\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x000000010c264ff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x000000010c1f0403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x000000010bdace38 chromedriver + 171576\n                3   chromedriver                        0x000000010bdafcb1 chromedriver + 183473\n                4   chromedriver                        0x000000010bdafad1 chromedriver + 182993\n                5   chromedriver                        0x000000010bdafd6c chromedriver + 183660\n                6   chromedriver                        0x000000010bde2246 chromedriver + 389702\n                7   chromedriver                        0x000000010bde26f1 chromedriver + 390897\n                8   chromedriver                        0x000000010be14861 chromedriver + 596065\n                9   chromedriver                        0x000000010bdffb3d chromedriver + 510781\n                10  chromedriver                        0x000000010be125d2 chromedriver + 587218\n                11  chromedriver                        0x000000010bdffd63 chromedriver + 511331\n                12  chromedriver                        0x000000010bdd582e chromedriver + 337966\n                13  chromedriver                        0x000000010bdd6b65 chromedriver + 342885\n                14  chromedriver                        0x000000010c220f1b __gxx_personality_v0 + 305451\n                15  chromedriver                        0x000000010c237e23 __gxx_personality_v0 + 399411\n                16  chromedriver                        0x000000010c23d8df __gxx_personality_v0 + 422639\n                17  chromedriver                        0x000000010c23917a __gxx_personality_v0 + 404362\n                18  chromedriver                        0x000000010c215541 __gxx_personality_v0 + 257873\n                19  chromedriver                        0x000000010c254f28 __gxx_personality_v0 + 518456\n                20  chromedriver                        0x000000010c2550b1 __gxx_personality_v0 + 518849\n                21  chromedriver                        0x000000010c26c498 __gxx_personality_v0 + 614056\n                22  libsystem_pthread.dylib             0x00007fff204588fc _pthread_start + 224\n                23  libsystem_pthread.dylib             0x00007fff20454443 thread_start + 15\n                    at Browser.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at global.$$ (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/runner/build/index.js:196:43)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:76:3)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "invalid selector: An invalid or illegal selector was specified",
+    "statusTrace" : "invalid selector: An invalid or illegal selector was specified\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x000000010c264ff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x000000010c1f0403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x000000010bdace38 chromedriver + 171576\n                3   chromedriver                        0x000000010bdafcb1 chromedriver + 183473\n                4   chromedriver                        0x000000010bdafad1 chromedriver + 182993\n                5   chromedriver                        0x000000010bdafd6c chromedriver + 183660\n                6   chromedriver                        0x000000010bde2246 chromedriver + 389702\n                7   chromedriver                        0x000000010bde26f1 chromedriver + 390897\n                8   chromedriver                        0x000000010be14861 chromedriver + 596065\n                9   chromedriver                        0x000000010bdffb3d chromedriver + 510781\n                10  chromedriver                        0x000000010be125d2 chromedriver + 587218\n                11  chromedriver                        0x000000010bdffd63 chromedriver + 511331\n                12  chromedriver                        0x000000010bdd582e chromedriver + 337966\n                13  chromedriver                        0x000000010bdd6b65 chromedriver + 342885\n                14  chromedriver                        0x000000010c220f1b __gxx_personality_v0 + 305451\n                15  chromedriver                        0x000000010c237e23 __gxx_personality_v0 + 399411\n                16  chromedriver                        0x000000010c23d8df __gxx_personality_v0 + 422639\n                17  chromedriver                        0x000000010c23917a __gxx_personality_v0 + 404362\n                18  chromedriver                        0x000000010c215541 __gxx_personality_v0 + 257873\n                19  chromedriver                        0x000000010c254f28 __gxx_personality_v0 + 518456\n                20  chromedriver                        0x000000010c2550b1 __gxx_personality_v0 + 518849\n                21  chromedriver                        0x000000010c26c498 __gxx_personality_v0 + 614056\n                22  libsystem_pthread.dylib             0x00007fff204588fc _pthread_start + 224\n                23  libsystem_pthread.dylib             0x00007fff20454443 thread_start + 15\n                    at Browser.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at global.$$ (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/runner/build/index.js:196:43)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:76:3)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1649420367242,
+        "stop" : 1649420368189,
+        "duration" : 947
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "34cd9074d035af9f",
+        "name" : "Screenshot",
+        "source" : "34cd9074d035af9f.png",
+        "type" : "image/png",
+        "size" : 263097
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on a validator",
+      "time" : {
+        "start" : 1649420368189,
+        "stop" : 1649420368631,
+        "duration" : 442
+      },
+      "status" : "broken",
+      "statusMessage" : "invalid selector: An invalid or illegal selector was specified\n                  (Session info: chrome=96.0.4664.110)\n                0   chromedriver                        0x000000010c264ff9 __gxx_personality_v0 + 584201\n                1   chromedriver                        0x000000010c1f0403 __gxx_personality_v0 + 106003\n                2   chromedriver                        0x000000010bdace38 chromedriver + 171576\n                3   chromedriver                        0x000000010bdafcb1 chromedriver + 183473\n                4   chromedriver                        0x000000010bdafad1 chromedriver + 182993\n                5   chromedriver                        0x000000010bdafd6c chromedriver + 183660\n                6   chromedriver                        0x000000010bde2246 chromedriver + 389702\n                7   chromedriver                        0x000000010bde26f1 chromedriver + 390897\n                8   chromedriver                        0x000000010be14861 chromedriver + 596065\n                9   chromedriver                        0x000000010bdffb3d chromedriver + 510781\n                10  chromedriver                        0x000000010be125d2 chromedriver + 587218\n                11  chromedriver                        0x000000010bdffd63 chromedriver + 511331\n                12  chromedriver                        0x000000010bdd582e chromedriver + 337966\n                13  chromedriver                        0x000000010bdd6b65 chromedriver + 342885\n                14  chromedriver                        0x000000010c220f1b __gxx_personality_v0 + 305451\n                15  chromedriver                        0x000000010c237e23 __gxx_personality_v0 + 399411\n                16  chromedriver                        0x000000010c23d8df __gxx_personality_v0 + 422639\n                17  chromedriver                        0x000000010c23917a __gxx_personality_v0 + 404362\n                18  chromedriver                        0x000000010c215541 __gxx_personality_v0 + 257873\n                19  chromedriver                        0x000000010c254f28 __gxx_personality_v0 + 518456\n                20  chromedriver                        0x000000010c2550b1 __gxx_personality_v0 + 518849\n                21  chromedriver                        0x000000010c26c498 __gxx_personality_v0 + 614056\n                22  libsystem_pthread.dylib             0x00007fff204588fc _pthread_start + 224\n                23  libsystem_pthread.dylib             0x00007fff20454443 thread_start + 15\n                    at Browser.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at global.$$ (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/runner/build/index.js:196:43)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:76:3)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "430d65afb8c4c10a",
+        "name" : "Screenshot",
+        "source" : "430d65afb8c4c10a.png",
+        "type" : "image/png",
+        "size" : 295965
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Cannot stake more than what is associated"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 4,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "24738b5a3d3624dc",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/24738b5a3d3624dc",
+        "status" : "broken",
+        "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+        "time" : {
+          "start" : 1649417983440,
+          "stop" : 1649417985139,
+          "duration" : 1699
+        }
+      }, {
+        "uid" : "7cfc6101c79f0bcd",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/7cfc6101c79f0bcd",
+        "status" : "broken",
+        "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+        "time" : {
+          "start" : 1649417229113,
+          "stop" : 1649417231039,
+          "duration" : 1926
+        }
+      }, {
+        "uid" : "45f889c3ac067e7f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/45f889c3ac067e7f",
+        "status" : "broken",
+        "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+        "time" : {
+          "start" : 1649415768990,
+          "stop" : 1649415771032,
+          "duration" : 2042
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "a2fa75ed5e41bc49.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

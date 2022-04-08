@@ -1,0 +1,159 @@
+{
+  "uid" : "cf7e3e7285046eb5",
+  "name" : "Cannot disassociate more tokens through vesting contract than available",
+  "fullName" : "Staking and Association tests.Cannot disassociate more tokens through vesting contract than available",
+  "historyId" : "4eefaa5bf5521545350dacf8045a38e6",
+  "time" : {
+    "start" : 1649420270516,
+    "stop" : 1649420301795,
+    "duration" : 31279
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: disassociate button not displayed",
+  "statusTrace" : "Error: disassociate button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:98:50)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: disassociate button not displayed",
+    "statusTrace" : "Error: disassociate button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:98:50)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1649420270516,
+        "stop" : 1649420271266,
+        "duration" : 750
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "f82802082117813c",
+        "name" : "Screenshot",
+        "source" : "f82802082117813c.png",
+        "type" : "image/png",
+        "size" : 8729
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I click the button to disassociate",
+      "time" : {
+        "start" : 1649420271266,
+        "stop" : 1649420301795,
+        "duration" : 30529
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: disassociate button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:98:50)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "434078837010dfb8",
+        "name" : "Screenshot",
+        "source" : "434078837010dfb8.png",
+        "type" : "image/png",
+        "size" : 295965
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Cannot disassociate more tokens through vesting contract than available"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "4e8ffb2b05108498",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/4e8ffb2b05108498",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649417961528,
+          "stop" : 1649417966146,
+          "duration" : 4618
+        }
+      }, {
+        "uid" : "e079d01579310e7d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/e079d01579310e7d",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate button not displayed",
+        "time" : {
+          "start" : 1649417159837,
+          "stop" : 1649417191763,
+          "duration" : 31926
+        }
+      }, {
+        "uid" : "fe31fb3168685f15",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/fe31fb3168685f15",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate button not displayed",
+        "time" : {
+          "start" : 1649415699807,
+          "stop" : 1649415731725,
+          "duration" : 31918
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "cf7e3e7285046eb5.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
