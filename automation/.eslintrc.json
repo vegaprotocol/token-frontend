@@ -1,4 +1,7 @@
 {
-  "plugins": ["cypress"],
-  "extends": ["plugin:cypress/recommended"]
+  "plugins": ["wdio"],
+  "extends": ["eslint:recommended", "plugin:wdio/recommended"],
+  "rules": {
+    "wdio/await-expect": "off"
+  }
 }

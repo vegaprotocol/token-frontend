@@ -11,7 +11,9 @@ import {
 import { NetworkParams } from "../../../hooks/__generated__/NetworkParams";
 import { NETWORK_PARAMS_QUERY } from "../../../hooks/use-network-param";
 import { PROPOSAL_QUERY } from "../../../routes/governance/proposal";
+import { Proposal } from "../../../routes/governance/proposal/__generated__/Proposal";
 import { PROPOSALS_QUERY } from "../../../routes/governance/proposals";
+import { Proposals } from "../../../routes/governance/proposals/__generated__/Proposals";
 import {
   generateNoVotes,
   generateProposal,
@@ -29,8 +31,6 @@ import {
 import { NODES_QUERY } from "../../../routes/staking/node-list";
 import { PARTY_DELEGATIONS_QUERY } from "../../../routes/staking/staking-form";
 import { STAKING_QUERY } from "../../../routes/staking/staking-nodes-container";
-import { Proposal } from "../../../routes/governance/proposal/__generated__/Proposal";
-import { Proposals } from "../../../routes/governance/proposals/__generated__/Proposals";
 
 const PARTY_ID = "pub";
 const REWARD_ASSET_ID = "reward-asset-id";
