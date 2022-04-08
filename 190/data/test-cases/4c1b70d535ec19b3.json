@@ -1,0 +1,232 @@
+{
+  "uid" : "4c1b70d535ec19b3",
+  "name" : "Can navigate to Rewards page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Rewards page using main nav tab",
+  "historyId" : "e5c128f7a5a71120ad145bc26baf6de1",
+  "time" : {
+    "start" : 1649420555683,
+    "stop" : 1649420556656,
+    "duration" : 973
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1649420555683,
+        "stop" : 1649420556225,
+        "duration" : 542
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When I click on \"Rewards\" on main nav",
+      "time" : {
+        "start" : 1649420556225,
+        "stop" : 1649420556461,
+        "duration" : 236
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And I can see \"Rewards\" button is clearly highlighted after click",
+      "time" : {
+        "start" : 1649420556461,
+        "stop" : 1649420556574,
+        "duration" : 113
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I am taken to the \"rewards\" page",
+      "time" : {
+        "start" : 1649420556574,
+        "stop" : 1649420556656,
+        "duration" : 82
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Rewards page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 3,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 8,
+        "unknown" : 0,
+        "total" : 11
+      },
+      "items" : [ {
+        "uid" : "cfadec1334688848",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/189//#testresult/cfadec1334688848",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649419944770,
+          "stop" : 1649419947601,
+          "duration" : 2831
+        }
+      }, {
+        "uid" : "75c2f10f3e269be2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/75c2f10f3e269be2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649417690744,
+          "stop" : 1649417692994,
+          "duration" : 2250
+        }
+      }, {
+        "uid" : "7163065a356b2674",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/7163065a356b2674",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649416880229,
+          "stop" : 1649416883085,
+          "duration" : 2856
+        }
+      }, {
+        "uid" : "2fe3df6b4e8a7f82",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/2fe3df6b4e8a7f82",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649415403458,
+          "stop" : 1649415406392,
+          "duration" : 2934
+        }
+      }, {
+        "uid" : "72721e981ddfb56f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/185//#testresult/72721e981ddfb56f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649258674125,
+          "stop" : 1649258680972,
+          "duration" : 6847
+        }
+      }, {
+        "uid" : "c0f1a901d3d60059",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/c0f1a901d3d60059",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1649257777560,
+          "stop" : 1649257777577,
+          "duration" : 17
+        }
+      }, {
+        "uid" : "25648261ab2fe7a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/25648261ab2fe7a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649246854334,
+          "stop" : 1649246857025,
+          "duration" : 2691
+        }
+      }, {
+        "uid" : "b529f52da0e248da",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/b529f52da0e248da",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649241112269,
+          "stop" : 1649241115059,
+          "duration" : 2790
+        }
+      }, {
+        "uid" : "81989b58e191883f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/81989b58e191883f",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1649240783786,
+          "stop" : 1649240783804,
+          "duration" : 18
+        }
+      }, {
+        "uid" : "c5a97f73f154afc",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/183//#testresult/c5a97f73f154afc",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1649239743791,
+          "stop" : 1649239743814,
+          "duration" : 23
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "4c1b70d535ec19b3.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
