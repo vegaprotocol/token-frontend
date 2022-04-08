@@ -76,6 +76,8 @@
     "rules": {
       "simple-import-sort/imports": "warn",
       "no-unused-vars": "off",
+      "await-expect": "off",
+      "@wdio/no-undef": "off",
       "@typescript-eslint/no-unused-vars": [
         "warn",
         {
