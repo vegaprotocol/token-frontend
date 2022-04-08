@@ -1,0 +1,197 @@
+{
+  "uid" : "6657ff619ba033af",
+  "name" : "Links on the homepage",
+  "fullName" : "Homepage.Links on the homepage",
+  "historyId" : "75dc0c7908c032915bb7dc0878fb6e77",
+  "time" : {
+    "start" : 1649416824033,
+    "stop" : 1649416856098,
+    "duration" : 32065
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "failed",
+  "statusMessage" : "Error: Expect $(`[data-test-id=\"get-vega-wallet-link\"]`) to have attribute href",
+  "statusTrace" : "Error: Expect $(`[data-test-id=\"get-vega-wallet-link\"]`) to have attribute href\n                \n                Expected: \"https://docs.vega.xyz/docs/tools/vega-wallet/cli-wallet/create-wallet\"\n                Received: \"https://docs.vega.xyz/docs/tools/vega-wallet\"\n                    at /home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:54:41\n                    at step (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:33:23)\n                    at Object.next (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:14:53)\n                    at /home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:8:71\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:53:43)",
+  "flaky" : true,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "Error: Expect $(`[data-test-id=\"get-vega-wallet-link\"]`) to have attribute href",
+    "statusTrace" : "Error: Expect $(`[data-test-id=\"get-vega-wallet-link\"]`) to have attribute href\n                \n                Expected: \"https://docs.vega.xyz/docs/tools/vega-wallet/cli-wallet/create-wallet\"\n                Received: \"https://docs.vega.xyz/docs/tools/vega-wallet\"\n                    at /home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:54:41\n                    at step (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:33:23)\n                    at Object.next (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:14:53)\n                    at /home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:8:71\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:53:43)",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1649416824033,
+        "stop" : 1649416825353,
+        "duration" : 1320
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "eab8cf3285f7093",
+        "name" : "Screenshot",
+        "source" : "eab8cf3285f7093.png",
+        "type" : "image/png",
+        "size" : 8747
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then the vega wallet link is correct",
+      "time" : {
+        "start" : 1649416825353,
+        "stop" : 1649416856098,
+        "duration" : 30745
+      },
+      "status" : "failed",
+      "statusMessage" : "Error: Expect $(`[data-test-id=\"get-vega-wallet-link\"]`) to have attribute href\n                \n                Expected: \"https://docs.vega.xyz/docs/tools/vega-wallet/cli-wallet/create-wallet\"\n                Received: \"https://docs.vega.xyz/docs/tools/vega-wallet\"\n                    at /home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:54:41\n                    at step (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:33:23)\n                    at Object.next (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:14:53)\n                    at /home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:8:71\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:53:43)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "d04e5a2309cdc85c",
+        "name" : "Screenshot",
+        "source" : "d04e5a2309cdc85c.png",
+        "type" : "image/png",
+        "size" : 282555
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Links on the homepage"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 5,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 3,
+        "unknown" : 0,
+        "total" : 8
+      },
+      "items" : [ {
+        "uid" : "b62f5262c38624e9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/b62f5262c38624e9",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $(`[data-test-id=\"get-vega-wallet-link\"]`) to have attribute href",
+        "time" : {
+          "start" : 1649415347212,
+          "stop" : 1649415379422,
+          "duration" : 32210
+        }
+      }, {
+        "uid" : "f0fb2ce6ec2072cb",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/185//#testresult/f0fb2ce6ec2072cb",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $(`[data-test-id=\"get-vega-wallet-link\"]`) to have attribute href",
+        "time" : {
+          "start" : 1649258585227,
+          "stop" : 1649258620074,
+          "duration" : 34847
+        }
+      }, {
+        "uid" : "c5115b09e034230",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/c5115b09e034230",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649257777422,
+          "stop" : 1649257777447,
+          "duration" : 25
+        }
+      }, {
+        "uid" : "3e62c4ecb519b1fb",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/3e62c4ecb519b1fb",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $(`[data-test-id=\"get-vega-wallet-link\"]`) to have attribute href",
+        "time" : {
+          "start" : 1649246798104,
+          "stop" : 1649246830393,
+          "duration" : 32289
+        }
+      }, {
+        "uid" : "15c2735550226aab",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/15c2735550226aab",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $(`[data-test-id=\"get-vega-wallet-link\"]`) to have attribute href",
+        "time" : {
+          "start" : 1649241056949,
+          "stop" : 1649241089031,
+          "duration" : 32082
+        }
+      }, {
+        "uid" : "46092134718524fa",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/46092134718524fa",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649240783628,
+          "stop" : 1649240783652,
+          "duration" : 24
+        }
+      }, {
+        "uid" : "e5b61182aca822a0",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/183//#testresult/e5b61182aca822a0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649239743460,
+          "stop" : 1649239743517,
+          "duration" : 57
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "6657ff619ba033af.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
