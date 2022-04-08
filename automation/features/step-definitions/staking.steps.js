@@ -12,6 +12,11 @@ let tokensNotAssociatedInVegaWallet = "";
 When(
   /^I associate "([^"]*)?" tokens from "([^"]*)?"$/,
   (tokenAmount, sourceOfFunds) => {
+    // $(".tranche-item__progress").waitForDisplayed({
+    //   timeout: 5000,
+    //   timeoutMsg: "wallet card did not fully render in 5 seconds",
+    // });
+    browser.pause(1000);
     tokensAssociatedInVegaWalletText = $$(
       '[data-testid="associated-token-amount"]'
     )[2].getText();
@@ -31,6 +36,12 @@ When(
 When(
   /^I disassociate "([^"]*)?" tokens from "([^"]*)?"$/,
   (tokenAmount, sourceOfFunds) => {
+    // $(".tranche-item__progress").waitForDisplayed({
+    //   timeout: 5000,
+    //   timeoutMsg: "wallet card did not fully render in 5 seconds",
+    // });
+    browser.pause(1000);
+
     tokensAssociatedInVegaWalletText = $$(
       '[data-testid="associated-token-amount"]'
     )[2].getText();
@@ -103,7 +114,7 @@ Then(/^the epoch countdown timer is counting down$/, () => {
 });
 
 When(/^I click on a validator$/, () => {
-  $$('.node-list__item-name"]').waitForDisplayed({
+  $('.node-list__item-name"]').waitForDisplayed({
     timeout: 30000,
     reverse: false,
     timeoutMsg: "Validator list not displayed",
@@ -291,7 +302,7 @@ Then(/^the pending transactions modal can be closed$/, () => {
   expect(browser.getByTestId("pending-transactions-modal")).not.toBeDisplayed();
 });
 
-When(/^the association of "([^"]*)?" has been successful$/, () => {
+When(/^the association of "([^"]*)?" has been successful$/, (tokenAmount) => {
   expect(
     browser.waitUntil(
       () =>
@@ -305,19 +316,22 @@ When(/^the association of "([^"]*)?" has been successful$/, () => {
   ).toBeTruthy();
 });
 
-When(/^the disassociation of "([^"]*)?" has been successful$/, () => {
-  expect(
-    browser.waitUntil(
-      () =>
-        $$('[data-testid="associated-token-amount"]')[2].getText() !==
-        tokensAssociatedInVegaWalletText,
-      {
-        timeout: 600000,
-        timeoutMsg: "expected balance to be different",
-      }
-    )
-  ).toBeTruthy();
-});
+When(
+  /^the disassociation of "([^"]*)?" has been successful$/,
+  (tokenAmount) => {
+    expect(
+      browser.waitUntil(
+        () =>
+          $$('[data-testid="associated-token-amount"]')[2].getText() !==
+          tokensAssociatedInVegaWalletText,
+        {
+          timeout: 600000,
+          timeoutMsg: "expected balance to be different",
+        }
+      )
+    ).toBeTruthy();
+  }
+);
 When(
   /^I can see "([^"]*)?" vega has been removed from staking$/,
   (tokenAmount) => {
