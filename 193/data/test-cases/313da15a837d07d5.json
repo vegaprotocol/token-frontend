@@ -1,0 +1,223 @@
+{
+  "uid" : "313da15a837d07d5",
+  "name" : "Prompt to connect to eth wallet to claim if not connected",
+  "fullName" : "Claim codes.Prompt to connect to eth wallet to claim if not connected",
+  "historyId" : "fe146ac841243977d1a34bcefd87d344",
+  "time" : {
+    "start" : 1649421196464,
+    "stop" : 1649421263642,
+    "duration" : 67178
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "failed",
+  "statusMessage" : "Error: Expect $(`[data-testid=\"eth-connect-prompt\"]`) to have text",
+  "statusTrace" : "Error: Expect $(`[data-testid=\"eth-connect-prompt\"]`) to have text\n                \n                Expected: \"Connect to the Ethereum wallet that holds your $VEGA tokens to see what can be redeemed from vesting tranches. To redeem tokens you will need some ETH to pay gas fees.\"\n                Received: undefined\n                    at /home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/claims.steps.js:6:61\n                    at step (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/claims.steps.js:33:23)\n                    at Object.next (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/claims.steps.js:14:53)\n                    at /home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/claims.steps.js:8:71\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/claims.steps.js:5:13)",
+  "flaky" : false,
+  "newFailed" : true,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "Error: Expect $(`[data-testid=\"eth-connect-prompt\"]`) to have text",
+    "statusTrace" : "Error: Expect $(`[data-testid=\"eth-connect-prompt\"]`) to have text\n                \n                Expected: \"Connect to the Ethereum wallet that holds your $VEGA tokens to see what can be redeemed from vesting tranches. To redeem tokens you will need some ETH to pay gas fees.\"\n                Received: undefined\n                    at /home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/claims.steps.js:6:61\n                    at step (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/claims.steps.js:33:23)\n                    at Object.next (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/claims.steps.js:14:53)\n                    at /home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/claims.steps.js:8:71\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/claims.steps.js:5:13)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"claim?r=odiuhfn\" page",
+      "time" : {
+        "start" : 1649421196466,
+        "stop" : 1649421232699,
+        "duration" : 36233
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "3dbaa97895cd50bd",
+        "name" : "Screenshot",
+        "source" : "3dbaa97895cd50bd.png",
+        "type" : "image/png",
+        "size" : 8732
+      } ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 1
+    }, {
+      "name" : "Then I can see the error message when not connected to eth wallet on claims page \"Connect to the Ethereum wallet that holds your $VEGA tokens to see what can be redeemed from vesting tranches. To redeem tokens you will need some ETH to pay gas fees.\"",
+      "time" : {
+        "start" : 1649421232699,
+        "stop" : 1649421263642,
+        "duration" : 30943
+      },
+      "status" : "failed",
+      "statusMessage" : "Error: Expect $(`[data-testid=\"eth-connect-prompt\"]`) to have text\n                \n                Expected: \"Connect to the Ethereum wallet that holds your $VEGA tokens to see what can be redeemed from vesting tranches. To redeem tokens you will need some ETH to pay gas fees.\"\n                Received: undefined\n                    at /home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/claims.steps.js:6:61\n                    at step (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/claims.steps.js:33:23)\n                    at Object.next (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/claims.steps.js:14:53)\n                    at /home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/claims.steps.js:8:71\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/claims.steps.js:5:13)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "8b96f1a820fd6f1",
+        "name" : "Screenshot",
+        "source" : "8b96f1a820fd6f1.png",
+        "type" : "image/png",
+        "size" : 359573
+      } ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : true,
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 1
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : true,
+    "hasContent" : true,
+    "stepsCount" : 2,
+    "attachmentsCount" : 2
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-0"
+  }, {
+    "name" : "suite",
+    "value" : "Claim codes"
+  }, {
+    "name" : "testClass",
+    "value" : "Claim codes"
+  }, {
+    "name" : "testMethod",
+    "value" : "Prompt to connect to eth wallet to claim if not connected"
+  }, {
+    "name" : "package",
+    "value" : "Claim codes"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 1,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 7,
+        "unknown" : 0,
+        "total" : 11
+      },
+      "items" : [ {
+        "uid" : "eba8fbe10f73cfd1",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/189//#testresult/eba8fbe10f73cfd1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649419788583,
+          "stop" : 1649419792559,
+          "duration" : 3976
+        }
+      }, {
+        "uid" : "8503c2db3c8d7f43",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/8503c2db3c8d7f43",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649417529215,
+          "stop" : 1649417532654,
+          "duration" : 3439
+        }
+      }, {
+        "uid" : "f4d86da12634eee6",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/f4d86da12634eee6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649416710078,
+          "stop" : 1649416724090,
+          "duration" : 14012
+        }
+      }, {
+        "uid" : "a23e701683244d88",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/a23e701683244d88",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649415252402,
+          "stop" : 1649415255630,
+          "duration" : 3228
+        }
+      }, {
+        "uid" : "186c29f46f442afa",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/185//#testresult/186c29f46f442afa",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649258465943,
+          "stop" : 1649258470018,
+          "duration" : 4075
+        }
+      }, {
+        "uid" : "4fbf492c82de791e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/4fbf492c82de791e",
+        "status" : "broken",
+        "statusDetails" : "TypeError: browser.getByTestId(...).isDisplayed is not a function",
+        "time" : {
+          "start" : 1649257724212,
+          "stop" : 1649257724248,
+          "duration" : 36
+        }
+      }, {
+        "uid" : "2c462403e33d1d0c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/2c462403e33d1d0c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649246670938,
+          "stop" : 1649246678136,
+          "duration" : 7198
+        }
+      }, {
+        "uid" : "a00c3de6914f6860",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/a00c3de6914f6860",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649240952959,
+          "stop" : 1649240957134,
+          "duration" : 4175
+        }
+      }, {
+        "uid" : "2006c9bd19efd1c3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/2006c9bd19efd1c3",
+        "status" : "broken",
+        "statusDetails" : "TypeError: browser.getByTestId(...).isDisplayed is not a function",
+        "time" : {
+          "start" : 1649240712788,
+          "stop" : 1649240712864,
+          "duration" : 76
+        }
+      }, {
+        "uid" : "43d164f04d7bc5b6",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/183//#testresult/43d164f04d7bc5b6",
+        "status" : "broken",
+        "statusDetails" : "TypeError: browser.getByTestId(...).isDisplayed is not a function",
+        "time" : {
+          "start" : 1649239667861,
+          "stop" : 1649239667924,
+          "duration" : 63
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "313da15a837d07d5.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

@@ -1,0 +1,190 @@
+{
+  "uid" : "79fffb52f6df4fc1",
+  "name" : "Use maximum button on associate from wallet enters correct amount",
+  "fullName" : "Staking page.Use maximum button on associate from wallet enters correct amount",
+  "historyId" : "c9a07fb6230061c5c04ad96987ba5dcf",
+  "time" : {
+    "start" : 1649421538462,
+    "stop" : 1649421570844,
+    "duration" : 32382
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+  "statusTrace" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:54:49)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+    "statusTrace" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:54:49)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1649421538463,
+        "stop" : 1649421539920,
+        "duration" : 1457
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "9c40af3d8095a0b0",
+        "name" : "Screenshot",
+        "source" : "9c40af3d8095a0b0.png",
+        "type" : "image/png",
+        "size" : 8732
+      } ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 1
+    }, {
+      "name" : "When I click on use maximum button",
+      "time" : {
+        "start" : 1649421539920,
+        "stop" : 1649421570844,
+        "duration" : 30924
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:54:49)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "c2abda45d66c5dcc",
+        "name" : "Screenshot",
+        "source" : "c2abda45d66c5dcc.png",
+        "type" : "image/png",
+        "size" : 296185
+      } ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : true,
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 1
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : true,
+    "hasContent" : true,
+    "stepsCount" : 2,
+    "attachmentsCount" : 2
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking page"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Use maximum button on associate from wallet enters correct amount"
+  }, {
+    "name" : "package",
+    "value" : "Staking page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 3,
+        "broken" : 4,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 7
+      },
+      "items" : [ {
+        "uid" : "ffbf95812ef8e8a0",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/185//#testresult/ffbf95812ef8e8a0",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1649258796562,
+          "stop" : 1649258801263,
+          "duration" : 4701
+        }
+      }, {
+        "uid" : "588f1b6f2877c514",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/588f1b6f2877c514",
+        "status" : "broken",
+        "statusDetails" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1649257837140,
+          "stop" : 1649257837147,
+          "duration" : 7
+        }
+      }, {
+        "uid" : "8ea1109ef9029b3d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/8ea1109ef9029b3d",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1649246958345,
+          "stop" : 1649246961356,
+          "duration" : 3011
+        }
+      }, {
+        "uid" : "daee1ca02e246b22",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/daee1ca02e246b22",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1649241213904,
+          "stop" : 1649241216709,
+          "duration" : 2805
+        }
+      }, {
+        "uid" : "af74d4e407b7a880",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/af74d4e407b7a880",
+        "status" : "broken",
+        "statusDetails" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1649240860117,
+          "stop" : 1649240860126,
+          "duration" : 9
+        }
+      }, {
+        "uid" : "38807beb2f831306",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/183//#testresult/38807beb2f831306",
+        "status" : "broken",
+        "statusDetails" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1649239811902,
+          "stop" : 1649239811915,
+          "duration" : 13
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "79fffb52f6df4fc1.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
