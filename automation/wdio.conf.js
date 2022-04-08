@@ -1,35 +1,11 @@
-const commands = require('./commands.js')
-const allure = require('allure-commandline')
+const commands = require("./commands.js");
 
+const allure = require("allure-commandline");
 exports.config = {
-    specs: [
-        './features/**/*.feature'
-    ],
-    // Patterns to exclude.
-    exclude: [
-        // 'path/to/excluded/files'
-    ],
-    maxInstances: 1,
-
-    // https://webdriver.io/docs/options/#capabilities
-    // BSTACK OPTIONS : https://www.browserstack.com/automate/capabilities?tag=selenium-4#
-    capabilities: [{
-        browserName: "Chrome",
-        browserVersion: "96.0",
-        'bstack:options': {
-            "os": "OS X",
-            "osVersion": "Big Sur",
-            "seleniumVersion": "3.14.0",
-            "local": 'true'
-        },
-        'goog:chromeOptions': {
-            args: ['disable-popup-blocking', 'allow-insecure-localhost'],
-            extensions: [
-                require('fs').readFileSync('metamask_10_8_1_0.crx').toString('base64')
-            ]
-        },
-    }],
-    //   logLevel: 'warn',
+  specs: ["./features/**/*.feature"],
+  // Patterns to exclude.
+  exclude: [],
+  maxInstances: 1,
 
   // https://webdriver.io/docs/options/#capabilities
   // BSTACK OPTIONS : https://www.browserstack.com/automate/capabilities?tag=selenium-4#
@@ -112,33 +88,6 @@ exports.config = {
     ignoreUndefinedDefinitions: false,
   },
 
-<<<<<<< HEAD
-    before: function (capabilities, specs) {
-        // Add commands to WebdriverIO
-        Object.keys(commands).forEach(key => {
-            console.log('Adding custom command - ', key)
-            browser.addCommand(key, commands[key]);
-        }),
-        browser.switchWindow('Vega');
-    },
-
-    afterStep: function (step, scenario, result, context) {
-        // if (!result.passed){
-        browser.takeScreenshot()
-        // }
-    },
-
-    onComplete: function () {
-        const reportError = new Error('Could not generate Allure report')
-        const generation = allure(['generate', 'allure-results', '--clean'])
-        return new Promise((resolve, reject) => {
-            const generationTimeout = setTimeout(
-                () => reject(reportError),
-                300000)
-
-            generation.on('exit', function (exitCode) {
-                clearTimeout(generationTimeout)
-=======
   before: function (/* capabilities, specs */) {
     // Add commands to WebdriverIO
     Object.keys(commands).forEach((key) => {
@@ -159,7 +108,6 @@ exports.config = {
 
       generation.on("exit", function (exitCode) {
         clearTimeout(generationTimeout);
->>>>>>> develop
 
         if (exitCode !== 0) {
           return reject(reportError);
