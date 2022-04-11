@@ -1,0 +1,178 @@
+{
+  "uid" : "95f4397aea930309",
+  "name" : "Staking validator list and epoch timer countdown",
+  "fullName" : "Staking and Association tests.Staking validator list and epoch timer countdown",
+  "historyId" : "d90e06a1ac2b23447752f22625460308",
+  "time" : {
+    "start" : 1649673018836,
+    "stop" : 1649673050417,
+    "duration" : 31581
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "failed",
+  "statusMessage" : "Error: Expect $(`[data-testid=\"validator-node-list\"]`) to be displayed",
+  "statusTrace" : "Error: Expect $(`[data-testid=\"validator-node-list\"]`) to be displayed\n                \n                Expected: \"displayed\"\n                Received: \"not displayed\"\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:100:54)",
+  "flaky" : false,
+  "newFailed" : true,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "Error: Expect $(`[data-testid=\"validator-node-list\"]`) to be displayed",
+    "statusTrace" : "Error: Expect $(`[data-testid=\"validator-node-list\"]`) to be displayed\n                \n                Expected: \"displayed\"\n                Received: \"not displayed\"\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:100:54)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1649673018836,
+        "stop" : 1649673019862,
+        "duration" : 1026
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "230630d6b5f093ed",
+        "name" : "Screenshot",
+        "source" : "230630d6b5f093ed.png",
+        "type" : "image/png",
+        "size" : 8745
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the validator node list",
+      "time" : {
+        "start" : 1649673019862,
+        "stop" : 1649673050417,
+        "duration" : 30555
+      },
+      "status" : "failed",
+      "statusMessage" : "Error: Expect $(`[data-testid=\"validator-node-list\"]`) to be displayed\n                \n                Expected: \"displayed\"\n                Received: \"not displayed\"\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:100:54)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "73e9a8d7e92e918b",
+        "name" : "Screenshot",
+        "source" : "73e9a8d7e92e918b.png",
+        "type" : "image/png",
+        "size" : 181892
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Staking validator list and epoch timer countdown"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 1,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 2,
+        "unknown" : 0,
+        "total" : 6
+      },
+      "items" : [ {
+        "uid" : "1ab060bf22b1c151",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/194//#testresult/1ab060bf22b1c151",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649427733045,
+          "stop" : 1649427739179,
+          "duration" : 6134
+        }
+      }, {
+        "uid" : "3b3157308569bb30",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/189//#testresult/3b3157308569bb30",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649420333190,
+          "stop" : 1649420365708,
+          "duration" : 32518
+        }
+      }, {
+        "uid" : "92c1948e84afc95b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/92c1948e84afc95b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649417976069,
+          "stop" : 1649417981634,
+          "duration" : 5565
+        }
+      }, {
+        "uid" : "ca9a078c444aabcd",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/ca9a078c444aabcd",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649417194256,
+          "stop" : 1649417226829,
+          "duration" : 32573
+        }
+      }, {
+        "uid" : "578b9e1e873653e6",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/578b9e1e873653e6",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649415733625,
+          "stop" : 1649415766583,
+          "duration" : 32958
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "95f4397aea930309.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

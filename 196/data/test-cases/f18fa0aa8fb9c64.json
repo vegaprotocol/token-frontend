@@ -1,0 +1,180 @@
+{
+  "uid" : "f18fa0aa8fb9c64",
+  "name" : "Disassociate tokens through wallet",
+  "fullName" : "Staking and Association tests.Disassociate tokens through wallet",
+  "historyId" : "b46da9954f537da53e9193eecec78ff3",
+  "time" : {
+    "start" : 1649672877150,
+    "stop" : 1649672912516,
+    "duration" : 35366
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: disassociate btn  was not found",
+  "statusTrace" : "Error: disassociate btn  was not found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at StakingPage.disassociateTokens (/home/runner/work/token-frontend/token-frontend/automation/features/pageobjects/staking.page.js:95:32)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:59:17)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: disassociate btn  was not found",
+    "statusTrace" : "Error: disassociate btn  was not found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at StakingPage.disassociateTokens (/home/runner/work/token-frontend/token-frontend/automation/features/pageobjects/staking.page.js:95:32)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:59:17)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1649672877150,
+        "stop" : 1649672878343,
+        "duration" : 1193
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "f53725291e35ad2e",
+        "name" : "Screenshot",
+        "source" : "f53725291e35ad2e.png",
+        "type" : "image/png",
+        "size" : 411458
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I disassociate \"0.10\" tokens from \"wallet\"",
+      "time" : {
+        "start" : 1649672878343,
+        "stop" : 1649672912516,
+        "duration" : 34173
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: disassociate btn  was not found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at StakingPage.disassociateTokens (/home/runner/work/token-frontend/token-frontend/automation/features/pageobjects/staking.page.js:95:32)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:59:17)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "5e8289bb0adef61c",
+        "name" : "Screenshot",
+        "source" : "5e8289bb0adef61c.png",
+        "type" : "image/png",
+        "size" : 181892
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Disassociate tokens through wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 6,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 6
+      },
+      "items" : [ {
+        "uid" : "c954ff0eb174076a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/194//#testresult/c954ff0eb174076a",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Cannot read property 'getText' of undefined",
+        "time" : {
+          "start" : 1649427611716,
+          "stop" : 1649427614842,
+          "duration" : 3126
+        }
+      }, {
+        "uid" : "2e2c74e01aac10fd",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/189//#testresult/2e2c74e01aac10fd",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate btn  was not found",
+        "time" : {
+          "start" : 1649420207164,
+          "stop" : 1649420238951,
+          "duration" : 31787
+        }
+      }, {
+        "uid" : "57e2c3429ef3ca01",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/57e2c3429ef3ca01",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Cannot read property 'getText' of undefined",
+        "time" : {
+          "start" : 1649417918478,
+          "stop" : 1649417919558,
+          "duration" : 1080
+        }
+      }, {
+        "uid" : "8f1607d1696ffd0a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/8f1607d1696ffd0a",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Cannot read property 'getText' of undefined",
+        "time" : {
+          "start" : 1649417125507,
+          "stop" : 1649417127455,
+          "duration" : 1948
+        }
+      }, {
+        "uid" : "6c3456c35ea51fdc",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/6c3456c35ea51fdc",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Cannot read property 'getText' of undefined",
+        "time" : {
+          "start" : 1649415665396,
+          "stop" : 1649415667496,
+          "duration" : 2100
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "f18fa0aa8fb9c64.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

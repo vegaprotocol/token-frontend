@@ -1,0 +1,197 @@
+{
+  "uid" : "ac652c95bab620b",
+  "name" : "Rewards countdown is not displayed if vega wallet is not connected",
+  "fullName" : "Rewards page.Rewards countdown is not displayed if vega wallet is not connected",
+  "historyId" : "31400b4d4ec4d4b7fae679df4f19d991",
+  "time" : {
+    "start" : 1649672602711,
+    "stop" : 1649672648956,
+    "duration" : 46245
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "failed",
+  "statusMessage" : "Error: Expect $(`[data-testid=\"connect-to-vega-wallet-btn\"]`) to have text",
+  "statusTrace" : "Error: Expect $(`[data-testid=\"connect-to-vega-wallet-btn\"]`) to have text\n                \n                Expected: \"Connect Vega wallet\"\n                Received: \"Connect Vega wallet to use associated $VEGA\"\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/rewards.steps.js:40:44)",
+  "flaky" : true,
+  "newFailed" : true,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "Error: Expect $(`[data-testid=\"connect-to-vega-wallet-btn\"]`) to have text",
+    "statusTrace" : "Error: Expect $(`[data-testid=\"connect-to-vega-wallet-btn\"]`) to have text\n                \n                Expected: \"Connect Vega wallet\"\n                Received: \"Connect Vega wallet to use associated $VEGA\"\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/rewards.steps.js:40:44)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"rewards\" page",
+      "time" : {
+        "start" : 1649672602713,
+        "stop" : 1649672604536,
+        "duration" : 1823
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "612e06a9acc42d0b",
+        "name" : "Screenshot",
+        "source" : "612e06a9acc42d0b.png",
+        "type" : "image/png",
+        "size" : 8731
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Given I connect my ethereum wallet",
+      "time" : {
+        "start" : 1649672604536,
+        "stop" : 1649672618529,
+        "duration" : 13993
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "5a437685c3027937",
+        "name" : "Screenshot",
+        "source" : "5a437685c3027937.png",
+        "type" : "image/png",
+        "size" : 180436
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then the connect to vega wallet is shown",
+      "time" : {
+        "start" : 1649672618529,
+        "stop" : 1649672648956,
+        "duration" : 30427
+      },
+      "status" : "failed",
+      "statusMessage" : "Error: Expect $(`[data-testid=\"connect-to-vega-wallet-btn\"]`) to have text\n                \n                Expected: \"Connect Vega wallet\"\n                Received: \"Connect Vega wallet to use associated $VEGA\"\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/rewards.steps.js:40:44)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "c8f5aec383670e00",
+        "name" : "Screenshot",
+        "source" : "c8f5aec383670e00.png",
+        "type" : "image/png",
+        "size" : 180436
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-3"
+  }, {
+    "name" : "suite",
+    "value" : "Rewards page"
+  }, {
+    "name" : "testClass",
+    "value" : "Rewards page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Rewards countdown is not displayed if vega wallet is not connected"
+  }, {
+    "name" : "package",
+    "value" : "Rewards page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 2,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 4,
+        "unknown" : 0,
+        "total" : 6
+      },
+      "items" : [ {
+        "uid" : "c062b985541eded",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/194//#testresult/c062b985541eded",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649427188002,
+          "stop" : 1649427207399,
+          "duration" : 19397
+        }
+      }, {
+        "uid" : "7efb1b3ca6a8e093",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/189//#testresult/7efb1b3ca6a8e093",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649420055795,
+          "stop" : 1649420075678,
+          "duration" : 19883
+        }
+      }, {
+        "uid" : "9d589393029a2858",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/9d589393029a2858",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649417798423,
+          "stop" : 1649417816322,
+          "duration" : 17899
+        }
+      }, {
+        "uid" : "f12d9acab32a5243",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/f12d9acab32a5243",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649416977014,
+          "stop" : 1649417002374,
+          "duration" : 25360
+        }
+      }, {
+        "uid" : "4937ca10d2c0e585",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/4937ca10d2c0e585",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $(`[data-testid=\"connect-to-vega-wallet-btn\"]`) to have text",
+        "time" : {
+          "start" : 1649415507218,
+          "stop" : 1649415555047,
+          "duration" : 47829
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "ac652c95bab620b.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
