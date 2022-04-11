@@ -1,0 +1,291 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "Error: Expect $(`[data-test-id=\"get-vega-wallet-link\"]`) to have attribute href",
+      "children" : [ {
+        "name" : "Links on the homepage",
+        "uid" : "2fe4635f2b342229",
+        "parentUid" : "01a7a799c22db0b3e0ff4fd2c9f912d0",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649687007658,
+          "stop" : 1649687040012,
+          "duration" : 32354
+        },
+        "flaky" : true,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "01a7a799c22db0b3e0ff4fd2c9f912d0"
+    }, {
+      "name" : "Error: Expect $(`[data-testid=\"connect-to-vega-wallet-btn\"]`) to have text",
+      "children" : [ {
+        "name" : "Rewards countdown is not displayed if vega wallet is not connected",
+        "uid" : "8d800a833e579d83",
+        "parentUid" : "85244033098defc13545d112986c3ba1",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649687153851,
+          "stop" : 1649687200601,
+          "duration" : 46750
+        },
+        "flaky" : true,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "85244033098defc13545d112986c3ba1"
+    }, {
+      "name" : "Error: Expect $(`[data-testid=\"validator-node-list\"]`) to be displayed",
+      "children" : [ {
+        "name" : "Staking validator list and epoch timer countdown",
+        "uid" : "92090fd891dd10f6",
+        "parentUid" : "047a0b326a24266d3208ebd24bf044c7",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649687556559,
+          "stop" : 1649687587954,
+          "duration" : 31395
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "047a0b326a24266d3208ebd24bf044c7"
+    }, {
+      "name" : "Error: Expect $(`[data-testid=\"current-eth-address-withdrawals\"]`) to have property value",
+      "children" : [ {
+        "name" : "Check wallet field entry",
+        "uid" : "ec452e5a72ec897d",
+        "parentUid" : "f38312c512e0293fd3db4b6506ed9554",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649687641714,
+          "stop" : 1649687688417,
+          "duration" : 46703
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "f38312c512e0293fd3db4b6506ed9554"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  }, {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "Error: Can't call getText on element with selector \"[data-testid=\"connect-vega\"]\" because element wasn't found",
+      "children" : [ {
+        "name" : "Vega wallet not connected placeholder",
+        "uid" : "c089958d00255c73",
+        "parentUid" : "3636258aadc3551c2204cd86b294cc04",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649687070716,
+          "stop" : 1649687102590,
+          "duration" : 31874
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "3636258aadc3551c2204cd86b294cc04"
+    }, {
+      "name" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found",
+      "children" : [ {
+        "name" : "Rewards are shown and rewards countdown is shown when vega wallet is connect",
+        "uid" : "cbb71e7c6b459762",
+        "parentUid" : "4d724510d2914ceb20e62fef10a5609c",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649687200603,
+          "stop" : 1649687234516,
+          "duration" : 33913
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "4d724510d2914ceb20e62fef10a5609c"
+    }, {
+      "name" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+      "children" : [ {
+        "name" : "Associate tokens through wallet",
+        "uid" : "adc4ba32e8a87125",
+        "parentUid" : "aef2bce83297108812b54de1eca2d273",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649687298359,
+          "stop" : 1649687340223,
+          "duration" : 41864
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      }, {
+        "name" : "Associate tokens through vesting contract",
+        "uid" : "3e2a2645d18376de",
+        "parentUid" : "aef2bce83297108812b54de1eca2d273",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649687340225,
+          "stop" : 1649687380006,
+          "duration" : 39781
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      }, {
+        "name" : "Use maximum button on associate from wallet enters correct amount",
+        "uid" : "c03974f610e4d89a",
+        "parentUid" : "aef2bce83297108812b54de1eca2d273",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649687380008,
+          "stop" : 1649687417102,
+          "duration" : 37094
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "aef2bce83297108812b54de1eca2d273"
+    }, {
+      "name" : "Error: disassociate btn  was not found",
+      "children" : [ {
+        "name" : "Disassociate tokens through wallet",
+        "uid" : "3dc47db668e59d08",
+        "parentUid" : "0a440455b95b75fdc1ea489aff2a1bc9",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649687417103,
+          "stop" : 1649687452374,
+          "duration" : 35271
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      }, {
+        "name" : "Cannot disassociate more tokens through wallet than available",
+        "uid" : "5d247b918e61b7fb",
+        "parentUid" : "0a440455b95b75fdc1ea489aff2a1bc9",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649687452375,
+          "stop" : 1649687488357,
+          "duration" : 35982
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      }, {
+        "name" : "Disassociate tokens through vesting contract",
+        "uid" : "c27602b1b323f28a",
+        "parentUid" : "0a440455b95b75fdc1ea489aff2a1bc9",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649687519949,
+          "stop" : 1649687556557,
+          "duration" : 36608
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "0a440455b95b75fdc1ea489aff2a1bc9"
+    }, {
+      "name" : "Error: disassociate button not displayed",
+      "children" : [ {
+        "name" : "Cannot disassociate more tokens through vesting contract than available",
+        "uid" : "6eaad71774b6aaae",
+        "parentUid" : "0fc810b8ac3ba1d2f1ba4a4a0efb19c3",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649687488358,
+          "stop" : 1649687519948,
+          "duration" : 31590
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "0fc810b8ac3ba1d2f1ba4a4a0efb19c3"
+    }, {
+      "name" : "invalid selector: An invalid or illegal selector was specified",
+      "children" : [ {
+        "name" : "add stake from wallet",
+        "uid" : "ff911b4f69578691",
+        "parentUid" : "677dabd5e71d91b0ebd0ab57162f9cf7",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649687587954,
+          "stop" : 1649687589345,
+          "duration" : 1391
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      }, {
+        "name" : "Cannot stake more than what is associated",
+        "uid" : "1d1c87d831ce28ac",
+        "parentUid" : "677dabd5e71d91b0ebd0ab57162f9cf7",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649687589360,
+          "stop" : 1649687591094,
+          "duration" : 1734
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      }, {
+        "name" : "Remove stake now",
+        "uid" : "fd3738a8a65c019a",
+        "parentUid" : "677dabd5e71d91b0ebd0ab57162f9cf7",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649687591097,
+          "stop" : 1649687592559,
+          "duration" : 1462
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      }, {
+        "name" : "Remove stake at next epoch",
+        "uid" : "d4700b9e2f4645f1",
+        "parentUid" : "677dabd5e71d91b0ebd0ab57162f9cf7",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649687592565,
+          "stop" : 1649687594255,
+          "duration" : 1690
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "677dabd5e71d91b0ebd0ab57162f9cf7"
+    }, {
+      "name" : "Error: Enter wallet address manually link not displayed",
+      "children" : [ {
+        "name" : "Invalid wallet address error message is shown if user enters an invalid wallet address",
+        "uid" : "18f271d35d94a85d",
+        "parentUid" : "ba6a55daf0907b4d75781f8c1d297b7d",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649687688419,
+          "stop" : 1649687700170,
+          "duration" : 11751
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "ba6a55daf0907b4d75781f8c1d297b7d"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
+  "name" : "categories"
+}

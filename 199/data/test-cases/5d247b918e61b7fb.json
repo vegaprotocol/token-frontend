@@ -1,0 +1,200 @@
+{
+  "uid" : "5d247b918e61b7fb",
+  "name" : "Cannot disassociate more tokens through wallet than available",
+  "fullName" : "Staking and Association tests.Cannot disassociate more tokens through wallet than available",
+  "historyId" : "e8b998c24236a4d68b976a4e61d43a96",
+  "time" : {
+    "start" : 1649687452375,
+    "stop" : 1649687488357,
+    "duration" : 35982
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: disassociate btn  was not found",
+  "statusTrace" : "Error: disassociate btn  was not found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at StakingPage.disassociateTokens (/home/runner/work/token-frontend/token-frontend/automation/features/pageobjects/staking.page.js:96:32)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:52:17)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: disassociate btn  was not found",
+    "statusTrace" : "Error: disassociate btn  was not found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at StakingPage.disassociateTokens (/home/runner/work/token-frontend/token-frontend/automation/features/pageobjects/staking.page.js:96:32)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:52:17)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1649687452375,
+        "stop" : 1649687453251,
+        "duration" : 876
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "36aee2fc50904fd6",
+        "name" : "Screenshot",
+        "source" : "36aee2fc50904fd6.png",
+        "type" : "image/png",
+        "size" : 8711
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I disassociate \"0.10\" tokens from \"wallet\"",
+      "time" : {
+        "start" : 1649687453251,
+        "stop" : 1649687488357,
+        "duration" : 35106
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: disassociate btn  was not found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at StakingPage.disassociateTokens (/home/runner/work/token-frontend/token-frontend/automation/features/pageobjects/staking.page.js:96:32)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:52:17)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "9e16789a6f127f86",
+        "name" : "Screenshot",
+        "source" : "9e16789a6f127f86.png",
+        "type" : "image/png",
+        "size" : 181892
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Cannot disassociate more tokens through wallet than available"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 8,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 8
+      },
+      "items" : [ {
+        "uid" : "e842b86f7c0fa7f5",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/197//#testresult/e842b86f7c0fa7f5",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate btn  was not found",
+        "time" : {
+          "start" : 1649677471506,
+          "stop" : 1649677509829,
+          "duration" : 38323
+        }
+      }, {
+        "uid" : "3a6e4e7a00490776",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/196//#testresult/3a6e4e7a00490776",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate btn  was not found",
+        "time" : {
+          "start" : 1649672912518,
+          "stop" : 1649672951728,
+          "duration" : 39210
+        }
+      }, {
+        "uid" : "b9f34ed60d363db9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/194//#testresult/b9f34ed60d363db9",
+        "status" : "broken",
+        "statusDetails" : "Error: Wallet radio btn not displayed",
+        "time" : {
+          "start" : 1649427614843,
+          "stop" : 1649427656242,
+          "duration" : 41399
+        }
+      }, {
+        "uid" : "e96c6aa6b325fc4c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/189//#testresult/e96c6aa6b325fc4c",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate button not displayed",
+        "time" : {
+          "start" : 1649420238952,
+          "stop" : 1649420270515,
+          "duration" : 31563
+        }
+      }, {
+        "uid" : "6cdc814e606c3109",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/6cdc814e606c3109",
+        "status" : "broken",
+        "statusDetails" : "Error: Wallet radio btn not displayed",
+        "time" : {
+          "start" : 1649417919560,
+          "stop" : 1649417961527,
+          "duration" : 41967
+        }
+      }, {
+        "uid" : "951c8340a1090d24",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/951c8340a1090d24",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate btn  was not found",
+        "time" : {
+          "start" : 1649417127459,
+          "stop" : 1649417159836,
+          "duration" : 32377
+        }
+      }, {
+        "uid" : "7ae4d4befd59bf0a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/7ae4d4befd59bf0a",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate btn  was not found",
+        "time" : {
+          "start" : 1649415667497,
+          "stop" : 1649415699806,
+          "duration" : 32309
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "5d247b918e61b7fb.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

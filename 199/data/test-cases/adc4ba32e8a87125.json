@@ -1,0 +1,217 @@
+{
+  "uid" : "adc4ba32e8a87125",
+  "name" : "Associate tokens through wallet",
+  "fullName" : "Staking and Association tests.Associate tokens through wallet",
+  "historyId" : "bafb7c0403b9875ff59d6ddb673f743",
+  "time" : {
+    "start" : 1649687298359,
+    "stop" : 1649687340223,
+    "duration" : 41864
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+  "statusTrace" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at StakingPage.associateTokens (/home/runner/work/token-frontend/token-frontend/automation/features/pageobjects/staking.page.js:74:36)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:29:17)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+    "statusTrace" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at StakingPage.associateTokens (/home/runner/work/token-frontend/token-frontend/automation/features/pageobjects/staking.page.js:74:36)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:29:17)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1649687298359,
+        "stop" : 1649687299821,
+        "duration" : 1462
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "afe1eab15cef477a",
+        "name" : "Screenshot",
+        "source" : "afe1eab15cef477a.png",
+        "type" : "image/png",
+        "size" : 338202
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I connect to the vega wallet",
+      "time" : {
+        "start" : 1649687299821,
+        "stop" : 1649687301807,
+        "duration" : 1986
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "b06af0c8e42f4b",
+        "name" : "Screenshot",
+        "source" : "b06af0c8e42f4b.png",
+        "type" : "image/png",
+        "size" : 245146
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I associate \"0.10\" tokens from \"wallet\"",
+      "time" : {
+        "start" : 1649687301807,
+        "stop" : 1649687340223,
+        "duration" : 38416
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at StakingPage.associateTokens (/home/runner/work/token-frontend/token-frontend/automation/features/pageobjects/staking.page.js:74:36)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:29:17)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "6deb0f633a6aa619",
+        "name" : "Screenshot",
+        "source" : "6deb0f633a6aa619.png",
+        "type" : "image/png",
+        "size" : 181892
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Associate tokens through wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 4,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 3,
+        "total" : 8
+      },
+      "items" : [ {
+        "uid" : "aca8ba281a68431c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/197//#testresult/aca8ba281a68431c",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649677315320,
+          "stop" : 1649677357436,
+          "duration" : 42116
+        }
+      }, {
+        "uid" : "7ee233da766a518b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/196//#testresult/7ee233da766a518b",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649672756984,
+          "stop" : 1649672798680,
+          "duration" : 41696
+        }
+      }, {
+        "uid" : "5602f9400dd1b449",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/194//#testresult/5602f9400dd1b449",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649427452831,
+          "stop" : 1649427529352,
+          "duration" : 76521
+        }
+      }, {
+        "uid" : "d63b7f8ce2d751a6",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/189//#testresult/d63b7f8ce2d751a6",
+        "status" : "unknown",
+        "time" : {
+          "start" : 1649420142519,
+          "stop" : 0,
+          "duration" : -1649420142519
+        }
+      }, {
+        "uid" : "66ec7b6836211721",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/66ec7b6836211721",
+        "status" : "broken",
+        "statusDetails" : "function has 0 arguments, should have 1 (if synchronous or returning a promise) or 2 (if accepting a callback)",
+        "time" : {
+          "start" : 1649417897535,
+          "stop" : 1649417913052,
+          "duration" : 15517
+        }
+      }, {
+        "uid" : "86f5fb41c2a454a2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/86f5fb41c2a454a2",
+        "status" : "unknown",
+        "time" : {
+          "start" : 1649417089926,
+          "stop" : 0,
+          "duration" : -1649417089926
+        }
+      }, {
+        "uid" : "605411bed22f2a83",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/605411bed22f2a83",
+        "status" : "unknown",
+        "time" : {
+          "start" : 1649415630259,
+          "stop" : 0,
+          "duration" : -1649415630259
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "adc4ba32e8a87125.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

@@ -1,0 +1,200 @@
+{
+  "uid" : "3e2a2645d18376de",
+  "name" : "Associate tokens through vesting contract",
+  "fullName" : "Staking and Association tests.Associate tokens through vesting contract",
+  "historyId" : "a946109617038e803ba8a7b96a6eb903",
+  "time" : {
+    "start" : 1649687340225,
+    "stop" : 1649687380006,
+    "duration" : 39781
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+  "statusTrace" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at StakingPage.associateTokens (/home/runner/work/token-frontend/token-frontend/automation/features/pageobjects/staking.page.js:74:36)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:29:17)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+    "statusTrace" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at StakingPage.associateTokens (/home/runner/work/token-frontend/token-frontend/automation/features/pageobjects/staking.page.js:74:36)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:29:17)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1649687340225,
+        "stop" : 1649687341349,
+        "duration" : 1124
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "9a5595a4ef1e05ae",
+        "name" : "Screenshot",
+        "source" : "9a5595a4ef1e05ae.png",
+        "type" : "image/png",
+        "size" : 405604
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I associate \"0.10\" tokens from \"vesting contract\"",
+      "time" : {
+        "start" : 1649687341349,
+        "stop" : 1649687380006,
+        "duration" : 38657
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at StakingPage.associateTokens (/home/runner/work/token-frontend/token-frontend/automation/features/pageobjects/staking.page.js:74:36)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:29:17)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "3b2e922bb47e4373",
+        "name" : "Screenshot",
+        "source" : "3b2e922bb47e4373.png",
+        "type" : "image/png",
+        "size" : 181892
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Associate tokens through vesting contract"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 8,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 8
+      },
+      "items" : [ {
+        "uid" : "23ea6eec0e1ccb59",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/197//#testresult/23ea6eec0e1ccb59",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649677357437,
+          "stop" : 1649677395545,
+          "duration" : 38108
+        }
+      }, {
+        "uid" : "79d95bb45adf0803",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/196//#testresult/79d95bb45adf0803",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649672798682,
+          "stop" : 1649672838967,
+          "duration" : 40285
+        }
+      }, {
+        "uid" : "dba90cc36340cf8e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/194//#testresult/dba90cc36340cf8e",
+        "status" : "broken",
+        "statusDetails" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds",
+        "time" : {
+          "start" : 1649427529352,
+          "stop" : 1649427604672,
+          "duration" : 75320
+        }
+      }, {
+        "uid" : "8c33c11e60d54b3a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/189//#testresult/8c33c11e60d54b3a",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649420143928,
+          "stop" : 1649420175416,
+          "duration" : 31488
+        }
+      }, {
+        "uid" : "f7811c6fafe5514",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/f7811c6fafe5514",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Cannot read property 'getText' of undefined",
+        "time" : {
+          "start" : 1649417913053,
+          "stop" : 1649417914589,
+          "duration" : 1536
+        }
+      }, {
+        "uid" : "33de564679baf915",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/33de564679baf915",
+        "status" : "broken",
+        "statusDetails" : "Step \"I pause some \"30000\"\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.",
+        "time" : {
+          "start" : 1649417091744,
+          "stop" : 1649417093329,
+          "duration" : 1585
+        }
+      }, {
+        "uid" : "f214fc716947443c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/f214fc716947443c",
+        "status" : "broken",
+        "statusDetails" : "Step \"I pause some \"30000\"\" is not defined. You can ignore this error by setting cucumberOpts.ignoreUndefinedDefinitions as true.",
+        "time" : {
+          "start" : 1649415631926,
+          "stop" : 1649415633034,
+          "duration" : 1108
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "3e2a2645d18376de.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
