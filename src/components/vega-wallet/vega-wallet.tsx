@@ -172,6 +172,7 @@ const VegaWalletConnected = ({
       {vegaKeys.length > 1 ? (
         <button
           className="button-link"
+          data-testid="disconnect-vega-wallet-btn-link"
           onClick={() => setExpanded((x) => !x)}
           type="button"
         >

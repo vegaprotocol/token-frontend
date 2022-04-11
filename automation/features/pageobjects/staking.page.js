@@ -67,7 +67,8 @@ class StakingPage extends Page {
       reverse: false,
       timeoutMsg: "callout was not found",
     });
-    browser.pause(1000);
+    /* eslint-disable  wdio/no-pause */
+    browser.pause(500); //short pause needed for buttons to render
     if (this.associateMoreTokensBtn.isDisplayed()) {
       this.associateMoreTokensBtn.click();
     } else this.associateTokensBtn.click();

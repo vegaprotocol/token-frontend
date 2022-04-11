@@ -11,7 +11,6 @@ Background:
   Scenario: Rewards are shown and rewards countdown is shown when vega wallet is connect
     When I connect to the vega wallet
     Then the epoch countdown timer is counting down
-    # And the correct vega key is shown for rewards 
 
   @ignore
   Scenario: Rewards page when there is no rewards
@@ -20,6 +19,7 @@ Background:
     Then no reward message is shown
     And the rewards table is not displayed
     And I disconnect Vega Wallet
+
   @ignore
   Scenario: Rewards page when there is rewards earned
     Given I connect Vega wallet
@@ -36,3 +36,4 @@ Background:
     When The current epoch is finished
     Then the next one starts automatically
     And the page is updated automatically
+

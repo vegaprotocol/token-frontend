@@ -38,8 +38,9 @@ export const LockedProgress = ({
   return (
     <div className="tranche-item__progress">
       <div
-        className={`tranche-item__progress-bar ${light ? "tranche-item__progress-bar--light" : ""
-          }`}
+        className={`tranche-item__progress-bar ${
+          light ? "tranche-item__progress-bar--light" : ""
+        }`}
       >
         <div
           className="tranche-item__progress-bar--locked"
@@ -61,8 +62,9 @@ export const LockedProgress = ({
         ></div>
       </div>
       <div
-        className={`tranche-item__progress-contents ${light ? "tranche-item__progress-contents--light" : ""
-          }`}
+        className={`tranche-item__progress-contents ${
+          light ? "tranche-item__progress-contents--light" : ""
+        }`}
       >
         <span>
           <div
@@ -84,11 +86,16 @@ export const LockedProgress = ({
         </span>
       </div>
       <div
-        className={`tranche-item__progress-contents ${light ? "tranche-item__progress-contents--light" : ""
-          }`}
+        className={`tranche-item__progress-contents ${
+          light ? "tranche-item__progress-contents--light" : ""
+        }`}
       >
-        <span data-testid="associated-token-amount">{formatNumber(locked, 2)}</span>
-        <span data-testid="not-associated-token-amount">{formatNumber(unlocked, 2)}</span>
+        <span data-testid="associated-token-amount">
+          {formatNumber(locked, 2)}
+        </span>
+        <span data-testid="not-associated-token-amount">
+          {formatNumber(unlocked, 2)}
+        </span>
       </div>
     </div>
   );

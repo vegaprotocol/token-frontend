@@ -42,8 +42,8 @@ class Page {
     return $("[data-test-id='connect-to-eth-wallet-button']");
   }
   get disconnectWalletBtn() {
-    return $$(".button-link=Disconnect");
-  } //TODO add test id
+    return browser.getByTestId("disconnect-vega-wallet-btn-link");
+  }
   get connectMetaMask() {
     return $(".web3modal-provider-name*=Injected");
   }

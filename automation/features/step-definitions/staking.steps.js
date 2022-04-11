@@ -12,11 +12,8 @@ let tokensNotAssociatedInVegaWallet = "";
 When(
   /^I associate "([^"]*)?" tokens from "([^"]*)?"$/,
   (tokenAmount, sourceOfFunds) => {
-    // $(".tranche-item__progress").waitForDisplayed({
-    //   timeout: 5000,
-    //   timeoutMsg: "wallet card did not fully render in 5 seconds",
-    // });
-    browser.pause(1000);
+    /* eslint-disable  wdio/no-pause */
+    browser.pause(500);
     tokensAssociatedInVegaWalletText = $$(
       '[data-testid="associated-token-amount"]'
     )[2].getText();
@@ -36,12 +33,8 @@ When(
 When(
   /^I disassociate "([^"]*)?" tokens from "([^"]*)?"$/,
   (tokenAmount, sourceOfFunds) => {
-    // $(".tranche-item__progress").waitForDisplayed({
-    //   timeout: 5000,
-    //   timeoutMsg: "wallet card did not fully render in 5 seconds",
-    // });
-    browser.pause(1000);
-
+    /* eslint-disable  wdio/no-pause */
+    browser.pause(500);
     tokensAssociatedInVegaWalletText = $$(
       '[data-testid="associated-token-amount"]'
     )[2].getText();
@@ -88,10 +81,10 @@ When(/^I click on use maximum button$/, () => {
 When(
   /^I can see the maximum amount of tokens in my wallet are in the token input box$/,
   () => {
-    const noZeroes = currentAmountOfTokensInWallet.toString();
-    const noZeroesFloat = parseFloat(noZeroes.replace(",", ""));
+    const tokenBalance = currentAmountOfTokensInWallet.toString();
+    const tokenBalanceFloat = parseFloat(tokenBalance.replace(",", ""));
     expect(browser.getByTestId("token-amount-input").getValue()).toBe(
-      String(noZeroesFloat)
+      String(tokenBalanceFloat)
     );
   }
 );

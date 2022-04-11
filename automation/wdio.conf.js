@@ -29,7 +29,6 @@ exports.config = {
       },
     },
   ],
-  //   logLevel: 'warn',
 
   user: process.env.BROWSERSTACK_USER,
   key: process.env.BROWSERSTACK_KEY,
@@ -89,8 +88,6 @@ exports.config = {
   },
 
   before: function () {
-    // Add commands to WebdriverIO
-    /* eslint-disable no-unused-expressions */
     Object.keys(commands).forEach((key) => {
       browser.addCommand(key, commands[key]);
     });
@@ -98,9 +95,7 @@ exports.config = {
   },
 
   afterStep: function () {
-    // if (!result.passed){
     browser.takeScreenshot();
-    // }
   },
 
   onComplete: function () {
