@@ -1,0 +1,26 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "Error: Expect $(`[data-test-id=\"get-vega-wallet-link\"]`) to have attribute href",
+      "children" : [ {
+        "name" : "Links on the homepage",
+        "uid" : "3deec6cd1106478b",
+        "parentUid" : "01a7a799c22db0b3e0ff4fd2c9f912d0",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649682425377,
+          "stop" : 1649682487748,
+          "duration" : 62371
+        },
+        "flaky" : true,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "01a7a799c22db0b3e0ff4fd2c9f912d0"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  } ],
+  "name" : "categories"
+}
