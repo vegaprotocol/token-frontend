@@ -1,0 +1,150 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "Error: Expect $(`[data-test-id=\"get-vega-wallet-link\"]`) to have attribute href",
+      "children" : [ {
+        "name" : "Links on the homepage",
+        "uid" : "287e2893590034eb",
+        "parentUid" : "01a7a799c22db0b3e0ff4fd2c9f912d0",
+        "status" : "failed",
+        "time" : {
+          "start" : 1649760281465,
+          "stop" : 1649760313586,
+          "duration" : 32121
+        },
+        "flaky" : true,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "01a7a799c22db0b3e0ff4fd2c9f912d0"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  }, {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "Error: Can't call getText on element with selector \"[data-testid=\"connect-vega\"]\" because element wasn't found",
+      "children" : [ {
+        "name" : "Vega wallet not connected placeholder",
+        "uid" : "61c06d5b6663f80c",
+        "parentUid" : "3636258aadc3551c2204cd86b294cc04",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649760342388,
+          "stop" : 1649760374270,
+          "duration" : 31882
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "3636258aadc3551c2204cd86b294cc04"
+    }, {
+      "name" : "TypeError: Cannot read property 'getText' of undefined",
+      "children" : [ {
+        "name" : "Associate tokens through vesting contract",
+        "uid" : "c66266b196d2bfb1",
+        "parentUid" : "b255ed0b5283de44a987ae88678f10a6",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649760680611,
+          "stop" : 1649760682624,
+          "duration" : 2013
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      }, {
+        "name" : "Cannot disassociate more tokens through wallet than available",
+        "uid" : "2ca4f79437e25c68",
+        "parentUid" : "b255ed0b5283de44a987ae88678f10a6",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649760714445,
+          "stop" : 1649760716521,
+          "duration" : 2076
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "b255ed0b5283de44a987ae88678f10a6"
+    }, {
+      "name" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds",
+      "children" : [ {
+        "name" : "Disassociate tokens through vesting contract",
+        "uid" : "24f0367317b7f095",
+        "parentUid" : "e639a9ad30ef63977eb12890cdf17798",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649760720484,
+          "stop" : 1649760790789,
+          "duration" : 70305
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "e639a9ad30ef63977eb12890cdf17798"
+    }, {
+      "name" : "invalid selector: An invalid or illegal selector was specified",
+      "children" : [ {
+        "name" : "add stake from wallet",
+        "uid" : "6243f7e965661dda",
+        "parentUid" : "677dabd5e71d91b0ebd0ab57162f9cf7",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649760796010,
+          "stop" : 1649760798148,
+          "duration" : 2138
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      }, {
+        "name" : "Cannot stake more than what is associated",
+        "uid" : "9822a4942b928dc1",
+        "parentUid" : "677dabd5e71d91b0ebd0ab57162f9cf7",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649760798164,
+          "stop" : 1649760800405,
+          "duration" : 2241
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      }, {
+        "name" : "Remove stake now",
+        "uid" : "d1f9889082e0814e",
+        "parentUid" : "677dabd5e71d91b0ebd0ab57162f9cf7",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649760800407,
+          "stop" : 1649760802425,
+          "duration" : 2018
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      }, {
+        "name" : "Remove stake at next epoch",
+        "uid" : "b56cc92a6868988",
+        "parentUid" : "677dabd5e71d91b0ebd0ab57162f9cf7",
+        "status" : "broken",
+        "time" : {
+          "start" : 1649760802431,
+          "stop" : 1649760804624,
+          "duration" : 2193
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-96.0.4664.110" ]
+      } ],
+      "uid" : "677dabd5e71d91b0ebd0ab57162f9cf7"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
+  "name" : "categories"
+}

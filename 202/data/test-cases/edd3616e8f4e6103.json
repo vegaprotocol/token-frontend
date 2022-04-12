@@ -1,0 +1,238 @@
+{
+  "uid" : "edd3616e8f4e6103",
+  "name" : "Staking validator list and epoch timer countdown",
+  "fullName" : "Staking and Association tests.Staking validator list and epoch timer countdown",
+  "historyId" : "d90e06a1ac2b23447752f22625460308",
+  "time" : {
+    "start" : 1649760790791,
+    "stop" : 1649760796010,
+    "duration" : 5219
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1649760790792,
+        "stop" : 1649760791767,
+        "duration" : 975
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "7cd0264248564b80",
+        "name" : "Screenshot",
+        "source" : "7cd0264248564b80.png",
+        "type" : "image/png",
+        "size" : 8137
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the validator node list",
+      "time" : {
+        "start" : 1649760791767,
+        "stop" : 1649760793291,
+        "duration" : 1524
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "cbad5584d8dfb7f",
+        "name" : "Screenshot",
+        "source" : "cbad5584d8dfb7f.png",
+        "type" : "image/png",
+        "size" : 278188
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And the epoch countdown timer is counting down",
+      "time" : {
+        "start" : 1649760793292,
+        "stop" : 1649760796010,
+        "duration" : 2718
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "72d01fcdcc4e30e1",
+        "name" : "Screenshot",
+        "source" : "72d01fcdcc4e30e1.png",
+        "type" : "image/png",
+        "size" : 281351
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Staking validator list and epoch timer countdown"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 3,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 5,
+        "unknown" : 0,
+        "total" : 11
+      },
+      "items" : [ {
+        "uid" : "35d3a4b390e68da7",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/201//#testresult/35d3a4b390e68da7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649760198905,
+          "stop" : 1649760204462,
+          "duration" : 5557
+        }
+      }, {
+        "uid" : "2495589ab35dcf84",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/200//#testresult/2495589ab35dcf84",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649756375247,
+          "stop" : 1649756380733,
+          "duration" : 5486
+        }
+      }, {
+        "uid" : "92090fd891dd10f6",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/199//#testresult/92090fd891dd10f6",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $(`[data-testid=\"validator-node-list\"]`) to be displayed",
+        "time" : {
+          "start" : 1649687556559,
+          "stop" : 1649687587954,
+          "duration" : 31395
+        }
+      }, {
+        "uid" : "be023511cdccf87",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/197//#testresult/be023511cdccf87",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $(`[data-testid=\"validator-node-list\"]`) to be displayed",
+        "time" : {
+          "start" : 1649677576057,
+          "stop" : 1649677607543,
+          "duration" : 31486
+        }
+      }, {
+        "uid" : "95f4397aea930309",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/196//#testresult/95f4397aea930309",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $(`[data-testid=\"validator-node-list\"]`) to be displayed",
+        "time" : {
+          "start" : 1649673018836,
+          "stop" : 1649673050417,
+          "duration" : 31581
+        }
+      }, {
+        "uid" : "1ab060bf22b1c151",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/194//#testresult/1ab060bf22b1c151",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649427733045,
+          "stop" : 1649427739179,
+          "duration" : 6134
+        }
+      }, {
+        "uid" : "3b3157308569bb30",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/189//#testresult/3b3157308569bb30",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649420333190,
+          "stop" : 1649420365708,
+          "duration" : 32518
+        }
+      }, {
+        "uid" : "92c1948e84afc95b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/92c1948e84afc95b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649417976069,
+          "stop" : 1649417981634,
+          "duration" : 5565
+        }
+      }, {
+        "uid" : "ca9a078c444aabcd",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/ca9a078c444aabcd",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649417194256,
+          "stop" : 1649417226829,
+          "duration" : 32573
+        }
+      }, {
+        "uid" : "578b9e1e873653e6",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/578b9e1e873653e6",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649415733625,
+          "stop" : 1649415766583,
+          "duration" : 32958
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "edd3616e8f4e6103.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
