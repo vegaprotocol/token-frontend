@@ -62,7 +62,6 @@
     "build": "craco build",
     "test": "REACT_APP_CHAIN=0x1 craco test",
     "lint:es": "eslint . --ext .ts,.tsx,.js --max-warnings 0",
-    "lint:es:fix": "eslint --fix . --ext .ts,.tsx,.js --max-warnings 0",
     "eject": "react-scripts eject",
     "generate": "env-cmd yarn apollo codegen:generate --target=typescript --globalTypesFile=src/__generated__/globalTypes.ts"
   },
@@ -77,8 +76,6 @@
     "rules": {
       "simple-import-sort/imports": "warn",
       "no-unused-vars": "off",
-      "await-expect": "off",
-      "@wdio/no-undef": "off",
       "@typescript-eslint/no-unused-vars": [
         "warn",
         {
