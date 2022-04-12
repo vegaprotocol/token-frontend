@@ -26,7 +26,9 @@ When(/^I connect Vega wallet$/, () => {
 Then(/^I am taken to the "([^"]*)?" page$/, (page) => {
   if (page === "home") {
     expect(browser).toHaveUrl(browser.options.baseUrl + "/");
-  } else expect(browser).toHaveUrlContaining("/" + page);
+  } else {
+    expect(browser).toHaveUrlContaining("/" + page);
+  }
 });
 
 Then(/^I can see the header title is "([^"]*)?"$/, (headerTitle) => {

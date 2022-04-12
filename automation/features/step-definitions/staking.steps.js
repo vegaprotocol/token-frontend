@@ -70,7 +70,9 @@ When(/^I click on use maximum button$/, () => {
   });
   if (stakingPage.associateMoreTokensBtn.isDisplayed()) {
     stakingPage.associateMoreTokensBtn.click();
-  } else stakingPage.associateTokensBtn.click();
+  } else {
+    stakingPage.associateTokensBtn.click();
+  }
   $('[data-testid="associate-radio-wallet"]').click({ force: true });
   currentAmountOfTokensInWallet = browser
     .getByTestId("eth-wallet-balance")

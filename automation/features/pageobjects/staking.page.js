@@ -71,7 +71,9 @@ class StakingPage extends Page {
     browser.pause(500); //short pause needed for buttons to render
     if (this.associateMoreTokensBtn.isDisplayed()) {
       this.associateMoreTokensBtn.click();
-    } else this.associateTokensBtn.click();
+    } else {
+      this.associateTokensBtn.click();
+    }
     switch (source.toLowerCase()) {
       case "wallet":
         this.walletRadioBtn.click({ force: true });
