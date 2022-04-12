@@ -24,7 +24,7 @@ class Page {
     return "This page can not be found, please check the URL and try again.";
   }
   get connectVegaWalletTestId() {
-    return "connect-vega";
+    return "connect-to-vega-wallet-btn";
   }
   get hostedWalletInput() {
     return $('Input[name="hostedWallet"]');

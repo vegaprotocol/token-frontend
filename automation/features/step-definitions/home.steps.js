@@ -50,10 +50,14 @@ Then(/^staked token field is showing as "([^"]*)?"$/, (amount) => {
   expect(stakedToken.getText()).toBe(amount);
 });
 
-Then(/^the vega wallet link is correct$/, async () => {
-  await expect(HomePage.vegaWalletLink).toHaveAttribute(
+Then(/^the vega wallet link is correct$/, () => {
+  HomePage.vegaWalletLink.waitForDisplayed({
+    timeout: 10000,
+    timeoutMsg: "vega wallet link did not display within 10 seconds",
+  });
+  expect(HomePage.vegaWalletLink).toHaveAttribute(
     "href",
-    "https://docs.vega.xyz/docs/tools/vega-wallet/cli-wallet/create-wallet"
+    "https://docs.vega.xyz/docs/tools/vega-wallet"
   );
 });
 
@@ -111,6 +115,10 @@ When(
 Then(
   /^I can see the vega wallet disconnected with message "([^"]*)?"$/,
   (disconnectedMsg) => {
+    browser.getByTestId(HomePage.connectVegaWalletTestId).waitForDisplayed({
+      timeout: 10000,
+      timeoutMsg: "Connect to vega wallet message did not appear in 10 seconds",
+    });
     const ConnectVegaTxt = browser
       .getByTestId(HomePage.connectVegaWalletTestId)
       .getText();
