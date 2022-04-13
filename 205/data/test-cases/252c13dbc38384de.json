@@ -1,0 +1,245 @@
+{
+  "uid" : "252c13dbc38384de",
+  "name" : "Invalid wallet address error message is shown if user enters an invalid wallet address",
+  "fullName" : "Withdraw page.Invalid wallet address error message is shown if user enters an invalid wallet address",
+  "historyId" : "2e7ebd0bffca55f3e09ec81c113e66e4",
+  "time" : {
+    "start" : 1649856387627,
+    "stop" : 1649856399716,
+    "duration" : 12089
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: Enter wallet address manually link not displayed",
+  "statusTrace" : "Error: Enter wallet address manually link not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/withdraw.steps.js:16:48)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: Enter wallet address manually link not displayed",
+    "statusTrace" : "Error: Enter wallet address manually link not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/withdraw.steps.js:16:48)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"withdraw\" page",
+      "time" : {
+        "start" : 1649856387628,
+        "stop" : 1649856389090,
+        "duration" : 1462
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "cc5c6d8ba7daf303",
+        "name" : "Screenshot",
+        "source" : "cc5c6d8ba7daf303.png",
+        "type" : "image/png",
+        "size" : 8704
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click the link to enter a new wallet address",
+      "time" : {
+        "start" : 1649856389090,
+        "stop" : 1649856399716,
+        "duration" : 10626
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: Enter wallet address manually link not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/withdraw.steps.js:16:48)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "864ef00a47dd3cb3",
+        "name" : "Screenshot",
+        "source" : "864ef00a47dd3cb3.png",
+        "type" : "image/png",
+        "size" : 216993
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-6"
+  }, {
+    "name" : "suite",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "testClass",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Invalid wallet address error message is shown if user enters an invalid wallet address"
+  }, {
+    "name" : "package",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 8,
+        "skipped" : 0,
+        "passed" : 5,
+        "unknown" : 0,
+        "total" : 13
+      },
+      "items" : [ {
+        "uid" : "8f157dd2a28b95",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/203//#testresult/8f157dd2a28b95",
+        "status" : "broken",
+        "statusDetails" : "Error: Enter wallet address manually link not displayed",
+        "time" : {
+          "start" : 1649779619211,
+          "stop" : 1649779631290,
+          "duration" : 12079
+        }
+      }, {
+        "uid" : "14d29a25e007fbf4",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/202//#testresult/14d29a25e007fbf4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649760872136,
+          "stop" : 1649760875655,
+          "duration" : 3519
+        }
+      }, {
+        "uid" : "1a649978ff3ac4ce",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/201//#testresult/1a649978ff3ac4ce",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649760530030,
+          "stop" : 1649760534183,
+          "duration" : 4153
+        }
+      }, {
+        "uid" : "465be0e4acd088f3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/200//#testresult/465be0e4acd088f3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649756483465,
+          "stop" : 1649756489255,
+          "duration" : 5790
+        }
+      }, {
+        "uid" : "18f271d35d94a85d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/199//#testresult/18f271d35d94a85d",
+        "status" : "broken",
+        "statusDetails" : "Error: Enter wallet address manually link not displayed",
+        "time" : {
+          "start" : 1649687688419,
+          "stop" : 1649687700170,
+          "duration" : 11751
+        }
+      }, {
+        "uid" : "bb6b84d24a9afc6b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/197//#testresult/bb6b84d24a9afc6b",
+        "status" : "broken",
+        "statusDetails" : "Error: Enter wallet address manually link not displayed",
+        "time" : {
+          "start" : 1649677713523,
+          "stop" : 1649677725091,
+          "duration" : 11568
+        }
+      }, {
+        "uid" : "97476410437c3834",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/196//#testresult/97476410437c3834",
+        "status" : "broken",
+        "statusDetails" : "Error: Enter wallet address manually link not displayed",
+        "time" : {
+          "start" : 1649673171742,
+          "stop" : 1649673184078,
+          "duration" : 12336
+        }
+      }, {
+        "uid" : "8e95b339b642b2db",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/194//#testresult/8e95b339b642b2db",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649427916532,
+          "stop" : 1649427921016,
+          "duration" : 4484
+        }
+      }, {
+        "uid" : "20f4023a7e529b04",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/189//#testresult/20f4023a7e529b04",
+        "status" : "broken",
+        "statusDetails" : "Error: Enter wallet address manually link not displayed",
+        "time" : {
+          "start" : 1649420449544,
+          "stop" : 1649420461939,
+          "duration" : 12395
+        }
+      }, {
+        "uid" : "ba452c64ef620c86",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/ba452c64ef620c86",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649418070304,
+          "stop" : 1649418074450,
+          "duration" : 4146
+        }
+      }, {
+        "uid" : "14b668d1994a7d5c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/14b668d1994a7d5c",
+        "status" : "broken",
+        "statusDetails" : "Error: Enter wallet address manually link not displayed",
+        "time" : {
+          "start" : 1649417332778,
+          "stop" : 1649417345401,
+          "duration" : 12623
+        }
+      }, {
+        "uid" : "c2736b28f35b8fbf",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/c2736b28f35b8fbf",
+        "status" : "broken",
+        "statusDetails" : "Error: Enter wallet address manually link not displayed",
+        "time" : {
+          "start" : 1649415855660,
+          "stop" : 1649415868463,
+          "duration" : 12803
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "252c13dbc38384de.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

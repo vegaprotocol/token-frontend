@@ -1,0 +1,263 @@
+{
+  "uid" : "1878ca50090322ed",
+  "name" : "Rewards are shown and rewards countdown is shown when vega wallet is connect",
+  "fullName" : "Rewards page.Rewards are shown and rewards countdown is shown when vega wallet is connect",
+  "historyId" : "903ee56ca3eb850dae2b0d96e392f95f",
+  "time" : {
+    "start" : 1649855861226,
+    "stop" : 1649855896529,
+    "duration" : 35303
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found",
+  "statusTrace" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:103:6)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found",
+    "statusTrace" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:103:6)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"rewards\" page",
+      "time" : {
+        "start" : 1649855861226,
+        "stop" : 1649855863025,
+        "duration" : 1799
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "a3fa28e4fe34790c",
+        "name" : "Screenshot",
+        "source" : "a3fa28e4fe34790c.png",
+        "type" : "image/png",
+        "size" : 263184
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I connect to the vega wallet",
+      "time" : {
+        "start" : 1649855863025,
+        "stop" : 1649855865985,
+        "duration" : 2960
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "eda061c0e3334a0b",
+        "name" : "Screenshot",
+        "source" : "eda061c0e3334a0b.png",
+        "type" : "image/png",
+        "size" : 199808
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then the epoch countdown timer is counting down",
+      "time" : {
+        "start" : 1649855865985,
+        "stop" : 1649855896529,
+        "duration" : 30544
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:103:6)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "cd46ac061f9402ae",
+        "name" : "Screenshot",
+        "source" : "cd46ac061f9402ae.png",
+        "type" : "image/png",
+        "size" : 199808
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-3"
+  }, {
+    "name" : "suite",
+    "value" : "Rewards page"
+  }, {
+    "name" : "testClass",
+    "value" : "Rewards page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Rewards are shown and rewards countdown is shown when vega wallet is connect"
+  }, {
+    "name" : "package",
+    "value" : "Rewards page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 5,
+        "skipped" : 0,
+        "passed" : 5,
+        "unknown" : 3,
+        "total" : 13
+      },
+      "items" : [ {
+        "uid" : "9998d15466416551",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/203//#testresult/9998d15466416551",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649779155368,
+          "stop" : 1649779190419,
+          "duration" : 35051
+        }
+      }, {
+        "uid" : "6699b9a716e028ce",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/202//#testresult/6699b9a716e028ce",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649760449629,
+          "stop" : 1649760457159,
+          "duration" : 7530
+        }
+      }, {
+        "uid" : "5e4ad2c924bda75d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/201//#testresult/5e4ad2c924bda75d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649759782229,
+          "stop" : 1649759788432,
+          "duration" : 6203
+        }
+      }, {
+        "uid" : "596c5e633b1241a5",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/200//#testresult/596c5e633b1241a5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649755959644,
+          "stop" : 1649755968410,
+          "duration" : 8766
+        }
+      }, {
+        "uid" : "cbb71e7c6b459762",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/199//#testresult/cbb71e7c6b459762",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649687200603,
+          "stop" : 1649687234516,
+          "duration" : 33913
+        }
+      }, {
+        "uid" : "8a0c4c9f7b4e67d5",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/197//#testresult/8a0c4c9f7b4e67d5",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649677214361,
+          "stop" : 1649677248673,
+          "duration" : 34312
+        }
+      }, {
+        "uid" : "7b0c6efc70df4d41",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/196//#testresult/7b0c6efc70df4d41",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649672648958,
+          "stop" : 1649672682620,
+          "duration" : 33662
+        }
+      }, {
+        "uid" : "5c2db3397970ab44",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/194//#testresult/5c2db3397970ab44",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649427207399,
+          "stop" : 1649427215456,
+          "duration" : 8057
+        }
+      }, {
+        "uid" : "2b6cb2927ffd3a50",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/189//#testresult/2b6cb2927ffd3a50",
+        "status" : "unknown",
+        "time" : {
+          "start" : 1649420075679,
+          "stop" : 0,
+          "duration" : -1649420075679
+        }
+      }, {
+        "uid" : "d52b43a1b6dd55eb",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/d52b43a1b6dd55eb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649417816323,
+          "stop" : 1649417822963,
+          "duration" : 6640
+        }
+      }, {
+        "uid" : "6171f8e84aac7b7e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/6171f8e84aac7b7e",
+        "status" : "unknown",
+        "time" : {
+          "start" : 1649417002374,
+          "stop" : 0,
+          "duration" : -1649417002374
+        }
+      }, {
+        "uid" : "c673de0e26c74724",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/c673de0e26c74724",
+        "status" : "unknown",
+        "time" : {
+          "start" : 1649415555048,
+          "stop" : 0,
+          "duration" : -1649415555048
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "1878ca50090322ed.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
