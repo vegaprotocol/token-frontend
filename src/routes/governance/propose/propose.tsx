@@ -25,13 +25,15 @@ interface FormFields {
 }
 
 export const Propose = ({ pubKey }: { pubKey: VegaKeyExtended }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [status, setStatus] = React.useState(Status.Idle);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [id, setId] = React.useState("");
 
   const {
-    // control,
     register,
     handleSubmit,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     formState: { errors },
     setError,
   } = useForm<FormFields>();
