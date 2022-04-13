@@ -295,7 +295,7 @@ export const StakingForm = ({
                 </>
               ) : (
                 <>
-                  <p >
+                  <p>
                     {t("Want to remove your stake at the end of the epoch?")}
                   </p>
                   <button
