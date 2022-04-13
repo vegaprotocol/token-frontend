@@ -5,6 +5,14 @@ class StakingPage extends Page {
     return "node-list-item";
   }
 
+  get validatorName() {
+    return $('.node-list__item-name"]');
+  }
+
+  get calloutSuccess() {
+    return $(".callout--success");
+  }
+
   get etherscanLink() {
     return browser.getByTestId("etherscan-link");
   }

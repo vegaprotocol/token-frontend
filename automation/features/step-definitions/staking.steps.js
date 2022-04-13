@@ -109,7 +109,7 @@ Then(/^the epoch countdown timer is counting down$/, () => {
 });
 
 When(/^I click on a validator$/, () => {
-  $('.node-list__item-name"]').waitForDisplayed({
+  stakingPage.validatorName.waitForDisplayed({
     timeout: 30000,
     reverse: false,
     timeoutMsg: "Validator list not displayed",
@@ -176,7 +176,7 @@ Then(/^the pending transaction is displayed$/, () => {
 });
 
 Then(/^the stake is successful$/, () => {
-  $(".callout--success").waitForDisplayed({
+  stakingPage.calloutSuccess.waitForDisplayed({
     timeout: 60000,
     timeoutMsg:
       "stake success message container not displayed after 60 seconds",
@@ -223,7 +223,7 @@ Then(/^I can submit the stake successfully$/, () => {
 When(
   /^I can see "([^"]*)?" vega has been removed from staking$/,
   (tokenAmount) => {
-    $(".callout--success").waitForDisplayed({
+    stakingPage.calloutSuccess.waitForDisplayed({
       timeout: 60000,
       timeoutMsg:
         "remove stake success message container not displayed after 60 seconds",
@@ -330,7 +330,7 @@ When(
 When(
   /^I can see "([^"]*)?" vega has been removed from staking$/,
   (tokenAmount) => {
-    $(".callout--success").waitForDisplayed({
+    stakingPage.calloutSuccess.waitForDisplayed({
       timeout: 60000,
       timeoutMsg:
         "remove stake success message container not displayed after 60 seconds",
@@ -369,7 +369,7 @@ Then(/^the submit button text is "([^"]*)?"$/, (btnText) => {
 });
 
 Then(/^I can see the stake is removed immediately$/, () => {
-  $(".callout--success").waitForDisplayed({
+  stakingPage.calloutSuccess.waitForDisplayed({
     timeout: 60000,
     timeoutMsg:
       "remove stake now success message container not displayed after 60 seconds",
