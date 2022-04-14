@@ -5,6 +5,7 @@ export const LocalStorage = {
       const item = window.localStorage.getItem(key);
       return item ? JSON.parse(item) : null;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error);
     }
   },
@@ -12,6 +13,7 @@ export const LocalStorage = {
     try {
       window.localStorage.setItem(key, JSON.stringify(value));
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error);
     }
   },
@@ -19,6 +21,7 @@ export const LocalStorage = {
     try {
       window.localStorage.removeItem(key);
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error);
     }
   },

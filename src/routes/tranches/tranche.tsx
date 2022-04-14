@@ -59,8 +59,8 @@ export const Tranche = ({ tranches }: { tranches: TrancheType[] }) => {
       {tranche.users.length ? (
         <ul className="tranche__user-list">
           {tranche.users.map((user, i) => {
-            const unlocked = user.remaining_tokens.times(lockedData?.unlocked);
-            const locked = user.remaining_tokens.times(lockedData?.locked);
+            const unlocked = user.total_tokens.times(lockedData?.unlocked);
+            const locked = user.total_tokens.times(lockedData?.locked);
             return (
               <li className="tranche__user-list--item" key={i}>
                 <EtherscanLink address={user.address} text={user.address} />
