@@ -1,0 +1,313 @@
+{
+  "uid" : "b1abc6cb3ac20b9e",
+  "name" : "Can navigate to Home page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Home page using main nav tab",
+  "historyId" : "6fab3f7524031af7e2c647aac983c3ff",
+  "time" : {
+    "start" : 1649928811826,
+    "stop" : 1649928811837,
+    "duration" : 11
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "failed",
+  "statusMessage" : "Error: expect(received).toBe(expected) // Object.is equality",
+  "statusTrace" : "Error: expect(received).toBe(expected) // Object.is equality\n                \n                Expected: \"HOME\"\n                Received: {}\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:107:36)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)",
+  "flaky" : false,
+  "newFailed" : true,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "Error: expect(received).toBe(expected) // Object.is equality",
+    "statusTrace" : "Error: expect(received).toBe(expected) // Object.is equality\n                \n                Expected: \"HOME\"\n                Received: {}\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:107:36)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1649928811827,
+        "stop" : 1649928811830,
+        "duration" : 3
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When I click on \"Home\" on main nav",
+      "time" : {
+        "start" : 1649928811830,
+        "stop" : 1649928811833,
+        "duration" : 3
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And I can see \"Home\" button is clearly highlighted after click",
+      "time" : {
+        "start" : 1649928811833,
+        "stop" : 1649928811837,
+        "duration" : 4
+      },
+      "status" : "failed",
+      "statusMessage" : "Error: expect(received).toBe(expected) // Object.is equality\n                \n                Expected: \"HOME\"\n                Received: {}\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:107:36)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Home page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 4,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 23,
+        "unknown" : 0,
+        "total" : 27
+      },
+      "items" : [ {
+        "uid" : "c41d47938b2a0082",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/c41d47938b2a0082",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649925277166,
+          "stop" : 1649925280819,
+          "duration" : 3653
+        }
+      }, {
+        "uid" : "3c6bb189e8c062fe",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/3c6bb189e8c062fe",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649856644428,
+          "stop" : 1649856647684,
+          "duration" : 3256
+        }
+      }, {
+        "uid" : "db793307c22f2409",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/205//#testresult/db793307c22f2409",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649855772755,
+          "stop" : 1649855775344,
+          "duration" : 2589
+        }
+      }, {
+        "uid" : "1a95cda56fe1110b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/204//#testresult/1a95cda56fe1110b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649847971649,
+          "stop" : 1649847974423,
+          "duration" : 2774
+        }
+      }, {
+        "uid" : "b77e9232f97c7b5c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/203//#testresult/b77e9232f97c7b5c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649779055116,
+          "stop" : 1649779058039,
+          "duration" : 2923
+        }
+      }, {
+        "uid" : "2ce99eea2ed4f71e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/202//#testresult/2ce99eea2ed4f71e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649760330495,
+          "stop" : 1649760332994,
+          "duration" : 2499
+        }
+      }, {
+        "uid" : "55ebee738c968959",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/201//#testresult/55ebee738c968959",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649759673718,
+          "stop" : 1649759676913,
+          "duration" : 3195
+        }
+      }, {
+        "uid" : "1202f9e17b73b40f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/200//#testresult/1202f9e17b73b40f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649755818210,
+          "stop" : 1649755825823,
+          "duration" : 7613
+        }
+      }, {
+        "uid" : "9e047d442c27d52",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/199//#testresult/9e047d442c27d52",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649687058398,
+          "stop" : 1649687060770,
+          "duration" : 2372
+        }
+      }, {
+        "uid" : "32b222828a66f3b8",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/198//#testresult/32b222828a66f3b8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649682498781,
+          "stop" : 1649682499931,
+          "duration" : 1150
+        }
+      }, {
+        "uid" : "8b311f3306225db9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/197//#testresult/8b311f3306225db9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649677079202,
+          "stop" : 1649677081623,
+          "duration" : 2421
+        }
+      }, {
+        "uid" : "90404582c47c65bb",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/196//#testresult/90404582c47c65bb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649672501637,
+          "stop" : 1649672504102,
+          "duration" : 2465
+        }
+      }, {
+        "uid" : "32f20e8254d13eb",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/194//#testresult/32f20e8254d13eb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649427025993,
+          "stop" : 1649427028674,
+          "duration" : 2681
+        }
+      }, {
+        "uid" : "34e6326872f05fc3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/193//#testresult/34e6326872f05fc3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649421405429,
+          "stop" : 1649421408589,
+          "duration" : 3160
+        }
+      }, {
+        "uid" : "5cf24455202b38b3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/191//#testresult/5cf24455202b38b3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649421027955,
+          "stop" : 1649421029232,
+          "duration" : 1277
+        }
+      }, {
+        "uid" : "bc3a5740d0b4e24b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/190//#testresult/bc3a5740d0b4e24b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649420554210,
+          "stop" : 1649420555683,
+          "duration" : 1473
+        }
+      }, {
+        "uid" : "912b0cbb5f221a1",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/189//#testresult/912b0cbb5f221a1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649419942015,
+          "stop" : 1649419944769,
+          "duration" : 2754
+        }
+      }, {
+        "uid" : "dbaae4369133583d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/dbaae4369133583d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649417688467,
+          "stop" : 1649417690744,
+          "duration" : 2277
+        }
+      }, {
+        "uid" : "fd76668df02f72e9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/fd76668df02f72e9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649416877201,
+          "stop" : 1649416880229,
+          "duration" : 3028
+        }
+      }, {
+        "uid" : "e9647281b72e8ca6",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/e9647281b72e8ca6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649415400676,
+          "stop" : 1649415403458,
+          "duration" : 2782
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "b1abc6cb3ac20b9e.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

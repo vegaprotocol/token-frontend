@@ -1,0 +1,208 @@
+{
+  "uid" : "3fae6c7ddd63b82",
+  "name" : "Go to staking and connect ethereum wallet",
+  "fullName" : "Staking page.Go to staking and connect ethereum wallet",
+  "historyId" : "24b200d19bf9488be3cf36ec47fd72a6",
+  "time" : {
+    "start" : 1649929098952,
+    "stop" : 1649929099000,
+    "duration" : 48
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "failed",
+  "statusMessage" : "Error: expect(received).toContain(expected) // indexOf",
+  "statusTrace" : "Error: expect(received).toContain(expected) // indexOf\n                \n                Expected value:  \"Ethereum wallet connected: 0x9804C6E98dA75e3271ccE3aA56728FD8e9376155\"\n                Received object: {}\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/walletconnect.steps.js:4:42)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:210:36",
+  "flaky" : true,
+  "newFailed" : true,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "Error: expect(received).toContain(expected) // indexOf",
+    "statusTrace" : "Error: expect(received).toContain(expected) // indexOf\n                \n                Expected value:  \"Ethereum wallet connected: 0x9804C6E98dA75e3271ccE3aA56728FD8e9376155\"\n                Received object: {}\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/walletconnect.steps.js:4:42)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:210:36",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1649929098956,
+        "stop" : 1649929098964,
+        "duration" : 8
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Given I connect my ethereum wallet",
+      "time" : {
+        "start" : 1649929098964,
+        "stop" : 1649929098986,
+        "duration" : 22
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I can see my ethereum key 0x9804C6E98dA75e3271ccE3aA56728FD8e9376155 is shown",
+      "time" : {
+        "start" : 1649929098986,
+        "stop" : 1649929099000,
+        "duration" : 14
+      },
+      "status" : "failed",
+      "statusMessage" : "Error: expect(received).toContain(expected) // indexOf\n                \n                Expected value:  \"Ethereum wallet connected: 0x9804C6E98dA75e3271ccE3aA56728FD8e9376155\"\n                Received object: {}\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/walletconnect.steps.js:4:42)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:210:36",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking page"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Go to staking and connect ethereum wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 4,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 5,
+        "unknown" : 0,
+        "total" : 9
+      },
+      "items" : [ {
+        "uid" : "c9cbf25f17b96d2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/204//#testresult/c9cbf25f17b96d2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649848034898,
+          "stop" : 1649848050113,
+          "duration" : 15215
+        }
+      }, {
+        "uid" : "c05a195ffc2f8540",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/193//#testresult/c05a195ffc2f8540",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649421487207,
+          "stop" : 1649421504049,
+          "duration" : 16842
+        }
+      }, {
+        "uid" : "88d4cabbcb7deb9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/185//#testresult/88d4cabbcb7deb9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649258765490,
+          "stop" : 1649258781863,
+          "duration" : 16373
+        }
+      }, {
+        "uid" : "81504f3b1b362f3e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/81504f3b1b362f3e",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toContain(expected) // indexOf",
+        "time" : {
+          "start" : 1649257837079,
+          "stop" : 1649257837126,
+          "duration" : 47
+        }
+      }, {
+        "uid" : "a27445f517f4734d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/a27445f517f4734d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649246915176,
+          "stop" : 1649246939584,
+          "duration" : 24408
+        }
+      }, {
+        "uid" : "127215ab7e98cdf6",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/127215ab7e98cdf6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649241186001,
+          "stop" : 1649241200327,
+          "duration" : 14326
+        }
+      }, {
+        "uid" : "7f1550b8d5fd7022",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/7f1550b8d5fd7022",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toContain(expected) // indexOf",
+        "time" : {
+          "start" : 1649240860051,
+          "stop" : 1649240860101,
+          "duration" : 50
+        }
+      }, {
+        "uid" : "22db16b92c9959b4",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/183//#testresult/22db16b92c9959b4",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toContain(expected) // indexOf",
+        "time" : {
+          "start" : 1649239811795,
+          "stop" : 1649239811880,
+          "duration" : 85
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "3fae6c7ddd63b82.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

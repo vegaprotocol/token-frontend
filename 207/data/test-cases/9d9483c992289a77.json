@@ -1,0 +1,314 @@
+{
+  "uid" : "9d9483c992289a77",
+  "name" : "Eth wallet not connected placeholder",
+  "fullName" : "Homepage.Eth wallet not connected placeholder",
+  "historyId" : "fee0cb03accef770cec6e04dd3ebbc7a",
+  "time" : {
+    "start" : 1649928813165,
+    "stop" : 1649928813179,
+    "duration" : 14
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "failed",
+  "statusMessage" : "Error: expect(received).toBe(expected) // Object.is equality",
+  "statusTrace" : "Error: expect(received).toBe(expected) // Object.is equality\n                \n                Expected: \"Connect Ethereum wallet to associate $VEGA\"\n                Received: {}\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:125:33)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)",
+  "flaky" : true,
+  "newFailed" : true,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "Error: expect(received).toBe(expected) // Object.is equality",
+    "statusTrace" : "Error: expect(received).toBe(expected) // Object.is equality\n                \n                Expected: \"Connect Ethereum wallet to associate $VEGA\"\n                Received: {}\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:125:33)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1649928813165,
+        "stop" : 1649928813169,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And I have not connected my eth wallet",
+      "time" : {
+        "start" : 1649928813169,
+        "stop" : 1649928813174,
+        "duration" : 5
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I can see the eth wallet disconnected with message \"Connect Ethereum wallet to associate $VEGA\"",
+      "time" : {
+        "start" : 1649928813174,
+        "stop" : 1649928813179,
+        "duration" : 5
+      },
+      "status" : "failed",
+      "statusMessage" : "Error: expect(received).toBe(expected) // Object.is equality\n                \n                Expected: \"Connect Ethereum wallet to associate $VEGA\"\n                Received: {}\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:125:33)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Eth wallet not connected placeholder"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 4,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 20,
+        "unknown" : 0,
+        "total" : 24
+      },
+      "items" : [ {
+        "uid" : "6a5286dc7440cd8e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/6a5286dc7440cd8e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649925290133,
+          "stop" : 1649925293412,
+          "duration" : 3279
+        }
+      }, {
+        "uid" : "49d1ec67ab4899ee",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/49d1ec67ab4899ee",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649856656293,
+          "stop" : 1649856659271,
+          "duration" : 2978
+        }
+      }, {
+        "uid" : "8be53375f8fc5f0d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/205//#testresult/8be53375f8fc5f0d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649855783532,
+          "stop" : 1649855786193,
+          "duration" : 2661
+        }
+      }, {
+        "uid" : "418bbd57bac7a23",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/204//#testresult/418bbd57bac7a23",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649847983981,
+          "stop" : 1649847986585,
+          "duration" : 2604
+        }
+      }, {
+        "uid" : "73c42935942536c2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/203//#testresult/73c42935942536c2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649779066453,
+          "stop" : 1649779068903,
+          "duration" : 2450
+        }
+      }, {
+        "uid" : "457195dbed9e979d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/202//#testresult/457195dbed9e979d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649760339921,
+          "stop" : 1649760342388,
+          "duration" : 2467
+        }
+      }, {
+        "uid" : "4c31b1b9831e23f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/201//#testresult/4c31b1b9831e23f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649759687477,
+          "stop" : 1649759690101,
+          "duration" : 2624
+        }
+      }, {
+        "uid" : "4b83313a7dd8c842",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/200//#testresult/4b83313a7dd8c842",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649755844053,
+          "stop" : 1649755848803,
+          "duration" : 4750
+        }
+      }, {
+        "uid" : "7f9ab9d8db414117",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/199//#testresult/7f9ab9d8db414117",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649687068079,
+          "stop" : 1649687070716,
+          "duration" : 2637
+        }
+      }, {
+        "uid" : "34ef9aa13c79396",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/197//#testresult/34ef9aa13c79396",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649677088562,
+          "stop" : 1649677090845,
+          "duration" : 2283
+        }
+      }, {
+        "uid" : "fbc5e0ef931b7ce2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/196//#testresult/fbc5e0ef931b7ce2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649672512787,
+          "stop" : 1649672515218,
+          "duration" : 2431
+        }
+      }, {
+        "uid" : "c0ee285d3eb04ce1",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/194//#testresult/c0ee285d3eb04ce1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649427037971,
+          "stop" : 1649427040491,
+          "duration" : 2520
+        }
+      }, {
+        "uid" : "5a13a574357836d0",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/193//#testresult/5a13a574357836d0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649421417010,
+          "stop" : 1649421424279,
+          "duration" : 7269
+        }
+      }, {
+        "uid" : "935db8b2747f4638",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/189//#testresult/935db8b2747f4638",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649419953067,
+          "stop" : 1649419955689,
+          "duration" : 2622
+        }
+      }, {
+        "uid" : "9dc77aede72c2b45",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/9dc77aede72c2b45",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649417697044,
+          "stop" : 1649417698810,
+          "duration" : 1766
+        }
+      }, {
+        "uid" : "c57c4f2d17d470be",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/c57c4f2d17d470be",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649416889188,
+          "stop" : 1649416892270,
+          "duration" : 3082
+        }
+      }, {
+        "uid" : "23ae83d2fac2ad4f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/23ae83d2fac2ad4f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649415412361,
+          "stop" : 1649415414845,
+          "duration" : 2484
+        }
+      }, {
+        "uid" : "1f959ac9ed6138fe",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/185//#testresult/1f959ac9ed6138fe",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649258693751,
+          "stop" : 1649258699738,
+          "duration" : 5987
+        }
+      }, {
+        "uid" : "d16478e9a7e1e4ac",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/d16478e9a7e1e4ac",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1649257777598,
+          "stop" : 1649257777608,
+          "duration" : 10
+        }
+      }, {
+        "uid" : "28efbbaac3476f95",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/28efbbaac3476f95",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649246862897,
+          "stop" : 1649246865475,
+          "duration" : 2578
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "9d9483c992289a77.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
