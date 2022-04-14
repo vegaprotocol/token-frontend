@@ -1,0 +1,265 @@
+{
+  "uid" : "634419ed2c642cf5",
+  "name" : "Use maximum button on associate from wallet enters correct amount",
+  "fullName" : "Staking and Association tests.Use maximum button on associate from wallet enters correct amount",
+  "historyId" : "1dd52f0eaff1358613e21e869074f5e0",
+  "time" : {
+    "start" : 1649925520590,
+    "stop" : 1649925552838,
+    "duration" : 32248
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+  "statusTrace" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:74:36)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+    "statusTrace" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:74:36)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1649925520590,
+        "stop" : 1649925521643,
+        "duration" : 1053
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "d3e92a82ec72238d",
+        "name" : "Screenshot",
+        "source" : "d3e92a82ec72238d.png",
+        "type" : "image/png",
+        "size" : 8120
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on use maximum button",
+      "time" : {
+        "start" : 1649925521643,
+        "stop" : 1649925552838,
+        "duration" : 31195
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:74:36)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "e684098ded9e1805",
+        "name" : "Screenshot",
+        "source" : "e684098ded9e1805.png",
+        "type" : "image/png",
+        "size" : 264823
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Use maximum button on associate from wallet enters correct amount"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 10,
+        "skipped" : 0,
+        "passed" : 5,
+        "unknown" : 0,
+        "total" : 15
+      },
+      "items" : [ {
+        "uid" : "7dc58abcec91984e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/7dc58abcec91984e",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649856936396,
+          "stop" : 1649856969043,
+          "duration" : 32647
+        }
+      }, {
+        "uid" : "724b12294f46b2bb",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/205//#testresult/724b12294f46b2bb",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649856046904,
+          "stop" : 1649856079255,
+          "duration" : 32351
+        }
+      }, {
+        "uid" : "c1b18de0e2d35dc2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/203//#testresult/c1b18de0e2d35dc2",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649779341363,
+          "stop" : 1649779373466,
+          "duration" : 32103
+        }
+      }, {
+        "uid" : "7c6f37144b75a0f6",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/202//#testresult/7c6f37144b75a0f6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649760682625,
+          "stop" : 1649760686452,
+          "duration" : 3827
+        }
+      }, {
+        "uid" : "bcd62cdea6557586",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/201//#testresult/bcd62cdea6557586",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649760118234,
+          "stop" : 1649760122995,
+          "duration" : 4761
+        }
+      }, {
+        "uid" : "60f359290e91885d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/200//#testresult/60f359290e91885d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649756219441,
+          "stop" : 1649756224234,
+          "duration" : 4793
+        }
+      }, {
+        "uid" : "c03974f610e4d89a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/199//#testresult/c03974f610e4d89a",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649687380008,
+          "stop" : 1649687417102,
+          "duration" : 37094
+        }
+      }, {
+        "uid" : "6da773237c31c8ee",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/197//#testresult/6da773237c31c8ee",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649677395546,
+          "stop" : 1649677432479,
+          "duration" : 36933
+        }
+      }, {
+        "uid" : "8d54a3098628b914",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/196//#testresult/8d54a3098628b914",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649672838969,
+          "stop" : 1649672877149,
+          "duration" : 38180
+        }
+      }, {
+        "uid" : "8d0eb99fab206c03",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/194//#testresult/8d0eb99fab206c03",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649427604675,
+          "stop" : 1649427611716,
+          "duration" : 7041
+        }
+      }, {
+        "uid" : "bbffad73f8951a9f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/189//#testresult/bbffad73f8951a9f",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649420175417,
+          "stop" : 1649420207163,
+          "duration" : 31746
+        }
+      }, {
+        "uid" : "fdb758561e76f2e9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/fdb758561e76f2e9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649417914591,
+          "stop" : 1649417918478,
+          "duration" : 3887
+        }
+      }, {
+        "uid" : "8f5eb05a5618578",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/8f5eb05a5618578",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649417093331,
+          "stop" : 1649417125501,
+          "duration" : 32170
+        }
+      }, {
+        "uid" : "fba978d93eff4441",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/fba978d93eff4441",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call click on element with selector \"[data-testid=\"associate-tokens-btn\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649415633035,
+          "stop" : 1649415665395,
+          "duration" : 32360
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "634419ed2c642cf5.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

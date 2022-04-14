@@ -3,6 +3,13 @@
   "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206/",
   "reportName" : "Allure Report with history",
   "data" : {
+    "duration" : 710763
+  }
+}, {
+  "buildOrder" : 206,
+  "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206/",
+  "reportName" : "Allure Report with history",
+  "data" : {
     "duration" : 1021505
   }
 }, {
@@ -130,12 +137,5 @@
   "reportName" : "Allure Report with history",
   "data" : {
     "duration" : 616061
-  }
-}, {
-  "buildOrder" : 185,
-  "reportUrl" : "https://vegaprotocol.github.io/token-frontend/185/",
-  "reportName" : "Allure Report with history",
-  "data" : {
-    "duration" : 335320
   }
 } ]
