@@ -3,6 +3,42 @@
   "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206/",
   "reportName" : "Allure Report with history",
   "data" : {
+    "failed" : 0,
+    "broken" : 9,
+    "skipped" : 0,
+    "passed" : 25,
+    "unknown" : 0,
+    "total" : 34
+  }
+}, {
+  "buildOrder" : 208,
+  "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208/",
+  "reportName" : "Allure Report with history",
+  "data" : {
+    "failed" : 8,
+    "broken" : 9,
+    "skipped" : 0,
+    "passed" : 3,
+    "unknown" : 0,
+    "total" : 20
+  }
+}, {
+  "buildOrder" : 207,
+  "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207/",
+  "reportName" : "Allure Report with history",
+  "data" : {
+    "failed" : 8,
+    "broken" : 9,
+    "skipped" : 0,
+    "passed" : 3,
+    "unknown" : 0,
+    "total" : 20
+  }
+}, {
+  "buildOrder" : 206,
+  "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206/",
+  "reportName" : "Allure Report with history",
+  "data" : {
     "failed" : 1,
     "broken" : 14,
     "skipped" : 0,
@@ -199,42 +235,6 @@
     "broken" : 13,
     "skipped" : 0,
     "passed" : 17,
-    "unknown" : 3,
-    "total" : 34
-  }
-}, {
-  "buildOrder" : 188,
-  "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188/",
-  "reportName" : "Allure Report with history",
-  "data" : {
-    "failed" : 1,
-    "broken" : 10,
-    "skipped" : 0,
-    "passed" : 23,
-    "unknown" : 0,
-    "total" : 34
-  }
-}, {
-  "buildOrder" : 187,
-  "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187/",
-  "reportName" : "Allure Report with history",
-  "data" : {
-    "failed" : 1,
-    "broken" : 13,
-    "skipped" : 0,
-    "passed" : 17,
-    "unknown" : 3,
-    "total" : 34
-  }
-}, {
-  "buildOrder" : 186,
-  "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186/",
-  "reportName" : "Allure Report with history",
-  "data" : {
-    "failed" : 2,
-    "broken" : 13,
-    "skipped" : 0,
-    "passed" : 16,
     "unknown" : 3,
     "total" : 34
   }

@@ -1,14 +1,43 @@
 {
   "e5c128f7a5a71120ad145bc26baf6de1" : {
     "statistic" : {
-      "failed" : 3,
+      "failed" : 5,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 23,
+      "passed" : 24,
       "unknown" : 0,
-      "total" : 26
+      "total" : 29
     },
     "items" : [ {
+      "uid" : "45aba2eaf670326c",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/45aba2eaf670326c",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444355578,
+        "stop" : 1650444360371,
+        "duration" : 4793
+      }
+    }, {
+      "uid" : "1764555ca1536102",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208//#testresult/1764555ca1536102",
+      "status" : "failed",
+      "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+      "time" : {
+        "start" : 1649955822002,
+        "stop" : 1649955822011,
+        "duration" : 9
+      }
+    }, {
+      "uid" : "a50bcd80f2cc993f",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207//#testresult/a50bcd80f2cc993f",
+      "status" : "failed",
+      "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+      "time" : {
+        "start" : 1649928811838,
+        "stop" : 1649928811849,
+        "duration" : 11
+      }
+    }, {
       "uid" : "d7db4cee01d35220",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/d7db4cee01d35220",
       "status" : "passed",
@@ -161,45 +190,47 @@
         "stop" : 1649419947601,
         "duration" : 2831
       }
-    }, {
-      "uid" : "75c2f10f3e269be2",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/75c2f10f3e269be2",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649417690744,
-        "stop" : 1649417692994,
-        "duration" : 2250
-      }
-    }, {
-      "uid" : "7163065a356b2674",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/7163065a356b2674",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649416880229,
-        "stop" : 1649416883085,
-        "duration" : 2856
-      }
-    }, {
-      "uid" : "2fe3df6b4e8a7f82",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/2fe3df6b4e8a7f82",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649415403458,
-        "stop" : 1649415406392,
-        "duration" : 2934
-      }
     } ]
   },
   "79fd1594428f09390ba7229044b87ba2" : {
     "statistic" : {
-      "failed" : 3,
+      "failed" : 5,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 23,
+      "passed" : 24,
       "unknown" : 0,
-      "total" : 26
+      "total" : 29
     },
     "items" : [ {
+      "uid" : "d45d50b5c7a6e653",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/d45d50b5c7a6e653",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444360371,
+        "stop" : 1650444364081,
+        "duration" : 3710
+      }
+    }, {
+      "uid" : "c028b12afa9355a1",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208//#testresult/c028b12afa9355a1",
+      "status" : "failed",
+      "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+      "time" : {
+        "start" : 1649955822012,
+        "stop" : 1649955822020,
+        "duration" : 8
+      }
+    }, {
+      "uid" : "6c1513e09821421f",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207//#testresult/6c1513e09821421f",
+      "status" : "failed",
+      "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+      "time" : {
+        "start" : 1649928811850,
+        "stop" : 1649928811862,
+        "duration" : 12
+      }
+    }, {
       "uid" : "b116f9fb94eee17c",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/b116f9fb94eee17c",
       "status" : "passed",
@@ -352,45 +383,47 @@
         "stop" : 1649419950144,
         "duration" : 2543
       }
-    }, {
-      "uid" : "5b384de6a6c8889e",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/5b384de6a6c8889e",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649417692994,
-        "stop" : 1649417695013,
-        "duration" : 2019
-      }
-    }, {
-      "uid" : "39ea885f667b96d6",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/39ea885f667b96d6",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649416883085,
-        "stop" : 1649416886011,
-        "duration" : 2926
-      }
-    }, {
-      "uid" : "d6848bad04581c7",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/d6848bad04581c7",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649415406392,
-        "stop" : 1649415409246,
-        "duration" : 2854
-      }
     } ]
   },
   "c75e45baee8ec9cdb17e5d4c32cacdf7" : {
     "statistic" : {
-      "failed" : 3,
+      "failed" : 5,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 23,
+      "passed" : 24,
       "unknown" : 0,
-      "total" : 26
+      "total" : 29
     },
     "items" : [ {
+      "uid" : "b7b3f132f86e4ff0",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/b7b3f132f86e4ff0",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444346521,
+        "stop" : 1650444350835,
+        "duration" : 4314
+      }
+    }, {
+      "uid" : "5c08c197cee9c15",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208//#testresult/5c08c197cee9c15",
+      "status" : "failed",
+      "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+      "time" : {
+        "start" : 1649955821985,
+        "stop" : 1649955821992,
+        "duration" : 7
+      }
+    }, {
+      "uid" : "6e566fc75161c680",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207//#testresult/6e566fc75161c680",
+      "status" : "failed",
+      "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+      "time" : {
+        "start" : 1649928811817,
+        "stop" : 1649928811825,
+        "duration" : 8
+      }
+    }, {
       "uid" : "b2517518b83b5445",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/b2517518b83b5445",
       "status" : "passed",
@@ -543,45 +576,47 @@
         "stop" : 1649419942015,
         "duration" : 3178
       }
-    }, {
-      "uid" : "dfaf8066bb3c1384",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/dfaf8066bb3c1384",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649417685763,
-        "stop" : 1649417688467,
-        "duration" : 2704
-      }
-    }, {
-      "uid" : "57b6019c6ed26d73",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/57b6019c6ed26d73",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649416873889,
-        "stop" : 1649416877201,
-        "duration" : 3312
-      }
-    }, {
-      "uid" : "1986ae183f7130f3",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/1986ae183f7130f3",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649415397212,
-        "stop" : 1649415400676,
-        "duration" : 3464
-      }
     } ]
   },
   "39a15c833b071a37ff175b7229368de0" : {
     "statistic" : {
       "failed" : 1,
-      "broken" : 0,
+      "broken" : 2,
       "skipped" : 0,
-      "passed" : 22,
+      "passed" : 23,
       "unknown" : 0,
-      "total" : 23
+      "total" : 26
     },
     "items" : [ {
+      "uid" : "1e7cd9d136d4bff7",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/1e7cd9d136d4bff7",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444223510,
+        "stop" : 1650444239157,
+        "duration" : 15647
+      }
+    }, {
+      "uid" : "c27c294ff5844c5f",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208//#testresult/c27c294ff5844c5f",
+      "status" : "broken",
+      "statusDetails" : "Error: No window found with title, url or name matching \"MetaMask\"",
+      "time" : {
+        "start" : 1649955748679,
+        "stop" : 1649955753967,
+        "duration" : 5288
+      }
+    }, {
+      "uid" : "4e499b4485e78848",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207//#testresult/4e499b4485e78848",
+      "status" : "broken",
+      "statusDetails" : "Error: No window found with title, url or name matching \"MetaMask\"",
+      "time" : {
+        "start" : 1649928724546,
+        "stop" : 1649928730049,
+        "duration" : 5503
+      }
+    }, {
       "uid" : "d7d776bafe786a0e",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/d7d776bafe786a0e",
       "status" : "passed",
@@ -735,45 +770,38 @@
         "stop" : 1649415270220,
         "duration" : 14590
       }
-    }, {
-      "uid" : "de8fce771cb1517a",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/185//#testresult/de8fce771cb1517a",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649258470019,
-        "stop" : 1649258488444,
-        "duration" : 18425
-      }
-    }, {
-      "uid" : "5c3df52907f5562d",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/5c3df52907f5562d",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649257724251,
-        "stop" : 1649257724284,
-        "duration" : 33
-      }
-    }, {
-      "uid" : "66332e0b726c548e",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/66332e0b726c548e",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649246678137,
-        "stop" : 1649246712455,
-        "duration" : 34318
-      }
     } ]
   },
   "702a46c3c9200ee604094906aa343264" : {
     "statistic" : {
       "failed" : 0,
-      "broken" : 5,
+      "broken" : 7,
       "skipped" : 0,
       "passed" : 3,
       "unknown" : 0,
-      "total" : 8
+      "total" : 10
     },
     "items" : [ {
+      "uid" : "c8d31018cc4cf095",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208//#testresult/c8d31018cc4cf095",
+      "status" : "broken",
+      "statusDetails" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+      "time" : {
+        "start" : 1649955887478,
+        "stop" : 1649955887490,
+        "duration" : 12
+      }
+    }, {
+      "uid" : "6e1165eb733ffecf",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207//#testresult/6e1165eb733ffecf",
+      "status" : "broken",
+      "statusDetails" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+      "time" : {
+        "start" : 1649929099002,
+        "stop" : 1649929099016,
+        "duration" : 14
+      }
+    }, {
       "uid" : "286c256eed42caa9",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/204//#testresult/286c256eed42caa9",
       "status" : "broken",
@@ -855,13 +883,42 @@
   "b45d53d5ab561581c8e6bb6b0fe6e9ee" : {
     "statistic" : {
       "failed" : 0,
-      "broken" : 0,
+      "broken" : 2,
       "skipped" : 0,
-      "passed" : 26,
+      "passed" : 27,
       "unknown" : 0,
-      "total" : 26
+      "total" : 29
     },
     "items" : [ {
+      "uid" : "34d70041ac32618",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/34d70041ac32618",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444328346,
+        "stop" : 1650444331894,
+        "duration" : 3548
+      }
+    }, {
+      "uid" : "cc10303b3a0473b2",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208//#testresult/cc10303b3a0473b2",
+      "status" : "broken",
+      "statusDetails" : "Error: No window found with title, url or name matching \"MetaMask\"",
+      "time" : {
+        "start" : 1649955808414,
+        "stop" : 1649955814767,
+        "duration" : 6353
+      }
+    }, {
+      "uid" : "718ac6adc96dce98",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207//#testresult/718ac6adc96dce98",
+      "status" : "broken",
+      "statusDetails" : "Error: No window found with title, url or name matching \"MetaMask\"",
+      "time" : {
+        "start" : 1649928796534,
+        "stop" : 1649928800128,
+        "duration" : 3594
+      }
+    }, {
       "uid" : "8e322d29c05e359c",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/8e322d29c05e359c",
       "status" : "passed",
@@ -1014,33 +1071,6 @@
         "stop" : 1649419924508,
         "duration" : 3202
       }
-    }, {
-      "uid" : "ba65963eef7ef5ad",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/ba65963eef7ef5ad",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649417671036,
-        "stop" : 1649417674454,
-        "duration" : 3418
-      }
-    }, {
-      "uid" : "454c22effbaa0ac1",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/454c22effbaa0ac1",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649416856099,
-        "stop" : 1649416859155,
-        "duration" : 3056
-      }
-    }, {
-      "uid" : "8af45a56fd671294",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/8af45a56fd671294",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649415379423,
-        "stop" : 1649415382540,
-        "duration" : 3117
-      }
     } ]
   },
   "5e2eacc32e5bd56b94ebf36d1028332b" : {
@@ -1048,11 +1078,38 @@
       "failed" : 0,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 26,
+      "passed" : 29,
       "unknown" : 0,
-      "total" : 26
+      "total" : 29
     },
     "items" : [ {
+      "uid" : "7b974c98a8c3c470",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/7b974c98a8c3c470",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444336859,
+        "stop" : 1650444339757,
+        "duration" : 2898
+      }
+    }, {
+      "uid" : "a1cd6e2447530666",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208//#testresult/a1cd6e2447530666",
+      "status" : "passed",
+      "time" : {
+        "start" : 1649955818823,
+        "stop" : 1649955821967,
+        "duration" : 3144
+      }
+    }, {
+      "uid" : "22b28937a9b89191",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207//#testresult/22b28937a9b89191",
+      "status" : "passed",
+      "time" : {
+        "start" : 1649928807117,
+        "stop" : 1649928811781,
+        "duration" : 4664
+      }
+    }, {
       "uid" : "de4bc47cbeaa2712",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/de4bc47cbeaa2712",
       "status" : "passed",
@@ -1205,33 +1262,6 @@
         "stop" : 1649419933097,
         "duration" : 3195
       }
-    }, {
-      "uid" : "86aa946170f3b82f",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/86aa946170f3b82f",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649417678432,
-        "stop" : 1649417681002,
-        "duration" : 2570
-      }
-    }, {
-      "uid" : "2fed0c73ce7b87e9",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/2fed0c73ce7b87e9",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649416863978,
-        "stop" : 1649416867444,
-        "duration" : 3466
-      }
-    }, {
-      "uid" : "f8095a2216fa714e",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/f8095a2216fa714e",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649415388375,
-        "stop" : 1649415391468,
-        "duration" : 3093
-      }
     } ]
   },
   "1dd52f0eaff1358613e21e869074f5e0" : {
@@ -1239,11 +1269,20 @@
       "failed" : 0,
       "broken" : 10,
       "skipped" : 0,
-      "passed" : 5,
+      "passed" : 6,
       "unknown" : 0,
-      "total" : 15
+      "total" : 16
     },
     "items" : [ {
+      "uid" : "3158c6fa12899416",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/3158c6fa12899416",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444683583,
+        "stop" : 1650444688899,
+        "duration" : 5316
+      }
+    }, {
       "uid" : "634419ed2c642cf5",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/634419ed2c642cf5",
       "status" : "broken",
@@ -1393,13 +1432,23 @@
   "10033006f4aecbda3976bbb4211da0f6" : {
     "statistic" : {
       "failed" : 0,
-      "broken" : 15,
+      "broken" : 16,
       "skipped" : 0,
       "passed" : 0,
       "unknown" : 0,
-      "total" : 15
+      "total" : 16
     },
     "items" : [ {
+      "uid" : "1ee08d50ed360bd8",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/1ee08d50ed360bd8",
+      "status" : "broken",
+      "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+      "time" : {
+        "start" : 1650444894410,
+        "stop" : 1650444896639,
+        "duration" : 2229
+      }
+    }, {
       "uid" : "8eeb9af58aa2adde",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/8eeb9af58aa2adde",
       "status" : "broken",
@@ -1554,13 +1603,42 @@
   "ea729e808820a164eba0470bcd9c059f" : {
     "statistic" : {
       "failed" : 0,
-      "broken" : 0,
+      "broken" : 2,
       "skipped" : 0,
-      "passed" : 23,
+      "passed" : 24,
       "unknown" : 0,
-      "total" : 23
+      "total" : 26
     },
     "items" : [ {
+      "uid" : "e5329a8b528cb03f",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/e5329a8b528cb03f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444364081,
+        "stop" : 1650444366463,
+        "duration" : 2382
+      }
+    }, {
+      "uid" : "ec07c85f4953e781",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208//#testresult/ec07c85f4953e781",
+      "status" : "broken",
+      "statusDetails" : "Error: import wallet button not displayed",
+      "time" : {
+        "start" : 1649955822021,
+        "stop" : 1649955824887,
+        "duration" : 2866
+      }
+    }, {
+      "uid" : "2870aa72ddfb6297",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207//#testresult/2870aa72ddfb6297",
+      "status" : "broken",
+      "statusDetails" : "Error: Get started Button not displayed",
+      "time" : {
+        "start" : 1649928811862,
+        "stop" : 1649928813164,
+        "duration" : 1302
+      }
+    }, {
       "uid" : "a3c5cf5ef7a4fdf4",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/a3c5cf5ef7a4fdf4",
       "status" : "passed",
@@ -1713,45 +1791,28 @@
         "stop" : 1649415412361,
         "duration" : 3115
       }
-    }, {
-      "uid" : "e34f8c37b355ffec",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/185//#testresult/e34f8c37b355ffec",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649258687935,
-        "stop" : 1649258693751,
-        "duration" : 5816
-      }
-    }, {
-      "uid" : "fb3ab4da61330b62",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/fb3ab4da61330b62",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649257777589,
-        "stop" : 1649257777598,
-        "duration" : 9
-      }
-    }, {
-      "uid" : "768f6720bfb55b7c",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/768f6720bfb55b7c",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649246859857,
-        "stop" : 1649246862897,
-        "duration" : 3040
-      }
     } ]
   },
   "19546d112f1aa7dea0a4f9c63a284358" : {
     "statistic" : {
       "failed" : 0,
-      "broken" : 15,
+      "broken" : 16,
       "skipped" : 0,
       "passed" : 0,
       "unknown" : 0,
-      "total" : 15
+      "total" : 16
     },
     "items" : [ {
+      "uid" : "80638b51a7d75ee2",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/80638b51a7d75ee2",
+      "status" : "broken",
+      "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+      "time" : {
+        "start" : 1650444891801,
+        "stop" : 1650444894404,
+        "duration" : 2603
+      }
+    }, {
       "uid" : "eb50dd778346877a",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/eb50dd778346877a",
       "status" : "broken",
@@ -1908,11 +1969,20 @@
       "failed" : 3,
       "broken" : 7,
       "skipped" : 0,
-      "passed" : 5,
+      "passed" : 6,
       "unknown" : 0,
-      "total" : 15
+      "total" : 16
     },
     "items" : [ {
+      "uid" : "3aa649012cd85e41",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/3aa649012cd85e41",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444880518,
+        "stop" : 1650444886675,
+        "duration" : 6157
+      }
+    }, {
       "uid" : "b28c1d6df2e3fcb1",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/b28c1d6df2e3fcb1",
       "status" : "broken",
@@ -2061,14 +2131,34 @@
   },
   "24b200d19bf9488be3cf36ec47fd72a6" : {
     "statistic" : {
-      "failed" : 3,
+      "failed" : 5,
       "broken" : 0,
       "skipped" : 0,
       "passed" : 5,
       "unknown" : 0,
-      "total" : 8
+      "total" : 10
     },
     "items" : [ {
+      "uid" : "c3a38683a16c47ed",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208//#testresult/c3a38683a16c47ed",
+      "status" : "failed",
+      "statusDetails" : "Error: expect(received).toContain(expected) // indexOf",
+      "time" : {
+        "start" : 1649955887422,
+        "stop" : 1649955887477,
+        "duration" : 55
+      }
+    }, {
+      "uid" : "3fae6c7ddd63b82",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207//#testresult/3fae6c7ddd63b82",
+      "status" : "failed",
+      "statusDetails" : "Error: expect(received).toContain(expected) // indexOf",
+      "time" : {
+        "start" : 1649929098952,
+        "stop" : 1649929099000,
+        "duration" : 48
+      }
+    }, {
       "uid" : "c9cbf25f17b96d2",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/204//#testresult/c9cbf25f17b96d2",
       "status" : "passed",
@@ -2148,13 +2238,23 @@
   "bafb7c0403b9875ff59d6ddb673f743" : {
     "statistic" : {
       "failed" : 0,
-      "broken" : 10,
+      "broken" : 11,
       "skipped" : 0,
       "passed" : 2,
       "unknown" : 3,
-      "total" : 15
+      "total" : 16
     },
     "items" : [ {
+      "uid" : "b90ec383a33fa7d6",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/b90ec383a33fa7d6",
+      "status" : "broken",
+      "statusDetails" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds",
+      "time" : {
+        "start" : 1650444529585,
+        "stop" : 1650444609547,
+        "duration" : 79962
+      }
+    }, {
       "uid" : "aa4a7cce8bdf8072",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/aa4a7cce8bdf8072",
       "status" : "broken",
@@ -2306,11 +2406,20 @@
       "failed" : 7,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 5,
+      "passed" : 6,
       "unknown" : 3,
-      "total" : 15
+      "total" : 16
     },
     "items" : [ {
+      "uid" : "5d96510aa95ab242",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/5d96510aa95ab242",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444961904,
+        "stop" : 1650444988893,
+        "duration" : 26989
+      }
+    }, {
       "uid" : "df3fdb8dcc16a675",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/df3fdb8dcc16a675",
       "status" : "failed",
@@ -2457,13 +2566,23 @@
   "b8943f126db6c991ca238d55739ed443" : {
     "statistic" : {
       "failed" : 0,
-      "broken" : 15,
+      "broken" : 16,
       "skipped" : 0,
       "passed" : 0,
       "unknown" : 0,
-      "total" : 15
+      "total" : 16
     },
     "items" : [ {
+      "uid" : "6f907df213584e08",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/6f907df213584e08",
+      "status" : "broken",
+      "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+      "time" : {
+        "start" : 1650444889126,
+        "stop" : 1650444891799,
+        "duration" : 2673
+      }
+    }, {
       "uid" : "bfa22a6caf382e7",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/bfa22a6caf382e7",
       "status" : "broken",
@@ -2620,11 +2739,20 @@
       "failed" : 0,
       "broken" : 10,
       "skipped" : 0,
-      "passed" : 5,
+      "passed" : 6,
       "unknown" : 0,
-      "total" : 15
+      "total" : 16
     },
     "items" : [ {
+      "uid" : "47bc8aa48612dd04",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/47bc8aa48612dd04",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444804419,
+        "stop" : 1650444809310,
+        "duration" : 4891
+      }
+    }, {
       "uid" : "89f8434ec0cbce3e",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/89f8434ec0cbce3e",
       "status" : "broken",
@@ -2774,13 +2902,42 @@
   "607e0e06b898d703b411f2efc855b24b" : {
     "statistic" : {
       "failed" : 0,
-      "broken" : 14,
+      "broken" : 16,
       "skipped" : 0,
-      "passed" : 12,
+      "passed" : 13,
       "unknown" : 0,
-      "total" : 26
+      "total" : 29
     },
     "items" : [ {
+      "uid" : "9741718cb20779ce",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/9741718cb20779ce",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444369282,
+        "stop" : 1650444371310,
+        "duration" : 2028
+      }
+    }, {
+      "uid" : "2b5a0b1fbd97722d",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208//#testresult/2b5a0b1fbd97722d",
+      "status" : "broken",
+      "statusDetails" : "TypeError: browser.getByTestId(...).getText is not a function",
+      "time" : {
+        "start" : 1649955824901,
+        "stop" : 1649955824915,
+        "duration" : 14
+      }
+    }, {
+      "uid" : "a12dd60ed2f0cd55",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207//#testresult/a12dd60ed2f0cd55",
+      "status" : "broken",
+      "statusDetails" : "TypeError: browser.getByTestId(...).getText is not a function",
+      "time" : {
+        "start" : 1649928813179,
+        "stop" : 1649928813191,
+        "duration" : 12
+      }
+    }, {
       "uid" : "f58051d610219939",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/f58051d610219939",
       "status" : "passed",
@@ -2941,36 +3098,6 @@
         "stop" : 1649419987589,
         "duration" : 31900
       }
-    }, {
-      "uid" : "62f27222f4e9d51f",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/62f27222f4e9d51f",
-      "status" : "broken",
-      "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"connect-vega\"]\" because element wasn't found",
-      "time" : {
-        "start" : 1649417698810,
-        "stop" : 1649417730449,
-        "duration" : 31639
-      }
-    }, {
-      "uid" : "14baaca410e43412",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/14baaca410e43412",
-      "status" : "broken",
-      "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"connect-vega\"]\" because element wasn't found",
-      "time" : {
-        "start" : 1649416892270,
-        "stop" : 1649416924386,
-        "duration" : 32116
-      }
-    }, {
-      "uid" : "216add76ba9744c7",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/216add76ba9744c7",
-      "status" : "broken",
-      "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"connect-vega\"]\" because element wasn't found",
-      "time" : {
-        "start" : 1649415414845,
-        "stop" : 1649415446683,
-        "duration" : 31838
-      }
     } ]
   },
   "79532109b9122c496b8d980ab3fa0bc3" : {
@@ -2978,11 +3105,20 @@
       "failed" : 0,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 15,
+      "passed" : 16,
       "unknown" : 0,
-      "total" : 15
+      "total" : 16
     },
     "items" : [ {
+      "uid" : "bb2b39dccf32b7f3",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/bb2b39dccf32b7f3",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444497826,
+        "stop" : 1650444529584,
+        "duration" : 31758
+      }
+    }, {
       "uid" : "180cbd32aafd1d15",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/180cbd32aafd1d15",
       "status" : "passed",
@@ -3124,11 +3260,38 @@
       "failed" : 0,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 26,
+      "passed" : 29,
       "unknown" : 0,
-      "total" : 26
+      "total" : 29
     },
     "items" : [ {
+      "uid" : "6c29c0f14b3eb62e",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/6c29c0f14b3eb62e",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444334228,
+        "stop" : 1650444336859,
+        "duration" : 2631
+      }
+    }, {
+      "uid" : "f0c28bf38329bcbe",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208//#testresult/f0c28bf38329bcbe",
+      "status" : "passed",
+      "time" : {
+        "start" : 1649955817140,
+        "stop" : 1649955818823,
+        "duration" : 1683
+      }
+    }, {
+      "uid" : "785f1481df06cf23",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207//#testresult/785f1481df06cf23",
+      "status" : "passed",
+      "time" : {
+        "start" : 1649928803911,
+        "stop" : 1649928807116,
+        "duration" : 3205
+      }
+    }, {
       "uid" : "2720dab34c14b03d",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/2720dab34c14b03d",
       "status" : "passed",
@@ -3281,45 +3444,47 @@
         "stop" : 1649419929902,
         "duration" : 3069
       }
-    }, {
-      "uid" : "970d4d7a3ae6baac",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/970d4d7a3ae6baac",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649417676120,
-        "stop" : 1649417678432,
-        "duration" : 2312
-      }
-    }, {
-      "uid" : "6ed7504d82571752",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/6ed7504d82571752",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649416861285,
-        "stop" : 1649416863978,
-        "duration" : 2693
-      }
-    }, {
-      "uid" : "9457563091cca1d5",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/9457563091cca1d5",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649415385024,
-        "stop" : 1649415388375,
-        "duration" : 3351
-      }
     } ]
   },
   "6fab3f7524031af7e2c647aac983c3ff" : {
     "statistic" : {
-      "failed" : 3,
+      "failed" : 5,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 23,
+      "passed" : 24,
       "unknown" : 0,
-      "total" : 26
+      "total" : 29
     },
     "items" : [ {
+      "uid" : "8951bcc7428e5308",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/8951bcc7428e5308",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444350836,
+        "stop" : 1650444355578,
+        "duration" : 4742
+      }
+    }, {
+      "uid" : "f8dcc3dc583faea5",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208//#testresult/f8dcc3dc583faea5",
+      "status" : "failed",
+      "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+      "time" : {
+        "start" : 1649955821993,
+        "stop" : 1649955822002,
+        "duration" : 9
+      }
+    }, {
+      "uid" : "b1abc6cb3ac20b9e",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207//#testresult/b1abc6cb3ac20b9e",
+      "status" : "failed",
+      "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+      "time" : {
+        "start" : 1649928811826,
+        "stop" : 1649928811837,
+        "duration" : 11
+      }
+    }, {
       "uid" : "c41d47938b2a0082",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/c41d47938b2a0082",
       "status" : "passed",
@@ -3472,45 +3637,47 @@
         "stop" : 1649419944769,
         "duration" : 2754
       }
-    }, {
-      "uid" : "dbaae4369133583d",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/dbaae4369133583d",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649417688467,
-        "stop" : 1649417690744,
-        "duration" : 2277
-      }
-    }, {
-      "uid" : "fd76668df02f72e9",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/fd76668df02f72e9",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649416877201,
-        "stop" : 1649416880229,
-        "duration" : 3028
-      }
-    }, {
-      "uid" : "e9647281b72e8ca6",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/e9647281b72e8ca6",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649415400676,
-        "stop" : 1649415403458,
-        "duration" : 2782
-      }
     } ]
   },
   "91edaff876b9e227e3c02278f9214d3a" : {
     "statistic" : {
-      "failed" : 3,
+      "failed" : 5,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 23,
+      "passed" : 24,
       "unknown" : 0,
-      "total" : 26
+      "total" : 29
     },
     "items" : [ {
+      "uid" : "92f42e510fdd379d",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/92f42e510fdd379d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444339757,
+        "stop" : 1650444343146,
+        "duration" : 3389
+      }
+    }, {
+      "uid" : "f00b236c9bfc088e",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208//#testresult/f00b236c9bfc088e",
+      "status" : "failed",
+      "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+      "time" : {
+        "start" : 1649955821967,
+        "stop" : 1649955821976,
+        "duration" : 9
+      }
+    }, {
+      "uid" : "7bc26c3908c53030",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207//#testresult/7bc26c3908c53030",
+      "status" : "failed",
+      "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+      "time" : {
+        "start" : 1649928811781,
+        "stop" : 1649928811806,
+        "duration" : 25
+      }
+    }, {
       "uid" : "ffe64c6da699d7b1",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/ffe64c6da699d7b1",
       "status" : "passed",
@@ -3663,45 +3830,47 @@
         "stop" : 1649419935879,
         "duration" : 2782
       }
-    }, {
-      "uid" : "7f3e7290df87313c",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/7f3e7290df87313c",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649417681002,
-        "stop" : 1649417683134,
-        "duration" : 2132
-      }
-    }, {
-      "uid" : "280a6a23eff5c5ec",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/280a6a23eff5c5ec",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649416867444,
-        "stop" : 1649416870839,
-        "duration" : 3395
-      }
-    }, {
-      "uid" : "30da078c762570eb",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/30da078c762570eb",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649415391468,
-        "stop" : 1649415394371,
-        "duration" : 2903
-      }
     } ]
   },
   "91dde96c03721a837df89d488b7a153b" : {
     "statistic" : {
-      "failed" : 3,
+      "failed" : 5,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 23,
+      "passed" : 24,
       "unknown" : 0,
-      "total" : 26
+      "total" : 29
     },
     "items" : [ {
+      "uid" : "a72750082e8369c",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/a72750082e8369c",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444343146,
+        "stop" : 1650444346521,
+        "duration" : 3375
+      }
+    }, {
+      "uid" : "7ce9e2210a86c6db",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208//#testresult/7ce9e2210a86c6db",
+      "status" : "failed",
+      "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+      "time" : {
+        "start" : 1649955821978,
+        "stop" : 1649955821984,
+        "duration" : 6
+      }
+    }, {
+      "uid" : "b2babd0d91791788",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207//#testresult/b2babd0d91791788",
+      "status" : "failed",
+      "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+      "time" : {
+        "start" : 1649928811807,
+        "stop" : 1649928811816,
+        "duration" : 9
+      }
+    }, {
       "uid" : "ca2d6a75c000cd81",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/ca2d6a75c000cd81",
       "status" : "passed",
@@ -3854,45 +4023,28 @@
         "stop" : 1649419938837,
         "duration" : 2957
       }
-    }, {
-      "uid" : "61fdf754074f779",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/61fdf754074f779",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649417683134,
-        "stop" : 1649417685763,
-        "duration" : 2629
-      }
-    }, {
-      "uid" : "8609cca5c6ab1ae1",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/8609cca5c6ab1ae1",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649416870839,
-        "stop" : 1649416873889,
-        "duration" : 3050
-      }
-    }, {
-      "uid" : "294c860f84758d69",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/294c860f84758d69",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649415394371,
-        "stop" : 1649415397212,
-        "duration" : 2841
-      }
     } ]
   },
   "2202ce34a69f50ec221451d1dfbc74e6" : {
     "statistic" : {
       "failed" : 0,
-      "broken" : 15,
+      "broken" : 16,
       "skipped" : 0,
       "passed" : 0,
       "unknown" : 0,
-      "total" : 15
+      "total" : 16
     },
     "items" : [ {
+      "uid" : "56baeb1b4ddc435c",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/56baeb1b4ddc435c",
+      "status" : "broken",
+      "statusDetails" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds",
+      "time" : {
+        "start" : 1650444809310,
+        "stop" : 1650444880516,
+        "duration" : 71206
+      }
+    }, {
       "uid" : "86f9815336e8d3ee",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/86f9815336e8d3ee",
       "status" : "broken",
@@ -4049,11 +4201,38 @@
       "failed" : 0,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 26,
+      "passed" : 29,
       "unknown" : 0,
-      "total" : 26
+      "total" : 29
     },
     "items" : [ {
+      "uid" : "ef902b0551557a4",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/ef902b0551557a4",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444331894,
+        "stop" : 1650444334228,
+        "duration" : 2334
+      }
+    }, {
+      "uid" : "24e58693346b987e",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208//#testresult/24e58693346b987e",
+      "status" : "passed",
+      "time" : {
+        "start" : 1649955814768,
+        "stop" : 1649955817140,
+        "duration" : 2372
+      }
+    }, {
+      "uid" : "1b68ea942055f8d3",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207//#testresult/1b68ea942055f8d3",
+      "status" : "passed",
+      "time" : {
+        "start" : 1649928800131,
+        "stop" : 1649928803911,
+        "duration" : 3780
+      }
+    }, {
       "uid" : "1a9bb3970f91548",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/1a9bb3970f91548",
       "status" : "passed",
@@ -4206,45 +4385,47 @@
         "stop" : 1649419926833,
         "duration" : 2325
       }
-    }, {
-      "uid" : "c1a0d3cf7d377e84",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/c1a0d3cf7d377e84",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649417674454,
-        "stop" : 1649417676120,
-        "duration" : 1666
-      }
-    }, {
-      "uid" : "3eaaf958a7434af1",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/3eaaf958a7434af1",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649416859155,
-        "stop" : 1649416861285,
-        "duration" : 2130
-      }
-    }, {
-      "uid" : "d4a9feedd99e104f",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/d4a9feedd99e104f",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649415382540,
-        "stop" : 1649415385024,
-        "duration" : 2484
-      }
     } ]
   },
   "fee0cb03accef770cec6e04dd3ebbc7a" : {
     "statistic" : {
-      "failed" : 3,
+      "failed" : 5,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 20,
+      "passed" : 21,
       "unknown" : 0,
-      "total" : 23
+      "total" : 26
     },
     "items" : [ {
+      "uid" : "21213828971a75fa",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/21213828971a75fa",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444366463,
+        "stop" : 1650444369281,
+        "duration" : 2818
+      }
+    }, {
+      "uid" : "b00a7d5916f8baaa",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208//#testresult/b00a7d5916f8baaa",
+      "status" : "failed",
+      "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+      "time" : {
+        "start" : 1649955824888,
+        "stop" : 1649955824901,
+        "duration" : 13
+      }
+    }, {
+      "uid" : "9d9483c992289a77",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207//#testresult/9d9483c992289a77",
+      "status" : "failed",
+      "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+      "time" : {
+        "start" : 1649928813165,
+        "stop" : 1649928813179,
+        "duration" : 14
+      }
+    }, {
       "uid" : "6a5286dc7440cd8e",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/6a5286dc7440cd8e",
       "status" : "passed",
@@ -4397,46 +4578,47 @@
         "stop" : 1649415414845,
         "duration" : 2484
       }
-    }, {
-      "uid" : "1f959ac9ed6138fe",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/185//#testresult/1f959ac9ed6138fe",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649258693751,
-        "stop" : 1649258699738,
-        "duration" : 5987
-      }
-    }, {
-      "uid" : "d16478e9a7e1e4ac",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/d16478e9a7e1e4ac",
-      "status" : "failed",
-      "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
-      "time" : {
-        "start" : 1649257777598,
-        "stop" : 1649257777608,
-        "duration" : 10
-      }
-    }, {
-      "uid" : "28efbbaac3476f95",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/28efbbaac3476f95",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649246862897,
-        "stop" : 1649246865475,
-        "duration" : 2578
-      }
     } ]
   },
   "3e1a9b6fd96622225400d11d3b5c3ffc" : {
     "statistic" : {
       "failed" : 0,
-      "broken" : 3,
+      "broken" : 5,
       "skipped" : 0,
-      "passed" : 20,
+      "passed" : 21,
       "unknown" : 0,
-      "total" : 23
+      "total" : 26
     },
     "items" : [ {
+      "uid" : "94e84e6e0957dd90",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/94e84e6e0957dd90",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444290586,
+        "stop" : 1650444323070,
+        "duration" : 32484
+      }
+    }, {
+      "uid" : "c3c811f5df93f758",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208//#testresult/c3c811f5df93f758",
+      "status" : "broken",
+      "statusDetails" : "TypeError: totalSupply.getText is not a function",
+      "time" : {
+        "start" : 1649955799342,
+        "stop" : 1649955799390,
+        "duration" : 48
+      }
+    }, {
+      "uid" : "73b2872550e084cc",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207//#testresult/73b2872550e084cc",
+      "status" : "broken",
+      "statusDetails" : "TypeError: totalSupply.getText is not a function",
+      "time" : {
+        "start" : 1649928789902,
+        "stop" : 1649928789967,
+        "duration" : 65
+      }
+    }, {
       "uid" : "77c8c7331bad1d6b",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/77c8c7331bad1d6b",
       "status" : "passed",
@@ -4589,34 +4771,6 @@
         "stop" : 1649415347212,
         "duration" : 18273
       }
-    }, {
-      "uid" : "84e79b69b2c98990",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/185//#testresult/84e79b69b2c98990",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649258540157,
-        "stop" : 1649258585227,
-        "duration" : 45070
-      }
-    }, {
-      "uid" : "f54e62475d0bbdd8",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/f54e62475d0bbdd8",
-      "status" : "broken",
-      "statusDetails" : "TypeError: totalSupply.getText is not a function",
-      "time" : {
-        "start" : 1649257777363,
-        "stop" : 1649257777421,
-        "duration" : 58
-      }
-    }, {
-      "uid" : "cfd8928c0846afb9",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/cfd8928c0846afb9",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649246779124,
-        "stop" : 1649246798103,
-        "duration" : 18979
-      }
     } ]
   },
   "2e7ebd0bffca55f3e09ec81c113e66e4" : {
@@ -4624,11 +4778,20 @@
       "failed" : 0,
       "broken" : 10,
       "skipped" : 0,
-      "passed" : 5,
+      "passed" : 6,
       "unknown" : 0,
-      "total" : 15
+      "total" : 16
     },
     "items" : [ {
+      "uid" : "32aa7e1b49dfe479",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/32aa7e1b49dfe479",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444988893,
+        "stop" : 1650444993821,
+        "duration" : 4928
+      }
+    }, {
       "uid" : "f7ecad2f6872dbf6",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/f7ecad2f6872dbf6",
       "status" : "broken",
@@ -4778,13 +4941,33 @@
   "c9a07fb6230061c5c04ad96987ba5dcf" : {
     "statistic" : {
       "failed" : 3,
-      "broken" : 5,
+      "broken" : 7,
       "skipped" : 0,
       "passed" : 0,
       "unknown" : 0,
-      "total" : 8
+      "total" : 10
     },
     "items" : [ {
+      "uid" : "5eb6311eb9d9fb5b",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208//#testresult/5eb6311eb9d9fb5b",
+      "status" : "broken",
+      "statusDetails" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+      "time" : {
+        "start" : 1649955887491,
+        "stop" : 1649955887499,
+        "duration" : 8
+      }
+    }, {
+      "uid" : "8ed9cf9e01d45330",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207//#testresult/8ed9cf9e01d45330",
+      "status" : "broken",
+      "statusDetails" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+      "time" : {
+        "start" : 1649929099017,
+        "stop" : 1649929099026,
+        "duration" : 9
+      }
+    }, {
       "uid" : "8f5013884d8ae7b5",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/204//#testresult/8f5013884d8ae7b5",
       "status" : "broken",
@@ -4869,13 +5052,23 @@
   "b46da9954f537da53e9193eecec78ff3" : {
     "statistic" : {
       "failed" : 0,
-      "broken" : 12,
+      "broken" : 13,
       "skipped" : 0,
       "passed" : 3,
       "unknown" : 0,
-      "total" : 15
+      "total" : 16
     },
     "items" : [ {
+      "uid" : "c6250a69b53bd82e",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/c6250a69b53bd82e",
+      "status" : "broken",
+      "statusDetails" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds",
+      "time" : {
+        "start" : 1650444688899,
+        "stop" : 1650444763362,
+        "duration" : 74463
+      }
+    }, {
       "uid" : "cefaa7898baa190",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/cefaa7898baa190",
       "status" : "broken",
@@ -5027,13 +5220,23 @@
   "a946109617038e803ba8a7b96a6eb903" : {
     "statistic" : {
       "failed" : 0,
-      "broken" : 15,
+      "broken" : 16,
       "skipped" : 0,
       "passed" : 0,
       "unknown" : 0,
-      "total" : 15
+      "total" : 16
     },
     "items" : [ {
+      "uid" : "ca047bb8b26efe6e",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/ca047bb8b26efe6e",
+      "status" : "broken",
+      "statusDetails" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds",
+      "time" : {
+        "start" : 1650444609549,
+        "stop" : 1650444683580,
+        "duration" : 74031
+      }
+    }, {
       "uid" : "c5fbe4c9e957ba75",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/c5fbe4c9e957ba75",
       "status" : "broken",
@@ -5190,11 +5393,20 @@
       "failed" : 0,
       "broken" : 7,
       "skipped" : 0,
-      "passed" : 5,
+      "passed" : 6,
       "unknown" : 3,
-      "total" : 15
+      "total" : 16
     },
     "items" : [ {
+      "uid" : "56495912d978bf01",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/56495912d978bf01",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444446160,
+        "stop" : 1650444453494,
+        "duration" : 7334
+      }
+    }, {
       "uid" : "324a12fd4db383e3",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/324a12fd4db383e3",
       "status" : "broken",
@@ -5341,13 +5553,42 @@
   "fe146ac841243977d1a34bcefd87d344" : {
     "statistic" : {
       "failed" : 1,
-      "broken" : 3,
+      "broken" : 5,
       "skipped" : 0,
-      "passed" : 19,
+      "passed" : 20,
       "unknown" : 0,
-      "total" : 23
+      "total" : 26
     },
     "items" : [ {
+      "uid" : "deaa7a2ba1791318",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/deaa7a2ba1791318",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444217105,
+        "stop" : 1650444223510,
+        "duration" : 6405
+      }
+    }, {
+      "uid" : "bb8827f8d23a2a64",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208//#testresult/bb8827f8d23a2a64",
+      "status" : "broken",
+      "statusDetails" : "Error: No window found with title, url or name matching \"Vega\"",
+      "time" : {
+        "start" : 1649955739340,
+        "stop" : 1649955748677,
+        "duration" : 9337
+      }
+    }, {
+      "uid" : "9654f661c4dcbaf0",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207//#testresult/9654f661c4dcbaf0",
+      "status" : "broken",
+      "statusDetails" : "Error: No window found with title, url or name matching \"Vega\"",
+      "time" : {
+        "start" : 1649928712226,
+        "stop" : 1649928724544,
+        "duration" : 12318
+      }
+    }, {
       "uid" : "73ad08346b87c617",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/73ad08346b87c617",
       "status" : "passed",
@@ -5501,46 +5742,28 @@
         "stop" : 1649415255630,
         "duration" : 3228
       }
-    }, {
-      "uid" : "186c29f46f442afa",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/185//#testresult/186c29f46f442afa",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649258465943,
-        "stop" : 1649258470018,
-        "duration" : 4075
-      }
-    }, {
-      "uid" : "4fbf492c82de791e",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/184//#testresult/4fbf492c82de791e",
-      "status" : "broken",
-      "statusDetails" : "TypeError: browser.getByTestId(...).isDisplayed is not a function",
-      "time" : {
-        "start" : 1649257724212,
-        "stop" : 1649257724248,
-        "duration" : 36
-      }
-    }, {
-      "uid" : "2c462403e33d1d0c",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/180//#testresult/2c462403e33d1d0c",
-      "status" : "passed",
-      "time" : {
-        "start" : 1649246670938,
-        "stop" : 1649246678136,
-        "duration" : 7198
-      }
     } ]
   },
   "5f689952e36c8ee90a1079d1446ad037" : {
     "statistic" : {
       "failed" : 0,
-      "broken" : 15,
+      "broken" : 16,
       "skipped" : 0,
       "passed" : 0,
       "unknown" : 0,
-      "total" : 15
+      "total" : 16
     },
     "items" : [ {
+      "uid" : "39dd829e85069e2f",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/39dd829e85069e2f",
+      "status" : "broken",
+      "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+      "time" : {
+        "start" : 1650444886675,
+        "stop" : 1650444889106,
+        "duration" : 2431
+      }
+    }, {
       "uid" : "18692f00042e8cea",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/18692f00042e8cea",
       "status" : "broken",
@@ -5697,11 +5920,20 @@
       "failed" : 4,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 11,
+      "passed" : 12,
       "unknown" : 0,
-      "total" : 15
+      "total" : 16
     },
     "items" : [ {
+      "uid" : "faa450674c46ab69",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/faa450674c46ab69",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444427497,
+        "stop" : 1650444446160,
+        "duration" : 18663
+      }
+    }, {
       "uid" : "72511e64c8d96c86",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/72511e64c8d96c86",
       "status" : "passed",
@@ -5845,13 +6077,42 @@
   "75dc0c7908c032915bb7dc0878fb6e77" : {
     "statistic" : {
       "failed" : 16,
-      "broken" : 0,
+      "broken" : 2,
       "skipped" : 0,
-      "passed" : 10,
+      "passed" : 11,
       "unknown" : 0,
-      "total" : 26
+      "total" : 29
     },
     "items" : [ {
+      "uid" : "639ab63cd7929c4",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/639ab63cd7929c4",
+      "status" : "passed",
+      "time" : {
+        "start" : 1650444323070,
+        "stop" : 1650444328346,
+        "duration" : 5276
+      }
+    }, {
+      "uid" : "e4222ee8f06aa96b",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208//#testresult/e4222ee8f06aa96b",
+      "status" : "broken",
+      "statusDetails" : "Error: No window found with title, url or name matching \"Vega\"",
+      "time" : {
+        "start" : 1649955799391,
+        "stop" : 1649955808413,
+        "duration" : 9022
+      }
+    }, {
+      "uid" : "311de6853bc36523",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207//#testresult/311de6853bc36523",
+      "status" : "broken",
+      "statusDetails" : "Error: No window found with title, url or name matching \"Vega\"",
+      "time" : {
+        "start" : 1649928789968,
+        "stop" : 1649928796532,
+        "duration" : 6564
+      }
+    }, {
       "uid" : "a1a1c0aaa4b07147",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/a1a1c0aaa4b07147",
       "status" : "passed",
@@ -6014,48 +6275,28 @@
         "stop" : 1649419921305,
         "duration" : 32283
       }
-    }, {
-      "uid" : "64feb6d90dfcc601",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/64feb6d90dfcc601",
-      "status" : "failed",
-      "statusDetails" : "Error: Expect $(`[data-test-id=\"get-vega-wallet-link\"]`) to have attribute href",
-      "time" : {
-        "start" : 1649417638940,
-        "stop" : 1649417671034,
-        "duration" : 32094
-      }
-    }, {
-      "uid" : "6657ff619ba033af",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/6657ff619ba033af",
-      "status" : "failed",
-      "statusDetails" : "Error: Expect $(`[data-test-id=\"get-vega-wallet-link\"]`) to have attribute href",
-      "time" : {
-        "start" : 1649416824033,
-        "stop" : 1649416856098,
-        "duration" : 32065
-      }
-    }, {
-      "uid" : "b62f5262c38624e9",
-      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/b62f5262c38624e9",
-      "status" : "failed",
-      "statusDetails" : "Error: Expect $(`[data-test-id=\"get-vega-wallet-link\"]`) to have attribute href",
-      "time" : {
-        "start" : 1649415347212,
-        "stop" : 1649415379422,
-        "duration" : 32210
-      }
     } ]
   },
   "e8b998c24236a4d68b976a4e61d43a96" : {
     "statistic" : {
       "failed" : 0,
-      "broken" : 15,
+      "broken" : 16,
       "skipped" : 0,
       "passed" : 0,
       "unknown" : 0,
-      "total" : 15
+      "total" : 16
     },
     "items" : [ {
+      "uid" : "679ab997e485f17d",
+      "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/679ab997e485f17d",
+      "status" : "broken",
+      "statusDetails" : "Error: Wallet radio btn not displayed",
+      "time" : {
+        "start" : 1650444763364,
+        "stop" : 1650444804416,
+        "duration" : 41052
+      }
+    }, {
       "uid" : "4515014ffc17b092",
       "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/4515014ffc17b092",
       "status" : "broken",

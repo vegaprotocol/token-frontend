@@ -1,0 +1,322 @@
+{
+  "uid" : "56baeb1b4ddc435c",
+  "name" : "Disassociate tokens through vesting contract",
+  "fullName" : "Staking and Association tests.Disassociate tokens through vesting contract",
+  "historyId" : "2202ce34a69f50ec221451d1dfbc74e6",
+  "time" : {
+    "start" : 1650444809310,
+    "stop" : 1650444880516,
+    "duration" : 71206
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds",
+  "statusTrace" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds\n                    at Timeout.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:53:14)\n                    at listOnTimeout (internal/timers.js:557:17)\n                    at processTimers (internal/timers.js:500:7)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds",
+    "statusTrace" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds\n                    at Timeout.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:53:14)\n                    at listOnTimeout (internal/timers.js:557:17)\n                    at processTimers (internal/timers.js:500:7)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1650444809310,
+        "stop" : 1650444810338,
+        "duration" : 1028
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "51d1ef402e187e27",
+        "name" : "Screenshot",
+        "source" : "51d1ef402e187e27.png",
+        "type" : "image/png",
+        "size" : 248336
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I disassociate \"0.10\" tokens from \"vesting contract\"",
+      "time" : {
+        "start" : 1650444810339,
+        "stop" : 1650444818384,
+        "duration" : 8045
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "acfc996ef4bbf9f2",
+        "name" : "Screenshot",
+        "source" : "acfc996ef4bbf9f2.png",
+        "type" : "image/png",
+        "size" : 196162
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the pending transactions button is shown",
+      "time" : {
+        "start" : 1650444818384,
+        "stop" : 1650444819513,
+        "duration" : 1129
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "2808f09a67773429",
+        "name" : "Screenshot",
+        "source" : "2808f09a67773429.png",
+        "type" : "image/png",
+        "size" : 217549
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And the disassociation of \"0.10\" has been successful",
+      "time" : {
+        "start" : 1650444819513,
+        "stop" : 1650444880515,
+        "duration" : 61002
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds\n                    at Timeout.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:53:14)\n                    at listOnTimeout (internal/timers.js:557:17)\n                    at processTimers (internal/timers.js:500:7)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "68eb43506966892",
+        "name" : "Screenshot",
+        "source" : "68eb43506966892.png",
+        "type" : "image/png",
+        "size" : 217567
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Disassociate tokens through vesting contract"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 16,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 16
+      },
+      "items" : [ {
+        "uid" : "86f9815336e8d3ee",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/86f9815336e8d3ee",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate btn  was not found",
+        "time" : {
+          "start" : 1649925650923,
+          "stop" : 1649925684071,
+          "duration" : 33148
+        }
+      }, {
+        "uid" : "e6cf8804aa61e706",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/e6cf8804aa61e706",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate btn  was not found",
+        "time" : {
+          "start" : 1649857067420,
+          "stop" : 1649857100148,
+          "duration" : 32728
+        }
+      }, {
+        "uid" : "d1f684bceac3cd3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/205//#testresult/d1f684bceac3cd3",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Cannot read property 'getText' of undefined",
+        "time" : {
+          "start" : 1649856146298,
+          "stop" : 1649856148715,
+          "duration" : 2417
+        }
+      }, {
+        "uid" : "d47eeaffb598f437",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/203//#testresult/d47eeaffb598f437",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Cannot read property 'getText' of undefined",
+        "time" : {
+          "start" : 1649779471009,
+          "stop" : 1649779473334,
+          "duration" : 2325
+        }
+      }, {
+        "uid" : "24f0367317b7f095",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/202//#testresult/24f0367317b7f095",
+        "status" : "broken",
+        "statusDetails" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds",
+        "time" : {
+          "start" : 1649760720484,
+          "stop" : 1649760790789,
+          "duration" : 70305
+        }
+      }, {
+        "uid" : "ca3607733916f9d3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/201//#testresult/ca3607733916f9d3",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Cannot read property 'getText' of undefined",
+        "time" : {
+          "start" : 1649760196919,
+          "stop" : 1649760198904,
+          "duration" : 1985
+        }
+      }, {
+        "uid" : "f3489bf90d77c1eb",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/200//#testresult/f3489bf90d77c1eb",
+        "status" : "broken",
+        "statusDetails" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds",
+        "time" : {
+          "start" : 1649756302596,
+          "stop" : 1649756375243,
+          "duration" : 72647
+        }
+      }, {
+        "uid" : "c27602b1b323f28a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/199//#testresult/c27602b1b323f28a",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate btn  was not found",
+        "time" : {
+          "start" : 1649687519949,
+          "stop" : 1649687556557,
+          "duration" : 36608
+        }
+      }, {
+        "uid" : "581e4a9264ad363e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/197//#testresult/581e4a9264ad363e",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate btn  was not found",
+        "time" : {
+          "start" : 1649677541206,
+          "stop" : 1649677576056,
+          "duration" : 34850
+        }
+      }, {
+        "uid" : "1a3e32f0cc50efdb",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/196//#testresult/1a3e32f0cc50efdb",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate btn  was not found",
+        "time" : {
+          "start" : 1649672983369,
+          "stop" : 1649673018834,
+          "duration" : 35465
+        }
+      }, {
+        "uid" : "39952306645407d4",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/194//#testresult/39952306645407d4",
+        "status" : "broken",
+        "statusDetails" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds",
+        "time" : {
+          "start" : 1649427660888,
+          "stop" : 1649427733043,
+          "duration" : 72155
+        }
+      }, {
+        "uid" : "50d5c63374827948",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/189//#testresult/50d5c63374827948",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate btn  was not found",
+        "time" : {
+          "start" : 1649420301796,
+          "stop" : 1649420333189,
+          "duration" : 31393
+        }
+      }, {
+        "uid" : "e22f3830e91e408b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/e22f3830e91e408b",
+        "status" : "broken",
+        "statusDetails" : "function has 0 arguments, should have 1 (if synchronous or returning a promise) or 2 (if accepting a callback)",
+        "time" : {
+          "start" : 1649417966146,
+          "stop" : 1649417976069,
+          "duration" : 9923
+        }
+      }, {
+        "uid" : "c1e95aa341b5c03b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/c1e95aa341b5c03b",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Cannot read property 'getText' of undefined",
+        "time" : {
+          "start" : 1649417191764,
+          "stop" : 1649417194254,
+          "duration" : 2490
+        }
+      }, {
+        "uid" : "6e407d7c99b21727",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/6e407d7c99b21727",
+        "status" : "broken",
+        "statusDetails" : "TypeError: Cannot read property 'getText' of undefined",
+        "time" : {
+          "start" : 1649415731726,
+          "stop" : 1649415733624,
+          "duration" : 1898
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "56baeb1b4ddc435c.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
