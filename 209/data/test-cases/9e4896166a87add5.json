@@ -1,0 +1,315 @@
+{
+  "uid" : "9e4896166a87add5",
+  "name" : "Can navigate to Governance page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Governance page using main nav tab",
+  "historyId" : "c75e45baee8ec9cdb17e5d4c32cacdf7",
+  "time" : {
+    "start" : 1650616547380,
+    "stop" : 1650616547395,
+    "duration" : 15
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "failed",
+  "statusMessage" : "Error: expect(received).toBe(expected) // Object.is equality",
+  "statusTrace" : "Error: expect(received).toBe(expected) // Object.is equality\n                \n                Expected: \"GOVERNANCE\"\n                Received: {}\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:111:36)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)",
+  "flaky" : true,
+  "newFailed" : true,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "Error: expect(received).toBe(expected) // Object.is equality",
+    "statusTrace" : "Error: expect(received).toBe(expected) // Object.is equality\n                \n                Expected: \"GOVERNANCE\"\n                Received: {}\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:111:36)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1650616547380,
+        "stop" : 1650616547383,
+        "duration" : 3
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When I click on \"Governance\" on main nav",
+      "time" : {
+        "start" : 1650616547383,
+        "stop" : 1650616547392,
+        "duration" : 9
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And I can see \"Governance\" button is clearly highlighted after click",
+      "time" : {
+        "start" : 1650616547392,
+        "stop" : 1650616547395,
+        "duration" : 3
+      },
+      "status" : "failed",
+      "statusMessage" : "Error: expect(received).toBe(expected) // Object.is equality\n                \n                Expected: \"GOVERNANCE\"\n                Received: {}\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:111:36)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Governance page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 6,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 24,
+        "unknown" : 0,
+        "total" : 30
+      },
+      "items" : [ {
+        "uid" : "b7b3f132f86e4ff0",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/b7b3f132f86e4ff0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1650444346521,
+          "stop" : 1650444350835,
+          "duration" : 4314
+        }
+      }, {
+        "uid" : "5c08c197cee9c15",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208//#testresult/5c08c197cee9c15",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1649955821985,
+          "stop" : 1649955821992,
+          "duration" : 7
+        }
+      }, {
+        "uid" : "6e566fc75161c680",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207//#testresult/6e566fc75161c680",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1649928811817,
+          "stop" : 1649928811825,
+          "duration" : 8
+        }
+      }, {
+        "uid" : "b2517518b83b5445",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/b2517518b83b5445",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649925273225,
+          "stop" : 1649925277166,
+          "duration" : 3941
+        }
+      }, {
+        "uid" : "151fa302f7a53abd",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/151fa302f7a53abd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649856640660,
+          "stop" : 1649856644428,
+          "duration" : 3768
+        }
+      }, {
+        "uid" : "fc0223864f8ceddc",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/205//#testresult/fc0223864f8ceddc",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649855769548,
+          "stop" : 1649855772754,
+          "duration" : 3206
+        }
+      }, {
+        "uid" : "f0bcfb5443836d7c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/204//#testresult/f0bcfb5443836d7c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649847968099,
+          "stop" : 1649847971649,
+          "duration" : 3550
+        }
+      }, {
+        "uid" : "e658f2a8f4d794f5",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/203//#testresult/e658f2a8f4d794f5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649779051887,
+          "stop" : 1649779055116,
+          "duration" : 3229
+        }
+      }, {
+        "uid" : "64a2af84a9a13e24",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/202//#testresult/64a2af84a9a13e24",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649760328027,
+          "stop" : 1649760330495,
+          "duration" : 2468
+        }
+      }, {
+        "uid" : "acf16df85bcba64",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/201//#testresult/acf16df85bcba64",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649759669943,
+          "stop" : 1649759673718,
+          "duration" : 3775
+        }
+      }, {
+        "uid" : "5f349f328b3e1a85",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/200//#testresult/5f349f328b3e1a85",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649755812057,
+          "stop" : 1649755818210,
+          "duration" : 6153
+        }
+      }, {
+        "uid" : "20da0e75e665bbe9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/199//#testresult/20da0e75e665bbe9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649687055624,
+          "stop" : 1649687058398,
+          "duration" : 2774
+        }
+      }, {
+        "uid" : "11d3667735d86292",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/198//#testresult/11d3667735d86292",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649682497557,
+          "stop" : 1649682498781,
+          "duration" : 1224
+        }
+      }, {
+        "uid" : "9b948f2a7e4e3417",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/197//#testresult/9b948f2a7e4e3417",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649677076116,
+          "stop" : 1649677079202,
+          "duration" : 3086
+        }
+      }, {
+        "uid" : "422f1939ed030c6b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/196//#testresult/422f1939ed030c6b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649672498606,
+          "stop" : 1649672501637,
+          "duration" : 3031
+        }
+      }, {
+        "uid" : "6ee32f4127ce7718",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/194//#testresult/6ee32f4127ce7718",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649427021601,
+          "stop" : 1649427025993,
+          "duration" : 4392
+        }
+      }, {
+        "uid" : "f6d3c385b55ade81",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/193//#testresult/f6d3c385b55ade81",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649421402867,
+          "stop" : 1649421405429,
+          "duration" : 2562
+        }
+      }, {
+        "uid" : "17f5360ca72155d2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/191//#testresult/17f5360ca72155d2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649421026309,
+          "stop" : 1649421027955,
+          "duration" : 1646
+        }
+      }, {
+        "uid" : "77ffc0cae6dfc47b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/190//#testresult/77ffc0cae6dfc47b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649420552800,
+          "stop" : 1649420554210,
+          "duration" : 1410
+        }
+      }, {
+        "uid" : "de753614aba4709e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/189//#testresult/de753614aba4709e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649419938837,
+          "stop" : 1649419942015,
+          "duration" : 3178
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "9e4896166a87add5.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

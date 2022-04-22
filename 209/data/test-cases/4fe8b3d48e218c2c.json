@@ -1,0 +1,293 @@
+{
+  "uid" : "4fe8b3d48e218c2c",
+  "name" : "add stake from wallet",
+  "fullName" : "Staking and Association tests.add stake from wallet",
+  "historyId" : "5f689952e36c8ee90a1079d1446ad037",
+  "time" : {
+    "start" : 1650616741637,
+    "stop" : 1650616741652,
+    "duration" : 15
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "failed",
+  "statusMessage" : "Error: expect(received).toEqual(expected) // deep equality",
+  "statusTrace" : "Error: expect(received).toEqual(expected) // deep equality\n                \n                Expected: \"VALIDATOR: [object Promise]\"\n                Received: {}\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:130:39)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:210:36",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "Error: expect(received).toEqual(expected) // deep equality",
+    "statusTrace" : "Error: expect(received).toEqual(expected) // deep equality\n                \n                Expected: \"VALIDATOR: [object Promise]\"\n                Received: {}\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:130:39)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:210:36",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1650616741637,
+        "stop" : 1650616741641,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When I click on a validator",
+      "time" : {
+        "start" : 1650616741641,
+        "stop" : 1650616741647,
+        "duration" : 6
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I am taken to the correct validator page",
+      "time" : {
+        "start" : 1650616741647,
+        "stop" : 1650616741652,
+        "duration" : 5
+      },
+      "status" : "failed",
+      "statusMessage" : "Error: expect(received).toEqual(expected) // deep equality\n                \n                Expected: \"VALIDATOR: [object Promise]\"\n                Received: {}\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:130:39)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:210:36",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "add stake from wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 1,
+        "broken" : 16,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 17
+      },
+      "items" : [ {
+        "uid" : "39dd829e85069e2f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/39dd829e85069e2f",
+        "status" : "broken",
+        "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+        "time" : {
+          "start" : 1650444886675,
+          "stop" : 1650444889106,
+          "duration" : 2431
+        }
+      }, {
+        "uid" : "18692f00042e8cea",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/18692f00042e8cea",
+        "status" : "broken",
+        "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+        "time" : {
+          "start" : 1649925717623,
+          "stop" : 1649925720104,
+          "duration" : 2481
+        }
+      }, {
+        "uid" : "b4de4885a40ad234",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/b4de4885a40ad234",
+        "status" : "broken",
+        "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+        "time" : {
+          "start" : 1649857133795,
+          "stop" : 1649857136020,
+          "duration" : 2225
+        }
+      }, {
+        "uid" : "aca38deb3f60783c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/205//#testresult/aca38deb3f60783c",
+        "status" : "broken",
+        "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+        "time" : {
+          "start" : 1649856181649,
+          "stop" : 1649856183980,
+          "duration" : 2331
+        }
+      }, {
+        "uid" : "2563a3ddcde9c51d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/203//#testresult/2563a3ddcde9c51d",
+        "status" : "broken",
+        "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+        "time" : {
+          "start" : 1649779506166,
+          "stop" : 1649779508409,
+          "duration" : 2243
+        }
+      }, {
+        "uid" : "6243f7e965661dda",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/202//#testresult/6243f7e965661dda",
+        "status" : "broken",
+        "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+        "time" : {
+          "start" : 1649760796010,
+          "stop" : 1649760798148,
+          "duration" : 2138
+        }
+      }, {
+        "uid" : "3fd8ab0726d94d1c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/201//#testresult/3fd8ab0726d94d1c",
+        "status" : "broken",
+        "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+        "time" : {
+          "start" : 1649760204463,
+          "stop" : 1649760206325,
+          "duration" : 1862
+        }
+      }, {
+        "uid" : "a490f6ddaaec8fce",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/200//#testresult/a490f6ddaaec8fce",
+        "status" : "broken",
+        "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+        "time" : {
+          "start" : 1649756380733,
+          "stop" : 1649756383159,
+          "duration" : 2426
+        }
+      }, {
+        "uid" : "ff911b4f69578691",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/199//#testresult/ff911b4f69578691",
+        "status" : "broken",
+        "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+        "time" : {
+          "start" : 1649687587954,
+          "stop" : 1649687589345,
+          "duration" : 1391
+        }
+      }, {
+        "uid" : "81a0bd63c4014de6",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/197//#testresult/81a0bd63c4014de6",
+        "status" : "broken",
+        "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+        "time" : {
+          "start" : 1649677607545,
+          "stop" : 1649677609467,
+          "duration" : 1922
+        }
+      }, {
+        "uid" : "a5f7c4a8f0e5baea",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/196//#testresult/a5f7c4a8f0e5baea",
+        "status" : "broken",
+        "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+        "time" : {
+          "start" : 1649673050418,
+          "stop" : 1649673052781,
+          "duration" : 2363
+        }
+      }, {
+        "uid" : "6ba6e64893ed2438",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/194//#testresult/6ba6e64893ed2438",
+        "status" : "broken",
+        "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+        "time" : {
+          "start" : 1649427739179,
+          "stop" : 1649427741612,
+          "duration" : 2433
+        }
+      }, {
+        "uid" : "3ade9ca97a317b8a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/189//#testresult/3ade9ca97a317b8a",
+        "status" : "broken",
+        "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+        "time" : {
+          "start" : 1649420365708,
+          "stop" : 1649420367240,
+          "duration" : 1532
+        }
+      }, {
+        "uid" : "eadfdf233d1f3460",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/eadfdf233d1f3460",
+        "status" : "broken",
+        "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+        "time" : {
+          "start" : 1649417981634,
+          "stop" : 1649417983422,
+          "duration" : 1788
+        }
+      }, {
+        "uid" : "3cbef36ba60ea79",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/3cbef36ba60ea79",
+        "status" : "broken",
+        "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+        "time" : {
+          "start" : 1649417226830,
+          "stop" : 1649417229095,
+          "duration" : 2265
+        }
+      }, {
+        "uid" : "102f32ce5f2ee782",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/102f32ce5f2ee782",
+        "status" : "broken",
+        "statusDetails" : "invalid selector: An invalid or illegal selector was specified",
+        "time" : {
+          "start" : 1649415766584,
+          "stop" : 1649415768978,
+          "duration" : 2394
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "4fe8b3d48e218c2c.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

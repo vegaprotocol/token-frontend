@@ -1,0 +1,269 @@
+{
+  "uid" : "d45ad5dc80d9d5de",
+  "name" : "Rewards are shown and rewards countdown is shown when vega wallet is connect",
+  "fullName" : "Rewards page.Rewards are shown and rewards countdown is shown when vega wallet is connect",
+  "historyId" : "903ee56ca3eb850dae2b0d96e392f95f",
+  "time" : {
+    "start" : 1650616696929,
+    "stop" : 1650616696938,
+    "duration" : 9
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+  "statusTrace" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/walletconnect.steps.js:10:53)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:210:36",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+    "statusTrace" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/walletconnect.steps.js:10:53)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:210:36",
+    "steps" : [ {
+      "name" : "Given I navigate to \"rewards\" page",
+      "time" : {
+        "start" : 1650616696929,
+        "stop" : 1650616696934,
+        "duration" : 5
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When I connect to the vega wallet",
+      "time" : {
+        "start" : 1650616696934,
+        "stop" : 1650616696938,
+        "duration" : 4
+      },
+      "status" : "broken",
+      "statusMessage" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/walletconnect.steps.js:10:53)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:210:36",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-3"
+  }, {
+    "name" : "suite",
+    "value" : "Rewards page"
+  }, {
+    "name" : "testClass",
+    "value" : "Rewards page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Rewards are shown and rewards countdown is shown when vega wallet is connect"
+  }, {
+    "name" : "package",
+    "value" : "Rewards page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 8,
+        "skipped" : 0,
+        "passed" : 6,
+        "unknown" : 3,
+        "total" : 17
+      },
+      "items" : [ {
+        "uid" : "56495912d978bf01",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/56495912d978bf01",
+        "status" : "passed",
+        "time" : {
+          "start" : 1650444446160,
+          "stop" : 1650444453494,
+          "duration" : 7334
+        }
+      }, {
+        "uid" : "324a12fd4db383e3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/324a12fd4db383e3",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649925374348,
+          "stop" : 1649925409259,
+          "duration" : 34911
+        }
+      }, {
+        "uid" : "a1f3e29410ee7867",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/a1f3e29410ee7867",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649856741174,
+          "stop" : 1649856777021,
+          "duration" : 35847
+        }
+      }, {
+        "uid" : "1878ca50090322ed",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/205//#testresult/1878ca50090322ed",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649855861226,
+          "stop" : 1649855896529,
+          "duration" : 35303
+        }
+      }, {
+        "uid" : "9998d15466416551",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/203//#testresult/9998d15466416551",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649779155368,
+          "stop" : 1649779190419,
+          "duration" : 35051
+        }
+      }, {
+        "uid" : "6699b9a716e028ce",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/202//#testresult/6699b9a716e028ce",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649760449629,
+          "stop" : 1649760457159,
+          "duration" : 7530
+        }
+      }, {
+        "uid" : "5e4ad2c924bda75d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/201//#testresult/5e4ad2c924bda75d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649759782229,
+          "stop" : 1649759788432,
+          "duration" : 6203
+        }
+      }, {
+        "uid" : "596c5e633b1241a5",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/200//#testresult/596c5e633b1241a5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649755959644,
+          "stop" : 1649755968410,
+          "duration" : 8766
+        }
+      }, {
+        "uid" : "cbb71e7c6b459762",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/199//#testresult/cbb71e7c6b459762",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649687200603,
+          "stop" : 1649687234516,
+          "duration" : 33913
+        }
+      }, {
+        "uid" : "8a0c4c9f7b4e67d5",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/197//#testresult/8a0c4c9f7b4e67d5",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649677214361,
+          "stop" : 1649677248673,
+          "duration" : 34312
+        }
+      }, {
+        "uid" : "7b0c6efc70df4d41",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/196//#testresult/7b0c6efc70df4d41",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"current-epoch-ends-in\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649672648958,
+          "stop" : 1649672682620,
+          "duration" : 33662
+        }
+      }, {
+        "uid" : "5c2db3397970ab44",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/194//#testresult/5c2db3397970ab44",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649427207399,
+          "stop" : 1649427215456,
+          "duration" : 8057
+        }
+      }, {
+        "uid" : "2b6cb2927ffd3a50",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/189//#testresult/2b6cb2927ffd3a50",
+        "status" : "unknown",
+        "time" : {
+          "start" : 1649420075679,
+          "stop" : 0,
+          "duration" : -1649420075679
+        }
+      }, {
+        "uid" : "d52b43a1b6dd55eb",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/d52b43a1b6dd55eb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649417816323,
+          "stop" : 1649417822963,
+          "duration" : 6640
+        }
+      }, {
+        "uid" : "6171f8e84aac7b7e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/6171f8e84aac7b7e",
+        "status" : "unknown",
+        "time" : {
+          "start" : 1649417002374,
+          "stop" : 0,
+          "duration" : -1649417002374
+        }
+      }, {
+        "uid" : "c673de0e26c74724",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/c673de0e26c74724",
+        "status" : "unknown",
+        "time" : {
+          "start" : 1649415555048,
+          "stop" : 0,
+          "duration" : -1649415555048
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "d45ad5dc80d9d5de.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

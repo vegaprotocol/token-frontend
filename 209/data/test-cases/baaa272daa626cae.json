@@ -1,0 +1,284 @@
+{
+  "uid" : "baaa272daa626cae",
+  "name" : "Check wallet field entry",
+  "fullName" : "Withdraw page.Check wallet field entry",
+  "historyId" : "86d619d8b6252719c65a00c589c789fc",
+  "time" : {
+    "start" : 1650616794750,
+    "stop" : 1650616794794,
+    "duration" : 44
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+  "statusTrace" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/walletconnect.steps.js:10:53)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:210:36",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+    "statusTrace" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/walletconnect.steps.js:10:53)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:210:36",
+    "steps" : [ {
+      "name" : "Given I navigate to \"withdraw\" page",
+      "time" : {
+        "start" : 1650616794752,
+        "stop" : 1650616794766,
+        "duration" : 14
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Given I connect my ethereum wallet",
+      "time" : {
+        "start" : 1650616794766,
+        "stop" : 1650616794783,
+        "duration" : 17
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When I connect to the vega wallet",
+      "time" : {
+        "start" : 1650616794783,
+        "stop" : 1650616794794,
+        "duration" : 11
+      },
+      "status" : "broken",
+      "statusMessage" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/walletconnect.steps.js:10:53)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:210:36",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-6"
+  }, {
+    "name" : "suite",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "testClass",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Check wallet field entry"
+  }, {
+    "name" : "package",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 7,
+        "broken" : 1,
+        "skipped" : 0,
+        "passed" : 6,
+        "unknown" : 3,
+        "total" : 17
+      },
+      "items" : [ {
+        "uid" : "5d96510aa95ab242",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/5d96510aa95ab242",
+        "status" : "passed",
+        "time" : {
+          "start" : 1650444961904,
+          "stop" : 1650444988893,
+          "duration" : 26989
+        }
+      }, {
+        "uid" : "df3fdb8dcc16a675",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/df3fdb8dcc16a675",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $(`[data-testid=\"current-eth-address-withdrawals\"]`) to have property value",
+        "time" : {
+          "start" : 1649925786682,
+          "stop" : 1649925839943,
+          "duration" : 53261
+        }
+      }, {
+        "uid" : "89b499a8b9cd134",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/89b499a8b9cd134",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $(`[data-testid=\"current-eth-address-withdrawals\"]`) to have property value",
+        "time" : {
+          "start" : 1649857198664,
+          "stop" : 1649857248698,
+          "duration" : 50034
+        }
+      }, {
+        "uid" : "d26e3ea8d930b0df",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/205//#testresult/d26e3ea8d930b0df",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $(`[data-testid=\"current-eth-address-withdrawals\"]`) to have property value",
+        "time" : {
+          "start" : 1649856337275,
+          "stop" : 1649856387625,
+          "duration" : 50350
+        }
+      }, {
+        "uid" : "a4f5c0a7be4895a0",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/203//#testresult/a4f5c0a7be4895a0",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $(`[data-testid=\"current-eth-address-withdrawals\"]`) to have property value",
+        "time" : {
+          "start" : 1649779570693,
+          "stop" : 1649779619209,
+          "duration" : 48516
+        }
+      }, {
+        "uid" : "9d5396101bbd0b78",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/202//#testresult/9d5396101bbd0b78",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649760850895,
+          "stop" : 1649760872136,
+          "duration" : 21241
+        }
+      }, {
+        "uid" : "d745b86b661e40e9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/201//#testresult/d745b86b661e40e9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649760506405,
+          "stop" : 1649760530030,
+          "duration" : 23625
+        }
+      }, {
+        "uid" : "b26e78a897986724",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/200//#testresult/b26e78a897986724",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649756447438,
+          "stop" : 1649756483465,
+          "duration" : 36027
+        }
+      }, {
+        "uid" : "ec452e5a72ec897d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/199//#testresult/ec452e5a72ec897d",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $(`[data-testid=\"current-eth-address-withdrawals\"]`) to have property value",
+        "time" : {
+          "start" : 1649687641714,
+          "stop" : 1649687688417,
+          "duration" : 46703
+        }
+      }, {
+        "uid" : "ea2a689985bf7a2c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/197//#testresult/ea2a689985bf7a2c",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $(`[data-testid=\"current-eth-address-withdrawals\"]`) to have property value",
+        "time" : {
+          "start" : 1649677666838,
+          "stop" : 1649677713521,
+          "duration" : 46683
+        }
+      }, {
+        "uid" : "14e9ae7a46594f13",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/196//#testresult/14e9ae7a46594f13",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $(`[data-testid=\"current-eth-address-withdrawals\"]`) to have property value",
+        "time" : {
+          "start" : 1649673113876,
+          "stop" : 1649673171740,
+          "duration" : 57864
+        }
+      }, {
+        "uid" : "8e68bff76ce6a82b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/194//#testresult/8e68bff76ce6a82b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649427889908,
+          "stop" : 1649427916532,
+          "duration" : 26624
+        }
+      }, {
+        "uid" : "fe3df7a4a5f8f77e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/189//#testresult/fe3df7a4a5f8f77e",
+        "status" : "unknown",
+        "time" : {
+          "start" : 1649420433064,
+          "stop" : 0,
+          "duration" : -1649420433064
+        }
+      }, {
+        "uid" : "85317d1880fba29f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/85317d1880fba29f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649418046988,
+          "stop" : 1649418070304,
+          "duration" : 23316
+        }
+      }, {
+        "uid" : "87cd17f33e88da10",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/87cd17f33e88da10",
+        "status" : "unknown",
+        "time" : {
+          "start" : 1649417308594,
+          "stop" : 0,
+          "duration" : -1649417308594
+        }
+      }, {
+        "uid" : "93537516c79e4dfc",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/93537516c79e4dfc",
+        "status" : "unknown",
+        "time" : {
+          "start" : 1649415828258,
+          "stop" : 0,
+          "duration" : -1649415828258
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "baaa272daa626cae.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

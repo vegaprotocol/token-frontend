@@ -1,0 +1,272 @@
+{
+  "uid" : "2cb2bc9c169f2b91",
+  "name" : "Cannot disassociate more tokens through vesting contract than available",
+  "fullName" : "Staking and Association tests.Cannot disassociate more tokens through vesting contract than available",
+  "historyId" : "4eefaa5bf5521545350dacf8045a38e6",
+  "time" : {
+    "start" : 1650616741599,
+    "stop" : 1650616741612,
+    "duration" : 13
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+  "statusTrace" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:134:50)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:210:36",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+    "statusTrace" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:134:50)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:210:36",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1650616741600,
+        "stop" : 1650616741607,
+        "duration" : 7
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And I click the button to disassociate",
+      "time" : {
+        "start" : 1650616741607,
+        "stop" : 1650616741612,
+        "duration" : 5
+      },
+      "status" : "broken",
+      "statusMessage" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:134:50)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)\n                    at TestCaseRunner.invokeStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:130:12)\n                    at TestCaseRunner.runStep (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:307:20)\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:210:36",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Cannot disassociate more tokens through vesting contract than available"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 11,
+        "skipped" : 0,
+        "passed" : 6,
+        "unknown" : 0,
+        "total" : 17
+      },
+      "items" : [ {
+        "uid" : "47bc8aa48612dd04",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/47bc8aa48612dd04",
+        "status" : "passed",
+        "time" : {
+          "start" : 1650444804419,
+          "stop" : 1650444809310,
+          "duration" : 4891
+        }
+      }, {
+        "uid" : "89f8434ec0cbce3e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/89f8434ec0cbce3e",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate button not displayed",
+        "time" : {
+          "start" : 1649925618578,
+          "stop" : 1649925650922,
+          "duration" : 32344
+        }
+      }, {
+        "uid" : "6a6a9cce6a09e738",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/6a6a9cce6a09e738",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate button not displayed",
+        "time" : {
+          "start" : 1649857035508,
+          "stop" : 1649857067419,
+          "duration" : 31911
+        }
+      }, {
+        "uid" : "2e021720ee0c12a9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/205//#testresult/2e021720ee0c12a9",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate button not displayed",
+        "time" : {
+          "start" : 1649856114575,
+          "stop" : 1649856146296,
+          "duration" : 31721
+        }
+      }, {
+        "uid" : "ed2a958d60037ffa",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/203//#testresult/ed2a958d60037ffa",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate button not displayed",
+        "time" : {
+          "start" : 1649779439381,
+          "stop" : 1649779471008,
+          "duration" : 31627
+        }
+      }, {
+        "uid" : "6374719cd0768741",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/202//#testresult/6374719cd0768741",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649760716522,
+          "stop" : 1649760720484,
+          "duration" : 3962
+        }
+      }, {
+        "uid" : "94da5c1fa4f1ed3d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/201//#testresult/94da5c1fa4f1ed3d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649760192445,
+          "stop" : 1649760196919,
+          "duration" : 4474
+        }
+      }, {
+        "uid" : "bbbad63de3fbb9ee",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/200//#testresult/bbbad63de3fbb9ee",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649756296885,
+          "stop" : 1649756302596,
+          "duration" : 5711
+        }
+      }, {
+        "uid" : "6eaad71774b6aaae",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/199//#testresult/6eaad71774b6aaae",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate button not displayed",
+        "time" : {
+          "start" : 1649687488358,
+          "stop" : 1649687519948,
+          "duration" : 31590
+        }
+      }, {
+        "uid" : "c74c8b40e5c05f43",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/197//#testresult/c74c8b40e5c05f43",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate button not displayed",
+        "time" : {
+          "start" : 1649677509830,
+          "stop" : 1649677541204,
+          "duration" : 31374
+        }
+      }, {
+        "uid" : "35d99604be5cdf8e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/196//#testresult/35d99604be5cdf8e",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate button not displayed",
+        "time" : {
+          "start" : 1649672951730,
+          "stop" : 1649672983368,
+          "duration" : 31638
+        }
+      }, {
+        "uid" : "af3a62d29edd15e5",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/194//#testresult/af3a62d29edd15e5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649427656243,
+          "stop" : 1649427660888,
+          "duration" : 4645
+        }
+      }, {
+        "uid" : "cf7e3e7285046eb5",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/189//#testresult/cf7e3e7285046eb5",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate button not displayed",
+        "time" : {
+          "start" : 1649420270516,
+          "stop" : 1649420301795,
+          "duration" : 31279
+        }
+      }, {
+        "uid" : "4e8ffb2b05108498",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/188//#testresult/4e8ffb2b05108498",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649417961528,
+          "stop" : 1649417966146,
+          "duration" : 4618
+        }
+      }, {
+        "uid" : "e079d01579310e7d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/187//#testresult/e079d01579310e7d",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate button not displayed",
+        "time" : {
+          "start" : 1649417159837,
+          "stop" : 1649417191763,
+          "duration" : 31926
+        }
+      }, {
+        "uid" : "fe31fb3168685f15",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/186//#testresult/fe31fb3168685f15",
+        "status" : "broken",
+        "statusDetails" : "Error: disassociate button not displayed",
+        "time" : {
+          "start" : 1649415699807,
+          "stop" : 1649415731725,
+          "duration" : 31918
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "2cb2bc9c169f2b91.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

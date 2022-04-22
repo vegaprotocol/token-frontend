@@ -1,0 +1,323 @@
+{
+  "uid" : "35012a831770535",
+  "name" : "Vega wallet not connected placeholder",
+  "fullName" : "Homepage.Vega wallet not connected placeholder",
+  "historyId" : "607e0e06b898d703b411f2efc855b24b",
+  "time" : {
+    "start" : 1650616557275,
+    "stop" : 1650616557281,
+    "duration" : 6
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+  "statusTrace" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:118:59)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at runNextTicks (node:internal/process/task_queues:65:3)\n                    at processTimers (node:internal/timers:499:9)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+    "statusTrace" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:118:59)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at runNextTicks (node:internal/process/task_queues:65:3)\n                    at processTimers (node:internal/timers:499:9)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1650616557275,
+        "stop" : 1650616557277,
+        "duration" : 2
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And I have not connected my vega wallet",
+      "time" : {
+        "start" : 1650616557277,
+        "stop" : 1650616557278,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I can see the vega wallet disconnected with message \"Connect Vega wallet to use associated $VEGA\"",
+      "time" : {
+        "start" : 1650616557278,
+        "stop" : 1650616557281,
+        "duration" : 3
+      },
+      "status" : "broken",
+      "statusMessage" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/home.steps.js:118:59)\n                    at World.executeAsync (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:325:27)\n                    at World.testFrameworkFnWrapper (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/test-framework/testFnWrapper.js:45:32)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at runNextTicks (node:internal/process/task_queues:65:3)\n                    at processTimers (node:internal/timers:499:9)\n                    at Object.wrapPromiseWithTimeout (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:56:10)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86:16)\n                    at Object.run (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:50:20)",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Vega wallet not connected placeholder"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 17,
+        "skipped" : 0,
+        "passed" : 13,
+        "unknown" : 0,
+        "total" : 30
+      },
+      "items" : [ {
+        "uid" : "9741718cb20779ce",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/9741718cb20779ce",
+        "status" : "passed",
+        "time" : {
+          "start" : 1650444369282,
+          "stop" : 1650444371310,
+          "duration" : 2028
+        }
+      }, {
+        "uid" : "2b5a0b1fbd97722d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/208//#testresult/2b5a0b1fbd97722d",
+        "status" : "broken",
+        "statusDetails" : "TypeError: browser.getByTestId(...).getText is not a function",
+        "time" : {
+          "start" : 1649955824901,
+          "stop" : 1649955824915,
+          "duration" : 14
+        }
+      }, {
+        "uid" : "a12dd60ed2f0cd55",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/207//#testresult/a12dd60ed2f0cd55",
+        "status" : "broken",
+        "statusDetails" : "TypeError: browser.getByTestId(...).getText is not a function",
+        "time" : {
+          "start" : 1649928813179,
+          "stop" : 1649928813191,
+          "duration" : 12
+        }
+      }, {
+        "uid" : "f58051d610219939",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/f58051d610219939",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649925293412,
+          "stop" : 1649925296109,
+          "duration" : 2697
+        }
+      }, {
+        "uid" : "3fc4f8afb2d85ab8",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/206//#testresult/3fc4f8afb2d85ab8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649856659271,
+          "stop" : 1649856661285,
+          "duration" : 2014
+        }
+      }, {
+        "uid" : "6feef26dc39672ae",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/205//#testresult/6feef26dc39672ae",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649855786193,
+          "stop" : 1649855788716,
+          "duration" : 2523
+        }
+      }, {
+        "uid" : "c192822fa3fb4db",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/204//#testresult/c192822fa3fb4db",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649847986586,
+          "stop" : 1649847988798,
+          "duration" : 2212
+        }
+      }, {
+        "uid" : "ef506bdaa2e41170",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/203//#testresult/ef506bdaa2e41170",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649779068903,
+          "stop" : 1649779071369,
+          "duration" : 2466
+        }
+      }, {
+        "uid" : "61c06d5b6663f80c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/202//#testresult/61c06d5b6663f80c",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"connect-vega\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649760342388,
+          "stop" : 1649760374270,
+          "duration" : 31882
+        }
+      }, {
+        "uid" : "16d56ff598e291c2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/201//#testresult/16d56ff598e291c2",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"connect-vega\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649759690101,
+          "stop" : 1649759722384,
+          "duration" : 32283
+        }
+      }, {
+        "uid" : "ba4305b91eb6934",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/200//#testresult/ba4305b91eb6934",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"connect-vega\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649755848803,
+          "stop" : 1649755881664,
+          "duration" : 32861
+        }
+      }, {
+        "uid" : "c089958d00255c73",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/199//#testresult/c089958d00255c73",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"connect-vega\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649687070716,
+          "stop" : 1649687102590,
+          "duration" : 31874
+        }
+      }, {
+        "uid" : "41da8a5d2db10271",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/198//#testresult/41da8a5d2db10271",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649682503082,
+          "stop" : 1649682503941,
+          "duration" : 859
+        }
+      }, {
+        "uid" : "f395e5da7d3ec9ad",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/197//#testresult/f395e5da7d3ec9ad",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"connect-vega\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649677090845,
+          "stop" : 1649677122592,
+          "duration" : 31747
+        }
+      }, {
+        "uid" : "f51f5350b4cc0a6f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/196//#testresult/f51f5350b4cc0a6f",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"connect-vega\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649672515218,
+          "stop" : 1649672547460,
+          "duration" : 32242
+        }
+      }, {
+        "uid" : "382254544cda24f8",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/194//#testresult/382254544cda24f8",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"connect-vega\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649427040491,
+          "stop" : 1649427072735,
+          "duration" : 32244
+        }
+      }, {
+        "uid" : "356d9e5ba104abce",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/193//#testresult/356d9e5ba104abce",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649421424279,
+          "stop" : 1649421430442,
+          "duration" : 6163
+        }
+      }, {
+        "uid" : "6f3a889b223ede6b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/191//#testresult/6f3a889b223ede6b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649421032440,
+          "stop" : 1649421033721,
+          "duration" : 1281
+        }
+      }, {
+        "uid" : "fb3b2d929b52e630",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/190//#testresult/fb3b2d929b52e630",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649420557615,
+          "stop" : 1649420558807,
+          "duration" : 1192
+        }
+      }, {
+        "uid" : "b8546fcd0882beb7",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/189//#testresult/b8546fcd0882beb7",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"[data-testid=\"connect-vega\"]\" because element wasn't found",
+        "time" : {
+          "start" : 1649419955689,
+          "stop" : 1649419987589,
+          "duration" : 31900
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "35012a831770535.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
