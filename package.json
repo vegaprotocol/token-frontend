@@ -1,6 +1,6 @@
 {
   "name": "token-frontend",
-  "version": "0.5.38",
+  "version": "0.5.40",
   "private": true,
   "engines": {
     "node": ">=16.0.0"
