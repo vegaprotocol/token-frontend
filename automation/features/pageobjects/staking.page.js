@@ -6,7 +6,15 @@ class StakingPage extends Page {
   }
 
   get validatorName() {
-    return $('.node-list__item-name"]');
+    return $(".node-list__item-name");
+  }
+
+  get validatorNodesList() {
+    return browser.getByTestId("validator-node-list");
+  }
+
+  get validatorTitle() {
+    return $('[data-test-id="validator-node-title"]');
   }
 
   get calloutSuccess() {
@@ -19,6 +27,10 @@ class StakingPage extends Page {
 
   get pendingTransactionsBtn() {
     return browser.getByTestId("pending-transactions-btn");
+  }
+
+  get pendingTransactionsModal() {
+    return browser.getByTestId("pending-transactions-modal");
   }
 
   get pendingTransactionsModalStatus() {
@@ -61,6 +73,14 @@ class StakingPage extends Page {
     return browser.getByTestId("back-to-staking-link");
   }
 
+  get addStakeBtn() {
+    return browser.getByTestId("add-stake-radio");
+  }
+
+  get removeStakeBtn() {
+    return browser.getByTestId("remove-stake-radio");
+  }
+
   get removeStakeNowBtn() {
     return browser.getByTestId("remove-stake-now-btn");
   }
@@ -69,15 +89,38 @@ class StakingPage extends Page {
     return browser.getByTestId("remove-stake-now-disclaimer");
   }
 
+  get useMaximumBtn() {
+    return browser.getByTestId("token-amount-use-maximum");
+  }
+
+  get notAssociatedinWalletAmountText() {
+    return $(
+      '//*[@id="root"]/div/div[2]/aside/section[1]/div/div[2]/div[7]/div[3]/span[2]'
+    ).getText();
+  }
+
+  get associatedinWalletAmountText() {
+    return $(
+      '//*[@id="root"]/div/div[2]/aside/section[1]/div/div[2]/div[7]/div[3]/span[1]'
+    ).getText();
+  }
+
+  getByLabelText(labelText) {
+    return $(`label=${labelText}`);
+  }
+
+  getBypTag(pText) {
+    return $(`p=${pText}`);
+  }
+
   associateTokens(tokenAmount, source) {
     this.calloutContainer.waitForDisplayed({
       timeout: 30000,
       reverse: false,
       timeoutMsg: "callout was not found",
     });
-    /* eslint-disable  wdio/no-pause */
-    browser.pause(500); //short pause needed for buttons to render
-    if (this.associateMoreTokensBtn.isDisplayed()) {
+    this.disassociateTokensBtn.waitForDisplayed();
+    if (this.associateMoreTokensBtn.isDisplayed({})) {
       this.associateMoreTokensBtn.click();
     } else {
       this.associateTokensBtn.click();

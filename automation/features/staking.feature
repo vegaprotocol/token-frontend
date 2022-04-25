@@ -33,7 +33,7 @@ Feature: Staking and Association tests
     And the disassociation of "0.10" has been successful
 
   Scenario: Cannot disassociate more tokens through wallet than available
-    And I disassociate "0.10" tokens from "wallet"
+    When I click the button to disassociate
     When I click on the "wallet" radio button
     And I enter "2000000" tokens in the input field
     Then the token submit button is disabled
@@ -49,6 +49,7 @@ Feature: Staking and Association tests
     Then I can see the pending transactions button is shown
     And the disassociation of "0.10" has been successful
 
+@manual
   Scenario: Staking validator list and epoch timer countdown
     Then I can see the validator node list
     And the epoch countdown timer is counting down
@@ -60,9 +61,10 @@ Feature: Staking and Association tests
     And I enter "10" tokens in the input field
     Then I can submit successfully
     And the pending transaction is displayed
-    And the stake is successful
-    When I click on the back to staking button
-    Then I am back on the staking main page
+    # COMMENTED OUT FOLLOWING STEPS- CONFIRMATION TIME TOO LONG
+    # And the stake is successful
+    # When I click on the back to staking button
+    # Then I am back on the staking main page
 
   Scenario: Cannot stake more than what is associated
     When I click on a validator
@@ -70,6 +72,7 @@ Feature: Staking and Association tests
     And I enter "2000000" tokens in the input field
     Then the token submit button is disabled
 
+@manual
   Scenario: Remove stake now
     When I click on a validator
     Then I am taken to the correct validator page
@@ -82,6 +85,7 @@ Feature: Staking and Association tests
     Then I can submit successfully
     And I can see the stake is removed immediately
 
+@manual
   Scenario: Remove stake at next epoch
     When I click on a validator
     Then I am taken to the correct validator page
