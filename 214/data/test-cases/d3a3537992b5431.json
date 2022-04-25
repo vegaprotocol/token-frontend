@@ -1,0 +1,236 @@
+{
+  "uid" : "d3a3537992b5431",
+  "name" : "Links on the homepage",
+  "fullName" : "Homepage.Links on the homepage",
+  "historyId" : "75dc0c7908c032915bb7dc0878fb6e77",
+  "time" : {
+    "start" : 1650901920404,
+    "stop" : 1650901927535,
+    "duration" : 7131
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: No window found with title, url or name matching \"Vega\"",
+  "statusTrace" : "Error: No window found with title, url or name matching \"Vega\"\n                    at Browser.switchWindow (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/switchWindow.js:71:11)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Browser.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: No window found with title, url or name matching \"Vega\"",
+    "statusTrace" : "Error: No window found with title, url or name matching \"Vega\"\n                    at Browser.switchWindow (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/switchWindow.js:71:11)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Browser.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1650901920404,
+        "stop" : 1650901920409,
+        "duration" : 5
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then the vega wallet link is correct",
+      "time" : {
+        "start" : 1650901920409,
+        "stop" : 1650901920414,
+        "duration" : 5
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And the token address has a link",
+      "time" : {
+        "start" : 1650901920414,
+        "stop" : 1650901920417,
+        "duration" : 3
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And the vesting address has a link",
+      "time" : {
+        "start" : 1650901920417,
+        "stop" : 1650901920420,
+        "duration" : 3
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And the associate vega tokens link is correct",
+      "time" : {
+        "start" : 1650901920420,
+        "stop" : 1650901927535,
+        "duration" : 7115
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: No window found with title, url or name matching \"Vega\"\n                    at Browser.switchWindow (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/switchWindow.js:71:11)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Browser.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "1ddf6490d2d18eb",
+        "name" : "Screenshot",
+        "source" : "1ddf6490d2d18eb.png",
+        "type" : "image/png",
+        "size" : 8742
+      }, {
+        "uid" : "e17260fad479f7c4",
+        "name" : "Screenshot",
+        "source" : "e17260fad479f7c4.png",
+        "type" : "image/png",
+        "size" : 8698
+      }, {
+        "uid" : "a056260dcb42eb64",
+        "name" : "Screenshot",
+        "source" : "a056260dcb42eb64.png",
+        "type" : "image/png",
+        "size" : 473912
+      }, {
+        "uid" : "abf96bc10d93c43d",
+        "name" : "Screenshot",
+        "source" : "abf96bc10d93c43d.png",
+        "type" : "image/png",
+        "size" : 473912
+      }, {
+        "uid" : "f0e289f23d598420",
+        "name" : "Screenshot",
+        "source" : "f0e289f23d598420.png",
+        "type" : "image/png",
+        "size" : 473912
+      }, {
+        "uid" : "98b45093b0c851ce",
+        "name" : "Screenshot",
+        "source" : "98b45093b0c851ce.png",
+        "type" : "image/png",
+        "size" : 8720
+      }, {
+        "uid" : "d4bce250a84a724d",
+        "name" : "Screenshot",
+        "source" : "d4bce250a84a724d.png",
+        "type" : "image/png",
+        "size" : 8728
+      }, {
+        "uid" : "bf028f701510ee78",
+        "name" : "Screenshot",
+        "source" : "bf028f701510ee78.png",
+        "type" : "image/png",
+        "size" : 473478
+      }, {
+        "uid" : "59ba7fbd5bcf53b9",
+        "name" : "Screenshot",
+        "source" : "59ba7fbd5bcf53b9.png",
+        "type" : "image/png",
+        "size" : 473912
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 9,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 5,
+    "attachmentsCount" : 9,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Links on the homepage"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "2480a32cbdd6f44d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/213//#testresult/2480a32cbdd6f44d",
+        "status" : "broken",
+        "statusDetails" : "Error: No window found with title, url or name matching \"Vega\"",
+        "time" : {
+          "start" : 1650900629600,
+          "stop" : 1650900633194,
+          "duration" : 3594
+        }
+      }, {
+        "uid" : "18db1c3eb0e620e0",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/212//#testresult/18db1c3eb0e620e0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1650898541741,
+          "stop" : 1650898548113,
+          "duration" : 6372
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "d3a3537992b5431.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

@@ -1,0 +1,149 @@
+{
+  "uid" : "5884b9270e8813b5",
+  "name" : "Check for redeem unlocked tokens from homepage",
+  "fullName" : "Homepage.Check for redeem unlocked tokens from homepage",
+  "historyId" : "b45d53d5ab561581c8e6bb6b0fe6e9ee",
+  "time" : {
+    "start" : 1650901927536,
+    "stop" : 1650901930352,
+    "duration" : 2816
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: waitUntil condition failed with the following reason: return value was never truthy",
+  "statusTrace" : "Error: waitUntil condition failed with the following reason: return value was never truthy\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/waitUntil.js:70:15\n                    at Browser.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: waitUntil condition failed with the following reason: return value was never truthy",
+    "statusTrace" : "Error: waitUntil condition failed with the following reason: return value was never truthy\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/waitUntil.js:70:15\n                    at Browser.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1650901927536,
+        "stop" : 1650901927539,
+        "duration" : 3
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I can see the check for redeemable tokens button",
+      "time" : {
+        "start" : 1650901927539,
+        "stop" : 1650901930352,
+        "duration" : 2813
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: waitUntil condition failed with the following reason: return value was never truthy\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/waitUntil.js:70:15\n                    at Browser.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "437fff644023b43",
+        "name" : "Screenshot",
+        "source" : "437fff644023b43.png",
+        "type" : "image/png",
+        "size" : 6617
+      }, {
+        "uid" : "80aa69771c7ea2ad",
+        "name" : "Screenshot",
+        "source" : "80aa69771c7ea2ad.png",
+        "type" : "image/png",
+        "size" : 8734
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 2,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Check for redeem unlocked tokens from homepage"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "78652ee707779c87",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/213//#testresult/78652ee707779c87",
+        "status" : "passed",
+        "time" : {
+          "start" : 1650900633195,
+          "stop" : 1650900634914,
+          "duration" : 1719
+        }
+      }, {
+        "uid" : "e1fd772c70040f2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/212//#testresult/e1fd772c70040f2",
+        "status" : "broken",
+        "statusDetails" : "Error: No window found with title, url or name matching \"Vega\"",
+        "time" : {
+          "start" : 1650898548113,
+          "stop" : 1650898551148,
+          "duration" : 3035
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "5884b9270e8813b5.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

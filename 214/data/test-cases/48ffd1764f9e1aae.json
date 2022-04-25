@@ -1,0 +1,171 @@
+{
+  "uid" : "48ffd1764f9e1aae",
+  "name" : "Page not found error where page does not exist",
+  "fullName" : "Homepage.Page not found error where page does not exist",
+  "historyId" : "ea729e808820a164eba0470bcd9c059f",
+  "time" : {
+    "start" : 1650901930489,
+    "stop" : 1650901935503,
+    "duration" : 5014
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: vega wallet link did not display within 10 seconds",
+  "statusTrace" : "Error: vega wallet link did not display within 10 seconds\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/waitUntil.js:66:23\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)\n                    at Element.elementErrorHandlerCallbackFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/middlewares.js:24:32)\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)\n                    at Element.elementErrorHandlerCallbackFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/middlewares.js:24:32)\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: vega wallet link did not display within 10 seconds",
+    "statusTrace" : "Error: vega wallet link did not display within 10 seconds\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/waitUntil.js:66:23\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)\n                    at Element.elementErrorHandlerCallbackFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/middlewares.js:24:32)\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)\n                    at Element.elementErrorHandlerCallbackFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/middlewares.js:24:32)\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1650901930490,
+        "stop" : 1650901930494,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Given I navigate to \"pagedoesnotexist\" page",
+      "time" : {
+        "start" : 1650901930494,
+        "stop" : 1650901930498,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I can see the 404 error page",
+      "time" : {
+        "start" : 1650901930498,
+        "stop" : 1650901935503,
+        "duration" : 5005
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: vega wallet link did not display within 10 seconds\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/waitUntil.js:66:23\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)\n                    at Element.elementErrorHandlerCallbackFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/middlewares.js:24:32)\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)\n                    at Element.elementErrorHandlerCallbackFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/middlewares.js:24:32)\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "329079f9bab4b1df",
+        "name" : "Screenshot",
+        "source" : "329079f9bab4b1df.png",
+        "type" : "image/png",
+        "size" : 474079
+      }, {
+        "uid" : "f0f52b5e730fa79e",
+        "name" : "Screenshot",
+        "source" : "f0f52b5e730fa79e.png",
+        "type" : "image/png",
+        "size" : 474079
+      }, {
+        "uid" : "64901ba66dc94b1c",
+        "name" : "Screenshot",
+        "source" : "64901ba66dc94b1c.png",
+        "type" : "image/png",
+        "size" : 474079
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 3,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Page not found error where page does not exist"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "e708fe2e95e73b55",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/213//#testresult/e708fe2e95e73b55",
+        "status" : "broken",
+        "statusDetails" : "Error: waitUntil condition failed with the following reason: return value was never truthy",
+        "time" : {
+          "start" : 1650900635071,
+          "stop" : 1650900639541,
+          "duration" : 4470
+        }
+      }, {
+        "uid" : "cd8f9cd69e96f4cd",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/212//#testresult/cd8f9cd69e96f4cd",
+        "status" : "broken",
+        "statusDetails" : "Error: waitUntil condition failed with the following reason: return value was never truthy",
+        "time" : {
+          "start" : 1650898551760,
+          "stop" : 1650898551790,
+          "duration" : 30
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "48ffd1764f9e1aae.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
