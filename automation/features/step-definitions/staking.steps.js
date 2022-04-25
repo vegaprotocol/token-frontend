@@ -4,15 +4,12 @@ let currentAmountOfTokensInWallet = "";
 let validatorsName = "";
 let tokensAssociatedInVegaWallet = "";
 let tokensAssociatedInVegaWalletText = "";
-let tokensNotAssociatedInVegaWallet = "";
 
 When(
   /^I associate "([^"]*)?" tokens from "([^"]*)?"$/,
   (tokenAmount, sourceOfFunds) => {
     tokensAssociatedInVegaWallet =
       stakingPage.associatedinWalletAmountText.replace(",", "");
-    tokensNotAssociatedInVegaWallet =
-      stakingPage.notAssociatedinWalletAmountText.replace(",", "");
     stakingPage.associateTokens(tokenAmount, sourceOfFunds);
   }
 );
@@ -24,9 +21,6 @@ When(
       ",",
       ""
     );
-    tokensNotAssociatedInVegaWallet =
-      stakingPage.notAssociatedinWalletAmountText.replace(",", "");
-    stakingPage.disassociateTokens(tokenAmount, sourceOfFunds);
   }
 );
 
