@@ -50,18 +50,6 @@ class Page {
 
   goTo(path) {
     browser.url(path);
-    browser.waitUntil(
-      function () {
-        const state = browser.execute(function () {
-          return document.readyState;
-        });
-        return state === "complete";
-      },
-      {
-        timeout: 10000,
-        timeoutMsg: "Page did not fully load in 10 seconds",
-      }
-    );
   }
 
   connectToEthWallet() {
