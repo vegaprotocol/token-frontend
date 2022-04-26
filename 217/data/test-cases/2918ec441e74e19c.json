@@ -1,0 +1,260 @@
+{
+  "uid" : "2918ec441e74e19c",
+  "name" : "Page not found error where page does not exist",
+  "fullName" : "Homepage.Page not found error where page does not exist",
+  "historyId" : "4a41201f4e4e55278ad6a69861009b2f",
+  "time" : {
+    "start" : 1650968736201,
+    "stop" : 1650968749409,
+    "duration" : 13208
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: Get started Button not displayed",
+  "statusTrace" : "Error: Get started Button not displayed\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/waitUntil.js:66:23\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)\n                    at Element.elementErrorHandlerCallbackFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/middlewares.js:24:32)\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)\n                    at Element.elementErrorHandlerCallbackFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/middlewares.js:24:32)\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: Get started Button not displayed",
+    "statusTrace" : "Error: Get started Button not displayed\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/waitUntil.js:66:23\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)\n                    at Element.elementErrorHandlerCallbackFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/middlewares.js:24:32)\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)\n                    at Element.elementErrorHandlerCallbackFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/middlewares.js:24:32)\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1650968736201,
+        "stop" : 1650968736206,
+        "duration" : 5
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Given I navigate to \"pagedoesnotexist\" page",
+      "time" : {
+        "start" : 1650968736206,
+        "stop" : 1650968736210,
+        "duration" : 4
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I can see the 404 error page",
+      "time" : {
+        "start" : 1650968736210,
+        "stop" : 1650968749409,
+        "duration" : 13199
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: Get started Button not displayed\n                    at /home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/waitUntil.js:66:23\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)\n                    at Element.elementErrorHandlerCallbackFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/middlewares.js:24:32)\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)\n                    at Element.elementErrorHandlerCallbackFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/middlewares.js:24:32)\n                    at Element.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "dbc2dc4d2a79afdc",
+        "name" : "Screenshot",
+        "source" : "dbc2dc4d2a79afdc.png",
+        "type" : "image/png",
+        "size" : 504968
+      }, {
+        "uid" : "6768359aca6b5324",
+        "name" : "Screenshot",
+        "source" : "6768359aca6b5324.png",
+        "type" : "image/png",
+        "size" : 504968
+      }, {
+        "uid" : "1739baa1237fea3",
+        "name" : "Screenshot",
+        "source" : "1739baa1237fea3.png",
+        "type" : "image/png",
+        "size" : 504968
+      }, {
+        "uid" : "1c65b235b57c42a0",
+        "name" : "Screenshot",
+        "source" : "1c65b235b57c42a0.png",
+        "type" : "image/png",
+        "size" : 504968
+      }, {
+        "uid" : "aef3db35f4db395",
+        "name" : "Screenshot",
+        "source" : "aef3db35f4db395.png",
+        "type" : "image/png",
+        "size" : 8730
+      }, {
+        "uid" : "5fd088ada42c7b50",
+        "name" : "Screenshot",
+        "source" : "5fd088ada42c7b50.png",
+        "type" : "image/png",
+        "size" : 8729
+      }, {
+        "uid" : "b96efc8151f80103",
+        "name" : "Screenshot",
+        "source" : "b96efc8151f80103.png",
+        "type" : "image/png",
+        "size" : 504968
+      }, {
+        "uid" : "158b268b0b0254f1",
+        "name" : "Screenshot",
+        "source" : "158b268b0b0254f1.png",
+        "type" : "image/png",
+        "size" : 504968
+      }, {
+        "uid" : "add12b34ab774fe0",
+        "name" : "Screenshot",
+        "source" : "add12b34ab774fe0.png",
+        "type" : "image/png",
+        "size" : 504968
+      }, {
+        "uid" : "18b47310cb7af51d",
+        "name" : "Screenshot",
+        "source" : "18b47310cb7af51d.png",
+        "type" : "image/png",
+        "size" : 8741
+      }, {
+        "uid" : "ec31a9ccf1f91b01",
+        "name" : "Screenshot",
+        "source" : "ec31a9ccf1f91b01.png",
+        "type" : "image/png",
+        "size" : 504968
+      }, {
+        "uid" : "b4465ca37df82e0b",
+        "name" : "Screenshot",
+        "source" : "b4465ca37df82e0b.png",
+        "type" : "image/png",
+        "size" : 8742
+      }, {
+        "uid" : "a3356fad79df5453",
+        "name" : "Screenshot",
+        "source" : "a3356fad79df5453.png",
+        "type" : "image/png",
+        "size" : 8731
+      }, {
+        "uid" : "e8ed648e531d1a40",
+        "name" : "Screenshot",
+        "source" : "e8ed648e531d1a40.png",
+        "type" : "image/png",
+        "size" : 8695
+      }, {
+        "uid" : "4977e200e827d820",
+        "name" : "Screenshot",
+        "source" : "4977e200e827d820.png",
+        "type" : "image/png",
+        "size" : 8748
+      }, {
+        "uid" : "6b7120e4e3ae84b7",
+        "name" : "Screenshot",
+        "source" : "6b7120e4e3ae84b7.png",
+        "type" : "image/png",
+        "size" : 8731
+      }, {
+        "uid" : "8952ebc90c7db89",
+        "name" : "Screenshot",
+        "source" : "8952ebc90c7db89.png",
+        "type" : "image/png",
+        "size" : 8736
+      }, {
+        "uid" : "3fce652704cdcf58",
+        "name" : "Screenshot",
+        "source" : "3fce652704cdcf58.png",
+        "type" : "image/png",
+        "size" : 8711
+      }, {
+        "uid" : "a89507092672d67",
+        "name" : "Screenshot",
+        "source" : "a89507092672d67.png",
+        "type" : "image/png",
+        "size" : 8708
+      }, {
+        "uid" : "7147125b59bfe063",
+        "name" : "Screenshot",
+        "source" : "7147125b59bfe063.png",
+        "type" : "image/png",
+        "size" : 8680
+      }, {
+        "uid" : "d306fbadfeb930db",
+        "name" : "Screenshot",
+        "source" : "d306fbadfeb930db.png",
+        "type" : "image/png",
+        "size" : 8728
+      }, {
+        "uid" : "9c16a9f1962060ac",
+        "name" : "Screenshot",
+        "source" : "9c16a9f1962060ac.png",
+        "type" : "image/png",
+        "size" : 8730
+      }, {
+        "uid" : "1279e01d15eecc22",
+        "name" : "Screenshot",
+        "source" : "1279e01d15eecc22.png",
+        "type" : "image/png",
+        "size" : 8715
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 23,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 23,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Page not found error where page does not exist"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-100.0.4896.127"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "2918ec441e74e19c.json",
+  "parameterValues" : [ "chrome-100.0.4896.127" ]
+}
