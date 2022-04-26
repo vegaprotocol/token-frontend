@@ -2,7 +2,6 @@ const { When, Then } = require("@wdio/cucumber-framework");
 const stakingPage = require("../pageobjects/staking.page");
 let currentAmountOfTokensInWallet = "";
 let validatorsName = "";
-let tokensAssociatedInVegaWallet = "";
 let tokensAssociatedInVegaWalletText = "";
 
 When(
