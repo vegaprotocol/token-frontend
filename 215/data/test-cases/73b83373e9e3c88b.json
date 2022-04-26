@@ -1,0 +1,147 @@
+{
+  "uid" : "73b83373e9e3c88b",
+  "name" : "Check for redeem unlocked tokens from homepage",
+  "fullName" : "Homepage.Check for redeem unlocked tokens from homepage",
+  "historyId" : "b45d53d5ab561581c8e6bb6b0fe6e9ee",
+  "time" : {
+    "start" : 1650959636790,
+    "stop" : 1650959636862,
+    "duration" : 72
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: No window found with title, url or name matching \"MetaMask\"",
+  "statusTrace" : "Error: No window found with title, url or name matching \"MetaMask\"\n                    at Browser.switchWindow (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/switchWindow.js:71:11)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Browser.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: No window found with title, url or name matching \"MetaMask\"",
+    "statusTrace" : "Error: No window found with title, url or name matching \"MetaMask\"\n                    at Browser.switchWindow (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/switchWindow.js:71:11)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Browser.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1650959636791,
+        "stop" : 1650959636797,
+        "duration" : 6
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I can see the check for redeemable tokens button",
+      "time" : {
+        "start" : 1650959636797,
+        "stop" : 1650959636862,
+        "duration" : 65
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: No window found with title, url or name matching \"MetaMask\"\n                    at Browser.switchWindow (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/switchWindow.js:71:11)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Browser.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Check for redeem unlocked tokens from homepage"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "5884b9270e8813b5",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/214//#testresult/5884b9270e8813b5",
+        "status" : "broken",
+        "statusDetails" : "Error: waitUntil condition failed with the following reason: return value was never truthy",
+        "time" : {
+          "start" : 1650901927536,
+          "stop" : 1650901930352,
+          "duration" : 2816
+        }
+      }, {
+        "uid" : "78652ee707779c87",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/213//#testresult/78652ee707779c87",
+        "status" : "passed",
+        "time" : {
+          "start" : 1650900633195,
+          "stop" : 1650900634914,
+          "duration" : 1719
+        }
+      }, {
+        "uid" : "e1fd772c70040f2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/212//#testresult/e1fd772c70040f2",
+        "status" : "broken",
+        "statusDetails" : "Error: No window found with title, url or name matching \"Vega\"",
+        "time" : {
+          "start" : 1650898548113,
+          "stop" : 1650898551148,
+          "duration" : 3035
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "73b83373e9e3c88b.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
