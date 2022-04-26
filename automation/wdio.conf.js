@@ -12,7 +12,7 @@ exports.config = {
   capabilities: [
     {
       browserName: "Chrome",
-      browserVersion: "96.0",
+      browserVersion: "100.0",
       "bstack:options": {
         os: "OS X",
         osVersion: "Big Sur",
