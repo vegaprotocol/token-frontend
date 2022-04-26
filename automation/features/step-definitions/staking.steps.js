@@ -8,8 +8,6 @@ let tokensAssociatedInVegaWalletText = "";
 When(
   /^I associate "([^"]*)?" tokens from "([^"]*)?"$/,
   (tokenAmount, sourceOfFunds) => {
-    tokensAssociatedInVegaWallet =
-      stakingPage.associatedinWalletAmountText.replace(",", "");
     stakingPage.associateTokens(tokenAmount, sourceOfFunds);
   }
 );
@@ -21,6 +19,7 @@ When(
       ",",
       ""
     );
+    stakingPage.disassociateTokens(tokenAmount, sourceOfFunds);
   }
 );
 
@@ -260,7 +259,7 @@ When(/^the association of "([^"]*)?" has been successful$/, (tokenAmount) => {
   expect(
     browser.waitUntil(
       () =>
-        stakingPage.associatedinWalletAmountText.getText().getText() !==
+        stakingPage.associatedinWalletAmountText.getText() !==
         tokensAssociatedInVegaWalletText,
       {
         timeout: 60000,
