@@ -1,0 +1,160 @@
+{
+  "uid" : "91a642b9bf066d0c",
+  "name" : "Navigate to staking page via link on homepage body",
+  "fullName" : "Homepage.Navigate to staking page via link on homepage body",
+  "historyId" : "23cfb91f31c30e15e4d765784b364351",
+  "time" : {
+    "start" : 1650960323896,
+    "stop" : 1650960323903,
+    "duration" : 7
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1650960323896,
+        "stop" : 1650960323898,
+        "duration" : 2
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When I click on the associate vega tokens",
+      "time" : {
+        "start" : 1650960323898,
+        "stop" : 1650960323901,
+        "duration" : 3
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I am taken to the \"staking\" page",
+      "time" : {
+        "start" : 1650960323901,
+        "stop" : 1650960323903,
+        "duration" : 2
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Navigate to staking page via link on homepage body"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 5,
+        "unknown" : 0,
+        "total" : 5
+      },
+      "items" : [ {
+        "uid" : "9983b26b55d7c66c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/215//#testresult/9983b26b55d7c66c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1650959636864,
+          "stop" : 1650959636871,
+          "duration" : 7
+        }
+      }, {
+        "uid" : "7d2e22e937907edf",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/214//#testresult/7d2e22e937907edf",
+        "status" : "passed",
+        "time" : {
+          "start" : 1650901930353,
+          "stop" : 1650901930363,
+          "duration" : 10
+        }
+      }, {
+        "uid" : "a6064a0ec435540",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/213//#testresult/a6064a0ec435540",
+        "status" : "passed",
+        "time" : {
+          "start" : 1650900634914,
+          "stop" : 1650900634929,
+          "duration" : 15
+        }
+      }, {
+        "uid" : "330270a6f2634cb2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/212//#testresult/330270a6f2634cb2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1650898551149,
+          "stop" : 1650898551158,
+          "duration" : 9
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "91a642b9bf066d0c.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
