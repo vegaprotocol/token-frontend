@@ -1,0 +1,82 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds",
+      "children" : [ {
+        "name" : "Associate tokens through wallet",
+        "uid" : "a9c601b76da50339",
+        "parentUid" : "e639a9ad30ef63977eb12890cdf17798",
+        "status" : "broken",
+        "time" : {
+          "start" : 1651593353755,
+          "stop" : 1651593429107,
+          "duration" : 75352
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-100.0.4896.127" ]
+      }, {
+        "name" : "Associate tokens through vesting contract",
+        "uid" : "1d0c5e149617e633",
+        "parentUid" : "e639a9ad30ef63977eb12890cdf17798",
+        "status" : "broken",
+        "time" : {
+          "start" : 1651593429108,
+          "stop" : 1651593500370,
+          "duration" : 71262
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-100.0.4896.127" ]
+      }, {
+        "name" : "Disassociate tokens through wallet",
+        "uid" : "5e41a61e2c339d12",
+        "parentUid" : "e639a9ad30ef63977eb12890cdf17798",
+        "status" : "broken",
+        "time" : {
+          "start" : 1651593533174,
+          "stop" : 1651593605524,
+          "duration" : 72350
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-100.0.4896.127" ]
+      }, {
+        "name" : "Disassociate tokens through vesting contract",
+        "uid" : "c71f24ec60fb25b3",
+        "parentUid" : "e639a9ad30ef63977eb12890cdf17798",
+        "status" : "broken",
+        "time" : {
+          "start" : 1651593615324,
+          "stop" : 1651593686216,
+          "duration" : 70892
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-100.0.4896.127" ]
+      } ],
+      "uid" : "e639a9ad30ef63977eb12890cdf17798"
+    }, {
+      "name" : "Error: Can't call getText on element with selector \"//*[@id=\"root\"]/div/div[2]/aside/section[1]/div/div[2]/div[7]/div[3]/span[2]\" because element wasn't found",
+      "children" : [ {
+        "name" : "Use maximum button on associate from wallet enters correct amount",
+        "uid" : "411807801ed9a471",
+        "parentUid" : "382e300e1b95c56b7029f16fbdb868f6",
+        "status" : "broken",
+        "time" : {
+          "start" : 1651593500371,
+          "stop" : 1651593533173,
+          "duration" : 32802
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-100.0.4896.127" ]
+      } ],
+      "uid" : "382e300e1b95c56b7029f16fbdb868f6"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
+  "name" : "categories"
+}

@@ -1,0 +1,170 @@
+{
+  "uid" : "411807801ed9a471",
+  "name" : "Use maximum button on associate from wallet enters correct amount",
+  "fullName" : "Staking and Association tests.Use maximum button on associate from wallet enters correct amount",
+  "historyId" : "4d0046e9afd276a54125836cb4b6df96",
+  "time" : {
+    "start" : 1651593500371,
+    "stop" : 1651593533173,
+    "duration" : 32802
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: Can't call getText on element with selector \"//*[@id=\"root\"]/div/div[2]/aside/section[1]/div/div[2]/div[7]/div[3]/span[2]\" because element wasn't found",
+  "statusTrace" : "Error: Can't call getText on element with selector \"//*[@id=\"root\"]/div/div[2]/aside/section[1]/div/div[2]/div[7]/div[3]/span[2]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at StakingPage.get (/home/runner/work/token-frontend/token-frontend/automation/features/pageobjects/staking.page.js:99:7)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:42:47)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: Can't call getText on element with selector \"//*[@id=\"root\"]/div/div[2]/aside/section[1]/div/div[2]/div[7]/div[3]/span[2]\" because element wasn't found",
+    "statusTrace" : "Error: Can't call getText on element with selector \"//*[@id=\"root\"]/div/div[2]/aside/section[1]/div/div[2]/div[7]/div[3]/span[2]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at StakingPage.get (/home/runner/work/token-frontend/token-frontend/automation/features/pageobjects/staking.page.js:99:7)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:42:47)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1651593500371,
+        "stop" : 1651593501536,
+        "duration" : 1165
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "c5eb225827765083",
+        "name" : "Screenshot",
+        "source" : "c5eb225827765083.png",
+        "type" : "image/png",
+        "size" : 8732
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on use maximum button",
+      "time" : {
+        "start" : 1651593501536,
+        "stop" : 1651593533173,
+        "duration" : 31637
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: Can't call getText on element with selector \"//*[@id=\"root\"]/div/div[2]/aside/section[1]/div/div[2]/div[7]/div[3]/span[2]\" because element wasn't found\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at StakingPage.get (/home/runner/work/token-frontend/token-frontend/automation/features/pageobjects/staking.page.js:99:7)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:42:47)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "27af645f1277cb18",
+        "name" : "Screenshot",
+        "source" : "27af645f1277cb18.png",
+        "type" : "image/png",
+        "size" : 294056
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Use maximum button on associate from wallet enters correct amount"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-100.0.4896.127"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 5,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 5
+      },
+      "items" : [ {
+        "uid" : "a214f286b5132495",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/222//#testresult/a214f286b5132495",
+        "status" : "broken",
+        "statusDetails" : "Error: Can't call getText on element with selector \"//*[@id=\"root\"]/div/div[2]/aside/section[1]/div/div[2]/div[7]/div[3]/span[2]\" because element wasn't found",
+        "time" : {
+          "start" : 1651570487043,
+          "stop" : 1651570519865,
+          "duration" : 32822
+        }
+      }, {
+        "uid" : "e9c5fc0e85762600",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/221//#testresult/e9c5fc0e85762600",
+        "status" : "broken",
+        "statusDetails" : "TypeError: stakingPage.calloutContainer.waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1650977721186,
+          "stop" : 1650977721197,
+          "duration" : 11
+        }
+      }, {
+        "uid" : "40371300ac0c3ddb",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/220//#testresult/40371300ac0c3ddb",
+        "status" : "broken",
+        "statusDetails" : "TypeError: stakingPage.calloutContainer.waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1650976740193,
+          "stop" : 1650976740202,
+          "duration" : 9
+        }
+      }, {
+        "uid" : "b74fd893db8eeae",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/219//#testresult/b74fd893db8eeae",
+        "status" : "broken",
+        "statusDetails" : "TypeError: stakingPage.calloutContainer.waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1650972623934,
+          "stop" : 1650972623944,
+          "duration" : 10
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "411807801ed9a471.json",
+  "parameterValues" : [ "chrome-100.0.4896.127" ]
+}

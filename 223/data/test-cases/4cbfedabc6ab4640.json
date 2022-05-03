@@ -1,0 +1,202 @@
+{
+  "uid" : "4cbfedabc6ab4640",
+  "name" : "Navigate to a not found page will return page error",
+  "fullName" : "Homepage.Navigate to a not found page will return page error",
+  "historyId" : "680ec8cbe91b12e3ce1e88308e9379a6",
+  "time" : {
+    "start" : 1651593171822,
+    "stop" : 1651593175602,
+    "duration" : 3780
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1651593171822,
+        "stop" : 1651593173218,
+        "duration" : 1396
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "7d4ba8f008e59647",
+        "name" : "Screenshot",
+        "source" : "7d4ba8f008e59647.png",
+        "type" : "image/png",
+        "size" : 8724
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Given I navigate to not found page",
+      "time" : {
+        "start" : 1651593173218,
+        "stop" : 1651593174662,
+        "duration" : 1444
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "38424b0de8ff2be0",
+        "name" : "Screenshot",
+        "source" : "38424b0de8ff2be0.png",
+        "type" : "image/png",
+        "size" : 290799
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the url includes \"not-found\"",
+      "time" : {
+        "start" : 1651593174662,
+        "stop" : 1651593175119,
+        "duration" : 457
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "b03174eb3a8b0817",
+        "name" : "Screenshot",
+        "source" : "b03174eb3a8b0817.png",
+        "type" : "image/png",
+        "size" : 183355
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And the error message is displayed \"This page can not be found, please check the URL and try again.\" on page",
+      "time" : {
+        "start" : 1651593175119,
+        "stop" : 1651593175602,
+        "duration" : 483
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "3ff1136586c67d54",
+        "name" : "Screenshot",
+        "source" : "3ff1136586c67d54.png",
+        "type" : "image/png",
+        "size" : 183355
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Navigate to a not found page will return page error"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-100.0.4896.127"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 2,
+        "unknown" : 0,
+        "total" : 5
+      },
+      "items" : [ {
+        "uid" : "baa04729a6345e3f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/222//#testresult/baa04729a6345e3f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651570144759,
+          "stop" : 1651570148966,
+          "duration" : 4207
+        }
+      }, {
+        "uid" : "81b50b6b9548d390",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/221//#testresult/81b50b6b9548d390",
+        "status" : "broken",
+        "statusDetails" : "Error: vega wallet link did not display within 10 seconds",
+        "time" : {
+          "start" : 1650977592190,
+          "stop" : 1650977593026,
+          "duration" : 836
+        }
+      }, {
+        "uid" : "30ea1b69abaecb53",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/220//#testresult/30ea1b69abaecb53",
+        "status" : "broken",
+        "statusDetails" : "Error: No window found with title, url or name matching \"MetaMask\"",
+        "time" : {
+          "start" : 1650976616709,
+          "stop" : 1650976619921,
+          "duration" : 3212
+        }
+      }, {
+        "uid" : "5e01d87e32d8b8e9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/219//#testresult/5e01d87e32d8b8e9",
+        "status" : "broken",
+        "statusDetails" : "Error: vega wallet link did not display within 10 seconds",
+        "time" : {
+          "start" : 1650972420048,
+          "stop" : 1650972426656,
+          "duration" : 6608
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "4cbfedabc6ab4640.json",
+  "parameterValues" : [ "chrome-100.0.4896.127" ]
+}

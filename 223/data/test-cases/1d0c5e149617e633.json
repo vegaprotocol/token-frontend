@@ -1,0 +1,212 @@
+{
+  "uid" : "1d0c5e149617e633",
+  "name" : "Associate tokens through vesting contract",
+  "fullName" : "Staking and Association tests.Associate tokens through vesting contract",
+  "historyId" : "77536ebcce70a9b66ddef576d7dccbad",
+  "time" : {
+    "start" : 1651593429108,
+    "stop" : 1651593500370,
+    "duration" : 71262
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds",
+  "statusTrace" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds\n                    at Timeout.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:53:14)\n                    at listOnTimeout (internal/timers.js:557:17)\n                    at processTimers (internal/timers.js:500:7)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds",
+    "statusTrace" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds\n                    at Timeout.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:53:14)\n                    at listOnTimeout (internal/timers.js:557:17)\n                    at processTimers (internal/timers.js:500:7)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1651593429108,
+        "stop" : 1651593430187,
+        "duration" : 1079
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "a12f570d6a5c3963",
+        "name" : "Screenshot",
+        "source" : "a12f570d6a5c3963.png",
+        "type" : "image/png",
+        "size" : 8724
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I associate \"0.10\" tokens from \"vesting contract\"",
+      "time" : {
+        "start" : 1651593430187,
+        "stop" : 1651593439325,
+        "duration" : 9138
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "31be5c84ab22a92a",
+        "name" : "Screenshot",
+        "source" : "31be5c84ab22a92a.png",
+        "type" : "image/png",
+        "size" : 198316
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the pending transactions button is shown",
+      "time" : {
+        "start" : 1651593439325,
+        "stop" : 1651593439994,
+        "duration" : 669
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "b940d659be989fcc",
+        "name" : "Screenshot",
+        "source" : "b940d659be989fcc.png",
+        "type" : "image/png",
+        "size" : 250691
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And the association of tokens has been successful",
+      "time" : {
+        "start" : 1651593439994,
+        "stop" : 1651593500370,
+        "duration" : 60376
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds\n                    at Timeout.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@cucumber/cucumber/src/time.ts:53:14)\n                    at listOnTimeout (internal/timers.js:557:17)\n                    at processTimers (internal/timers.js:500:7)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "4e23d5260b8d2681",
+        "name" : "Screenshot",
+        "source" : "4e23d5260b8d2681.png",
+        "type" : "image/png",
+        "size" : 250683
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Associate tokens through vesting contract"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-100.0.4896.127"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 5,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 5
+      },
+      "items" : [ {
+        "uid" : "43e21cd4e842b5e4",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/222//#testresult/43e21cd4e842b5e4",
+        "status" : "broken",
+        "statusDetails" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds",
+        "time" : {
+          "start" : 1651570415455,
+          "stop" : 1651570487042,
+          "duration" : 71587
+        }
+      }, {
+        "uid" : "e805f0a3b02e6ba1",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/221//#testresult/e805f0a3b02e6ba1",
+        "status" : "broken",
+        "statusDetails" : "TypeError: this.calloutContainer.waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1650977721175,
+          "stop" : 1650977721185,
+          "duration" : 10
+        }
+      }, {
+        "uid" : "7b1a4ef80e26e9c4",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/220//#testresult/7b1a4ef80e26e9c4",
+        "status" : "broken",
+        "statusDetails" : "TypeError: this.calloutContainer.waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1650976740181,
+          "stop" : 1650976740192,
+          "duration" : 11
+        }
+      }, {
+        "uid" : "68a541ccaf109e8c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/219//#testresult/68a541ccaf109e8c",
+        "status" : "broken",
+        "statusDetails" : "TypeError: stakingPage.associatedinWalletAmountText.replace is not a function",
+        "time" : {
+          "start" : 1650972623914,
+          "stop" : 1650972623933,
+          "duration" : 19
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "1d0c5e149617e633.json",
+  "parameterValues" : [ "chrome-100.0.4896.127" ]
+}
