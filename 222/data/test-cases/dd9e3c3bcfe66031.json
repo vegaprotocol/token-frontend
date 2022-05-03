@@ -1,0 +1,214 @@
+{
+  "uid" : "dd9e3c3bcfe66031",
+  "name" : "Cannot stake more than what is associated",
+  "fullName" : "Staking and Association tests.Cannot stake more than what is associated",
+  "historyId" : "c676972833571623eb71dd1278b1fa70",
+  "time" : {
+    "start" : 1651570540638,
+    "stop" : 1651570546479,
+    "duration" : 5841
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1651570540639,
+        "stop" : 1651570541625,
+        "duration" : 986
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "3d23e37f434ad670",
+        "name" : "Screenshot",
+        "source" : "3d23e37f434ad670.png",
+        "type" : "image/png",
+        "size" : 8146
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on a validator",
+      "time" : {
+        "start" : 1651570541625,
+        "stop" : 1651570543932,
+        "duration" : 2307
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "2a8229bb95e15710",
+        "name" : "Screenshot",
+        "source" : "2a8229bb95e15710.png",
+        "type" : "image/png",
+        "size" : 211886
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I select to \"Add\" stake",
+      "time" : {
+        "start" : 1651570543932,
+        "stop" : 1651570544653,
+        "duration" : 721
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "fbdf566f6511e3ac",
+        "name" : "Screenshot",
+        "source" : "fbdf566f6511e3ac.png",
+        "type" : "image/png",
+        "size" : 281835
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I enter \"2000000\" tokens in the input field",
+      "time" : {
+        "start" : 1651570544653,
+        "stop" : 1651570545879,
+        "duration" : 1226
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "17c8f8609b2305e7",
+        "name" : "Screenshot",
+        "source" : "17c8f8609b2305e7.png",
+        "type" : "image/png",
+        "size" : 291587
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then the token submit button is disabled",
+      "time" : {
+        "start" : 1651570545879,
+        "stop" : 1651570546478,
+        "duration" : 599
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "b114486d728eca7b",
+        "name" : "Screenshot",
+        "source" : "b114486d728eca7b.png",
+        "type" : "image/png",
+        "size" : 292442
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 5,
+    "attachmentsCount" : 5,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Cannot stake more than what is associated"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-100.0.4896.127"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "d7660b34940c8198",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/221//#testresult/d7660b34940c8198",
+        "status" : "broken",
+        "statusDetails" : "TypeError: stakingPage.addStakeBtn.click is not a function",
+        "time" : {
+          "start" : 1650977721264,
+          "stop" : 1650977721286,
+          "duration" : 22
+        }
+      }, {
+        "uid" : "2f7dc825f01ba820",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/220//#testresult/2f7dc825f01ba820",
+        "status" : "broken",
+        "statusDetails" : "TypeError: stakingPage.addStakeBtn.click is not a function",
+        "time" : {
+          "start" : 1650976740265,
+          "stop" : 1650976740282,
+          "duration" : 17
+        }
+      }, {
+        "uid" : "96b251846a9de6c3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/219//#testresult/96b251846a9de6c3",
+        "status" : "broken",
+        "statusDetails" : "TypeError: stakingPage.addStakeBtn.click is not a function",
+        "time" : {
+          "start" : 1650972624029,
+          "stop" : 1650972624046,
+          "duration" : 17
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "dd9e3c3bcfe66031.json",
+  "parameterValues" : [ "chrome-100.0.4896.127" ]
+}

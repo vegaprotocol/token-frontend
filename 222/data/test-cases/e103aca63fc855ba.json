@@ -1,0 +1,172 @@
+{
+  "uid" : "e103aca63fc855ba",
+  "name" : "Page not found error where page does not exist",
+  "fullName" : "Homepage.Page not found error where page does not exist",
+  "historyId" : "4a41201f4e4e55278ad6a69861009b2f",
+  "time" : {
+    "start" : 1651570169381,
+    "stop" : 1651570172166,
+    "duration" : 2785
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1651570169381,
+        "stop" : 1651570170332,
+        "duration" : 951
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "a70d1b918f8e600d",
+        "name" : "Screenshot",
+        "source" : "a70d1b918f8e600d.png",
+        "type" : "image/png",
+        "size" : 8698
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Given I navigate to \"pagedoesnotexist\" page",
+      "time" : {
+        "start" : 1651570170332,
+        "stop" : 1651570171590,
+        "duration" : 1258
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "7645efbdd721fafb",
+        "name" : "Screenshot",
+        "source" : "7645efbdd721fafb.png",
+        "type" : "image/png",
+        "size" : 290799
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the 404 error page",
+      "time" : {
+        "start" : 1651570171590,
+        "stop" : 1651570172166,
+        "duration" : 576
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "a3a0239af58fd4b6",
+        "name" : "Screenshot",
+        "source" : "a3a0239af58fd4b6.png",
+        "type" : "image/png",
+        "size" : 183019
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Page not found error where page does not exist"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-100.0.4896.127"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "d8692d850b20e5d2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/221//#testresult/d8692d850b20e5d2",
+        "status" : "broken",
+        "statusDetails" : "Error: import wallet button not displayed",
+        "time" : {
+          "start" : 1650977593100,
+          "stop" : 1650977603013,
+          "duration" : 9913
+        }
+      }, {
+        "uid" : "b61242f52f51eb5d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/220//#testresult/b61242f52f51eb5d",
+        "status" : "broken",
+        "statusDetails" : "Error: Get started Button not displayed",
+        "time" : {
+          "start" : 1650976619998,
+          "stop" : 1650976632666,
+          "duration" : 12668
+        }
+      }, {
+        "uid" : "4f8c7e566e12ac1f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/219//#testresult/4f8c7e566e12ac1f",
+        "status" : "broken",
+        "statusDetails" : "Error: import wallet button not displayed",
+        "time" : {
+          "start" : 1650972426746,
+          "stop" : 1650972436270,
+          "duration" : 9524
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "e103aca63fc855ba.json",
+  "parameterValues" : [ "chrome-100.0.4896.127" ]
+}
