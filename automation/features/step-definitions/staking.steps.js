@@ -14,10 +14,6 @@ When(
 When(
   /^I disassociate "([^"]*)?" tokens from "([^"]*)?"$/,
   (tokenAmount, sourceOfFunds) => {
-    tokensAssociatedInVegaWallet = tokensAssociatedInVegaWalletText.replace(
-      ",",
-      ""
-    );
     stakingPage.disassociateTokens(tokenAmount, sourceOfFunds);
   }
 );
@@ -254,7 +250,7 @@ Then(/^the pending transactions modal can be closed$/, () => {
   expect(stakingPage.pendingTransactionsModal).not.toBeDisplayed();
 });
 
-When(/^the association of "([^"]*)?" has been successful$/, (tokenAmount) => {
+When(/^the association of tokens has been successful$/, () => {
   expect(
     browser.waitUntil(
       () =>
@@ -268,22 +264,19 @@ When(/^the association of "([^"]*)?" has been successful$/, (tokenAmount) => {
   ).toBeTruthy();
 });
 
-When(
-  /^the disassociation of "([^"]*)?" has been successful$/,
-  (tokenAmount) => {
-    expect(
-      browser.waitUntil(
-        () =>
-          stakingPage.associatedinWalletAmountText.getText() !==
-          tokensAssociatedInVegaWalletText,
-        {
-          timeout: 60000,
-          timeoutMsg: "expected balance to be different",
-        }
-      )
-    ).toBeTruthy();
-  }
-);
+When(/^the disassociation of tokens has been successful$/, () => {
+  expect(
+    browser.waitUntil(
+      () =>
+        stakingPage.associatedinWalletAmountText.getText() !==
+        tokensAssociatedInVegaWalletText,
+      {
+        timeout: 60000,
+        timeoutMsg: "expected balance to be different",
+      }
+    )
+  ).toBeTruthy();
+});
 When(
   /^I can see "([^"]*)?" vega has been removed from staking$/,
   (tokenAmount) => {

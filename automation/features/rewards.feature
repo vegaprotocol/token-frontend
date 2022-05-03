@@ -8,6 +8,8 @@ Background:
     Then the connect to vega wallet is shown
     And the rewards epoch countdown is not displayed
 
+# Ignoring due to epochs being too long on testnet
+@ignore
   Scenario: Rewards are shown and rewards countdown is shown when vega wallet is connect
     When I connect to the vega wallet
     Then the epoch countdown timer is counting down
