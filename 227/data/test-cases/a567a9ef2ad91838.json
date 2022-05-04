@@ -1,0 +1,218 @@
+{
+  "uid" : "a567a9ef2ad91838",
+  "name" : "Vega wallet not connected placeholder",
+  "fullName" : "Homepage.Vega wallet not connected placeholder",
+  "historyId" : "17958fc9b92716ed6b6842058b88ef26",
+  "time" : {
+    "start" : 1651681862305,
+    "stop" : 1651681864534,
+    "duration" : 2229
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1651681862306,
+        "stop" : 1651681863649,
+        "duration" : 1343
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "ce2e5de2fd258bc6",
+        "name" : "Screenshot",
+        "source" : "ce2e5de2fd258bc6.png",
+        "type" : "image/png",
+        "size" : 367906
+      } ],
+      "parameters" : [ ],
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true,
+      "stepsCount" : 0
+    }, {
+      "name" : "And I have not connected my vega wallet",
+      "time" : {
+        "start" : 1651681863649,
+        "stop" : 1651681863920,
+        "duration" : 271
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "e83ac6bb63183702",
+        "name" : "Screenshot",
+        "source" : "e83ac6bb63183702.png",
+        "type" : "image/png",
+        "size" : 254644
+      } ],
+      "parameters" : [ ],
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true,
+      "stepsCount" : 0
+    }, {
+      "name" : "Then I can see the vega wallet disconnected with message \"Connect Vega wallet to use associated $VEGA\"",
+      "time" : {
+        "start" : 1651681863920,
+        "stop" : 1651681864534,
+        "duration" : 614
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "87dac25e7848111c",
+        "name" : "Screenshot",
+        "source" : "87dac25e7848111c.png",
+        "type" : "image/png",
+        "size" : 254644
+      } ],
+      "parameters" : [ ],
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true,
+      "stepsCount" : 0
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true,
+    "stepsCount" : 3
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Vega wallet not connected placeholder"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-100.0.4896.127"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 4,
+        "skipped" : 0,
+        "passed" : 5,
+        "unknown" : 0,
+        "total" : 9
+      },
+      "items" : [ {
+        "uid" : "aef33c20d67427de",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/226//#testresult/aef33c20d67427de",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651672932798,
+          "stop" : 1651672935671,
+          "duration" : 2873
+        }
+      }, {
+        "uid" : "e3af20d59d02b663",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/225//#testresult/e3af20d59d02b663",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651655825703,
+          "stop" : 1651655827790,
+          "duration" : 2087
+        }
+      }, {
+        "uid" : "eb8088fbcf01cf05",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/224//#testresult/eb8088fbcf01cf05",
+        "status" : "broken",
+        "statusDetails" : "ReferenceError: HomePage is not defined",
+        "time" : {
+          "start" : 1651652938794,
+          "stop" : 1651652940988,
+          "duration" : 2194
+        }
+      }, {
+        "uid" : "65bcd84680ff3348",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/223//#testresult/65bcd84680ff3348",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651593200752,
+          "stop" : 1651593202757,
+          "duration" : 2005
+        }
+      }, {
+        "uid" : "f1b6e2a6a84b56e2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/222//#testresult/f1b6e2a6a84b56e2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651570175509,
+          "stop" : 1651570177790,
+          "duration" : 2281
+        }
+      }, {
+        "uid" : "80dd005edcd099b0",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/221//#testresult/80dd005edcd099b0",
+        "status" : "broken",
+        "statusDetails" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1650977603025,
+          "stop" : 1650977603034,
+          "duration" : 9
+        }
+      }, {
+        "uid" : "516ccfe9d225c47e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/220//#testresult/516ccfe9d225c47e",
+        "status" : "broken",
+        "statusDetails" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1650976632684,
+          "stop" : 1650976632696,
+          "duration" : 12
+        }
+      }, {
+        "uid" : "82b578ded2b6982b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/219//#testresult/82b578ded2b6982b",
+        "status" : "broken",
+        "statusDetails" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1650972436282,
+          "stop" : 1650972436290,
+          "duration" : 8
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "a567a9ef2ad91838.json",
+  "parameterValues" : [ "chrome-100.0.4896.127" ]
+}
