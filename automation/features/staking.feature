@@ -23,6 +23,7 @@ Feature: Staking and Association tests
     # COMMENTED OUT FOLLOWING STEPS - CONFIRMATION TIME TOO LONG
     # And the association of tokens has been successful
 
+@ignore
   Scenario: Use maximum button on associate from wallet enters correct amount
     When I click on use maximum button
     Then I can see the maximum amount of tokens in my wallet are in the token input box
