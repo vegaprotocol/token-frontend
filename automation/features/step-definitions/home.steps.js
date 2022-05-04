@@ -120,7 +120,7 @@ Then(
       timeoutMsg: "Connect to vega wallet message did not appear in 10 seconds",
     });
     const ConnectVegaTxt = browser
-      .getByTestId(HomePage.connectVegaWalletTestId)
+      .getByTestId(homePage.connectVegaWalletTestId)
       .getText();
     expect(ConnectVegaTxt).toBe(disconnectedMsg);
   }
