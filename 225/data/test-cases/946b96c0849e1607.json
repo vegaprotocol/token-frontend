@@ -1,0 +1,283 @@
+{
+  "uid" : "946b96c0849e1607",
+  "name" : "add stake from wallet",
+  "fullName" : "Staking and Association tests.add stake from wallet",
+  "historyId" : "a6bd648be2c0614ee3ca9508280c3807",
+  "time" : {
+    "start" : 1651656326602,
+    "stop" : 1651656333952,
+    "duration" : 7350
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1651656326602,
+        "stop" : 1651656327688,
+        "duration" : 1086
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "52b8441035a24d91",
+        "name" : "Screenshot",
+        "source" : "52b8441035a24d91.png",
+        "type" : "image/png",
+        "size" : 8116
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on a validator",
+      "time" : {
+        "start" : 1651656327688,
+        "stop" : 1651656330102,
+        "duration" : 2414
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "fd97246dc52bf10b",
+        "name" : "Screenshot",
+        "source" : "fd97246dc52bf10b.png",
+        "type" : "image/png",
+        "size" : 197708
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I am taken to the correct validator page",
+      "time" : {
+        "start" : 1651656330102,
+        "stop" : 1651656330585,
+        "duration" : 483
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "16c1e57b7e0a7328",
+        "name" : "Screenshot",
+        "source" : "16c1e57b7e0a7328.png",
+        "type" : "image/png",
+        "size" : 197902
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I select to \"Add\" stake",
+      "time" : {
+        "start" : 1651656330585,
+        "stop" : 1651656331403,
+        "duration" : 818
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "8481785f3f0f0660",
+        "name" : "Screenshot",
+        "source" : "8481785f3f0f0660.png",
+        "type" : "image/png",
+        "size" : 267899
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I enter \"10\" tokens in the input field",
+      "time" : {
+        "start" : 1651656331403,
+        "stop" : 1651656332706,
+        "duration" : 1303
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "c132c90026832642",
+        "name" : "Screenshot",
+        "source" : "c132c90026832642.png",
+        "type" : "image/png",
+        "size" : 268017
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can submit successfully",
+      "time" : {
+        "start" : 1651656332706,
+        "stop" : 1651656333324,
+        "duration" : 618
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "288b803176881ac8",
+        "name" : "Screenshot",
+        "source" : "288b803176881ac8.png",
+        "type" : "image/png",
+        "size" : 203567
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And the pending transaction is displayed",
+      "time" : {
+        "start" : 1651656333324,
+        "stop" : 1651656333951,
+        "duration" : 627
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "859c3f1f3482267e",
+        "name" : "Screenshot",
+        "source" : "859c3f1f3482267e.png",
+        "type" : "image/png",
+        "size" : 203564
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 7,
+    "attachmentsCount" : 7,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "add stake from wallet"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-100.0.4896.127"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 3,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 4,
+        "unknown" : 0,
+        "total" : 7
+      },
+      "items" : [ {
+        "uid" : "6e05ac4d879ef89d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/224//#testresult/6e05ac4d879ef89d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651653439935,
+          "stop" : 1651653448118,
+          "duration" : 8183
+        }
+      }, {
+        "uid" : "e11f49297a27247d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/223//#testresult/e11f49297a27247d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651593686217,
+          "stop" : 1651593693490,
+          "duration" : 7273
+        }
+      }, {
+        "uid" : "f67140b22e720b8b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/222//#testresult/f67140b22e720b8b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651570533252,
+          "stop" : 1651570540638,
+          "duration" : 7386
+        }
+      }, {
+        "uid" : "e79282ff3b931476",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/221//#testresult/e79282ff3b931476",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toEqual(expected) // deep equality",
+        "time" : {
+          "start" : 1650977721242,
+          "stop" : 1650977721262,
+          "duration" : 20
+        }
+      }, {
+        "uid" : "6d91dcc252d90d84",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/220//#testresult/6d91dcc252d90d84",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toEqual(expected) // deep equality",
+        "time" : {
+          "start" : 1650976740245,
+          "stop" : 1650976740263,
+          "duration" : 18
+        }
+      }, {
+        "uid" : "fa5288d269149b3d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/219//#testresult/fa5288d269149b3d",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toEqual(expected) // deep equality",
+        "time" : {
+          "start" : 1650972623999,
+          "stop" : 1650972624027,
+          "duration" : 28
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "946b96c0849e1607.json",
+  "parameterValues" : [ "chrome-100.0.4896.127" ]
+}
