@@ -5,8 +5,6 @@ on:
   pull_request:
     branches: [master, develop]
 
-# env:
-# BASE_URL: https://deploy-preview-${{github.event.number}}--token-vega-xyz.netlify.app/
 jobs:
   prepare:
     runs-on: ubuntu-latest
@@ -61,8 +59,6 @@ jobs:
         uses: browserstack/github-actions/setup-local@master
         with:
           local-testing: start
-        # with:
-        #   wait-on: http://localhost:3000
       - name: Start localhost
         run: npm run yarn:start &
       - name: Run tests
@@ -70,15 +66,6 @@ jobs:
         env:
           BROWSERSTACK_USER: ${{ secrets.BROWSERSTACK_USER }}
           BROWSERSTACK_KEY: ${{ secrets.BROWSERSTACK_KEY }}
-      # - name: 'BrowserStackLocal Stop'  # Terminating the BrowserStackLocal tunnel connection
-      #   uses: browserstack/github-actions/setup-local@master
-      #   with:
-      #     local-testing: stop
-      #   - uses: actions/upload-artifact@v1
-      #     if: always()
-      #     with:
-      #       name: logs
-      #       path: logs
       - name: Get Allure history
         uses: actions/checkout@v2
         if: always()
@@ -90,11 +77,8 @@ jobs:
       - name: Allure Report action from marketplace
         uses: simple-elf/allure-report-action@master
         if: always()
-        #id: allure-report
         with:
           allure_results: automation/allure-results
-          #gh_pages: gh-pages
-          #allure_report: allure-report
           allure_history: automation/allure-history
           keep_reports: 30
       - name: Deploy report to Github Pages
@@ -107,18 +91,3 @@ jobs:
       - name: Allure report location
         if: always()
         run: echo "Link to report https://vegaprotocol.github.io/token-frontend/${{ github.run_number }}"
-      # - name: Post the link to the report in PR comment
-      #   uses: thollander/actions-comment-pull-request@v1
-      #   if: ${{ contains(github.event_name, 'pull_request') }}
-      #   with:
-      #     message: 'Link to report : https://vegaprotocol.github.io/token-frontend/${{ github.run_number }}'
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # - name: Post the link to the report in PR comment
-      #   if: always()
-      #   uses: Sibz/github-status-action@v1
-      #   with:
-      #       authToken: ${{secrets.GITHUB_TOKEN}}
-      #       context: 'Test report'
-      #       state: 'success'
-      #       sha: ${{ github.event.pull_request.head.sha }}
-      #       target_url: https://vegaprotocol.github.io/token-frontend/${{ github.run_number }}
