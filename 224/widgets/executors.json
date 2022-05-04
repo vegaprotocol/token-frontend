@@ -1,0 +1,10 @@
+[ {
+  "name" : "GitHub Actions",
+  "type" : "github",
+  "url" : "https://vegaprotocol.github.io/token-frontend",
+  "buildOrder" : 224,
+  "buildName" : "GitHub Actions Run #2268592188",
+  "buildUrl" : "https://github.com/vegaprotocol/token-frontend/actions/runs/2268592188",
+  "reportName" : "Allure Report with history",
+  "reportUrl" : "https://vegaprotocol.github.io/token-frontend/224/"
+} ]

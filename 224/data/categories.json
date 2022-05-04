@@ -1,0 +1,99 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "ReferenceError: HomePage is not defined",
+      "children" : [ {
+        "name" : "Vega wallet not connected placeholder",
+        "uid" : "eb8088fbcf01cf05",
+        "parentUid" : "bf855805980a0a8c241bf27ddbffd177",
+        "status" : "broken",
+        "time" : {
+          "start" : 1651652938794,
+          "stop" : 1651652940988,
+          "duration" : 2194
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-100.0.4896.127" ]
+      } ],
+      "uid" : "bf855805980a0a8c241bf27ddbffd177"
+    }, {
+      "name" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds",
+      "children" : [ {
+        "name" : "Associate tokens through wallet",
+        "uid" : "c695e05ecf7e989",
+        "parentUid" : "e639a9ad30ef63977eb12890cdf17798",
+        "status" : "broken",
+        "time" : {
+          "start" : 1651653096235,
+          "stop" : 1651653175395,
+          "duration" : 79160
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-100.0.4896.127" ]
+      }, {
+        "name" : "Associate tokens through vesting contract",
+        "uid" : "423b647686066188",
+        "parentUid" : "e639a9ad30ef63977eb12890cdf17798",
+        "status" : "broken",
+        "time" : {
+          "start" : 1651653175397,
+          "stop" : 1651653248421,
+          "duration" : 73024
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-100.0.4896.127" ]
+      }, {
+        "name" : "Disassociate tokens through wallet",
+        "uid" : "96485320d85a76ca",
+        "parentUid" : "e639a9ad30ef63977eb12890cdf17798",
+        "status" : "broken",
+        "time" : {
+          "start" : 1651653281677,
+          "stop" : 1651653355137,
+          "duration" : 73460
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-100.0.4896.127" ]
+      }, {
+        "name" : "Disassociate tokens through vesting contract",
+        "uid" : "b8f7d0ca7d3f5af9",
+        "parentUid" : "e639a9ad30ef63977eb12890cdf17798",
+        "status" : "broken",
+        "time" : {
+          "start" : 1651653366860,
+          "stop" : 1651653439934,
+          "duration" : 73074
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-100.0.4896.127" ]
+      } ],
+      "uid" : "e639a9ad30ef63977eb12890cdf17798"
+    }, {
+      "name" : "Error: Can't call getText on element with selector \"//*[@id=\"root\"]/div/div[2]/aside/section[1]/div/div[2]/div[7]/div[3]/span[2]\" because element wasn't found",
+      "children" : [ {
+        "name" : "Use maximum button on associate from wallet enters correct amount",
+        "uid" : "3dacb44bdbbf8b94",
+        "parentUid" : "382e300e1b95c56b7029f16fbdb868f6",
+        "status" : "broken",
+        "time" : {
+          "start" : 1651653248422,
+          "stop" : 1651653281676,
+          "duration" : 33254
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-100.0.4896.127" ]
+      } ],
+      "uid" : "382e300e1b95c56b7029f16fbdb868f6"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
+  "name" : "categories"
+}
