@@ -53,7 +53,7 @@ Then(/^staked token field is showing as "([^"]*)?"$/, (amount) => {
 Then(/^the vega wallet link is correct$/, async () => {
   await expect(HomePage.vegaWalletLink).toHaveAttribute(
     "href",
-    "https://docs.vega.xyz/docs/tools/vega-wallet/cli-wallet/create-wallet"
+    "https://docs.vega.xyz/docs/mainnet/tools/vega-wallet/cli-wallet/latest/create-wallet/"
   );
 });
 
