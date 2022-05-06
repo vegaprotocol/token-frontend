@@ -1,0 +1,164 @@
+{
+  "uid" : "84003441fb967826",
+  "name" : "Links on the homepage",
+  "fullName" : "Homepage.Links on the homepage",
+  "historyId" : "75dc0c7908c032915bb7dc0878fb6e77",
+  "time" : {
+    "start" : 1651838802322,
+    "stop" : 1651838809564,
+    "duration" : 7242
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: No window found with title, url or name matching \"Vega\"",
+  "statusTrace" : "Error: No window found with title, url or name matching \"Vega\"\n                    at Browser.switchWindow (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/switchWindow.js:71:11)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Browser.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: No window found with title, url or name matching \"Vega\"",
+    "statusTrace" : "Error: No window found with title, url or name matching \"Vega\"\n                    at Browser.switchWindow (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/switchWindow.js:71:11)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Browser.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1651838802322,
+        "stop" : 1651838802328,
+        "duration" : 6
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then the vega wallet link is correct",
+      "time" : {
+        "start" : 1651838802328,
+        "stop" : 1651838809564,
+        "duration" : 7236
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: No window found with title, url or name matching \"Vega\"\n                    at Browser.switchWindow (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/switchWindow.js:71:11)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Browser.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "fa995993e0866bde",
+        "name" : "Screenshot",
+        "source" : "fa995993e0866bde.png",
+        "type" : "image/png",
+        "size" : 8127
+      }, {
+        "uid" : "83646fad762fb9cc",
+        "name" : "Screenshot",
+        "source" : "83646fad762fb9cc.png",
+        "type" : "image/png",
+        "size" : 8150
+      }, {
+        "uid" : "f1a270c1e2ca5113",
+        "name" : "Screenshot",
+        "source" : "f1a270c1e2ca5113.png",
+        "type" : "image/png",
+        "size" : 8147
+      }, {
+        "uid" : "9ad62a2d23cd9839",
+        "name" : "Screenshot",
+        "source" : "9ad62a2d23cd9839.png",
+        "type" : "image/png",
+        "size" : 8153
+      }, {
+        "uid" : "7e9d966d4ca1c163",
+        "name" : "Screenshot",
+        "source" : "7e9d966d4ca1c163.png",
+        "type" : "image/png",
+        "size" : 424813
+      }, {
+        "uid" : "697f12dd0d7845b7",
+        "name" : "Screenshot",
+        "source" : "697f12dd0d7845b7.png",
+        "type" : "image/png",
+        "size" : 424813
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 6,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 6,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Links on the homepage"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "a563e3e325a00b36",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/228//#testresult/a563e3e325a00b36",
+        "status" : "broken",
+        "statusDetails" : "Error: No window found with title, url or name matching \"Vega\"",
+        "time" : {
+          "start" : 1651764463425,
+          "stop" : 1651764470685,
+          "duration" : 7260
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "84003441fb967826.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

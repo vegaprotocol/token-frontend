@@ -1,0 +1,161 @@
+{
+  "uid" : "a0e3c3685ce9356f",
+  "name" : "Invalid claims code will show error",
+  "fullName" : "Claim codes.Invalid claims code will show error",
+  "historyId" : "39a15c833b071a37ff175b7229368de0",
+  "time" : {
+    "start" : 1651838741130,
+    "stop" : 1651838743067,
+    "duration" : 1937
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: No window found with title, url or name matching \"MetaMask\"",
+  "statusTrace" : "Error: No window found with title, url or name matching \"MetaMask\"\n                    at Browser.switchWindow (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/switchWindow.js:71:11)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Browser.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: No window found with title, url or name matching \"MetaMask\"",
+    "statusTrace" : "Error: No window found with title, url or name matching \"MetaMask\"\n                    at Browser.switchWindow (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/switchWindow.js:71:11)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Browser.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"claim?r=odiuhfn\" page",
+      "time" : {
+        "start" : 1651838741131,
+        "stop" : 1651838741137,
+        "duration" : 6
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And I connect my ethereum wallet",
+      "time" : {
+        "start" : 1651838741137,
+        "stop" : 1651838741149,
+        "duration" : 12
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "And I can see the heading title is \"CLAIM $VEGA TOKENS\"",
+      "time" : {
+        "start" : 1651838741149,
+        "stop" : 1651838743067,
+        "duration" : 1918
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: No window found with title, url or name matching \"MetaMask\"\n                    at Browser.switchWindow (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/switchWindow.js:71:11)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Browser.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "26e0552e1c4b5ddc",
+        "name" : "Screenshot",
+        "source" : "26e0552e1c4b5ddc.png",
+        "type" : "image/png",
+        "size" : 6617
+      }, {
+        "uid" : "b5d74ee592060ea1",
+        "name" : "Screenshot",
+        "source" : "b5d74ee592060ea1.png",
+        "type" : "image/png",
+        "size" : 8740
+      }, {
+        "uid" : "e8340e37922989",
+        "name" : "Screenshot",
+        "source" : "e8340e37922989.png",
+        "type" : "image/png",
+        "size" : 335160
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 3,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-0"
+  }, {
+    "name" : "suite",
+    "value" : "Claim codes"
+  }, {
+    "name" : "testClass",
+    "value" : "Claim codes"
+  }, {
+    "name" : "testMethod",
+    "value" : "Invalid claims code will show error"
+  }, {
+    "name" : "package",
+    "value" : "Claim codes"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "f933b1a0063f6cde",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/228//#testresult/f933b1a0063f6cde",
+        "status" : "broken",
+        "statusDetails" : "Error: No window found with title, url or name matching \"MetaMask\"",
+        "time" : {
+          "start" : 1651764400966,
+          "stop" : 1651764405058,
+          "duration" : 4092
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "a0e3c3685ce9356f.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}

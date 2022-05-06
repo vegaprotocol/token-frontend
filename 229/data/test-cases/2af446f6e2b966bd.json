@@ -1,0 +1,134 @@
+{
+  "uid" : "2af446f6e2b966bd",
+  "name" : "Prompt to connect to eth wallet to claim if not connected",
+  "fullName" : "Claim codes.Prompt to connect to eth wallet to claim if not connected",
+  "historyId" : "fe146ac841243977d1a34bcefd87d344",
+  "time" : {
+    "start" : 1651838738970,
+    "stop" : 1651838741129,
+    "duration" : 2159
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: No window found with title, url or name matching \"Vega\"",
+  "statusTrace" : "Error: No window found with title, url or name matching \"Vega\"\n                    at Browser.switchWindow (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/switchWindow.js:71:11)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Browser.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: No window found with title, url or name matching \"Vega\"",
+    "statusTrace" : "Error: No window found with title, url or name matching \"Vega\"\n                    at Browser.switchWindow (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/switchWindow.js:71:11)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Browser.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"claim?r=odiuhfn\" page",
+      "time" : {
+        "start" : 1651838738972,
+        "stop" : 1651838738982,
+        "duration" : 10
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then I can see the error message when not connected to eth wallet on claims page \"Connect to the Ethereum wallet that holds your $VEGA tokens to see what can be redeemed from vesting tranches. To redeem tokens you will need some ETH to pay gas fees.\"",
+      "time" : {
+        "start" : 1651838738982,
+        "stop" : 1651838741129,
+        "duration" : 2147
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: No window found with title, url or name matching \"Vega\"\n                    at Browser.switchWindow (/home/runner/work/token-frontend/token-frontend/automation/node_modules/webdriverio/build/commands/browser/switchWindow.js:71:11)\n                    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n                    at Browser.wrapCommandFn (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:131:29)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "8c53be0cd72493d3",
+        "name" : "Screenshot",
+        "source" : "8c53be0cd72493d3.png",
+        "type" : "image/png",
+        "size" : 35217
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-0"
+  }, {
+    "name" : "suite",
+    "value" : "Claim codes"
+  }, {
+    "name" : "testClass",
+    "value" : "Claim codes"
+  }, {
+    "name" : "testMethod",
+    "value" : "Prompt to connect to eth wallet to claim if not connected"
+  }, {
+    "name" : "package",
+    "value" : "Claim codes"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-96.0.4664.110"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "e2bde2a434aed051",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/228//#testresult/e2bde2a434aed051",
+        "status" : "broken",
+        "statusDetails" : "Error: No window found with title, url or name matching \"Vega\"",
+        "time" : {
+          "start" : 1651764397138,
+          "stop" : 1651764400964,
+          "duration" : 3826
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "2af446f6e2b966bd.json",
+  "parameterValues" : [ "chrome-96.0.4664.110" ]
+}
