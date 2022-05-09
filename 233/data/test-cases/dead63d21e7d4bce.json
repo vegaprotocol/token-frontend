@@ -1,0 +1,256 @@
+{
+  "uid" : "dead63d21e7d4bce",
+  "name" : "Invalid claims code will show error",
+  "fullName" : "Claim codes.Invalid claims code will show error",
+  "historyId" : "cbebe5c14c015b831d562603f434cd2d",
+  "time" : {
+    "start" : 1652110179581,
+    "stop" : 1652110209599,
+    "duration" : 30018
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"claim?r=odiuhfn\" page",
+      "time" : {
+        "start" : 1652110179581,
+        "stop" : 1652110180953,
+        "duration" : 1372
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "7b47c3664e45ee3b",
+        "name" : "Screenshot",
+        "source" : "7b47c3664e45ee3b.png",
+        "type" : "image/png",
+        "size" : 8748
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I connect my ethereum wallet",
+      "time" : {
+        "start" : 1652110180953,
+        "stop" : 1652110206309,
+        "duration" : 25356
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "5de577c947bed379",
+        "name" : "Screenshot",
+        "source" : "5de577c947bed379.png",
+        "type" : "image/png",
+        "size" : 327089
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I can see the heading title is \"CLAIM $VEGA TOKENS\"",
+      "time" : {
+        "start" : 1652110206309,
+        "stop" : 1652110208246,
+        "duration" : 1937
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "241529e42f6f2428",
+        "name" : "Screenshot",
+        "source" : "241529e42f6f2428.png",
+        "type" : "image/png",
+        "size" : 214975
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the invalid claim code error \"Something doesn't look right. Please check the link again or the Vesting page to see if you have already claimed\"",
+      "time" : {
+        "start" : 1652110208246,
+        "stop" : 1652110209599,
+        "duration" : 1353
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "5a81c7d65b3f4744",
+        "name" : "Screenshot",
+        "source" : "5a81c7d65b3f4744.png",
+        "type" : "image/png",
+        "size" : 214975
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-0"
+  }, {
+    "name" : "suite",
+    "value" : "Claim codes"
+  }, {
+    "name" : "testClass",
+    "value" : "Claim codes"
+  }, {
+    "name" : "testMethod",
+    "value" : "Invalid claims code will show error"
+  }, {
+    "name" : "package",
+    "value" : "Claim codes"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-100.0.4896.127"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 8,
+        "unknown" : 0,
+        "total" : 11
+      },
+      "items" : [ {
+        "uid" : "54ce200409c03f26",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/232//#testresult/54ce200409c03f26",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652098229315,
+          "stop" : 1652098247214,
+          "duration" : 17899
+        }
+      }, {
+        "uid" : "b2157e41367c2a01",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/231//#testresult/b2157e41367c2a01",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651848791304,
+          "stop" : 1651848809959,
+          "duration" : 18655
+        }
+      }, {
+        "uid" : "b034ad94c2266f0",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/227//#testresult/b034ad94c2266f0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651681722161,
+          "stop" : 1651681740223,
+          "duration" : 18062
+        }
+      }, {
+        "uid" : "e0ad65780f384154",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/226//#testresult/e0ad65780f384154",
+        "status" : "broken",
+        "statusDetails" : "Error: No window found with title, url or name matching \"MetaMask Notification\"",
+        "time" : {
+          "start" : 1651672769490,
+          "stop" : 1651672791445,
+          "duration" : 21955
+        }
+      }, {
+        "uid" : "8bd8ca8294a84598",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/225//#testresult/8bd8ca8294a84598",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651655674550,
+          "stop" : 1651655693981,
+          "duration" : 19431
+        }
+      }, {
+        "uid" : "e652aac3e950f32b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/224//#testresult/e652aac3e950f32b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651652777902,
+          "stop" : 1651652812183,
+          "duration" : 34281
+        }
+      }, {
+        "uid" : "615603277df958fd",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/223//#testresult/615603277df958fd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651593050848,
+          "stop" : 1651593076879,
+          "duration" : 26031
+        }
+      }, {
+        "uid" : "9dbc2e703fb79b6b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/222//#testresult/9dbc2e703fb79b6b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651570026938,
+          "stop" : 1651570054954,
+          "duration" : 28016
+        }
+      }, {
+        "uid" : "13038c06cebf5995",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/220//#testresult/13038c06cebf5995",
+        "status" : "broken",
+        "statusDetails" : "Error: No window found with title, url or name matching \"MetaMask\"",
+        "time" : {
+          "start" : 1650976561291,
+          "stop" : 1650976564382,
+          "duration" : 3091
+        }
+      }, {
+        "uid" : "efcb7108cdead514",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/219//#testresult/efcb7108cdead514",
+        "status" : "broken",
+        "statusDetails" : "Error: waitUntil condition failed with the following reason: return value was never truthy",
+        "time" : {
+          "start" : 1650972323332,
+          "stop" : 1650972353351,
+          "duration" : 30019
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "dead63d21e7d4bce.json",
+  "parameterValues" : [ "chrome-100.0.4896.127" ]
+}

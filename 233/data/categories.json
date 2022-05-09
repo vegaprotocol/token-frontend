@@ -1,0 +1,26 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "Error: pending stake mconfirmation not displayed",
+      "children" : [ {
+        "name" : "add stake from wallet",
+        "uid" : "1868ab26aadaf6e5",
+        "parentUid" : "38ad58c045f4f8ce9888e1a97a76fd59",
+        "status" : "broken",
+        "time" : {
+          "start" : 1652110566487,
+          "stop" : 1652110597429,
+          "duration" : 30942
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-100.0.4896.127" ]
+      } ],
+      "uid" : "38ad58c045f4f8ce9888e1a97a76fd59"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
+  "name" : "categories"
+}
