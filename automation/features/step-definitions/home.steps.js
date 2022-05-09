@@ -57,7 +57,7 @@ Then(/^the vega wallet link is correct$/, () => {
   });
   expect(homePage.vegaWalletLink).toHaveAttribute(
     "href",
-    "https://docs.vega.xyz/docs/tools/vega-wallet"
+    "https://docs.vega.xyz/docs/mainnet/tools/vega-wallet"
   );
 });
 
