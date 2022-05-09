@@ -1,0 +1,382 @@
+{
+  "uid" : "6e4e20ed7be168d8",
+  "name" : "Check wallet field entry",
+  "fullName" : "Withdraw page.Check wallet field entry",
+  "historyId" : "c959929bb4366920617063fe916207cb",
+  "time" : {
+    "start" : 1652098676548,
+    "stop" : 1652098720260,
+    "duration" : 43712
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"withdraw\" page",
+      "time" : {
+        "start" : 1652098676550,
+        "stop" : 1652098682589,
+        "duration" : 6039
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "ac077ada4cfccc99",
+        "name" : "Screenshot",
+        "source" : "ac077ada4cfccc99.png",
+        "type" : "image/png",
+        "size" : 8734
+      } ],
+      "parameters" : [ ],
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false
+    }, {
+      "name" : "Given I connect my ethereum wallet",
+      "time" : {
+        "start" : 1652098682589,
+        "stop" : 1652098709990,
+        "duration" : 27401
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "fb9834c68efdddbf",
+        "name" : "Screenshot",
+        "source" : "fb9834c68efdddbf.png",
+        "type" : "image/png",
+        "size" : 326132
+      } ],
+      "parameters" : [ ],
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false
+    }, {
+      "name" : "When I connect to the vega wallet",
+      "time" : {
+        "start" : 1652098709990,
+        "stop" : 1652098713275,
+        "duration" : 3285
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "4aed3447e88f1f97",
+        "name" : "Screenshot",
+        "source" : "4aed3447e88f1f97.png",
+        "type" : "image/png",
+        "size" : 191783
+      } ],
+      "parameters" : [ ],
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false
+    }, {
+      "name" : "Then I can see the wallet address field is showing \"0x9804C6E98dA75e3271ccE3aA56728FD8e9376155\"",
+      "time" : {
+        "start" : 1652098713275,
+        "stop" : 1652098714453,
+        "duration" : 1178
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "3184e6d76754e3d0",
+        "name" : "Screenshot",
+        "source" : "3184e6d76754e3d0.png",
+        "type" : "image/png",
+        "size" : 285894
+      } ],
+      "parameters" : [ ],
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false
+    }, {
+      "name" : "And The wallet address field is disabled",
+      "time" : {
+        "start" : 1652098714453,
+        "stop" : 1652098715267,
+        "duration" : 814
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "2c4a76048b1c1d5a",
+        "name" : "Screenshot",
+        "source" : "2c4a76048b1c1d5a.png",
+        "type" : "image/png",
+        "size" : 290494
+      } ],
+      "parameters" : [ ],
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false
+    }, {
+      "name" : "When I click the link to enter a new wallet address",
+      "time" : {
+        "start" : 1652098715267,
+        "stop" : 1652098716298,
+        "duration" : 1031
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "5c6caee142381553",
+        "name" : "Screenshot",
+        "source" : "5c6caee142381553.png",
+        "type" : "image/png",
+        "size" : 291598
+      } ],
+      "parameters" : [ ],
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false
+    }, {
+      "name" : "Then the wallet address field is enabled",
+      "time" : {
+        "start" : 1652098716298,
+        "stop" : 1652098716948,
+        "duration" : 650
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "6ba049412f81dcf3",
+        "name" : "Screenshot",
+        "source" : "6ba049412f81dcf3.png",
+        "type" : "image/png",
+        "size" : 291598
+      } ],
+      "parameters" : [ ],
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false
+    }, {
+      "name" : "When I enter a new wallet address \"new-wallet-address-xxccvvbbb\"",
+      "time" : {
+        "start" : 1652098716948,
+        "stop" : 1652098718266,
+        "duration" : 1318
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "1f9994c025bebcc4",
+        "name" : "Screenshot",
+        "source" : "1f9994c025bebcc4.png",
+        "type" : "image/png",
+        "size" : 273893
+      } ],
+      "parameters" : [ ],
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false
+    }, {
+      "name" : "Then the wallet address link is changed to \"Use connected wallet\"",
+      "time" : {
+        "start" : 1652098718266,
+        "stop" : 1652098719295,
+        "duration" : 1029
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "943bdf1dd4adfeba",
+        "name" : "Screenshot",
+        "source" : "943bdf1dd4adfeba.png",
+        "type" : "image/png",
+        "size" : 273893
+      } ],
+      "parameters" : [ ],
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false
+    }, {
+      "name" : "Then I can see the wallet address in the input field is \"new-wallet-address-xxccvvbbb\"",
+      "time" : {
+        "start" : 1652098719296,
+        "stop" : 1652098720259,
+        "duration" : 963
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "99b98ba8ef7d9221",
+        "name" : "Screenshot",
+        "source" : "99b98ba8ef7d9221.png",
+        "type" : "image/png",
+        "size" : 274106
+      } ],
+      "parameters" : [ ],
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : true,
+    "stepsCount" : 10,
+    "attachmentsCount" : 10,
+    "shouldDisplayMessage" : false
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-6"
+  }, {
+    "name" : "suite",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "testClass",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Check wallet field entry"
+  }, {
+    "name" : "package",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-100.0.4896.127"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 8,
+        "unknown" : 0,
+        "total" : 11
+      },
+      "items" : [ {
+        "uid" : "8fcdf08204f4b3c0",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/231//#testresult/8fcdf08204f4b3c0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651849319144,
+          "stop" : 1651849354703,
+          "duration" : 35559
+        }
+      }, {
+        "uid" : "cec7ef2d1ae0e106",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/227//#testresult/cec7ef2d1ae0e106",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651682136556,
+          "stop" : 1651682163112,
+          "duration" : 26556
+        }
+      }, {
+        "uid" : "ec292acf85f8d5d3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/226//#testresult/ec292acf85f8d5d3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651673303580,
+          "stop" : 1651673342393,
+          "duration" : 38813
+        }
+      }, {
+        "uid" : "d1194de5790bdf9c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/225//#testresult/d1194de5790bdf9c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651656398123,
+          "stop" : 1651656426829,
+          "duration" : 28706
+        }
+      }, {
+        "uid" : "efe895f8648fe0dd",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/224//#testresult/efe895f8648fe0dd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651653503756,
+          "stop" : 1651653543126,
+          "duration" : 39370
+        }
+      }, {
+        "uid" : "3a38385302eab2f4",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/223//#testresult/3a38385302eab2f4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651593832848,
+          "stop" : 1651593892088,
+          "duration" : 59240
+        }
+      }, {
+        "uid" : "1acd6849fd3360d7",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/222//#testresult/1acd6849fd3360d7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651570600087,
+          "stop" : 1651570625784,
+          "duration" : 25697
+        }
+      }, {
+        "uid" : "5a31b358143b90bc",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/221//#testresult/5a31b358143b90bc",
+        "status" : "broken",
+        "statusDetails" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1650977847305,
+          "stop" : 1650977847347,
+          "duration" : 42
+        }
+      }, {
+        "uid" : "4e12653ee50761f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/220//#testresult/4e12653ee50761f",
+        "status" : "broken",
+        "statusDetails" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1650976870221,
+          "stop" : 1650976870271,
+          "duration" : 50
+        }
+      }, {
+        "uid" : "d231992ed7976042",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/219//#testresult/d231992ed7976042",
+        "status" : "broken",
+        "statusDetails" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1650972686483,
+          "stop" : 1650972686533,
+          "duration" : 50
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "6e4e20ed7be168d8.json",
+  "parameterValues" : [ "chrome-100.0.4896.127" ]
+}
