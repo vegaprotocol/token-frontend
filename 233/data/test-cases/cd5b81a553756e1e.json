@@ -1,0 +1,250 @@
+{
+  "uid" : "cd5b81a553756e1e",
+  "name" : "Navigate to governance proposals page via button link on homepage body",
+  "fullName" : "Homepage.Navigate to governance proposals page via button link on homepage body",
+  "historyId" : "31b80cb4a8ee285e9791b30bce6a3dc6",
+  "time" : {
+    "start" : 1652115714153,
+    "stop" : 1652115717776,
+    "duration" : 3623
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1652115714154,
+        "stop" : 1652115715520,
+        "duration" : 1366
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "5fd78c46fc2ccd81",
+        "name" : "Screenshot",
+        "source" : "5fd78c46fc2ccd81.png",
+        "type" : "image/png",
+        "size" : 421715
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on the governance proposals button",
+      "time" : {
+        "start" : 1652115715520,
+        "stop" : 1652115717417,
+        "duration" : 1897
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "4078d2eba1b9c33",
+        "name" : "Screenshot",
+        "source" : "4078d2eba1b9c33.png",
+        "type" : "image/png",
+        "size" : 163767
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I am taken to the \"governance\" page",
+      "time" : {
+        "start" : 1652115717417,
+        "stop" : 1652115717776,
+        "duration" : 359
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "cf0faedb5c40fcf5",
+        "name" : "Screenshot",
+        "source" : "cf0faedb5c40fcf5.png",
+        "type" : "image/png",
+        "size" : 169689
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Navigate to governance proposals page via button link on homepage body"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-100.0.4896.127"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 13,
+        "unknown" : 0,
+        "total" : 13
+      },
+      "items" : [ {
+        "uid" : "e85fa377721d741d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/233//#testresult/e85fa377721d741d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652110301304,
+          "stop" : 1652110305017,
+          "duration" : 3713
+        }
+      }, {
+        "uid" : "bad15ee391e813af",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/232//#testresult/bad15ee391e813af",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652098368586,
+          "stop" : 1652098372012,
+          "duration" : 3426
+        }
+      }, {
+        "uid" : "afb3d0d7dd91b0f9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/231//#testresult/afb3d0d7dd91b0f9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651848954712,
+          "stop" : 1651848961525,
+          "duration" : 6813
+        }
+      }, {
+        "uid" : "e6f6e2b02a6760a0",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/227//#testresult/e6f6e2b02a6760a0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651681829712,
+          "stop" : 1651681834099,
+          "duration" : 4387
+        }
+      }, {
+        "uid" : "5501801d64eb6d10",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/226//#testresult/5501801d64eb6d10",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651672891002,
+          "stop" : 1651672896020,
+          "duration" : 5018
+        }
+      }, {
+        "uid" : "46a89c3e480e4a59",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/225//#testresult/46a89c3e480e4a59",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651655788150,
+          "stop" : 1651655791906,
+          "duration" : 3756
+        }
+      }, {
+        "uid" : "53055cbee6a1061",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/224//#testresult/53055cbee6a1061",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651652908447,
+          "stop" : 1651652913199,
+          "duration" : 4752
+        }
+      }, {
+        "uid" : "9c2da08d0aef5865",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/223//#testresult/9c2da08d0aef5865",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651593166845,
+          "stop" : 1651593171821,
+          "duration" : 4976
+        }
+      }, {
+        "uid" : "e82a2f1cddd06c23",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/222//#testresult/e82a2f1cddd06c23",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651570140994,
+          "stop" : 1651570144759,
+          "duration" : 3765
+        }
+      }, {
+        "uid" : "e494e5a69b2c9992",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/221//#testresult/e494e5a69b2c9992",
+        "status" : "passed",
+        "time" : {
+          "start" : 1650977592182,
+          "stop" : 1650977592190,
+          "duration" : 8
+        }
+      }, {
+        "uid" : "c5e89a993f9b78ea",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/220//#testresult/c5e89a993f9b78ea",
+        "status" : "passed",
+        "time" : {
+          "start" : 1650976616694,
+          "stop" : 1650976616708,
+          "duration" : 14
+        }
+      }, {
+        "uid" : "deaceb5106a116eb",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/219//#testresult/deaceb5106a116eb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1650972420038,
+          "stop" : 1650972420048,
+          "duration" : 10
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "cd5b81a553756e1e.json",
+  "parameterValues" : [ "chrome-100.0.4896.127" ]
+}

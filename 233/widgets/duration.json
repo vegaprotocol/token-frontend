@@ -1,290 +1,290 @@
 [ {
-  "uid" : "2ce680f6e1da1e7a",
-  "name" : "Navigate to staking page via link on homepage body",
-  "time" : {
-    "start" : 1652110298762,
-    "stop" : 1652110301304,
-    "duration" : 2542
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "34e83e985cacb3c7",
-  "name" : "Cannot stake more than what is associated",
-  "time" : {
-    "start" : 1652110597430,
-    "stop" : 1652110608828,
-    "duration" : 11398
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "a23f20f11498bd7f",
-  "name" : "Navigate to a not found page will return page error",
-  "time" : {
-    "start" : 1652110305017,
-    "stop" : 1652110308274,
-    "duration" : 3257
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "41b9fcf2d2549e3",
-  "name" : "Associate tokens through vesting contract",
-  "time" : {
-    "start" : 1652110514835,
-    "stop" : 1652110526288,
-    "duration" : 11453
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "da6438e440fc6166",
-  "name" : "Links on the homepage",
-  "time" : {
-    "start" : 1652110291721,
-    "stop" : 1652110295947,
-    "duration" : 4226
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "1ed708cf00e31a5d",
-  "name" : "Go to staking and connect ethereum wallet",
-  "time" : {
-    "start" : 1652110476206,
-    "stop" : 1652110495715,
-    "duration" : 19509
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "63b09797f7e651b3",
-  "name" : "Can navigate to Staking page using main nav tab",
-  "time" : {
-    "start" : 1652110311414,
-    "stop" : 1652110314203,
-    "duration" : 2789
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "1b0cc74f5a98426e",
+  "uid" : "13bb1a9e2aec2caa",
   "name" : "Can navigate to Rewards page using main nav tab",
   "time" : {
-    "start" : 1652110320515,
-    "stop" : 1652110324077,
-    "duration" : 3562
+    "start" : 1652115734164,
+    "stop" : 1652115737419,
+    "duration" : 3255
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "936ca2475b3159a7",
-  "name" : "Invalid wallet address error message is shown if user enters an invalid wallet address",
+  "uid" : "30ef6ffe7f35202e",
+  "name" : "Cannot stake more than what is associated",
   "time" : {
-    "start" : 1652110681560,
-    "stop" : 1652110685134,
-    "duration" : 3574
+    "start" : 1652115967769,
+    "stop" : 1652115973671,
+    "duration" : 5902
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "fe90474d71e9648",
-  "name" : "Associate tokens through wallet",
-  "time" : {
-    "start" : 1652110495715,
-    "stop" : 1652110514834,
-    "duration" : 19119
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "a466d5bf1584f4eb",
-  "name" : "Cannot disassociate more tokens through wallet than available",
-  "time" : {
-    "start" : 1652110539960,
-    "stop" : 1652110545514,
-    "duration" : 5554
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "4b04fba1a4b900e",
-  "name" : "Eth wallet not connected placeholder",
-  "time" : {
-    "start" : 1652110330373,
-    "stop" : 1652110332864,
-    "duration" : 2491
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "10aed0f755d641cc",
-  "name" : "Rewards countdown is not displayed if vega wallet is not connected",
-  "time" : {
-    "start" : 1652110393827,
-    "stop" : 1652110416393,
-    "duration" : 22566
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "1868ab26aadaf6e5",
-  "name" : "add stake from wallet",
-  "time" : {
-    "start" : 1652110566487,
-    "stop" : 1652110597429,
-    "duration" : 30942
-  },
-  "status" : "broken",
-  "severity" : "normal"
-}, {
-  "uid" : "c44611dffa7ea345",
-  "name" : "Can navigate to Governance page using main nav tab",
-  "time" : {
-    "start" : 1652110314204,
-    "stop" : 1652110317491,
-    "duration" : 3287
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "ce0b144d55613d69",
-  "name" : "Vega wallet not connected placeholder",
-  "time" : {
-    "start" : 1652110332864,
-    "stop" : 1652110335247,
-    "duration" : 2383
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "8eee8bfab4ac1909",
-  "name" : "Check wallet field entry",
-  "time" : {
-    "start" : 1652110657902,
-    "stop" : 1652110681560,
-    "duration" : 23658
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "e85fa377721d741d",
-  "name" : "Navigate to governance proposals page via button link on homepage body",
-  "time" : {
-    "start" : 1652110301304,
-    "stop" : 1652110305017,
-    "duration" : 3713
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "af2122de44727a71",
-  "name" : "Cannot disassociate more tokens through vesting contract than available",
-  "time" : {
-    "start" : 1652110545514,
-    "stop" : 1652110550475,
-    "duration" : 4961
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "195fc3afaccf8f10",
-  "name" : "Homepage displays correct information",
-  "time" : {
-    "start" : 1652110271490,
-    "stop" : 1652110291720,
-    "duration" : 20230
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "5fdc3ca187ac2836",
-  "name" : "Check for redeem unlocked tokens from homepage",
-  "time" : {
-    "start" : 1652110295947,
-    "stop" : 1652110298762,
-    "duration" : 2815
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "2a111b8b43c0e257",
-  "name" : "Page not found error where page does not exist",
-  "time" : {
-    "start" : 1652110327295,
-    "stop" : 1652110330373,
-    "duration" : 3078
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "4a94b1c0d60abb69",
-  "name" : "Can navigate to Vesting page using main nav tab",
-  "time" : {
-    "start" : 1652110308275,
-    "stop" : 1652110311414,
-    "duration" : 3139
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "dead63d21e7d4bce",
-  "name" : "Invalid claims code will show error",
-  "time" : {
-    "start" : 1652110179581,
-    "stop" : 1652110209599,
-    "duration" : 30018
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "bef9451a2fbd04c5",
-  "name" : "Prompt to connect to eth wallet to claim if not connected",
-  "time" : {
-    "start" : 1652110157833,
-    "stop" : 1652110179580,
-    "duration" : 21747
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "1b37fc79e4d7e9d4",
+  "uid" : "d8e7df91907dd035",
   "name" : "Can navigate to Withdraw page using main nav tab",
   "time" : {
-    "start" : 1652110324077,
-    "stop" : 1652110327295,
-    "duration" : 3218
+    "start" : 1652115737419,
+    "stop" : 1652115740415,
+    "duration" : 2996
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "8145c2ab330e5e61",
+  "uid" : "541de65ac0e76681",
+  "name" : "Can navigate to Governance page using main nav tab",
+  "time" : {
+    "start" : 1652115727170,
+    "stop" : 1652115730753,
+    "duration" : 3583
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "116a49e0debc121a",
+  "name" : "Cannot disassociate more tokens through vesting contract than available",
+  "time" : {
+    "start" : 1652115943838,
+    "stop" : 1652115948895,
+    "duration" : 5057
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "9da3cdce29b74c1",
+  "name" : "Eth wallet not connected placeholder",
+  "time" : {
+    "start" : 1652115743470,
+    "stop" : 1652115746291,
+    "duration" : 2821
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "8adb5548bace25f5",
+  "name" : "Navigate to staking page via link on homepage body",
+  "time" : {
+    "start" : 1652115711620,
+    "stop" : 1652115714153,
+    "duration" : 2533
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "f8aa7c2ce32e52e2",
+  "name" : "Homepage displays correct information",
+  "time" : {
+    "start" : 1652115681413,
+    "stop" : 1652115704765,
+    "duration" : 23352
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "f6dd4e83b06b8f48",
+  "name" : "Navigate to a not found page will return page error",
+  "time" : {
+    "start" : 1652115717776,
+    "stop" : 1652115721214,
+    "duration" : 3438
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "cd5b81a553756e1e",
+  "name" : "Navigate to governance proposals page via button link on homepage body",
+  "time" : {
+    "start" : 1652115714153,
+    "stop" : 1652115717776,
+    "duration" : 3623
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "35abbfd8ddf493a3",
+  "name" : "Vega wallet not connected placeholder",
+  "time" : {
+    "start" : 1652115746291,
+    "stop" : 1652115748339,
+    "duration" : 2048
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "4ed1c9053003f38e",
   "name" : "Disassociate tokens through vesting contract",
   "time" : {
-    "start" : 1652110550475,
-    "stop" : 1652110566486,
-    "duration" : 16011
+    "start" : 1652115948896,
+    "stop" : 1652115960326,
+    "duration" : 11430
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "840e7506dbaee5fd",
-  "name" : "Disassociate tokens through wallet",
+  "uid" : "8c96613f51642c5d",
+  "name" : "Associate tokens through wallet",
   "time" : {
-    "start" : 1652110526288,
-    "stop" : 1652110539960,
-    "duration" : 13672
+    "start" : 1652115896897,
+    "stop" : 1652115915139,
+    "duration" : 18242
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "948fec3f17637202",
+  "uid" : "d44649c1a60e00f0",
+  "name" : "Associate tokens through vesting contract",
+  "time" : {
+    "start" : 1652115915139,
+    "stop" : 1652115925726,
+    "duration" : 10587
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "52ee5734a4e5864f",
   "name" : "Can navigate to Home page using main nav tab",
   "time" : {
-    "start" : 1652110317491,
-    "stop" : 1652110320515,
-    "duration" : 3024
+    "start" : 1652115730754,
+    "stop" : 1652115734164,
+    "duration" : 3410
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "ec4293049ff2a91e",
+  "name" : "Page not found error where page does not exist",
+  "time" : {
+    "start" : 1652115740415,
+    "stop" : 1652115743470,
+    "duration" : 3055
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "d64cbf0bdeea4a20",
+  "name" : "Links on the homepage",
+  "time" : {
+    "start" : 1652115704766,
+    "stop" : 1652115708714,
+    "duration" : 3948
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "7771cb5f4f84ebb8",
+  "name" : "Rewards countdown is not displayed if vega wallet is not connected",
+  "time" : {
+    "start" : 1652115796517,
+    "stop" : 1652115825590,
+    "duration" : 29073
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "e23ae749ce3b8e3f",
+  "name" : "add stake from wallet",
+  "time" : {
+    "start" : 1652115960326,
+    "stop" : 1652115967769,
+    "duration" : 7443
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "d64721c494dc2f6",
+  "name" : "Check for redeem unlocked tokens from homepage",
+  "time" : {
+    "start" : 1652115708714,
+    "stop" : 1652115711620,
+    "duration" : 2906
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "1f48ff71dc309c37",
+  "name" : "Check wallet field entry",
+  "time" : {
+    "start" : 1652116030757,
+    "stop" : 1652116058574,
+    "duration" : 27817
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "16d7ae4c9e093f48",
+  "name" : "Prompt to connect to eth wallet to claim if not connected",
+  "time" : {
+    "start" : 1652115577717,
+    "stop" : 1652115586861,
+    "duration" : 9144
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "48994ae3aa6dedc0",
+  "name" : "Disassociate tokens through wallet",
+  "time" : {
+    "start" : 1652115925727,
+    "stop" : 1652115938845,
+    "duration" : 13118
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "94c3f80432ed2ba2",
+  "name" : "Cannot disassociate more tokens through wallet than available",
+  "time" : {
+    "start" : 1652115938845,
+    "stop" : 1652115943838,
+    "duration" : 4993
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "de300247b2f30ac5",
+  "name" : "Can navigate to Vesting page using main nav tab",
+  "time" : {
+    "start" : 1652115721214,
+    "stop" : 1652115724169,
+    "duration" : 2955
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "5295b59cc55dbdb1",
+  "name" : "Invalid wallet address error message is shown if user enters an invalid wallet address",
+  "time" : {
+    "start" : 1652116058575,
+    "stop" : 1652116062902,
+    "duration" : 4327
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "b4588db3aab2233c",
+  "name" : "Invalid claims code will show error",
+  "time" : {
+    "start" : 1652115586861,
+    "stop" : 1652115616136,
+    "duration" : 29275
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "a24c317b4853c46e",
+  "name" : "Can navigate to Staking page using main nav tab",
+  "time" : {
+    "start" : 1652115724169,
+    "stop" : 1652115727170,
+    "duration" : 3001
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "14d5665b7b74ed6b",
+  "name" : "Go to staking and connect ethereum wallet",
+  "time" : {
+    "start" : 1652115879960,
+    "stop" : 1652115896897,
+    "duration" : 16937
   },
   "status" : "passed",
   "severity" : "normal"

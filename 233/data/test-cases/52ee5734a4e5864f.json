@@ -1,0 +1,274 @@
+{
+  "uid" : "52ee5734a4e5864f",
+  "name" : "Can navigate to Home page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Home page using main nav tab",
+  "historyId" : "d467bdfb95c8a3420ac175c5e870db53",
+  "time" : {
+    "start" : 1652115730754,
+    "stop" : 1652115734164,
+    "duration" : 3410
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1652115730754,
+        "stop" : 1652115732360,
+        "duration" : 1606
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "8f76ab99ec18f16d",
+        "name" : "Screenshot",
+        "source" : "8f76ab99ec18f16d.png",
+        "type" : "image/png",
+        "size" : 424149
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on \"Home\" on main nav",
+      "time" : {
+        "start" : 1652115732360,
+        "stop" : 1652115733126,
+        "duration" : 766
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "1897a42370f3fcbf",
+        "name" : "Screenshot",
+        "source" : "1897a42370f3fcbf.png",
+        "type" : "image/png",
+        "size" : 272748
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I can see \"Home\" button is clearly highlighted after click",
+      "time" : {
+        "start" : 1652115733126,
+        "stop" : 1652115733660,
+        "duration" : 534
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "f59fe0e59d4dcb07",
+        "name" : "Screenshot",
+        "source" : "f59fe0e59d4dcb07.png",
+        "type" : "image/png",
+        "size" : 272748
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I am taken to the \"home\" page",
+      "time" : {
+        "start" : 1652115733660,
+        "stop" : 1652115734164,
+        "duration" : 504
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "70358a94c17b5d17",
+        "name" : "Screenshot",
+        "source" : "70358a94c17b5d17.png",
+        "type" : "image/png",
+        "size" : 272748
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Home page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-100.0.4896.127"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 3,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 10,
+        "unknown" : 0,
+        "total" : 13
+      },
+      "items" : [ {
+        "uid" : "948fec3f17637202",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/233//#testresult/948fec3f17637202",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652110317491,
+          "stop" : 1652110320515,
+          "duration" : 3024
+        }
+      }, {
+        "uid" : "5647114f473b0819",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/232//#testresult/5647114f473b0819",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652098384625,
+          "stop" : 1652098387797,
+          "duration" : 3172
+        }
+      }, {
+        "uid" : "b4776479c14ce13",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/231//#testresult/b4776479c14ce13",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651848989988,
+          "stop" : 1651848997537,
+          "duration" : 7549
+        }
+      }, {
+        "uid" : "9973694aeda40e12",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/227//#testresult/9973694aeda40e12",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651681847736,
+          "stop" : 1651681851074,
+          "duration" : 3338
+        }
+      }, {
+        "uid" : "1849b3d3d2b2ce42",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/226//#testresult/1849b3d3d2b2ce42",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651672913238,
+          "stop" : 1651672917159,
+          "duration" : 3921
+        }
+      }, {
+        "uid" : "e2cfc992636f33d9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/225//#testresult/e2cfc992636f33d9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651655808691,
+          "stop" : 1651655812837,
+          "duration" : 4146
+        }
+      }, {
+        "uid" : "f5084e62d91ad13b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/224//#testresult/f5084e62d91ad13b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651652926299,
+          "stop" : 1651652928899,
+          "duration" : 2600
+        }
+      }, {
+        "uid" : "2db5ff53540e92b0",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/223//#testresult/2db5ff53540e92b0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651593185711,
+          "stop" : 1651593189548,
+          "duration" : 3837
+        }
+      }, {
+        "uid" : "2739953b067ffb9d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/222//#testresult/2739953b067ffb9d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651570159151,
+          "stop" : 1651570163217,
+          "duration" : 4066
+        }
+      }, {
+        "uid" : "9d7d1e022b4812fd",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/221//#testresult/9d7d1e022b4812fd",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1650977593063,
+          "stop" : 1650977593074,
+          "duration" : 11
+        }
+      }, {
+        "uid" : "1935a828eac1d1df",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/220//#testresult/1935a828eac1d1df",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1650976619952,
+          "stop" : 1650976619970,
+          "duration" : 18
+        }
+      }, {
+        "uid" : "fbfc27b3a6440d59",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/219//#testresult/fbfc27b3a6440d59",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1650972426699,
+          "stop" : 1650972426712,
+          "duration" : 13
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "52ee5734a4e5864f.json",
+  "parameterValues" : [ "chrome-100.0.4896.127" ]
+}
