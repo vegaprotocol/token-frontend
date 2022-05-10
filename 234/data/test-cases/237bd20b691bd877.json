@@ -1,0 +1,283 @@
+{
+  "uid" : "237bd20b691bd877",
+  "name" : "Can navigate to Governance page using main nav tab",
+  "fullName" : "Homepage.Can navigate to Governance page using main nav tab",
+  "historyId" : "48f99155c37f3e3c240be5a5d294582",
+  "time" : {
+    "start" : 1652183789757,
+    "stop" : 1652183792764,
+    "duration" : 3007
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1652183789757,
+        "stop" : 1652183790608,
+        "duration" : 851
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "9ff862fb31beb946",
+        "name" : "Screenshot",
+        "source" : "9ff862fb31beb946.png",
+        "type" : "image/png",
+        "size" : 8736
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click on \"Governance\" on main nav",
+      "time" : {
+        "start" : 1652183790608,
+        "stop" : 1652183791805,
+        "duration" : 1197
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "4e7a5052f6d422",
+        "name" : "Screenshot",
+        "source" : "4e7a5052f6d422.png",
+        "type" : "image/png",
+        "size" : 186944
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I can see \"Governance\" button is clearly highlighted after click",
+      "time" : {
+        "start" : 1652183791805,
+        "stop" : 1652183792356,
+        "duration" : 551
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "6a83b960db6024bc",
+        "name" : "Screenshot",
+        "source" : "6a83b960db6024bc.png",
+        "type" : "image/png",
+        "size" : 186944
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I am taken to the \"governance\" page",
+      "time" : {
+        "start" : 1652183792356,
+        "stop" : 1652183792764,
+        "duration" : 408
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "5fb9ccfc56892526",
+        "name" : "Screenshot",
+        "source" : "5fb9ccfc56892526.png",
+        "type" : "image/png",
+        "size" : 186944
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Can navigate to Governance page using main nav tab"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-100.0.4896.127"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 3,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 11,
+        "unknown" : 0,
+        "total" : 14
+      },
+      "items" : [ {
+        "uid" : "541de65ac0e76681",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/233//#testresult/541de65ac0e76681",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652115727170,
+          "stop" : 1652115730753,
+          "duration" : 3583
+        }
+      }, {
+        "uid" : "c44611dffa7ea345",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/233//#testresult/c44611dffa7ea345",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652110314204,
+          "stop" : 1652110317491,
+          "duration" : 3287
+        }
+      }, {
+        "uid" : "e182c5280b3d1521",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/232//#testresult/e182c5280b3d1521",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652098381470,
+          "stop" : 1652098384625,
+          "duration" : 3155
+        }
+      }, {
+        "uid" : "d3465e1625de9f55",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/231//#testresult/d3465e1625de9f55",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651848982957,
+          "stop" : 1651848989988,
+          "duration" : 7031
+        }
+      }, {
+        "uid" : "a8e3853ca1f197de",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/227//#testresult/a8e3853ca1f197de",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651681844057,
+          "stop" : 1651681847736,
+          "duration" : 3679
+        }
+      }, {
+        "uid" : "84229f3fc4ac160d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/226//#testresult/84229f3fc4ac160d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651672908897,
+          "stop" : 1651672913238,
+          "duration" : 4341
+        }
+      }, {
+        "uid" : "ad43fd58a955ec28",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/225//#testresult/ad43fd58a955ec28",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651655804121,
+          "stop" : 1651655808691,
+          "duration" : 4570
+        }
+      }, {
+        "uid" : "e06edad12a118eea",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/224//#testresult/e06edad12a118eea",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651652922505,
+          "stop" : 1651652926299,
+          "duration" : 3794
+        }
+      }, {
+        "uid" : "544eac01e6d9ecdf",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/223//#testresult/544eac01e6d9ecdf",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651593181318,
+          "stop" : 1651593185710,
+          "duration" : 4392
+        }
+      }, {
+        "uid" : "11b5e09e81648aec",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/222//#testresult/11b5e09e81648aec",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651570154815,
+          "stop" : 1651570159151,
+          "duration" : 4336
+        }
+      }, {
+        "uid" : "a3d151ad7378c66d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/221//#testresult/a3d151ad7378c66d",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1650977593051,
+          "stop" : 1650977593062,
+          "duration" : 11
+        }
+      }, {
+        "uid" : "455e937fd6d81d0b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/220//#testresult/455e937fd6d81d0b",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1650976619942,
+          "stop" : 1650976619951,
+          "duration" : 9
+        }
+      }, {
+        "uid" : "1bc018ee810ca3d0",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/219//#testresult/1bc018ee810ca3d0",
+        "status" : "failed",
+        "statusDetails" : "Error: expect(received).toBe(expected) // Object.is equality",
+        "time" : {
+          "start" : 1650972426685,
+          "stop" : 1650972426699,
+          "duration" : 14
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "237bd20b691bd877.json",
+  "parameterValues" : [ "chrome-100.0.4896.127" ]
+}

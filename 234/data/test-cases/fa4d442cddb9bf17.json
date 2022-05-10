@@ -1,0 +1,266 @@
+{
+  "uid" : "fa4d442cddb9bf17",
+  "name" : "Disassociate tokens through vesting contract",
+  "fullName" : "Staking and Association tests.Disassociate tokens through vesting contract",
+  "historyId" : "1ccbef64804ed91d830372a98ebfaedc",
+  "time" : {
+    "start" : 1652184012721,
+    "stop" : 1652184022834,
+    "duration" : 10113
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1652184012721,
+        "stop" : 1652184014048,
+        "duration" : 1327
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "2edcc96c0d7d57fc",
+        "name" : "Screenshot",
+        "source" : "2edcc96c0d7d57fc.png",
+        "type" : "image/png",
+        "size" : 430718
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I disassociate \"0.10\" tokens from \"vesting contract\"",
+      "time" : {
+        "start" : 1652184014048,
+        "stop" : 1652184021956,
+        "duration" : 7908
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "f20ef78b9f739132",
+        "name" : "Screenshot",
+        "source" : "f20ef78b9f739132.png",
+        "type" : "image/png",
+        "size" : 222850
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the pending transactions button is shown",
+      "time" : {
+        "start" : 1652184021956,
+        "stop" : 1652184022833,
+        "duration" : 877
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "412df2bbba83abbc",
+        "name" : "Screenshot",
+        "source" : "412df2bbba83abbc.png",
+        "type" : "image/png",
+        "size" : 222857
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 3,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Disassociate tokens through vesting contract"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-100.0.4896.127"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 7,
+        "skipped" : 0,
+        "passed" : 7,
+        "unknown" : 0,
+        "total" : 14
+      },
+      "items" : [ {
+        "uid" : "4ed1c9053003f38e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/233//#testresult/4ed1c9053003f38e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652115948896,
+          "stop" : 1652115960326,
+          "duration" : 11430
+        }
+      }, {
+        "uid" : "8145c2ab330e5e61",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/233//#testresult/8145c2ab330e5e61",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652110550475,
+          "stop" : 1652110566486,
+          "duration" : 16011
+        }
+      }, {
+        "uid" : "3ebafce891cd6eb6",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/232//#testresult/3ebafce891cd6eb6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652098604851,
+          "stop" : 1652098617690,
+          "duration" : 12839
+        }
+      }, {
+        "uid" : "36551c192e2b26db",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/231//#testresult/36551c192e2b26db",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651849220948,
+          "stop" : 1651849231078,
+          "duration" : 10130
+        }
+      }, {
+        "uid" : "3ef9c8b8bbdb994e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/227//#testresult/3ef9c8b8bbdb994e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651682060960,
+          "stop" : 1651682069771,
+          "duration" : 8811
+        }
+      }, {
+        "uid" : "b1ccd7eb6276011d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/226//#testresult/b1ccd7eb6276011d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651673208469,
+          "stop" : 1651673225266,
+          "duration" : 16797
+        }
+      }, {
+        "uid" : "4d06d0821ab0391c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/225//#testresult/4d06d0821ab0391c",
+        "status" : "broken",
+        "statusDetails" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds",
+        "time" : {
+          "start" : 1651656255418,
+          "stop" : 1651656326601,
+          "duration" : 71183
+        }
+      }, {
+        "uid" : "b8f7d0ca7d3f5af9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/224//#testresult/b8f7d0ca7d3f5af9",
+        "status" : "broken",
+        "statusDetails" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds",
+        "time" : {
+          "start" : 1651653366860,
+          "stop" : 1651653439934,
+          "duration" : 73074
+        }
+      }, {
+        "uid" : "c71f24ec60fb25b3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/223//#testresult/c71f24ec60fb25b3",
+        "status" : "broken",
+        "statusDetails" : "Error: function timed out, ensure the promise resolves within 60000 milliseconds",
+        "time" : {
+          "start" : 1651593615324,
+          "stop" : 1651593686216,
+          "duration" : 70892
+        }
+      }, {
+        "uid" : "e97b8469122b518a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/222//#testresult/e97b8469122b518a",
+        "status" : "broken",
+        "statusDetails" : "ReferenceError: tokensAssociatedInVegaWallet is not defined",
+        "time" : {
+          "start" : 1651570531455,
+          "stop" : 1651570533249,
+          "duration" : 1794
+        }
+      }, {
+        "uid" : "15feac1fd8462f34",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/221//#testresult/15feac1fd8462f34",
+        "status" : "broken",
+        "statusDetails" : "ReferenceError: tokensAssociatedInVegaWallet is not defined",
+        "time" : {
+          "start" : 1650977721233,
+          "stop" : 1650977721241,
+          "duration" : 8
+        }
+      }, {
+        "uid" : "281fe040e132c187",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/220//#testresult/281fe040e132c187",
+        "status" : "broken",
+        "statusDetails" : "TypeError: this.calloutContainer.waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1650976740233,
+          "stop" : 1650976740240,
+          "duration" : 7
+        }
+      }, {
+        "uid" : "ba18ed7d794ef83d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/219//#testresult/ba18ed7d794ef83d",
+        "status" : "broken",
+        "statusDetails" : "TypeError: stakingPage.pendingTransactionsBtn.waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1650972623987,
+          "stop" : 1650972623998,
+          "duration" : 11
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "fa4d442cddb9bf17.json",
+  "parameterValues" : [ "chrome-100.0.4896.127" ]
+}

@@ -1,0 +1,283 @@
+{
+  "uid" : "ec91f11f090293a8",
+  "name" : "Check for redeem unlocked tokens from homepage",
+  "fullName" : "Homepage.Check for redeem unlocked tokens from homepage",
+  "historyId" : "9917abb77122af1accaf56b07ee8d557",
+  "time" : {
+    "start" : 1652183773118,
+    "stop" : 1652183775781,
+    "duration" : 2663
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given I am on the home page",
+      "time" : {
+        "start" : 1652183773118,
+        "stop" : 1652183774257,
+        "duration" : 1139
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "2589f746a739c14",
+        "name" : "Screenshot",
+        "source" : "2589f746a739c14.png",
+        "type" : "image/png",
+        "size" : 421043
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I can see the check for redeemable tokens button",
+      "time" : {
+        "start" : 1652183774257,
+        "stop" : 1652183774748,
+        "duration" : 491
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "bdeb5d530a483d5a",
+        "name" : "Screenshot",
+        "source" : "bdeb5d530a483d5a.png",
+        "type" : "image/png",
+        "size" : 273082
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "When I click the check for redeemable tokens button",
+      "time" : {
+        "start" : 1652183774748,
+        "stop" : 1652183775328,
+        "duration" : 580
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "93a764a64fa74458",
+        "name" : "Screenshot",
+        "source" : "93a764a64fa74458.png",
+        "type" : "image/png",
+        "size" : 248285
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Then I am taken to the \"vesting\" page",
+      "time" : {
+        "start" : 1652183775328,
+        "stop" : 1652183775781,
+        "duration" : 453
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "c4212b54aa4d7b18",
+        "name" : "Screenshot",
+        "source" : "c4212b54aa4d7b18.png",
+        "type" : "image/png",
+        "size" : 248285
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 4,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-2"
+  }, {
+    "name" : "suite",
+    "value" : "Homepage"
+  }, {
+    "name" : "testClass",
+    "value" : "Homepage"
+  }, {
+    "name" : "testMethod",
+    "value" : "Check for redeem unlocked tokens from homepage"
+  }, {
+    "name" : "package",
+    "value" : "Homepage"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-100.0.4896.127"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 11,
+        "unknown" : 0,
+        "total" : 14
+      },
+      "items" : [ {
+        "uid" : "d64721c494dc2f6",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/233//#testresult/d64721c494dc2f6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652115708714,
+          "stop" : 1652115711620,
+          "duration" : 2906
+        }
+      }, {
+        "uid" : "5fdc3ca187ac2836",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/233//#testresult/5fdc3ca187ac2836",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652110295947,
+          "stop" : 1652110298762,
+          "duration" : 2815
+        }
+      }, {
+        "uid" : "3585ad2c03876709",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/232//#testresult/3585ad2c03876709",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652098363030,
+          "stop" : 1652098366103,
+          "duration" : 3073
+        }
+      }, {
+        "uid" : "342916c9c5d3c3c9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/231//#testresult/342916c9c5d3c3c9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651848941009,
+          "stop" : 1651848948630,
+          "duration" : 7621
+        }
+      }, {
+        "uid" : "65688f50eb4ede40",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/227//#testresult/65688f50eb4ede40",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651681823435,
+          "stop" : 1651681826492,
+          "duration" : 3057
+        }
+      }, {
+        "uid" : "f07d58b80c878a50",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/226//#testresult/f07d58b80c878a50",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651672883477,
+          "stop" : 1651672887954,
+          "duration" : 4477
+        }
+      }, {
+        "uid" : "c0babdbfa2da41d6",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/225//#testresult/c0babdbfa2da41d6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651655781826,
+          "stop" : 1651655785138,
+          "duration" : 3312
+        }
+      }, {
+        "uid" : "50b0871997c21c9",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/224//#testresult/50b0871997c21c9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651652901918,
+          "stop" : 1651652906005,
+          "duration" : 4087
+        }
+      }, {
+        "uid" : "244ec06a867a9d9c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/223//#testresult/244ec06a867a9d9c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651593161290,
+          "stop" : 1651593164746,
+          "duration" : 3456
+        }
+      }, {
+        "uid" : "4d6ca430ac237cb8",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/222//#testresult/4d6ca430ac237cb8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651570135926,
+          "stop" : 1651570138756,
+          "duration" : 2830
+        }
+      }, {
+        "uid" : "ce75d5242453d60d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/221//#testresult/ce75d5242453d60d",
+        "status" : "broken",
+        "statusDetails" : "Error: No window found with title, url or name matching \"MetaMask\"",
+        "time" : {
+          "start" : 1650977587266,
+          "stop" : 1650977592169,
+          "duration" : 4903
+        }
+      }, {
+        "uid" : "a77c2db76000d1ac",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/220//#testresult/a77c2db76000d1ac",
+        "status" : "broken",
+        "statusDetails" : "Error: No window found with title, url or name matching \"Vega\"",
+        "time" : {
+          "start" : 1650976615212,
+          "stop" : 1650976616680,
+          "duration" : 1468
+        }
+      }, {
+        "uid" : "2d65fb45e4001386",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/219//#testresult/2d65fb45e4001386",
+        "status" : "broken",
+        "statusDetails" : "Error: No window found with title, url or name matching \"MetaMask\"",
+        "time" : {
+          "start" : 1650972419927,
+          "stop" : 1650972420027,
+          "duration" : 100
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "ec91f11f090293a8.json",
+  "parameterValues" : [ "chrome-100.0.4896.127" ]
+}
