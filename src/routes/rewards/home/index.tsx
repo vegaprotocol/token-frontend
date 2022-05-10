@@ -146,6 +146,7 @@ export const RewardsIndex = () => {
         ) : (
           <button
             className="fill"
+            data-testid="connect-to-vega-wallet-btn"
             onClick={() =>
               appDispatch({
                 type: AppStateActionType.SET_VEGA_WALLET_OVERLAY,

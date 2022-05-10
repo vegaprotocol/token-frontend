@@ -1,6 +1,6 @@
 const commands = require("./commands.js");
-
 const allure = require("allure-commandline");
+
 exports.config = {
   specs: ["./features/**/*.feature"],
   // Patterns to exclude.
@@ -12,7 +12,7 @@ exports.config = {
   capabilities: [
     {
       browserName: "Chrome",
-      browserVersion: "96.0",
+      browserVersion: "100.0",
       "bstack:options": {
         os: "OS X",
         osVersion: "Big Sur",
@@ -29,7 +29,6 @@ exports.config = {
       },
     },
   ],
-  //   logLevel: 'warn',
 
   user: process.env.BROWSERSTACK_USER,
   key: process.env.BROWSERSTACK_KEY,
@@ -88,15 +87,14 @@ exports.config = {
     ignoreUndefinedDefinitions: false,
   },
 
-  before: function (/* capabilities, specs */) {
-    // Add commands to WebdriverIO
+  before: function () {
     Object.keys(commands).forEach((key) => {
       browser.addCommand(key, commands[key]);
     });
     browser.switchWindow("Vega");
   },
 
-  afterStep: function (/* step, scenario, result, context */) {
+  afterStep: function () {
     browser.takeScreenshot();
   },
 

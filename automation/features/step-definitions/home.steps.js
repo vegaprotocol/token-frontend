@@ -1,8 +1,8 @@
 const { Given, When, Then } = require("@wdio/cucumber-framework");
-const HomePage = require("../pageobjects/home.page");
+const homePage = require("../pageobjects/home.page");
 
 Given(/^I am on the home page$/, () => {
-  HomePage.goTo("/");
+  homePage.goTo("/");
 });
 
 Given(/^I have not connected my vega wallet$/, () => {
@@ -30,64 +30,68 @@ Then(/^the error message is displayed "([^"]*)?" on page$/, (expectedError) => {
 });
 
 Then(/^I can see the token address is shown$/, () => {
-  const tokenAddress = browser.getByTestId(HomePage.tokenAddressTestId);
+  const tokenAddress = browser.getByTestId(homePage.tokenAddressTestId);
   expect(tokenAddress).toExist();
 });
 
 Then(/^the vesting address is shown$/, () => {
-  const vestingAddress = browser.getByTestId(HomePage.vestingAddressTestId);
+  const vestingAddress = browser.getByTestId(homePage.vestingAddressTestId);
   expect(vestingAddress).toExist();
 });
 
 Then(/^the total supply is shown correctly$/, () => {
-  const totalSupply = browser.getByTestId(HomePage.totalSupplyTestId);
+  const totalSupply = browser.getByTestId(homePage.totalSupplyTestId);
   let totalSupplyNum = Number(totalSupply.getText().replace(/,/g, ""));
   expect(totalSupplyNum).toBeGreaterThan(64999723);
 });
 
 Then(/^staked token field is showing as "([^"]*)?"$/, (amount) => {
-  const stakedToken = browser.getByTestId(HomePage.stakedTokensTestId);
+  const stakedToken = browser.getByTestId(homePage.stakedTokensTestId);
   expect(stakedToken.getText()).toBe(amount);
 });
 
-Then(/^the vega wallet link is correct$/, async () => {
-  await expect(HomePage.vegaWalletLink).toHaveAttribute(
+Then(/^the vega wallet link is correct$/, () => {
+  homePage.vegaWalletLink.waitForDisplayed({
+    timeout: 10000,
+    timeoutMsg: "vega wallet link did not display within 10 seconds",
+  });
+  expect(homePage.vegaWalletLink).toHaveAttribute(
     "href",
-    "https://docs.vega.xyz/docs/mainnet/tools/vega-wallet/cli-wallet/latest/create-wallet/"
+    "https://docs.vega.xyz/docs/mainnet/tools/vega-wallet"
   );
 });
 
 Then(/^the token address has a link$/, () => {
-  expect(HomePage.tokenAddressLink).toHaveAttrContaining(
+  expect(homePage.tokenAddressLink).toHaveAttrContaining(
     "href",
     "https://ropsten.etherscan.io/address/"
   );
 });
 
 Then(/^the vesting address has a link$/, () => {
-  expect(HomePage.vestingLink).toHaveAttrContaining(
+  expect(homePage.vestingLink).toHaveAttrContaining(
     "href",
     "https://ropsten.etherscan.io/address/"
   );
 });
 
 Then(/^the associate vega tokens link is correct$/, async () => {
-  await expect(HomePage.associatedTokensLink).toHaveAttribute(
+  await expect(homePage.associatedTokensLink).toHaveAttribute(
     "href",
     "/staking/associate"
   );
 });
 
 Then(/^I can see the check for redeemable tokens button$/, async () => {
-  await expect(HomePage.checkVestingBtn).toBeDisplayed();
+  await expect(homePage.checkVestingBtn).toBeDisplayed();
 });
 
 When(/^I click the check for redeemable tokens button$/, () => {
-  HomePage.checkVestingBtn.click();
+  homePage.checkVestingBtn.click();
 });
 
 When(/^I click on the associate vega tokens$/, () => {
-  HomePage.associatedTokensLink.click();
+  homePage.associatedTokensLink.click();
 });
 
 When(/^I click on the governance proposals button$/, () => {
@@ -96,7 +100,7 @@ When(/^I click on the governance proposals button$/, () => {
 });
 
 When(/^I click on "([^"]*)?" on main nav$/, (pageTab) => {
-  const navbarElement = HomePage.getNavBarElement(pageTab);
+  const navbarElement = homePage.getNavBarElement(pageTab);
   navbarElement.click();
 });
 
@@ -111,8 +115,12 @@ When(
 Then(
   /^I can see the vega wallet disconnected with message "([^"]*)?"$/,
   (disconnectedMsg) => {
+    browser.getByTestId(homePage.connectVegaWalletTestId).waitForDisplayed({
+      timeout: 10000,
+      timeoutMsg: "Connect to vega wallet message did not appear in 10 seconds",
+    });
     const ConnectVegaTxt = browser
-      .getByTestId(HomePage.connectVegaWalletTestId)
+      .getByTestId(homePage.connectVegaWalletTestId)
       .getText();
     expect(ConnectVegaTxt).toBe(disconnectedMsg);
   }
@@ -121,7 +129,7 @@ Then(
 Then(
   /^I can see the eth wallet disconnected with message "([^"]*)?"$/,
   (disconnectedMsg) => {
-    const ConnectEthWalletTxt = HomePage.connectEthWallet.getText();
+    const ConnectEthWalletTxt = homePage.connectEthWallet.getText();
     expect(ConnectEthWalletTxt).toBe(disconnectedMsg);
   }
 );

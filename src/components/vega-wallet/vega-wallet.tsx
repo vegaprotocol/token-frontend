@@ -77,7 +77,7 @@ const VegaWalletNotConnected = () => {
           })
         }
         className="fill button-secondary"
-        data-testid="connect-vega"
+        data-testid="connect-to-vega-wallet-btn"
         type="button"
       >
         {t("connectVegaWalletToUseAssociated")}
@@ -172,6 +172,7 @@ const VegaWalletConnected = ({
       {vegaKeys.length > 1 ? (
         <button
           className="button-link"
+          data-testid="disconnect-vega-wallet-btn-link"
           onClick={() => setExpanded((x) => !x)}
           type="button"
         >
@@ -200,13 +201,14 @@ const VegaWalletConnected = ({
         <WalletCardRow label={t("stakedValidators")} dark={true} bold={true} />
       ) : null}
       {delegatedNodes.map((d) => (
-        <div key={d.nodeId}>
+        <div data-testid="staked-validator-item" key={d.nodeId}>
           {d.currentEpochStake && d.currentEpochStake.isGreaterThan(0) && (
             <WalletCardRow
               label={`${d.name || truncateMiddle(d.nodeId)} ${
                 d.hasStakePending ? `(${t("thisEpoch")})` : ""
               }`}
               link={`${Routes.STAKING}/${d.nodeId}`}
+              data-testid="validator-staked-to-name"
               value={d.currentEpochStake}
               dark={true}
             />

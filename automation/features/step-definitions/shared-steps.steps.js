@@ -23,17 +23,17 @@ When(/^I connect Vega wallet$/, () => {
   walletLogin.click();
 });
 
-Then(/^I am taken to the "([^"]*)?" page$/, async (page) => {
+Then(/^I am taken to the "([^"]*)?" page$/, (page) => {
   if (page === "home") {
-    await expect(browser).toHaveUrl(browser.options.baseUrl + "/");
+    expect(browser).toHaveUrl(browser.options.baseUrl + "/");
   } else {
-    await expect(browser).toHaveUrlContaining("/" + page);
+    expect(browser).toHaveUrlContaining("/" + page);
   }
 });
 
-Then(/^I can see the header title is "([^"]*)?"$/, async (headerTitle) => {
+Then(/^I can see the header title is "([^"]*)?"$/, (headerTitle) => {
   const displayedHeaderTitle = $(".heading__title").getText();
-  await expect(displayedHeaderTitle).toHaveText(headerTitle.toUpperCase());
+  expect(displayedHeaderTitle).toHaveText(headerTitle.toUpperCase());
 });
 
 Then(/^I disconnect Vega Wallet$/, () => {
