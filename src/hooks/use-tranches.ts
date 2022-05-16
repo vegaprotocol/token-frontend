@@ -41,7 +41,7 @@ export function useTranches() {
       }))
       .sort((a, b) => a.tranche_id - b.tranche_id);
     setTranches(processedTrances);
-  }, [tranches]);
+  }, [setTranches]);
 
   return {
     tranches,
