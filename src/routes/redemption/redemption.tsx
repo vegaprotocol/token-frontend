@@ -32,7 +32,7 @@ const RedemptionRouter = () => {
     appState: { trancheBalances },
   } = useAppState();
   const { account } = useWeb3React();
-  const { tranches, error } = useTranches();
+  const { tranches } = useTranches();
 
   React.useEffect(() => {
     const run = (address: string) => {
@@ -54,14 +54,6 @@ const RedemptionRouter = () => {
       run(account);
     }
   }, [account, tranches, vesting]);
-
-  if (error) {
-    return (
-      <Callout intent="error" title={t("errorLoadingTranches")}>
-        {error}
-      </Callout>
-    );
-  }
 
   if (!tranches) {
     return (

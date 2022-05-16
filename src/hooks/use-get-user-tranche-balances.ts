@@ -7,25 +7,32 @@ import {
   useAppState,
 } from "../contexts/app-state/app-state-context";
 import { BigNumber } from "../lib/bignumber";
+import { useTranches } from "./use-tranches";
 
 export const useGetUserTrancheBalances = (
   address: string,
   vesting: VegaVesting
 ) => {
   const { appDispatch } = useAppState();
+  const { tranches } = useTranches();
+
   return React.useCallback(async () => {
     appDispatch({
       type: AppStateActionType.SET_TRANCHE_ERROR,
       error: null,
     });
+
     try {
-      const tranches = await vesting.getAllTranches();
-      const userTranches = tranches.filter((t) =>
-        t.users.some(
-          ({ address: a }) =>
-            a && address && a.toLowerCase() === address.toLowerCase()
-        )
-      );
+      if (!tranches!) {
+        return;
+      }
+      const userTranches =
+        tranches.filter((t) =>
+          t.users.some(
+            ({ address: a }) =>
+              a && address && a.toLowerCase() === address.toLowerCase()
+          )
+        ) || [];
       const trancheIds = [0, ...userTranches.map((t) => t.tranche_id)];
       const promises = trancheIds.map(async (tId) => {
         const [total, vested] = await Promise.all([
@@ -52,5 +59,5 @@ export const useGetUserTrancheBalances = (
         error: e as Error,
       });
     }
-  }, [address, appDispatch, vesting]);
+  }, [address, appDispatch, tranches, vesting]);
 };
