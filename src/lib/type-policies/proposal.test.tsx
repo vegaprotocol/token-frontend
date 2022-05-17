@@ -91,8 +91,14 @@ it("Freeform network", () => {
 
 it("Renders unknown proposal if it's a different proposal type", () => {
   const name = getProposalName({
-    // @ts-ignore
-    __typename: "Foo",
+    ...proposal,
+    terms: {
+      ...proposal.terms,
+      change: {
+        // @ts-ignore
+        __typename: "Foo",
+      }
+    }
   });
   expect(name).toEqual("Unknown Proposal");
 });
