@@ -1,0 +1,259 @@
+{
+  "uid" : "40bda8a17143e930",
+  "name" : "Cannot disassociate more tokens through vesting contract than available",
+  "fullName" : "Staking and Association tests.Cannot disassociate more tokens through vesting contract than available",
+  "historyId" : "8723820c96280ffd471f3ed9db5a24b9",
+  "time" : {
+    "start" : 1652784488206,
+    "stop" : 1652784519932,
+    "duration" : 31726
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: disassociate button not displayed",
+  "statusTrace" : "Error: disassociate button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:96:37)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: disassociate button not displayed",
+    "statusTrace" : "Error: disassociate button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:96:37)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1652784488206,
+        "stop" : 1652784489298,
+        "duration" : 1092
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "cd95498f4760bd7f",
+        "name" : "Screenshot",
+        "source" : "cd95498f4760bd7f.png",
+        "type" : "image/png",
+        "size" : 8714
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "And I click the button to disassociate",
+      "time" : {
+        "start" : 1652784489299,
+        "stop" : 1652784519932,
+        "duration" : 30633
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: disassociate button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:96:37)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "2113e5d515e6f4c5",
+        "name" : "Screenshot",
+        "source" : "2113e5d515e6f4c5.png",
+        "type" : "image/png",
+        "size" : 287236
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Cannot disassociate more tokens through vesting contract than available"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-100.0.4896.127"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 4,
+        "skipped" : 0,
+        "passed" : 11,
+        "unknown" : 0,
+        "total" : 15
+      },
+      "items" : [ {
+        "uid" : "458fd8553c6cac2f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/234//#testresult/458fd8553c6cac2f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652184007240,
+          "stop" : 1652184012721,
+          "duration" : 5481
+        }
+      }, {
+        "uid" : "116a49e0debc121a",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/233//#testresult/116a49e0debc121a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652115943838,
+          "stop" : 1652115948895,
+          "duration" : 5057
+        }
+      }, {
+        "uid" : "af2122de44727a71",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/233//#testresult/af2122de44727a71",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652110545514,
+          "stop" : 1652110550475,
+          "duration" : 4961
+        }
+      }, {
+        "uid" : "b9d06a90c2e1335f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/232//#testresult/b9d06a90c2e1335f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652098599658,
+          "stop" : 1652098604851,
+          "duration" : 5193
+        }
+      }, {
+        "uid" : "2dc171c1e14cde2d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/231//#testresult/2dc171c1e14cde2d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651849215722,
+          "stop" : 1651849220948,
+          "duration" : 5226
+        }
+      }, {
+        "uid" : "31bb88243d0ac5db",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/227//#testresult/31bb88243d0ac5db",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651682056228,
+          "stop" : 1651682060960,
+          "duration" : 4732
+        }
+      }, {
+        "uid" : "ee43800ee905355",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/226//#testresult/ee43800ee905355",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651673199346,
+          "stop" : 1651673208469,
+          "duration" : 9123
+        }
+      }, {
+        "uid" : "25151a8f1a399b69",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/225//#testresult/25151a8f1a399b69",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651656249049,
+          "stop" : 1651656255417,
+          "duration" : 6368
+        }
+      }, {
+        "uid" : "196858fce2ffc194",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/224//#testresult/196858fce2ffc194",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651653361492,
+          "stop" : 1651653366860,
+          "duration" : 5368
+        }
+      }, {
+        "uid" : "aed0a14b43ed5bba",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/223//#testresult/aed0a14b43ed5bba",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651593610494,
+          "stop" : 1651593615324,
+          "duration" : 4830
+        }
+      }, {
+        "uid" : "e9f78c394f152cb",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/222//#testresult/e9f78c394f152cb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651570526106,
+          "stop" : 1651570531455,
+          "duration" : 5349
+        }
+      }, {
+        "uid" : "4ff25e682b5e817d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/221//#testresult/4ff25e682b5e817d",
+        "status" : "broken",
+        "statusDetails" : "TypeError: stakingPage.disassociateTokensBtn.waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1650977721220,
+          "stop" : 1650977721232,
+          "duration" : 12
+        }
+      }, {
+        "uid" : "a55a2005669e3e4c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/220//#testresult/a55a2005669e3e4c",
+        "status" : "broken",
+        "statusDetails" : "TypeError: stakingPage.disassociateTokensBtn.waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1650976740223,
+          "stop" : 1650976740232,
+          "duration" : 9
+        }
+      }, {
+        "uid" : "a117bd1371c2c930",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/219//#testresult/a117bd1371c2c930",
+        "status" : "broken",
+        "statusDetails" : "TypeError: stakingPage.disassociateTokensBtn.waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1650972623973,
+          "stop" : 1650972623986,
+          "duration" : 13
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "40bda8a17143e930.json",
+  "parameterValues" : [ "chrome-100.0.4896.127" ]
+}
