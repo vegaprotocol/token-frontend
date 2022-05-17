@@ -1,0 +1,141 @@
+[ {
+  "uid" : "1b541609400fa0c3",
+  "name" : "Prompt to connect to eth wallet to claim if not connected",
+  "time" : {
+    "start" : 1652783971218,
+    "stop" : 1652783975344,
+    "duration" : 4126
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "7eeceaff316a7cc6",
+  "name" : "Disassociate tokens through wallet",
+  "time" : {
+    "start" : 1652785001629,
+    "stop" : 1652785033497,
+    "duration" : 31868
+  },
+  "status" : "broken",
+  "severity" : "normal"
+}, {
+  "uid" : "687ab092a1104e07",
+  "name" : "Invalid wallet address error message is shown if user enters an invalid wallet address",
+  "time" : {
+    "start" : 1652785297488,
+    "stop" : 1652785309523,
+    "duration" : 12035
+  },
+  "status" : "broken",
+  "severity" : "normal"
+}, {
+  "uid" : "75c96b7d45ddcf4",
+  "name" : "Cannot stake more than what is associated",
+  "time" : {
+    "start" : 1652785162398,
+    "stop" : 1652785195817,
+    "duration" : 33419
+  },
+  "status" : "broken",
+  "severity" : "normal"
+}, {
+  "uid" : "9799b23676cd0815",
+  "name" : "Check wallet field entry",
+  "time" : {
+    "start" : 1652785244415,
+    "stop" : 1652785297486,
+    "duration" : 53071
+  },
+  "status" : "failed",
+  "severity" : "normal"
+}, {
+  "uid" : "d982ea6ebe68f24a",
+  "name" : "Disassociate tokens through vesting contract",
+  "time" : {
+    "start" : 1652785096837,
+    "stop" : 1652785128680,
+    "duration" : 31843
+  },
+  "status" : "broken",
+  "severity" : "normal"
+}, {
+  "uid" : "ab6d6dcd102c254",
+  "name" : "Associate tokens through vesting contract",
+  "time" : {
+    "start" : 1652784969748,
+    "stop" : 1652785001629,
+    "duration" : 31881
+  },
+  "status" : "broken",
+  "severity" : "normal"
+}, {
+  "uid" : "e732b24c6bb2011b",
+  "name" : "Invalid claims code will show error",
+  "time" : {
+    "start" : 1652783975344,
+    "stop" : 1652783995116,
+    "duration" : 19772
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "81b95c9d18690659",
+  "name" : "Associate tokens through wallet",
+  "time" : {
+    "start" : 1652784934664,
+    "stop" : 1652784969746,
+    "duration" : 35082
+  },
+  "status" : "broken",
+  "severity" : "normal"
+}, {
+  "uid" : "2039797695be407e",
+  "name" : "Cannot disassociate more tokens through vesting contract than available",
+  "time" : {
+    "start" : 1652785065112,
+    "stop" : 1652785096835,
+    "duration" : 31723
+  },
+  "status" : "broken",
+  "severity" : "normal"
+}, {
+  "uid" : "f0d120a1aa5b5e8f",
+  "name" : "Go to staking and connect ethereum wallet",
+  "time" : {
+    "start" : 1652784915921,
+    "stop" : 1652784934664,
+    "duration" : 18743
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "6747b40416c191b3",
+  "name" : "add stake from wallet",
+  "time" : {
+    "start" : 1652785128681,
+    "stop" : 1652785162397,
+    "duration" : 33716
+  },
+  "status" : "broken",
+  "severity" : "normal"
+}, {
+  "uid" : "b9daa9c3d9d50ecf",
+  "name" : "Rewards countdown is not displayed if vega wallet is not connected",
+  "time" : {
+    "start" : 1652784835170,
+    "stop" : 1652784862672,
+    "duration" : 27502
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "dc808bfbd647eaa1",
+  "name" : "Cannot disassociate more tokens through wallet than available",
+  "time" : {
+    "start" : 1652785033498,
+    "stop" : 1652785065111,
+    "duration" : 31613
+  },
+  "status" : "broken",
+  "severity" : "normal"
+} ]
