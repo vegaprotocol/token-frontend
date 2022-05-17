@@ -90,8 +90,12 @@ export const LockedProgress = ({
           light ? "tranche-item__progress-contents--light" : ""
         }`}
       >
-        <span>{formatNumber(locked, 2)}</span>
-        <span>{formatNumber(unlocked, 2)}</span>
+        <span data-testid="associated-token-amount">
+          {formatNumber(locked, 2)}
+        </span>
+        <span data-testid="not-associated-token-amount">
+          {formatNumber(unlocked, 2)}
+        </span>
       </div>
     </div>
   );

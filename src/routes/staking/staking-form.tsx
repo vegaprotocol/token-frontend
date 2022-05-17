@@ -262,7 +262,7 @@ export const StakingForm = ({
             <>
               <h2>{t("How much to Remove?")}</h2>
               {removeType === RemoveType.Now ? (
-                <p>
+                <p data-testid="remove-stake-now-disclaimer">
                   {t(
                     "Removing stake mid epoch will forsake any staking rewards from that epoch"
                   )}
@@ -302,6 +302,7 @@ export const StakingForm = ({
                     type="button"
                     onClick={() => setRemoveType(RemoveType.Now)}
                     className="button-link"
+                    data-testid="remove-stake-now-btn"
                   >
                     {t("Switch to form for immediate removal")}
                   </button>

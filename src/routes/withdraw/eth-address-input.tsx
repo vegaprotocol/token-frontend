@@ -30,7 +30,7 @@ export const EthAddressInput = ({
   return (
     <FormGroup label={t("To")} labelFor="ethAddressInput">
       <InputGroup
-        data-testid="token-amount-input"
+        data-testid="current-eth-address-withdrawals"
         className="token-input__input"
         name="ethAddressInput"
         onChange={(e) => onChange(e.target.value)}
@@ -45,6 +45,7 @@ export const EthAddressInput = ({
       <button
         type="button"
         onClick={() => setUseConnectedWallet(!useConnectedWallet)}
+        data-testid="enter-wallet-address-link"
         className="button-link fill"
       >
         {useConnectedWallet ? t("enterAddress") : t("useConnectedWallet")}

@@ -31,11 +31,11 @@ export const StakeSuccess = ({
     : t("stakeRemoveNowSuccessMessage");
 
   return (
-    <Callout icon={<Tick />} intent="success" title={title}>
+    <Callout icon={<Tick />} intent="success" data-testid="stake-success-msg" title={title}>
       <div>
         <p>{message}</p>
         <p>
-          <Link to={Routes.STAKING}>{t("backToStaking")}</Link>
+          <Link data-testid="back-to-staking-link" to={Routes.STAKING}>{t("backToStaking")}</Link>
         </p>
       </div>
     </Callout>

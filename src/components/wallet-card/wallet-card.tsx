@@ -87,12 +87,12 @@ export const WalletCardRow = ({
       ref={ref}
     >
       {link ? (
-        <Link to={link}>{label}</Link>
+        <Link data-testid="validator-staked-to-link" to={link}>{label}</Link>
       ) : (
         <span>{label}</span>
       )}
       {value && (
-        <span>
+        <span data-testid="validator-staked-to-amount">
           <span className="wallet-card__price--integer">{integers}.</span>
           <span className="wallet-card__price--decimal">{decimalsPlaces}</span>
         </span>
@@ -148,7 +148,7 @@ export const WalletCardAsset = ({
           <h1>{name}</h1>
           <h2>{subheading || symbol}</h2>
         </div>
-        <div className="wallet-card__asset-balance">
+        <div className="wallet-card__asset-balance" data-testid="eth-wallet-balance">
           <span className="wallet-card__price--integer">{integers}.</span>
           <span className="wallet-card__price--decimal">{decimalsPlaces}</span>
         </div>
