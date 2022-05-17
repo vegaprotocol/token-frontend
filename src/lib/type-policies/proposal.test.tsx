@@ -45,16 +45,6 @@ it("Update network", () => {
   expect(name).toEqual("Update Network: key");
 });
 
-it("Freeform network", () => {
-  const name = getProposalName({
-    __typename: "NewFreeform",
-    hash: "0x0",
-    url: "Earl",
-    description: "Something else",
-  });
-  expect(name).toEqual("Freeform: 0x0");
-});
-
 it("Renders unknown proposal if it's a different proposal type", () => {
   const name = getProposalName({
     // @ts-ignore

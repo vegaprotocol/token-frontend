@@ -11,6 +11,11 @@ export const PROPOSALS_FRAGMENT = gql`
     party {
       id
     }
+    rationale {
+      url
+      description
+      hash
+    }
     terms {
       closingDatetime
       enactmentDatetime
@@ -42,11 +47,6 @@ export const PROPOSALS_FRAGMENT = gql`
             key
             value
           }
-        }
-        ... on NewFreeform {
-          url
-          description
-          hash
         }
       }
     }
