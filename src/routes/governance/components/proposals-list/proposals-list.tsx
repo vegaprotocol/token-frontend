@@ -32,7 +32,7 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
         <Link to={`${match.url}/${proposal.id}`}>
           <header className="proposals-list__item-header">
             <p className="proposals-list__item-change">
-              {getProposalName(proposal.terms.change)}
+              {getProposalName(proposal)}
             </p>
           </header>
         </Link>
