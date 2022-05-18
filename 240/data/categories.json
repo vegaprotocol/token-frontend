@@ -1,0 +1,171 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "Error: element (\"[data-testid=\"disassociate-tokens-btn\"]\") still not displayed after 30000ms",
+      "children" : [ {
+        "name" : "Associate tokens through wallet",
+        "uid" : "f52a80116331cd48",
+        "parentUid" : "ba21585a61f875c99841b2e3636048d9",
+        "status" : "broken",
+        "time" : {
+          "start" : 1652867191442,
+          "stop" : 1652867226695,
+          "duration" : 35253
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-100.0.4896.127" ]
+      }, {
+        "name" : "Associate tokens through vesting contract",
+        "uid" : "d00808ced28a383e",
+        "parentUid" : "ba21585a61f875c99841b2e3636048d9",
+        "status" : "broken",
+        "time" : {
+          "start" : 1652867226697,
+          "stop" : 1652867259197,
+          "duration" : 32500
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-100.0.4896.127" ]
+      } ],
+      "uid" : "ba21585a61f875c99841b2e3636048d9"
+    }, {
+      "name" : "Error: disassociate btn  was not found",
+      "children" : [ {
+        "name" : "Disassociate tokens through wallet",
+        "uid" : "92c97b4ec72fc75",
+        "parentUid" : "0a440455b95b75fdc1ea489aff2a1bc9",
+        "status" : "broken",
+        "time" : {
+          "start" : 1652867259198,
+          "stop" : 1652867291729,
+          "duration" : 32531
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-100.0.4896.127" ]
+      }, {
+        "name" : "Disassociate tokens through vesting contract",
+        "uid" : "fdf8b78d9c431ad4",
+        "parentUid" : "0a440455b95b75fdc1ea489aff2a1bc9",
+        "status" : "broken",
+        "time" : {
+          "start" : 1652867355699,
+          "stop" : 1652867387764,
+          "duration" : 32065
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-100.0.4896.127" ]
+      } ],
+      "uid" : "0a440455b95b75fdc1ea489aff2a1bc9"
+    }, {
+      "name" : "Error: disassociate button not displayed",
+      "children" : [ {
+        "name" : "Cannot disassociate more tokens through wallet than available",
+        "uid" : "776a445b95a59f70",
+        "parentUid" : "0fc810b8ac3ba1d2f1ba4a4a0efb19c3",
+        "status" : "broken",
+        "time" : {
+          "start" : 1652867291731,
+          "stop" : 1652867323551,
+          "duration" : 31820
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-100.0.4896.127" ]
+      }, {
+        "name" : "Cannot disassociate more tokens through vesting contract than available",
+        "uid" : "f778f012ac13a5b8",
+        "parentUid" : "0fc810b8ac3ba1d2f1ba4a4a0efb19c3",
+        "status" : "broken",
+        "time" : {
+          "start" : 1652867323552,
+          "stop" : 1652867355698,
+          "duration" : 32146
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-100.0.4896.127" ]
+      } ],
+      "uid" : "0fc810b8ac3ba1d2f1ba4a4a0efb19c3"
+    }, {
+      "name" : "Error: Validator name heading not displayed",
+      "children" : [ {
+        "name" : "add stake from wallet",
+        "uid" : "d5aa1fa991c9a0e4",
+        "parentUid" : "9fef031d14acaf287429bba7541f059d",
+        "status" : "broken",
+        "time" : {
+          "start" : 1652867387764,
+          "stop" : 1652867421523,
+          "duration" : 33759
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-100.0.4896.127" ]
+      } ],
+      "uid" : "9fef031d14acaf287429bba7541f059d"
+    }, {
+      "name" : "Error: Add stake radio button not displayed",
+      "children" : [ {
+        "name" : "Cannot stake more than what is associated",
+        "uid" : "dfb3a0e363134597",
+        "parentUid" : "dba52bbbfd5f1cc6aadd281ed2676c03",
+        "status" : "broken",
+        "time" : {
+          "start" : 1652867421524,
+          "stop" : 1652867456069,
+          "duration" : 34545
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-100.0.4896.127" ]
+      } ],
+      "uid" : "dba52bbbfd5f1cc6aadd281ed2676c03"
+    }, {
+      "name" : "Error: Enter wallet address manually link not displayed",
+      "children" : [ {
+        "name" : "Invalid wallet address error message is shown if user enters an invalid wallet address",
+        "uid" : "242aeb12d8a7f110",
+        "parentUid" : "ba6a55daf0907b4d75781f8c1d297b7d",
+        "status" : "broken",
+        "time" : {
+          "start" : 1652867566416,
+          "stop" : 1652867578375,
+          "duration" : 11959
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-100.0.4896.127" ]
+      } ],
+      "uid" : "ba6a55daf0907b4d75781f8c1d297b7d"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  }, {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "Error: Expect $(`[data-testid=\"current-eth-address-withdrawals\"]`) to have property value",
+      "children" : [ {
+        "name" : "Check wallet field entry",
+        "uid" : "d1a3b2ccdf261134",
+        "parentUid" : "f38312c512e0293fd3db4b6506ed9554",
+        "status" : "failed",
+        "time" : {
+          "start" : 1652867514846,
+          "stop" : 1652867566414,
+          "duration" : 51568
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-100.0.4896.127" ]
+      } ],
+      "uid" : "f38312c512e0293fd3db4b6506ed9554"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  } ],
+  "name" : "categories"
+}

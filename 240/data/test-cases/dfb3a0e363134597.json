@@ -1,0 +1,330 @@
+{
+  "uid" : "dfb3a0e363134597",
+  "name" : "Cannot stake more than what is associated",
+  "fullName" : "Staking and Association tests.Cannot stake more than what is associated",
+  "historyId" : "c676972833571623eb71dd1278b1fa70",
+  "time" : {
+    "start" : 1652867421524,
+    "stop" : 1652867456069,
+    "duration" : 34545
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "Error: Add stake radio button not displayed",
+  "statusTrace" : "Error: Add stake radio button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:166:41)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "Error: Add stake radio button not displayed",
+    "statusTrace" : "Error: Add stake radio button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:166:41)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"staking\" page",
+      "time" : {
+        "start" : 1652867421524,
+        "stop" : 1652867422498,
+        "duration" : 974
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "4843c26b2d01eda5",
+        "name" : "Screenshot",
+        "source" : "4843c26b2d01eda5.png",
+        "type" : "image/png",
+        "size" : 8747
+      } ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 1
+    }, {
+      "name" : "When I click on a validator",
+      "time" : {
+        "start" : 1652867422498,
+        "stop" : 1652867425643,
+        "duration" : 3145
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "242b5077cb721dfc",
+        "name" : "Screenshot",
+        "source" : "242b5077cb721dfc.png",
+        "type" : "image/png",
+        "size" : 161217
+      } ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 1
+    }, {
+      "name" : "And I select to \"Add\" stake",
+      "time" : {
+        "start" : 1652867425644,
+        "stop" : 1652867456069,
+        "duration" : 30425
+      },
+      "status" : "broken",
+      "statusMessage" : "Error: Add stake radio button not displayed\n                    at Element.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/node_modules/@wdio/utils/build/shim.js:270:24)\n                    at runMicrotasks (<anonymous>)\n                    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/staking.steps.js:166:41)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "9cffbefa40060b74",
+        "name" : "Screenshot",
+        "source" : "9cffbefa40060b74.png",
+        "type" : "image/png",
+        "size" : 161217
+      } ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : true,
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 1
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : true,
+    "hasContent" : true,
+    "stepsCount" : 3,
+    "attachmentsCount" : 3
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-4"
+  }, {
+    "name" : "suite",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "testMethod",
+    "value" : "Cannot stake more than what is associated"
+  }, {
+    "name" : "package",
+    "value" : "Staking and Association tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-100.0.4896.127"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 9,
+        "skipped" : 0,
+        "passed" : 11,
+        "unknown" : 0,
+        "total" : 20
+      },
+      "items" : [ {
+        "uid" : "1e7759e593b2bfa1",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/239//#testresult/1e7759e593b2bfa1",
+        "status" : "broken",
+        "statusDetails" : "Error: Add stake radio button not displayed",
+        "time" : {
+          "start" : 1652788497723,
+          "stop" : 1652788531549,
+          "duration" : 33826
+        }
+      }, {
+        "uid" : "7c3c0276f33a35e7",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/239//#testresult/7c3c0276f33a35e7",
+        "status" : "broken",
+        "statusDetails" : "Error: Add stake radio button not displayed",
+        "time" : {
+          "start" : 1652787005520,
+          "stop" : 1652787039402,
+          "duration" : 33882
+        }
+      }, {
+        "uid" : "e4ed1d3d9123982e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/238//#testresult/e4ed1d3d9123982e",
+        "status" : "broken",
+        "statusDetails" : "Error: Add stake radio button not displayed",
+        "time" : {
+          "start" : 1652786016779,
+          "stop" : 1652786051470,
+          "duration" : 34691
+        }
+      }, {
+        "uid" : "75c96b7d45ddcf4",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/237//#testresult/75c96b7d45ddcf4",
+        "status" : "broken",
+        "statusDetails" : "Error: Add stake radio button not displayed",
+        "time" : {
+          "start" : 1652785162398,
+          "stop" : 1652785195817,
+          "duration" : 33419
+        }
+      }, {
+        "uid" : "e2636764b2c68232",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/236//#testresult/e2636764b2c68232",
+        "status" : "broken",
+        "statusDetails" : "Error: Add stake radio button not displayed",
+        "time" : {
+          "start" : 1652784586886,
+          "stop" : 1652784621029,
+          "duration" : 34143
+        }
+      }, {
+        "uid" : "d84df8c54893db8f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/234//#testresult/d84df8c54893db8f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652184029616,
+          "stop" : 1652184035351,
+          "duration" : 5735
+        }
+      }, {
+        "uid" : "30ef6ffe7f35202e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/233//#testresult/30ef6ffe7f35202e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652115967769,
+          "stop" : 1652115973671,
+          "duration" : 5902
+        }
+      }, {
+        "uid" : "34e83e985cacb3c7",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/233//#testresult/34e83e985cacb3c7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652110597430,
+          "stop" : 1652110608828,
+          "duration" : 11398
+        }
+      }, {
+        "uid" : "40c36a833b1dbd39",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/232//#testresult/40c36a833b1dbd39",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652098625250,
+          "stop" : 1652098631266,
+          "duration" : 6016
+        }
+      }, {
+        "uid" : "8da6efc2862643f3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/231//#testresult/8da6efc2862643f3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651849238868,
+          "stop" : 1651849244901,
+          "duration" : 6033
+        }
+      }, {
+        "uid" : "d71841d696f0ba76",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/227//#testresult/d71841d696f0ba76",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651682076984,
+          "stop" : 1651682082223,
+          "duration" : 5239
+        }
+      }, {
+        "uid" : "5925f6271c9a2ced",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/226//#testresult/5925f6271c9a2ced",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651673238780,
+          "stop" : 1651673247729,
+          "duration" : 8949
+        }
+      }, {
+        "uid" : "66e77fc70aee811b",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/225//#testresult/66e77fc70aee811b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651656333952,
+          "stop" : 1651656340622,
+          "duration" : 6670
+        }
+      }, {
+        "uid" : "cc50a9460d6208c6",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/224//#testresult/cc50a9460d6208c6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651653448118,
+          "stop" : 1651653454031,
+          "duration" : 5913
+        }
+      }, {
+        "uid" : "ab586dfced8e6d99",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/223//#testresult/ab586dfced8e6d99",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651593693490,
+          "stop" : 1651593699215,
+          "duration" : 5725
+        }
+      }, {
+        "uid" : "dd9e3c3bcfe66031",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/222//#testresult/dd9e3c3bcfe66031",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651570540638,
+          "stop" : 1651570546479,
+          "duration" : 5841
+        }
+      }, {
+        "uid" : "d7660b34940c8198",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/221//#testresult/d7660b34940c8198",
+        "status" : "broken",
+        "statusDetails" : "TypeError: stakingPage.addStakeBtn.click is not a function",
+        "time" : {
+          "start" : 1650977721264,
+          "stop" : 1650977721286,
+          "duration" : 22
+        }
+      }, {
+        "uid" : "2f7dc825f01ba820",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/220//#testresult/2f7dc825f01ba820",
+        "status" : "broken",
+        "statusDetails" : "TypeError: stakingPage.addStakeBtn.click is not a function",
+        "time" : {
+          "start" : 1650976740265,
+          "stop" : 1650976740282,
+          "duration" : 17
+        }
+      }, {
+        "uid" : "96b251846a9de6c3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/219//#testresult/96b251846a9de6c3",
+        "status" : "broken",
+        "statusDetails" : "TypeError: stakingPage.addStakeBtn.click is not a function",
+        "time" : {
+          "start" : 1650972624029,
+          "stop" : 1650972624046,
+          "duration" : 17
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "dfb3a0e363134597.json",
+  "parameterValues" : [ "chrome-100.0.4896.127" ]
+}

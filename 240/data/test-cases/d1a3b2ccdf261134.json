@@ -1,0 +1,351 @@
+{
+  "uid" : "d1a3b2ccdf261134",
+  "name" : "Check wallet field entry",
+  "fullName" : "Withdraw page.Check wallet field entry",
+  "historyId" : "c959929bb4366920617063fe916207cb",
+  "time" : {
+    "start" : 1652867514846,
+    "stop" : 1652867566414,
+    "duration" : 51568
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "failed",
+  "statusMessage" : "Error: Expect $(`[data-testid=\"current-eth-address-withdrawals\"]`) to have property value",
+  "statusTrace" : "Error: Expect $(`[data-testid=\"current-eth-address-withdrawals\"]`) to have property value\n                \n                Expected: \"0x9804C6E98dA75e3271ccE3aA56728FD8e9376155\"\n                Received: undefined\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/withdraw.steps.js:7:51)",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "Error: Expect $(`[data-testid=\"current-eth-address-withdrawals\"]`) to have property value",
+    "statusTrace" : "Error: Expect $(`[data-testid=\"current-eth-address-withdrawals\"]`) to have property value\n                \n                Expected: \"0x9804C6E98dA75e3271ccE3aA56728FD8e9376155\"\n                Received: undefined\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/withdraw.steps.js:7:51)",
+    "steps" : [ {
+      "name" : "Given I navigate to \"withdraw\" page",
+      "time" : {
+        "start" : 1652867514848,
+        "stop" : 1652867516959,
+        "duration" : 2111
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "9b6d5512beee0051",
+        "name" : "Screenshot",
+        "source" : "9b6d5512beee0051.png",
+        "type" : "image/png",
+        "size" : 8745
+      } ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 1
+    }, {
+      "name" : "Given I connect my ethereum wallet",
+      "time" : {
+        "start" : 1652867516959,
+        "stop" : 1652867532369,
+        "duration" : 15410
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "1046d1de5fc22ec",
+        "name" : "Screenshot",
+        "source" : "1046d1de5fc22ec.png",
+        "type" : "image/png",
+        "size" : 213851
+      } ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 1
+    }, {
+      "name" : "When I connect to the vega wallet",
+      "time" : {
+        "start" : 1652867532369,
+        "stop" : 1652867535391,
+        "duration" : 3022
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "cd1713f061cdead4",
+        "name" : "Screenshot",
+        "source" : "cd1713f061cdead4.png",
+        "type" : "image/png",
+        "size" : 198232
+      } ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 1
+    }, {
+      "name" : "Then I can see the wallet address field is showing \"0x9804C6E98dA75e3271ccE3aA56728FD8e9376155\"",
+      "time" : {
+        "start" : 1652867535391,
+        "stop" : 1652867566414,
+        "duration" : 31023
+      },
+      "status" : "failed",
+      "statusMessage" : "Error: Expect $(`[data-testid=\"current-eth-address-withdrawals\"]`) to have property value\n                \n                Expected: \"0x9804C6E98dA75e3271ccE3aA56728FD8e9376155\"\n                Received: undefined\n                    at World.<anonymous> (/home/runner/work/token-frontend/token-frontend/automation/features/step-definitions/withdraw.steps.js:7:51)",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "b9011becf79abf2f",
+        "name" : "Screenshot",
+        "source" : "b9011becf79abf2f.png",
+        "type" : "image/png",
+        "size" : 198232
+      } ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : true,
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 1
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : true,
+    "hasContent" : true,
+    "stepsCount" : 4,
+    "attachmentsCount" : 4
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-6"
+  }, {
+    "name" : "suite",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "testClass",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "testMethod",
+    "value" : "Check wallet field entry"
+  }, {
+    "name" : "package",
+    "value" : "Withdraw page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-100.0.4896.127"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 6,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 11,
+        "unknown" : 0,
+        "total" : 20
+      },
+      "items" : [ {
+        "uid" : "bbc5f59fa47e2bbd",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/239//#testresult/bbc5f59fa47e2bbd",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $(`[data-testid=\"current-eth-address-withdrawals\"]`) to have property value",
+        "time" : {
+          "start" : 1652788590937,
+          "stop" : 1652788640510,
+          "duration" : 49573
+        }
+      }, {
+        "uid" : "36517e1f416ddad2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/239//#testresult/36517e1f416ddad2",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $(`[data-testid=\"current-eth-address-withdrawals\"]`) to have property value",
+        "time" : {
+          "start" : 1652787086073,
+          "stop" : 1652787146455,
+          "duration" : 60382
+        }
+      }, {
+        "uid" : "e6402a45b330500d",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/238//#testresult/e6402a45b330500d",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $(`[data-testid=\"current-eth-address-withdrawals\"]`) to have property value",
+        "time" : {
+          "start" : 1652786106083,
+          "stop" : 1652786156082,
+          "duration" : 49999
+        }
+      }, {
+        "uid" : "9799b23676cd0815",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/237//#testresult/9799b23676cd0815",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $(`[data-testid=\"current-eth-address-withdrawals\"]`) to have property value",
+        "time" : {
+          "start" : 1652785244415,
+          "stop" : 1652785297486,
+          "duration" : 53071
+        }
+      }, {
+        "uid" : "71d845eda94e3ca2",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/236//#testresult/71d845eda94e3ca2",
+        "status" : "failed",
+        "statusDetails" : "Error: Expect $(`[data-testid=\"current-eth-address-withdrawals\"]`) to have property value",
+        "time" : {
+          "start" : 1652784730666,
+          "stop" : 1652784783125,
+          "duration" : 52459
+        }
+      }, {
+        "uid" : "79c4b8e7cb65c70e",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/234//#testresult/79c4b8e7cb65c70e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652184092353,
+          "stop" : 1652184119749,
+          "duration" : 27396
+        }
+      }, {
+        "uid" : "1f48ff71dc309c37",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/233//#testresult/1f48ff71dc309c37",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652116030757,
+          "stop" : 1652116058574,
+          "duration" : 27817
+        }
+      }, {
+        "uid" : "8eee8bfab4ac1909",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/233//#testresult/8eee8bfab4ac1909",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652110657902,
+          "stop" : 1652110681560,
+          "duration" : 23658
+        }
+      }, {
+        "uid" : "6e4e20ed7be168d8",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/232//#testresult/6e4e20ed7be168d8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1652098676548,
+          "stop" : 1652098720260,
+          "duration" : 43712
+        }
+      }, {
+        "uid" : "8fcdf08204f4b3c0",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/231//#testresult/8fcdf08204f4b3c0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651849319144,
+          "stop" : 1651849354703,
+          "duration" : 35559
+        }
+      }, {
+        "uid" : "cec7ef2d1ae0e106",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/227//#testresult/cec7ef2d1ae0e106",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651682136556,
+          "stop" : 1651682163112,
+          "duration" : 26556
+        }
+      }, {
+        "uid" : "ec292acf85f8d5d3",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/226//#testresult/ec292acf85f8d5d3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651673303580,
+          "stop" : 1651673342393,
+          "duration" : 38813
+        }
+      }, {
+        "uid" : "d1194de5790bdf9c",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/225//#testresult/d1194de5790bdf9c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651656398123,
+          "stop" : 1651656426829,
+          "duration" : 28706
+        }
+      }, {
+        "uid" : "efe895f8648fe0dd",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/224//#testresult/efe895f8648fe0dd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651653503756,
+          "stop" : 1651653543126,
+          "duration" : 39370
+        }
+      }, {
+        "uid" : "3a38385302eab2f4",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/223//#testresult/3a38385302eab2f4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651593832848,
+          "stop" : 1651593892088,
+          "duration" : 59240
+        }
+      }, {
+        "uid" : "1acd6849fd3360d7",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/222//#testresult/1acd6849fd3360d7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1651570600087,
+          "stop" : 1651570625784,
+          "duration" : 25697
+        }
+      }, {
+        "uid" : "5a31b358143b90bc",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/221//#testresult/5a31b358143b90bc",
+        "status" : "broken",
+        "statusDetails" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1650977847305,
+          "stop" : 1650977847347,
+          "duration" : 42
+        }
+      }, {
+        "uid" : "4e12653ee50761f",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/220//#testresult/4e12653ee50761f",
+        "status" : "broken",
+        "statusDetails" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1650976870221,
+          "stop" : 1650976870271,
+          "duration" : 50
+        }
+      }, {
+        "uid" : "d231992ed7976042",
+        "reportUrl" : "https://vegaprotocol.github.io/token-frontend/219//#testresult/d231992ed7976042",
+        "status" : "broken",
+        "statusDetails" : "TypeError: browser.getByTestId(...).waitForDisplayed is not a function",
+        "time" : {
+          "start" : 1650972686483,
+          "stop" : 1650972686533,
+          "duration" : 50
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "d1a3b2ccdf261134.json",
+  "parameterValues" : [ "chrome-100.0.4896.127" ]
+}
