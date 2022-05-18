@@ -17,6 +17,33 @@ export interface ProposalFields_party {
   id: string;
 }
 
+export interface ProposalFields_rationale {
+  __typename: "ProposalRationale";
+  /**
+   * Link to a text file describing the proposal in depth.
+   * Optional except for FreeFrom proposal where it's mandatory.
+   * If set, the `url` property must be set.
+   */
+  url: string | null;
+  /**
+   * Description to show a short title / something in case the link goes offline.
+   * This is to be between 0 and 1024 unicode characters.
+   * This is mandatory for all proposal.
+   */
+  description: string;
+  /**
+   * Cryptographically secure hash (SHA3-512) of the text pointed by the `url` property
+   * so that viewers can check that the text hasn't been changed over time.
+   * Optional except for FreeFrom proposal where it's mandatory.
+   * If set, the `url` property must be set.
+   */
+  hash: string | null;
+}
+
+export interface ProposalFields_terms_change_NewFreeform {
+  __typename: "NewFreeform";
+}
+
 export interface ProposalFields_terms_change_NewMarket_instrument {
   __typename: "InstrumentConfiguration";
   /**
@@ -93,23 +120,7 @@ export interface ProposalFields_terms_change_UpdateNetworkParameter {
   networkParameter: ProposalFields_terms_change_UpdateNetworkParameter_networkParameter;
 }
 
-export interface ProposalFields_terms_change_NewFreeform {
-  __typename: "NewFreeform";
-  /**
-   * The URL containing content that describes the proposal
-   */
-  url: string;
-  /**
-   * A short description of what is being proposed
-   */
-  description: string;
-  /**
-   * The hash on the content of the URL
-   */
-  hash: string;
-}
-
-export type ProposalFields_terms_change = ProposalFields_terms_change_NewMarket | ProposalFields_terms_change_UpdateMarket | ProposalFields_terms_change_NewAsset | ProposalFields_terms_change_UpdateNetworkParameter | ProposalFields_terms_change_NewFreeform;
+export type ProposalFields_terms_change = ProposalFields_terms_change_NewFreeform | ProposalFields_terms_change_NewMarket | ProposalFields_terms_change_UpdateMarket | ProposalFields_terms_change_NewAsset | ProposalFields_terms_change_UpdateNetworkParameter;
 
 export interface ProposalFields_terms {
   __typename: "ProposalTerms";
@@ -275,6 +286,10 @@ export interface ProposalFields {
    * Party that prepared the proposal
    */
   party: ProposalFields_party;
+  /**
+   * Rationale behind the proposal
+   */
+  rationale: ProposalFields_rationale;
   /**
    * Terms of the proposal
    */
