@@ -127,7 +127,7 @@ export const NodeList = ({ epoch, party }: NodeListProps) => {
           endDate={new Date(epoch.timestamps.expiry)}
         />
       )}
-      <ul className="node-list">
+      <ul className="node-list" data-testid="validator-node-list">
         {nodes.map((n, i) => {
           return <NodeListItem key={i} {...n} />;
         })}

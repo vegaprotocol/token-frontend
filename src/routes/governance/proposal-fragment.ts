@@ -7,14 +7,22 @@ export const PROPOSALS_FRAGMENT = gql`
     state
     datetime
     rejectionReason
+    errorDetails
     party {
       id
+    }
+    rationale {
+      url
+      description
+      hash
     }
     terms {
       closingDatetime
       enactmentDatetime
       change {
         ... on NewMarket {
+          decimalPlaces
+          metadata
           instrument {
             name
           }

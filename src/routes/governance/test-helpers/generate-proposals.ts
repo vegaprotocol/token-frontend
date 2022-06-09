@@ -19,9 +19,16 @@ export function generateProposal(
     state: ProposalState.Open,
     datetime: faker.date.past().toISOString(),
     rejectionReason: null,
+    errorDetails: null,
     party: {
       __typename: "Party",
       id: faker.datatype.uuid(),
+    },
+    rationale: {
+      __typename: "ProposalRationale",
+      hash: faker.datatype.uuid(),
+      url: faker.internet.url(),
+      description: faker.lorem.words(),
     },
     terms: {
       __typename: "ProposalTerms",

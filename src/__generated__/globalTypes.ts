@@ -15,6 +15,7 @@ export enum AccountType {
   External = "External",
   FeeInfrastructure = "FeeInfrastructure",
   FeeLiquidity = "FeeLiquidity",
+  FeeMaker = "FeeMaker",
   General = "General",
   GlobalInsurance = "GlobalInsurance",
   GlobalReward = "GlobalReward",
