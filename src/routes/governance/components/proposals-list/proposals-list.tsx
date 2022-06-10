@@ -27,6 +27,10 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
   }
 
   const renderRow = (proposal: Proposals_proposals) => {
+    const closingDate = new Date(proposal.terms.closingDatetime);
+    const enactmentDatetime = new Date(proposal.terms.enactmentDatetime);
+    const closingValid = closingDate.toString() !== "Invalid Date";
+    const enactmentValid = enactmentDatetime.toString() !== "Invalid Date";
     return (
       <li key={proposal.id}>
         <Link to={`${match.url}/${proposal.id}`}>
@@ -45,28 +49,30 @@ export const ProposalsList = ({ proposals }: ProposalsListProps) => {
           </KeyValueTableRow>
           <KeyValueTableRow>
             <th>
-              {isFuture(new Date(proposal.terms.closingDatetime))
-                ? t("closesOn")
-                : t("closedOn")}
+              {closingValid
+                ? isFuture(closingDate)
+                  ? t("closesOn")
+                  : t("closedOn")
+                : t("invalidDate")}
             </th>
             <td data-testid="governance-proposal-closingDate">
-              {format(
-                new Date(proposal.terms.closingDatetime),
-                DATE_FORMAT_DETAILED
-              )}
+              {closingValid
+                ? format(closingDate, DATE_FORMAT_DETAILED)
+                : t("invalidDate")}
             </td>
           </KeyValueTableRow>
           <KeyValueTableRow>
             <th>
-              {isFuture(new Date(proposal.terms.enactmentDatetime))
-                ? t("proposedEnactment")
-                : t("enactedOn")}
+              {enactmentValid
+                ? isFuture(enactmentDatetime)
+                  ? t("enactmentDatetime")
+                  : t("enactedOn")
+                : t("invalidDate")}
             </th>
             <td data-testid="governance-proposal-enactmentDate">
-              {format(
-                new Date(proposal.terms.enactmentDatetime),
-                DATE_FORMAT_DETAILED
-              )}
+              {enactmentValid
+                ? format(enactmentDatetime, DATE_FORMAT_DETAILED)
+                : t("invalidDate")}
             </td>
           </KeyValueTableRow>
         </KeyValueTable>
