@@ -3,6 +3,7 @@ import "./staking-form.scss";
 import { gql, useApolloClient } from "@apollo/client";
 import { FormGroup, Radio, RadioGroup } from "@blueprintjs/core";
 import * as Sentry from "@sentry/react";
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
@@ -48,6 +49,7 @@ export const PARTY_DELEGATIONS_QUERY = gql`
 
 enum FormState {
   Default,
+  Requested,
   Pending,
   Success,
   Failure,
@@ -112,7 +114,7 @@ export const StakingForm = ({
   }, [action, availableStakeToAdd, availableStakeToRemove]);
 
   async function onSubmit() {
-    setFormState(FormState.Pending);
+    setFormState(FormState.Requested);
     const delegateInput: DelegateSubmissionInput = {
       pubKey: pubkey,
       delegateSubmission: {
@@ -134,6 +136,7 @@ export const StakingForm = ({
     try {
       const command = action === Actions.Add ? delegateInput : undelegateInput;
       const [err] = await vegaWalletService.commandSync(command);
+      setFormState(FormState.Pending);
 
       if (err) {
         setFormState(FormState.Failure);
@@ -183,6 +186,12 @@ export const StakingForm = ({
 
   if (formState === FormState.Failure) {
     return <StakeFailure nodeName={nodeName} />;
+  } else if (formState === FormState.Requested) {
+    return (
+      <Callout title="Confirm transaction in wallet" intent="action">
+        <p>Open your wallet app to confirm</p>
+      </Callout>
+    );
   } else if (formState === FormState.Pending) {
     return <StakePending action={action} amount={amount} nodeName={nodeName} />;
   } else if (formState === FormState.Success) {
