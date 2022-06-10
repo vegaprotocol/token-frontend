@@ -17,6 +17,10 @@ export const ProposalChangeTable = ({ proposal }: ProposalChangeTableProps) => {
   const { t } = useTranslation();
 
   const terms = proposal.terms;
+  const closingDate = new Date(proposal.terms.closingDatetime);
+  const enactmentDatetime = new Date(proposal.terms.enactmentDatetime);
+  const closingValid = closingDate.toString() !== "Invalid Date";
+  const enactmentValid = enactmentDatetime.toString() !== "Invalid Date";
 
   return (
     <KeyValueTable muted={true} data-testid="proposal-change-table">
@@ -32,20 +36,30 @@ export const ProposalChangeTable = ({ proposal }: ProposalChangeTableProps) => {
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>
-          {isFuture(new Date(terms.closingDatetime))
-            ? t("closesOn")
-            : t("closedOn")}
+          {closingValid
+            ? isFuture(new Date(terms.closingDatetime))
+              ? t("closesOn")
+              : t("closedOn")
+            : t("invalidDate")}
         </th>
-        <td>{format(new Date(terms.closingDatetime), DATE_FORMAT_DETAILED)}</td>
+        <td>
+          {closingValid
+            ? format(new Date(terms.closingDatetime), DATE_FORMAT_DETAILED)
+            : t("invalidDate")}
+        </td>
       </KeyValueTableRow>
       <KeyValueTableRow>
         <th>
-          {isFuture(new Date(terms.enactmentDatetime))
-            ? t("proposedEnactment")
-            : t("enactedOn")}
+          {enactmentValid
+            ? isFuture(new Date(terms.enactmentDatetime))
+              ? t("proposedEnactment")
+              : t("enactedOn")
+            : t("invalidDate")}
         </th>
         <td>
-          {format(new Date(terms.enactmentDatetime), DATE_FORMAT_DETAILED)}
+          {enactmentValid
+            ? format(new Date(terms.enactmentDatetime), DATE_FORMAT_DETAILED)
+            : t("invalidDate")}
         </td>
       </KeyValueTableRow>
       <KeyValueTableRow>
