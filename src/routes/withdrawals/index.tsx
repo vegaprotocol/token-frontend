@@ -171,11 +171,13 @@ export const Withdrawal = ({
     if (!withdrawal.details?.receiverAddress) {
       throw new Error("Missing receiver address");
     }
+    debugger;
 
     return erc20Bridge.withdraw({
       assetSource: erc20Approval.assetSource,
       amount: erc20Approval.amount,
       nonce: erc20Approval.nonce,
+      creation: erc20Approval.creation,
       signatures: erc20Approval.signatures,
       // TODO: switch when targetAddress is populated and deployed to mainnet data.erc20WithdrawalApproval.targetAddress,
       targetAddress: withdrawal.details.receiverAddress,

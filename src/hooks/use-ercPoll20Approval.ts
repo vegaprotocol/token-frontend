@@ -13,6 +13,7 @@ const ERC20_APPROVAL_QUERY = gql`
       assetSource
       amount
       nonce
+      creation
       signatures
       targetAddress
       expiry

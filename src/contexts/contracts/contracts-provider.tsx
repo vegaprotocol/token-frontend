@@ -1,7 +1,6 @@
 import { TxData } from "@vegaprotocol/smart-contracts-sdk";
 import {
   VegaClaim,
-  VegaErc20Bridge,
   VegaStaking,
   VegaToken,
   VegaVesting,
@@ -13,6 +12,7 @@ import React from "react";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { APP_ENV } from "../../config";
+import { VegaErc20Bridge } from "./collateral-bridge";
 import { ContractsContext, ContractsContextShape } from "./contracts-context";
 
 /**

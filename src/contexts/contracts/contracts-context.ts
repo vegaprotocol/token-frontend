@@ -1,12 +1,13 @@
 import {
   TxData,
   VegaClaim,
-  VegaErc20Bridge,
   VegaStaking,
   VegaToken,
   VegaVesting,
 } from "@vegaprotocol/smart-contracts-sdk";
 import React from "react";
+
+import { VegaErc20Bridge } from "./collateral-bridge";
 
 export interface ContractsContextShape {
   token: VegaToken;
