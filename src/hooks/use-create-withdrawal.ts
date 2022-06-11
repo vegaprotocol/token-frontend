@@ -1,4 +1,4 @@
-import { gql,useApolloClient } from "@apollo/client";
+import { gql, useApolloClient } from "@apollo/client";
 import * as Sentry from "@sentry/react";
 import React from "react";
 
@@ -14,7 +14,7 @@ import {
 
 export enum Status {
   Idle,
-  Submitted,
+  Requested,
   Pending,
   Success,
   Failure,
@@ -79,20 +79,19 @@ export function useCreateWithdrawal(pubKey: string): [Status, Submit] {
         },
       };
 
-      safeSetStatus(Status.Submitted);
+      safeSetStatus(Status.Requested);
 
       try {
         const [err, res] = await vegaWalletService.commandSync(command);
+        safeSetStatus(Status.Pending);
 
         if (err || !res) {
           safeSetStatus(Status.Failure);
         } else {
-          const id = sigToId(res.signature.value);
+          const id = sigToId(res.tx.signature.value);
           setId(id);
           // Now await subscription
         }
-
-        safeSetStatus(Status.Pending);
       } catch (err) {
         safeSetStatus(Status.Failure);
         Sentry.captureException(err);

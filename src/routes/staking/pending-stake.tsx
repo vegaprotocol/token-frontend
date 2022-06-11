@@ -22,6 +22,7 @@ interface PendingStakeProps {
 
 enum FormState {
   Default,
+  Requested,
   Pending,
   Success,
   Failure,
@@ -37,7 +38,7 @@ export const PendingStake = ({
   const [formState, setFormState] = React.useState(FormState.Default);
 
   const removeStakeNow = async () => {
-    setFormState(FormState.Pending);
+    setFormState(FormState.Requested);
     const undelegateInput: UndelegateSubmissionInput = {
       pubKey: pubkey,
       undelegateSubmission: {
@@ -50,6 +51,7 @@ export const PendingStake = ({
     try {
       const command = undelegateInput;
       const [err] = await vegaWalletService.commandSync(command);
+      setFormState(FormState.Pending);
 
       if (err) {
         setFormState(FormState.Failure);
@@ -68,6 +70,12 @@ export const PendingStake = ({
         title={t("failedToRemovePendingStake", { pendingAmount })}
       >
         <p>{t("pleaseTryAgain")}</p>
+      </Callout>
+    );
+  } else if (formState === FormState.Requested) {
+    return (
+      <Callout title="Confirm transaction in wallet" intent="action">
+        <p>Open your wallet app to confirm</p>
       </Callout>
     );
   } else if (formState === FormState.Pending) {
