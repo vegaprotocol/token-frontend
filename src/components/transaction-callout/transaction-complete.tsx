@@ -22,7 +22,6 @@ export const TransactionComplete = ({
       <p>
         <EtherscanLink tx={hash} />
       </p>
-      LINK
       {footer && <p data-testid="transaction-complete-footer">{footer}</p>}
     </Callout>
   );
