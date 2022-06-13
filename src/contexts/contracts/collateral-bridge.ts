@@ -8,7 +8,7 @@ import { BigNumber as EthersBigNumber, ethers } from "ethers";
 
 import abi from "./collateral-bridge-abi.json";
 
-export class VegaErc20Bridge {
+export class CollateralBridge {
   private contract: ethers.Contract;
 
   constructor(

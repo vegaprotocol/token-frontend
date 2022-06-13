@@ -7,14 +7,14 @@ import {
 } from "@vegaprotocol/smart-contracts-sdk";
 import React from "react";
 
-import { VegaErc20Bridge } from "./collateral-bridge";
+import { CollateralBridge } from "./collateral-bridge";
 
 export interface ContractsContextShape {
   token: VegaToken;
   staking: VegaStaking;
   vesting: VegaVesting;
   claim: VegaClaim;
-  erc20Bridge: VegaErc20Bridge;
+  collateralBridge: CollateralBridge;
   transactions: TxData[];
 }
 

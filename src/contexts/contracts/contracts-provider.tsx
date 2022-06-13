@@ -12,7 +12,7 @@ import React from "react";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { APP_ENV } from "../../config";
-import { VegaErc20Bridge } from "./collateral-bridge";
+import { CollateralBridge } from "./collateral-bridge";
 import { ContractsContext, ContractsContextShape } from "./contracts-context";
 
 /**
@@ -23,7 +23,7 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
   const [txs, setTxs] = React.useState<TxData[]>([]);
   const [contracts, setContracts] = React.useState<Pick<
     ContractsContextShape,
-    "token" | "staking" | "vesting" | "claim" | "erc20Bridge"
+    "token" | "staking" | "vesting" | "claim" | "collateralBridge"
   > | null>(null);
 
   // Create instances of contract classes. If we have an account use a signer for the
@@ -42,7 +42,7 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
         staking: new VegaStaking(APP_ENV, library, signer),
         vesting: new VegaVesting(APP_ENV, library, signer),
         claim: new VegaClaim(APP_ENV, library, signer),
-        erc20Bridge: new VegaErc20Bridge(APP_ENV, library, signer),
+        collateralBridge: new CollateralBridge(APP_ENV, library, signer),
       });
     }
   }, [library, account]);
