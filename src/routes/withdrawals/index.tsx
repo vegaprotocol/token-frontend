@@ -172,8 +172,6 @@ export const Withdrawal = ({
       throw new Error("Missing receiver address");
     }
 
-    console.log(erc20Approval);
-
     return erc20Bridge.withdraw({
       assetSource: erc20Approval.assetSource,
       amount: erc20Approval.amount,
