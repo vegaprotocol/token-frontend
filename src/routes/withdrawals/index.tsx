@@ -163,7 +163,7 @@ export const Withdrawal = ({
 }: WithdrawalProps) => {
   const { t } = useTranslation();
   const erc20Approval = usePollERC20Approval(withdrawal.id);
-  const { collateralBridge } = useContracts();
+  const { erc20Bridge } = useContracts();
   const { state, perform, reset } = useTransaction(() => {
     if (!erc20Approval) {
       throw new Error("Withdraw needs approval object");
@@ -172,11 +172,12 @@ export const Withdrawal = ({
       throw new Error("Missing receiver address");
     }
 
-    return collateralBridge.withdraw({
+    console.log(erc20Approval);
+
+    return erc20Bridge.withdraw({
       assetSource: erc20Approval.assetSource,
       amount: erc20Approval.amount,
       nonce: erc20Approval.nonce,
-      creation: erc20Approval.creation,
       signatures: erc20Approval.signatures,
       targetAddress: erc20Approval.targetAddress,
     });

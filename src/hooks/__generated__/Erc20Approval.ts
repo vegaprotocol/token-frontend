@@ -22,10 +22,6 @@ export interface Erc20Approval_erc20WithdrawalApproval {
    */
   nonce: string;
   /**
-   * Timestamp at which the withdrawal was created
-   */
-  creation: string;
-  /**
    * Signature aggregate from the nodes, in the following format:
    * 0x + sig1 + sig2 + ... + sigN
    */

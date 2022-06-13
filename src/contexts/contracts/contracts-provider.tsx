@@ -1,6 +1,7 @@
 import { TxData } from "@vegaprotocol/smart-contracts-sdk";
 import {
   VegaClaim,
+  VegaErc20Bridge,
   VegaStaking,
   VegaToken,
   VegaVesting,
@@ -12,8 +13,6 @@ import React from "react";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { APP_ENV } from "../../config";
-import { useEthereumConfig } from "../../hooks/use-ethereum-config";
-import { CollateralBridge } from "./collateral-bridge";
 import { ContractsContext, ContractsContextShape } from "./contracts-context";
 
 /**
@@ -24,9 +23,8 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
   const [txs, setTxs] = React.useState<TxData[]>([]);
   const [contracts, setContracts] = React.useState<Pick<
     ContractsContextShape,
-    "token" | "staking" | "vesting" | "claim" | "collateralBridge"
+    "token" | "staking" | "vesting" | "claim" | "erc20Bridge"
   > | null>(null);
-  const config = useEthereumConfig();
 
   // Create instances of contract classes. If we have an account use a signer for the
   // contracts so that we can sign transactions, otherwise use the provider for just
@@ -38,20 +36,16 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
       signer = library.getSigner();
     }
 
-    if (library && config?.collateral_bridge_contract.address) {
+    if (library) {
       setContracts({
         token: new VegaToken(APP_ENV, library, signer),
         staking: new VegaStaking(APP_ENV, library, signer),
         vesting: new VegaVesting(APP_ENV, library, signer),
         claim: new VegaClaim(APP_ENV, library, signer),
-        collateralBridge: new CollateralBridge(
-          config.collateral_bridge_contract.address,
-          library,
-          signer
-        ),
+        erc20Bridge: new VegaErc20Bridge(APP_ENV, library, signer),
       });
     }
-  }, [library, account, config?.collateral_bridge_contract.address]);
+  }, [library, account]);
 
   React.useEffect(() => {
     if (!contracts) return;
