@@ -6,7 +6,7 @@ import * as Sentry from "@sentry/react";
 import { Callout } from "@vegaprotocol/ui-toolkit";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 import { TokenInput } from "../../components/token-input";
 import { Colors, NetworkParams } from "../../config";
@@ -83,6 +83,7 @@ export const StakingForm = ({
   const params = useSearchParams();
   const history = useHistory();
   const client = useApolloClient();
+  const routerParams = useParams<{ node: string }>();
   const { appState } = useAppState();
   const [formState, setFormState] = React.useState(FormState.Default);
   const { t } = useTranslation();
@@ -91,10 +92,20 @@ export const StakingForm = ({
   const [removeType, setRemoveType] = React.useState<RemoveType>(
     RemoveType.EndOfEpoch
   );
+
+  // Clear the form state if the selected node changes
+  React.useEffect(() => {
+    if (routerParams) {
+      setFormState(FormState.Default);
+      setAmount("");
+    }
+  }, [routerParams]);
+
   // Clear the amount when the staking method changes
   React.useEffect(() => {
     setAmount("");
-  }, [action, setAmount]);
+  }, [action]);
+
   const { data } = useNetworkParam([
     NetworkParams.VALIDATOR_DELEGATION_MIN_AMOUNT,
   ]);
