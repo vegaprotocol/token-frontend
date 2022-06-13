@@ -178,8 +178,7 @@ export const Withdrawal = ({
       nonce: erc20Approval.nonce,
       creation: erc20Approval.creation,
       signatures: erc20Approval.signatures,
-      // TODO: switch when targetAddress is populated and deployed to mainnet data.erc20WithdrawalApproval.targetAddress,
-      targetAddress: withdrawal.details.receiverAddress,
+      targetAddress: erc20Approval.targetAddress,
     });
   });
 

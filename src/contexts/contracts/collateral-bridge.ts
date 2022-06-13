@@ -24,7 +24,7 @@ export class CollateralBridge {
   }
 
   /** Executes contracts withdraw_asset function */
-  async withdraw(approval: {
+  withdraw(approval: {
     assetSource: string;
     amount: string;
     creation: string;
@@ -32,7 +32,7 @@ export class CollateralBridge {
     signatures: string;
     targetAddress: string;
   }): Promise<ethers.ContractTransaction> {
-    const tx = await this.contract.withdraw_asset(
+    return this.contract.withdraw_asset(
       approval.assetSource,
       approval.amount, // No need to remove decimals as this value is already set and not manipulated by the user
       approval.targetAddress,
@@ -40,8 +40,6 @@ export class CollateralBridge {
       approval.nonce,
       approval.signatures
     );
-
-    return tx;
   }
 
   async depositAsset(
