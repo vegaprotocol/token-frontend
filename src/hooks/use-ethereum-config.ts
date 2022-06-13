@@ -8,6 +8,7 @@ export const useEthereumConfig = () => {
   const { data: ethereumConfigJSON, loading } = useNetworkParam([
     NetworkParams.ETHEREUM_CONFIG,
   ]);
+
   const ethereumConfig = React.useMemo(() => {
     if (!ethereumConfigJSON && !loading) {
       Sentry.captureMessage(
@@ -31,7 +32,22 @@ export const useEthereumConfig = () => {
     return null;
   }
 
-  return {
-    confirmations: ethereumConfig.confirmations,
+  return ethereumConfig as {
+    chain_id: string;
+    network_id: string;
+    confirmations: number;
+    collateral_bridge_contract: { address: string };
+    multisig_control_contract: {
+      address: string;
+      deployment_block_height: number;
+    };
+    staking_bridge_contract: {
+      address: string;
+      deployment_block_height: number;
+    };
+    token_vesting_contract: {
+      address: string;
+      deployment_block_height: number;
+    };
   };
 };

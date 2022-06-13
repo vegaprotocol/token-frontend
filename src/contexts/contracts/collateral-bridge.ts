@@ -1,8 +1,4 @@
-import {
-  addDecimal,
-  EnvironmentConfig,
-  Networks,
-} from "@vegaprotocol/smart-contracts-sdk";
+import { addDecimal } from "@vegaprotocol/smart-contracts-sdk";
 import BigNumber from "bignumber.js";
 import { BigNumber as EthersBigNumber, ethers } from "ethers";
 
@@ -12,15 +8,11 @@ export class CollateralBridge {
   private contract: ethers.Contract;
 
   constructor(
-    network: Networks,
+    address: string,
     provider: ethers.providers.Web3Provider,
     signer?: ethers.Signer
   ) {
-    this.contract = new ethers.Contract(
-      EnvironmentConfig[network].erc20Bridge,
-      abi,
-      signer || provider
-    );
+    this.contract = new ethers.Contract(address, abi, signer || provider);
   }
 
   /** Executes contracts withdraw_asset function */

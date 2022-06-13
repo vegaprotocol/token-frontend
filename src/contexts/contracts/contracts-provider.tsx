@@ -12,6 +12,7 @@ import React from "react";
 import { SplashLoader } from "../../components/splash-loader";
 import { SplashScreen } from "../../components/splash-screen";
 import { APP_ENV } from "../../config";
+import { useEthereumConfig } from "../../hooks/use-ethereum-config";
 import { CollateralBridge } from "./collateral-bridge";
 import { ContractsContext, ContractsContextShape } from "./contracts-context";
 
@@ -25,6 +26,7 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
     ContractsContextShape,
     "token" | "staking" | "vesting" | "claim" | "collateralBridge"
   > | null>(null);
+  const config = useEthereumConfig();
 
   // Create instances of contract classes. If we have an account use a signer for the
   // contracts so that we can sign transactions, otherwise use the provider for just
@@ -36,16 +38,20 @@ export const ContractsProvider = ({ children }: { children: JSX.Element }) => {
       signer = library.getSigner();
     }
 
-    if (library) {
+    if (library && config?.collateral_bridge_contract.address) {
       setContracts({
         token: new VegaToken(APP_ENV, library, signer),
         staking: new VegaStaking(APP_ENV, library, signer),
         vesting: new VegaVesting(APP_ENV, library, signer),
         claim: new VegaClaim(APP_ENV, library, signer),
-        collateralBridge: new CollateralBridge(APP_ENV, library, signer),
+        collateralBridge: new CollateralBridge(
+          config.collateral_bridge_contract.address,
+          library,
+          signer
+        ),
       });
     }
-  }, [library, account]);
+  }, [library, account, config?.collateral_bridge_contract.address]);
 
   React.useEffect(() => {
     if (!contracts) return;
