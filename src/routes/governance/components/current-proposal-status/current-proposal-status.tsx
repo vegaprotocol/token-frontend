@@ -16,16 +16,17 @@ export const CurrentProposalStatus = ({
     proposal,
   });
   const { t } = useTranslation();
+  const closingDate = new Date(proposal.terms.closingDatetime);
+  const enactmentDatetime = new Date(proposal.terms.enactmentDatetime);
+  const daysClosedAgo =
+    closingDate.toString() === "Invalid Date"
+      ? closingDate.toString()
+      : formatDistanceToNow(closingDate, { addSuffix: true });
 
-  const daysClosedAgo = formatDistanceToNow(
-    new Date(proposal.terms.closingDatetime),
-    { addSuffix: true }
-  );
-
-  const daysEnactedAgo = formatDistanceToNow(
-    new Date(proposal.terms.enactmentDatetime),
-    { addSuffix: true }
-  );
+  const daysEnactedAgo =
+    enactmentDatetime.toString() === "Invalid Date"
+      ? enactmentDatetime.toString()
+      : formatDistanceToNow(enactmentDatetime, { addSuffix: true });
 
   if (proposal.state === ProposalState.Open && willPass) {
     return (

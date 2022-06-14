@@ -128,6 +128,10 @@ export const VoteButtons = ({
     return <p>{cantVoteUI}</p>;
   }
 
+  if (voteState === VoteState.Requested) {
+    return <p>Please confirm transaction in wallet</p>;
+  }
+
   if (voteState === VoteState.Pending) {
     return <p>{t("votePending")}...</p>;
   }

@@ -10,6 +10,7 @@ import {
 } from "../../../components/staking-method-radio";
 import { VegaKeyExtended } from "../../../contexts/app-state/app-state-context";
 import { TxState } from "../../../hooks/transaction-reducer";
+import { useRefreshAssociatedBalances } from "../../../hooks/use-refresh-associated-balances";
 import { useSearchParams } from "../../../hooks/use-search-params";
 import { ContractDisassociate } from "./contract-disassociate";
 import { DisassociateTransaction } from "./disassociate-transaction";
@@ -29,6 +30,7 @@ export const DisassociatePage = ({
   const [selectedStakingMethod, setSelectedStakingMethod] = React.useState<
     StakingMethod | ""
   >(params.method as StakingMethod | "");
+  const refreshBalances = useRefreshAssociatedBalances();
 
   // Clear the amount when the staking method changes
   React.useEffect(() => {
@@ -40,6 +42,12 @@ export const DisassociatePage = ({
     dispatch: txDispatch,
     perform: txPerform,
   } = useRemoveStake(address, amount, vegaKey.pub, selectedStakingMethod);
+
+  React.useEffect(() => {
+    if (txState.txState === TxState.Complete) {
+      refreshBalances(address, vegaKey.pub);
+    }
+  }, [txState, refreshBalances, address, vegaKey.pub]);
 
   if (txState.txState !== TxState.Default) {
     return (

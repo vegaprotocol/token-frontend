@@ -75,14 +75,23 @@ export type CommandSyncInput =
   | WithdrawSubmissionInput;
 
 export interface CommandSyncResponse {
-  inputData: string;
-  pubKey: string;
-  signature: {
-    algo: string;
-    value: string;
+  tx: {
+    From: {
+      PubKey: string;
+    };
+    input_data: string;
+    pow: {
+      tid: string;
+      nonce: number;
+    };
+    signature: {
+      algo: string;
+      value: string;
+      version: number;
+    };
     version: number;
   };
-  version: number;
+  txHash: string;
 }
 
 export interface IVegaWalletService {

@@ -21,6 +21,7 @@ export enum VoteState {
   NotCast = "NotCast",
   Yes = "Yes",
   No = "No",
+  Requested = "Requested",
   Pending = "Pending",
   Failed = "Failed",
 }
@@ -99,7 +100,7 @@ export function useUserVote(
   async function castVote(value: VoteValue) {
     if (!proposalId || !currVegaKey) return;
 
-    setVoteState(VoteState.Pending);
+    setVoteState(VoteState.Requested);
 
     try {
       const variables: VoteSubmissionInput = {
@@ -110,6 +111,7 @@ export function useUserVote(
         },
       };
       const [err] = await vegaWalletService.commandSync(variables);
+      setVoteState(VoteState.Pending);
 
       if (err) {
         setVoteState(VoteState.Failed);

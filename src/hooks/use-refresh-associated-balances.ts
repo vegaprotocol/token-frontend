@@ -17,7 +17,6 @@ export function useRefreshAssociatedBalances() {
           staking.stakeBalance(ethAddress, vegaKey),
           vesting.stakeBalance(ethAddress, vegaKey),
         ]);
-
       appDispatch({
         type: AppStateActionType.REFRESH_ASSOCIATED_BALANCES,
         walletAssociatedBalance,

@@ -39,10 +39,15 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
     proposal.votes.no.votes
   );
 
+  const closingDate = new Date(proposal.terms.closingDatetime);
+  const closingValid = closingDate.toString() !== "Invalid Date";
+
   const defaultDecimals = 2;
-  const daysLeft = t("daysLeft", {
-    daysLeft: formatDistanceToNow(new Date(proposal.terms.closingDatetime)),
-  });
+  const daysLeft = closingValid
+    ? t("daysLeft", {
+        daysLeft: formatDistanceToNow(new Date(proposal.terms.closingDatetime)),
+      })
+    : t("invalidDate");
 
   return (
     <section>

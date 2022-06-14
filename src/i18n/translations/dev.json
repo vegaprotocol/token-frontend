@@ -541,5 +541,6 @@
   "numberOfAgainstVotes": "Number of votes against",
   "yesPercentage": "Yes percentage",
   "noPercentage": "No percentage",
-  "proposalTerms": "Proposal terms"
+  "proposalTerms": "Proposal terms",
+  "invalidDate": "Invalid Date"
 }
