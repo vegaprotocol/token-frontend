@@ -1,3 +1,12 @@
+## [0.5.46](https://github.com/vegaprotocol/token-frontend/compare/0.5.45...0.5.46) (2022-06-14)
+
+
+### Bug Fixes
+
+* rationale not in 0.50.3 ([d696ed3](https://github.com/vegaprotocol/token-frontend/commit/d696ed3c27771dc5072c32d42ca3ec3d5ab58eba))
+
+
+
 ## [0.5.45](https://github.com/vegaprotocol/token-frontend/compare/0.5.44...0.5.45) (2022-06-14)
 
 
@@ -25,10 +34,6 @@
 
 
 ## [0.5.42](https://github.com/vegaprotocol/token-frontend/compare/0.5.41...0.5.42) (2022-05-16)
-
-
-
-## [0.5.41](https://github.com/vegaprotocol/token-frontend/compare/0.5.40...0.5.41) (2022-05-06)
 
 
 
