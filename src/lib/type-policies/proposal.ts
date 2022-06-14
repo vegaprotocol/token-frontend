@@ -10,7 +10,7 @@ export function getProposalName(proposal: Proposals_proposals) {
   } else if (proposal.terms.change.__typename === "UpdateNetworkParameter") {
     return `Update Network: ${proposal.terms.change.networkParameter.key}`;
   } else if (proposal.terms.change.__typename === "NewFreeform") {
-    return `Freeform: ${proposal.rationale.hash}`;
+    return `Freeform: ${proposal.terms.change.hash}`;
   }
 
   return "Unknown Proposal";
