@@ -3,9 +3,10 @@ import "./staking-form.scss";
 import { gql, useApolloClient } from "@apollo/client";
 import { FormGroup, Radio, RadioGroup } from "@blueprintjs/core";
 import * as Sentry from "@sentry/react";
+import { Callout } from "@vegaprotocol/ui-toolkit";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 import { TokenInput } from "../../components/token-input";
 import { Colors, NetworkParams } from "../../config";
@@ -48,6 +49,7 @@ export const PARTY_DELEGATIONS_QUERY = gql`
 
 enum FormState {
   Default,
+  Requested,
   Pending,
   Success,
   Failure,
@@ -81,6 +83,7 @@ export const StakingForm = ({
   const params = useSearchParams();
   const history = useHistory();
   const client = useApolloClient();
+  const routerParams = useParams<{ node: string }>();
   const { appState } = useAppState();
   const [formState, setFormState] = React.useState(FormState.Default);
   const { t } = useTranslation();
@@ -89,10 +92,20 @@ export const StakingForm = ({
   const [removeType, setRemoveType] = React.useState<RemoveType>(
     RemoveType.EndOfEpoch
   );
+
+  // Clear the form state if the selected node changes
+  React.useEffect(() => {
+    if (routerParams) {
+      setFormState(FormState.Default);
+      setAmount("");
+    }
+  }, [routerParams]);
+
   // Clear the amount when the staking method changes
   React.useEffect(() => {
     setAmount("");
-  }, [action, setAmount]);
+  }, [action]);
+
   const { data } = useNetworkParam([
     NetworkParams.VALIDATOR_DELEGATION_MIN_AMOUNT,
   ]);
@@ -112,7 +125,7 @@ export const StakingForm = ({
   }, [action, availableStakeToAdd, availableStakeToRemove]);
 
   async function onSubmit() {
-    setFormState(FormState.Pending);
+    setFormState(FormState.Requested);
     const delegateInput: DelegateSubmissionInput = {
       pubKey: pubkey,
       delegateSubmission: {
@@ -134,6 +147,7 @@ export const StakingForm = ({
     try {
       const command = action === Actions.Add ? delegateInput : undelegateInput;
       const [err] = await vegaWalletService.commandSync(command);
+      setFormState(FormState.Pending);
 
       if (err) {
         setFormState(FormState.Failure);
@@ -183,6 +197,12 @@ export const StakingForm = ({
 
   if (formState === FormState.Failure) {
     return <StakeFailure nodeName={nodeName} />;
+  } else if (formState === FormState.Requested) {
+    return (
+      <Callout title="Confirm transaction in wallet" intent="action">
+        <p>Open your wallet app to confirm</p>
+      </Callout>
+    );
   } else if (formState === FormState.Pending) {
     return <StakePending action={action} amount={amount} nodeName={nodeName} />;
   } else if (formState === FormState.Success) {

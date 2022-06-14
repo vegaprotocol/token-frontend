@@ -91,10 +91,10 @@ export const LockedProgress = ({
         }`}
       >
         <span data-testid="associated-token-amount">
-          {formatNumber(locked, 2)}
+          {formatNumber(locked, 18)}
         </span>
         <span data-testid="not-associated-token-amount">
-          {formatNumber(unlocked, 2)}
+          {formatNumber(unlocked, 18)}
         </span>
       </div>
     </div>

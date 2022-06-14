@@ -131,13 +131,20 @@ export const WithdrawForm = ({
       </FormGroup>
       <StatefulButton
         type="submit"
-        disabled={!addressValid || !valid || status === WithdrawStatus.Pending}
+        disabled={
+          !addressValid ||
+          !valid ||
+          status === WithdrawStatus.Pending ||
+          status === WithdrawStatus.Requested
+        }
       >
         {status === WithdrawStatus.Pending ? (
           <>
             <Loader />
             <span>{t("withdrawFormSubmitButtonPending")}</span>
           </>
+        ) : status === WithdrawStatus.Requested ? (
+          <>Please confirm transaction in wallet</>
         ) : (
           t("withdrawFormSubmitButtonIdle", {
             amount: amountStr,
