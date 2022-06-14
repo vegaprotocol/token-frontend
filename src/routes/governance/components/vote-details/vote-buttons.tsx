@@ -129,7 +129,7 @@ export const VoteButtons = ({
   }
 
   if (voteState === VoteState.Requested) {
-    return <p>Please confirm transaction in wallet</p>;
+    return <p>Please confirm transaction in wallet...</p>;
   }
 
   if (voteState === VoteState.Pending) {

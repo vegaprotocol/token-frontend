@@ -56,7 +56,7 @@ export const VoteDetails = ({ proposal }: VoteDetailsProps) => {
         <span>
           <CurrentProposalStatus proposal={proposal} />
         </span>
-        .&nbsp;
+        {". "}
         {proposal.state === ProposalState.Open ? daysLeft : null}
       </p>
       <table className="vote-details__table">
