@@ -1,7 +1,7 @@
-import { generateProposal } from '../../routes/governance/test-helpers/generate-proposals';
+import { generateProposal } from "../../routes/governance/test-helpers/generate-proposals";
 import { getProposalName } from "./proposal";
 
-const proposal = generateProposal()
+const proposal = generateProposal();
 
 it("New market", () => {
   const name = getProposalName({
@@ -75,14 +75,13 @@ it("Update network", () => {
 it("Freeform network", () => {
   const name = getProposalName({
     ...proposal,
-    rationale: {
-      ...proposal.rationale,
-      hash: '0x0',
-    },
     terms: {
       ...proposal.terms,
       change: {
         __typename: "NewFreeform",
+        hash: "0x0",
+        url: "earl",
+        description: "a proposal",
       },
     },
   });
@@ -97,8 +96,8 @@ it("Renders unknown proposal if it's a different proposal type", () => {
       change: {
         // @ts-ignore
         __typename: "Foo",
-      }
-    }
+      },
+    },
   });
   expect(name).toEqual("Unknown Proposal");
 });

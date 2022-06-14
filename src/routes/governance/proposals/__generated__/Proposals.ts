@@ -17,31 +17,20 @@ export interface Proposals_proposals_party {
   id: string;
 }
 
-export interface Proposals_proposals_rationale {
-  __typename: "ProposalRationale";
+export interface Proposals_proposals_terms_change_NewFreeform {
+  __typename: "NewFreeform";
   /**
-   * Link to a text file describing the proposal in depth.
-   * Optional except for FreeFrom proposal where it's mandatory.
-   * If set, the `url` property must be set.
+   * The URL containing content that describes the proposal
    */
-  url: string | null;
+  url: string;
   /**
-   * Description to show a short title / something in case the link goes offline.
-   * This is to be between 0 and 1024 unicode characters.
-   * This is mandatory for all proposal.
+   * A short description of what is being proposed
    */
   description: string;
   /**
-   * Cryptographically secure hash (SHA3-512) of the text pointed by the `url` property
-   * so that viewers can check that the text hasn't been changed over time.
-   * Optional except for FreeFrom proposal where it's mandatory.
-   * If set, the `url` property must be set.
+   * The hash on the content of the URL
    */
-  hash: string | null;
-}
-
-export interface Proposals_proposals_terms_change_NewFreeform {
-  __typename: "NewFreeform";
+  hash: string;
 }
 
 export interface Proposals_proposals_terms_change_NewMarket_instrument {
@@ -286,10 +275,6 @@ export interface Proposals_proposals {
    * Party that prepared the proposal
    */
   party: Proposals_proposals_party;
-  /**
-   * Rationale behind the proposal
-   */
-  rationale: Proposals_proposals_rationale;
   /**
    * Terms of the proposal
    */
