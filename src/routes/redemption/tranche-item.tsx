@@ -70,6 +70,7 @@ export const TrancheItem = ({
         total={total}
         leftLabel={t("Locked")}
         rightLabel={t("Unlocked")}
+        decimals={18}
       />
 
       <div className="tranche-item__footer" data-testid="tranche-item-footer">
