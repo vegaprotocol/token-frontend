@@ -1,3 +1,12 @@
+## [0.5.47](https://github.com/vegaprotocol/token-frontend/compare/0.5.46...0.5.47) (2022-06-15)
+
+
+### Bug Fixes
+
+* render logic of current proposal status ([677824e](https://github.com/vegaprotocol/token-frontend/commit/677824e350e223b7d47b7b307630c15c51edb13c))
+
+
+
 ## [0.5.46](https://github.com/vegaprotocol/token-frontend/compare/0.5.45...0.5.46) (2022-06-14)
 
 
@@ -30,10 +39,6 @@
 
 
 ## [0.5.43](https://github.com/vegaprotocol/token-frontend/compare/0.5.42...0.5.43) (2022-05-25)
-
-
-
-## [0.5.42](https://github.com/vegaprotocol/token-frontend/compare/0.5.41...0.5.42) (2022-05-16)
 
 
 
