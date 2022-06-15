@@ -28,34 +28,22 @@ export const CurrentProposalStatus = ({
       ? enactmentDatetime.toString()
       : formatDistanceToNow(enactmentDatetime, { addSuffix: true });
 
-  if (proposal.state === ProposalState.Open && willPass) {
-    return (
-      <span className="current-proposal-status__pass">{t("shouldPass")}</span>
-    );
-  }
-
-  if (!participationMet) {
-    return (
-      <>
-        <span>{t("voteFailedReason")}</span>
-        <span className="current-proposal-status__fail">
-          {t("participationNotMet")}
-        </span>
-        <span>&nbsp;{daysClosedAgo}.</span>
-      </>
-    );
-  }
-
-  if (!majorityMet) {
-    return (
-      <>
-        <span>{t("voteFailedReason")}</span>
-        <span className="current-proposal-status__fail">
-          {t("majorityNotMet")}
-        </span>
-        <span>&nbsp;{daysClosedAgo}.</span>
-      </>
-    );
+  if (proposal.state === ProposalState.Open) {
+    if (willPass) {
+      return (
+        <>
+          Currently set to{" "}
+          <span className="current-proposal-status__pass">Pass</span>
+        </>
+      );
+    } else {
+      return (
+        <>
+          Currently set to{" "}
+          <span className="current-proposal-status__fail">Fail</span>
+        </>
+      );
+    }
   }
 
   if (
@@ -63,6 +51,30 @@ export const CurrentProposalStatus = ({
     proposal.state === ProposalState.Declined ||
     proposal.state === ProposalState.Rejected
   ) {
+    if (!participationMet) {
+      return (
+        <>
+          <span>{t("voteFailedReason")}</span>
+          <span className="current-proposal-status__fail">
+            {t("participationNotMet")}
+          </span>
+          <span>&nbsp;{daysClosedAgo}.</span>
+        </>
+      );
+    }
+
+    if (!majorityMet) {
+      return (
+        <>
+          <span>{t("voteFailedReason")}</span>
+          <span className="current-proposal-status__fail">
+            {t("majorityNotMet")}
+          </span>
+          <span>&nbsp;{daysClosedAgo}.</span>
+        </>
+      );
+    }
+
     return (
       <>
         <span>{t("voteFailedReason")}</span>
