@@ -1,3 +1,12 @@
+## [0.5.48](https://github.com/vegaprotocol/token-frontend/compare/0.5.47...0.5.48) (2022-06-15)
+
+
+### Bug Fixes
+
+* decimals overflowing in eth wallet ([510c2e1](https://github.com/vegaprotocol/token-frontend/commit/510c2e1069d954950e97971df3a3f1bb269f0d63))
+
+
+
 ## [0.5.47](https://github.com/vegaprotocol/token-frontend/compare/0.5.46...0.5.47) (2022-06-15)
 
 
@@ -35,10 +44,6 @@
 * Revert "Revert "Merge pull request #1242 from vegaprotocol/withdraw_tests"" ([342c254](https://github.com/vegaprotocol/token-frontend/commit/342c254ed5998f13110d8db01057b47ff01b44ff)), closes [#1242](https://github.com/vegaprotocol/token-frontend/issues/1242)
 * Revert "Revert "Merge pull request #1242 from vegaprotocol/withdraw_tests"" ([ff8e785](https://github.com/vegaprotocol/token-frontend/commit/ff8e7859aae0256f21c2a0d7d3c193964dce8e5a)), closes [#1242](https://github.com/vegaprotocol/token-frontend/issues/1242)
 * Revert "Revert "Merge pull request #1233 from vegaprotocol/staking_rewards_tests_tfe"" ([bf5cfb5](https://github.com/vegaprotocol/token-frontend/commit/bf5cfb5ad1652df6288c36d6812bee1e04566d41)), closes [#1233](https://github.com/vegaprotocol/token-frontend/issues/1233)
-
-
-
-## [0.5.43](https://github.com/vegaprotocol/token-frontend/compare/0.5.42...0.5.43) (2022-05-25)
 
 
 
