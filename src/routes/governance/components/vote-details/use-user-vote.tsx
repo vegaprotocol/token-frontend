@@ -77,7 +77,7 @@ export function useUserVote(
     }
   }, [userVote]);
 
-  // Start a starts a timeout of 30s to set a failed message if
+  // Starts a timeout of 30s to set a failed message if
   // the vote is not seen by the time the callback is invoked
   React.useEffect(() => {
     let timeout: any;

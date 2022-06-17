@@ -11,15 +11,15 @@ export const PROPOSALS_FRAGMENT = gql`
     party {
       id
     }
-    rationale {
-      url
-      description
-      hash
-    }
     terms {
       closingDatetime
       enactmentDatetime
       change {
+        ... on NewFreeform {
+          url
+          description
+          hash
+        }
         ... on NewMarket {
           decimalPlaces
           metadata

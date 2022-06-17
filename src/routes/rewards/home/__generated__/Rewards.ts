@@ -46,7 +46,7 @@ export interface Rewards_party_rewardDetails_rewards_epoch {
 export interface Rewards_party_rewardDetails_rewards {
   __typename: "Reward";
   /**
-   * The asset this reward is paid in
+   * The asset for which this reward is associated
    */
   asset: Rewards_party_rewardDetails_rewards_asset;
   /**
