@@ -1,3 +1,7 @@
+## [0.6.1](https://github.com/vegaprotocol/token-frontend/compare/0.6.0...0.6.1) (2022-06-22)
+
+
+
 # [0.6.0](https://github.com/vegaprotocol/token-frontend/compare/0.5.48...0.6.0) (2022-06-22)
 
 
@@ -31,17 +35,6 @@
 ### Bug Fixes
 
 * rationale not in 0.50.3 ([d696ed3](https://github.com/vegaprotocol/token-frontend/commit/d696ed3c27771dc5072c32d42ca3ec3d5ab58eba))
-
-
-
-## [0.5.45](https://github.com/vegaprotocol/token-frontend/compare/0.5.44...0.5.45) (2022-06-14)
-
-
-### Bug Fixes
-
-* number of decimals can be misleading on vesting form ([37aa5b6](https://github.com/vegaprotocol/token-frontend/commit/37aa5b6e0ce78eac12eebfe391df0e8e837bbbe0))
-* proposal list crashing when the date value is too far in the future ([c236a90](https://github.com/vegaprotocol/token-frontend/commit/c236a90e9cfbae942095e50af2663d736491fc59))
-* proposal page when proposal has an invalid date ([299b267](https://github.com/vegaprotocol/token-frontend/commit/299b2670dc8549a294d74a41aa5a75853cd4085c))
 
 
 
