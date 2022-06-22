@@ -12,7 +12,7 @@ import { formatNumber } from "../../lib/format-number";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { Nodes } from "./__generated__/Nodes";
 import { Scores, Scores_epoch } from "./__generated__/Scores";
-import { Staking_epoch, Staking_party } from "./__generated__/Staking";
+import { Staking_epoch } from "./__generated__/Staking";
 
 export const NODES_QUERY = gql`
   query Nodes {
