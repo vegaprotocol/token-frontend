@@ -2,7 +2,7 @@ import "./node-list.scss";
 
 import { gql, useQuery } from "@apollo/client";
 import { Callout } from "@vegaprotocol/ui-toolkit";
-import React from "react";
+import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useRouteMatch } from "react-router-dom";
 
@@ -11,6 +11,7 @@ import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
 import { truncateMiddle } from "../../lib/truncate-middle";
 import { Nodes } from "./__generated__/Nodes";
+import { Scores, Scores_epoch } from "./__generated__/Scores";
 import { Staking_epoch, Staking_party } from "./__generated__/Staking";
 
 export const NODES_QUERY = gql`
@@ -47,14 +48,40 @@ export const NODES_QUERY = gql`
   }
 `;
 
+const SCORES_QUERY = gql`
+  query Scores($epochId: String!) {
+    epoch(id: $epochId) {
+      id
+      validators {
+        id
+        rewardScore {
+          validatorScore
+          normalisedScore
+          performanceScore
+          rawValidatorScore
+          multisigScore
+        }
+      }
+    }
+  }
+`;
+
 interface NodeListProps {
   epoch: Staking_epoch | undefined;
-  party: Staking_party | null | undefined;
 }
 
-export const NodeList = ({ epoch, party }: NodeListProps) => {
+export const NodeList = ({ epoch }: NodeListProps) => {
   const { t } = useTranslation();
   const { data, error, loading } = useQuery<Nodes>(NODES_QUERY);
+
+  const {
+    data: scoresData,
+    loading: scoresLoading,
+    error: scoresError,
+  } = useQuery<Scores>(SCORES_QUERY, {
+    variables: { epochId: Number(epoch?.id) - 1 || "" },
+    skip: !Boolean(epoch?.id) || epoch?.id === "0",
+  });
 
   const nodes = React.useMemo<NodeListItemProps[]>(() => {
     if (!data?.nodes) return [];
@@ -70,21 +97,6 @@ export const NodeList = ({ epoch, party }: NodeListProps) => {
           : stakedOnNode.dividedBy(stakedTotal).times(100).dp(2).toString() +
             "%";
 
-      const userStake = party?.delegations?.length
-        ? party?.delegations
-            ?.filter((d) => d.node.id === node.id)
-            ?.filter((d) => d.epoch === Number(epoch?.id))
-            .reduce((sum, d) => {
-              const value = new BigNumber(d.amountFormatted);
-              return sum.plus(value);
-            }, new BigNumber(0))
-        : new BigNumber(0);
-
-      const userStakePercentage =
-        userStake.isEqualTo(0) || stakedOnNode.isEqualTo(0)
-          ? "-"
-          : userStake.dividedBy(stakedOnNode).times(100).dp(2).toString() + "%";
-
       return {
         id: node.id,
         name: node.name,
@@ -92,24 +104,28 @@ export const NodeList = ({ epoch, party }: NodeListProps) => {
         stakedTotal,
         stakedOnNode,
         stakedTotalPercentage,
-        userStake,
-        userStakePercentage,
         epoch,
+        scores: scoresData?.epoch,
       };
     });
 
     return nodesWithPercentages;
-  }, [data, epoch, party]);
+  }, [
+    data?.nodeData?.stakedTotalFormatted,
+    data?.nodes,
+    epoch,
+    scoresData?.epoch,
+  ]);
 
-  if (error) {
+  if (error || scoresError) {
     return (
       <Callout intent="error" title={t("Something went wrong")}>
-        <pre>{error.message}</pre>
+        <pre>{error?.message || scoresError?.message}</pre>
       </Callout>
     );
   }
 
-  if (loading) {
+  if (loading || scoresLoading) {
     return (
       <div>
         <p>{t("Loading")}</p>
@@ -141,8 +157,7 @@ export interface NodeListItemProps {
   name: string;
   stakedOnNode: BigNumber;
   stakedTotalPercentage: string;
-  userStake: BigNumber;
-  userStakePercentage: string;
+  scores: Scores_epoch | undefined;
 }
 
 export const NodeListItem = ({
@@ -150,11 +165,14 @@ export const NodeListItem = ({
   name,
   stakedOnNode,
   stakedTotalPercentage,
-  userStake,
-  userStakePercentage,
+  scores,
 }: NodeListItemProps) => {
   const { t } = useTranslation();
   const match = useRouteMatch();
+
+  const nodeScores = useMemo(() => {
+    return scores?.validators.find(({ id: validatorId }) => id === validatorId);
+  }, [id, scores?.validators]);
 
   return (
     <li data-testid="node-list-item">
@@ -179,14 +197,20 @@ export const NodeListItem = ({
         <tbody>
           <tr>
             <th>{t("Total stake")}</th>
-            <td>{formatNumber(stakedOnNode, 2)}</td>
-            <td>{stakedTotalPercentage}</td>
+            <td>
+              {formatNumber(stakedOnNode, 2)} ({stakedTotalPercentage})
+            </td>
           </tr>
-          <tr>
-            <th>{t("Your stake")}</th>
-            <td>{formatNumber(userStake, 2)}</td>
-            <td>{userStakePercentage}</td>
-          </tr>
+          {nodeScores?.rewardScore
+            ? Object.entries(nodeScores.rewardScore)
+                .filter(([key]) => key !== "__typename")
+                .map(([key, value]) => (
+                  <tr>
+                    <th>{t(key)}</th>
+                    <td>{value}</td>
+                  </tr>
+                ))
+            : null}
         </tbody>
       </table>
     </li>
