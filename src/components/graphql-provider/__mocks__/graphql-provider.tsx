@@ -58,6 +58,13 @@ const nodes: Staking_nodes[] = [
       offline: 1,
       online: 5,
     },
+    rankingScore: {
+      __typename: "RankingScore",
+      rankingScore: "1",
+      stakeScore: "1",
+      performanceScore: "1",
+      votingPower: "1",
+    },
     status: NodeStatus.NonValidator,
   },
   {
@@ -81,6 +88,13 @@ const nodes: Staking_nodes[] = [
       total: 6,
       offline: 1,
       online: 5,
+    },
+    rankingScore: {
+      __typename: "RankingScore",
+      rankingScore: "1",
+      stakeScore: "1",
+      performanceScore: "1",
+      votingPower: "1",
     },
     status: NodeStatus.Validator,
   },

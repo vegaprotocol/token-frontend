@@ -2,7 +2,7 @@ import "./node-list.scss";
 
 import { gql, useQuery } from "@apollo/client";
 import { Callout } from "@vegaprotocol/ui-toolkit";
-import React, { useMemo } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useRouteMatch } from "react-router-dom";
 
@@ -10,8 +10,7 @@ import { EpochCountdown } from "../../components/epoch-countdown";
 import { BigNumber } from "../../lib/bignumber";
 import { formatNumber } from "../../lib/format-number";
 import { truncateMiddle } from "../../lib/truncate-middle";
-import { Nodes } from "./__generated__/Nodes";
-import { Scores, Scores_epoch } from "./__generated__/Scores";
+import { Nodes, Nodes_nodes_rankingScore } from "./__generated__/Nodes";
 import { Staking_epoch } from "./__generated__/Staking";
 
 export const NODES_QUERY = gql`
@@ -36,6 +35,13 @@ export const NODES_QUERY = gql`
         online
       }
       status
+      rankingScore {
+        rankingScore
+        stakeScore
+        performanceScore
+        votingPower
+        stakeScore
+      }
     }
     nodeData {
       stakedTotal
@@ -48,24 +54,6 @@ export const NODES_QUERY = gql`
   }
 `;
 
-const SCORES_QUERY = gql`
-  query Scores($epochId: String!) {
-    epoch(id: $epochId) {
-      id
-      validators {
-        id
-        rewardScore {
-          validatorScore
-          normalisedScore
-          performanceScore
-          rawValidatorScore
-          multisigScore
-        }
-      }
-    }
-  }
-`;
-
 interface NodeListProps {
   epoch: Staking_epoch | undefined;
 }
@@ -73,15 +61,6 @@ interface NodeListProps {
 export const NodeList = ({ epoch }: NodeListProps) => {
   const { t } = useTranslation();
   const { data, error, loading } = useQuery<Nodes>(NODES_QUERY);
-
-  const {
-    data: scoresData,
-    loading: scoresLoading,
-    error: scoresError,
-  } = useQuery<Scores>(SCORES_QUERY, {
-    variables: { epochId: Number(epoch?.id) - 1 || "" },
-    skip: !Boolean(epoch?.id) || epoch?.id === "0",
-  });
 
   const nodes = React.useMemo<NodeListItemProps[]>(() => {
     if (!data?.nodes) return [];
@@ -105,27 +84,22 @@ export const NodeList = ({ epoch }: NodeListProps) => {
         stakedOnNode,
         stakedTotalPercentage,
         epoch,
-        scores: scoresData?.epoch,
+        scores: node.rankingScore,
       };
     });
 
     return nodesWithPercentages;
-  }, [
-    data?.nodeData?.stakedTotalFormatted,
-    data?.nodes,
-    epoch,
-    scoresData?.epoch,
-  ]);
+  }, [data?.nodeData?.stakedTotalFormatted, data?.nodes, epoch]);
 
-  if (error || scoresError) {
+  if (error) {
     return (
       <Callout intent="error" title={t("Something went wrong")}>
-        <pre>{error?.message || scoresError?.message}</pre>
+        <pre>{error?.message}</pre>
       </Callout>
     );
   }
 
-  if (loading || scoresLoading) {
+  if (loading) {
     return (
       <div>
         <p>{t("Loading")}</p>
@@ -157,7 +131,7 @@ export interface NodeListItemProps {
   name: string;
   stakedOnNode: BigNumber;
   stakedTotalPercentage: string;
-  scores: Scores_epoch | undefined;
+  scores: Nodes_nodes_rankingScore;
 }
 
 export const NodeListItem = ({
@@ -169,10 +143,6 @@ export const NodeListItem = ({
 }: NodeListItemProps) => {
   const { t } = useTranslation();
   const match = useRouteMatch();
-
-  const nodeScores = useMemo(() => {
-    return scores?.validators.find(({ id: validatorId }) => id === validatorId);
-  }, [id, scores?.validators]);
 
   return (
     <li data-testid="node-list-item">
@@ -201,13 +171,13 @@ export const NodeListItem = ({
               {formatNumber(stakedOnNode, 2)} ({stakedTotalPercentage})
             </td>
           </tr>
-          {nodeScores?.rewardScore
-            ? Object.entries(nodeScores.rewardScore)
+          {scores
+            ? Object.entries(scores)
                 .filter(([key]) => key !== "__typename")
                 .map(([key, value]) => (
                   <tr>
                     <th>{t(key)}</th>
-                    <td>{value}</td>
+                    <td>{formatNumber(new BigNumber(value), 4)}</td>
                   </tr>
                 ))
             : null}
