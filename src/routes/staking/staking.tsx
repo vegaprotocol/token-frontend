@@ -170,11 +170,15 @@ export const StakingStepAssociate = ({
       >
         <p>
           <Link to="/staking/associate">
-            <button data-testid="associate-more-tokens-btn" className="fill">{t("stakingAssociateMoreButton")}</button>
+            <button data-testid="associate-more-tokens-btn" className="fill">
+              {t("stakingAssociateMoreButton")}
+            </button>
           </Link>
         </p>
         <Link to="/staking/disassociate">
-          <button data-testid="disassociate-tokens-btn" className="fill">{t("stakingDisassociateButton")}</button>
+          <button data-testid="disassociate-tokens-btn" className="fill">
+            {t("stakingDisassociateButton")}
+          </button>
         </Link>
       </Callout>
     );
@@ -184,7 +188,11 @@ export const StakingStepAssociate = ({
     <>
       <p>{t("stakingStep2Text")}</p>
       <Link to={`${match.path}/associate`}>
-        <button type="button" data-testid="associate-tokens-btn" className="fill">
+        <button
+          type="button"
+          data-testid="associate-tokens-btn"
+          className="fill"
+        >
           {t("associateButton")}
         </button>
       </Link>
@@ -197,5 +205,5 @@ export const StakingStepSelectNode = ({
 }: {
   data?: StakingQueryResult;
 }) => {
-  return <NodeList epoch={data?.epoch} party={data?.party} />;
+  return <NodeList epoch={data?.epoch} />;
 };

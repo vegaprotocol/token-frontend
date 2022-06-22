@@ -542,5 +542,10 @@
   "yesPercentage": "Yes percentage",
   "noPercentage": "No percentage",
   "proposalTerms": "Proposal terms",
-  "invalidDate": "Invalid Date"
+  "invalidDate": "Invalid Date",
+  "validatorScore": "Validator score",
+  "normalisedScore": "Normalized score",
+  "performanceScore": "Peformance score",
+  "rawValidatorScore": "Raw validator score",
+  "multisigScore": "Multisig control score"
 }
