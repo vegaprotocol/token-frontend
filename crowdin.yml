@@ -1,6 +1,0 @@
-commit_message: "chore: new translations for %locale% [skip ci]"
-base_url: "https://api.crowdin.com"
-preserve_hierarchy: true
-files:
-  - source: /src/i18n/translations/dev.json
-    translation: /src/i18n/translations/%locale%.json
